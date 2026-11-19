@@ -1,0 +1,12 @@
+Errata for MIT thesis version: https://dspace.mit.edu/handle/1721.1/147502
+
+Latest version is curated on: https://www.researchgate.net/publication/362790816_Three-dimensional_Integral_Boundary_Layer_Method_for_Viscous_Aerodynamic_Analysis
+
+--------------------------------
+Changelog
+--------------------------------
+2023.02.06
+
+p53: The Reynolds number per unit length is 10^5
+
+p148: The minmax scalar in this work actually normalizes quantities to the range [-1,1] (symmetric), rather than [0,1]
