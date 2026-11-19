@@ -1,0 +1,417 @@
+abstract: <jats:p>The conceptual design of unmanned aerial vehicles (UAVs) presents
+  significant multidisciplinary challenges requiring the optimization of aerodynamic
+  and structural performance, stealth, and propulsion efficiency. This work addresses
+  these challenges by integrating deep neural networks with a multiobjective genetic
+  algorithm to optimize UAV configurations. The proposed framework enables a comprehensive
+  evaluation of design alternatives by estimating key performance metrics required
+  for different operational requirements. The design process resulted in a significant
+  improvement in computational time over traditional methods by more than three orders
+  of magnitude. The findings illustrate the framework’s capability to optimize UAV
+  designs for a variety of mission scenarios, including specialized tasks such as
+  intelligence, surveillance, and reconnaissance (ISR), combat air patrol (CAP), and
+  Suppression of Enemy Air Defenses (SEAD). This flexibility and adaptability was
+  demonstrated through a case study, showcasing the method’s effectiveness in tailoring
+  UAV configurations to meet specific operational requirements while balancing trade-offs
+  between aerodynamic efficiency, stealth, and structural weight. Additionally, these
+  results underscore the transformative impact of integrating AI into the early stages
+  of the design process, facilitating rapid prototyping and innovation in aerospace
+  engineering. Consequently, the current work demonstrates the potential of AI-driven
+  optimization to revolutionize UAV design by providing a robust and effective tool
+  for solving complex engineering problems.</jats:p>
+author: Karali, Hasan and Inalhan, Gokhan and Tsourdos, Antonios
+author_list:
+- affiliation:
+  - name: School of Aerospace, Transport and Manufacturing, Cranfield University,
+      Cranfield MK43 0AL, UK
+  family: Karali
+  given: Hasan
+- affiliation:
+  - name: School of Aerospace, Transport and Manufacturing, Cranfield University,
+      Cranfield MK43 0AL, UK
+  family: Inalhan
+  given: Gokhan
+- affiliation:
+  - name: School of Aerospace, Transport and Manufacturing, Cranfield University,
+      Cranfield MK43 0AL, UK
+  family: Tsourdos
+  given: Antonios
+citations:
+- doi: 10.1017/CBO9781107284166
+  unstructured: 'Cummings, R.M., Mason, W.H., Morton, S.A., and McDaniel, D.R. (2015).
+    Applied Computational Aerodynamics: A Modern Engineering Approach, Cambridge University
+    Press.'
+- article-title: Benchmarking New CEASIOM with CPACS adoption for aerodynamic analysis
+    and flight simulation
+  author: Jungo
+  doi: 10.1108/AEAT-11-2016-0204
+  first-page: '613'
+  journal-title: Aircr. Eng. Aerosp. Technol.
+  volume: '90'
+  year: '2018'
+- unstructured: Roskam, J. (1985). Airplane Design, DARcorporation.
+- doi: 10.2514/4.869112
+  unstructured: 'Raymer, D. (2012). Aircraft Design: A Conceptual Approach, American
+    Institute of Aeronautics and Astronautics Inc.'
+- doi: 10.1002/9781118352700
+  unstructured: 'Sadraey, M.H. (2013). Aircraft Design: A Systems Engineering Approach,
+    John Wiley and Sons.'
+- unstructured: 'de Weck, O., and Willcox, K. (2022, June 10). Multidisciplinary System
+    Design Optimization. Available online: https://ocw.mit.edu/courses/ids-338j-multidisciplinary-system-design-optimization-spring-2010/.'
+- doi: 10.2514/6.2022-3880
+  unstructured: Roth, G.L., and Altman, A. (July, January 27). Re-imagining Engineering
+    Conceptual Design for Aerospace. Proceedings of the AIAA AVIATION 2022 Forum,
+    Chicago, IL, USA.
+- doi: 10.3390/aerospace10010046
+  unstructured: Liao, P., Song, W., Du, P., Feng, F., and Zhang, Y. (2023). Aerodynamic
+    Intelligent Topology Design (AITD)-A Future Technology for Exploring the New Concept
+    Configuration of Aircraft. Aerospace, 10.
+- unstructured: Asimov, I. (1950). I, Robot, Doubleday.
+- unstructured: Stanisław, L. (1973). The Invincible, Seabury Press.
+- doi: 10.2514/6.2015-2792
+  unstructured: Humphreys, C., Cobb, R., Jacques, D., and Reeger, J. (2015, January
+    22–26). Optimal Mission Path for the Uninhabited Loyal Wingman. Proceedings of
+    the 16th AIAA/ISSMO Multidisciplinary Analysis and Optimization Conference, Dallas,
+    TX, USA.
+- unstructured: Stensrud, R., Mikkelsen, B., Betten, S., and Valaker, S. (2021, January
+    20–21). A proposal for a simple evaluation method in support of the initial concept
+    phase assessing a future unmanned Loyal Wingman for Royal Norwegian Air Force
+    (RNoAF). Proceedings of the 38th International Symposium on Military Operational
+    Research (38 ISMOR), Online.
+- unstructured: 'Harper, J. (2020). The Rise of Skyborg: Air Force Betting on New
+    Robotic Wingman. Natl. Def., Available online: https://www.nationaldefensemagazine.org/articles/2020/9/25/air-force-betting-on-new-robotic-wingman#:~:text=The%20Rise%20of%20Skyborg%3A%20Air%20Force%20Betting%20on%20New%20Robotic%20Wingman&text=The%20next%20year%20will%20be,will%20soon%20undergo%20operational%20experimentation.'
+- unstructured: 'Gunzinger, M., and Autenried, L. (2020). Understanding the Promise
+    of Skyborg and Low-Cost Attritable Unmanned Aerial Vehicles. Mitchell Inst. Policy
+    Pap., 24, Available online: https://mitchellaerospacepower.org/understanding-the-promise-of-skyborg-and-low-cost-attritable-unmanned-aerial-vehicles/.'
+- unstructured: 'Reim, G. (2018). Analysis: US Air Force eyes adoption of ‘Loyal Wingman’
+    UAVs. Flight Glob., Available online: https://www.flightglobal.com/analysis/analysis-us-air-force-eyes-adoption-of-loyal-wingman-uavs/129330.article.'
+- unstructured: 'Smith, A., and Rogers, M. (2021). F-35 Sustainment: DOD Needs to
+    Cut Billions in Estimated Costs to Achieve Affordability.'
+- doi: 10.1109/SYSCON.2017.7934767
+  unstructured: 'Colombi, J., Bentz, B., Recker, R., Lucas, B., and Freels, J. (2017,
+    January 24–27). Attritable design trades: Reliability and cost implications for
+    unmanned aircraft. Proceedings of the 2017 Annual IEEE International Systems Conference
+    (SysCon), Montreal, QC, Canada.'
+- unstructured: 'Pittaway, N. (2022). Boeing details MQ-28A payload ground test phase.
+    Aust. Def. Mag., Available online: https://www.australiandefence.com.au/defence/air/boeing-details-mq-28a-payload-ground-test-phase#:~:text=A%20variety%20of%20payloads%20will,of%20the%20aircraft%27s%20removable%20nose.'
+- unstructured: 'Newdick, T. (2021). The United Kingdom Has Chosen Who Will Build
+    Its First Prototype Loyal Wingman Combat Drone. Drive Warzone, Available online:
+    https://www.thedrive.com/the-war-zone/42134/the-united-kingdom-has-chosen-who-will-build-its-first-prototype-loyal-wingman-combat-drone.'
+- unstructured: 'Aviation Week (2024, May 26). EADS Barracuda. Available online: https://aviationweek.com/defense-space/eads-cassidian-eyes-further-barracuda-uav-flights.'
+- unstructured: '(2024, May 26). 96th Test Wing, 40th Flight Test Squadron. Kratos
+    XQ-58. Photo by Master Sgt. Tristan McIntire. Available online: https://www.flightglobal.com/military-uavs/usmc-completes-first-test-flight-with-autonomous-xq-58/155257.article.'
+- unstructured: 'Australian Defense Department (2024, May 26). MQ-28 Loyal Wingman.
+    Available online: https://aviationweek.com/shownews/farnborough-airshow/boeings-phantom-works-wants-untethered-loyal-wingman.'
+- unstructured: 'Anadolu Images (2024, May 26). Baykar Kizilelma. Available online:
+    https://www.aa.com.tr/tr/bilim-teknoloji/bayraktar-kizilelma-ilk-ucusunu-gerceklestirdi/2763872.'
+- unstructured: 'General Atomics (2024, May 26). XQ-67A Off Board Sensing Station
+    Maiden Flight over Palmdale, California. Available online: https://www.dvidshub.net/image/8275788/afrls-xq-67a-makes-1st-successful-flight.'
+- unstructured: 'Qinetiq (2024, May 26). Qinetiq Derives Collaborative UAS from Banshee
+    Target. Credit: Qinetiq. Available online: https://aviationweek.com/defense-space/aircraft-propulsion/qinetiq-derives-collaborative-uas-banshee-target.'
+- unstructured: 'BAE Systems (2024, May 26). UAS Concepts. Available online: https://www.baesystems.com/en/product/uas-concepts.'
+- unstructured: 'Air & Space Forces Magazine (2024, August 11). Anduril and General
+    Atomics to Develop New Collaborative Combat Aircraft for Air Force. The Anduril
+    “Fury” Autonomous Aircraft on April 24. Courtesy Photo. Available online: https://www.airandspaceforces.com/cca-contract-winners-to-be-announced-imminently/.'
+- doi: 10.1007/978-94-011-0453-1_14
+  unstructured: 'Sobieszczanski-Sobieski, J. (1995). Multidisciplinary design optimization:
+    An emerging new engineering discipline. Advances in Structural Optimization, Springer.'
+- article-title: Multidisciplinary unmanned combat air vehicle system design using
+    multi-fidelity model
+  author: Nguyen
+  doi: 10.1016/j.ast.2012.04.004
+  first-page: '200'
+  journal-title: Aerosp. Sci. Technol.
+  volume: '26'
+  year: '2013'
+- article-title: A new nonlinear lifting line method for aerodynamic analysis and
+    deep learning modeling of small unmanned aerial vehicles
+  author: Karali
+  doi: 10.1177/17568293211016817
+  first-page: '17568293211016817'
+  journal-title: Int. J. Micro Air Veh.
+  volume: '13'
+  year: '2021'
+- article-title: Multifidelity approaches for optimization under uncertainty
+  author: Ng
+  doi: 10.1002/nme.4761
+  first-page: '746'
+  journal-title: Int. J. Numer. Methods Eng.
+  volume: '100'
+  year: '2014'
+- article-title: 'Data-driven aerospace engineering: Reframing the industry with machine
+    learning'
+  author: Brunton
+  first-page: '2820'
+  journal-title: AIAA J.
+  volume: '59'
+  year: '2021'
+- unstructured: 'AIAA Digital Engineering Integration Committee (2020). Digital Twin:
+    Definition & Value—An AIAA and AIA Position Paper, AIAA.'
+- article-title: Decision tree classifiers for unmanned aircraft configuration selection
+  author: Secco
+  doi: 10.1108/AEAT-03-2021-0074
+  first-page: '1122'
+  journal-title: Aircr. Eng. Aerosp. Technol.
+  volume: '93'
+  year: '2021'
+- doi: 10.2514/6.2021-0114
+  unstructured: Sharma, R.S., and Hosder, S. (19–21, January 11–15). Investigation
+    of aircraft design space exploration with machine learning. Proceedings of the
+    AIAA Scitech 2021 Forum, Virtual.
+- article-title: Aircraft design cycle time reduction using artificial intelligence
+  author: Oroumieh
+  doi: 10.1016/j.ast.2012.05.003
+  first-page: '244'
+  journal-title: Aerosp. Sci. Technol.
+  volume: '26'
+  year: '2013'
+- article-title: UAV aerodynamic design involving genetic algorithm and artificial
+    neural network for wing preliminary computation
+  author: Boutemedjet
+  doi: 10.1016/j.ast.2018.09.043
+  first-page: '464'
+  journal-title: Aerosp. Sci. Technol.
+  volume: '84'
+  year: '2019'
+- article-title: Surrogate model–based robust multidisciplinary design optimization
+    of an unmanned aerial vehicle
+  author: Setayandeh
+  doi: 10.1061/(ASCE)AS.1943-5525.0001272
+  first-page: 04021029
+  journal-title: J. Aerosp. Eng.
+  volume: '34'
+  year: '2021'
+- doi: 10.2514/6.2022-3899
+  unstructured: Bekemeyer, P., Bertram, A., Hines Chaves, D.A., Dias Ribeiro, M.,
+    Garbo, A., Kiener, A., Sabater, C., Stradtner, M., Wassing, S., and Widhalm, M.
+    (July, January 27). Data-driven aerodynamic modeling using the DLR SMARTy toolbox.
+    Proceedings of the AIAA Aviation 2022 Forum, Chicago, IL, USA.
+- doi: 10.3390/aerospace11020137
+  unstructured: Sharma, R.S., and Hosder, S. (2024). Mission-Driven Inverse Design
+    of Blended Wing Body Aircraft with Machine Learning. Aerospace, 11.
+- article-title: Missile aerodynamic shape optimization design using deep neural networks
+  author: Wu
+  doi: 10.1016/j.ast.2022.107640
+  first-page: '107640'
+  journal-title: Aerosp. Sci. Technol.
+  volume: '126'
+  year: '2022'
+- article-title: Aerodynamic shape optimization using a novel optimizer based on machine
+    learning techniques
+  author: Yan
+  doi: 10.1016/j.ast.2019.02.003
+  first-page: '826'
+  journal-title: Aerosp. Sci. Technol.
+  volume: '86'
+  year: '2019'
+- article-title: Machine learning in aerodynamic shape optimization
+  author: Li
+  doi: 10.1016/j.paerosci.2022.100849
+  first-page: '100849'
+  journal-title: Prog. Aerosp. Sci.
+  volume: '134'
+  year: '2022'
+- article-title: Scalable gradient–enhanced artificial neural networks for airfoil
+    shape design in the subsonic and transonic regimes
+  author: Bouhlel
+  doi: 10.1007/s00158-020-02488-5
+  first-page: '1363'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '61'
+  year: '2020'
+- doi: 10.2514/6.2020-2128
+  unstructured: Du, X., He, P., and Martins, J.R. (2020, January 6–10). A B-spline-based
+    generative adversarial network model for fast interactive airfoil aerodynamic
+    optimization. Proceedings of the AIAA Scitech 2020 Forum, Orlando, FL, USA.
+- article-title: Data-based approach for wing shape design optimization
+  author: Li
+  doi: 10.1016/j.ast.2021.106639
+  first-page: '106639'
+  journal-title: Aerosp. Sci. Technol.
+  volume: '112'
+  year: '2021'
+- doi: 10.2514/6.2021-0616
+  unstructured: Barnhart, S.A., Narayanan, B., and Gunasekaran, S. (19–21, January
+    11–15). Blown wing aerodynamic coefficient predictions using traditional machine
+    learning and data science approaches. Proceedings of the AIAA Scitech 2021 Forum,
+    Virtual.
+- article-title: Adaptive-surrogate-based robust optimization of transonic natural
+    laminar flow nacelle
+  author: Yuan
+  doi: 10.1016/j.cja.2021.01.007
+  first-page: '36'
+  journal-title: Chin. J. Aeronaut.
+  volume: '34'
+  year: '2021'
+- doi: 10.1007/978-981-15-1773-0_21
+  unstructured: Yu, B., Xie, L., and Wang, F. (2019). An improved deep convolutional
+    neural network to predict airfoil lift coefficient. Proceedings of the International
+    Conference on Aerospace System Science and Engineering, Springer.
+- doi: 10.2514/6.2018-1903
+  unstructured: Zhang, Y., Sung, W.J., and Mavris, D.N. (2018, January 8–12). Application
+    of convolutional neural network to predict airfoil lift coefficient. Proceedings
+    of the 2018 AIAA/ASCE/AHS/ASC Structures, Structural Dynamics, and Materials Conference,
+    Kissimmee, FL, USA.
+- article-title: Airfoil shape optimization using genetic algorithm coupled deep neural
+    networks
+  author: Wu
+  doi: 10.1063/5.0160954
+  first-page: 085140
+  journal-title: Phys. Fluids
+  volume: '35'
+  year: '2023'
+- article-title: Surrogate approaches for aerodynamic section performance modeling
+  author: Keane
+  doi: 10.2514/1.J058687
+  first-page: '16'
+  journal-title: AIAA J.
+  volume: '58'
+  year: '2020'
+- doi: 10.2514/6.2023-0670
+  unstructured: Karali, H., Inalhan, G., and Tsourdos, A. (2023, January 23–27). AI-Based
+    Multifidelity Surrogate Models to Develop Next Generation Modular UCAVs. Proceedings
+    of the AIAA Scitech 2023 Forum, National Harbor, MD, USA.
+- doi: 10.1109/CAI54212.2023.00043
+  unstructured: Karali, H., Inalhan, G., and Tsourdos, A. (2023, January 5–6). AI-driven
+    Unmanned Aerial System Conceptual Design with Configuration Selection. Proceedings
+    of the 2023 IEEE Conference on Artificial Intelligence (CAI), Santa Clara, CA,
+    USA.
+- doi: 10.2514/6.2024-1708
+  unstructured: Karali, H., Inalhan, G., and Tsourdos, A. (2024, January 8–12). AI-Driven
+    Multidisciplinary Conceptual Design of Unmanned Aerial Vehicles. Proceedings of
+    the AIAA SCITECH 2024 Forum, Orlando, FL, USA.
+- unstructured: Roskam, J., and Lan, C.T.E. (1997). Airplane Aerodynamics and Performance,
+    DARcorporation.
+- unstructured: 'Pratt & Whitney Canada (2024, August 07). JT15D Turbofan Engine.
+    Available online: https://airandspace.si.edu/collection-objects/pratt-whitney-canada-jt15d-1turbofan-engine-cutaway/nasm_A19780210000.'
+- unstructured: 'Pratt & Whitney Canada (2024, August 07). PW617 Turbofan Engine.
+    Available online: https://www.prattwhitney.com/en/products/business-aviation-engines/pw600.'
+- unstructured: 'Pratt & Whitney Canada (2024, August 07). PW545B Turbofan Engine.
+    Available online: https://www.prattwhitney.com/en/products/business-aviation-engines/pw500.'
+- unstructured: 'Pratt & Whitney Canada (2024, August 07). PW610F Turbofan Engine.
+    Available online: https://www.prattwhitney.com/en/products/business-aviation-engines/pw600.'
+- unstructured: 'Pratt & Whitney Canada (2024, August 07). PW615F Turbofan Engine.
+    Available online: https://www.prattwhitney.com/en/products/business-aviation-engines/pw600.'
+- unstructured: 'GE Honda (2024, August 07). GE Honda HF120 Turbofan Engine. Available
+    online: https://www.geaviation.com.'
+- unstructured: 'Ivchenko Progress (2024, August 07). AI-25TL Turbofan Engine. Available
+    online: http://uecrus.com.'
+- unstructured: 'Williams International (2024, August 07). FJ33 Turbofan Engine. Available
+    online: https://www.williams-int.com/products/.'
+- unstructured: 'Williams International (2024, August 07). FJ44-4 Turbofan Engine.
+    Available online: https://www.williams-int.com/products/.'
+- unstructured: 'Honeywell Aerospace (2024, August 07). TFE731-2 Turbofan Engine.
+    Available online: https://aerospace.honeywell.com/us/en/products-and-services/product/hardware-and-systems/engines/tfe731.'
+- doi: 10.1017/CBO9780511810329
+  unstructured: Katz, J., and Plotkin, A. (2001). Low-Speed Aerodynamics, Cambridge
+    University Press. [2nd ed.].
+- unstructured: 'Erickson, L.L. (1990). Panel Methods: An Introduction, NASA Ames
+    Research Center. Technical Publication NASA-TP-2995, NASA Technical Paper 2995
+    December 1990.'
+- doi: 10.2514/6.2021-0177
+  unstructured: Karali, H., Demirezen, U.M., Yukselen, M.A., and Inalhan, G. (19–21,
+    January 11–15). A novel physics informed deep learning method for simulation-based
+    modelling. Proceedings of the AIAA Scitech 2021 Forum, Virtual.
+- doi: 10.2514/6.2018-3001
+  unstructured: Karakoc, A., and Kaya, H. (2018, January 25–29). A multi-objective
+    multi-disciplinary optimization approach for NATO AVT 251 UCAV–MULDICON. Proceedings
+    of the 2018 Applied Aerodynamics Conference, Atlanta, GA, USA.
+- doi: 10.1016/B978-012262942-6/50003-2
+  unstructured: Fourikis, N. (2000). Advanced Array Systems, Applications and RF Technologies,
+    Academic Press.
+- unstructured: 'Chung, S.S.M., and Tuan, S.C. (2020, January 26–28). Radar Cross
+    Section Simulation of XQ-58 Valkyrie Like CAD Model. Proceedings of the 2020 International
+    Workshop on Electromagnetics: Applications and Student Innovation Competition
+    (iWEM), Makung, Taiwan.'
+- article-title: Broadband radar cross section reduction by an absorptive metasurface
+    based on a magnetic absorbing material
+  author: Leung
+  doi: 10.1364/OE.440785
+  first-page: '33536'
+  journal-title: Opt. Express
+  volume: '29'
+  year: '2021'
+- doi: 10.3390/drones7010039
+  unstructured: Kapoulas, I.K., Hatziefremidis, A., Baldoukas, A., Valamontes, E.S.,
+    and Statharas, J. (2023). Small Fixed-Wing UAV Radar Cross-Section Signature Investigation
+    and Detection and Classification of Distance Estimation Using Realistic Parameters
+    of a Commercial Anti-Drone System. Drones, 7.
+- doi: 10.1049/SBRA553E
+  unstructured: Peng, Z., Li, C., and Uysal, F. (2022). Modern Radar for Automotive
+    Applications, Institution of Engineering and Technology.
+- unstructured: 'Peng, Z. (2024, August 11). Rookiepeng/Radarsimpy. Available online:
+    https://zenodo.org/records/6792269.'
+- article-title: Open-source coupled aerostructural optimization using Python
+  author: Jasa
+  doi: 10.1007/s00158-018-1912-8
+  first-page: '1815'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '57'
+  year: '2018'
+- article-title: A Python surrogate modeling framework with derivatives
+  author: Bouhlel
+  doi: 10.1016/j.advengsoft.2019.03.005
+  first-page: '102662'
+  journal-title: Adv. Eng. Softw.
+  volume: '135'
+  year: '2019'
+- doi: 10.2514/6.2016-3282
+  unstructured: McDonald, R.A. (2016, January 13–17). Advanced modeling in OpenVSP.
+    Proceedings of the 16th AIAA Aviation Technology, Integration, and Operations
+    Conference, Washington, DC, USA.
+- doi: 10.2514/6.2022-0004
+  unstructured: 'McDonald, R.A., and Gloudemans, J.R. (2022, January 3–7). Open Vehicle
+    Sketch Pad: An Open Source Parametric Geometry and Analysis Tool for Conceptual
+    Aircraft Design. Proceedings of the AIAA SCITECH 2022 Forum, San Diego, CA, USA.'
+- unstructured: Freedman, D., Pisani, R., and Purves, R. (2007). Statistics (International
+    Student Edition), WW Norton & Company.
+- doi: 10.1007/978-3-642-00296-0_5
+  unstructured: Benesty, J., Chen, J., Huang, Y., and Cohen, I. (2009). Pearson Correlation
+    Coefficient, Springer.
+- unstructured: Engineering Sciences Data Unit (1970). Lift-Curve Slope and Aerodynamic
+    Centre Position of Wings in Inviscid Subsonic Flow, ESDU International. Technical
+    Report ESDU 70011; As at Amendment I.
+- unstructured: Engineering Sciences Data Unit (1987). Wing Angle of Attack for Zero
+    Lift at Subcritical Mach Numbers, ESDU International. Technical Report ESDU 87031;
+    As at Amendment A.
+- unstructured: ESDU International (2001). Lift-Curve Slope of Swept and Tapered Wings,
+    ESDU International. Technical Memorandum ESDU AERO W.01.01.01, Issued March 1953,
+    with Amendments A to D, October 1989.
+- unstructured: Lowry, J., and Polhamus, E. (1957). A Method for Predicting Lift Increments
+    Due to Flap Deflections at Low Angles of Attack in Incompressible Flow. (NACA-TN-3911),
+    Technical Note Technical.
+- unstructured: 'ESDU International (2012). Wing Lift-Curve Slope in Inviscid Subsonic
+    Flow: Improvements to the Helmbold-Diederich Equation and Comparison with Data
+    from ESDU 70011, ESDU International. Technical Memorandum TM 169.'
+- unstructured: Zaheer, M., Reddi, S.J., Sachan, D., Kale, S., and Kumar, S. (2018,
+    January 3–8). Adaptive Methods for Nonconvex Optimization. Proceedings of the
+    Advances in Neural Information Processing Systems, Montreal, QC, Canada.
+- article-title: 'A fast and elitist multiobjective genetic algorithm: NSGA-II'
+  author: Deb
+  doi: 10.1109/4235.996017
+  first-page: '182'
+  journal-title: IEEE Trans. Evol. Comput.
+  volume: '6'
+  year: '2002'
+- article-title: 'pymoo: Multi-objective Optimization in Python'
+  author: Blank
+  doi: 10.1109/ACCESS.2020.2990567
+  first-page: '89497'
+  journal-title: IEEE Access
+  volume: '8'
+  year: '2020'
+doc_url: https://www.mdpi.com/2226-4310/11/8/669/pdf
+doi: 10.3390/aerospace11080669
+files:
+- advanced_UAV_design_optimization_through_deep_learning-based_surrogate_models_Karali_Inalhan_Tsourdos_2024.pdf
+issue: '8'
+journal: Aerospace
+language: en
+month: 8
+pages: '669'
+papis_id: 77d5504eacf3b3cb659e5cbf639bd10f
+publisher: MDPI AG
+title: Advanced UAV Design Optimization Through Deep Learning-Based Surrogate Models
+type: article
+url: https://doi.org/10.3390/aerospace11080669
+volume: '11'
+year: 2024

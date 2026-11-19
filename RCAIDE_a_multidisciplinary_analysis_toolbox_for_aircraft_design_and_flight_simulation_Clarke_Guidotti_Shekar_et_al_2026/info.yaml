@@ -1,0 +1,663 @@
+author: Clarke, Matthew A. and Guidotti, Matteo and Sankalp Shekar, Sai and Molloy,
+  Aidan and Boggan, Cade and Guerrero, Yair N.
+author_list:
+- family: Clarke
+  given: Matthew A.
+- family: Guidotti
+  given: Matteo
+- family: Shekar
+  given: Sai Sankalp
+- family: Molloy
+  given: Aidan
+- family: Boggan
+  given: Cade
+- family: Guerrero
+  given: Yair N.
+citations:
+- author: Henne
+  series-title: Applied Computational Aerodynamics
+  volume: '125'
+  year: '1990'
+- article-title: Numerical solution of the Euler equations by finite volume methods
+    using Runge Kutta time stepping schemes
+  author: Jameson
+  first-page: '1259'
+  series-title: 14th Fluid and Plasma Dynamics Conference
+  year: '1981'
+- author: Potter
+  series-title: Computational Physics
+  year: '1973'
+- article-title: Towards the ultimate conservative difference scheme. V. a second-order
+    sequel to Godunov’s method
+  author: Leer
+  doi: 10.1016/0021-9991(79)90145-1
+  first-page: '101'
+  journal-title: J. Comput. Phys.
+  volume: '32'
+  year: '1979'
+- author: Drela
+  series-title: Athena Vortex Lattice
+  year: '2015'
+- article-title: 'Stanford university unstructured (SU2): an open-source integrated
+    computational environment for multi-physics simulation and design'
+  author: Palacios
+  first-page: '287'
+  journal-title: AIAA Aerosp. Sci. Meeting Exhibit
+  volume: '51'
+  year: '2013'
+- article-title: A User’s Guide to MSES 3.05
+  author: Drela
+  series-title: Technical Report
+  year: '2007'
+- article-title: 'XFOIL: an analysis and design system for low Reynolds number airfoils'
+  author: Drela
+  first-page: '1'
+  series-title: 'Low Reynolds Number Aerodynamics: Proceedings of the Conference Notre
+    Dame'
+  year: '1989'
+- article-title: Prediction of urban air mobility multirotor VTOL broadband noise
+    using UCD-QuietFly
+  author: Lee
+  first-page: '1'
+  issue: '3'
+  journal-title: J. Am. Helicopter Soc.
+  volume: '66'
+  year: '2025'
+- article-title: Near real-time simulation of rotorcraft acoustics and flight dynamics
+  author: Brentner
+  doi: 10.2514/1.4101
+  first-page: '347'
+  issue: '2'
+  journal-title: J. Aircr.
+  volume: '42'
+  year: '2005'
+- article-title: Open-source coupled aerostructural optimization using python
+  author: Jasa
+  doi: 10.1007/s00158-018-1912-8
+  first-page: '1815'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '57'
+  year: '2018'
+- article-title: A parallel finite-element framework for large-scale gradient-based
+    design optimization of high-performance structures
+  author: Kennedy
+  doi: 10.1016/j.finel.2014.04.011
+  first-page: '56'
+  journal-title: Finite Elem. Anal. Des.
+  volume: '87'
+  year: '2014'
+- article-title: Numerical Propulsion System Simulation (NPSS) 1999 Industry Review
+  author: Lytle
+  series-title: Technical Report
+  year: '2000'
+- article-title: 'pyCycle: a tool for efficient optimization of gas turbine engine
+    cycles'
+  author: Hendricks
+  doi: 10.3390/aerospace6080087
+  first-page: '87'
+  issue: '8'
+  journal-title: Aerospace
+  volume: '6'
+  year: '2019'
+- article-title: 'OpenMDAO: an open-source framework for multidisciplinary design,
+    analysis, and optimization'
+  author: Gray
+  doi: 10.1007/s00158-019-02211-z
+  first-page: '1075'
+  issue: '4'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '59'
+  year: '2019'
+- article-title: '“Dymos: a python package for optimal control of multidisciplinary
+    systems'
+  author: Falck
+  doi: 10.21105/joss.02809
+  first-page: '2809'
+  journal-title: J. Open Source Software
+  volume: '6'
+  year: '2021'
+- article-title: Computational Aircraft Prototype Synthesis (CAPS)
+  author: Haimes
+  series-title: Technical Report
+  year: '2019'
+- article-title: The Flight Optimization System Weights Estimation Method
+  author: Wells
+  series-title: Technical Report
+  year: '2017'
+- article-title: 'Open vehicle sketch pad: an open source parametric geometry and
+    analysis tool for conceptual aircraft design'
+  author: Mcdonald
+  first-page: '0004'
+  series-title: AIAA SciTech 2022 Forum
+  year: '2022'
+- author: Drela
+  series-title: Tasopt 2.00
+  year: '2010'
+- article-title: Aircraft geometry and propulsion architecture visualization for the
+    future aircraft sizing tool (FAST)
+  author: Khailany
+  first-page: '1288'
+  series-title: AIAA SciTech 2025 Forum
+  year: '2025'
+- article-title: 'FAST: a future aircraft sizing tool for electrified aircraft design'
+  author: Arnson
+  series-title: AIAA SciTech Forum
+  year: '2025'
+- article-title: Generalized energy-based flight vehicle sizing and performance analysis
+    methodology
+  author: Chakraborty
+  doi: 10.2514/1.C036101
+  first-page: '762'
+  issue: '4'
+  journal-title: J. Aircr.
+  volume: '58'
+  year: '2021'
+- author: Lukaczyk
+  series-title: 'SUAVE: An Open-Source Environment for Multi-Fidelity Conceptual Vehicle
+    Design'
+  year: '2015'
+- series-title: Research Community Aerospace Interdisciplinary Design Environment
+  year: '2024'
+- year: '1976'
+- author: Raymer
+  series-title: 'Aircraft Design: A Conceptual Approach'
+  year: '2024'
+- article-title: The Flight Optimization System Weights Estimation Method
+  author: Wells
+  series-title: Technical Report
+  year: '2017'
+- article-title: Calculation of potential flow about arbitrary bodies
+  author: Hess
+  doi: 10.1016/0376-0421(67)90003-6
+  first-page: '1'
+  journal-title: Prog. Aerosp. Sci.
+  volume: '8'
+  year: '1967'
+- article-title: Approximate calculation of the laminar boundary layer
+  author: Thwaites
+  doi: 10.1017/S0001925900000184
+  first-page: '245'
+  issue: '3'
+  journal-title: Aeronaut. Q.
+  volume: '1'
+  year: '1949'
+- article-title: An Open-Source Integrated Computational Environment for Multi-Physics
+    Simulation and Design
+  author: Palacios
+  series-title: Technical Report
+  year: '2013'
+- series-title: Technical Report
+  year: '1976'
+- article-title: The contribution of global aviation to anthropogenic climate forcing
+    for 2000 to 2018
+  author: Lee
+  doi: 10.1016/j.atmosenv.2020.117834
+  journal-title: Atmos. Environ.
+  volume: '244'
+  year: '2021'
+- article-title: Modeling the Impact of Fuel Composition on Aircraft Engine NOx, CO
+    and Soot Emissions
+  author: Brink
+  series-title: Technical Report
+  year: '2020'
+- author: Goodwin
+  series-title: 'Cantera: An Object-Oriented Software Toolkit for Chemical Kinetics,
+    Thermodynamics, and Transport Processes'
+  year: '2023'
+- author: Developers
+  series-title: Geocoding Library for Python
+  year: '2024'
+- article-title: Noise component method for airframe noise
+  author: Fink
+  doi: 10.2514/3.58586
+  first-page: '659'
+  issue: '10'
+  journal-title: J. Aircr.
+  volume: '16'
+  year: '1979'
+- series-title: Gas Turbine Jet Exhaust Noise Prediction
+  volume: '876'
+  year: '2004'
+- article-title: Airfoil Self-Noise and Prediction
+  author: Brooks
+  series-title: Technical Report
+  year: '1989'
+- author: Li
+  series-title: Prediction of Urban Air Mobility Multirotor VTOL Broadband Noise Using
+    UCD-QuietFly
+  year: '2021'
+- author: Gudmundsson
+  series-title: 'General Aviation Aircraft Design: Applied Methods and Procedures'
+  volume: '2'
+  year: '2025'
+- series-title: 'CFR Part 23 - Airworthiness Standards: Normal Category Airplanes'
+  year: '2025'
+- series-title: 'Airworthiness Standards: Transport Category Airplanes'
+  year: '2025'
+- author: Torenbeek
+  series-title: 'Advanced Aircraft Design: Conceptual Design, Analysis and Optimization
+    of Subsonic Civil Airplanes'
+  year: '2013'
+- article-title: Validation and calibration of conceptual design tool SUAVE
+  author: Gallagher
+  first-page: '3225'
+  series-title: AIAA Aviation 2023 Forum
+  year: '2023'
+- author: Botero
+  series-title: Aerodynamic Verification and Validation of SUAVE
+  year: '2022'
+- author: Vegh
+  first-page: 1-19
+  series-title: Current Capabilities and Challenges of NDARC and SUAVE for eVTOL Aircraft
+    Design and Analysis
+  year: '2019'
+- author: Clarke
+  series-title: 'Towards a Regional and Urban Air Mobility Future: The Development
+    of Computational Approaches for Quantifying Trade-offs in Electric Aircraft Design'
+  year: '2022'
+- article-title: A comparison of propeller wake models for distributed electric propulsion
+    and eVTOL aircraft in complex flow conditions
+  author: Erhard
+  first-page: '1676'
+  series-title: AIAA SCITECH 2022 Forum
+  year: '2022'
+- article-title: Comparison of aircraft conceptual design weight estimation methods
+    to the flight optimization system
+  author: Horvath
+  series-title: AIAA Aerospace Sciences Meeting
+  year: '2018'
+- article-title: Primary weight estimation for eVTOLs via explicit analysis and surrogate
+    regression
+  author: Smart
+  first-page: '2019'
+  series-title: AIAA Aviation
+  year: '2019'
+- article-title: Simplified mass and inertial estimates for aircraft with components
+    of constant density
+  author: Moulton
+  series-title: AIAA SCITECH 2023 Forum
+  year: '2023'
+- author: Dawson-Haggerty
+  series-title: 'Trimesh: Load and Analyze Triangular Meshes'
+  year: '2019'
+- article-title: A generalized vortex lattice method for subsonic and supersonic flow
+    applications
+  author: Miranda
+  series-title: NASA Technical Report
+  year: '1977'
+- author: Shevell
+  series-title: Fundamentals of Flight
+  year: '1989'
+- author: Schlichting
+  series-title: Boundary-Layer Theory
+  year: '2017'
+- article-title: The prediction of the drag of aerofoils and wings at high subsonic
+    speeds
+  author: Lock
+  doi: 10.1017/S000192400001575X
+  first-page: '207'
+  journal-title: Aeronaut. J.
+  volume: '90'
+  year: '1986'
+- author: Küchemann
+  series-title: The Aerodynamic Design of Aircraft
+  year: '2012'
+- article-title: Supersonic drag reduction technology in the scaled supersonic experimental
+    airplane project by JAXA
+  author: Yoshida
+  doi: 10.1016/j.paerosci.2009.05.002
+  first-page: '124'
+  journal-title: Prog. Aerosp. Sci.
+  volume: '45'
+  year: '2009'
+- article-title: Experimental investigations of the NASA common research model in
+    the NASA langley national transonic facility and NASA ames 11-ft transonic wind
+    tunnel
+  author: Rivers
+  first-page: '1126'
+  series-title: 49th AIAA Aerospace Sciences Meeting Including the New Horizons Forum
+    and Aerospace Exposition
+  year: '2011'
+- article-title: Low-speed Wind-Tunnel Investigation of Various Segments of Flight
+    Spoilers as Trailing-Vortex-Alleviation Devices on a Transport Aircraft Model
+  author: Croom
+  series-title: Technical Report
+  year: '1976'
+- author: Sadraey
+  series-title: 'Aircraft Performance: An Engineering Approach'
+  year: '2017'
+- article-title: Development of a Conceptual-Level Thermal Management System Design
+    Capability in OpenConcept
+  author: Brelje
+  series-title: Technical Report
+  year: '2019'
+- article-title: 'SU2: an open-source suite for multiphysics simulation and design'
+  author: Economon
+  doi: 10.2514/1.J053813
+  first-page: '828'
+  issue: '3'
+  journal-title: AIAA J.
+  volume: '54'
+  year: '2016'
+- author: Schroeder
+  series-title: The Visualization Toolkit
+  year: '2006'
+- article-title: 'Gmsh: a 3-D finite element mesh generator with built-in pre-and
+    post-processing facilities'
+  author: Geuzaine
+  doi: 10.1002/nme.2579
+  first-page: '1309'
+  issue: '11'
+  journal-title: Int. J. Numer. Methods Eng.
+  volume: '79'
+  year: '2009'
+- author: Squillacote
+  series-title: The Paraview Guide
+  volume: '366'
+  year: '2007'
+- article-title: Calculation of potential flow about arbitrary bodies
+  author: Hess
+  doi: 10.1016/0376-0421(67)90003-6
+  first-page: '1'
+  journal-title: Progress Aeronaut. Sci.
+  volume: '8'
+  year: '1967'
+- article-title: An Introduction to Theoretical and Computational Aerodynamics
+  author: Moran
+  series-title: Technical Report
+  year: '2003'
+- article-title: Entrainment in the turbulent boundary layer
+  author: Head
+  series-title: Aeronautical Research Council Reports and Memoranda
+  year: '1958'
+- unstructured: R. Michel, Etude de la transition sur les profiles d’aile; etablissement
+    d’un critére de determination de point de transition et calcul de la trainee de
+    profile incompressible, Technical Report 1/1578A, Onera(1951).
+- article-title: The calculation of the profile drag of aerofoils
+  author: Squire
+  series-title: Aeronautical Research Council Reports andMemoranda
+  year: '1937'
+- author: Etkin
+  series-title: 'Dynamics of Flight: Stability and Control'
+  year: '1996'
+- author: Perkins
+  series-title: Airplane Performance Stability and Control, 1st
+  year: '1949'
+- article-title: Derivation and definition of a linear aircraft model
+  author: Duke
+  series-title: Reference Publication NASA-RP-1207, National Aeronautics and Space
+    Administration
+  year: '1988'
+- article-title: MIT Department of Aeronautics and Astronautics
+  author: Drela
+  series-title: Technical Report
+  year: '2007'
+- article-title: Analytical Design and Performance Estimation Methods for Aircraft
+    Permanent Magnet Synchronous Machines
+  author: Tallerico
+  series-title: Technical Report
+  year: '2023'
+- article-title: MIT Department of Aeronautics and Astronautics
+  author: Drela
+  series-title: Technical Report
+  year: '2006'
+- article-title: Altitude performance of aircraft engines equipped with gear driven
+    superchargers
+  author: Gagg
+  first-page: '217'
+  issue: '6'
+  journal-title: S. A. E. J.
+  volume: '34'
+  year: '1934'
+- author: Mattingly
+  series-title: Elements of Gas Turbine Propulsion
+  year: '2013'
+- article-title: 'AA283 Course Reader: Aircraft and Rocket Propulsion'
+  author: Cantwell
+  series-title: Technical Report
+  year: '2021'
+- article-title: Bench-Scale Monolith Autothermal Reformer Catalyst Screening Evaluations
+    in a Micro-Reactor with Jet-A Fuel
+  author: Tomsik
+  series-title: Technical Report
+  year: '2025'
+- author: Kays
+  series-title: Compact Heat Exchangers
+  year: '1998'
+- author: Bergman
+  series-title: Fundamentals of Heat and Mass Transfer
+  year: '2011'
+- author: Larminie
+  series-title: Fuel Cell Systems Explained
+  year: '2003'
+- author: O’hayre
+  first-page: '203'
+  series-title: 'Chapter 6: fuel cell modeling'
+  year: '2016'
+- author: Larminie
+  series-title: Electric Vehicle Technology Explained
+  year: '2012'
+- article-title: Airplane design optimization for minimal global warming impact
+  author: Proesmans
+  first-page: '2021'
+  series-title: AIAA Scitech 2021 Forum
+  year: '2025'
+- article-title: Ducted Fan Design Code (DFDC)
+  author: Drela
+  series-title: Technical Report
+  year: '2005'
+- article-title: Combined state of charge and state of health estimation over lithium-ion
+    battery module cell cycle lifespan for electric vehicles
+  author: Zou
+  doi: 10.1016/j.jpowsour.2014.09.146
+  first-page: '793'
+  journal-title: J.Power Sources
+  volume: '273'
+  year: '2015'
+- article-title: Thermal modeling of cylindrical lithium ion battery module during
+    discharge cycle
+  author: Jeon
+  doi: 10.1016/j.enconman.2011.04.013
+  first-page: '2973'
+  journal-title: Energy Convers. Manage.
+  volume: '52'
+  year: '2011'
+- article-title: A123 APR18650M1B lithium-ion cell specification sheet
+  series-title: A123 Systems
+  year: '2025'
+- article-title: NCR18650GA 3500mAh Lithium-Ion Battery Specifications
+  series-title: Technical Report
+  year: '2025'
+- article-title: Liquid hydrogen tank boil-off model for design and optimization
+  author: Adler
+  doi: 10.2514/1.T7005
+  first-page: '1'
+  journal-title: J. Thermophys. Heat Transf.
+  volume: '39'
+  year: '2025'
+- article-title: A semi-empirical model for aircraft landing gear noise prediction
+  author: Guo
+  first-page: '2627'
+  series-title: 12th AIAA/CEAS Aeroacoustics Conference
+  year: '2006'
+- article-title: Aircraft slat noise modeling and prediction
+  author: Guo
+  first-page: '3837'
+  series-title: 16th AIAA/CEAS Aeroacoustics Conference
+  year: '2010'
+- article-title: Aircraft flap side edge noise modeling and prediction
+  author: Guo
+  first-page: '2731'
+  series-title: 17th AIAA/CEAS Aeroacoustics Conference (32nd AIAA Aeroacoustics Conference)
+  year: '2011'
+- article-title: Enhanced Fan Noise Modeling for Turbofan Engines
+  author: Krejsa
+  series-title: Technical Report
+  year: '2014'
+- article-title: Enhanced Core Noise Modeling for Turbofan Engines
+  author: Stone
+  series-title: Technical Report
+  year: '2011'
+- article-title: Helicoidal surface theory for harmonic noise of propellers in the
+    far field
+  author: Hanson
+  doi: 10.2514/3.50873
+  first-page: '1213'
+  issue: '10'
+  journal-title: AIAA J.
+  volume: '18'
+  year: '1980'
+- author: Goodwin
+  series-title: 'Cantera: An Object-Oriented Software Toolkit for Chemical Kinetics,
+    Thermodynamics, and Transport Processes'
+  year: '2023'
+- article-title: Modeling the Impact of Fuel Composition on Aircraft Engine NOx, CO,
+    and Soot Emissions
+  author: Brink
+  series-title: Technical Report
+  year: '2020'
+- article-title: A Physics-Based Emissions Model for Aircraft Gas Turbine Combustors
+  author: Allaire
+  series-title: Technical Report
+  year: '2006'
+- article-title: 'SciPy 1.0: fundamental algorithms for scientific computing in python'
+  author: Virtanen
+  doi: 10.1038/s41592-019-0686-2
+  first-page: '261'
+  issue: '3'
+  journal-title: Nat. Methods
+  volume: '17'
+  year: '2020'
+- article-title: Parametric Study of Transport Aircraft Systems Cost and Weight
+  author: Beltramo
+  series-title: Technical Report
+  year: '1977'
+- author: Norris
+  series-title: AVL
+  year: '2020'
+- author: Plane
+  series-title: Ryan Navion
+  year: '2008'
+- series-title: Joby Aviation S4(production prototype)
+  year: '2025'
+- article-title: The Stability Derivatives of the Navion Aircraft Estimated by Various
+    Methods and Derived from Flight Test Data
+  author: Seckel
+  series-title: Technical Report
+  year: '1971'
+- series-title: EMRAX 348 Electric Motor Specifications
+  year: '2025'
+- author: Propellers
+  series-title: APC Propellers Official Website
+  year: '2025'
+- author: Team
+  series-title: About GSP - Gas Turbine Simulation Program
+  year: '2024'
+- series-title: ICAO Aircraft Engine Emissions Databank
+  year: '2025'
+- author: Nicolai
+  series-title: Fundamentals of Aircraft and Airship Design
+  year: '2010'
+- author: Icao
+  journal-title: Aircr. Engine Emissions
+  volume: II
+  year: '2017'
+- article-title: Next-Generation 737 Airplane Characteristics for Airport Planning
+  author: Boeing
+  series-title: Technical Report
+  year: '2024'
+- article-title: ATR 72–600 Factsheet
+  author: Aircraft
+  series-title: Technical Report
+  year: '2020'
+- article-title: A java toolchain of programs for aircraft design
+  author: Marco
+  series-title: Aerospace Europe 6th CEAS Conference
+  year: '2017'
+- article-title: Aircraft systems 3rd
+  author: Moir
+  series-title: AIAA Education, American Institute of Aeronautics & Astronautics
+  year: '2008'
+- author: Company
+  series-title: B787 Airport Planning Manual
+  year: '2025'
+- author: Justplanes
+  series-title: Avianca Boeing 787-8 Cockpit Madrid to Bogota
+  year: '2025'
+- author: Gunston
+  series-title: Jane’s Aero-engines, Jane’s Aero-Engines, Jane’s Information Group
+  year: '1996'
+- article-title: 'Type-certificate data sheet for noise: EASA.IM.A.115 for boeing
+    787'
+  series-title: EASA, 06 2025B
+  year: '2025'
+- author: Leyman
+  series-title: Case Study by Aerospatiale and British Aerospace on the Concorde
+  year: '1980'
+- article-title: 'Fact sheet: climate change & CORSIA'
+  series-title: ICAO 40th Assembly Working Paper A40-WP/54
+  year: '2019'
+- article-title: Design of the blended wing body subsonic transport
+  author: Liebeck
+  doi: 10.2514/1.9084
+  first-page: '10'
+  issue: '1'
+  journal-title: J. Aircr.
+  volume: '41'
+  year: '2004'
+- author: Jetzero
+  series-title: News - JetZero
+  year: '2025'
+- article-title: Conceptual design-optimisation of a subsonic hydrogen-powered long-range
+    blended-wing-body aircraft
+  author: Jagtap
+  doi: 10.1016/j.ijhydene.2024.11.331
+  first-page: '639'
+  journal-title: Int. J. Hydrogen Energy
+  volume: '96'
+  year: '2024'
+- author: Brewer
+  series-title: Hydrogen Aircraft Technology, Routledge
+  year: '2017'
+- article-title: Conceptual design and evaluation of blended-wing body aircraft
+  author: Brown
+  series-title: AIAA Aerospace Sciences Meeting
+  year: '2018'
+- article-title: Achievement of NASA new aviation horizons N 2 goals with a blended-wing-body
+    X-plane designed for the regional jet and single-aisle jet markets
+  author: Yang
+  series-title: AIAA Aerospace Sciences Meeting
+  year: '2018'
+- article-title: Airframe design for “silent aircraft
+  author: Hileman
+  series-title: 45th AIAA Aerospace Sciences Meeting and Exhibit
+  year: '2007'
+- author: Travel
+  series-title: 'JetZero’s Pathfinder: A Revolutionary Blended-Wing Demonstrator Cleared
+    to Fly'
+  year: '2024'
+- article-title: The autonomous vehicle parking problem
+  author: Millard-Ball
+  doi: 10.1016/j.tranpol.2019.01.003
+  first-page: '99'
+  journal-title: Transp. Policy
+  volume: '75'
+  year: '2019'
+- author: Uber
+  series-title: Fast-Forwarding to a Future of On-Demand Urban Air Transportation
+  year: '2016'
+doi: 10.1016/j.ast.2026.112328
+files:
+- RCAIDE_a_multidisciplinary_analysis_toolbox_for_aircraft_design_and_flight_simulation_Clarke_Guidotti_Shekar_et_al_2026.pdf
+journal: Aerospace Science and Technology
+language: en
+month: 10
+pages: '112328'
+papis_id: 430c99feec9ed9addbd036160bff8c48
+publisher: Elsevier BV
+title: 'RCAIDE: A multidisciplinary analysis toolbox for aircraft design and flight
+  simulation'
+type: article
+url: https://doi.org/10.1016/j.ast.2026.112328
+volume: '177'
+year: 2026

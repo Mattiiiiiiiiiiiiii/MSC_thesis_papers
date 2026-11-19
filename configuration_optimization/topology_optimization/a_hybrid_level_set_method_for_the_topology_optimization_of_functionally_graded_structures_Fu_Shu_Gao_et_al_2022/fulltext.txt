@@ -1,0 +1,7309 @@
+materials
+Article
+
+A Hybrid Level Set Method for the Topology Optimization of
+Functionally Graded Structures
+Junjian Fu 1,2 , Zhengtao Shu 2, *, Liang Gao 3
+1
+
+2
+3
+
+*
+
+Citation: Fu, J.; Shu, Z.; Gao, L.;
+
+and Xiangman Zhou 1,2
+
+Hubei Key Laboratory of Hydroelectric Machinery Design & Maintenance, Yichang 443002, China;
+fjj@ctgu.edu.cn (J.F.); zhouxman@ctgu.edu.cn (X.Z.)
+College of Mechanical and Power Engineering, China Three Gorges University, Yichang 443002, China
+State Key Laboratory of Digital Manufacturing Equipment and Technology, Huazhong University of Science
+and Technology, Wuhan 430074, China; gaoliang@mail.hust.edu.cn
+Correspondence: szt19970828@163.com
+
+Abstract: This paper presents a hybrid level set method (HLSM) to design novelty functionally
+graded structures (FGSs) with complex macroscopic graded patterns. The hybrid level set function
+(HLSF) is constructed to parametrically model the macro unit cells by introducing the affine concept
+of convex optimization theory. The global weight coefficients on macro unit cell nodes and the
+local weight coefficients within the macro unit cell are defined as master and slave design variables,
+respectively. The local design variables are interpolated by the global design variables to guarantee
+the C0 continuity of neighboring unit cells. A HLSM-based topology optimization model for the
+FGSs is established to maximize structural stiffness. The optimization model is solved by the
+optimality criteria (OC) algorithm. Two typical FGSs design problems are investigated, including thinwalled stiffened structures (TWSSs) and functionally graded cellular structures (FGCSs). In addition,
+additively manufactured FGCSs with different core layers are tested for bending performance.
+Numerical examples show that the HLSM is effective for designing FGSs like TWSSs and FGCSs. The
+bending tests prove that FGSs designed using HLSM are have a high performance.
+
+Zhou, X. A Hybrid Level Set Method
+for the Topology Optimization of
+Functionally Graded Structures.
+
+Keywords: topology optimization; hybrid level set method; thin-walled stiffened structures;
+functionally graded cellular structures
+
+Materials 2022, 15, 4483. https://
+doi.org/10.3390/ma15134483
+Academic Editors: Michele
+Bacciocchi, Hao Li, Jie Liu and
+Zhenpei Wang
+Received: 17 May 2022
+Accepted: 21 June 2022
+Published: 25 June 2022
+Publisher’s Note: MDPI stays neutral
+with regard to jurisdictional claims in
+published maps and institutional affiliations.
+
+Copyright: © 2022 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+
+1. Introduction
+Functionally graded structures (FGSs) [1] are novel structures with spatially varying
+characteristics. Their microstructures and mechanical properties exhibit graded changes
+in their preferred orientation. Graded design can provide an excellent mechanical performance, including a high specific stiffness, good anti-bend performance, and good energy
+absorption properties [2,3]. Therefore, FGSs are excellent design carriers for realizing
+various functions, including load-bearing, vibration isolation, and heat protection [4]. A
+large number of man-made FGSs, including thin-walled stiffened structures (TWSSs) with
+graded ribs and functionally graded cellular structures (FGCSs), have been widely used in
+aerospace [5,6], ships [7], and medical implants [8]. It is worth noting that the mechanical
+properties of such lightweight structures mainly depend on their structural geometry configurations [9]. Topology optimization [10] is an intelligent design method that can provide
+great design freedom to obtain unexpectedly high-quality and innovative configurations.
+Several topology optimization methods have been proposed to achieve the optimal design
+of TWSSs and FGCSs, respectively. However, existing methods are more pertinent. Fewer
+related studies can simultaneously realize the topology optimization of the aforementioned
+FGSs. Additionally, scale effects, geometric continuity, and manufacturing constraints need
+to be resolved in the topology optimization so that the optimized results are more practical
+for engineering purposes. Therefore, a general and effective topology optimization method
+is still required to optimize 3D FGSs for better performance and functions.
+
+Materials 2022, 15, 4483. https://doi.org/10.3390/ma15134483
+
+https://www.mdpi.com/journal/materials
+
+Materials 2022, 15, 4483
+
+2 of 23
+
+TWSSs are an integral component fabricated by connecting panels and stiffening ribs.
+By properly designing the layout of stiffening ribs on the surface of a thin plate, the strength,
+stiffness, impact and fatigue resistance of the TWSSs [11] can be significantly improved, while
+ensuring that they are lightweight. Generally, it is difficult to reduce material consumption
+and improve the mechanical properties of TWSSs with a uniform stiffening ribs layout. This
+design strategy is an effective way to solve the above problems by setting graded stiffening ribs
+with a variable stiffness. At present, most research focuses on transforming the layout design
+problem of stiffening ribs to find the optimal distribution of materials, including the variable
+thickness method [12,13], base structure method [14,15], adaptive growth method [16,17],
+etc. The essential idea of determining the optimal distribution of materials is similar to that
+of topology optimization. To further satisfy the design requirements and comprehensively
+improve mechanical properties, concurrent topology optimization methods are proposed for
+the design of hierarchical TWSSs [18,19]. The size, shape and position of the stiffening ribs
+are determined but with less consideration for manufacturing constraints. Hence, how to
+realize the optimal design of TWSSs with favorable mechanical properties and an excellent
+manufacturability has always been one of the most challenging topics in this field.
+The FGCS contains a quantity of graded microstructure unit cells, which exhibit better mechanical properties than periodically repeated cellular structures [20,21]. Lattice
+sandwich structure (LSSs) are a special class of cellular structures that are fabricated by
+attaching two thin but stiff layers to lightweight but thick cores [22]. Topology optimization methods based on solid isotropic materials with penalization (SIMP) [23–25], the
+level set method (LSM) [9,26,27], and bidirectional evolutionary structural optimization
+(BESO) [28–30] have been successively proposed for designing FGCSs. Specifically, the
+multi-scale topology optimization method [31] is the mainstream design method for FGCSs,
+which can comprehensively optimize the distribution of macrostructure materials and their
+spatially varying microstructure configurations. However, due to the introduction of the
+homogenization method [32] to evaluate the equivalent properties of microstructures, the
+scale separation effects and non-continuity of microstructures are difficult to resolve. To
+deal with these challenges, the scale-related topology optimization methods [20,33,34] of
+FGCSs are proposed by building a unified finite element model between the macro and
+micro-topology structure. Compared with scale-separated topology optimization, design
+methods with scale-related features have more engineering applicability.
+FGSs have various forms and complex geometric features. The common design
+characteristic of different FGSs is that the macrostructure contains numerous microstructure
+unit cells. Hence, this paper constructs a design strategy to drive the material distribution
+of macrostructures through the topology optimization of microstructures. Additionally, a
+hybrid level set method (HLSM) is proposed for the topology optimization of FGSs. By
+presetting the level set functions of various structural unit cells, high-performance FGSs
+with different structural forms and functional properties are obtained. This also shows that
+HLSM has significant advantages for the topology optimization of various FGSs. Numerical
+examples of TWSSs and FGCSs are given. Meanwhile, FEA and mechanical experiments
+verify the feasibility and effectiveness of the proposed method.
+2. Geometric Modeling Based on HLSM
+2.1. Level Set Modeling
+The LSM provides a flexible and convenient implicit modeling method for structural
+representation with complicated geometric characteristics. The structure represented by
+the level set function (LSF) has creep geometric boundary, which is convenient for further
+manufacturing process. The LSF is thus applied to describe the geometric model of the
+FGSs. The basic idea of the LSM is to describe the structural boundary with a higherdimensional implicitly function Φ(X). The dynamic structural interfaces are obtained by
+
+FGSs. The basic idea of the LSM is to describe the structural boundary with a higher-dimensional implicitly function Φ(X). The dynamic structural interfaces are obtained by
+tracking the movement of the higher dimensional function. Its mathematical formulation
+defined
+Materialsis
+2022,
+15, 4483 as follows [35,36]:
+3 of 23
+∂Ω ( X ) = { X : Φ ( X ) = 0, X ∈ D}
+
+(1)
+
+tracking the movement of the higher dimensional function. Its mathematical formulation is
+
+where X is the physical spatial coordinate vector of the higher-dimensional space. D is the
+defined as follows [35,36]:
+design domain that contains the complete structure. ∂Ω = ΓD∪ΓN∪Γf contains ΓD as the Di∂Ω( X ) and
+= {XΓ:f Φ
+) = traction
+0, X ∈ D}free boundary.
+(1)
+richlet boundary, ΓN as the Neumann boundary
+as(Xthe
+The solid part,where
+interface
+and empty part are described by the following definition:
+X is the physical spatial coordinate vector of the higher-dimensional space. D is the
+design domain that contains the complete structure. ∂Ω = ΓD ∪ΓN ∪Γf contains ΓD as the
+Φ ( X ) > 0, X ∈ Ω
+Dirichlet boundary,ΓN as the Neumann boundary and Γf as the traction free boundary.
+Φ ( X ) =and
+0, empty
+X ∈ ∂part
+Ω are described by the following definition:
+The solid part,interface
+(2)
+
+Φ ( X ) < 0, X ∈ D \ Ω
+
+Φ(X) > 0, X ∈ Ω
+
+Φ(X) = 0, X ∈ ∂Ω
+
+(2)
+
+
+where Ω is the structure domain. ∂Ω is the interface
+structure
+Φ(X)of
+<the
+0, X
+∈ D \Ω implicitly represented
+as the zero contour of LSF Φ(X).
+where Ω isthe
+the structure
+domain. minimal
+∂Ω is the interface
+the structure
+represented
+This paper introduces
+triply periodic
+surfaceof(TPMS)
+[37]implicitly
+cell as one
+of
+as the zero contour of LSF Φ(X).
+the basic unit cells. TheThis
+TPMS
+is
+mathematically
+and
+implicitly
+modeled
+by
+a
+4D
+LSF.
+The
+paper introduces the triply periodic minimal surface (TPMS) [37] cell as one of
+lower-dimensionalthe
+contour
+is cells.
+actually
+the 3D
+structural boundary
+of amodeled
+specific
+basic unit
+The TPMS
+is mathematically
+and implicitly
+by cellular
+a 4D LSF. The
+contourlevel
+is actually
+the 3D structural
+of a specific
+cellular
+structure. Figure 1 lower-dimensional
+illustrates the implicit
+set representation
+ofboundary
+the I-Wrapped
+Packstructure.
+Figure
+1
+illustrates
+the
+implicit
+level
+set
+representation
+of
+the
+I-Wrapped
+Package
+age (IWP) TPMS [38]. A parametric cellular structure with varying geometrical shape and
+(IWP) TPMS [38]. A parametric cellular structure with varying geometrical shape and
+volume fractions can be obtained by taking different contours.
+volume fractions can be obtained by taking different contours.
+
+Figure 1.based
+Implicit
+based
+on LSF and 3D
+geometric
+model.
+(a) (b)
+The Contour
+LSF. (b) Contour
+of zero
+Figure 1. Implicit modeling
+onmodeling
+LSF and
+3D geometric
+model.
+(a) The
+LSF.
+of zero
+level
+set.
+(c)
+3D
+geometric
+model.
+level set. (c) 3D geometric model.
+
+The symbolic distance function (SDF) [39] can be used as the LSF Φp (X) of the geo-
+
+The symbolic metric
+distance
+function
+[39] can
+structures.
+The(SDF)
+SDF is given
+as: be used as the LSF Φp(X) of the geometric structures. The SDF is given as:
+
++ min kX − Xb k ∀X ∈ ΩP
+
+(3)
++ Φmin
+X−−Xbmin
+X −∈XΩkP ∀X ∈ D\Ω
+∀kX
+P (X) =
+b
+P
+b
+P
+X
+∈∂Ω
+ b
+Xb ∈∂ΩP
+ΦP ( X ) = 
+(3)
+− min X − X b ∀X ∈ D \ ΩP
+
+where Ω describestheX bstructure
+domain. ∂Ω is the interface implicitly represented by
+∈∂ΩP
+X ∈∂ΩP
+
+the zero contour of LSF Φ(X). X b is any point on the curve (or surface). ||•|| is the
+
+norm.domain.
+In addition,
+explicit
+modeling implicitly
+techniques represented
+have certain limitations
+where Ω describes Euclidean
+the structure
+∂Ω is
+the interface
+by the in
+the
+parametric
+modeling
+of
+the
+microstructure
+with
+complex
+geometric
+features
+and rich
+zero contour of LSF Φ(X). Xb is any point on the curve (or surface). ||•|| is the Euclidean
+variations. Theoretically, any type of microstructures can be digitally constructed based
+norm. In addition, explicit modeling techniques have certain limitations in the parametric
+on the SDF. For example, using the above implicit modeling strategy, some microstructure
+modeling of the microstructure
+with complex
+geometric
+and rich
+variations.
+Theunit cells with different
+topological
+forms arefeatures
+built for various
+FGSs,
+as shown in
+Figure 2.
+oretically, any type of microstructures can be digitally constructed based on the SDF. For
+example, using the above implicit modeling strategy, some microstructure unit cells with
+different topological forms are built for various FGSs, as shown in Figure 2.
+
+x FOR PEER
+REVIEW
+Materials
+2022, 15, 4483
+
+4 of 423
+of 23
+
+Materials 2022, 15, x FOR PEER REVIEW
+
+4 of 23
+
+Figure 2. Unit cells constructed by LSF. (a) Triply periodic minimal surface (I-WP). (b) Cross-shaped
+
+Figure 2. Unit cells Figure
+constructed
+by LSF.
+(a) Triply
+periodic
+minimal
+surface
+(I-WP).
+(b) Cross-shaped
+2. Unit
+cells
+constructed
+by LSF.
+(a) Triply
+minimal
+surface
+(I-WP).
+(b) unit
+Cross-shaped
+stiffening
+rib unit
+cell.
+(c) X-shaped
+stiffening
+ribperiodic
+unit cell.
+(d) Hybrid
+stiffening
+rib
+cell. (e)
+stiffening rib unit cell.
+(c)sandwich
+X-shaped
+stiffening
+unit rib
+cell.
+stiffening
+unit
+cell.
+(e)
+stiffening
+rib unit cell.
+(c)
+X-shaped
+stiffening
+unit(d)
+cell.Hybrid
+(d) Hybrid
+stiffening rib
+rib unit
+cell.
+(e) Lattice
+Lattice
+structure
+unit cell.rib
+sandwich unit
+structure
+Lattice sandwich structure
+cell.unit cell.
+2.2. Hybrid Level Set Function
+2.2. Hybrid Level Set Function
+Different from the traditional single-scale LSM, the design domain needs to be dis2.2. Hybrid Level Set Function
+Different from the traditional single-scale LSM, the design domain needs to be discretized into multiple unit cells in the proposed HLSM. Then, pre-defined unit cells with
+cretized
+into multiple single-scale
+unit cells in theLSM,
+proposed
+HLSM. Then,
+pre-defined
+cells
+with
+Different from
+the traditional
+the design
+domain
+needs unit
+to be
+disvarying forms should match them. There are similar processing operations in previous
+varying
+forms
+should
+match
+them.
+There
+are
+similar
+processing
+operations
+in
+previous
+cretized into multiple
+cells in the
+proposed
+HLSM.methods
+Then, pre-defined
+unithierarchy,
+cells with
+studiesunit
+of multi-scale
+topology
+optimization
+[40]. In the global
+the
+studies of multi-scale topology optimization methods [40]. In the global hierarchy, the
+design match
+domain them.
+is discretized
+M similar
+eight-node
+unit cells. Itoperations
+is assumed that
+there are m
+varying forms should
+Therebyare
+processing
+in previous
+design domain is discretized by M eight-node unit cells. It is assumed that there are m
+nodes on
+the discrete
+design domain.
+The global
+weight
+coefficients
+are the master
+studies of multi-scale
+topology
+optimization
+methods
+[40].
+In the
+global w(t)
+hierarchy,
+the
+nodes on
+the discrete
+design domain.
+The global
+weight
+coefficients
+w(t) are the master
+design variables defined on the unit cell nodes, as illustrated in Figure 3. On the local
+design domain isdesign
+discretized
+M eight-node
+cells. as
+It illustrated
+is assumed
+that there
+m
+variablesby
+defined
+on the unitunit
+cell nodes,
+in Figure
+3. Onare
+the local
+hierarchy, each unit cell, for example C, is further discretized by eight-node hexahedral
+hierarchy,
+eachdomain.
+unit cell, for
+example
+C,weight
+is further
+discretized by
+eight-node
+hexahedral
+nodes on the discrete
+design
+The
+global
+coefficients
+w(t)
+are
+the
+master
+elements with a number of nodes. Slave design variables, i.e., local weight coefficients, are
+with a number of nodes. Slave design variables, i.e., local weight coefficients, are
+design variables elements
+defined
+the unit
+nodes,
+ascell.
+illustrated in Figure 3. On the local
+defined
+onon
+element
+nodescell
+within
+the unit
+defined on element nodes within the unit cell.
+
+hierarchy, each unit cell, for example C, is further discretized by eight-node hexahedral
+elements with a number of nodes. Slave design variables, i.e., local weight coefficients, are
+defined on element nodes within the unit cell.
+
+Figure 3.
+3. Definition
+Figure
+Definition of
+of design
+design variables.
+variables.
+
+The global weight coefficient
+coefficient w(t)
+w(t) is
+is an
+an m
+m ××1 1time-dependent
+time-dependentvector:
+vector:
+w (t ) = [ w (t ) w (t ) w (t )  w (t )]Τ
+w(t) = [w1 1 (t) w22 (t) w3 3(t) · · · wm (mt)] T
+
+(4)(4)
+
+G
+
+The weight coefficient wC G(t) of a unit cell is a 8 × 1 (for 3D case) time-dependent vecG
+The weightthe
+coefficient
+wC (t) of awunit
+cell is a 8 × 1 (for 3D case) time-dependent
+tor. Meanwhile,
+weight coefficient
+C (t) is also a sub-vector of the global weight coefG
+vector.
+Meanwhile,
+the
+weight
+coefficient
+w
+C (t) is also a sub-vector of the global weight
+ficient vector w(t):
+w(t):
+Figure 3. Definitioncoefficient
+of designvector
+variables.
+wCG (t ) = [wC1 (t ) wC2 (t ) wC3 (t ) wC4 (t ) wC5 (t ) wC6 (t ) wC7 (t ) wC8 (t )]Τ = SC w(t )
+(5)
+T
+G
+1
+2
+3
+4
+5
+6
+7
+8
+G
+= [wC (t)matrix
+wC (t) used
+wC (t)towselect
+wC (t) coefficient
+wC (t) wC (tw
+)] (t)
+= of
+SCthe
+w(tunit
+)
+C ( t ) wthe
+C ( t )weight
+C (at )selection
+where SCwis
+cell(5)
+
+The global weight coefficient w(t) is an m × 1 time-dependent vector: C
+
+from the global weight coefficient w(t). The dimension of the selection G
+matrix SC is 8 × m,
+where SC is a selection matrix used to select the weight coefficient
+wC (t) of the unit cell
+Τ
+which is defined
+as[follows:
+w
+(
+t
+)
+=
+w
+(
+t
+)
+w
+(
+t
+)
+w
+(
+t
+)
+
+w
+(
+t
+)]
+1 coefficient
+2
+m of the selection matrix SC is 8(4)
+from the global weight
+w(t).3 The dimension
+× m,
+which is defined
+G as follows:
+
+The weight coefficient wC (t) of a unit cell is a 8 × 1 (for 3D case) time-dependent vecG
+tor. Meanwhile, the weight coefficient wC (t) is also a sub-vector of the global weight coefficient vector w(t):
+wG (t ) = [w1 (t ) w2 (t ) w3 (t ) w4 (t ) w5 (t ) w6 (t ) w7 (t ) w8 (t )]Τ = S w(t )
+
+Materials 2022, 15, 4483
+
+5 of 23
+
+···
+ ···
+
+ ···
+
+ ···
+SC = 
+ ···
+
+ ···
+
+ ···
+···
+
+
+1
+0
+0
+0
+0
+0
+0
+0
+
+···
+···
+···
+···
+···
+···
+···
+···
+
+0
+1
+0
+0
+0
+0
+0
+0
+
+···
+···
+···
+···
+···
+···
+···
+···
+
+0
+0
+1
+0
+0
+0
+0
+0
+
+···
+···
+···
+···
+···
+···
+···
+···
+
+0
+0
+0
+1
+0
+0
+0
+0
+
+···
+···
+···
+···
+···
+···
+···
+···
+
+0
+0
+0
+0
+1
+0
+0
+0
+
+···
+···
+···
+···
+···
+···
+···
+···
+
+0
+0
+0
+0
+0
+1
+0
+0
+
+···
+···
+···
+···
+···
+···
+···
+···
+
+0
+0
+0
+0
+0
+0
+1
+0
+
+···
+···
+···
+···
+···
+···
+···
+···
+
+0
+0
+0
+0
+0
+0
+0
+1
+
+
+···
+··· 
+
+··· 
+
+··· 
+
+··· 
+
+··· 
+
+··· 
+
+···
+
+(6)
+
+8× m
+
+where the values in the omitted positions are 0.
+Weight coefficients within the unit cell are defined by the interpolation of wCG (t) using the common shape functions. For convenience, the shape function vector N C (x) is
+written as:
+NC (x) = [ NC1 (x) NC2 (x) NC3 (x) NC4 (x) NC5 (x) NC6 (x) NC7 (x) NC8 (x)]
+
+(7)
+
+For an eight-node hexahedral element, the shape function NCi is defined as:
+NCi (x) =
+
+1
+(1 + ξ 0 )(1 + η0 )(1 + ζ 0 ) i = 1, 2, 3, · · · , 8
+8
+
+(8)
+
+where i is the number of unit cell nodes. ξ 0 = ξ i ξ, η 0 = η i η, ζ 0 = ζ i ζ, ξ i = ±1, η i = ±1, and
+ζ i = ±1. ξ, η and ζ are the internal node coordinates of the unit cell in local coordinate system.
+According to Equations (6)–(8), the global weight coefficient vector wC (t) of the unit
+cell is given as:
+wC (t) = NC wCG (t) = NC SC w(t)
+(9)
+In order to realize the geometrically graded evolvement of FGSs with different shapes
+and enrich the layout configurations, this paper introduces the concept of affine in convex
+optimization theory [41] to construct the HLSF. The affine concept is defined as: a set Q ⊆ R
+is an affine if there is a line through any two distinct points in Q, i.e., if for any x1 , x2 ∈ Q
+and s∈R, we have sx1 + (1 − s)x2 ∈ Q. In a similar concept, the HLSF of two pre-defined unit
+cells can generate a new unit cell with a different geometrical configuration and volume
+fraction. The hybrid process of unit cells is defined as follows:
+ΦH (X) = sΦ1 (X) + (1 − s)Φ2 (X)
+
+(10)
+
+where ΦH (X) is the LSF of the unit cell with new structural features. Φ1 (X) and Φ2 (X) are
+the LSFs of two pre-defined master unit cells, respectively. s is the design variable, which is
+the weight coefficient vector of the two pre-defined unit cells.
+Based on Equation (10), the HLSF is constructed by introducing a weight coefficient to
+realize the parametric modeling of FGSs. The HLSF is defined as follows:
+
+Φ( x, t) = w(t) ϕ1 (x) + (1 − w(t)) ϕ2 (x) > 0, ∀x ∈ Ω/∂Ω
+Φ( x, t) = w(t) ϕ1 (x) + (1 − w(t)) ϕ2 (x) = 0, ∀x ∈ ∂Ω
+
+Φ( x, t) = w(t) ϕ1 (x) + (1 − w(t)) ϕ2 (x) < 0, ∀x ∈ D/Ω
+
+(11)
+
+where the weight coefficient w(t) is a variable vector with respect to the pseudo-time t, and
+the value range is 0 ≤ w(t) ≤ 1. ϕ1 (x) and ϕ2 (x) are the LSFs of two pre-defined unit cells,
+respectively. The pseudo-time t adds dynamics to the weight coefficient w(t), indirectly
+changing the implicit interface ∂Ω.
+The hybrid process of the LFSs is actually a linear weight interpolation, as illustrated
+in Figure 4. The desired graded mechanical performance of the unit cell is obtained by
+optimizing the corresponding weight coefficients. Additionally, the influence of the weight
+coefficients on a microstructure configuration is divided into two cases: (1) When the values
+
+FOR PEER REVIEW
+
+6 of 23
+
+Materials 2022, 15, 4483
+
+6 of 23
+
+configuration of the new unit cell changes uniformly in space. (2) Conversely, when the
+of the
+weight coefficient
+matrixof
+w(t)
+areunit
+all the
+theon
+geometric
+configuration
+values of the w(t) are
+different,
+the geometry
+the
+cellsame,
+takes
+an asymmetric
+evo-of the
+new unit cell changes uniformly in space. (2) Conversely, when the values of the w(t) are
+lution. Therefore, when the weight coefficients correspondingly change with the external
+different, the geometry of the unit cell takes on an asymmetric evolution. Therefore, when
+loading and boundary
+conditions
+during
+the optimization
+a seriesloading
+of microstructhe weight
+coefficients
+correspondingly
+changeprocess,
+with the external
+and boundary
+ture unit cells with conditions
+diverse geometries
+distributed
+in the
+macrostructure.
+The obtained
+during the are
+optimization
+process,
+a series
+of microstructure
+unit cells with
+diverse
+geometries
+are distributed
+in theprovide
+macrostructure.
+The obtained
+cells can
+exhibit
+unit cells can exhibit
+directional
+stiffness,
+and thus
+enormous
+designunit
+freedom
+for
+stiffness, and thus provide enormous design freedom for the optimal design of
+the optimal design directional
+of the FGSs.
+the FGSs.
+
+4. Illustration
+FGSs unit cells
+with the HLSF.
+Figure 4. Illustration Figure
+of FGSs
+unit cells of
+generated
+withgenerated
+the HLSF.
+
+Based on the definition of the weight coefficient vector wC (t), the continuous geometry
+
+Based on the definition
+the weight
+wFor
+C(t), the continuous geometransition ofof
+neighboring
+unitcoefficient
+cells can be vector
+expected.
+example, I-WP TPMSs are taken as
+try transition of neighboring
+unitvolume
+cells can
+be expected.
+For example,
+I-WP TPMSs
+are
+the representative
+elements
+(RVEs) to illustrate
+the interpolation
+process, as
+shown
+in Figure volume
+5. C1 –C4 elements
+are RVEs with
+different
+volume fraction.
+This diagram
+also demontaken as the representative
+(RVEs)
+to illustrate
+the interpolation
+process,
+the basic idea of the strategy of geometrical continuity. The geometry continuity
+as shown in Figurestrates
+5. C1–C
+4 are RVEs with different volume fraction. This diagram also
+of neighboring unit cells depends on the continuity of the weight coefficient vector wC (t).
+demonstrates the basic idea of the strategy of geometrical continuity. The geometry continuity of neighboring unit cells depends on the continuity of the weight coefficient vector
+wC(t). During the optimization process, the local design variables are updated by the interpolation of global design variables. According to the definition in Figure 3, neighboring
+
+Materials 2022, 15, 4483
+
+15, x FOR PEER REVIEW
+
+7 of 23
+
+During the optimization process, the local design variables are updated by the interpolation
+of global design variables. According to the definition in Figure 3, neighboring unit cells
+share the same weight coefficients on common boundaries. Thus, the interpolation function
+7 of 23strategy of
+the global weight coefficients have at least C0 continuity. With this updating
+design variables, the proposed HLSM can naturally guarantee geometry continuity without
+imposing any extra constraints.
+
+Figure
+5. continuity
+Illustration of the
+continuity
+of geometric boundaries.
+Figure 5. Illustration
+of the
+geometric
+boundaries.
+
+3. Topology Optimization Model and Sensitivity Analysis
+3.1. Topology Optimization Model
+
+3. Topology Optimization Model and Sensitivity Analysis
+
+3.1. Topology Optimization
+Model
+For simplicity,
+this paper only considers the static stiffness maximization problem.
+Thethis
+mathematical
+formulation
+the static
+topology
+optimization
+model based
+on the HLSM is
+For simplicity,
+paper only
+considersofthe
+stiffness
+maximization
+problem.
+given
+as:
+The mathematical formulation of the topology optimization model based on the HLSM is
+find : w(t) = (wR1 (t) w2 (t) w3 (t) · · · wm (t)) T
+given as:
+1
+T
+min
+ : J (Φ) = 2 Ω ε (u)Eε(u)dΩ Τ
+∀v ∈wU
+find: w (t ) = ( w1 
+(t ) aΦw(u,
+) ), 
+
+2 (tv)) =wl3Φ((tv
+m (t ))
+−
+R
+s.t
+1 g(ΤΦ) = Ω dΩ − µV ≤ 0
+ ε ( u ) Eε ( u ) dΩ
+min : J (Φ ) = 
+2 Ω0 ≤ wk (t) ≤ 1
+
+(12)
+
+
+
+where J(Φ) aisΦ the
+field. E is the
+v ) = lΦ (vfunction.
+(u, objective
+), ∀ v ∈εUis the strain field. u is the displacement(12)
+material elasticity
+tensor of solid material. aΦ (u,v) and lΦ (v) are the bilinear and linear term
+
+s.t:  gequation
+Ω −linear
+μV ≤system.v
+0
+(Φ ) = ofΩdthe
+of the state
+is the virtual displacement field belonging to the
+
+space U spanned by the kinematically admissible set of displacement. µ is the prescribed
+(t ) ≤ 1
+0 ≤ wk g(Φ)
+volume fraction.
+is volume of the whole design domain. wk (t) represents the global
+weight
+coefficient
+of
+the
+node
+in thefield.
+design
+domain,
+k is the number
+of discrete
+where J(Φ) is the objective function. ε k’th
+is the
+strain
+u is
+the displacement
+field.
+E is element
+nodes in the design domain.
+the material elasticity tensor of solid material. aФ(u,v) and lФ(v) are the bilinear and linear
+The equilibrium equation aΦ (u,v) = lΦ (v) is given in its weak form. The energy bilinear
+term of the state equation
+theliner
+linear
+system.
+v is the
+term and of
+load
+term
+are defined
+as:virtual displacement field belonging
+
+
+
+to the space U spanned by the kinematically admissible
+Z set of displacement. μ is the prescribed volume fraction. g(Φ) is volume of the
+whole
+wk(t) represents the
+aΦ (u,
+v) = design
+ε T (u)domain.
+Eε(v)dvarΩ
+Ω
+global weight coefficient of the k’th node in the design domain, k is the number of discrete
+Z
+Z
+element nodes in the design domain. l (v) =
+f vdΩ +
+pvδ(Φ)|∇Φ|dΩ
+Φ
+Ω
+D
+The equilibrium equation aФ(u,v) = lФ(v) is given
+in its weak
+form. The energy bilinear
+term and load liner term are defined as:
+
+aΦ (u, v ) =  ε Τ (u) Eε (v )dΩ
+
+(13)
+
+lΦ (v ) =  fvdΩ +  pvδ (Φ ) ∇Φ dΩ
+
+(14)
+
+Ω
+
+Ω
+
+D
+
+where f is the traction force on the boundary and p is the body force density. |ᐁФ| is the
+
+(13)
+(14)
+
+Materials 2022, 15, 4483
+
+8 of 23
+
+where f is the traction force on the boundary and p is the body force density. |∇Φ| is the
+norm of gradient of LSF. δ(Φ) is the derivative of the Heaviside function, known as the
+Dirac function, which is given as:
+
+
+(
+2
+3(1− γ )
+1 − Φ2 |Φ| ≤ ∆
+4∆
+∆
+(15)
+δ(Φ) =
+0
+|Φ| > ∆
+where γ = 0.001 is a small positive number. ∆ is half of the bandwidth.
+3.2. Sensitivity Analysis
+Under the theoretical framework of the LSM, the shape derivative theory [42] is used
+to derive the velocity field of the boundary motion of the level set. A similar method can
+also be applied to the HLSM to derive the sensitivity of the objective function and constraint
+conditions with respect to design variables.
+The shape derivative of the objective function, the energy bilinear form, and the load
+linear form with respect to the pseudo-time variable t are calculated by:
+∂J (Φ)
+=
+∂t
+∂Φ a(u, v)
+=
+∂t
+
+Z
+
+Z
+
+.
+
+ε T (u)Eε(u)dΩ +
+Ω
+
+.
+
+ε T (u)Eε(v)dΩ +
+
+Z
+
+Ω
+
+∂Φ
+1
+ε T (u)Eε(u)δ(Φ)
+dΩ
+2 Ω
+∂t
+Z
+
+.
+
+ε T (u)Eε(v)dΩ +
+
+Z
+
+Ω
+
+∂ Φ l (v)
+=
+∂t
+
+Z
+
+.
+
+ε T (u)Eε(v)δ(Φ)
+Ω
+
+.
+
+[ f v + div( pvn)]dΩ + [ f v + div( pvn)]δ(Φ)
+Ω
+
+(16)
+∂Φ
+dΩ
+∂t
+
+∂Φ
+dΩ
+∂t
+
+(17)
+(18)
+
+where n is the normal vector.
+.
+Since v ∈ U, the conjugate equation can be obtained:
+Z
+
+.
+
+T
+
+ε (u)Eε(v)dΩ =
+Ω
+
+Z
+
+.
+
+.
+
+[ f v + div( pvn)]dΩ
+
+(19)
+
+Ω
+
+The partial derivatives of both sides of the equilibrium equation can be found with
+regard to pseudo-time t:
+∂l (v)
+∂aΦ (u, v)
+= Φ
+(20)
+∂t
+∂t
+By substituting Equations (17)–(19) into Equation (20):
+Z
+
+.
+
+ε T (u)Eε(v)dΩ =
+
+Z
+
+Ω
+
+[ f v + div( pvn)dΩ−ε T (u)Eε(v)]δ(Φ)|∇Φ|vn dΩ
+
+(21)
+
+Ω
+
+Because the problem of structural stiffness maximization is a self-adjoint problem, we
+can create the following formula:
+Z
+
+.
+
+ε T (u)Eε(u)dΩ =
+Ω
+
+Z
+
+[ f u + div( pun)−ε T (u)Eε(u)]δ(Φ)|∇Φ|vn dΩ
+
+(22)
+
+Ω
+
+By substituting Equation (22) into Equation (16), to obtain the shape derivative of the
+objective function J(Φ) with respect to pseudo-time t, we use
+∂J (Φ)
+=
+∂t
+with
+
+Z
+
+G (Φ)δ(Φ)|∇Φ|vn dΩ
+
+(23)
+
+Ω
+
+1
+G (Φ) = f u + div( pun) − ε T (u)Eε(u)
+2
+
+(24)
+
+Materials 2022, 15, 4483
+
+9 of 23
+
+The shape derivative of the volume constraint with respect to pseudo-time t can also
+be obtained:
+Z
+∂g(Φ)
+=
+δ(Φ)|∇Φ|vn dΩ
+(25)
+∂t
+Ω
+The topological shape evolution represented by the LSF is achieved by solving the
+Hamilton–Jacobi partial differential equation. The key solution is found via a suitable
+normal velocity vn . This paper takes the global weight coefficients as design variables. By
+substituting the HLSF into the Hamilton–Jacobi partial differential equation, the original
+space- and time-coupled Hamilton–Jacobi partial differential equation is decoupled into a
+system of ordinary differential equations. Additionally, the ordinary differential equation
+only for pseudo-time t is given as:
+
+( ϕ1 (x) − ϕ2 (x))
+
+∂w(t)
++ |∇Φ|vn = 0
+∂t
+
+(26)
+
+The normal velocity vn is obtained to drive the movement of ∂Ω in the cell:
+vn = −
+
+1 ( ϕ1 (x) − ϕ2 (x))∂w(t)
+∂t
+|∇Φ|
+
+(27)
+
+By substituting Equation (27) into Equation (23):
+∂J (Φ)
+m
+= − ∑ k =1
+∂t
+
+Z
+
+G (Φ)( ϕ1 (x) − ϕ2 (x))
+Ω
+
+∂wk (t)
+δ(Φ)dΩ
+∂t
+
+(28)
+
+By applying the chain rule for J(Φ):
+∂J (Φ)
+∂J (Φ) ∂wk (t)
+m
+= ∑ k =1
+∂t
+∂wk (t) ∂t
+
+(29)
+
+Comparing Equation (28) with Equation (29), the sensitivity with respect to weight
+coefficients is formulated as:
+∂J (Φ)
+= − G (Φ)( ϕ1 (x) − ϕ2 (x))δ(Φ)dΩ
+∂wk (t)
+Ω
+Z
+
+(30)
+
+In the same way, by substituting Equation (27) into Equation (25):
+∂g(Φ)
+m
+= ∑ k =1
+∂t
+
+Z
+
+( ϕ1 (x) − ϕ2 (x))
+Ω
+
+∂wk (t)
+δ(Φ)dΩ
+∂t
+
+(31)
+
+By applying the chain rule for g(Φ):
+∂g(Φ) ∂wk (t)
+∂g(Φ)
+m
+= ∑ k =1
+∂t
+∂wk (t) ∂t
+
+(32)
+
+Comparing Equation (31) with Equation (32) the sensitivity with respect to weight
+coefficients is formulated as:
+∂g(Φ)
+=
+∂wk (t)
+
+Z
+
+( ϕ1 (x) − ϕ2 (x))δ(Φ)dΩ
+
+(33)
+
+Ω
+
+4. Numerical Implementation
+The flowchart of the topology optimization of FGSs is shown in Figure 6. The optimization process begins with the initialization of the HLSF, including the structure mesh,
+definition of global weight coefficients, and pre-definition of unit cells, etc. Then, the initial
+unit cells are obtained based on Equation (11). During the optimization, the state equation
+in Equation (12) is solved to obtain the displacement field in each iteration. The sensitivity
+information is calculated based on the structural displacement field. The gradient-based
+
+Materials 2022, 15, 4483
+
+10 of 23
+
+mathematical optimizer can be used to update the design variables. The optimality criteria
+(OC) [43] is particularly efficient for solving large-scale structural optimization problems
+with a single constraint. The OC algorithm is thus used to update the design variables.
+The
+Materials 2022, 15, x FOR PEER REVIEW
+10 of 23
+optimization terminates when the absolute difference of two successive objectives is less
+than 1 × 10−3 or the maximum loop number is reached.
+
+Figure6.
+6. Flowchart
+Flowchart of
+of the
+the optimization
+optimizationprocedure.
+procedure.
+Figure
+
+5. Numerical
+Numerical Examples
+Examples
+5.
+In this
+thispaper,
+paper,two
+twotypical
+typicalnumerical
+numerical
+examples
+presented
+to illustrate
+effecIn
+examples
+areare
+presented
+to illustrate
+the the
+effectivetiveness
+and applicability
+of HLSM
+the topology
+optimization
+FGSs, including
+ness
+and applicability
+of HLSM
+for thefor
+topology
+optimization
+of FGSs,ofincluding
+TWSSs
+and
+FGCSs.
+the optimization
+examples,
+the volume
+the structure
+is taken as
+TWSSs
+and In
+FGCSs.
+In the optimization
+examples,
+the fraction
+volume of
+fraction
+of the structure
+is
+the
+constraint
+condition,condition,
+and the objective
+to maximize
+the structural
+stiffness.
+taken
+as the constraint
+and the function
+objectiveisfunction
+is to maximize
+the structural
+stiffness.
+5.1. Thin-Walled Stiffened Structures
+In this example,
+HLSM
+is used to optimize the TWSSs. The optimal shape or topology
+5.1. Thin-Walled
+Stiffened
+Structures
+configuration
+of
+the
+stiffening
+depends
+on the
+loading
+and boundary
+conditions.
+In this example, HLSM isribs
+used
+to optimize
+thegiven
+TWSSs.
+The optimal
+shape or
+topology
+Itconfiguration
+has to be noted
+that,
+if
+there
+are
+no
+geometric
+constraints
+on
+the
+level
+set
+evolution,
+of the stiffening ribs depends on the given loading and boundary
+condistiffening
+ribs
+irregular
+non-uniform
+wall thickness
+willlevel
+be obtained.
+The
+tions. It has
+to with
+be noted
+that, ifshape
+thereand
+are no
+geometric constraints
+on the
+set evolution,
+free-form
+stiffening
+ribs
+create
+challenges
+in
+manufacturing,
+leading
+to
+an
+optimization
+stiffening ribs with irregular shape and non-uniform wall thickness will be obtained. The
+result
+withstiffening
+no practical
+Taking into
+the restrictions
+of an
+manufacturing
+free-form
+ribs value.
+create challenges
+in account
+manufacturing,
+leading to
+optimization
+techniques,
+this
+paper
+introduces
+a
+geometry
+constraint
+to
+control
+the
+thickness
+the
+result with no practical value. Taking into account the restrictions of manufacturingoftechstiffening
+rib
+in
+one
+specified
+spatial
+direction.
+niques, this paper introduces a geometry constraint to control the thickness of the stiffenThe geometry constrain is applied so that the optimized stiffening ribs have a uniform
+ing rib in one specified spatial direction.
+wall thickness in the direction that is perpendicular to the panel surface. For a unit cell
+The geometry constrain is applied so that the optimized stiffening ribs have a unidiscretized by eight-node hexahedral elements, the sensitivity values on each node are
+form wall thickness in the direction that is perpendicular to the panel surface. For a unit
+usually different in each sensitivity analysis process. A possibly optimized stiffening rib
+cell discretized by eight-node hexahedral elements, the sensitivity values on each node
+unit cell without any constraints is shown in Figure 7a. The global weight coefficients on
+are usually different in each sensitivity analysis process. A possibly optimized stiffening
+the eight node of the unit cell are different in the Z-direction are plotted in Figure 7b. The
+rib unit cell without any constraints is shown in Figure 7a. The global weight coefficients
+geometric shape in the Z-direction is irregular, and the wall thickness is non-uniform. To
+on the eight node of the unit cell are different in the Z-direction are plotted in Figure 7b.
+The geometric shape in the Z-direction is irregular, and the wall thickness is non-uniform.
+To control the shape or wall thickness in the Z-direction, the nodal sensitivities on the
+same line in the Z-direction are averaged. Thus, the design variables (global weight coefficients) on the same line in the Z-direction are of the same value. In this case, the stiffening
+
+Materials 2022, 15, x FOR PEER REVIEW
+Materials 2022, 15, 4483
+
+11 of 23
+
+controlAccording
+the shape orto
+wall
+thickness(34),
+in thethe
+Z-direction,
+nodal sensitivities
+the same functio
+7c,d.
+Equation
+averagethe
+derivatives
+of theonobjective
+line in the Z-direction are averaged. Thus, the design variables (global weight coefficients)
+respect
+to the design variable are given as follows:
+on the same line in the Z-direction are of the same value. In this case, the stiffening rib
+unit cell shows a regular geometric shape or uniform thickness,
+as shown in Figure 7c,d.
+∂ J (Φ )  of1theNE
+∂J (Φ )function with respect
+J (Φ ) ∂(34),
+J (Φthe
+) average derivatives
+to∂Equation
+According 
+objective
+j = 1, 2,, N
+=
+ variable=are given=as
+=
+to the design
+follows:
+∂
+w
+t
+∂
+w
+t
+∂
+w
+t
+NE
+w
+t
+(
+)
+(
+)
+(
+)
+(
+)
+∂
+
+
+
+
+
+
+
+∂J (Φ)
+
+1
+
+2
+
+∂J (Φ)
+
+∂J (Φ)
+
+i
+
+NE
+
+
+
+
+
+1 NE ∂J (Φ)
+
+i
+
+j
+
+sensitivity
+of the objective
+where ∂J(Φ)/w
+= i(t) is the
+= · original
+·· =
+j = 1, 2, function
+· · · , N J(Φ)
+(34)with res
+=
+∂w1 (t)
+∂w2 (t)
+∂w NE (t)
+NE ∑
+∂wi (t)
+i
+j
+the design variable w(t), which is on the node of the parallel element in the Z-di
+∂J(Φ)/w
+i(t) is the
+averaged sensitivities. NE is the number of nodes (global design
+where ∂J(Φ)/w
+i (t) is the original sensitivity of the objective function J(Φ) with respect to
+the design
+variable
+w(t), which
+is oncell.
+the N
+node
+of the
+parallel of
+element
+in the
+Z-direction.
+bles)
+in the
+Z-direction
+of unit
+is the
+number
+unit cell
+nodes
+(global desig
+∂J(Φ)/w
+(t)
+is
+the
+averaged
+sensitivities.
+NE
+is
+the
+number
+of
+nodes
+(global
+design
+variables)
+i
+ables) on the same layer section. The sensitivity constraints can perfectly control
+in the Z-direction of unit cell. N is the number of unit cell nodes (global design variables)
+ometry
+of the stiffener unit cell, as shown in Figure 7c,d. It should be noted that t
+on the same layer section. The sensitivity constraints can perfectly control the geometry
+sitivity
+averaging
+operation
+in Itthe
+optimization
+process
+of the TWSSs
+of the stiffener
+unit cell,
+as shownisinincluded
+Figure 7c,d.
+should
+be noted that
+the sensitivity
+than
+the post-processing.
+Therefore,
+it does process
+not affect
+the
+mechanical
+properties
+a
+averaging
+operation is included
+in the optimization
+of the
+TWSSs,
+rather than
+the
+post-processing.
+Therefore,
+it
+does
+not
+affect
+the
+mechanical
+properties
+and
+simulation
+ulation accuracy of the optimized results. On the contrary, the proposed method
+accuracy
+of the
+optimizedshape
+results.
+the contrary,
+method
+ensures the
+the manuf
+the
+regular
+geometry
+of On
+stiffening
+ribs the
+andproposed
+effectively
+improves
+regular geometry shape of stiffening ribs and effectively improves the manufacturability of
+bility
+of the optimized
+results.
+the optimized
+results.
+
+Figure 7.7.Geometry
+constraints
+on stiffening
+rib unit cell.
+(a) Unit
+cell(a)
+without
+geometry
+constraint.
+Figure
+Geometry
+constraints
+on stiffening
+rib unit
+cell.
+Unit cell
+without
+geometry co
+(b)
+Discrete
+elements
+with
+different
+sensitivities.
+(c)
+Discrete
+elements
+with
+average
+sensitivities.
+(b) Discrete elements with different sensitivities. (c) Discrete elements with average sensitiv
+(d) Unit
+withgeometry
+geometry constraint.
+Unit
+cellcell
+with
+constraint.
+
+The pre-defined X-shaped stiffening rib unit cells are shown in Figure 8a. Their volume
+Theare
+pre-defined
+stiffening
+rib unit
+aredomain
+shown
+fractions
+0.15 and 0.4,X-shaped
+respectively.
+Figure 8b shows
+thecells
+design
+of in
+theFigure
+TWSS. 8a. Th
+The
+design
+domain
+is
+a
+square
+plate
+with
+L
+=
+180,
+W
+=
+180,
+H
+=
+2,
+and
+H
+=
+30.
+The
+upperdomain
+ume fractions are 0.15 and 0.4, respectively. Figure
+the design
+1 8b shows
+2
+thin wallThe
+is the
+non-design
+domain,
+and the plate
+lower with
+thin wall
+the W
+design
+domain.
+TWSS.
+design
+domain
+is a square
+L = is180,
+= 180,
+H1 = 2,The
+and H2 =
+structure is fixed at both the left and right side. A concentrated load F = 10 is applied to the
+upper
+thin
+wall
+is
+the
+non-design
+domain,
+and
+the
+lower
+thin
+wall
+is
+the
+design d
+center of the upper surface of the structure. The design domain is discretized into 6 × 6 × 1
+The
+structure
+is fixed
+at isboth
+thediscretized
+left and right
+load F = 10 is
+unit cells,
+and each
+unit cell
+further
+by 30 side.
+× 30 ×A32concentrated
+eight-node hexahedral
+elements.
+The upper
+wall is
+the non-design
+panel and contains
+two layers
+of elements.
+to
+the center
+of thethin
+upper
+surface
+of the structure.
+The design
+domain
+is discretize
+The
+volume
+fraction
+of
+the
+stiffened
+structure
+is
+set
+to
+µ
+=
+0.3.
+× 6 × 1 unit cells, and each unit cell is further discretized by 30 × 30 × 32 eight-nod
+
+hedral elements. The upper thin wall is the non-design panel and contains two la
+elements. The volume fraction of the stiffened structure is set to μ = 0.3.
+
+15, x FOR PEER REVIEW
+
+12 of 23
+
+2, 15, x FOR
+PEER 2022,
+REVIEW
+Materials
+15, 4483
+
+12 of 23
+
+12 of 23
+
+Figure 8. Pre-defined unit cells and design domain of TWSS. (a) X-shaped stiffening rib unit cells
+with
+different
+volume
+fractions.
+Loading
+and
+boundary
+conditions
+for 3D
+TWSS.
+Figure
+8. Pre-defined
+unit
+cells(b)
+and
+design
+domain
+of TWSS.
+(a)of
+X-shaped
+unit cells
+Figure
+8. Pre-defined
+unit cells
+and
+design
+domain
+TWSS.
+(a)stiffening
+X-shaped rib
+stiffening
+rib unit cells
+with different volume
+fractions.
+(b) Loading
+and
+conditions
+3D TWSS.
+with different
+volume
+fractions.
+(b)boundary
+Loading and
+boundaryfor
+conditions
+for 3D TWSS.
+
+After 59 iteration steps, the optimization objective converges to J = 246; the iteration
+After
+59
+iteration
+steps, the
+optimization
+objective
+to iteration
+J = 246; the iterahistory
+is shown
+in Figure
+9. As
+continues,
+the
+materialtoconverges
+isJ gradually
+distribAfter
+59 iteration
+steps,
+theoptimization
+optimization
+objective
+converges
+= 246; the
+tion
+history
+is
+shown
+in
+Figure
+9.
+As
+optimization
+continues,
+the
+material
+is gradually
+uted
+on the
+force transfer
+paths.
+material iscontinues,
+distributed
+other positions.
+According
+history
+is shown
+in Figure
+9. AsLess
+optimization
+theinmaterial
+is gradually
+distribdistributed on the force transfer paths. Less material is distributed in other positions.
+touted
+the optimization
+iterationpaths.
+history,
+the
+proposed
+optimization
+for TWSSs
+runs
+on the force transfer
+Less
+material
+is distributed
+in algorithm
+other positions.
+According
+According to the optimization iteration history, the proposed optimization algorithm for
+stably
+converges
+well.
+to theand
+optimization
+iteration
+history,
+the
+proposed
+optimization
+algorithm
+for
+TWSSs
+runs
+TWSSs runs stably and converges well.
+stably and converges well.
+
+Figure 9. Interaction
+history
+of 3D TWSS
+design.
+Figure
+9. Interaction
+history
+of 3D TWSS design.
+Figure 9. Interaction history of 3D TWSS design.
+The final
+optimized
+structure is
+in Figure
+10a. The
+upper thin-wall
+The final optimized
+structure
+is presented
+inpresented
+Figure 10a.
+The upper
+thin-wall
+struc- structure
+is
+hidden
+to
+observe
+the
+detailed
+features
+of
+the
+stiffening
+ribs,
+as
+shown
+in
+Figure 10b,c.
+ture isThe
+hidden
+observe the
+detailed
+features ofinthe
+stiffening
+ribs,upper
+as shown
+in Figure
+final to
+optimized
+structure
+is presented
+Figure
+10a. The
+thin-wall
+strucThe optimized stiffened structure shows a clear gradient distribution in geometry and
+10b,c.
+The
+optimized
+stiffened
+shows aofclear
+in geometry
+ture is
+hidden
+to observe
+the structure
+detailed features
+the gradient
+stiffeningdistribution
+ribs, as shown
+in Figure
+density, and no mismatch between graded cells is observed. In addition, the optimized
+and
+density,
+andstiffened
+no mismatch
+between
+graded
+is gradient
+observed.
+In addition,
+opti- so that
+10b,c.
+The optimized
+stiffened
+structure
+shows
+acells
+clear
+distribution
+in the
+geometry
+structure
+has a uniform
+wall
+thickness
+by introducing
+shape
+constraints,
+mized
+stiffened
+structure
+has
+a
+uniform
+wall
+thickness
+by
+introducing
+shape
+constraints,
+and density, and
+mismatch between
+graded cells is observed. In addition, the optitheno
+manufacturability
+is guaranteed.
+somized
+that the
+manufacturability
+stiffened
+structure
+hasisverify
+aguaranteed.
+uniform
+wall thickness
+by introducing
+shape
+constraints,
+To further
+the accuracy
+of the method
+proposed in
+this paper,
+the FEA is perso that the manufacturability
+is guaranteed.
+formed on the original
+and optimized TWSSs with the same volume fraction. The loading
+and boundary conditions are the same as those specified in Figure 8b. The deformation
+is used to evaluate the stiffness performance of stiffened structures. The design and FEA
+parameters of the geometry are listed in Table 1.
+
+Figure 10. Optimized TWSS using the HLSM. (a) Optimized TWSS. (b) Optimized layout of stiffening
+ribs. 10.
+(c) Top
+view ofTWSS
+stiffening
+Figure
+Optimized
+usingribs.
+the HLSM. (a) Optimized TWSS. (b) Optimized layout of stiffening ribs. (c) Top view of stiffening ribs.
+
+The final optimized structure is presented in Figure 10a. The upper thin-wall structure is hidden to observe the detailed features of the stiffening ribs, as shown in Figure
+10b,c. The optimized stiffened structure shows a clear gradient distribution in geometry
+OR PEER REVIEW
+and density, and no mismatch between graded cells is observed. In addition, the opti-13 of 23
+Materials 2022, 15, 4483
+13 of 23
+mized stiffened structure has a uniform wall thickness by introducing shape constraints,
+so that the manufacturability is guaranteed.
+
+To further verify the accuracy of the method proposed in this paper, the FEA is performed on the original and optimized TWSSs with the same volume fraction. The loading
+and boundary conditions are the same as those specified in Figure 8b. The deformation is
+used to evaluate the stiffness performance of stiffened structures. The design and FEA
+parameters of the geometry are listed in Table 1.
+Table 1. Design
+FEA
+parameters
+the
+geometry.
+Figure 10.and
+Optimized
+TWSS
+using of
+theTWSS
+HLSM.
+(a) the
+Optimized
+TWSS.
+(b) Optimized
+layout
+of stiffenFigure
+10. Optimized
+using
+HLSM. (a)
+Optimized
+TWSS. (b)
+Optimized
+layout of stiffening
+ing ribs. (c) Topribs.
+view
+stiffening
+(c)ofTop
+view ofribs.
+stiffening ribs.
+
+Model Size
+
+W
+180 mm
+
+Material Properties
+Loading
+Elastic
+ModuConcentrated
+Table 1. Design and FEA parameters of the geometry.
+L
+H1
+H2
+Poisson Ratio
+lus
+Load
+Model Size
+Material Properties
+Loading
+5
+180 mm
+2 mm
+5 mm
+2 × 10 MPa
+0.3
+1000 N
+W
+
+L
+
+H1
+
+H2
+
+Elastic
+Modulus
+
+Poisson Ratio
+
+Concentrated
+Load
+
+The deformation180nephograms
+two 5structures
+shown in Figure
+11a,b.1000
+The
+mm
+180 mmof the
+2 mm
+mm
+0.3
+N
+2 × are
+105 MPa
+whole structural deformations are relatively similar. The fixed side deformation of the
+thin-walled stiffened structure
+is small.
+The largeofdeformation
+is mainly
+concentrated
+in The
+The deformation
+nephograms
+the two structures
+are shown
+in Figure 11a,b.
+whole structural
+deformationsof
+are
+relatively
+similar. The
+fixed side deformation
+the center of the structures.
+The comparison
+the
+two structural
+deformations
+is shownof the
+thin-walled stiffened structure is small. The large deformation is mainly concentrated in
+in Figure 11c. The maximum deformation (MD) decreases from 0.52371 mm to 0.43981
+the center of the structures. The comparison of the two structural deformations is shown in
+mm. The maximumFigure
+deformation
+of the optimized
+TWSS
+reduces
+byfrom
+16.02%.
+The
+averaged
+11c. The maximum
+deformation
+(MD)
+decreases
+0.52371
+mm
+to 0.43981 mm.
+deformations (AD) The
+of the
+two structures
+are
+mm and
+respectively.
+maximum
+deformation
+of 0.18688
+the optimized
+TWSS0.16853
+reduces mm,
+by 16.02%.
+The averaged
+deformations
+(AD) of theby
+two9.82%.
+structures
+aresimulation
+0.18688 mm and
+0.16853
+respectively.
+The averaged deformation
+is reduced
+The
+results
+ofmm,
+FEA
+further The
+averaged
+deformation
+is
+reduced
+by
+9.82%.
+The
+simulation
+results
+of
+FEA
+further show
+show that the proposed method can effectively realize the optimized layout of stiffening
+that the proposed method can effectively realize the optimized layout of stiffening ribs and
+ribs and significantly
+improve the stiffness of TWSSs.
+significantly improve the stiffness of TWSSs.
+
+Figure 11. FEA resultsFigure
+of TWSS.
+(a) results
+Deformation
+of TWSS
+withofuniform
+stiffening
+11. FEA
+of TWSS.nephogram
+(a) Deformation
+nephogram
+TWSS with
+uniformribs
+stiffening
+layout. (b) Deformation
+of TWSS with
+optimized
+graded
+layout.
+(c) Comribsnephogram
+layout. (b) Deformation
+nephogram
+of TWSS
+withstiffening
+optimized ribs
+graded
+stiffening
+ribs layout.
+(c) Comparison of the FEA results.
+parison of the FEA results.
+To further verify the applicability of the proposed method, cross-shaped and hybrid
+
+To further verify
+the applicability
+of pre-defined
+the proposed
+method,
+cross-shaped
+and2.hybrid
+stiffening
+rib unit cells are
+to design
+TWSSs,
+as shown in Table
+The first and
+stiffening rib unit cells
+are
+pre-defined
+design
+TWSSs,
+as shown
+Table
+2. The first
+second
+columns
+of Table 2toare
+pre-defined
+stiffening
+rib unitin
+cells
+and optimized
+topology
+and second columns of Table 2 are pre-defined stiffening rib unit cells and optimized topology configurations of TWSSs, respectively. The FEA is also performed on the uniform
+and optimized TWSSs with the same volume fraction. The deformation nephograms of
+the two structures are shown in the third and fourth columns of Table 2. Note that the
+
+Materials 2022, 15, 4483
+
+14 of 23
+
+configurations of TWSSs, respectively. The FEA is also performed on the uniform and
+optimized TWSSs with the same volume fraction. The deformation nephograms of the two
+structures are shown in the third and fourth columns of Table 2. Note that the proposed
+method is controlled by the geometry constraint and ensures the regular geometry shape of
+the stiffening ribs. The numerical examples in the Supplementary show that the proposed
+Materials
+2022,
+15,15,
+FOR
+PEER
+REVIEW
+1414
+of of
+2323
+Materials
+2022,
+15,
+xx FOR
+PEER
+REVIEW
+14
+of
+23
+Materials
+2022,
+x FOR
+PEER
+REVIEW
+Materials
+2022,
+x FOR
+PEER
+REVIEW
+of
+Materials
+2022,
+15,15,
+x FOR
+PEER
+REVIEW
+14 14
+offorms
+23 23
+method can effectively realize an optimized layout of stiffening ribs with different
+and simultaneously enhance the mechanical properties of TWSSs.
+Table
+2. 2.
+Micro-structural
+and
+macro-structural
+topologies
+and
+their
+FEA
+results.
+Table
+2.
+Micro-structural
+and
+macro-structural
+topologies
+and
+their
+FEA
+results.
+Table
+Micro-structural
+and
+macro-structural
+topologies
+and
+their
+FEA
+results.
+Table
+Micro-structural
+and
+macro-structural
+topologies
+and
+their
+FEA
+results.
+Table
+2.2.Micro-structural
+and
+macro-structural
+topologies
+and
+their
+FEA
+results.
+Table
+2. Micro-structural
+and
+macro-structural
+topologies
+and
+their
+FEA
+results.
+Pre-Defined
+Unit
+Cells
+Topological
+Configuration
+Uniform
+Structure
+Optimized
+TWSS
+Pre-Defined
+Unit
+Cells
+Topological
+Configuration
+Uniform
+Structure
+Optimized
+TWSS
+Pre-Defined
+Unit
+Cells
+Topological
+Configuration
+Uniform
+Structure
+Optimized
+TWSS
+Pre-Defined
+Unit
+Topological
+Configuration
+Uniform
+Structure
+Pre-Defined
+Unit
+Cells
+Topological
+Configuration
+Uniform
+Optimized
+TWSS
+Optimized
+TWSS
+Pre-Defined
+Cells
+Topological
+Structure
+Optimized
+TWSS
+
+Volume
+fractions:
+0.15,
+0.40.4
+Volume
+fractions:
+0.15,
+0.4
+Volume
+0.15,
+Volume
+fractions:
+Volume
+fractions:
+0.15,
+Volume
+fractions:
+0.15,
+0.40.4
+
+μ =μ0.3,
+0.3,
+229
+μ
+JJ =J229
+= 0.3,
+= 229
+µ
+= 0.3,
+= 229
+μ=
+=μ0.3,
+J ==J229
+
+MD:
+0.37
+mm
+MD:
+0.37
+mm
+MD:
+0.37
+mm
+MD:
+0.37
+mm
+MD:
+0.37
+mm
+MD:
+0.37
+mm
+AD:
+0.12
+mm
+AD:
+0.12
+mm
+AD:
+0.12
+mm
+AD:
+0.12
+mm
+AD:
+0.12
+mm
+
+MD:
+0.31
+mm
+MD:
+0.31
+mm
+MD:
+0.31
+mm
+MD:
+0.31
+mm
+MD:
+0.31
+mm
+MD:
+0.31
+mm
+AD:
+0.09
+mm
+AD:
+0.09
+mm
+AD:
+0.09
+mm
+AD:
+0.09
+mm
+AD:
+0.09
+mm
+
+Volume
+fractions:
+0.4,
+0.5
+Volume
+fractions:
+0.4,
+0.50.5
+Volume
+fractions:
+0.4,
+0.5
+Volume
+fractions:
+0.4,
+Volume
+fractions:
+Volume
+fractions:
+0.4,0.4,
+0.50.5
+
+µ
+0.45,
+215
+μ=
+0.45,
+=J215
+215
+μ
+==μ0.45,
+JJJ ==
+= 0.45,
+= 215
+= 0.45,
+= 215
+μ =μ0.45,
+J =J215
+
+MD:
+0.32
+mm
+MD:
+0.32
+mm
+MD:
+0.32
+mm
+MD:
+0.32
+mm
+MD:
+0.32
+mm
+MD:
+0.32
+mm
+AD:
+0.11
+mm
+AD:
+0.11
+mm
+AD:
+0.11
+mm
+AD:
+0.11
+mm
+AD:
+0.11
+mm
+AD:
+0.11
+mm
+
+MD:
+0.29
+mm
+MD:
+0.29
+mm
+MD:
+0.29
+mm
+MD:
+0.29
+mm
+MD:
+0.29
+mm
+MD:
+0.29
+mm
+AD:
+0.09
+mm
+AD:
+0.09
+mm
+AD:
+0.09
+mm
+AD:
+0.09
+mm
+AD:
+0.09
+mm
+AD:
+0.09
+mm
+
+5.2.
+Functionally
+Graded
+Cellular
+Structures
+5.2.
+Functionally
+Graded
+Cellular
+Structures
+5.2.
+Functionally
+Graded
+Cellular
+Structures
+5.2.
+Functionally
+Graded
+Cellular
+Structures
+5.2.
+Functionally
+Graded
+Cellular
+Structures
+5.2.1.
+Graded
+Cellular
+Structure
+5.2.1.
+Graded
+Cellular
+Structure
+5.2.1.
+Graded
+Cellular
+Structure
+5.2.1.
+Graded
+Cellular
+Structure
+5.2.1.
+Graded
+Cellular
+Structure
+In
+this
+example,
+HLSM
+used
+toto
+optimize
+the
+Michell
+beam
+structure
+to obtain
+FGCS.
+InInthis
+optimize
+the
+Michell
+beam
+structure
+totoobtain
+thisexample,
+example,HLSM
+HLSMisisisused
+usedto
+optimize
+the
+Michell
+beam
+structure
+obtain
+In
+this
+example,
+HLSM
+is
+used
+to
+optimize
+the
+Michell
+beam
+structure
+to
+obtain
+In
+this
+example,
+HLSM
+is
+used
+to
+optimize
+the
+Michell
+beam
+structure
+to
+obtain
+Considering
+that TPMSs
+have the
+advantages
+of a low
+and
+highand
+specific
+strength,
+FGCS.
+Considering
+that
+TPMSs
+have
+thethe
+advantages
+ofdensity
+a low
+density
+high
+specific
+FGCS.
+Considering
+that
+TPMSs
+have
+advantages
+of
+a low
+density
+and
+high
+specificas
+FGCS.
+Considering
+that
+TPMSs
+have
+advantages
+a low
+density
+and
+high
+specific
+FGCS.
+Considering
+that
+TPMSs
+have
+thethe
+advantages
+of of
+a ability
+low
+density
+and
+high
+specific
+well
+as
+perfect
+self-supporting
+ability
+and
+chip
+removal
+in
+additive
+manufacturing
+strength,
+asas
+well
+asas
+perfect
+self-supporting
+ability
+and
+chip
+removal
+ability
+inin
+additive
+strength,
+well
+perfect
+self-supporting
+ability
+and
+chip
+removal
+ability
+additive
+strength,
+as
+well
+as
+perfect
+self-supporting
+ability
+and
+chip
+removal
+ability
+in
+additive
+strength,
+as
+well
+as
+perfect
+self-supporting
+ability
+and
+chip
+removal
+ability
+in
+additive
+(AM), the I-WP
+TPMS
+is I-WP
+used
+as the
+of
+the
+cellular
+structure,
+as
+shown
+inasFigure
+12a,
+manufacturing
+(AM),
+thethe
+I-WP
+TPMS
+is RVE
+used
+asas
+the
+RVE
+ofof
+the
+cellular
+structure,
+shown
+manufacturing
+(AM),
+TPMS
+is
+used
+the
+RVE
+the
+cellular
+structure,
+as
+shown
+manufacturing
+(AM),
+I-WP
+TPMS
+isrespectively.
+used
+RVE
+the
+cellular
+structure,
+as
+shown
+manufacturing
+(AM),
+thethe
+I-WP
+TPMS
+is used
+asas
+thethe
+RVE
+of of
+the
+cellular
+structure,
+asconditions
+shown
+with
+volume
+fractions
+of
+0.06
+and
+0.6,
+The
+loading
+and
+boundary
+inin
+Figure
+12a,
+with
+volume
+fractions
+ofof
+0.06
+and
+0.6,
+respectively.
+The
+loading
+and
+boundFigure
+12a,
+with
+volume
+fractions
+0.06
+and
+0.6,
+respectively.
+The
+loading
+and
+boundFigure
+12a,
+with
+volume
+fractions
+0.06
+and
+0.6,
+respectively.
+The
+loading
+boundin in
+Figure
+with
+volume
+fractions
+of of
+0.06
+and
+0.6,
+respectively.
+The
+loading
+boundfor
+the12a,
+3D
+Michell
+beam
+are
+illustrated
+in
+Figure
+12b.
+design
+domain
+isand
+aand
+cuboid
+with
+ary
+conditions
+forfor
+the
+3D3D
+Michell
+beam
+are
+illustrated
+inThe
+Figure
+12b.
+The
+design
+domain
+ary
+conditions
+the
+Michell
+beam
+are
+illustrated
+in
+Figure
+12b.
+The
+design
+domain
+ary
+conditions
+for
+the
+3D
+Michell
+beam
+are
+illustrated
+in
+Figure
+12b.
+The
+design
+domain
+aryLconditions
+for
+the 3D
+Michell
+beam
+are illustrated
+in10Figure
+12b. The
+design domain
+=
+240,
+W
+=
+40
+and
+H
+=
+120.
+The
+distributed
+force
+F
+=
+N
+is
+applied
+vertically
+downward
+is is
+a cuboid
+with
+L =L 240,
+WW
+= 40
+and
+HH
+= 120.
+The
+distributed
+force
+FF
+= 10
+NN
+is is
+applied
+a cuboid
+with
+= 240,
+= 40
+and
+= 120.
+The
+distributed
+force
+= 10
+applied
+a the
+cuboid
+with
+= 240,
+=face.
+40
+and
+= 120.
+The
+distributed
+force
+= the
+10
+applied
+is is
+aincuboid
+with
+L
+240,
+WW
+= 40
+and
+HH
+=bottom
+120.
+The
+distributed
+F =Fat10
+NN
+is is
+applied
+middle
+of=Lthe
+bottom
+The
+support
+edgesforce
+located
+left
+and
+right
+vertically
+downward
+inin
+thethe
+middle
+ofof
+thethe
+bottom
+face.
+The
+bottom
+support
+edges
+located
+vertically
+downward
+middle
+bottom
+face.
+The
+bottom
+support
+edges
+located
+vertically
+downward
+in
+middle
+bottom
+face.
+The
+support
+edges
+located
+vertically
+thethe
+middle
+of of
+thethe
+bottom
+face.
+The
+bottom
+edges
+face aredownward
+fixed.
+Thein
+design
+domain
+is
+discretized
+into
+12
+×bottom
+2 × 6support
+unit
+cells,
+andlocated
+each
+unit
+at at
+the
+left
+and
+right
+face
+areare
+fixed.
+The
+design
+domain
+is is
+discretized
+into
+1212
+× 2× ×2 6× unit
+the
+left
+and
+right
+face
+fixed.
+The
+design
+domain
+discretized
+into
+6 unit
+the
+left
+and
+right
+face
+are
+fixed.
+The
+design
+domain
+is
+discretized
+into
+12
+×
+2
+×
+6
+unit
+at at
+the
+left
+and
+right
+face
+are
+fixed.
+The
+design
+domain
+is
+discretized
+into
+12
+×
+2
+×
+6
+unit
+cell is further discretized by 20 × 20 × 20 eight-node hexahedral elements. The volume
+cells,
+and
+each
+unit
+cell
+is is
+further
+discretized
+byby
+2020
+× 20
+× 20
+eight-node
+hexahedral
+elecells,
+and
+each
+unit
+cell
+further
+discretized
+× 20
+× 20
+eight-node
+hexahedral
+elecells,
+and
+each
+unit
+cell
+discretized
+× 20
+× 20
+eight-node
+hexahedral
+elecells,
+and
+each
+unit
+cell
+is is
+further
+discretized
+byby
+2020
+× 20
+× 20
+eight-node
+hexahedral
+elefraction
+constraint
+is
+set
+tofurther
+µ = 0.4.
+ments.
+The
+volume
+fraction
+constraint
+is is
+setset
+toto
+μ =μ 0.4.
+ments.
+The
+volume
+fraction
+constraint
+= 0.4.
+ments.
+The
+volume
+fraction
+constraint
+set
+= 0.4.
+ments.
+The
+volume
+fraction
+constraint
+is is
+set
+to to
+μ =μ
+0.4.
+The
+optimization
+based
+on I-WP
+TPMS
+unit
+cells converges to J = 1910.96 after 60
+iteration steps. The evolving history is plotted in Figure 13. Figure 14 shows the final
+design with a significant graded distribution in geometry and density. High-density unit
+cells with a high stiffness are distributed in the support domain, loading domain and force
+transfer paths to obtain superior mechanical properties. In addition, the perfect continuities
+between graded cells are guaranteed through the HLSM, where no mismatch is observed.
+To illustrate the excellent mechanical properties of the optimized structure, the FEA is
+carried out for the uniform cellular structure and the FGCS under the same global volume
+fraction of 0.4. Loading and boundary conditions of structures for FEA are the same as
+Figure 12b. Nylon PA2200 is taken as the material for the geometry. The elastic modulus
+is 741 MPa, the yield strength is 54 MPa, the Poisson’s ratio is 0.3, and the density is
+1020 kg/m3 . The loading–deformation and loading–stress curves for the two structures are
+plotted in Figure 15. In the linear elastic region, the maximum deformation and stress of
+the uniform cellular structure are significantly larger than those of the optimized FGCSs.
+
+Figure
+12.12.
+Pre-defined
+unit
+cells
+and
+design
+domain
+ofof
+FGCS.
+(a)(a)
+I-WP
+TPMS
+with
+different
+volume
+Figure
+12.
+Pre-defined
+unit
+cells
+and
+design
+domain
+of
+FGCS.
+(a)
+I-WP
+TPMS
+with
+different
+volume
+Figure
+Pre-defined
+unit
+cells
+and
+design
+domain
+FGCS.
+I-WP
+TPMS
+with
+different
+volume
+Figure
+Pre-defined
+unit
+cells
+and
+design
+domain
+FGCS.
+I-WP
+TPMS
+with
+different
+volume
+Figure
+12.12.
+Pre-defined
+unit
+cells
+and
+design
+domain
+of of
+FGCS.
+(a)(a)
+I-WP
+TPMS
+with
+different
+volume
+fractions. (b) Loading and boundary conditions for 3D Michell beam.
+
+fractions: 0.4, 0.5
+
+μ = 0.45, J = 215
+
+MD: 0.32 mm
+AD: 0.11 mm
+
+MD: 0.29 mm
+AD: 0.09 mm
+
+Functionally Graded Cellular Structures
+Materials 2022,5.2.
+15, 4483
+
+15 of 23
+
+5.2.1. Graded Cellular Structure
+In this example, HLSM is used to optimize the Michell beam structure to obtain
+The stiffness of the structures is calculated according to the loading–deformation curve,
+FGCS. Considering that TPMSs have the advantages of a low density and high specific
+which is 631.01 N/mm and 1323.94 N/mm, respectively. The FEA results show that the
+strength, as well proposed
+as perfect
+self-supporting
+ability and
+removal
+in additive
+method
+significantly improves
+the chip
+bearing
+capacityability
+of cellular
+structure. Figure 16
+manufacturing (AM),
+the
+I-WP
+TPMS
+is
+used
+as
+the
+RVE
+of
+the
+cellular
+structure,
+as structure
+shown and the
+shows the deformation and stress nephograms of the uniform cellular
+in Figure 12a, with
+volumeFGCS
+fractions
+ofa0.06
+and condition
+0.6, respectively.
+loading
+and
+boundoptimized
+under
+loading
+of 800 N. The
+Compared
+with
+the
+uniform cellular
+ary conditions forstructure,
+the 3D Michell
+beam are distributed
+illustratedin
+inthe
+Figure
+12b.
+The
+design
+domain
+more materials
+area of
+high
+stress
+for FGCS.
+This strategy
+the= utilization
+ratio of the materials
+property of
+is a cuboid with will
+L = help
+240, us
+W to
+= improve
+40 and H
+120. The distributed
+force F and
+= 10load-bearing
+N is applied
+the macrostructure.
+be noted
+thatThe
+the unit
+cells support
+distributed
+in thelocated
+cellular structure
+vertically downward
+in the middleItofshould
+the bottom
+face.
+bottom
+edges
+all evolve
+from
+the I-WP
+TPMS. The
+configurations
+of unit
+cells
+in geometry,
+at the left and right
+face are
+fixed.
+The design
+domain
+is discretized
+into
+12are
+× 2similar
+× 6 unit
+which may restrict the design space and its properties to some extent. However, they are
+cells, and each unit cell is further discretized by 20 × 20 × 20 eight-node hexahedral elestill flexible enough for similar unit cells to achieve satisfactory properties and various
+ments. The volume
+fraction constraint
+functionalities
+[44,45]. is set to μ = 0.4.
+
+15, x FOR PEER REVIEW
+
+15 of 23
+
+design with a significant graded distribution in geometry and density. High-density unit
+cells with a high stiffness are distributed in the support domain, loading domain and force
+transfer paths to obtain superior mechanical properties. In addition, the perfect continuities between gradedunit
+cells areand
+guaranteed
+through
+the HLSM,
+where
+no mismatch
+is obFigure 12. Pre-defined
+design
+FGCS.
+(a) I-WP
+TPMS
+volume
+Figure 12.cells
+Pre-defined
+unit domain
+cells and of
+design
+domain
+of FGCS.
+(a)with
+I-WPdifferent
+TPMS with
+different volume
+served. (b) Loading and boundary conditions for 3D Michell beam.
+fractions.
+fractions. (b) Loading and boundary conditions for 3D Michell beam.
+
+The optimization based on I-WP TPMS unit cells converges to J = 1910.96 after 60
+iteration steps. The evolving history is plotted in Figure 13. Figure 14 shows the final
+
+Figure 13. Interaction
+history
+of 3D Michell
+beam
+Figure
+13. Interaction
+history
+of 3Ddesign.
+Michell beam design.
+
+Materials 2022, 15, 4483
+
+16 of 23
+
+Figure 13. Interaction history of 3D Michell beam design.
+
+22, 15, x FOR PEER REVIEW
+
+16 of 23
+
+optimized FGCS under a loading condition of 800 N. Compared with the uniform cellular
+structure, more materials are distributed in the area of high stress for FGCS. This strategy
+will help us to improve the utilization ratio of the materials and load-bearing property of
+the macrostructure. It should be noted that the unit cells distributed in the cellular structure all evolve from the I-WP TPMS. The configurations of unit cells are similar in geometry, which may restrict the design space and its properties to some extent. However, they
+are still flexible enough for similar unit cells to achieve satisfactory properties and various
+functionalities
+[44,45].
+Figure
+14. Optimized
+3D 14.
+Michell
+beam3D
+using
+the beam
+HLSM.
+Figure
+Optimized
+Michell
+using the HLSM.
+
+To illustrate the excellent mechanical properties of the optimized structure, the FEA
+is carried out for the uniform cellular structure and the FGCS under the same global volume fraction of 0.4. Loading and boundary conditions of structures for FEA are the same
+as Figure 12b. Nylon PA2200 is taken as the material for the geometry. The elastic modulus
+is 741 MPa, the yield strength is 54 MPa, the Poisson’s ratio is 0.3, and the density is 1020
+kg/m3. The loading–deformation and loading–stress curves for the two structures are plotted in Figure 15. In the linear elastic region, the maximum deformation and stress of the
+uniform cellular structure are significantly larger than those of the optimized FGCSs. The
+stiffness of the structures is calculated according to the loading–deformation curve, which
+is 631.01 N/mm and 1323.94 N/mm, respectively. The FEA results show that the proposed
+method significantly improves the bearing capacity of cellular structure. Figure 16 shows
+the deformation and stress nephograms of the uniform cellular structure and the
+
+Figure 15. Comparison
+maximum
+deformation
+anddeformation
+stress between
+cellular
+structure
+and structure and
+Figureof15.
+Comparison
+of maximum
+and uniform
+stress between
+uniform
+cellular
+optimized FGCS. optimized FGCS.
+
+Materials 2022, 15, 4483
+
+Figure 15. Comparison of maximum deformation and stress between uniform cellular structure and
+optimized FGCS.
+
+17 of 23
+
+Figure 16. Deformation
+stress nephograms
+of uniform
+cellular
+structure
+and optimized
+FGCS.
+Figureand
+16. Deformation
+and stress
+nephograms
+of uniform
+cellular
+structure and
+optimized FGCS.
+
+When the minimum volume fraction of the pre-defined unit cell is greater than 0, a
+series of cells with different volume fractions are distributed throughout the design domain,
+as shown in the first row of Table 3. Therefore, it seems that the method proposed in
+this paper can only achieve the shape optimization of the structure. In fact, by simply
+adjusting the configuration and volume fraction of the pre-defined unit cells, the HLSM can
+achieve different optimization effects. For example, the topology optimization of cellular
+structure can be achieved when the minimum volume fraction of the pre-defined unit
+cell is 0. Furthermore, HLSM is also an effective tool to achieve macroscopic topology
+optimization using predefined unit cells with volume fractions of 0 and 1. The second
+and third rows of Table 3 show the topology evolution forms of the structures. It can be
+seen that the HLSM has significant advantages in the design of FGSs. Note that, small
+burrs appear on the boundaries of FGCS when using a unit cell with a volume fraction of
+0. To avoid this problem, a pre-defined unit cell with a volume fraction greater than 0 is
+suggested, ensuring the mechanical properties and manufacturability of cellular structures.
+5.2.2. Lattice Sandwich Structure
+Generally, the body-centered cube (BCC) lattice unit cell with rod-shaped parts is generally adopted to design the core layer of lattice sandwich structures (LSSs). However, existing studies show that the TPMS-based BCC has better load-bearing and energy-absorbing
+properties than those of the BCC with rod-shaped parts [46]. Therefore, I-WP TPMS is used
+as the core layer of LSSs in this section. Then, a novel graded lattice sandwich structure
+(GLSS) design is obtained based on the proposed HLSM. Figure 17a shows the pre-defined
+unit cells of LSS; their volume fractions are 0.25 and 0.45, respectively. The loading and
+boundary conditions of the LSS are illustrated in Figure 17b. Additionally, the sizes of the
+LSS are as follows: L = 240, W = 24, H1 = 96, H2 = 3. The core layer is the design domain
+and the thin and hard panels are non-design domains. The support domain is L/10 from
+both sides of the bottom of the design domain. The distributed force F = 10 N is applied
+vertically downward in the middle of the upper face. The design domain is discretized into
+10 × 1 × 3 unit cells, and each unit cell is further discretized by 24 × 24 × 4 eight-node
+hexahedral elements. The volume fraction of the LSS is set to µ = 0.35.
+
+Materials 2022, 15, 4483
+
+unit cell is 0. Furthermore, HLSM is also an effective tool to achieve macroscopic topology
+unit
+unit
+cell
+cell
+isis0.
+HLSM
+HLSM
+isisalso
+also
+an
+an
+effective
+effective
+tool
+tool
+tototo
+achieve
+achieve
+macroscopic
+topology
+topology
+unit
+cell
+is0.Furthermore,
+0.Furthermore,
+Furthermore,
+HLSM
+is
+also
+an
+effective
+tool
+achieve
+macroscopic
+topology
+optimization
+using
+predefined
+unit
+cells
+with
+volume
+fractions
+ofof
+The
+second
+and
+optimization
+using
+predefined
+unit
+cells
+with
+volume
+fractions
+of
+00macroscopic
+and
+1.1.1.
+The
+second
+and
+optimization
+using
+predefined
+unit
+cells
+with
+volume
+fractions
+0and
+and
+The
+second
+and
+optimization
+using
+predefined
+unit
+cells
+with
+volume
+fractions
+ofofof
+00and
+1.1.The
+second
+and
+optimization
+using
+predefined
+unit
+cells
+with
+volume
+fractions
+second
+and
+optimization
+using
+predefined
+unit
+cells
+with
+volume
+fractions
+0and
+and
+1.The
+The
+second
+and
+optimization
+optimization
+using
+predefined
+unit
+unit
+cells
+cells
+with
+with
+volume
+volume
+fractions
+fractions
+ofofstructures.
+0structures.
+0structures.
+and
+1.1.1.
+The
+The
+second
+and
+and
+optimization
+using
+unit
+cells
+with
+volume
+fractions
+of
+0and
+and
+The
+second
+and
+third
+rows
+ofusing
+Table
+3predefined
+the
+topology
+evolution
+forms
+ofof
+the
+can
+be
+seen
+third
+rows
+of
+Table
+3predefined
+show
+the
+topology
+evolution
+forms
+of
+the
+ItItsecond
+can
+be
+seen
+third
+rows
+of
+Table
+3show
+show
+the
+topology
+evolution
+forms
+the
+It
+can
+be
+seen
+third
+rows
+ofofof
+Table
+33show
+the
+topology
+evolution
+forms
+ofofof
+the
+structures.
+ItItcan
+be
+seen
+third
+rows
+Table
+the
+topology
+evolution
+forms
+the
+structures.
+bebe
+seen
+third
+rows
+Table
+3show
+show
+the
+topology
+evolution
+forms
+the
+structures.
+Itcan
+can
+seen
+third
+third
+rows
+rows
+ofofof
+Table
+Table
+3significant
+3significant
+show
+show
+the
+the
+topology
+topology
+evolution
+evolution
+forms
+forms
+of
+of
+the
+the
+structures.
+structures.
+ItItcan
+can
+be
+be
+seen
+seen
+third
+rows
+Table
+3significant
+show
+the
+topology
+evolution
+forms
+of
+the
+structures.
+Itsmall
+can
+be
+seen
+that
+the
+HLSM
+has
+advantages
+ininthe
+the
+design
+of
+FGSs.
+Note
+that,
+small
+burrs
+that
+HLSM
+has
+advantages
+in
+FGSs.
+Note
+burrs
+thatthe
+the
+HLSM
+has
+advantages
+thedesign
+design
+of
+FGSs.
+Notethat,
+that,
+small
+burrs
+that
+the
+HLSM
+has
+significant
+advantages
+ininin
+the
+design
+ofofof
+FGSs.
+Note
+that,
+small
+burrs
+that
+the
+HLSM
+has
+significant
+advantages
+the
+design
+FGSs.
+Note
+that,
+small
+burrs
+that
+the
+HLSM
+has
+significant
+advantages
+the
+design
+FGSs.
+Note
+that,
+small
+burrs
+that
+that
+the
+the
+HLSM
+HLSM
+has
+has
+significant
+significant
+advantages
+advantages
+in
+inin
+the
+the
+design
+ofof
+FGSs.
+FGSs.
+Note
+Note
+that,
+that,
+small
+small
+burrs
+that
+the
+HLSM
+has
+significant
+advantages
+design
+of
+FGSs.
+Note
+that,
+small
+burrs
+appear
+on
+the
+boundaries
+ofof
+FGCS
+when
+using
+aunit
+unit
+cell
+with
+fraction
+ofburrs
+0.
+To
+appear
+on
+the
+boundaries
+of
+FGCS
+when
+using
+athe
+cell
+with
+aavolume
+fraction
+of
+0.
+To
+appear
+on
+the
+boundaries
+FGCS
+when
+using
+adesign
+unit
+cell
+with
+avolume
+volume
+fraction
+of
+0.
+To
+appear
+on
+the
+boundaries
+ofofof
+FGCS
+when
+using
+aaunit
+cell
+with
+aavolume
+fraction
+ofofof
+0.0.0.
+To
+appear
+on
+the
+boundaries
+FGCS
+when
+using
+cell
+with
+fraction
+To
+appear
+on
+the
+boundaries
+FGCS
+when
+using
+aunit
+unit
+cell
+with
+avolume
+volume
+fraction
+To
+appear
+appear
+on
+on
+the
+the
+boundaries
+boundaries
+ofofof
+FGCS
+FGCS
+when
+when
+using
+using
+aaunit
+cell
+cell
+with
+with
+aavolume
+fraction
+fraction
+0.issug0.sugTo
+To
+appear
+on
+the
+boundaries
+FGCS
+when
+using
+unit
+cell
+with
+avolume
+volume
+fraction
+of
+0.
+To
+avoid
+this
+problem,
+pre-defined
+unit
+cell
+with
+volume
+fraction
+greater
+than
+0of
+avoid
+problem,
+aaapre-defined
+unit
+cell
+with
+aaaunit
+fraction
+greater
+than
+isis
+avoidthis
+this
+problem,
+pre-defined
+unit
+cell
+with
+avolume
+volume
+fraction
+greater
+than0of
+0
+sug18
+of
+23
+avoid
+this
+problem,
+a
+pre-defined
+unit
+cell
+with
+a
+volume
+fraction
+greater
+than
+0
+is
+sugavoid
+this
+problem,
+a
+pre-defined
+unit
+cell
+with
+a
+volume
+fraction
+greater
+than
+0
+is
+sugavoid this problem, a pre-defined unit cell with a volume fraction greater than 0 is sugavoid
+avoid
+this
+this
+problem,
+problem,
+amechanical
+amechanical
+pre-defined
+pre-defined
+unit
+unit
+cell
+cell
+with
+with
+amanufacturability
+amanufacturability
+volume
+fraction
+fraction
+greater
+than
+than
+00is
+sugsugavoid
+this
+problem,
+amechanical
+pre-defined
+unit
+cell
+with
+avolume
+volume
+fraction
+greater
+than
+0isis
+suggested,
+ensuring
+the
+properties
+and
+ofgreater
+cellular
+structures.
+gested,
+ensuring
+the
+properties
+and
+manufacturability
+of
+cellular
+structures.
+gested,
+ensuring
+the
+properties
+and
+of
+cellular
+structures.
+gested,
+ensuring
+the
+mechanical
+properties
+and
+manufacturability
+ofofof
+cellular
+structures.
+gested,
+ensuring
+the
+mechanical
+properties
+and
+manufacturability
+cellular
+structures.
+gested,
+ensuring
+the
+mechanical
+properties
+and
+manufacturability
+cellular
+structures.
+gested,
+gested,
+ensuring
+ensuring
+the
+the
+mechanical
+mechanical
+properties
+properties
+and
+and
+manufacturability
+manufacturability
+ofofof
+cellular
+cellular
+structures.
+structures.
+gested,
+ensuring
+the
+mechanical
+properties
+and
+manufacturability
+cellular
+structures.
+Table
+The
+influence
+ofof
+pre-defined
+unit
+cells
+with
+different
+volume
+fractions
+and
+topological
+conTable
+3.3.3.
+The
+influence
+of
+pre-defined
+unit
+cells
+with
+different
+volume
+fractions
+and
+topological
+conTable
+The
+influence
+pre-defined
+unit
+cells
+with
+different
+volume
+fractions
+and
+topological
+conTable
+3.3.The
+The
+influence
+of
+pre-defined
+unit
+cells
+with
+different
+volume
+fractions
+and
+topological
+conTable
+influence
+pre-defined
+unit
+cells
+with
+different
+volume
+fractions
+and
+topological
+conTable
+3.The
+The
+influence
+of
+pre-defined
+unit
+cells
+with
+different
+volume
+fractions
+and
+topological
+conTable
+3.3.
+influence
+ofof
+pre-defined
+unit
+cells
+with
+different
+volume
+fractions
+and
+topological
+figurations
+on
+optimized
+results.
+figurations
+on
+optimized
+results.
+figurations
+on
+optimized
+results. unit
+Table
+Table
+3.The
+influence
+influence
+of
+ofof
+pre-defined
+pre-defined
+unit
+cells
+cells
+with
+with
+different
+different
+volume
+volume
+fractions
+fractions
+and
+and
+topological
+topological
+conconTable
+3.The
+The
+influence
+pre-defined
+unit
+cells
+with
+different
+volume
+fractions
+and
+topological
+configurations
+on
+optimized
+results.
+figurations
+on
+optimized
+results.
+figurations
+on
+optimized
+results.
+configurations
+on
+optimized
+results.
+figurations
+figurations
+on
+on
+optimized
+optimized
+results.
+results.
+figurations
+on
+optimized
+results.
+Pre-Defined
+Unit
+Cells
+3D
+Michell
+Beams
+3D
+Cantilever
+Beams
+Pre-Defined
+Unit
+Cells
+3D
+Michell
+Beams
+3D
+Cantilever
+Beams
+Pre-Defined
+Unit
+Cells
+3D
+Michell
+Beams
+3D
+Cantilever
+Beams
+Pre-Defined
+Unit
+Cells
+3D
+Michell
+Beams
+3D
+Cantilever
+Beams
+Pre-Defined
+Unit
+Cells
+3D
+Michell
+Beams
+3D
+Cantilever
+Beams
+Pre-Defined
+Unit
+Cells
+3D
+Michell
+Beams
+3D
+Cantilever
+Beams
+Pre-Defined
+Pre-Defined
+Unit
+Cells
+3D
+3D
+Michell
+Michell
+Beams
+Beams
+3D
+3D
+Cantilever
+Cantilever
+Beams
+Pre-Defined
+Unit
+Cells
+3D
+3D
+Cantilever
+Beams
+Unit
+Cells
+Michell
+Beams
+Beams
+
+Materials 2022, 15, x FOR PEER REVIEW
+
+18 of 23
+
+= 10 N is applied vertically downward in the middle of the upper face. The design domain
+is discretized into 10 × 1 × 3 unit cells, and each unit cell is further discretized by 24 × 24 ×
+4 eight-node hexahedral elements. The volume fraction of the LSS is set to μ = 0.35.
+
+5.2.2.
+Lattice
+Sandwich
+Structure
+5.2.2.
+Lattice
+Sandwich
+Structure
+5.2.2.
+Lattice
+Sandwich
+Structure
+5.2.2.
+Lattice
+Sandwich
+Structure
+5.2.2.
+Lattice
+Sandwich
+Structure
+5.2.2.
+Lattice
+Sandwich
+Structure
+5.2.2.
+5.2.2.
+Lattice
+Lattice
+Sandwich
+Sandwich
+Structure
+Structure
+5.2.2.
+Lattice
+Sandwich
+Structure
+Generally,
+the
+body-centered
+cube
+(BCC)
+lattice
+unit
+cell
+with
+rod-shaped
+parts
+Generally,
+Generally,the
+thebody-centered
+body-centeredcube
+cube(BCC)
+(BCC)lattice
+latticeunit
+unitcell
+cellwith
+withrod-shaped
+rod-shapedparts
+partsisisis
+Generally,
+the
+body-centered
+cube
+(BCC)
+lattice
+unit
+cell
+with
+rod-shaped
+parts
+isisis
+Generally,
+the
+body-centered
+cube
+(BCC)
+lattice
+unit
+cell
+with
+rod-shaped
+parts
+Generally, the body-centered
+cube
+(BCC)
+lattice
+unit
+cell
+with
+rod-shaped
+parts
+Generally,
+Generally,
+the
+the
+body-centered
+body-centered
+cube
+cube
+(BCC)
+(BCC)
+lattice
+lattice
+unit
+unit
+cell
+cell
+with
+with
+rod-shaped
+rod-shaped
+parts
+parts
+isisis
+Generally,
+the
+body-centered
+cube
+(BCC)
+lattice
+unit
+cell
+with
+rod-shaped
+parts
+generally
+adopted
+to
+design
+the
+core
+layer
+ofof
+lattice
+sandwich
+structures
+(LSSs).
+However,
+generally
+adopted
+to
+design
+the
+core
+layer
+of
+lattice
+sandwich
+structures
+(LSSs).
+However,
+generally
+adopted
+to
+design
+the
+core
+layer
+lattice
+sandwich
+structures
+(LSSs).
+However,
+generally
+adopted
+tototo
+design
+the
+core
+layer
+ofofof
+lattice
+sandwich
+structures
+(LSSs).
+However,
+generally
+adopted
+design
+the
+core
+layer
+lattice
+sandwich
+structures
+(LSSs).
+However,
+generally
+adopted
+design
+the
+core
+layer
+lattice
+sandwich
+structures
+(LSSs).
+However,
+generally
+generally
+adopted
+adopted
+to
+toto
+design
+design
+the
+the
+core
+core
+layer
+layer
+ofofof
+lattice
+lattice
+sandwich
+sandwich
+structures
+structures
+(LSSs).
+(LSSs).
+However,
+However,
+generally
+adopted
+design
+the
+core
+layer
+lattice
+sandwich
+structures
+(LSSs).
+However,
+existing
+studies
+show
+that
+TPMS-based
+BCC
+has
+better
+load-bearing
+and
+energy-abexisting
+show
+that
+TPMS-based
+BCC
+has
+better
+and
+existingstudies
+studies
+show
+thatthe
+TPMS-based
+BCC
+has
+betterload-bearing
+load-bearing
+andenergy-abenergy-abexisting
+studies
+show
+that
+the
+TPMS-based
+BCC
+has
+better
+load-bearing
+and
+energy-abexisting
+studies
+show
+that
+the
+TPMS-based
+BCC
+has
+better
+load-bearing
+and
+energy-abexisting
+studies
+show
+that
+the
+TPMS-based
+BCC
+has
+better
+load-bearing
+and
+energy-abexisting
+existing
+studies
+studies
+show
+show
+that
+that
+the
+the
+TPMS-based
+TPMS-based
+BCC
+BCC
+has
+has
+better
+better
+load-bearing
+load-bearing
+and
+and
+energy-abenergy-abexisting
+studies
+show
+that
+the
+TPMS-based
+BCC
+has
+better
+load-bearing
+and
+energy-absorbing
+properties
+than
+those
+of
+the
+BCC
+with
+rod-shaped
+parts
+[46].
+Therefore,
+I-WP
+sorbing
+properties
+than
+those
+of
+rod-shaped
+parts
+I-WP
+sorbing
+properties
+than
+those
+ofthe
+theBCC
+BCCwith
+with
+rod-shaped
+parts[46].
+[46].Therefore,
+Therefore,
+I-WP
+sorbing
+properties
+than
+those
+ofofof
+the
+BCC
+with
+rod-shaped
+parts
+[46].
+Therefore,
+I-WP
+sorbing
+properties
+than
+those
+the
+BCC
+with
+rod-shaped
+parts
+[46].
+Therefore,
+I-WP
+sorbing
+properties
+than
+those
+the
+BCC
+with
+rod-shaped
+parts
+[46].
+Therefore,
+I-WP
+sorbing
+sorbing
+properties
+than
+than
+those
+those
+of
+of
+the
+the
+BCC
+BCC
+with
+with
+rod-shaped
+rod-shaped
+parts
+[46].
+[46].
+Therefore,
+Therefore,
+I-WP
+I-WP
+sorbing
+properties
+than
+those
+of
+the
+BCC
+with
+rod-shaped
+parts
+[46].
+Therefore,
+I-WP
+TPMS
+used
+asasthe
+the
+core
+layer
+of
+LSSs
+inin
+this
+section.
+Then,
+novel
+graded
+lattice
+sandTPMS
+as
+core
+layer
+of
+LSSs
+in
+this
+section.
+Then,
+aaparts
+graded
+lattice
+sandTPMSisisproperties
+isused
+used
+the
+core
+layer
+of
+LSSs
+this
+section.
+Then,
+anovel
+novel
+graded
+lattice
+sandTPMS
+isisis
+used
+asasas
+the
+core
+layer
+ofofof
+LSSs
+ininin
+this
+section.
+Then,
+aanovel
+graded
+lattice
+sandTPMS
+used
+the
+core
+layer
+LSSs
+this
+section.
+Then,
+graded
+lattice
+sandTPMS
+used
+the
+core
+layer
+LSSs
+this
+section.
+Then,
+anovel
+novel
+graded
+lattice
+sandTPMS
+TPMS
+isstructure
+isis
+used
+used
+as(GLSS)
+as
+the
+the
+core
+core
+layer
+layer
+of
+LSSs
+LSSs
+ininbased
+this
+this
+section.
+section.
+Then,
+Then,
+aanovel
+graded
+graded
+lattice
+lattice
+sandsandTPMS
+used
+as
+the
+core
+layer
+of
+LSSs
+in
+this
+section.
+Then,
+anovel
+novel
+graded
+lattice
+sandwich
+structure
+(GLSS)
+design
+obtained
+based
+on
+the
+proposed
+HLSM.
+Figure
+17a
+shows
+wich
+structure
+design
+isisof
+obtained
+on
+the
+proposed
+HLSM.
+Figure
+17a
+shows
+wich
+(GLSS)
+design
+is
+obtained
+based
+on
+the
+proposed
+HLSM.
+Figure
+17a
+shows
+wich
+structure
+(GLSS)
+design
+isisobtained
+based
+on
+the
+proposed
+HLSM.
+Figure
+17a
+shows
+wich
+structure
+(GLSS)
+design
+based
+on
+the
+proposed
+HLSM.
+Figure
+17a
+shows
+wich
+structure
+(GLSS)
+design
+isobtained
+obtained
+based
+on
+the
+proposed
+HLSM.
+Figure
+17a
+shows
+wich
+wich
+structure
+structure
+(GLSS)
+(GLSS)
+design
+design
+is
+isobtained
+based
+based
+on
+on
+the
+the
+proposed
+proposed
+HLSM.
+HLSM.
+Figure
+Figure
+17a
+17a
+shows
+shows
+wich
+structure
+(GLSS)
+design
+isobtained
+obtained
+based
+on
+the
+proposed
+HLSM.
+Figure
+17a
+shows
+the
+pre-defined
+unit
+cells
+ofof
+LSS;
+their
+volume
+fractions
+are
+0.25
+and
+0.45,
+respectively.
+The
+the
+pre-defined
+unit
+cells
+of
+LSS;
+their
+volume
+fractions
+are
+0.25
+and
+0.45,
+respectively.
+The
+the
+pre-defined
+unit
+cells
+LSS;
+their
+volume
+fractions
+are
+0.25
+and
+0.45,
+respectively.
+The
+the
+pre-defined
+unit
+cells
+ofofof
+LSS;
+their
+volume
+fractions
+are
+0.25
+and
+0.45,
+respectively.
+The
+the
+pre-defined
+unit
+cells
+LSS;
+their
+volume
+fractions
+are
+0.25
+and
+0.45,
+respectively.
+The
+the
+pre-defined
+unit
+cells
+LSS;
+their
+volume
+fractions
+are
+0.25
+and
+0.45,
+respectively.
+The
+the
+the
+pre-defined
+pre-defined
+unit
+unit
+cells
+cells
+of
+of
+LSS;
+LSS;
+their
+their
+volume
+volume
+fractions
+fractions
+are
+are
+0.25
+0.25
+and
+and
+0.45,
+0.45,
+respectively.
+respectively.
+The
+The
+the
+pre-defined
+unit
+cells
+of
+LSS;
+their
+volume
+fractions
+are
+0.25
+and
+0.45,
+respectively.
+The
+loading
+and
+boundary
+conditions
+of
+the
+LSS
+are
+illustrated
+in
+Figure
+17b.
+Additionally,
+loading
+and
+boundary
+conditions
+of
+the
+LSS
+are
+illustrated
+in
+Figure
+17b.
+Additionally,
+loading and boundary conditions of the LSS are illustrated in Figure 17b. Additionally,
+loading
+and
+boundary
+conditions
+ofofof
+the
+LSS
+are
+illustrated
+ininin
+Figure
+17b.
+Additionally,
+loading
+and
+boundary
+conditions
+the
+LSS
+are
+illustrated
+Figure
+17b.
+Additionally,
+loading
+and
+boundary
+conditions
+the
+LSS
+are
+illustrated
+Figure
+17b.
+Additionally,
+loading
+loading
+and
+and
+boundary
+boundary
+conditions
+conditions
+ofof
+the
+LSS
+LSS
+are
+are
+illustrated
+illustrated
+in
+in
+Figure
+17b.
+17b.
+Additionally,
+Additionally,
+loading
+and
+boundary
+conditions
+of
+LSS
+illustrated
+17b.
+Additionally,
+the
+sizes
+ofofthe
+the
+LSS
+are
+as
+follows:
+=the
+240,
+W
+==24,
+24,
+96,
+Hin
+2Figure
+The
+core
+layer
+the
+the
+of
+LSS
+as
+LL
+W
+=are
+HH1H1=1==96,
+H
+2H
+=2=Figure
+core
+layer
+thesizes
+sizes
+the
+LSSare
+are
+asfollows:
+follows:
+L=the
+=240,
+240,
+W
+24,
+96,
+=3.3.3.The
+The
+core
+layerisisisthe
+the
+the
+sizes
+ofofof
+the
+LSS
+are
+asasas
+follows:
+LL=L=240,
+WWW
+==24,
+HH1H
+HH2H
+The
+core
+layer
+isisis
+the
+the
+sizes
+the
+LSS
+are
+follows:
+1=1=96,
+2=2=3.
+The
+core
+layer
+the
+the
+sizes
+the
+LSS
+are
+follows:
+=240,
+240,
+=24,
+24,
+=96,
+96,
+=3.3.
+The
+core
+layer
+the
+the
+the
+sizes
+sizes
+of
+ofof
+the
+the
+LSS
+LSS
+are
+are
+as
+as
+follows:
+follows:
+Lhard
+L=L=240,
+240,
+WWW
+=are
+=are
+24,
+H
+H1H1=1=96,
+HH2domains.
+2=domains.
+The
+The
+core
+core
+layer
+layer
+isisis
+the
+the
+the
+sizes
+the
+LSS
+are
+as
+follows:
+=panels
+240,
+=24,
+24,
+=96,
+96,
+H
+2=3.
+=3.3.
+The
+core
+layer
+the
+design
+domain
+and
+the
+thin
+and
+hard
+are
+non-design
+domains.
+The
+support
+dodesign
+domain
+and
+the
+thin
+and
+panels
+non-design
+The
+support
+dodesign
+domain
+and
+the
+thin
+andhard
+panels
+non-design
+The
+support
+dodesign
+domain
+and
+the
+thin
+and
+hard
+panels
+are
+non-design
+domains.
+The
+support
+dodesign
+domain
+and
+the
+thin
+and
+hard
+panels
+are
+non-design
+domains.
+The
+support
+dodesign
+domain
+and
+the
+thin
+and
+hard
+panels
+are
+non-design
+domains.
+The
+support
+dodesign
+design
+domain
+and
+and
+the
+the
+thin
+thin
+and
+and
+hard
+hard
+panels
+panels
+are
+are
+non-design
+non-design
+domains.
+domains.
+The
+The
+support
+support
+dododesign
+domain
+and
+the
+thin
+hard
+panels
+are
+non-design
+domains.
+The
+support
+domain
+L/10
+from
+both
+sides
+ofand
+the
+bottom
+ofof
+the
+design
+domain.
+The
+distributed
+force
+main
+isisdomain
+L/10
+from
+both
+sides
+of
+the
+bottom
+of
+the
+design
+domain.
+The
+distributed
+force
+FFF
+main
+is
+L/10
+from
+both
+sides
+of
+the
+bottom
+the
+design
+domain.
+The
+distributed
+force
+main
+isisL/10
+from
+both
+sides
+ofofof
+the
+bottom
+ofofof
+the
+design
+domain.
+The
+distributed
+force
+FFF
+main
+L/10
+from
+both
+sides
+the
+bottom
+design
+domain.
+The
+distributed
+force
+main
+isPre-defined
+L/10
+from
+both
+sides
+the
+bottom
+the
+design
+domain.
+The
+distributed
+force
+Figure
+17.
+unit
+cells
+and
+design
+domain
+ofthe
+LSS.
+(a)LSS
+LSS
+unitcells
+cells
+with
+differentvolume
+volume
+Figure
+unit
+cells
+and
+design
+domain
+LSS.
+(a)
+unit
+with
+different
+main
+main
+isisis
+L/10
+L/10
+from
+from
+both
+both
+sides
+sides
+ofofof
+the
+the
+bottom
+bottom
+ofofof
+the
+the
+design
+design
+domain.
+domain.
+The
+The
+distributed
+distributed
+force
+force
+FFF
+main
+L/10
+from
+both
+sides
+the
+bottom
+of
+the
+design
+domain.
+The
+distributed
+force
+fractions. (b) Loading and
+fractions.
+and boundary
+boundary conditions
+conditionsfor
+for3D
+3DLSS.
+LSS.
+
+Figure 18 shows the
+the iterative
+iterative curves
+curvesof
+ofthe
+theobjective
+objectivefunction
+functionand
+andvolume
+volumefraction
+fractionofof
+the
+LSS.
+After
+60
+iteration
+steps,
+the
+objective
+function
+converges
+to
+J
+=
+2704.38
+underthe
+the
+the
+steps, the objective function converges to J = 2704.38 under
+global
+global volume
+volume fraction
+fractionconstraint.
+constraint.The
+Theoptimized
+optimizedGLSS
+GLSSisisplotted
+plottedininFigure
+Figure19.
+19.High-density
+High-denunit
+cells cells
+with with
+high high
+stiffness
+pave pave
+the way
+loading
+domain
+to the support
+domain.
+sity unit
+stiffness
+thefrom
+way the
+from
+the loading
+domain
+to the support
+Some
+low-density
+unit cellsunit
+are cells
+distributed
+in the secondary
+force transfer
+paths topaths
+stably
+domain.
+Some low-density
+are distributed
+in the secondary
+force transfer
+support
+upperthe
+andupper
+lowerand
+solid
+faceplates.
+According
+to Figureto19c–e,
+the19c–e,
+geometry
+to stablythe
+support
+lower
+solid faceplates.
+According
+Figure
+the
+configuration
+and volume
+each core
+layer
+arelayer
+different.
+The core
+layers
+geometry configuration
+andfraction
+volumeof
+fraction
+of each
+core
+are different.
+The
+core show
+laygraded
+changes
+to the external
+and
+boundary
+Hence, the
+ers show
+gradedaccording
+changes according
+to theloading
+external
+loading
+and conditions.
+boundary conditions.
+GLSS
+has
+a
+better
+bearing
+capacity.
+Hence, the GLSS has a better bearing capacity.
+
+global volume fraction constraint. The optimized GLSS is plotted in Figure 19. High-density unit cells with high stiffness pave the way from the loading domain to the support
+domain. Some low-density unit cells are distributed in the secondary force transfer paths
+to stably support the upper and lower solid faceplates. According to Figure 19c–e, the
+geometry configuration and volume fraction of each core layer are different. The core layMaterials 2022, 15, 4483
+ers show graded changes according to the external loading and boundary conditions.
+Hence, the GLSS has a better bearing capacity.
+
+022, 15, x FOR PEER REVIEW
+
+19 of 23
+
+19 of 23
+
+Figure 18. Interaction
+of 3D LSS
+design.
+Figurehistory
+18. Interaction
+history
+of 3D LSS design.
+
+Figure 19. Optimized
+GLSS
+using the HLSM.
+(a) Optimized
+(b) Front
+view(b)
+of Front
+GLSS.view
+(c) First
+Figure
+19. Optimized
+GLSS using
+the HLSM.GLSS.
+(a) Optimized
+GLSS.
+of GLSS. (c) First
+core layer of GLSS.
+(d)
+Second
+core
+layer
+of
+GLSS.
+(e)
+Third
+core
+layer
+of
+GLSS.
+core layer of GLSS. (d) Second core layer of GLSS. (e) Third core layer of GLSS.
+
+6. AM andValidation
+Experimental Validation
+6. AM and Experimental
+To further
+illustrate the of
+effectiveness
+the HLSM,
+samples
+LSSs with different
+To further illustrate
+the effectiveness
+the HLSM,ofsamples
+of LSSs
+withofdifferent
+structural
+forms
+are
+fabricated
+by
+AM.
+Then,
+three-point
+bending
+tests
+and a simulation
+structural forms are fabricated by AM. Then, three-point bending tests and a simulation
+analysis are carried out to evaluate the mechanical performance of the three LSSs.
+analysis are carried out to evaluate the mechanical performance of the three LSSs.
+6.1. Geometric Modeling and AM Process
+
+6.1. Geometric Modeling and AM Process
+
+Three LSSs geometrical models with diverse lattice core layers are constructed, as
+
+Three LSSsshown
+geometrical
+models
+with
+diverse
+lattice core
+layers
+arewith
+constructed,
+as
+in Figure
+20. Figure
+20a
+is the optimized
+GLSS
+model
+a volume fraction
+of 0.35.
+shown in Figure
+20.
+Figure
+20a
+is
+the
+optimized
+GLSS
+model
+with
+a
+volume
+fraction
+of
+For comparison, Figure 20b shows the uniform lattice sandwich structure (ULSS) with BCC
+0.35. For comparison,
+Figure
+20b shows
+the uniform
+lattice
+sandwich
+(ULSS) parts. The
+based on
+I-WP TPMS,
+and Figure
+20c shows
+ULSS
+with BCCstructure
+using rod-shaped
+fraction
+of and
+the two
+ULSSs
+the same
+as that
+the GLSS.
+three models are half
+with BCC basedvolume
+on I-WP
+TPMS,
+Figure
+20cisshows
+ULSS
+withofBCC
+usingThe
+rod-shaped
+the size
+of theofmodel
+shown
+in Figure
+sintering
+technology
+parts. The volume
+fraction
+the two
+ULSSs
+is the 17b.
+sameSelective
+as that laser
+of the
+GLSS. The
+three is utilized
+to
+manufacture
+the
+LSS
+samples
+since
+it
+has
+the
+characteristics
+of
+a
+high
+models are half the size of the model shown in Figure 17b. Selective laser sintering tech-manufacture
+efficiency
+and high the
+processing
+quality.since
+The it
+machine
+is an EOS-P760
+3D printer, and
+nology is utilized
+to manufacture
+LSS samples
+has themodel
+characteristics
+of a high
+the
+material
+used
+in
+the
+AM
+process
+is
+PA2200.
+The
+machine
+uses
+a
+CO2
+laser
+with the laser
+manufacture efficiency and high processing quality. The machine model is an EOS-P760
+of 50 W,
+the in
+scanning
+of 6000
+mm/s,The
+layer
+thickness
+of 0.1
+mm, and 100%
+3D printer, andpower
+the material
+used
+the AMspeed
+process
+is PA2200.
+machine
+uses
+a CO2
+filling rate. The test samples are shown in Figure 20d–f.
+laser with the laser power of 50 W, the scanning speed of 6000 mm/s, layer thickness of
+0.1 mm, and 100% filling rate. The test samples are shown in Figure 20d–f.
+
+Materials 2022, 15, 4483
+
+parts. The volume fraction of the two ULSSs is the same as that of the GLSS. The three
+models are half the size of the model shown in Figure 17b. Selective laser sintering technology is utilized to manufacture the LSS samples since it has the characteristics of a high
+manufacture efficiency and high processing quality. The machine model is an EOS-P760
+3D printer, and the material used in the AM process is PA2200. The machine uses a CO2
+20 of 23
+laser with the laser power of 50 W, the scanning speed of 6000 mm/s, layer thickness of
+0.1 mm, and 100% filling rate. The test samples are shown in Figure 20d–f.
+
+Materials 2022, 15, x FOR PEER REVIEW
+
+20 of 23
+
+Figure 20. CAD models and printed structures of the test samples. (a) CAD model of optimized
+Figure
+20. CAD
+CAD model
+modelsofand
+structures
+the test
+(a) CAD
+model
+optimized
+GLSS. (b)
+LSSprinted
+with uniform
+I-WPofTPMS.
+(c)samples.
+CAD model
+of LSS
+with of
+uniform
+BCC
+GLSS.
+(b)
+CAD
+model
+of
+LSS
+with
+uniform
+I-WP
+TPMS.
+(c)
+CAD
+model
+of
+LSS
+with
+uniform
+BCC
+unit cells. (d) Printed sample of (a). (e) Printed sample of (b). (f) Printed sample of (c).
+unit cells. (d) Printed sample of (a). (e) Printed sample of (b). (f) Printed sample of (c).
+
+6.2. Mechanical Test
+6.2. Mechanical Test
+All the experiments are performed on an electronic universal testing machine. The
+All the experiments are performed on an electronic universal testing machine. The
+loading rate is set as 0.5 mm/min until failure to simulate the quasi-static compression
+loading rate is set as 0.5 mm/min until failure to simulate the quasi-static compression
+condition. A data acquisition system of the testing machine is utilized to record the discondition. A data acquisition system of the testing machine is utilized to record the
+placements and corresponding loads during the loading process. The experimental load–
+displacements and corresponding loads during the loading process. The experimental
+displacement curves, as well as the boundary and load conditions of the test samples, are
+load–displacement curves, as well as the boundary and load conditions of the test samples,
+shown
+in Figure
+21.21.
+Note
+thatthat
+thethe
+load–displacement
+slope
+of of
+thethe
+optimized
+GLSS
+is
+are
+shown
+in Figure
+Note
+load–displacement
+slope
+optimized
+GLSS
+steeper
+than
+those
+of
+the
+two
+ULSSs
+under
+the
+same
+volume
+fraction.
+It
+indicates
+that
+the
+is steeper than those of the two ULSSs under the same volume fraction. It indicates that
+optimized
+structure
+has has
+a higher
+stiffness,
+and and
+the proposed
+method
+works
+well for
+the
+optimized
+structure
+a higher
+stiffness,
+the proposed
+method
+works
+wellcomfor
+pliance
+minimization
+problems.
+Furthermore,
+the
+strength
+of
+GLSS
+also
+performs
+better
+compliance minimization problems. Furthermore, the strength of GLSS also performs better
+than that
+that of
+of ULSSs
+ULSSs since
+since the
+the peak
+peak load
+load of
+of the
+the GLSS
+GLSS is
+is much
+much larger
+larger than
+than that
+that of
+of the
+the ULSS.
+ULSS.
+than
+FEA
+is
+also
+carried
+out
+to
+evaluate
+the
+GLSS
+and
+ULSSs,
+as
+shown
+in
+Figure
+22.
+It
+can
+be
+FEA is also carried out to evaluate the GLSS and ULSSs, as shown in Figure 22. It can be
+seen
+that
+the
+stiffness
+of
+optimized
+GLSS
+obtained
+by
+the
+FEA
+is
+close
+to
+the
+experimental
+seen that the stiffness of optimized GLSS obtained by the FEA is close to the experimental
+results. For
+For the
+the two
+two ULSSs,
+ULSSs, the
+the load–displacement
+load–displacement slope
+slope of
+of the
+the ULSS
+ULSS with
+with I-WP
+I-WP TPMS
+TPMS is
+is
+results.
+steeper
+before
+the
+buckling,
+indicating
+that
+the
+initial
+stiffness
+is
+higher
+than
+that
+of
+the
+steeper before the buckling, indicating that the initial stiffness is higher than that of the
+ULSSsusing
+usingrod-shaped
+rod-shapedparts.
+parts. Overall,
+Overall, the
+the proposed
+proposedHLSM
+HLSMfor
+for LSSs
+LSSs can
+can generate
+generate graded
+graded
+ULSSs
+core layers
+layers and
+and achieve
+achieve their
+their reasonable
+reasonable arrangement
+arrangement to
+to explore
+explore the
+the design
+design potential
+potential of
+of
+core
+LSSs with
+with utmost
+utmost accuracy.
+accuracy.
+LSSs
+
+Figure
+Figure 21.
+21. Loading
+Loading and
+and displacement
+displacement curves
+curves from
+fromthree-point
+three-pointbending
+bendingtests
+testsof
+ofthe
+theprinted
+printedLSSs.
+LSSs.
+
+Materials 2022, 15, 4483
+
+21 of 23
+
+Figure 21. Loading and displacement curves from three-point bending tests of the printed LSSs.
+
+Figure 22.
+22. Comparison
+Comparison between
+results
+forfor
+thethe
+LSSs.
+Figure
+betweenthe
+theFEA
+FEAand
+andexperimental
+experimental
+results
+LSSs.
+
+7. Conclusions
+This paper presents a hybrid level set method for the topology optimization of FGSs,
+including TWSSs and FGCSs. The affine concept of convex optimization theory is introduced to construct HLSF. Controlled by the weight coefficients defined on element nodes,
+the HLSF can be optimized to generate the graded pattern in the macro scale for the FGSs.
+By presetting the level set functions of different structural unit cells, various FGSs are
+obtained with excellent graded patterns and significantly decreased structure compliance.
+In general, the proposed method has the following advantages:
+(1) High versatility and effectiveness: This paper constructs a design strategy to
+drive the topology optimization of macro/microstructures. By presetting the level set
+functions of various structural unit cells, high-performance FGSs with different structural
+forms and functional properties could be obtained using level set evolution. Hence, HLSM
+is a convenient tool for designers.
+(2) Perfect geometric continuity: According to the definition of weight coefficients,
+neighboring unit cells share the same global weight coefficients on common boundaries.
+Additionally, the local design variables are updated by the interpolation of global design
+variables. Thus, the interpolation function of the global weight coefficients has at least
+C0 continuity. With this updating strategy of design variables, the proposed HLSM can
+naturally guarantee perfect geometry continuity without imposing any extra constraints.
+(3) Easy-to-manufacture: For TWSSs, the geometry constraint is proposed to ensure
+regular geometry shape of the stiffening ribs, so that TWSSs can be manufactured by
+welding or casting processes. Hence, excellent manufacturability is obtained. For FGCSs,
+the self-supporting lattice unit cell could be employed to design FGCSs, which are easy to
+fabricate through AM.
+TWSSs and FGCSs are investigated to demonstrate the effectiveness and applicability of the proposed method. The numerical and experimental results show that the
+obtained FGSs have better mechanical performance compared with the uniform structure.
+Therefore, the proposed HLSM has great potential and competitiveness for the design of
+FGSs. Although only the static bearing capacity of the FGSs is studied in this paper, the
+proposed HLSM is expected to be effective in the generative design of functional structures
+in multi-physics. Fu, J.; Shu, Z.; Gao, L.; Zhou, X.
+Author Contributions: Conceptualization, J.F. and Z.S.; methodology, J.F. and Z.S.; validation, Z.S.;
+formal analysis, J.F.; L.G.; X.Z.; investigation, J.F. and Z.S.; resources, J.F. and L.G.; writing—original
+draft preparation, Z.S.; writing—review and editing, J.F. and L.G.; supervision, J.F. and X.Z.; funding
+acquisition, J.F. All authors have read and agreed to the published version of the manuscript.
+
+Materials 2022, 15, 4483
+
+22 of 23
+
+Funding: This research is partially supported by National Natural Science Foundation of China
+(No. 51775308), Natural Science Foundation of Hubei Province (2021CFB236), Hubei Key Laboratory
+of Hydroelectric Machinery Design & Maintenance Open Foundation (2020KJX04), Science and
+Technology Research Project of Hubei Provincial Department of Education (Q20201205).
+Conflicts of Interest: The authors declare that they have no known competing financial interests or
+personal relationships that could have appeared to influence the work reported in this paper.
+
+References
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+11.
+
+12.
+13.
+14.
+15.
+16.
+17.
+18.
+19.
+20.
+21.
+22.
+23.
+24.
+
+Gupta, A.; Talha, M. Recent development in modeling and analysis of functionally graded materials and structures. Prog. Aerosp.
+Sci. 2015, 79, 1–14. [CrossRef]
+Jia, Z.; Liu, F.; Jiang, X.; Wang, L. Engineering lattice metamaterials for extreme property, programmability, and multifunctionality.
+J. Appl. Phys. 2020, 127, 150901. [CrossRef]
+Rahman, H.; Yarali, E.; Zolfagharian, A.; Serjouei, A.; Bodaghi, M. Energy Absorption and Mechanical Performance of Functionally
+Graded Soft–Hard Lattice Structures. Materials 2021, 14, 1366. [CrossRef]
+Xu, F.; Zhang, X.; Zhang, H. A review on functionally graded structures and materials for energy absorption. Eng. Struct. 2018,
+171, 309–325. [CrossRef]
+Liu, J.J.; Ou, H.H.; He, J.J.; Wen, G.G. Topological Design of a Lightweight Sandwich Aircraft Spoiler. Materials 2019, 12, 3225.
+[CrossRef] [PubMed]
+Jansen, M.; Pierard, O. A hybrid density/level set formulation for topology optimization of functionally graded lattice structures.
+Comput. Struct. 2020, 231, 106205. [CrossRef]
+Choi, Y.; Ahn, J.; Jo, C.; Chang, D. Prismatic pressure vessel with stiffened-plate structures for fuel storage in LNG-fueled ship.
+Ocean Eng. 2020, 196, 106829. [CrossRef]
+Wang, Y.; Arabnejad, S.; Tanzer, M.; Pasini, D. Hip Implant Design with Three-Dimensional Porous Architecture of Optimized
+Graded Density. J. Mech. Design 2018, 140, 111406. [CrossRef]
+Li, H.; Luo, Z.; Gao, L.; Qin, Q. Topology optimization for concurrent design of structures with multi-patch microstructures by
+level sets. Comput. Methods Appl. Mech. 2018, 331, 536–561. [CrossRef]
+Bendsøe, M.P.; Sigmund, O.; SpringerLink, O.S. Topology Optimization: Theory, Methods, and Applications; Springer: New York, NY,
+USA; Berlin, Germany, 2004.
+Liu, S.; Li, Q.; Chen, W.; Hu, R.; Tong, L. H-DGTP—A Heaviside-function based directional growth topology parameterization
+for design optimization of stiffener layout and height of thin-walled structures. Struct. Multidiscip. Optim. 2015, 52, 903–913.
+[CrossRef]
+Lam, Y.C.; Santhikumar, S. Automated rib location and optimization for plate structures. Struct. Multidiscip. Optim. 2003, 25,
+35–45. [CrossRef]
+Chung, J.; Lee, K. Optimal design of rib structures using the topology optimization technique. Proc. Inst. Mech. Eng. Part C J.
+Mech. Eng. Sci. 1997, 211, 425–437. [CrossRef]
+Park, K.S.; Chang, S.Y.; Youn, S.K. Topology optimization of the primary mirror of a multi-spectral camera. Struct. Multidiscip.
+Optim. 2003, 25, 46–53. [CrossRef]
+Locatelli, D.; Mulani, S.B.; Kapania, R.K. Wing-Box Weight Optimization Using Curvilinear Spars and Ribs (SpaRibs). J. Aircraft
+2011, 48, 1671–1684. [CrossRef]
+Ding, X.; Ji, X.; Ma, M.; Hou, J. Key techniques and applications of adaptive growth method for stiffener layout design of plates
+and shells. Chin. J. Mech. Eng. 2013, 26, 1138–1148. [CrossRef]
+Hu, T.; Ding, X.; Shen, L.; Zhang, H. Improved adaptive growth method of stiffeners for three-dimensional box structures with
+respect to natural frequencies. Comput. Struct. 2020, 239, 106330. [CrossRef]
+Wang, B.; Tian, K.; Zhou, C.; Hao, P.; Zheng, Y.; Ma, Y.; Wang, J. Grid-pattern optimization framework of novel hierarchical
+stiffened shells allowing for imperfection sensitivity. Aerosp. Sci. Technol. 2017, 62, 114–121. [CrossRef]
+Wang, C.; Zhu, J.; Wu, M.; Hou, J.; Zhou, H.; Meng, L.; Li, C.; Zhang, W. Multi-scale design and optimization for solid-lattice
+hybrid structures and their application to aerospace vehicle components. Chinese J. Aeronaut. 2021, 34, 386–398. [CrossRef]
+Zong, H.; Liu, H.; Ma, Q.; Tian, Y.; Zhou, M.; Wang, M.Y. VCUT level set method for topology optimization of functionally graded
+cellular structures. Comput. Method. Appl. Mech. 2019, 354, 487–505. [CrossRef]
+Mahmoud, D.; Elbestawi, M. Lattice Structures and Functionally Graded Materials Applications in Additive Manufacturing of
+Orthopedic Implants: A Review. J. Manuf. Mater. Processing 2017, 1, 13. [CrossRef]
+Wadley, H.N. Multifunctional periodic cellular metals. Philos. Trans. R. Soc. A Math. Phys. Eng. Sci. 2006, 364, 31–68. [CrossRef]
+[PubMed]
+Wang, C.; Gu, X.; Zhu, J.; Zhou, H.; Li, S.; Zhang, W. Concurrent design of hierarchical structures with three-dimensional
+parameterized lattice microstructures for additive manufacturing. Struct. Multidiscip. Optim. 2020, 61, 869–894. [CrossRef]
+Li, D.; Dai, N.; Tang, Y.; Dong, G.; Zhao, Y.F. Design and Optimization of Graded Cellular Structures with Triply Periodic Level
+Surface-Based Topological Shapes. J. Mech. Design 2019, 141, 071402. [CrossRef]
+
+Materials 2022, 15, 4483
+
+25.
+26.
+27.
+28.
+29.
+30.
+31.
+32.
+33.
+34.
+35.
+36.
+37.
+38.
+39.
+40.
+41.
+42.
+43.
+44.
+45.
+46.
+
+23 of 23
+
+Strek, T.; Jopek, H.; Maruszewski, B.T.; Nienartowicz, M. Computational analysis of sandwich-structured composites with an
+auxetic phase. Phys. Status Solidi 2014, 251, 354–366. [CrossRef]
+Li, H.; Luo, Z.; Gao, L.; Walker, P. Topology optimization for functionally graded cellular composites with metamaterials by level
+sets. Comput. Method. Appl. Mech. 2018, 328, 340–364. [CrossRef]
+Xiao, M.; Liu, X.; Zhang, Y.; Gao, L.; Gao, J.; Chu, S. Design of graded lattice sandwich structures by multiscale topology
+optimization. Comput. Method. Appl. Mech. 2021, 384, 113949. [CrossRef]
+Radman, A.; Huang, X.; Xie, Y.M. Topology optimization of functionally graded cellular materials. J. Mater. Sci. 2013, 48,
+1503–1510. [CrossRef]
+Xia, L.; Breitkopf, P. Concurrent topology optimization design of material and structure within FE2 nonlinear multiscale analysis
+framework. Comput. Method. Appl. Mech. 2014, 278, 524–542. [CrossRef]
+Huang, X.; Xie, Y.M. Optimal design of periodic structures using evolutionary topology optimization. Struct. Multidiscip. Optim.
+2008, 36, 597–606. [CrossRef]
+Rodrigues, H.; Guedes, J.M.; Bendsoe, M.P. Hierarchical optimization of material and structure. Struct. Multidiscip. Optim. 2002,
+24, 1–10. [CrossRef]
+Bendsøe, M.P.; Kikuchi, N. Generating optimal topologies in structural design using a homogenization method. Comput. Method.
+Appl. Mech. 1988, 71, 197–224. [CrossRef]
+Zhang, W.; Sun, S. Scale-related topology optimization of cellular materials and structures. Int. J. Numer. Meth. Eng. 2006, 68,
+993–1011. [CrossRef]
+Wu, J.; Wang, W.; Gao, X. Design and Optimization of Conforming Lattice Structures. IEEE Trans. Vis. Comput. Graph. 2021, 27,
+43–56. [CrossRef] [PubMed]
+Osher, S.; Sethian, J.A. Fronts propagating with curvature-dependent speed: Algorithms based on Hamilton-Jacobi formulations.
+J. Comput. Phys. 1988, 79, 12–49. [CrossRef]
+van Dijk, N.P.; Maute, K.; Langelaar, M.; van Keulen, F. Level-set methods for structural topology optimization: A review. Struct.
+Multidiscip. Optim. 2013, 48, 437–472. [CrossRef]
+Han, L.; Che, S. An Overview of Materials with Triply Periodic Minimal Surfaces and Related Geometry: From Biological
+Structures to Self-Assembled Systems. Adv. Mater. 2018, 30, 1705708. [CrossRef]
+Feng, J.; Fu, J.; Yao, X.; He, Y. Triply periodic minimal surface (TPMS) porous structures: From multi-scale design, precise additive
+manufacturing to multidisciplinary applications. Int. J. Extrem. Manuf. 2022, 4, 022001. [CrossRef]
+Yamasaki, S.; Nomura, T.; Kawamoto, A.; Sato, K.; Izui, K.; Nishiwaki, S. A level set based topology optimization method using
+the discretized signed distance function as the design variables. Struct. Multidiscip. Optim. 2010, 41, 685–698. [CrossRef]
+Liu, H.; Zong, H.; Shi, T.; Xia, Q. M-VCUT level set method for optimizing cellular structures. Comput. Method. Appl. Mech. 2020,
+367, 113154. [CrossRef]
+Boyd, S.; Vandenberghe, L. Convex Optimization. Cambridge University Press: New York, NY, USA, 2004.
+Allaire, G.; Jouve, F.; Toader, A. Structural optimization using sensitivity analysis and a level-set method. J. Comput. Phys. 2004,
+194, 363–393. [CrossRef]
+Zhou, M.; Rozvany, G.I.N. The COC algorithm, Part II: Topological, geometrical and generalized shape optimization. Comput.
+Method. Appl. Mech. 1991, 89, 309–336. [CrossRef]
+Vogiatzis, P.; Chen, S.; Wang, X.; Li, T.; Wang, L. Topology optimization of multi-material negative Poisson’s ratio metamaterials
+using a reconciled level set method. Comput. Aided Design 2017, 83, 15–32. [CrossRef]
+Fu, J.; Li, H.; Gao, L.; Xiao, M. Design of shell-infill structures by a multiscale level set topology optimization method. Comput.
+Struct. 2019, 212, 162–172. [CrossRef]
+Zhao, M.; Liu, F.; Fu, G.; Zhang, D.; Zhang, T.; Zhou, H. Improved Mechanical Properties and Energy Absorption of BCC Lattice
+Structures with Triply Periodic Minimal Surfaces Fabricated by SLM. Materials 2018, 11, 2411. [CrossRef] [PubMed]
+
+

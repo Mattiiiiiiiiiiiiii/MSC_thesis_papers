@@ -1,0 +1,581 @@
+Evolutionary and Deterministic Methods for Design,
+O p timiz ation and C ontrol w ith A p p lications to I ndustrial and S ocietal P rob lems
+EU R O G EN 20 0 5
+R . S chilling, W . H aase, J . P eriaux , H . B aier, G . B ugeda ( Eds)
+ F L M, Munich, 20 0 5
+
+D I S C R E T E A D J O I N T O F T H E N A V I E R -S T O K E S E Q U A T I O N S
+F O R A E R O D Y N A M I C S H A P E O P T I M I ZA T I O N
+J. Brezillon, R. Dwight
+
+Institute of Aerodynamics and Flow Technology
+D L R , B raunschweig, G ermany
+E mail: j oel. b rez illon@ dlr. de, richard. dwight@ dlr. de - W eb p age: http : / / www. dlr. de/ as
+
+K ey word s : O p t i m i z at i o n, Aero dy nam i c s, Adjo i nt , P ro fi l e, H i g h -L i ft , Nu m eri c .
+A b s tra c t. A d i s c r e t e a d j o i n t o f t h e N a v i e r -S t o k e s e q u a t i o n s h a s b e e n d e v e l o p e d i n t h e
+u n s t r u c t u r e d f i n i t e -v o l u m e s o l v e r t h e DLR-T A U -c o d e . T h e m e t h o d c o n s i s t s o f t h e e x p l i c i t
+c o n s tr u c tio n o f th e e x a c t J a c o b ia n o f th e s p a tia l d is c r e tiz a tio n w ith r e s p e c t to th e u n k n o w n
+v a r ia b le s a llo w in g th e a d jo in t e q u a tio n s to b e fo r m u la te d a n d s o lv e d . A w id e r a n g e o f th e
+s p a tia l d is c r e tiz a tio n s a v a ila b le in T A U h a v e b e e n d iffe r e n tia te d , in c lu d in g th e S p a lla r tA l m a r a s -E d w a r d s o n e -e q u a t i o n , a n d t h e Wi l c o x k -o m e g a t w o -e q u a t i o n t u r b u l e n c e m o d e l s .
+T h e a im o f th is p a p e r is to g iv e a n o v e r v ie w o f th e c a p a b ilitie s o f th e d is c r e te a d jo in t to
+p e r fo r m a e r o d y n a m ic s h a p e o p tim iz a tio n in v is c o u s flo w . T h e s tr a te g y d e v e lo p e d is
+e x te n s iv e ly v a lid a te d o n 2 D c a s e s . T h e a d jo in t b a s e d d e s ig n m e th o d is fir s t v a lid a te d b y
+c o m p a r in g th e g r a d ie n ts o f th e d r a g , lift a n d p itc h in g m o m e n t it p r o d u c e s w ith th e
+a p p r o x i m a t e g r a d i e n t s o b t a i n e d b y f i n i t e -d i f f e r e n c e s . T h e n t h e a c c u r a c y a n d e f f i c i e n c y o f t h e
+a p p r o a c h a r e d e m o n s tr a te d fo r tr a n s o n ic a ir fo il d e s ig n b y c o n s id e r in g g e o m e tr ic a s w e ll
+a e r o d y n a m i c c o n s t r a i n t s , s i n g l e - a s w e l l a s m u l t i -p o i n t d e s i g n . Fi n a l l y , t h e f l a p d e s i g n o f a
+m u l t i -e l e m e n t a i r f o i l i n t a k e o f f c o n f i g u r a t i o n c o n f i r m s t h e c a p a b i l i t y o f t h e d i s c r e t e a d j o i n t t o
+s o lv e w id e r a n g e o f a e r o d y n a m ic p r o b le m s .
+
+1
+
+J. Brezillon, R. Dwight
+
+1
+
+I N T RO DU C T I O N
+
+2
+
+DI S C RE T E A DJO I N T F O RM U A T I O N
+
+Nu m eri c al sh ap e o p t i m i sat i o n w i l l p l ay a c ri t i c al st rat eg i c ro l e i n fu t u re ai rc raft desi g n. I t
+o ffers t h e p o ssi b i l i t y o f desi g ni ng o r i m p ro v i ng ai rc raft c o m p o nent s w i t h resp ec t t o a
+p resp ec i fi ed fi g u re o f m eri t , su b jec t t o g eo m et ri c al and p h y si c al c o nst rai nt s. H o w ev er, t h e
+ex t rem el y h i g h c o m p u t at i o nal c o st o f st rai g h t fo rw ard m et h o do l o g i es c u rrent l y i n u se p ro h i b i t s
+t h e ap p l i c at i o n o f nu m eri c al o p t i m i sat i o n fo r i ndu st ri al l y rel ev ant p ro b l em s. O p t i m i sat i o n
+m et h o ds b ased o n t h e c al c u l at i o n o f t h e deri v at i v es o f t h e c o st fu nc t i o n w i t h resp ec t t o t h e
+desi g n v ari ab l es su ffer fro m h i g h c o m p u t at i o nal c o st s i f m any desi g n v ari ab l es are u sed.
+H o w ev er, t h ese g radi ent s c an b e effi c i ent l y o b t ai ned b y so l u t i o n o f t h e adjo i nt fl o w eq u at i o ns.
+W i t h i n t h e fram ew o rk o f t h e G erm an aero sp ac e researc h p ro g ram M E G AD E S I G N [ 7] , t h e
+D L R p l ay s an ac t i v e ro l e i n dev el o p i ng effi c i ent nu m eri c al m et h o ds fo r sh ap e desi g n and t h e
+dev el o p m ent o f t h e di sc ret e adjo i nt ap p ro ac h i s o ne i m p o rt ant i ssu e.
+Th e ai m o f t h e p ap er i s t o g i v e an o v erv i ew o f t h e c ap ab i l i t y o f t h e di sc ret e adjo i nt t o
+p erfo rm aero dy nam i c sh ap e o p t i m i z at i o n i n v i sc o u s fl o w . I n t h e nex t c h ap t er, t h e di sc ret e
+adjo i nt fo rm u l at i o n and i t s i m p l em ent at i o n i n t h e D L R-T A U c o de i s o u t l i ned. Th e dev el o p ed
+st rat eg y i s t h en v al i dat ed o n real i st i c 2D c ases. Th e fi rst st ep i n v al i dat i ng t h e adjo i nt b ased
+desi g n m et h o d i s t o c o m p are t h e g radi ent s o f t h e drag , l i ft and p i t c h i ng m o m ent i t p ro du c es
+w i t h t h e ap p ro x i m at e g radi ent s o b t ai ned b y fi ni t e-di fferenc es. Th en t h e c ap ab i l i t y o f t h e
+ap p ro ac h i s dem o nst rat ed o n b o t h si ng l e- and m u l t i -el em ent ai rfo i l s, u nder c o nsi derat i o n o f
+b o t h g eo m et ri c and aero dy nam i c c o nst rai nt s. Th i s p ap er w i l l assess t h e su p eri o ri t y o f t h e
+adjo i nt ap p ro ac h i n t erm s o f ac c u rac y and effi c i enc y as c o m p ared t o o t h er ap p ro ac h es, and i t s
+l i m i t s fo r so l v i ng m o re c h al l eng i ng i ndu st ri al p ro b l em s w i l l b e o u t l i ned. F u t u re dev el o p m ent s
+needed t o o v erc o m e t h ese p ro b l em s w i l l b e p ro p o sed at t h e end o f t h e p ap er.
+Th e adv ant ag e o f t h e adjo i nt m et h o d i s i t s ab i l i t y t o ev al u at e t h e g radi ent o f a si ng l e c o st
+fu nc t i o n w i t h resp ec t t o a l arg e nu m b er o f desi g n v ari ab l es w i t h an effo rt t h at sc al es w eak l y
+w i t h t h e nu m b er o f desi g n v ari ab l es.
+2.1 T heory of the M ethod
+
+L et t h e o p t i m i z at i o n p ro b l em
+
+u nder t h e c o nst rai nt
+
+b e st at ed as
+
+min I (W , X , D ),
+w . r .t . D
+
+(1)
+
+R( W, X, D) = 0 ,
+
+(2)
+
+w h ere h ere I i s a c o st fu nc t i o n su c h as l i ft o r drag , D i s a v ec t o r o f desi g n v ari ab l es, X( D) t h e
+c o m p u t at i o nal m esh , W( X, D) t h e v ec t o r o f fl o w v ari ab l es, and R a di sc ret i z at i o n o f t h e
+Nav i er-S t o k es eq u at i o ns o n X.
+Th e g o al i s t h en t o fi nd dI/ dD. B y st at i ng t h e c o nst rai nt i n t erm s o f t h e di sc ret i z ed fl o w
+eq u at i o ns – rat h er t h an t h e c o nt i nu o u s Nav i er-S t o k es eq u at i o ns o n a g i v en c o nt i nu o u s do m ai n
+
+2
+
+J. Brezillon, R. Dwight
+
+– t h e di sc ret e v ari et y o f t h e adjo i nt p ro c edu re w i l l b e deri v ed.
+C o nsi der t h e La g r a n g i a n :
+L = I + ΛT· R,
+
+(3)
+
+w h ere Λ i s a v ec t o r o f a d j o i n t v a r i a b l e s o f t h e sam e m ag ni t u de as W (and h enc e R). S i nc e
+eq u at i o n (2) i s v al i d fo r al l D, t h e L ag rang i an i s i dent i c al t o I and t h e sam e h o l ds fo r t h ei r
+deri v at i v es w i t h resp ec t t o D, fo r al l D and al l Λ. D i fferent i at i ng L b y t h e c h ai n ru l e and
+rearrang i ng g i v es:
+dL  ∂I dW ∂I dX ∂I 
+T  ∂R dW + ∂R dX + ∂R ,
++
++
+=
+
++Λ 
+dD  ∂W dD ∂X dD ∂D 
+ ∂W dD ∂X dD ∂D 
+
+∂R 
+∂R  dX  ∂I
+∂R  dW  ∂I
+ ∂I
++ ΛT
++
++ ΛT
++
++ ΛT
+=
+.
+
+
+∂D 
+∂X  dD  ∂D
+∂W  dD  ∂X
+ ∂W
+
+(4)
+
+Al l p art i al deri v at i v es i n t h e ab o v e eq u at i o n m ay b e ev al u at ed b y h and, t h ei r nu m erat o rs
+al l b ei ng k no w n and ex p l i c i t fu nc t i o ns o f t h ei r deno m i nat o rs. Th e q u ant i t i es dW/ dD and
+dX/ dD h o w ev er m u st b e fo u nd b y ap p l y i ng t h e c h ai n ru l e t o eq u at i o n (2) and t h e g ri d
+defo rm at i o n eq u at i o ns resp ec t i v el y – t h u s resu l t i ng i n a sep arat e eq u at i o n fo r eac h D. I n t h e
+c ase o f t h e g ri d defo rm at i o n eq u at i o ns t h i s i s no t c ri t i c al as t h e eq u at i o ns are t y p i c al l y si m p l e
+and rap i dl y so l v ed, b u t i n t h e c ase o f t h e fl o w eq u at i o ns t h i s ev al u at i o n w o u l d do m i nat e t h e
+effo rt o f t h e g radi ent c al c u l at i o n. I nst ead el i m i nat e dW/ dD fro m (4) b y set t i ng Λ su c h t h at
+T
+T
+ ∂I 
+ ∂R 
+ ,
+
+ Λ = −
+ ∂W 
+ ∂W 
+
+(5)
+
+a l i near eq u at i o n fo r t h e adjo i nt v ari ab l es.
+Th e rem ai ni ng u nk no w n t erm dX/ dD m ay b e rel i ab l y ev al u at ed b y fi ni t e-di fferenc es as
+∂I dX
+∆D ≈ I (W , X ( D + ∆D ), D ) − I (W , X , D),
+∂X dD
+∂R dX
+∆D ≈ R (W , X ( D + ∆D), D) − R (W , X , D ),
+∂X dD
+
+(6)
+
+al t h o u g h i t i s p o ssi b l e t o u se an adjo i nt ap p ro ac h h ere as w el l , t o av o i d t h e nec essi t y o f
+defo rm i ng t h e g ri d i n resp o nse t o eac h sh ap e-m o di fy i ng desi g n v ari ab l e [ 8] .
+2.2 I m p lem enta tion in the f low s olv er TAU
+
+Th ere are t w o p ri nc i p al di ffi c u l t i es i n t h e i m p l em ent at i o n o f t h e ab o v e m et h o d: t h e
+ev al u at i o n o f t h e p art i al deri v at i v es i n (4), and t h e so l u t i o n o f t h e resu l t i ng l i near sy st em (5).
+Ty p i c al l y i t i s t h e c ase t h at di sc ret i z ed resi du al o f t h e fl o w eq u at i o ns R m ay b e w ri t t en
+ex p l i c i t l y i n t erm s o f W, X and D, and h enc e t h e p art i al deri v at i v es w i t h resp ec t t o t h ese t erm s
+m ay b e c al c u l at ed p er h and st rai g h t fo rw ardl y ; w h i l e at t h e sam e t i m e R i s ex t rem el y c o m p l ex
+(as i m p l em ent ed i n t h e D L R T A U -C o de [ 6] ), c o nt ai ni ng no n-l i near fl u x es, g radi ent
+
+3
+
+J. Brezillon, R. Dwight
+
+c al c u l at i o ns, l i m i t ers, st at e eq u at i o ns, t u rb u l enc e m o del s, et c ., et c ., and t h u s t h e di fferent i at i o n
+i s ex t rem el y t edi o u s and t i m e-c o nsu m i ng .
+To p ro v i de an i nsi g h t i nt o t h e i m p l em ent at i o n asp ec t , t h e so m ew h at p erso nal p ro c ess
+dev el o p ed b y t h e au t h o rs aft er m u c h t ri al and erro r i s o ffered h ere, i n t h e h o p e t h at i t m ay
+g u i de i ni t i al effo rt s o f o t h ers. I t m ay b e su m m ari z ed i n t h e fo l l o w i ng si x st ep s:
+1 . D i v i d e t h e c o de fo r t h e no n-l i near resi du al R i nt o p art s t h at m ay b e di fferent i at ed
+i ndep endent l y – ei t h er b ec au se R i s a si m p l e su m o f e.g . i nv i sc i d and v i sc o u s fl u x es,
+o r b y m eans o f t h e p ro du c t and c h ai n ru l es. Al l p art s o f t h e c o de t h at do no t i nfl u enc e
+t h e so l u t i o n o f R = 0 , are su p erfl u o u s.
+2 . C o p y o u t t h e defi ni t i o n fo r e.g . a p art i c u l ar fl u x fu nc t i o n F, di rec t l y fro m t h e c o de
+o nt o p ap er. B eg i n w i t h t h e defi ni t i o n o f F i n t erm s o f i nt erm edi at e v ari ab l es – at t h e
+end o f t h e c o de frag m ent – and p ro c eed u p w ards. Th i s o rder w i l l ai d t h e ap p l i c at i o n o f
+t h e c h ai n ru l e i n st ep 4. I n o rder t h at t h e resu l t i ng J ac o b i an b e t h e ex ac t deri v at i v e o f R
+i t i s t h e au t h o rs’ ex p eri enc e t h at i t i s no t su ffi c i ent t o t ak e fl u x fu nc t i o n defi ni t i o ns
+fro m t ec h ni c al rep o rt s, art i c l es et c ., as t h e real i t y i s o ft en c o nsi derab l y di fferent .
+3 . D e c i d e w h i c h p art s o f t h e defi ni t i o n o f F t o neg l ec t as i nsi g ni fi c ant , t o o t i m ec o nsu m i ng t o di fferent i at e, o r as a m eans o f p ro v i di ng a m o re effi c i ent
+i m p l em ent at i o n. Th i s st ep i s o p t i o nal .
+4 . D i f f e r e n t i a t e t h e si m p l i fi ed v ersi o n o f F o n p ap er, w h i c h sh o u l d no w b e a m at t er o f
+w o rk i ng t o p t o b o t t o m o n t h e p ag e. M ak i ng u se o f t h e c h ai n ru l e w h erev er p o ssi b l e
+(i .e. fo r ev ery i nt erm edi at e v ari ab l e) t ends t o si m p l i fy ex p ressi o ns and h el p s av o i d
+erro rs. G i v en a o ne p ag e defi ni t i o n, a ro u g h l y t w o p ag e deri v at i v e c an b e ex p ec t ed.
+5 . I m p l e m e n t t h e deri v at i v e c al c u l at ed i n st ep 4. As a b asi s u se t h e o ri g i nal fu nc t i o n fo r
+F, as m any i nt erm edi at e v ari ab l es w i l l ap p ear i n u ndi fferent i at ed fo rm i n t h e
+ex p ressi o n fo r t h e deri v at i v e; al so t h e i np u t s sh o u l d b e i dent i c al . W ri t e o ri g i nal
+ex p ressi o ns and t h ei r deri v at i v es t o g et h er. C o m m ent t h e deri v at i v e w i t h t h e o ri g i nal
+fu nc t i o n nam e, w .r.t . w h i c h v ari ab l es are di fferent i at ed, and any assu m p t i o ns m ade
+du ri ng st ep 3.
+6 . C o m p a r e t h e h and-c o ded deri v at i v e ag ai nst a fi ni t e-di fferenc e ap p ro x i m at i o n u si ng
+t h e o ri g i nal fu nc t i o n. Y o u h av e m ade at l east o ne m i st ak e: p ro b ab l y i n st ep 5.
+Th i s m u st b e do ne no t o nl y fo r ev ery el em ent o f R b u t al so fo r eac h desi red I, see (5). No t e
+t h at t h e deri v at i v es are c o nsi derab l y si m p l i fi ed b y c h o o si ng p ri m i t i v e v ari ab l es as w o rk i ng
+v ari ab l es; b ec au se t h e eq u at i o ns rem ai n i n c o nserv at i v e fo rm t h i s c h o i c e h as no effec t o n t h e
+fi nal adjo i nt so l u t i o n. As eac h c o m p o nent o f t h e deri v at i v e o f R i s c al c u l at ed a c o nt ri b u t i o n i s
+m ade t o t h e ex p l i c i t l y st o red J ac o b i an m at ri x .
+S t o ri ng t h e m at ri x ex p l i c i t l y h as t h e di sadv ant ag e o f req u i ri ng ap p ro x i m at el y si x t i m es t h e
+m em o ry o f t h e st andard T A U -c o de, see t ab l e 1, redu c i ng t h e c ap ac i t y o f a no de w i t h 1G B o f
+m em o ry fro m 2 m i l l i o n p o i nt s t o 30 0 t h o u sand p o i nt s, w h i c h g i v en t h e rel at i v el y sm al l si z e o f
+o p t i m i z at i o n p ro b l em s c o m p ared t o si ng l e fl o w c al c u l at i o ns, i s no t a seri o u s h andi c ap .
+H o w ev er t h i s resu l t i s o nl y v al i d i n 2D .
+
+4
+
+J. Brezillon, R. Dwight
+
+M em o ry (B y t es)
+F ac t o r i nc rease
+P o i nt s i n 1G B
+
+S t andard T A U
+25M
+x 1
+2x 10 6
+
++ J ac o b i an S t o rag e
+165M
+x 6.6
+30 0 x 10 3
+
+Tab l e 1 : C o m p ari so n o f t h e p efo rm anc e
+
++ L i n. S o l v er S t o rag e
+290 M
+x 11.6
+170 x 10 3
+
+2.3 S olu tion of the a d j oint eq u a tion
+
+G i v en an ex p l i c i t l y st o red J ac o b i an – w h i c h m u st o nl y b e c o nst ru c t ed o nc e p er g radi ent
+ev al u at i o n, ev en fo r m u l t i p l e c o st fu nc t i o ns – assessm ent o f t h e resi du al o f t h e l i near eq u at i o n
+(5) redu c es t o a m at ri x -v ec t o r p ro du c t . F u rt h er t h e av ai l ab i l i t y o f t h e m at ri x al l o w s t h e
+ap p l i c at i o n o f t h e I L U p rec o ndi t i o ner t o a K ry l o v su b sp ac e m et h o d, a p ro c edu re w h i c h i s
+o ft en p referred i n aero dy nam i c ap p l i c at i o ns fo r t h e so l u t i o n o f t h e l i near sy st em s resu l t i ng
+fro m a New t o n i t erat i v e m et h o d fo r t h e no n-l i near eq u at i o ns [ 3] and ag ai n t h i s p rec o ndi t i o ner
+m u st o nl y b e c o nst ru c t ed o nc e.
+As t h e ei g env al u es o f t h e J ac o b i an and t ransp o se J ac o b i an are i dent i c al , t h e c o nv erg enc e
+rat es ac h i ev ed w i t h K ry l o v su b sp ac e m et h o ds su c h as G M RE S are g u arant eed t o b e i dent i c al ,
+and so t h e ex p eri enc e g ai ned ap p l y i ng t h ese m et h o ds i n i m p l i c i t sc h em es m ay b e c arri ed o v er
+[ 4] . Th e resu l t i s t h at t h e c al c u l at i o n o f t h e adjo i nt so l u t i o n req u i res o nl y ap p ro x i m at el y 10 %
+o f t h e t i m e req u i red fo r a no n-l i near fl o w c al c u l at i o n - and so fo rm s an i nsi g ni fi c ant
+c o m p o nent o f t h e t o t al t i m e fo r t h e o p t i m i z at i o n. G i v en t h at t h e g radi ent i s m u c h c h eap er t h an
+t h e l i ne searc h , o p t i m i z at i o n st rat eg i es t h at rel y o n m any g radi ent ev al u at i o ns, su c h as Qu asi New t o n Tru st Reg i o n (QNTR), b ec o m e m o re at t rac t i v e. Th e I L U p rec o ndi t i o ner and G M RE S
+m et h o d h av e an asso c i at ed m em o ry c o st , i n t h i s c ase t h e req u i rem ent s fo r I L U w i t h fo u r
+l ev el s o f fi l l -i n and G M RE S (30 ) are g i v en i n t ab l e 1.
+3
+
+V A L I DA T I O N O F T H E DI S C RE T E A DJO I N T
+
+Th e fi rst st ep i n v al i dat i ng t h e adjo i nt b ased desi g n m et h o d i s t o c o m p are t h e g radi ent s o f
+t h e drag , l i ft and p i t c h i ng m o m ent p ro du c ed w i t h t h o se o b t ai ned b y fi ni t e-di fferenc es. O ne o f
+t h e p ro b l em s o f su c h a c o m p ari so n c o m es fro m t h e i nac c u rac y o f t h e g radi ent o b t ai ned w i t h
+fi ni t e-di fferenc es, i n p art i c u l ar t h e w el l k no w n p ro b l em o f t h e dep endenc e o f t h e resu l t o n t h e
+c h o sen fi ni t e st ep si z e. To o sm al l a c h ang e i n t h e g eo m et ry w o u l d p ro du c e t o o a c h ang e i n t h e
+aero dy nam i c l o ads w h i c h c o u l d b e do m i nat ed b y t h e nu m eri c al no i se: t h e resu l t i ng g radi ent i s
+t h en i nex ac t . I n c o nt rast , t o o b i g a st ep do es no t al l o w neg l ec t i o n o f t h e sec o nd-o rder
+t ru nc at i o n erro r and no ag reem ent w i t h t h e adjo i nt ap p ro ac h c o u l d b e ac h i ev ed. Th erefo re, t o
+fi nd an adeq u at e st ep , a l o t o f t ri al and erro r i s req u i red. I n c o nt rast , t h e fi ni t e-di fferenc es u sed
+i n t h e adjo i nt g radi ent ev al u at i o n (6) are rel at i v el y st ep -si z e i ndep endent as a resu l t o f t h e
+h i g h er l ev el o f c o nv erg enc e ac h i ev ed i n t h e m esh defo rm at i o n eq u at i o ns o n o ne h and, and
+t h ei r l i near nat u re o n t h e o t h er.
+Th e c ase c o nsi dered fo r t h e v al i dat i o n o f t h e di sc ret e adjo i nt i s t h e RAE 2822 ai rfo i l i n
+v i sc o u s t ranso ni c fl o w . Th e fl i g h t c o ndi t i o ns are M ∞=0 .73, α=2.8° and Re=6.5x 10 6 as M ac h
+nu m b er, ang l e o f at t ac k and Rey no l ds Nu m b er resp ec t i v el y . Th e fl o w i s c o m p u t ed u si ng t h e
+
+5
+
+J. Brezillon, R. Dwight
+
+T A U -c o de w h i c h i s an u nst ru c t u red g ri d fi ni t e-v o l u m e Rey no l ds Av erag ed Nav i er-S t o k es
+so l v er. I t o p erat es o n 2D g ri ds c o nsi st i ng o f t ri ang l es and q u adri l at eral s o r 3D g ri ds o f
+h ex ah edra, p ri sm s, p y ram i ds and t et rah edra, o f w h i c h a du al g ri d i s c o nst ru c t ed i n a
+p rep ro c essi ng st ep so t h at t h e m et ri c i s c el l -v ert ex . Th e du al g ri ds u se an edg e-b ased dat ast ru c t u re so t h at t h e so l v er i t sel f h as o nl y edg e-t o -p o i nt c o nnec t i v i t y i nfo rm at i o n. F o r t h e
+p resent fl o w si m u l at i o n, t h e 2D v i sc o u s m o de i s em p l o y ed w i t h t h e S p al l art -Al m arasE dw ards o ne-eq u at i o n t u rb u l enc e m o del .
+Th e desi g n v ari ab l es are 30 c o nt ro l p o i nt s w h i c h defo rm t h e t h i c k ness (t h e 10 fi rst desi g n
+v ari ab l es) and t h e c am b erl i ne o f t h e ai rfo i l (t h e rem ai nder). A m o re p rec i se desc ri p t i o n o f t h e
+p aram et eri z at i o n i s g i v en i n S ec t i o n 4.1. Th e fi ni t e-di fferenc es g radi ent s are p ro v i ded b y
+fo rw ard di fferenc i ng . Th u s 31 v i sc o u s so l u t i o ns are req u i red t o o b t ai n t h e c o m p l et e g radi ent s.
+I n o rder t o av o i d no i se i n t h e ev al u at i o n o f t h e aero dy nam i c c o effi c i ent s, a c o nv erg enc e o f 8
+o rders o f m ag ni t u de i n RM S densi t y resi du al s i s nec essary fo r eac h c o m p u t at i o n.
+F o r t h e adjo i nt ap p ro ac h ju st o ne v i sc o u s and t h ree c o rresp o ndi ng di sc ret e adjo i nt so l u t i o ns
+are nec essary . As m ent i o ned i n t h e p rev i o u s c h ap t er, t h e c al c u l at i o n o f t h e adjo i nt so l u t i o n
+req u i res o nl y ap p ro x i m at el y 10 % o f t h e t i m e req u i red fo r a v i sc o u s fl o w c al c u l at i o n. B y
+i nc l u di ng t h e m et ri c sensi t i v i t i es i n eq u at i o n (6), t h e t o t al t i m e needed fo r t h e ev al u at i o n o f al l
+fo u r g radi ent s i s eq u i v al ent t o 50 % o f a si ng l e v i sc o u s fl o w c o m p u t at i o n.
+F i g u re 1 sh o w s t h e c o m p o nent s o f t h e g radi ent s o f t h e t o t al drag , v i sc o u s drag , l i ft , and
+p i t c h i ng m o m ent , ac c o rdi ng t o t h e desi g n v ari ab l es. Al l fo u r fi g u res sh o w a v ery g o o d
+c o nfo rm i t y b et w een t h e fi ni t e di fferenc es and adjo i nt g radi ent s.
+As ex p ec t ed, t h e adjo i nt ap p ro ac h al l o w s c o nsi derab l e C P U t i m e sav i ng and i t t o o k 20
+t i m es l ess t i m e t o ev al u at e t h e 4 g radi ent s t h an w i t h fi ni t e di fferenc es.
+
+F igu re 1: G ra d ient of the tota l d ra g, v is c ou s d ra g, lif t a nd p itc hing m om ent f or the RA E 28 22 a irf oil
+( T hic k nes s a nd C a m b erline p a ra m eteriza tion - M ∞= 0 .7 3,α= 2°,Re= 6.5×10 6)
+
+6
+
+J. Brezillon, R. Dwight
+
+4
+
+A I RF O I L O P T I M I S A T I O N
+
+Th e ai m o f t h i s c h ap t er i s t o assess t h e c ap ab i l i t y o f t h e adjo i nt ap p ro ac h t o o p t i m i z e t h e
+ai rfo i l drag i n t ranso ni c fl o w , c o nsi deri ng g eo m et ri c as w el l as aero dy nam i c c o nst rai nt s, and
+si ng l e- as w el l as m u l t i -p o i nt c o ndi t i o ns. F o r al l o p t i m i z at i o ns, t h e aero dy nam i c c o ndi t i o ns
+are t h e sam e as i n t h e p rev i o u s sec t i o n ex c ep t fo r t h e m u l t i -p o i nt desi g n w h ere t w o addi t i o nal
+c o ndi t i o ns are c o nsi dered. B efo re sh o w i ng t h e resu l t s o b t ai ned o n t h e RAE 2822 ai rfo i l , t h e
+m ai n c o m p o nent s o f t h e aero dy nam i c c h ai n (p aram et eri z at i o n, m esh g enerat i o n and fl o w
+so l v er) are desc ri b ed.
+4.1 O p tim iza tion s tra tegy
+
+Ai rfo i l desi g n i s deep l y i nfl u enc ed b y t h e p aram et eri z at i o n o f t h e g eo m et ry and w i t h o u t
+any g eo m et ri c al c o nst rai nt , ai rfo i l i m p ro v em ent s c an easi l y b e m ade. F o r i nst anc e, dec reasi ng
+t h e drag i s st rai g h t fo rw ardl y o b t ai ned b y dec reasi ng t h e m ax i m u m t h i c k ness o f t h e ai rfo i l and
+a desi red l i ft c an b e reac h ed b y m o di fy i ng t h e ang l e o f t h e t rai l i ng edg e. I n o rder t o av o i d
+su c h a desi g n, g eo m et ri c al c o nst rai nt s h av e t o b e ret ai ned i n o rder t o real l y assess t h e
+c ap ab i l i t y o f t h e o p t i m i z at i o n c h ai n fo r ai rfo i l desi g n. S o m e c h al l eng i ng desi g ns w ere
+p ro p o sed i n t h e E u ro p ean p ro jec t AE RO S H AP E [ 9] and w e ret ai n h ere t h e g eo m et ri c al
+c o nst rai nt s set fo r t h e desi g n o f t h e RAE 2822 t est c ase:
+• t h e m ax i m u m t h i c k ness i s fro z en,
+• t h e t h i c k ness at 5% c h o rd sh o u l d no t b e l ess t h an 96% o f t h e i ni t i al o ne,
+• t h e l eadi ng edg e radi u s sh o u l d b e eq u al t o o r g reat er t h an 90 % o f t h e i ni t i al radi u s,
+• t h e t rai l i ng edg e ang l e sh o u l d no t b e l ess t h an 80 % o f t h at o f t h e i ni t i al g eo m et ry .
+An ap p ro p ri at e p aram et eri z at i o n w as dev el o p ed at D L R and su c c essfu l l y u sed t o h andl e
+su c h a p ro b l em [ 1] . Th e ai rfo i l p aram et eri z at i o n i s sp l i t i nt o t w o p art s, al l o w i ng t h e
+defo rm at i o n o f t h e c am b erl i ne i ndep endent l y o f t h e t h i c k ness. F o r sm o o t h c h ang es o f t h e
+c am b erl i ne, H i c k s-H enne b u m p fu nc t i o ns are u sed. Th e t h i c k ness i s p aram et eri z ed b y B S p l i nes, p ro p erl y set t o au t o m at i c al l y fu l fi l l al l g eo m et ri c al c o nst rai nt s. F o r t h e si ng l e p o i nt
+o p t i m i z at i o n, o nl y t h e c h ang e o f c am b erl i ne w i t h 20 desi g n v ari ab l es i s ac t i v at ed w h i l e fo r t h e
+m u l t i -p o i nt o p t i m i z at i o n 29 desi g n v ari ab l es are u sed i n o rder t o b ro aden t h e desi g n sp ac e.
+Th e g ri d defo rm at i o n al g o ri t h m u sed fo r t h i s c ase i s b ased o n an em p i ri c al adv anc i ng fro nt
+al g o ri t h m w i t h sp ec i al c o nsi derat i o ns fo r so l i d b o dy m o t i o ns. As a resu l t i t c an o nl y b e
+ap p l i ed ro b u st l y t o si m p l e g eo m et ri es fo r sm al l defo rm at i o ns, b u t h as t h e adv ant ag e o f b ei ng
+ex t rem el y rap i d. Th e b asel i ne m esh i s sh o w n i n fi g u re 2.
+Th e aero dy nam i c st at e i s t h en ev al u at ed u si ng t h e T A U -c o de i n v i sc o u s m o de w i t h t h e
+S p al l art -Al m aras-E dw ards o ne-eq u at i o n t u rb u l enc e m o del . Th e req u i red g radi ent s are
+c o m p u t ed u si ng t h e c o rresp o ndi ng di sc ret e adjo i nt as desc ri b ed i n S ec t i o n 2. Th e
+aero dy nam i c st at e and t h e g radi ent i nfo rm at i o n are t h en p assi ng t o t h e u ser defi ned o p t i m i z er.
+Th e S y nap sP o i nt er® P ro o p t i m i z at i o n fram ew o rk [ 5] h as b een ret ai ned as o p t i m i z at i o n
+fram ew o rk b ec au se i t al l o w s an easy c o nst ru c t i o n o f t h e aero dy nam i c c h ai n and m anag es t h e
+c o nnec t i o n t o u ser defi ned o p t i m i z ers. F u rt h erm o re, t h i s fram ew o rk au t o m at i c al l y ru ns
+p ro c esses i n p aral l el w h i c h al l o w s a dec rease o f t h e t u rn aro u nd t i m e.
+
+7
+
+J. Brezillon, R. Dwight
+
+F igu re 2: Deta ils of the m es h a rou nd the RA E 28 22 a irf oil.
+
+4.2 U nc ons tra ined op tim iza tion
+
+As fi rst t est c ase, w e c o nsi der drag redu c t i o n at c o nst ant l i ft . Th e desi red l i ft i s h ere
+m ai nt ai ned b y adju st i ng t h e ang l e o f at t ac k . Th i s i s an u nc o nst rai nt o p t i m i z at i o n i n t h e sense
+t h at t h e aero dy nam i c c o nst rai nt i s au t o m at i c al l y h andl ed b y t h e T A U -c o de. F o r so l v i ng t h i s
+p ro b l em , t h ree o p t i m i z at i o n st rat eg i es o f i nc reasi ng effi c i enc y are c o nsi dered: st eep est
+desc ent , c o nju g at e g radi ent and Qu asi -New t o n Tru st Reg i o n (QNTR). Th e ev o l u t i o n o f t h e
+aero dy nam i c c o effi c i ent s ac c o rdi ng t o t h e c al l o f t h e fl o w so l v er i s g i v en i n fi g u re 3. O ne c an
+see t h at t h e T A U -C o de i s ab l e t o m ai nt ai n t h e desi red l i ft b y adju st i ng t h e ang l e o f at t ac k . I n
+al l c ases, a dec rease o f m o re t h an 60 drag c o u nt s i s o b t ai ned and t h e m ai n c h arac t eri st i c s o f
+eac h o p t i m i z at i o n are rec o rded i n t ab l e 2. As ex p ec t ed, t h e st eep est desc ent i s t h e l east
+effi c i ent m et h o d w i t h t h e l o w est drag i m p ro v em ent . I n c o nt rast , t h e QNTR ap p ro ac h fi nds a
+b et t er o p t i m u m w i t h 5 t i m es few er fl o w ev al u at i o ns b u t w i t h m o re g radi ent ev al u at i o ns, m ade
+p o ssi b l e b y t h e u se o f t h e di sc ret e adjo i nt ap p ro ac h fo r t h e g radi ent s. Th e c o nju g at e g radi ent
+i s al so ab l e t o at t ai n t h i s b est o p t i m u m b u t w i t h m o re st at e ev al u at i o ns and few er g radi ent
+ev al u at i o ns. D ep endi ng o f t h e o p t i m i z at i o n st rat eg i es, t h e sam e o p t i m i z at i o ns w i t h fi ni t e
+di fferenc es w o u l d b e 3 t o 8 t i m es sl o w er. Th e c o m p ari so n o f t h e p ressu re di st ri b u t i o n i n
+fi g u re 4 sh o w s t h at t h e fi nal desi g n i s a sh o c k l ess p ro fi l e. Th e p ressu re di st ri b u t i o n i s al so
+c h arac t eri z ed b y an i nc rease i n t h e su c t i o n p eak and an i nc rease o f t h e rear l o adi ng i n o rder t o
+k eep t h e l i ft c o nst ant . An anal y si s o f t h e o p t i m al g eo m et ry ev i denc es a l o w er c am b er i n t h e
+fro nt p art and a h i g h er o ne i n t h e rear p art . O nl y sm al l di fferenc es are no t i c eab l e b et w een al l
+desi g ns. Th i s t est c ase g i v es a fi rst i dea o f t h e effi c i enc y o f t h e adjo i nt ap p ro ac h c o u p l ed w i t h
+ap p ro p ri at e o p t i m i z at i o n st rat eg i es. Th e g o o d c o nv erg enc e o f t h e o p t i m i z at i o n p ro c ess and t h e
+resu l t i ng desi g n c o nfi rm t h e h i g h ac c u rac y o f t h e g radi ent s c o m p u t ed w i t h t h e di sc ret e
+adjo i nt .
+
+S teep est descent
+Conj ugate G radient
+Q N TR
+
+N umb er of state
+ev aluations
+9 9
+74
+2 1
+
+N umb er of
+gradients
+1 5
+1 0
+2 1
+
+D rag imp rov ement
+in drag counts
+-6 0 . 5 ( 3 6 , 4 % )
+-6 3 . 8 ( 3 6 , 8 % )
+-6 3 . 8 ( 3 6 , 8 % )
+
+Tab l e 2 : C o m p ari so n o f p efo rm anc es fo r t h e u nc o nst rai ned o p t i m i z at i o n t est c ase
+
+8
+
+J. Brezillon, R. Dwight
+
+F igu re 3: E v olu tion of the a erod y na m ic c oef f ic ients .
+
+F igu re 4: I nitia l a nd f ina l geom etries , p res s u re d is trib u tion a nd s k in f ric tion.
+
+4.3 S ingle p oint c ons tra ined op tim iza tion
+
+A sec o nd t est i s drag redu c t i o n at c o nst ant l i ft , p i t c h i ng m o m ent a n d ang l e o f at t ac k . Th e
+o p t i m i z at i o n st rat eg y i s no w a p ro jec t ed st eep est desc ent w h ere t h e searc h di rec t i o n i s a
+p ro jec t i o n o f t h e g radi ent o f t h e drag o nt o t h e h y p erp l ane no rm al t o t h e g radi ent s o f t h e l i ft
+and t h e p i t c h i ng m o m ent . F o l l o w i ng t h i s di rec t i o n, o ne ex p ec t s t o dec rease t h e drag and t o
+m ai nt ai n t h e o t h er v al u es, so l o ng as sec o nd-o rder effec t s rem ai n sm al l . H ere, t h e ac c u rac y o f
+t h e g radi ent s p l ay s a c ru c i al ro l e i n t h e v ari at i o n o f t h e c o nst rai nt s. Th e l eft p art o f fi g u re 5
+sh o w s t h e ev o l u t i o n o f t h e drag , l i ft and p i t c h i ng m o m ent o v er t h e o p t i m i z at i o n st ep s. An
+o p t i m i z at i o n st ep c o nsi st s o f ev al u at i o n o f t h e aero dy nam i c st at e, t h e nec essary g radi ent s and
+t h e l i ne searc h fo r fi ndi ng a b et t er m i ni m u m . I n o rder t o c o nv erg e t h e o p t i m i z at i o n p ro b l em ,
+11 ev al u at i o ns o f g radi ent s and 63 ev al u at i o ns o f t h e aero dy nam i c c o effi c i ent s are nec essary .
+Th i s o p t i m i z at i o n i s m o re t h an 4 t i m es fast er t h an t h e c l assi c al fi ni t e-di fferenc es ap p ro ac h .
+U p o n c o nv erg enc e, a dec rease o f m o re t h an 60 drag c o u nt s i s ac h i ev ed w h i l e b o t h t h e
+c o nst rai nt s (l i ft and p i t c h i ng m o m ent ) rem ai n u nc h ang ed. D u e t o t h e no n-l i neari t y o f t h i s
+o p t i m i z at i o n p ro b l em and t o t h e m ag ni t u de o f t h e desi g n st ep at t h e b eg i nni ng o f t h e
+o p t i m i z at i o n, sm al l dev i at i o ns i n t h e c o nst rai nt s do o c c u r. Th erefo re t h e p i t c h i ng m o m ent and
+t h e l i ft are c o rrec t ed at t h e t h i rd st ep t o ret ri ev e t h ei r i ni t i al v al u es and t h i s c o rrec t i o n
+i nt ro du c es an i nc rease o f t h e c o st fu nc t i o n as c an b e seen o n t h e l eft o f fi g u re 5. Th e
+o p t i m i z at i o n p ro c edu re i s t h en c o nt i nu ed u nt i l c o nv erg enc e. As ex p ec t ed, t h e st ro ng sh o c k
+ap p eari ng o n t h e RAE 2822 ai rfo i l i s al so el i m i nat ed at t h e end o f t h e desi g n p ro c ess as sh o w n
+o n t h e ri g h t o f fi g u re 5.
+
+9
+
+J. Brezillon, R. Dwight
+
+I t c an b e seen t h at t h i s o p t i m i z at i o n b eh av i o r i s i dent i c al t o t h at p rev i o u sl y p erfo rm ed o n
+i nv i sc i d fl o w w i t h a c o rresp o ndi ng c o nt i nu o u s adjo i nt [ 1] .
+
+F igu re 5: H is tory a nd p res s u re d is trib u tion.
+
+4.4 M u lti-p oint op tim iza tion
+
+Th e desi g n p ro b l em i s no w t h e m i ni m i z at i o n o f a l i near c o m b i nat i o n o f t h e drag at t h ree
+fl o w c o ndi t i o ns fo r t h e RAE 2822 ai rfo i l u nder aero dy nam i c and g eo m et ri c c o nst rai nt s, as
+defi ned w i t h i n t h e AE RO S H AP E p ro jec t . Th e aero dy nam i c desi g n c o ndi t i o ns w i t h t h e
+c o rresp o ndi ng w ei g h t i ng fac t o r read as fo l l o w :
+• F i rst desi g n p o i nt
+: α1=2.8° , M 1=0 .73, Re1=6.5x 10 6, W 1=2,
+• S ec o nd desi g n p o i nt : α2=2.8° , M 2=0 .75, Re2=6.2x 10 6, W 2=1,
+• Th i rd desi g n p o i nt : α3=1.8° , M 3=0 .68, Re3=5.7x 10 6, W 3=1.
+
+Th e g eo m et ri c al c o nst rai nt s are t h o se i nt ro du c ed i n S ec t i o n 4.1. Aero dy nam i c c o nst rai nt s
+are set at eac h desi g n p o i nt and i m p o sed t h at t h e l i ft i s no t al l o w ed t o dec rease, t h e p i t c h i ng
+m o m ent i s o nl y al l o w ed t o v ary i n a rang e o f ± 2% and t h e ang l e o f i nc i denc e i s fi x ed.
+F o r so l v i ng su c h p ro b l em , a ro b u st o p t i m i z at i o n st rat eg y i s req u i red and g o o d ex p eri enc es
+h av e al ready b een ac h i ev ed [ 1] w i t h t h e “ m o di fi ed m et h o d o f feasi b l e di rec t i o n” .
+Th e c o m p l et e o p t i m i z at i o n req u i res 8 o p t i m i z at i o ns st ep s, w h i c h rep resent 71 ev al u at i o ns
+o f t h e g o al fu nc t i o n (i .e. 71x 3 aero dy nam i c c o m p u t at i o ns) and 8x 3x 3 adjo i nt c o m p u t at i o ns
+fo r t h e g radi ent o f t h e o b jec t i v e fu nc t i o n and c o nst rai nt s. Ab o u t 17 h o u rs w al l c l o c k t i m e
+w ere nec essary t o p erfo rm al l c o m p u t at i o ns o n a 3 no des L i nu x c l u st er w h ere eac h no des
+c o m p u t ed a si ng l e desi g n p o i nt . At t h e end o f t h e o p t i m i z at i o n p ro c ess, t h e t w o fi rst desi g n
+p o i nt s sh o w a dec rease o f ab o u t 40 and 50 drag c o u nt s resp ec t i v el y , w h ereas t h e drag fo r t h e
+t h i rd desi g n p o i nt i nc reases sl i g h t l y b y ab o u t 2 drag c o u nt s. Al l g eo m et ri c and aero dy nam i c
+c o nst rai nt s are fu l fi l l ed. Tab l e 3 su m m ari z es t h e aero dy nam i c c h ang es.
+∆CD
+∆CL
+∆Cm
+
+D esign p t 1
+-3 9 . 9 p ts / -2 4 . 0 %
++ 4 .5 %
++ 1 .9 %
+
+D esign p t 2
+-4 9 . 7 p ts / -1 9 . 8 %
++ 2 .7%
+-0 . 6 %
+
+D esign p t 3
++ 2 . 0 p ts / + 2 . 3 %
+0 .0 %
++ 1 .0 %
+
+T a b le 3 : A irf oil d es ign f or the m u lti-p oint tes t c a s e.
+
+10
+
+J. Brezillon, R. Dwight
+
+Th e p ressu re di st ri b u t i o ns p l o t t ed i n fi g u re 6 sh o w a redu c t i o n o f t h e sh o c k st reng t h , w h i c h
+c an b e p art i c u l arl y seen o n t h e m ai n desi g n p o i nt . An i nc rease o f t h e su c t i o n p eak c an b e seen
+fo r al l 3 desi g n p o i nt s.
+
+F igu re 6: P res s u re d is trib u tion f or the m u lti-p oint d es ign.
+
+5
+
+H I G H -L I F T F L A P DE S I G N
+
+Th e t est c ase c o nsi dered no w i s t h e fl ap desi g n o f a m u l t i -el em ent s ai rfo i l i n t ak e-o ff
+c o nfi g u rat i o n (M ∞=0 .1715, Re=14.70 x 10 6). Th e i ni t i al g eo m et ry and t h e aero dy nam i c
+c o ndi t i o ns w ere defi ned w i t h i n t h e E u ro p ean p ro jec t E u ro l i ft I I [ 10 ] . Th e p aram et eri z at i o n
+and t h e st ru c t u red m esh g enerat i o n are i dent i c al t o [ 2] and h ere adju st ed fo r ev al u at i ng t h e
+fl o w w i t h t h e T A U -c o de. Th e g o al fu nc t i o n i s t h e drag redu c t i o n at c o nst ant l i ft ; t h e l i ft i s k ep t
+c o nst ant b y c h ang i ng t h e ang l e o f i nc i denc e. F o r so l v i ng t h i s p ro b l em , t h e c o nju g at e g radi ent
+o p t i m i z at i o n st rat eg y i s u sed. Th e ev o l u t i o n o f t h e drag , l i ft and ang l e o f i nc i denc e ac c o rdi ng
+t o t h e o p t i m i z at i o n st ep i s g i v en o n t h e l eft o f fi g u re 7 and g eo m et ri es and p ressu re
+di st ri b u t i o ns at t h e i ni t i al and o p t i m i z ed c o nfi g u rat ri o n are o n t h e ri g h t . Th e o p t i m i z at i o n
+req u i res at l east 10 st ep s t o c o nv erg e (42 st at e ev al u at i o ns). Th e desi g ned fl ap h as 43 drag
+c o u nt s l ess at t h e sam e l i ft c o effi c i ent . Th i s ex erc i se h as dem o nst rat ed t h e c ap ab i l i t y t o u se
+t h e di sc ret e adjo i nt fo r so l v i ng a 2D h i g h -l i ft p ro b l em .
+
+Figure 7: H istory and p ressure distrib ution for the high-lift flap design.
+
+11
+
+J. Brezillon, R. Dwight
+
+6
+
+C O N C L U S IO N
+Th e c ap ab i l i t y o f t h e di sc ret e adjo i nt t o p erfo rm 2D v i sc o u s aero dy nam i c sh ap e
+o p t i m i z at i o n h as b een dem o nst rat ed. F o r i nst anc e, c o m b i ni ng t h e rap i dl y so l v ed adjo i nt
+ap p ro ac h w i t h t h e Qu asi -New t o n o p t i m i z at i o n st rat eg y al l o w s t o o p t i m i z e c o nfi g u rat i o ns
+u si ng 20 desi g n v ari ab l es w i t h a si m i l ar nu m b er o f fl o w so l u t i o ns.
+Th e ex t ensi o n o f t h e ap p ro ac h t o 3D c o nfi g u rat i o ns p resent s p ro b l em s i n t h e fo rm u l at i o n
+and so l u t i o n o f t h e adjo i nt sy st em . I t h as b een seen t h at t h e m em o ry req u i rem ent s o f t h e
+adjo i nt m et h o d h eav i l y do m i nat e t h o se o f t h e fl o w so l v er i t sel f, and effec t t h at i s m o re
+p ro no u nc ed i n 3D du e t h e i nc rease nu m b er o f nei g h b o rs o f a p o i nt , p art i c u l arl y i n t et rah edral
+m esh es. G i v en t h at t h e ex p l i c i t sy st em m at ri x m ay t h erefo re no t b e ex p l i c i t l y av ai l ab l e i t i s
+al so nec essary t o dev el o p an al t ernat i v e m eans o f so l v i ng t h e adjo i nt eq u at i o ns. I t i s k no w n
+t h at i t erat i v e m et h o ds fo r t h e o ri g i nal di sc ret i z at i o n o f t h e fl o w eq u at i o ns m ay b e adap t ed fo r
+so l u t i o n o f t h e adjo i nt eq u at i o ns t h o u g h a di fferent so rt o f adjo i nt i ng p ro c edu re and t h i s
+m et h o d w i l l b e p u rsu ed i n fu t u re.
+A C K N O L E DG E M E N T S :
+Th e au t h o r w ant s t o t h ank s J . W i l d fo r h i s su p p o rt fo r t h e h i g h -l i ft m esh g enerat i o n and t h e
+B M W A fo r fi nanc i al su p p o rt u nder t h e g rant nu m b er M E G AD E S I G N/ 20 A0 30 2A.
+
+7
+
+RE F E RE N C E S
+[ 1] B rez i l l o n, J ., G au g er, N.R. “ 2D and 3D aero dy nam i c sh ap e o p t i m i z at i o n u si ng t h e
+adjo i nt ap ro ac h ” , Aero sp ac e S c i enc e and Tec h no l o g y , 8, 8, p ag es 715-727, 20 0 4.
+[ 2] B rez i l l o n, J , W i l d, J ., “ E v al u at i o n o f di fferent o p t i m i z at i o n st rat eg i es fo r t h e desi g n
+o f a h i g h -l i ft fl ap dev i c e” , E U RO G E N 20 0 5, M u ni c h , S ep t em b er 20 0 5
+[ 3] C ant ari t i , F ., W o o dg at e, M ., B adc o c k , K ., Ri c h ards, B “ S o l u t i o n o f t h e Nav i erS t o k es eq u at i o ns i n t h ree di m ensi o ns u si ng a fu l l y u nfac t o red m et h o d” , G l asg o w
+U ni v ersi t y , D ep art m ent o f Aero sp ac e E ng i neeri ng , (Tec h ni c al Rep o rt 990 8), 1999.
+[ 4] D w i g h t , R.P ., “ An i m p l i c i t L U -S G S sc h em e fo r fi ni t e-v o l u m e di sc ret i z at i o ns o f t h e
+Nav i er-S t o k es eq u at i o ns o n h y b ri d g ri ds” , D L R F B 20 0 5-0 5, I S S N 1434-8454, 20 0 5.
+[ 5] F ro m m ann O ., “ S y nap sP o i nt erP ro V 2.50 ” , S y nap s I ng .-G m b H , G erm any , 20 0 2.
+[ 6] G erh o l d, T., G al l e, M ., F ri edri c h , O ., E v ans, J , “ C al c u l at i o n o f C o m p l ex 3D
+C o nfi g u rat i o ns E m p l o y i ng t h e D L R T A U -C o de” , AI AA p ap er 97-0 167, 1997.
+[ 7] K ro l l , N., G au g er, N. R., B rez i l l o n, J ., B ec k er K ., S c h u l z V ., “ O ng o i ng Ac t i v i t i es i n
+S h ap e O p t i m i z at i o n w i t h i n t h e G erm an P ro jec t M E G AD E S I G N” , E C C O M AS 20 0 4,
+J y v ä sk y l ä , F i nl and, 24-28 J u l y 20 0 4.
+[ 8] Ni el sen, E ., K l eb , B ., “ E ffi c i ent c o nst ru c t i o n o f di sc ret e adjo i nt o p erat o rs o n
+u nst ru c t u red g ri ds u si ng c o m p l ex v ari ab l es” , AI AA 20 0 5-0 324, Reno , U S A, 20 0 5.
+[ 9] S el m i n, V . , “ M u l t i -p o i nt Aero dy nam i c S h ap e O p t i m i z at i o n: Th e AE RO S H AP E
+P ro jec t ” , P ro c eedi ng s o f E C C O M AS , B arc el o na, S p ai n, 20 0 0 .
+[ 10 ] W i l d J ., M ert i ns R., Qu ag l i arel l a D ., B rez i l l o n J ., Qu est J ., Am o i g no n O ., M o ens F .,
+“ Ap p l y i ng nu m eri c al o p t i m i z at i o n t o real i st i c h i g h -l i ft desi g n o f t ransp o rt ai rc raft An o v erv i ew o f t h e aero dy nam i c desi g n o p t i m i z at i o n i nv est i g at i o n w i t h t h e
+E U RO L I F T I I p ro jec t ” , E U RO G E N 20 0 5, M u ni c h , S ep t em b er 20 0 5.
+
+12
+
+

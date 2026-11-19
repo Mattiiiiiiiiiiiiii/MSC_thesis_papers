@@ -1,0 +1,60 @@
+author: STEFKO, G. and JERACKI, R.
+author_list:
+- affiliation:
+  - name: NASA, Lewis Research Center, Cleveland, OH
+  family: Stefko
+  given: G.
+- affiliation:
+  - name: NASA, Lewis Research Center, Cleveland, OH
+  family: Jeracki
+  given: R.
+booktitle: 21st Joint Propulsion Conference
+citations:
+- first-page: '2'
+  journal-title: SAE Paper
+  volume: '790573'
+  year: '1979'
+- unstructured: Savings Potential of the NASA Advanced Turboprop Program," NASA TM-X-83736,
+    1984. 3. Rohrbach, C., Metzger, F.B., Black, D.M., and
+- author: Ladden R.M.
+  first-page: '4'
+  journal-title: NASA CR-3505
+  year: '1982'
+- author: Wikete J.E
+  first-page: '5'
+  journal-title: SAE Paper
+  volume: '770458'
+  year: '1977'
+- author: Takeoff Climb
+  first-page: '6'
+  journal-title: NASA TM-87030
+  year: '1985'
+- unstructured: Supersonic Wind Tunnel,'' NASA TM-X-71625, 1974. TABLE 1. DESIGN CHARACTERISTICS
+    AN0 PLANFORMS OF THE SR-2 AN0
+- unstructured: CLIMBAND 'zlo DESCENT DOMINATED DOMINATED M O 2000 4000 6000
+- volume-title: SR-3 propeller:!30.7 - -6.8O
+- unstructured: AIAA-85-1259
+- unstructured: Washington, O.C. 20546 Wind Tunnel Results of Advanced High Speed
+    Propellers in the Takeoff, Climb, and Landing Operating Regimes 7. Author@)
+- unstructured: George L. Stefko and Robert J. Jeracki 9. PerformingOrganizationName
+    and Address
+- unstructured: 505-45-58
+- volume-title: Twenty-first Joint Propulsion Conference, cosponsored by the AIAA,
+    SAE, ASME, and ASEE
+  year: '1985'
+doc_url: http://arc.aiaa.org/doi/pdf/10.2514/6.1985-1259
+doi: 10.2514/6.1985-1259
+files:
+- wind_tunnel_results_of_advanced_high_speed_propellers_in_the_takeoff_climb_and_landing_operating_regimes_Stefko_Jeracki_1985.pdf
+journal: 21st  Joint Propulsion Conference
+month: 7
+papis_id: 4c207a540a4f74c9b6e6d946f8f2153a
+publisher: American Institute of Aeronautics and Astronautics
+tags:
+- needs-review
+title: Wind tunnel results of advanced high speed propellers in the takeoff, climb,
+  and landing operating regimes
+type: inproceedings
+url: https://doi.org/10.2514/6.1985-1259
+venue: Monterey,CA,U.S.A.
+year: 1985

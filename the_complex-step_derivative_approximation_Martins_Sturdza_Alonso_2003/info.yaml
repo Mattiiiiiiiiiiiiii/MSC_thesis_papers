@@ -1,0 +1,274 @@
+abstract: <jats:p>The complex-step derivative approximation and its application to
+  numerical algorithms are presented. Improvements to the basic method are suggested
+  that further increase its accuracy and robustness and unveil the connection to algorithmic
+  differentiation theory. A general procedure for the implementation of the complex-step
+  method is described in detail and a script is developed that automates its implementation.
+  Automatic implementations of the complex-step method for Fortran and C/C++ are presented
+  and compared to existing algorithmic differentiation tools. The complex-step method
+  is tested in two large multidisciplinary solvers and the resulting sensitivities
+  are compared to results given by finite differences. The resulting sensitivities
+  are shown to be as accurate as the analyses. Accuracy, robustness, ease of implementation
+  and maintainability make these complex-step derivative approximation tools very
+  attractive options for sensitivity analysis.</jats:p>
+author: Martins, Joaquim R. R. A. and Sturdza, Peter and Alonso, Juan J.
+author_list:
+- affiliation:
+  - name: University of Toronto Institute for Aerospace Studies, Toronto, Canada
+  family: Martins
+  given: Joaquim R. R. A.
+- affiliation:
+  - name: Stanford University, Stanford, CA
+  family: Sturdza
+  given: Peter
+- affiliation:
+  - name: Stanford University, Stanford, CA
+  family: Alonso
+  given: Juan J.
+citations:
+- doi: 10.2514/6.1999-3294
+  unstructured: Anderson W. K. Newman J. C. Whitfield D. L. and Nielsen E. J. 1999.
+    Sensitivity analysis for the Navier--Stokes equations on unstructured meshes using
+    complex variables. AIAA Paper 99--3294.  Anderson W. K. Newman J. C. Whitfield
+    D. L. and Nielsen E. J. 1999. Sensitivity analysis for the Navier--Stokes equations
+    on unstructured meshes using complex variables. AIAA Paper 99--3294.
+- author: Bartholomew-Biggs M.
+  unstructured: Bartholomew-Biggs , M. 1995. OPFAD---A Users Guide to the OPtima Forward
+    Automatic Differentiation Tool . Numerical Optimization Centre , University of
+    Hertfordsshire. Bartholomew-Biggs, M. 1995. OPFAD---A Users Guide to the OPtima
+    Forward Automatic Differentiation Tool. Numerical Optimization Centre, University
+    of Hertfordsshire.
+  volume-title: OPFAD---A Users Guide to the OPtima Forward Automatic Differentiation
+    Tool
+- doi: 10.1016/0377-0427(94)90293-3
+- doi: 10.1016/0377-0427(94)90294-1
+- author: Bendtsen C.
+  unstructured: Bendtsen , C. and Stauning , O . 1996 . FADBAD, A flexible C++ package
+    for automatic differentiation---using the forward and backward methods. Tech.
+    Rep. IMM-REP-1996-17 , Technical University of Denmark, DK-2800 Lyngby, Denmark
+    . Bendtsen, C. and Stauning, O. 1996. FADBAD, A flexible C++ package for automatic
+    differentiation---using the forward and backward methods. Tech. Rep. IMM-REP-1996-17,
+    Technical University of Denmark, DK-2800 Lyngby, Denmark.
+  volume-title: Tech. Rep. IMM-REP-1996-17
+  year: '1996'
+- article-title: 'ADIFOR: Generating derivative codes from Fortran programs. Sci'
+  author: Bischof C.
+  first-page: '11'
+  journal-title: Prog.
+  unstructured: 'Bischof , C. , Carle , A. , Corliss , G. , Grienwank , A. , and Hoveland
+    , P. 1992 . ADIFOR: Generating derivative codes from Fortran programs. Sci . Prog.
+    1 , 1, 11 -- 29 . Bischof, C., Carle, A., Corliss, G., Grienwank, A., and Hoveland,
+    P. 1992. ADIFOR: Generating derivative codes from Fortran programs. Sci. Prog.
+    1, 1, 11--29.'
+  volume: '1'
+  year: '1992'
+- author: Bischof C.
+  unstructured: Bischof , C. , Corliss , G. , and Grienwank , A . 1991 . ADIFOR exception
+    handling. Tech. Rep. MCS-TM-159, Argonne Technical Memorandum. Bischof, C., Corliss,
+    G., and Grienwank, A. 1991. ADIFOR exception handling. Tech. Rep. MCS-TM-159,
+    Argonne Technical Memorandum.
+  volume-title: Tech. Rep. MCS-TM-159, Argonne Technical Memorandum.
+  year: '1991'
+- doi: 10.1002/(SICI)1097-024X(199712)27:12%3C1427::AID-SPE138%3E3.3.CO;2-H
+- author: Brown S.
+  unstructured: Brown , S. 1995. OPRAD---A Users Guide to the OPtima Reverse Automatic
+    Differentiation Tool . Numerical Optimization Centre , University of Hertfordsshire.
+    Brown, S. 1995. OPRAD---A Users Guide to the OPtima Reverse Automatic Differentiation
+    Tool. Numerical Optimization Centre, University of Hertfordsshire.
+  volume-title: OPRAD---A Users Guide to the OPtima Reverse Automatic Differentiation
+    Tool
+- author: Corliss G.
+  unstructured: 'Corliss , G. , Faure , C. , Griewank , A. , Hascoet , L. , and Naumann
+    , U. , Eds . 2001 . Automatic Differentiation : From Simulation to Optimization.
+    Springer . Corliss, G., Faure, C., Griewank, A., Hascoet, L., and Naumann, U.,
+    Eds. 2001. Automatic Differentiation: From Simulation to Optimization. Springer.'
+  volume-title: Eds
+  year: '2001'
+- unstructured: Faure C. and Papegay Y. 1997. Odyssée Version 1.6. The Language Reference
+    Manual. INRIA. Rapport Technique 211.  Faure C. and Papegay Y. 1997. Odyssée Version
+    1.6. The Language Reference Manual. INRIA. Rapport Technique 211.
+- author: Giering R.
+  unstructured: Giering , R. 1997. Tangent Linear and Adjoint Model Compiler Users
+    Manual . Max-Planck Institut für Meteorologie . Giering, R. 1997. Tangent Linear
+    and Adjoint Model Compiler Users Manual. Max-Planck Institut für Meteorologie.
+  volume-title: Tangent Linear and Adjoint Model Compiler Users Manual
+- article-title: Practical Optimization
+  author: Gill P. E.
+  first-page: '11'
+  journal-title: Chapter
+  unstructured: Gill , P. E. , Murray , W. , and Wright , M. H. 1981 . Practical Optimization
+    , Chapter 2 , pp. 11 -- 12 . Academic Press, San Diego, Calif. Gill, P. E., Murray,
+    W., and Wright, M. H. 1981. Practical Optimization, Chapter 2, pp. 11--12. Academic
+    Press, San Diego, Calif.
+  volume: '2'
+  year: '1981'
+- unstructured: Griewank A. 2000. Evaluating Derivatives. SIAM Philadelphia Pa.  Griewank
+    A. 2000. Evaluating Derivatives. SIAM Philadelphia Pa.
+- article-title: Derivative convergence for iterative equation solvers
+  author: Griewank A.
+  doi: 10.1080/10556789308805549
+  first-page: '321'
+  journal-title: Optim. Meth. Softw.
+  unstructured: Griewank , A. , Bischof , C. , Corliss , G. , Carle , A. , and Williamson
+    , K. 1993 . Derivative convergence for iterative equation solvers . Optim. Meth.
+    Softw. 2 , 321 -- 355 . Griewank, A., Bischof, C., Corliss, G., Carle, A., and
+    Williamson, K. 1993. Derivative convergence for iterative equation solvers. Optim.
+    Meth. Softw. 2, 321--355.
+  volume: '2'
+  year: '1993'
+- doi: 10.1145/229473.229474
+- doi: 10.2172/10107336
+  unstructured: Horwedel J. E. 1991. GRESS Version 2.0 User's Manual. ORNL. TM-11951.  Horwedel
+    J. E. 1991. GRESS Version 2.0 User's Manual. ORNL. TM-11951.
+- author: Kubota K.
+  first-page: '367'
+  unstructured: Kubota , K. 1996. PADRE2---FORTRAN Precompiler for Automatic Differentiation
+    and Estimates of Rounding Errors . SIAM , Philadelphia, Pa ., pp. 367 -- 374 .
+    Kubota, K. 1996. PADRE2---FORTRAN Precompiler for Automatic Differentiation and
+    Estimates of Rounding Errors. SIAM, Philadelphia, Pa., pp. 367--374.
+  volume-title: PADRE2---FORTRAN Precompiler for Automatic Differentiation and Estimates
+    of Rounding Errors
+- author: Lutz M.
+  unstructured: Lutz , M. 1996. Programming Python. O'Reilly & Associates , Inc.,
+    Cambridge, Mass . Lutz, M. 1996. Programming Python. O'Reilly & Associates, Inc.,
+    Cambridge, Mass.
+  volume-title: Programming Python. O'Reilly & Associates
+- author: Lyness J. N.
+  first-page: '125'
+  unstructured: Lyness , J. N. 1967 . Numerical algorithms based on the theory of
+    complex variable . In Proceedings of the ACM National Meeting (Washington, D.C.).
+    ACM New York , pp. 125 -- 133 . 10.1145/800196.805983 Lyness, J. N. 1967. Numerical
+    algorithms based on the theory of complex variable. In Proceedings of the ACM
+    National Meeting (Washington, D.C.). ACM New York, pp. 125--133. 10.1145/800196.805983
+  volume-title: Proceedings of the ACM National Meeting (Washington, D.C.). ACM New
+    York
+  year: '1967'
+- article-title: Numerical differentiation of analytic functions
+  author: Lyness J. N.
+  doi: 10.1137/0704019
+  first-page: '2'
+  journal-title: SIAM J. Numer. Anal.
+  unstructured: Lyness , J. N. and Moler , C. B. 1967 . Numerical differentiation
+    of analytic functions . SIAM J. Numer. Anal. 4 , 2 (June), 202--210. Lyness, J.
+    N. and Moler, C. B. 1967. Numerical differentiation of analytic functions. SIAM
+    J. Numer. Anal. 4, 2 (June), 202--210.
+  volume: '4'
+  year: '1967'
+- unstructured: Martins J. R. R. A. 2003. A Guide to the Complex-Step Derivative Approximation.
+    http://mdolab.utias.utoronto.ca. 10.1145/838250.838251   Martins J. R. R. A. 2003.
+    A Guide to the Complex-Step Derivative Approximation. http://mdolab.utias.utoronto.ca.
+    10.1145/838250.838251
+- doi: 10.2514/6.2002-5402
+  unstructured: Martins J. R. R. A. Alonso J. J. and Reuther J. J. 2002. Complete
+    configuration aero-structural optimization using a coupled sensitivity analysis
+    method. AIAA Paper 2002-5402 (Sept.).  Martins J. R. R. A. Alonso J. J. and Reuther
+    J. J. 2002. Complete configuration aero-structural optimization using a coupled
+    sensitivity analysis method. AIAA Paper 2002-5402 (Sept.).
+- doi: 10.2514/6.2000-689
+  unstructured: Martins J. R. R. A. Kroo I. M. and Alonso J. J. 2000. An automated
+    method for sensitivity analysis using complex variables. AIAA Paper 2000-0689
+    (Jan.).  Martins J. R. R. A. Kroo I. M. and Alonso J. J. 2000. An automated method
+    for sensitivity analysis using complex variables. AIAA Paper 2000-0689 (Jan.).
+- unstructured: Martins J. R. R. A. Sturdza P. and Alonso J. J. 2001. The connection
+    between the complex-step derivative approximation and algorithmic differentiation.
+    AIAA Paper 2001-0921 (Jan.). 10.1145/838250.838251   Martins J. R. R. A. Sturdza
+    P. and Alonso J. J. 2001. The connection between the complex-step derivative approximation
+    and algorithmic differentiation. AIAA Paper 2001-0921 (Jan.). 10.1145/838250.838251
+- author: Olver F. W. J.
+  first-page: '279'
+  unstructured: Olver , F. W. J. 1983 . Error Analysis of Complex Arithmetic . Reidel
+    , Dordrecht, Holland , pp. 279 -- 292 . Olver, F. W. J. 1983. Error Analysis of
+    Complex Arithmetic. Reidel, Dordrecht, Holland, pp. 279--292.
+  volume-title: Reidel
+  year: '1983'
+- author: Pryce J. D.
+  unstructured: Pryce , J. D. and Reid , J. K . 1998 . AD01, A Fortran 90 code for
+    automatic differentiation. Report RAL-TR-1998-057, Rutherford Appleton Laboratory,
+    Chilton, Didcot , Oxfordshire , OX11 OQX, U.K. Pryce, J. D. and Reid, J. K. 1998.
+    AD01, A Fortran 90 code for automatic differentiation. Report RAL-TR-1998-057,
+    Rutherford Appleton Laboratory, Chilton, Didcot, Oxfordshire, OX11 OQX, U.K.
+  volume-title: Report RAL-TR-1998-057, Rutherford Appleton Laboratory, Chilton, Didcot
+  year: '1998'
+- article-title: Constrained multipoint aerodynamic shape optimization using an adjoint
+    formulation and parallel computers
+  author: Reuther J.
+  doi: 10.2514/2.2413
+  first-page: '51'
+  journal-title: Part I. J. Aircraft
+  unstructured: 'Reuther , J. , Alonso , J. J. , Jameson , A. , Rimlinger , M. , and
+    Saunders , D. 1999 a. Constrained multipoint aerodynamic shape optimization using
+    an adjoint formulation and parallel computers : Part I. J. Aircraft 36 , 1, 51
+    -- 60 . Reuther, J., Alonso, J. J., Jameson, A., Rimlinger, M., and Saunders,
+    D. 1999a. Constrained multipoint aerodynamic shape optimization using an adjoint
+    formulation and parallel computers: Part I. J. Aircraft 36, 1, 51--60.'
+  volume: '36'
+  year: '1999'
+- doi: 10.2514/6.1999-187
+  unstructured: Reuther J. Alonso J. J. Martins J. R. R. A. and Smith S. C. 1999b.
+    A coupled aero-structural optimization method for complete aircraft configurations.
+    AIAA Paper 99--0187.  Reuther J. Alonso J. J. Martins J. R. R. A. and Smith S.
+    C. 1999b. A coupled aero-structural optimization method for complete aircraft
+    configurations. AIAA Paper 99--0187.
+- doi: 10.2514/6.1997-1893
+  unstructured: Reuther J. Alonso J. J. Vassberg J. C. Jameson A. and Martinelli L.
+    1997. An efficient multiblock method for aerodynamic analysis and design on distributed
+    memory systems. AIAA Paper 97--1893 (June).  Reuther J. Alonso J. J. Vassberg
+    J. C. Jameson A. and Martinelli L. 1997. An efficient multiblock method for aerodynamic
+    analysis and design on distributed memory systems. AIAA Paper 97--1893 (June).
+- article-title: IMAS---Integrated Modeling and Analysis System for the solution of
+    optimal control problems
+  author: Rhodin A.
+  doi: 10.1016/S0010-4655(97)00107-0
+  first-page: '21'
+  journal-title: Comput. Phys. Commun.
+  unstructured: Rhodin , A. 1997 . IMAS---Integrated Modeling and Analysis System
+    for the solution of optimal control problems . Comput. Phys. Commun. 107 ( Dec.
+    ), 21 -- 38 . Rhodin, A. 1997. IMAS---Integrated Modeling and Analysis System
+    for the solution of optimal control problems. Comput. Phys. Commun. 107 (Dec.),
+    21--38.
+  volume: '107'
+  year: '1997'
+- author: Shiriaev D.
+  first-page: '375'
+  unstructured: 'Shiriaev , D. 1996. ADOL--F automatic differentiation of Fortran
+    codes . In Computational Differentiation: Techniques, Applications, and Tools
+    , M. Berz, C. H. Bischof, G. F. Corliss, and A. Griewank, Eds., SIAM, Philadelphia
+    , Pa ., pp. 375 -- 384 . Shiriaev, D. 1996. ADOL--F automatic differentiation
+    of Fortran codes. In Computational Differentiation: Techniques, Applications,
+    and Tools, M. Berz, C. H. Bischof, G. F. Corliss, and A. Griewank, Eds., SIAM,
+    Philadelphia, Pa., pp. 375--384.'
+  volume-title: 'Computational Differentiation: Techniques, Applications, and Tools'
+- doi: 10.1137/S003614459631241X
+- doi: 10.2514/6.1999-3104
+  unstructured: Sturdza P. Manning V. M. Kroo I. M. and Tracy R. R. 1999. Boundary
+    layer calculations for preliminary design of wings in supersonic flow. AIAA Paper
+    99--3104 (June).  Sturdza P. Manning V. M. Kroo I. M. and Tracy R. R. 1999. Boundary
+    layer calculations for preliminary design of wings in supersonic flow. AIAA Paper
+    99--3104 (June).
+- article-title: Development and validation of a massively parallel flow solver for
+    turbomachinery flow
+  author: Yao J.
+  first-page: '3'
+  journal-title: J. Prop. Power
+  unstructured: Yao , J. , Alonso , J. J. , Jameson , A. , and Liu , F. 2001 . Development
+    and validation of a massively parallel flow solver for turbomachinery flow . J.
+    Prop. Power 17 , 3 (June), 659--668. Yao, J., Alonso, J. J., Jameson, A., and
+    Liu, F. 2001. Development and validation of a massively parallel flow solver for
+    turbomachinery flow. J. Prop. Power 17, 3 (June), 659--668.
+  volume: '17'
+  year: '2001'
+doc_url: https://dl.acm.org/doi/pdf/10.1145/838250.838251
+doi: 10.1145/838250.838251
+files:
+- the_complex-step_derivative_approximation_Martins_Sturdza_Alonso_2003.pdf
+issue: '3'
+journal: ACM Transactions on Mathematical Software
+language: en
+month: 9
+pages: 245--262
+papis_id: e71e03a6a9cffe4729c2ff5b24a6bbf7
+publisher: Association for Computing Machinery (ACM)
+title: The complex-step derivative approximation
+type: article
+url: https://doi.org/10.1145/838250.838251
+volume: '29'
+year: 2003

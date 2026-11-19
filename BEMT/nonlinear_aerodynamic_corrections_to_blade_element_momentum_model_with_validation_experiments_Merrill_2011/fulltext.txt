@@ -1,0 +1,4277 @@
+Utah State University
+
+DigitalCommons@USU
+All Graduate Plan B and other Reports
+
+Graduate Studies
+
+12-2011
+
+Nonlinear Aerodynamic Corrections to Blade Element Momentum
+Model with Validation Experiments
+Robert S. Merrill
+Utah State University
+
+Follow this and additional works at: https://digitalcommons.usu.edu/gradreports
+Part of the Aerospace Engineering Commons
+
+Recommended Citation
+Merrill, Robert S., "Nonlinear Aerodynamic Corrections to Blade Element Momentum Model with
+Validation Experiments" (2011). All Graduate Plan B and other Reports. 67.
+https://digitalcommons.usu.edu/gradreports/67
+
+This Creative Project is brought to you for free and open
+access by the Graduate Studies at
+DigitalCommons@USU. It has been accepted for
+inclusion in All Graduate Plan B and other Reports by an
+authorized administrator of DigitalCommons@USU. For
+more information, please contact
+digitalcommons@usu.edu.
+
+NONLINEAR AERODYNAMIC CORRECTIONS TO BLADE ELEMENT
+MOMENTUM MODEL WITH VALIDATION EXPERIMENTS
+by
+Robert S. Merrill
+A report submitted in partial fulllment
+of the requirements for the degree
+of
+MASTER OF SCIENCE
+in
+Aerospace Engineering
+
+Approved:
+
+Dr. Stephen Whitmore
+
+Dr. Warren Phillips
+
+Major Professor
+
+Committee Member
+
+Dr. Barton Smith
+Committee Member
+
+UTAH STATE UNIVERSITY
+Logan, Utah
+2011
+
+ii
+
+Copyright
+
+c
+
+Robert S. Merrill
+
+All Rights Reserved
+
+2011
+
+iii
+
+Abstract
+Nonlinear Aerodynamic Corrections to Blade Element Momentum Model with Validation
+Experiments
+
+by
+
+Robert S. Merrill, Master of Science
+Utah State University, 2011
+
+Major Professor: Dr. Stephen Whitmore
+Department: Mechanical and Aerospace Engineering
+
+Blade element momentum theory is well suited for propeller analysis during the early
+stages of design.
+
+The analytic blade element momentum model is presented along with
+
+a proposed nonlinear improvement. The analytical model makes small angle assumptions
+which are known to be inaccurate under some conditions. The nonlinear model avoids these
+assumptions. The results of the analytical and nonlinear models are compared against each
+other. The dierences between these are most prevalent on lower pitch propellers at high
+advance ratios. A wind tunnel validation test is outlined. Results of the validation test and
+other published data from the University of Illinois at Urbana-Champaign are compared to
+the analytical and nonlinear blade element models.
+
+The test data matches the nonlinear
+
+data with reasonable accuracy at high advance ratios.
+
+(54 pages)
+
+iv
+
+Public Abstract
+Nonlinear Aerodynamic Corrections to Blade Element Momentum Model with Validation
+Experiments
+
+by
+
+Robert S. Merrill, Master of Science
+Utah State University, 2011
+
+Major Professor: Dr. Stephen Whitmore
+Department: Mechanical and Aerospace Engineering
+
+Many dierent mathematical models have proved to estimate propeller performance. This
+study looks at a common method called blade element momentum theory. Some inaccurate
+assumptions are made to complete the calculations. A proposed model without these assumptions is presented. Propeller performance is tested in a wind tunnel and compared to
+the predictions made by both models. Published test data is also compared to both models.
+The test data matches the proposed model with reasonable accuracy.
+
+(54 pages)
+
+v
+
+Acknowledgments
+I would like to acknowledge the help and support I received from my graduate committee by supplying me with the knowledge that I needed to complete this work. It was such
+an honor to work with each of them. I would especially like to thank Dr. Whitmore for
+allowing me to complete this work under his guidance and for his patience.
+I would like to thank fellow students, Casey Talbot and Shannon Eilers, who spared
+their own time in helping me through the course of this research.
+Most importantly, I would like to thank my wife Jen for supporting me in every imaginable way. This work would not have been possible without her help.
+
+vi
+
+Contents
+Page
+
+Abstract . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+iii
+
+Public Abstract . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+iv
+
+Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+v
+
+List of Tables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+vii
+
+List of Figures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . viii
+Nomenclature . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+ix
+
+Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+1
+
+Background . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+3
+
+Blade Element Momentum Theory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+5
+
+Blade Element Theory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+5
+
+Momentum Theory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+8
+
+Analytical BEM
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+11
+
+Nonlinear BEM . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+12
+
+Programming Implementation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+13
+
+Analytical and Nonlinear Comparisons . . . . . . . . . . . . . . . . . . . . . . . . .
+
+14
+
+Experimental Procedures and Considerations . . . . . . . . . . . . . . . . . . . . . . . . .
+
+17
+
+Airspeed Measurements
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+18
+
+Thrust Measurements
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+19
+
+Power Measurements . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+20
+
+Data Acquisition
+Test Procedure
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+20
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+20
+
+Data Reduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+21
+
+Uncertainty . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+22
+
+Results and Comparisons . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+24
+
+Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+28
+
+References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+30
+
+Appendix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+31
+
+Appendix A: Manufacturer Supplied Data Files for APC 8x8 and 11x5.5 Thin
+Electric Propellers
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+32
+
+Appendix B: Analysis Code Written in Java . . . . . . . . . . . . . . . . . . . . . .
+
+36
+
+vii
+
+List of Tables
+Table
+
+Page
+
+1
+
+List of Transducers and Their Respective Function and Specications . . . . .
+
+19
+
+2
+
+Aerodynamic Constants Used in the BEM Code . . . . . . . . . . . . . . . . .
+
+24
+
+viii
+
+List of Figures
+Figure
+
+Page
+
+1
+
+Illustration of propeller pitch and its eect on the angle of attack. . . . . . . .
+
+3
+
+2
+
+Illustration of propeller pitch length.
+
+. . . . . . . . . . . . . . . . . . . . . . .
+
+3
+
+3
+
+Velocities experienced by a blade element and their eect on the angle of attack.
+
+5
+
+4
+
+Stream tube encompassing concentric stream surfaces.
+
+8
+
+5
+
+Velocities and pressure along the slip stream of the propeller.
+
+. . . . . . . . .
+
+8
+
+6
+
+User interface of the BEM code. . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+13
+
+7
+
+Comparison of thrust coecients between analytical and nonlinear BEM models for propellers with dierent pitch lengths.
+
+8
+
+. . . . . . . . . . . . .
+
+. . . . . . . . . . . . . . . . . .
+
+15
+
+Comparison of power coecients between analytical and nonlinear BEM models for propellers with dierent pitch lengths.
+
+. . . . . . . . . . . . . . . . . .
+
+15
+
+9
+
+Photo of propeller installation, pivot arm and load cell conguration. . . . . .
+
+18
+
+10
+
+Block diagram of mechanical measurements. . . . . . . . . . . . . . . . . . . .
+
+18
+
+11
+
+In situ calibration of load cell using calibrated weights. . . . . . . . . . . . . .
+
+20
+
+12
+
+Averaged wake proles highlighting sources of wake survey shortcomings.
+
+25
+
+13
+
+. .
+
+Comparison of load cell derived thrust and power coecients to BEM models
+(APC 8x8 Thin Electric propeller). . . . . . . . . . . . . . . . . . . . . . . . .
+
+14
+
+Angle of attack at each blade element at advance ratios J = 0 and J = 0.45
+(APC 8x8 Thin Electric propeller). . . . . . . . . . . . . . . . . . . . . . . . .
+
+15
+
+25
+
+26
+
+Comparison of thrust and power coecients (UIUC data) to BEM models
+(APC 11x5.5 Thin Electric propeller).
+
+. . . . . . . . . . . . . . . . . . . . . .
+
+27
+
+ix
+
+Nomenclature
+c
+
+Chord length of blade, cm (in)
+
+CD
+
+Drag coecient
+
+CD0
+
+Parasitic drag coecient
+
+CD,L
+
+Drag coecient contribution proportional to lift
+
+CD,L2 Drag coecent contribution proportional to lift squared
+CL
+
+Lift coecient
+
+CL0
+
+Lift coecient at zero angle of attack
+
+CL,α
+
+Lift slope
+
+CP
+
+Power coecient
+
+CT
+
+Thrust coecient
+
+dCP
+
+Dierential power coecient
+
+dCT
+
+Dierential thrust coecient
+
+dQ
+
+Dierential torque, N (lbf )
+
+dr
+
+Dierential radius of blade, cm (in)
+
+dT
+
+Dierential thrust, N (lbf )
+
+dx
+
+Dierential nondimensional radius of blade
+
+E
+
+Supplied motor voltage, volts
+
+I
+
+Supplied motor current, amps
+
+I0
+
+No-load current, amps
+
+J
+
+Advance ratio
+
+Ji
+
+Nondimensional induced velocity
+
+ṁ
+
+Mass ow rate, kg/sec (slug/sec)
+
+N
+
+Number of blades in propeller
+
+P
+
+Power, watts
+
+p
+
+Pressure before propeller disk, Pa (psi)
+
+p∞
+
+Free stream atmospheric pressure, Pa (psi)
+
+x
+
+Q
+
+Propeller torque, N-m (ft-lbf )
+
+r
+
+Radial location along propeller blade, cm (in)
+
+R
+
+Tip radius of blade, cm (in)
+
+Ra
+
+Armature resistance, ohms
+
+Rw
+
+Integration limit of the wake defect, cm (in)
+
+St
+
+Wind tunnel test section cross sectional area, m
+
+T
+
+Propeller thrust, N (lbf )
+
+UI
+
+Standard uncertainty of current measurement, amps
+
+UI0
+
+Standard uncertainty of no-load current, amps
+
+UP
+
+Standard uncertainty of power measurement, watts
+
+URa
+
+Standard uncertainty of armature resistance, ohms
+
+Ve
+
+Stream tube exit velocity, m/sec (ft/sec)
+
+Vi
+
+Induced velocity, m/sec (ft/sec)
+
+V∞
+
+Free stream velocity parallel to propeller axis, m/sec (ft/sec)
+
+0
+V∞
+
+Corrected free stream velocity
+
+V (r)
+
+Velocity at radial location r , m/sec (ft/sec)
+
+x
+
+Nondimensional blade radius
+
+xr
+
+Nondimensional blade root location
+
+xt
+
+Nondimensional blade tip location
+
+α
+
+Angle of attack, deg.
+
+αi
+
+Induced angle of attack, deg.
+
+β
+
+Propeller blade pitch angle, deg.
+
+∆p
+
+Pressure jump across propeller disk, Pa (psi)
+
+γ
+
+Ratio of propeller disk area to tunnel area
+
+λ
+
+Propeller pitch length, cm (in)
+
+Φ
+
+Advance angle, deg.
+
+ρ
+
+Air density, kg/m
+
+τ
+
+Nondimensional thrust used for veloctiy correction
+
+θ
+
+Circumferential location around the propeller axis
+
+ω
+
+Rotation rate of propeller, rad/sec
+
+2 (ft2 )
+
+2 (slug/ft2 )
+
+1
+
+Introduction
+Predicting the characteristics of high speed rotating ow elds, because of the inherently
+unsteady ow properties, is one of the most complex analytical problems in modern uid
+mechanics. Advances in computer execution speed, memory capacity and user interactivity
+have allowed numerical techniques in computational uid dynamics (CFD) to grow rapidly
+in the last decade.
+
+Unfortunately, even with the growing capabilities of CFD, solutions
+
+for rotating propellers and turbine blades are very dicult to achieve.
+
+Generating CFD
+
+grids that allow for accurate, converged solutions is an extremely dicult problem. Small
+changes in the grid layout or boundary conditions can dramatically eect the end results.
+Thus, the sheer cost, volume of labor required for grid generation and long computational
+times preclude the use of CFD during the early design stages of ight vehicles that include
+propeller systems.
+For conceptual design, low-order engineering codes are still the preferred method for
+designers. Engineering codes are powerful tools when applied in the conceptual design stage.
+Their use in the early stages of design enables higher delity CFD calculations or wind tunnel
+tests to be performed on more mature vehicle concepts and can trim many months o the
+design process.
+
+Traditionally, one of the following low-order engineering design methods
+
+have been used to calculate the steady state ow properties behind rotating propellers and
+turbine blades. These are momentum theory, Goldstein's vortex theory and blade element
+theory. Often momentum theory is combined with blade element theory to produce a single
+low-order prediction tool referred to as the combined blade element momentum (BEM)
+theory.
+Goldstein [1] developed a potential ow vortex theory for propellers with a nite number
+of propellers in axial ow. For moderate inow conditions, vortex theory has successfully
+been used to derive the performance of propellers and wind turbines [2]. In the model, the
+wake is considered to be a helical vortex sheet trailing the propeller at a constant pitch.
+
+2
+Goldstein solves the problem of inter-meshed helical surfaces of innite axial extension and
+nite radius. The solution takes the form of a tip loading factor, a function of the inow,
+the number of blades and the radial blade station [3].
+The single biggest drawback of Goldstein's method is the requirement of precise knowledge of the blade geometry including the chord prole and blade twist prole. Goldstein's
+vortex theory, especially for screw propellers is very sensitive to errors in the input geometry.
+Consequently, it is unclear whether vortex theory modeling error reported in technical literature is a result of error in the geometric model of the propeller, error in the airfoil section
+aerodynamic performance modeling or errors in the assumptions associated with Goldstein's
+vortex theory.
+While the vortex theory represents an important tool for analysis, the geometry sensitivity makes a dicult tool to use for initial design. This process can be quite cumbersome
+when a designer desires to embark without a preconceived geometry. As an alternative, this
+research investigates the BEM theory and introduces several modications to enhance the
+predictive accuracy of the model. Momentum theory provides a simple momentum analysis
+across the propeller disk. It gives a general description of the ow through the propeller.
+Blade element theory discretizes a propeller blade and each element is analyzed individually.
+However, blade element theory alone lacks the ability of predicting the propeller induced
+velocity needed to complete the ow eld description. The BEM theory uses concepts of
+momentum theory to complete the blade element model.
+The traditional method presented by McCormick [4] includes small angle assumptions
+to obtain an analytical solution to the BEM equations. These assumptions are known to be
+inaccurate, especially for low advance ratios and high advance angles. This paper presents
+a nonlinear solution method that avoids these inaccurate small angle assumptions and as
+such provides an enhancement to the well known BEM model. This paper compares the two
+BEM solution methods to each other and to test data collected from propellers sized 8x8
+and 11x5.5.
+
+3
+
+Fig. 1: Illustration of propeller pitch and its
+
+Fig. 2: Illustration of propeller pitch
+
+eect on the angle of attack.
+
+length.
+
+Background
+Propellers add momentum to the surrounding uid to propel an object through the
+uid. Early airplane propellers were known as airscrews and act appropriately. A propeller
+forces uid in one direction, pushing itself in the other. It can also be thought of a rotating
+wing such that the experienced velocity is the vector sum of the rotational velocity and the
+forward velocity. As a propeller spins in air, it experiences a drag resistance to the rotational
+motion. The shaft power required to overcome drag and keep the propeller spinning at a
+constant rotational rate is known as the braking power. The shape of the propeller blade
+determines its eectiveness at producing thrust. Propeller blades are inclined to the ow
+to allow better air capture and greater mechanical eciency. This inclination is referred to
+as pitch. Figure 1 shows how the pitch angle is often varied along the length of the blade
+to keep the angle of attack more constant. Pitch is measured as the distance the propeller
+would travel in one revolution through a solid medium like a screw through wood. Figure 2
+shows an example of pitch length. The local pitch angle is equal to
+
+−1
+
+β = tan
+
+
+
+λ
+2πr
+
+
+(1)
+
+where λ is the pitch length and r is the local radius of the blade. Often a propeller may not
+have the pitch prole as described in Eq. 1. In these cases, the pitch is measured by the
+pitch length or angle at 75% of the radius of the blade. Propellers in this study follow the
+prole of Eq. 1. Typically, performance of a propeller is quoted at a nondimensional velocity
+
+4
+known as the advance ratio. The advance ratio is the ratio of the distance a propeller moves
+forward in the working uid in one revolution to the diameter of the propeller itself. The
+advance ratio is equal to
+
+V∞
+J= ω
+πR
+
+(2)
+
+The root of the blade is dened here as the innermost portion of the propeller that is
+not intended to produce lift.
+
+The tip of the blade is the outermost portion of the blade.
+
+Propellers are sized by their diameter and pitch quoted in inches.
+
+For example, a 10x5
+
+propeller has a 25.4 cm (10 in) diameter propeller with a 12.7 cm (5 in) pitch length. The
+propeller nomenclature gives no indication of its pitch prole.
+Propellers are the main method of propulsion for small UAV's and hobby remote controlled aircraft. They are commonly paired with electric DC motors. Direct current motors
+are employed in this study as the means of providing the shaft power to spin the propeller. A
+DC motor can be characterized by its no-load current and armature resistance. The no-load
+current is the current that is drawn from a power source without any torque opposing the
+motion of the motor. The torque of a motor is proportional to the current that is being supplied to the motor, thus any current drawn by a motor over the no-load current contributes
+directly to the torque production of the motor.
+
+The armature resistance is the electrical
+
+resistance that is seen through the armature of the motor. The voltage being supplied to
+the motor is proportional to the motor speed. The excess voltage above the voltage drop
+due to the armature resistance contributes directly to the speed of the motor.
+
+5
+
+Blade Element Momentum Theory
+Blade Element Theory
+Blade element theory estimates the performance of propellers by analyzing the aerodynamic forces on discrete elements along the radius of the blade. Airfoil section properties are
+used to nd these discrete forces. They are integrated along the propeller to estimate a total
+resultant thrust force and opposing torque. This torque multiplied by the angular rotation
+rate is the braking power.
+
+The velocity that the blade elements experience is the vector
+
+combination of the free stream axial velocity, induced velocity and rotational velocity. The
+induced velocity is the increased inow created by the propeller. Figure 3 shows a propeller
+blade section. The local pitch angle of the blade, β , is a function of the pitch length and
+the radial distance from the axis. The advance angle, Φ, is the reduction in angle of attack
+that results from the free stream velocity and is equal to
+
+−1
+
+Φ = tan
+
+
+
+V∞
+ωr
+
+
+(3)
+
+The induced angle of attack is the reduction of the angle of attack due to the induced velocity.
+As the free stream and the induced velocities increase, the angle of attack decreases. The
+net angle of attack is equal to
+
+α = β − αi − Φ
+
+(4)
+
+Fig. 3: Velocities experienced by a blade element and their eect on the angle of attack.
+
+6
+The lift and drag coecients for a single blade element are the same as those of an
+airfoil cross section at the resultant angle of attack.
+
+The linear lift model and quadratic
+
+drag model are
+
+CL = CL0 + CL,α (β − αi − Φ)
+
+(5)
+
+CD = CD0 + CD,L CL + CD,L2 CL2
+
+(6)
+
+These models predict the thrust and drag well for moderate angles of attack.
+
+At angles
+
+of attack above 10-15 degrees, the airfoil becomes stalled and these models are no longer
+accurate. The thrust and torque contributions of each element are
+
+
+1  2
++ (ωr)2 (CL cos(αi + Φ) − CD sin(αi + Φ)) N c dr
+dT = ρ V∞
+2
+
+(7)
+
+
+1  2
+dQ = ρ V∞
++ (ωr)2 (CL cos(αi + Φ) − CD sin(αi + Φ)) N c r dr
+2
+
+(8)
+
+It is important to note that the lift and drag coecients are nondimensionalized with respect
+
+2
+
+to the combined velocity V∞ + ω
+
+2 r2 .
+
+The thrust coecient is dened by
+
+CT =
+
+T
+
+T
+
+=
+2
+ω 2
+ρ( 2π
+) (2R)4
+ρR4 4ω
+π2
+
+(9)
+
+The dierential thrust coecient, found by combining Eq. 7 and Eq. 9, is
+
+dCT =
+
+2 + (rω)2
+V∞
+2
+
+R4 4ω
+π2
+
+(CL cos(αi + Φ) − CD sin(αi + Φ)) N c dr
+
+(10)
+
+and in dimensionless form
+
+dCT =
+
+where
+
+J 2 + π 2 x2
+(CL cos(αi + Φ) − CD sin(αi + Φ)) σ dx
+8
+
+(11)
+
+7
+
+x=
+
+r
+R
+
+σ=
+
+Nc
+R
+
+The power coecient is dened by
+
+CP =
+
+Qω
+ω 3
+ρ( 2π
+) (2R)5
+
+=
+
+Qω
+
+(12)
+
+3
+
+ρR5 4ω
+π3
+
+The dierential power coecient, found by combining Eq. 8 and Eq. 12, is
+
+dCP =
+
+2 + r2 ω2
+V∞
+
+(CL sin(αi + Φ) + CD cos(αi + Φ)) N c r dr
+
+(13)
+
+J 2 + π 2 x2
+(CL sin(αi + Φ) + CD cos(αi + Φ)) σ x dx
+8
+
+(14)
+
+3
+
+R5 4ω
+π3
+
+and in dimensionless form
+
+dCP = π
+
+Dierential thrust and power are solved for at each blade element. Integrating these
+dierentials give the total thrust and power coecient for the propeller.
+
+ˆ xt
+CT =
+xr
+
+ˆ xt
+CP =
+
+π
+xr
+
+J 2 + π 2 x2
+(CL cos(αi + Φ) − CD sin(αi + Φ)) σ dx
+8
+
+(15)
+
+J 2 + π 2 x2
+(CL sin(αi + Φ) + CD cos(αi + Φ)) σ x dx
+8
+
+(16)
+
+The integration limits are from the propeller root to the propeller tip and will be discussed
+in more detail in the programming implementation section.
+The required propeller geometry for the blade element theory is the diameter, number
+of blades, pitch and chord variation along the radius.
+
+The propeller blade cross section
+
+is required to solve for the lift and drag coecients in Eqs.
+
+5 and 6.
+
+The last piece of
+
+8
+
+Fig. 4: Stream tube encompassing concentric stream surfaces.
+
+Fig. 5: Velocities and pressure along the slip stream of the propeller.
+
+information required for closure of the dierential thrust and power coecients is the induced
+angle of attack on each element.
+
+The induced angle of attack is obtained by momentum
+
+theory.
+
+Momentum Theory
+Momentum theory uses a simple ow analysis to calculate the velocity distribution of
+a slip stream by analyzing the ow through axis-symmetric dierential stream tubes. The
+dierential stream tube is made of stream surfaces which are comprised of all streamlines
+that occupy a common radial location, thus the velocity is radius dependent.
+shows the concentric stream surfaces.
+
+Figure 4
+
+The ow is assumed to be incompressible, inviscid
+
+and irrotational, even across the propeller disk. Momentum is balanced from far upstream
+of the propeller to far downstream. The propeller is treated as an innitely thin disk with
+an abrupt pressure increase across it. Figure 5 shows the the momentum ow model. Each
+stream surface inlet starts at the free stream velocity. The velocity continuously increases
+
+9
+along the stream surfaces as it passes through the propeller disk to the exit of the stream
+tube. The pressure decreases from the free stream condition to p just before the propeller
+disk. The velocity at the propeller disk is V∞ + Vi (r). The pressure increases by ∆p across
+the propeller disk and decreases to the free stream condition at the exit. The velocity at
+the exit of the stream tube increases to Ve . Bernoulli's equation is applied to the stream
+surface from the free stream to the propeller and from the propeller to the exit conditions
+which yields the following:
+
+p∞ +
+
+2
+ρ (V∞ + Vi (r))2
+ρV∞
+=p+
+2
+2
+
+ρV 2
+ρ (V∞ + Vi (r))2
+= p∞ + e
+p + ∆p +
+2
+2
+
+(17)
+
+(18)
+
+Eqs. 17 and 18 are combined and the pressure change across the propeller disk is solved for
+
+2
+ρ Ve2 − V∞
+∆p =
+2
+
+
+(19)
+
+Knowing the pressure dierence across the propeller, a dierential thrust from the propeller
+is found by multiplying it by the dierential area at the propeller disk
+
+
+
+
+
+2
+dT = ρ Ve2 − V∞
+πr dr = ρ (Ve − V∞ ) (Ve + V∞ ) πr dr
+
+(20)
+
+The dierential thrust can also be found by a momentum balance through a stream
+surface. The dierence between the upstream and downstream momentum is that which is
+added to the ow by the propeller. The momentum balance is
+
+dT + ṁ(r)V∞ = ṁ(r)Ve
+
+(21)
+
+The dierential mass ow through the stream surface, calculated at the propeller disk, is
+
+ṁ(r) = 2ρ (V∞ + Vi (r)) πr dr
+
+(22)
+
+10
+The momentum balance in Eq. 21 can then be written as
+
+dT = 2ρ (V∞ + Vi (r)) (Ve − V∞ ) πr dr
+
+(23)
+
+The dierential thrust, Eqs. 20 and 23, are equated to produce the following relationship
+between the free stream, induced and exit velocities
+
+Ve (r) = V∞ + 2Vi (r)
+
+(24)
+
+Using the exit velocity in Eq. 23 gives a denition of the dierential thrust
+
+dT = 4ρVi (r) (V∞ + Vi (r)) πr dr
+
+(25)
+
+which can be solved for the induced velocity. The induced velocity at a radial location is
+
+s
+
+Vi (r) = ±
+
+2
+dT
+V∞
+V∞
++
+−
+4
+4ρπr dr
+2
+
+(26)
+
+The positive root is kept meaning that Vi (r) > 0 which is expected when thrust is produced
+opposite the direction of the free stream. The nondimensional induced velocity at a location
+is
+
+s
+
+Ji (r) =
+
+J2
+1 dCT
+J
++
+−
+4
+πx dx
+2
+
+(27)
+
+Equations 25 and 26 can be combined to give a relationship between thrust and power. In
+a nondierential and nondimensionalized form, the ideal power coecient is
+
+
+
+J
+CP = CT  +
+2
+
+s
+
+
+
+J 2 2CT 
++
+4
+π
+
+(28)
+
+Equation 28 is considered to be an idealized relationship and is the upper limit of propeller
+eciency.
+Momentum theory has come under heavy scrutiny due to its neglect of obvious rotation
+[5]. A propeller has been likened to a rotating wing and as such, creates a trailing vortices
+
+11
+as the individual blade elements create lift.
+
+The vortices trail the propeller in a helical
+
+fashion about the propeller axis as it moves through the working uid. The actual source of
+the induced velocity is from this helical vortex system. The induced ow actually originates
+from behind the propeller as opposed to in front as momentum theory assumes. As the focus
+of this paper is on an improvement on combined blade element and momentum theory, the
+shortcomings of momentum theory are accepted while warning the reader of its deciencies.
+
+Analytical BEM
+The momentum analysis provides the necessary ow information for the blade element
+theory to calculate thrust and power. The induced angle of attack from Figure 3 is
+
+
+
+αi = tan
+
+−1  q
+
+
+
+Vi (r)
+2 + (ωr)2
+V∞
+
+
+
+(29)
+
+and dened in nondimensional terms
+
+
+
+αi = tan−1 √
+
+Ji (r)
+J 2 + π 2 x2
+
+
+(30)
+
+McCormick assumes the thrust is much greater than the drag such that it has little eect
+on the induced angle of attack, induced angle of attack is small and the advance angle is
+small. The dierential thrust on a blade element, Eq. 7, then becomes
+
+
+1  2
+dT = ρ V∞
++ (ωr)2 CL N c dr
+2
+
+(31)
+
+Small angle approximation of the induced angle of attack, Eq. 29 produces
+
+Vi (r)
+αi = q
+2 + (ωr)2
+V∞
+
+(32)
+
+12
+The dierential thrust from momentum theory, Eq. 25, can be equated to the approximate
+dierential thrust, Eq. 31. After some manipulation, it becomes
+
+
+
+V∞ CL,α N c
++
+αi2 + αi 
+ωr
+8πr
+
+s
+
+
+
+1+
+
+V∞
+ωr
+
+2
+
+
+
+C Nc
+ − L,α
+8πr
+
+s
+
+
+
+1+
+
+V∞
+ωr
+
+2
+
+(β − Φ) = 0
+
+(33)
+
+The solution of this quadratic equation is the analytic induced angle of attack
+
+
+
+αi
+
+1 V∞ CL,α N c
+= − 
++
+2 ωr
+8πr
+
+s
+
+1+
+
+
+
+V∞
+ωr
+
+2
+
+
+(34)
+
+
+
+v
+
+u
+s
+s
+ 2
+
+
+
+u
+CL,α N c
+1 u V∞ CL,α N c
+V∞ 2 
+V∞ 2
++
++ t
++
+(β − Φ)
+1+
+1+
+
+2
+
+ωr
+
+8πr
+
+ωr
+
+8πr
+
+ωr
+
+The induced angle of attack is solved at each blade element and then used in Eq. 15 and
+Eq. 16 to determine the thrust and power coecients.
+
+Nonlinear BEM
+The purpose of the nonlinear BEM model is to provide a more accurate representation of
+what the propeller blade experiences by challenging the assumptions that the drag has little
+eect on the induced angle of attack, the induced angle of attack is small and the advance
+angle is small.
+
+The inaccuracies of these assumptions are clearly seen with high pitch
+
+propellers at low advance ratios. The nonlinear modication of blade element momentum
+model iterates through a series of equations from both blade element and momentum theory
+until a convergence on the induced angle of attack is reached on each blade element. The
+induced angle of attack analytical approximation, Eq.
+
+34, is the starting point for the
+
+nonlinear iteration. The thrust coecient derivative with respect to x is then solved for.
+This derivative is used to nd the induced velocity. Last, the induced velocity is used to
+calculate a rened estimation of the induced angle of attack.
+
+The iterated equations are
+
+presented in Eqs. 35, 36 and 37.
+
+dCT
+J 2 + π 2 x2
+=
+(CL cos(αi + Φ) − CD sin(αi + Φ)) σ
+dx
+8
+
+(35)
+
+13
+
+Fig. 6: User interface of the BEM code.
+
+s
+
+Ji (r) =
+
+αi = tan
+
+J2
+1 dCT
+J
++
+−
+4
+πx dx
+2
+
+(36)
+
+J (r)
+√ i
+2
+J + π 2 x2
+
+(37)
+
+−1
+
+
+
+
+
+with
+
+Φ = tan−1
+
+
+
+V∞
+ωr
+
+
+(38)
+
+dCT =
+
+J 2 + π 2 x2
+(CL cos(αi + Φ) − CD sin(αi + Φ)) σ dx
+8
+
+(39)
+
+dCP = π
+
+J 2 + π 2 x2
+(CL sin(αi + Φ) + CD cos(αi + Φ)) σ x dx
+8
+
+(40)
+
+for closure. The converged induced angle of attack is solved at each blade element and then
+used in Eq. 15 and Eq. 16 to determine the thrust and power coecients.
+
+Programming Implementation
+The computer code for the current study was written in Java for is ease in GUI programming, ability to run independent of platform and as a learning experience for the author.
+The program interface is shown in Figure 6.
+
+The geometric inputs to the code are the
+
+chord/pitch prole le, optionally pitch length, number of blades, lift slope, zero angle lift
+coecient, and the drag coecients in the parabolic relation of drag to lift. The chord/pitch
+prole le is formatted in plain text. Each line contains a radial location, local chord length
+
+14
+and optionally, the local pitch length. The radius of the propeller root and tip are dened
+as the rst and last radius value found in the le.
+
+The diameter is twice the tip radius.
+
+The operating condition inputs are rotational velocity, incoming velocity, temperature and
+atmospheric pressure. The purpose of temperature and pressure is to nd the air density
+for dimensional results.
+elements.
+
+Analysis inputs are a tip correction factor and number of blade
+
+For a nite wing or lifting surface, the local sectional lift coecient must ap-
+
+proach zero near the wing tip. Many dierent approaches have been proposed to implement
+this condition [6]. This analysis uses most simple accepted model for initial estimations by
+assuming no lift is produced beyond x = 0.97 [7]. The blade element chord length and pitch
+are found at the center of each blade element. The chord and pitch is linearly interpolated
+from the provided blade prole geometry. If the center of the blade element is at a location
+beyond the tip correction, the lift in the analytical BEM is set to zero.
+
+However, in the
+
+nonlinear implementation, by setting the lift to zero, the derivative dCT becomes less than
+zero. To avoid taking the root of a negative number, in the nonlinear BEM the dierential
+thrust coecient is alternatively set to zero. The thrust of a propeller is primarily a product
+of the lift of the blade elements and this modication is a reasonable approximation to the
+tip eect correction developed by McCormick.
+With the required information, the code solves for the dierential thrust and power
+coecients for each blade element and numerically integrates along the length of the blade.
+
+Analytical and Nonlinear Comparisons
+For the sake of comparison, the geometry of an APC 8x4, 8x6 and 8x8 Thin Electric
+propellers are used for the following calculations. The chord proles remain equal between
+the dierent pitch lengths. It was hypothesized that the inaccuracies of the the analytical
+BEM model would occur at high advance ratios where the advance angle is large and with
+high pitch propellers. The high advance ratios would made the advance angle large, rejecting
+any small angle approximations.
+
+The higher pitch propellers would also create a greater
+
+induced angle of attack, again being less suited for a small angle approximation.
+
+Figures 7
+
+and 8 compare the power and thrust coecients for each of the propellers. It is clear that
+
+15
+
+Fig. 7: Comparison of thrust coecients between analytical and nonlinear BEM models for
+propellers with dierent pitch lengths.
+
+Fig. 8: Comparison of power coecients between analytical and nonlinear BEM models for
+propellers with dierent pitch lengths.
+
+16
+the impact that the high advance angle has on performance is more pronounced in the power
+coecient than in the thrust coecient. Interestingly, the thrust coecient diers more with
+the lower pitch propeller than the higher pitch propeller. The most reasonable cause for this
+is the analytical assumption that lift is much greater than the drag. The assumption over
+predicts the lift and therefore, thrust of the analytical model. The higher pitch a propeller
+is, the more lift is produced on the blade, thus more thrust.
+
+This assumption is more
+
+valid on higher pitch propellers than it is on lower as is evident in the thrust curves. This
+dierence outweighs any eect the induced angle of attack has on the higher pitch propellers
+as originally thought.
+
+17
+
+Experimental Procedures
+Three types of experiments were performed.
+
+The sole purpose for two tests was to
+
+characterize the DC motor used to power the propeller.
+
+The rst, to measure the no-
+
+load current by measuring the current drawn by the motor without a resistive load on
+the shaft.
+
+The second measured the armature resistance by measuring the voltage and
+
+current supplied to the motor while preventing the motor from spinning.
+
+The last, and
+
+most intensive experiment was the validation experiment in which the thrust and braking
+power was measured inside the wind tunnel at dierent tunnel velocities.
+
+The 8x8 APC
+
+Thin Electric propeller was tested in the wind tunnel, measuring thrust using both a load
+cell an calculating a momentum integral from the wake. The wake was measured using a
+sweeping pitot probe. Power being supplied to the motor was calculated through voltage
+and current measurements.
+Validation experiments were performed inside of a low speed nonrecirculating wind
+tunnel owned by the Mechanical and Aerospace Department at Utah State University. The
+wind tunnel test section dimensions are 40.6×40.6×121.9 cm (16×16×48 in.).
+
+The 8x8
+
+1
+
+propeller was installed to a motor and gear box assembly . The motor assembly was situated
+in the center of the test section and mounted to one end of a pivoting arm. The opposite
+end of the lever arm extends out the bottom of the test section with the pivot just outside
+of the wall of the tunnel.
+
+A load cell was attached to the outside end of the lever arm.
+
+The pivot allows the forces to be isolated in the axial direction and allows a mechanical
+advantage to use more of the load cell range. Figure 9 is a photo of the propeller installed
+in the wind tunnel test section. Airspeed measurements consist of total pressure ports near
+the side of the tunnel fore and aft of the propeller, a static port aft of the propeller and
+a sweeping pitot probe aft of the propeller.
+
+The pitot probe is mounted to a traversing
+
+track. The traversing track slides along a linear potentiometer for a position measurement
+
+The motor and gearbox are parts of a remote controlled airplane, a HobbyZone Super Cub.
+The motor part number is HBZ7134 and the gear box, HBZ7129.
+http://secure.hobbyzone.com/index/index_park_yers_rtf/HBZ7300.html
+1
+
+18
+
+Fig. 9: Photo of propeller installation, pivot
+
+Fig. 10: Block diagram of mechanical mea-
+
+arm and load cell conguration.
+
+surements.
+
+of the pitot probe. The voltage being supplied to the motor is measured through a voltage
+divider circuit. The current being supplied to the motor is measured through an inductive
+ammeter. Figure 10 shows a block diagram of the mechanical measurements. Table 1 lists
+each transducer, their function, ranges and accuracies. The transducers will be discussed
+individually in the following sections.
+
+Airspeed Measurements
+The total air pressure is measured by pitot probes 44.5 cm (17.5 in) upstream and
+54.6 cm (21.5 in) downstream of the propeller. The dierence between these measurements
+indicates losses in the test section. A static pressure port is also located 54.6 cm (21.5 in)
+downstream of the propeller.
+
+The dierence between the downstream total pressure and
+
+the downstream static pressure is measured.
+
+Both measurements are performed by two
+
+Omega PX143-01BD dierential pressure transducers. These two measurements give both
+an upstream and downstream velocity outside of the propeller wake.
+The sweeping pitot probe is oriented at the same height and 50.8 cm (20 in) downstream
+of the propeller.
+
+The probe sweeps horizontally from the tunnel wall to approximately 3
+
+19
+Table 1: List of Transducers and Their Respective Function and Specications
+Make/Model
+
+Measurement
+
+Function
+
+Range
+
+Accuracy
+
+Omega
+
+Dierential
+
+Tunnel loss
+
+±6.9 kPa (1
+
+0.03%
+
+PX143-01BD
+
+pressure
+
+psi)
+
+FS
+
+Omega
+
+Dierential
+
+Free stream
+
+±6.9 kPa (1
+
+0.03%
+
+PX143-01BD
+
+pressure
+
+velocity
+
+psi)
+
+FS
+
+Setra Datum 2000
+
+Dierential
+
+Velocity prole
+
+0 - 3.7 kPa
+
+0.14%
+
+model 2239
+
+pressure
+
+(0.54 psi)
+
+FS
+
+Omega LCCD-25
+
+Force
+
+±111 N (25
+
+0.2%
+
+lbf )
+
+FS
+
+Number
+
+Fluke i30
+
+Current
+
+Propeller thrust
+
+Motor current
+
+0.03 - 30A
+
+*
+*
+*
+*
+
+1% of
+reading
+
+Shimpo DT-209X
+
+Rotation rate
+
+Motor RPM
+
+6.0 - 99,999
+
+±1 RPM
+
+RPM
+
+*
+
+As measured from calibration data
+
+cm (1.2 in) past the center of the tunnel. The total and static pressure feed into a Setra
+Datum 2000 model 2239 dierential pressure transducer. The position of the pitot probe
+is measured by a linear, pressure sensitive potentiometer. The combined measurement of
+the position and airspeed allow for the measurement of the radial velocity prole from the
+propeller. Each pressure sensor was calibrated using a wall mounted Meriam GP-6 model
+40GE4 manometer.
+
+Thrust Measurements
+The propeller thrust is measured directly by the load cell mounted opposite of the
+propeller on the pivot arm. One end of the load cell is attached to the pivot arm, and the
+other to a rigid mount attached to the outer wall of the test section. The load cell is an
+Omega LCCD-25. The calibration was performed in situ with known weights hanging on
+a cord using a pulley to allow the cord to pull straight along the propeller axis. Figure 11
+shows this arrangement.
+Wake surveys were also used to indirectly measure the thrust of the propeller. The wake
+prole is an indication of how much momentum was added to the ow from the propeller.
+
+20
+
+Fig. 11: In situ calibration of load cell using calibrated weights.
+
+Power Measurements
+The current being supplied to the motor is measured by a Fluke i30 inductive current
+clamp. The speed of the propeller is measured by a Shimpo DT-209X laser tachometer. The
+voltage supplied to the motor is measured directly through a voltage divider circuit into the
+data acquisition unit.
+
+Data Acquisition
+The measurements were taken by a National Instruments DAQCard-6024 PCMCIA card
+with a 12 bit resolution. The data acquisition card was connected to a National Instruments
+BNC-2110 connector block. These make up the data acquisition unit (DAQ). Samples were
+taken at 500 Hz for all the measurements apart from the RPM measurement which was
+taken at 2 Hz.
+
+Test Procedure
+The motor no-load current, I0 , was measured by simply allowing the motor to spin freely
+without any opposition. The armature resistance is calculated by measuring the voltage and
+current supplied to the motor while preventing the motor from spinning. Minutes prior to
+propeller testing, atmospheric pressure and temperature were measured and logged. At each
+tunnel velocity, a set of measurements was taken with and without powering the propeller.
+The amount of drag created by the motor assembly and pivot arm was measured.
+
+The
+
+propeller was allowed to spin during the drag measurements. This measured drag was later
+subtracted from the thrust measurement. The motor was then powered and another set of
+
+21
+measurements are taken.
+
+The pitot swept forward, from the tunnel wall to just past the
+
+propeller axis and back to the wall. In total, 3 forward and back sweeps were made as part
+of each test. The duration of a test was approximately 55 to 65 seconds.
+
+Data Reduction
+Momentum and mass are balanced upstream and downstream of the propeller to yield
+the thrust momentum integral
+
+ˆ 2π ˆ Rw
+T =
+0
+
+!
+
+V (r)2
+− 1 r dr dθ
+2
+V∞
+
+2
+ρV∞
+
+0
+
+(41)
+
+The Rw limit of integration is the outer location of the wake and is observed from the data
+where wake remains equal with the free stream velocity. Conservation of mass through the
+test section dictates that
+
+2
+Rw
+=
+2
+
+ˆ Rw
+0
+
+V (r)
+r dr
+V∞
+
+(42)
+
+Equation 41 is integrated with respect to circumferential dimension, θ , and combined with
+Eq. 42 such that the gross thrust is equal to
+
+ˆ Rw
+T = 2πρV∞
+0
+
+V (r)2
+V (r) −
+V∞
+
+!
+
+r dr
+
+(43)
+
+The measured velocity proles are biased in the position data. It is reasonable to assume
+that the velocity proles are symmetric about the axis, therefore, in some cases, the prole
+position data was biased such that the majority of any measured asymmetry was removed.
+This asymmetry was an artifact of the measurement system. The velocity data was averaged
+at each discrete measured position created by the bit resolution of the DAQ. A trapezoidal
+integration was performed using the averaged velocity points to compute the wake integral in
+Eq. 43. The drag and thrust prole were integrated individually. The drag was subtracted
+from gross thrust to calculate the net amount of thrust.
+The free stream velocity used in the advance ratio is adjusted to reect a more accurate
+approximation of velocity where measured thrust and torque would be produced in open
+
+22
+air.
+
+The propeller ow is constrained by the tunnel.
+
+Therefore, the measured velocity is
+
+dierent than what would occur in an unconstrained ow at the same level of performance.
+This free stream velocity correction is outlined in Glauert [8] and is equal to
+
+0
+γ
+τ
+V∞
+=1− √
+V∞
+2 1 + 2τ
+
+(44)
+
+where
+
+τ=
+
+T
+2
+πR2 ρV∞
+
+γ=
+
+πR2
+St
+
+and St is the cross sectional area of the wind tunnel test section. The free stream velocity
+was calculated by the fore total pressure probe and the aft static pressure port.
+Using a measured no-load current I0 , and armature resistance Ra , the braking power
+of the motor is calculated by
+
+P = (I − I0 ) (E − I Ra )
+
+(45)
+
+The measured pressures, the load cell thrust measurement, propeller speed and motor current were averaged through the duration of the test with exception to the sweeping pitot
+measurements.
+
+Uncertainty
+An uncertainty analysis was performed on each of the measured values. It was found
+that the bit resolution of the Omega pressure sensors is primary cause of the measured
+uncertainty. It was, at least, an order of magnitude greater than the random uncertainty,
+instrument specications or propagated uncertainties from atmospheric pressure or temperature.
+The load cell experienced an additional calibration uncertainty that could not be removed through subsequent calibrations. The measured points from the calibration and the
+
+23
+linear calibrated curve t were as much as 0.044 lbf. apart. This quantity was assumed as a
+standard error and root mean squared with the bit resolution to nd the total uncertainty
+of the load cell measurements.
+The sources of uncertainty for the power calculations come from the bit resolution
+of current measurement, ammeter instrument specication and uncertainty of the motor
+constants. The current bit resolution and 1% of reading specication were root mean squared
+to total a current standard uncertainty. The variation of the no-load current and armature
+resistance are approximated to be UI0 = .05 and URa = .03 as found by multiple tests. The
+uncertainty of the power measurement was root mean squared as
+
+s
+
+UP =
+
+
+
+∂P
+UI
+∂I0 0
+
+2
+
+
+
++
+
+∂P
+UI
+∂I
+
+2
+
+
+
++
+
+∂P
+UR
+∂Ra a
+
+2
+(46)
+
+The uncertainty of the measured voltage was insignicant compared to the other uncertainties.
+The uncertainty of the thrust measurement calculated by the wake surveys was estimated using a Monte Carlo simulation. The measured velocity at each discrete location, the
+position biases and the upper integration limit of the wake integral were randomly varied in
+the simulation. All quantities are varied such that they have a normal distribution with a
+specied standard deviation. The standard deviation of the discrete velocities was calculated
+from the measurement. The position bias, used to center the wake, and the outward integration limit was varied such that they had a standard deviation of 0.25 in. The simulation
+was run 1000 times and the variation in the wake integral results were calculated.
+
+24
+
+Results and Discussion
+An APC 8x8 Thin Electric propeller was tested in the wind tunnel and compared to
+the BEM code calculations. The chord and pitch prole of the propeller was supplied by the
+manufacturer upon request. Airfoil geometry was not given therefore the aerodynamic lift
+and drag constants were chosen such that they suciently matched the load cell measurement data. These constants are in Table 2 and were used to characterize other propellers of
+the same manufacturer and series.
+Figure 12 shows averaged wake proles and are representative of the issues encountered.
+Each prole shows some form of o-centered asymmetry. Figure 12 (a) exhibits an additional
+asymmetry such that the velocity is higher on the negative side of the r axis than on the
+positive side. The source of this asymmetry is unknown and inconsistent with the symmetric
+wake assumption. Figure 12 (b) shows a noisy location in the wake. This was typical of
+each wake at higher tunnel velocities.
+individual pitot sweeps varied.
+
+Upon closer inspection, the measured wakes along
+
+This eect was unpredictable and localized to the 6 cm
+
+(2.5 in) to 10 cm (4 in) region. The uncertainty was also large, and therefore will not be
+considered in the remaining comparisons.
+Figure 13 shows the thrust and power coecients with 95% condence interval error
+bars. These measurements are compared against the BEM models predictions. The test data
+matches the models reasonably well, especially at higher advance ratios.
+
+At low advance
+
+ratios, the thrust coecient of the BEM overestimates the thrust coecient. The reason
+
+Table 2: Aerodynamic Constants Used in the BEM Code
+Quantity
+
+Value
+
+CL,α
+CL0
+CD0
+CD,L
+CD,L2
+
+5.5
+0.2
+0.02
+0.0
+0.05
+
+25
+
+(a) Thrust coecient
+
+(b) Power coecient
+
+Fig. 12: Averaged wake proles highlighting sources of wake survey shortcomings.
+
+(a) Thrust coecient
+
+(b) Power coecient
+
+Fig. 13: Comparison of load cell derived thrust and power coecients to BEM models (APC
+8x8 Thin Electric propeller).
+
+26
+
+Fig. 14: Angle of attack at each blade element at advance ratios J = 0 and J = 0.45 (APC
+8x8 Thin Electric propeller).
+
+for this discrepancy is the linear lift model that is used in the BEM models. The propeller
+blade is stalled close to the root where the local pitch angle, β , is large. Figure 14 shows
+the BEM-calculated angle of attack at two dierent advance ratios. As the advance ratio
+approaches zero, the majority of the blade experiences an angle of attack that is likely to be
+out of its linear lift range. It is dicult to determine exactly how wide the linear lift range
+is without detailed airfoil information however, above 15
+
+◦ it is safely assumed that the blade
+
+is stalled. At the higher advance ratio the angle of attack is closer to the linear lift range
+for most of the blade span.
+The BEM models were also compared to test data taken on APC propellers by Brandt
+and Selig [9] of the University of Illinois at Urbana-Champaign.
+
+Figure 15 compares the
+
+thrust an power coecients from the UIUC database against the model predictions for
+the 11x5.5 propeller.
+
+For a lower pitch propeller the thrust coecients show very good
+
+agreements, especially at the higher advance ratios.
+
+Clearly at the higher advance ratios
+
+where Φ is large the nonlinear BEM model exhibits greater accuracy. Interestingly at the
+
+27
+
+(a) Thrust coecient
+
+(b) Power coecient
+
+Fig. 15: Comparison of thrust and power coecients (UIUC data) to BEM models (APC
+11x5.5 Thin Electric propeller).
+
+lower advance ratios, both BEM models under predict the thrust coecient.
+
+This result
+
+is in direct contrast to the data presented in Figure 13 (a). For this case the blade pitch
+is signicantly lower thus the blade remains unstalled for a signicantly larger segment of
+the blade span.
+
+The UIUC power coecient data appears to be biased when compared
+
+to the thrust coecient data. Insucient information is provided by the UIUC authors to
+understand the source of this bias. The power coecient data was recalculated using Eq.
+28 from the thrust coecient. These recalculated coecients are also plotted on Figure 15
+(b). The recalculated data exhibit a closer relation to the nonlinear model.
+
+28
+
+Conclusion
+For conceptual design, low-order engineering codes are still the preferred method for
+designers. Engineering codes are powerful tools when applied in the conceptual design stage.
+Their use in the early stages of design enables higher delity CFD calculations or wind tunnel
+tests to be performed on more mature vehicle concepts and can trim many months o the
+design process.
+
+Traditionally, one of the following low-order engineering design methods
+
+have been used to calculate the steady state ow properties behind rotating propellers and
+turbine blades. These are momentum theory, Goldstein's vortex theory and blade element
+theory. Often momentum theory is combined with blade element theory to produce a single
+low-order prediction tool referred to as the combined blade element momentum theory.
+Goldstein's vortex method, although it has been successfully used to calculate the performance of propellers and wind turbines, is very sensitive to errors in the input geometry
+of the propeller, and as such is of limited use for the early stage design problems where the
+propeller characteristics may not be well known. This paper revisits the combined blade element momentum theory as an alternative. Unfortunately, the traditional analytical method
+used by McCormick to solve for the thrust and power coecients using momentum theory,
+assumes that the advance angle of the blade is small for all radial locations and at all advance ratios. This assumption is clearly inaccurate. At even moderate advance ratios, the
+advance angle of the blade is signicantly larger than can be allowed in the small angle
+approximation. The blade element thrust and power coecients are numerically calculated
+without the inaccurate small advance angle assumption. The revised algorithm is derived
+and example calculation using a Java based graphical user interface are presented. The eect
+of this revised model is investigated and presented. As expected the modications show the
+greatest eect at higher advance ratios. However, eects are shown to be greater for lower
+pitch propellers. McCormick assumes in the analytical model that the thrust is much greater
+than the drag which fails with lower pitch propellers at high advance ratios. The traditional
+
+29
+analytical model, thrust and power coecient predictions are typically overestimated by
+1-5% when compared to the revised model.
+The analytical models are compared against experimental measurements collected for
+an APC 8x8 Thin Electric propeller blade, and against additional propeller data retrieved
+from a database at the the University of Illinois at Urbana-Champaign.
+
+Generally the
+
+models exhibit reasonable comparisons with the nonlinear (improved) BEM model showing
+the best accuracy at higher advance ratios. At lower advance ratios, the models predictions
+generally depart from the experimental measurements. This discrepancy is a result of poorly
+known lift coecient distributions along the blade proles.
+
+The models as are currently
+
+implemented rely on linear airfoil theory to predict the blade element lift coecients, and
+for lower advance ratios the real blades are stalled along the lower sections of the blade near
+the root.
+
+Simple code modication to allow actual airfoil sectional lift coecients to be
+
+input should greatly improve the accuracy of the model.
+The greatest signicance of the revised model is the elimination of the theoretically
+incorrect and philosophically unsatisfying assumptions used by McCormick to solve the
+blade element momentum equations.
+
+The resulting algorithm is easily implemented with
+
+only a small increase in complexity and computational time.
+
+The revised algorithm can
+
+easily be programmed on any computer using readily available spreadsheet analysis tools.
+Momentum theory makes simplistic assumptions on the source of the induced ow. The
+induced ow is created by vorticity shed from the propeller. A point of future research would
+be to continue with blade element theory and account for vorticity in the ow. Goldstein's
+vortex theory approximates a vortices trailing from the whole span of the propeller creating
+a vortex sheet. A simplifying assumption would be that the propeller creates a single line
+vortex from the tip of the propeller. This is supported by propellers typically having high
+aspect ratios and minimal sweep creating a comparatively strong vortex o the tip of the
+blade greatly simplifying the helical vortex analysis.
+
+30
+
+References
+
+[1] Goldstein, S., On the Vortex Theory of Screw Propellers, Porceeding of the Royal
+Society of London , Vol. 123, The Royal Society, 1929, pp. 440465.
+
+[2] Kelly, Q. J., Validation and Implementation of Goldstein's Vortex Theory of Screw Propellers , Master's thesis, Utah State University, 2002.
+
+[3] Tibery, C. L. and Jr., J. W. W., Tables of the Goldstein Factor, Tech. Rep. 1534, David
+Taylor Model Basin, Washington, 1964.
+
+[4] McCormick, B. W., Aerodynamics, Aeronautics, and Flight Mechanics , Wiley, Hoboken,
+NJ, 1994.
+
+[5] Phillips, W. F., Mechanics of Flight , Wiley, Hoboken, NJ, 1st ed., 2004.
+
+[6] Shen, W. Z., Mikkelsen, R., Sørensen, J. N., and Bak, C., Tip Loss Corrections for
+Wind Turbine Computations, Wind Energy , Vol. 8, 2005, pp. 457475.
+
+[7] McCormick, B. W., Aerodynamics of V/STOL Flight , Dover Publications, Mineola, NY,
+1999.
+
+[8] Glauert, H., Airplane Propellers, Aerodynamic Theory Volume IV , edited by W. F.
+Durand, Julius Springer, Berlin, 1935.
+
+[9] Brandt, J. B. and Selig, M. S., Propeller Performance Data at Low Reynolds Numbers,
+49th AIAA Aerospace Sciences Meeting , January 2011.
+
+31
+
+Appendix
+
+32
+
+Appendix A: Manufacturer Supplied Data Files for APC 8x8 and 11x5.5 Thin
+Electric Propellers
+8x8 REV1
+
+1/14/00
+
+ELECTRIC GRAUPNER COMPETITION
+
+12-11-
+
+ORIGINAL FILE DATE BEFORE SURFDOC MODIFICATION: 12/18/2008
+PROPDATA
+RPM
+16000.0000
+RPS (n)
+266.6667
+DIA (D)
+8.0000
+NRJPTS
+31
+Airfoil section Cl & Cd coefficients ==> HAVE BEEN <== altered
+to reflect stalling effects using Beta Angle, Advance Ratio,
+and (empirical, P/D correlated) static thrust data as
+correlating parameters.
+======== NORMALIZED PERFORMANCE DATA (PLUS V) =========
+DEFINITIONS:
+J=V/nD (advance ratio)
+Ct=T/(rho * n**2 * D**4) (thrust coef.)
+Cp=P/(rho * n**3 * D**5) (power coef.)
+Pe=Ct*J/Cp (efficiency)
+V (model speed in MPH)
+J
+0.0500
+0.0898
+0.1296
+0.1694
+0.2092
+0.2490
+0.2888
+0.3286
+0.3684
+0.4082
+0.4480
+0.4878
+0.5276
+0.5673
+0.6071
+0.6469
+0.6867
+0.7265
+0.7663
+0.8061
+0.8459
+0.8857
+0.9255
+0.9653
+1.0051
+1.0449
+1.0847
+1.1245
+1.1643
+1.2041
+1.2439
+
+Ct
+0.0964
+0.0982
+0.1000
+0.1016
+0.1030
+0.1041
+0.1048
+0.1052
+0.1051
+0.1046
+0.1026
+0.0994
+0.0960
+0.0921
+0.0879
+0.0833
+0.0786
+0.0738
+0.0689
+0.0639
+0.0588
+0.0536
+0.0482
+0.0427
+0.0371
+0.0314
+0.0256
+0.0196
+0.0136
+0.0074
+0.0011
+
+Cp
+0.0703
+0.0732
+0.0762
+0.0791
+0.0820
+0.0847
+0.0871
+0.0892
+0.0909
+0.0924
+0.0924
+0.0914
+0.0899
+0.0880
+0.0856
+0.0827
+0.0796
+0.0762
+0.0726
+0.0686
+0.0644
+0.0600
+0.0552
+0.0501
+0.0446
+0.0388
+0.0327
+0.0263
+0.0195
+0.0123
+0.0051
+
+Pe
+0.0686
+0.1205
+0.1701
+0.2175
+0.2628
+0.3061
+0.3477
+0.3876
+0.4258
+0.4623
+0.4973
+0.5308
+0.5629
+0.5937
+0.6233
+0.6517
+0.6787
+0.7042
+0.7282
+0.7509
+0.7720
+0.7912
+0.8084
+0.8236
+0.8364
+0.8450
+0.8469
+0.8388
+0.8109
+0.7235
+0.2738
+
+V
+
+6.
+11.
+16.
+21.
+25.
+30.
+35.
+40.
+45.
+49.
+54.
+59.
+64.
+69.
+74.
+78.
+83.
+88.
+93.
+98.
+103.
+107.
+112.
+117.
+122.
+127.
+131.
+136.
+141.
+146.
+151.
+
+========= GEOMETRY DATA ==============
+DEFINITIONS:
+THE QUOTED PITCH REFLECTS, IN GENERAL, ANGULAR MEASURE
+AS DEFINED WITH A FLAT BOTTOM SURFACE. THIS WILL
+AGREE WITH A PRATHER GAGE MEASUREMENT OVER MOST OF THE
+EFFECTIVE PORTION OF THE BLADE.
+THE LE-TE MEASURE IS DEFINED IN TERMS OF LEADING EDGE
+AND TRAILING EDGE (MOLD) PARTING LINE DATUMS.
+THE PRATHER MEASURE REFLECTS THE MOST LIKELY PITCH
+INTERPRETATION FROM A PITCH MEASUREMENT DEVICE
+THAT RESTS AGAINST THE LOWER SURFACE.
+SWEEP IS DEFINED WITH L.E. POSITION.
+STATION
+(IN)
+
+CHORD
+(IN)
+
+PITCH
+(QUOTED)
+
+PITCH
+(LE-TE)
+
+PITCH
+(PRATHER)
+
+SWEEP
+(IN)
+
+THICKNESS
+RATIO
+
+TWIST
+(DEG)
+
+0.9536
+1.0038
+1.0541
+1.1043
+1.1545
+1.2048
+1.2602
+1.3547
+1.4544
+
+0.7216
+0.7503
+0.7767
+0.8009
+0.8229
+0.8429
+0.8625
+0.8904
+0.9126
+
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+
+7.0552
+7.1322
+7.1983
+7.2561
+7.3077
+7.3544
+7.4011
+7.4708
+7.5312
+
+0.3978
+0.4039
+0.4094
+0.4146
+0.4193
+0.4235
+0.4277
+0.4337
+0.4384
+
+0.1794
+0.1715
+0.1642
+0.1574
+0.1513
+0.1456
+0.1400
+0.1321
+0.1258
+
+53.1685
+51.7475
+50.3800
+49.0644
+47.7993
+46.5828
+45.2958
+43.2237
+41.1997
+
+MAX THICK
+(IN)
+0.1294
+0.1287
+0.1275
+0.1261
+0.1245
+0.1227
+0.1208
+0.1176
+0.1148
+
+33
+1.5541
+1.6538
+1.7536
+1.8533
+1.9530
+2.0527
+2.1524
+2.2521
+2.3518
+2.4515
+2.5512
+2.6510
+2.7507
+2.8504
+2.9501
+3.0498
+3.1495
+3.2492
+3.3489
+3.4487
+3.5484
+3.6481
+3.7478
+3.8466
+3.9404
+
+0.9278
+0.9364
+0.9390
+0.9359
+0.9275
+0.9143
+0.8968
+0.8753
+0.8503
+0.8223
+0.7917
+0.7588
+0.7242
+0.6883
+0.6515
+0.6143
+0.5771
+0.5403
+0.5043
+0.4697
+0.4368
+0.4060
+0.3779
+0.3333
+0.2245
+
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+8.0000
+
+7.5772
+7.6038
+7.6178
+7.6290
+7.6377
+7.6449
+7.6541
+7.6647
+7.6750
+7.6839
+7.6914
+7.6937
+7.6960
+7.6990
+7.7030
+7.7082
+7.7143
+7.7218
+7.7265
+7.7244
+7.7153
+7.6972
+7.6679
+7.5050
+7.4682
+
+0.4417
+0.4434
+0.4437
+0.4426
+0.4402
+0.4366
+0.4317
+0.4258
+0.4187
+0.4106
+0.4015
+0.3915
+0.3807
+0.3691
+0.3567
+0.3436
+0.3299
+0.3156
+0.3009
+0.2856
+0.2700
+0.2540
+0.2377
+0.2027
+0.1029
+
+0.1218
+0.1199
+0.1191
+0.1182
+0.1174
+0.1165
+0.1157
+0.1148
+0.1140
+0.1131
+0.1123
+0.1114
+0.1106
+0.1097
+0.1089
+0.1080
+0.1072
+0.1063
+0.1055
+0.1046
+0.1038
+0.1030
+0.1021
+0.1013
+0.1005
+
+---- EFFICIENCY, POWER, TORQUE & THRUST DISTRIBUTION ---MPH
+6.061
+10.88
+15.71
+20.53
+25.36
+30.18
+35.00
+39.83
+44.65
+49.47
+54.30
+59.12
+63.95
+68.77
+73.59
+78.42
+83.24
+88.06
+92.89
+97.71
+102.5
+107.4
+112.2
+117.0
+121.8
+126.7
+131.5
+136.3
+141.1
+145.9
+150.8
+
+11x5.5
+
+REV1
+
+EFF
+0.6856E-01
+0.1205
+0.1701
+0.2175
+0.2628
+0.3061
+0.3477
+0.3876
+0.4258
+0.4623
+0.4973
+0.5308
+0.5629
+0.5937
+0.6233
+0.6517
+0.6787
+0.7042
+0.7282
+0.7509
+0.7720
+0.7912
+0.8084
+0.8236
+0.8364
+0.8450
+0.8469
+0.8388
+0.8109
+0.7235
+0.2738
+
+POWER (Hp)
+0.7593
+0.7906
+0.8223
+0.8541
+0.8854
+0.9143
+0.9402
+0.9627
+0.9818
+0.9973
+0.9976
+0.9865
+0.9711
+0.9506
+0.9245
+0.8930
+0.8592
+0.8226
+0.7833
+0.7411
+0.6957
+0.6473
+0.5958
+0.5407
+0.4816
+0.4191
+0.3535
+0.2841
+0.2103
+0.1328
+0.5483E-01
+
+TORQUE (in-lbf)
+2.991
+3.114
+3.239
+3.364
+3.488
+3.602
+3.703
+3.792
+3.868
+3.928
+3.930
+3.886
+3.825
+3.745
+3.642
+3.518
+3.385
+3.240
+3.086
+2.919
+2.740
+2.550
+2.347
+2.130
+1.897
+1.651
+1.392
+1.119
+0.8286
+0.5231
+0.2160
+
+ELECTRIC GRAUPNER COMPETITION
+
+12-11-99
+
+ORIGINAL FILE DATE BEFORE SURFDOC MODIFICATION: 12/18/2008
+PROPDATA
+RPM
+12000.0000
+RPS (n)
+200.0000
+DIA (D)
+11.0000
+NRJPTS
+17
+Airfoil section Cl & Cd coefficients ==> HAVE BEEN <== altered
+to reflect stalling effects using Beta Angle, Advance Ratio,
+and (empirical, P/D correlated) static thrust data as
+correlating parameters.
+======== NORMALIZED PERFORMANCE DATA (PLUS V) =========
+DEFINITIONS:
+J=V/nD (advance ratio)
+Ct=T/(rho * n**2 * D**4) (thrust coef.)
+Cp=P/(rho * n**3 * D**5) (power coef.)
+Pe=Ct*J/Cp (efficiency)
+V (model speed in MPH)
+J
+0.0500
+
+Ct
+0.0735
+
+Cp
+0.0394
+
+Pe
+0.0932
+
+THRUST (lbf)
+3.221
+3.282
+3.339
+3.393
+3.441
+3.478
+3.502
+3.513
+3.511
+3.495
+3.426
+3.322
+3.206
+3.078
+2.936
+2.783
+2.627
+2.467
+2.303
+2.136
+1.964
+1.789
+1.610
+1.427
+1.240
+1.049
+0.8539
+0.6557
+0.4532
+0.2469
+0.3734E-01
+
+V
+
+6.
+
+39.3264
+37.5914
+35.9830
+34.4900
+33.1022
+31.8104
+30.6061
+29.4818
+28.4304
+27.4457
+26.5222
+25.6547
+24.8386
+24.0699
+23.3447
+22.6597
+22.0117
+21.3982
+20.8164
+20.2641
+19.7392
+19.2398
+18.7642
+18.3150
+17.9070
+
+0.1130
+0.1123
+0.1118
+0.1106
+0.1089
+0.1065
+0.1037
+0.1005
+0.0969
+0.0930
+0.0889
+0.0846
+0.0801
+0.0755
+0.0709
+0.0664
+0.0619
+0.0575
+0.0532
+0.0492
+0.0453
+0.0418
+0.0386
+0.0338
+0.0226
+
+34
+0.0898
+0.1296
+0.1694
+0.2092
+0.2490
+0.2888
+0.3286
+0.3684
+0.4082
+0.4480
+0.4878
+0.5276
+0.5673
+0.6071
+0.6469
+0.6867
+
+0.0641
+0.0551
+0.0495
+0.0465
+0.0433
+0.0401
+0.0367
+0.0332
+0.0296
+0.0258
+0.0219
+0.0179
+0.0138
+0.0096
+0.0052
+0.0006
+
+0.0351
+0.0309
+0.0284
+0.0273
+0.0261
+0.0249
+0.0234
+0.0219
+0.0201
+0.0183
+0.0163
+0.0142
+0.0119
+0.0094
+0.0068
+0.0042
+
+0.1638
+0.2311
+0.2951
+0.3557
+0.4126
+0.4656
+0.5147
+0.5594
+0.5992
+0.6325
+0.6560
+0.6669
+0.6584
+0.6159
+0.4896
+0.1035
+
+11.
+16.
+21.
+26.
+31.
+36.
+41.
+46.
+51.
+56.
+61.
+66.
+71.
+76.
+81.
+86.
+
+========= GEOMETRY DATA ==============
+DEFINITIONS:
+THE QUOTED PITCH REFLECTS, IN GENERAL, ANGULAR MEASURE
+AS DEFINED WITH A FLAT BOTTOM SURFACE. THIS WILL
+AGREE WITH A PRATHER GAGE MEASUREMENT OVER MOST OF THE
+EFFECTIVE PORTION OF THE BLADE.
+THE LE-TE MEASURE IS DEFINED IN TERMS OF LEADING EDGE
+AND TRAILING EDGE (MOLD) PARTING LINE DATUMS.
+THE PRATHER MEASURE REFLECTS THE MOST LIKELY PITCH
+INTERPRETATION FROM A PITCH MEASUREMENT DEVICE
+THAT RESTS AGAINST THE LOWER SURFACE.
+SWEEP IS DEFINED WITH L.E. POSITION.
+STATION
+(IN)
+
+CHORD
+(IN)
+
+PITCH
+(QUOTED)
+
+PITCH
+(LE-TE)
+
+PITCH
+(PRATHER)
+
+SWEEP
+(IN)
+
+THICKNESS
+RATIO
+
+TWIST
+(DEG)
+
+0.9632
+1.0234
+1.0837
+1.1439
+1.2042
+1.2644
+1.3247
+1.3851
+1.4844
+1.6033
+1.7223
+1.8413
+1.9603
+2.0793
+2.1983
+2.3173
+2.4363
+2.5553
+2.6743
+2.7933
+2.9123
+3.0313
+3.1503
+3.2693
+3.3883
+3.5073
+3.6263
+3.7453
+3.8643
+3.9833
+4.1023
+4.2213
+4.3403
+4.4593
+4.5783
+4.6973
+4.8163
+4.9353
+5.0543
+5.1733
+5.2920
+5.4081
+
+0.7941
+0.8260
+0.8555
+0.8825
+0.9070
+0.9293
+0.9491
+0.9668
+0.9927
+1.0185
+1.0389
+1.0544
+1.0649
+1.0709
+1.0725
+1.0700
+1.0636
+1.0536
+1.0401
+1.0236
+1.0041
+0.9820
+0.9575
+0.9308
+0.9022
+0.8718
+0.8401
+0.8071
+0.7732
+0.7385
+0.7034
+0.6680
+0.6326
+0.5975
+0.5629
+0.5291
+0.4962
+0.4645
+0.4343
+0.4058
+0.3723
+0.2791
+
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+5.5000
+
+4.2163
+4.3014
+4.3833
+4.4616
+4.5348
+4.6028
+4.6674
+4.7287
+4.8210
+4.9146
+4.9868
+5.0342
+5.0509
+5.0466
+5.0408
+5.0374
+5.0357
+5.0356
+5.0367
+5.0394
+5.0437
+5.0494
+5.0562
+5.0640
+5.0723
+5.0794
+5.0783
+5.0749
+5.0716
+5.0683
+5.0653
+5.0625
+5.0592
+5.0557
+5.0528
+5.0501
+5.0452
+5.0252
+4.9872
+4.9281
+4.6965
+4.4124
+
+0.3922
+0.3999
+0.4072
+0.4139
+0.4202
+0.4260
+0.4314
+0.4363
+0.4433
+0.4502
+0.4554
+0.4591
+0.4611
+0.4618
+0.4609
+0.4587
+0.4553
+0.4505
+0.4446
+0.4375
+0.4294
+0.4203
+0.4102
+0.3992
+0.3874
+0.3748
+0.3614
+0.3474
+0.3329
+0.3177
+0.3021
+0.2861
+0.2696
+0.2529
+0.2360
+0.2188
+0.2015
+0.1841
+0.1667
+0.1494
+0.1253
+0.0401
+
+0.2822
+0.2662
+0.2510
+0.2369
+0.2236
+0.2112
+0.1998
+0.1893
+0.1740
+0.1590
+0.1476
+0.1398
+0.1356
+0.1342
+0.1330
+0.1318
+0.1306
+0.1294
+0.1283
+0.1271
+0.1259
+0.1247
+0.1235
+0.1223
+0.1211
+0.1199
+0.1187
+0.1175
+0.1164
+0.1152
+0.1140
+0.1128
+0.1116
+0.1104
+0.1092
+0.1080
+0.1068
+0.1056
+0.1045
+0.1033
+0.1021
+0.1009
+
+42.2645
+40.5404
+38.9296
+37.4236
+36.0144
+34.6945
+33.4570
+32.2925
+30.5276
+28.6327
+26.9413
+25.4260
+24.0623
+22.8300
+21.7119
+20.6936
+19.7629
+18.9094
+18.1241
+17.3995
+16.7291
+16.1070
+15.5285
+14.9892
+14.4853
+14.0135
+13.5709
+13.1549
+12.7633
+12.3940
+12.0451
+11.7150
+11.4024
+11.1058
+10.8240
+10.5560
+10.3009
+10.0576
+9.8255
+9.6037
+9.3922
+9.1942
+
+---- EFFICIENCY, POWER, TORQUE & THRUST DISTRIBUTION ---MPH
+6.250
+11.22
+16.20
+21.17
+26.15
+31.12
+
+EFF
+0.9321E-01
+0.1638
+0.2311
+0.2951
+0.3557
+0.4126
+
+POWER (Hp)
+0.8822
+0.7865
+0.6918
+0.6357
+0.6118
+0.5853
+
+TORQUE (in-lbf)
+4.634
+4.131
+3.633
+3.339
+3.213
+3.074
+
+THRUST (lbf)
+4.934
+4.303
+3.701
+3.323
+3.121
+2.910
+
+MAX THICK
+(IN)
+0.2241
+0.2199
+0.2148
+0.2090
+0.2028
+0.1963
+0.1896
+0.1830
+0.1727
+0.1619
+0.1533
+0.1474
+0.1444
+0.1437
+0.1427
+0.1410
+0.1389
+0.1364
+0.1334
+0.1301
+0.1264
+0.1224
+0.1182
+0.1138
+0.1093
+0.1046
+0.0997
+0.0949
+0.0900
+0.0851
+0.0802
+0.0753
+0.0706
+0.0660
+0.0615
+0.0572
+0.0530
+0.0491
+0.0454
+0.0419
+0.0380
+0.0282
+
+35
+36.10
+41.07
+46.05
+51.02
+55.99
+60.97
+65.94
+70.92
+75.89
+80.87
+85.84
+
+0.4656
+0.5147
+0.5594
+0.5992
+0.6325
+0.6560
+0.6669
+0.6584
+0.6159
+0.4896
+0.1035
+
+0.5563
+0.5244
+0.4894
+0.4509
+0.4094
+0.3652
+0.3178
+0.2665
+0.2108
+0.1526
+0.9448E-01
+
+2.922
+2.754
+2.570
+2.368
+2.150
+1.918
+1.669
+1.400
+1.107
+0.8013
+0.4962
+
+2.691
+2.464
+2.229
+1.986
+1.734
+1.474
+1.205
+0.9280
+0.6415
+0.3464
+0.4273E-01
+
+36
+
+Appendix B: Analysis Code Written in Java
+An attempt has been made to include only the portions of code applicable to the blade
+element momentum model and not to the portions pertaining to the graphical user interface.
+
+Main class
+private void calcButtonActionPerformed(java.awt.event.ActionEvent evt) {
+// Create settings object and check for empty fields
+try {
+settings = new Settings();
+initSettings();
+} catch (NumberFormatException ex) {
+JOptionPane.showMessageDialog(null, "Please make sure all fields are entered correctly");
+return;
+}
+// get results type from dropbox
+String resType;
+resType = resultsCombo.getSelectedItem().toString();
+// determine with method to use based off of the results type
+if (resType.equals("Operating conditions")) {
+calcOpCond();
+}
+if (resType.equals("RPM sweep")) {
+calcRpmSweep();
+}
+if (resType.equals("Velocity sweep")) {
+calcVinfSweep();
+}
+if (resType.equals("Angle of attack")) {
+calcAoa();
+}
+if (resType.equals("Velocity profile")) {
+calcVelProf();
+}
+if (resType.equals("Thrust distribution")) {
+calcTDistb();
+}
+}
+private void initSettings() {
+// initialize settings object to store all parameters
+settings.diameter = Double.parseDouble(textDiameter.getText()) / 12.0;
+settings.radius = settings.diameter / 2.0;
+if (!userDefPitch) {
+settings.pitch = Double.parseDouble(textPitch.getText()) / 12.0;
+}
+settings.cd0 = Double.parseDouble(textCd0.getText());
+settings.cd1 = Double.parseDouble(textCd1.getText());
+settings.cd2 = Double.parseDouble(textCd2.getText());
+settings.cl0 = Double.parseDouble(textCl0.getText());
+settings.cla = Double.parseDouble(textCla.getText());
+double RPM = Double.parseDouble(textRPM.getText());
+settings.omega = RPM / 60.0 * 2.0 * Math.PI;
+settings.vInf = Double.parseDouble(textVInf.getText());
+double T = Double.parseDouble(textTemp.getText()) + 459.67; // Rankine
+double P = Double.parseDouble(textPress.getText()) * .4911542 * 144; // lbs/ft^2
+settings.rho = P / (1716 * T); // slug/ft^3
+settings.tipCorr = Double.parseDouble(textTipCorr.getText());
+settings.numOfElem = Integer.parseInt(textNumOfElem.getText());
+settings.lambda = settings.vInf / (settings.omega * settings.radius);
+settings.thetaR = settings.omega * settings.radius;
+settings.numOfBlades = Integer.parseInt(textNumOfBlades.getText());
+}
+public Settings getSettings() {
+return (settings);
+}
+private void calcOpCond() {
+// Calculate performance at RPM and Vinf
+int num = settings.numOfElem;
+double rRoot = chord.chordData[0][0];
+double rTip = settings.radius;
+double intv = (rTip - rRoot) / ((double) num);
+Element[] elems = new Element[num];
+Element tempElem;
+double locR = rRoot + intv / 2.0;
+
+37
+
+// Initialize each element
+for (int i = 0; i <= num - 1; i++) {
+tempElem = new Element(locR, this);
+elems[i] = tempElem;
+locR += intv;
+}
+double ct = 0.0;
+double cp = 0.0;
+// Integrate (sum) along the blade
+for (int i = 0; i <= num - 1; i++) {
+tempElem = elems[i];
+ct += tempElem.getDCt_dx() * intv / settings.radius;
+cp += tempElem.getDCp_dx() * intv / settings.radius;
+}
+//System.out.println("CT = " + Double.toString(ct));
+//System.out.println("CP = " + Double.toString(cp));
+double nonLinCt = 0.0;
+double nonLinCp = 0.0;
+for (int i = 0; i <= num - 1; i++) {
+tempElem = elems[i];
+nonLinCt += tempElem.getNonLinDCt_dx() * intv / settings.radius;
+nonLinCp += tempElem.getNonLinDCp_dx() * intv / settings.radius;
+}
+//System.out.println("NLCT = " + Double.toString(nonLinCt));
+//System.out.println("NLCP = " + Double.toString(nonLinCp));
+// Calculate thrust and power from coefficients
+double T = ct * 1.0 / 2.0 * settings.rho * Math.pow(rTip, 4.0) * 8.0
+* Math.pow(settings.omega, 2.0) / Math.pow(Math.PI, 2.0);
+double P = cp * 1.0 / 2.0 * settings.rho * Math.pow(rTip, 5.0) * 8.0
+* Math.pow(settings.omega, 3.0) / Math.pow(Math.PI, 3.0);
+//System.out.println("T = " + Double.toString(T) + " lbf");
+//System.out.println("P = " + Double.toString(P) + " Watts");
+
+}
+
+// Create results frame
+ResultsFrame res = new ResultsFrame();
+double J = settings.vInf / (settings.omega / (2.0 * Math.PI) * settings.diameter);
+Double[] results = {ct, cp, nonLinCt, nonLinCp, T, P, J};
+res.printResults(results);
+
+private void calcRpmSweep() {
+// Calculate performance at multiple RPMs
+int num = settings.numOfElem;
+double rRoot = chord.chordData[0][0];
+double rTip = settings.radius;
+double intv = (rTip - rRoot) / ((double) num);
+double[][] results = new double[20][];
+double dOmega = settings.omega / 20;
+// Loop through RPM and calculate performance
+for (int j = 1; j <= 20; j++) {
+Element[] elems = new Element[num];
+Element tempElem;
+settings.omega = j * dOmega;
+settings.lambda = settings.vInf / (settings.omega * settings.radius);
+settings.thetaR = settings.omega * settings.radius;
+double locR = rRoot + intv / 2.0;
+// Initialize each element
+for (int i = 0; i <= num - 1; i++) {
+tempElem = new Element(locR, this);
+elems[i] = tempElem;
+locR += intv;
+}
+double ct = 0.0;
+double cp = 0.0;
+// Integrate (sum) along the blade
+for (int i = 0; i <= num - 1; i++) {
+tempElem = elems[i];
+ct += tempElem.getDCt_dx() * intv / settings.radius;
+cp += tempElem.getDCp_dx() * intv / settings.radius;
+}
+//System.out.println("CT = " + Double.toString(ct));
+//System.out.println("CP = " + Double.toString(cp));
+double nonLinCt = 0.0;
+double nonLinCp = 0.0;
+for (int i = 0; i <= num - 1; i++) {
+tempElem = elems[i];
+nonLinCt += tempElem.getNonLinDCt_dx() * intv / settings.radius;
+nonLinCp += tempElem.getNonLinDCp_dx() * intv / settings.radius;
+}
+
+38
+//System.out.println("NLCT = " + Double.toString(nonLinCt));
+//System.out.println("NLCP = " + Double.toString(nonLinCp));
+double T = ct * 1.0 / 2.0 * settings.rho * Math.pow(rTip, 4.0) * 8.0
+* Math.pow(settings.omega, 2.0) / Math.pow(Math.PI, 2.0);
+double P = cp * 1.0 / 2.0 * settings.rho * Math.pow(rTip, 5.0) * 8.0
+* Math.pow(settings.omega, 3.0) / Math.pow(Math.PI, 3.0);
+double nlT = nonLinCt * 1.0 / 2.0 * settings.rho * Math.pow(rTip, 4.0)
+* 8.0 * Math.pow(settings.omega, 2.0) / Math.pow(Math.PI, 2.0);
+double nlP = nonLinCp * 1.0 / 2.0 * settings.rho * Math.pow(rTip, 5.0)
+* 8.0 * Math.pow(settings.omega, 3.0) / Math.pow(Math.PI, 3.0);
+//System.out.println("T = " + Double.toString(T) + " lbf");
+//System.out.println("P = " + Double.toString(P) + " Watts");
+
+}
+
+}
+
+double J = settings.vInf / (settings.omega / (2.0 * Math.PI) * settings.diameter);
+double[] temp = {j * dOmega * 60 / (2.0 * Math.PI), ct, cp, nonLinCt, nonLinCp, T, P, nlT, nlP};
+System.out.println(temp);
+results[j - 1] = temp;
+
+// Create results frame
+String[] labels = {"RPM", "Ct", "Cp", "Nonlinear Ct", "Nonlinear Cp",
+"Thrust", "Power", "Nonlinear Thrust", "Nonlinear Power"};
+multiResultsFrame res = new multiResultsFrame();
+res.printResults(results, labels);
+
+private void calcVinfSweep() {
+int num = settings.numOfElem;
+double rRoot = chord.chordData[0][0];
+double rTip = settings.radius;
+double intv = (rTip - rRoot) / ((double) num);
+double[][] results = new double[20][];
+double dvInf = settings.vInf / 20;
+for (int j = 1; j <= 20; j++) {
+settings.vInf = j * dvInf;
+settings.lambda = settings.vInf / (settings.omega * settings.radius);
+Element[] elems = new Element[num];
+Element tempElem;
+double locR = rRoot + intv / 2.0;
+// Initialize each element
+for (int i = 0; i <= num - 1; i++) {
+tempElem = new Element(locR, this);
+elems[i] = tempElem;
+locR += intv;
+}
+double ct = 0.0;
+double cp = 0.0;
+// Integrate (sum) along the blade
+for (int i = 0; i <= num - 1; i++) {
+tempElem = elems[i];
+ct += tempElem.getDCt_dx() * intv / settings.radius;
+cp += tempElem.getDCp_dx() * intv / settings.radius;
+}
+//System.out.println("CT = " + Double.toString(ct));
+//System.out.println("CP = " + Double.toString(cp));
+double nonLinCt = 0.0;
+double nonLinCp = 0.0;
+for (int i = 0; i <= num - 1; i++) {
+tempElem = elems[i];
+nonLinCt += tempElem.getNonLinDCt_dx() * intv / settings.radius;
+nonLinCp += tempElem.getNonLinDCp_dx() * intv / settings.radius;
+}
+//System.out.println("NLCT = " + Double.toString(nonLinCt));
+//System.out.println("NLCP = " + Double.toString(nonLinCp));
+double T = ct * 1.0 / 2.0 * settings.rho * Math.pow(rTip, 4.0) * 8.0
+* Math.pow(settings.omega, 2.0) / Math.pow(Math.PI, 2.0);
+double P = cp * 1.0 / 2.0 * settings.rho * Math.pow(rTip, 5.0) * 8.0
+* Math.pow(settings.omega, 3.0) / Math.pow(Math.PI, 3.0);
+double nlT = nonLinCt * 1.0 / 2.0 * settings.rho * Math.pow(rTip, 4.0)
+* 8.0 * Math.pow(settings.omega, 2.0) / Math.pow(Math.PI, 2.0);
+double nlP = nonLinCp * 1.0 / 2.0 * settings.rho * Math.pow(rTip, 5.0)
+* 8.0 * Math.pow(settings.omega, 3.0) / Math.pow(Math.PI, 3.0);
+//System.out.println("T = " + Double.toString(T) + " lbf");
+//System.out.println("P = " + Double.toString(P) + " Watts");
+double J = settings.vInf / (settings.omega / (2.0 * Math.PI) * settings.diameter);
+double[] temp = {J, ct, cp, nonLinCt, nonLinCp, T, P, nlT, nlP};
+
+39
+
+}
+
+results[j - 1] = temp;
+}
+String[] labels = {"J", "Ct", "Cp", "Nonlinear Ct", "Nonlinear Cp",
+"Thrust", "Power", "Nonlinear Thrust", "Nonlinear Power"};
+multiResultsFrame res = new multiResultsFrame();
+res.printResults(results, labels);
+System.out.println(results[1].length);
+System.out.println(results.length);
+
+private void calcAoa() {
+// Calculate the angle of attack all along the blade
+int num = settings.numOfElem;
+double rRoot = chord.chordData[0][0];
+double rTip = settings.radius;
+double intv = (rTip - rRoot) / ((double) num);
+double[][] results = new double[num][];
+Element[] elems = new Element[num];
+Element tempElem;
+double c = 180.0 / Math.PI;
+double locR = rRoot + intv / 2.0;
+// Initialize each element
+for (int i = 0; i <= num - 1; i++) {
+tempElem = new Element(locR, this);
+elems[i] = tempElem;
+double[] temp = {locR, locR / settings.radius, tempElem.getAoa()
+* c, tempElem.getNonLinAoa() * c, tempElem.getAlphaI()
+* c, tempElem.getNonLinAlphaI() * c};
+results[i] = temp;
+locR += intv;
+}
+// Create results frame
+String[] labels = {"r", "x", "Linear aoa", "Nonlinear aoa",
+"Linear induced aoa", "Nonlinear induced aoa"};
+multiResultsFrame res = new multiResultsFrame();
+res.printResults(results, labels);
+}
+private void calcVelProf() {
+// Calculate velocity profile created at the blade, Vinf + Vi
+int num = settings.numOfElem;
+double rRoot = chord.chordData[0][0];
+double rTip = settings.radius;
+double intv = (rTip - rRoot) / ((double) num);
+double[][] results = new double[num][];
+Element[] elems = new Element[num];
+Element tempElem;
+double c = 180.0 / Math.PI;
+double locR = rRoot + intv / 2.0;
+// Initialize each element
+for (int i = 0; i <= num - 1; i++) {
+tempElem = new Element(locR, this);
+elems[i] = tempElem;
+double[] temp = {locR, locR / settings.radius, settings.vInf
++ tempElem.getInducedVel(), settings.vInf + tempElem.getNonLinInducedVel()};
+results[i] = temp;
+locR += intv;
+}
+String[] labels = {"r", "x", "Linear velocity", "Nonlinear velocity"};
+multiResultsFrame res = new multiResultsFrame();
+res.printResults(results, labels);
+}
+private void calcTDistb() {
+// Calculate the thrust distribution along the blade
+int num = settings.numOfElem;
+double rRoot = chord.chordData[0][0];
+double rTip = settings.radius;
+double intv = (rTip - rRoot) / ((double) num);
+double[][] results = new double[num][];
+Element[] elems = new Element[num];
+Element tempElem;
+double c = 180.0 / Math.PI;
+double locR = rRoot + intv / 2.0;
+// Initialize each element
+
+40
+for (int i = 0; i <= num - 1; i++) {
+tempElem = new Element(locR, this);
+elems[i] = tempElem;
+double[] temp = {locR, locR / settings.radius, tempElem.getDCt_dx()
+* intv / settings.radius, tempElem.getNonLinDCt_dx() * intv / settings.radius};
+results[i] = temp;
+locR += intv;
+}
+// Create results frame
+String[] labels = {"r", "x", "Linear Ct", "Nonlinear Ct"};
+multiResultsFrame res = new multiResultsFrame();
+res.printResults(results, labels);
+}
+
+Settings class
+public class Settings {
+
+}
+
+public double diameter;
+public double radius;
+public double thetaR;
+public double pitch;
+public double cl0;
+public double cd0;
+public double cd1;
+public double cd2;
+public double cla;
+public double omega;
+public double vInf;
+public double rho;
+public double tipCorr;
+public int numOfElem;
+public double lambda;
+public int numOfBlades;
+public double eps;
+public double aspRatio;
+public double oswEffFactor;
+
+Chord class
+public class Chord {
+public double[][] chordData;
+public double[][] pitchData;
+private JProps jProps;
+public void openAndParse(File file) {
+try {
+// Open file
+BufferedReader bReader = new BufferedReader(new FileReader(file));
+try {
+/*
+* Declare a temporary string buffer and a temporary dynamic
+* array to store the data in a string format
+*/
+String buffString;
+ArrayList stringChordData = new ArrayList();
+// Build array
+while ((buffString = bReader.readLine()) != null) {
+stringChordData.add(buffString);
+}
+// Close file
+bReader.close();
+double area = 0.0;
+String line = (String) stringChordData.get(0);
+int dims = line.split("\t").length;
+// Put string data into a workable double array
+if (dims == 2) {
+chordData = new double[stringChordData.size()][2];
+jProps.userDefPitch = false;
+for (int i = 0; i < stringChordData.size(); i++) {
+line = (String) stringChordData.get(i);
+
+41
+String[] arrLine = line.split("\t");
+chordData[i][0] = Double.parseDouble(arrLine[0]) / 12.0;
+chordData[i][1] = Double.parseDouble(arrLine[1]) / 12.0;
+
+}
+} else if (dims == 3) {
+chordData = new double[stringChordData.size()][2];
+pitchData = new double[stringChordData.size()][2];
+jProps.userDefPitch = true;
+for (int i = 0; i < stringChordData.size(); i++) {
+line = (String) stringChordData.get(i);
+String[] arrLine = line.split("\t");
+chordData[i][0] = Double.parseDouble(arrLine[0]) / 12.0;
+chordData[i][1] = Double.parseDouble(arrLine[1]) / 12.0;
+pitchData[i][0] = Double.parseDouble(arrLine[0]) / 12.0;
+pitchData[i][1] = Double.parseDouble(arrLine[2]);
+}
+
+}
+
+}
+
+} catch (IOException ex) {
+JOptionPane.showMessageDialog(null, ex.getMessage());
+}
+} catch (FileNotFoundException ex) {
+JOptionPane.showMessageDialog(null, ex.getMessage());
+}
+
+/**
+* Method to find the local chord length
+* @param radius
+* @return
+*/
+public double findChord(double radius) {
+// Default value of chord length in
+double chord = 0.0;
+// Iterate to find where the radius is from the given chord profile info
+for (int i = 0; i < chordData.length - 1; i++) {
+if (radius > chordData[i][0] && radius <= chordData[i + 1][0]) {
+// Linear interpolation between the known chord points
+chord = chordData[i][1] + (chordData[i + 1][1] - chordData[i][1])
+/ (chordData[i + 1][0] - chordData[i][0])
+* (radius - chordData[i][0]);
+break;
+}
+
+}
+
+}
+return chord;
+
+public double findPitch(double radius) {
+// Default value of chord length in
+double pitch = 0.0;
+// Iterate to find where the radius is from the given chord profile info
+for (int i = 0; i < pitchData.length - 1; i++) {
+if (radius > pitchData[i][0] && radius <= pitchData[i + 1][0]) {
+// Linear interpolation between the known chord points
+pitch = pitchData[i][1] + (pitchData[i + 1][1] - pitchData[i][1])
+/ (pitchData[i + 1][0] - pitchData[i][0])
+* (radius - pitchData[i][0]);
+break;
+}
+
+}
+
+}
+return pitch;
+
+/**
+* Method to find the aspect ratio of the propeller blade
+* @param jProps
+*/
+public void initAspRatio(JProps jProps) {
+double area = 0.0;
+for (int i = 0; i < chordData.length - 1; i++) {
+area = (chordData[i + 1][0] - chordData[i][0]) * (chordData[i + 1][1]
++ chordData[i][1]) / 2.0;
+}
+}
+
+}
+
+jProps.settings.aspRatio = Math.pow(jProps.settings.radius, 2.0) / area;
+
+public Chord(JProps temp) {
+jProps = temp;
+}
+
+42
+
+Element class
+public class Element {
+private double locR;
+private double beta;
+private double x;
+private double thetaT;
+private double sigma;
+private double phi;
+private double chord;
+private double alphaI;
+private double cl;
+private double cd;
+private double dCt_dx;
+private double dCp_dx;
+private double nonLinDCt_dx;
+private double nonLinDCp_dx;
+private double nonLinAlphaI;
+private double nonLinCl;
+private double nonLinCd;
+/**
+* Settings from JProps
+*/
+private Settings settings;
+Element(double rad, JProps jProps) {
+locR = rad;
+settings = jProps.settings;
+chord = jProps.chord.findChord(locR);
+findBeta(jProps);
+nonDimen();
+findLinInducedAOA();
+findLandD();
+findDCt_dx();
+findDcp_dx();
+}
+
+findNonLinDCt_dxDCp_dx();
+
+private void findBeta(JProps jProps) {
+// Find geometric pitch
+if (jProps.userDefPitch) {
+beta = jProps.chord.findPitch(locR);
+} else {
+beta = Math.atan2(settings.pitch, (2.0 * Math.PI * locR));
+}
+}
+private void nonDimen() {
+// Calculate nondimensional parameters
+x = locR / (settings.radius);
+thetaT = Math.sqrt(Math.pow(settings.lambda, 2.) + Math.pow(x, 2.)) * settings.thetaR;
+sigma = (settings.numOfBlades * chord) / (Math.PI * settings.radius);
+phi = Math.atan2(settings.lambda, x);
+}
+private void findLinInducedAOA() {
+// Find the linear induced angle of attack
+double a = settings.lambda / x + sigma * settings.cla / (8.0 * Math.pow(x, 2.0)) * thetaT / settings.thetaR;
+double b = sigma * settings.cla / (2.0 * Math.pow(x, 2.0)) * thetaT / settings.thetaR * (beta - phi);
+alphaI = 1.0 / 2.0 * (-a + Math.sqrt(Math.pow(a, 2.0) + b));
+}
+private void findLandD() {
+// Find lift and drag
+cl = settings.cl0 + settings.cla * (beta - (alphaI + phi));
+cd = settings.cd0 + settings.cd1 * cl + settings.cd2 * Math.pow(cl, 2.0);
+}
+private void findDCt_dx() {
+// Find differential thrust
+if (x < settings.tipCorr) {
+dCt_dx = Math.pow(Math.PI, 3.0) / 8.0 * (Math.pow(settings.lambda, 2.0) + Math.pow(x, 2.0))
+* (cl * Math.cos(phi + alphaI) - cd * Math.sin(phi + alphaI)) * sigma;
+
+}
+
+} else {
+dCt_dx = Math.pow(Math.PI, 3.0) / 8.0 * (Math.pow(settings.lambda, 2.0) + Math.pow(x, 2.0))
+* (-settings.cd0 * Math.sin(phi + alphaI)) * sigma;
+}
+
+public double getDCt_dx() {
+return dCt_dx;
+
+43
+}
+private void findDcp_dx() {
+// find differential power
+if (x < settings.tipCorr) {
+dCp_dx = Math.pow(Math.PI, 4.0) / 8.0 * x * (Math.pow(settings.lambda, 2.0) + Math.pow(x, 2.0))
+* (cd * Math.cos(phi + alphaI) + cl * Math.sin(phi + alphaI)) * sigma;
+
+}
+
+} else {
+dCp_dx = Math.pow(Math.PI, 4.0) / 8.0 * x * (Math.pow(settings.lambda, 2.0) + Math.pow(x, 2.0))
+* (settings.cd0 * Math.cos(phi + alphaI)) * sigma;
+}
+
+public double getDCp_dx() {
+return dCp_dx;
+}
+private double[] findLandD(double ai) {
+// find lift and drag of nonlinear induced angle of attack
+double cl_ = settings.cl0 + settings.cla * (beta - (ai + phi));
+double cd_ = settings.cd0 + settings.cd1 * cl_ + settings.cd2 * Math.pow(cl_, 2.0);
+double[] data = {cl_, cd_};
+return data;
+}
+private void findNonLinDCt_dxDCp_dx() {
+// find nonlinear differential thrust and power
+double err = 1.0;
+double iterAlphaI1 = alphaI;
+double iterAlphaI2 = alphaI;
+double dLambda;
+double iterDCt_dx = dCt_dx;
+if (x > settings.tipCorr) {
+iterDCt_dx = 0.0;
+}
+//double iterDCt_dx = dCt_dx;
+double[] data;
+double iterCl = cl;
+double iterCd = cd;
+int i;
+for (i = 0; i <= 50 && (err > .000000001); i++) {
+// Errors are produced in the dLambda calculation when dCt_Dx is less than zero.
+// The only time this is zero is when x is greater than the tip correction
+dLambda = -settings.lambda / 2.0 + Math.sqrt(Math.pow(settings.lambda / 2.0, 2.0)
++ 1.0 / (Math.pow(Math.PI, 3.0) * x) * iterDCt_dx);
+iterAlphaI2 = Math.atan2(dLambda, Math.sqrt(Math.pow(settings.lambda, 2.0) + Math.pow(x, 2.0)));
+data = findLandD(iterAlphaI2);
+iterCl = data[0];
+iterCd = data[1];
+if (x < settings.tipCorr) {
+iterDCt_dx = Math.pow(Math.PI, 3.0) / 8.0 * (Math.pow(settings.lambda, 2.0) + Math.pow(x, 2.0))
+* (iterCl * Math.cos(phi + iterAlphaI2) - iterCd * Math.sin(phi + iterAlphaI2)) * sigma;
+
+}
+
+} else {
+iterDCt_dx = Math.pow(Math.PI, 3.0) / 8.0 * (Math.pow(settings.lambda, 2.0) + Math.pow(x, 2.0))
+* (-settings.cd0 * Math.sin(phi + iterAlphaI2)) * sigma;
+}
+err = Math.abs(iterAlphaI2 - iterAlphaI1);
+iterAlphaI1 = iterAlphaI2;
+
+nonLinDCt_dx = iterDCt_dx;
+if (x < settings.tipCorr) {
+nonLinDCp_dx = Math.pow(Math.PI, 4.0) / 8.0 * x * (Math.pow(settings.lambda, 2.0) + Math.pow(x, 2.0))
+* (iterCd * Math.cos(phi + iterAlphaI1) + iterCl * Math.sin(phi + iterAlphaI1)) * sigma;
+} else {
+nonLinDCp_dx = Math.pow(Math.PI, 4.0) / 8.0 * x * (Math.pow(settings.lambda, 2.0) + Math.pow(x, 2.0))
+* (settings.cd0 * Math.cos(phi + iterAlphaI1)) * sigma;
+}
+nonLinAlphaI = iterAlphaI1;
+nonLinCl = iterCl;
+nonLinCd = iterCd;
+}
+double getNonLinDCt_dx() {
+return nonLinDCt_dx;
+}
+
+44
+double getNonLinDCp_dx() {
+return nonLinDCp_dx;
+}
+double getAlphaI() {
+return alphaI;
+}
+double getNonLinAlphaI() {
+return nonLinAlphaI;
+}
+double getAoa() {
+return beta - (phi + alphaI);
+}
+double getNonLinAoa() {
+return beta - (phi + nonLinAlphaI);
+}
+double getInducedVel() {
+double dLambda = (-settings.lambda / 2.0 + Math.sqrt(Math.pow(settings.lambda / 2.0, 2.0)
++ 1.0 / (Math.pow(Math.PI, 3.0) * x) * dCt_dx));
+return (dLambda * settings.omega * settings.radius);
+}
+
+}
+
+double getNonLinInducedVel() {
+double dLambda = (-settings.lambda / 2.0 + Math.sqrt(Math.pow(settings.lambda / 2.0, 2.0)
++ 1.0 / (Math.pow(Math.PI, 3.0) * x) * nonLinDCt_dx));
+return (dLambda * settings.omega * settings.radius);
+}
+
+Results frame class
+public void printResults(Double[] results) {
+String stringResults = "Ct = \t" + Double.toString(results[0]) + "\n";
+this.textResults.append(stringResults );
+stringResults = "Cp = \t" + Double.toString(results[1]) + "\n";
+this.textResults.append(stringResults);
+stringResults = "Nonlinear Ct = \t" + Double.toString(results[2]) + "\n";
+this.textResults.append(stringResults);
+stringResults = "Nonlinear Cp = \t" + Double.toString(results[3]) + "\n";
+this.textResults.append(stringResults);
+stringResults = "Thrust = \t" + Double.toString(results[4]) + "\n";
+this.textResults.append(stringResults);
+stringResults = "Power = \t" + Double.toString(results[5]) + "\n";
+this.textResults.append(stringResults);
+stringResults = "Advance Ratio = \t" + Double.toString(results[6]) + "\n";
+this.textResults.append(stringResults);
+}
+
+Multi-results frame class
+public void printResults(double[][] results, String[] labels) {
+int n = labels.length;
+int m = results.length;
+String stringResults;
+for (int i = 0; i < n; i++) {
+stringResults = labels[i] + "\t";
+this.textResults.append(stringResults);
+}
+stringResults = "\n";
+this.textResults.append(stringResults);
+for (int j = 0; j < m; j++) {
+for (int i = 0; i < n; i++) {
+stringResults = Double.toString(results[j][i]) + "\t";
+this.textResults.append(stringResults);
+}
+stringResults = "\n";
+this.textResults.append(stringResults);
+}
+}
+
+45
+
+

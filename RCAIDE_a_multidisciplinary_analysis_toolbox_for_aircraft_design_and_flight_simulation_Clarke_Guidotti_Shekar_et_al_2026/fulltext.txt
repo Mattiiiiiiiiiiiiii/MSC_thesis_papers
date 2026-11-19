@@ -1,0 +1,2736 @@
+Aerospace Science and Technology 177 (2026) 112328
+
+Contents lists available at ScienceDirect
+
+Aerospace Science and Technology
+journal homepage: www.elsevier.com/locate/aescte
+
+Original article
+
+RCAIDE: A multidisciplinary analysis toolbox for aircraft design and ﬂight
+simulation
+Matthew A. Clarke ∗, Matteo Guidotti
+Cade Boggan , Yair N. Guerrero
+
+, Sai Sankalp Shekar
+
+, Aidan Molloy
+
+,
+
+Department of Aerospace Engineering, University of Illinois Urbana-Champaign, Urbana, IL, 61801, USA
+
+a r t i c l e
+
+i n f o
+
+Communicated by: Cummings Russell
+Keywords:
+RCAIDE
+Aircraft
+Systems
+Design
+Multidisciplinary
+Software
+
+a b s t r a c t
+The maturation of several enabling technologies has brought aircraft conceptualization back to the forefront of
+modern engineering systems design. Unfortunately, the development of tools capable of assessing unconventional
+conﬁgurations and powertrain architectures has not kept pace. To accelerate progress in the multidisciplinary
+design and analysis of novel aircraft, we introduce the Research Community Aerospace Interdisciplinary Design
+Environment (RCAIDE), a Python-based, open-source platform for modeling, analyzing, and optimizing both conventional and unconventional aerospace systems. The successor to the globally recognized SUAVE code, RCAIDE
+builds on a robust foundation of methods while extending its scope to address novel design paradigms that constitute emerging technologies. RCAIDE’s modular structure supports high-performance parallel computing and
+multi-ﬁdelity analysis, thereby unlocking computationally intensive operations such as uncertainty quantiﬁcation
+and generative artiﬁcial intelligence applications. This paper documents the validation of the most frequently
+employed methods across various disciplines within the tool and demonstrates how a novel, generalized approach
+to deﬁning energy networks can be leveraged to model both conventional and emerging propulsion architectures.
+A collection of case studies spanning diﬀerent aircraft classes is subsequently presented to highlight the code’s
+versatility and value to academia, industry, government, and the broader aerospace community.
+
+1. Introduction
+Since the early 1960s, computational tools have played a pivotal
+role in shaping aircraft design. By the 2000s, advances in computer
+memory and processing power had enabled engineers to address increasingly complex problems [1–4]. With growing interest in alternative aviation fuels, electric hybridization, distributed propulsion unlocking urban air mobility, and supersonic ﬂight, the demand for tools
+that can rapidly parametrize, analyze, and optimize vehicle conﬁgurations has never been greater. Yet, the applicability of many oncefoundational tools in the designer’s toolbox has been constrained by
+limited parametric ﬂexibility and insuﬃcient adaptability to emerging
+technologies.
+At present, publicly available tools can be broadly categorized into
+two groups: discipline-speciﬁc and aircraft-synthesis tools. Disciplinespeciﬁc tools focus on one or a few tightly coupled disciplines, namely
+aerodynamics [5–8], acoustics [9,10], aerostructural [11,12], propulsion [13,14], and optimization [15,16]. Aircraft synthesis tools, by contrast, emphasize the interactions among subsystems. To achieve this,
+
+they typically employ lower ﬁdelity models to capture vehicle-level behavior and performance [17–23].
+Initially supported under a NASA LEARN Program, SUAVE [24] was
+developed to address the shortcomings of sacriﬁcing ﬁdelity in studying
+large engineering systems. Released as an open-source project in 2014, it
+was widely adopted; however, it eventually exhibited the growing pains
+typical of most design tools-code maintenance and extensibility. Because
+it was maintained within a single academic institution, development
+and maintenance were tied to the student workforce, which meant that
+turnover hampered progress. Second, as global participation expanded,
+it became increasingly apparent that a structure that better attributes
+external contributions was needed. Third, with the monumental shift
+from Python 2 to 3, advances in data structures and high-performance
+computing could not be fully leveraged without a clean-sheet refactoring of the code’s core architecture. Finally, license restrictions emerged
+as a major barrier for companies seeking to conduct proprietary work,
+limiting industrial uptake.
+However, while these software architecture and governance improvements are grounds for code refactoring, SUAVE and its competitors
+
+∗ Corresponding author.
+
+E-mail addresses: maclarke@illinois.edu (M.A. Clarke), matteog2@illinois.edu (M. Guidotti), sshekar2@illinois.edu (S.S. Shekar), aidanrm2@illinois.edu (A.
+Molloy), cboggan2@illinois.edu (C. Boggan), yairng2@illinois.edu (Y.N. Guerrero).
+https://doi.org/10.1016/j.ast.2026.112328
+Received 12 February 2026; Received in revised form 28 March 2026; Accepted 7 April 2026
+Available online 10 April 2026
+1270-9638/© 2026 The Authors.
+Published by Elsevier Masson SAS. This
+(http://creativecommons.org/licenses/by/4.0/).
+
+is
+
+an
+
+open
+
+access
+
+article
+
+under
+
+the
+
+CC
+
+BY
+
+license
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+suﬀer from ﬂaws in their fundamental powertrain logic that demand a
+paradigm shift in methodology. As alternative energy systems become
+more common in aircraft, secondary components like pumps, heat exchangers, and tanks-especially in cryogenic engines-are emerging as key
+bottlenecks. These elements consume power and add losses that must be
+considered in the overall system balance. Most aircraft design tools focus
+on ﬂight dynamics and use open-loop methods for modeling powertrain
+performance. For example, when simulating a conventional turbofan engine, a mission solver typically calculates fuel ﬂow based on the throttle
+setting but doesn’t initially account for the extra power required by the
+pumps. This pump power can only be calculated once the fuel ﬂow is
+known, so designers often back-calculate the additional fuel required to
+power the pump. However, this method doesn’t adjust engine eﬃciency
+for the added load. As powertrains become more complex, especially
+with cryogenic fuels and multiple energy conversions, these open-loop
+methods can lead to design ﬂaws. Issues such as pressure changes, state
+transitions, and thermal losses in cryogenic tanks further complicate
+matters. To address these challenges, new approaches are needed for
+modeling powertrains during early aircraft design. As a result, in July
+2023, SUAVE’s development was sunset in favor of a successor – the
+Research Community Aerospace Interdisciplinary Design Environment
+(RCAIDE).
+RCAIDE is an interdisciplinary computational research tool designed
+to facilitate the conceptual design of novel aerospace systems by integrating modeling, simulation, analysis, and optimization into a cohesive framework. Although RCAIDE and SUAVE share a common lineage,
+they exhibit fundamental diﬀerences. RCAIDE supplants SUAVE’s basic
+NumPy/SciPy core with an optional automatic diﬀerentiation (AD) numerical backend used across solvers and optimizers, producing exact
+derivatives, accelerating convergence, and enabling substantially larger
+gradient-based optimization problems. This new backend leverages existing CUDA AD libraries developed for AI training to provide native
+GPU execution and scalable performance. In terms of powertrain modeling, SUAVE explicitly deﬁnes energy networks, limiting ﬂexibility to
+deﬁning custom source-propulsor couplings. In contrast, RCAIDE uses
+an energy-agnostic network, enabling designers to build a wide range of
+architectures, including those beyond conventional classiﬁcations. Unlike SUAVE, RCAIDE oﬀers improved aerodynamic drag estimation and
+modernizes dated methods for aircraft noise prediction. Furthermore,
+RCAIDE employs a medium-ﬁdelity stability model based on a vortex
+lattice method (VLM) perturbation approach, which enables the computation of stability derivatives for unconventional aircraft. This represents an advancement over the semi-empirical methods typically used
+for conventional tube-and-wing conﬁgurations. Regarding component
+modeling, RCAIDE oﬀers higher-ﬁdelity models for key powertrain elements, such as cryogenic tanks, heat exchangers, and fuel cells, thereby
+providing greater granularity for optimization. The mission solver has
+been refactored to support multiple solvers, some of which may require
+more computational time but oﬀer greater robustness and the ability to
+address six-degrees-of-freedom (6DOF) problems, as well as underconstrained scenarios where the number of unknowns exceeds the number
+of coupling equations. For example, this includes trimming a six-rotor
+electric vertical takeoﬀ and landing (eVTOL) aircraft, where each rotor
+may have unique rotational speeds, thrust vectoring angles, and blade
+pitches. RCAIDE is built from the ground up to sustain long-term growth
+and collaboration. Spanning universities and commercial entities worldwide, it is supported by version-controlled repositories, unit testing, and
+continuous integration via GitHub [25], ensuring method validation and
+veriﬁcation.
+The remainder of this paper is organized into eight sections. Section 2 presents a brief overview of RCAIDE’s code architecture and design philosophy. Section 3 provides a detailed description of the computational models used to represent physical components, as well as the
+analysis methods employed in each discipline. The subsequent Section 4
+oﬀers a comprehensive explanation of the proposed approach used to ensure subsystem closure while simultaneously solving the kinematics and
+
+trim equations of the higher-level ﬂight simulation. Validation of these
+methodologies is discussed in Section 5, and capability demonstrations
+are presented in Section 6. The limitations of the code, which serve as a
+foundation for the planned future developments described in Section 7.
+Lastly, Section 8 provides concluding remarks.
+2. Code architecture and philosophy
+Deliberate eﬀorts were undertaken to preserve the essential elements of the software architecture and coding philosophies that enabled RCAIDE’s predecessor to remain viable for nearly a decade. The
+code is structured into hierarchical repositories that contain native data
+structures, functions, component abstractions, and subroutines that implement methods associated with the various disciplines, e.g., atmosphere, geodesics, mass properties, aerodynamics, stability, aerostructures, powertrain, emissions, acoustics, and performance. As illustrated
+in Fig. 1, the primary subdirectory, RCAIDE, housing the source code,
+is organized into two tertiary subdirectories: Framework and Library.
+Framework deﬁnes foundational data structures and core class hierarchies, whereas Library provides abstractions of physical components
+and analytical methods. Aircraft conceptualization within RCAIDE begins with the instantiation of the Vehicle() Python class, which functions as a hierarchical container for mass and inertial properties, geometric speciﬁcations, component deﬁnitions, and aircraft classiﬁcation
+(e.g., transport, commuter). The class autonomously identiﬁes components such as wings, fuselages, booms, nacelles, cargo bays, landing
+gear, and powertrain architectures as they are programmatically added
+and organizes them into predeﬁned taxonomic categories within the vehicle hierarchy.
+Method-attribute orthogonality enables the coexistence and interchangeability of multiple modeling ﬁdelities without compromising the
+integrity of the overall simulation architecture. For example, the wing
+lift coeﬃcient can be estimated using either a ﬁrst-order approach that
+combines thin-airfoil theory with ﬁnite-wing corrections for downwash,
+or a higher-ﬁdelity computational ﬂuid dynamics solver based on the
+Euler equations, both of which employ the same wing deﬁnition. Moreover, RCAIDE enables users to interchange methods across mission segments to achieve requisite accuracy while minimizing computational
+cost. For instance, when evaluating a novel aircraft conﬁguration, a
+medium-ﬁdelity VLM coupled with empirical drag buildup approaches
+may provide adequate approximations of cruise performance characteristics. In low-speed ﬂight conditions with deﬂected control surfaces,
+higher-ﬁdelity aerodynamic models may be required to accurately capture ﬂow separation.
+The Verification & Validation subdirectory ensures that 1) during code development, methods are not inadvertently modiﬁed to
+produce erroneous outputs, and 2) models generate approximations
+consistent with experimental measurements. Finally, the Tutorials
+subdirectory provides a comprehensive collection of example workﬂows
+to facilitate onboarding for new users and demonstrate optimal software
+utilization.
+3. RCAIDE multidisciplinary computational methods
+RCAIDE boasts a comprehensive suite of methods for studying various disciplines: atmosphere, geodesics, mass properties, aerodynamics, stability, aerostructures, powertrain (power, propulsion, and thermal management), emissions, acoustics, and performance and costs.
+Listed in Table 1, many of these have been independently validated
+in prior works [45–49]. Multi-ﬁdelity enables down-selecting candidate vehicle conﬁgurations for large-scale design space exploration
+and subsequently optimizing a small subset of candidate aircraft with
+more favorable design characteristics by adding precision and accuracy
+reﬁnement. High-ﬁdelity models such as SU2 can achieve the highest
+accuracy, but at the expense of wall-clock time and computer memory. Medium-ﬁdelity models, such as the VLM, which approximate key
+2
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+Fig. 1. First 3 levels of the RCAIDE code repository.
+
+Table 1
+Analysis within RCAIDE.
+Analysis
+
+Method
+
+Application
+
+Reference
+
+Geometry
+
+Parametrization
+
+2D & 3D Planform
+
+N.A.
+
+Atmosphere
+
+US Standard 1976 Model
+
+Gas Properties
+
+[26]
+
+Mass Properties
+Mass Properties
+Mass Properties
+Mass Properties
+
+Conventional
+Electric
+Hybrid
+Hydrogen
+
+CG, MOI & Weight Buildup
+CG, MOI & Weight Buildup
+CG , MOI & Weight Buildup
+CG, MOI & Weight Buildup
+
+[27,28]
+[27,28]
+[27,28]
+[27,28]
+
+Aerodynamics
+Aerodynamics
+Aerodynamics
+
+Panel Method
+SU2
+Vortex Lattice Method
+
+2D Geometry
+2D & 3D Planform
+3D Planform
+
+[29,30]
+[6,31]
+[32]
+
+Stability
+
+Vortex Lattice Method
+
+3D Planform
+
+[32]
+
+Powertrain
+
+Multi-ﬁdelity Methods
+
+Refer to Table 2
+
+Refer to Table 2
+
+Emissions
+Emissions
+
+Empirical Correlation
+Chemical Reactor Network
+
+Emission Index
+Emission Index
+
+[33]
+[34,35]
+
+Geodesics
+
+Geodesic Distance
+
+Trajectory
+
+[36]
+
+Aeroacoustics
+Aeroacoustics
+
+Empirical Correlations
+Aircraft Noise
+Frequency Domain Buildup Aircraft Noise
+
+Performance
+
+Multiple Methods
+
+[37,38]
+[39,40]
+
+V-n & Payload-Range Diagram Takeoﬀ/Landing Field Length [41–44]
+Stall Speed, Aircraft Aerodynamics Aircraft Noise
+
+phenomenological aspects of a system, can achieve reasonable accuracy
+relative to experimental data or high-ﬁdelity methods without incurring a signiﬁcant computational penalty. Low-ﬁdelity models that rely
+on empirical data or signiﬁcant abstractions of the system of interest
+can achieve the best performance in terms of compute time; however,
+their estimates are unreliable and may incur substantial errors in some
+cases.
+
+spectively. For emerging aircraft with novel propulsion architectures
+manufactured using new techniques and materials, such as eVTOL aircraft, historical correlations are inadequate, like the previously employed methods; a physics-based weight breakdown approach [51] that
+uses projected aerodynamic loads, material properties, and safety criteria to drive structural sizing is therefore preferred.
+Center of gravity
+Center of Gravity is computed by summing the component moments
+taken about a global reference frame and then dividing the total moment
+by the total mass, as shown here:
+∑
+𝑚 𝑥̄
+𝑥̄ 𝑐.𝑔. = ∑ 𝑖 𝑖 ,
+(1)
+𝑚𝑖
+
+3.1. Mass properties analyses
+Weight estimation
+For conventional aircraft, RCAIDE oﬀers two weight breakdown
+methodologies: NASA’s Flight Optimization System (FLOPS) and
+Raymer’s weight methods [18,27]. Both processes are extensively validated in industry, with FLOPS achieving 96.4% accuracy in predicting the Boeing 737-200’s operating weight [50]. The integration of
+both methods alongside the RCAIDE framework was tested by comparing the weight breakdowns of the Boeing 747 and the Lockheed C-5A.
+These aircraft are both from the era in which the original breakdowns
+were developed. Despite diﬀerences in weight bookkeeping, the empty
+weight for the Boeing 747 was calculated to within 5.1% and 16.1%
+by FLOPS and Raymer, respectively, whereas for the C-5A, the empty
+weight was within 0.4% and 22.3% for both FLOPS and Raymer, re-
+
+where 𝑚𝑖 is the mass of component 𝑖 and 𝑥̄ 𝑖 is its location relative to
+a ﬁxed reference datum. Although a simple formula, the abundance
+of components and the necessity of bookkeeping can make center-ofgravity estimations quite complicated; however, RCAIDE’s unique component organization allows it not only to store component performance
+properties but also mass properties. Moreover, the extensibility feature of the code, in which each component inherits from a base class
+that contains native functions associated with its geometry, allows the
+center of gravity method to eﬃciently and quickly parse the vehicle
+3
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+The form factor, 𝑘, is computed diﬀerently for wings and fuselages. For
+wings, 𝑘 is given as:
+(
+)
+(
+)
+2𝐶 (𝑡∕𝑐) cos(Λ)2
+𝐶 2 cos(Λ)2 (𝑡∕𝑐)2 1 + 5 cos(Λ)2
+𝑘 = 1 + √(
++
+(4)
+(
+)
+)
+2 1 − (𝑀 cos(Λ))2
+1 − 𝑀 2 (cos(Λ))2
+
+tree without the need for a separate bookkeeping platform, thereby
+eliminating the need for diligent attention to ensure changes are correctly represented and carried over from individual methods.
+Inertia tensor
+Various strategies can be employed, including experimental measurements, statistical data on aircraft radii of gyration, computer-aided
+design, and the lumped-mass method. However, predicting such properties can be challenging because they depend on the aircraft’s speciﬁc
+characteristics. Moulton et al. [52] proposed a simpliﬁed approach to
+determining the aircraft’s moment of inertia by approximating the aircraft as a sum of simpliﬁed geometries, built on key assumptions, including neglecting twist and camber eﬀects and assuming each component
+has a constant density. While suitable for conventional tube-and-wing
+aircraft, this approach is likely to yield reduced accuracy for unconventional outer mold lines. Consequently, we leverage trimesh [53], a
+Python package that leverages the exact planform of a component or
+structure to compute its moment of inertia, centroid, and volume, among
+other mass properties.
+
+where Λ is the wing sweep, 𝑀 is the cruise Mach number, 𝐶 is a wing
+form factor, and 𝑡∕𝑐 is the thickness-to-chord ratio of the wing. For fuselages, nacelles, and booms, 𝑘 is computed as:
+𝑘 = (1 + 𝐶𝛿𝑢𝑚𝑎𝑥 )
+
+where 𝐶 is a user-deﬁned factor typically set to 2.3 and 𝛿𝑢max is the
+maximum velocity increase on an ellipsoid of revolution.
+Compressibility drag. Aircraft operate in subsonic and transonic regimes
+whose drag from compressibility eﬀects diﬀer based on their operation.
+To estimate the eﬀects of compressibility in the subsonic regime, the
+crest critical Mach number (𝑀𝑐𝑐 ) can be used in the equations and regressed plots in Shevell [55] as provided below:
+
+3.2. Aerodynamics analyses
+
+𝐶𝐷𝐶
+
+Vortex lattice method with semi-empirical drag buildup
+This medium-ﬁdelity potential ﬂow solver, coupled with drag corrections, serves as the default approach to compute aerodynamic forces
+on all vehicle surfaces, including wings, control surfaces, and lofted bodies such as fuselages, nacelles, and booms. Based on the original Fortran
+implementation of VORLAX [54], this reformulated VLM can compute
+inviscid aerodynamic forces and moments across all regimes-subsonic,
+transonic, and supersonic-on all vehicle surfaces, including wings, control surfaces, and lofted bodies such as fuselages, nacelles, and booms.
+It provides reasonably accurate predictions compared to higher-ﬁdelity
+methods at a fraction of the computational cost. Features are modeled
+along the axis of symmetry, or for wings, along their mean camber line,
+then discretized into chordwise and spanwise panels. Each panel possesses a horseshoe vortex made up of a bound vortex at the 1/4 chord
+location with trailing legs extending to inﬁnity behind the panel. The
+control point on each panel where aerodynamic loads are computed
+is located at the 3/4 chord location. The induced velocity on a control
+point on the wing is determined by integrating the inﬂuence of the entire system of circulation strengths. The lift on each surface is found by
+decomposing the normal forces acting on it relative to the ﬂow, while a
+Treﬀtz-plane approach is used to determine the induced drag.
+Following the estimation of these inviscid aerodynamic coeﬃcients, compressibility and viscous eﬀects are accounted for using semiempirical corrections. Eq. (2) provides a breakdown of the various drag
+components, ranging from friction drag to pressure drag sources, drag
+emerging from compressible and shock waves, and the drag associated
+with the operating state of the aircraft.
+
+𝑀𝑐𝑐,Λ =
+
+𝑆𝑤𝑒𝑡
+𝑆𝑟𝑒𝑓
+
+= 0.0019
+
+)
+𝑀 14.641 (
+cos(Λ𝑤 )3 ,
+𝑀𝑐𝑐,Λ
+
+(6)
+
+0.92 − 1.15(𝑡∕𝑐)𝑐𝑜𝑟. − 0.30𝐶𝐿𝑐𝑜𝑟. + 0.33(𝑡∕𝑐)2𝑐𝑜𝑟. + 0.47(𝑡∕𝑐)𝑐𝑜𝑟. 𝐶𝐿𝑐𝑜𝑟. + 0.09𝐶𝐿2
+
+𝑐𝑜𝑟.
+
+cos(Λ𝑤 )
+
+(7)
+
+and the corrected lift coeﬃcient, 𝐶𝐿𝑐𝑜𝑟. , and thickness-to-chord ratios,
+(𝑡∕𝑐)𝑐𝑜𝑟. , are as follows:
+𝐶𝐿𝑐𝑜𝑟. =
+
+𝐶𝐿
+,
+cos(𝜆)2
+
+(𝑡∕𝑐)𝑐𝑜𝑟. =
+
+(𝑡∕𝑐)
+cos(𝜆)
+
+(8)
+
+As a typical aircraft enters transonic ﬂight, the ﬂow velocities around
+components exceed the speed of sound, creating local supersonic ﬂow.
+The appearance of shock waves as ﬂight enters the transonic region begins to dominate, resulting in the term wave drag, which is used interchangeably with “compressibility drag”. A strip-theory approach ﬁrst
+proposed by Locke [57] is used to determine compressibility drag due
+to lift. With knowledge of the spanwise 𝐶𝑝 distribution, the Mach number distribution on the wing surface ahead of the shock can be determined. 𝐶𝑝 can be taken from 2D airfoil predictions; however, if this is
+unknown, it can be estimated using a new empirical relation, based on
+composite experimental data from RAE 5225 and NASA supercritical
+airfoils, proposed by the authors.
+𝐶𝑝∗ = 0.9825𝐶𝐿2 − 2.5132𝐶𝐿 + 0.0279.
+
+(9)
+
+The local Mach number right before the shock wave is computed as
+follows:
+⎡
+⎤
+5𝑀 2 cos(𝛿)2
+∗
+𝑀10
+=⎢
+− 5⎥
+2
+⎢
+⎥
+( )
+⎣ (1 + 0.7𝑀 2 𝐶𝑝∗ ) 7
+⎦
+
+0.5
+
+.
+
+(10)
+
+The sectional drag can then be estimated via
+(2)
+𝐶𝐷𝐶 (𝜂) =
+
+∗ − 1)4 (2 − 𝑀 ∗ )
+𝑘(𝑀10
+10
+
+,
+∗ (1 + 0.2(𝑀 ∗ )2 ))
+2(𝑀10
+10
+[
+]3
+cos(Λ)4 1 + 0.2𝑀cos(Λ)
+where 𝑘 = 0.243
+.
+𝜅
+𝑀cos(Λ)
+
+Parasite drag. Parasite drag is the drag associated with the skin friction
+and pressure drag of the aircraft. A reasonable estimate of this quantity
+can be arrived at by adding the contributions of the fuselages, wings,
+and nacelles separately. Both the wing and the fuselage use Eq. (3) to
+compute parasite drag. The skin friction coeﬃcients are computed using
+the approximate compressible ﬂat plate equations to calculate the skin
+friction coeﬃcients associated with the fuselage, wing, and nacelle.
+𝐶𝐷𝑝𝑎𝑟𝑎𝑠𝑖𝑡𝑒 = 𝑘𝐶𝑓
+
+𝑠𝑢𝑏
+
+where the crest-critical Mach number, corrected (𝑐𝑜𝑟.) for wing sweep,
+can then be expressed by
+
+𝐶𝐷 =𝐶𝐷𝑝𝑎𝑟𝑎𝑠𝑖𝑡𝑒 + 𝐶𝐷𝑖𝑛𝑑𝑢𝑐𝑒𝑑 + 𝐶𝐷𝑐𝑜𝑚𝑝. + 𝐶𝐷𝑓 𝑜𝑟𝑚 + 𝐶𝐷𝑙𝑎𝑛𝑑.𝑔𝑒𝑎𝑟
++ 𝐶𝐷𝑐𝑡𝑟𝑙.𝑠𝑢𝑟𝑓 . + 𝐶𝐷𝑐𝑜𝑜𝑙𝑖𝑛𝑔 + 𝐶𝐷𝑚𝑖𝑠𝑐
+
+(5)
+
+𝑡𝑟
+
+(11)
+
+Here, 𝜅 is the normalized curvature of the airfoil, taken to be 0.23. Once
+this distribution along the wing is determined, 𝐶𝐷C ,𝑙𝑖𝑓 𝑡 can be estimated
+tr
+as
+1
+
+𝐶𝐷C ,𝑙𝑖𝑓 𝑡 =
+
+(3)
+
+tr
+
+where 𝐶𝑓 is the skin friction coeﬃcient provided in [55]. Alternatively,
+Schlichting’s [56] turbulent ﬂat plate empirical formula can be used.
+
+∫𝜂𝑏𝑜𝑑𝑦
+
+𝑐(𝜂)
+𝐶 (𝜂)𝑑𝜂.
+𝑐̄ 𝐷𝑐𝑡𝑟
+
+(12)
+
+In the above expression, 𝑐(𝜂) is the local chord, 𝜂 is the normalized span
+location from the wing root to the wing tip, and 𝑐̄ is the mean chord. In
+4
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+where 𝑆𝑙.𝑔. is the frontal area of each wheel, computed as the product of
+the wheel diameter,𝐷𝑙𝑎𝑛𝑑.𝑔𝑒𝑎𝑟. , and the width, 𝑤𝑙𝑎𝑛𝑑.𝑔𝑒𝑎𝑟. . The drag coeﬃcient of each wheel 𝐶𝐷𝑙𝑎𝑛𝑑.𝑔𝑒𝑎𝑟 ,𝑖 is taken as 0.3 in the absence of a fairing
+or 0.15 with a fairing.
+
+the supersonic regime, the lift-dependent compressibility drag is given
+by the following relation [58].
+(
+)
+]
+1 𝑝 [ 2
+𝐶𝐷C ,𝑙𝑖𝑓 𝑡 =
+2𝛽 (𝑠∕𝑙)2 𝐾𝑊 𝐶𝐿2 ,
+(13)
+tr
+2𝜋 (𝑠∕𝑙)
+where the empirical coeﬃcient 𝐾𝑊 is well approximated by the following relation
+(
+)
+1 𝑓𝑤 (𝛽(𝑠∕𝑙))
+𝐾𝑊 = 1 +
+,
+𝑝 2𝛽 2 (𝑠∕𝑙)2
+⎧0.0, 𝑥 ≤ 0.178
+⎪
+where 𝑓𝑤 (𝑥) = ⎨0.4935 − 0.2382𝑥 + 1.6306𝑥2 − 0.86𝑥3
+⎪ +0.2232𝑥4 − 0.0365𝑥5 − 0.5, 0.178 < 𝑥
+⎩
+
+Control surface drag. An aircraft can possess several types of control
+surfaces, each serving unique purposes ranging from aerodynamic augmentation to stability and control. Spoilers, for instance, are control surfaces on the upper wing surface that increase drag and decrease lift when
+deployed. They are used for speed control, descent, and assisting with
+roll control during turns. They are a vital part of an aircraft’s braking
+and speed control systems during landing. Experimental data taken from
+[61] is used to arrive at the empirical relation below:
+
+(14)
+
+At supersonic speeds, the approach to estimating compressibility
+drag due to volume is also a component decomposition, treating lifting
+surfaces diﬀerently from axisymmetric lofted bodies such as fuselages.
+Volume compressibility drag due to wings can be determined as follows:
+(
+)
+( )𝑆
+512
+5 2
+5
+wet
+𝐶𝐷C ,𝑣𝑜𝑙𝑢𝑚𝑒 (wing) =
+𝜏𝑝
+𝐾0 𝛽
+,
+sup
+𝜋
+𝑙
+𝑙 2𝑆
+𝑉
+𝑆
+where 𝑝 =
+and 𝜏 = 𝑤
+(15)
+2𝑠𝑙
+𝑆 3∕2
+
+𝐶𝐷𝑠𝑝𝑜𝑖𝑙𝑒𝑟 = 𝐶𝐷0
+
+{(
+
+𝑑max
+𝑙𝑁
+
+)2
+
+(
++
+
+𝑑max
+𝑙𝑇
+
+)2 }
+
+𝑆cross
+,
+𝑆
+
+(16)
+Cooling drag. When ram inlets are employed for thermal management,
+their contribution to the total drag is non-negligible. Cooling drag can
+be computed by balancing the change in ﬂuid momentum and pressure
+forces as described by Brelje [63] where 𝑚̇ is the mass ﬂow through the
+duct, 𝐴𝑒 , 𝑝𝑒 and 𝑢𝑒 are the exit area, pressure and velocity of the cooling
+duct, 𝐶𝑓 𝑔 is a factor taken to be 0.98, and 𝑢∞ and 𝑝∞ are the freestream
+velocity and pressure.
+
+Lift-induced drag. Lift-induced drag contains both a viscous and an inviscid component. An estimate of the viscous portion using the parasitic
+drag is
+(17)
+
+𝐶𝐷𝑐𝑜𝑜𝑙𝑖𝑛𝑔 =
+
+while the inviscid portion is computed directly from the Treﬀtz plane
+analysis from VLM to arrive at the total induced drag of the aircraft.
+𝐶𝐷𝑖𝑛𝑑𝑢𝑐𝑒𝑑 = 𝐶𝐷𝑖𝑛𝑑𝑢𝑐𝑒𝑑,𝑖𝑛𝑣 + 𝐶𝐷𝑖𝑛𝑑𝑢𝑐𝑒𝑑,𝑣𝑖𝑠𝑐
+
+𝑚(𝑈
+̇ 𝑒 𝐶𝑓 𝑔 − 𝑈∞ ) + 𝐴𝑒 𝐶𝑓 𝑔 (𝑝𝑒 − 𝑝∞ ))
+𝑞𝑆𝑟𝑒𝑓
+
+(25)
+
+Miscellaneous drag. In addition to the components described above, the
+contribution of drag due to fuselage upsweep, control surface gaps, air
+conditioning systems, etc., is not modeled explicitly. These are instead
+lumped into a miscellaneous drag increment 𝐶𝐷𝑚𝑖𝑠𝑐 . Accounting for these
+small but important factors is essential for accurate drag estimation.
+
+(18)
+
+Form drag. Form drag relations were derived from data for the NASA
+CRM model to account for wing separation drag that is usually not captured by inviscid models [60]. A quartic ﬁt was applied yielding the
+following equation:
+
+3D high ﬁdelity computational ﬂuid dynamics solver
+SU2 [6] is an open-source computational analysis software to
+solve complex, multi-physics analysis Partial Diﬀerential Equationbased (PDE) problems using arbitrary unstructured meshes. Since its
+release more than a decade ago, this collection of C++ tools has
+grown to solve PDE-constrained optimization problems, including optimal shape design, and other sets of governing equations, including
+potential ﬂow, aeroelasticity, electrodynamics, and chemically reacting
+non-linear equilibrium ﬂows [64]. This process begins with translating RCAIDE-deﬁned geometry into an STL ﬁle using a VTK [65] plugin, which is then imported into the meshing software GMSH [66] to
+create an unstructured mesh. Flight conditions from RCAIDE are also
+written to an input ﬁle for SU2 before ﬁnally solving the constituent
+ﬂuid equations in SU2. Similar to the VLM, results can be used to establish surrogates that can be queried in the mission solver. The output of
+SU2 can also be visualized in a postprocessor, such as Paraview [67],
+to display surface pressures, forces, velocity distributions, and much
+more.
+
+𝐶𝐷𝑓 𝑜𝑟𝑚 = 𝐴𝑅𝑐𝑜𝑟𝑟𝑒𝑐𝑡𝑖𝑜𝑛 (103.31𝛼 4 − 14.53𝛼 3 + 1.74𝛼 2 − 0.033𝛼 + 0.0015)
+(19)
+Where 𝐴𝑅𝑐𝑜𝑟𝑟𝑒𝑐𝑡𝑖𝑜𝑛 is a relation to further correct the expression for aircraft with diﬀerent aspect ratios:
+𝐴𝑅𝑐𝑜𝑟𝑟𝑒𝑐𝑡𝑖𝑜𝑛 = −0.0016(𝐴𝑅)3 + 0.0503(𝐴𝑅)2 − 0.5201(𝐴𝑅) + 2.7781
+
+(22)
+
+where 𝑐𝑓 𝑙𝑎𝑝 ∕𝑐 is the ratio between the average ﬂap chord and the average wing chord at the ﬂap location. In the case where the ﬂap is extended, as in the case for a slotted ﬂap, the 𝑐𝑓 𝑙𝑎𝑝 represents the extended
+chord. The coeﬃcients 𝐴 and 𝐵 can be found in [62] for diﬀerent ﬂap
+types. The increase in drag due to slats is given in Eq. (24) below, where
+𝐶𝐷0,𝑤 is the wing zero-lift drag coeﬃcient without extending a high-lift
+device.
+(𝑐 )
+𝐶𝐷𝑠𝑙𝑎𝑡 = 𝑠𝑙𝑎𝑡 𝐶𝐷0
+(24)
+𝑤𝑖𝑛𝑔
+𝑐
+
+where 𝑆cross = 𝜋4 𝑑max 2 , where 𝑑max is the maximum diameter of the body,
+and 𝑙𝑁 and 𝑙𝑇 are the lengths of the nose and tail respectively.
+
+𝐶𝐷𝑖𝑛𝑑𝑢𝑐𝑒𝑑,𝑣𝑖𝑠𝑐 = 𝐾𝐶𝐷𝑝 𝐶𝐿2
+
+(0.0011𝛿𝑠𝑝𝑜𝑖𝑙𝑒𝑟 )
+
+The increase in drag due ﬂap deployment is given by the following empirical formula:
+(𝑐 ) (
+)𝐵
+𝐶𝐷𝑓 𝑙𝑎𝑝 = 𝑠𝑙𝑎𝑡 𝐴 𝛿𝑓 𝑙𝑎𝑝 ,
+(23)
+𝑐
+
+𝐾0 is the empirical coeﬃcient for compressibility drag due to volume,
+(𝑠∕𝑙) is the slenderness ratio (semispan-to-length ratio), 𝑝 is the planform
+parameter, and 𝜏 is the volume parameter based on wing volume, 𝑉𝑤 .
+The compressibility drag due to volume for an axisymmetric body is
+estimated using [59],
+4.69
+𝐶𝐷C ,𝑣𝑜𝑙𝑢𝑚𝑒 (body) =
+sup
+4
+
+𝑤𝑖𝑛𝑔
+
+(20)
+
+Landing gear drag. The landing gear supports the aircraft’s weight and
+facilitates its motion along the runway. To reduce drag in ﬂight, some
+landing gears are retracted into the fuselage. When the landing gear is
+ﬁxed in place, it creates extra drag for the aircraft and can increase drag
+by as much as 45%. The increase in 𝐶𝐷0 due to the wheel of the landing
+gear is given by the following empirical equation:
+(
+)
+𝑛
+∑
+𝑆𝑙𝑎𝑛𝑑.𝑔𝑒𝑎𝑟,𝑖
+𝐶𝐷𝑙𝑎𝑛𝑑.𝑔𝑒𝑎𝑟 =
+𝐶𝐷𝑙𝑎𝑛𝑑.𝑔𝑒𝑎𝑟 ,𝑖
+,
+(21)
+𝑆𝑟𝑒𝑓
+𝑖=1
+5
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+2D viscous vortex panel method
+The viscous vortex panel method is used to model and compute the
+forces acting on airfoils. It combines an inviscid panel method based on
+Hess and Smith [68] with a numerical solution of the boundary-layer
+equations on the airfoil surface. Moran [69] provides detailed information on the creation of the inﬂuence coeﬃcient and ﬂow tangency matrices needed to solve the inviscid ﬂow around an airfoil. The boundary
+layer equations solved here are the 2D Von Karman integral boundary
+layer equations, along with suitable closure equations based on whether
+the ﬂow is laminar or turbulent over that speciﬁc portion of the airfoil
+surface. In the case of laminar ﬂow, the combined system of integral
+boundary-layer equations and the closure equations used is Thwaites’
+method [30] while Head’s method [70] is used within the turbulent
+regime. The location of transition from laminar ﬂow to turbulent ﬂow
+is computed using the Michel criterion [71] in RCAIDE. This wake modeling is achieved using the Squire-Young model [72].
+
+Energy Sources, and Distributors. Converters represent physical components that transform energy between distinct domains.
+Propulsors constitute assemblies of converters operating synergistically to generate thrust. Modulators regulate energy ﬂux within a single domain; representative examples include fuel selector valves and
+electric bus power control units. Energy Sources encompass storage
+systems for one or multiple energy forms, including conventional aviation fuels such as Jet-A and JP-8, compressed or cryogenic fuels such
+as liquid petroleum gas (LPG) and liquid hydrogen (LH2 ), and electrochemical storage systems (batteries). Finally, Distributors govern the
+transfer of mass, energy, or power among multiple components within
+the propulsion architecture. Table 2 summarizes the components currently available for network integration.
+By sequentially linking the outputs of one element to the inputs of
+the succeeding element, these models can be used to emulate an engine
+cycle under quasi-steady, one-dimensional ﬂow assumptions. Ducts, ram
+inlets, compression and expansion nozzles, fans, compressors, and turbines form the building blocks of polytropic models for propulsors such
+as turbofans, turbojets, turboprops, and internal combustion engines
+based on [80,81]. Comparably, electric-rotor and electric-ducted-fan
+propulsors consist of an electronic speed controller, an inverter, a motor,
+and a rotor or ducted fan.
+Understanding thermal sources, losses, and sinks throughout the
+system is crucial for several reasons, including improving system eﬃciency by employing a recuperator, regulating the temperatures of other
+components, and estimating component failure rates. Some elements
+must reject excessive heat loads to prevent thermal runaway and material failure at high temperatures. Waste heat can also be leveraged
+for environmental control, as in commercial aircraft, where engine exhaust is used to maintain cabin temperature. Similar to fuel and electrical lines that transport fuel and electrical current, respectively, to
+the propulsors, coolant lines transport thermal energy throughout the
+aircraft.
+Regarding sources, both conformal tanks, such as those found in aircraft wings, and non-conformal tanks can be modeled to simulate liquid
+fuel delivery. Battery modules comprising cells of diﬀerent chemistries
+enable users to understand the trade-oﬀs of selecting one cell over another, characterized by distinct energy and power densities and by performance degradation over time.
+For brevity, the authors encourage readers to refer to Table 2 for
+a comprehensive list of methods used to model propulsors in RCAIDE.
+The resulting thrust expressions for a turbofan, turboprop, and turbojet are given in Eqs. (27)–(29). Each equation accounts for changes in
+airﬂow momentum, pressure thrust, and, in the case of turboprops, additional thrust from the propeller. Moments generated by these propulsors are computed based on the thrust vector orientation and their position relative to the aircraft’s center of gravity. The forces and moments
+produced by electric propulsors depend on the thrust-producing component: the rotor on the Electric_Rotor propulsors or the ducted fan
+on the Electric_Ducted_Fan. The thrust from these two propulsors at
+diﬀerent ﬁdelities is provided.
+
+3.3. Stability analyses
+The full equations of motion used to model aircraft ﬂight dynamics
+are nonlinear and complex; however, for small deviations, these equations can be linearized, yielding a system of linear diﬀerential equations
+with constant coeﬃcients [73,74]. This perturbation, or small disturbance, theory is widely used in practice, oﬀering reliable predictions
+for unaccelerated ﬂight and acceptable accuracy even for moderate disturbances [75]. Within this small-disturbance theory approach, further
+simpliﬁcations are commonly applied to reduce complexity while retaining suﬃcient accuracy. First, derivatives of symmetric forces and moments with respect to asymmetric motion variables are neglected. Second, derivatives with respect to the rates of change of motion variables
+(for example, 𝑢, 𝑣, and 𝑤 velocity) are ignored, except for lift and pitching moment changes due to 𝑢 velocity perturbations. Third, equations
+are separated into lateral/directional stability and longitudinal stability
+categories. It is further noted that these simpliﬁed equations include the
+eﬀect of control surfaces on ﬂight conditions. This enables estimation of
+the trim conditions of the rudder, elevator, and ailerons under a variety
+of steady-state conditions, including cruise, climb, turns, descent, and
+others. The stability perturbation method consists of two preprocessing
+steps. First, perturbation training data at an equilibrium condition are
+obtained by varying the angle of attack, Mach number, velocity, pitch
+rate, and control-surface deﬂection to capture stability derivatives. Finally, the stability derivative is computed as the ratio of the diﬀerence
+between two stability coeﬃcients to the corresponding perturbation input. For instance, the value of the pitching moment coeﬃcient with
+respect to elevator deﬂection is computed as:
+𝐶𝑀𝛿 =
+𝑒
+
+𝐶𝑀𝑖 − 𝐶𝑀(𝑖+1)
+𝛿𝑒𝑖 − 𝛿𝑒(𝑖+1)
+
+(26)
+
+In the second step, surrogate models are constructed using the
+training data. These models can predict outputs without requiring reevaluation of the aerodynamic solver at each mission solver iteration.
+Values are then interpolated using the predeﬁned training data as functions of angle of attack and Mach number. While solving a particular
+ﬂight segment, stability derivatives are used to construct the longitudinal and lateral stability matrices, which are then inverted to yield the
+desired trim conditions or aircraft motion.
+
+𝑇𝑡𝑢𝑟𝑏𝑜𝑓 𝑎𝑛 = 𝑚̇ 𝑎,core (𝑈𝑒 − 𝑈0 ) + 𝑚̇ 𝑎,fan (𝑈𝑒1 − 𝑈0 ) + (𝑃𝑒 − 𝑃0 )𝐴𝑒
++ (𝑃𝑒1 − 𝑃0 )𝐴1𝑒
+𝑇𝑡𝑢𝑟𝑏𝑜𝑝𝑟𝑜𝑝 = 𝑚̇ 𝑎 (𝑈𝑒 − 𝑈0 ) + 𝑚̇ 𝑓 𝑈𝑒 + (𝑃𝑒 − 𝑃0 ) 𝐴𝑒 + 𝜂prop
+
+3.4. Powertrain analyses
+𝑇𝑡𝑢𝑟𝑏𝑜𝑗𝑒𝑡 = 𝑚̇ 𝑎 (𝑈𝑒 − 𝑈0 ) + (𝑃𝑒 − 𝑃0 )𝐴𝑒
+The capability to model emerging powertrain architectures constituted a principal motivation for reconceptualizing energy network design philosophies. These are created by instantiating the Network()
+class, which monitors energy ﬂux across hydraulic, mechanical, electrical, and thermal domains. This class organizes deﬁned components
+into ﬁve taxonomic categories: Converters, Propulsors, Modulators,
+
+𝑇rotor,BEMT = 𝐵
+
+𝑁𝑟
+∑
+
+(
+)
+𝜌𝑖 Γ𝑖 𝑊𝑡,𝑖 − 𝜀𝑖 𝑊𝑎,𝑖 Δ𝑟𝑖
+
+(27)
+𝑊𝑝
+𝑈0
+
+(28)
+(29)
+
+(30)
+
+𝑖=1
+
+𝑇rotor,AD =
+6
+
+𝜂 𝑝 𝐶𝑞 𝜌 𝐷 5 𝜔 3
+4𝜋 2
+
+(31)
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+Table 2
+Power and propulsion system models within RCAIDE.
+Classiﬁcation
+
+Component
+
+Computational Model(s)
+
+Reference
+
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Converter
+Distributor
+Distributor
+Distributor
+Modulator
+Modulator
+Modulator
+Modulator
+Propulsor
+Propulsor
+Propulsor
+Propulsor
+Propulsor
+Propulsor
+Source
+Source
+Source
+
+DC Motor
+PMSM AC Motor
+DC Generator
+PMSM Generator
+Rotor/Propeller
+Internal Combustion Engine (ICE)
+Turboshaft
+Turboelectric Generator
+Ram
+Compression Nozzle
+Fan
+Compressor
+Combustor
+Turbine
+Expansion Nozzle
+Supersonic Nozzle
+Ducted Fan
+Reformer
+Heat Exchanger
+Fuel Cell
+PEM Fuel Cell
+Coolant Line
+Electrical Bus
+Fuel Line
+Electronic Speed Controller
+Fuel Selector/Regulator Valve
+Inverter
+Transformer Rectiﬁer Unit
+Turbofan
+Turbojet
+Turboprop
+Electric Rotor
+Electric Ducted Fan
+ICE + Propeller
+Battery Modules
+Cryogenic Tanks
+Fuel Tanks
+
+DC
+PMSM
+DC
+PMSM
+Actuator Disc & BEMT
+Empirical
+Polytropic
+Polytropic
+Polytropic
+Polytropic
+Polytropic
+Polytropic
+Polytropic & CRN
+Polytropic
+Polytropic
+Polytropic
+Actuator Disk & BEMT
+ATR
+Physics-based
+Empirical
+PEM
+Physics-based
+Physics-based
+Physics-based
+Empirical
+Physics-based
+Physics-based
+Physics-based
+Polytropic
+Polytropic
+Polytropic
+See Motor & Rotor
+See Motor & Ducted Fan
+See ICE & Rotor
+Empirical & Semi-empirical
+Physics-based
+Physics-based
+
+[76]
+[77]
+[76]
+[77]
+[41,78]
+[41,79]
+[80]
+[80]
+[81]
+[81]
+[81]
+[81]
+[34,35,81]
+[81]
+[81]
+[81]
+[41,78]
+[82]
+[83,84]
+[85]
+[85,86]
+N/A
+N/A
+N/A
+[87]
+N/A
+N/A
+N/A
+[81,88]
+[81]
+[80]
+[41,76–78]
+[41,76–78,89]
+[41,78,79]
+[90–93]
+[94]
+N/A
+
+𝑇ducted fan,BEMT = Refer to DFDC
+
+(32)
+
+lift rotors. This is given below in Eq. (34).
+
+𝑇ducted fan,AD = 𝐶𝑡 𝜌 𝑛2 𝐷4 .
+
+(33)
+
+⎧𝑃 ⎫
+⎪ 𝑣𝑚 ⎪
+⎪𝑃𝐷𝑚 ⎪
+[
+(
+)]
+⎪
+⎪
+𝜌0 𝑐02 𝐵 sin 𝜃 exp 𝑖 𝑚𝐵 Ω𝐷𝑟
+− 𝜋2
+⎪𝑃𝐿𝑚 ⎪
+𝑐0
+⎨
+⎬=−
+)
+𝑦 (
+8𝜋
+1 − 𝑀𝑥 cos 𝜃
+⎪𝑃11𝑚 ⎪
+𝐷
+⎪𝑃 ⎪
+⎪ 12𝑚 ⎪
+⎪𝑃22𝑚 ⎪
+⎩
+⎭
+
+3.5. Aeroacoustics analyses
+Semi-empirical airframe and jet noise prediction
+Empirical models for landing gear [95], slats [96], ﬂaps [97], and
+engine noise, which itself comes about as a culmination of diﬀerent
+sources–fan, core, and jet exhaust – are integrated into the RCAIDE
+framework. Leveraging the recent work by NASA, the fan noise is predicted using the model by Krejsa et al. [98] while the core noise is predicted using the method outlined in Stone et al. [99]. The SAE ARP876D
+model [38] for jet exhaust is also integrated into the code. In this particular model, the jet is conceptually divided into three source regions:
+the primary (core) jet, the secondary (fan) jet, and the mixed jet. The
+total jet sound pressure level is the base-10 logarithm of the sum of
+the time-mean-square sound pressures from the three aforementioned
+components. At this stage, the engine model does not account for turbomachinery and combustion noise sources. Once the near-ﬁeld sound
+spectra are computed for each noise source, the noise module propagates
+them to the far-ﬁeld desired position by applying corrections, such as
+atmospheric attenuation.
+
+⎧𝑘2 𝑡𝑏 Ψ𝑣 (𝑘𝑥 )
+⎫
+⎪ 𝑧
+⎪
+𝐶𝐷
+⎪
+⎪
+𝑖
+𝑘
+Ψ
+(𝑘
+)
+⎪ 𝑥 2 𝐷 𝑥 ⎪
+⎪
+⎪
+(
+)
+𝑚𝐵𝑧𝑀𝜏 sin 𝜃 ⎪− 𝑖 𝑘 𝐶𝐿 Ψ (𝑘 ) ⎪
+2 𝑖(𝜙0 +𝜙𝑠 )
+𝑦
+𝐿
+𝑥
+×
+𝑀2 𝑒
+𝐽𝑚𝐵
+⎬ 𝑑𝑧
+2
+∫
+1 − 𝑀𝑥 cos 𝜃 ⎨
+⎪𝑘2 Ψ11 (𝑘𝑥 , 𝑘𝑦 )
+⎪
+𝑧
+⎪
+⎪
+⎪2 𝑘𝑥 𝑘𝑦 Ψ12 (𝑘𝑥 , 𝑘𝑦 )⎪
+⎪
+⎪
+⎪𝑘2 Ψ22 (𝑘𝑥 , 𝑘𝑦 )
+⎪
+𝑦
+⎩
+⎭
+
+(34)
+
+where the Ψ( 𝑘𝑥 ) terms are Fourier transformed source terms that can
+be substituted for using aerodynamic modeling. These equations model
+the source for an axial inﬂow propeller as a plane source. The Fourier
+transformed source term for thickness is
+
+Physics-based rotor noise prediction
+An extension to Hanson’s [100] harmonic noise model is used to
+predict rotor noise for both axial inﬂow propellers and non-axial inﬂow
+
+1∕2
+
+Ψ𝜈 (𝑘𝑥 ) =
+7
+
+∫−1∕2
+
+𝐻(𝑋) 𝑒𝑖𝑘𝑥 𝑋 d𝑋
+
+(35)
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+where 𝐻(𝑋) is the chordwise thickness distribution. The Fourier transformed source term for loading in axial inﬂow propellers is
+1∕2
+
+Ψ𝐷 (𝑘𝑥 ) =
+
+∫−1∕2
+
+across 𝑁PZ perfectly stirred reactors (PSRs) using a Gaussian proﬁle:
+𝑓 (𝜙𝑖 ) =
+
+1∕2
+
+𝑓𝐷 (𝑋) 𝑒𝑖𝑘𝑥 𝑋 d𝑋,
+
+Ψ𝐿 (𝑘𝑥 ) =
+
+∫−1∕2
+
+𝑓𝐿 (𝑋) 𝑒𝑖𝑘𝑥 𝑋 d𝑋
+
+(36)
+
+𝜎𝜙̄
+
+𝑟𝑡
+
+∫0
+
+1
+𝑟0
+
+(
+
+𝜙̄ 𝑗 =
+
+(37)
+
+(
+)]
+𝜋
+𝑃𝐿𝑚 =
+exp 𝑖(𝑚𝐵 − 𝑘) 𝜙′ −
+× Integral Term
+4𝜋(𝑟∕𝑟𝑡 )(1 − 𝑀 cos 𝜃) 𝑘=−∞
+2
+(
+𝑟𝑡
+′)
+̂ 𝐹 (𝑘𝑥 )𝐽𝑚𝐵−𝑘 𝑚𝐵𝑧0 𝑀𝑡 sin 𝜃 𝑑𝑧0
+Integral Term =
+𝑀𝑟2 Ψ
+𝑘
+∫0
+1 − 𝑀 cos 𝜃
+
+𝛽SA,SM =
+
+∞
+[
+(
+)]
+∑
+−𝜌0 𝑐 2 𝐵𝑒𝑖𝑘𝑚 𝑟
+𝜋
+exp 𝑖𝑚𝐵 𝜙′ −
+× Integral Term
+4𝜋(𝑟∕𝑟𝑡 )(1 − 𝑀 cos 𝜃) 𝑘=−∞
+2
+(
+𝑟𝑡
+′)
+̂ 𝑣 (𝑘𝑥 )𝐽𝑚𝐵 𝑚𝐵𝑧0 𝑀𝑡 sin 𝜃 𝑑𝑧0
+Integral Term =
+𝑀𝑟2 𝑘̂ 2𝑥 𝑡𝑏 Ψ
+∫0
+1 − 𝑀 cos 𝜃
+
+(46)
+
+𝑓air,SA 𝑓SM 𝑚̇ air
+𝑙SA,SM 𝐿𝑆𝑍
+
+,
+
+𝛽SA,FM =
+
+𝑓air,SA 𝑓FM 𝑚̇ air
+𝑙SA,FM 𝐿𝑆𝑍
+
+(47)
+
+After recombination into a single PFR, dilution air is injected between
+𝓁DA,start and 𝓁DA,end at:
+
+[
+
+(39)
+
+𝛽DA =
+
+(40)
+
+𝑓air,DA 𝑚̇ air
+
+(48)
+
+(𝑙DA,end − 𝑙DA,start )𝐿𝑆𝑍
+
+The air fractions are computed as:
+
+Thickness here refers to the ability of a body of a certain shape, that
+shape being a line, a plane, or a point, to move ﬂuid out of the way and
+push ﬂuid as it moves through the quiescent ﬂuid medium. By physical
+laws, the thickness source term cannot be modeled as a point or line
+term, since a line or a point has no thickness. As a result, it is modeled
+as a steady plane-source term and is unsteady only due to non-axial
+inﬂow.
+The equation for the thickness noise model is
+𝑃𝑣𝑚 =
+
+(45)
+
+The Secondary Zone (SZ) is modeled as two parallel Plug Flow Reactors
+(PFRs) to represent slow- and fast-mixing regimes, capturing spatial heterogeneity in air-fuel mixing. Secondary air, quantiﬁed by 𝑓air,SA , is split
+between these paths in fractions 𝑓SM and 𝑓FM = 1 − 𝑓SM , with local axial
+injection rates:
+
+The plane source term models the load acting on a plane representing
+the entire blade, with the plane coinciding with the blade’s chord plane.
+The spanwise load distribution is obtained using rotor modeling, which
+is then used as input to the viscous vortex panel method to obtain the
+chordwise load distribution at each blade section.
+∞
+∑
+
+𝑚̇ fuel,𝑗
+𝑓air,𝑃 𝑍 𝑚̇ air,𝑗 FARst
+
+The residence time in the reactor 𝑖 is:
+𝜌𝑖 𝑉𝑃 𝑍,𝑖
+𝑡res,𝑖 =
+𝑚̇ fuel,𝑖 + 𝑚̇ air,𝑖
+
+)
+(
+)
+𝑀𝜃 cos 𝜃 ′
+𝑚𝐵𝑀𝜃 sin 𝜃 ′
+𝐹 (𝑟 ) − 𝐹𝜙𝑘 (𝑟0 ) 𝐽𝑚𝐵−𝑘
+𝑑𝑟0
+1 − 𝑀 cos 𝜃 𝑥𝑘 0
+1 − 𝑀 cos 𝜃
+(38)
+
+−𝜌0 𝑐02 𝐵𝑒𝑖𝑘𝑚 𝑟
+
+(43)
+
+and the mean equivalence ratio at thrust level 𝑗 is:
+
+∞
+[(
+(
+))]
+∑
+𝑖𝑚𝐵 2
+𝜋
+exp 𝑖 𝑘𝑚 𝑟 + (𝑚𝐵 − 𝑘) 𝜙′ −
+× Integral Term
+4𝜋𝑟(1 − 𝑀 cos 𝜃) 𝑘=−∞
+2
+
+Integral Term =
+
+⎛ (𝜙 − 𝜙)
+̄ 2⎞
+⎟Δ𝜙
+exp⎜− 𝑖
+⎜
+2𝜎 2̄ ⎟
+2𝜋
+⎝
+⎠
+𝜙
+
+where the standard deviation 𝜎𝜙̄ is linked to the dimensionless mixing
+indicator:
+𝜎𝜙̄
+𝑆PZ =
+(44)
+𝜙̄
+
+where 𝑓𝐷 (𝑋) is the chordwise drag distribution and 𝑓𝐿 (𝑋) is the chordwise lift distribution.
+The model developed by Hanson for rotors with non-axial inﬂow
+exists for three acoustic compactness levels of the loading source term:
+point, line, and plane, of which the latter two have shown to have good
+agreement with experimental data. The line load source term models the
+load acting on a line along the blade span, with a spanwise distribution.
+The load here refers to the thrust and the torque.
+𝑃𝐿𝑚 =
+
+1
+√
+
+𝑓air,SA =
+
+𝑚̇ fuel,takeoﬀ
+𝜙𝑆𝑍,des FAR𝑠𝑡 𝑚̇ air,takeoﬀ
+
+,
+
+𝑓air,DA = 1 − 𝑓air,𝑃 𝑍 − 𝑓air,SA
+
+(49)
+
+4. Flight modeling and simulation
+4.1. Computational workﬂow
+The mission simulation process, which includes user data interaction, computational disassembly and interpretation, numerical assembly of data classes, and the integration of multidisciplinary analyses and
+code numerics, is summarized in the ﬁve steps below and illustrated in
+Fig. 2. The ﬁrst four steps require human interaction, while the last is
+executed automatically once the simulation begins.
+
+(41)
+(42)
+
+̂ 𝑣 (𝑘𝑥 ) is the Fourier-transformed frequency domain source term
+where Ψ
+for the thickness noise. 𝐽𝑚𝐵 is again the Bessel function that appears in
+harmonic noise models. It is computed in the same way as for the axial
+inﬂow prcopeller, as seen in Eq. 35.
+
+1. Vehicle Setup: Speciﬁes core parameters, including geometry,
+propulsion architecture, and mass properties.
+2. Conﬁguration Setup: Speciﬁes the various aircraft conﬁgurations
+(for example, takeoﬀ with ﬂaps deﬂected, cruise, descent with spoilers deployed, and landing gear down) that are used throughout the
+mission proﬁle.
+3. Analyses Setup: Speciﬁes the multidisciplinary analyses to be assessed during the ﬂight simulation.
+4. Mission Setup: Outlines the ﬂight kinematics for each segment
+and speciﬁes the relevant operating conditions, such as altitude and
+heading. This step also synthesizes inputs from previous setup stages.
+Currently, more than 30 predeﬁned ﬂight maneuvers, referred to as
+mission segments, are broadly categorized as climb, descent, cruise,
+single-point, ground, vertical ﬂight, or untrimmed.
+5. Mission Evaluation: The mission is executed in four sub-routines:
+1) preprocessing, where user-speciﬁed inputs are checked for consistency to prevent computational faults during the mission-solving
+routine; 2) initialization, in which inputs are assembled into matrices and empty data structures are instantiated, both sized according
+to the discretization of the ﬂight segments; 3) iteration, where the
+mission solver constructs a system of equations describing force and
+
+3.6. Emissions analyses
+RCAIDE oﬀers two approaches to estimate the quantity of emissions produced by the combustion of liquid hydrocarbon fuel: a lowﬁdelity model that employs widely accepted emission indices [33];
+and a higher-ﬁdelity chemical reactor network (CRN) model leveraging
+Cantera [101]. Although more computationally intensive, CRNs have
+proven eﬀective for simulating combustor performance and predicting
+emissions [102,103]. They require more input parameters, such as combustor geometry, inlet temperature, pressure, air mass ﬂow rate, fuel-toair ratio, and chemical kinetics. Still, they can compute Emission Indices
+(EI) for species like CO2 , CO, H2 O, and NOx , arbitrary chemical compounds, making them attractive to study both drop-in and non-drop-in
+biofuels, as well as low-carbon fuel alternatives like LNG and LPG. Two
+regions of ﬂame evolution needed to be modeled to achieve accurate
+predictions of emission products: the primary and secondary zones. The
+Primary Zone (PZ) is modeled by distributing the equivalence ratio 𝜙𝑖
+8
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+Fig. 2. RCAIDE computational workﬂow.
+
+below in Eq. (50) fall below some tolerance, 𝜖, defaulted to 1 × 10−6 .
+
+moment balance and recursively queries the deﬁned analyses until convergence; and 4) post-processing, where converged state variables are used in additional decoupled analyses, such as noise and
+emissions. Once completed, the ﬁnal set of converged state variables
+serves as the initial state for the next segment, and the process from
+the second sub-routine is repeated until all ﬂight segments have been
+evaluated.
+
+min
+
+⃗
+𝑓 (𝑋)
+
+𝑋⃗
+
+s.t.
+
+𝐹⃗𝑎𝑒𝑟𝑜∕𝑠𝑡𝑎𝑏𝑖𝑙𝑖𝑡𝑦 + 𝐹⃗𝑝𝑜𝑤𝑒𝑟𝑡𝑟𝑎𝑖𝑛 + 𝐹⃗𝑔𝑟𝑎𝑣𝑖𝑡𝑎𝑡𝑖𝑜𝑛𝑎𝑙
+𝑚
+
+⃗𝐹 ≤ 𝜖
+− 𝑎⃗ ≡ ℝ
+
+⃗ 𝑎𝑒𝑟𝑜∕𝑠𝑡𝑎𝑏𝑖𝑙𝑖𝑡𝑦 + 𝑀
+⃗ 𝑝𝑜𝑤𝑒𝑟𝑡𝑟𝑎𝑖𝑛 + 𝑀
+⃗ 𝑔𝑟𝑎𝑣𝑖𝑡𝑎𝑡𝑖𝑜𝑛𝑎𝑙
+𝑀
+𝑀𝑂𝐼
+
+(50)
+
+⃗𝑀 ≤ 𝜖
+− 𝛼⃗ ≡ ℝ
+
+Here, 𝑓 represents a user-deﬁned objective function that evaluates
+⃗ which may include vehicle
+the aircraft state based on state variables, 𝑋,
+angle of attack, throttle setting, control surface deﬂections, blade pitch
+⃗ denote the
+angles, and thrust vectoring angles. The vectors 𝐹⃗ and 𝑀
+force and moment about the aircraft’s center of gravity, respectively,
+while 𝑚 and 𝑀𝑂𝐼 represent the mass and moment of inertia at each
+timestep. Lastly, 𝑎⃗ represents the system’s acceleration, decomposed into
+orthogonal components, while 𝛼⃗ represents the changes in angular rates
+about the vehicle’s body axis.
+
+4.2. Solver numerics: A pseudo-spectral approach to solving ﬂight
+mechanics
+The code employs a pseudospectral collocation method using Chebyshev polynomials, departing from traditional time-marching techniques
+for solving the aircraft’s state variables. This method is well-suited to
+general boundary-value problems and suﬃciently adaptable to ensure
+robustness across any well-posed set of governing equations and boundary (or initial) conditions. Pseudospectral methods oﬀer signiﬁcant advantages over time-marching techniques in problems with multiple design variables, achieving high precision and spectral convergence with
+a minimal number of control points. The pseudospectral collocation approach of RCAIDE relies on the formulation of generic diﬀerentiation
+D and integration I matrices for a speciﬁed number of control points,
+𝑁, within a mission segment. The creation of D and I transpires exclusively during a preprocessing step, incurring minimal computational
+cost. Optimal accuracy and convergence rates are achieved when Chebyshev polynomials are used as basis functions with cosine-spaced control points. Diﬀerentiation in physical units is denoted as 𝐷∕(𝑥𝑓 − 𝑥0 ),
+whereas integration is denoted as 𝐼 ⋅ (𝑥𝑓 − 𝑥0 ). In this case, 𝑥𝑓 and 𝑥0
+denote the ﬁnal and initial values of the independent variable, respectively. Two algorithms from SciPy [104] may be utilized, depending on
+the system of equations. The ﬁrst is fsolve, a nonlinear root-ﬁnding algorithm that functions as a wrapper for MINPACK’s “hybrid” method,
+executed in Fortran. The second algorithm is Sequential Least Squares
+Programming (SLSQP). If the system of equations is square (i.e., N ×
+N), both approaches are suitable. Nevertheless, when the number of unknowns exceeds the number of equations, resolution is conﬁned to the
+SLSQP approach. Convergence is reached once the residuals, ℝ, deﬁned
+
+4.3. A novel approach guaranteeing closure of sub-system coupling
+interactions
+As previously stated, with the increasing adoption of alternative energy systems that fundamentally diﬀer from conventional combustion
+systems, secondary components such as distribution lines, pumps, heat
+exchangers, and tanks-particularly in cryogenic engines – have become
+signiﬁcant bottlenecks in many aircraft designs. These secondary elements frequently consume power or introduce losses, necessitating a
+comprehensive plant balance. Although many aircraft synthesis tools
+eﬀectively address ﬂight dynamics, their frameworks for assessing powertrain performance are typically open-loop, as shown in Fig. 3a, thereby
+inherently ignoring vital interactions that capture unaccounted-for system losses. To address this limitation, two major modiﬁcations have
+been implemented. First, additional coupling equations representing
+various forms of energy – electrical, thermal, mechanical, pneumatic,
+and hydraulic – are incorporated. Second, the framework enables dynamic allocation of energy of a given form; for example, electrical energy can be split between diﬀerent sources, such as a turbofan-driven
+
+9
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+Fig. 3. Comparison of typical open-loop architecture for aircraft systems analysis vs. RCAIDE’s network architecture.
+
+generator and a battery. As illustrated in Fig. 3b, the initial-guess vectors
+(unknowns) for the energy supplied to the system are passed into the
+network along with mission solver arguments, such as throttle. These
+guesses are discretized using the same pseudospectral method as the
+other state variables in the problem. Based on the degree of hybridization, expressed as a percentage, the true turbofan quasi-steady-state,
+accounting for additional power consumption, can be determined. Similarly, the operating states of the system’s power-providing elements are
+determined using these values. Throughout the network, the net power
+is computed and returned as a residual to an optimizer, which may be either the higher-level mission solver (path (a)) or a separate solver (path
+(b)). While the former approach is better suited to simpler architectures,
+decoupling the problem or creating a nested optimization has demonstrated greater numerical robustness in complex systems with numerous
+forms of energy and coupling, particularly when state equations are coupled. This is particularly relevant for cryogenic tanks and fuels, where
+pressure and mass changes, state transitions of cryo-compressed liquids
+within the tank, thermal losses during energy transfer, and mass loss
+due to boil-oﬀ may occur simultaneously.
+
+eﬃcient predictions as a function of angle of attack using RCAIDE VLM
+and drag build-up are compared to CFD data utilizing USM3D and experimental data from the National Transonic Facility (NTF), both sourced
+from Rivers et al. [60]. Table 3 lists the 𝑅2 values from lift and drag
+for small angles of attack before separation – beyond this point, VLMs
+overestimate lift as they do not capture separation. The slope of the moment coeﬃcient approximately aligns with both the experimental data
+and the USM3D results; however, the intercept is somewhat inaccurate.
+This diﬀerence is attributed to uncertainty in the z-coordinate of the
+C.G. Nevertheless, RCAIDE has demonstrated that, as a conceptual tool,
+it yields results comparable to both USM3D CFD results and wind-tunnel
+data, while exhibiting signiﬁcantly greater computational eﬃciency.
+Validation of the stability method was performed using longitudinal
+and lateral stability derivatives for the North American/Ryan Aeronautics Navion, sourced from the literature. The aircraft, including control
+surfaces, was modeled using publicly available 3-view drawings, and
+the C.G. was placed within typical bounds. Overall, predicted stability
+derivatives were in close agreement with the literature, particularly the
+control-surface derivatives, which are crucial for modeling control response. Seckel and Morris [109] noted discrepancies in 𝐶𝐿𝛼 between
+ﬂight test and textbook results. They also noted large variations in 𝐶𝑌𝛽
+estimates.
+Regarding elements of the powertrain, the PMSM motor model was
+benchmarked against manufacturer data for the EMRAX 348 PMSM
+[110]. The comparison demonstrated strong agreement with published
+data. In addition, the propeller model was validated using an APC 11×4
+propeller [111]. The BEMT implementation in RCAIDE closely matched
+the experimental measurements provided by APC. Finally, for turbine
+validation, a benchmarking of a GE90 turbofan model was carried out
+against reference data from the Gas Turbine Simulation Program (GSP)
+[112], a high-ﬁdelity gas turbine tool with integrated performance maps
+and oﬀ-design analysis capabilities. Further validation was achieved using the analytical model of Proesmans and Vos [88], which applies a
+simpliﬁed thermodynamic method for design and oﬀ-design conditions
+and was veriﬁed against both GSP results and performance trends derived from GE90 engine data compiled by Nicolai and Carichner [114].
+Validation of emissions produced was done using Landing and Take-Oﬀ
+(LTO) cycle certiﬁcation data reported by ICAO [113,115]. As seen in
+the table, the CRN predictions for a CFM56-7B engine closely match the
+published data.
+
+5. Validation
+5.1. Discipline analyses & component-level validation
+The accuracy of results obtained from full-vehicle mission simulation is only as good as the accuracy of the underlying methods used to
+assess each discipline, including mass properties, aerodynamics, stability, propulsion, and emissions. Table 3 provides a validation summary
+of methods within RCAIDE. In cases where validation spans a range of
+values, such as aerodynamic lift coeﬃcient as a function of angle of attack or motor power as a function of RPM, R-squared (𝑅2 ) values are
+reported. Starting with mass properties, weight breakdown validation
+was performed by comparing operating empty weights across the following classes: transport aircraft, general aviation aircraft, and eVTOL
+aircraft. Operating empty weight, comprising structural weight, propulsion weight, systems weight, miscellaneous items, crew, and furnishings
+required for ﬂight, was chosen as the validation metric due to the availability of benchmark information from NASA reports and manufacturer
+speciﬁcations [105–107]. When modeling the aircraft in RCAIDE, the
+engine speciﬁcations, geometry, maximum takeoﬀ weight, and passenger/cargo information were obtained from manufacturer airport planning manuals and the ICAO engine database. Overall, there is excellent agreement between RCAIDE’s weight estimates and published data
+across all aircraft types.
+The Twisted NASA Common Research Model (CRM) served as the
+basis for aerodynamic validation. In Fig. 4, lift, drag, and moment co-
+
+5.2. Vehicle-level ﬂight performance validation
+Validation at the vehicle level was achieved by comparing the payload ranges of two aircraft with their powertrains: the Boeing 737–800
+and the ATR 72–600 (Tables 4–5). The geometry and mass properties
+10
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+Table 3
+Validation of analysis disciplines within RCAIDE.
+Vehicle/ Component
+
+Validation Conditions
+
+Quantity
+
+Benchmark Value
+
+RCAIDE Prediction
+
+Percent Diﬀerence
+
+N/A
+N/A
+N/A
+N/A
+
+OEW (lbs)
+OEW (lbs)
+OEW (lbs)
+OEW (lbs)
+
+333,567 [105]
+322,657 [105]
+1,785 [107]
+4,300 [108]
+
+314,622
+318,129
+1,847
+4,500
+
+5.68%
+1.40%
+3.47%
+4.65%
+
+Re = 5 × 106
+Re = 5 × 106
+
+𝐶𝐿
+𝐶𝐷
+
+[60]
+[60]
+
+Fig. 4a
+Fig. 4b
+
+𝑅2 = 0.96
+𝑅2 = 0.94
+
+100 kts
+100 kts
+100 kts
+100 kts
+100 kts
+100 kts
+100 kts
+100 kts
+
+𝐶𝐿𝛼
+𝐶𝑀𝛼
+𝐶𝑁𝛽
+𝐶𝐿𝑝
+𝐶𝑌𝛽
+𝐶𝑀𝛿𝑒
+𝐶𝐿𝛿𝑎
+𝐶𝑁𝛿𝑟
+
+6.04 [109]
+−0.95 [109]
+0.086 [109]
+−0.46 [109]
+−0.61 [109]
+−1.42 [109]
+0.152 [109]
+−0.075 [109]
+
+4.928
+−1.16
+0.098
+−0.5592
+−0.13
+−1.43
+0.114
+−0.067
+
+−18.411%
+22.105%
+13.953%
+21.565%
+−78.68%
+−0.704%
+−25.00%
+−10.667%
+
+0 − 4,000 RPM
+4,000 RPM
+J = 0 − 0.4
+Cruise
+Cruise
+Cruise
+Cruise
+Cruise
+Cruise
+
+P (W)
+Q (Nm)
+T (N)
+𝑇3 (K)
+𝑃3 (MPa)
+𝑇4 (K)
+𝑃4 (MPa)
+𝑚̇ 𝑓 𝑢𝑒𝑙 (kg/s)
+TFSC (mg/(N s))
+
+0 − 178 [110]
+425 [110]
+0.169 − 0.054 [111]
+771 [112]
+1.42 [112]
+1430 [112]
+1.35 [112]
+1.14 [112]
+14.6 [112]
+
+0 − 175
+419
+0.178 − 0.038
+786.74
+1.43
+1430
+1.35
+1.18
+15.21
+
+𝑅2 = 0.9989
+1.5%
+𝑅2 = 0.9149
+2.04%
+1.19%
+0.00%
+0.00%
+3.50%
+4.17%
+
+Take-Oﬀ
+Take-Oﬀ
+Take-Oﬀ
+Take-Oﬀ
+
+EICO2
+EICO
+EIH2 O
+EINOx
+
+3.16 [113]
+1.6 × 10-4 [113]
+1.23 [113]
+0.0174 [113]
+
+3.11
+2.3 × 10-4
+1.24
+0.0174
+
+1.68%
+44.38%
+0.52%
+0.02%
+
+Weights
+Boeing 747-100
+Lockheed C-5A
+Ryan Navion
+Joby S4 V2.0
+Aerodynamics
+NASA CRM
+NASA CRM
+Stability
+Ryan Navion
+Ryan Navion
+Ryan Navion
+Ryan Navion
+Ryan Navion
+Ryan Navion
+Ryan Navion
+Ryan Navion
+Propulsion
+EMRAX 348 Motor
+EMRAX 348 Motor
+11x4 APC Propeller
+GE90 Engine
+GE90 Engine
+GE90 Engine
+GE90 Engine
+GE90 Engine
+GE90 Engine
+Emissions
+CFM56-7B
+CFM56-7B
+CFM56-7B
+CFM56-7B
+
+Fig. 4. Twisted CRM aerodynamic validation at 𝑀∞ = 0.85.
+
+for aircraft modeling of the Boeing 737–800, together with the benchmark payload range diagram, were sourced from the airport planning
+manual [116]. RCAIDE’s payload range feature allows the user to specify the desired proportion of total fuel remaining at mission completion,
+referred to as the reserve fuel percentage. The default reserve percentage in RCAIDE is 5%, which corresponds to the approximate fuel reserve
+percentage for a long-haul aircraft, but this value can be adjusted for aircraft that may require a higher fuel reserve percentage. A conventional
+Boeing 737–800 mission was recreated, encompassing the climb, cruise,
+and descent phases. At each payload position on the payload range diagram, the cruise distance was calculated iteratively until the remaining
+
+fuel reserve reached the speciﬁed 12%. Fig. 5a demonstrates a strong
+correlation between the planning manual and the computer model, particularly along the gradient at maximum takeoﬀ weight, indicating similar fuel consumption per range. Geometry and mass property data for
+the ATR 72–600 were obtained from the Franco-Italian aircraft manufacturer [117]. Because the manufacturer’s payload range diagram for
+this aircraft was not publicly available, data from De Marco et al. [118]
+were used for comparative analysis. A 5% fuel reserve was selected for
+this scenario. The results in Fig. 5b demonstrate strong concordance,
+with minor discrepancies in operational empty weight presumably accounting for the disparities.
+
+11
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+Table 4
+Boeing 737-800 properties, powertrain, performance metrics, and planform.
+Parameter
+
+Value
+
+Parameter
+
+Value
+
+Class
+Parametric
+Length (ft)
+Ref. Area (ft2 )
+Span (ft)
+Weights
+MTOW (lbs)
+OEW (lbs)
+Payload (lbs)
+
+Med.-haul
+
+Passengers
+Performance
+Design Range (nmi)
+Design Altitude (ft)
+Design Mach
+Powertrain
+Network
+Propulsors
+Sources
+
+189
+
+129.5
+1,341
+113
+174,200
+91,300
+52,800
+
+2,935
+41,000
+0.78
+Fuel
+2 × Turbofan
+Jet-A
+
+Table 5
+ATR 72–600 properties, powertrain, performance metrics, and planform.
+Parameter
+
+Value
+
+Parameter
+
+Value
+
+Class
+
+Regional
+
+Passengers
+
+78
+
+Parametric
+Length (ft)
+Ref. Area (ft2 )
+Span (ft)
+Weights
+MTOW (lbs)
+OEW (lbs)
+Payload (lbs)
+
+89
+665
+88.8
+50,265
+28,682
+15,645
+
+Performance
+Design Range (nmi)
+Design Altitude (ft)
+Design Mach
+Powertrain
+Network
+Propulsors
+Sources
+
+758
+25,000
+0.45
+Fuel
+2 × Turboprop
+Jet-A
+
+route provides an excellent proﬁle for evaluating the 787-8’s performance characteristics. According to ﬂight data, the aircraft had a takeoﬀ
+weight of 205 tonnes, including 57.5 tonnes of fuel. The aircraft completed a 4,500 nautical mile mission in 615 minutes, consuming approximately 49 metric tons of fuel [121]. RCAIDE predicted approximately
+47 metric tons of fuel consumption for this mission proﬁle, resulting in a
+4.08% deviation relative to ﬂight data. At cruise conditions, the average
+lift-to-drag ratio (L/D) of approximately 21 demonstrates strong agreement with publicly available performance data for this aircraft conﬁguration, as illustrated by the validation point in Fig. 6a. Additionally, the
+computed average thrust-speciﬁc fuel consumption (TSFC) during cruise
+was 0.51 lb/(lbf·hr), consistent with values reported in Jane’s Aero Engines [122]. Fig. 6b presents the landing and takeoﬀ (LTO) noise contour alongside a comparative analysis of approach, sideline, and ﬂyover
+noise levels predicted using the empirical jet aircraft model discussed
+in Section 3 relative to certiﬁcation values reported by the European
+Aviation Safety Agency in the aircraft type certiﬁcate [123].
+
+Fig. 5. Payload-range validation of a medium-haul and regional commercial
+aircraft.
+
+5.3. Vehicle-level mission simulation validation
+Case 1: Long-haul wide-body aircraft
+With its revolutionary composite construction, improved fuel eﬃciency, more electriﬁed systems, and enhanced passenger comfort, the
+Boeing 787-8 (Table 6) is at the leading edge of commercial aerospace.
+To improve the accuracy of the RCAIDE-generated weight breakdown
+model, several correction factors were applied to the base FLOPS weight
+estimate, which was originally build for older aircraft. For Extendedrange Twin-engine Operations Performance Standards (ETOPS) certiﬁcation, additional equipment is required. Based on industry data, 17
+pounds (7.7 kg) per passenger for a 296-passenger conﬁguration was
+added. Next, to account for its more-electric architecture, a voltageper-passenger correction factor was derived from publicly available
+data [119]. The 787-8 demonstrates a signiﬁcantly higher voltage-perpassenger ratio (4.13 V/pax) compared to older aircraft (approximately
+1.5-1.6 V/pax), reﬂecting its advanced power systems. Applying this factor yields a weight addition of 3,285.8 kg for the electrical systems. In
+all these additions yielded an OEW within 0.7% of the airport planning
+manual OEW of 260,000 lbs while also demonstrating the adaptability
+of the methods within RCAIDE [120].
+A real-world ﬂight operated by Avianca Airlines – AV 183 on August 21, 2023, from Madrid, Spain, to Bogota, Colombia – served as
+the performance validation for this aircraft. This long-haul transatlantic
+
+Case 2: Supersonic transport aircraft
+Aérospatiale-BAC’s Concorde (Table 7) remains the most technologically advanced supersonic transport aircraft ever to ﬂy. The aircraft
+featured an ogival delta-wing, and was powered by four Olympus engines. These engines were modeled using RCAIDE’s Turbojet propulsor
+object with an afterburner, appended as an additional combustor downstream of the low-pressure turbine. Shown in Fig. 7a and b below, the
+mission proﬁle of Concorde included an accelerated climb phase from
+sea level to 50,000 feet, a cruise climb to 60,000 feet at Mach 2.02, a
+super-cruise phase at Mach 2.02, and a descent characterized by a gradually decreasing Mach number. The aerodynamics analysis routine predicted total drag as the sum of components, with coeﬃcients varying
+by ﬂight region to ensure continuity across the transonic regime and
+the sound barrier. For instance, during takeoﬀ and landing, increased
+drag from the landing gear was accounted for using empirical correlations based on wheel and strut dimensions. As the aircraft enters the
+supersonic ﬂight regime, a cubic Hermite spline replaces the transonic
+relations with supersonic wave-drag equations for wing and body drag.
+Fig. 7c depicts the aerodynamic eﬃciency of the aircraft over the entire
+ﬂight proﬁle. The decrease in the lift-to-drag ratio from subsonic to supersonic speeds is mainly due to the signiﬁcant wave drag contribution
+12
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+Table 6
+Boeing-787 properties, powertrain, and performance metrics.
+Parameter
+
+Value
+
+Parameter
+
+Value
+
+Class
+
+Long-haul
+
+Passengers
+
+248
+
+Parametric
+Length (ft)
+Ref. Area (ft2 )
+Span (ft)
+Weights
+MTOW (lbs)
+OEW (lbs)
+Payload (lbs)
+
+186
+4,251
+190
+502,500
+258,161
+97,000
+
+Performance
+Design Range (nmi)
+Design Altitude (ft)
+Design Mach
+Powertrain
+Network
+Propulsors
+Sources
+
+7305
+35,000
+0.85
+Fuel
+2 × Turbofan
+Jet A-1
+
+Fig. 6. Boeing-787 performance during transatlantic ﬂight (a) and (b) as well as during LTO noise certiﬁcation.
+Table 7
+Aérospatiale-BAC Concorde properties, powertrain, and performance metrics.
+Parameter
+
+Value
+
+Parameter
+
+Value
+
+Class
+
+Long-haul
+
+Passengers
+
+100
+
+Parametric
+Length (ft)
+Ref. Area (ft2 )
+Span (ft)
+Weights
+MTOW (lbs)
+OEW (lbs)
+Payload (lbs)
+
+202
+2,777
+84
+407,855
+173,504
+24,705
+
+Performance
+Design Range (nmi)
+Design Altitude (ft)
+Design Mach
+Powertrain
+Network
+Propulsors
+Sources
+
+4,488
+40,000
+2.05
+Fuel
+4 × Turbojet
+Jet A-1
+
+to total drag at high speeds. With limited publicly available data, validation of the lift-to-drag ratio of the aircraft, seen in Fig. 7c in red, was
+performed at Mach 0.93 (L/D = 11.3) and 2.02 (L/D = 7.1) [124].
+
+weight and thrust requirements. The BWB’s enhanced aerodynamic efﬁciency and signiﬁcantly greater internal volume compared to conventional tube-wing designs enable optimal integration of cryogenic storage
+systems without compromising performance [128,129].
+To demonstrate RCAIDE’s capability to model BWB conﬁgurations, various components are integrated, including parameterized nonintegral tanks within the wing space, and the underlying physics of
+the BWB airframe is modeled. Due to the absence of operational BWB
+aircraft for validation purposes, a tri-engine BWB design with a 150passenger capacity in a two-class conﬁguration is developed, with additional information provided in Table 8. Given the volumetric requirements of LH2 storage, a reduced design range of 2500 nmi, compared
+to an equivalent Jet-A-fueled aircraft, is considered. The cylindrical LH2
+tanks are contained within the available wing volume and the aft region
+between the engines and the end of the cabin. These tanks are maximally
+sized for the available space using built-in logic.
+Results from a standard mission analysis for this aircraft are shown in
+Fig. 8, including throttle values, Fig. 8a, LH2 mass ﬂow rate, Fig. 8b, and
+the center of gravity shift in ﬂight, Fig. 8c. The mass ﬂow rate of hydrogen peaks during takeoﬀ, in line with throttle increases, before stabilizing in cruise as altitude increases. The corresponding shift in CG is then
+
+6. Capability demonstrations
+Case 1: Hydrogen blended wing body
+In pursuit of ICAO’s net zero emissions target by 2050 [125], Blended
+Wing Bodies (BWBs) have emerged as a critical technology. While BWB
+concepts have existed since the late 1980s [126], recent advances in
+structures and controls have made this conﬁguration increasingly viable [127]. BWBs are particularly well-suited for hydrogen-powered
+aviation, oﬀering the substantial internal volume needed for cryogenic
+storage [128,129]. JetZero’s advanced BWB concept synthesizes three
+decades of research [130–132], targeting 2030s deployment with prototype testing in 2027 to serve the medium-haul market currently dominated by the Boeing 767, promising approximately 50% fuel consumption reductions [133]. Liquid hydrogen (LH2 ) eliminates in-ﬂight CO2
+emissions and reduces energy consumption. Despite requiring four times
+more storage volume than kerosene due to lower volumetric energy
+density, LH2 ’s superior gravimetric energy density decreases aircraft
+13
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+Fig. 7. Aerodynamics of Concorde during a nominal mission with a cruise climb.
+Table 8
+Hydrogen Blended-Wing-Body properties, powertrain, and performance metrics.
+Parameter
+
+Value
+
+Parameter
+
+Value
+
+Class
+
+Short-Haul
+
+Passengers
+
+150
+
+Parametric
+Length (ft)
+Ref. Area (ft2 )
+Span (ft)
+Weights
+MTOW (lbs)
+OEW (lbs)
+Payload (lbs)
+
+128
+3,272
+210
+220,462
+148,676
+42,000
+
+Performance
+Design Range (nmi)
+Design Altitude (ft)
+Design Mach
+Powertrain
+Network
+Propulsors
+Sources
+
+2,500
+40,000
+0.85
+Hydrogen
+3 × Turbofan
+LH2
+
+Fig. 8. Hydrogen BWB mass and powertrain performance.
+
+displayed within the load trim diagram for the aircraft. This load trim
+diagram shows all possible CG locations for the aircraft depending on
+fuel and passenger loads and locations. The aircraft’s neutral point and
+CG are all calculated within RCAIDE, as is the reference chord, which
+is based on a trapezoidal wing planform. The top line indicates maximum takeoﬀ weight, while the bottom line represents the maximum
+landing weight for this aircraft. In this mission, the aircraft’s trim condition begins at the black dot at MTOW before following the line to end
+the mission at the gray dot.
+
+electric propulsion (DEP) VTOL architectures, a nominal operation of a
+tilt-rotor-type aircraft is simulated (Table 9). The vehicle was designed
+to accommodate a maximum capacity of 5 passengers or otherwise a
+payload of 350 kg, with a cruise speed of 105 mph and a minimum
+cruise lift-to-drag ratio of 12. The rotors were designed via a coupled
+aerodynamic-aeroacoustic optimization to achieve high eﬃciency while
+minimizing noise. In accordance with Uber’s landmark study in 2016
+[135], this sub-optimization rotor-design problem was carried out with
+a noise computation domain 250 ft above ground level. An additional
+disk loading constraint of 100 lb/ft2 was instituted to keep out-of-plane
+structural bending moments on the blade and stresses on the motor
+within a manageable range. The mission comprised an initial hover, exit
+transition procedures, climb stages, a cruise at 1000 ft, descent stages,
+arrival transition procedures, a ﬁnal descent, and, lastly, a recharging
+segment. Metrics, including battery state of charge and health, temperature, RPM, thrust vectoring angle(𝜃𝑣 ), disk loading, and aerodynamic
+performance, are all readily available post mission simulation. Shown in
+Fig. 9 is vehicle airspeed, along with the RPM and thrust-vectoring angle
+of one of the aircraft’s six rotors. This angle is computed relative to the
+
+Case 2: Electric vertical takeoﬀ and landing aircraft
+With the expected rise in urban populations and the associated transportation congestion, urban air mobility has been proposed as a faster,
+safer, and more cost-eﬀective intracity transportation solution [134]. In
+this emerging sector, many electric aircraft, both conventional ﬁxedwing and rotary-wing, as well as new electric short/vertical takeoﬀ
+and landing aircraft (eS/VTOL) have been proposed. In many cases,
+these aircraft demonstrate distributed propulsion and vertical ﬂight capabilities. To demonstrate RCAIDE’s ability to model these distributed
+14
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+Table 9
+Tilt-rotor eVTOL aircraft properties, powertrain, and performance metrics.
+Parameter
+
+Value
+
+Parameter
+
+Value
+
+Class
+
+UAM
+
+Passengers
+
+5
+
+Parametric
+Length (ft)
+Ref. Area (ft2 )
+Span (ft)
+Weights
+MTOW (lbs)
+OEW (lbs)
+Payload (lbs)
+
+21
+111.84
+31.94
+5,600
+4,500
+1,000
+
+Performance
+Design Range (nmi)
+Design Altitude (ft)
+Design Mach
+Powertrain
+Network
+Propulsors
+Sources
+
+170
+2,500
+0.35
+Electric
+6 × Elec.-Rotor
+Li-Batteries
+
+Fig. 9. eVTOL aircraft airspeed and electric propulsor operating conditions.
+Table 10
+Series hybrid-electric twin-propeller aircraft properties, powertrain, and performance metrics.
+Parameter
+
+Value
+
+Parameter
+
+Value
+
+Class
+
+Regional
+
+Passengers
+
+72
+
+Parametric
+Length (ft)
+Ref. Area (ft2 )
+Span (ft)
+Weights
+MTOW (lbs)
+OEW (lbs)
+Payload (lbs)
+
+89
+665
+88.8
+50,706
+29,983
+30,354
+
+Performance
+Design Range (nmi)
+Design Altitude (ft)
+Design Mach
+Powertrain
+Network
+Propulsors
+Sources
+
+758
+25,000
+0.45
+Hybrid
+2×Elec.-Rotor
+Li-B & Jet A-1
+
+Fig. 10. Series hybrid-electric aircraft ﬂight proﬁle, battery state of charge and temperature.
+
+Case 3: Hybrid-electric regional aircraft
+In this ﬁnal example, we illustrate the design of an advanced serieshybrid-electric regional twin-propeller aircraft architecture (Table 10).
+Taking full advantage of the baseline network’s generalizable architecture, a powertrain consisting of both a bus and a fuel line has been constructed. This aircraft is conﬁgured with a distributed hybrid-electric
+
+vehicle’s body axis. During low-speed hover-to-cruise transition, the rotor undergoes a scheduled tilt from 𝜃𝑣 = 90◦. During high-speed phases
+of ﬂight, the mission solver is used to compute the thrust vector angles
+that trim the vehicle, enabling realistic transition simulation through
+climb and cruise, where the rotors are fully parallel to the aircraft’s body
+x-axis.
+15
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+propulsion system, integrating twin electric propulsors powered by a
+high-capacity lithium-ion battery network and a turboelectric generator fueled by conventional aviation fuel. The hybrid energy network is
+architected to optimize power ﬂow between the battery modules and
+the generator, enabling ﬂexible energy management throughout the
+mission. The mission proﬁle includes initial climb, multi-stage ascent,
+cruise, and descent segments, with hybrid power split ratios and battery
+state-of-charge actively managed.
+Key metrics such as battery SOC, hybrid network power ﬂow,
+and fuel consumption rates are tracked and can be visualized postsimulation, providing insight into the aircraft’s energy performance and
+operational eﬃciency. In Fig. 10b, the battery pack SOC is plotted, in
+Fig. 10a, the altitude of the aircraft during the mission is displayed, and
+in Fig. 10c, the temperature of the battery system is displayed. This simulation highlights RCAIDE’s ability to capture the complex interactions
+between electric and fuel-based propulsion systems in modern hybrid
+aircraft.
+
+issues in solving the governing state equations – the substantially enhanced ﬁdelity of performance predictions outweighs these limitations.
+Critical output metrics include vehicle mass breakdown distributions,
+wing structural load distributions throughout complex ﬂight maneuver
+proﬁles, and individual powertrain component performance characteristics, all of which inform design space exploration and optimization in
+the aircraft conceptual design process.
+
+7. Code limitations and future work
+
+Data availability
+
+CRediT authorship contribution statement
+Matthew A. Clarke: Software, Supervision, Validation, Visualization, Writing - original draft, Writing - review & editing; Matteo
+Guidotti: Methodology, Software, Validation, Writing - review & editing; Sai Sankalp Shekar: Methodology, Software, Validation, Writing
+- review & editing; Aidan Molloy: Methodology, Software, Validation,
+Writing - review & editing; Cade Boggan: Validation, Writing - review
+& editing; Yair N. Guerrero: Writing - review & editing.
+
+Although Sections 3 and 6 provide a comprehensive overview of
+capabilities, the solver’s numerical approach restricts the tool to design and analysis applications. The use of a pseudospectral collocation
+method for solving time-dependent problems makes the tool particularly
+eﬀective for optimal trajectory problems, where quasi-steady solutions
+for control variables, such as throttle settings and control surface deﬂections, are computed simultaneously for a speciﬁed maneuver. However, the shift away from ordinary diﬀerential equation (ODE) numerical integration algorithms for continuous-state computation suggests
+that RCAIDE is not suitable for the conceptualization, analysis, or optimization of ﬂight controller logic, or for the design of other subsystem
+hardware controllers. These tasks require time-marching, a numerical
+technique that advances the solution of an initial-value problem from
+a known state at time 𝑡 to a future state at 𝑡 + Δ𝑡. Such time-marching
+methods advance simulation time using either ﬁxed or variable steps,
+balancing accuracy and computational speed according to system dynamics and error tolerances.
+In addition to this foundational diﬀerence in the numerical approach, RCAIDE’s mission solvers currently encounter challenges when
+handling large, sparse matrices, such as those arising from a 6-DOF
+trimmed transition condition for eVTOL vehicles, where each axis involves RPM, pitch command, and thrust vectoring. Ongoing eﬀorts aim
+to improve the mission solver’s robustness by fully incorporating analytic gradients through automatic diﬀerentiation. Future analytical developments will focus on advancing high-ﬁdelity aerodynamic models, aerostructural coupling, and aeroelasticity. Furthermore, the implementation of physics-based electrochemical battery models is planned
+to capture electrochemical and thermal dynamics with greater accuracy than existing chemistry-based lookup tables. Beyond these speciﬁc
+analysis domains, current development includes integrating quantitative
+methods for estimating reliability and fault probability. Collectively,
+these enhancements are expected to improve the physical ﬁdelity, computational robustness, and design credibility of the simulation environment for next-generation aircraft concepts.
+
+Data will be made available on request.
+Declaration of competing interest
+The authors declare that they have no known competing ﬁnancial
+interests or personal relationships that could have appeared to inﬂuence
+the work reported in this paper.
+References
+[1] P. Henne, Applied Computational Aerodynamics, 125, AIAA, 1990.
+[2] A. Jameson, W. Schmidt, E. Turkel, Numerical solution of the Euler equations by
+ﬁnite volume methods using Runge Kutta time stepping schemes, in: 14th Fluid
+and Plasma Dynamics Conference, 1981, p. 1259.
+[3] D. Potter, Computational Physics, 1973.
+[4] B.V. Leer, Towards the ultimate conservative diﬀerence scheme. V. a second-order
+sequel to Godunov’s method, J. Comput. Phys. 32 (1979) 101–136.
+[5] M. Drela, H. Youngren, Athena Vortex Lattice, 2015. http://web.mit.edu/drela/
+Public/web/avl/.
+[6] F. Palacios, M.R. Colonno, A.C. Aranake, A. Campos, S.R. Copeland, T.D.
+Economon, A.K. Lonka, T.W. Lukaczyk, T.W.R. Taylor, J.J. Alonso, Stanford university unstructured (SU2): an open-source integrated computational environment for
+multi-physics simulation and design, AIAA Aerosp. Sci. Meeting Exhibit 51 (2013),
+p. 287.
+[7] M. Drela, A User’s Guide to MSES 3.05, Technical Report, Massachusetts Institute
+of Technology (MIT, Cambridge, 2007.
+[8] M. Drela, XFOIL: an analysis and design system for low Reynolds number airfoils, in: Low Reynolds Number Aerodynamics: Proceedings of the Conference
+Notre Dame, Indiana, USA, Springer, 1989, pp. 1–12. https://doi.org/10.1007/
+978-3-642-84010-4_1
+[9] S. Lee, et al, Prediction of urban air mobility multirotor VTOL broadband noise
+using UCD-QuietFly, J. Am. Helicopter Soc. 66 (3) (2025) 1–13.
+[10] K.S. Brentner, L.V. Lopes, H.-N. Chen, J.F. Horn, Near real-time simulation of rotorcraft acoustics and ﬂight dynamics, J. Aircr. 42 (2) (2005) 347–355.
+[11] J.P. Jasa, J.T. Hwang, J.R. R.A. Martins, Open-source coupled aerostructural optimization using python, Struct. Multidiscip. Optim. 57 (2018) 1815–1827. https:
+//doi.org/10.1007/s00158-018-1912-8
+[12] G.J. Kennedy, J.R. Martins, A parallel ﬁnite-element framework for large-scale
+gradient-based design optimization of high-performance structures, Finite Elem.
+Anal. Des. 87 (2014) 56–73.
+[13] J. Lytle, G. Follen, C. Naiman, A. Evans, Numerical Propulsion System Simulation
+(NPSS) 1999 Industry Review, Technical Report, Tech. rep, 2000.
+[14] E.S. Hendricks, J.S. Gray, pyCycle: a tool for eﬃcient optimization of gas turbine
+engine cycles, Aerospace 6 (8) (2019) 87.
+[15] J.S. Gray, J.T. Hwang, J.R. R.A. Martins, K.T. Moore, B.A. Naylor, OpenMDAO: an
+open-source framework for multidisciplinary design, analysis, and optimization,
+Struct. Multidiscip. Optim. 59 (4) (2019) 1075–1104. https://doi.org/10.1007/
+s00158-019-02211-z
+[16] R. Falck, J.S. Gray, K. Ponnapalli, T. Wright, “Dymos: a python package for optimal
+control of multidisciplinary systems, J. Open Source Software 6 (2021) 2809. https:
+//doi.org/10.21105/joss.02809
+[17] R. Haimes, M.C. Galbraith, I. Dannenhoﬀer, J.F. Marcum, D.L. Karman, S. Technology, I. M, Computational Aircraft Prototype Synthesis (CAPS), Technical Report
+AFRL-RQ-WP-TR-2019-0214, Air Force Research Laboratory, 2019.
+[18] D.P. Wells, B.L. Horvath, L.A. Mccullers, The Flight Optimization System Weights
+Estimation Method, Technical Report NASA/TM-2017-219627, NASA Technical
+Memorandum, 2017. https://ntrs.nasa.gov/citations/20170005851.
+
+8. Conclusion
+This paper presents the development of RCAIDE, a novel computational framework that enables comprehensive design and analysis of
+isolated vehicle subsystems and the conceptualization of integrated aircraft. Validation studies across diverse aircraft conﬁgurations demonstrate the framework’s capabilities spanning multiple powertrain architectures, vehicle topologies, and ﬂight regimes. While the transition
+from simpliﬁed empirical correlations to physics-based modeling introduces computational challenges – such as increased parametric input requirements for component characterization and numerical convergence
+16
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+[19] R.A. Mcdonald, J.R. Gloudemans, Open vehicle sketch pad: an open source parametric geometry and analysis tool for conceptual aircraft design, in: AIAA SciTech
+2022 Forum, 2022, p. 0004.
+[20] M. Drela, Tasopt 2.00, Cambridge, MA, USA, Rep, 2010.
+[21] N. Khailany, P. Mokotoﬀ, G. Cinar, Aircraft geometry and propulsion architecture
+visualization for the future aircraft sizing tool (FAST), in: AIAA SciTech 2025 Forum, 2025, p. 1288.
+[22] M. Arnson, G. Cinar, R. Aljaber, FAST: a future aircraft sizing tool for electriﬁed
+aircraft design, AIAA SciTech Forum 2025.
+[23] I. Chakraborty, A.A. Mishra, Generalized energy-based ﬂight vehicle sizing and
+performance analysis methodology, J. Aircr. 58 (4) (2021) 762–780. https://doi.
+org/10.2514/1.C036101
+[24] T. Lukaczyk, A.D. Wendorﬀ, E. Botero, T. Macdonald, T. Momose, A. Variyar, J.M.
+Vegh, M. Colonno, T.D. Economon, J.J. Alonso, T.H. Orra, C.I.D. Silva, SUAVE:
+An Open-Source Environment for Multi-Fidelity Conceptual Vehicle Design, AIAA
+Aviation, Dallas, TX, 2015.
+[25] Research Community Aerospace Interdisciplinary Design Environment, 2024.
+Laboratory for Electric Aircraft Design and Sustainability, https://github.com/
+leadsgroup/RCAIDE.
+[26] U.S. Government Printing Oﬃce, Washington, D.C., 1976.
+[27] D.P. Raymer, Aircraft Design: A Conceptual Approach, American Institute of Aeronautics and Astronautics, Inc, seventh edition edition, 2024.https://doi.org/10.
+2514/4.107290
+[28] D.P. Wells, B.L. Horvath, L.A. Mccullers, The Flight Optimization System Weights
+Estimation Method, Technical Report NF1676L-27097, Tech. Rep., Hampton, VA,
+United States, 2017. technical Memorandum, NF1676L-27097, L-20820. Public
+Use Permitted, https://ntrs.nasa.gov/citations/20170005851.
+[29] J. Hess, A. Smith, Calculation of potential ﬂow about arbitrary bodies, Prog.
+Aerosp. Sci. 8 (1967) 1–138. https://doi.org/10.1016/0376-0421(67)90003-6
+[30] B. Thwaites, Approximate calculation of the laminar boundary layer, Aeronaut. Q.
+1 (3) (1949) 245–280. https://doi.org/10.1017/S0001925900000184
+[31] F. Palacios, J. Alonso, K. Duraisamy, M. Colonno, J. Hicken, A. Aranake, A. Campos,
+S. Copeland, T. Economon, A. Lonkar, T. Lukaczyk, T. Taylor, An Open-Source Integrated Computational Environment for Multi-Physics Simulation and Design, Technical Report, “Stanford University Unstructured, 2013. https://doi.org/10.2514/
+6.2013-287
+[32] Technical Report NRSA-5P-405, Tech. Rep. NASA CP-405, 1976. NASA Conference
+Publication.
+[33] D. Lee, D. Fahey, A. Skowron, M. Allen, U. Burkhardt, Q. Chen, S. Doherty, S.
+Freeman, P. Forster, J. Fuglestvedt, A. Gettelman, R.D. León, L. Lim, M. Lund,
+R. Millar, B. Owen, J. Penner, G. Pitari, M. Prather, R. Sausen, L. Wilcox, The
+contribution of global aviation to anthropogenic climate forcing for 2000 to 2018,
+Atmos. Environ. 244 (2021) 117834. https://doi.org/10.1016/j.atmosenv.2020.
+117834
+[34] L.F. Brink, R.H. J. Steven, Barrett, Modeling the Impact of Fuel Composition on
+Aircraft Engine NO𝑥 , CO and Soot Emissions, Technical Report, Massachusetts Institute of Technology, Department of Aeronautics and Astronautics, 2020. https:
+//hdl.handle.net/1721.1/129181.
+[35] D.G. Goodwin, H.K. Moﬀat, I. Schoegl, R.L. Speth, B.W. Weber, Cantera: An ObjectOriented Software Toolkit for Chemical Kinetics, Thermodynamics, and Transport
+Processes, 2023. Version 3.0.0, https://doi.org/10.5281/zenodo.8137090
+[36] G. Developers, Geopy, Geocoding Library for Python, 2024. https://geopy.
+readthedocs.io/en/stable/.
+[37] M.R. Fink, Noise component method for airframe noise, J. Aircr. 16 (10) (1979)
+659–665.
+[38] Gas Turbine Jet Exhaust Noise Prediction, 876, SAE International, 2004. https:
+//www.sae.org/standards/content/arp876d/.
+[39] T.F. Brooks, D.S. Pope, M.A. Marcolini, Airfoil Self-Noise and Prediction, Technical
+Report, Tech. Rep. NASA-RP-1218, Hampton, VA 1218, 1989.
+[40] S.K. Li, S. Lee, Prediction of Urban Air Mobility Multirotor VTOL Broadband Noise
+Using UCD-QuietFly, American Helicopter Society, 2021.
+[41] S. Gudmundsson, General Aviation Aircraft Design: Applied Methods and Procedures, 2, Elsevier, (2025) https://doi.org/10.1016/C2019-0-01939-8
+[42] CFR Part 23 - Airworthiness Standards: Normal Category Airplanes, 2025. https:
+//www.ecfr.gov/current/title-14/part-23.
+[43] Airworthiness Standards: Transport Category Airplanes, 14 CFR Part 25, 2025.
+https://www.ecfr.gov/current/title-14/part-25.
+[44] E. Torenbeek, Advanced Aircraft Design: Conceptual Design, Analysis and Optimization of Subsonic Civil Airplanes, John Wiley & Sons, 2013. See Equation 9.
+[45] C. Gallagher, C. Stuart, S. Spence, Validation and calibration of conceptual design
+tool SUAVE, in: AIAA Aviation 2023 Forum, 2023, p. 3225.
+[46] E.M. Botero, M.A. Clarke, R.M. Erhard, J.T. Smart, J.J. Alonso, A. Blaufox, Aerodynamic Veriﬁcation and Validation of SUAVE, 2022. https://doi.org/10.2514/6.
+2022-1929
+[47] J.M. Vegh, C. Silva, W. Johnson, E. Botero, M. Clarke, J. Smart, J.J. Alonso, Current
+Capabilities and Challenges of NDARC and SUAVE for eVTOL Aircraft Design and
+Analysis, 2019, p. 1-19. https://doi.org/10.2514/6.2019-4505
+[48] M.A. Clarke, Towards a Regional and Urban Air Mobility Future: The Development of Computational Approaches for Quantifying Trade-oﬀs in Electric Aircraft
+Design, 2022. Ph.D. thesis.
+[49] R.M. Erhard, J.J. Alonso, A comparison of propeller wake models for distributed
+electric propulsion and eVTOL aircraft in complex ﬂow conditions, in: AIAA
+SCITECH 2022 Forum, 2022, p. 1676.
+
+[50] B.L. Horvath, D.P. Wells, Comparison of aircraft conceptual design weight estimation methods to the ﬂight optimization system, in: AIAA Aerospace Sciences
+Meeting, American Institute of Aeronautics and Astronautics, 2018. https://doi.
+org/10.2514/6.2018-2032
+[51] J.T. Smart, J.J. Alonso, Primary weight estimation for eVTOLs via explicit analysis
+and surrogate regression, AIAA Aviation AIAA Paper 2019, pp. 2019–3679.
+[52] B. Moulton, D.F. Hunsaker, Simpliﬁed mass and inertial estimates for aircraft with
+components of constant density, in: AIAA SCITECH 2023 Forum, Reston, Virginia,
+American Institute of Aeronautics and Astronautics, 2023.
+[53] M. Dawson-Haggerty, J. Bacher, A. Brown-Bivins, C. Forest, O. Kane, J, Trimesh:
+Load and Analyze Triangular Meshes, 2019. https://trimesh.org/.
+[54] L.R. Miranda, R.D. Elliot, W.M. Baker, A generalized vortex lattice method for
+subsonic and supersonic ﬂow applications, NASA Technical Report 1977.
+[55] R.S. Shevell, Fundamentals of Flight, Pearson Education India, 1989.
+[56] H. Schlichting, K. Gersten, Boundary-Layer Theory, springer, 2017.
+[57] R. Lock, The prediction of the drag of aerofoils and wings at high subsonic speeds,
+Aeronaut. J. 90 (1986) 207–226.
+[58] D. Küchemann, The Aerodynamic Design of Aircraft, American Institute of Aeronautics and Astronautics, Inc, 2012.
+[59] K. Yoshida, Supersonic drag reduction technology in the scaled supersonic experimental airplane project by JAXA, Prog. Aerosp. Sci. 45 (2009) 124–146.
+[60] M. Rivers, A. Dittberner, Experimental investigations of the NASA common research model in the NASA langley national transonic facility and NASA ames 11-ft
+transonic wind tunnel, in: 49th AIAA Aerospace Sciences Meeting Including the
+New Horizons Forum and Aerospace Exposition, 2011, p. 1126.
+[61] D.R. Croom, Low-speed Wind-Tunnel Investigation of Various Segments of Flight
+Spoilers as Trailing-Vortex-Alleviation Devices on a Transport Aircraft Model,
+Technical Report, Tech. rep, 1976.
+[62] M.H. Sadraey, Aircraft Performance: An Engineering Approach, CRC Press, 2017.
+[63] B.J. Brelje, J.P. Jasa, J. Martins, J.S. Gray, Development of a Conceptual-Level
+Thermal Management System Design Capability in OpenConcept, Technical Report, North Atlantic Treaty Organization-Science and Technology Organization,
+2019.
+[64] T.D. Economon, F. Palacios, S.R. Copeland, T.W. Lukaczyk, J.J. Alonso, SU2: an
+open-source suite for multiphysics simulation and design, AIAA J. 54 (3) (2016)
+828–846.
+[65] W. Schroeder, K. Martin, B. Lorensen, The Visualization Toolkit, Kitware, 2006. Th
+ed.
+[66] C. Geuzaine, J.-F. Remacle, Gmsh: a 3-D ﬁnite element mesh generator with builtin pre-and post-processing facilities, Int. J. Numer. Methods Eng. 79 (11) (2009)
+1309–1331.
+[67] A.H. Squillacote, J. Ahrens, C. Law, B. Geveci, K. Moreland, B. King, The Paraview
+Guide, 366, Kitware, Clifton Park, NY, 2007.
+[68] J. Hess, A. Smith, Calculation of potential ﬂow about arbitrary bodies, Progress
+Aeronaut. Sci. 8 (1967) 1–138.
+[69] J. Moran, An Introduction to Theoretical and Computational Aerodynamics, Technical Report, Courier Corporation, 2003.
+[70] M. Head, Entrainment in the turbulent boundary layer, Aeronautical Research
+Council Reports and Memoranda 1958.
+[71] R. Michel, Etude de la transition sur les proﬁles d’aile; etablissement d’un critére
+de determination de point de transition et calcul de la trainee de proﬁle incompressible, Technical Report 1/1578A, Onera (1951).
+[72] H. Squire, A. Young, The calculation of the proﬁle drag of aerofoils, Aeronautical
+Research Council Reports andMemoranda 1937.
+[73] B. Etkin, L.D. Reid, Dynamics of Flight: Stability and Control 3rd ed. Wiley, New
+York, 1996.
+[74] C.D. Perkins, R.E. Hage, Airplane Performance Stability and Control, 1𝑠𝑡 , Wiley,
+New York, 1949.
+[75] E.L. Duke, R.F. Antoniewicz, K.D. Krambeer, Derivation and deﬁnition of a linear
+aircraft model, in: Reference Publication NASA-RP-1207, National Aeronautics and
+Space Administration, 1988.
+[76] M. Drela, MIT Department of Aeronautics and Astronautics, Technical Report,
+Tech. rep, 2007. First-Order DC Electric Motor Model, https://web.mit.edu/drela/
+Public/web/qprop/motor1_theory.pdf.
+[77] T.F. Tallerico, A.D. Anderson, M.G. Granger, J.M. Gutknecht, Analytical Design
+and Performance Estimation Methods for Aircraft Permanent Magnet Synchronous
+Machines, Technical Report, Technical Memorandum E-20151, 2023.
+[78] M. Drela, MIT Department of Aeronautics and Astronautics, Technical Report,
+Tech. rep., 2006. Qprop Formulation, http://web.mit.edu/drela/Public/web/
+qprop/qprop_theory.pdf.
+[79] R.F. Gagg, E.V. Farrar, Altitude performance of aircraft engines equipped with gear
+driven superchargers, S. A. E. J. 34 (6) (1934) 217–225.
+[80] J.D. Mattingly, Elements of Gas Turbine Propulsion, McGraw-Hill, 2013.
+[81] B.J. Cantwell, AA283 Course Reader: Aircraft and Rocket Propulsion, Technical
+Report, Department of Aeronautics and Astronautics, Stanford University. Course
+notes, 2021. Unpublished course reader. not publicly distributed.
+[82] T.M. Tomsik, J.C.H. Yen, J.R. Budge, Bench-Scale Monolith Autothermal Reformer
+Catalyst Screening Evaluations in a Micro-Reactor with Jet-A Fuel, Technical Report, NASA Technical Report, (2025)
+[83] W.M. Kays, A.L. London, Compact Heat Exchangers, McGraw-Hill 3rd ed. New
+York, 1998.
+[84] T. Bergman, Fundamentals of Heat and Mass Transfer, Wiley, 2011. https://books.
+google.com/books?id=vvyIoXEywMoC.
+
+17
+
+Aerospace Science and Technology 177 (2026) 112328
+
+M.A. Clarke, M. Guidotti, S.S. Shekar et al.
+
+[85] J. Larminie, A. Dicks, Fuel Cell Systems Explained, 2003. https://doi.org/10.1002/
+9781118878330
+[86] R. O’hayre, S.-W. Cha, W. Colella, F.B. Prinz, Chapter 6: fuel cell modeling,
+6, John Wiley and Sons, Ltd, 2016, pp. 203–236. https://doi.org/10.1002/
+9781119191766.ch6
+[87] J. Larminie, J. Lowry, Electric Vehicle Technology Explained, John Wiley & Sons,
+2012.
+[88] P.-J. Proesmans, R. Vos, Airplane design optimization for minimal global warming impact, in: AIAA Scitech 2021 Forum, American Institute of Aeronautics and
+Astronautics, (2025), p. 2021. https://doi.org/10.2514/6.2021-1297
+[89] M. Drela, Ducted Fan Design Code (DFDC), Technical Report, Massachusetts Institute of Technology, 2005. https://web.mit.edu/drela/Public/web/dfdc/.
+[90] Y. Zou, X. Hu, H. Ma, S.E. Li, Combined state of charge and state of health estimation over lithium-ion battery module cell cycle lifespan for electric vehicles,
+J .Power Sources 273 (2015) 793–803. https://doi.org/10.1016/j.jpowsour.2014.
+09.146
+[91] D.H. Jeon, S.M. Baek, Thermal modeling of cylindrical lithium ion battery module
+during discharge cycle, Energy Convers. Manage. 52 (2011) 2973–2981.
+[92] A123 APR18650M1B lithium-ion cell speciﬁcation sheet, in: A123 Systems, 2025.
+LLC, https://a123batteries.com/product_images/uploaded_images/26650.pdf.
+[93] NCR18650GA 3500mAh Lithium-Ion Battery Speciﬁcations, Technical Report, Panasonic Corporation, 2025. https://www.orbtronic.com/content/
+Datasheet-specs-Sanyo-Panasonic-NCR18650GA-3500mah.pdf.
+[94] E.J. Adler, J.R. Martins, Liquid hydrogen tank boil-oﬀ model for design and optimization, J. Thermophys. Heat Transf. 39, 2025, pp. 1–15.
+[95] Y. Guo, A semi-empirical model for aircraft landing gear noise prediction, in: 12th
+AIAA/CEAS Aeroacoustics Conference, 2006, p. 2627. 27th AIAA aeroacoustics
+conference.
+[96] Y. Guo, Aircraft slat noise modeling and prediction, in: 16th AIAA/CEAS Aeroacoustics Conference, 2010, p. 3837.
+[97] Y. Guo, Aircraft ﬂap side edge noise modeling and prediction, in: 17th AIAA/CEAS
+Aeroacoustics Conference (32nd AIAA Aeroacoustics Conference), 2011, p. 2731.
+[98] E.A. Krejsa, J.R. Stone, Enhanced Fan Noise Modeling for Turbofan Engines, Technical Report, Tech. rep, 2014.
+[99] J.R. Stone, E.A. Krejsa, B.J. Clark, Enhanced Core Noise Modeling for Turbofan
+Engines, Technical Report, Tech. rep, 2011.
+[100] D.B. Hanson, Helicoidal surface theory for harmonic noise of propellers in the far
+ﬁeld, AIAA J. 18 (10) (1980) 1213–1220. https://doi.org/10.2514/3.50873
+[101] D.G. Goodwin, R.L. Speth, H.K. Moﬀat, B.W. Weber, Cantera: An Object-Oriented
+Software Toolkit for Chemical Kinetics, Thermodynamics, and Transport Processes,
+2023. Version 3.0.0 [Computer software, https://www.cantera.org.
+[102] L.F. Brink, Modeling the Impact of Fuel Composition on Aircraft Engine NOx,
+CO, and Soot Emissions, Technical Report, Massachusetts Institute of Technology,
+2020.
+[103] D.L. Allaire, A Physics-Based Emissions Model for Aircraft Gas Turbine Combustors,
+Technical Report, Massachusetts Institute of Technology, 2006.
+[104] P. Virtanen, R. Gommers, T.E. Oliphant, M. Haberland, T. Reddy, D. Cournapeau,
+E. Burovski, P. Peterson, W. Weckesser, J. Bright, et al, SciPy 1.0: fundamental algorithms for scientiﬁc computing in python, Nat. Methods 17 (3) (2020) 261–272.
+[105] M.N. Beltramo, D.L. Trapp, B.W. Kimoto, D.P. Marsh, Parametric Study of Transport Aircraft Systems Cost and Weight, Technical Report NASA-CR-151970, National Aeronautics and Space Administration, 1977.
+[106] G.
+Norris„
+2020.
+AVL
+https://aviationweek.com/aerospace/
+urban-unmanned-aviation/joby-unveils-evtol-design-details-certiﬁcation-plans.
+[107] Plane, P. Magazine, Ryan Navion, 2008. https://planeandpilotmag.com/
+ryan-navion/.
+[108] Vfs, Joby Aviation S4(production prototype), (2025) https://evtol.news/
+joby-aviation-s4-production-prototype.
+[109] E. Seckel, J. Morris, The Stability Derivatives of the Navion Aircraft Estimated by
+Various Methods and Derived from Flight Test Data, Technical Report, Tech. Rep,
+1971. FAA-RD-71-6, DOT, Federal Aviation Administration, https://apps.dtic.mil/
+sti/tr/pdf/AD0723779.pdf.
+[110] EMRAX 348 Electric Motor Speciﬁcations, 2025. https://emrax.com/e-motors/
+emrax-348/.
+[111] A. Propellers, APC Propellers Oﬃcial Website, 2025. https://www.apcprop.com/.
+
+[112] G. Team, About GSP - Gas Turbine Simulation Program, 2024. https://gspteam.
+com/about.html.
+[113] ICAO Aircraft Engine Emissions Databank, European Union Aviation Safety
+Agency,
+2025.
+https://www.easa.europa.eu/en/domains/environment/
+icao-aircraft-engine-emissions-databank.
+[114] L.M. Nicolai, G.E. Carichner, Fundamentals of Aircraft and Airship Design, American Institute of Aeronautics and Astronautics, 2010.
+[115] Icao, Aircr. Engine Emissions II (2017). https://ﬀac.ch/wp-content/uploads/
+2020/10/ICAO-Annex-16-Environmental-protection-Vol-II-Aircraft-Engine-Emissions.
+pdf.
+[116] Boeing, Next-Generation 737 Airplane Characteristics for Airport Planning,
+Technical Report, Tech. Rep. D6-58325-7, 2024. Boeing Commercial Aircraft,
+https://www.boeing.com/content/dam/boeing/boeingdotcom/commercial/
+airports/acaps/737NG_REV_B.pdf.
+[117] A. Aircraft, ATR 72–600 Factsheet, Technical Report, Tech. rep., ATR Aircraft,
+2020. https://www.atr-aircraft.com/wp-content/uploads/2020/07/Factsheets_-_
+ATR_72-600.pdf.
+[118] A.D. Marco, V. Cusati, V. Trifari, M. Ruocco, F. Nicolosi, D. Vecchia, P, A java
+toolchain of programs for aircraft design, in: Aerospace Europe 6th CEAS Conference, 2017.
+[119] I. Moir, A. Seabridge, Aircraft systems 3rd, AIAA Education, American Institute of
+Aeronautics & Astronautics, Reston, VA, 2008.
+[120] T.B. Company, B787 Airport Planning Manual, 2025. https://www.boeing.com/
+content/dam/boeing/boeingdotcom/commercial/airports/acaps/787.pdf.
+[121] Justplanes, Avianca Boeing 787-8 Cockpit Madrid to Bogota, 2025. Retrieved,
+https://www.youtube.com/watch?v=ME6fTii1gPk.
+[122] B. Gunston, J.I. Group, Jane’s Aero-engines, Jane’s Aero-Engines, Jane’s Information Group, 1996. https://books.google.com/books?id=J7B-wgEACAAJ.
+[123] Type-certiﬁcate data sheet for noise: EASA.IM.A.115 for boeing 787, in:
+EASA, 06 2025B, European Union Aviation Safety Agency, (2025) Issue 32, https://www.easa.europa.eu/en/document-library/type-certiﬁcates/
+aircraft-cs-25-cs-22-cs-23-cs-vla-cs-lsa/easaima115-boeing-787.
+[124] C. Leyman, Case Study by Aerospatiale and British Aerospace on the Concorde,
+American Institute of Aeronautics and Astronautics, New York, 1980. https://doi.
+org/10.2514/4.868122
+[125] Fact sheet: climate change & CORSIA, in: ICAO 40th Assembly Working Paper
+A40-WP/54, International Air Transport Association, 2019. 86/fact-sheet-climatechange.pdf.
+[126] R.H. Liebeck, Design of the blended wing body subsonic transport, J. Aircr. 41 (1)
+(2004) 10–25. https://doi.org/10.2514/1.9084
+[127] Jetzero, News - JetZero, 2025. https://www.jetzero.aero/news.
+[128] S.S. Jagtap, P.R. Childs, M.E. Stettler, Conceptual design-optimisation of a subsonic
+hydrogen-powered long-range blended-wing-body aircraft, Int. J. Hydrogen Energy
+96 (2024) 639–651. https://doi.org/10.1016/j.ijhydene.2024.11.331
+[129] G.D. Brewer, Hydrogen Aircraft Technology, Routledge, 2017. https://doi.org/10.
+1201/9780203751480
+[130] M. Brown, R. Vos, Conceptual design and evaluation of blended-wing body aircraft, in: AIAA Aerospace Sciences Meeting, American Institute of Aeronautics and
+Astronautics, 2018. https://doi.org/10.2514/6.2018-0522
+[131] S. Yang, M. Page, E.J. Smetak, Achievement of NASA new aviation horizons N 2
+goals with a blended-wing-body X-plane designed for the regional jet and singleaisle jet markets, in: AIAA Aerospace Sciences Meeting, American Institute of Aeronautics and Astronautics, 2018. https://doi.org/10.2514/6.2018-0521
+[132] J. Hileman, Z. Spakovszky, M. Drela, M. Sargeant, Airframe design for “silent aircraft, in: 45th AIAA Aerospace Sciences Meeting and Exhibit, American Institute
+of Aeronautics and Astronautics, 2007. https://doi.org/10.2514/6.2007-453
+[133] C.
+Travel,
+JetZero’s
+Pathﬁnder:
+A
+Revolutionary
+Blended-Wing
+Demonstrator
+Cleared
+to
+Fly,
+2024.
+https://www.cnn.com/travel/
+jetzero-pathﬁnder-subscale-demonstrator/index.html.
+[134] A. Millard-Ball, The autonomous vehicle parking problem, Transp. Policy 75 (2019)
+99–108. https://doi.org/10.1016/j.tranpol.2019.01.003
+[135] Uber, Fast-Forwarding to a Future of On-Demand Urban Air Transportation, 2016.
+Retrieved 23 Dec. 2020.
+
+18
+
+

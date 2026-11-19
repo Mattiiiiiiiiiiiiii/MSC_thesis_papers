@@ -1,0 +1,7300 @@
+----------------------------------------------------------------=-----
+
+NATIONAL ADVISORY COMMITTEE
+FOR AERONAUTICS
+
+REPORT 1309
+
+AERODYNAMIC CHARACTERISTICS AT HIGH SPEEDS
+OF RELATED FULL-SCALE PROPELLERS HAVING
+DIFFERENT BLADE-SECTION CAMBERS
+
+By JULIAN D. MAYNARD and LELAND B. SALTERS. Jr.
+
+1957
+
+For sale by the S uperintendent or Documen ts, U. S . Government P rinting Office, Wash ington 25, D. C.
+
+Yearly s uhscri pt ion, $10; foreign, $11.25 ;
+
+single copy price varies according to size •• - - - - • • • P rice 30 cents
+
+REPORT 1309
+
+AERODYNAMIC CHARACTERISTICS AT HIGH SPEEDS
+OF RELATED FULL-SCALE PROPELLERS HAVING
+DIFFERENT BLADE-SECTION CAMBERS
+By JULIAN D. MAYNARD and LELAND B. SALTERS, Jr.
+Langl ey Aeronautical Laboratory
+Langley Field, Va.
+
+ational Ad isorv COlnmittee for Aeronautics
+,;
+
+JIeadquartel'8, 1512 II Street N HT ., Washington 25, D. C.
+CreaLed b)' Act of Congl'ess appr oved M ar ch 3, 19 15, for the supervisio n and dil'ecLion of the scie nLific lud\
+of th e problems offlighL (u. ,' . Code, title 50, sec. J 51). Its member hip was in creased from 12 to 15 by acL
+approved March 2, 1929, and 1,0 17 by a cL app roved :l\ta)" 25, 194
+Th e m embr rs a rc appoin Led by th e Pl'esid rl1 I,
+and erve as uch wit,houL comp r nsa tion .
+.J.H n :s ]f. D OO I.I 'I"I'I.E, ,'e. D ., , ' Iwll Oil ('omp:ln.\·, C/Z({irlll({11
+
+r, ,,o ' ARD CAR~ I [( ' IlAEI " Ph . D., 'ecretary , Rmith. onian I nstitution, I'ice
+AI, I,EN V. AS'I'I N, Ph. D. , Dirt' cto r , National Bu reau of
+PRES'PON R. BAflsE'I"I', :'II. A., Vicr Pre ident,
+
+tandards.
+
+I ('IT), Rand Corp.
+
+DWI'I.EV W. BRONK, Ph. D., PI'Psiclpnt , TI ockpf('IIN I nstitutr for
+:'I[pclica l R esear ch.
+FR"DlmrcK C. C RA II'FOIlD, Rr.
+Th ompson Product., In c.
+
+D. , Ch :tir m:11l of t 1)(' B O:lrd ,
+
+\\' II.I.IA [ V. DA\'IS, JR. , Vicp Admiral , l 'nitpd fitllt"R Navy,
+Deputy Ch irf of Naval Op('I"ltions (Air) .
+,J ERO ~lE C. Jl LTNsAKEH, Re. D., :\r a,,~aehusptts Jn stitut(' of
+Trchnology.
+C II AHI,ES J . M CCAR'l' li l', S. B ., Chail'm an of thp Boarel , C han cp
+Vought Aircraft , In c.
+
+Hum! L. DHYDEN, Pa. D., Director
+JOHN W. CROWLEY, JH. , B. S., Associate Director for Research
+
+hair man
+
+CAR l, J. PF'I ' C:S'I'AG, Rear Admiral , l nited State
+avy, ASR i. tant Chir f for Fipld Activitir , Bu r eau of Aeronautic .
+DONALD L. P U'I"I', Li eutenant General, l 'nitrcl tates Air Forcr,
+D eputy Chief of Staff, Drvelopment.
+J AMES T. ]>YLI" A . B., c1ministmtor of Civ il At'l'onauti cs.
+1"HANC I f; \ Y. H E1Cllf:I,DI'1IU' I, R, fic. D. , C hief, l Tn itpcl ~H:lt('s
+\ Veallw r BUI'l'au .
+I ~D \\, AHD V. RI CKENBAt'K ~: It, fk. D. , Chairm>lll of (11(' Board,
+Ea.· tel'll Air Li m's, Ill c.
+L o It;,. RO'J' II HC HII.D, Ph. B. , [ ' lIciP r , r('l'pta ry of COmIll(' rep for
+Tran ~ p o rt a t ion .
+NAT II AN F. T\\' I NI N(: , C: r Il Pml, llllitt'c1 StaLc'~ Ai r Forcp, C hief
+of Stal-r.
+
+JOHN
+
+F . VI CTOHY, LL. D. , Executive Secretary
+
+EOWAHD H. CHAMBERLIN, Executive Officer
+
+I [ I; NH y J . E. R"l ll, D. Ellg., J)irt'ct.o r, Lan gley Al'roll>llllical L abo rato ry , L allglcy Field, V a.
+t:;~ " T Ii .J . J)"FItANC," , D . 1 ~ lIg. :
+
+J)ir('elOr, AnH'S i\('roll'lIItic:t1 L aiJoratory, i\Toflctt Pi ckl, Calif.
+
+EI)\\' AHIl IL SIIAH!', Re . D ., Din'clo r , Ll'\\'is Fli ght l'ropultiioll L aboralor.\·, C'lc\' clancl , Ohio
+\V AIl l' I, R C. W l\ ,LI AMS, B. S., Chid, I I igh-Spcl'c\ Fligh~ Sbli oll , I ~d\\'arc\,;, Cal if.
+
+II
+
+REPORT 1309
+AERODYNAMIC CHARACTERISTICS AT HIGH SPEEDS OF RELATED FULL·SCALE
+PROPELLERS HAVING DIFFERENT BLADE·SECTION CAMBERS 1
+
+S MMARY
+
+W ind-tunneL tests of a fuLL- scale two-blade N l eA 10(10) (08)- 03 (hi gh camber) propeUer have been made for a range
+of blade angLes from 20° to 55° at airspeeds up to 500 miles pe7'
+hour. The Te, ults oj these tests have been compcuw l with results
+from previous te ts of the NAC 1 10-(3) (08)- 03 (low camber )
+(md NA C 110- (5) (08)- 03 (m edi um cam ber ) propeiters lo eva /u,ate the effects of bLcule-secliol1 camber on pl'opeller anodYl1am?'c
+chcu·acteristic8.
+Maxi mum propeller effici ency jar cruise and high-sp eed condi tions of operation at . u bcri h"cal 1\IJach numbers i s i ncli catf'( /
+for blades having a de ?'gn lift coefficient (desi gn camber) at the
+0.7 radi u s of 0.45 to 0.60, pro vided NA CA 16-series sections
+are u sed. Although bLades 'With higher design lift coefficients
+have a lower maximum efficiency, they have a more extensive
+range of thrust coefficients for efficient operati on . .flt the design
+operating condition the high-camber propelle1' p1'oducecl 80 p e1'cent more thrust and absorbed 83 p ercent more power than the
+Low-cambe1' propeller. B ecause oj i ts hi gh power-absorpti on
+quali ties the propeller with a hi gh de i gn lift coefficient i . much
+more efficient for take-off and cli m b con di ti on of operati on than
+prOl)eLLe1's with low des?'gn Lift coefficients . The blade-secti on
+design lift coeffici ent of the N l CA 16-series ai lfoi ls may be increased up to a value oj 1.n at t!be O. 7 J"(~diu ~ wi th the attai nme nt
+of maximum propeUer efficiencies a' high as 90 percent if the
+heLicaL ti p lv[ach number is k ept blow 0.85.
+It heLi caL ti p j\([ach numbers up to 1./4 the ma.ri mum efficiency at the design bLade angle of 45° is higher for the Low camber cmet medi um-camber 7Jrop e/ler8 thcmjo}" the high-camba
+pl"opeUer. The high-camber pl"opeller, !wwevn, is usfjuL JOI'
+condi tions of operati on at wh?'ch high thrust is requi red eLL m oderate!:;p eeds . The criticaL til) P.1ach numb l" is Lowel"ed by (Ln
+increase in blacle- 'ecti on design camber, but the 'u]Jacri ti caL
+tip lYJach number at whi ch reco very oj thru -t occurs is Lower fo )"
+the hi gh-cambe1' propeUer than Jar the Low-camber propeller.
+
+, ystcmat ie var iation s in blade width , Lh ick ncss 1'aLio, shank
+form , bladc a irfoil sccLion , and design lif L coefficien t O t'
+camber. All the blades wcre dcsigncd Lo opera te with a
+minimum indu ced-cn ergy 10 s whell the blade angle at Lhc
+0.7 radius is 45 ° and thc hladc is opcraLin g at an ad vanec
+rat[00[2.1.
+Th c fir L rc ults of Lhe full-scale propcllc1' tcs ts arc g ivcll in
+refcrcnces i an d 2, w hich present Lhe ae rodynamic char acteristics of Lhc NACA 10- (3 )(08 )-03 and NACA 10-(5)(08)- 03
+propellcl"s . This rcpol'L prc enis Lhc aerodynamic char actc risLics of Lhc NACA 10- (10 )(0 )-0:3 propcllcl' a nd complete
+LJle invesLiga ti o n of relaLcd propcllers differing in bladeccL ion dc ig n lifL cocfficient 01" camber. The purpose of the
+pre cn t reporL i Lo make a compari son of th e performance
+data for the NACA 10- (10 )(08)- 03 propellcr wi th th e data
+eon tain ed in references 1 and 2 to affor d an evalu at ion of
+the effect of blade-section camber on propeller aerodynami c
+char actcris tic . A comparison is also made with the res ult
+of model-propellcr te t presented in refcren ee 3.
+Th e selection of blacl e- ec Lion camb er is of in creasing
+imporLancc in Lhe design of propellel's for high peed
+Dccau e of Lh e penal Lies in take-orr and climb pcrformance
+in curred by a reduction in camber to obLaill higbcr critical
+~[ acl l llumbe rs for th e blad e scclio ll s . Limi Lations of the
+tcsti nO" equ ipm en t prcvent a complete a nd thoroug h a n al~'s i s
+of Lhc problem. Th c brief a nalysis p rescnted herein include
+onl.\- th e primary cn'cel of cambcr on propellcr pcr formance.
+S YMBOLS
+
+b
+
+propell er power cocfficLC))t ~
+3
+, pn D'
+
+.
+T
+propeller llrru t coefficlCnt, 2D4
+pn
+
+blade- ec tion lif L co efficiell t
+blade- ection de ign lift coefficien t
+propeller diameter, It
+blade-section maximum Lhickllcss, ft
+prope llcr advancc ralio , V /nD
+a ir-s lrcam 1" ac ll numbcr
+
+I TRODUCTION
+
+A general inve tigation of th e aerodynamic charactcri st ies
+of a scrie of full-scal e 10-foo t-d iamelel' propell er i being
+made in Lhe Langle~- 1G-foot high-spced tlln nel. Thc
+pUl"pO e of Lhc in ve tigation is lo clctcJ'mlne Lh e combincd
+influ cncc of propeller-design parame ter and compr css ibili ty
+upon propeller performance. The blad e cles Lgn s emhody
+I
+
+blad c wid til , fL
+
+hcli callip Milch Ilumbcl', P.J..jl + (5) t
+1/
+
+propcll cr rotlltio ll al spccd , rps
+
+Supersedes declaSS ifie d NACA Hesearch ~ l l' m orandum L EOR by Julian D . il l aynard " nd L['land n . Rn ll ers, Jr .. 19·18.
+
+2
+p
+t::,. p
+
+q
+t::,. p/q
+T
+11
+.J'
+
+R E PORT J 30 9-NATIONAL ADVISORY COMMI'l"l'EE FOR AERONAUTI S
+
+power absorb ed b y prop eller , I L-Ib /sec
+dift'er en ce b etween lo cal press ure a t poin t Oil airfoil
+surfacc a nd ta tic pres Ufe in undis turb ed str eam,
+Ib/ q f t
+dy namic press urc, lb /sq it
+pressure coeffi cien t
+prop eller t brll s t , lh
+a il' p eed , fp s
+frac tion of pl'op ell er Lip I'lHlili s
+an gle of attack , d eg
+bl a d e an gle a L al1~' radiu s, (iPg
+blade an gle aL 0.75 tip ra,dill s, d eg
+prop ell er efll cirnc~-, J((:'I'
+I'
+
+p
+
+ma ss d ensiLy o f air, slu g. jell f(
+
+phoLograph of a ty pical set of the Les t blades . 'rhe NACA
+16-series bla Ie sec tion (ref. 4) were used , and efficien t airfoil section extend to the spinner which has a diameter
+21.7 p er cent of the diameter of a IO-foot propeller.
+Figure 6 shows th e blade section and theoreLical pre ure
+distribution at the 0.7 radiu for ea ch bla d e d e ign. The
+Lheoreti cal pressure distribu tions were comput ed for a lift,
+coeffici ent of 0.5 by the meLhod de cribed in r eference 5.
+Th f' an gle of alLack (s hown in fig . 6) corresponding to Lbi s
+1ift (' oC'ffiei en L i d iA'Hen L [or ca ch blad e dC'sig n a nd g ives
+S 0111<' indieaLion of chang es in airfoil c1lfLmC'l el' is Li c. cause cl
+by (IIC' difi'er(,ll( cambers. Obviollsly, (,he liig ll p eak press ure. causC'c1 hy op eralinO' LhC' e airfoils a L lift coefficient s
+for which lhe~· wC're noL des ig ned would b c exp ec ted Lo lowe r
+Lhe criLica l l\Iacit numher and s('l'ioll sly aft'ect r ffieicnt operf\.Lion aL hi g h s peed s.
+
+APPARATUS
+PROPELLER DY
+
+TESTS AND RE D UCT IO
+
+AMOMETER
+
+'['h e c!ynamom et r r use d Lo te, t Lile propellCl' is pow ered
+bV Lwo 1000-horsepow er ('l('c (.ri c mo Lo rs a rrang ed ill Lanciem
+and eoupl ed for th e p rese nL t es ts to allow th e power of boLh
+m o tors to he exp end ed throug h a sin gl(, prop<'11(' r. A
+v ari a ble-frequ ellc.\T pow r s lippl.\T an'o rel s n n acc lIJ'a[.(' sp ('rd
+co ntrol from ;300 to 2100 rpm wiLh a p r rmi ss ible o V(, J's pe ed
+up Lo 2280 rpm. Photog raph s of Lll(' d.vnamon1t't er ar('
+s hown in figures 1 a nd 2, and a diagram sitowin g Lit(' import an t dimension of Lhe prop eller d)-namom etel' a nd it
+loca tion with r es pect t o Lhe Langley 16-foo t-t unnel test
+eetion is s ho\\'fi in fi g ure 3. A d etailed d e cription of all
+the Les t appara t us and the m ethod s of m ea uring tbru t and
+torqu e is prese n ted in refer ence 1. r[,he fairing profile w as
+calculated from a eli tribution of SOUl'ces a nd sinks Lo produce a body of r evoluLion \\-itll uniform ax ial velocity in th e
+plan e of th(' propeller. Tl1i axial-velocit), distribution h a
+b een check ed ex perim entally a nd found to be uniform within
+1 p erce nl. Th e gap be Lw ee n th e propeller blade and lh e
+s pinn er surfac e aL lh e jundure of (he propdlcr blad r and
+spinn er is v pry sllHlII (fig . I ) but is no t s('nled.
+
+Thl'lI , L, to rqll e, a nd rotation al p eed were m ea tired
+durin g Lrs ls at fi xC'(l blade an gles of 20°, 2.5 °, 30°, 35°, 40° ,
+45°, 50°, and 55 ° aL the llu'CC-qual'Le l' blade (45-in ch )
+mel ill . A ('on (all [. rota! iOllal pecd was lI SC e[ for mos t of the
+tes ts, and a I'illl g(' of f1,c\V1tIlC(, ratio (J= IIT~) \\'as co ve rrd b~­
+changing (ile LUIlIll'! airspr ed , which co uld bC' vari ed from
+abou t 60 to 500 mile per hour. Th e ran ge of blade anglrs
+covered a t Lh e variou rotation al sp eed u se d in the tests
+of th e NACA 10- (10 ) (0 )- 03 propeller j hown in table 1.
+Similar information , together with figure number s, i al 0
+bown in table I for tb e NACA 10- (3)(0 )- 03 and NACA
+10- (5)(0 )- 03 prop ellers as taken from r efer en ces 1 and 2.
+At the higher blade an gle , t be comple te range of advance
+ratio could nol b e cover ed at Lhe hi g ber roLa tional sp eeds
+TABLE I
+HA :'\G E OF BLADE A:'\ GLE A:,\ D ROTATIOKAL SP EED FOR
+:'\ .\ CA PROPE LLE R T E T S
+
+f"i J,!;u rt'
+
+P!lOPE I. LE ll BI.ADES
+
+Th e NAUA d es ig ll Ilum\)('I'S are c\ r scriptivl' of Lilt' s ltap e,
+s ize , and a(,l'oclynami c characteri s tics o f (h e bl ack s u (' eI in
+liJi s inves ti gati on . Th e di g its of th e fir.- ( g ro up of Iluml)(' n;
+f epres(,ll L (h e pro pel ler dif\.m etrr in [c'cl; Lh(' Ilumbel' in th e
+firs L parr n( hes('s is ('n t inws th (' In1.sic tks ig n lifL ('odllci(' n L
+ItL Lh(' 0.7 mdiu s ; tli(' IlLllnb er in th r s(' co nd parentheses is
+Lhe thickn ess raLio (in hunclredLh s) aL tl1(' 0.7 r a clius ; i1.ncl
+Lite dig iLs in Lhe Lhird g roup g ive Lhe olidi Ly of o lle blad c
+(in hundred t h or thou a ndLhs for two or Lbl'ee digiLs, resp ectively ) expressed a Lhe ra tio of the blad e chord aL the
+0.7 radius to t he circumfer ence of the circle h aving a radius
+0_7 of the prop eller-tip r a dius .
+'rh(' blad es used in t h e inv es tiga tion of blad e-sect ion camb('I' arc the NACA 10- (3 )(0 )- 03 (low camber), :J\ACA
+10- (5 )(08)-03 (m r dium camber), and NACA 10- (10)(08)- 03
+(hig h camb er) . These bl a des are iden t ical r xcep t for the
+differ cll ce in blad c- cc Lion el f' ig n lifL co effi cienL 0 1' eamb C' ['
+a nd a slig hL difference in pil ch c1i s (ribu( iOIl a s hown JI1
+f-igure 4 , wh ich g ives Lh e blad e-fo rm CU1TCS. Figure 5 i a
+
+OF DATA
+
+[( o La tio n a l
+
+I.Hade a llgit, a,t 1).7:) rad ius, fJ lJ .7;' 1l , <l eg"
+
+~ f) C'l\ d ,
+
+rplll
+
+:\ A C A 10- ( /0)(0 )- 03 pro pell er
+7
+~
+~I
+
+11 10
+1:15(1
+1500
+
+:lO
+
+'lor;
+
+211
+
+'2:)
+
+III
+
+If)(HI
+
+~ II
+
+"
+
+2000
+2 Ifill
+
+21J
+
+12
+13
+
+21l
+
+:lfi
+2[,
+
+'2.')
+
+:10
+:1O
+:1O
+
+all
+
+art
+3Il
+
+ar,
+
+a:l
+
+40
+
+4 [,
+
+00
+
+40
+
+15
+
+50
+
+10
+
+If)
+It}
+
+M;
+
+:1O
+
+V ari ed
+
+45
+
+:\ A C A 10- (5)(08)-03 pro pe ll er (fi gs. c iLed lire fro m ref. 2)
+
+8
+V
+
+10
+11
+12
+13
+14
+15
+16
+
+11 40
+1350
+
+20
+
+25
+
+30
+
+20
+20
+20
+20
+20
+
+25
+25
+25
+25
+25
+
+30
+30
+30
+30
+30
+
+35
+35
+
+40
+40
+
+35
+35
+35
+
+40
+40
+
+1500
+1600
+1800
+2000
+2100
+2160
+Va ried
+
+45
+45
+45
+45
+
+50
+50
+
+I
+
+55
+
+45
+
+.'iAC A 10- (3)(0 )-03 p rope ll er (fi g-s . cited are fro m re f. I)
+
+-1\1
+20
+21
+22
+2:!
+24
+25
+
+11 40
+1350
+
+20
+
+2:,
+
+:10
+30
+
+~'>
+
+40
+
+:i5
+
+40
+
+50
+
+45
+
+flO
+
+115
+
+I!)OO
+
+1600
+2000
+2160
+\ ' a li ed
+
+45
+
+20
+20
+21l
+
+2.1
+2.')
+2;,
+
+:10
+
+:m
+:m
+
+:~!i
+
+·10
+
+115
+
+af)
+
+45
+
+5f)
+
+3
+
+AERODY£.lAMIC CHARACTERISTICS OF PROPELLERS HAVING DIFFEREN'l' BLADE-SE CTION CAMBERS
+
+becau e of power limi tation. In order to obtain propeller
+char acteristic at maximum tunnel a irsp ee ds, a blade angle
+(45°) wa cho en for whi ch the p eak-fficienc.,- oper aLing
+condition could b e attained when th e tunn el airsp eed wa
+at 01' n car the m aximum and th e dy namometer was op er atin g
+at its maximum power and roLational sp eed. For Lh ese
+tes L , at a bl ade a ngle of 45 ° t he rotational p eed was vari ed
+to obtain data from t he pea k-effic ien cy condition to Lh e zcrotorqu e op eraL i ng conditioll .
+TIl(' tc t lata havc be cn cOl'l'eC'll'cl fo r tllilll el-w <t11 ill!('I'i'l' l'l' ll Ce and 1'01' [orces ading 011 th l' 'pinn l' r by the mt'lil ods
+desc rib ed in reference 1 a nd a re pre e nLee! in the form of th e
+u unl thru t a lld power coe ffi cien t all d propellcr efr-k icll (',\-.
+Propeller thl'll l , a u sed here ill , i defineel a l he ha ft
+tell ion ('au, cd by t he s pinn e r-Lo- tip par L of Lhe bla lc
+rotaL in g in th e a ir s t.ream. T es ts werc frequcntl y ['cpeaLe d
+during Lhe LesL prog ram, <1,11(\ Lhe re ulLs obtai ned agr ced
+with th e r c ults prc cnLed within 1 p crcc nt. For purpo e of
+('ompal' i on , t her eforc, th e daLa a r co nsidered accur a te to
+wit hin 1 p er ce nt , and Lhe Jail'ed ellvelopes ar c b elievcd to be
+accurate to wiLhin much closer limi t.
+RES LTS AND DISCU SION
+C HARA C TERISTICS Ot' THE
+
+AC A 10- (10)(0 )-03 PROPELLER
+
+Faire 1 curve of thrust coeffi cient , power coefficien t , and
+propeller effi ciency plo tted against advance ratio ar e pI' enLed in figure 7 to 13 for the t wo-blade NACA 10(10 )(0 )- 03 prop eller. T e L point arc hown in Lhe figure
+for t hru L and power coefficienL. Th e va riaLio n of a irsLream :\Iac h number a nd heli cal tip :\lach number wiLh
+advance ra ti o i
+hown in th e figure for th c propcller
+efficiency.
+Th e envelo pe CUl'ves of prop elle r effi ciency aL th e d ifferenL
+te t ro LaLion al sp eeds ar c hOII'll ill fLgure 14 for th e twoblade NACA 10- (1 0)(08)- 03 propelle r. Th c cu rvc ror
+thi propeller h ow hig h efficie ll cie at Lhe lower rot a tio nal
+peed where th e aclvel' e eA'cct of compre ibili t:var mall.
+AL a rotat ional sp eed of 1140 rpm , Lhe envelope effi ciency i
+above 0.90 for a range of adva nce ratio from 1.6 Lo 3 .2.
+L
+the higher r otation al sp eeds th e envelope effici en cies b ecom e
+les , and at 2160 rpm t he maximum efficiency r each ed i
+about 0.75 at an advan ce raio of 0.9.
+In figUl'e 15 l he envelop e efficiency of th e t,,-o-blade i\A A
+10- (10 )(08 )- 03 propeller at a rotatio nal peed of 1350 rpm
+is compar ed with the optimum effi ci nc)' of a two-blade
+propeller with th e B e tz minimum induced- n el'gy-Ioss
+loading. Th e curve of optimum effi cien cy wa calculated
+by a m ethod n eglecting all profile-drag 10 e (ref. 6) for a
+t wo-blade propeller op erating at th e ame yalue of power
+coefficient a s were obtained wit h th i'\ACA 10- (10)(0 )- 03
+prop eller, Th e curves in fig Ul'e 15 indicate that t he induced
+to e a mounL Lo about 6 p ercen t, a nd the profile-drag
+10 e amounL to abouL 3 p ercen t aL the advance ra io of
+2.1 Lo 2.2 for whi ch tb e propeller wa de ign ed . The highe t
+efficien cy (approxima tely 0.91) reflect th e importance o f
+designiug for a minimum indueecl-energy-lo s lo a ding and of
+11 in g efficien t a irfoil sect ion .' from Lhe pinn e)' urface to th e
+prop eller Lip,
+
+R esults from te Ls of Lbe full- cale propeller are compared
+in figure 16 with r esult from tbe tests of a model propeller
+(N ACA 4- (10)(0 )- 03 ) p1' sented in r efer ence 3. Thi
+comparison show t ha t, over a range of advance r atio from
+o. to 2. 1, the differ encc in envelop e efficien y for t he model
+a nd full-scale propeller i 1 p ercent or less and i p el'h ap
+within th e limi t o f ex perimenLal accuracy of t he Lwo set of
+data .
+EF'F'E C T OF' C AMBER O N PROPELLER EFFI C IEN C Y, l'O Wt~ R , A
+
+U TH R UST
+
+Th e en \relope effic iencies o f th e N ACA 10 (3 )(0 ) 0:3 (low
+camber ),
+rACA 10- (5)(0 )- 03 (m ediulll camber ) and
+NACA 10- (10) (0 ) 03 (hig h ('ambcr) propellcrs are comp a rcd in figure 17 for a r otational speed of 1350 rpm.
+Ompa ri 0 11 at ot hor rotat io llal peed a rc im ila r (excC'pt aL the
+hi g hcsL s peed ) and a 1'(' Lhel'efoJ'e noL hown. Th e cu rves in
+fi o-UI"e ] 7 sho w LhaL Lhe m edium-camber p ropeller has Lhc
+Ilig he t ellvelop c efficie nc,\- over most of Lhe ran ge of ad van 'e
+raLio , alld t he hi g h-camb er pJ'op eller h as Lhe lowe L envelope
+effi cienc)- over th e entire range of adva n 'e ratio. Th e
+m edium-camber propellcr is 2X to 3 percent more effieien L
+than til low-camber pl'opellel' near th e design value of advan ce r atio , and the hig h-camber propeller i 1%to 2 p er cent
+Ie effi cient than th low-camber propeller n eal' Lhe de ign
+value of advan ce ratio .
+A comparison of th e Lbree prop eller s ba ed olely on envelope effi cien cy may b e misleading, howev '1' , b cau e of
+th eil' differ J1 t power-ab orp lion quali tics . A poin tcd ou t
+in r eference 3, Lhe primal'Y eA'eeL of u ing propeller blade of
+in creased desig n camber (increa eel de iO-ll lift eoefficic ll L) j
+Lo in crca e th e power a b orbed by Lhe blade as well a to
+increa e the Lhru L. Thi inc1'ea e in thl'll t a nd power j
+illu st rated in fio'w ' 1 whi h s hows t he ttli'll Land pO\\I"er co effi cien ts of th e three pro pell er aL a blade angle of 45° and a
+rotational speed of 1350 rpm . AL Lhis rotaLional p eed and
+an advance ratio (2.2 ) ncar Lhe design value, Lhe m e liumcamber propeller ftb orb 30 perce nt more power a ncl produce 33 perce nt m or e thl'u t thall the low-camber propeller.
+For the ame op el'aLill o- co ndition the hig h-camber prop eller
+ab orb
+3 p e rce nt more power a nd produce
+0 p e rce n t
+more t hru t Lhan the low-camber pl'opell 1'. The e large
+incr ea rs in power a bso rption and thru t for t he hi g h-camber
+propell er are produced with no inerea e in p ropeller weio-Il t
+a nd with effi cien y 10 es compared with the m edium-camber
+a nclIow-cambel' propell e r of on ly 4 and 1 ~ pcrcent, 1'e pcetively.
+The fact that t he medium-camb er propeller is more efficien t th an ei ther Lhe low-camber or high-camber prop ellers
+indicate th e po sibili ty of a propeller with an optimum deig n camb er , Figure 19 h ow the varia t ion of Lhe Lhru t
+and pow'er coefficient and the efficiency of the lesL propellers
+with t.he design lif t coe fficient aL Lhe 0.7 radiu,. For a rotational p eed of 1350 r pm and a design blade angle of 45° (fig.
+19 (a)) maximum effi cicn cy i indicated for blades havin g a
+de ign lif coeffieicnL at Lhe 0.7 radiu of 0.45 to 0.60, provided ACA 16- erie
+eLion are u cd. H owever , foJ' ca e
+in which high poweL' absorpLion is de ired iL m iL)' b e fl ec a l',"
+Lo u se higher de ign lift oefficients. The advcr e effe cL of
+compl'e ibiliLy, w hich musL al 0 be k epL in milld , a rc indi-
+
+__
+
+~
+
+_ _ _ __ _ _
+
+~
+
+__ _
+
+~
+
+__
+
+~
+
+_
+
+__..J
+
+4
+
+RE PORT 13 0
+
+NATlOKAI, AD\'ISORY COMMlTTEE FOR AERON A TI CS
+
+cat eel by th c CUITC in figure 19(a) foJ' operation a t a co nsLa nt
+ro LaLional spcecl of 1600 rpm .
+F or co nditions or opera ti on in \\"hich th c bladc ectioll arc
+likely to b e ta llcd, th e u of highly cambCl'ecl blade scc tion
+i \"(' I'~" cffi caciou. Fig ul'c 19 (b) hows th e effect of dc ign
+lift cocffi cicnt on th c propc][cr cha ractCl'i ti c for 0pcl'a tion
+a t a bl adc angJr of :35° , a ro ta ti ona l spccd of 11 40 rpm , a ll cl
+an a<l\'all('c ratio of 1. 1. For thi climb cO llditi oll of 0lwrILtioll , tli (' Ill cdi1llll-l'1l 11lIwl PI'Olw lll'l' ni>"OI'i>s 5.4 1)(,1,(,(, 11( mol'('
+po\\"el' , pl'oduc('" 10 P(' I'('CII t l11 0re t Ii I'll "t , H 11<1 i" <t i>Oll t 4 Pl'I'(,(, lit mo re effic iell t tlt a ll tlt e lo\\"-('ulllb(' 1' propell er. Tli e
+hi gh-cILmIJ C' I' pl'Op C' ll(, 1' abso rbs 24 PC' I'('('llt III 0 1'(' po\\'C'I' , PI'Oduc('s 3 1 P(, I,(,(, llt mort' thl' lI' t , and is.'5 pCI'('(' nt m ol'(' effi ciellt
+th a n lIw low-camb('l' P1'0 pell('l' . F or tli e co nditi OIl of opcl'ation shown in fi glll'(' 19( b), th l' hi gh('s t cffi cicll cy i indi cat cd
+1'01' blades li a vin g n. ci ('sigll lift cocffi cicnt a t lIl (' 0.7 nul ius of
+0.7 5 to 0.9.5 , pl'oyi (k(l 1\ACA 16- eri e ccliolls arc lIscd.
+Th c cunrcs ill fi glll'(' 19 illcii ca te t lt e imporl a llcl' of eli oos i11g
+th e C'O lT(, cl blaci e-scl'Lioll ('amb cr to mCe( opcratioll al rcfi ll iI'cmCII L .
+\. COJ I icicrati oll of tJ l(' Lli co rcLica l prl'SSUI'C di s trii>u Lion
+sli oWJl in fi g ul'l' (j incli eatL' Lha L m aximllm cfncil' n('.\' for
+op cra ti oll aL a givcn lift coef-fi cicnL should oceur wli cll th c
+sl'c tioll lius a dcsig n lif L eo('ffL cicn L cqual Lo the opcra Ling
+lif t cocfrtcienl. Thi fac t i shown Lo be Lru c by a singlesta tioll a ll alysis of camb er eCrecL presc n tecl in I'ef('l'cnce 3
+a nd cxplain th e in crease in effi ciency wi th ill (']'case jn dc ign
+('amb er foJ' conditi on of opcra tion u ch a takc-ofT and
+dimb w11('1'c hig h lift cocffi cicnts a rc mcc sar.\". Figul'c 20
+hows lIl c va ri a li oll of cffici cll cy wi Lh thru st cocffi cicnt for
+lh c tc t propcllcl's at a J'ota ti Ollll l s pecd of 11 40 I'plll 11)1([ a
+blad c all "l(' of 4.5°. Th ese ('lll'V('S s holl" th e' I'llllge of thru st
+cocff1cic'lIt for l'ffr cien t opcl'ation for each 01' ti l(' hlade dc' ig ns.
+AI Lhol.l gll thc high-ca mb cl' pro pcll (' 1' 11<lS a low(' r m aximum
+(' ffi cic]1 (',\", it ha nn ex tcn"in' ran ge of th n ls t coeffi cients for
+dft cicll t op era t ion. 'I'h is I'c'sull ma~' be ('xplai ncd by t ht'
+fact that bl ade sc('(i ons with hi gh dcs ig ll ca mb er ('an opC' l'l1t e
+a t hig h lift coc ffL cicnt s a t mu ch lowe I' an gles of att ac k tha n
+blad c e(' ti ons with low des ign (' amb ('['; tilu la llcel co ndili on,
+ma.\" 1) (' elimina«'d. 'I'll(' blad e ,('(' ti ons with 10\\" (iPsig n
+camh cr mu s t operat c at high an gh' o r a tt ac k to produ ct,
+high Lhru s t cocffi cicllts a lld ma.\" h ('co me st all cd ; th (' pl'ofil cdra g 10 es a rc tlnl inc rcascd .
+EFFE CT OF
+
+AMBER ON CO NSTANT"POWER PRO PELLER OPERATIO";
+
+Airplan c propcllcl's oft cn opcra tc o' "e1' an cxt ellsiy c ran ge
+of advancc rati o a t con la nt roLatioll al s pced and lOl'qu e.
+Sin cc hlaclc- cc ti on clc ign C'a m bc l' a frcct t he PO \\'cl'-ah OI'Pt io ll q ua lili es of a PI'OpcUC' I', th e da ta ll ave hce n an al,\"zccl aL
+S('vc' l'al valu ('s of COIl Stlll lt-p OWC)' codfi ci('llt 1'01' a rota tiona l
+sl)('('d of 1140 I'plll . 'I'll(' 1'('s ld t" of t hi s analysis, prc. ('nt ed
+ill fi g ure 2 1, pl'ovid c' a b('«(, 1' compari so n 01' t he effi cicll cy of
+th e tJll'l'l' tcst pl'opl'llcl's than OJle Im 'eel 011 advall ce rati o
+a loll e. F or COll s tant valu e,; of til (' powel' coe ffi cicnt from
+0.1 to 0.2 th c m ediuJ1l-eum be l' propellcl' i the m os t effi (' icll t
+for lhe g rea tc t rangc' of u(ln ul('c rati o. TI O\\'('Y('I', at low
+valli cs of advan(' e ral io cOI'J'cs poJlclin g (0 (nkP-ofr and climh ,
+t he hig h-cu mh er pl'opell(' 1' is th e ll1 0s t effi (' iellt , pllI'ti n lla rly
+a ( the higll(' 1' pow('r coeffi.c i(' nt . F or a p O WCI' ('Oeffl Cicll t of
+
+L
+
+0.15 (0.07 5 p el' blade) an d an advan ce raLio of 1. 1 (fig. 21 (b ),
+Lh e high-camb er prop cllel' has an effi ciency of 3. 5 pOl'cenL.
+The cOLTespoDding eff1ciency Jor the medium-camb er propcllct' is only 76.5 percent.
+In g ll cral , Lhe high-camb cr propellcr i m or e cff1cien L
+than th e m edium-ca mb cl' propellcr lip Lo v alu e of advancc
+raLio approxima tcly 10 tim cs th e ya ill e of the powcr coeff1cient., nlld lhi 1'(' ult i in ag l'ccmen L witJl r esulL obtai.n cd
+in th e' Illodl'l t('s ts of l'efel'C'll('c :3. Th e nwdiull1-cambel'
+propdlc>r it-; m orl' l' fficient than th l' low-('Iunb cr prop clier lip
+to a ll adv an ce I'lltio of :3 .4 for n power coeffL cienL of 0.1
+(fig. 2 1(et)) , but the cffici cncy of lh (' hi ghcr ('amb cred propcll cr i rcdu cl'cl 11t hi g h ndVUll ('e rati os. Th cse I'e lilt
+sho\\" that cL ('o mpl'omi c mu sL be madc ill lh(' elec tion of
+bladc-s(' clioll dc igll cumb er to obtain th e high c L overall
+effi ciell('.\". A blacle- eelioll de ig n lifL coefficient bcLwee ll
+0.5 and l.0 i indicatcd , but th c adv ('r c effcct of omprc ibilit.\, cllcounl crcd aL high pccd m ay demand a lowcr
+camber .
+EFFE CT OF C OM P RES ' I BI LITY ON P ROPE LLER C H ARACTERISTI CS
+
+Thc familial' 10 in maximum cfficiency du e to compl'e sibility is showlJ in figure 22 for th e Lhl'ee tc L propellers at a
+blade an glc of 45°. Thc m edium-camb er propeller i Lh e
+m ost efficicnt up to a helical tip )'lach numb er of 0. 9. From
+a helical tip M ac h numb er of 0.9 Lo 1.]4 th e efficiell cy of
+boLh th e low-camb er and m edium-camb er propeller drop
+fr om 0.92 Lo approxim ately 0.72 . The high-camber propcllcl' ha th c lowcst cff1cicn c,\" OVC I' thc entire r ange of h elical
+t ip )' lac h numb cr ; iL cffi cicll c.\' drops from 0.90 to 0.73
+oYcr a rangc of hcli cal tip ".'- fac h .!lllmbcr fl'om O. 5 Lo 1.03.
+Th is low crfi cicnC'.\' of lh e h igh-ca m bcl' propeller preve nts
+i ls usc for cffLci cnl h igh-spcccl opcration.
+Sill('(' th e lower cffi('i (' nc,\T of l hc high-camb er propell er
+mi ght 1)(' du e ill part to th (' hi gh cr pO\\'c r absorbed , a compariso ll bascd on cqual powcr all , ol'ptioll wa made. Tbi
+('o m pal'ison is showil in fi glll'e 2 ;~ for a pOWCI' coefficicn L of
+0. 1:3 a nd illu ll'at es agaill th e upcl'iorit~" of th e low-camb ('1'
+nnd Ill l'dilim-cuml)(' 1' propell l' r for hi g h heli cal tip peeds.
+Th e po,,"cr coeffici cll L for maximulll dficien C'., " of thc highcam lw r pl'opPllc' l' i co nsickrabl.\" h ighcl' t ha n 0.13, however,
+a nd l hc compal'i ' OIl mad e in fi gurc 2;3 favor th e low-camb cr
+and ll1 edium-C'amh cr propcllcrs. If a highcr pOWCI' eoefficicnt had b cc n cho en for tlli compari 011 , th e low-camb er
+an d mcdium-cam bc r propcller ,,"ould have to opcr a te a t
+hi gh a lwl s of a tt ac k, whi ch tend to causc earlier a nd more
+cx tel1 iy c tomprc sibilit.\" losscs. B ccause of Lb e powcr limiLation pr evj o u sl~" m entioncel , a compari son could no t b e
+m ade a t hi gh helical t ip s pecd for ('o n tan L-power coeffi cien ts
+hi ghcl' Lha n 0.1:3 . How cvc l', a con id cration of lh e CLlI'VCS
+in fi g ul'('s 10 (e) Ilild 19(a) for <1 rota t ioll al pe d of 1600 rpm
+ill C/icu tcs tha t It propcU('I' ha vin g a de ign lift coeffi.cicuL (a t
+lh e 0.7 radiu s) of O. mi ght h avc a hi g h cfficiency aL fairly
+hi gh .\j .tch llullll)(' l's. Th e interpolaLcd valucs show thaL
+, ut h a propcll ('1' ('o uld o])(' mt e at a heli cal tip ),[ac h numb cr
+of ahoul 0. 94 (a ir-s trcam )'[ a(' h numb er of 0.54) wi th a
+till'll t ('o(,ffj cicn L of 0.069 , it powel' coeffici C'1l L of 0.169 , a nd
+an effi cicnc,\" of 0.90 . Thi rcs ult shows Lh aL tll large powera bsorbi ng q llaliti(" of hi gh-camb er prop eller m a ke them
+
+I·
+
+I!
+I
+
+AERODYNAMIC
+
+HARAC'1 'ERIS'J'ICS OF PROPELLERS HAVING DIFFEREI '1' BLADE-SECTIO
+
+useful for conditions of oper ation at which high t,!Jl'ust is
+r equired at moderate speed .
+An examination of the thrust and power coefficient of
+propellers operating when th e effects of compressibili ty are
+pre ent hould provide a better under tanding of the problem.
+In figure 24 the thrust and power coefficients for maximum
+efficiency are plotted again t helical tip Mach numb er for
+the three test propellers at a blade angle of 45° . Although
+Lhe scar city of data prevent s a definite e Lablishmen t of the
+('riLical 1\ l ac 11 numb er, lhe clIrvc in fjO'uJ'e 24 were d rawil
+to illusLrate Lhe trends indicated by the data. Th e curvl'
+are somewhat similar Lo ploL of Lhe va ri ation of airfoil lif t
+('oefficient with ]\[ac11 numb er for consLant angles of aLLack
+<Lnd how t hat in reases in thrust and power coeffic ient 0 cllr
+just before Lhe critical Mach number i reached. Aftcr the
+critical Mach number i reached , there is a marked decrease
+in both thrust and power coefficienLs up to a helical tip
+~fach Jlumber of approximately 1.0. At this helical t ip
+~[ ach Humber neal' 1.0 the thru t a nd power coefficients
+begin to increase again. It ii}lterestino- to note that, alLhough the curves in figure 24 show that the cri ti al tip
+Mach number is lowered by an increase in blade-section
+design camber , the :M ach number at which r ecovery of ttlI'u t
+occur i lower for tbe high-camb er prop eller than for the
+low-camb er propeller.
+The incr ease in thr u t and power coefficients wh icll occur
+b efore tb e critical Mach numb er is r each ed may b e utilized
+to improve take-off cbaractel'i tics, b ecau e for this condition
+of operation a large portion of the blad e opera te at r elatively
+high ~1ach n umber even at low forward peeds. However)
+increasing the blade-section d e ign camber i a mOl'e ff ecLive mean of improving boLh the take-on' and climb characteristics of propeller . Th e re ults (fig. 22 ) how that
+Lhe blade- ('ction lesign lif t coeffi cient may b e increa cd up
+Lo a value of ].0 at th e 0.7 racliu with Lhe attainment of
+maximum propell er efficien cies as high a 90 percen t if the
+helical tip Mach n umbel' i kept below O. 5. It hould b e
+k ep in mind , however , tbat Lhe e re ulL apply onl)- Lo propellers hav in g a minimum induced-energ)T-los loadinowi h effi cientail'foil ection extending inboard to · he pinner
+surface.
+CON L SION
+
+Wind-tunnel Lest of a full- calc two-blade N A
+] 0(10) (0 )-03 (high camber) prop eller have b ee n mad for a
+range of b lade angle from 20 ° to 55 ° aL a.ir peeds up Lo
+500 mile per hour. The re ult of the c te ts a n 1 compari 011S wi h r e ult
+btained from previoLls te t of the
+NAOA 10-(3)(0 )-03 (low camb er ) and NAOA 10-(5) (0 )03 (m edium camb er ) propeller led to Lhe followin g coneIu ion:
+]. Increa ing tlte blad o- eeLion camberi a ve ry eHe 'Live
+m ea ns of in cl'ea in g the thru L and pow er coefficient of a
+prop eller.
+t a rotational peed of 1350 rpm neal' the d ign condition of operation (blad e angle at 0.75 radiu equal
+to 45° and advance ratio equal to 2.2 ) the medium-camber
+propeller ab orb ed 30 pel'ce n t more pow er and produ ced 33
+percen t mol' thru t than Lli low-cam b l' propeller. For
+
+CAMBERS
+
+5
+
+the ame operating condi tion, the high-camber prop eller
+ab orbed 3 p ercent more power and produced 80 percent
+more thru t than the low-camb er propeller,
+2. For crui e and high-speed condition of operation at
+ub cl'itical Mach numbers, maximum prop eller efficien cy is
+indicated for blad e having a d esign lift coeffi cient (design
+camb er ) at the 0.7 l'adiu of 0.45 to 0 .60, provided AOA
+16- eric ections arc u ed. Although blade with higher
+dc, ign lift coefficient h ave a lower maximum efficiency,
+(hc'y have a more exten ive rallge of Lh I'U L coefficient
+for efficien t operation.
+:3. For Lake-off' and climb cOlldiLion of operation at low
+advan ce raLio and Mach number , the pl'opeller with a high
+design lift coefficient is mu ch more efficient than th e propeller with lower design lift coeffi cien Ls. For a power '0efT-i cicnt of 0.15 (0 .075 pel' blade) and all advance ratio of
+] .1 , the high-camber propeller has an efficiency of 3.5
+perce nt. The cOl'l'esponding efficiency for Lhe m ediumcamber prop eller i only 76 .5 percen t .
+4 . Th e blade- ection de ign lift coefficient of the
+AOA
+16- eries airfoils may be increa cd up to a value of 1.0 at t he
+0.7 radius with the attainment of maximum propeller efficiencies a high a 90 peI'cen t if the helical tip Mach numb l'
+i kept b elow O. 5.
+5. At helical tip Mach numb ers up to 1.14 the maximum
+effi ciency at the de ign blade angle of 45° i higher £01' the
+low-camb er and m edium-camb er prop ell er tban for the highamber propeller. Th high- amber prop eller , however , i
+u eful for conditions of op eratio n at which high thru t j
+1'e Juil'cd at moderate sp eeds.
+6. T he critical Lip 1acll numbcl' is lowcred b y an incl"ea e
+ill blacle- ertion d e ign camber, but t he Sup c1'cl'itical Lip
+;"fach number at which recovery of thl'Ll t occurs is lower
+for Lhe high- amber propcller than for th low-camb er
+propellel'.
+LAN GLEY AERONA UTI AL LA HORA'l'ORY
+}'\ ATIONAL ADVI ORY OOMMI'l"I'E E FOR Al<;RONAU 'l' I C
+LANGL E Y FIELD , VA. , J1.Jay 6, 1948.
+
+REFERENCES
+I. Co rso n, Blake \\'., Jr. , and ;\[aynard, Juli a n D .: The La ngley
+
+2000-Hor epo\\"er Propeller Dynamomet er and T e t aL Hi CTh
+Speed of an NACA JO-(3)(0 )-03 T\Yo-Bl ade Propell er. NA C A
+TN 2859, 1952. ( uper ede NA A K\I L7L29, j9-! .)
+2. ;\l a.\"I1ard, Julia n D. : Aerodynam ic CharacLe ri tics at High perds
+of Full- calc Prop 11 I' H aying Different ha nk D esign s. NA A
+lUI L6L27a, ]9-t7.
+3. D ela no, J a me B.: Investigation of t he N ACA +-(5) (08) - 03 a nd
+N ACA +-(10) (0 )-03 Two-Blade Propeller aL For\\"ard ;\Iac h
+Numbers to 0.725 To D etermin e the E ffect of Camber an d
+Compres ibili ty on P erfor mance.
+I AC A R ep. 1012, 195 1.
+(Super edes N AC ACR L5FI5 .)
+4. Lack, J ohn: T e t of Airfoi ls D esigned Lo D l'lay Lha Cornp rC' ':;ibility Burbl. N ACA R C'p. 76:3, J943. ( 1IpC' r eeles NACA
+TN 976. )
+5. Theodo r e ll , 1'., a lld Ga rri ck, L K: General !'o(,en(,ial Theory or
+Arbi tra ry Win g ections. NA A R ep . 452, Hl33.
+G. Crigler, J o hn L. , and T alki n, H erbert ,~r : Charts for D cterminin g
+Propel! r ERki ncy.
+N A A WR L- 1'14, 1944. (Forme rl y
+NA CA ACR L4I29.)
+
+6
+
+REPORT 1309-
+
+NA'fIONAL ADVISORY COMMI TTEE FOR AERO AUTICS
+
+FHattn; 1,- Pro p(' ll t' r cI~' mu n o nwlcr ill l(';.;l ;.;('clion with t unn el open,
+
+FLG
+
+R I!: 2, -Pro pcllcr d~' n amo lll ('lc r in l(':;l ,'eclion wi t h t unn e l clo:;cd,
+
+Rake containing bot h totaland static - pressure tubes,
+Propeller hub and spinner
+are free to move axially, restrained
+
+,Fairing may be either fixed
+:' or free to move axially, restrained
+
+by pneumatic thrus_t-.:c_o~p_su_te_,~,:.:.,,-:_ _ _ _ _-f~--i-:'-b:.-y~pn-e-u-m-o-tic-fo-i-ri-ng.::.--d-rr-O~g--co..,:p_s_u_le_ _- - - - - - -
+
+16 '
+
+I '
+
+3 "
+
+r-- - - - - -t -- - - -\--- - 303'~
+' - - ------04
+
+" ',Tunne l wall
+Tunnel wall ""
+
+'.'Support strut fa stened
+rigidl y to tunnel woll
+
+FI (:l' RI, :~, - C'ollfiglll'aliull u f 2UOO-honwpu\l"('r d ,\' II:lIlI UIIl(·t!' r fo r (!';.;ts u f pru p(· II (·r;.; ill l he L a llgl !',\' lu-fooL lrigIHil)('(>(\ t Ulillel.
+
+L.,_~__~_
+
+AEROD
+
+JAMIC CHARA CTERISTICS OF PROPELLERS HAVING DIFFEREN'f BLADE-SEC'l'ro
+
+7
+
+CAMBERS
+
+Developed plan form
+
+~
+./
+
+L-
+
+,
+,,
+
+Leodlng edge /
+
+I
+
+Propeller
+NACA 10-( 3)(00)-03
+NACA 10-( 5)(08) - 03
+- - - - - - - NACA 10-~0)(0Sl-03
+
+. 1I
+
+78
+
+0,
+
+'\
+
+.10
+
+fh
+
+!
+
+~
+
+biD .,
+
+~ ,
+
+.'\
+
+.08
+
+1
+1
+
+.. 06
+
+I
+
+Q
+
+e
+'" .05
+
+"0
+
+," ,
+
+I
+
+1\
+
+.0 4
+
+'y
+
+~
+
+/
+
+1
+
+e
+
+1
+
+.03
+
+f
+
+,
+'
+
+,
+
+,
+
+'
+
+,
+,, , ,
+,,
+,
+
+,
+
+/
+
+""o
+
+,,/
+
+/
+.//
+
+"0
+
+as
+
+./'
+
+/
+
+.0 4
+
+.0 1
+
+,,-
+
+--
+
+,
+
+r--- ~
+
+V
+.02
+
+,,
+
+/ hlb, ,
+
+/
+
+62
+\
+
+-:7
+
+~
+
+~~,
+
+"
+
+,,/'
+
+"'"
+
+\
+
+~
+
+.6
+
+I"
+
+54 ~
+
+'"
+'" \
+
+~
+
+1\
+
+.5
+
+---- ---
+
+~
+
+---
+
+,
+
+\
+~
+
+'"I
+'"
+V>
+
+5o
+
+- .4
+
+46
+
+.3
+
+\
+
+~ 42
+~'" ' "
+,
+~ -'
+" ~ ~ '" \
+
+\
+\\
+
+--::::;;
+
+~,
+
+.2
+
+38
+
+~
+
+o
+
+o
+
+.1
+
+.2
+
+.3
+
+.4
+
+.5
+
+.6
+
+FroctlOn of lip radius. x
+
+V, 'U ltfo! ·1.- B I' Ld ('- fol'lll eu r vC's for N AC'A p rop l' li e rs .
+
+·121147-57- 2
+
+.8
+
+.9
+
+~
+
+u
+
+\\
+
+~>
+
+8'"
+
+6'"
+
+t'-...
+
+1\
+
+,
+;;,-l.---- "\: ~'
+,
+
+V
+
+::=
+5
+\
+
+,
+
+"----
+
+C
+
+.!!!
+u
+
+\
+\
+
+~ ~ -.~
+
+V
+
+/--
+
+\
+
+""
+.-- ---
+
+~
+
+><
+
+,, /7~
+
+~
+
+£ 08
+
+/
+
+.8
+
+\
+
+t--~
+
+,
+
+'-------- I~
+
+.§'"
+
+~'\.
+
+66
+
+I
+I
+
+''\~.
+
+'\
+
+.9
+
+\
+
+- l-
+
+~
+
+/
+
+1
+
+°.12
+
+\
+
+I
+
+c ld
+
+o
+
+.16 -
+
+I'
+
+- - ro
+
+f..-
+
+~
+
+I
+
+- 1.0
+
+\
+
+'" ~
+
+/
+
+§§
+
+as
+
+\
+
+-
+
+/
+
+\\
+
+.20
+
+1'\
+
+I // ~
+
+\\
+
+.07
+
+~
+3
+
+"
+
+~.
+
+'\,\
+
+..c:
+
+/"
+
+/
+
+""
+I
+
+f4
+
+,
+
+/'
+
+/'
+
+,-
+
+'\ "'--- ~
+1\ ~
+
+.09
+
+- ,,
+
+L
+
+34
+1.0
+
+o
+
+~
+
+REPOH' I' J309-
+
+NA'J'1O AL ADVISORY COMMITTEE FOR AERONA TI CS
+
+NACA 10-(3)(OS} - 03
+
+-1.2
+-.S
+
+1\
+
+\
+
+~
+
+'I--
+
+~ -.4
+
+...tJpper surface
+
+--
+
+C
+
+]'"
+
+0
+
+Qj
+o
+u
+
+t--~
+
+--'Lower surface t---r----
+
+'-- f..-
+
+\
+~
+
+//
+
+II
+.S J--
+
+c1 o O.5
+a = 1.97
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90
+
+100
+
+Per cent chord
+
+NACA 10- (5}(OS}-03
+
+-.S
+..Upper surface
+
+t -.4
+
+t---
+
+<l
+
+c
+'" 0
+~
+'"uo .4 IT
+'"5
+'"'" I - C l = 0 .5
+~ .8
+
+a
+
+'"
+
+"
+
+--'Lower surface
+
+'\
+\
+
+= 1.35
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90
+
+100
+
+Percenf chord
+
+NACA
+
+10-(lO}(OS}-0~
+
+-2.4
+~ -2.0
+
+<:l
+
+<l -1.6
+C - 1.2
+
+'"
+
+:~
+Qj
+
+-.S
+
+0
+
+-.4
+
+'1:'
+
+0
+.4
+
+u
+:J
+
+'"'"
+
+It'"
+
+.S
+
+....upper surface
+
+'\
+
+l'-, L--- I-C = 0.5
+
+l
+.03
+~ a=-4
+10
+
+20
+
+"-Lower surface
+
+30
+
+40
+
+50
+
+60
+
+70
+
+so
+
+-90
+
+l\
+
+100
+
+Percent chord
+F' Cit' RE
+
+Fw URI; 5,-Typical lesL blade,
+
+G.-Blade srct ion and theo retical prr,SUI'r eli t ri bution at lh('
+0.7 rad ius for rach proprllrr dr ign.
+
+~
+
+t:d
+
+0
+
+tj
+
+~
+
+»
+is:
+H
+
+.18
+
+Q
+
+,
+
+Q
+
+::r:
+
+»
+t:d
+»
+Q
+
+.16
+
+>-3
+
+(oj
+
+>--
+
+.14
+
+1J
+
+K>-
+
+v
+
+"'"
+
+.12
+
+'" "\1\
+
+~ .10
+
+I\,
+
+:::
+'"u
+
+I'<
+
+'n
+
+I"
+
+17> .08
+
+b...
+
+'"
+
+~
+
+1,\
+
+0.
+
+'\
+
+"- l't
+I"
+
+'"
+
+"'b...
+
+It<
+
+c
+
+1I
+.8
+
+t'
+t'
+
+(oj
+
+20°
+1
+1 Iq
+1.0
+
+t:d
+
+U1
+
+'\
+
+1'\
+
+'\
+
+q
+
+30°
+I
+I
+1.4
+
+~
+
+1.6
+
+~
+
+H
+
+-'>-
+
+Z
+
+\
+
+"
+
+35°1\
+I
+1 1\
+1.8
+2.0
+
+Q
+
+1,\
+
+R
+
+i\
+I\-,
+
+2 5°'\
+
+1.2
+
+::r:
+
+»
+
+1\
+
+\
+. R
+
+l:
+
+1\
+1\
+
+.02
+
+.6
+
+0
+
+P..
+
+!\
+
+.4
+
+'d
+
+t:d
+
+iO.
+
+\,
+
+t
+
+t
+
+f30 75W
+
+u...
+
+(oj
+
+1,\
+
+\
+
+R
+
+'1;
+
+.2
+
+"- [Q.
+
+'d
+
+q
+
+.,
+
+1,\
+
+(a)
+
+~
+
+Q
+
+c
+
+.04
+
+0
+'=J
+
+I'a
+
+i'ro
+
+)..,
+
+rl<
+"q
+
+.06
+
+U1
+
+\
+
+L
+
+f-
+
+o
+
+I"
+I"
+
+1"\
+
+1\
+
+:>
+
+'-...
+
+I"
+
+'<;
+
+1\
+tl.
+
+0
+
+>-3
+
+H
+
+Q
+
+[",
+
+'t
+
+·u
+
+U1
+
+~
+
+I
+1"<
+
+G
+
+<>
+
+I
+I
+
+Ih
+
+t:d
+H
+
+\
+
+~u
+
+tj
+H
+
+'=J
+'=J
+
+t;
+
+q
+
+10.
+
+(oj
+
+\-
+
+1:
+
+40°
+I \
+I
+2.2
+Advance ratio, J
+
+1\
+45°
+
+\
+2.4
+
+2.6
+
+2 .8
+
+\
+50 °1'<.
+1
+t;
+1
+3.0
+3 .2
+
+Z
+
+55° i'h
+3.4
+
+-3.6-
+
+1 1\
+-3.8
+
+>-3
+
+tlj
+
+4.0
+
+t'
+
+»
+
+tj
+(oj
+I
+
+(a) Thrust coeffi cient.
+F IG UR I, 7.-C har ac l eristic s of :\ AC A 10-( 10) (08)-03 prop eller.
+
+t:d
+
+(oj
+
+U1
+(oj
+
+Rol alio na l sp eed , 11 ']'0 rpm .
+
+Q
+
+>-3
+H
+0
+
+Z
+Q
+
+~
+
+td
+
+(oj
+
+t:d
+
+U1
+
+tD
+
+1
+
+r-- - - 1--'
+
+o
+
+.44
+
+.40
+
+i"-
+
+~
+t;j
+
+'"d
+
+o
+
+t«
+
+.36
+
+~
+
+>-'
+
+W
+
+>-h.-,
+
+.32
+
+o
+
+\
+
+i
+
+r-:.
+
+~
+
+>->-3
+
+h
+
+I--F:::;~
+
+~ .24
+:Q
+
+H
+
+o
+Z
+
+1'0
+
+1"'-
+
+,....
+
+'-.)""-
+
+>-t<
+>ti
+
+\
+0
+
+I'-...
+
+"CU
+0
+
+u
+
+~
+
+1\
+
+i'<
+
+.2 8
+
+b-..
+
+.20
+
+I---I-r,
+
+3
+
+'q
+
+\
+
+~
+
+o
+Ih
+
+-<>.
+
+~
+
+H
+[fJ
+
+~
+
+t;>
+
+>-<
+
+0
+Q
+
+o
+
+P-.
+
+.16
+
+r--...
+>-,>-<
+
+1,\
+
+'h
+
+q
+
+1,\
+
+-
+
+l:\.
+
+"-
+
+ct).
+
+n
+"0-
+
+::>..
+
+--..
+
+1\
+
+'"\
+"t
+
+"c
+
+-0_
+
+K
+
+-...,.
+
+i30 .75R =
+
+lb )
+
+20
+
+"-
+
+.4
+
+.6
+
+.:;)':1'
+
+I
+
+I
+101
+
+" "-
+
+1.4
+
+1.6
+
+1u.
+
+11
+.2
+
+25
+
+.8
+
+1.0
+
+1. 2
+
+:,..
+
+~
+
+I
+\
+
+40 °
+
+'\
+
+I'-.
+
+~
+
+2.0
+
+2.2
+
+2.4
+
+50°
+
+1
+
+I
+1
+
+2.6
+
+~
+
+o
+
+~
+
+>~
+
+'\
+
+45°
+I'Q
+
+~
+
+1\
+q
+
+1\
+
+"i
+
+o
+
+1\
+1\
+
+35 "}
+1. 8
+
+\
+
+\.
+
+t;j
+t;j
+
+\
+\
+
+:{
+
+..... .
+
+.0 4
+
+o
+
+"'i
+'-.
+
+-{) -c
+
+.08
+
+\
+d.
+
+1,\
+'0
+
+.>.... ......
+
+H
+
+\
+
+'0,
+
+0.. -0
+
+0-
+
+~
+~
+>-3
+>-3
+
+0
+
+:>-....
+
+. 12
+
+o
+
+1\
+
+2.8
+
+3.0
+
+3.2
+
+Advance rat io, J
+
+(b) Po\\·cr coeffic i cnL.
+FW UR J, 7.-Conti nu cd.
+
+- - --
+
+-
+
+- --
+
+-
+
+55°
+
+'"
+3.4
+
+I
+1
+3.6
+
+3.8
+
+H
+
+\
+4 .0
+
+o[fJ
+
+AERODYNAMIC CHARAC1' ERISTICS OF PROPELLERS HAVI G DIFFEREN1' BLADE- SECTIO
+
+CAMBERS
+
+Jaqwnu 4JoV'J
+
+o
+
+co
+
+I
+I
+I
+0
+
+I-+- H
+
+10
+10
+
+1- -
+
+CI:l
+
+r0
+
+l-
+
+v
+
+II
+I
+
+/'
+
+I
+I
+
+<!1
+
+r0
+
+/
+
+<I:
+
+r0
+
+I
+I
+N
+
+--
+
+L.-
+
+V
+
+a r<i
+
+f-
+
+10
+
+0
+
+r0
+
+1/
+1/
+1\
+
+f- 1-1-
+
+CI:l
+
+II
+I
+I
+
+N
+0
+
+10
+~
+
+v
+
+<!1
+
+N
+
+fII
+I
+
+/'
+
+1/
+
+<I:
+
+N
+
+1-1- -
+
+.0
+
+0
+
+0
+
+~
+
+II
+I
+
+\
+
+f.-
+
+I
+
+[7
+
+'"
+
+N
+
+N
+
+"0
+:l
+
+~
+
+0
+
+>.
+<> 'b
+
+Cl
+
+oe
+!E I
+N
+
+,
+
+Q)
+
+u
+
+c
+
+r:i1
+
+>
+
+~
+
+0
+
+II
+
+I
+
+c.--
+
+0
+
+10
+r0
+
+"0
+
+CI:l <l:
+
+<!1
+
+r-
+
+1'\ !.=-
+
+'\
+
+I
+
+0
+
+0
+
+r0
+
+V
+
+<I:
+
+'"
+
+\
+
+1\
+
+I
+
+l-
+
+0
+
+10
+N
+
+l-
+
+I
+
+X I\.
+
+r'\
+
+II
+I
+
+1- ..-f"<:
+
+r--.
+
+r--.
+
+~
+
+i'-
+
+t-...
+
+""
+
+I'-...
+
+"l
+
+0
+
+0
+
+N
+
+"tt
+on
+r-:
+0
+
+,
+
+,
+
+C!:l.
+
+~
+
+~
+
+41-1-
+
+'-
+
+<:3
+
+~
+
+<!1
+
+<I:
+
+"l
+
+u
+<!1
+
+4217-17-5 7- - : \
+
+r..:
+~
+~
+
+P
+
+,;;'"'
+
+II. \
+
+\
+
+Cl
+0
+
+'" 0
+
+·0
+
+10
+
+u. 'AJuaqlH3
+
+<I:
+
+-o
+
+11
+
+I
+I--'
+~
+
+.18
+
+~'"d
+
+.16
+
+o
+
+~
+
+.14
+
+r--....:
+
+I,....<::
+"""0.
+
+I'r.
+
+"
+
+R
+f'\
+
+G-
+
+i ·
+
+IO
+
+'0
+
+">
+
+1\
+
+'0
+
+::
+.l:
+
+~
+
+\
+'q
+
+10,
+
+\
+
+1 1
+.2
+
+.4
+
+.6
+
+.8
+
+'b
+i\
+
+1\
+25·
+
+1 .
+
+1.0
+
+\
+
+1.2
+
+35°
+
+1
+
+1
+
+\
+400
+
+\
+1.4
+
+1.6
+1.8.
+Advance ratio. J
+
+1\
+\
+
+Q
+
+'\
+2.0
+
+8. - CharaclcrisLics of 1\ A C A I 0-( I 0)(08)- 0:3 propcll er.
+
+1\
+
+2.2
+
+'=J
+
+o
+
+.~
+
+;:0
+
+\
+
+\:
+
+45· '\
+
+50° >.
+
+1
+1
+
+rq
+2 .4
+
+(a) Thru sL cor fficirnl.
+]C[ (aTR"
+
+~
+t;:j
+t;:j
+
+~
+
+\
+
+0.
+
+30°
+
+is:
+is:
+
+H
+
+~
+
+1\
+
+1\
+
+\
+
+(0)
+
+'\
+
+Q
+
+200R
+
+o
+f-
+
+1\
+1\
+
+\
+
+1\
+
+1\
+
+b.
+
+f\
+
+1\
+
+o
+
+1\
+
+f\O
+
+~
+
+>-<
+
+1\
+1\
+
+1\
+""'q
+
+h
+
+o
+
+~
+
+r'9
+1\
+
+o
+
+;:0
+
+1\
+
+I~
+
+UJ
+
+1'\
+\
+
+Q
+
+\
+
+~
+
+;:l
+
+1,\
+
+Ib.
+1\
+
+I'Q
+
+(30.75R'
+
+f\.
+
+'\
+
+10.
+
+l'b
+
+1\
+
+.02,
+
+f'\
+
+I~
+
+rb
+
+.04
+
+>-t"'
+
+"\
+
+1'\
+
+1\
+\
+
+.06,
+
+Z
+
+I '"'
+
+rt\
+
+1\
+
+1'0
+
+I-
+
+o
+
+c
+I\,
+
+R
+
+1,\
+
+~
+H
+
+1\
+
+Q
+
+~ .08
+
+'t
+
+1'\
+
+8u
+
+1'0
+
+"t
+
+'\
+"\:
+
+1
+
+i',
+
+C
+
+I'h
+
+""o
+
+~
+
+I nJ
+0
+
+.12
+
+......
+
+Ro LaLional sp ct'd, 1350 rpm.
+
+2.6
+
+\
+
+-2 .8-
+
+1
+1
+
+-
+
+3.0-
+
+>-t;:j
+;:0
+
+o
+
+Z
+>q
+H
+
+3.2
+
+H
+
+o
+
+UJ
+
+- - - - - - -- -
+
+AERODYNAMI C CHAR ACTERISTI CS OF PROPELLERS HAYING DIFFERE NT BLADE- SECTIO
+
+1--1--
+
+c.-I ~ I--
+
+IV
+
+- ----
+
+--
+
+--
+
+:::cr
+
+-- -
+
+-::- -"i
+"()
+
+1---
+
+v f--
+
+'if
+
+0
+
+~ t- t- f--
+
+V:,.-
+
+v
+
+..._v [<T
+
+ell
+C\J
+
+V- I-"
+
+vro-
+
+V-
+
+V
+
+0
+
+~ f- - -
+
+V v
+
+c.-- I--
+
+,..-
+
+13
+
+CAMBE RS
+
+..._f-V'
+
+...-...-
+
+fl
+
+---
+
+V
+
+<t.
+
+C\J
+
+..if
+
+.-0
+
+p-v
+
+---
+
+0
+
+(Y'
+,,/
+
+..0-
+
+...-
+
+rl"
+
+IJ '
+
+V
+
+V'
+
+-----
+
+...-
+
+/
+,r:;(
+
+-----
+
+o
+C\J
+
+./
+
+v V'
+
+./
+
+V
+
+f9'
+
+f6
+
+C\J
+
+N
+
+---
+
+V -O
+
+6
+
+~ -- -
+
+-----
+
+...--7
+
+0
+
+~ f-- - f-
+
+V
+
+'" ":;:;
+'"
+!E c
+~
+
+...... 1--0
+
+./
+
+/'
+
+OJ
+
+po--
+
+./
+
+IP
+
+~
+
+f-o'
+f<'
+
+....
+
+Y
+,If
+
+4
+
+f
+if
+.J'
+
+00
+
+I
+
+1'1
+
+l'!
+
+e c
+~
+
+l.d
+
+./'
+
+JY
+
+~
+
+./
+
+./
+
+./
+
+?
+
+Y
+
+/f
+
+0
+
+~ - f- -
+
+./
+
+16
+
+lo'
+
+/-
+
+V
+
+K>
+
+V
+V
+
+V
+~
+
+p
+
+'\
+j
+
+'"'
+
+~
+0
+P-;
+
+~ - - f-
+
+/
+
+j.
+
+0
+
+OJ
+
+0
+
+;?
+
+<J
+
+/
+
+0
+
+0
+
+<)
+
+./
+
+-C
+
+I/"
+
+Cl
+
+r:r'
+
+---
+
+".<
+
+17
+
+OJ
+::l
+
+·03
+
+.-K
+
+P
+
+V
+./
+
+Id
+
+P
+
+,
+
+f-- - f -
+
+"ct
+
+d
+
+"'o<'-
+
+en
+
+rf
+
+!
+
+p
+
+C\J
+
+/
+
+P
+
+Icf
+
+9
+
+0
+
+0
+
+- f-t-f-
+
+P
+
+<D.
+
+I
+
+<to
+
+C\J
+
+::0
+ex>
+
+<D
+C\J
+
+<t
+
+C\J
+C\J
+
+o
+
+C\J
+
+ex>
+
+<t
+
+C\J
+
+o
+
+ex>
+
+o
+
+<D
+
+o
+
+<t
+
+o
+
+C\J
+
+o
+
+o
+
+J
+
+14
+
+REPORT 1309-
+
+rATIONAL ADVISORY COMMIT'l'E E FOR AERONAUTI CS
+
+Jaqwnu lPDV>J
+N
+
+\0
+
+<Xl
+
+1\
+0
+
+-
+
+-
+
+./
+
+l()
+
+r<)
+
+1\
+
+\
+
+I
+
+V-
+
+V
+
+0
+
+0
+
+II
+
+1-1-
+
+1\
+
+<Xl
+
+I
+
+(\j
+
+/
+I-1-1-
+
+----
+
+V
+
+V
+
+0
+
+l()
+
+I.
+I
+\
+
+I-- I-t-
+
+~
+
+I
+I
+
+I
+
+<P
+
+(\j
+
+~
+
+IL
+
+(\j
+
+II
+
+I
+\
+!:::: I-f-
+
+0
+
+1= I:::r-
+
+~
+
+II
+I
+
+1--1--
+
+V-
+
+(\j
+
+0
+
+N
+
+II
+I
+
+1/
+
+0
+
+N
+
+lk:'
+1
+
++-
+
+I
+
+-
+
+I---
+
+II
+I
+
+I-- l -
+
+0
+l()
+r<)
+
+0
+
+-"
+
+V-
+
+.'i
+
+U
+
+c
+0
+>
+
+0
+
+-t-
+
+L-- I--
+
+O
+
+"«
+
+r<)
+
+<""
+
+1\
+
+II
+
+I
+
+~.
+
+J.
+
+I
+
+0
+l()
+
+1\
+Y
+
+'\
+
+A
+
+(\j
+
+l- I-
+
+v-
+
+~
+
+1
+'\
+
+\
+
+t-f-
+
+V
+
+i"--
+
+'\
+
+\
+rt\
+
+1'-.
+
+1"-
+
+-
+
+0
+
+0
+
+(\j
+
+'"r-
+
+d
+C!l.
+
+I"
+
+\
+
+o
+
+"ll::
+
+1
+1
+
+..... 1'---
+
+OJ
+
+1'-.
+f'-.
+
+-
+
+f'.I"
+
+--t ~
+
+~-
+
+~
+
+f-lt- I-
+
+(\j
+
+~
+OJ
+
+l()
+
+lL 'klUalJIH3
+
+~
+
+::l
+>, C3
+0
+c: c:
+CJ
+
+~ OJ
+
+\
+
+\
+
+"D
+
+e ·0
+
+II
+
+IX
+
+o
+
+.,;
+
+<Xl
+
+o
+
+0
+
+~
+
+t:=:l
+
+~
+
+<Xi
+OJ
+~
+
+D
+
+v
+
+~
+
+[ ._ ----_.-
+
+f
+AERODYNAMI
+
+CHARACTERIS1' ICS OF PRO PELLERS HAVING DIFFERE T BLADE- ECTIO
+
+1
+
+.2 2
+
+~.-
+
+1-1-
+
+1-1-
+
+\
+
+.20
+
+Io
+
+1\
+
+Iq
+
+.18
+
+9
+
+1--:(
+I"-
+
+<:l..
+
+'-5
+
+.1 6
+
+1,\ ... 7]
+
+CP.T-(
+
+8
+
+\
+
+c
+
+Q)
+
+\
+
+i\
+\
+
+·0
+
+::= .14
+Q)
+
+7 ]1.4
+
+o
+
+u
+
+Q)
+
+1\
+
+3
+8.
+.12
+
+6
+
+"oc
+
+!="
+
+ic
+
+1.2
+
+Q)
+
+Ib
+\
+
+'-l':' .10
+
+c
+~
+
+MI...
+
+'I
+
+Q)
+
+8 .08
+
+:Q
+
+l-
+
+1\
+\.
+
+l-
+
+55
+
+1.0
+
+4
+
+.8 ~
+
+e-
+
+E
+
+c=>
+
+'"=>
+
+1::
+f--
+
+.r:
+
+<J
+
+I'r.
+
+.06
+
+M
+
+l-
+
+3
+
+.6 ~
+
+2
+
+.4
+
+.1
+
+.2
+
+o
+
+o
+
+i-\'
+
+I-
+
+1\
+
+.04
+
+Cr--.
+
+11
+
+\
+
+.02
+
+'r
+itl
+
+1.8
+
+2.0
+2.2
+2.4
+Advance rat io, J
+
+2 .6
+
+2.8
+
+Fr GL· R E 9.- Characteri stic of:\T ACA J 0-( 10)(0 )-0:3 propeller.
+Ro tational p ed , 1500 rpm ; l'lo.7s n= 45° .
+
+CAMBERS
+
+15
+
+I-'
+0;,
+
+·18
+-
+
+-
+
+r- -
+
+-
+
+-- e-- f- !
+I-
+
+f-
+
+.16
+
+i
+
+f-
+
+I
+
+-I--
+
+-f- J-
+
+LI f-f-- H ~ l - I- ' -
+
+T
+
+I-- f-
+
+_. -
+
+-
+
+-f-
+
+"d
+
+o
+
+I
+I
+
+t-- 1-- .-
+
+~
+
+1"'\
+
+.,4
+
+'0
+
+-
+
+I - f- -
+
+I-
+
+-
+
+I-'
+
+I
+
+I--
+
+(;)0
+
+o
+
+r>-
+
+I
+
+1\
+
+\
+
+.12 I-- f-
+
+f\
+
+\
+
+\
+
+c- .10
+
+I
+
+I- ~
+
+8
+
+3.08
+E
+
+'-1-
+
+I-
+
+1\
+
+1\
+
+I
+
+I~
+
+(0 )
+
+o
+
+/30.75R·
+
+.2
+
+.4
+
+.6-
+
+.8-
+
+I
+
+1-0
+
+r,
+
+1\
+
+-
+
+1.0
+
+R
+.1.2
+
+I
+
+1\
+
+40°
+
+-q
+
+1.6-
+
+~
+
+1\
+1.8
+
+2.0
+
+\
+
+45°
+
+1\-
+
+2 .2
+
+Advance ra t ~. J
+(a) Thrlls L cocfficicilt.
+
+Fw URE I O. -ChuracL<'ris tics of .:\ ACA I O-( ] 0)( 08)-0:3 p rope ll er .
+
+>-trJ
+
+~
+
+o
+
+1\
+
+1\
+
+35° 1
+\
+
+1.4
+
+o
+
+\
+
+1\
+
+'\
+10
+
+"'J
+
+\
+
+~
+
+1\
+
+30° 1\
+
+25°
+
+trJ
+trJ
+
+K
+
+-'\
+
+1\
+
+\
+
+>-3
+>-3
+
+fS"
+
+iQ
+
+I~ +20°
+l'b
+
+I-
+
+It)
+
+1\
+
+"?
+
+1'<.
+
+"'\
+
+~
+~
+
+jq
+
+H
+
+I~
+
+\
+
+I~
+
+-f- f- i -
+
+\
+
+"\
+
+I\,
+
+R
+
+i
+
+I
+
+.02
+
+~
+
+0-<
+
+Ih
+
+1"\
+
+\
+
+1\
+
+.04
+
+o
+
+1\
+
+K
+
+1,\
+
+I
+I
+
+f-
+
+H
+
+U1
+
+~
+
+I~
+l'q
+
+t:;;
+
+R
+
+1\
+
+.06
+
+>-<
+
+1,\
+
+\
+~
+
+2:
+>-t-<
+
+I
+
+\
+
+"" 1,\
+
+o
+
+1,\
+
+1\
+
+--I- f- - -
+
+....
+
+H
+
+I
+
+'c
+
+, i
+
+""Q;
+
+fA
+
+I
+
+.!!1
+u
+
+2:
+
+i
+
+I
+
+-\
+
+1\
+
+G-
+
+I
+
+jq
+
+~
+
+trJ
+
+- - f-f-
+
+I--I--
+
+-
+
+f-
+
+llo(at iOllal spcC' c1, 1600 rpm .
+
+2:
+
+\
+
+I
+I
+
+>-
+
+d
+
+>-3
+
+1\
+2.4
+
+H
+
+2.6
+
+2 .8
+
+G
+U1
+
+AERODYNAMIC CHARAC'J'ElUS'J'l S OF PIWPELLERS HAVING DlFFEREN' I' BLADE-SE C'I'IO I CAMBER
+
+l.--cf-
+
+,->- p-
+
+:h I--- f--
+
+1--1-- .v
+
+<t
+
+>-,y
+
+--I--
+
+1-<""-
+
+I-- I--
+
+I-..c V
+
+f-f-
+
+~v
+
+I--
+
+b----- f-<T
+l---
+
+I-- w
+
+---
+
+---
+
+Ia. ~
+
+7
+
+~ r-- t--
+
+........
+
+V-
+
+/1
+:y"
+
+i-..c
+
+~
+
+0
+
+~--
+
+V
+
+l.--d
+
+~
+
+'03
+
+........ . /
+
+V
+
+!E
+
+'"<>
+
+fr
+
+./
+
+Ii"
+
+l?-
+
+,P
+
+V
+
+V
+
+V
+
+0..,
+N
+
+d
+
+/'
+
+po
+1..-/
+
+}
+
+Id
+
+o~
+
+lP ""
+
+!?
+
+rl
+
+~
+
+r--
+
+ee-
+
+CQ
+
+C-
+
+ll)
+
+O
+
+.J
+
+7'
+
+~- - 9
+"<t
+
+ICY'
+p'
+
+>:
+<D
+
+f
+
+~
+
+C'!
+
+:0
+<D
+
+Q
+
+N
+
+C>
+
+r.1
+
+p:;
+p
+c:>
+
+e .;;
+
+P
+.)
+
+0
+
+Icy
+
+"" 6
+
+0
+
+lP
+
+1.,.1
+
+0
+
+:::
+
+0
+
+If) l - f--
+
+r'"
+p
+
+:l
+
+c
+c
+
+,.j
+
+0)
+
+V
+V
+
+0n
+
+lP"
+
+~
+
+I~
+
+~
+
+"Ci
+<OJ
+
+0
+
+./
+
+1,.,<
+
+d
+
+Y'
+
+...QV
+
+fO'
+
+~
+
+V N
+
+In
+
+V
+
+N
+
+Q
+
+.--c'___ ..0-
+
+N
+
+~ I- t--
+
+---I-- P
+
+vI--
+
+;0-
+
+0
+
+o
+
+17
+
+II
+
+f--'
+
+)
+
+I
+
+..-:k- I-
+
+J.....- I--
+
+X-
+
+/'
+
+I
+
+v
+/
+
+v
+
+V \
+
+V
+
+/
+/
+
+1\
+
+1\
+\
+
+r--....
+
+1\
+
+1\
+\
+
+\
+
+\
+
+v
+
+1\ V
+
+1/
+
+t;j
+
+\
+
+\
+II
+
+\
+
+~
+
+--..~
+
+'"d
+
+0
+
+~
+...,
+
+1\
+\
+
+1\
+
+......
+
+c..>
+
+\
+
+0
+
+T
+z
+
+1.4
+
+:.-...,
+
+\
+
+\
+
+H
+
+.6,
+
+0
+
+1.2
+
+Z
+
+:.-t"
+(::-
+
+:.-
+
+>.
+
+~.5
+~
+
+-
+
+W
+
+H
+
+f-
+
+t:::I
+
+-<
+
+1.0
+
+H
+
+UJ
+
+l -I-
+
+0
+
+~
+
+>-<
+
+.4I
+
+.8 ~
+
+()
+
+E
+
+~
+~
+
+.D
+
+2
+
+Mr '
+
+.3i
+
+f.--
+
+M-
+
+I--
+
+-- ---
+
+.2
+
+- --
+
+J.....-'-'
+
+-I-
+
+..c:
+<>
+
+-
+
+0
+
+.6~
+
+o
+
+.4
+
+.4
+
+.6
+
+.2
+
+:.t;j
+
+z
+:.-
+
+c:j
+
+...,
+H
+
+.8
+
+1.0
+
+l -f- 25°
+
+30°
+
+1. 2
+
+1.4
+
+35°
+1.6
+
+(c) Efficiency.
+FIGURE
+
+L
+
+~
+
+0
+
+Advance ratio , J
+
+1
+
+~
+
+t;j
+t;j
+
+~
+
+I--f-"
+
+f3 O.75R = 20°
+.2
+
+H
+
+"'1
+0
+
+r--
+
+f.--t--
+
+(el
+
+0
+
+.l.O.-Concluded .
+
+1.8
+
+40 °
+2.0
+
+45
+2.2
+
+2 .4
+
+°
+
+()
+
+Ii
+
+UJ
+
+2.6
+
+0
+
+2 .8
+
+AERODYN AMIC CHARACTERISTICS OF PROPELLERS HA VI G DIFFEREN'l' BLADE-SECTIO
+
+19
+
+CAMBERS
+
+1.0
+. 12
+
+.9
+
+.10
+
+.8
+
+.7
+
+I .4
+
+.6
+
+I.2
+
+f'"
+
+>.
+
+Vi
+
+u
+
+2 .04
+
+c
+
+.c
+
+.5
+
+<l>
+
+.02
+
+25°~
+
+20°
+
+f3 0 .75R=
+
+30° ~
+
+w .4
+
+35°
+
+I.0
+
+,
+
+:Q
+
+I-
+
+~
+
+Mf
+
+<l>
+
+.8 ~
+
+::>
+
+c
+.c
+
+(0)
+
+o
+
+.2
+
+.4
+
+.8
+1.0
+1.2
+Advance rat io , J
+
+.6
+
+1.4
+
+1.6
+
+1.8
+
+.6 g
+
+.3
+
+:2
+
+.2
+
+(a) Thrust coeffici ent.
+1·' 1(: URI': 1l .-C huracLc ristics o f N A CA 10-( I0)(08)-0:3 prop pll!' r.
+
+M
+
+.4
+
+,
+
+.2
+
+.1
+
+H.o taL iolial s pccd , 2000 rpm.
+
+20°
+
+f30.75R =
+
+(e)
+
+o
+
+.4
+
+.2
+
+.6
+
+25°
+
+35°
+
+30°
+
+.8
+1.0
+1.2
+Advance rat io, J
+
+1.4
+
+1.6
+
+(c) E ffi cien cy.
+FIG U RE
+
+ll.-Conclud ed .
+
+.1 4
+
+.12
+.10
+<\. .10
+'-l
+
+c
+
+. ~ .08
+;;::
+
+Q;
+
+-E
+
+o
+
+u .06
+
+.'!' .06
+u
+
+I
+
+Q;
+
+;;::
+
+§
+
+~
+
+0.. .04
+
+_ .04
+V>
+
+::>
+
+1:
+
+I-
+
+.02
+
+20°P:
+
+f30.75R =
+
+25°
+
+3O°1t
+
+35°
+
+.02
+
+-\
+
+f30.75R =
+
+(bl
+
+o
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+1.2
+
+Advance ratio, J
+
+1.4
+
+1.6
+
+1.8
+
+o
+
+(b) P owcr couffi(;iuIiL.
+Fl GUm .;
+
+i
+
+25°(
+
+30°
+
+.8
+1.0
+Advance ratio, J
+
+1.2
+
+20°
+
+( 0)
+
+.2
+
+.4
+
+.6
+
+1.4
+
+1.6
+
+(a) Thru,' L (;ol'ffi c il' lI L.
+
+Il .-Con Lillu cd.
+FI GU R g
+
+J 2.-CharacLe ri sLics of N A (; A J 0-( I 0)(08)-03 propl'IJ er.
+
+RoLaL ional .- pced. 2 J60 rpm .
+
+•
+
+20
+
+REPORT J 3 0 9--KATIONAL ADVI ORY COMMITTEE F OR AE R O TAUTI CS
+
+.10
+
+.0 8
+
+.02
+
+ro 25· fi;
+
+20·
+
+f30 .75R =
+
+2
+
+1.2
+
+.8
+1.0
+Advance rat io, J
+
+.6
+
+.4
+
+(b)
+
+1'0 " '(' 1' COl' ffit:il' 11
+
+FHa1H B
+
+\.0
+
+.18
+
+.9
+
+.16
+
+8
+
+30· ~
+
+(b)
+
+o
+
+.20
+
+1.6
+
+1.4
+
+t.
+
+12 .-Colllinu('d.
+
+d-
+
+Cp .. '
+
+1\- ...1)
+
+Iq
+
+e .14
+'u
+'"
+;;::
+0
+
+u
+
+R
+
+.12
+
+0
+
+C.
+
+'0
+
+1. 0
+
+c
+
+0
+
+6
+
+I "C
+
+1;;
+;:
+
+M,.,
+t::::: '.
+
+,10
+
+1\
+I
+
+~
+
+t- t-Ib
+
+I.2
+
+c
+.c
+u
+
+.0 4
+
+Cr.' .'
+
+'0
+
+u
+
+I
+
+w
+
+I
+
+.4
+
+Q;
+
+8~
+
+.3
+
+co
+.c
+
+,
+
+6 :2g
+
+.4
+
+M.
+
+I
+
+/3 0 75R =
+
+o
+
+.2
+
+.4
+
+.6
+
+20·
+
+25·
+
+.8
+
+1.0
+
+H30 ·
+1.2
+
+Advance rol la, J
+
+(e) 1·; ffic i(, llc,\'.
+I·' ((; [ ' n"
+
+.4
+
+1'-(
+
+-l<
+
+.2
+
+12.- C' 0 Ildud cd .
+
+•
+
+I
+
+LL
+1.4
+
+.2
+
+1\
+1.8
+
+2.0
+2.2
+2.4
+Advance ratio, J
+
+2.6
+
+2.Jl
+
+o
+
+(a) Air-~t rcam :\I:tch Il umbc r a t maxim u m d lic ie ll c,\' , 0.56 .
+f' I G l ' R E
+
+J--
+
+lc l
+
+2
+
+1,\
+
+la l
+
+o1.6
+
+::>
+
+I
+I
+
+.2
+
+.6 :20
+
+I.0
+
+M,
+
+.;:;
+
+3
+
+""'t
+
+.02
+
+~ .5
+
+1;;
+.0
+
+l't
+
+f-
+
+>:
+u
+
+.8
+
+E
+
+IS-
+
+2
+
+.6
+
+1.0
+
+::>
+
+Vi .06
+\. 4
+
+c::
+
+'"
+'u
+;;::
+W
+
+1\
+
+M..
+
+.c
+
+.7
+
+4
+
+II
+
+~u
+
+.8
+
+,::,
+
+u
+
+14,
+
+e .0 8
+'"
+'u
+
+1.2
+I"
+
+5
+
+~
+.9
+
+1.4
+
+\
+
+t
+
+Q;
+
+7
+
+13.-C haracle ri s l ics o f X A C A 10-( \0)(0 )-0 :3 p rop ell e r al
+hi g h fo rwa rd s p eed s . 130 . 75 // = ~ 5 ° .
+
+AERODYNAMI
+
+21
+
+CHARA 'l'ERISTICS OF PROPELLERS H AVI TG DIFFERE TT BLADE-SECTION CAMBERS
+
+.20
+
+1.0
+
+8
+
+9
+
+.20
+
+I.0
+
+.18
+
+9
+
+.16
+
+8
+
+).
+
+Cp _ q
+
+6
+
+c
+
+8
+
+~
+
+\:
+
+Q)
+
+'\.
+
+21 4
+
+7
+
+--7)
+
+0; '
+
+8
+
+C .14
+
+1.4
+
+,,~
+
+1
+
+~
+
+o
+
+1'\
+
+~ .12
+
+C
+
+o
+
+~.I0
+c
+
+q
+
+Q)
+
+u
+
+Q)
+
+5 'u
+
+o
+n.
+
+--
+
+§ .10
+
+--- w .8E
+4
+
+u
+
+E
+:>
+
+Vi
+
+2
+
+M ,
+
+~.06
+
+c
+
+).
+
+~
+
+u
+
+3
+
+.6 ~
+
+EO'
+
+ri
+5 cQ)
+
+--r-.
+
+M,.-
+
+~
+
+~
+
+'u
+;;:::
+W
+
+\, 11
+
+~.08
+u
+
+1.0
+
+4
+
+6
+
+~
+Q)
+
+1.2
+
+6
+
+-- . 7)
+K\
+~ _\
+
+'0
+
+1.0
+
+;;:::
+
+I
+\ ,I
+
+""] .08
+
+~
+
+>.
+
+~
+
+R'
+
+Q)
+
+EO'
+
+II
+I
+
+i..
+
+M
+" I-'"
+
+..
+
+~ .12
+
+1.2
+
+6
+
+'0
+
+Cp '
+
+Q)
+
+1\
+
+Q;
+
+1.4
+
+7
+
+'5
+
+Q)
+
+'u
+;.::
+
+.8 ~
+E
+:>
+
+M
+
+o
+
+c
+
+u
+
+~
+
+u
+
+l06
+
+3
+
+.6 ~
+
+2
+
+.4
+
+.I
+
+.2
+
+o
+
+0
+
+~
+
+f-
+
+\
+
+"'t
+
+CT- '\_
+
+.04
+
+2
+
+.4
+
+.04
+
+CT'
+
+l-
+
+'\
+.02
+
+\ .1
+
+"
+
+q
+
+~
+
+.2
+
+rQ.:
+
+i..
+
+G
+
+.02
+
+-~
+
+I
+
+IG
+
+I Q:
+
+2.4
+
+K
+2.6
+
+(c)
+
+(bl
+
+1.8
+
+2.0
+
+2.2
+
+2.4
+
+2.6
+
+0
+2.8
+
+Advance ratio, J
+
+0
+
+1.8
+
+2.0
+
+2.2
+
+2.8
+
+Advance ratio, J
+
+(b) Ai r-st rca m :\[ach numbcr at maximum effici ency , 0.5
+
+(c) Ai r- 'ircam :\Iach llumbcr at maximum c ffici ency, 0.60.
+
+Fw U R8 J3 .- Coniinucd.
+
+Fr c l ' RE 1:3 .- Concludcd.
+
+22
+
+REPORT 13 0 9-NATIONAL ADVISORY COMMITTEE FOR AERONAUTICS
+
+1.0
+1.0
+
+.9
+!"
+
+:>:
+c
+Q)
+
+Ij
+
+u
+
+:~
+
+.8
+
+~
+
+,
+
+/ ,
+
+- 1350
+
+w
+
+0. .7
+0
+
+g. .7
+
+-1 600
+"-
+
+,,
+
+0;
+
+1--- -
+
+'1140
+
+,
+
+/V
+
+w
+
+",
+
+/
+
+-- -----..,
+
+~p-
+
+-
+
+~
+
+.9
+
+Rololionol
+speed, rpm
+
+~
+
+Prq:Jeller
+
+I--
+
+NACA 10-(3) (08)-03
+.6 I-- - - - NACA 10-(5) (08)-03
+- - - - - - - NACA 10-(IOX08)-03
+
+c
+
+', 2000
+
+W
+
+, 2160
+
+c>
+w
+
+.6
+
+j"J(:I· IU; 1-l. -
+
+1.6
+2.0
+Advance rolio, J
+
+1.2
+
+.8
+
+4
+
+2.8
+
+2.4
+
+3.6
+
+3.2
+
+1.2
+
+.8
+
+.4
+
+2.4
+
+1.6
+20
+Advance rat io, J
+
+32
+
+2.8
+
+3.6
+
+]0',, : 1' liE 1/ .- TIIl' "aria li o ll o f l' Il" ploPl' l'fi-ie iellcy \\' i ll! :lllnLll ce
+ratio fo r propl'lI ers h ,n ·illl!; c1itr crl' llL c1 1'~ i l!; ll lifL codfici l' llLs.
+n oL,I Li o ll u l speed, 1:350 r pm.
+
+I'; nYl'lopl' l'ffi cil' II C.' · of :\AC'A 10- ( llJ)( 08) - 0:3 propl'l ll'r
+al nlrioliS r oLali o na l speeds.
+
+,
+
+.26
+
+\,
+
+-- --- -
+
+.24
+
+Cp ~.:~---
+
+1.0
+
+.9
+
+1--/
+
+Q)
+
+·u
+;;::
+
+/
+
+- r - --
+
+.-
+
+.8
+
+~
+
+.22
+
+----
+
+\
+
+\
+
+.20
+
+'"
+
+' Optimum efficiency of propeller with Betz loading
+
+\
+\
+
+~
+
+Q)
+
+a:;
+
+.7
+
+.1 8
+
+\
+
+1\
+
+\
+
+\
+
+1\ \
+
+\
+
+\
+
+\
+
+>
+
+c
+w
+
+\
+\
+
+I~
+
+c
+
+.6
+
+. ~ .16
+~
+
+\
+
+~
+
+u
+
+1.6
+2.0
+Advance ratio, J
+
+2.4
+
+2.8
+
+3.2
+
+Q)
+
+~ .1 4
+
+c
+
+o
+
+G-.12
+
+", -, " - -
+
+c
+
+Q)
+
+,
+
+u
+
+1.0
+
+NACA 4-(IOX08\-03 propeller (ref. 3),
+r- NACA 10-(10)(08)-03 propeller"
+
+.9
+
+/'
+
+~
+
+,
+
+--
+
+f-
+
+~
+M"
+
+,
+
+6
+
+...... ~
+.-/
+
+V
+
+-.4
+
+.8
+
+-----
+
+4
+
+~
+
+2
+
+----1.2
+
+~
+
+"-
+
+.08
+
+24
+
+2.8
+
+16. - Compar i ~o n
+
+~
+
+of (' In'clope df-i <;iC't1c,v fo r
+J 0 ( 10) (08) - 0:3 alld ,1- ( I 0)(08) 0:3 prop('lIN,· .
+
+\\
+
+\
+
+\
+
+\
+
+~ '"
+
+\
+
+\
+
+\
+
+\
+
+\
+
+\
+
+\
+
+\
+, \\
+\
+
+\
+\
+
+'\
+
+,\ \
+
+\
+\
+
+" \\ 1\ \
+"" ""
+'" \\\\ \ \\
+'"
+\
+
+'\
+
+\,
+
+\,
+
+~.
+
+\
+\
+
+'\
+
+\',
+
+.04
+'--
+
+Propeller
+- - NACA 10-(3)(08)-03
+- - - NACA 10-(5)(08)-03
+- - - - NACA 10 -(10)(08)-03
+
+3.2
+
+1.8
+
+2.0
+
+\,~
+
+\
+
+o
+
+:\T ACA
+
+\
+
+\
+
+,
+
+'-
+
+.06
+
+1.6
+1,' l GU IU;
+
+"
+
+\
+
+"'\ ",
+
+.02 1.6
+20
+Advance ratio, J
+
+"
+
+\
+\
+
+2
+
+V
+.6
+
+- -'.
+
+8
+
+t----
+
+"
+
+~
+
+\
+
+\
+
+"
+
+"
+
+~. IO
+
+"
+
+\
+
+\
+
+,
+
+Cn ,,-_
+" '- ,
+"
+
+·u
+;;::
+I. o
+
+\
+
+\
+
+1:)
+
+Flca·HE 15. - Co mpari,.;on of lhl' el1\·(' lop(' effici ency o f :\ AC A 10- ( I 0)
+(0 ) - 0:3 propell(' r al 1350 rpm \\·ith th e opt i mum efficie ncy of a
+t\\'o-blade propeller wilh tl1(' B ('lz load in g.
+
+\
+
+1\
+
+~
+
+1.2
+
+.8
+
+.4
+
+,
+
+\
+
+Qj
+0.
+0
+
+\
+---\
+
+-"
+
+"
+
+, "',
+Envelope efficiency of NACA 10-(10) (08)-03 propeller
+
+!"
+
+:>:
+u
+c
+
+.- - - -
+
+,
+
+-----
+
+2.2
+
+\ 1\
+
+\ \\ ';\
+\\ i'~\
+
+2.4
+
+2.6
+
+\
+\
+
+\\
+2.8
+
+Advance ratio, J
+1''r. GI ' HJ; I .- Tir e variaLioil of Ulrll ~L a nd po wer (;o(' tri (;iC ll i~ wi Lh
+advancc raLio fo r prope ll ers hav ing diffcr en t d esigll li n co ffi cic nil:>.
+RoLaLional sp ecd, 1:350 rpm ; {3o.75u =,J5°.
+
+23
+
+AERODY JAMIC CHARAC'l'ERIS'1'I CS OF PROPELLERS HAVING DIFFEREI '1' BLADE-SE CTIO J CAMBERS
+
+.22
+
+.20
+t-
+
+.18
+
+~ --
+
+~ r- f-- t- r- -
+
+V ...
+
+Cp:,
+/'\
+
+c
+
+;g .1 4
+
+/'
+
+V
+
+1;;
+
+~ .12
+~
+a
+
+V
+./
+
+/V
+
+/
+
+....... .
+./
+
+-V - -
+
+'-
+
+-
+
+t--
+
+9
+
+--......
+
+-
+
+'1)' •
+
+I--
+
+~
+
+V
+
+\V
+
+,/
+
+Q)
+
+§
+
+/'
+
+/'
+
+l-
+
+V
+./
+
+.16
+
+o
+
+I.
+
+V
+
+./
+
+'1) ' ,- '.
+
+L..--Cp _
+
+-
+
+V
+
+I-- ~
+
+~
+
+--
+
+/
+
+..:
+
+-- --
+
+\...) .10
+C
+Q)
+'0
+
+v
+
+;;::
+
+Q;
+
+I--
+
+8 .08
+
+f,.---- ~
+
+.06
+
+V
+
+--
+
+~
+
+~-
+
+V """
+............-
+
+t::-:
+
+~ 'Cr
+
+Cr. ,
+
+I-- ~
+
+b-:::::
+
+f,.---- f,.----
+
+7
+
+I-L..--- I--
+
+--
+
+~
+
+-
+
+L..--- :.--
+
+8
+
+6
+
+f-- f--
+
+.4
+
+1--1-
+
+- - - t--
+
+.3
+
+V
+.2
+
+.0 4
+Rotationol speed .
+rpm
+1350
+- - - - 160 0
+
+.0 2
+
+o
+
+.3
+
+.1
+
+(0 )
+
+( b)
+
+.4
+
+.5
+
+.6
+
+.7
+
+.4
+.8
+.9
+1.0 .3
+.5
+Blade -section desi gn lift coef f icient at 0 .7 radi us
+
+(.-) J = 2 .2; {3u.751l =-J5° .
+1" 1(:t ' R I,
+
+.6
+
+.7
+
+.8
+
+(b) J = 1. 1; {3o .7,,/ = :35°; rolational spc'c'd , 11-10 rpill.
+
+In. -The t'fft'cL of bladl'-sc' clioll (Jpsign lifL codfici ilL on lhrust , pOII'('r , and effici ency .
+
+1.0
+
+- t-- f=,--
+
+1--->-
+
+.9
+I"
+
+-
+
+f'-.-
+
+/
+
+/
+
+~
+
+-
+
+.....
+
+/
+
+.8
+
+:~~ .7
+
+f
+
+I
+I
+
+i
+
+\
+
+Propeller
+NACA 10-(3)(08-03
+NKA 10-(5)(08)-03
+- - - - - - - NtrCA 10-(10)(00-03
+
+.6
+
+.02
+
+Fr(: U R~J
+
+.04
+
+.10
+.06
+.08
+Thrust coefficienl. Cr
+
+.12
+
+.14
+
+.16
+
+20. - The' variuLiol1 o f pfficiel1c,I' ,,' ith lhru sl coefficient for
+prop!']It'rs h a ving c1iffer('nl c1l'sign lift cOE'fficit'nts. Hotationu]
+I'l pC'('c1 , 11'10 rpm ; {3o.76R=-15° .
+
+.9
+
+24
+
+REPORT 1 3 09-
+
+ATIO
+
+AL ADVISORY COMMITTEE FOR AERO A T I C
+
+I. 0
+
+t;:..:::
+
+9
+
+1--- 1---
+
+1--
+
+r--- . - r-~
+
+-
+
+,;V
+
+V
+8
+
+II
+
+7
+
+1.0
+
+"---.. "-
+
+"-
+
+",\
+
+"-
+
+I
+
+.,.
+
+"-
+
+t""--.
+
+l - f---
+
+~
+',,1'--.
+
+"-
+
+,,;.8
+u
+
+\
+
+f"\-
+
+\
+
+c
+
+(l)
+
+\:'-
+
+"Q
+
+1'\
+
+6
+
+w7
+
+\
+
+\
+
+~
+
+"
+
+Propeller
+I-
+
+(a)
+
+.5 f- -'----
+
+-- -
+
+.9
+
+1\
+
+f\
+
+f--- 1 -
+
+...........
+
+.6 r--
+
+"-
+
+- - NACA 10-(3)(08)-03
+- - - NACA 10-(5)(08) -03
+- - - - NACA 10 - (10)(08)-03
+
+1.0
+
+1-_--1-==
+
+~
+
+.,.
+
+V- I.------
+
+;.8
+
+I
+
+w
+
+.8
+
+.9
+
+1.0
+
+\
+
+I
+
+Propeller
+NACA 10-(3)(08)-03
+NACA 10-(5)(08)- 03
+- - - - - - - NACA 10-(10)(08)-03
+
+.2 2
+
+\
+
+f--(b)
+
+~,
+
+\
+
+.2 0
+
+.5
+
+/
+
+\
+
+/
+
+1.0
+1-
+
+~
+
+.9
+
+..8
+
+-
+
+I-
+
+//V- I/'
+
+..-
+
+II
+
+I"-
+
+/
+
+-
+
+,,
+
+I
+I
+
+\
+
+V\ \..1
+
+C/
+
+c
+
+I
+I
+
+o
+
+u
+
+0-
+
+(c)
+
+.4
+
+.8
+
+r-- I -
+
+1.2
+
+1.6
+
+2.4
+
+20
+
+2.8
+
+3.2
+
+3.6
+
+, l-
+
+-
+
+-g
+o
+
+\ ,,/
+
+.......
+
+V
+
+..-~
+
+Q;
+
+8.08
+iii
+2
+
+-'-
+
+f-
+
+,
+
+\
+
+\
+
+I
+
+,,;
+
+~
+
+u
+
+.8
+
+\
+
+Q;
+
+\
+
+E
+:> .7
+E
+. ;:(
+0
+
+.6 f--- - - - - - - -
+
+.5
+
+.6
+
+.9
+
+1.0
+Helical l ip Mach number. M,
+
+.8
+
+'\ .....V!----'
+
+-------
+
+1\ ./
+
+Prcpejler
+
+I~
+
+.02 r--
+
+~
+
+Propeller
+NACA 10-(3)(08)-03
+NACA 10-(5)(08)-03
+NACA 10-110XOBl-03
+
+.7
+
+...-..-
+
+v
+
+j\
+
+~
+
+.04
+
+I':
+
+~
+
+/
+
+~, - !--' -
+
+-
+
+, ...-
+
+-~
+
+Cr:, , ,
+
+.06
+
+, ,,
+
+1-,
+
+V
+
+-,
+
+1--/ . .
+
+L
+
+;/
+
+II
+
+1\
+
+'u
+
+t--..
+
+\ -1
+
+V
+
+1.0
+
+"-
+
+/
+
+\\
+
+t-- V
+
+;;:
+
+F[(:t' R" 2 1.- TIll' ,ff"ici cne.v o f prop c' II c' rs Illi\' ill g dif·r erc nt design li fL
+eodfi cients ,w d op eratin g at con .· t;wt pOI\"(' I' codfici cn ts and 11
+constan t r ot ;ilional ~ p e('d of 11 -10 rpill .
+
+t .......
+
+/" 1\
+I/
+
+~...
+
+Q)
+
+(b) C,, = O. I !).
+(e) C" 0.20.
+
+.9
+
+\
+
+/
+
+,
+
+,
+
+<S- .10
+c
+
+(a) C,,- U.IO.
+
+,
+I
+I
+
+a.
+
+Advance ralio, J
+
+.5
+.4
+
+I
+I
+I
+
+Q)o~ .1 2
+
+e---
+
+I-
+
+\
+
+I',
+
+Q)
+
+~ .14
+
+/
+
+I
+
+1\
+
+I
+
+.16
+
+.6
+
+2
+
+\
+
+I
+
+Q)
+
+~
+
+\
+
+..- ,
+/
+
+....
+
+\
+
+<'
+,,
+
+. 18
+
+.7
+
+(l)
+
+1.3
+
+\
+
+.6
+
+c
+
+1.2
+
+eff ee t of co mprpssib i li( y on (11(' pffici enc.v of prop ell ers havin g d iffer en t desi gn lif t coe ffi cien t ancl operatin g at" a
+co nst an t p owE'r cop ffi cien t of O. I:~ . /30,7511 = 45°.
+
+"-
+
+/
+
+.,.
+
+1.1
+
+Fl Cl/ RI'] 2:~. -Th ('
+
+.7
+
+..;=.
+
+.7
+
+Hel ical lip Mach number, M,
+
+"
+
+/
+
+c
+
+(l)
+
+.6
+
+.5
+
+,
+
+t-,
+
+'-
+
+/ 1/ V
+
+u
+
+'u
+
+'- r- - i--
+
+F
+
+~
+
+.9
+
+o
+
+.5
+
+NACA 10-(3)(0~-03
+- - - NACA 10-(5)(08)-03
+- - - - - - - NACA 10-(10)(~-03
+
+I
+.6
+
+I
+.7
+
+I
+
+r
+.8
+
+I
+.9
+
+1.0
+
+1.1
+
+1.2
+
+Helical tip Mach number, M/
+
+1.1
+
+1.2
+
+1.3
+
+Ft<: U R I, 24 .- Tl1e rtf e'e( o f co rnprpssibi li t.v on (h e (Iml '- ( and po w pr
+("of'ffie ie'nts f or m;,xirnllll1 pffici cn cy of propp llPrs 11 1win g rliffcr('n(
+ri rs ig n Ii f t eopffic icilts. /30.758 = -l5°.
+
+FrClJllE 22.-
+
+1'11(' d Trrt o f com pressi bi li ty 0 11 t hE' maxi mum efficipncy
+o f propell er s h av in g difrer ent design lift coefficient. . /30.75R =,15° .
+U . s. GOVERNMENT PRINTIN G OrFICE: 1957
+
+

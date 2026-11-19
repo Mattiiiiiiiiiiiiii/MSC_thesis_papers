@@ -1,0 +1,1691 @@
+NASA TM-87054
+
+1
+
+AIAA-85-1259
+Wind Tunnel Results of Advanced High Speed
+Propellers in the Takeoff, Climb, and Landing
+Operating Regimes
+George L. Stefko and Robert J. Jeracki, NASA
+Lewis Research Center, Cleveland, OH
+
+AIAAlSAEIASMElASEE 21st Joint-.
+Prqlpulsiota Conference
+.*:
+
+July 8-10, 1985 / Monterey California
+for Permission to copy or republish, contact the American Institute af Aeronautics and AstroMuttCS
+1633 Broadway, New Yark, NY 10019
+
+It
+
+W I N D TUNNEL RESULTS OF ADVANCED H I G H SPEED PROPELLERS I N THE
+TAKEOFF, CLIMB, AN0 LANDING OPERATING REGIMES
+George L. S t e f k o and R o b e r t J. J e r a c k i
+N a t i o n a l A e r o n a u t i c s and Space A d m i n i s t r a t i o n
+L e w i s Research C e n t e r
+Cleveland, Ohio 44135
+
+A number o f s t u d i e s have been c o n d u c t e d b y
+b o t h NASA and i n d u s t r y t o e v a l u a t e t h e p o t e n t i a l
+o f advanced high-speed t u r b o p r o p p r o p u l s i o n f o r
+b o t h c i v i l and m i l i t a r y a p p l i c a t i o n s .
+Numerous
+r e f e r e n c e s t o s p e c i f i c s t u d i e s and s u m a r y r e s u l t s
+a r e l i s t e d i n Ref. 1. I n s t a l l e d e f f i c i e n c y l e v e l s
+s i m i l a r t o t h o s e shown i n F i g . 1 f o r comparable
+t e c h n o l o g y advanced t u r b o p r o p s and t u r b o f a n s were
+used i n most o f t h e s e s t u d i e s . A t Mach 0.8 t h e
+i n s t a l l e d e f f i c i e n : y o f t u r b o f a n systems would be
+a b o u t 6 5 p e r c e n t compared t o about 75 p e r c e n t f o r
+t h e advanced t u r b o p r o p . A t l o w e r c r u i s e speeds,
+t h e e f f i c i e n c y advantage o f t h e advanced t u r b o p r o p
+would be even l a r g e r .
+
+Abstract
+Low speed w i n d t u n n e l performance t e s t s o f
+t w o advanced p r o p e l l e r s have been completed a t t h e
+NASA L e w i s Research C e n t e r as p a r t o f t h e NASA
+Advanced Turboprop Program. The 62.2 cm (24.5 i n )
+d i a m e t e r a d j u s t a b l e p i t c h models were t e s t e d a t
+Mach numbers t y p i c a l o f t a k e o f f , i n i t i a l c l i m b o u t ,
+and l a n d i n g speeds ( i . e . . f r o m 0.10 t o 0.34) i n
+t h e NASA L e w i s 10- b y 10-Foot Supersonic Wind
+Tunnel.
+B o t h models had e i g h t b l a d e s and a c r u i s e
+d e s i g n p o i n t o p e r a t i n g c o n d i t i o n o f 0.80 Mach
+number, 10.668 km ( 3 5 000 f t . ) I.S.A.
+altitude,
+243.8 m/s (800 f t / s c ) t i p speed nd a h i g h power
+l o a d i n g o f 301 kW/m (37.5 s h p / f t ) .
+
+5
+
+The b l o c k f u e l s a v i n g s shown i n F i g . 2 as a
+f u n c t i o n o f t r i p s t a g e l e n g t h i s a sumnary o f t h e
+R e f . 1 s t u d i e s . As shown i n F i g . 2. b l o c k f u e l
+s a v i n g s a r e dependent o n a i r c r a f t c r u i s e speed and
+range. A t t h e b o t t o m o f t h e band, a s s o c i a t e d w i t h
+Mach 0.8 c r u i s e , f u e l s a v i n g s r m g e f r o m about 1 5
+t o 25 p e r c e n t f o r advanced t u r b o p r o p a i r c r a f t compared t o equivalent technology t u r b o f a n a i r c r a f t .
+The l a r g e r f u e l s a v i n g s o c c u r a t t h e s h o r t e r opera t i n g r a n g e s where t h e m i s s i o n i s c l i m b and d e s c e n t
+dominated.
+Because o f t h e lower o p e r a t i n g speeds
+e n c o u n t e r e d d u r i n g c l i m b and descent, t u r b o p r o p s
+have an even l a r g e r p e r f o r m a n c e advantage o v e r t h e
+t u r b o f a n s t h a n t h e y do a t Mach 0.8 c r u i s e c o n d i t i o n s . I n a s i m i l a r manner, a l a r g e r f u e l s a v i n g s
+i s p o s s i b l e a t Mach 0.7 c r u i s e ( r e p r e s e n t e d b y t h e
+t o p o f t h e band i n f i g . 2 ) . A t t h i s l o w e r c r u i s e
+speea, f u e l s a v i n g s r a n g e f r o m about 20 p e r c e n t t o
+n e a r 30 p e r c e n t . Even l a r g e r f u e l s a v i n g s may be
+possible by recovering the p r o p e l l e r s w i r l loss
+f r o m t h e s e s i n g l e - r o t a t i o n t u r b o p r o p s . Counterr o t a t i o n and s w i r l r e c o v e r y vanes a r e t w o p r o m i s i n g
+concepts f o r recovering t h e s w i r l loss. I n addit i o n , advanced a i r f o i l s c a n a l s o i m p r o v e perfomance.
+A l l o f t h e s e c o n c e p t s a r e c u r r e n t l y under s t u d y a t
+NASA and i n t h e i n d u s t r y .
+
+1
+
+No adverse or unusual low speed o p e r a t i n g
+c o n d i t i o n s were found d u r i n g t h e t e s t w i t h e i t h e r
+t h e s t r a i g h t b l a d e SR-2 o r t h e 45' swept SR-3 p r o p e l l e r s . The 45' swept p r o p e l l e r e f f i c i e n c y
+exceeded t h e s t r a i g h t b l a d e e f f i c i e n c y b y 4 t o 5
+percent. Typical net e f f i c i e n c i e s o f the s t r a i g h t
+and 45' swept p r o p e l l e r a t a Mach 0.20 t a k e o f f
+c o n d i t i o n were 50.2 and 54.9 p e r c e n t r c s p e c t i v e l y .
+A t a Mach 0.34 c l i m b c o n d i t i o n , t h e e f f i c i e n c i e s
+were 53.7 and 59.1 p e r c e n t . Reverse t h r u s t d a t a
+i n d i c a t e d t h a t these p r o p e l l e r s are capable o f
+p r o d u c i n g more r e v e r s e t h r u s t a t Mach 0.20 t h a n a
+high-bypass t u r b o f a n e n g i n e a t Mach 0.20.
+Introduction
+The a t t r a c t i v e n e s s o f advanced t u r b o p r o p p r o p u l s i o n r e s u l t s from i t s PGtential f o r very high
+p r o p u l s i v e e f f i c i e n c y a t c r u i s e speeds up t o
+Mach 0.8.
+A comparison of t h e i n s t a l l e d c r u i s e
+e f f i c i e n c y of turboprop-powered and t u r b o f a n powered p r o p u l s i v e systems i s shown i n F i g . 1 o v e r
+a r a n g e o f c r u i s e speeds. The e f f i c i e n c i e s shown
+i n t h e f i g u r e include t h e i n s t ? l l a t i o n losses f o r
+b o t h systems; namely, n a c e l l e d r a g f o r t h e t u r b o p r o p systems, and f a n c o w l i n g e x t e r n a l d r a g and
+i n t e r n a l fan a i r f l o w losses associated w i t h i n l e t
+r e c o v e r y and n o z z l e e f f i c i e n c y f o r t h e t u r b o f a n
+systems. C o n v e n t i o n a l l o w e r speed t u r b o p r o p s such
+as t h e E l e c t r a have i n s t a l l e d e f f i c i e n c y l e v e l s
+above 80 p e r c e n t up t o about Mach 0.5, b u t c a n
+s u f f e r f r o m r a p i d decreases i n e f f i c i e n c y above
+t h i s speed due t o i n c r e a s i n g p r o p e l l e r compressib i l i t y l o s s e s . These l o s s e s a r e p r i m a r i l y t h e
+r e s u l t of r e l a t i v e l y t h i c k b l a d e s ( 5 t o 7 p e r c e n t
+a t 75 p e r c e n t r a o i u s ) o p e r a t i n g a t h i g h h e l i c a l
+t i p Mach numbers.
+
+I n view o f t h e a t t r a c t i v e f u e l savings potent i a l o f t h e advanced high-speed t u r b o p r o p p r o p u l s i o n system, NASA L e w i s Research C e n t e r has
+e s t a b l i s h e d t h e Advanced Turboprop Pr gram. T h i s
+m a j o r r e s e a r c h and t e c h n o l o g y program e s t a b l i s h e s t h e t e c h n o l o g y base r e q c i r e d t o l e a d t o t h e
+a p p l i c a t i o n o f t h e advanced t u r b o p r o p p r o p u l s i o n
+system c o n c e p t . One phase o f t h i s o v e r a l l program
+was t o e s t a b l i s h t h e c o m p l e t e low speed aerodynamic
+performance o f t h e SR-2 and SR-3 p r o p e l l e r models
+i n t h e t a k e o f f , i n i t i a l c l i m b o u t , and l a n d i n g speed
+regimes. The f i r s t model shown mounted i n t h e
+w i n d t u n n e l ( F i g . 3 ) had s t r a i g h t b l a d e s w h i l e t h e
+second model ( F i g . 4 ) had 45' of b l a o e sweep f o r
+l o w e r n o i s e and improved p r o p e l l e r e f f i c i e n c y .
+l o t h p r o p e l l e r models were t e s t e d i n t h e NASA L e w i s
+10- b y 10-Foot S u p e r s o n i c Wind Tunnel on t h e L e w i s
+P r o p e l l e r T e s t R i g (PTR). T h i s paper p r e s e n t s t h e
+w i n d t u n n e l t e s t r e s u l t s o f t h e s e two p r o p e l l e r s
+i n t h e t a k e o f f , c l i m b , and l a n d i n g speed regime
+( i . e . , Mach 0.10 t o 0.34).
+Other wind tunnel t e s t s
+have measured t h e performance o f t h e s e p r o p e l l e r s
+
+B
+
+The advanced high-speed t u r b o p r o p has t h e
+p o t e n t i a l t o aelay these c o m p r e s s i b i l i t y losses t o
+a much h i g h e r c r u i s e speeo and a c h i e v e a r e l a t i v e l y
+h i g h performance t o a t l e a s t Mach 0.8 c r u i s e .
+A l t h o u g h h i g h bypass r a t i o t u r b o f a n s e x h i b i t t h e i r
+h i g h e s t e f f i c i e n c y a t c r u i s e speeds near Mach 0.8,
+t h e i r performance would s t i l l be s i g n i f i c a n t l y
+below t h a t of t h e advanced t u r b o p r o p s .
+This paprr i s dcclirrd Iwork o f lhr U S .
+Govrmrnrnl and thrrrlom i s in lhr public domain
+
+1
+
+primaril{,jn
+t o 0.85.
+
+model and were sealed t o be more r e p r e s e n t a t i v e o f
+a f u l l s c a l e p r o p e l l e r . More d e s i g n i n f o r m a t i o n
+may be found i n Refs. 1",13-5.
+
+t h e h i g h e r speed regime o f Mach 0.60
+
+Aerodynamic Design Concepts and Model D e s c r i p t i o n
+Wind Tunnel T e s t Proaram
+To a c h i e v e t h e p r e v i o u s l y d e s c r i b e d f u e l
+savings, t h e p r o p e l l e r on t h e advanced t u r b o p r o p
+would have t o i n c o r p o r a t e a number o f u n i q u e d e s i g n
+f e a t u r e s t h a t would enhance p r o p e l l e r performance
+and lower source n o i s e . These u n i q u e d e s i g n feat u r e s a r e r e q u i r e d t o reduce b l a d e c o m p r e s s i b i l i t y
+l o s s e s and a t t a i n h i g h e f f i c i e n c y i n t h e t r a n s o n i c
+Mach number regime. A p r o p e l l e r designed f o r a
+c r u i s e Mach number o f 0.80 a t an a l t i t u d e above
+9.144 km ( 3 0 000 f t ) , would have l o c a l b l a d e Mach
+numbers f r o m j u s t o v e r 0.8 a t t h e b l a d e hub t o
+s u p e r s o n i c Mach numbers ( n e a r 1.15) a t t h e b l a d e
+t i p . The i n h e r e n t d e t r i m e n t a l e f f e c t s o f t h e s e
+h i g h Mach numbers on performance a r e negated b y
+t h e d e s i g n concepts shown i n F i g . 5. These conc e p t s i n c l u d e p r o p e r shaping o f t h e n a c e l l e t o
+r e d u c e i n b o a r d b l a d e Mach number, b l a d e sweep t o
+r e d u c e o u t b o a r d b l a d e l o c a l Mach number, t h i n n e r
+b l a d e s t o i n c r e a s e d r a g r i s e Mach number and s p i n n e r area r u l i n g t o p r e v e n t i n - b o a r d b l a d e c h o k i n g .
+To h o l d p r o p e l l e r d i a m e t e r t o a r e a s o n a b l e value,
+a h i g h power ( o r d i s k ) l o a d i n g and c o n c o m i t a n t l y a
+l a r g e number o f b l a d e s ( 8 o r 10) and i n c r e a s e d
+c h o r d l e n g t h a r e r e q u i r e a . The i n b o a r d p o r t i o n o f
+t h e p r o p e l l e r t h e n o p e r a t e s as a cascade r a t h e r
+t h a n i s o l a t e d b l a d e s . These d e s i g n concepts a r e
+i n c o r p o r a t e d i n t h e two model p r o p e l l e r s .
+The p r o p e l l e r models ( F i g s . 3 and 4 ) were
+b o t h o e s i g n e d f o r an o p e r a t i n g c o n d i t i o n o f 0.80
+Mach number, 10.668 km (35 000 f t ) I.S.A. a l t i t u d e ,
+243.8 m/s ( 8 0 0 t / s e c ) t i p sp ed and a power l o a d i n g of 3 0 1 kW/
+(37.5 s h p / f t ) . B o t h models
+have a d i a m e t e r o f 0.622 m (24.5 i n ) which was
+d e t e r m i n e d b y t h e d e s i g n power l o a d i n g . The overa l l d e s i g n c h a r a c t e r i s t i c s and p l a n f o r m s o f t h e
+t w o models a r e p r e s e n t e d i n T a b l e 1.
+
+4
+
+Wina Tunnel
+The SR-2 and SR-3 p r o p e l l e r model t e s t s were
+conductea i n t h e NASA Lewis 10- b y 10-Foot Supers o n i c Wind Tunnel. T h i s t u n n e l 5 i n c o r p o r a t e s a
+13.12 m ( 4 0 f t ) long, s o l i d w a l l t e s t s e c t i o n .
+Nominal t e s t s e c t i o n Mach numbers c a n v a r y subs o n i c a l l y f r o m 0.10 t o 0.34 and s u p e r s o n i c a l l y
+from 2.0 t o 3.5.
+The t u n n e l was r u n i n t h e aerodynamic c y c l e v e r s u s t h e p r o p u l s i o n c y c l e f o r t h i s
+t e s t program.
+D u r i n g t h e aerodynamic c y c l e , t h e
+t u n n e l i s o p e r a t e d as a c l o s e 0 system w i t h make-up
+a i r added o n l y as r e q u i r e d t o m a i n t a i n t h e d e s i r e d
+t u n n e l c o n d i t i o n s . The f r e e s t r e a m v e l o c i t y c o r r e c t i o n s due t o t h e p r o p e l l e r t h r u s t i n t h i s s o l i d
+w a l l t u n n e l a r e d i s c u s s e d i n d e t a i l i n Appendix B
+o f Ref. 5.
+P r o p e l l e r T e s t R i g (PTR)
+The 746 kW (1000 h p ) PTR was designed and
+developed s p e c i f i c a l l y f o r c o n d u c t i n g r e s e a r c h on
+advanced p r o p e l l e r s i n t h e L e w i s 10- by 1 0 - f o o t
+and 8- b y 6 - f o o t w i n d t u n n e l s . The PTR was s t r u t mounted f r o m t h e c e i l i n g i n t h e t u n n e l t e s t sect i o n . The PTR and t h e SR-3 model a r e shown i n t h e
+t u n n e l ( F i g . 4 ) w h i l e a cutaway v i e w o f t h e PTR i s
+p r e s e n t e d i n F i g . 8. The model i s d r i v e n b y a
+three-stage a ' r t u r b i n e u t i l i z i n g h i g h pressure
+a i r a t 3 . 1 ~ 1 0 N/m2 ( 4 5 0 p s i ! and heated t o
+367 K ( 6 6 0 OR). The t u r b i n e i s c a p a b l e o f
+d e l i v e r i n g n e a r l y 746 kW (1000 h p ) t o t h e
+p r o p e l l e r model.
+
+b
+
+5
+
+The PTR m e t r i c system i n c l u d e s two s e p a r a t e
+a x i a l f o r c e measuring systems. The p r i m a r y system
+i s a r o t a t i n g b a l a n c e which measures t h r u s t and
+t o r q u e o f t h e p r o p e l l e r and s p i n n e r . The second
+system i n c l u d e s a l o a d c e l l l o c a t e d i n t h e v e r t i c a l
+strut.
+B o t h systems measure p r o p e l l e r b l a d e and
+s p i n n e r f o r c e s o n l y , when c o r r e c t e d f o r i n t e r n a l
+p r e s s u r e t a r e s . Model p a r t s , e t h e r t h a n t h e s p i n n e r and blades, t h a t a r e m e t r i c t o t h e s t r u t mount e d load c e l l are shielded from t h e freestream
+t u n n e l a i r b y a windscreen ( F i g . 8 ) .
+
+The aerodynamic c o n i c - c o r r e c t e d b l a d e shape
+c h a r a c t e r i s t i c s a l o n g mean f l o w s t r e a m l i n e s a r e
+p r e s e n t e d f o r t h e SR-2 p r o p e l l e r i n F i g . 6 and t h e
+45' swept SR-3 p r o p e l l e r i n F i g . 7. The t h i c k n e s s
+r a t i o ( t / b ) , t w i s t (AB), desigr l i f t c o e f f i c i e n t
+(CLD) and p l a n f o r m ( b / D ) d i s t r i b u t i o n s were
+establishea t o proviae a loading d i s t r i b u t i o n a t
+t h e a e s i g n c o n d i t i o n f o r h i g h e f f i c i e n c y and f o r
+t h e SR-3 p r o p e l l e r , low n o i s e .
+
+Extensive s t a t i c c a l i b r a t i o n s o f t h e load
+c e l l and r o t a t i n g b a l a n c e were done. L i m i t e d
+dynamic t h r u s t c a l i b r a t i o n s were a l s o done. The
+d y n a m i j t o r q u e c a l i b r a t i o n s c o u l d o n l y b e done
+w i t h z e r o t o r q u e . A l l t h e s e c a l i b r a t i o n s were
+performed b e f o r e , d u r i n g , and a f t e r t h e t e s t s t o
+assure t h a t no changes o c c u r r e d d u r i n g t h e t e s t .
+The c a l i b r a t i o n s a r e d i s c u s s e d i n more d e t a i l i n
+Ref. 5.
+
+The a i r f o i l s e c t i o n s s e l e c t e d f o r t h e SR-2
+and SR-3 b l a d e d e s i g n a r e NACA S e r i e s 1 6 f r o m t h e
+t i p t o t h e 45 and 53 p e r c e n t r a d i u s r e s p e c t i v e l y ,
+and NACA S e r i e s 65 w i t h c i r c u l a r a r c (CA) camber
+l i n e s f r o m t h e 37 p e r c e n t r a d i u s t o t h e r o o t w i t h
+a t r a n s i t i o n f a i r i n g between. These a i r f o i l s were
+chosen f o r t h e i r h i g h c r i t i c a l Mach number and
+wide, low d r a g b u c k e t s .
+The a r e a r u l e d s p i n n e r s and n a c e l l e l i n e s a r e
+d e s i g n e a t o a l l e v i a t e b l a d e r o o t c h o k i n g an0 m i n i m i z e c o m p r e s s i b i l i t y d r a g r i s e . The s p i n n e r s
+i n c o r p o r a t e a r e a - r u l i n g and b l e n d i n t o t h e
+n a c e l l e . The n a c e l l e has a maximum d i a m e t e r equal
+t o 35 p e r c e n t o f t h e model p r o p e l l e r diameter.
+
+D e t e r m i n a t i o n o f t h e P r o p e l l e r Net F o r c e
+The n e t p r o p e l l e r t h r u s t i s d e f i n e d as t h e
+propulsive f o r c e o f t h e blades operating i n t h e
+presence o f t h e s p i n n e r and n a c e l l e f l o w f i e l d
+w i t h o u t t h e i n c r e a s e i n t h r u s t (1.e..
+apparent
+t h r u s t ) due t o t h e m u t u a l i n t e r a c t i o n between t h e
+p r o p e l l e r blades, t h e s p i n n e r and t h e n a c e l l e .
+
+The performance d a t a were a c q u i r e d f o r a model
+c o n f i g u r a t i o n which had t h e gaps between t h e p r o p e l l e r b l a a e r o o t s ana t h e htib s u r f a c e sealeo.
+The gaps were d i s p r o p o r t i o n a t e l y l a r g e f o r t h e
+
+T o d e t e r m i n e t h e d i f f e r e n c e between apparent
+and n e t t h r u s t , model t a r e t e s t s were made f i r s t
+
+2
+
+.*
+
+when t n e c h o r d o f t h a t a i r f o i l s e c t i o n i s a l i g n e d
+o i r e c t l y w i t h t h e f l i g h t d i r e c t i o n . A t each b l a d e
+angle, model t h r u s t and power were measured o v e r a
+range o f Mach numbers and r o t a t i o n a l speeds. The
+b l a d e angle/Mach numtier combinations t e s t e d a r e
+l i s t e d i n T a b l e 2 f o r t h e SR-2 p r o p e l l e r and
+Table 3 f o r t h e 97-3 p r o p e l l e r . A t each b l a d e
+angle/Mach number combination, measurements were
+t a k e n o v e r an rpm range f r o m t h e w i n d m i l l i n g v a l u e
+t o 9000 rpm, t h e maximum rpm a l l o w e d b y b l a d e
+s t r e s s l i m i t a t i o n s . Each r o t a t i o n a l speed s e t t i n g
+constituted a t e s t point.
+
+without t h e p r o p e l l e r blades t o evaluate Loth the
+e x t e r n a l s p i n n e r aerodynamic d r a g and t h e n a c e l l e
+pressure drag.
+
+'
+
+I n these t a r e t e s t s t h e s p i n n e r was r e p l a c e d
+b y a "dumny" hub h a v i n g no h o l e s f o r t h e blades.
+A s p e c i a l s e r i e s o f e x p e r i m e n t a l r u n s was made t o
+d e f i n e t h e s p i n n e r aerodynamic and n a c e l l e press u r e d r a g f o r t h e same range o f t u n n e l Mach numbers
+as would b e t e s t e d w i t h t h e model blades. A s shown
+i n F i g . 9 ( a ) , t h e s p i n n e r d r a g (DsT) was measured
+d i r e c t l y f r o m t h e f o r c e balance and c o r r e c t e d f o r
+t h e i n t e r n a l p r e s s u r e area f o r c e s . The n a c e l l e
+p r e s s u r e d r a g ( D K T ) , was determined by p r e s s u r e
+i n t e g r a t i o n o f t h e l o n g i t u d i n a l rows o f areaweighted p r e s s u r e o r i f i c e s .
+
+The SR-2 and SR-3 p r o p e l l e r performance i s
+sumnarized i n F i g s . 10 t o 1 7 f c r f r e e s t r e a m Mach
+numbers o f 0.10, 0.20, 0.27, and 0.34.
+These prop e l l e r performance e f f i c i e n c y maps p r e s e n t t h e
+p r o p e l l e r n e t e f f i c ' e n c y ("NET) and r e f e r e n c e
+power c o e f f i c i e n t ( PREF) f o r a g i v e n advance
+r a t i o ( * F ) and b l a d e angle. The r e f e r e n c e
+power c o e F f i c i e n t s and t h e advance r a t i o s a r e based
+upon t h e p r o p e l l e r r e f e r e n c e d i a m e t e r o f 62.2 cm
+(24.5 i n ) . T h i s r e f e r e n c e d e s i g n a t i o n i s used
+because t h e a c t u a l t r u e t i p d i a m e t e r f o r t h e swept
+Sff-3 p r o p e l l e r changes w i t h b l a d e a n g l e and r o t a t i o n a l speed as shown i n F i g . 18. Reference power
+c o e f f i c i e n t and r e f e r e n c e advance r a t i o a r e d e f i n e d
+as :
+
+E
+
+W i t h t h e p r o p e l l e r b l a d e s i n s t a l l e d and
+t h r u s t i n g , t h e f o r c e balance measures t h e algeb r a i c sum of t h e p r o p e l l e r t h r u s t , t h e s p i n n e r
+drag, and t h e i n t e r n a l p r e s s u r e a r e a f o r c e s . The
+model f o r c e s a r e as shown i n F i g . 9 ( b ) . The uncorr e c t e d p r o p e l l e r t h r u s t ( T p ~ o pi n F i g . 9 ( b ) ) i s
+d e f i n e d as:
+TPROP = F B
+
+-C PAINT
+
++
+
+DS
+
+When t h i s u n c o r r e c t e d p r o p e l l e r t h r u s t i s c o r r e c t e d
+f o r t h e change i n s p i n n e r a r a g ( A D S ) between t h e
+powerea d a t a ( f i g . 9 ( b ) ) and t h e t a r e d a t a
+(Fig. 9(a));
+
+P
+
+L
+
+'REF
+
+- p0n3DiEF
+
+JREF
+
+-- vo
+
+A G ~= DS - DST
+t h e apparent t h r u s t o f t h e p r o p e l l e r i s o b t a i n e d
+from:
+TAPP = TPRGP - ADS
+or
+'APP = F B
+PAIIiT
+DST
+
+-C
+
+I n t h e s e f i g u r e s t h e performance o f L i e p r o p e l l e r
+i s expressed as n e t e f f i c i e n c y which corresponds
+t o t h e n e t p r o p u l s i v e t h r u s t produced w i t h t h e
+propeller operating i n the velocity f i e l d o f t h e
+n a c e l l e and s p i n n e r . N e t e f f i c i e n c y i s d e f i n e d as:
+
++
+
+where
+PAIP,T
+
+= ( P - p o l AINT
+
+Velocity
+n~~~ = N e t T h r u sSt hxa fFreestream
+t Power
+
+Now, t h e n a c e l l e p r e s s u r e d r a g w a s o b t a i n e d f r o m
+
+n a c e l l e surface pressure i n t e g r a t i o n s :
+
+DI\,= /;P
+
+"REF
+
+"
+
+and, i n d i m e n s i o n l e s s form:
+
+- p0) dA
+
+J
+
+C,
+
+The change i n n a c e l l e p r e s s u r e drag, A D N , was
+o b t a i n e d f r o m t n e d i f f e r e n c e between these and t h e
+t a r e r u n pressure i n t e g r a t i o n s :
+
+NET =
+
+C,
+
+'NET
+
+cp.
+
+I NET, R E F ~ R E F
+
+Or
+
+=
+
+CP
+
+where
+And f i n a l l y , t h e n e t t h r u s t was o b t a i n e d by
+s u b t r a c t i n g t h e change i n n a c e l l e p r e s s u r e d r a g
+f r o m t h e apparent t h r u s t :
+
+C,
+
+=-
+
+'NET,REF
+
+T~~~
+r
+
+4
+
+pon-D REF
+
+D u r i n g t h e thorough t e s t i n g i n t h e low speed
+o p e r a t i n g envelope, no adverse o p e r a t i n g c o n d i t i o n s
+were found. N o r , were any areas o f s i g n i f i c a n t
+p r o p e l l e r performance l o s s f o u n d t h a t m i g h t b e
+i n d i c t i v e o f separated f l o w on t h e p r o p e l l e r
+airfoiis.
+
+More i n f o r m a t i o n on t h e p r o p e l l e r t e s t procedures
+used i n t h i s t e s t may be found i n Ref. 5.
+Test R e s u l t s
+T a k e o f f , Climb and Landinq Performance
+
+Some comparisons o f t h e performance o f t h e
+s t r a i g h t b l a o e SR-2 p r o p e l l e r verslrs t h e 4 5 ' swept
+SR-3 p r o p e l l e r a t f o u r low speed o p e r a t i n g
+c o n d i t i o n s can be made.
+
+The SR-2 and SR-3 p r o p e l l e r models were t e s t e d
+a t z e r o a n g l e o f a t t a c K o v e r a range o f Mach nun;-.
+b e r s f r 2 m 0.10 t o 0.34 and b l a d e angles f r o m -6.8
+t o 62.1
+The b l a c e a n c l e ( 6 0 . 7 5 R ) , measured Bt
+75 p e r c e n t of t h e p r o p e l l e r r a a i u s , becomes 9G
+
+.
+
+3
+
+t y p i c a l t a k e o f f , i n i t i a l c l i m b o u t , and l a n d i n g
+speeds. The f o l l o w i n g r e s u l t s were o b t a i n e d :
+
+When t h e a i r p l a n e i s a c c e l e r a t i n g down t h e
+runway, a r e p r e s e n t a t i v e c o n d i t i o n would be a Mach
+number o f 0.10, an advance r a t i o o f 0.438, and a
+power c o e f f i c i e n t of 0.50.
+A t t h i s condition, the
+45' swept SR-3 p r o p e l l e r d e s i g n had an e f f i c i e n c y
+o f 43.5 versus 38.6 p e r c e n t f o r t h e s t r a i g h t SR-2
+p r o p e l l e r design, a 4.9 p e r c e n t advantage.
+
+1i
+
+1. No adverse o p e r a t i n g c o n d i t i o n s n o r areas
+o f s i g n i f i c a n t p r o p e l l e r performance loss i n d i c a -
+
+Near t h e a i r p l a n e ' s l i f t o f f c o n d i t i o n , t h e
+Mach number would b e around 0.20, t h e advance r a t i o
+at, 0.875, and t h e power c o e f f i c i e n t a t 1.00.
+At
+t h i s c o n d i t i o n , t h e swept SR-3 p r o p e l l e r has a n e t
+e f f i c i e n c y o f 54.9 versus 50.2 p e r c e n t f o r t h e
+SR-2 p r o p e l l e r , a 4.7 p e r c e n t advantage.
+When t h e a i r p l a n e i s s t a r t i n g i t s i n i t i a l
+c l i m b o u t , a t y p i c a l o p e r a t i n g c o n d i t i o n i s a Mach
+number o f 0.27, an advance r a t i o o f 1.16, and a
+Again, t h e 45' swept
+Power c o e f f i c i e n t o f 1.37.
+SR-3 p r o p e l l e r n e t e f f i c i e n c y i s s i g n i f i c a n t l y
+h i g h e r t h a n t h e SR-2 p r o p e l l e r n e t e f f i c i e n c y w i t h
+a v a l u e o f 57.2 v e r s u s 52.9 p e r c e n t , a 4.3 p e r c e n t
+advantage.
+And f i n a l l y , when t h e a i r p l a n e i s f a r t h e r
+i n t o i t s c l i m b o u t , a r e p r e s e n t a t i v e c o n d i t i o n would
+b e a Mach number o f 0.34, an advance r a t i o o f 1.40
+and a power c o e f f i c i e n t o f 1.70.
+A t t h i s condit i o n , t h e 45' swept SR-3 p r o p e l l e r n e t e f f i c i e n c y
+1 s 59.1 v e r s u s 53.7 p e r c e n t f o r t h e s t r a i g h t SR-2
+p r o p e l l e r , a 5.4 p e r c e n t advantage.
+Thus, t h e measured d a t a sb3w t h a t i n t h e low
+speed o p e r a t i n g regime, t h e 45' swept SR-3 prop e l l e r n e t e f f i c i e n c y exceeded t h e n e t e f f i c i e n c y
+of t h e s t r a i g h t b l a d e d SR-2 p r o p e l l e r b y about 4
+t o 5 p e r c e n t . The SR-3 performance improvement
+o v e r t h e SR-2 performance i s due t o a c o m b i n a t i o n
+of d e s i g n f a c t o r s such as more b l a d e sweep, a b e t t e r t w i s t , c h o r d and l i f t d i s t r i b u t i o n , and a b e t t e r s p i n n e r and a r e a - r u l e d hub oesign.
+
+t i v e of s e p a r a t e d f l o w on t h e p r o p e l l e r a i r f o i l s
+were f o u n d i n t h e l o w speed o p e r a t i n g envelope
+( i . e , Mach D.10 t o 0.34) w i t h e i t h e r t h e s t r a i g h t
+b l a d e d SR-2 o r 45' swept SR-3 p r o p e l l e r s .
+
+2. The 45' swept p r o p e l l e r appeared t o b e
+b e t t e r designed f o r low speed o p e r a t i o n t h a n t h e
+s t r a i g h t b l a d e d SR;2 p r o p e l l e r because i t was more
+efficient.
+The 45 SR-3 swept p r o p e l l e r n e t e f f i c i e n c y exceeded t h e e f f i c i e n c y o f t h e s t r a i g h t
+b l a d e a SR-2 p r o p e l l e r by about 4 t o 5 p e r c e n t a t
+a l l low speed o p e r a t i n g c o n d i t i o n s . Two o f t h e
+l o w speed o p e r a t i n g c o n d i t i o n s a r e sumnarited
+below:
+( a ) A t t h e Mach 0.20 t a k e o f f l i f t o f f c o n d i t i o n
+(J = 0.875 and Cp = 1.0). t h e s t r a i g h t b l a d e d
+SR-2 p r o p e l l e r had a n e t e f f i c i e n c y o f 50.2 p e r c e n t
+w h i l e t h e 45' swept SR-3 p r o p e l l e r had a n e t e f f i c i e n c y o f 54.9 p e r c e n t . The swept SR-3 advantage
+was 4.7 p e r c e n t .
+( b ) A t a Mach 0.34 c l i m b o u t c o n d i t i o n
+5
+1.70), t h e s t r a i g h t b l a d e d
+SR-2 p r o p e l l e r had a n e t e f f i c i e n c y o f 53.7 p e r c e n t
+w h i l e t h e 45' swept SR-3 p r o p e l l e r had a n e t e f f i c i e n c y o f 59.1 p e r c e n t . The swept SR-3 advantage
+was 5.4 p e r c e n t .
+
+( J = 1.40 and Cp
+
+3 . The l a r g e amount o f r e v e r s e t h r u s t measured
+f o r t h e SR-3 p r o p e l l e r i n d i c a t e s t h a t t h e s e new
+p r o p e l l e r s a r e c a p a b l e o f p r o d u c i n g more r e v e r s e
+t h r u s t t h a n t h a t o f a high-bypass t r a n s p o r t t u r b o f a n engine,
+Appenaix A - Symbol L i s t
+
+Reverse T h r u s t Performance
+
+k
+
+I n v i e w of t h e importance o f r e v e r s e t h r u s t
+c a p a b i l i t y o f t h e p r o p u l s i o n system on t r a n s p o r t
+a i r c r a f t , the reverse t h r u s t characteristics o f
+t h e 45 swept SR-3 p r o p e l l e r were i n v e s t i g a t e d a t
+0.10 and O.?O Mach numbers. The b l a d e a n g l e was
+Due t o mechanical i n t e r f e r e n c e ,
+s e t a t -6.8
+t h i s w a s t h e maximum r e v e r s e b l a d e a n g l e t h a t c o u l d
+be achieved w i t h t h e mooel Prop-Fan.
+The t e s t
+r e s u l t s a r e p r e s e n t e d i n F i g . 19 i n terms o f power
+and t h r u s t c o e f f i c i e n t s as a f u n c t i o n o f advance
+r a t i o . I n F i g . 20, t h e r e v e r s e t h r u s t i s d i v i d e d
+T h i s parameter
+by t h e t a k e o f f t h r u s t a t Mach 0.20.
+i s presented versus v e l o c i t y f o r t h e w i n d m i l l i n g
+and powered SR-3 p r o p e l l e r . F o r r e f e r e n c e , a
+high-bypass t u r b o f a n e n g i n e i s a l s o shown on t h i s
+f i g u r e . The c u r v e s show t h a t t h e powered SR-3
+p r o p e l l e r produce more r e v e r s e t h r u s t t h a n t h a t of
+a high-bypass t u r b o f a n engine. Thus, t h e advanced
+SR-3 e i g h t - b l a d e d p r o p e l l e r i s c a p a b l e o f producing t h e l a r g e breaking f o r c e s desired f o r
+t r a n s p o r t airplanes.
+
+area, m2
+blade a c t i v i t y f a c t o r ,
+62 504' '
+
+.
+
+(b/D)(r/R)3 dx
+
+r / B ) a t hub
+b
+
+e l e m e n t a l b l a d e chord, m
+
+CA
+
+c i r c u l a r arc
+
+'L D
+
+CL i
+
+blade design l i f t c o e f f i c i e n
+i n t e g r a t e d design l i f t c o e f f c i e n t ,
+
+C L D ( ~ / R dx
+)~
+
+r/B) a t hub
+power c o e f f i c i e n t = P/pon3D5
+t h r u s t c o e f f i c i e n t = T/pon2D4
+
+Summary of R e s u l t s
+
+p r o p e l l e r diameter, m
+
+Two v a r i a b l e p i t c h advanced t u r b o p r o p p r o p t l l e r models ( t h e s t r a i g h t - b l a o e o SR-2 and t h e 45
+swept SR-3) were i n s t a l l e d i n t h e NGSA Lewis 10b y 10-Foot Supersonic k i n d Tunnel and performance
+t e s t e d a t subsonic c o n d i t i o n s c o r r e s p o n d i n g t o
+
+n a c e l l e drag, N
+n a c e l l e t a r e drag, h
+
+4
+
+Subsc r ip t s
+
+DS
+
+s p i n n e r drag,
+
+DS T
+
+s p i n n e r t a r e drag, ti
+
+APP
+
+apparent
+
+dk
+
+e l e m e n t a l area, m*
+
+I NT
+
+internal
+
+FB
+
+f o r c e balance, N
+
+N
+
+nacelle
+
+J
+
+aavance r a t i o = Vo/nD
+
+0
+
+tunnel freestream c o n d i t i o n
+
+M
+
+Mach number
+
+REF
+
+n
+
+r e f e r e n c e , based upon 62.2 cm (24.5
+reference diameter
+
+r o t a t i o n a l speed, r p s
+T
+
+tare
+
+P
+
+power, W
+
+PA
+
+p r e s s u r e f o r c e s i n t h e form
+(p
+pol
+Area, N
+
+pi
+
+in)
+
+References
+
+-
+
+1. J e r a c k i , R.J.,
+
+Mikkelson. D.C., and Blaha,
+B.J.,
+"Wind Tunnel Performance o f Four Energy
+E f f i c i e n t P r o p e l l e r s Designed f o r Mach 0.8
+Cruise," SAE Paper 790573, Apr. 1979.
+
+P
+
+pressure, N/m2
+
+R
+
+p r o p e l l e r radius, m
+
+r
+
+radius, m
+
+r/R
+
+f r a c t i o n a l radius
+
+T
+
+thrust, N
+
+TPROP
+
+uncorrected p r o p e l l e r t h r u s t , N
+
+t
+
+e l e m e n t a l b l a d e maximum t h i c k n e s s , m
+
+V
+
+v e l o c i t y , m/sec
+
+6
+
+b l a d e angle, aeg
+
+A6
+
+change i n b l a a e angle f r o m t h e angle a t
+t h e 75 p e r c e n t b l a d e r a d i u s , deg
+
+60.75R
+
+s t a t i c p r o p e l l e r blade angle a t 75 percent
+b l a a e r a d i u s , aeg
+
+n
+
+e f f i c i e n c y i n p e r c e n t = TV,/P
+
+100
+
+mass d e n s i t y , kg/m3
+
+5
+
+2.
+
+Whitlow, J.B.. Jr., and S i e v e r s , G . K . , "Fuel
+Saving, P o t e n t i a l o f t h e NASA Advanced Turbop r o p Program," NASA TM-X-83736, 1984.
+
+3.
+
+Rohrbach, C., Metzger, F.B., B l a c k , D.M.,
+and
+Ladden, R.M.,
+" E v a l u a t i o n o f Wind Tunnel Performance T e s t i n g o f an Advanced 45 Swept
+Eight-Bladed P r o p e l l e r a t Mach Numbers f r o m
+0.45 t o 0.85," NASA CR-3505, 1982.
+
+4.
+
+Mikkelson, D.C.,
+Blaha, B.J., M i t c h e l l , G.A.,
+ana Wikete, J.E., "Design and Performance of
+Energy E f f i c i e n t P r o p e l l e r s f o r Mach 0.8
+Cruise," SAE Paper 770458, Mar. 1977.
+
+5.
+
+Stefko, G . L . , and J e r a c k i , R.J.,
+"Wind Tunnel
+R e s u l t s o f Advanced H i g h Speed P r o p e l l e r s a t
+T a k e o f f , Climb, and Landing Mach Numbers",
+NASA TM-87030, August, 1985.
+
+6.
+
+A i e l l o , R.A., "NASA Lewis 10- b y 10-Foot
+Supersonic Wind Tunnel," NASA TM-X-71625,
+
+1974.
+
+TABLE 1. - DESIGN CHARACTERISTICS AND PLANFORMS OF fHE SR-2 AND
+SR-3 MODEL PROPELLERS
+
+c
+
+Number of blades
+Tip sweep angle, deg
+Model diameter, cm (in)
+Tip speed, m/sec (f Isec)
+Power loading, kW/m$ ( shp/ft2)
+Activity factor
+Integrated design lift
+coefficient
+Ai rfoi 1 s
+Ratio of nacelle maximum
+diameter to propeller
+d i arneter
+Cruise design Mach number
+Cruise design advance ratio
+Cruise design power coefficient
+Measured cruise design net
+efficiency,$
+Measured cruise noise level, d B
+
+SR-2
+
+SR-3
+
+8
+0
+62.2 (24.5)
+244 (800)
+301 (37.5)
+203
+
+45
+62.2 (24.5)
+244 (800)
+01 (37.5)
+235
+
+8
+
+0.214
+0.081
+NACA 16 and 65/CA NACA 16 and 65lCA
+0.35
+0.35
+0.80
+3.06
+1.7
+
+0.80
+3.06
+1.7
+
+76
+
+78
+
+151
+
+146
+
+TABLE 2.
+
+- SR-2 PROPELLER TEST RUN
+SCHEDULE
+
+Blade a n g l e
+a t 75 p e r c e n t
+radius,
+deg
+
+I
+
+24.9
+29.6
+34.4
+38.0
+41.7
+45.8
+49.8
+53.8
+59.7
+
+Mach number
+0.10
+
+0.20
+
+X
+X
+X
+X
+X
+
+X
+X
+X
+X
+X
+X
+X
+
+-
+
+-
+
+0.27
+
+0.34
+
+-
+
+-
+
+-
+
+X
+X
+X
+X
+X
+X
+X
+
+X
+X
+X
+X
+X
+
+TABLE 3. - SR-3 PROPELLER TEST RUN SCHEDULE
+
+B l a d e angle
+a t 75 percent .
+radius,
+
+Mach number
+0.00
+
+0.10
+
+0.20
+
+X
+
+X
+X
+X
+X
+X
+X
+X
+
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+X
+
+0.27
+
+0.34
+
+-
+
+-
+
+de 9
+I
+
+-6.8
+
+24.6
+29.4
+33.9
+37.3
+
+41.9
+45.9
+48.3
+
+51.4
+54.1
+58.3
+
+62.1
+
+-
+
+-
+
+-
+
+-
+
+-
+
+X
+X
+X
+
+x
+
+X
+X
+X
+X
+X
+
+,
+
+x
+
+X
+X
+X
+X
+X
+
+11
+1
+
+r POTENTIAL IMPROVEMENTS
+0 SINGLE ROTATION WITH
+
+II
+
+- 90!=
+Q,
+
+L
+V
+
+a
+n
+
+I
+
+SWIRL RECOVERY VANES
+
+I
+
+ADVANCED HIGH
+S PEED TU R BO PRO P
+
+0 ADVANCED AIRFOILS
+0 COUNTER-ROTATION
+
+I
+I1
+7,
+
+>0
+
+4
+u
+
+70 -
+
+WIND
+HIGH BYPASS
+
+& 30
+L
+V
+W
+
+TUNNEL TESTS
+
+CR OR SR WITH SWIRL RECOVERY VANES
+
+~~~,,,,~,,,,,,~~~~
+’
+a
+
+v, 2o
+a-
+
+z_
+>
+Q:
+
+In
+
+/I
+
+\
+
+CLIMB AND
+2 lo - DESCENT
+DOMINATED
+
+0.8 Mo
+
+u
+
+CRUISE FUEL
+DOMINATED
+
+Y
+
+0
+
+9
+
+I
+
+I
+
+Figure 3. - The SR-2 propeller model with straight blades installed i n
+the NASA Lewis 10-by 10-Foot Supersonic Wind Tunnel.
+
+Figure 4 - The SR-3 propeller model with 45 degree swept
+blades installed in the NASA Lewis 10-by 10-Foot
+Supersonic Wind Tunnel.
+
+-
+
+Figure 5. Aerodynamic design concepts for an advanced high speed
+turboprop propulsion system.
+
+8 BLADESI203AF10.08 CLI
+0.622 METER (24.5 in) DIAMETER
+
+rTRANSlTlON
+
+24
+
+b65ICA&--
+
++-/
+
+b ID
+
+30
+
+-10
+
+NACA 16
+
+-.4
+BLADE FRACTIONAL RADIUS, r I R
+Figure 6. - Variation of propeller design parameters with blade radius
+for the unswept SR-2 propeller.
+
+8 BLADES /235AF/0.241 C L I
+0.622 METER (24.5 in) DIAMETER
+
+1
+
+/ r - TRANSITDN
+
+-I-
+
+R651CAk
+
+.16
+
+NACA 16 -q
+
+-&\
+
+a
+
+I
+
+-.4
+
+- 10
+
+_-
+
+I
+
+I
+
+.4
+.6
+.8
+BLADE FRACTIONAL RADIUS, r IR
+
+\
+
+7
+
+1.0
+
+-
+
+Figure 7. Variation of propeller design parameters with blade
+radius for the 45 degree swept SR-3 propeller.
+
+rFLEXURE
+DRIVE AIR LINES-\-
+
+/-LOAD
+
+fi
+NACELLE (PRESSURE
+INSTRUMENTED) -1
+I
+I
+
+SPINNER
+
+‘-ROTATING
+THRUST AND
+TORQUE BALANCE
+‘L>L.
+
+Figure 8.
+
+- Cutaway view of the Lewis loo0 horsepower (746 kW) propeller test rig.
+
+CELL
+
+'L FORCE
+
+BALANCE (FBI +
+
+- 'PAINT,
+DNT = (PN - PO) AN
+
+-DST = FBT
+
+(a) Forces acting on balance during tare runs.
+
+'-FORCE BALANCE (FBI(b) Forces acting on balance during test runs.
+
+Figure 9. - Forces acting on balance during tare and test runs.
+
+NET
+EFFICIENCY,
+
+REFERENCE ADVANCE RATIO, JREF
+
+Figure 10. - SR-2 propeller efficiency map at a Mach number of 0.10.
+
+NET
+
+h.75 Rt
+45
+
+49.8
+45.8
+
+65
+
+41.7
+1.2
+38.0
+
+I
+"
+
+.6
+
+24.9
+.8
+
+1.0
+
+1.2
+
+1.4
+
+1.6
+1.8
+2.0
+REFERENCE ADVANCE RATIO, JREF
+
+Figure 11. - SR-2 propeller efficiency map at a Mach number of 0.20.
+
+DO. 75 R,
+
+NET
+EFFICIENCY,
+VNET, percent
+
+REFERENCE ADVANCE RATIO, JREF
+Figure 12. - SR-2 propeller efficiency map at a Mach number of 0.27.
+
+2
+REFERENCE ADVANCE RATIO, JREF
+Figure 13. - SR-2 propeller efficiency map at a Mach number of 0.34.
+
+NET
+EFFICIENCY,
+VNET, percent
+
+-
+
+.2
+
+38
+
+.4
+
+.6
+
+.8
+
+1.0
+
+Figure 14.
+
+1.2
+1.4
+1.6
+REFERENCE ADVANCE RATIO, JREF
+
+1.8
+
+2.0
+
+- SR-3 propeller efficiency map at a Mach number of 0.10.
+
+2.2
+
+2.4
+
+2.6
+
+LL
+
+o?:
+a
+
+0
+
+w
+u-
+
+ouk~ 1.6
+o?:
+W
+
+5
+
+1.2
+
+-
+
+I
+
+W
+
+.8
+LL
+W
+
+lx
+
+.4
+
+_I
+
+?4
+
+4.2
+
+Figure 15. - SR-3 propeller efficience map at a Mach number of 0.20.
+
+-
+
+NET
+EFFICIENCY,
+
+3.2
+u-
+
+W
+
+w
+
+a
+
+2.8
+
+0
+I-'
+
+G
+0
+LL
+
+U
+
+W
+
+0
+
+0
+
+e
+W
+
+1.6
+
+3
+
+oa
+
+1.2
+
+W
+
+0
+
+z
+W
+lx
+W
+LL
+W
+
+w
+
+0.8
+0.4
+
+J
+
+0)
+
+5.0
+
+-6
+REFERENCE ADVANCE RATIO, JREF
+Figure 16. - SR-3 propeller efficiency map at a Mach number of 0.27.
+
+Figure 17. - SR-3 propeller efficiency map at a Mach number of 0.34.
+
+c
+
+I'
+
+r FIAT PITCH ANGLE
+
+104
+
+/
+
+102 -
+
+'OOO
+
+20
+40
+60
+80
+100
+STATIC BLADE ANGLE, 75% RADIUS, Po 7 5 ~ deg
+,
+
+I
+
+120
+
+Figure 18. - Variation of tip relative diameter with blade angle
+and rotation speed. DREF = 62.23 cm (24.5 in);
+75R =
+1020.
+
+-4.0
+
+-
+
+MACH
+
+U
+
+W
+Oi
+
+0'
+
+-3.2
+
+z
+I-'
+
+0
+Y
+
+-2.4
+
+W
+
+0
+0
+t
+
+m
+
+3
+
+E
+
+-1.6
+
+W
+
+V
+
+z,
+5
+Uw
+
+-.8
+
+e
+
+0
+
+.8
+1.6
+2.4
+3.2
+REFERENCE ADVANCE RATIO, JREF
+
+1.
+
+Figure 19. - SR-3 reverse t h r u s t and power coefficients
+versus advance ratio for Mach numbers of 0.10 and 0.20.
+PO. 75 R = -6.
+
+1.0
+I-
+
+0 AT W I N D M I L L rpm
+0 POWERED AT 800 -ft/s%
+
+U
+I-
+
+cn
+2
+@L
+
+5
+
+--- H I G H BYPASS (5)
+
+Y
+Y
+
+TURBOFAN ENGINE
+
+0,
+Y
+
+.6
+
+t
+
+lA
+
+iW
+
+lA
+
+FORWARD VELOCITY, KNOTS
+F i g u r e 20, - The effect of forward velocity on t h e amount of
+-reverse thrust produced relative to the amount of takeoff t h r u s t produced at Mach 0.20. SR-3 propeller :&),75R
+= -6.8O; takeoff thrust at Mg- 0.2 equals 321. Ibf.
+
+'.
+
+No.
+
+2. Government Accouion No.
+
+NASA TM- 87054
+AIAA-85-1259
+
+3. Recipirnt's Catalog NO.
+
+5. R&rt
+
+4. Title and Subtitle
+
+Wind Tunnel R e s u l t s o f Advanced High Speed P r o p e l l e r s
+i n t h e T a k e o f f , Climb, and Landing O p e r a t i n g Regimes
+
+Date
+
+6. Performing Organization Code
+
+505-45-58
+8. M o r m l n g Organization Report No
+
+7. Aulhor(s)
+
+George L. S t e f k o and Robert J. J e r a c k i
+
+€ 2 6 21
+10. Wodc Unit No.
+
+9. Performing Organization Name and Address
+
+N a t i o n a l A e r o n a u t i c s and Space A d m i n i s t r a t i o n
+Lewis Research Center
+Cleveland, Ohio 44135
+
+11. Conlnct or Gnnl No.
+
+13. Type of Report and Period Covered
+
+Technical Memorandum
+
+12. Sponsoring Awncy Name and Address
+
+I N a t i o n a l A e r o n a u t i c s and Space A d m i n i s t r a t i o n
+
+I Washington, D.C.
+
+20546
+
+14. Sponsoring Agency Code
+
+15. Supplementary Notes
+
+Prepared f o r t h e T w e n t y - f i r s t J o i n t P r o p u l s i o n Conference, cosponsored b y t h e
+A I A A , SAE, ASME, and ASEE, Monterey, C a l i f o r n i a , J u l y 8-10, 1985.
+
+'16 Abstract
+
+Low speed wind t u n n e l performance t e s t s o f two advanced p r o p e l l e r s have been
+completed a t t h e NASA Lewis Research Center as p a r t o f t h e NASA Advanced Turbop r o p Program. The 62.2 cm (24.5 i n ) diameter a d j u s t a b l e p i t c h models were t e s t e d
+a t Mach numbers t y p i c a l o f t a k e o f f , i n i t i a l c l i m b o u t , and l a n d i n g speeds ( i . e . ,
+from 0.10 t o 0.34) i n t h e NASA Lewis 10- by 10-Ft Supersonic Wind Tunnel. Both
+models had e i g h t blades and a c r u i s e design p o i n t o p e r a t i n g c o n d i t i o n o f 0.80
+Mach number, 10.668 km ( 3 5 000 f t ) I.S.A.
+g l t i t u d e , 243.9 m / s (800 f t l s e c ) t i p
+speed and a h i g h power l o a d i n g o f 301 kW/m (37.5 s h p / f t ) . No adverse o r
+unusual low speed o p e r a t i n g c o n d i i i o n s were found d u r i n g t h e t e s t ' w i t h e i t h e r
+t h e s t r a i g h t blade SR-2 o r t h e 45 swept SR-3 p r o p e l l e r s . The 45 swept p r o p e l l e r e f f i c i e n c y exceeded t h e s t r a i g h t b l a d e e f f i c i e n c y b y 4 t o 5 percent. T y p i c a l
+n e t e f f i c i e n c i e s o f t h e s t r a i g h t and 45' swept p r o p e l l e r a t a Mach 0.20 t a k e o f f
+c o n d i t i o n were 50.2 and 54.9 p e r c e n t r e s p e c t i v e l y . A t a Mach 0.34 c l i m b condit i o n , t h e e f f i c i e n c i e s were 53.7 and 59.1 percent. Reverse t h r u s t d a t a i n d i c a t e d t h a t these p r o p e l l e r s a r e capable of producing more r e v e r s e t h r u s t a t Mach
+0.20 t h a n a high-bypass t u r b o f a n engine a t Mach 0.20.
+I
+
+17. Key Words (Suggested by Author(s))
+
+18. Distribution Statement
+
+P r o p e l l e r s ; Advanced turboprop;
+Energy e f f i c i e n t ; Prop-fan
+
+19 Security Classif (of this report)
+
+Unclassified
+
+Unclassified - unlimited
+STAR Category 02
+
+20 Security Classif. (of this page)
+
+21 No. of pages
+
+Unclassified
+
+'For sale by the National Technical Information Service, Springfield, Virglnia 221 61
+
+22 Price'
+
+

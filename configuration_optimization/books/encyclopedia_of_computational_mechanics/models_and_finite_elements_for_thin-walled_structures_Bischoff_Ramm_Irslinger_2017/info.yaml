@@ -1,0 +1,530 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>This chapter
+  is a revised, updated, and extended version of the chapter with the same title in
+  the first issue of the “Encyclopedia of Computational Mechanics.” It provides an
+  overview of modeling and discretization aspects in finite element analysis of thin‐walled
+  structures. Shell formulations based on derivation from three‐dimensional continuum
+  mechanics, the direct approach, and the degenerated solid concept are compared,
+  highlighting conditions for their equivalence.</jats:p>\n                  <jats:p>Rather
+  than individually describing the innumerable contributions to theories and finite
+  element formulations for plates and shells, the essential assumptions in modeling
+  and discretization, along with their consequences, are discussed. It is hoped that
+  this approach comprises a good amount of the existing literature by including most
+  concepts in a generic format.</jats:p>\n                  <jats:p>The contribution
+  focuses on nonlinear finite element formulations for large displacements and rotations
+  in the context of elastostatics, including some remarks on stability. Problems involving
+  material nonlinearities and dynamics are other important topics, but these are outside
+  the scope of the present chapter.</jats:p>"
+author: Bischoff, Manfred and Ramm, E. and Irslinger, J.
+author_list:
+- affiliation: []
+  family: Bischoff
+  given: Manfred
+- affiliation: []
+  family: Ramm
+  given: E.
+- affiliation: []
+  family: Irslinger
+  given: J.
+citations:
+- doi: 10.1016/S0045-7825(98)00226-6
+- author: Ahmad D
+  volume-title: Proceedings of the 2nd Conference on Matrix Methods in Structural
+    Mechanics
+  year: '1968'
+- doi: 10.1002/nme.1620020310
+- doi: 10.1080/107594199305647
+- doi: 10.1016/0045-7949(84)90197-4
+- doi: 10.1002/nme.1620370103
+- doi: 10.1002/nme.1620360805
+- doi: 10.1016/0045-7825(82)90069-X
+- article-title: 'The TRIC shell element: theoretical and numerical investigation'
+  author: Argyris J
+  first-page: '63'
+  journal-title: Comput. Methods Appl. Mech. Eng.
+  volume: '118'
+  year: '1999'
+- author: Argyris J
+  volume-title: Proceedings of the Fourth International Colloquium on Computation
+    of Shell and Spatial Structures
+  year: '2000'
+- article-title: The SHEBA family of shell elements for the matrix displacement method
+  author: Argyris J
+  first-page: '873'
+  journal-title: Aeronaut. J. R. Aeronaut. Soc.
+  year: '1968'
+- doi: 10.1090/S0025-5718-97-00785-0
+- doi: 10.1137/S0036141093245276
+- doi: 10.1016/0045-7825(94)90009-4
+- doi: 10.1016/0168-874X(94)00057-M
+- doi: 10.1016/0045-7949(91)90367-U
+- doi: 10.1002/nme.1620330304
+- doi: 10.1007/978-3-322-93983-8
+- author: Bathe K‐J.
+  volume-title: Finite Element Procedures
+  year: '1996'
+- doi: 10.1016/0045-7949(89)90365-9
+- doi: 10.1002/nme.1620280806
+- author: Bathe K‐J
+  volume-title: The Finite Element Analysis of Shells – Fundamentals
+  year: '2003'
+- doi: 10.1002/nme.1620210213
+- doi: 10.1002/nme.1620220312
+- doi: 10.1002/nme.1620090207
+- doi: 10.1002/nme.1620151205
+- doi: 10.1142/7828
+- author: Belytschko T
+  volume-title: Nonlinear Finite Elements for Continua and Structures
+  year: '2014'
+- doi: 10.1016/j.cma.2012.11.020
+- author: Benvenuto E.
+  volume-title: 'An Introduction to the History of Structural Mechanics, Part II:
+    Vaulted Structures and Elastic Systems'
+  year: '1991'
+- doi: 10.1002/nme.1620200405
+- doi: 10.1016/0045-7825(95)00920-5
+- doi: 10.1016/S0045-7825(97)00158-8
+- unstructured: BieniekMPandFunaroJR.Elasto‐Plastic Behavior of Plates and Shells.
+    Technical Report DNA 3954T Defense Nuclear Agency Weidlinger Associates:New York
+    1976.
+- unstructured: BischoffM.Theorie und Numerik einer dreidimensionalen Schalenformulierung.
+    Doctoral dissertation Institut für Baustatik Universität Stuttgart 1999.
+- author: Bischoff M
+  first-page: '253'
+  volume-title: Trends in Computational Structural Mechanics
+  year: '2001'
+- doi: 10.1002/(SICI)1097-0207(19971215)40:23<4427::AID-NME268>3.0.CO;2-9
+- doi: 10.1016/S0020-7683(99)00321-2
+- author: Bischoff M
+  volume-title: Proceedings of the 2nd European Conference on Computational Mechanics
+  year: '2001'
+- doi: 10.1016/S0045-7949(99)00140-6
+- article-title: Contribution au problème linéaire de flexion d'une plaque elastique
+  author: Bollé L.
+  first-page: '281'
+  journal-title: Bull. Tech. Suisse Romande
+  volume: '73'
+  year: '1947'
+- doi: 10.1016/S0045-7825(98)00031-0
+- doi: 10.1007/BF00350285
+- doi: 10.1016/0045-7949(80)90130-3
+- author: Britvec SJ.
+  series-title: Pergamon Unified Engineering Series
+  volume-title: The Stability of Elastic Systems
+  year: '1973'
+- unstructured: BüchterN.Zusammenführung von Degenerationskonzept und Schalentheorie
+    bei endlichen Rotationen. Doctoral dissertation Institut für Baustatik Universität
+    Stuttgart 1992.
+- author: Büchter N
+  first-page: '1'
+  volume-title: Nonlinear Analysis of Shells by Finite Elements
+  year: '1991'
+- author: Büchter N
+  first-page: '55'
+  volume-title: Computational Methods in Applied Sciences
+  year: '1992'
+- doi: 10.1002/nme.1620340105
+- doi: 10.1002/nme.1620371504
+- author: Budiansky B
+  volume-title: Progress in Applied Mechanics, The Prager Anniversary Volume
+  year: '1963'
+- doi: 10.1016/0045-7825(83)90156-1
+- doi: 10.1243/PIME_PROC_1988_202_020_02
+- doi: 10.1002/(SICI)1097-0207(19960615)39:11<1797::AID-NME928>3.0.CO;2-W
+- doi: 10.1115/1.1385512
+- doi: 10.1007/BF02736649
+- doi: 10.1051/m2an/1998320201311
+- author: Ciarlet PG.
+  volume-title: Plates and Junctions in Elastic Multi‐Structures; An Asymptotic Analysis
+  year: '1990'
+- article-title: 'Subdivision surfaces: a new paradigm in thin‐shell finite‐element
+    analysis'
+  author: Çirak F
+  doi: 10.1002/(SICI)1097-0207(20000430)47:12<2039::AID-NME872>3.0.CO;2-1
+  first-page: '379'
+  journal-title: Int. J. Numer. Methods Eng.
+  volume: '47'
+  year: '2000'
+- doi: 10.1002/nme.4829
+- author: Cosserat E
+  volume-title: Chwolson's Traité des Physique
+  year: '1909'
+- unstructured: CrisfieldMA.On an Approximate Yield Criterion for Thin Shells Using
+    Finite Elements. Transport & Roads Research Laboratory Report LR 658 Corwthorne
+    Berkshire England 1974.
+- unstructured: CrisfieldMA.Ivanov's Yield Criterion for thin Plates and Shells Using
+    Finite Elements. Transport & Roads Research Laboratory Report LR 919 Crowthorne
+    Berkshire England 1979.
+- doi: 10.1016/0045-7949(81)90108-5
+- author: Crisfield MA.
+  series-title: Advanced Topics
+  volume-title: Non‐linear Finite Element Analysis of Solids and Structures
+  year: '1995'
+- doi: 10.1098/rspa.1999.0352
+- article-title: Towards simple estimates of shell buckling loads. Part I and II
+  author: Croll JGA.
+  first-page: '243'
+  journal-title: Der Stahlbau
+  volume: '8'
+  year: '1975'
+- article-title: Asymptotics of arbitrary order for a thin elastic clamped plate,
+    I. Optimal error estimates
+  author: Dauge M
+  doi: 10.3233/ASY-1996-13203
+  first-page: '167'
+  journal-title: Asymptotic Anal.
+  volume: '13'
+  year: '1996'
+- author: Düster A
+  volume-title: Proceedings of the Fourth International Colloquium on Computation
+    of Shell and Spatial Structures
+  year: '2000'
+- author: Duvaut G
+  volume-title: Les inéquations en mécanique et en physique
+  year: '1972'
+- doi: 10.1016/j.cma.2012.10.018
+- unstructured: EidsheimOM.Nonlinear analysis of elastic‐plastic shells using hybrid
+    stress finite elements. Doctoral dissertation Division of Structural Mechanics
+    the Norwegian Institute of Technology Trondheim 1980.
+- doi: 10.1016/0045-7949(83)90113-X
+- doi: 10.1007/BF00298012
+- doi: 10.1002/cnm.1630050204
+- doi: 10.1016/0045-7825(94)90214-3
+- doi: 10.1016/0045-7825(87)90001-6
+- doi: 10.1002/cpa.3160140102
+- author: Gee M
+  volume-title: Proceedings of the International Conference on Adaptive Modeling and
+    Simulation (ADMOS)
+  year: '2003'
+- doi: 10.1002/(SICI)1521-4001(199810)78:10<663::AID-ZAMM663>3.0.CO;2-G
+- doi: 10.1016/0021-8928(65)90159-0
+- author: Green AE
+  volume-title: Theoretical Elasticity
+  year: '1968'
+- unstructured: GruttmannF.Theorie und Numerik dünnwandiger Faserverbundstrukturen.
+    Habilitation thesis Institut für Baumechanik und Numerische Mechanik Universität
+    Hannover 1996.
+- author: Gurtin ME.
+  volume-title: An Introduction to Continuum Mechanics
+  year: '1981'
+- doi: 10.1002/(SICI)1097-0207(19980515)42:1<49::AID-NME349>3.0.CO;2-2
+- unstructured: HelnweinP.Zur initialen Abschätzbarkeit von Stabilitätsgrenzen auf
+    nichtlinearen Last‐Verschiebungspfaden elastischer Strukturen mittels der Methode
+    der finiten Elemente. Doctoral dissertation Österreichischer Kunst‐ und Kulturverlag
+    1996.
+- doi: 10.1007/BF01177311
+- doi: 10.1007/BF00534518
+- unstructured: HildebrandFB ReissnerEandThomasGB.Notes on the Foundations of the
+    Theory of Small Displacements of Orthotropic Shells. NACA Technical Note No. 1833
+    1949.
+- doi: 10.1108/eb023593
+- author: Hughes TJR.
+  volume-title: 'The Finite Element Method: Linear Static and Dynamic Finite Element
+    Analysis'
+  year: '1987'
+- doi: 10.1016/j.cma.2004.10.008
+- doi: 10.1016/0045-7825(81)90121-3
+- doi: 10.1115/1.3157679
+- doi: 10.1016/0045-7825(94)90003-5
+- author: Irons B.
+  series-title: Lecture Notes for the International Research Seminar on Theory and
+    Application of Finite Elements
+  volume-title: The SemiLoof Shell Element
+  year: '1973'
+- unstructured: IrslingerJ.Mechanische Grundlagen und Nnumerik dreidimensionaler Schalenelemente.
+    Doctoral dissertation Institut für Baustatik und Baudynamik Universität Stuttgart
+    2013.
+- doi: 10.1016/S0045-7825(98)00249-7
+- doi: 10.1016/j.cma.2009.08.013
+- doi: 10.1515/crll.1850.40.51
+- article-title: Using finite strain 3d‐material models in beam and shell elements
+  author: Klinkel S
+  doi: 10.1108/02644400210423918
+  first-page: '254'
+  journal-title: Eng. Comput.
+  volume: '19'
+  year: '2002'
+- author: Koiter WT.
+  first-page: '12'
+  volume-title: The Theory of Thin Elastic Shells
+  year: '1960'
+- unstructured: KoiterWT.On the stability of elastic equilibriumNASA TT F‐10 833 engl.
+    transl. of the Ph.D. thesis “Over de Stabiliteit von het Elastisch Evenwicht”
+    Polytechnic Institute Delft H.J. Paris Publishing Amsterdam 1945 1967.
+- article-title: The discrete strain gap method and membrane locking
+  author: Koschnick F
+  journal-title: Comput. Methods Appl. Mech. Eng.
+  year: '2004'
+- author: Krätzig WB.
+  volume-title: Technisch‐wissenschaftliche Mitteilungen des Instituts für konstruktiven
+    Ingenieurbau der Ruhr‐Universität Bochum
+  year: '1973'
+- doi: 10.1016/0045-7825(93)90043-W
+- doi: 10.1007/BF00804602
+- doi: 10.1017/CBO9780511574511
+- doi: 10.1115/1.3424154
+- doi: 10.1002/nme.1620140912
+- doi: 10.1002/nme.3368
+- doi: 10.1098/rsta.1888.0016
+- doi: 10.1016/0045-7949(78)90020-2
+- author: MacNeal R.
+  volume-title: 'Finite Elements: Their Design and Performance'
+  year: '1994'
+- author: Mainstone RJ.
+  volume-title: Developments in Structural Forms
+  year: '1975'
+- author: Malvern LE.
+  volume-title: Introduction to the Mechanics of a Continuous Medium
+  year: '1969'
+- author: Marsden JE
+  volume-title: Mathematical Foundations of Elasticity
+  year: '1983'
+- doi: 10.1002/nme.1620230111
+- article-title: Influence of rotatory inertia and shear flexural motions of isotropic
+    elastic plates
+  author: Mindlin RD.
+  doi: 10.1115/1.4010217
+  first-page: '31'
+  journal-title: J. Appl. Mech.
+  volume: '18'
+  year: '1951'
+- doi: 10.1007/BF00281383
+- doi: 10.1002/nme.1620310204
+- author: Naghdi PM.
+  volume-title: Progress in Solid Mechanics
+  year: '1963'
+- author: Naghdi PM.
+  volume-title: Handbuch der Physik
+  year: '1972'
+- doi: 10.1115/1.3152418
+- doi: 10.1115/1.3119162
+- author: Nye JF.
+  volume-title: Physical Properties of Crystals
+  year: '1985'
+- doi: 10.1007/978-3-642-96312-4
+- doi: 10.1016/j.cma.2016.04.015
+- doi: 10.1002/nme.1620381105
+- doi: 10.1115/1.3171752
+- author: Paumier JC
+  first-page: '203'
+  volume-title: Elasticité, Viscoélasticité et Contrôle Optimal, ESAIM Proceedings
+  year: '1997'
+- author: Pietraszkiewicz W
+  doi: 10.1007/978-3-642-82838-6
+  volume-title: Finite Rotations in Structural Mechanics
+  year: '1986'
+- author: Pinsky P
+  volume-title: Proceedings of the International Conference NUMETA
+  year: '1987'
+- doi: 10.1007/BF01385524
+- unstructured: RammE.Geometrisch nichtlineare elastostatik und finite elemente. Habilitation
+    thesis Institut für Baustatik Universität Stuttgart 1976.
+- author: Ramm E.
+  volume-title: Formulations and Computational Algorithms in Finite Element Analysis
+  year: '1977'
+- author: Ramm E.
+  volume-title: Heinz Isler Schalen (Katalog zur Ausstellung)
+  year: '1986'
+- author: Ramm E
+  first-page: '65'
+  volume-title: From Finite Elements to the Troll Platform, Ivar Holand's 70th Anniversary
+  year: '1994'
+- article-title: Higher order nonlinear shell formulations – theory and application
+  author: Ramm E
+  first-page: '145'
+  journal-title: Bull. IASS
+  volume: '36'
+  year: '1995'
+- author: Ramm E
+  first-page: '11'
+  volume-title: Proceedings IASS‐CSCE International Congress on Innovative Large Span
+    Structures
+  year: '1992'
+- doi: 10.1002/nme.967
+- doi: 10.1115/1.3167719
+- doi: 10.1016/0020-7683(84)90056-8
+- doi: 10.1002/cnm.1630030303
+- author: Reddy JN.
+  volume-title: 'Mechanics of Laminated Composite Plates: Theory and Analysis'
+  year: '1997'
+- doi: 10.1007/978-1-4612-0575-3
+- doi: 10.1002/sapm1944231184
+- doi: 10.1115/1.4009435
+- doi: 10.1115/1.3173133
+- doi: 10.1007/s00466-004-0559-z
+- doi: 10.1016/S0020-7683(98)00071-7
+- doi: 10.1007/978-94-015-9379-3
+- doi: 10.1007/s004190050012
+- doi: 10.1002/nme.1620340107
+- doi: 10.1007/s002110050215
+- doi: 10.1002/nme.1620330705
+- doi: 10.1016/0045-7825(89)90002-9
+- doi: 10.1016/0045-7825(89)90098-4
+- author: Simo JC
+  volume-title: Computational Inelasticity
+  year: '1998'
+- doi: 10.1002/nme.1620290802
+- doi: 10.1016/0045-7825(90)90143-A
+- author: Simo JC
+  first-page: '1'
+  volume-title: 'Finite Element Methods for Plate and Shell Structures 2: Formulations
+    and Algorithms'
+  year: '1986'
+- doi: 10.1016/0045-7825(88)90073-4
+- doi: 10.1002/(SICI)1097-0207(19991230)46:12<1961::AID-NME759>3.0.CO;2-E
+- author: Sokolnikoff IS.
+  volume-title: The Mathematical Theory of Elasticity
+  year: '1956'
+- unstructured: StanleyGM.Continuum‐based shell elements. Doctoral dissertation Stanford
+    University 1985.
+- author: Stein E
+  volume-title: Der Ingenieurbau
+  year: '1996'
+- doi: 10.1007/978-3-0348-5301-9
+- doi: 10.1002/(SICI)1097-0207(20000210)47:4<907::AID-NME808>3.0.CO;2-A
+- doi: 10.1002/nme.1620361803
+- doi: 10.1016/0045-7825(85)90114-8
+- author: Timoshenko SP.
+  volume-title: History of Strength of Materials
+  year: '1953'
+- author: Timoshenko SP
+  volume-title: Theory of Elastic Stability
+  year: '1961'
+- author: Timoshenko SP
+  volume-title: Theory of Plates and Shells
+  year: '1959'
+- author: Truesdell C
+  volume-title: Encyclopedia of Physics 3/3
+  year: '1965'
+- unstructured: VerhoevenH.Geometrisch und Physikalisch Nichtlineare Finite Plattenelemente
+    Mit Berücksichtigung der Dickenverzerrung. Doctoral dissertation Technische Universität
+    Berlin 1992.
+- doi: 10.1016/0045-7825(89)90101-1
+- doi: 10.1016/S0045-7825(02)00435-8
+- doi: 10.1016/S0045-7825(02)00336-5
+- author: Wall WA
+  volume-title: Proceedings of the Fourth International Colloquium on Computation
+    of Shell and Spatial Structures
+  year: '2000'
+- author: Washizu K.
+  volume-title: Variational Methods in Elasticity and Plasticity
+  year: '1968'
+- author: Wriggers P.
+  volume-title: Nonlinear Finite Element Methods
+  year: '2008'
+- doi: 10.1016/0020-7683(95)00262-6
+- doi: 10.1002/nme.1620300110
+- doi: 10.1002/(SICI)1097-0207(20000110/30)47:1/3<101::AID-NME763>3.0.CO;2-C
+- author: Ziegler R
+  volume-title: Proceedings of the Fourth International Colloquium on Computation
+    of Shell and Spatial Structures
+  year: '2000'
+- doi: 10.1002/(SICI)1097-0207(20000110/30)47:1/3<9::AID-NME793>3.0.CO;2-P
+- doi: 10.1002/nme.1620030211
+- doi: 10.1002/nme.1620361802
+- author: Abrahams R
+  volume-title: Foundations of Mechanics
+  year: '1995'
+- unstructured: AndelfingerU.Untersuchungen zur Zuverlässigkeit Hybrid‐Gemischter
+    Finiter Elemente für Flächentragwerke. Doctoral dissertation Institut für Baustatik
+    Universität Stuttgart 1991.
+- doi: 10.1137/0729075
+- article-title: Shear deformation models for large strain shell analysis
+  author: Başar Y
+  doi: 10.1016/S0020-7683(96)00121-7
+  first-page: '1687'
+  journal-title: Int. J. Solids Struct.
+  volume: '34'
+  year: '1996'
+- doi: 10.1002/nme.1620350805
+- doi: 10.1002/nme.1620190308
+- doi: 10.1016/S0045-7949(02)00042-1
+- doi: 10.1142/S0218202591000083
+- doi: 10.1002/nme.1620362109
+- article-title: Non‐linear dynamics of flexible shell structures
+  author: Chróścielewski J
+  first-page: '341'
+  journal-title: Comput. Assist. Mech. Eng. Sci.
+  volume: '9'
+  year: '2002'
+- doi: 10.1002/nme.1620350105
+- article-title: A justification of the two‐dimensional linear plate model
+  author: Ciarlet PG
+  first-page: '315'
+  journal-title: J. Méc.
+  volume: '18'
+  year: '1979'
+- doi: 10.1002/cpa.3160450305
+- doi: 10.1063/1.1705009
+- author: Dhatt G.
+  first-page: '13'
+  volume-title: Proceedings of the ASCE Symposium on Applications of FE in Civil Engineering
+  year: '1969'
+- doi: 10.2514/3.6068
+- doi: 10.1016/j.cma.2012.09.010
+- doi: 10.1108/eb023562
+- doi: 10.1016/0045-7825(92)90002-2
+- article-title: On the problems of the beam and the plate in the theory of elasticity
+  author: Goodier JN.
+  first-page: '65'
+  journal-title: Trans. R. Soc. Canada, Ser. III
+  volume: '32'
+  year: '1938'
+- doi: 10.1017/S0305004100043565
+- doi: 10.1016/0020-7683(70)90021-1
+- doi: 10.1007/BF00253138
+- author: Hughes TJR
+  first-page: '127'
+  volume-title: The Mathematics of Finite Elements and Applications
+  year: '2003'
+- doi: 10.1002/nme.1620111005
+- doi: 10.1002/sapm1958371371
+- doi: 10.1007/BF00533148
+- doi: 10.1007/s00419-002-0271-4
+- doi: 10.1016/0045-7825(93)90214-I
+- doi: 10.1016/S0045-7825(97)00149-7
+- doi: 10.1108/02644409910277951
+- doi: 10.1002/zamm.19490290502
+- author: Noor AK.
+  first-page: vii
+  volume-title: Analytical and Computational Models of Shells
+  year: '1989'
+- article-title: Geometrically nonlinear theories of thin elastic shells
+  author: Pietraszkiewicz W.
+  first-page: '51'
+  journal-title: Adv. Mech.
+  volume: '12'
+  year: '1989'
+- doi: 10.1007/BF01395887
+- author: Ramm E
+  first-page: '265'
+  volume-title: Nonlinear Finite Element Analysis of Plates and Shells
+  year: '1981'
+- doi: 10.1115/1.3143699
+- doi: 10.1016/0020-7683(95)00246-4
+- article-title: Passage à la limite de l'élastique tridimensionelle à la théorie
+    asymptotique des coques minces
+  author: Sanchez‐Palencia E.
+  first-page: '909'
+  journal-title: C. R. Acad. Sci. Paris
+  volume: '311'
+  year: '1990'
+- doi: 10.1007/BF00533829
+- doi: 10.1016/0045-7949(84)90154-8
+- doi: 10.1115/1.3171870
+- doi: 10.1115/1.3171871
+- doi: 10.1201/9781420041835
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781119176817.ecm2026
+doi: 10.1002/9781119176817.ecm2026
+files:
+- models_and_finite_elements_for_thin-walled_structures_Bischoff_Ramm_Irslinger_2017.pdf
+isbn: '9781119176817'
+journal: Encyclopedia of Computational Mechanics Second Edition
+language: en
+month: 12
+pages: 1--86
+papis_id: 7c3824d7bd5f1d2e5082ba68288b2d8e
+publisher: Wiley
+title: Models and Finite Elements for Thin‐Walled Structures
+type: misc
+url: https://doi.org/10.1002/9781119176817.ecm2026
+year: 2017

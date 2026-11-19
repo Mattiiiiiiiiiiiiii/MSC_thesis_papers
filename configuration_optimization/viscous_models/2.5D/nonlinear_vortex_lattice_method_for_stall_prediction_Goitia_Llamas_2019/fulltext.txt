@@ -1,0 +1,499 @@
+MATEC Web of Conferences 304, 02006 (2019)
+EASN 2019
+
+Nonlinear vortex
+prediction
+
+https://doi.org/10.1051/matecconf/201930402006
+
+lattice
+
+method
+
+for
+
+stall
+
+Hasier Goitia1*, Raúl Llamas2
+1Airbus, Loads & Aeroelastics, 316 Route de Bayonne, 31060 Toulouse, France
+2Airbus, Future Projects Office, Paseo John Lennon S/N, 28906 Getafe, Spain
+
+Abstract. The stall behavior of an empennage is a crucial and conditioning
+factor for its design. Thus, the preliminary design of empennages requires a
+fast low-order method which reliably computes the stall behavior and which
+must be sensitive to the design parameters (taper, sweep, dihedral, airfoil,
+etc.). Handbook or semi-empirical methods typically have a narrow scope
+and low fidelity, so a more general and unbiased method is desired. This
+paper presents a nonlinear vortex lattice method (VLM) for the stall
+prediction of generic fuselage-empennage configurations which is able to
+compute complete aerodynamic polars up to and beyond stall. The method
+is a generalized form of the van Dam algorithm, which couples the potential
+VLM solution with 2.5D viscous data. A novel method for computing 2.5D
+polars from 2D polars is presented, which extends the traditional infinite
+swept wing theory to finite wings, relying minimally on empirical data. The
+method has been compared to CFD and WTT results, showing a satisfactory
+degree of accuracy for the preliminary design of empennages.
+
+1 Introduction
+
+The core of the methodology is a vortex lattice method coupled with viscous aerodynamic
+polars. This is achieved with a generalized version of the α-method presented by van Dam
+[1]. The vortex lattice method implementation employed is described in section 2. The
+viscous coupling algorithm is presented in section 3, under the assumption that the section
+polars are available. Section 4 presents a methodology for computing section polars from 2D
+polars. Finally, some results obtained with the present method are shown in section 5.
+This project has been supported entirely by the Clean Sky 2 program.
+
+2 Vortex lattice method
+
+There are several possible implementations of vortex lattice methods (VLM). Katz and
+Plotkin [2] present a thorough explanation of the method. For this implementation, a strip
+method with horseshoe elements is chosen. As the chordwise information will be provided
+by the viscous polars, there is no benefit to increasing the number of chordwise panels.
+A wing is described by its origin position and a set of parameters as a function of its local
+spanwise coordinate 𝑦𝑦�, namely the chord 𝑐𝑐(𝑦𝑦�), the 𝑥𝑥 and 𝑧𝑧 offset 𝑥𝑥��� (𝑦𝑦�) and 𝑧𝑧��� (𝑦𝑦�), the
+*
+
+Corresponding author: hasier.goitia-hernandez@airbus.com
+
+© The Authors, published by EDP Sciences. This is an open access article distributed under the terms of the Creative Commons
+Attribution License 4.0 (http://creativecommons.org/licenses/by/4.0/).
+
+MATEC Web of Conferences 304, 02006 (2019)
+EASN 2019
+
+https://doi.org/10.1051/matecconf/201930402006
+
+geometric twist 𝜃𝜃(𝑦𝑦�), and the local airfoil. The wing is discretized into 𝑁𝑁 spanwise panels.
+The discrete geometrical parameters are taken from the center of the panel in the local 𝑦𝑦�
+direction. For each panel, the relevant local parameters are the chord 𝑐𝑐𝑖 , the dihedral 𝜙𝜙𝑖 , the
+�𝑒�𝑚
+geometric quarter-chord sweep Λ𝑖
+, and the twist 𝜃𝜃𝑖 . The normal vector of each panel 𝒏𝒏𝒊𝒊
+is computed and a control point 𝐶𝐶𝑃𝑃𝑖 is placed at the 3𝑐𝑐/4 line, in the middle of the panel, as
+shown in Figure 1.
+
+Fig. 1. Diagram of the vortex lattice method with 5-segment horseshoe vortices as the singularity
+elements. The legs of the HSVs lie on the wing surface and, outside of the wing, in the direction of the
+free-stream velocity.
+
+Horseshoe vortices (HSV) are used as singularity elements. The HSV head is placed at
+the quarter-chord line, and each leg extends chordwise downstream over the wing, then in
+the direction of the free stream towards infinity (Figure 1). Thus, the effect of a HSV can be
+computed as the sum of five vortex filament segments. The solution for a vortex filament, as
+well as a code subroutine, can be found in Katz and Plotkin [3].
+For a flight condition given by the angles of attack and sideslip 𝛼𝛼 and 𝛽𝛽, the free-stream
+velocity is
+(1)
+𝑼𝑼� = 𝑈𝑈� (cos 𝛼𝛼 cos 𝛽𝛽 𝒊𝒊 + cos 𝛼𝛼 sin 𝛽𝛽 𝒋𝒋 + sin 𝛼𝛼 𝒌𝒌)
+The velocity induced by the HSV of panel 𝑛𝑛 on the CP of panel 𝑚𝑚 is 𝒗𝒗𝒎𝒎,𝒏𝒏. Since the
+�𝒎𝒎,𝒏𝒏 = 𝒗𝒗𝒎𝒎,𝒏𝒏 /Γ𝑛 . The total
+intensity of the HSVs at this stage is unknown, it is useful to use 𝒗𝒗
+velocity on the CP of panel 𝑚𝑚 is
+𝑁
+
+�𝒎𝒎,𝒏𝒏 Γ𝑛 + 𝑼𝑼�
+𝑼𝑼𝒎𝒎 = � 𝒗𝒗
+
+(2)
+
+�𝑚,𝑛 ⋅ 𝒏𝒏𝑚 )  Γ𝑛 = −𝑼𝑼� ⋅ 𝒏𝒏𝑚
+�(𝒗𝒗
+
+(3)
+
+𝑛=1
+
+The Neumann boundary conditions arise from the fact that the flow cannot penetrate the
+wing surface, so a zero normal velocity is imposed at the CPs, 𝑼𝑼𝑚 ⋅ 𝒏𝒏𝑚 = 0, yielding:
+𝑁
+
+𝑛=1
+
+Writing equation 3 for each panel yields a linear system of 𝑁𝑁 equations where the
+unknowns are the HSV intensities. The system can be written in matrix form as [𝐴𝐴𝐴𝐴𝐴𝐴][Γ] =
+[𝐵𝐵], where the RHS column vector [𝐵𝐵] contains the terms −𝑼𝑼� ⋅ 𝒏𝒏𝒎𝒎 and is a function of the
+flow angles 𝛼𝛼 and 𝛽𝛽 seen by each panel. The HSV circulations are computed solving the
+linear system, and the 𝐶𝐶� of each panel is found with the Kutta-Joukowski theorem.
+(4)
+[Γ] = [𝐴𝐴𝐴𝐴𝐴𝐴]−1 [𝐵𝐵]
+1
+
+2
+𝐿𝐿�𝑖 = 𝜌𝜌𝑈𝑈� Γ𝑖 = 2𝜌𝜌𝑈𝑈�
+𝑐𝑐𝑖 𝐶𝐶�𝑖    →    𝐶𝐶�𝑖 =
+
+2
+
+2Γ𝑖
+𝑐𝑐𝑖 𝑈𝑈�
+
+(5)
+
+MATEC Web of Conferences 304, 02006 (2019)
+EASN 2019
+
+https://doi.org/10.1051/matecconf/201930402006
+
+3 Viscous coupling
+
+The VLM can be coupled with 2.5D viscous polars to model the nonlinear behavior of
+the wing. In this section, it will be assumed that the 2.5D polars for each wing section are
+available (see section 4 for a method for computing 2.5D polars from the airfoil geometry).
+In practice, the 2.5D polars are computed for certain key sections (such as the root and the
+tip) and the rest are linearly interpolated. The coupling is achieved by introducing a local
+angle of attack correction for each panel Δ∆𝛼𝛼𝑖�, such that the flow angles seen by each panel
+are modified. This alters the [𝐵𝐵] vector in equation 6 and, consequently, the HSV intensities
+[Γ] and 𝐶𝐶� distribution. The flow angles 𝛼𝛼 and 𝛽𝛽 seen by a given panel 𝑖𝑖  are related to the
+local angle of attack 𝛼𝛼𝑖� and the local dihedral 𝜙𝜙𝑖 through:
+𝛼𝛼𝑖 = 𝛼𝛼𝑖� cos 𝜙𝜙𝑖
+
+(6)
+
+(7)
+𝛽𝛽𝑖 = 𝛼𝛼𝑖� sin 𝜙𝜙𝑖
+The modified van Dam algorithm is as follows (where the subindex 𝑖𝑖 indicates that the
+computation must be done for each panel):
+a) Set Δ∆𝛼𝛼𝑖 = 0
+b) Find the corrected flow angles 𝛼𝛼𝑖∗ and 𝛽𝛽𝑖∗ , and compute [𝐵𝐵] with the corrected angles:
+
+𝛼𝛼𝑖∗ = 𝛼𝛼 − �Δ∆𝛼𝛼𝑖 + 𝛼𝛼0 𝑖 � cos 𝜙𝜙𝑖
+
+(8)
+
+𝛽𝛽𝑖∗ = 𝛽𝛽 − �Δ∆𝛼𝛼𝑖 + 𝛼𝛼0 𝑖 � sin 𝜙𝜙𝑖
+
+c) Solve the VLM. The resulting lift coefficient of each panel is 𝐶𝐶� �𝐿𝑀 .
+𝑖
+d) Find the effective and induced angles of attack of each strip:
+𝐶𝐶� �𝐿𝑀
+𝑖
+𝛼𝛼𝑖𝑛� 𝑖 = 𝛼𝛼 cos 𝜙𝜙𝑖 + 𝛽𝛽 sin 𝜙𝜙𝑖 − �
++ 𝛼𝛼0 𝑖 + Δ∆𝛼𝛼𝑖� � − Δ∆𝛼𝛼𝑖� + 𝜃𝜃𝑖
+2𝜋𝜋
+
+(9)
+
+(10)
+
+e) Interpolate the 𝛼𝛼��𝑐𝑖 in the 2.5D polar of the corresponding panel to find 𝐶𝐶�𝑒�� and 𝐶𝐶�𝑒�� .
+𝑖
+
+𝑖
+
+f) Perform an axes transformation to find the lift and drag coefficients in the local flow axes.
+𝐶𝐶��𝑖𝑠𝑐 = 𝐶𝐶�𝑒�� cos 𝛼𝛼𝑖𝑛� 𝑖 − 𝐶𝐶�𝑒�� sin 𝛼𝛼𝑖𝑛� 𝑖
+(11)
+𝑖
+
+𝑖
+
+𝑖
+
+g) Update the value of Δ∆𝛼𝛼𝑖 . The introduction of a smoothing factor 𝜁𝜁 is not strictly necessary
+but beneficial in practice to aid numerical convergence.
+𝐶𝐶��𝐿𝑀 − 𝐶𝐶��𝑖𝑠𝑐
+𝑖
+𝑖
+(12)
+Δ∆𝛼𝛼𝑖 ← Δ∆𝛼𝛼𝑖 +
+⋅ 𝜁𝜁
+2𝜋𝜋
+h) Find the maximum error from all panels:
+  𝑒𝑒𝑒𝑒𝑒𝑒 = max ��𝐶𝐶��𝐿𝑀 − 𝐶𝐶��𝑖𝑠𝑐𝑖 ��
+𝑖
+
+(13)
+
+i) If the error is below a certain tolerance 𝜀𝜀, take 𝐶𝐶��𝐿𝑀 𝑖 as the converged value for each panel;
+otherwise, repeat from step b).
+
+4 Aerodynamic polars: 2D to 2.5D
+
+The main difficulty of the described method is computing the 2.5D polars. They can be
+can be obtained from CFD results or wind-tunnel tests, though when the results of such costand time-extensive methods are available, the present method is evidently redundant. On the
+other hand, 2D polars can be easily computed with a number of airfoil solvers, such as XFOIL
+[4], MSES [5] or 2D CFD codes. This section presents a novel method for transforming the
+2D polars into the 2.5D polars given the wing geometry.
+
+3
+
+MATEC Web of Conferences 304, 02006 (2019)
+EASN 2019
+
+https://doi.org/10.1051/matecconf/201930402006
+
+The difference between the 2.5D and 2D polars arises from the sweep, which produces a
+spanwise boundary layer flow (from root to tip if the sweep is backwards, as shown in Figure
+2). The main consequence of this is that the BL is thinner at the root (higher effective
+Reynolds, delaying stall and achieving a higher 𝐶𝐶�𝑚�𝑥 ) and thicker at the tip (having the
+opposite effect). Thus, backwards sweep promotes stall from the tip, and forward sweep
+promotes stall from the root, as can be seen in the tuft studies from NACA TN 2445 [6].
+
+Fig. 2. Diagram of outer and boundary-layer flow over a backwards-swept wing.
+
+In the general case of arbitrarily large sideslip and dihedral angles, calculating the sweep
+angle of a wing or wing section becomes nontrivial. The local sweep of a wing section is a
+factor of both the wing geometry –a combination of geometrical sweep and dihedral– and the
+flow angles. The relevant sweep angle considered here is that formed between the projection
+of 𝑼𝑼� onto the panel surface and the perpendicular to the quarter-chord line. The projection
+of a generic vector 𝒗𝒗 onto a plane defined by its normal vector 𝒏𝒏 can be written as:
+(14)
+  𝒗𝒗𝒕𝒕 = 𝒗𝒗 − 𝒗𝒗𝒏𝒏 = 𝒗𝒗 − (𝒗𝒗 ⋅ 𝒏𝒏)𝒏𝒏
+where 𝒗𝒗� and 𝒗𝒗𝑛 are the tangential and normal components of 𝒗𝒗 with respect to the plane.
+Thus, the projection of the free-stream velocity 𝑼𝑼� onto the 𝑖𝑖 th panel with normal vector
+𝒏𝒏𝑖 is
+(15)
+𝑼𝑼𝒕𝒕� 𝒊𝒊 = 𝑼𝑼� − (𝑼𝑼� ⋅ 𝒏𝒏𝑖 )𝒏𝒏𝑖
+Using the local 𝑥𝑥 ∗ axis unitary vector 𝒊𝒊∗ , the local sweep seen by panel 𝑖𝑖 is (Figure 3a)
+Λ��𝑐 𝑖 = Λ�𝑒�𝑚𝑖 + Λ∗𝑖 = Λ�𝑒�𝑚𝑖 + cos −1 �
+
+�𝑼𝑼𝒕𝒕�𝒊𝒊 �
+�
+𝑼𝑼𝒕𝒕�𝒊𝒊 ⋅ 𝒊𝒊∗
+
+(16)
+
+In the case of an infinite swept wing, the 2D airfoil polar can be transformed into the wing
+section 2.5D polar with the classical sweep theory, as shown in the ESDU methodology [7].
+Mariens et al. [8] present a method for the transformation of 𝐶𝐶� due to sweep. In practice,
+and especially at low Mach numbers, some simplifications can be taken, which greatly speed
+up the computation process without significantly compromising the results.
+Given an infinite-span wing of constant sweep Λ flying at Mach number 𝑀𝑀 and Reynolds
+number 𝑅𝑅𝑅𝑅, the proposed simplified methodology is the following:
+a) Extract the airfoil geometry from the wing section.
+b) Compute the airfoil polar with a 2D aerodynamic solver at Mach number 𝑀𝑀 and Reynolds
+number 𝑅𝑅𝑅𝑅, obtaining 𝐶𝐶� 2� (𝛼𝛼2� ) and 𝐶𝐶�2� (𝛼𝛼2� ).
+c) The 2.5D polar is
+𝐶𝐶� 2.5� = 𝐶𝐶� 2� cos 2 Λ
+𝛼𝛼2.5� = (𝛼𝛼2� − 𝛼𝛼0 ) cos Λ + 𝛼𝛼0
+where 𝛼𝛼0 the zero-lift angle of attack of the 2D polar.
+
+4
+
+(17)
+
+MATEC Web of Conferences 304, 02006 (2019)
+EASN 2019
+
+https://doi.org/10.1051/matecconf/201930402006
+
+The effect of wing sweep, as well as the correlation with the simplified methodology, is
+shown in Figure 3b. It can be observed that, despite the errors in the original XFOIL polar
+(especially in the negative stall region) the proposed transformation is adequate.
+
+(a)
+
+(b)
+
+Fig. 3. (a) Relevant angles related to sweep in a generic wing in a free stream of velocity 𝑼𝑼� , in the
+local coordinates of the wing plane. (b) Comparison of 2.5D polar for an infinite wing with a NACA
+4416 profile and sweeps Λ = 0∘ , Λ = 30∘ and Λ = 60∘, at 𝑀𝑀 = 0.2 and 𝑅𝑅𝑅𝑅 = 6 ⋅ 106 as computed by
+CFD (TAU2D) and with the described methodology starting from a 2D polar computed with XFOIL.
+
+In a finite swept wing, the 2.5D polars vary along the span, having a higher 𝐶𝐶�𝑚�𝑥 at the
+root than at the tip. This behavior is discussed in a paper by Hosangadi et al. [9] using the
+CFD results from [10]. We propose a method for modelling the 2.5D polars of finite wings
+based on assigning an effective (i.e. artificial) sweep to each spanwise section, then applying
+the sweep correction described in section 4. The effective sweep for the 𝑖𝑖 th panel is
+(18)
+Λ𝑒��𝑖 = Λ��𝑐 𝑖 ⋅ 𝜅𝜅Λ 𝑖
+
+where the effective sweep correction 𝜅𝜅Λi is hypothesized to be a function of only the spanwise
+position and aspect ratio. To account for the possibility of an increase in 𝐶𝐶�𝑚�𝑥 as occurs at
+the wing root, equation 26 is replaced by
+where
+
+𝐶𝐶� 2.5� = 𝐶𝐶� 2� 𝐹𝐹Λ2
+
+𝛼𝛼2.5� = (𝛼𝛼2� − 𝛼𝛼0 )𝐹𝐹Λ + 𝛼𝛼0
+
+2 − cos Λ𝑒�� ,
+𝐹𝐹Λ = �
+cos Λ𝑒�� ,
+
+Λ𝑒�� < 0
+Λ𝑒�� ≥ 0
+
+(19)
+
+(20)
+
+A small set of wings of various aspect ratios and sweep angles, including those presented
+in Hosangadi et al. [9], has been studied. The spanwise distribution of the 𝐶𝐶�𝑚�𝑥 of these
+wings indicate that the hypothesized 𝜅𝜅Λ function does indeed exist. Assuming that the effect
+of the root and the tip are independent and can be superimposed, the proposed sweep
+correction function is modelled as
+�
+�
+) + 𝜅𝜅�𝑖� (𝜂𝜂�𝑖�
+(21)
+𝜅𝜅Λ (𝑦𝑦) = 1 + 𝜅𝜅𝑟��� (𝜂𝜂𝑟���
+)
+�
+�
+where 𝜂𝜂𝑟���
+and 𝜂𝜂�𝑖�
+are nondimensional spanwise positions normalized with the mean
+geometric chord. They are defined as
+𝑦𝑦 − 𝑦𝑦𝑟���
+�
+(22)
+(𝑦𝑦) =
+𝜂𝜂𝑟���
+= 𝐴𝐴𝐴𝐴(𝜂𝜂(𝑦𝑦) − 𝜂𝜂𝑟��� ) = 𝐴𝐴𝐴𝐴  𝜂𝜂
+𝑐𝑐̅
+𝑦𝑦 − 𝑦𝑦�𝑖�
+�
+(23)
+(𝑦𝑦) =
+𝜂𝜂�𝑖�
+= 𝐴𝐴𝐴𝐴�𝜂𝜂(𝑦𝑦) − 𝜂𝜂�𝑖� � = 𝐴𝐴𝐴𝐴(𝜂𝜂 − 1)
+𝑐𝑐̅
+
+5
+
+MATEC Web of Conferences 304, 02006 (2019)
+EASN 2019
+
+https://doi.org/10.1051/matecconf/201930402006
+
+�
+�
+where 𝜂𝜂 is the standard nondimentional spanwise position 2𝑦𝑦/𝑏𝑏. The variables 𝜂𝜂𝑟���
+and 𝜂𝜂�𝑖�
+measure how many chords away a spanwise position is from the root or the tip. The functions
+�
+�
+) and 𝜅𝜅�𝑖� (𝜂𝜂�𝑖�
+) (Figure 4a) have been designed with Bézier curves to best fit the
+𝜅𝜅𝑟��� (𝜂𝜂𝑟���
+data gathered from the aforementioned set of wings. The resulting 𝜅𝜅Λ (𝜂𝜂) function is plotted
+in Figure 4b for several aspect ratios. Note that for large aspect ratios, the solution for the
+infinite swept wing (𝜅𝜅Λ = 1) is recovered for an area in the middle of the wing. The
+formulation of 𝜅𝜅Λ is valid for approximately 𝐴𝐴𝐴𝐴 > 5; for smaller aspect ratios, the effect of
+the root overpowers that of the tip and the result is nonphysical.
+
+(a)
+
+(b)
+
+�
+�
+Fig. 4. (a) Values of 𝜅𝜅𝑟��� and 𝜅𝜅�𝑖� as a function of the nondimensional parameters 𝜂𝜂𝑟���
+and 𝜂𝜂�𝑖�
+,
+respectively. (b) Effective sweep correction function 𝜅𝜅Λ as a function of the nondimensional spanwise
+position 𝜂𝜂 = 2𝑦𝑦/𝑏𝑏, for various aspect ratios.
+
+5 Results
+
+The lift curves of the set of wings from Hosangadi et al. [9] as computed by CFD and the
+present method are shown in Figure 5a. It may be observed that the present method has the
+proper sensitivity to the wing sweep. Figure 5b shows the comparison between the present
+method and NACA wind tunnel tests for a swept wing of 𝐴𝐴𝐴𝐴 = 8. The result for the van Dam
+𝛼𝛼-method using 2D polars has also been plotted, to demonstrate the effect of the sweep
+correction function 𝜅𝜅Λ . Figure 5c presents the lift curve for an isolated wing with a geometry
+which is representative of a modern HTP. It is compared to CFD results from the Selena
+project [12]. The correlation between the present method and the CFD results are good, which
+suggests the validity of the sweep correction function 𝜅𝜅Λ for aspect ratios as low as 𝐴𝐴𝐴𝐴 = 5.
+In the scope of aircraft design, the interest is generally in the analysis of wing-fuselage or
+tail-fuselage geometries, rather than isolated lifting surfaces. Our proposed method for
+accounting for the effect of the fuselage on the tailplane consists on modelling the fuselage
+as a cylindrical surface of vortex rings, removing all internal wing panels. The cylindrical
+surface must extend a length of at least ~3𝑐𝑐̅ in front and behind the lifting surface to avoid
+unphysical effects. The following results use the present method to replicate a CFD analysis
+of a body-tail geometry representative of a modern airliner. Figure 6a shows the VLM
+representation of the geometry. The spanwise loading is shown in Figure 6b. The present
+method correlated well to the CFD result. The 3-dimensional lift curve of the body-tail
+configuration presented in Figure 5d shows an acceptable correlation of the present method
+to wind tunnel tests and CFD computations. This indicates a strong potential of the method
+for analyzing complex configurations and interactions between lifting surfaces and bodies.
+
+6
+
+MATEC Web of Conferences 304, 02006 (2019)
+EASN 2019
+
+https://doi.org/10.1051/matecconf/201930402006
+
+(a)
+
+(b)
+
+(c)
+
+(d)
+
+(a)
+
+(b)
+
+Fig. 5. Comparison of 𝐶𝐶𝐿 -𝛼𝛼 as computed by CFD or wind tunnel testing and the present method, for (a)
+three wings from [10] (𝐴𝐴𝐴𝐴=12, 𝑇𝑇𝑇𝑇=1, NACA 4416 profiles, 𝑅𝑅𝑅𝑅=3·106, 𝑀𝑀=0.2), (b) the NACA TR1208
+wing [11] (𝐴𝐴𝐴𝐴=8, 𝜆𝜆=0.45, Λ=45°, NACA 631A012 profiles, 𝑅𝑅𝑅𝑅=4·106), (c) the Selena project geometry
+(𝐴𝐴𝐴𝐴=5, 𝜆𝜆=0.35, Λ=28°, 𝑅𝑅𝑅𝑅=4·106, 𝑀𝑀=0.2), and (d) the body-tail configuration.
+
+Fig. 6. (a) VLM model of a conventional empennage and fuselage rear end. (b) Spanwise aerodynamic
+loading on the exposed HTP surface, at two different angles of attack in the linear region.
+
+7
+
+MATEC Web of Conferences 304, 02006 (2019)
+EASN 2019
+
+https://doi.org/10.1051/matecconf/201930402006
+
+6 Conclusions and Way Forward
+
+The present method has been implemented as a Python library with a simple user interface
+which enables the user to generate wing and fuselage geometries, read 2D input polars from
+XFOIL, MSES and Tau2D, and compute complete 3-dimensional lift curves. Typical
+computation times for an isolated wing are ~4𝑠𝑠 (~25𝑠𝑠 for a wing-fuselage configuration) on
+a single core. Given this low computational cost, the present method has great potential for
+use in the preliminary design process. The comparison cases shown in this report suggest that
+the method is able to predict the onset of stall with reasonable accuracy for a wide design
+space of isolated wings and wing-body configurations with proper sensitivity to the design
+parameters. Notably, the method is predominantly physically-based, scarcely relying on
+empirical data. Only the 𝜅𝜅Λ function –which is indirectly a loose model for the evolution of
+the boundary layer thickness due to sweep– relies on empirical data. A full validation of the
+method is still pending. In order to achieve this, an extensive set of wind tunnel test results
+of a large design space of wing geometries are required. Moreover, the cases for which the
+3D stall behavior cannot be derived by augmenting the 2D data must still be identified to find
+the limits of applicability of the present method.
+
+References
+[1] C. P. van Dam, "The aerodynamic design of multi-element high-lift systems for transport
+airplanes," Progress in Aerospace Sciences, vol. 38, pp. 10-144, 2002.
+[2] J. Katz and A. Plotkin, "Three-Dimensional Numerical Solutions," in Low-Speed Aerodynamics.
+From Wing Theory to Panel Methods, New York, Cambridge University Press, 2001, pp. 331368.
+[3] J. Katz and A. Plotkin, "Singularity Elements and Influence Coefficients," in Low-Speed
+Aerodynamics. From Wing Theory to Panel Methods, New York, Cambridge University Press,
+2001, pp. 230-261.
+[4] M. Drela, "XFOIL: An Analysis and Design System for Low Reynolds Number Airfoils," in Low
+Reynolds Number Airfoil Aerodynamics, University of Notre Dame, June 1989.
+[5] M. Drela, A User's Guide to MSES 3.05, Massachusetts Institute of Technology. Department of
+Aeronautics and Astronautics, July 2007.
+[6] P. E. Purser and M. L. Spearman, "NACA TN 2445: Wind-Tunnel Tests at Low Speed of Swept
+and Yawed Wings Having Various Plan Forms," National Advisory Committee for Aeronautics,
+Washington, December 1951.
+[7] ESDU, "Data Item 90008: Transonic aerodynamics of aerofoils and wings," IHS ESDU, April
+1990.
+[8] J. Mariens, A. Elham and M. Van Tooren, "Quasi-Three-Dimensional Aerodynamic Solver for
+Multidisciplinary Design Optimization of Lifting Surfaces," Journal of Aircraft, vol. 51, no. 2,
+pp. 547-558, May 2014.
+[9] P. Hosangadi, R. Paul and A. Gopalarathnam, "Improved Stall Predictions for Swept Wings
+Using Low-Order Aerodynamics," in AIAA, June 2015.
+[10] J. Petrilli, R. Paul, A. Gopalarathnam and N. T. Frink, "A CFD Database for Airfoils and Wings
+at Post-Stall Angles of Attack," in AIAA, 2013.
+[11] W. C. Schneider, "Technical Report 1208: A comparison of the spanwise loading calculated by
+various methods with experimental loadings obtained on a 45 degree sweptback wing of aspect
+ratio 8.02 at Reynolds number of 4.0x10(6)," NACA, 1951.
+[12] M. Chávez-Modena, E. Ferrer, J. Martínez and J. Cabello, "Industrial benchmark simulations of
+detached flows using XFlow," in EUCASS, Madrid, 2019.
+[13] J. C. Sivells and R. H. Neely, "NACA Technical Note No. 1269," National Advisory Commitee
+for Aeronautics, Washington, 1947.
+
+8
+
+

@@ -1,0 +1,499 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>\n                    The
+  discontinuous Galerkin (DG) methods are locally conservative, high‐order accurate,
+  robust methods that can easily handle elements of arbitrary shapes, irregular meshes
+  with hanging nodes, and polynomial approximations of different degrees in different
+  elements. These properties, which render them ideal for\n                    <jats:italic>hp</jats:italic>\n
+  \                   ‐adaptivity in domains of complex geometry, have brought them
+  to the main stream of computational fluid dynamics. We study the properties of the
+  DG methods as applied to a wide variety of problems arising in fluid dynamics with
+  a special emphasis on linear, symmetric positive hyperbolic systems, the Euler equations
+  of gas dynamics, purely elliptic problems, and the incompressible and compressible
+  Navier–Stokes equations. In each instance, we discuss the main properties of the
+  methods, display the mechanisms that make them work so well, and present numerical
+  experiments showing their performance.\n                  </jats:p>"
+author: Cockburn, Bernardo
+author_list:
+- affiliation: []
+  family: Cockburn
+  given: Bernardo
+citations:
+- doi: 10.1007/s10915-011-9537-8
+- doi: 10.1016/S0045-7825(02)00502-9
+- doi: 10.1007/s10915-013-9735-7
+- doi: 10.1090/S0025-5718-2011-02460-9
+- doi: 10.1016/j.apnum.2013.06.007
+- doi: 10.1016/j.jcp.2004.01.004
+- doi: 10.1137/060665993
+- doi: 10.1137/080725945
+- unstructured: AizingerVandDawsonCN.A Discontinuous Galerkin Method for two‐dimensional
+    flow and transport in shallow water. Technical Report 03‐16 TICAM 2003.
+- doi: 10.1016/S0309-1708(00)00022-1
+- doi: 10.1108/03321640110383320
+- doi: 10.1007/s10915-013-9792-y
+- doi: 10.1137/0719052
+- doi: 10.1051/m2an/1985190100071
+- doi: 10.1137/S0036142901384162
+- doi: 10.2514/2.436
+- doi: 10.1137/0710071
+- doi: 10.1007/s10915-014-9861-x
+- doi: 10.1090/S0025-5718-1977-0431742-5
+- doi: 10.1137/0727085
+- doi: 10.1016/j.jcp.2009.11.010
+- doi: 10.1007/978-3-642-59721-3_3
+- doi: 10.1016/j.euromechflu.2015.08.010
+- doi: 10.1016/j.compfluid.2015.06.007
+- doi: 10.1016/j.jcp.2006.03.006
+- doi: 10.1006/jcph.1996.5572
+- doi: 10.1006/jcph.1997.5454
+- author: Bassi F
+  first-page: '99'
+  volume-title: 2nd European Conference on Turbomachinery Fluid Dynamics and Thermodynamics
+  year: '1997'
+- doi: 10.1002/fld.562
+- doi: 10.1016/S0045-7825(98)00359-4
+- doi: 10.1016/S0045-7825(02)00593-5
+- unstructured: BeyKS.Anhp‐adaptive discontinuous Galerkin method for hyperbolic conservation
+    laws. PhD thesis The University of Texas at Austin 1994.
+- doi: 10.1016/0045-7825(95)00944-2
+- doi: 10.1016/0168-9274(94)90029-9
+- doi: 10.1007/11666806_8
+- doi: 10.1137/08072838X
+- doi: 10.1090/S0025-5718-1977-0431744-9
+- doi: 10.1016/j.cma.2005.06.015
+- doi: 10.1007/BF01389710
+- unstructured: BrezziF ManziniG MariniLD PietraPandRussoA.Discontinuous finite elements
+    for diffusion problems. InAtti Convegno in onore di F. Brioschi (Milan 1997).Istituto
+    Lombardo Accademia di Scienze e Lettere 1999;197–217.
+- doi: 10.1002/1098-2426(200007)16:4<365::AID-NUM2>3.0.CO;2-Y
+- doi: 10.1137/050640382
+- doi: 10.1016/j.jcp.2015.04.009
+- doi: 10.1006/jcph.2001.6718
+- doi: 10.1007/s10915-004-4137-5
+- doi: 10.1142/S0218202514500146
+- doi: 10.1090/S0025-5718-05-01804-1
+- doi: 10.1007/s00211-009-0223-9
+- doi: 10.1002/fld.3682
+- doi: 10.1137/S1064827501388339
+- doi: 10.1007/s10915-004-4151-7
+- doi: 10.1002/nme.2738
+- doi: 10.1137/S0036142900371003
+- doi: 10.1016/j.mcm.2011.07.032
+- doi: 10.1002/nme.2164
+- doi: 10.1090/S0025-5718-06-01895-3
+- doi: 10.1007/s10915-012-9639-y
+- doi: 10.1090/S0025-5718-2011-02525-1
+- doi: 10.1093/imanum/drr058
+- doi: 10.1090/S0025-5718-2013-02711-1
+- doi: 10.1137/S0036142903421527
+- author: Cheng J
+  first-page: '9'
+  volume-title: 'Numerical Methods for Hyperbolic Equations: Theory and Applications'
+  year: '2013'
+- doi: 10.1016/j.jcp.2015.08.024
+- doi: 10.1137/13091573X
+- doi: 10.1007/s10915-015-0047-y
+- doi: 10.1137/080729062
+- doi: 10.1002/num.20315
+- doi: 10.1007/978-3-662-03882-6_2
+- doi: 10.1016/S0377-0427(00)00512-4
+- doi: 10.1002/zamm.200310088
+- author: Cockburn B
+  first-page: '1'
+  volume-title: Computational Fluid Dynamics 2006. Proceedings of the 4th International
+    Conference in Fluid Dynamics, ICCDF4, Ghent, Belgium, 10‐14 July 2006
+  year: '2009'
+- author: Cockburn B
+  first-page: '1'
+  series-title: Lecture Notes in Computational Science and Engineering
+  volume-title: 'Building Bridges: Connections and Challenges in Modern Approaches
+    to Numerical Partial Differential Equations'
+  year: '2015'
+- doi: 10.1090/S0025-5718-2011-02575-5
+- doi: 10.1007/s10915-011-9542-y
+- doi: 10.1016/B978-008043568-8/50014-6
+- doi: 10.1023/A:1021203618109
+- doi: 10.1051/m2an/2015051
+- doi: 10.1007/s10915-007-9130-3
+- doi: 10.1137/060677215
+- doi: 10.1090/S0025-5718-08-02123-6
+- doi: 10.1137/080740805
+- doi: 10.1090/S0025-5718-10-02343-4
+- doi: 10.1137/090765894
+- doi: 10.1090/S0025-5718-10-02334-3
+- doi: 10.1137/080728810
+- doi: 10.1137/070706616
+- doi: 10.1137/080726914
+- doi: 10.1007/s10915-009-9279-z
+- doi: 10.1093/imanum/drt024
+- article-title: 'Superconvergence by M‐decompositions. Part II: Construction of two‐dimensional
+    finite elements'
+  author: Cockburn B
+  journal-title: Modél. Math. Anal. Numér.
+  year: '2016'
+- article-title: 'Superconvergence by M‐decompositions. Part III: Construction of
+    three‐dimensional finite elements'
+  author: Cockburn B
+  journal-title: Modél. Math. Anal. Numér.
+  year: '2016'
+- doi: 10.1093/imanum/drw029
+- doi: 10.1090/mcom/3140
+- doi: 10.1090/mcom/3014
+- doi: 10.1137/04061060X
+- doi: 10.1137/040610659
+- doi: 10.1002/gamm.201490017
+- doi: 10.1137/080726653
+- doi: 10.1090/S0025-5718-2010-02410-X
+- doi: 10.1137/0733028
+- doi: 10.1137/060668936
+- doi: 10.2307/2008501
+- doi: 10.1137/S0036142900371544
+- doi: 10.1090/S0025-5718-03-01552-7
+- doi: 10.1090/S0025-5718-04-01718-1
+- doi: 10.1007/s10915-006-9107-7
+- doi: 10.1137/S0036142900380121
+- doi: 10.1007/978-3-642-59721-3_1
+- doi: 10.1090/S0025-5718-02-01464-3
+- doi: 10.1090/S0025-5718-2013-02729-9
+- doi: 10.1090/S0025-5718-2011-02550-0
+- doi: 10.1137/110840790
+- doi: 10.1137/110823237
+- doi: 10.1090/S0025-5718-2014-02802-0
+- doi: 10.1137/15M1008014
+- doi: 10.1016/j.compfluid.2013.11.017
+- doi: 10.1137/S0036142997316712
+- article-title: 'The Runge‐Kutta discontinuous Galerkin finite element method for
+    conservation laws V: multidimensional systems'
+  author: Cockburn B
+  doi: 10.1006/jcph.1998.5892
+  first-page: '199'
+  journal-title: J. Comput. Phys.
+  volume: '141'
+  year: '1998'
+- doi: 10.1023/A:1012873910884
+- doi: 10.1007/s10915-011-9522-2
+- doi: 10.1137/120866269
+- doi: 10.1016/j.cam.2010.03.027
+- doi: 10.1016/j.compfluid.2013.07.027
+- doi: 10.1137/070681284
+- doi: 10.1016/S0045-7825(02)00402-4
+- doi: 10.1016/j.cma.2003.07.004
+- doi: 10.1016/j.cma.2003.09.011
+- doi: 10.1016/0168-9274(95)00103-4
+- doi: 10.1007/978-1-4612-4248-2_12
+- doi: 10.1007/978-3-642-22980-0
+- doi: 10.1016/j.cma.2014.09.009
+- doi: 10.1016/j.crma.2014.10.013
+- doi: 10.1515/cmam-2014-0018
+- doi: 10.1007/BF01060030
+- doi: 10.1137/13094089X
+- doi: 10.1093/imanum/drn083
+- doi: 10.1137/050624133
+- doi: 10.1137/05063831X
+- doi: 10.1137/060664045
+- doi: 10.1016/j.crma.2007.10.036
+- doi: 10.1137/S0036142997329463
+- doi: 10.1137/S0036142900378480
+- doi: 10.1016/S0168-9274(97)00094-9
+- doi: 10.1007/978-1-4612-1556-1_7
+- doi: 10.1006/jpdc.1997.1412
+- doi: 10.1007/978-3-642-59721-3_7
+- author: Fraejis de Veubeke BM
+  first-page: '145'
+  volume-title: Stress Analysis
+  year: '1977'
+- doi: 10.1002/cpa.3160110306
+- doi: 10.1051/m2an/2014032
+- doi: 10.1051/m2an/1989230101031
+- doi: 10.1007/s10915-014-9846-9
+- doi: 10.1002/fld.3888
+- article-title: Domain decomposition preconditioners for discontinuous Galerkin discretizations
+    of compressible fluid flows
+  author: Giani S
+  doi: 10.4208/nmtma.2014.1311nm
+  first-page: '123'
+  issue: '2'
+  journal-title: Numer. Math. Theory Methods Appl.
+  volume: '7'
+  year: '2014'
+- doi: 10.1137/140970999
+- doi: 10.1090/S0025-5718-04-01652-7
+- author: Gopalakrishnan J
+  first-page: '1943'
+  volume-title: Proceedings of the 2nd M.I.T. Conference on Computational Fluid and
+    Solid Mechanics, Cambridge, MA, USA
+  year: '2003'
+- doi: 10.1007/s002110200392
+- doi: 10.1090/S0025-5718-2014-02885-8
+- doi: 10.1090/S0025-5718-98-00913-2
+- doi: 10.1137/S003614450036757X
+- doi: 10.2514/3.2874
+- doi: 10.1002/nme.1893
+- doi: 10.1090/S0025-5718-06-01823-0
+- doi: 10.1007/s10915-008-9255-z
+- doi: 10.1002/cnm.975
+- doi: 10.1090/conm/330/05886
+- doi: 10.1137/S1064827501389084
+- doi: 10.1006/jcph.2002.7206
+- doi: 10.1051/m2an/1981150201191
+- doi: 10.1006/jcph.2002.7118
+- doi: 10.1007/978-0-387-72067-8
+- doi: 10.1137/070704599
+- doi: 10.1142/S0218202507001826
+- doi: 10.1137/S0036142998348777
+- doi: 10.1137/S1064827500378799
+- doi: 10.1002/fld.271
+- doi: 10.1137/S1064827500378799
+- doi: 10.1016/j.jcp.2013.01.024
+- doi: 10.1006/jcph.2002.7184
+- doi: 10.1002/nme.4547
+- doi: 10.1002/fld.2654
+- doi: 10.1016/j.cma.2005.06.006
+- doi: 10.1142/S021820259500022X
+- doi: 10.1090/S0025-5718-2014-02835-4
+- doi: 10.1090/S0025-5718-2012-02586-5
+- doi: 10.1007/s10915-012-9668-6
+- article-title: On a cell entropy inequality for discontinuous Galerkin methods
+  author: Jiang G‐S
+  doi: 10.1090/S0025-5718-1994-1223232-7
+  first-page: '531'
+  journal-title: Math. Comput.
+  volume: '62'
+  year: '1994'
+- doi: 10.1016/0045-7825(84)90158-0
+- doi: 10.1090/S0025-5718-1986-0815828-4
+- article-title: On a mixed discontinuous Galerkin method
+  author: Juntunen M
+  first-page: '17'
+  journal-title: Electron. Trans. Numer. Anal.
+  volume: '32'
+  year: '2008'
+- doi: 10.1137/S1064827502410657
+- author: Kanschat G
+  volume-title: Discontinuous Galerkin Methods for Viscous Incompressible Flows
+  year: '2008'
+- doi: 10.1515/JNMA.2002.249
+- doi: 10.1137/S0036142996297199
+- doi: 10.1007/978-3-642-59721-3_11
+- doi: 10.1137/S0036142902405217
+- doi: 10.1137/05063979X
+- author: Karniadakis GE
+  volume-title: Spectral/ hp Element Methods in CFD
+  year: '1999'
+- doi: 10.1016/S0045-7825(97)00228-4
+- doi: 10.1137/120896037
+- doi: 10.1007/s10915-011-9501-7
+- doi: 10.1016/j.jcp.2006.01.018
+- doi: 10.1016/j.jcp.2007.05.011
+- doi: 10.1016/j.apnum.2012.07.008
+- doi: 10.1016/j.apnum.2013.04.003
+- doi: 10.1016/j.cma.2007.06.025
+- doi: 10.1137/100818583
+- unstructured: LasserCandToselliA.An overlapping domain decomposition preconditioner
+    for a class of discontinuous Galerkin approximations of advection‐diffusion problems.
+    Technical Report 2000‐12 Seminar für Angewandte Mathematik ETH Zürich 2000.
+- doi: 10.1002/num.20386
+- unstructured: LehrenfeldC.Hybrid discontinuous Galerkin methods for solving incompressible
+    flow problems. PhD thesis Diplomigenieur Rheinisch‐Westfalishen Technischen Hochchule
+    Aachen 2010.
+- doi: 10.1016/j.cma.2016.04.025
+- doi: 10.1016/B978-0-12-208350-1.50008-X
+- author: Li BQ
+  series-title: Computational Fluid and Solid Mechanics
+  volume-title: Discontinuous Finite Elements in Fluid Dynamics and Heat Transfer
+  year: '2006'
+- doi: 10.1016/j.cam.2015.08.011
+- article-title: The direct discontinuous Galerkin (DDG) method for diffusion with
+    interface corrections
+  author: Liu H
+  doi: 10.4208/cicp.010909.011209a
+  first-page: '541'
+  issue: '3'
+  journal-title: Commun. Comput. Phys.
+  volume: '8'
+  year: '2010'
+- doi: 10.1002/(SICI)1097-0363(19990315)29:5<587::AID-FLD805>3.0.CO;2-K
+- doi: 10.1007/s10915-009-9286-0
+- unstructured: LowrieRB.Compact higher‐order numerical methods for hyperbolic conservation
+    laws. PhD thesis University of Michigan 1996.
+- doi: 10.2514/6.1995-1658
+  unstructured: LowrieRB RoePLandvan LeerB.A space‐time discontinuous Galerkin method
+    for the time‐accurate numerical solution of hyperbolic conservation laws. In Proceedings
+    of the 12th AIAA Computational Fluid Dynamics Conference 1995; Paper 95‐1658.
+- doi: 10.1007/978-94-011-5169-6_5
+- doi: 10.1051/m2an/2014063
+- doi: 10.1090/mcom/3022
+- doi: 10.1137/110830678
+- doi: 10.1137/120874059
+- doi: 10.1007/s10915-013-9748-2
+- doi: 10.1002/fld.1716
+- article-title: Higher‐order implicit Runge‐Kutta methods for unsteady incompressible
+    flows
+  author: Montlaur A
+  first-page: '77'
+  issue: '1'
+  journal-title: Rev. Int. Métod. Numér. Cálc. Diseñ. Ingr.
+  volume: '27'
+  year: '2011'
+- doi: 10.1002/fld.2161
+- doi: 10.1007/BF01396415
+- doi: 10.1007/BF01389668
+- doi: 10.1016/j.jcp.2009.01.030
+- doi: 10.1016/j.jcp.2009.08.030
+- doi: 10.1007/s10915-010-9359-0
+- doi: 10.1016/j.cma.2009.10.007
+- doi: 10.2514/6.2010-362
+  unstructured: NguyenNC PeraireJandCockburnB.A hybridizable discontinuous Galerkin
+    method for the incompressible Navier‐Stokes equations (AIAA Paper 2010‐362). In
+    Proceedings of the 48th AIAA Aerospace Sciences Meeting Exhibit Orlando Florida
+    2010c.
+- doi: 10.1016/j.jcp.2010.10.032
+- doi: 10.1016/j.jcp.2015.09.024
+- doi: 10.2514/6.2007-914
+  unstructured: NguyenNC PerssonP‐OandPeraireJ.RANS solutions using high order discontinuous
+    Galerkin methods. In45th AAIA Aerospace Sciences Meeting and Exhibit Reno Nevada
+    2007.
+- doi: 10.1016/j.jcp.2014.07.028
+- doi: 10.1002/fld.3944
+- doi: 10.1002/fld.1686
+- doi: 10.1007/s10915-014-9962-6
+- doi: 10.1007/s10915-015-0090-8
+- doi: 10.1137/0722057
+- doi: 10.2514/6.2010-363
+  unstructured: PeraireJ NguyenNCandCockburnB.A hybridizable discontinuous Galerkin
+    method for the compressible Euler and Navier‐Stokes equations (AIAA Paper 2010‐363).
+    InProceedings of the 48th AIAA Aerospace Sciences Meeting and Exhibit Orlando
+    FL 2010.
+- doi: 10.1137/070685518
+- doi: 10.1137/070692108
+- doi: 10.1023/A:1013294207868
+- doi: 10.1137/0728006
+- doi: 10.1016/j.jcp.2016.02.079
+- doi: 10.1137/04061372X
+- doi: 10.1007/BFb0064470
+- unstructured: ReedWHandHillTR.Triangular mesh methods for the neutron transport
+    equation. Technical Report LA‐UR‐73‐479 Los Alamos Scientific Laboratory 1973.
+- doi: 10.1016/j.jcp.2012.02.011
+- doi: 10.1007/978-0-8176-8394-8_4
+- doi: 10.1016/j.jcp.2012.08.052
+- doi: 10.1090/S0025-5718-1988-0917819-3
+- doi: 10.1090/S0025-5718-08-02126-1
+- doi: 10.1137/1.9780898717440
+- doi: 10.1016/S0898-1221(03)90086-1
+- doi: 10.1023/A:1011591328604
+- doi: 10.1016/j.jcp.2009.08.017
+- doi: 10.1007/s10915-014-9946-6
+- article-title: On a one‐sided post‐processing technique for the discontinuous Galerkin
+    methods
+  author: Ryan J
+  doi: 10.4310/MAA.2003.v10.n2.a8
+  first-page: '295'
+  journal-title: Methods Appl. Anal.
+  volume: '10'
+  year: '2003'
+- doi: 10.1090/S0025-5718-1983-0679435-6
+- doi: 10.1016/j.jcp.2013.01.019
+- doi: 10.1137/S0036142901399124
+- doi: 10.1142/S0218202503002970
+- doi: 10.1051/m2an/1985190101111
+- doi: 10.1007/978-3-642-59721-3_43
+- doi: 10.1006/jcph.2001.6723
+- doi: 10.1016/S0045-7825(99)00117-6
+- doi: 10.1137/0909073
+- unstructured: 'ShuC‐W.Discontinuous Galerkin methods: general approach and stability.
+    InNumerical Solutions of PartialDifferential Equations Advanced Courses in Mathematics
+    ‐ CRM Barcelona.Birkhäuser:Basel 2009;149–201.'
+- doi: 10.1007/978-3-319-01818-8_2
+- doi: 10.1016/0021-9991(88)90177-5
+- doi: 10.1137/S0036142902404182
+- article-title: A one‐equation turbulence model for aerodynamic flows
+  author: Spalart PR
+  first-page: '5'
+  journal-title: La Recherche Aerospat.
+  volume: '1'
+  year: '1994'
+- doi: 10.1007/BF01397550
+- doi: 10.1051/m2an/1991250101511
+- author: Süli E
+  first-page: '269'
+  series-title: Lecture Notes in Computational Science and Engineering
+  volume-title: Error Estimation and Adaptive Discretization Methods in Computational
+    Fluid Dynamics
+  year: '2002'
+- article-title: Sur l'approximation des solutions des équations de Navier‐Stokes
+  author: Témam R
+  first-page: '219'
+  journal-title: C.R. Acad. Sci. Paris, Sér. A
+  volume: '216'
+  year: '1966'
+- doi: 10.24033/bsmf.1662
+- author: Témam R
+  series-title: Studies in Mathematics and its Applications
+  volume-title: Navier‐Stokes Equations
+  year: '1979'
+- doi: 10.1007/978-3-642-87047-7
+- doi: 10.2307/2005998
+- unstructured: van der VegtJJWandvan der VenH.Slip flow boundary conditions in discontinuous
+    Galerkin discretizations of the Euler equations of gas dynamics. In 5th World
+    Congress on Computational Mechanics July 7‐12 Vienna Austria 2002a.
+- article-title: 'Space‐time discontinuous Galerkin finite element method with dynamic
+    grid motion for inviscid compressible flows: I. General formulation'
+  author: van der Vegt JJW
+  first-page: '546'
+  journal-title: J. Comput. Phys.
+  volume: '182'
+  year: '2002'
+- doi: 10.1016/S0045-7825(02)00403-6
+- doi: 10.1016/0021-9991(74)90019-9
+- doi: 10.1016/0021-9991(79)90145-1
+- doi: 10.1137/100782188
+- doi: 10.1016/j.jcp.2016.02.027
+- doi: 10.1016/j.jcp.2016.01.037
+- doi: 10.1007/s10915-008-9230-8
+- article-title: The multiscale discontinuous Galerkin method for solving a class
+    of second order elliptic problems with rough coefficients
+  author: Wang W
+  first-page: '28'
+  issue: '1'
+  journal-title: Int. J. Numer. Anal. Model.
+  volume: '8'
+  year: '2011'
+- doi: 10.1137/140956750
+- article-title: Stability analysis and error estimates of local discontinuous Galerkin
+    methods with implicit‐explicit time‐marching for nonlinear convection‐diffusion
+    problems
+  author: Wang H
+  first-page: '237'
+  issue: '2'
+  journal-title: Appl. Math. Comput.
+  volume: '272'
+  year: '2016'
+- unstructured: 'WarburtonTC.Spectral/hpmethods on polymorphic multi‐domains: algorithms
+    and Applications. PhD thesis Brown University 1998.'
+- doi: 10.1023/A:1018955121314
+- doi: 10.1016/0021-9991(84)90142-6
+- doi: 10.1002/fld.3959
+- doi: 10.1007/978-3-642-59721-3_48
+- doi: 10.1137/040620382
+- doi: 10.1137/090771363
+- doi: 10.1016/j.jcp.2009.12.030
+- doi: 10.1016/j.jcp.2010.08.016
+- doi: 10.1016/j.jcp.2010.10.036
+- doi: 10.1007/s00211-013-0573-1
+- doi: 10.1007/s10915-011-9472-8
+- doi: 10.1016/j.jcp.2012.09.032
+- doi: 10.1016/j.jcp.2013.04.012
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781119176817.ecm2053
+doi: 10.1002/9781119176817.ecm2053
+files:
+- discontinuous_galerkin_methods_for_computational_fluid_dynamics_Cockburn_2017.pdf
+isbn: '9781119176817'
+journal: Encyclopedia of Computational Mechanics Second Edition
+language: en
+month: 12
+pages: 1--63
+papis_id: b1572fe05a140874aaa376daeb568a87
+publisher: Wiley
+title: Discontinuous Galerkin Methods for Computational Fluid Dynamics
+type: misc
+url: https://doi.org/10.1002/9781119176817.ecm2053
+year: 2017

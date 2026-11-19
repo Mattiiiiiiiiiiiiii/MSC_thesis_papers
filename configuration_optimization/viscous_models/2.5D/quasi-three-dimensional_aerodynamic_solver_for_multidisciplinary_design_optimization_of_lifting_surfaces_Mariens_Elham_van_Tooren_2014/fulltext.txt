@@ -1,0 +1,2145 @@
+JOURNAL OF AIRCRAFT
+Vol. 51, No. 2, March–April 2014
+
+Quasi-Three-Dimensional Aerodynamic Solver for
+Multidisciplinary Design Optimization of Lifting Surfaces
+J. Mariens,∗ A. Elham,† and M. J. L. van Tooren‡
+Delft University of Technology, 2629 HS Delft, The Netherlands
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+DOI: 10.2514/1.C032261
+This paper presents the development of a quasi-three-dimensional aerodynamic solver, which provides accurate
+results for wing drag comparable to the higher-fidelity aerodynamic solvers at significantly lower computational
+costs. The proposed solver calculates the viscous wing drag using the combination of a two-dimensional airfoil
+analysis tool with a vortex lattice code. Validation results show that the results of the quasi-three-dimensional solver
+are in good agreement with higher-fidelity computational fluid dynamics solvers. The quasi-three-dimensional solver
+is used for a wing shape multidisciplinary design optimization. A multidisciplinary design optimization problem
+is formulated to design the wing shape of a typical passenger aircraft. The aircraft maximum takeoff weight is
+considered as the objective function. Two optimization algorithms, a local and a global optimum finder, are
+implemented in the multidisciplinary design optimization system. The optimization results indicate that the global
+optimization algorithm shows a slightly greater reduction in maximum takeoff weight. However, finding the global
+optimum needs about 20 times the computational time of the local optimization algorithm.
+
+the majority of data used in design [3]. Nowadays, computational
+fluid dynamics (CFD) methods are used to generate a remarkable
+portion of the design data. A hierarchy of models, ranging from the
+simple linearized potential flow equations to the full potential, Euler,
+and Reynolds-Averages Navier–Stokes (RANS) methods, are used
+for this purpose. Typically, lower-fidelity methods are used in early
+design stages, where a large number of solutions is required. Higherfidelity Euler and RANS methods are generally used in later design
+stages where high accuracies are required.
+The calculation of the wing primary aerodynamic forces, especially drag, is an important element in early design stages of an
+aircraft. Higher-fidelity aerodynamic solvers offer, in general, better
+approximations of the actual flow around the wing and thus more
+accurate results. However, the use of these solvers results in high
+computational cost. Lower-fidelity aerodynamic solvers use more
+simplified models resulting in faster turnaround times but less
+accurate results.
+Optimization of an aircraft wing requires many repetitive aerodynamic evaluations of different wing shapes. Using high-fidelity
+aerodynamic solvers in optimization leads to extensive computing
+costs, whereas lower-fidelity solvers are significantly faster but
+provide less accurate results. Therefore, it is of great interest to find a
+fast way to calculate the primary aerodynamic forces with sufficient
+accuracy. An interesting way for establishing such an approach is by
+combining (two-dimensional) viscous airfoil data with an inviscid
+three-dimensional wing lift calculation.
+Various applications of this approach have been done in the past
+[4–8]. Most applications calculate the wing lift using a lifting-line
+method or a vortex lattice method (VLM). The three-dimensional
+wing lift distribution can be combined with experimental viscous
+airfoil data to predict the total wing drag [4,5]. The range of
+applicability can be extended by using viscous airfoil calculation
+tools instead of experimental data [8]. The viscous airfoil data can
+also be predicted using empirical equations [6].
+The aforementioned applications are not able to fulfill all the needs
+of a designer, who would like to have a tool that is fast, accurate,
+design sensitive, suitable to support optimization, and can evaluate a
+wide range of different wing shapes. For instance, using experimental
+airfoil data limits the application of the aerodynamic solvers only for
+wings, which have airfoils with available experimental data. These
+solvers cannot be applied in a wing optimization, where the wing
+airfoil shape is a design variable. Using empirical equations is a way
+to increase the applicability of the solvers; however, it comes at a
+reduced level of accuracy. Using an airfoil analysis tool as presented
+by Hileman et al. [8] is a way to improve the applicability of this kind
+of aerodynamic solver; however, the method presented in [8] uses a
+
+Nomenclature
+b
+Cd
+Cdf
+Cdp
+CD
+CDi
+Cl
+CL
+cr
+ct
+S
+t∕ck
+t∕cr
+t∕ct
+W to
+Ww
+Wf
+α
+ϵ
+Λ
+λ
+ξc
+
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+
+wing span
+sectional drag coefficient
+sectional friction drag coefficient
+sectional pressure drag coefficient
+wing drag coefficient
+wing induced drag coefficient
+sectional lift coefficient
+wing lift coefficient
+wing root chord length
+wing tip chord length
+wing area
+thickness-to-chord ratio at kink section
+thickness-to-chord ratio at root section
+thickness-to-chord ratio at tip section
+aircraft takeoff weight
+aircraft wing weight
+aircraft fuel weight
+angle of attack
+local wing twist angle
+wing sweep angle
+wing taper ratio
+constant chord percentage of sweep line
+
+I.
+
+Introduction
+
+M
+
+ULTIDISCIPLINARY design optimization (MDO) of aircraft
+lifting surfaces and essentially wings is a complex task that
+involves various disciplines, primarily aerodynamics and structures
+in the preliminary design phase [1,2]. Aerodynamic data have
+traditionally been obtained from a variety of sources. In the past, these
+sources consisted of experiments and simple analyses that provided
+Received 11 January 2013; revision received 25 July 2013; accepted for
+publication 25 July 2013; published online 20 February 2014. Copyright ©
+2013 by Ali Elham. Published by the American Institute of Aeronautics and
+Astronautics, Inc., with permission. Copies of this paper may be made for
+personal or internal use, on condition that the copier pay the $10.00 per-copy
+fee to the Copyright Clearance Center, Inc., 222 Rosewood Drive, Danvers,
+MA 01923; include the code 1542-3868/14 and $10.00 in correspondence
+with the CCC.
+*Researcher, Flight Performance and Propulsion Group, Faculty of
+Aerospace Engineering, Kluyverweg 1.
+†
+Ph.D. Researcher, Flight Performance and Propulsion Group, Faculty of
+Aerospace Engineering, Kluyverweg 1.
+‡
+Professor, Flight Performance and Propulsion Group, Faculty of
+Aerospace Engineering, Kluyverweg 1.
+547
+
+548
+
+MARIENS, ELHAM, AND VAN TOOREN
+
+lifting line theory for calculation of the wing lift distribution, which
+results in lower accuracy for wings with high sweep angles.
+Research has been conducted on the development of a rapid
+aerodynamic solver with relatively high accuracy (compared to
+higher-fidelity aerodynamic solvers) suitable for wing multidisciplinary design optimization. The solver is developed for drag
+estimation of wings in clean configuration and it is not considered to
+estimate the low speed characteristics of wings with deployed high
+lift devices. In this paper, the principle of the proposed tool is
+discussed and the validation results are presented. Eventually, the
+new developed solver is applied in a wing shape multidisciplinary
+design optimization.
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+II.
+
+Quasi-Three-Dimensional Aerodynamic Solver
+
+The total drag of a wing is decomposed into three components:
+profile drag, induced drag, and wave drag. The profile drag, which is
+associated with the airfoil shape, is the sum of the form drag and the
+friction drag. The induced drag is the drag due to the lift generated
+vorticity shed into the wake. This is highly affected by the wing
+spanwise lift distribution and it is minimum for the elliptical lift
+distribution. The wave drag is the drag due to generation of the shock
+waves at high speed.
+In the proposed method, the wing induced drag is calculated using
+the Trefftz plane analysis [9], whereas the profile drag and the wave
+drag are calculated using the strip theory [10,11]. In this approach, the
+wing geometry is divided into several two-dimensional (2-D)
+spanwise wing sections, and the aerodynamic forces and moments on
+each segment are calculated using the effective velocity and angle of
+attack. The overall procedure of the proposed method is broken down
+into the following three stages: 1) calculation of the wing lift
+distribution, the wing lift coefficient CL , and the wing induced drag
+coefficient CDi for a given wing geometry and flow condition, using a
+VLM; 2) calculation of the profile and wave drag of the 2-D sections
+by means of an airfoil analysis tool, applying the strip theory and
+using the outputs of stage 1; and 3) calculation of the wing total drag.
+These steps are explained in the following sections.
+
+Fig. 1
+
+Airfoil section perpendicular to the sweep line of a tapered wing.
+
+shows that, for modern wings, the shock wave line is close to the halfchord sweep line. Therefore, if no prediction is available for the shock
+wave sweep angle, the half-chord sweep line is used by the tool.
+The length of the chord normal to the sweep line, denoted by c⊥, can
+be calculated using the planform geometry. The airfoil shape at the
+given section normal to the sweep line is defined by interpolating
+between the neighboring user-defined airfoils.
+The flow parameters for the section perpendicular to the sweep line
+are defined as
+M⊥  M∞ cos Λ
+
+(1)
+
+V ⊥  V ∞ cos Λ
+
+(2)
+
+The corresponding lift force l⊥ (see Fig. 2) is found using the sweep
+angle and the local lift force l, which is determined from the lift
+distribution calculated by the VLM. In terms of lift coefficients, this
+becomes
+Cl⊥  Cl sec2 Λ
+
+(3)
+
+A. Method Description
+1. Stage One
+
+A VLM is used to calculate the spanwise lift distribution of the
+wing for a given angle of attack α or a given lift coefficient CL .
+Furthermore, the VLM code also calculates the wing induced drag
+coefficient using the Trefftz plane analysis.
+2. Stage Two
+
+In this stage, the strip theory is extended using simple sweep theory
+[12] to calculate the aerodynamic characteristics of the 2-D wing
+sections (airfoil shape) at several spanwise locations.
+The following steps are used to determine drag coefficients at each
+wing section:
+1) Interpolation on the three-dimensional lift distribution of the
+wing (calculated by the VLM) to find the local lift coefficient Cl at the
+particular wing section.
+2) By applying sweep theory and accounting for tapered wings, the
+geometric and aerodynamic characteristics of the wing section
+normal to the sweep line can be found. Figure 1 shows a wing section
+(with chord length c⊥ ) perpendicular to the sweep line. The sweep
+line is considered at a constant chord percentage, denoted by ξc, over
+the wing span. According to Obert [13], the velocity component
+perpendicular to the quarter-chord line with sweep angle Λ can be
+used in practice. However, for transonic flows, it is more acceptable to
+choose the sweep line in such a way that it coincides with the shock
+wave line [14,15] because the pressure drag acts perpendicular to the
+isobars (or shock wave line) [16]. Based on this information, for
+subsonic wing analysis (when no shock wave exists on the wing
+surface), the airfoil geometry perpendicular to the quarter chord
+sweep line is used; however, for transonic wing analysis, the airfoil
+geometry perpendicular to the shock wave is used. The sweep angle
+of the shock wave line can be provided by the user. The experience
+
+3) Figure 2 shows the forces and angles at each wing section
+perpendicular to the sweep line. The term cos Λ in this figure
+accounts for the decrease of the inflow angle when the sweep is
+applied on the wing geometry. The induced angle of attack αi is
+determined using an iterative process:
+a) Set αi  0 and Cdeff  0;
+b) The effective lift can be derived using Fig. 2:
+l  deff sin αi
+leff  ⊥
+cos αi
+
+(4)
+
+To use the lift and drag coefficients instead of the lift/drag forces,
+the following force-coefficient relations are substituted in
+Eq. (4):
+
+Fig. 2 The forces and angles at each wing section.
+
+549
+
+MARIENS, ELHAM, AND VAN TOOREN
+
+1
+leff  ρV 2eff c⊥ Cleff
+2
+
+(5)
+
+1
+deff  ρV 2eff c⊥ Cdeff
+2
+
+(6)
+
+1
+l⊥  ρV 2⊥ c⊥ Cl⊥
+2
+
+(7)
+
+V⊥
+cos αi
+
+(8)
+
+Cl⊥ cos2 αi  Cdeff sin αi
+cos αi
+
+(9)
+
+V eff 
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+which yields
+Cleff 
+
+Cdf⊥  Cdf
+
+eff
+
+sec αi
+
+Cdp⊥  Cdp
+
+eff
+
+sec αi
+
+(14)
+
+5) Sweep theory is applied to find the profile drag coefficient of the
+wing section in the streamwise direction (see Fig. 3). As explained by
+Drela [15], it is reasonable to assume that the friction drag scales with
+the freestream dynamic pressure and acts mostly along the freestream
+flow direction. On the other hand, the pressure drag from the shock
+and viscous displacement is assumed to scale with the wing-normal
+dynamic pressure and to act normal to the shockwave line (or sweep
+line for subsonic cases). This treatment is exact for laminar flow on
+untapered wings, and quite accurate for turbulent flows [15]:
+
+Cdf  Cdf⊥
+Cdprof  Cdf  Cdp
+Cdp  Cdp⊥ cos3 Λ
+
+(15)
+
+Figure 4 gives an overview of this stage.
+3. Stage Three
+
+c) The effective Reynolds number can be calculated as follows:
+Reeff  Re∞
+
+V eff c⊥
+V ∞ c
+
+(10)
+
+The lift coefficient and the induced drag coefficient of the given
+wing configuration are calculated by the VLM at stage 1. The wing
+total profile drag (also known as parasite drag) is calculated as
+follows based on section profile drag calculated in stage 2:
+CDprof 
+
+2
+S
+
+Z b∕2
+0
+
+Cdprof c dy
+
+(16)
+
+d) The effective angle of attack αeff and the drag coefficient Cdeff
+(including both friction and pressure drag) of the airfoil are
+calculated using an airfoil analysis tool (see Sec. II.B). The
+calculated values of Reeff , Meff , and Cleff are used as inputs for
+the aerodynamic solvers:
+
+where S and c represent the wing planform area and the chord length
+at each wing section. Finally, the total drag coefficient is determined
+as the sum of the induced drag and the profile drag (including the
+wave drag in high speed cases):
+
+αeff ; Cdpeff ; Cdfeff   airfoil analysis toolCleff ; Reeff ; Meff 
+
+CD  CDi  CDprof
+
+Cdeff  Cdp  Cdf
+eff
+
+(17)
+
+eff
+
+B. Aerodynamic Tools Used in the Quasi-Three-Dimensional Solver
+
+The pressure drag calculated by the airfoil analysis tool includes
+the wave drag. In fact, using a near-field analysis method for drag
+calculation in which the pressure drag is calculated by
+integrating the pressure distribution on the airfoil surface, it is
+difficult to seperate various components of the pressure drag.
+e) The induced angle of attack can be recalculated now using αeff :
+αi  −αeff  α  ϵ cos Λ
+
+(11)
+
+f) Steps b–e are repeated until αi has converged.
+4) The section profile drag normal to the sweep line (in the
+direction of V ⊥ ) can now be calculated. From Fig. 2, the profile drag
+force is derived as follows:
+d⊥  deff cos αi  leff sin αi
+
+The wing spanwise lift distribution and induced drag are calculated
+by means of AVL software [17].
+Viscous airfoil data can be found in literature, such as [18–20],
+or by using two-dimensional viscous airfoil analysis tools. The
+aerodynamic analysis tools used in the proposed Q3D solver are
+listed as follows:
+1) XFOIL [21] is an interactive viscous/inviscid program for airfoil
+analysis and design, which uses a linear-vorticity panel method with
+Karman-Tsien compressibility correction for inviscid calculation
+and a two-equation lagged dissipation integral method to present the
+viscous layers [22].
+
+(12)
+
+Equation (12) can be rewritten for coefficients [analogue to Eq. (9)]:
+cos αi
+sin αi
+ Cleff
+Cd⊥  Cdeff
+cos2 αi
+cos2 αi
+|{z} |{z}
+Profile drag
+
+(13)
+
+Induced drag
+
+The first term in the right-hand side of Eq. (13) is the sum of the
+pressure drag (including the wave drag) and the friction drag, whereas
+the second term is in fact the induced drag calculated using the nearfield analysis. This term is not taken into consideration here because
+the induced drag is calculated by the VLM (see stage 1) using a farfield analysis, which is more accurate than the near-field analysis.
+Using the same approach as Eq. (13), the friction and pressure drag
+coefficients perpendicular to the sweep line are determined:
+
+Fig. 3 Friction and pressure drag forces on a swept tapered wing
+(reproduced from [15]).
+
+MARIENS, ELHAM, AND VAN TOOREN
+
+2) VGK [23] uses a finite difference solution of the full potential
+equations integrated with the integral method for the boundary layer
+(both laminar and turbulent) to calculate pressure and friction drag of
+an airfoil [24].
+3) MSES [25] is an interactive viscous/inviscid Euler method that
+features the design and analysis of single and multi-element airfoils at
+low Reynolds numbers and transonic Mach numbers. In addition,
+MSES can also predict flows with transitional separation bubbles,
+shock waves, trailing edge, and shock-induced separations [26].
+At subsonic regime, the aerodynamic solver uses XFOIL for airfoil
+analysis. XFOIL shows accurate results in low speed conditions
+and it is the fasted tool among the listed solvers. For transonic flows,
+the Q3D solver uses VGK or MSES. As mentioned before, VGK
+uses full potential equation. The solutions of the full potential
+equation are exact for shock-free flows, but are only approximate for
+flows with shocks of appreciable strength because the regions across
+the shock are rotational (and therefore nonisentropic). For a good
+representation of such flows, solutions of the Euler equations are
+required (note that, with a suitable choice of several parameters [23],
+the solutions of VGK yield surface pressure distributions that
+correspond closely to those of true physical shock waves). MSES
+uses Euler equations; therefore, it provides more accurate results than
+VGK in the case of strong shock. However, using MSES results in
+higher computational time.
+C. Selection of Panel Density and Number of Sections
+
+The panel density (in VLM) and the number of sections (for strip
+method) should be selected properly. The panel density has an
+
+influence on the calculation of the induced drag, whereas the number
+of wing sections affects the profile drag prediction.
+1. VLM Panel Density
+
+A vortex lattice code requires a panel density as a user input. The
+panel density for the Q3D solver is derived for a converged solution
+(312 panels are sufficient, 24 spanwise and 13 chordwise). Note
+that the panel density only affects the induced drag calculation. The
+higher the number of panels, the more the computational time
+increases. The derived panel density has only a small deviation on the
+calculated induced drag within 0.15% compared to a calculation
+using a very high panel density (600 panels).
+2. Number of Wing Sections
+
+To select the proper number of two-dimensional wing sections, the
+effect of the number of segments on the calculated profile drag
+coefficient is plotted in Fig. 5. The value of the profile drag coefficient
+is normalized using the average value of the three coefficients
+calculated using the highest number of sections. Increasing the
+number of sections linearly increases the computational time;
+therefore, eight wing sections were selected, implying a deviation of
+the calculated profile drag coefficient smaller than 0.01% compared
+to the highest number of sections.
+D. Validation
+
+The Q3D aerodynamic solver is validated for both subsonic and
+transonic regimes. To validate the solver, a higher-fidelity aerodynamic solver called MATRICS-V [27] is used. The MATRICS-V
+flow solver is based on fully conservative full potential outer flow
+in quasi-simultaneous interaction with an integral boundary layer
+method on the wing. The code can be used to treat fixed angle of
+attack as well as fixed lift analysis problems, and features: 1) threedimensional laminar and turbulent boundary layers; 2) two options
+for the laminar to turbulent boundary layer transition; 3) capability
+to model considerable boundary layer separation; 4) shock capturing
+for supersonic/subsonic shock waves consistent with Rankine–
+Hugoniot relations; and 5) multigrid acceleration of flow solver.
+The MATRICS-V flow solver has been validated using wind
+tunnel data and flight test data. Figures 6 and 7 from [27] show the
+results of the MATRICS-V compared to the wind tunnel and flight
+test results for Fokker 100 wing/body configuration. The wind tunnel
+test (Fig. 6) has been performed at M∞  0.779, α  1.03 deg, and
+Re∞  3 × 106 .The results shown in Fig. 7 are for M∞  0.775,
+α  1.0 deg, and Re∞  35 × 106 . As can be concluded from
+Figs. 6 and 7, MATRICS-V provides results that are in good
+agreement with experimental and in-flight test data.
+1. Subsonic Regime
+
+The Fokker 50 wing is used as the test case. The drag polar of that
+wing is constructed using both Q3D and MATRICS-V solvers. The
+wing drag is calculated in the Mach number of 0.55 and Reynolds
+number of 1.6 × 107 . Figure 8 shows the drag polar computed using
+both mentioned solvers.
+To have a better comparison, various components of the wing drag
+are plotted in Fig. 9 and summarized in Table 1. Both solvers predict
+the same values for induced drag CDi . The reason is that both solvers
+use the same approach (Trefftz plane analysis) for induced drag
+calculation.
+
+prof
+
+1.02
+
+normalized CD
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+550
+
+1
+X: 8
+Y: 0.9993
+
+0.98
+0.96
+0.94
+0
+
+5
+
+10
+
+15
+
+20
+
+Nw
+
+Fig. 4 Overview of stage 2.
+
+Fig. 5
+
+Effect of number of wing sections on the profile drag coefficient.
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+MARIENS, ELHAM, AND VAN TOOREN
+
+Fig. 6
+
+551
+
+Comparison of MATRICS-V and wind tunnel test; source: NLR [27].
+
+Fig. 7
+
+Comparison of MATRICS-V and flight test; source: NLR [27].
+
+However, the friction drag CDf and pressure drag CDp predicted
+by Q3D solver slightly deviate from the results of MATRICS-V.
+The friction drag is underpredicted, whereas the pressure drag is
+overpredicted. As illustrated in Fig. 8, the underprediction and
+overprediction cancel each other, and the total drag is calculated with
+an average error of 1%.
+From Fig. 9, it can be observed that the friction drag is higher than
+the pressure drag in subsonic regime. The friction drag is affected by
+the boundary layer characteristics. The skin friction in a laminar
+boundary layer is much lower than the skin friction in a turbulent
+boundary layer. Therefore, a correct prediction of the position of
+the transition line is required to achieve accurate friction drag
+estimation. Figure 10 compares the transition line predicted by the
+two mentioned solvers.
+
+From Fig. 10, one can observe that the transition line on the wing
+upper surface predicted by the Q3D solver is slightly behind the
+transition line predicted by the MATRICS-V code. This can be a
+reason for the underprediction of the friction drag by the Q3D solver
+in comparison with the MATRICS-V.
+The computational time of calculating the drag of the Fokker wing
+in each CL value is about 20 s for Q3D and 180 s for MATRICS-Von a
+computer with a 3.16 GHz processor and 4 GB RAM. The Q3D
+solver is about nine times faster than the MATRICS-V code.
+2. Transonic Regime
+
+In addition to the subsonic regime, the Q3D solver is also validated
+using a test case at transonic condition. The Fokker 100 wing is used
+for validation of the solver at high speeds. Figure 11 and Tables 2–5
+
+552
+
+MARIENS, ELHAM, AND VAN TOOREN
+
+0.016
+Quasi−3D
+MATRICS−V
+
+0.015
+0.014
+
+C D [-]
+
+0.013
+0.012
+0.011
+0.01
+0.009
+0.008
+0.007
+
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+Fig. 8 Comparing the results of Q3D and MATRICS-V solver for
+Fokker 50 wing.
+
+0.01
+Quasi−3D
+MATRICS−V
+
+0.009
+
+CD
+
+i
+
+0.008
+0.007
+
+C D [-]
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+CL [-]
+
+C
+
+D
+
+0.006
+
+f
+
+0.005
+
+the root effect causes the isobars to bend toward the trailing edge,
+whereas near the tip, the tip effect bends the isobars toward the
+leading edge [13]. This root-tip effect cannot be captured by the Q3D
+solver because the Q3D solver analyzes the airfoils at each strip
+separately.
+The drag polar of the Fokker 100 wing in the cruise condition with
+Mach number of 0.77 and Reynolds number of 1.5 × 107 is shown in
+Fig. 13. This figure shows very high accuracy of the Q3D solver in the
+CL values for aircraft cruise flight (CL between 0.2 to 0.4). For lower
+and higher CL values, the Q3D solver slightly underpredicts the drag
+coefficient. Various components of the drag coefficient are plotted in
+Fig. 14 and summarized in Table 6.
+Similar to the subsonic case, the induced drag predicted by the
+Q3D solver is the same as the induced drag predicted by the
+MATRICS-V solver. Unlike the subsonic case, the friction drag
+coefficient predicted by the Q3D solver is also the same as the
+friction drag predicted by the MATRICS-V code. It is mainly because
+of using a fixed transition point. The pressure drag is slightly
+underpredicted for CL values higher than 0.4. The main reason is the
+stronger shock wave captured by the MATRICS-V near the root,
+which produces higher wave drag.
+The computational time of running the Q3D solver for high speed
+cases is different if VGK or MSES is used. VGK is a full potential
+code, which is much faster than Euler solvers such as MSES. For the
+Fokker 100 case, the run time of Q3D using VGK is about 30 s,
+whereas the time is between 80 to 120 s using MSES (MSES needs
+more iteration to converge for high values of Mach number and CL ).
+The run time of the MATRICS-V code is about 300 s. All are
+measured using a computer with a 3.16 GHz processor and
+4 GB RAM.
+
+0.004
+
+III.
+
+0.003
+0.002
+0.001
+
+C
+
+D
+
+p
+
+0
+
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+C L [-]
+
+Fig. 9 Various components of the wing drag calculated by the Q3D and
+MATRICS-V solvers.
+
+show the resulting drag coefficients using both AVL-VGK and AVLMSES combinations compared to the drag coefficients calculated by
+the MATRICS-V solver. For all cases, a fixed transition line at 5% of
+the local chord was used in both Q3D and MATRICS-V solvers.
+Figure 12 shows the contours of pressure coefficient calculated
+by MATRICS-V on the upper surface of the wing. The location
+of the shock wave captured by the Q3D solver is also plotted in the
+same figure. From Fig. 12, one can find that the location of the
+shock captured by the Q3D solver agrees well with the results of
+MATRICS-Vafter the kink position and before the tip. Near the root,
+Table 1
+
+CL
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30
+0.35
+0.40
+0.45
+0.50
+0.55
+0.60
+
+Total drag
+Q3D MATRICS-V
+74.95
+73.42
+74.40
+73.18
+75.04
+74.30
+76.90
+77.20
+79.59
+80.25
+82.46
+80.64
+86.57
+83.91
+92.57
+92.45
+100.83
+100.21
+111.13
+113.20
+123.36
+125.47
+136.95
+139.07
+152.06
+152.94
+
+Wing Shape Multidisciplinary Design Optimization
+
+The proposed Q3D aerodynamic solver has been used for a series
+of wing shape multidisciplinary design optimizations. A typical
+mid-range passenger aircraft is used as the test case. The MDO
+architecture is configured in a modular way and the analysis contains
+various subroutines representing different design disciplines. The
+analysis modules include aerodynamics, weight, and performance.
+Two optimization algorithms were used: the well-known sequential
+quadratic programming (SQP) algorithm and the local optima
+smoothing (LOS) algorithm for global optimization (see Sec. III.C).
+A. Objective Function, Design Variables, and Design Constraints
+
+A nonlinear optimization problem can be stated as follows:
+min Fx
+x
+
+subject to gi x ≤ 0
+
+i  1; : : : ; m
+
+hj x  0
+
+j  1; : : : ; n
+
+xL ≤ x ≤ xU
+
+Drag components of Fokker 50 wing (CD × 10000)
+Pressure drag
+Q3D MATRICS-V
+31.24
+26.86
+30.19
+25.78
+29.15
+24.69
+28.19
+24.27
+27.10
+23.17
+25.69
+20.14
+24.25
+18.29
+23.24
+18.41
+22.73
+16.75
+22.57
+18.56
+22.63
+18.80
+22.79
+18.49
+23.01
+16.64
+
+Friction drag
+Q3D MATRICS-V
+43.11
+46.10
+42.91
+46.27
+42.58
+46.48
+42.11
+46.43
+41.29
+45.87
+39.67
+43.22
+37.92
+40.80
+36.43
+40.51
+35.30
+39.72
+34.67
+39.24
+34.33
+38.76
+33.96
+38.26
+33.74
+38.32
+
+Induced drag
+Q3D MATRICS-V
+0.60
+0.46
+1.30
+1.13
+3.30
+3.13
+6.60
+6.50
+11.20
+11.21
+17.10
+17.28
+24.40
+24.82
+32.90
+33.53
+42.80
+43.74
+53.90
+55.40
+66.40
+67.91
+80.20
+82.32
+95.30
+97.98
+
+553
+
+MARIENS, ELHAM, AND VAN TOOREN
+Q3D
+MATRICS−V
+
+a) Upper surface
+
+b)Lower surface
+Fig. 10 Transition line on the Fokker 50 wing.
+
+calculated using the aircraft range performance equation (including
+the aircraft aerodynamic efficiency) and a series of statistical data (see
+Sec. III.B.1).
+The flight conditions at which the aircraft operates are Mach
+number 0.77 and a cruise altitude of 10,675 m. Based on the flight
+altitude, the other required parameters (such as air density and
+viscosity) are derived.
+Optimizing the wing shape only for the cruise condition may result
+in unrealistic values of the design variables [29] because real wings
+are designed not only for the best cruise performance but also for the
+design requirements related to the other flight segments (e.g., takeoff, climb, and landing). In fact, more design requirements should
+
+0.07
+Quasi−3D
+MATRICSV
+
+0.06
+
+C D [–]
+
+CL=0.3
+C =0.4
+C =0.5
+
+L
+
+L
+
+0.03
+0.02
+0.01
+
+C =0.2
+
+0
+0.5
+
+L
+
+0.55
+
+0.6
+
+0.65
+
+0.7
+
+0.75
+
+0.8
+
+0.85
+
+Mach number [-]
+
+a) AVL-MSES
+0.07
+Quasi−3D
+MATRICSV
+
+0.06
+0.05
+C =0.3
+
+C D [−]
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+0.05
+0.04
+
+Q3D
+MATRICS−V
+
+L
+
+0.04
+CL=0.5
+
+0.03
+
+CL=0.4
+
+0.02
+0.01
+0
+0.5
+
+CL=0.2
+
+0.55
+
+0.6
+
+0.65
+
+0.7
+
+0.75
+
+0.8
+
+Table 2 Results of Q3D solver for transonic drag
+estimation at CL  0.2 compared to MATRICS-V
+Drag coefficient
+Mach number Q3D VGK Q3D MSES MATRICS-V
+0.50
+0.0087
+0.0084
+0.0082
+0.55
+0.0086
+0.0084
+0.0082
+0.60
+0.0085
+0.0084
+0.0083
+0.65
+0.0085
+0.0083
+0.0084
+0.70
+0.0085
+0.0084
+0.0085
+0.73
+0.0086
+0.0085
+0.0086
+0.75
+0.0088
+0.0086
+0.0088
+0.76
+0.0090
+0.0089
+0.0090
+0.77
+0.0096
+0.0095
+0.0094
+0.78
+0.0105
+0.0105
+0.0101
+0.79
+0.0120
+0.0120
+0.0113
+0.80
+0.0143
+0.0142
+0.0131
+0.81
+0.0174
+0.0174
+0.0156
+0.82
+0.0215
+0.0223
+0.0190
+0.83
+0.0253
+0.0277
+0.0232
+0.84
+0.0339
+0.0279
+0.85
+0.0413
+0.0333
+
+0.85
+
+Mach number [-]
+
+b) AVL-VGK
+Fig. 11 CD versus Mach comparison with MATRICS-V.
+
+Table 3 Results of Q3D solver for transonic drag
+estimation at CL  0.3 compared to MATRICS-V
+
+In this study, the maximum takeoff weight (MTOW) of the aircraft is
+considered as the objective function. The wing geometry parameters
+(see Fig. 15) are used as the design variables. The design variables
+together with their initial values and bounds are listed in Table 7.
+The airfoil shapes are generated using fixed camber line (same as
+the airfoils of reference aircraft) and variable thickness. The position
+of the maximum thickness is also assumed to be the same as the
+reference aircraft.
+The MTOW is considered to be the sum of three terms: the wing
+weight, the mission fuel weight, and the weight of the rest of the
+aircraft (the rest weight).
+W to  W w  W f  W rest
+
+(18)
+
+The rest weight is initialized based on the reference aircraft’s actual
+weight and remains constant throughout the optimization. The wing
+weight is estimated using the Elham Modified Weight Estimation
+Technique (EMWET) [28] (see Sec. III.B.3). The fuel weight is
+
+Drag coefficient
+Mach number Q3D VGK Q3D MSES MATRICS-V
+0.50
+0.0104
+0.0103
+0.0102
+0.55
+0.0103
+0.0102
+0.0102
+0.60
+0.0102
+0.0102
+0.0103
+0.65
+0.0102
+0.0102
+0.0104
+0.70
+0.0102
+0.0102
+0.0105
+0.73
+0.0103
+0.0102
+0.0107
+0.75
+0.0108
+0.0108
+0.0110
+0.76
+0.0114
+0.0115
+0.0115
+0.77
+0.0125
+0.0124
+0.0124
+0.78
+0.0141
+0.0136
+0.0137
+0.79
+0.0161
+0.0161
+0.0157
+0.80
+0.0188
+0.0190
+0.0184
+0.81
+0.0221
+0.0229
+0.0219
+0.82
+0.0264
+0.0276
+0.0257
+0.83
+0.0339
+0.0300
+0.84
+0.0413
+0.0348
+0.85
+0.0501
+0.0405
+
+MARIENS, ELHAM, AND VAN TOOREN
+
+Table 4 Results of Q3D solver for transonic drag
+estimation at CL  0.4 compared to MATRICS-V
+
+AR ≥ 8
+
+Drag coefficient
+Mach number Q3D VGK Q3D MSES MATRICS-V
+0.50
+0.0127
+0.0128
+0.0130
+0.55
+0.0126
+0.0127
+0.0130
+0.60
+0.0125
+0.0127
+0.0131
+0.65
+0.0125
+0.0127
+0.0132
+0.70
+0.0125
+0.0128
+0.0134
+0.73
+0.0128
+0.0133
+0.0138
+0.75
+0.0140
+0.0140
+0.0145
+0.76
+0.0149
+0.0146
+0.0155
+0.77
+0.0165
+0.0166
+0.0171
+0.78
+0.0188
+0.0183
+0.0196
+0.79
+0.0217
+0.0217
+0.0232
+0.80
+0.0251
+0.0265
+0.0272
+0.81
+0.0328
+0.0313
+0.82
+0.0396
+0.0354
+0.83
+0.0469
+0.0398
+0.84
+0.0553
+0.0445
+0.85
+0.0644
+0.0503
+
+Apart from the constraints to ensure performance, an additional
+constraint was implemented to ensure that the required fuel for the
+
+(20)
+
+Fokker 100 at Mach 0.8 and CL=0.4
+14
+
+C upper surface MATRICSV
+p
+
+1
+
+Shock wave AVL−MSES
+
+Spanwise position [m]
+
+12
+0.5
+
+10
+
+8
+0
+6
+−0.5
+
+4
+
+Table 5 Results of Q3D solver for transonic drag
+estimation at CL  0.5 compared to MATRICS-V
+
+2
+−1
+
+Drag coefficient
+Mach number Q3D VGK Q3D MSES MATRICS-V
+0.50
+0.0157
+0.0161
+0.0166
+0.55
+0.0155
+0.0160
+0.0166
+0.60
+0.0155
+0.0160
+0.0167
+0.65
+0.0155
+0.0161
+0.0171
+0.70
+0.0158
+0.0164
+0.0177
+0.73
+0.0167
+0.0168
+0.0184
+0.75
+0.0181
+0.0183
+0.0202
+0.76
+0.0201
+0.0201
+0.0225
+0.77
+0.0222
+0.0233
+0.0261
+0.78
+0.0255
+0.0282
+0.0305
+0.79
+0.0290
+0.0372
+0.0350
+0.80
+0.0449
+0.0392
+0.81
+0.0434
+0.82
+0.0478
+0.83
+0.0527
+0.84
+0.0584
+0.85
+0.0640
+
+0
+
+−2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+Longitudinal position [m]
+
+Fig. 12 Contours of pressure coefficient on the wing’s upper surface.
+0.04
+Quasi−3D
+MATRICS−V
+
+0.035
+
+CD [-]
+
+0.03
+0.025
+0.02
+0.015
+0.01
+
+be taken into account in a real wing design. Examples of them are
+the low speed characteristics of the wing (with deployed high
+lift devices), the aircraft stability and control characteristics (e.g.,
+handling quality), and the aeroelastic effects in high speeds (e.g.,
+flutter). However, in this research, the wing MDO is applied to
+demonstrate the potential of the Q3D solver to be used in a wing
+design problem; therefore, not all of these constraints are taken into
+account. Future work can be done by assuming more realistic design
+requirements. In this research, two constraints were defined to take
+into account the design requirements related to segments other than
+cruise. The first constraint ensures the performance at takeoff and
+landing by keeping the wing loading smaller or equal to that of the
+reference aircraft (effect of wing loading on the stall speed):
+
+
+W to
+S
+
+
+
+≤
+
+
+
+W to
+S
+
+
+
+0.005
+
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+C L [-]
+
+Fig. 13 Drag polar of Fokker 100 wing in cruise condition (AVL-MSES
+calculation).
+0.02
+
+Quasi−3D
+MATRICS−V
+
+0.018
+
+C
+
+D
+
+i
+
+0.016
+0.014
+
+C
+
+D
+
+C D [-]
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+554
+
+p
+
+0.012
+C
+
+0.01
+
+D
+
+f
+
+0.008
+
+(19)
+ref
+
+The second constraint was defined to guarantee the performance
+requirements for the climb (especially for the climb gradient in the
+second climb segment with one engine inoperative) [30]. This
+constraint keeps the aspect ratio (AR) larger than typical minimum
+values of turbofan passenger aircraft categories [31,32].
+
+0.006
+0.004
+0.002
+0
+
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+C L [-]
+
+Fig. 14 Various components of drag coefficient for Fokker 100 wing in
+cruise condition (AVL-MSES calculation).
+
+555
+
+MARIENS, ELHAM, AND VAN TOOREN
+
+Table 6
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+CL
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30
+0.35
+0.40
+0.45
+0.50
+0.55
+0.60
+
+Drag components of Fokker 100 wing (CD × 10000) in cruise condition
+
+Total drag
+Pressure drag
+Q3D MATRICS-V Q3D MATRICS-V
+75.15
+80.82
+24.04
+27.73
+75.14
+79.96
+23.16
+25.53
+78.73
+82.65
+24.17
+25.87
+85.15
+89.06
+26.31
+27.15
+95.27
+97.16
+30.31
+29.79
+108.54
+109.44
+36.23
+34.24
+125.69
+125.47
+44.19
+40.70
+146.37
+144.67
+50.60
+47.88
+164.07
+168.39
+59.75
+59.63
+192.11
+199.14
+72.62
+75.74
+230.40
+244.90
+96.03
+104.74
+278.93
+304.28
+128.90
+146.32
+342.55
+380.75
+170.72
+201.80
+
+flight mission can be stored in the wing fuel tanks (available fuel
+volume). The fuel volume is calculated using the mission fuel weight
+and the fuel density (according to Air BP [33]):
+V f req ≤ V f av
+
+(21)
+
+B. Multidisciplinary Design Optimization Framework and Modules
+
+The design structure matrix of the MDO is depicted in Fig. 16,
+including three modules: aerodynamics Ae, performance Pe, and
+weight We. Coupling between different modules (disciplines)
+implies the necessity for an iterative procedure to converge multidisciplinary systems. To avoid this iterative procedure, the feedbacks
+between various disciplines are removed by introducing a set of
+surrogate design variables and compatibility constraints. In Fig. 16,
+W f and W w represent the surrogate values of the fuel weight and the
+wing weight, respectively.
+With the surrogate design variables and constraints, the
+optimization problem can be rewritten in a new form:
+min W to X
+w:r:t X  x; W f ; W w 
+ 
+
+
+W to
+W to
+≤
+subject to
+S
+S ref
+AR ≥ 8
+V f req: ≤ V f av:
+
+Friction drag
+Induced drag
+Q3D MATRICS-V Q3D MATRICS-V
+49.41
+52.02
+1.70
+1.07
+49.48
+52.52
+2.50
+1.91
+49.46
+52.61
+5.10
+4.17
+49.44
+52.54
+9.40
+9.37
+49.32
+52.33
+15.40
+15.04
+49.10
+51.97
+23.20
+23.23
+48.79
+51.54
+32.70
+33.23
+48.43
+52.05
+44.00
+44.74
+48.26
+50.43
+57.00
+58.33
+47.70
+49.65
+71.80
+73.75
+47.13
+48.56
+88.30
+91.60
+45.88
+47.40
+106.60
+110.56
+45.13
+46.27
+126.70
+132.68
+
+required fuel for the cruise using Bréguet’s range equation, whereas
+some statistical factors are used to estimate the fuel weight of the
+other segments of the flight mission (see Table 8). Each fuel fraction
+ratio Mff i indicates the ratio of the total aircraft weight at the end of
+the flight segment to the total aircraft weight at the beginning of the
+segment (see Fig. 17).
+The total fuel weight fraction Mff indicates the consumed fuel as a
+ratio of the total aircraft weight at the end of the flight mission to the
+total aircraft weight at the beginning:
+Mff  Mff 1 · Mff 2 · : : : · Mff n
+
+(22)
+
+Hence, the fuel weight can be determined including 5% of the total
+fuel weight as reserved fuel using the following equation:
+W F  1.051 − Mff MTOW
+
+(23)
+
+2. Aerodynamics Module
+
+To use Bréguet’s range equation for cruise fuel weight estimation,
+the aircraft lift-to-drag ratio is required. The Q3D solver calculates the
+lift-to-drag ratio of the wing. To calculate the total lift-todrag ratio of the aircraft, the drag of the other parts of the aircraft
+(e.g., fuselage, tail) must be added to the drag of the wing. The
+drag of the aircraft without the wing is considered as the rest drag
+and is calculated by subtracting the calculated wing drag from the total
+drag of the reference aircraft. The total drag of the reference aircraft is
+obtained using experimental and flight test data [13]. During each
+function evaluation, the rest drag is normalized by the wing area using
+
+W f  W f
+CDrest  CDrest
+
+W w  W w
+
+ref
+
+Sref
+S
+
+(24)
+
+3. Weight Module
+1. Performance Module
+
+The required fuel for the flight mission is calculated using the
+method presented by Roskam [34]. This method calculates the
+
+In the weight module, the structural weight of the wing is predicted
+using the EMWET tool [28]. The EMWET is a quasi-analytical
+weight estimation method, which uses an analytical approach to size
+
+Fig. 15 Wing geometry variables.
+
+556
+
+MARIENS, ELHAM, AND VAN TOOREN
+
+Table 7
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+Design variables
+Reference values
+Lower bounds
+Upper bounds
+
+Design variables, initial values, and the values of the upper and lower bounds
+b, m cr , m
+28.08 5.60
+20
+3.5
+40
+6.5
+
+λin
+λout Λin , deg Λout , deg t∕cr
+0.64 0.35 16.24
+11.90
+0.12
+0.5
+0.3
+5
+5
+0.08
+0.8
+0.5
+22
+35
+0.15
+
+the wingbox primary structure. The secondary weights (the weights
+of flaps, slats, etc.) are predicted by means of a series of empirical
+equations. Structural and material parameters, the applied loads, and
+the geometrical data of the wing planform and relative airfoils are
+required to implement this method. The validation study done by
+Elham et al. [28], using several passenger aircraft from different
+manufacturers (Fokker, Boeing, and Airbus), has demonstrated an
+average error in the order of 2% for wing weight estimation using
+EMWET. The rest weight is calculated based on actual reference
+data [13].
+C. Optimization Algorithms
+
+Table 8
+
+t∕ck
+0.12
+0.08
+0.15
+
+t∕ct
+0.09
+0.08
+0.15
+
+εt , deg
+−2.00
+−5
+5
+
+Fuel fraction for each segment in simple
+flight missiona
+
+Flight segment
+1) Start and warmup
+2) Taxi
+3) Takeoff
+4) Climb
+5) Cruise
+6) Descent
+7) Landing, taxi, and shutdown
+
+Fuel weight fraction Mff i
+0.990
+0.990
+0.995
+0.980
+
+
+RCT
+1∕ exp VL∕D
+0.990
+0.992
+
+a
+
+Suggested values are by Roskam [34].
+
+Two optimization algorithms are used in the MDO system. The
+SQP algorithm has been shown to work effectively for large,
+nonlinear problems in engineering applications [35]. LOS is an
+algorithm for global exploration that tries to guide random
+exploration toward the region of attraction [36]. This algorithm is
+briefly explained here.
+The main idea behind the LOS algorithm is originated by applying
+smoothing techniques to noisy functions. See [36,37] for more
+detailed information. LOS works as follows:
+1) Find the local optimum, starting from an initial point. Set this
+optimum as the current optimum.
+2) Perform local searches starting from K uniform sampled points
+inside a sphere (with radius r) around the current optimum. Each time
+a new optimum is found, the sampling procedure restarts around the
+new optimum. At the point where no new optimum is found, the
+algorithm proceeds to the next step.
+3) A smoothed (piecewise-constant) function is constructed using
+the local optima of the K observed samples. Consequently, a local
+search is performed on the smoothed function. The local optima
+found from the smoothed function is then used as the starting point to
+
+Fig. 16 Design structure matrix of MDO system with aerodynamics,
+performance, and weight modules.
+
+Fig. 17 Normal flight mission definition with flight segments.
+
+Fig. 18 Roadmap of the LOS algorithm.
+
+557
+
+MARIENS, ELHAM, AND VAN TOOREN
+
+Table 9
+
+Reference wing
+-SQP
+-LOS
+
+Optimization results using two different algorithms
+
+Reduction in W to , % b, m cr , m
+28.08 5.60
+2.53
+26.17 5.99
+2.95
+26.11 5.85
+
+λin
+λout Λin , deg Λout , deg t∕cr
+0.64 0.35 16.24
+11.90
+0.12
+0.63 0.32 16.62
+11.52
+0.13
+0.66 0.30 14.79
+6.68
+0.14
+
+IV.
+
+Optimization Results
+
+Table 9 summarizes the results of the optimizations using both
+SQP and LOS algorithms. The optimized planforms using both
+algorithms are depicted in Fig. 19. From Table 9, it can be observed
+that the LOS algorithm shows a slightly higher reduction in the
+aircraft MTOW compared to the SQP algorithm. However, finding
+this greater reduction comes at the cost of increased computational
+time. The optimization using the SQP algorithm required 14.5 h,
+whereas the LOS algorithm required 331 h (on a computer having an
+Intel Core2Duo E4400 (2.00 Ghz), with 2 Gb RAM).
+
+V.
+
+Conclusions
+
+A quasi-three-dimensional aerodynamic solver has been
+developed to analyze wing aerodynamics in a rapid way while
+having high accuracy. This solver was validated using results of a
+higher-fidelity CFD code called MATRICS-V for a typical turboprop
+and a typical turbofan passenger aircraft. The validation of the Q3D
+solver showed that the results are within 2% error compared to the
+
+14
+
+Reference wing
+SQP
+LOS
+
+12
+
+10
+
+Spanwise position [m]
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+perform a local search of the real-values objective function. If this
+optimum is the new overall optimum, then the process (starting from
+step 2) is repeated using the current optimum. The whole process is
+repeated until there is no new overall optimum obtained for a given
+number of times.
+The LOS optimization code developed by Rizzo and Frediani [38]
+is employed in this research. The whole roadmap of the LOS
+algorithm is shown in Fig. 18.
+
+8
+
+6
+
+4
+
+2
+
+0
+−2
+
+0
+
+2
+
+4
+
+6
+
+Longitudinal position [m]
+
+Fig. 19 Planform geometry of the optimized wings using SQP and LOS
+algorithms.
+
+t∕ck
+0.12
+0.09
+0.09
+
+t∕ct
+0.09
+0.11
+0.10
+
+ϵt , deg
+−2.00
+−2.62
+−4.59
+
+MATRICS-V results for both subsonic and transonic flow cases
+below the drag divergence Mach number.
+The Q3D solver has been used in a wing optimization task. The
+wing configuration of a mid-range passenger aircraft has been used as
+a test case. Two optimization algorithms were used: the sequential
+quadratic programming (SQP) algorithm and the local optima
+smoothing (LOS) for global optimization algorithm. The LOS
+algorithm is capable of finding the global optimum. Finding the
+global optimum in such an optimization task comes at the cost
+of longer computational times. For this optimization problem, the
+LOS algorithm requires about 22 times more computational time
+compared to SQP to find a slightly better optimum (the amount of
+reduction in MTOW achieved by LOS is less than 0.5% higher than
+SQP). Therefore, it can be concluded that the SQP algorithm is a
+better choice for such wing shape optimizations in the conceptual
+design phase.
+
+References
+[1] Sobieszczanski-Sobieski, J., and Haftka, R. T., “Multidisciplinary
+Aerospace Design Optimization: Survey of Recent Developments,”
+Structural Optimization Journal, Vol. 14, No. 14, Aug. 1997, pp. 1–23.
+doi:10.1007/BF01197554
+[2] Keane, A. J., and Nair, P. B., Computational Approaches for Aerospace
+Design: The Pursuit of Excellence, Wiley, Hoboken, NJ, 2005, p. 582.
+[3] Rai, M. M., and Madavan, N. K., “Aerodynamic Design Using Neural
+Networks,” AIAA Journal, Vol. 38, No. 1, 2000, pp. 173–182.
+doi:10.2514/2.938
+[4] Willcox, K., and Wakayama, S., “Simultaneous Optimization of a
+Multiple-Aircraft Family,” Journal of Aircraft, Vol. 40, No. 4, 2003,
+pp. 616–622.
+doi:10.2514/2.3156
+[5] Cosyn, P., and Vierendeels, J., “Numerical Investigation of Low-AspectRatio Wings at Low Reynolds Numbers,” Journal of Aircraft, Vol. 43,
+No. 3, 2006, pp. 713–722.
+doi:10.2514/1.16991
+[6] Gern, F. H., Naghshineh-Pour, A. H., Sulaeman, E., and Kapania, R. K.,
+“Structural Wing Sizing for Multidisciplinary Design Optimization
+of a Strut-Braced Wing,” Journal of Aircraft, Vol. 38, No. 1, 2001,
+pp. 1006–1014.
+doi:10.2514/2.2747
+[7] Hindman, R., Crist, N., Williams, B., Chi, X., Choo, Y., and Shih, T. I.P., “Q3D-Wing: Validation of a Modern Lifting-Line Method for
+Application to Clean and Iced Wings,” AIAA Paper 2006-1268, 2006.
+[8] Hileman, J. I., Spakovszky, Z. S., and Drela, M., “Airframe Design for
+Silent Aircraft,” AIAA Paper 2007-453, 2007.
+[9] Meheut, M., and Bailly, D., “Drag-Breakdown Methods from Wake
+Measurements,” AIAA Journal, Vol. 46, No. 4, 2008, pp. 847–862.
+doi:10.2514/1.29051
+[10] Flandro, G. A., McMahon, H. M., and Roach, R. L., Basic
+Aerodynamics: Incompressible Flow, Cambridge Univ. Press, New
+York, 2012, p. 422.
+[11] Wright, J. R., and Cooper, J. E., Introduction to Aircraft Aeroelasticity
+and Loads (Aerospace Series), Wiley, Hoboken, NJ, 2007, p. 499.
+[12] Holt, D. R., “Introduction to Transonic Aerodynamics of Aerofoils and
+Wings,” ESDU Data Item 90008, London, U.K., April 1990.
+[13] Obert, E., Aerodynamic Design of Transport Aircraft, IOS Press,
+Amsterdam, 2009, p. 638.
+[14] Drela, M., “Simultaneous Optimization of the Airframe, Powerplant,
+and Operation of Transport Aircraft,” Proceedings of the 2nd Aircraft
+Structural Design Conference, Royal Aeronautical Society, London,
+Oct. 2010.
+[15] Drela, M., “N+3 Aircraft Concept Designs and Trade Studies, Volume 2
+(Appendices): Design Methodologies for Aerodynamics, Structures,
+Weight, and Thermodynamic Cycles (Appendix A: TASOPT—
+Transport Aircraft System OPTimization),” NASA Final Rept. CR2010-216794/VOL2, Dec. 2010.
+
+Downloaded by Technische Universiteit Delft on September 14, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C032261
+
+558
+
+MARIENS, ELHAM, AND VAN TOOREN
+
+[16] Desktop Aeronautics, Inc., “Oblique Flying Wings: An Introduction
+and White Paper,” http://www.desktop.aero/library/ofwwhitepaper.pdf,
+June 2005.
+[17] Drela, M., and Youngren, H., “Athena Vortex Lattice (AVL),” Ver. 3.32,
+Massachusetts Inst. of Technology, Cambridge, MA, 2011.
+[18] Abbott, I. H., and Von Doenhoff, A. E., Theory of Wing Sections:
+Including a Summary of Airfoil Data, Dover Books on Physics and
+Chemistry, Dover, New York, 1959, p. 693.
+[19] Eppler, R., Airfoil Design and Data, Springer–Verlag, New York,
+1990, p. 562.
+[20] Selig, M. S., Lyon, C. A., and Giguere, P., Summary of Low-Speed
+Airfoil Data, Vol. 2, SoarTech Publ., Virgnia Beach, VA, 1995.
+[21] Drela, M., and Youngren, H., “XFOIL: Subsonic Airfoil Development
+System,” Ver. 6.97, Massachusetts Inst. of Technology, Cambridge,
+MA, 2008.
+[22] Drela, M., “XFOIL: An Analysis and Design System for Low Reynolds
+Number Airfoils,” Low Reynolds Number Airfoil Aerodynamics, edited
+by Mueller, T. J., Lecture Notes in Engineering, Vol. 54, Springer–
+Verlag, New York, 1989, pp. 1–12.
+[23] Royal Aeronautical Society, “VGK Method for Two Dimensional
+Aerofoil Sections,” ESDU Data Item 69028, London, Sept. 1996.
+[24] Lock, R., and Williams, B., “Viscous-Inviscid Interactions in External
+Aerodynamics,” Progress in Aerospace Sciences Journal, Vol. 24,
+No. 2, 1987, pp. 51–171.
+doi:10.1016/0376-0421(87)90003-0
+[25] Drela, M., “MSES: Multi-Element Airfoil Design/Analysis Software,”
+Ver. 3.07, Massachusetts Inst. of Technology, Cambridge, MA, 2007.
+[26] Drela, M., and Giles, M. B., “Viscous-Inviscid Analysis of Transonic
+and Low Reynolds Number Airfoils,” AIAA Journal, Vol. 25, No. 10,
+1987, pp. 1347–1355.
+doi:10.2514/3.9789
+[27] van der Wees, A., J., van Muijden, J., and van der Vooren, J., “A Fast and
+Robust Viscous-Inviscid Interaction Solver for Transonic Flow About
+Wing/Body Configurations on the Basis of Full Potential Theory,”
+AIAA Paper 1993-3026, July 1993.
+
+[28] Elham, A., La Rocca, G., and van Tooren, M., “Development
+and Implementation of an Advanced, Design-Sensitive Method for
+Wing Weight Estimation,” Aerospace Science and Technology, Vol. 29,
+2013, pp. 100–113.
+[29] Mariens, J., Elham, A., and van Tooren, M., “Influence of Weight
+Modeling on the Outcome of Wing Design Using Multidisciplinary
+Design Optimization Techniques,” Aeronautical Journal, Vol. 117,
+No. 1195, 2013, pp. 871–895.
+[30] Torenbeek, E., Synthesis of Subsonic Airplane Design, Delft Univ.
+Press, Delft, The Netherlands, 1976, p. 598.
+[31] Jenkinson, L., Rhodes, D., and Simpkin, P., Civil Jet Aircraft Design,
+AIAA Education Series, AIAA, Reston, VA, 1999, p. 418.
+[32] Raymer, D. P., “Aircraft Design: A Conceptual Approach,” AIAA,
+Reston, VA, 2012, p. 1044.
+[33] Air BP Ltd., “Handbook of Products,” http://www.bp.com/liveassets/
+bp_internet/aviation/air_bp/STAGING/local_assets/downloads_pdfs/
+a/air_bp_products_handbook_04004_1.pdf [last accessed June 2012].
+[34] Roskam, J., Airplane Design, Part I, DARcorp., Kansas, Lawrence,
+1999, p. 202.
+[35] Yang, X. S., Engineering Optimization: An Introduction with
+Metaheuristic Applications, Wiley, Hoboken, NJ, 2010, p. 347.
+[36] Addis, B., Locatelli, M., and Schoen, F., “Local Optima Smoothing for
+Global Optimization,” Optimization Methods and Software Journal,
+Vol. 20, Nos. 4–5, Aug. 2005, pp. 417–437.
+doi:10.1080/10556780500140029
+[37] Addis, B., and Leyffer, S., “A Trust-Region Algorithm for Global
+Optimization,” Computational Optimization and Applications Journal,
+Vol. 35, No. 3, June 2006, pp. 287–304.
+doi:10.1007/s10589-006-8716-2
+[38] Rizzo, E., and Frediani, A., “Application of Optimization Algorithms
+to Aircraft Aerodynamics,” Variational Analysis and Aerospace
+Engineering, edited by Buttazzo, G., and Frediani, A., Springer–Verlag,
+New York, 2009, pp. 419–446.
+
+

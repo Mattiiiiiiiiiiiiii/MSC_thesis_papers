@@ -1,0 +1,677 @@
+TO CFD OR NOT TO CFD? COMPARING RANS AND VISCOUS PANEL
+METHODS FOR AIRFOIL SHAPE OPTIMIZATION
+Eytan J. Adler1 , Alasdair Christison Gray1 & Joaquim R.R.A. Martins1
+1 MDO Lab, University of Michigan, Ann Arbor, Michigan, USA
+
+Abstract
+As the computational resources available to aerodynamicists increase, so does the number of tools with which
+they can analyze their designs. The key skill of a good engineer is understanding when each tool produces
+realistic results. Even if no available tool can capture all relevant physical phenomena, this knowledge allows
+engineers to alter their designs to account for the missing physics. However, with the increasing use of numerical optimization for aerodynamic shape design, the opportunity for this intuition to shape the design is reduced
+as the optimizer makes design decisions based purely on numerical results. This makes the choice of analysis
+method critical. Previous studies have compared panel-based aerodynamic tools and RANS CFD to predict
+and analyze the key aerodynamic phenomena in different flight conditions. But few, if any, have compared the
+impact of proper tool selection on the optimal aerodynamic shapes. In this work we show the effect of aerodynamic analysis method selection on the optimal aerodynamic shape and the consequences of choosing one
+that does not capture the relevant flow physics. In particular, we show that modelling boundary layer transition
+can produce significantly lower drag designs across almost the entire range of Reynolds numbers at which
+airfoils are used in practice. Additionally, we find that the simple compressibility correction used in XFOIL is
+sufficient to produce well performing airfoils for flight Mach numbers up to 0.65, after which point the ability for
+the flow solver to model shock formation is critical. Our results will provide aerodynamicists with the data and
+intuition to make informed decisions when selecting analysis methods for optimization.
+Keywords: Airfoil Shape Optimization, Reynolds-Averaged Navier–Stokes, Viscous Panel Method, XFOIL,
+ADflow, CST
+
+1.
+
+Introduction
+
+The computational power available to engineers has continued to increase in recent decades. This
+has enabled aerodynamic tools to be used not just for analysis, but for optimization. Reynoldsaveraged Navier-Stokes (RANS) computational fluid dynamics (CFD) has become the de-facto tool
+for design calculations and much research focuses on developing the methods necessary to use
+it for aerodynamic shape optimization (ASO) [27]. The key development in making RANS-based
+optimization practical was the development of the adjoint method for efficiently computing derivatives
+of quantities like lift and drag with respect to large numbers of design variables. The technique
+was initially applied to structural optimization by Arora and Haug [1] and then pioneered in CFD by
+Jameson [11]. Today, there are numerous frameworks capable of state of the art ASO with RANS
+CFD, many of which are open source [19, 10, 7]. Although some works have performed ASO using
+higher-fidelity large eddy simulation (LES) [13], these methods have been limited to gradient-free
+optimizers with few design variables and are thus still impractical for common use.
+Despite the strengths of RANS modelling, particularly for high Reynolds number, transonic flows
+involving little or no flow separation, there are scenarios in which other methods produce more accurate results. Drag is highly sensitive to boundary layer transition at moderate Reynolds numbers and
+lift levels. At these flight conditions RANS CFD still assumes fully turbulent flow, and thus may be
+outperformed by viscous panel methods that model transition, such as XFOIL [22, 2]. Although an
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+
+experienced aerodynamicist may be able to intuitively account for these modelling errors when manually designing an airfoil using RANS CFD, an optimizer cannot and will simply design the shape that
+produces the best numerical result from the tool it has been given. Despite the recent demonstrations
+of RANS-based ASO including transition modelling through the en method [24, 26], amplification factor transport [9], or modified turbulence models [23], these methods often require parameter tuning,
+are generally more expensive than typical RANS, and are not widely available.
+In this work, we compare airfoil shape optimizations performed using widely-available RANS CFD
+and viscous panel codes with varying Reynolds numbers, Mach numbers and target lift coefficients.
+In doing so, we demonstrate the influence of the modelled flow physics on the optimal solution and
+provide a quantitative prediction of the conditions under which one tool is preferable over the other.
+
+2. Methods
+2.1 Viscous panel code: XFOIL
+The panel code we will use is XFOIL, a widely used code for airfoil analysis by Drela and Youngren [5].
+It uses an inviscid potential flow model coupled with a Karman–Tsien compressibility correction which
+is valid up to the sonic limit and a two-equation viscous boundary layer model with transition prediction
+using the en method [28].
+Accurate derivatives are important to efficiently and tightly converge the optimization problem. The
+existing XFOIL interface does not give access to these derivatives. We use a complex-safe version of
+XFOIL, called CMPLXFOIL1 [14], which enables us to use the complex step method [21] to compute
+the derivatives. This approach requires a similar computational cost as finite differencing, but provides
+exact derivatives.
+Unfortunately, XFOIL is known to have unreliable derivatives due to its cut-cell fitted transition treatment [31]. Section 3.3 further discusses this problem and our workaround.
+
+2.2
+
+RANS CFD: ADflow
+
+The CFD solver we use is ADflow2 , a finite-volume solver for structured multiblock and overset
+meshes [19] that makes up part of the the open-source ASO framework, MACH-Aero3 . ADflow
+solves the compressible Euler, laminar Navier-Stokes, and RANS equations with a second-order
+accurate spatial discretization. In this work, we solve the compressible RANS equations with the
+QCR-200 Spalart–Allmaras turbulence model. The solver employs a variety of numerical methods
+to converge to a steady-state solution, including multigrid, approximate Newton-Krylov, and NewtonKrylov algorithms [30]. The combination of these various iterative methods makes ADflow robust and
+fast. ADflow also solves the discrete adjoint equations, enabling efficient computation of derivatives
+independent of the number of design variables. The solution of the discrete adjoint in ADflow relies
+on the ADjoint approach, which uses algorithmic differentiation (AD) to compute partial derivatives
+and a Krylov method to solve the linear system [16].
+To warp the CFD mesh to account for geometry changes during optimization, we use another component of MACH-Aero: IDWarp4 [25]. IDWarp uses an inverse-distance weighting method as proposed
+by Luke et al. [18].
+The mesh used in all ADflow optimizations is shown in Figure 1. The surface mesh contains 120
+cells along each of the upper and lower surfaces, and 2 cells across the trailing edge (shown in
+Figure 1c). We then extrude the surface mesh to a distance of 100 chordlengths using the hyperbolic
+mesh generator pyHyp5 . We choose a first cell height of 3 × 10−6 c to ensure a Y+ value close to unity
+at Re = 107 . The resulting mesh contains 31,232 cells.
+1 github.com/mdolab/CMPLXFOIL
+2 github.com/mdolab/adflow
+3 github.com/mdolab/MACH-Aero
+4 github.com/mdolab/idwarp
+5 github.com/mdolab/pyhyp
+
+2
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+Y
+
+Z
+
+X
+
+(a) Whole airfoil
+
+-0.02
+
+0
+
+0.02
+
+0.99
+
+0.995
+
+x/c
+
+x/c
+
+(b) Leading edge
+
+(c) Trailing edge
+
+1
+
+Figure 1 – Mesh on the baseline NACA 0012 geometry, used for RANS optimizations with ADflow.
+
+2.3
+
+Airfoil parameterization
+
+We use a class-shape transformation (CST) parameterization [17], which provides a straightforward
+way to represent an arbitrary airfoil shape with an arbitrary number of design variables. The parameterization is also easily differentiated, making it a good scheme for gradient-based optimization.
+Our CST implementation is integrated into MACH-Aero’s open source geometry parameterization
+tool: pyGeo6 . By doing this, it can be used with ADflow’s existing interface.
+We use four CST coefficients to parameterize each of the upper and lower surfaces. In this study, we
+run over 500 optimizations to explore trends in the design space. This means we need optimizations
+that converge quickly and reliably. As the number of CST coefficients increases, their conditioning
+deteriorates [4]. This can cause the optimizer to drive neighboring CST coefficients to large, equaland-opposite values with little change to the airfoil geometry. While four CST coefficients do not
+rigorously cover the entire airfoil design space, the trends we want to investigate still hold and the
+conditioning is not a problem.
+
+2.4
+
+Optimizer: SNOPT
+
+Gradient based optimizers are the only practical choice for optimization problems involving expensive models and many design variables [20]. We use the sequential quadratic programming (SQP)
+6 github.com/mdolab/pygeo
+
+3
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+
+algorithm SNOPT [8] through pyOptSparse’s interface7 [29].
+For the XFOIL cases, SNOPT’s optimality and feasibility are set to 10-6 . This results in a decrease in
+optimality of roughly five orders of magnitude. For the ADflow cases, the optimality is decreased to
+10-8 , giving an optimality decrease of roughly seven orders of magnitude.
+
+2.5
+
+Optimization problem
+
+We use the same optimization problem formulation, shown below, throughout this work to fairly compare the two aerodynamic models. The problem is a single-point drag minimization. It is subject
+to a target lift coefficient constraint and geometric constraints that encourage the optimizer toward
+practical airfoil shapes. We constrain the cross sectional area and leading edge radius of the airfoil to
+be at least 85% of the values in the original NACA 0012 geometry. The lower bound on area ensures
+that the optimizer produces airfoil sections with reasonable thickness, and by proxy structural properties. Although we are not explicitly constraining the maximum t/c of the section, which is commonly
+used as a proxy for structural properties, Kaiyoom et al. [12] shows a strong correlation between the
+sectional area and max t/c of the airfoils in the UIUC airfoil database. The leading edge radius constraint uses thickness values close to the leading edge to compute a radius value that is constrained
+to avoid geometries with overly sharp leading edges. This constraint is a low-cost approach to ensuring the optimizer does not drastically reduce the low-speed, high-lift performance of the airfoil. We
+constrain the thickness of the airfoil to be at least 25% of the baseline NACA 0012 geometry at all
+points, primarily to avoid self intersection profiles. Finally, we enforce that the first upper and lower
+CST coefficients are equal and opposite to ensure C2 continuity at the leading edge.
+minimize
+with respect to
+
+Cd
+CST coefficients
+Angle of attack
+
+subject to
+
+Cl = Cl,desired
+A
+Ainitial ≥ 0.85
+RLE
+RLE, init ≥ 0.85
+t
+tinitial ≥ 0.25
+
+First upper CST coefficient = first lower CST coefficient
+It should be noted that single-point ASO generally produces geometries with very narrow operating
+windows that exhibit worse performance than human-generated designs in off-design conditions [6,
+15], and is therefore of little use for practical design tasks. However, using multi-point optimizations
+would lessen our ability to draw conclusions on which analysis tool is most suitable in a specific flight
+condition, which is the primary goal of this paper.
+
+2.6
+
+Optimization Studies
+
+There are two physical phenomena that are particularly interesting for this application: boundary layer
+transition and shocks in transonic flight conditions.
+XFOIL models boundary layer transition from laminar to turbulent, whereas ADflow assumes fully
+turbulent flow. This enables XFOIL to design an airfoil shape that delays the boundary layer transition,
+reducing drag. For a given airfoil, a higher Reynolds number causes the boundary layer to transition
+closer to the leading edge. The expectation is that there is some Reynolds number above which the
+boundary layer will transition so close to the leading edge that XFOIL and ADflow will give a similar
+result. Below that Reynolds number, the XFOIL optimization is expected to return lower drag airfoils
+compared to the ADflow optimization by delaying transition. To investigate this behavior, we run a
+7 github.com/mdolab/pyoptsparse
+
+4
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+
+series of optimizations at a range of Reynolds numbers from 4×105 to 1×108 , which spans a large
+range of applications from RC aircraft (1–5×105 ) through commercial transport aircraft (5–20×106 )
+to naval propulsors (108 ) [3]. The optimized designs from each tool are analyzed in XFOIL to fairly
+compare the drag and boundary layer transition behavior.
+ADflow accurately predicts transonic flow, including shocks, using the compressible RANS equations,
+while XFOIL’s compressibility correction is incapable of this. We expect this to give the ADflow optimization a substantial advantage over the XFOIL optimization in transonic flight conditions where
+compressibility effects become important. To quantify the impact of ignoring shocks in transonic optimizations, we run a sweep of optimizations at Mach numbers ranging from 0.1 to 0.8 with all else
+held constant. The optimized designs are both analyzed in ADflow and XFOIL to compare drag and
+inspect the impact of shocks on the airfoils.
+To view the relevant flow features, we visualize the airfoils as shown in Figure 2. The airfoil shape
+is colored by skin friction coefficient, C f . The colormap is centered at a skin friction coefficient of
+zero; red indicates a positive value and blue indicates a negative value. The pressure coefficient,
+Cp , is displayed with regions around the airfoil’s surface. The magnitude of the pressure coefficient is
+proportional to the distance the region extends normal to the airfoil’s surface. Red regions indicate the
+pressure coefficient is positive (higher than freestream pressure) and blue regions are negative (lower
+than freestream pressure). Through this visualization, we can identify boundary layer transition,
+
++cp
+
+cf
+
+boundary layer
+transition
+
+cp
+
+separation ( cf)
+Figure 2 – To show the flow features around the airfoil, we plot the airfoil shape colored by the skin
+friction coefficient. Pressure coefficient is displayed in regions around the airfoil surface where the
+height of the region normal to the surface represents the pressure coefficient magnitude. This
+enables easy identification of flow separation, boundary layer transition, and shocks.
+shocks, and flow separation. Boundary layer transition manifests as a sudden increase in skin friction
+coefficient and slight increase in pressure. Shocks appear as sudden, large increases in pressure.
+Separation is shown as negative (blue) skin friction because it is associated with flow reversal.
+
+3. Results
+3.1 Reynolds number
+We first investigate the impact of boundary layer transition modelling on airfoil optimization by optimizing with both solvers at a range of Reynolds numbers with all else constant. We choose a freestream
+Mach number of 0.3 to avoid significant compressibility effects and thus isolate the effect of viscous
+drag. The target lift coefficient is 0.5. The XFOIL optimization is expected to have an advantage for
+the low to mid Reynolds numbers because it can design an airfoil to delay boundary layer transition.
+ADflow assumes the boundary layer is fully turbulent, so it cannot give the optimizer the needed information to maintain a laminar boundary layer. As the Reynolds number increases, we expect the
+transition location on the optimized airfoils to move forward, eventually reaching the leading edge.
+Once XFOIL is fully turbulent, we expect its airfoil to approach ADflow’s because the boundary layers
+then share similar properties. We have also included a second XFOIL optimization where the boundary layer is tripped at the leading edge. This fully turbulent boundary layer allows XFOIL to simulate
+5
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+
+similar conditions to ADflow. We therefore expect the airfoils optimized with turbulent XFOIL to be
+more similar to the ADflow optimized designs in both shape and drag coefficient.
+Figure 3 plots the drag coefficients of the airfoils optimized with the three solvers, computed with the
+free-transition version of XFOIL. The shape, pressure distribution, and skin-friction distribution are
+also plotted for a small selection of the cases. The airfoils that were not optimized with this solver are
+re-trimmed to the correct lift level to ensure a fair comparison. When both are analyzed in XFOIL,
+there is a consistent 20–25 drag count difference between airfoils optimized with XFOIL and ADflow,
+with the XFOIL optimized designs having lower drag.
+0.010
+0.009
+
+ADflow
+
+0.008
+
+ADflow
+
+XFOIL drag coefficient
+
+ADflow
+Turbulent XFOIL
+
+0.007
+Turbulent XFOIL
+Turbulent XFOIL
+
+0.006
+
+Optimized in ADflow
+
+0.005
+Optimized in turbulent XFOIL
+0.004
+
+Optimized in XFOIL
+
+0.003
+0.002
+106
+
+107
+Reynolds number
+
+108
+
+Figure 3 – When both are analyzed in XFOIL, airfoils optimized with XFOIL consistently achieve
+20–25 lower drag counts than those optimized with ADflow.
+
+Optimized in XFOIL
+analyzed in XFOIL
+
+Optimized in ADflow
+analyzed in XFOIL
+
+Optimized in turbulent XFOIL
+analyzed in XFOIL
+4 × 105
+
+106
+
+4 × 106
+
+107
+
+4 × 107
+
+108
+
+Reynolds number
+
+Figure 4 – Airfoils from the Reynolds number sweep analyzed in XFOIL. The airfoils optimized with
+XFOIL avoid separation and delay transition, but are impractically thick at high Reynolds numbers.
+When optimizing with XFOIL, the optimizer appears to design the airfoil shape primarily with transition
+delay in mind. The ADflow and XFOIL optimized designs are most similar at the lowest studied
+Reynolds numbers (≤106 ). At these points, XFOIL can easily achieve a fully laminar boundary.
+ADFlow, as always, is fully turbulent, meaning that these airfoil geometries are not altered significantly
+to delay transition. The difference between the designs at these Reynolds numbers is that the XFOIL
+6
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+
+designs have a flatter upper surface pressure distribution as the laminar boundary layer is more
+susceptible to separation. In ADflow, the fully turbulent boundary layer can tolerate a stronger adverse
+pressure gradient, but when analyzed in XFOIL they transition, and thus have higher drag. As the
+Reynolds number increases, the airfoils optimized in XFOIL display increasingly extreme geometric
+features designed to delay transition. Specifically, the location of maximum thickness shifts backward
+and the maximum thickness increases to the point where the minimum area constraint is inactive
+for most of the XFOIL-optimized airfoils. Both of these changes are aimed at maintaining a strongly
+favourable pressure gradient over as large a portion of the airfoil as possible to delay transition.
+For most Reynolds numbers studied, the airfoils optimized with the fully turbulent version of XFOIL
+are similar in both shape and performance to those optimized with ADflow.
+Although one interpretation of these results is that modelling transition is important for shape optimization at all studied Reynolds numbers, we believe a more practical recommendation would be
+that it is of most importance at Reynolds numbers up to 107 . Above this level, the greatly increased
+thickness of designs optimized with XFOIL would likely lead to separation and increased drag not
+captured by XFOIL.
+
+3.2
+
+Mach number
+
+Next, we investigate the applicability of each flow solver to airfoil optimization at different Mach numbers. Our hypothesis is that, because it cannot model shock formation, optimization with XFOIL will
+produce airfoils that delay separation, but ignore the impact of shocks in transonic conditions. Conversely, ADflow should be able to create designs that reduce the strength of shocks or eliminate them
+altogether, vastly reducing the drag compared to the XFOIL designs. To test this hypothesis, we perform optimizations with XFOIL and ADflow at Mach numbers from 0.1 to 0.8, holding the Reynolds
+number at 10 million and the target lift coefficient at 0.5.
+Following optimization, we analyze all XFOIL optimized designs in ADflow, re-trimmed to the target
+lift coefficient, to analyze their performance in fully compressible flow. Figure 5 compares the drag
+coefficients of the airfoils optimized with each solver, computed using the same solver. The top
+plot shows the drag values computed in ADflow, and the bottom in XFOIL. Figure 6 compares the
+airfoil shapes, pressure distributions, and friction coefficient distributions for all four combinations of
+optimization and analysis solvers at a selection of Mach numbers.
+Comparing the results computed by ADflow, the point at which it is critical to consider transonic flow
+conditions is clear. In Figure 5, the drag of the XFOIL optimized designs diverges above Mach 0.65
+as strong shocks begin to appear in their pressure distributions. At Mach 0.8 the drag of the XFOIL
+optimized design is more than four times greater than the airfoil designed in ADflow, which remains
+shock-free.
+Another reason that XFOIL may not be suitable for optimization at Mach numbers greater than 0.65
+is that wings designed to fly at these speeds are likely swept. Swept wing boundary layers often
+transition due to crossflow instabilities rather than via linear instabilities related to Tollmien-Schlichting
+wave growth. The latter is the only mechanism through which XFOIL predicts transition. This is
+particularly the case under the kind of strong favourable pressure gradients that XFOIL-optimized
+airfoils tend to exhibit in order to suppress linear instability transition.
+
+7
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+
+0.040
+
+ADflow drag coefficient
+
+0.035
+0.030
+0.025
+0.020
+0.015
+Optimized in XFOIL
+
+0.010
+
+Optimized in ADflow
+
+0.005
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.7
+
+0.8
+
+XFOIL drag coefficient
+
+0.010
+0.008
+Optimized in ADflow
+
+0.006
+0.004
+
+Optimized in XFOIL
+0.002
+0.000
+0.1
+
+0.2
+
+0.3
+
+0.4
+0.5
+Mach number
+
+0.6
+
+Figure 5 – Because XFOIL cannot model shocks, it produces similar optimum designs at varying
+Mach numbers. This results in wave drag and shock-induced separation above Mach 0.65 and over
+four times the drag of ADflow’s design at Mach 0.8.
+Optimized in XFOIL
+analyzed in ADflow
+Optimized in XFOIL
+analyzed in XFOIL
+Optimized in ADflow
+analyzed in ADflow
+Optimized in ADflow
+analyzed in XFOIL
+0.1
+
+0.5
+
+0.65
+
+0.7
+
+0.75
+
+0.8
+
+Mach number
+
+Figure 6 – Optimization in XFOIL is able to delay transition at lower Mach numbers, but pays a wave
+drag penalty in the transonic regime.
+
+3.3
+
+Multimodality in XFOIL
+
+When running optimizations, we observe multimodal behavior in XFOIL. Initializing the optimization
+with the same shape but at two different angles of attack produces two different optimal designs.
+To investigate this behavior, we run two optimizations: one starting from an angle of attack of 4
+
+8
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+
+degrees, the other from an angle of attack of 5 degrees. They both start from a NACA 0012 (using
+four CST coefficients on either surface) and are run at Mach 0.3, a Reynolds number of 1 million, and
+a target lift coefficient of 0.5. Both optimizations converge successfully, decreasing the optimality by
+six orders of magnitude and achieving feasibilities on the order of 10-13 (as defined by SNOPT). We
+then draw a line in the nine-dimensional design space between the two optimums and evaluate the
+drag in XFOIL along that line.
+Figure 7 shows the result of this procedure. This behavior hurts the performance of a gradient
+based optimizer because it creates fictitious optima, which are the source of the multimodal behavior
+we observe. Furthermore, the derivatives often do not point in the true downhill direction. There
+is a clear pattern in the objective function between the two optima that results from the transition
+treatment. Every dip corresponds to the transition location moving across one panel. By increasing
+the number of panels, the wavelength of this pattern decreases.
+
+0.00483
+0.00482
+XFOIL drag coefficient
+
+0.00481
+
+284 panels
+
+0.00480
+0.00479
+0.00478
+
+140 panels
+
+0.00477
+0.00476
+0.00475
+
+Start optimization at
+4 angle of attack
+
+Linear variation between two optimal designs
+
+Start optimization at
+5 angle of attack
+
+Figure 7 – Because of XFOIL’s transition treatment, the objective function is not smooth. To make it
+as smooth as possible while keeping source code changes to a minimum, we increase the number
+of panels to CMPLXFOIL’s maximum of 284.
+In an attempt to limit this problem without making substantial changes to the CMPLXFOIL source
+code, we use 284 panels—the maximum number possible in CMPLXFOIL. We also initialize the
+XFOIL optimizations from the optimized ADflow shape to ensure consistent and fair results. In the
+cases where initializing from the ADflow result causes discontinuities in the trend of airfoil designs,
+we initialize the XFOIL optimizations from a neighboring XFOIL optimization.
+
+4.
+
+Conclusions
+
+For aerodynamic shape optimization to produce useful results, the aerodynamic model used must
+capture the relevant flow physics. In this paper we compare optimal airfoil designs produced using
+XFOIL, a viscous panel code, and ADflow, a compressible RANS finite volume code, to identify which
+produces better designs in different flight regimes. Specifically, we investigated at which Reynolds
+numbers the ability to model transition is critical and at which Mach numbers it is critical to be able to
+model shock formation.
+9
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+
+We find that above Mach 0.65, the drag coefficients of the XFOIL and ADflow optimized results
+diverge due to wave drag that cannot be modelled by XFOIL. Below Mach 0.65 and at moderate
+Reynolds numbers of 5–10 million, the XFOIL result delays separation far more than ADflow’s airfoil,
+which affords it 30% drag savings (as measured by XFOIL). At Reynolds numbers below 5 million, XFOIL’s boundary layer model allows it to avoid separation (and separation-induced transition).
+Above Reynolds numbers of 10 million, optimization in XFOIL produces impractical results with high
+thickness to chord ratios.
+
+Acknowledgements
+The first author would like to thank the Department of Defense (DoD) for their support through the National Defense Science and Engineering Graduate (NDSEG) Fellowship Program and the Michigan
+Institute of Computational Discovery and Engineering (MICDE) for their support through the MICDE
+Fellowship. The authors are also grateful for Hannah Hajdik’s help debugging and verifying the CST
+implementation.
+
+Contact Author Email Address
+The authors can be contacted at the following email addresses: eytana@umich.edu (Eytan J. Adler),
+alachris@umich.edu (Alasdair Christison Gray), and jrram@umich.edu (Joaquim R. R. A. Martins).
+
+Copyright Statement
+The authors confirm that they, and/or their company or organization, hold copyright on all of the
+original material included in this paper. The authors also confirm that they have obtained permission
+from the copyright holder of any third-party material included in this paper to publish it as part of their
+paper. The authors confirm that they give permission, or have obtained permission from the copyright
+holder of this paper, for the publication and distribution of this paper as part of the ICAS proceedings
+or as individual off-prints from the proceedings.
+
+References
+[1] Jabir Arora and Edward J. Haug. Methods of design sensitivity analysis in structural optimization.
+AIAA Journal, 17(9):970–974, 1979. doi: 10.2514/3.61260.
+[2] Ryan Barrett and Andrew Ning. Comparison of Airfoil Precomputational Analysis Methods for
+Optimization of Wind Turbine Blades. IEEE Transactions on Sustainable Energy, 7(3):1081–
+1088, July 2016. doi: 10.1109/TSTE.2016.2522381.
+[3] D Bourgoyne, S Ceccico, D Dowling, W Brewer, S Jessup, JH Park, and R Pankajakshan.
+Hydrofoil turbulent boundary layer separation at high reynolds numbers. In Twenty-Third Symposium on Naval HydrodynamicsOffice of Naval ResearchBassin d’Essais des CarenesNational
+Research Council, 2001.
+[4] Marco Ceze, Marcelo Hayashiy, and Ernani Volpez. A study of the CST parameterization
+characteristics. In 27th AIAA Applied Aerodynamics Conference, number June, 2009. doi:
+10.2514/6.2009-3767.
+[5] Mark Drela. Xfoil: An analysis and design system for low reynolds number airfoils. In Thomas J.
+Mueller, editor, Low Reynolds Number Aerodynamics, pages 1–12, Berlin, Heidelberg, 1989.
+Springer Berlin Heidelberg. doi: 10.1007/978-3-642-84010-4_1.
+[6] Mark Drela. Frontiers of Computational Fluid Dynamics, chapter Pros and Cons of Airfoil Optimization, pages 363–381. World Scientific, November 1998. ISBN 978-981-02-3707-3. doi:
+10.1142/9789812815774_0019.
+[7] Thomas D. Economon, Francisco Palacios, Sean R. Copeland, Trent W. Lukaczyk, and Juan J.
+Alonso. SU2: An open-source suite for multiphysics simulation and design. AIAA Journal, 54
+(3):828–846, March 2016. doi: 10.2514/1.j053813.
+
+10
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+
+[8] Philip E. Gill, Walter Murray, and Michael A. Saunders. SNOPT: An SQP algorithm for
+large-scale constrained optimization. SIAM Review, 47(1):99–131, 2005. doi: 10.1137/
+S0036144504446096.
+[9] Gustavo L. O. Halila, Anil Yildirim, Charles A. Mader, Krzysztof J. Fidkowski, and Joaquim R.
+R. A. Martins. Linear stability-based smooth RANS transition model for aerodynamic flows. AIAA
+Journal, 2021. doi: 10.2514/1.J060481. (In press).
+[10] Ping He, Charles A. Mader, Joaquim R. R. A. Martins, and Kevin J. Maki. DAFoam: An opensource adjoint framework for multidisciplinary design optimization with OpenFOAM. AIAA Journal, 58(3), March 2020. doi: 10.2514/1.J058853.
+[11] A. Jameson. Aerodynamic design via control theory. Journal of Scientific Computing, 3(3):
+233–260, September 1988. doi: 10.1007/BF01061285.
+[12] Mohammed Saja Abdul Kaiyoom, Anil Yildirim, Alasdair C. Gray, and Joaquim R. R. A. Martins. Effective constraint formulations for aerodynamic shape optimization of transonic airfoils.
+Aerospace Science and Technology, 2022. (Under Review).
+[13] Hamid R. Karbasian and Brian C. Vermeire. Gradient-free aerodynamic shape optimization
+using Large Eddy Simulation. Computers & Fluids, 232:105185, January 2022. doi: 10.1016/j.
+compfluid.2021.105185.
+[14] Gaetan K. W. Kenway and Joaquim R. R. A. Martins. Aerostructural shape optimization of
+wind turbine blades considering site-specific winds. In Proceedings of the 12th AIAA/ISSMO
+Multidisciplinary Analysis and Optimization Conference, Victoria, BC, September 2008. doi:
+10.2514/6.2008-6025. AIAA 2008-6025.
+[15] Gaetan K. W. Kenway and Joaquim R. R. A. Martins. Multipoint aerodynamic shape optimization
+investigations of the Common Research Model wing. AIAA Journal, 54(1):113–128, January
+2016. doi: 10.2514/1.J054154.
+[16] Gaetan K. W. Kenway, Charles A. Mader, Ping He, and Joaquim R. R. A. Martins. Effective
+adjoint approaches for computational fluid dynamics. Progress in Aerospace Sciences, 110:
+100542, October 2019. doi: 10.1016/j.paerosci.2019.05.002.
+[17] B. M. Kulfan. Universal parametric geometry representation method. Journal of Aircraft, 45(1):
+142–158, January 2008. doi: 10.2514/1.29958. URL https://doi.org/10.2514/1.29958.
+[18] Edward Luke, Eric Collins, and Eric Blades. A fast mesh deformation method using explicit
+interpolation. Journal of Computational Physics, 231(2):586–601, January 2012. ISSN 00219991. doi: 10.1016/j.jcp.2011.09.021.
+[19] Charles A. Mader, Gaetan K. W. Kenway, Anil Yildirim, and Joaquim R. R. A. Martins. ADflow:
+An open-source computational fluid dynamics solver for aerodynamic and multidisciplinary optimization. Journal of Aerospace Information Systems, 17(9):508–527, September 2020. doi:
+10.2514/1.I010796.
+[20] Joaquim R. R. A. Martins and Andrew Ning. Engineering Design Optimization. Cambridge
+University Press, 2022. ISBN 9781108833417. URL https://mdobook.github.io.
+[21] Joaquim R. R. A. Martins, Peter Sturdza, and Juan J. Alonso. The complex-step derivative
+approximation. ACM Transactions on Mathematical Software, 29(3):245–262, September 2003.
+doi: 10.1145/838250.838251.
+[22] J Morgado, R Vizinho, MAR Silvestre, and JC Páscoa. XFOIL vs CFD performance predictions
+for high lift low Reynolds number airfoils. Aerospace Science and Technology, 52:207–214,
+2016. doi: 10.1016/j.ast.2016.02.031.
+[23] Michael G. Piotrowski and David W. Zingg. Numerical Behaviour of a Smooth Local Correlationbased Transition Model in a Newton-Krylov Flow Solver. In AIAA SCITECH 2022 Forum, San
+11
+
+To CFD or not to CFD? Comparing RANS and viscous panel methods for airfoil shape optimization
+
+Diego, CA & Virtual, January 2022. American Institute of Aeronautics and Astronautics. ISBN
+978-1-62410-631-6. doi: 10.2514/6.2022-0909. URL https://arc.aiaa.org/doi/10.
+2514/6.2022-0909.
+[24] Ramy Rashad and David W. Zingg. Aerodynamic shape optimization for natural laminar flow
+using a discrete-adjoint approach. AIAA Journal, 54(11):3321–3337, 2016. doi: 10.2514/1.
+J054940.
+[25] Ney Secco, Gaetan K. W. Kenway, Ping He, Charles A. Mader, and Joaquim R. R. A. Martins.
+Efficient mesh generation and deformation for aerodynamic shape optimization. AIAA Journal,
+59(4):1151–1168, April 2021. doi: 10.2514/1.J059491.
+[26] Yayun Shi, Charles A. Mader, and Joaquim R. R. A. Martins. Natural laminar flow wing optimization using a discrete adjoint approach. Structural and Multidisciplinary Optimization, 64:
+541—562, August 2021. doi: 10.1007/s00158-021-02936-w.
+[27] S.N. Skinner and H. Zare-Behtash. State-of-the-art in aerodynamic shape optimisation methods.
+Applied Soft Computing, 62:933–962, January 2018. doi: 10.1016/j.asoc.2017.09.030.
+[28] J. van Ingen. The eN Method for Transition Prediction. Historical Review of Work at TU Delft.
+In 38th Fluid Dynamics Conference and Exhibit, Fluid Dynamics and Co-located Conferences.
+American Institute of Aeronautics and Astronautics, June 2008. doi: 10.2514/6.2008-3830. URL
+http://arc.aiaa.org/doi/10.2514/6.2008-3830.
+[29] Neil Wu, Gaetan Kenway, Charles A. Mader, John Jasa, and Joaquim R. R. A. Martins. pyOptSparse: a Python framework for large-scale constrained nonlinear optimization of sparse
+systems. Journal of Open Source Software, 5(54):2564, October 2020. doi: 10.21105/joss.
+02564.
+[30] Anil Yildirim, Gaetan K. W. Kenway, Charles A. Mader, and Joaquim R. R. A. Martins. A
+Jacobian-free approximate Newton–Krylov startup strategy for RANS simulations. Journal of
+Computational Physics, 397:108741, November 2019. ISSN 0021-9991. doi: 10.1016/j.jcp.
+2019.06.018.
+[31] Shun Zhang, Mark Drela, Marshall Galbraith, Steven Allmaras, and David Darmofal. An integral boundary layer method using discontinuous galerkin discretization and captured transition
+modeling. 06 2020. doi: 10.2514/6.2020-2973.
+
+12
+
+

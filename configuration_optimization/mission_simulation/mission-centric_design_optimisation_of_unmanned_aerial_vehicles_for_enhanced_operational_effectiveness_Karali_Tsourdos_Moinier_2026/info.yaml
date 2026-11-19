@@ -1,0 +1,139 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>This study
+  introduces a mission-centric design optimisation framework for unmanned aerial vehicles
+  (UAVs) to enhance mission performance across diverse operational scenarios. The
+  proposed framework integrates multidisciplinary design optimisation with a wargaming-based
+  simulation environment and leverages deep neural network-based surrogate models
+  to balance key performance metrics, such as aerodynamic efficiency, radar cross
+  section, structural weight and payload capacity. By incorporating automated task
+  assignment, path planning and a probabilistic combat model, the framework evaluates
+  UAV configurations in multi-domain, multi-asset scenarios. The algorithm identifies
+  optimal solutions that maximise mission success while managing trade-offs among
+  survivability, lethality and cost. Simulation results illustrate the framework’s
+  functionality through representative mission scenarios, highlighting how design
+  variables can influence operational effectiveness relative to baseline configurations.
+  Furthermore, the modular design approach enables rapid UAV reconfiguration for evolving
+  mission needs, offering scalable and adaptable solutions. These findings highlight
+  the importance of integrating mission simulation tools with advanced optimisation
+  techniques to address challenges in dynamic, high-threat environments, providing
+  a robust methodology for UAV and fleet design.</jats:p>"
+author: Karali, H. and Tsourdos, A. and Moinier, P.
+author_list:
+- affiliation:
+  - name: Cranfield University
+  family: Karali
+  given: H.
+- affiliation:
+  - name: Cranfield University
+  family: Tsourdos
+  given: A.
+- affiliation:
+  - name: BAE Systems
+  family: Moinier
+  given: P.
+citations:
+- doi: 10.1016/j.energy.2021.121386
+- unstructured: '[20] Lockheed Martin. Next Generation Command & Control. Accessed:
+    January 4, 2025, 2024, https://www.lockheedmartin.com/en-us/products/command-and-control.html'
+- doi: 10.3390/aerospace11080669
+- author: Goodfellow
+  volume-title: Deep Learning
+  year: '2016'
+- doi: 10.5711/morj.5.3.9
+- doi: 10.1109/TSSC.1968.300136
+- unstructured: '[31] Peng, Z. RadarSimPy: A Radar Simulator for Python, 2024, https://github.com/radarsimx/radarsimpy'
+- doi: 10.1007/s42405-024-00811-8
+- author: Linick
+  volume-title: 'Measuring Strategic Readiness: Identifying Metrics for Core Dimensions'
+  year: '2021'
+- doi: 10.1007/s00158-018-1912-8
+- doi: 10.3390/vehicles3030027
+- doi: 10.1109/ACCESS.2020.2990567
+- unstructured: '[3] Royal Air Force. Royal Air Force Autonomous Collaborative Platform
+    Strategy. Accessed: January 4, 2025, UK, 2024.'
+- doi: 10.1049/SBRA553E
+- unstructured: '[2] Congressional Research Service. U.S. Air Force Collaborative
+    Combat Aircraft (CCA) tech. rep. Accessed: January 4, 2025, Congressional Research
+    Service, 2024, https://crsreports.congress.gov'
+- doi: 10.1007/s12559-014-9265-0
+- doi: 10.2514/6.2018-1743
+- doi: 10.2514/1.C036330
+- doi: 10.1002/sys.21754
+- doi: 10.1017/CBO9780511810329
+- doi: 10.2514/1.C035402
+- doi: 10.2514/6.2022-3739
+- unstructured: '[17] BAE Systems. Sceptre™: Next Generation Platform Mission Plan
+    and De-Brief System. Accessed: January 4, 2025, 2019. https://www.baesystems.com/en/feature/sceptre'
+- doi: 10.1002/9780470770801
+- unstructured: '[18] Anduril Industries. Anduril Demonstrates Multi-Domain Unmanned
+    Systems Command and Control, Undersea, and Airborne Capabilities at US Navy’s
+    IBP 24.1. Accessed: January 3, 2025, 2024. https://www.anduril.com/article/ibp-24-1-commandand-control/'
+- author: Lambrecht
+  volume-title: Mission Effectiveness Methodology in Operational Testing
+  year: '2022'
+- doi: 10.1016/j.energy.2024.133448
+- author: Raymer
+  volume-title: 'Aircraft Design: A Conceptual Approach'
+  year: '2012'
+- doi: 10.1007/978-1-4419-0790-5
+- doi: 10.2514/6.2008-6839
+- doi: 10.1201/b14876
+- unstructured: '[36] Zaheer, M. , Reddi, S.J. , Sachan, D. , Kale, S. and Kumar,
+    S. Adaptive Methods for Nonconvex Optimization in Advances in Neural Information
+    Processing Systems, 2018, p 31.'
+- article-title: A*-based pathfinding in modern computer games
+  author: Cui
+  first-page: '125'
+  journal-title: Int. J. Comput. Sci. Netw. Secur.
+  volume: '11'
+  year: '2011'
+- doi: 10.1007/s00500-020-04684-3
+- doi: 10.2514/6.2018-3001
+- doi: 10.1007/s12524-018-0823-x
+- unstructured: '[1] Gunzinger, M. and Autenried, L. Understanding the Promise of
+    Skyborg and Low-Cost Attritable Unmanned Aerial Vehicles, Mitchell Institute Policy
+    Paper, 2020, 24.'
+- doi: 10.1109/ACC.2010.5530496
+- author: Roskam
+  volume-title: Airplane Design
+  year: '1985'
+- volume-title: Wargaming Handbook
+  year: '2015'
+- unstructured: '[23] Hershkovitz, S. Wargame Business: Wargames in Military and Corporate
+    Settings, Naval War College Review, 2019, 72, https://digital-commons.usnwc.edu/nwc-review/vol72/iss2/6'
+- unstructured: '[19] General Dynamics Mission Systems. Integrated Mission Planning
+    & Airspace Control Tools (IMPACT). Accessed: January 4, 2025, 2024, https://gdmissionsystems.com/command-and-control/impact'
+- unstructured: '[21] Saab, AB. Mission Support System: In Control of Tactical Information
+    Document and information are property of Saab AB. Saab Aeronautics, Linköping,
+    Sweden, 2021. https://www.saabgroup.com'
+- doi: 10.1016/j.ast.2020.105788
+- doi: 10.2514/6.2011-1441
+- doi: 10.1016/j.ast.2025.110033
+- doi: 10.1109/TRO.2009.2022423
+- doi: 10.1007/s41315-023-00294-y
+- doi: 10.1201/9781315140919
+- doi: 10.2514/1.C037257
+- doi: 10.1109/4235.996017
+- doi: 10.2514/1.C034403
+- doi: 10.1287/opre.10.6.818
+- doi: 10.1080/10242694.2014.949548
+- doi: 10.1109/ACCESS.2022.3152768
+- unstructured: '[26] Yuksek, B. , Guner, G. , Karali, H. , Candan, B. and Inalhan,
+    G. Intelligent Wargaming Approach to Increase Course of Action Effectiveness in
+    Military Operations in AIAA SCITECH 2023 Forum, 2023, p 2531.'
+doc_url: https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0001924026101316
+doi: 10.1017/aer.2026.10131
+files:
+- mission-centric_design_optimisation_of_unmanned_aerial_vehicles_for_enhanced_operational_effectiveness_Karali_Tsourdos_Moinier_2026.pdf
+issue: '1347'
+journal: The Aeronautical Journal
+language: en
+month: 5
+pages: 1566--1596
+papis_id: c5eccf55844759cf7663347c0b6a5386
+publisher: Cambridge University Press (CUP)
+title: Mission-centric design optimisation of unmanned aerial vehicles for enhanced
+  operational effectiveness
+type: article
+url: https://doi.org/10.1017/aer.2026.10131
+volume: '130'
+year: 2026

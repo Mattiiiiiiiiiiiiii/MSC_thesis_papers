@@ -1,0 +1,390 @@
+abstract: <jats:p>This paper presents a hybrid level set method (HLSM) to design novelty
+  functionally graded structures (FGSs) with complex macroscopic graded patterns.
+  The hybrid level set function (HLSF) is constructed to parametrically model the
+  macro unit cells by introducing the affine concept of convex optimization theory.
+  The global weight coefficients on macro unit cell nodes and the local weight coefficients
+  within the macro unit cell are defined as master and slave design variables, respectively.
+  The local design variables are interpolated by the global design variables to guarantee
+  the C0 continuity of neighboring unit cells. A HLSM-based topology optimization
+  model for the FGSs is established to maximize structural stiffness. The optimization
+  model is solved by the optimality criteria (OC) algorithm. Two typical FGSs design
+  problems are investigated, including thin-walled stiffened structures (TWSSs) and
+  functionally graded cellular structures (FGCSs). In addition, additively manufactured
+  FGCSs with different core layers are tested for bending performance. Numerical examples
+  show that the HLSM is effective for designing FGSs like TWSSs and FGCSs. The bending
+  tests prove that FGSs designed using HLSM are have a high performance.</jats:p>
+author: Fu, Junjian and Shu, Zhengtao and Gao, Liang and Zhou, Xiangman
+author_list:
+- affiliation:
+  - name: Hubei Key Laboratory of Hydroelectric Machinery Design & Maintenance, Yichang
+      443002, China
+  - name: College of Mechanical and Power Engineering, China Three Gorges University,
+      Yichang 443002, China
+  family: Fu
+  given: Junjian
+- affiliation:
+  - name: College of Mechanical and Power Engineering, China Three Gorges University,
+      Yichang 443002, China
+  family: Shu
+  given: Zhengtao
+- affiliation:
+  - name: State Key Laboratory of Digital Manufacturing Equipment and Technology,
+      Huazhong University of Science and Technology, Wuhan 430074, China
+  family: Gao
+  given: Liang
+- affiliation:
+  - name: Hubei Key Laboratory of Hydroelectric Machinery Design & Maintenance, Yichang
+      443002, China
+  - name: College of Mechanical and Power Engineering, China Three Gorges University,
+      Yichang 443002, China
+  family: Zhou
+  given: Xiangman
+citations:
+- article-title: Recent development in modeling and analysis of functionally graded
+    materials and structures
+  author: Gupta
+  doi: 10.1016/j.paerosci.2015.07.001
+  first-page: '1'
+  journal-title: Prog. Aerosp. Sci.
+  volume: '79'
+  year: '2015'
+- article-title: Engineering lattice metamaterials for extreme property, programmability,
+    and multifunctionality
+  author: Jia
+  doi: 10.1063/5.0004724
+  first-page: '150901'
+  journal-title: J. Appl. Phys.
+  volume: '127'
+  year: '2020'
+- doi: 10.3390/ma14061366
+  unstructured: Rahman, H., Yarali, E., Zolfagharian, A., Serjouei, A., and Bodaghi,
+    M. (2021). Energy Absorption and Mechanical Performance of Functionally Graded
+    Soft–Hard Lattice Structures. Materials, 14.
+- article-title: A review on functionally graded structures and materials for energy
+    absorption
+  author: Xu
+  doi: 10.1016/j.engstruct.2018.05.094
+  first-page: '309'
+  journal-title: Eng. Struct.
+  volume: '171'
+  year: '2018'
+- doi: 10.3390/ma12193225
+  unstructured: Liu, J.J., Ou, H.H., He, J.J., and Wen, G.G. (2019). Topological Design
+    of a Lightweight Sandwich Aircraft Spoiler. Materials, 12.
+- article-title: A hybrid density/level set formulation for topology optimization
+    of functionally graded lattice structures
+  author: Jansen
+  doi: 10.1016/j.compstruc.2020.106205
+  first-page: '106205'
+  journal-title: Comput. Struct.
+  volume: '231'
+  year: '2020'
+- article-title: Prismatic pressure vessel with stiffened-plate structures for fuel
+    storage in LNG-fueled ship
+  author: Choi
+  doi: 10.1016/j.oceaneng.2019.106829
+  first-page: '106829'
+  journal-title: Ocean Eng.
+  volume: '196'
+  year: '2020'
+- article-title: Hip Implant Design with Three-Dimensional Porous Architecture of
+    Optimized Graded Density
+  author: Wang
+  doi: 10.1115/1.4041208
+  first-page: '111406'
+  journal-title: J. Mech. Design
+  volume: '140'
+  year: '2018'
+- article-title: Topology optimization for concurrent design of structures with multi-patch
+    microstructures by level sets
+  author: Li
+  doi: 10.1016/j.cma.2017.11.033
+  first-page: '536'
+  journal-title: Comput. Methods Appl. Mech.
+  volume: '331'
+  year: '2018'
+- doi: 10.1007/978-3-662-05086-6
+  unstructured: 'Bendsøe, M.P., Sigmund, O., and SpringerLink, O.S. (2004). Topology
+    Optimization: Theory, Methods, and Applications, Springer.'
+- article-title: H-DGTP—A Heaviside-function based directional growth topology parameterization
+    for design optimization of stiffener layout and height of thin-walled structures
+  author: Liu
+  doi: 10.1007/s00158-015-1281-5
+  first-page: '903'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '52'
+  year: '2015'
+- article-title: Automated rib location and optimization for plate structures
+  author: Lam
+  doi: 10.1007/s00158-002-0270-7
+  first-page: '35'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '25'
+  year: '2003'
+- article-title: Optimal design of rib structures using the topology optimization
+    technique
+  author: Chung
+  doi: 10.1243/0954406971521836
+  first-page: '425'
+  journal-title: Proc. Inst. Mech. Eng. Part C J. Mech. Eng. Sci.
+  volume: '211'
+  year: '1997'
+- article-title: Topology optimization of the primary mirror of a multi-spectral camera
+  author: Park
+  doi: 10.1007/s00158-002-0271-6
+  first-page: '46'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '25'
+  year: '2003'
+- article-title: Wing-Box Weight Optimization Using Curvilinear Spars and Ribs (SpaRibs)
+  author: Locatelli
+  doi: 10.2514/1.C031336
+  first-page: '1671'
+  journal-title: J. Aircraft
+  volume: '48'
+  year: '2011'
+- article-title: Key techniques and applications of adaptive growth method for stiffener
+    layout design of plates and shells
+  author: Ding
+  doi: 10.3901/CJME.2013.06.1138
+  first-page: '1138'
+  journal-title: Chin. J. Mech. Eng.
+  volume: '26'
+  year: '2013'
+- article-title: Improved adaptive growth method of stiffeners for three-dimensional
+    box structures with respect to natural frequencies
+  author: Hu
+  doi: 10.1016/j.compstruc.2020.106330
+  first-page: '106330'
+  journal-title: Comput. Struct.
+  volume: '239'
+  year: '2020'
+- article-title: Grid-pattern optimization framework of novel hierarchical stiffened
+    shells allowing for imperfection sensitivity
+  author: Wang
+  doi: 10.1016/j.ast.2016.12.002
+  first-page: '114'
+  journal-title: Aerosp. Sci. Technol.
+  volume: '62'
+  year: '2017'
+- article-title: Multi-scale design and optimization for solid-lattice hybrid structures
+    and their application to aerospace vehicle components
+  author: Wang
+  doi: 10.1016/j.cja.2020.08.015
+  first-page: '386'
+  journal-title: Chinese J. Aeronaut.
+  volume: '34'
+  year: '2021'
+- article-title: VCUT level set method for topology optimization of functionally graded
+    cellular structures
+  author: Zong
+  doi: 10.1016/j.cma.2019.05.029
+  first-page: '487'
+  journal-title: Comput. Method. Appl. Mech.
+  volume: '354'
+  year: '2019'
+- doi: 10.3390/jmmp1020013
+  unstructured: 'Mahmoud, D., and Elbestawi, M. (2017). Lattice Structures and Functionally
+    Graded Materials Applications in Additive Manufacturing of Orthopedic Implants:
+    A Review. J. Manuf. Mater. Processing, 1.'
+- article-title: Multifunctional periodic cellular metals
+  author: Wadley
+  doi: 10.1098/rsta.2005.1697
+  first-page: '31'
+  journal-title: Philos. Trans. R. Soc. A Math. Phys. Eng. Sci.
+  volume: '364'
+  year: '2006'
+- article-title: Concurrent design of hierarchical structures with three-dimensional
+    parameterized lattice microstructures for additive manufacturing
+  author: Wang
+  doi: 10.1007/s00158-019-02408-2
+  first-page: '869'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '61'
+  year: '2020'
+- article-title: Design and Optimization of Graded Cellular Structures with Triply
+    Periodic Level Surface-Based Topological Shapes
+  author: Li
+  doi: 10.1115/1.4042617
+  first-page: '071402'
+  journal-title: J. Mech. Design
+  volume: '141'
+  year: '2019'
+- article-title: Computational analysis of sandwich-structured composites with an
+    auxetic phase
+  author: Strek
+  doi: 10.1002/pssb.201384250
+  first-page: '354'
+  journal-title: Phys. Status Solidi
+  volume: '251'
+  year: '2014'
+- article-title: Topology optimization for functionally graded cellular composites
+    with metamaterials by level sets
+  author: Li
+  doi: 10.1016/j.cma.2017.09.008
+  first-page: '340'
+  journal-title: Comput. Method. Appl. Mech.
+  volume: '328'
+  year: '2018'
+- article-title: Design of graded lattice sandwich structures by multiscale topology
+    optimization
+  author: Xiao
+  doi: 10.1016/j.cma.2021.113949
+  first-page: '113949'
+  journal-title: Comput. Method. Appl. Mech.
+  volume: '384'
+  year: '2021'
+- article-title: Topology optimization of functionally graded cellular materials
+  author: Radman
+  doi: 10.1007/s10853-012-6905-1
+  first-page: '1503'
+  journal-title: J. Mater. Sci.
+  volume: '48'
+  year: '2013'
+- article-title: Concurrent topology optimization design of material and structure
+    within FE2 nonlinear multiscale analysis framework
+  author: Xia
+  doi: 10.1016/j.cma.2014.05.022
+  first-page: '524'
+  journal-title: Comput. Method. Appl. Mech.
+  volume: '278'
+  year: '2014'
+- article-title: Optimal design of periodic structures using evolutionary topology
+    optimization
+  author: Huang
+  doi: 10.1007/s00158-007-0196-1
+  first-page: '597'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '36'
+  year: '2008'
+- article-title: Hierarchical optimization of material and structure
+  author: Rodrigues
+  doi: 10.1007/s00158-002-0209-z
+  first-page: '1'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '24'
+  year: '2002'
+- article-title: Generating optimal topologies in structural design using a homogenization
+    method
+  author: Kikuchi
+  doi: 10.1016/0045-7825(88)90086-2
+  first-page: '197'
+  journal-title: Comput. Method. Appl. Mech.
+  volume: '71'
+  year: '1988'
+- article-title: Scale-related topology optimization of cellular materials and structures
+  author: Zhang
+  doi: 10.1002/nme.1743
+  first-page: '993'
+  journal-title: Int. J. Numer. Meth. Eng.
+  volume: '68'
+  year: '2006'
+- article-title: Design and Optimization of Conforming Lattice Structures
+  author: Wu
+  doi: 10.1109/TVCG.2019.2938946
+  first-page: '43'
+  journal-title: IEEE Trans. Vis. Comput. Graph.
+  volume: '27'
+  year: '2021'
+- article-title: 'Fronts propagating with curvature-dependent speed: Algorithms based
+    on Hamilton-Jacobi formulations'
+  author: Osher
+  doi: 10.1016/0021-9991(88)90002-2
+  first-page: '12'
+  journal-title: J. Comput. Phys.
+  volume: '79'
+  year: '1988'
+- article-title: 'Level-set methods for structural topology optimization: A review'
+  author: Maute
+  doi: 10.1007/s00158-013-0912-y
+  first-page: '437'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '48'
+  year: '2013'
+- article-title: 'An Overview of Materials with Triply Periodic Minimal Surfaces and
+    Related Geometry: From Biological Structures to Self-Assembled Systems'
+  author: Han
+  doi: 10.1002/adma.201705708
+  first-page: '1705708'
+  journal-title: Adv. Mater.
+  volume: '30'
+  year: '2018'
+- article-title: 'Triply periodic minimal surface (TPMS) porous structures: From multi-scale
+    design, precise additive manufacturing to multidisciplinary applications'
+  author: Feng
+  doi: 10.1088/2631-7990/ac5be6
+  first-page: '022001'
+  journal-title: Int. J. Extrem. Manuf.
+  volume: '4'
+  year: '2022'
+- article-title: A level set based topology optimization method using the discretized
+    signed distance function as the design variables
+  author: Yamasaki
+  doi: 10.1007/s00158-009-0453-6
+  first-page: '685'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '41'
+  year: '2010'
+- article-title: M-VCUT level set method for optimizing cellular structures
+  author: Liu
+  doi: 10.1016/j.cma.2020.113154
+  first-page: '113154'
+  journal-title: Comput. Method. Appl. Mech.
+  volume: '367'
+  year: '2020'
+- doi: 10.1017/CBO9780511804441
+  unstructured: Boyd, S., and Vandenberghe, L. (2004). Convex Optimization. Cambridge
+    University Press.
+- article-title: Structural optimization using sensitivity analysis and a level-set
+    method
+  author: Allaire
+  doi: 10.1016/j.jcp.2003.09.032
+  first-page: '363'
+  journal-title: J. Comput. Phys.
+  volume: '194'
+  year: '2004'
+- article-title: 'The COC algorithm, Part II: Topological, geometrical and generalized
+    shape optimization'
+  author: Zhou
+  doi: 10.1016/0045-7825(91)90046-9
+  first-page: '309'
+  journal-title: Comput. Method. Appl. Mech.
+  volume: '89'
+  year: '1991'
+- article-title: Topology optimization of multi-material negative Poisson’s ratio
+    metamaterials using a reconciled level set method
+  author: Vogiatzis
+  doi: 10.1016/j.cad.2016.09.009
+  first-page: '15'
+  journal-title: Comput. Aided Design
+  volume: '83'
+  year: '2017'
+- article-title: Design of shell-infill structures by a multiscale level set topology
+    optimization method
+  author: Fu
+  doi: 10.1016/j.compstruc.2018.10.006
+  first-page: '162'
+  journal-title: Comput. Struct.
+  volume: '212'
+  year: '2019'
+- doi: 10.3390/ma11122411
+  unstructured: Zhao, M., Liu, F., Fu, G., Zhang, D., Zhang, T., and Zhou, H. (2018).
+    Improved Mechanical Properties and Energy Absorption of BCC Lattice Structures
+    with Triply Periodic Minimal Surfaces Fabricated by SLM. Materials, 11.
+doc_url: https://www.mdpi.com/1996-1944/15/13/4483/pdf
+doi: 10.3390/ma15134483
+files:
+- a_hybrid_level_set_method_for_the_topology_optimization_of_functionally_graded_structures_Fu_Shu_Gao_et_al_2022.pdf
+issue: '13'
+journal: Materials
+language: en
+month: 6
+pages: '4483'
+papis_id: ea80d2a5a91fd5829415442393166314
+publisher: MDPI AG
+title: A Hybrid Level Set Method for the Topology Optimization of Functionally Graded
+  Structures
+type: article
+url: https://doi.org/10.3390/ma15134483
+volume: '15'
+year: 2022

@@ -1,0 +1,348 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>In this chapter
+  we are concerned with mesh generation methods and mesh adaptivity issues. Nowadays,
+  many techniques are available to complete meshes of arbitrary domains for computational
+  purposes. Planar, surface, and volume meshing have been automated to a large extent.
+  Over the past few years, meshing activities have focused on adaptive schemes where
+  the features of a solution field must be accurately captured. To this end, meshing
+  techniques must be revisited in order to be capable of completing high‐quality meshes
+  conforming to these features. Error estimates are therefore used to analyze the
+  solution field at a given stage and, based on the results and the information they
+  yield, adapted meshes are created before computing the next stage of the solution
+  field. A number of novel meshing issues must be addressed including how to construct
+  a mesh adapted to what the error estimate prescribes, how to validate and construct
+  high‐order meshes, how to handle large‐size meshes, how to consider moving boundary
+  problems, and so on.</jats:p>"
+author: George, Paul Louis and Borouchaki, H. and Alauzet, F. and Laug, P. and Loseille,
+  A. and Marcum, D. and Maréchal, L.
+author_list:
+- affiliation: []
+  family: George
+  given: Paul Louis
+- affiliation: []
+  family: Borouchaki
+  given: H.
+- affiliation: []
+  family: Alauzet
+  given: F.
+- affiliation: []
+  family: Laug
+  given: P.
+- affiliation: []
+  family: Loseille
+  given: A.
+- affiliation: []
+  family: Marcum
+  given: D.
+- affiliation: []
+  family: Maréchal
+  given: L.
+citations:
+- doi: 10.1016/j.finel.2009.06.028
+- doi: 10.1007/s00366-013-0340-z
+- doi: 10.1002/nme.2951
+- doi: 10.2514/6.2011-896
+  unstructured: AlauzetFandOlivierG.Extension of metric‐based anisotropic mesh adaptation
+    to time‐dependent problems involving moving geometries. InAerospace Sciences Meeting
+    49 AIAAP 2011‐0896 Orlando FL USA 2011.
+- doi: 10.1016/j.jcp.2006.08.012
+- doi: 10.1002/fld.1650211003
+- author: Allwright SE
+  first-page: '559'
+  volume-title: Grid Generation in Computational Fluid Mechanics
+  year: '1988'
+- author: Apel T
+  volume-title: 'Anisotropic Finite Element: Local Estimates and Applications'
+  year: '1999'
+- doi: 10.1007/s10208-011-9087-3
+- doi: 10.1002/nme.2446
+- doi: 10.1137/0713021
+- doi: 10.1137/0725048
+- doi: 10.1016/0045-7825(95)00946-9
+- doi: 10.1002/nme.1620240603
+- article-title: Dynamic adaptation for deforming tetrahedral meshes
+  author: Baker TJ
+  first-page: '19'
+  issue: '3253'
+  journal-title: AIAA J.
+  volume: '99'
+  year: '1999'
+- doi: 10.1137/S0036142994265292
+- doi: 10.1137/0730048
+- doi: 10.1006/jcph.1997.5454
+- doi: 10.2514/3.25229
+- article-title: 'A feed‐back approach to error control in finite element methods:
+    basic analysis and examples'
+  author: Becker R
+  first-page: '237'
+  journal-title: East‐West J. Numer. Math.
+  volume: '4'
+  year: '1996'
+- doi: 10.2514/6.1985-1523
+  unstructured: BenekJA BuningPGandStegerJL.A 3D chimera grid embedding technique.
+    InAIAA Computational Fluid Dynamics Conference 7 AIAAP 1985‐1523 Cincinnati OH
+    USA 1985.
+- doi: 10.1007/s003660050019
+- author: Bézier P
+  volume-title: Courbes et surfaces, Mathématiques et CAO
+  year: '1986'
+- author: Boissonnat JD
+  volume-title: Algorithmic Geometry
+  year: '1997'
+- doi: 10.1016/j.cma.2004.11.016
+- article-title: Quality mesh generation
+  author: Borouchaki H
+  first-page: '505'
+  journal-title: C.R. Acad. Sci. Paris Ser. IIB
+  volume: '328'
+  year: '2000'
+- author: Borouchaki H
+  volume-title: Maillage et adaptation
+  year: '2001'
+- doi: 10.1016/S0168-874X(96)00057-1
+- doi: 10.1002/(SICI)1097-0207(19981130)43:6<1143::AID-NME470>3.0.CO;2-I
+- doi: 10.1002/1097-0207(20000910/20)49:1/2<233::AID-NME931>3.0.CO;2-G
+- doi: 10.1002/nme.977
+- doi: 10.1007/s003660200006
+- author: Brière de l'Isle E
+  first-page: '97'
+  volume-title: IMA Volumes in Mathematics and its Applications
+  year: '1995'
+- author: Carey GF
+  volume-title: 'Computational Grids: Generation, Adaptation and Solution Strategies'
+  year: '1997'
+- doi: 10.1090/S0025-5718-06-01896-5
+- doi: 10.1016/S1570-8659(05)80039-0
+- doi: 10.1016/j.jcp.2007.10.002
+- doi: 10.1002/nme.1620080104
+- doi: 10.1002/9780470749081
+- doi: 10.1007/BF01385784
+- author: Dey TK
+  volume-title: Curve and Surface Reconstruction
+  year: '2007'
+- unstructured: DeyS O'BaraRMandShephardMS.Curvilinear mesh generation in 3D. InProceedings
+    of the 8th International Meshing Roundtable South Lake Tahoe CA 1999;407–417.
+- author: Farin G
+  volume-title: Curves and Surfaces for CAGD. A Practical Guide
+  year: '2002'
+- doi: 10.1002/1097-0207(20000820)48:11<1571::AID-NME840>3.0.CO;2-D
+- article-title: Estimation a posteriori et adaptation de maillages
+  author: Fortin M
+  issue: '4'
+  journal-title: Rev. Eur. élém. Finis
+  volume: '9'
+  year: '2000'
+- doi: 10.1002/1097-0207(20000910/20)49:1/2<109::AID-NME925>3.0.CO;2-U
+- doi: 10.1016/j.cma.2004.11.025
+- doi: 10.1007/s007910050011
+- author: Frey PJ
+  volume-title: Mesh Generation
+  year: '2000'
+- unstructured: GaltierJ. Structures de données irrégulières et architectures haute
+    performance. Une étude du calcul numérique intensif par le partitionnement de
+    graphes Thèse Université Versailles 1997.
+- doi: 10.1002/nme.4888
+- doi: 10.1002/1097-0207(20000910/20)49:1/2<193::AID-NME929>3.0.CO;2-R
+- doi: 10.1016/j.compfluid.2006.01.014
+- unstructured: GeorgeJA. Computer implementation of the finite element method. PhD
+    thesis Department of Computer Science Stanford University 1971.
+- author: George PL
+  volume-title: Automatic Mesh Generation. Applications to Finite Element Methods
+  year: '1991'
+- author: George PL
+  first-page: '69'
+  series-title: Finite Element methods (Part 2), Numerical Methods for Solids (Part
+    2)
+  volume-title: Handbook of Numerical Analysis
+  year: '1996'
+- author: George PL
+  volume-title: Maillage et adaptation, Traité Mécanique et Ingénierie des Matériaux
+    (MIM)
+  year: '2001'
+- author: George PL
+  volume-title: Delaunay Triangulation and Meshing, Application to Finite Element
+  year: '1998'
+- doi: 10.1002/nme.808
+- doi: 10.1016/j.crma.2011.07.016
+- doi: 10.1002/nme.3364
+- doi: 10.1002/nme.4696
+- doi: 10.1002/nme.1620330507
+- unstructured: GeorgePL BorouchakiHandBarralN. Construction et validation des éléments
+    réduits associés à un carreau simplicial de degré arbitraire. Internal Report
+    8572 Inria 2014a.
+- unstructured: GeorgePL BorouchakiHandBarralN. Construction et validation des éléments
+    Serendip associés à un carreau de degré arbitraire. Internal Report 8572 Inria
+    2014b.
+- doi: 10.1016/0045-7825(91)90017-Z
+- doi: 10.1017/S096249290200003X
+- doi: 10.1002/(SICI)1097-0207(19990610)45:4<447::AID-NME592>3.0.CO;2-#
+- doi: 10.1016/j.cma.2004.11.020
+- doi: 10.1002/(SICI)1097-0207(19960229)39:4<549::AID-NME868>3.0.CO;2-O
+- doi: 10.1002/fld.1255
+- unstructured: HermelineF. Une méthode automatique de maillage en dimension N. Thèse
+    Université Paris VI 1980.
+- doi: 10.1007/BF01199431
+- doi: 10.1016/j.jcp.2009.11.029
+- author: Hughes TJR
+  volume-title: 'The Finite Element Method: Linear Static and Dynamic Finite Element
+    Analysis'
+  year: '1998'
+- unstructured: ISO (International Organization for Standardization).International
+    Standard ISO 10303 First Edition 1994.
+- unstructured: ItoYandNakahashiK.Unstructured mesh generation for viscous flow computations.
+    InProceedings of the 11th International Meshing Roundtable Ithaca NY USA 2002;367–377.
+- doi: 10.2514/6.2006-530
+  unstructured: ItoYandNakahashiK.An approach to generate high quality unstructured
+    hybrid meshes. InAerospace Sciences Meeting 44 AIAAP 2006‐0530 Reno NV USA 2006.
+- doi: 10.1016/0167-8396(91)90038-D
+- doi: 10.1007/978-3-642-24734-7_14
+  unstructured: JohnenA RemacleJFandGeuzaineC.Geometrical validity of curvilinear
+    finite elements. InProceedings of the 20th International Meshing Roundtable Paris
+    2011;255–271.
+- doi: 10.1007/s00366-012-0305-7
+- doi: 10.2514/6.1995-211
+  unstructured: KallinderisY KhawajaAandMcMorrisH.Hybrid prismatic/tetrahedral grid
+    generation for complex geometries. InAIAA paper 1995;95–0211.
+- article-title: 'Matrix norms & the condition number: a general framework to improve
+    mesh quality via node‐movement'
+  author: Knupp P
+  first-page: '1506'
+  journal-title: Comput. Aided Geom. Des.
+  volume: '33'
+  year: '2001'
+- author: Knupp P
+  volume-title: The Fundamentals of Grid Generation
+  year: '1993'
+- unstructured: LaugP GuibaultFandBorouchakiH.Automatic mesh generation of multiface
+    models on multicore processors. InProceedings of the 4th Interantional Conference
+    on Parallel Distributed Grid and Cloud Computing for Engineering Paper 38 2015.
+- doi: 10.1109/TIT.1982.1056489
+- doi: 10.1002/nme.1620210805
+- doi: 10.1002/nme.1620310405
+- doi: 10.2514/6.1993-3348
+  unstructured: LöhnerR.Matching semi‐structured and unstructured grids for Navier‐Stokes
+    calculations. InAerospace Sciences Meeting 31 AIAAP 1993‐3348 Reno NV USA 1993.
+- doi: 10.1002/(SICI)1099-0887(199610)12:10<683::AID-CNM983>3.0.CO;2-1
+- doi: 10.1016/S0168-874X(96)00038-8
+- doi: 10.2514/6.1999-662
+  unstructured: LöhnerR.Generation of unstructured grids suitable for RANS calculations.
+    InAerospace Sciences Meeting 37 AIAAP 1999‐0662 Reno NV USA 1999.
+- doi: 10.1002/nme.175
+- author: Löhner R
+  volume-title: Applied CFD Techniques
+  year: '2008'
+- doi: 10.1002/fld.1650081003
+- doi: 10.1002/(SICI)1099-0887(199610)12:10<599::AID-CNM1>3.0.CO;2-Q
+- doi: 10.1007/978-3-642-04319-2_33
+  unstructured: LoseilleAandAlauzetF.Optimal 3D highly anisotropic mesh adaptation
+    based on the continuous mesh framework. InProceedings of the 18th International
+    Meshing Roundtable Salt Lake City UT USA Springer‐Verlag 2009;575–594.
+- doi: 10.1137/090754078
+- doi: 10.2514/6.2011-894
+  unstructured: LoseilleAandLöhnerR.Boundary layer mesh generation and adaptivity.
+    InAerospace Sciences Meeting 49 AIAAP 2011‐894 Orlando FL USA 2011.
+- doi: 10.1016/j.jcp.2009.12.021
+- doi: 10.2514/6.2007-4186
+  unstructured: LoseilleA DervieuxA FreyPJandAlauzetF.Achievement of global second‐order
+    mesh convergence for discontinuous flows with adapted unstructured meshes. InAIAAFLUID
+    37 AIAAP 2007‐4186 Miami FL USA 2007.
+- doi: 10.1016/j.jcp.2011.09.021
+- doi: 10.2514/6.1995-212
+  unstructured: MarcumDL.Generation of unstructured grids for viscous flow applications.
+    InAerospace Sciences Meeting 33 AIAAP 1995‐0212 Reno NV USA 1995.
+- doi: 10.2514/3.13418
+- doi: 10.1007/978-3-319-02335-9_14
+  unstructured: MarcumDLandAlauzetF.A comparison of open and closed advancing‐layer
+    methods for unstructured mesh generation. InProceedings of the 22th International
+    Meshing Roundtable 2013;241–261.
+- doi: 10.2514/3.12701
+- unstructured: MaréchalL.A new approach to octree‐based hexahedral meshing. InProceedings
+    of the 10th International Meshing Roundtable 2001;209–221.
+- doi: 10.1016/0021-9991(90)90167-Y
+- doi: 10.1006/jcph.1995.1047
+- doi: 10.1016/0045-7825(94)90032-9
+- article-title: Tetrahedral mesh optimisation and adaptivity for steady‐state and
+    transient finite element calculations
+  author: Pain CC
+  doi: 10.1016/S0045-7825(00)00294-2
+  first-page: '3771'
+  journal-title: Comput. Meth. Appl. Mech. Eng.
+  volume: '190'
+  year: '2001'
+- unstructured: PebayP. Construction d'une contrainte Delaunay admissible en dimension
+    2. Internal Report 3492 Inria 1998.
+- doi: 10.1016/0021-9991(92)90401-J
+- doi: 10.1016/0021-9991(87)90093-3
+- doi: 10.1016/0021-9991(72)90065-4
+- doi: 10.2514/6.1994-417
+  unstructured: PirzadehS.Viscous unstructured three dimensional grids by the advancing‐layers
+    method. InAerospace Sciences Meeting 32 AIAAP 1994‐0417 Reno NV USA 1994.
+- doi: 10.1007/978-1-4612-1098-6
+- author: Raviart PA
+  volume-title: Introduction à l'analyse numérique des équations aux dérivées partielles
+  year: '1998'
+- doi: 10.1006/jcph.1993.1097
+- doi: 10.1002/nme.1196
+- doi: 10.1137/0729017
+- doi: 10.1016/j.finel.2009.06.016
+- doi: 10.1142/S021819590000022X
+- doi: 10.1016/0167-8396(95)00013-V
+- unstructured: SevenoE.Towards an adaptive advancing‐front mesh generation. InProceedings
+    of the 6th International Meshing Roundtable 1997;349–360.
+- doi: 10.2514/2.7497
+- doi: 10.1002/nme.397
+- doi: 10.1002/nme.1620380603
+- doi: 10.1002/nme.3016
+- doi: 10.1016/S0045-7825(99)00374-6
+- author: Thompson JF
+  volume-title: Handbook of Grid Generation
+  year: '1999'
+- author: Thompson JF
+  volume-title: Numerical Grids Generation Foundations and Applications
+  year: '1985'
+- unstructured: ValletMG. Génération de maillages éléments finis anisotropes et adaptatifs.
+    Thèse Université Paris VI 1992.
+- article-title: Automatic mesh generation with tetrahedron elements
+  author: Van Phai N
+  first-page: '237'
+  journal-title: Int. J. Numer. Meth. Eng.
+  volume: '18'
+  year: '1982'
+- doi: 10.2514/6.2003-4124
+  unstructured: VassbergJC DeHaanMandSclafaniT.Grid generation requirements for accurate
+    drag predictions based on OVERFLOW calculations. In AIAA Computational Fluid Dynamics
+    Conference 33 AIAA‐2003‐4124 USA 2003;1874–1900.
+- doi: 10.1016/S0021-9991(03)00074-3
+- author: Verfürth R
+  volume-title: A Review of A Posteriori Error Estimation and Adaptative Mesh‐Refinement
+    techniques
+  year: '1996'
+- doi: 10.1016/0010-4485(95)00046-1
+- doi: 10.1093/comjnl/24.2.167
+- doi: 10.1002/nme.1620371203
+- author: Weatherill NP
+  first-page: '53'
+  volume-title: Proceedings of the 6th International Conference on Numerical Grid
+    Generation in Computational Field Simulation, USA
+  year: '1998'
+- doi: 10.1007/s00366-004-0295-1
+- doi: 10.1109/MCG.1983.262997
+- doi: 10.1002/nme.1620201103
+- author: Zienkiewicz OC
+  volume-title: The Finite Element Method
+  year: '1977'
+- doi: 10.1002/nme.1620330702
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781119176817.ecm2012
+doi: 10.1002/9781119176817.ecm2012
+files:
+- mesh_generation_and_mesh_adaptivity_theory_and_techniques_George_Borouchaki_Alauzet_et_al_2017.pdf
+isbn: '9781119176817'
+journal: Encyclopedia of Computational Mechanics Second Edition
+language: en
+month: 12
+pages: 1--51
+papis_id: 8d61f8a302dd5a7e620f7583175af88f
+publisher: Wiley
+title: 'Mesh Generation and Mesh Adaptivity: Theory and Techniques'
+type: misc
+url: https://doi.org/10.1002/9781119176817.ecm2012
+year: 2017

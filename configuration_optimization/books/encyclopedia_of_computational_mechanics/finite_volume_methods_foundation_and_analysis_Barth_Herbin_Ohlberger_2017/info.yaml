@@ -1,0 +1,652 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>Finite volume
+  methods are a class of discretization schemes resulting from the decomposition of
+  a problem domain into nonoverlapping control volumes. Degrees of freedom are assigned
+  to each control volume that determine local approximation spaces and quadratures
+  used in the calculation of control volume surface fluxes and interior integrals.
+  An imposition of conservation and balance law statements in each and every control
+  volume constrains surface fluxes and results in a coupled system of equations for
+  the unknown degrees of freedom that must be solved by a numerical method.</jats:p>\n
+  \                 <jats:p>Finite volume methods have proved highly successful in
+  approximating the solution to a wide variety of conservation and balance laws. They
+  are extensively used in fluid mechanics, meteorology, electromagnetics, semiconductor
+  device simulation, materials modeling, heat transfer, models of biological processes,
+  and many other engineering problems governed by conservation and balance laws that
+  may be written in integral control volume form.</jats:p>\n                  <jats:p>This
+  chapter reviews elements of the foundation and analysis of modern finite volume
+  methods for approximating hyperbolic, elliptic, and parabolic partial differential
+  equations. These different equations have markedly different continuous problem
+  regularity and function spaces (e.g., , , and ) that must be adequately represented
+  in finite‐dimensional discretizations. Particular attention is given to finite volume
+  discretizations yielding numerical solutions that inherit properties of the underlying
+  continuous solutions such as maximum (minimum) principles, total variation control,
+  stability, global entropy decay, and local balance law conservation while also having
+  favorable accuracy and convergence properties on structured and unstructured meshes.</jats:p>\n
+  \                 <jats:p>\n                    As a starting point, a review of
+  scalar nonlinear hyperbolic conservation laws and the development of high‐order
+  accurate schemes for discretizing them is presented. A key tool in the design and
+  analysis of finite volume schemes suitable for discontinuity capturing is discrete
+  maximum principle analysis. A number of mathematical and algorithmic developments
+  used in the construction of numerical schemes possessing local discrete maximum
+  principles are reviewed in one and several space dimensions. These developments
+  include monotone fluxes, TVD discretization, positive coefficient discretization,
+  nonoscillatory reconstruction, slope limiters, strong stability preserving time
+  integrators, and so on. When available, theoretical results concerning\n                    <jats:italic>a
+  priori</jats:italic>\n                    and\n                    <jats:italic>a
+  posteriori</jats:italic>\n                    error estimates and convergence to
+  entropy weak solutions are given.\n                  </jats:p>\n                  <jats:p>A
+  review of the discretization of elliptic and parabolic problems is then presented.
+  The tools needed for the theoretical analysis of the two point flux approximation
+  scheme for the convection diffusion equation are described. Such schemes require
+  an orthogonality condition on the mesh in order for the numerical fluxes to be consistent.
+  Under this condition, the scheme may be shown to be monotone. A weak formulation
+  of the scheme is derived, which facilitates obtaining stability, convergence, and
+  error estimate results. The discretization of anisotropic problems is then considered
+  and a review is given of some of the numerous schemes that have been designed in
+  recent years, along with their properties. Parabolic problems are then addressed,
+  both in the linear and nonlinear cases.</jats:p>\n                  <jats:p>A discussion
+  of further advanced topics is then given including the extension of the finite volume
+  method to systems of hyperbolic conservation laws. Numerical flux functions based
+  on an exact or approximate solution of the Riemann problem of gas dynamics are discussed.
+  This is followed by the review of another class of numerical flux functions for
+  symmetrizable systems of conservation laws that yield finite volume solutions with
+  provable global decay of the total mathematical entropy for a closed entropy system,
+  often referred to as entropy stability.</jats:p>\n                  <jats:p>Finally,
+  a detailed review of the discretization of the steady‐state incompressible Navier–Stokes
+  equations using the Marker‐And‐Cell (MAC) finite volume method is then presented.
+  The MAC scheme uses a staggered mesh discretization for pressure and velocities
+  on primal and dual control volumes. After reformulating the MAC scheme in weak form,
+  analysis results concerning stability, weak consistency, and convergence are given.</jats:p>"
+author: Barth, Timothy and Herbin, Raphaèle and Ohlberger, Mario
+author_list:
+- affiliation: []
+  family: Barth
+  given: Timothy
+- affiliation: []
+  family: Herbin
+  given: Raphaèle
+- affiliation: []
+  family: Ohlberger
+  given: Mario
+citations:
+- doi: 10.1137/S1064827595293594
+- doi: 10.1137/S1064827595293582
+- doi: 10.1002/num.20320
+- doi: 10.1023/A:1011601700328
+- doi: 10.1006/jcph.1994.1148
+- doi: 10.1051/m2an/2010021
+- doi: 10.1090/mcom/3043
+- unstructured: AndreianovB BendahmaneMandKarlsenK.A gradient reconstruction formula
+    for finite‐volume schemes and discrete duality. InFinite Volumes for Complex Applications
+    V.ISTE:London 2008;161–168.
+- doi: 10.1142/S0219891610002062
+- doi: 10.1007/s00211-009-0286-7
+- article-title: Analysis of a finite volume method for a cross‐diffusion model in
+    population dynamics
+  author: Andreianov B
+  first-page: '307'
+  issue: '2'
+  journal-title: J. Comput. Appl. Math.
+  volume: '235'
+  year: '2011'
+- doi: 10.1016/j.cam.2011.02.023
+- doi: 10.1002/num.20170
+- doi: 10.1002/num.21715
+- doi: 10.1093/imanum/drt049
+- doi: 10.1007/978-3-642-20671-9_60
+- doi: 10.1007/BFb0024945
+- doi: 10.1137/0724050
+- author: Barth TJ
+  volume-title: An Introduction to Recent Developments in Theory and Numerics for
+    Conservation Laws
+  year: '1998'
+- doi: 10.1016/j.cma.2005.06.016
+- article-title: On the role of involutions in the discontinuous Galerkin Discretization
+    of Maxwell and magnetohydrodynamics systems
+  author: Barth TJ
+  first-page: '69'
+  journal-title: IMA Math.
+  volume: '142'
+  year: '2007'
+- doi: 10.2514/6.1990-13
+  unstructured: BarthTJandFredericksonPO.Higher Order Solution of the Euler Equations
+    on Unstructured Grids Using Quadratic Reconstruction. Report AIAA‐90‐0013.American
+    Institute for Aeronautics and Astronautics Reno Nevada USA 1990.
+- doi: 10.1002/(SICI)1097-0207(19960615)39:11<1821::AID-NME929>3.0.CO;2-E
+- doi: 10.1090/mcom3045
+- doi: 10.1002/num.20108
+- doi: 10.1051/m2an/2013105
+- doi: 10.1137/110853807
+- doi: 10.1137/130913432
+- doi: 10.1007/BFb0078318
+- author: Blanc P
+  first-page: '117'
+  volume-title: Finite Volumes for Complex Applications II
+  year: '1999'
+- author: Blanc P
+  first-page: '133'
+  volume-title: Finite Volumes for Complex Applications IV
+  year: '2005'
+- doi: 10.1016/0022-1236(89)90005-0
+- doi: 10.1016/j.cagd.2015.03.015
+- doi: 10.1051/m2an/2013104
+- doi: 10.1016/0021-9991(73)90147-2
+- doi: 10.1007/b93802
+- doi: 10.1090/psapm/067.2/2605239
+- doi: 10.1090/S0002-9947-98-02204-1
+- doi: 10.3934/dcdsb.2010.13.739
+- doi: 10.1051/m2an:2007047
+- doi: 10.1007/978-1-4614-5975-0
+- doi: 10.1137/060666196
+- doi: 10.1016/j.crma.2008.03.023
+- doi: 10.1016/j.crma.2010.09.020
+- doi: 10.1093/imanum/drm030
+- doi: 10.1080/10618560008940900
+- doi: 10.1016/j.jcp.2010.01.026
+- doi: 10.1016/S0045-7930(99)00026-2
+- article-title: On the finite volume element method
+  author: Cai ZQ
+  first-page: '713'
+  issue: '7'
+  journal-title: Numer. Math.
+  volume: '58'
+  year: '1991'
+- doi: 10.1137/0727039
+- doi: 10.1137/0728022
+- doi: 10.1016/j.jcp.2010.04.034
+- doi: 10.1007/s00211-013-0545-5
+- doi: 10.1090/S0025-5718-2013-02723-8
+- doi: 10.1007/s002050050152
+- doi: 10.1051/m2an:1999109
+- doi: 10.1002/(SICI)1099-1476(20000325)23:5<467::AID-MMA124>3.0.CO;2-7
+- doi: 10.1137/060657236
+- doi: 10.1093/imanum/drp009
+- doi: 10.1002/num.20592
+- doi: 10.1137/130910555
+- doi: 10.1002/num.21913
+- doi: 10.1142/S0218202504003313
+- doi: 10.1051/m2an/1992260708351
+- doi: 10.1007/BF01385691
+- doi: 10.1007/s002110050425
+- doi: 10.1137/S0036142903427639
+- doi: 10.1515/cmam-2012-0006
+- doi: 10.1016/j.cam.2013.10.004
+- doi: 10.4208/aamm.12-m1279
+- doi: 10.1007/s10092-014-0108-x
+- doi: 10.1090/S0025-5718-99-01192-8
+- doi: 10.1016/S1570-8659(05)80039-0
+- doi: 10.1137/110854278
+- doi: 10.1007/s00211-010-0299-2
+- doi: 10.1017/S0962492902000107
+- article-title: An error estimate for finite volume methods for multidimensional
+    conservation laws
+  author: Cockburn B
+  doi: 10.1090/S0025-5718-1994-1240657-4
+  first-page: '77'
+  journal-title: Math. Comput.
+  volume: '63'
+  year: '1994'
+- article-title: A posteriori error estimates for general numerical methods for scalar
+    conservation laws
+  author: Cockburn B
+  first-page: '37'
+  journal-title: Comput. Appl. Math.
+  volume: '14'
+  year: '1995'
+- doi: 10.1090/S0025-5718-96-00701-6
+- doi: 10.1090/S0025-5718-97-00838-7
+- doi: 10.1137/S0036142997316165
+- doi: 10.1006/jdeq.1998.3499
+- doi: 10.2307/2008501
+- doi: 10.1016/0021-9991(89)90183-6
+- doi: 10.2307/2008474
+- article-title: The Runge‐Kutta discontinuous Galerkin method for conservation laws.
+    V. Multidimensional systems
+  author: Cockburn B
+  doi: 10.1006/jcph.1998.5892
+  first-page: '199'
+  issue: '2'
+  journal-title: J. Comput. Phys.
+  volume: '141'
+  year: '1998'
+- doi: 10.1016/0021-9991(84)90143-8
+- doi: 10.1137/S0036142997318528
+- doi: 10.1137/100786046
+- doi: 10.1007/978-3-642-20671-9_30
+- article-title: A 2D/3D discrete duality finite volume scheme. Application to ECG
+    simulation
+  author: Coudière Y
+  first-page: '24'
+  issue: '1'
+  journal-title: Int. J. Finite Vol.
+  volume: '6'
+  year: '2009'
+- doi: 10.1051/m2an:1999149
+- doi: 10.1007/BF01448839
+- doi: 10.1147/rd.112.0215
+- doi: 10.1002/cpa.3160050303
+- unstructured: CournèdeP‐H DebiezCandDervieuxA.A Positive MUSCL Scheme for Triangulations.
+    Report 3465.Institut National De Recherche En Informatique Et En Automatique (INRIA):Sophia
+    Antipolis Cedex1998.
+- article-title: Monotone difference approximations of scalar conservation laws
+  author: Crandall M
+  doi: 10.1090/S0025-5718-1980-0551288-3
+  first-page: '1'
+  journal-title: Math. Comput.
+  volume: '34'
+  year: '1980'
+- doi: 10.1016/j.compfluid.2003.12.003
+- doi: 10.1137/050624248
+- doi: 10.2514/6.1995-1710
+  unstructured: DelanayeM.Polynomial Reconstruction Finite Volume Schemes for the
+    Compressible Euler and Navier‐Stokes Equations on Unstructured Adaptive Grids.
+    PhD thesis University of Liége:Belgium 1996.
+- doi: 10.1051/m2an:2003061
+- unstructured: DeshpandeSM.On the Maxwellian Distribution Symmetric Form and Entropy
+    Conservation for the Euler Equations. NASA Report TP‐2583.NASA Langley:Hampton
+    VA 1986.
+- author: Desideri JA
+  series-title: Von Karman Institute Lecture Notes
+  volume-title: Compressible Flow Solvers Using Unstructured Grids
+  year: '1988'
+- doi: 10.1137/S0036142901394558
+- article-title: The structure of well‐balanced schemes for Friedrichs systems with
+    linear relaxation
+  author: Desprès B
+  first-page: '440'
+  issue: '2'
+  journal-title: Appl. Math. Comput.
+  volume: '272'
+  year: '2016'
+- article-title: Generalized Harten formalism and longitudinal variation diminishing
+    schemes for linear advection on arbitrary grids
+  author: Desprès B
+  first-page: '1149'
+  issue: '62'
+  journal-title: 'ESAIM: Math. Modell. Numer. Anal.'
+  volume: '35'
+  year: '2010'
+- doi: 10.1007/BF00752112
+- doi: 10.2516/ogst/2013158
+- doi: 10.1007/978-3-642-20671-9_36
+- doi: 10.1051/m2an:2005047
+- article-title: A two‐dimensional relaxation scheme for the hybrid modelling of gas‐particle
+    two‐phase flows
+  author: Dorogan K
+  first-page: '30'
+  journal-title: Int. J. Finite Vol.
+  volume: '8'
+  year: '2012'
+- doi: 10.1016/j.apnum.2009.05.010
+- doi: 10.1137/070685038
+- doi: 10.1023/A:1015709329011
+- doi: 10.1515/156939503322004873
+- doi: 10.1142/S0218202514400041
+- doi: 10.1007/s00211-006-0034-1
+- doi: 10.1051/m2an:2002031
+- unstructured: DroniouJ EymardR GallouëtT GuichardCandHerbinR.Gradient Schemes for
+    elliptic and parabolic problems 2014 in preparation.
+- doi: 10.1142/S0218202510004222
+- doi: 10.1142/S0218202513500358
+- doi: 10.1051/m2an/2015079
+- doi: 10.1137/S0036142902405205
+- doi: 10.1137/090770849
+- unstructured: DroniouJandNatarajN.ImprovedL2estimate for gradient schemes and super‐convergence
+    of finite volume methods (submitted) arxiv:http://arxiv.org/abs/1602.07359.
+- unstructured: EdwardsMGandRogersCF.A flux continuous scheme for the full tensor
+    pressure equation. In4th European Conference on the Mathematics of Oil Recovery
+    1994.
+- doi: 10.1023/A:1011510505406
+- article-title: On Godunov‐type methods near low densities
+  author: Einfeldt B
+  first-page: '272'
+  journal-title: J. Comput. Phys.
+  volume: '92'
+  year: '1992'
+- doi: 10.1007/s00211-014-0694-1
+- doi: 10.1007/978-3-642-20671-9_85
+- doi: 10.1090/gsm/019
+- doi: 10.2991/jnmp.2002.9.3.3
+- doi: 10.1137/S0036142900368873
+- unstructured: EymardR FéronPandGuichardC.Gradient schemes for the incompressible
+    steady Navier‐Stokes problem. In6th International conference on Approximation
+    Methods and Numerical Modelling in Environment and Natural Resources Université
+    de Pau 2015 2015.
+- doi: 10.1093/imanum/18.4.563
+- article-title: Existence and uniqueness of the entropy solution to a nonlinear hyperbolic
+    equation
+  author: Eymard R
+  first-page: '1'
+  issue: '1'
+  journal-title: Chin. Ann. Math. Ser. B
+  volume: '16'
+  year: '1995'
+- doi: 10.1007/s002110050412
+- doi: 10.1016/S1570-8659(00)07005-8
+- article-title: Error estimates for approximate solutions of a nonlinear convection‐diffusion
+    problem
+  author: Eymard R
+  first-page: '419'
+  issue: '4'
+  journal-title: Adv. Differ. Equ.
+  volume: '7'
+  year: '2002'
+- doi: 10.1093/imanum/drn084
+- doi: 10.1137/090779863
+- author: Eymard R
+  volume-title: 'Finite Volume Methods: Schemes and Analysis'
+  year: '2016'
+- doi: 10.1007/s002110100342
+- doi: 10.1051/m2an/2011040
+- author: Eymard R
+  first-page: '895'
+  volume-title: Proceedings of Finite Volumes for Complex Applications VI
+  year: '2011'
+- doi: 10.1016/0045-7825(92)90186-N
+- unstructured: FailleI.Modélisation bidimensionnelle de la genèse et de la migration
+    des hydrocarbures dans un bassin sédimentaire. PhD thesis University Joseph Fourier
+    – Grenoble I 1992b.
+- doi: 10.1137/S0036142997314695
+- doi: 10.1093/imanum/drs024
+- doi: 10.1137/110836961
+- doi: 10.1016/j.apnum.2006.06.002
+- author: Gallouët T
+  first-page: '17'
+  volume-title: Actes du 3eme colloque sur les Tendandes des Applications Mathématiques
+    en Tunise, Algérie, Maroc (14‐18 avril 2007)
+  year: '2007'
+- author: Gallouët T
+  first-page: '155'
+  volume-title: Finite Volumes for Complex Applications II
+  year: '1999'
+- doi: 10.1051/m2an:2008005
+- doi: 10.1051/m2an/2010006
+- doi: 10.1002/fld.346
+- doi: 10.1016/S0045-7930(02)00011-7
+- unstructured: GallouëtT HerbinR LatchéJ‐CandMallemK.Convergence of the Marker‐and‐Cell
+    scheme for the incompressible Navier‐Stokes equations 2015a submitted.
+- unstructured: GallouëtT HerbinR LatchéJ‐CandMalteseD.Convergence of the Marker‐and‐Cell
+    scheme for the compressible stationary Navier‐Stokes equations 2015b submitted.
+- unstructured: GallouëtT HerbinR MalteseDandNovotnyA.Convergence of the Marker‐and‐Cell
+    scheme for a semi‐stationary compressible Navier‐Stokes problem 2015c under revision.
+- doi: 10.1093/imanum/drv028
+- article-title: Kinetic energy control in explicit finite volume discretizations
+    of the incompressible and compressible Navier‐Stokes equations
+  author: Gallouët T
+  first-page: '6'
+  issue: '2'
+  journal-title: Int. J. Finite Vol.
+  volume: '7'
+  year: '2010'
+- doi: 10.1137/S0036142999351388
+- doi: 10.1090/S0025-5718-2011-02571-8
+- article-title: Un schéma de Godunov approché
+  author: Gallouët T
+  first-page: '77'
+  issue: '1'
+  journal-title: C.R. Acad. Sci. Paris Sér. I Math.
+  volume: '323'
+  year: '1996'
+- doi: 10.1007/978-3-642-20671-9_86
+- doi: 10.1007/s11242-011-9724-y
+- author: Godlewski E
+  volume-title: Mathematiques & Applications
+  year: '1991'
+- article-title: A finite difference method for the numerical computation of discontinuous
+    solutions of the equations of fluid dynamics
+  author: Godunov SK
+  first-page: '271'
+  journal-title: Math. Sbornik.
+  volume: '47'
+  year: '1959'
+- article-title: An interesting class of quasilinear systems
+  author: Godunov SK
+  first-page: '521'
+  journal-title: Dokl. Akad. Nauk. SSSR
+  volume: '139'
+  year: '1961'
+- article-title: On the accuracy of stable schemes for 2D conservation laws
+  author: Goodman JD
+  doi: 10.1090/S0025-5718-1985-0790641-4
+  first-page: '15'
+  issue: '171'
+  journal-title: Math. Comput.
+  volume: '45'
+  year: '1985'
+- article-title: Un schéma‐équilibre adapté aux lois de conservation scalaires non‐homogènes
+  author: Gosse L
+  first-page: '543'
+  issue: '5'
+  journal-title: C.R. Acad. Sci. Paris Sér. I Math.
+  volume: '323'
+  year: '1996'
+- doi: 10.1090/S0025-5718-98-00913-2
+- doi: 10.1137/S003614450036757X
+- doi: 10.1137/050647578
+- doi: 10.1137/0733001
+- doi: 10.1063/1.1761178
+- doi: 10.1016/0021-9991(83)90118-3
+- article-title: On the symmetric form of systems of conservation laws with entropy
+  author: Harten A
+  doi: 10.1016/0021-9991(83)90118-3
+  first-page: '357'
+  journal-title: J. Comput. Phys.
+  volume: '49'
+  year: '1983'
+- doi: 10.1016/0021-9991(89)90226-X
+- unstructured: HartenAandChakravarthyS.Multi‐Dimensional ENO Schemes for General
+    Geometries. Report ICASE‐91‐76.Institute for Computer Applications in Science
+    and Engineering 1991.
+- doi: 10.1002/cpa.3160290305
+- doi: 10.1137/1025002
+- doi: 10.1016/0168-9274(86)90039-5
+- doi: 10.1016/0021-9991(87)90031-3
+- article-title: A simple parameter‐free entropy correction for approximate Riemann
+    solvers
+  author: Helluy P
+  first-page: '493'
+  issue: '9'
+  journal-title: C.R. Méc. Acad. Sci. Paris
+  volume: '338'
+  year: '2010'
+- doi: 10.1002/num.1690110205
+- author: Herbin R
+  first-page: '659'
+  volume-title: Finite Volumes for Complex Applications V
+  year: '2008'
+- article-title: Kinetic energy control in the MAC discretization of the compressible
+    Navier‐Stokes equations
+  author: Herbin R
+  first-page: '6'
+  issue: '2'
+  journal-title: Int. J. Finite Vol.
+  volume: '7'
+  year: '2010'
+- author: Herbin R
+  first-page: '83'
+  volume-title: 'Applied Mathematics in Savoie – AMIS 2012: Multiphase Flow in Industrial
+    and Environmental Engineering'
+  year: '2013'
+- article-title: On some consistent explicit staggered schemes for the shallow water
+    and Euler equations
+  author: Herbin R
+  journal-title: 'ESAIM: Math. Modell. Numer. Anal.'
+  year: '2016'
+- unstructured: HerbinR LatchéJ‐CandZazaC.A cell‐centered pressure‐correction scheme
+    for the compressible Euler equations M3AS 2016b under revision.
+- doi: 10.1007/978-3-319-05684-5_33
+- doi: 10.1006/jcph.2000.6466
+- doi: 10.1016/S0045-7825(02)00644-8
+- doi: 10.1016/j.cma.2007.01.005
+- doi: 10.1016/j.jcp.2009.05.002
+- doi: 10.2514/6.1993-3359
+  unstructured: JamesonA.Artificial Diffusion Upwind biasing Limiters and Their Effect
+    on Accuracy and Convergence in Transonic and Hypersonic Flows. Report AIAA‐93‐3359.American
+    Institute for Aeronautics and Astronautics:Washington DC 1993;1–28.
+- doi: 10.1016/0168-9274(86)90038-3
+- doi: 10.1016/0168-9274(87)90053-5
+- doi: 10.1006/jcph.1996.0130
+- doi: 10.1002/cpa.3160480303
+- unstructured: KarlsenKHandRisebroNH.On the Uniqueness and Stability of Entropy Solutions
+    of Nonlinear Degenerate Parabolic Equations with Rough Coefficients. Preprint
+    143 Department of Mathematics University of Bergen 2000.
+- doi: 10.1007/978-3-642-55711-8_57
+- author: Koren B
+  volume-title: Proceedings of the Second International Conference on Hyperbolic Problems
+  year: '1988'
+- author: Kröner D
+  volume-title: Numerical Schemes for Conservation Laws
+  year: '1997'
+- doi: 10.1090/S0025-5718-99-01158-8
+- doi: 10.1007/s002110050156
+- doi: 10.1070/SM1970v010n02ABEH002156
+- article-title: Error estimates for second order finite volume schemes using a TVD‐Runge‐Kutta
+    time discretization for a nonlinear scalar hyperbolic conservation law
+  author: Küther M
+  first-page: '299'
+  issue: '4'
+  journal-title: East‐West J. Numer. Math.
+  volume: '8'
+  year: '2000'
+- doi: 10.3934/dcdss.2015.8.913
+- doi: 10.1016/0041-5553(76)90046-X
+- doi: 10.1137/1.9781611970562
+- doi: 10.1002/cpa.3160130205
+- doi: 10.1137/0733003
+- doi: 10.1023/A:1021247300362
+- doi: 10.1016/j.crma.2005.10.010
+- author: Le Potier C
+  first-page: '103'
+  volume-title: Finite Volumes for Complex Applications V
+  year: '2008'
+- article-title: A nonlinear finite volume scheme satisfying maximum and minimum principles
+    for diffusion operators
+  author: Le Potier C
+  first-page: '20'
+  issue: '2'
+  journal-title: Int. J. Finite Vol.
+  volume: '6'
+  year: '2009'
+- doi: 10.1017/CBO9780511791253
+- doi: 10.1006/jcph.2001.6838
+- doi: 10.1006/jcph.1993.1122
+- doi: 10.1016/j.jcp.2013.07.031
+- doi: 10.1137/0730034
+- author: Málek J
+  first-page: '44'
+  volume-title: Applied Mathematics and Mathematical Computation
+  year: '1966'
+- doi: 10.1080/10618569908940819
+- doi: 10.3997/2214-4609.20145006
+  unstructured: MichelA TranQHandFavennecG.A genuinely one‐dimensional upwind Scheme
+    with accuracy enhancement for multidimensional advection problems. InECMOR XII
+    ‐ 12 th European Conference on the Mathematics of Oil Recovery 2010.
+- doi: 10.1007/PL00005479
+- doi: 10.1016/0022-0396(80)90089-3
+- doi: 10.1137/0729091
+- doi: 10.1090/S0025-5718-96-00665-5
+- doi: 10.1007/PL00005431
+- doi: 10.1051/m2an:2001119
+- doi: 10.1002/fld.1686
+- doi: 10.1093/imanum/22.2.253
+- doi: 10.1090/S0025-5718-05-01770-9
+- doi: 10.1090/trans2/026/05
+- author: Omnes P
+  first-page: '617'
+  volume-title: Finite Volumes for Complex Applications V
+  year: '2008'
+- doi: 10.1051/m2an/2010068
+- doi: 10.1137/0721016
+- article-title: Upwind difference schemes for hyperbolic systems of conservation
+    laws
+  author: Osher S
+  doi: 10.1090/S0025-5718-1982-0645656-0
+  first-page: '339'
+  issue: '158'
+  journal-title: Math. Comput.
+  volume: '38'
+  year: '1982'
+- doi: 10.1201/9781482234213
+- doi: 10.1016/j.jcp.2010.10.001
+- doi: 10.4310/CMS.2015.v13.n2.a17
+- doi: 10.1002/fld.3688
+- doi: 10.1007/BF01389214
+- doi: 10.1016/0021-9991(81)90128-5
+- author: Rostand P
+  volume-title: Proceedings of the Second International Conference on Hyperbolic Problems
+  year: '1988'
+- doi: 10.1137/0728073
+- doi: 10.1137/0909073
+- author: Shu CW
+  series-title: Lecture Notes in Computational Science and Engineering
+  volume-title: High Order ENO and WENO Schemes
+  year: '1999'
+- author: Shu CW
+  first-page: '51'
+  volume-title: Collected Lectures on the Preservation of Stability Under Discretization
+    (Fort Collins, CO, 2001)
+  year: '2002'
+- doi: 10.1016/0021-9991(88)90177-5
+- doi: 10.1016/S0045-7825(96)01060-2
+- doi: 10.1137/S0036142997316013
+- article-title: Multigrid solution of monotone second‐order discretizations of hyperbolic
+    conservation laws
+  author: Spekreijse SP
+  doi: 10.1090/S0025-5718-1987-0890258-9
+  first-page: '135'
+  journal-title: Math. Comput.
+  volume: '49'
+  year: '1987'
+- doi: 10.1016/0021-9991(81)90210-2
+- doi: 10.1137/0721062
+- doi: 10.1016/0022-247X(87)90265-4
+- doi: 10.1137/0728048
+- article-title: Entropy stability theory for difference approximations of nonlinear
+    conservation laws and related time‐dependent problems
+  author: Tadmor E
+  first-page: '451'
+  journal-title: Acta Numer.
+  volume: '13'
+  year: '2004'
+- author: Tartar L
+  series-title: Research Notes in Mathematics
+  volume-title: 'Nonlinear Analysis and Mechanics: Heriot‐Watt Symposium'
+  year: '1979'
+- unstructured: TatsumiS MartinelliLandJamesonA.Design Implementation and Validation
+    of Flux Limited Schemes for the Solution of the Compressible Navier‐Stokes Equations.
+    Report AIAA‐94‐0647.American Institute for Aeronautics and Astronautics Reno Nevada
+    USA 1994;1–20.
+- unstructured: ThermeN.Schémas numériques pour la simulation de l'explosion. PhD
+    thesis Aix‐Marseille Université 2015.
+- doi: 10.4310/CMS.2008.v6.n3.a3
+- unstructured: VankeirsblickP.Algorithmic Developments for the Solution of Hyperbolic
+    Conservation Laws on Adaptive Unstructured Grids. PhD thesis Katholieke Universiteit
+    Leuven:Belgium 1993.
+- doi: 10.1016/0021-9991(79)90145-1
+- doi: 10.1007/3-540-11948-5_66
+  unstructured: van LeerB.Flux‐Vector Splitting for the Euler Equations. Report ICASE‐82‐30.Institute
+    for Computer Applications in Science and Engineering Hampton Virginia USA 1982.
+- author: van Leer B
+  series-title: Lectures in Applied Mathematics
+  volume-title: Upwind‐Difference Schemes for Aerodynamics Problems Governed by the
+    Euler Equations
+  year: '1985'
+- doi: 10.1051/m2an/1994280302671
+- doi: 10.1007/978-3-642-05146-3
+- unstructured: WierseM.Higher Order Upwind Scheme on Unstructured Grids for the Compressible
+    Euler Equations in Time Dependent Geometries in 3D. PhD thesis University of Freiburg:Germany
+    1994.
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781119176817.ecm2010
+doi: 10.1002/9781119176817.ecm2010
+files:
+- finite_volume_methods_foundation_and_analysis_Barth_Herbin_Ohlberger_2017.pdf
+isbn: '9781119176817'
+journal: Encyclopedia of Computational Mechanics Second Edition
+language: en
+month: 12
+pages: 1--60
+papis_id: 3680368564a80ffe0df6466b3d645156
+publisher: Wiley
+title: 'Finite Volume Methods: Foundation and Analysis'
+type: misc
+url: https://doi.org/10.1002/9781119176817.ecm2010
+year: 2017

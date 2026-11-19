@@ -1,0 +1,2387 @@
+J. E’luid Meeh. (1981), VOE. 113,pp. 23-51
+
+23
+
+Printed in Great Britain
+
+The structure of a separating turbulent boundary layer.
+Part 1. Mean flow and Reynolds stresses
+By ROGER L. SIMPSON, Y.-T. CHEW? A N D
+B. G. S H I V A P R A S A D
+Southern Methodist University, Dallas, Texas 75275
+(Received 19 August 1980 and in revised form 16 March 1981)
+
+The problem of turbulent-boundary-layer separation due to an adverse pressure
+gradient is an old but still important problem in many fluid flow devices. Until recent
+years little quantitative experimental information was available on the flow structure
+downstream of separation because of the lack of proper instrumentation. The directionally sensitive laser anemometer provides the ability to measure the instantaneous
+flow direction and magnitude accurately.
+The experimental results described here are concerned with a nominally twodimensional, separating turbulent boundary layer for an airfoil-type flow in which the
+flow was accelerated and then decelerated until separation. Upstream of separation
+single and cross-wire hot-wire anemometer measurements are also presented. Measurements in the separated zone
+- with
+- a-directionally sensitive laser-anemometer
+system were obtained for U , V ,u2,v2, - uv,the fraction of time that the flow moves
+downstream, and the fraction of time that the flow moves away from the wall.
+In addition to confirming the earlier conclusions of Simpson, Strickland & Barr
+(1977) regarding a separating airfoil-type turbulent boundary layer, much new
+information about the separated region has been gathered. (1) The backflow mean
+velocity profile scales on the maximum negative mean velocity U, and its distance
+from the wall N . A U+ vs. y+ law-of-the-wallvelocity profile is not consistent with this
+result. (2) The turbulent velocities are comparable with the mean velocity in the backflow, although low turbulent shearing stresses are present. (3) Mixing length and eddy
+viscosity models are physically meaningless in the backflow and have reduced values
+in the outer region of the separated flow.
+Downstream of fully developed separation, the mean backflow appears to be
+divided into three layers: a viscous layer nearest the wall that is dominated by the
+turbulent flow unsteadiness but with little Reynolds shearing stress effects; a rather
+flat intermediate layer that seems to act as an overlap region between the viscous wall
+and outer regions; and the outer backflow region that is really part of the large-scaled
+outer region flow. The Reynolds shearing stress must be modelled by relating it to the
+turbulence structure and not to local mean velocity gradients. The mean velocities in
+the backflow are the results of time averaging the large turbulent fluctuations and are
+not related to the source of the turbulence.
+
+t Present address : Department of Mechanicaj and Production Engineering, University of
+Singapore.
+
+24
+
+R.L. Simpson, Y . - T .Chew and B . G . Shivaprasad
+
+1. Introduction
+The problem of turbulent boundary-layer separation due to an adverse pressure
+gradient is an important factor in the design of many devices such as jet engines,
+rocket nozzles, airfoils and helicopter blades, and the design of fluidic logic systems.
+Until recent years little reliable quantitative experimental information was available
+on the flow structure downstream of separation because of the lack of proper instrumentation. As was pointed out by Simpson (1976), hot-wire anemometer and impact
+probes are directionally insensitive and cannot measure the backflow velocity with its
+changing flow direction accurately. Consequently, results from earlier studies of the
+backflow using these measurement techniques are suspect.
+One approach to alleviate this problem is to move a hot-wire probe with a largeenough known velocity to avoid the hot-wire signal rectification that occurs with
+fixed probes. Coles & Wadcock (1979) used a flying hot wire or hot-wire probe mounted
+on the end of a rotating arm to measure two velocity components in the separated
+region of a two-dimensional airfoil flow at maximum lift. Although these final processed data are available as a test case for turbulence modelling, no interpretative
+analysis of the backflow structure is yet available from these results.
+In another approach, Simpson, Strickland & Barr (1974) used a one-velocity-component directionally sensitive laser anemometer system to obtain some new features
+of a separating turbulent boundary layer. I n addition to much turbulence structure
+information, it was determined: ( 1 ) that the law-of-the-wall velocity profile is
+apparently valid up to the beginning of the intermittent separation; (2) that the
+location of the beginning of intermittent separation or the upstreammost location
+where separation occurs intermittently is located close to where the free-stream
+pressure gradient begins to decrease rapidly; (3) that the normal stresses terms of the
+momentum and turbulent kinetic energy equations are important near separation;
+and (4)that the separated flow field shows some similarity of the streamwise mean
+velocity U , of the streamwise velocity fluctuation up,and of the fraction of time that
+the flow moves downstream (Simpson et al. 1977).
+Based upon these results, modifications were made (Simpson & Collins 1978;
+Collins & Simpson 1978) to the boundary-layer prediction method of Bradshaw,
+Ferriss & Atwell (1967). However, this attempt at prediction pointed to the need to
+understand the relationship between the pressure-gradient relaxation and the structure of the intermittent separation region. A number of other workers, for example
+Pletcher (1978) and Cebeci, Khalid & Whitelaw (1979), have tried to predict this type
+of flow, but their assumptions about the turbulence structure near the wall are
+questionable. In nearly all the attempts so far, workers have extended the velocity
+and turbulence profile correlations that apply to attached flows to t,he backflow
+region. Even though turbulent fluctuations near the wall in the backflow region are
+as large as or larger than mean velocities, these predictors use a turbulence model that
+is tied to the mean velocity gradient. Even with adjustment of turbulence model
+parameters to fit one feature or another, these models do not simultaneously predict
+the backflow velocity profile, the streamwise pressure distribution, and the fact that
+length scales increase along the flow. Clearly then, a limiting factor for further improvement of the prediction of separated flows is the lack of fundamental experimental
+velocity and turbulence structure information with which to develop adequate
+
+Structure of a separating turbulent boundary layer. Part 1
+
+25
+
+FIQURE
+1. Schematic diagram of the side view of the test section. The major divisions on the
+scales are 10 in. Note the baffle plate upstream from the blunt leading edge on the bottom test
+wall and side- and upper-wall jet boundary-layer controls.
+
+models, especially for the backflow region. Such data are presented here and in
+Simpson, Chew & Shivaprasad (1981) and Shiloh, Shivaprasad & Simpson (1984.
+The experimental results described in this paper are concerned with a nominally
+two-dimensional separating turbulent boundary layer for an airfoil-type flow in
+which the flow was accelerated and then decelerated until separation. Upstream of
+separation single-wire and cross-wire hot-wire anemometer measurement results are
+presented. Measurements obtained in the separated
+- zone
+- with
+- a directionally sensitive
+laser-anemometer system are presented for U ,V ,u2,w2, - uw,the fraction of time that
+the flow moves downstream ypu,and fraction of time that the flow moves away from
+the wall ypu. The implications of these results for mixing length and eddy viscosity
+flow models are discussed.
+
+2. Experimental equipment
+2.1. Basic wind tunnel
+The mainstream flow of the blown open-circuit wind tunnel is introduced into the
+test section after first passing through a filter, blower, a fixed-setting damper, a plenum,
+a section of honeycomb to remove the mean swirl of the flow, seven screens to remove
+much of the turbulence intensity and finally through a two-dimensional 4: 1 contraction ratio nozzle further to reduce the longitudinal turbulence intensity while accelerating the flow to test speed. These same components were in an earlier version of this
+wind tunnel with a shorter test section (Simpson et al. 1977).
+Figure 1 is a side-view schematic diagram of the 25 ft long, 3 ft wide test section
+of the wind tunnel. The upper wall is adjustable such that the free-stream velocity or
+pressure gradient can be adjusted. The side walls are made of floatglass. The test wall
+is constructed from $ in. thick &-form plywood, reinforced every 11 in. with
+3 x 14 x 1 in. cross-section.steel channel.
+The active boundary-layer control system, which is described by Simpson, Chew &
+Shivaprasad (1980),is used to eliminate preferential separation of the curved-top-wall
+boundary layer. Highly two-dimensional wall jets of high-velocity air are introduced
+at the beginning of each of the 8 ft long sections. At the latter two streamwise locations
+the oncoming boundary layer is partially removed by a highly two-dimensional
+suction system.
+The inviscid core flow is uniform within 0-05 yoin the spanwise direction and within
+1 yoin the vertical direction with a turbulence intensity of 0.1 yoat 60 f t s-l. The test
+wall boundary layer is tripped by the blunt leading edge of the plywood floor, the
+
+26
+
+R. L. Simpson, Y . - T .Chew and B . C.Shivaprmad
+
+t
+
+height of the step from the wind tunnel contraction to the test wall being in. Smoke
+can be introduced uniformly into the boundary layer just upstream of this trip for
+use with the laser-Doppler anemometer.
+2.2. Hot-wire anemometers
+Miller-type (1976) integrated circuit hot-wire anemometers and linearizers, as modified by Simpson, Heizer & Nasburg (1979), were constructed and used. A TSI Model
+1050 anemometer was used with the surface hot-wire element that is described in
+$2.3 below. The frequency response was flat up to 7.5 kHz for an overheat ratio of
+0.7. This moderately high overheat ratio was used because Wood (1975) has shown
+that the range of flat frequency response is improved with a higher overheat ratio.
+Standard TSI model 1274-T1.4 normal wire and model 1248-T1.5 cross-wire probes
+were used for boundary-layer measurements. The closest to the wall that these
+probes could safely make measurements was about 0-002 in. and 0.035 in., respectively. The sensing elements are 0.00015 in. diameter, 0.050 in. length platinumplated tungsten wires.
+The traversing mechanism used for the boundary-layer velocity measurements
+was mounted on the supporting frame for the upper wall and provided for precise
+positioning of the probe sensors as described by Strickland & Simpson (1973). A
+cathetometer was used to locate the probe sensor from the wall within an uncertainty
+of about 0.002 in. The detailed streamwise free-stream velocity distributions were
+obtained using the Model 1274-T1.5 probe mounted on a mobile cart that was easily
+positioned along the flow.
+Calibrations were made in a TSI Model 1127 calibrator. There was no detectable
+drift of the anemometer; the function-module-type linearizers had a small amount
+of d.c. drift. Each linearized calibration had a low level of dispersion from a straight
+line, with a product moment correlation coefficient (Bragg 1974) in excess of 0.9999.
+The slope of each calibration varied no more than about 4 % over the life of a given
+probe. A standard TSI model 1015C correlator was used to obtain sum and difference
+values for u and v from cross-wire signals. True integrating voltmeters, each consisting of a voltage-controlled oscillator and a digital counter, were used to obtain
+true time-averaged results.
+2.3. Surface hot-wire skin-friction gauge
+Because a single universal calibration is valid in both laminar and turbulent flow and
+is insensitive to pressure gradients (Murthy & Rose 1978; Higuchi & Peake 1978), a
+surface hot-wire skin-friction gauge of the type used by Rubesin et al. (1975) was
+constructed and used. The basic advantages of this type of gauge are that the surfaceheating-element dimension in the streamwise direction is very small and the conduction losses to a very low thermal conductivity substrate are minimized.
+A 0.001 in. diameter platinum-10 yorhodium wire was mounted between 0-052 in.
+diameter nickel electrodes located 0-4in. apart whose ends were flush with the flat
+polystyrene surface. Conduction losses to the electrodes are small since the wire
+length-to-diameter ratio of 400 is large. Several drops of ethyl acetate were used to
+dissolve the polystyrene in the vicinity of the wire and imbed it in the surface. The
+ends of the wire were then soldered to the electrodes. The polystyrene was mounted
+on a thin portable Plexiglas plate. The resulting surface was sanded and polished flat
+
+Structure of a separating turbulent boundary layer. Part 1
+
+27
+
+and smooth before the wire was mounted. This plate allows a single element to be
+moved to various measurement locations with a minimum of flow disturbance. The
+element is sufficiently downstream of the end of the small ramp and sufficiently
+upstream of the trailing edge to avoid sensing local disturbances generated by the
+plate. A 0,001 in. diameter platinum and platinum-10 % rhodium thermocouple
+was mounted $5 in. downstream of the hot-wire element.
+Rubesin et al. found that overheat temperatures of a t least 80 O F were needed to
+make the heat loss from a wire proportional to its temperature rise, or E2IRAT a
+constant. Hjguchi & Peake (1978) found that overheats greater than 176 O F caused
+the wire t o melt the substrate and separate from the surface. Here the cold resistance
+a t 77 O F was 3.70 s1 and 0.6 s1 overheat resistance was used, so, with a temperature
+coefficient of resistivity of 0.89 x
+OF-l,
+AT was 152 O F . The wire was not observed
+to separate from the surface.
+A simple stainless-steel cone with 0.5' angle between the cone and the plate surface
+was constructed for calibration of this gauge. A brass housing held the cone in place
+on the plate. The hot wire was aligned with a radial line from the cone apex. The
+velocity gradient a t the plate surface was independent of the radial position since
+the cone surface velocity, w r , and the spacing between the cone and the plate,
+r tan 0.5") each vary linearly with the radius. Because the maximum surface velocity
+gradient of interest was about 9-6 x lo4 s-l, a high-speed grinder motor (26000 r.p.m.)
+and a Variac power control were used to produce 600 r.p.m. < f < 8000 r.p.m. A vinyltubing flexible connector was used between the cone shaft and the grinder to minimize
+misalignment. The angular speed f was measured by reflecting a light beam from the
+hexagonal grinder chuck nut into a photomultiplier tube and using a digital counter
+to measure the signal pulse rate f p , from which we found f = &fp. Heating of the
+calibrator flow occurred above 8000 r.p.m. due to substantial frictional heating in
+the steel-brass bearing. Since the air temperature was measured with the thermocouple, corrections could be made. After calibration, a Miller-type (1976) exponential
+electronic linearizer was used to linearize the bridge output voltage.
+2.4. Laser anemometer and signal processing
+
+The laser anemometer used in these experiments is described in some detail by
+Simpson & Chew (1979). In essence this is a two-velocity-component ( U , V )directionally sensitive fringe-type system that has been used in earlier work (Simpson et al.
+1977). The unshifted and 25 MHz Bragg-cell-shifted beams lie in an almost horizontal
+plane and measure the streamwise velocity with vertical fringes. The unshifted and
+15 MHz Bragg-cell-shifted beams lie in a vertical plane and measure (9'cos 4.4'
++ Wsin 4.4') with almost horizontal fringes. The 25 MHz and 15 MHz beams form a
+third fringe pattern that measures (@ - V'- cos 4.4"- Wsin 4*4")/,/2around 10 MHz.
+Since 2 and (a cos 4.4"+ w sin 4-4°)2 were measured independently and
+was
+resulted from this measurepresumed very small, the Reynolds shearing stress
+ment. Signal processing was by fast-sweep-rate sampling spectrum analysis, as
+described by Simpson & Barr (1975).
+The 1pm dioctal phthalate particles follow the highly turbulent oscillations found
+in separated regions (Simpson & Chew 1979). It should be noted that it is impossible
+to seed a highly turbulent flow in any prescribed manner. Highly turbulent flows are
+characterized by intense mixing of the flow. I n this case there is also significant
+
+-z
+
+2
+
+P L M 113
+
+28
+
+R.L . Ximpson, Y . - T .Chew and B. G . Shivaprasad
+
+entrainment of free-stream fluid into the turbulent motions. This would progressively
+dilute the particle concentration if only the shear flow was seeded. Instead of needless
+worry over prescribed particle concentration, concern has been with proper averaging
+of available signals as described below, with enough particles to provide a high data
+rate, and with sufficiently small particles to follow the flow accurately. In fact,
+without any seeding it was possible to obtain signals from the ambient dust. However,
+minimal seeding was used to produce a signal data rate of about 400/s.
+Since the particle number density in a highly turbulent flow cannot be made
+uniform, the time between the passage of successive signal-generating particles will be
+unequal. This effect alone presents no particular signal-processingproblem if the time
+intervals between successive signal bursts are small compared with l/fmax, the time
+period of the highest flow oscillation frequency fmax to be detected, i.e. if the signal
+is almost continuous. One can simply treat the signal as a continuous hot-wire
+anemometer signal to obtain the averages
+
+where n = 2, 3, 4, .... When the time intervals between successive signal bursts are
+long compared with l/fmax(high signal drop-out rate) and are unequal, these equations should be used in the fashion explained below.
+Firstly, let us look at the commonly used method of particle averaging for
+individual-particle velocity measurements. The averages are made over the number
+of signal bursts M obtained during the time period T :
+
+where n = 2 , 3 , 4 , .... These averages are not made with respect to time and are biased
+unless the time intervals between signal bursts are equal. McLaughlin & Tiederman
+(1973) proposed a biasing correction that is based upon the idea that higher-velocity
+flow carries more particles through the focal volume per unit time. Thus, more of the
+high-velocity signal bursts will be obtained and Ual will be too high. However, highvelocity particles spend less time in the focal volume so that, in the case of samplingspectrum-analysis signal processing, the chance of detecting a given signal burst
+varies as ('$Y2 + V 2+ W2)-*.Thus, this effect tends to cancel the above-mentioned
+bias for particle averaging. DurZo & Whitelaw (1975) showed that, if the Doppler
+bursts are randomly sampled before particle averaging, the bias effects are reduced
+significantly. Even so, particle averaging is not fundamentally a time average.
+Consider now time-averaging of signals according to equations (1) and (2), even
+though the signal drop-out rate may be large. Only ergodic flows whose averaged
+quantities in equations ( 1 ) and (2) become independent of time for large T are considered. This restriction is also required for particle averaging. The last-sampled
+signal must be held by a sample-and-hold circuit until a new signal is detected for
+time-averaging. With exception of the instant a t which a new signal is detected, the
+sampled-and-held voltage does not correspond to the actual instantaneous velocity.
+However, the voltage value a t each instant corresponds to the instantaneous velocity
+at some instant during a recording time T for an ergodic flow. Since any averaging
+
+Structure of a separating turbulent boundary layer. Part 1
+
+29
+
+process removes time-domain dependency, it does not matter when during the time
+period T that a given voltage occurs. It is unlikely that a given signal voltage will be
+averaged over too long a time (Simpson & Chew 1979). This method of averaging
+eliminates the need for the high-velocity-flow bias correction.
+The mechanics of evaluating a true time average in this research made use of a
+velocity probability histogram P ( % ) obtained with a SAICOR Model 41 Correlator
+and Probability Analyzer:
+
+un =
+
+J-
+
++a,
+
+(%- U p P ( % ) d @ ,
+
+(7)
+
+-m
+
+where n = 2, 3 , 4 , . ... The histogram P(%)is constructed by sampling the @(t)sampleand-held signal at equal intervals in time At for the period T.Thus the histogram
+reflects a true time integral and the results from equations (5)-(7) will be equivalent
+to those from equations (1)-(2). The time interval At between digital samples should
+be no larger than the shortest time between signal bursts, otherwise some data will be
+s for about 400 new signals/s. The averaging time T
+lost. For example, At =
+was at least a half minute, so at least 12000 new data signals and 3 x 105 equal-timeinterval samples were involved for one histogram. An added benefit of the histogram
+approach is that noise can be detected on an oscilloscope display while P ( % ) is being
+constructed. The noise will cause the base level of P(%)to grow. Thus, the resulting
+P(%)can be corrected for noise or the discriminator level in the signal processor can
+be adjusted on-line and a new P(%)constructed. The histograms were stored on
+digital tape and analysed by a digital computer.
+These results are not believed to suffer strongly from bias errors. Firstly, there is
+no bias in the duration of a detected signal due to the flow velocity. In other words,
+the time that the highest-velocity particle spends in the focal volume is always large
+enough to produce a sufficiently large vertical voltage output from the spectrum
+analyser. Minimal particle seeding was used for the best SNR and data sample rate,
+so significant hite-transit-time broadening is unlikely.
+Velocity-gradient broadening is not significant for any data presented here (Simpson
+1976). The focal volume diameter 0.012 in. and length 0-140in. are small compared
+with the boundary-layer thickness. In addition, signals from the centre of the focal
+volume are the most likely since the scattered signals are the most intense. Largescaled motions, which scale on the boundary-layer thickness, appear to dominate the
+structure of highly turbulent ffows, so strong instantaneous spatial velocity variations
+within the focal volume are unlikely. As shown below, these results compare favourably with hot-wire anemometer data obtained in regions where both types of measurement are valid.
+
+3. Description of the test flow
+All data were obtained at atmospheric pressure and 77 $ O F flow conditions.
+Figure 2 shows the free-stream velocity distributions obtained along the tunnel
+centre-line using the single-wire probe. This distribution was repeatable within 2.9 %
+2-2
+
+R.L. Simpson, Y . - T .Chew and B . G . Shivaprasad
+
+30
+
+0.3
+
+-
+
+-
+
+0
+%
+
+0
+
+00
+
+- 70
+
+0
+
+0
+
+0.2
+
+80
+
+0
+
++.
+0
+
+0
+
+-0.1
+
+0
+
+0
+
+0
+
+-
+
+h
+
+0
+
+Ir
+A
+
+*
+
+50
+
+2
+
+.
+
+-40
+
+0
+0
+
+- 30
+
+0
+
+ooo
+
+0
+0
+
+-0.3 .
+
+* 60
+
+0
+
+0
+
+0
+
+OO
+
+O
+
+.orno ,
+
+I
+
+I
+
+1
+
+FIGURE
+2. Free-stream velocity and pressure gradient distributions along the tunnel centre-line.
+c , = 2 ( P - P i ) / p U a i = 1-(UajUai)~,u,, = 49-4fts-1.
+
+over the duration of these experiments, which is only a little greater than the uncertainty in measuring the mean veIocity with a hot-wire anemometer ( k 2 4 % ) .
+Figure 2 also shows the non-dimensional pressure gradient dC,/dx along the centreline of the test wall. Here C, = 2 ( P - Pi)/pU2,$ = 1 - (U,/U,i)2, where i denotes the
+free-stream entrance conditions at a distance x of 3 in. A five-point local least-squares
+curve fit of C, data was used at each streamwise location to determine this derivative.
+Just downstream of the location of the second wall-jet boundary-layer control unit
+(I00 in.), the slope of the static pressure gradient changes sign. Near 145 in. the
+pressure gradient drops to an approximately constant value downstream.
+To examine the two-dimensionality of the mean boundary-layer flow, smoke was
+introduced only in a spanwise portion of the test wall boundary layer at a given time.
+A sheet of laser light produced by a cylindrical Iens was used to illuminate the smoke
+across the tunnel. Upstream of separation, negligible spanwise diffusion of the
+smoke was observed, indicating no gross flow three-dimensionality. Mean velocity
+profiles at several spanwise locations indicated that the mean velocity was twodimensional within 1 %. Downstream of separation greater spanwise diffusion
+occurred, so that downstream of 170 in. no nominally two-dimensional flow remained.
+On the basis of these observations, the wall jet and suction boundary layer controls
+were adjusted to produce a nearly two-dimensional flow pattern downstream of
+separation. Smoke flow patterns in the side-wall and corner flows were symmetric
+about the channel centre-line.
+The momentum integral equation provides a global test of two-dimensionality
+based on conservation of momentum over a large flow volume. The skin-friction
+terms and the summed momentum, pressure and normal stresses terms of the integrated form of the momentum integral equation differ no more than 20 %, and differ
+less than 16 % over 80 yoof the length upstream of separation. Downstream the normal
+
+Structure of a separating turbulent boundary layer. Part 1
+
+31
+
+B
+B
+
+-
+
+B
+
+X
+X
+
+13
+
+3
+
+FIGURE
+3. Non-dimensional streamwise mean-velocity data from the laser anemometer (near
+wall) and normal and X-wire hot-wire anemometers. Inflection points C and D are from Shiloh
+et al. (1981). Note the log-linear abscissa and displaced ordinates.
+
+32
+
+R. L.Simpson, Y.-T.
+Chew and B. G . Shivaprasad
+Normal hot-wire
+Cross hot-wire
+(includingmisalignment
+uncertainty)
+Laser anemometer
+
+Position from wall
+Skin friction coefficientCt
+
+U k 2.4 %, uTk 7 %
+U k 3.2 %, u2 +lo %,
+va
+11%, -Tv 17 %
+
+U,Vk0.2 ft ~-1;z
+and2
+5 4 % maximum profile value;
+UV f 6 % maximum profile value;
+ysU+o.iexp ( - ~ 3 / 2 2 ) ;
+y p vk 0.1 exp ( - ~~/2;;;i)
+0.002 in.
+Ludwieg-Tilman, f 6.6yo;
+Preston tube, k 8.5 %;
+Surfme hot-wire, -I: 12 %
+
+*
+
+TABLE1. Estimated uncertainties of measured quantities.
+
+stresses play a more important role, although they are not large enough to improve
+the momentum balance significantly.
+
+4. Experimental results for the mean flow
+4.1. Mean-velocity profiles
+
+Mean-velocity profiles were obtained in the unseparated upstream boundary layer
+and the outer part of the separated flow using single-wire and cross-wire hot-wire
+anemometer probes. While some of these results are discussed here, Simpson et al.
+(1980) present them in detail and show that the upstream boundary layer behaves in
+a well-acceptednormal fashion. The directionally sensitive laser anemometer provided
+velocity profiles in the separated zone and the region immediately upstream.
+Figure 3 shows the streamwise mean velocity profiles for a few typical stations in
+the near-separation and the separated regions obtained using all three techniques.
+There is good agreement among these measurements, with the maximum discrepancy
+among them about 6-7 yo. I n the separated region only the laser-anemometer
+measurements are meaningful. Table 1 presents the experimental uncertainties for
+each measured quantity as determined by the method of Kline & McClintock (1953).
+As shown by Simpson & Chew (1979), the laser-anemometer results obtained on
+different days at the same location indicate a high level of data repeatability, well
+within the estimated experimental uncertainties.
+Lase;-anemometer and cross-wire anemometer results for the normal velocity
+component V just upstream of separation and in the separated region are in good
+agreement wherever the cross-wire results are valid. However, as shown in table 1,
+there is a fairly large uncertainty in the cross-wire result, mainly because of the uncertainty of the probe orientation with respect to the test wall. The laser-anemometer
+results are therefore more reliable. V grows progressively to as large as 0.25Uma t the
+outer shear-layer edge at 170 in.
+
+Structure of a separating turbulent boundary layer. Part 1
+
+33
+
+0.008
+
+-0.002 0~001
+
+0.01
+
+0.1
+
+0.3
+
+0.5
+
+0.7
+
+0.9
+
+1.1
+
+1.3
+
+FIGURE
+4. Reynolds shearing stress, -uT/UL,profiles. Note the displaced ordinates and the
+log-linear abscissa.
+
+x (in.)
+
+X-wire
+
+112
+118
+127
+131
+139
+144
+156
+
+B
+
+LDV
+
+PI
+
+x
+
+0
+
+GI
+X
+
+a
+X
+
++
+0
+
+*
+
+E
+
+4.2. Turbulence quantities
+
+The agreement between the results for laser and cross-wire anemometer for u'/U,,
+vl/U;, and - G / U $ is good with the apparent discrepancies due
+-to the experimental uncertainties shown in table 1. The discrepancies in -uvlU2, shown in
+figure 4 are the greatest due t o the uncertainty in orientation of the cross-wire probe
+
+R.L. Sirnpson, Y . - T .Chew and B. G . Shivaprasad
+
+34
+
+-
+
++
+
++
+
++
+
++++ +++++ + + +++
+
+*xxx
+XX
+
+x
+
+x
+
+x
+
+'
+
+122.6
+
+x
+
+x
+
+x
+
+x
+
+x
+
+127.1
+
+xx*
+
+x
+
+129.4
+
++
+
+66
+*%Q6
+
+ooQO
+Q
+
+i
+
+l
+
+P
+
+131.4
+
+F
+
+n
+
+B
+
+D
+
+138.8
+
+A-
+
+I
+
+& B
+
+144.4
+CInnCI
+
+156.4
+170.4
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0.00 1
+
+0.01
+
+0.1
+
+0.3
+
+0.5
+
+0.7
+
+0.9
+
+1.1
+
+1.3
+
+Y16
+
+FIGURE
+5. Streamwise fraction of time the flow moves downstream with the locations of inflection points C and D from Shiloh et al. (1981). Solid lines are for visual aid only. Note the
+log-linear abscissa and displaced ordinates.
+
+Structure of a separating turbulent boundary layer. Part 1
+
+35
+
+0.2
+
+110
+
+120
+
+130
+
+.,
+
+140
+
+150
+
+160
+
+170
+
+180
+
+x (in.)
+
+FIQURE
+6 . Fraction of the time that the flow 0.04 in. from the wall is in the downstream direction: 0,
+from LDV measurement; A,from LDV U and u' measurements. Thermal tuft with
+position 1 ;
+reversed. Thermal tuft without side heaters: 0 , position 1;
+side heaters: 0,
+reversed. From Shivaprasad & Simpson (1981).
+
++,
+
+with respect t o the test wall. Since 2 and 3 are much larger than - uy only a very
+small misalignment is required to produce a very different -& result. Simpson et al.
+(1980) present in detail u'/Um, v'/Um, and - G / U z hot-wire anemometer results for
+the upstream boundary layer and show that they behave in a well-accepted normal
+fashion.
+4.3. Upstream-downstream intermittency
+Only the directionally sensitive laser anemometer results from these measurements
+give information on the fraction of time that the flow moves downstream or ypU.This
+quantity is the fraction of the area of the velocity probability histogram that has a
+positive velocity. The directionally insensitive hot-wire anemometer cannot yield ypu
+values (Simpson 1976).
+Figure 5 shows the distributions of the intermittency across the boundary layer
+for the region approaching separation and downstream of it. The intermittent reverse
+flow first starts appearing a t 122.6 in. but becomes clearly observable beyond 127 in.
+Further downstream, the backflow intensifies and also spreads outwards from the wall.
+The lowest value of ypuof approximately 0.05 is reached a t the last station of measurement in the separated region, where backflow extends up to about 60 % of the
+boundary-layer thickness. The distributions in the separated region are troughshaped near the wall, showing that the maximum amount of reverse flow occurs
+slightly away from the wall. This is consistent with the velocity profile shape that
+shows that the highest velocity for the backflow is reached a t a point slightly away
+from the wall. However, as shown in table 1, the uncertainty in ypubecomes large as
+the mean velocity approaches zero, so one cannot place too much emphasis on this
+coincidence. Figure 6 shows the decay of ypunear the wall, ypuo,as a function of the
+streamwise co-ordinate.
+
+R. L. Sirnpson, Y . - T .Chew and B. G . Shivaprasad
+
+36
+
+2.4
+2.0
+
+'P
+
++
+
+1.6
+
+0
+
+CI
+
+2
+
+4
+
+x 1.2
+
+0.8
+0.4
+
+20
+
+0
+
+40
+
+80
+
+60
+
+100
+
+120
+
+140
+
+x (in.)
+
+FIGURE
+7. Friction factor, gC,, versus x from different experimental methods: D, LudwigTillman law; 0 ,surface hot-wire gauge;
+Preston tube.
+
++,
+
+urn
+
+dUrn/dx
+
+(in.)
+
+(ft a-1)
+
+4l.w
+
+(8-9
+
+(in.)
+
+11.375
+21.750
+31.250
+44.000
+52.500
+64.250
+74.250
+87.500
+106.310
+112.375
+118.500
+120.500
+122.625
+127.125
+129.375
+131.875
+134.500
+138.750
+144.875
+156.375
+170.875
+
+52.60
+57-80
+63.20
+68.70
+7 1.50
+71.60
+70.00
+66.80
+59.30
+55.90
+53.10
+52.15
+51.30
+49.50
+48-75
+48.10
+47.40
+46.45
+45.50
+44.60
+43.70
+
+5.38
+6.48
+6.30
+4.38
+2.40
+- 1.32
+- 2.36
+- 3-54
+- 6.31
+- 5.68
+- 4.72
+- 4.45
+-4.11
+- 3.49
+- 3.16
+- 2.86
+- 2.55
+- 2.05
+- 1.64
+- 1.28
+- 1.21
+
+X
+
+0.492
+0.574
+0.531
+0.776
+0.712
+0.792
+0.909
+1.235
+1.828
+2.338
+2.799
+2.946
+3.280
+3.804
+4.878
+4.610
+5.829
+5.779
+6.708
+9.346
+12.518
+
+4.995
+
+(in.)
+0.517
+0.615
+0.563
+0.907
+0.761
+0.842
+0.959
+1.290
+1.891
+2.388
+2.842
+2.973
+3.322
+3.844
+4.922
+4.676
+5.895
+5.834
+6.768
+10.066
+12.841
+
+81
+
+(in.)
+
+*81
+
+HI,
+
+0.0699
+0.0728
+0.0707
+0.0898
+0.0901
+0.1 103
+0.1481
+0.2182
+0,4612
+0.6302
+0.9122
+1.0392
+1.2101
+1.6444
+2.0658
+2.0649
+2.6497
+3.1099
+4.0101
+6.2550
+8.3127
+
+1381.2
+1570.2
+1677-0
+2 345.9
+2 490.9
+2 900-6
+3 669.3
+5 201-9
+8616.7
+9 888.3
+11754.7
+12 9244
+13684.7
+14747.9
+19088.9
+16 138.2
+19736.1
+17 185.9
+16297.7
+18024.4
+18664.8
+
+1.378
+1.367
+1.339
+1,323
+1.343
+1.357
+1.413
+1.418
+1.625
+1.733
+1.989
+2.010
+2.212
+2.686
+2.533
+2.973
+3.139
+4.118
+5.404
+7.689
+9.453
+
+103 x gc,
+
+2.0350
+2.0010
+2.0810
+1.9530
+1-8620
+1.7240
+1.5030
+1.3300
+0.8590
+0.6982
+0-4469
+0.4219
+0-3030
+0.1418
+0.1680
+0.0884
+0.0646
+
+-
+
+-
+
+TABLE2. Parameters of the mean flow development.
+
+4.4.Skin-friction results
+Three different ways of deducing the near-wall shear-stress distribution were used:
+the Ludwieg-Tillman skin-friction correlation, a Preston tube, and the surface hotwire gauge described in $ 2 . 3 above. Figure 7 shows the results from these three
+
+Structure of a separating turbulent boundary layer. Part I
+
+15
+
+37
+
+i
+
+h
+
+2 10
+A
+
+5
+
+1
+
+.-
+
+ID
+
+ITD
+
+TD
+x (in.)
+
+FIUTJRE
+8. Mean streamline flow pattern in the vicinity of separation. -,
+streamlines; ------,
+boundary-layer edge; -*-,
+displacement thickness distribution. I D denotes incipient detachment with I yo instantaneous bacmow near the wall. ITD denotes interwaittent transitory detachment with 20% instantaneous btackflow near the wall. TD denotes transitory detachment with
+50 yo instantaneous backflow near the wall.
+
+methods, which are in agreement within the uncertainties given in table I. Table 2
+gives the Ludwieg-Tillman results.
+The Preston tube and Ludwieg-Tillman methods require the existence of a universal
+logarithmic law-of-the-wall velocity profile. The data obtained using the surface
+hot-wire gauge are not dependent on the requirement of a logarithmic wall region.
+This suggests that the law of the wall is valid until the location where ypu is first less
+than one near the wall. These results are in agreement with results of Simpson et al.
+(1977).
+
+4.5. Data tabutat ion
+These data are tabulated in table 2 and in the appendix of Simpson et al. (1980).These
+data are recorded on magnetic tape in the format required for the 1980-81 AFOSRHTTM-Stanford Conferences on Complex Turbulent Flows, a copy of which is on
+file in the Thermosciences Division of the Stanford University Department of
+Mechanical Engineering.
+
+5. Discussion
+5.1. Mean velocity distribution
+
+Figure 8 shows the mean streamline pattern for the flow in the vicinity of separation.
+Note that in the backflow region the turbulence level is very high compared with tlhe
+mean flow, so these mean streamlines do not represent the average pathlines for elements of fluid. As discussed by Simpson et al. (1981), it appears that the fluid in the
+backflow does not come from far downstream as the streamlines may suggest, but is
+supplied fairly locally.
+Figure 24 in Simpson et al. (1980) shows that the U+ vs. yf law-of-the-wallvelocity
+profile holds all along the flow channel when the Ludwieg-Tillman skin friction values
+are used. Although no wall proximity corrections to the hot-wire data were applied
+in the viscous sublayer, the U+ = yf relationship is obeyed rather well. Oka & Kostid
+(1972) noted that hot-wire measurements are only influenced by flow interference and
+conduction to the test wall for y+ -= 4, which explains why the present data for
+
+R.L. Simpson, Y . - T .Chew and B. G. Shivaprasad
+
+38
+
+-a&
+
+0.6
+
+-
+
+m
+
+A
+
+z x
+0.2
+
+El
+
+a
+
+0 -
+
+R
+
+x
+
+0.001
+
+B
+
+X
+
+1
+
+0.1
+
+0.01
+
+10
+
+Y IN
+
+FIGVRE
+9. Normalized backflow mean velocity profiles: CJ, and N are the maximum mean
+backflow velocity and its distance from the wall. 4, 138.75 in.; 8 , 144.9; Q, 156.4; X , 170.9.
+Simpson et d.(1977); A, 165.8.
+
+y+ > 4 obey the viscous-sublayer equation so well. Upstream of the vicinity of
+separation, the usual logarithmic form for y+ > 30 holds :
+1
+
+U+ = -1n
+0.4 1
+
+Iy+I + 6.0.
+
+Perry & Schofield (1973) proposed universal empirical correlations for the inner
+and outer regions of adverse-pressure-gradient boundary layers riear separation. In
+the region near the wall, the inner-region correlation takes the usual logarithmic form
+of equation (8). As one proceeds downstream, the extent of the logarithmic region
+gradually decreases, which can also be seen from the mean velocity profiles. Their
+correlations apply to all types of adverse-pressure-gradient boundary layers irrespective of whether they are in equilibrium or not, but with the restriction that the ratio
+( -G)max/U: must exceed 1.5. Simpson et al. (1977) noted that these correlations fit
+their data when normal stresses effects were properly accounted for.
+The maximum shear-stress condition was satisfied by the present data downstream
+of x = 105 in. Simpson et al. (1980) show that the present data upstream of intermittent 'transitory detachment (ypypuo
+= 0.20) agree with the Perry & Schofield correlation, as modified by Simpson et al. (1977), within the scatter of the data originally used
+by Perry & Schofield.
+As one can see in figure 3, there is some profile shape similarity for the backflow
+mean velocity downstream of 138 in. Figure 9 shows a good correlation when normalized on the maximum negative mean velocity U, and its distance from the wall N .
+A slightly poorer correlation results when 6 is used instead of N . The U+ us. yf lawof-the-wall velocity profile is not consistent with this correlation since both U, and N
+increase with streamwise distance, whiIe the law-of-the-wall Iength scale v/U7 varies
+
+Structure of a separating turbulent boundary layer. Part 1
+
+39
+
+Fully developed
+separation
+
+3
+
+2
+
+1
+
+0
+
+1 -
+
+0
+
+qfl
+
+Intermittent
+separatiot
+
+0.1
+
+0.2
+
+0
+
+Unseparated
+region
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+6~/60.99s
+
+FIGURE
+10. Sandborn & Liu’s H , , us. r3,/13,,.~~~
+Separation correlation: symbols, p m e n t data;
+--,intermittent separation; - -, fully developed sepal ation.
+
+-
+
+inversely with its velocity scale U,. The data of Simpson et al. (1977) for the one
+available location are also shown to be in fair agreement with this correlation.
+An attempt (Simpson et al. 1980) was made to see if the mean velocity profiles
+downstream of separation could be composed of the ‘law-of-the-wake’ (Coles & Hirst
+1969) w(y/S)and a similarity distribution for the remaining wall flow. There is no
+significant profile similarity of the remaining wall flow.
+Another attempt was made to scale the wake function using the maximum backflow velocity and the free-stream velocity before subtracting it from the velocity
+profile. This was done as follows:
+
+where R ( y / S )can be called a ‘backflow’ function. Furthermore, another function
+B(y/S) = R ( y / &(Um/lUNI)
+)
+was formed so that B ( y / S )has definite limits and is 0 a t
+y/S = 0 and 1, respectively. Neither R(y/&) nor B ( y / & show
+)
+any similarity or small
+values in the outer region. This leads one to conclude that it is not possible to describe
+the velocity profile in the outer region for a separated flow by the universal wake
+function. No universal backflow function appears to exist.
+5.2. Flow detachment and upstream-downstream intermittency
+
+It is well established that separation of a turbulent boundary layer does not occur at
+a single streamwise location but is spread over a streamwise region and involves a
+spectrum of states. Sandborn & Kline (1961) and Sandborn & Liu (1968) defined the
+limiting points of the region as the ‘intermittent’and the ‘fully-developed ’ separation
+points. The former indicates the onset of separation by the appearance of intermittent backflow and the latter signifies the vanishing of the mean wall shear stress.
+Sandborn & Liu (1968) gave correlations between H,, = &JS, and
+to
+demarcate the regions of intermittent and fully developed separation. Figure 10 gives
+
+R. L. Simpson, Y.-T.
+Chew and B. G. Shivaprmad
+
+40
+1.2
+
+rn
+
+0.8
+X
+
+rn
+
+h
+
+’3
+
+0.4
+
+a.
+?-
+
+.
+.s
+I
+
+v
+h
+
+0
+
+E
+
+t
+
+?-
+
+I
+
+t -0.4
+
+t-
+
+v
+
+X
+
+-0.8
+
+.,
+
+-1.2
+
+0.01
+
+0.001
+
+0.1
+
+0.6
+
+1.1
+
+1.6
+
+2.1
+
+YIM
+
+FIGURE11. ( Y ~ ~ - Y ~ ~ ~ , ~w8.) y/M;
+/ ( ~ yDumin
+- Y ~is ~obtained
+~ ~ ~ )from figure 6. M is the
+distribution from Simpson et al. (1977). Data: X , 134.5 in.;
+distance from the wall to ukax.-,
+138.8; 8 , 144.9;
+166.4; X , 170.9.
+
+a,
+
+these correlations and the present experimental data points. According to their
+correlations, the present data show intermittent separation to occur a t 130 in. The
+value of ypuoat that point is 0.81 which very nearly coincides with the value obtained
+by Simpson et aZ. (1977) for intermittent separation and is also in reasonable agreement
+with the value obtained by Sandborn & Liu. By interpolation, the fully developed
+separation location occurs a t 140 in.
+At the recent Project SQUID Colloquium on Flow Separation (Simpson 1979), it
+was pointed out that the term ‘separation’ must mean the entire process of‘ departure’
+or ‘breakaway’ or the breakdown of boundary-layer flow. An abrupt thickening of
+the rotational f l o region
+~
+next to a wall and significant values of the normal-to-wall
+velocity component must accompany breakaway, otherwise this region will not have
+any significant interaction with the free-stream flow.
+A set of quantitative definitions on the detachment state near the wall were proposed: incipient detachment (ID) occurs with 1)‘$ instantaneous backflow; intermittent transitory detachment (ITD) occurs with 20 % instantaneous backflow;
+transitory detachment occurs with 50 % instantaneous backflow; and detachment
+occurs where 7,= 0. Sandborn & Liu’s intermittent and fully developed separation
+locations correspond to the intermittent transitory detachment and detachment
+locations, respectively.
+Figure 8 shows the locations of incipient detachment, intermittent transitory
+detachment, and transitory detachment for the present flow obtained from figure 6 .
+
+Structure of a separating turbulent boundary layer. Part 1
+
+1
+
+FIGURE
+12. (r,v-rpY,,n)/(l-r,o,in)
+‘us. y/M; M = y at ‘uLbx.Data: X , 134.5 in.;
+8 , 144.9;Q, 156.4; X I 170.9.
+
+41
+
+.,
+
+138.8;
+
+I n describing a quantitative amount of backflow, the word ‘detachment’ was preferred over ‘separation’ since the latter term refers to the entire phenomenon. Here
+we shall continue t o use the time-honoured terminology as well as the new terminology.
+Downstream of intermittent separation, Simpson et al. (1977) showed the existence
+/ (- ypuo)
+of similarity in ypu distributions by normalizing and plotting (ypu- y p y o ) 1
+us. y / M where ypyowas taken as the value near the wall as obtained from a figure
+similar to figure 6 and M was the distance of the peak in the u‘ distribution from the
+wall. The present data also exhibit similarity, particularly in the region
+0.1 < y/M < 1.0, with it improving as one moves downstream. I n fact the last two
+stations a t 156.4 in. and 170.9 in. show the similarity existing across all the boundary
+layer, including the backflow region. The similarity in the backflow region improves
+when the minimum value of ypu is used instead of ypuoas shown in figure 1 1 . This is
+due t o the relatively large uncertainty in ypuo.Simpson et al. (1977) fitted a curve t o
+their data and gave an equation for the distribution in the region 0.1 < y/M < 1.0.
+Figure 11 shows that the present data approximately satisfy the equation. Similar
+plots drawn with M being taken as the distance from the wall to the location where
+peaks were observed in the v’ and - UV distributions show as good or better similarity.
+Similarity profiles also exist for ypv or the fraction of time that the flow is away
+from the wall. Because the uncertainties in ypV are relatively large near the wall,
+ypvmin
+was used in the normalized results shown in figure 12 for the region downstream
+of intermittent separation. Near the outer edge of the boundary layer the intermittency is everywhere approximately equal to one, indicating that the flow is always
+
+R. L.Simpson, Y.-T.Chew and B. G . Shivaprasad
+
+42
+
+0.1
+
+1.
+R
+
+OL '
+
+0.001
+
+""
+
+0.01
+
+'
+
+1
+
+" ' I
+
+0.1
+
+0.3
+
+0.7
+
+0.5
+
+1.1
+
+0.9
+
+Y/6
+
+x
+
+0.3 -
+
+o
+X
+
+;J
+
+&I
+
+x
+
+0.2
+
+-=
+
+x x
+
+-
+
+XmB'b.O
+.Q
+
+8
+
+a
+
+pi.=
+
+Be
+
+E
+
+$3"
+
+8
+
+Q
+
+EB
+
+BD
+
+Q
+
+B
+
+"B
+
+i"
+4
+m=E
+
+%
+0"
+
+o+ .
+
+x
+
+= X X X
+
+Q
+
+XX
+
+B
+0.1
+
+.dJ
+
+Xxsx
+
+Q Q Q
+
+A0 ' ' " '
+
+Q
+
+0
+
+Structure of a separating turbulent boundary layer. Part I
+
+43
+
+directed outwards. Near the wall, the intermittency ypvobtained in the region downstream of intermittent separation is higher than the values attained upstream of it,
+which can be attributed to the flow leaving the wall as a consequence of intermittent
+separation. As in the case of ypu,the distributions near the wall are trough-shaped in
+the region downstream of intermittent separation and show some similarity.
+5.3. Turbulence correlations
+
+( a ) Reynolds stresses correlations. Figure 13 shows distributions of the shear-stress
+correlation coefficient -UV/u‘v‘, which is a measure of the extent of correlation
+between u and v fluctuations. I n the middle part of the boundary layer - u21/u’v’ is
+about & 19% uncertain. Near the outer edge the values are much more uncertain
+since -G, u’ and v’ approach zero. Figure 13(a) also shows distributions for the
+Schubauer & Klebanoff ( 195 1) strong-adverse-pressure-gradient boundary layer.
+These two sets of measurements compare reasonably well, even though the adversepressure-gradient distributions are different.
+Figure 13(b) shows distributions in the vicinity of the beginning of intermittent
+backflow. Unlike the distributions far upstream shown in figure 13(a) or those observed in zero-pressure-gradient boundary layers, the distributions in this fegion do
+not exhibit a constant value over a large part of the outer layer. However, the distributions for some of the stations do indicate a small region with a nearly constant
+value as low as 0.2 to 0.3. As one moves downstream, the peaks for the distributions
+seem to move gradually towards the outer edge of the boundary layer. Similar features
+such as correlation coefficients as low as 0.3 with the peaks occurring near the outer
+edge of the boundary layer were observed by Spangenberg, Rowland & Mease (1967)
+in their experiments on an adverse-pressure-gradient flow approaching separation.
+Figure 13 (c)indicates that the profiles for the separated region seem to exhibit some
+similarity.
+Simpson et al. (1980) give the distributions of another type of correlation coefficient,
+a, = -UV/(u12+v‘2).I n the middle part of the boundary layer a, is about 420%
+uncertain. Like - G / u ’ v r ,near the outer edge a, is much more uncertain since - UV,
+u‘, and v‘ approach zero. Upstream of separation, a, is in reasonable agreement with
+the data of East & Sawyer (1979) for favourable and adverse-pressure-gradient flows.
+Considering the wide variations in the flow conditions and the uncertainties in the
+measurements, the agreement seems to be reasonable, particularly for the adversepressure-gradient case. The variation in the behaviour of the distributions as one
+moves downstream is similar to that for the shear correlation coefficient - G/u’v’,
+with an increasingly reduced flat region and a reduction in the value of a, to as low
+as 0.1 for the separated region. Shiloh et al. (1981) present - U V / ( d 2+ v ’ +
+~ w ’ ~dis)
+tributions for this flow.
+(b)Eddy viscosity and Prandtt mixing-length distributions. The Prandtl mixing length
+
+were calculated from measured Reynolds shearing stress and calculated velocjty
+
+44
+
+R.L.Simpson, Y.-T.Chew and B. G.Shivuprusud
+
+0.1
+(a)
+
+0.09
+0.08
+
+0.08
+
+0.07
+
+0.07
+
+0.06
+
+0.06
+
+.
+
+(b)
+
+.
+0.
+n
+
+0
+
+0.05
+
+0.05
+
+,2
+
+4
+
+9
+
+0.04
+
+4
+
+0.04
+
+0.03
+
+0.03
+
+0.02
+
+0.02
+
+0.0 1
+
+0.0 1
+
+0
+YI60.9¶,
+
+0.08
+
+0.07
+
+.
+
+-
+
+(C)
+0
+
+.
+
+0
+
+8
+
+0.06 -
+
+0.05
+
+a
+
+0
+
+-
+
+VI
+
+z
+
+5 0.04 -
+
+0
+
+0.03 -
+
+0
+0
+0
+
+0
+
+00
+
+0.02 0.01 -
+
+Y
+
+0.001
+
+0.01
+
+0.1
+
+0.3
+
+0.5
+
+0.7
+
+0.9
+
+1.1
+
+YI60.9ss
+
+FIGURE
+14. Mixing-length distributions, Z/S ?is. y/S, ( a ) well upstream from separation, ( b ) in
+the vicinity of separation, and ( c ) downstream from separation. ( a ) A , 86.5 in.; y , 105.25;
+D, 112.4; a, 118.5. Bradshaw (1967) -----, a = -0.15 flow; -*-,
+a = -0.225 flow. East
+8.z Sawyer (1979): ---,
+flow 4. Cebeci & Smith (1974) (van Driest) __ Note the log-linear
+abscissa. (6) 6 , 120.5 in.; +, 122.6; 0 , 129.4; 0,
+131.9. (c) m, 138-75in.;8 ,144.9; GI, 156-4.
+
+.
+
+Structure of a separating turbulent boundary layer. Part 1
+
+45
+
+0-02
+
+0.0 18
+
+0.0 16
+
+0.014
+
+- 0.012
+
+d
+.
+rg
+
+rr"
+
+0.01
+
+0.008
+0.006
+
+0.004
+
+0-002
+
+0
+
+0.001
+
+.,
+
+0.01
+
+0.1
+
+0.3
+
+0.5
+
+0.7
+
+0.9
+
+1.1
+
+Y/~0.995
+
+FIGURE
+15. Eddy viscosity distributions, ve/UaoSl, ( a ) well upstream from separation, ( b ) in the
+vicinity of separation, and (c) downstream from separation. (a) R , 86.5 in.; y , 105.25; !J,
+112.4; 8 , 118.5. Bradshaw (1967): -----, a = -0.15 flow; -.-,
+a = -0.255 flow. Cebeci
+(1974) (van Driest)
+Note the log-linear abscissa. (b) b , 120.5 in.;
+122.6; 0 , 1294;
+0,
+131.9. (c)
+138.75in.; 8 ,144.9;
+156.4.
+
+--.
+
+a,
+
++,
+
+gradient distributions. Prom the near-wall region to the middle of the boundary layer,
+hhe hot-wire mixing-length and eddy-viscosity results are about 2 20 yo uncertain
+while the LDV results are about 2 12 % uncertain. I n the outermost part of the
+boundary layer the results are much more uncertain since -@ and aU/ay approach
+zero. As shown by Simpson et al. (1980), the mixing-length results upstream of the
+throat of the test section are in good agreement within the limits of uncertainty with
+the zero-pressure-gradient results of Klebanoff (1955) and the zero- and favourablepressure-gradient results of East & Sawyer (1979).
+Figure 14 (a)covers the adverse-pressure-gradient region of the flow up to the start
+of incipient detachment. The data of Bradshaw (1967) for adverse-pressure-gradient
+equilibrium boundary layers and East & Sawyer (1979) are presented for comparison.
+Also shown is Cebeci & Smith's (1974) extension of van Driest's mixing-length model
+for the inner layer,
+
+46
+
+R.L. Simpson, Y . - T .Chew and B. G . Shivaprasad
+0.01 I
+
+0.008
+
+1
+
+d
+
++
+
+I
+
+A
+
++
+
+(b)
+
+*
+
++
+
++
+
+Q
+
++
+
++
+
+n$+
+
+8
+
+n
+
+0
+
+I
+
+6001
+
+0.01
+
+0.1
+
+0.3
+
+0.5
+
+0.7
+
+0.9
+
+0.5
+
+0.7
+
+0.9
+
+1.1
+
+Yl60.995
+
+.
+
+08
+
+'
+-0.002
+0.001
+
+'
+
+' I '
+
+0.01
+
+'
+
+' '
+
+I
+
+I '
+
+0.1
+
+0.3
+
+1.1
+
+Yl60.995
+
+FIGURE
+15b, c. For legend see p. 45.
+
+for the 86.5 in. location. A constant value of 0.08 is used for 1/6 in the outer region.
+The present data a t 86.5 in. are in reasonable agreement with these results.
+Although the downstream stations exhibit similarity in the inner layer, they show
+a continuously decreasing mixing length in the outer layer as one moves downstream.
+Further downstream in the intermittent separation region, the inner layer similarity
+gradually disappears and the mixing length in the outer layer continues to decrease
+with no region of constant mixing lengt,h. I n the separated region, Prandtl's mixing
+length cannot be defined in the backflow region where aU/ay is negative. The distributions for the forward flow region are shown in figure 14(c). They indicate large values
+of the mixing length closest to the wall where it can be defined, decreasing continuously
+as one moves farther away from the wall. There is also some indication of the profiles
+achieving similarity.
+Figure 15 shows the eddy viscosity profiles in the various regions. As in the case of
+the mixing length, a few sets of data from earlier investigations are also plotted for
+comparison. I n general, the same comments made about the mixing-length profiles
+are applicable to these profiles also. The present data near the test section throat
+show good agreement with Klebanoff's (1955) zero-pressure-gradient data. The data
+in figure 15 ( a ) show good agreement with Bradshaw's data in the adverse-pressure-
+
+Structure of a separating turbulent boundary layer. Part 1
+
+0.8 -
+
+1.5
+
+0.9
+
+n
+
+A
+
+0
+
+:t
+
+a
+
+a
+0
+
+1s 0.6 -
+
+L A
+
+.
+
+o n
+
+n
+
+0
+
+x
+n+ox~aA
+++x
+x
+
++
+
+y
+
+A
+"dnX%
+A
+
+I'
+
+-
+
+'P
+
+a
+
+Q
+
+$2 0.5 0.4
+
+n
+
+a
+
+0
+
+I
+
+?
+
+A
+
+Q
+
+-
+
+a
+I
+
+0
+
+'
+
+nx
+
+O
+
+X
+
+.=
+
+-0.5
+
+I
+
++n o
+
+-1.0
+
+v
+
+I
+
+8
+X
+
+Q
+
+a
+
+0.7
+
+A
+
+1
+
+47
+
+I
+
+0.3
+
+-
+
+n
+
+0.2
+
+-
+
+0
+
+0.1
+
+-
+
+-1.5
+
+a
+
+o
+
+0,001
+
++
+a a
+
+0.01
+
+c1
+
+0.1
+
+0.3 0.5
+Yl6
+
+0.7
+
+0.9
+
+1.1
+
+FIGURE
+16. Ratio of normal stresses production t o shear-stress production (a)upstream and ( b )
+downstream from separation. (a)[rl, 112.4 in.;Q , 118.5; A , 1240; +, 1 2 2 4 ; x , 127.1; 0,
+129.1; 0,
+131.9. Schubauer & Klebanoff (1951)
+
+--,
+
+near separation. Simpson et al. (1977):
+
+0 , 103.8 in.;A, 124.3. Note the log-linear abscissa. ( b ) X , 1 3 4 4 in.; m, 138.75; 8 , 144.9; Q,
+156.4. Simpson et al. (1977) V, 139.1 in.;0 , 157.1.
+
+gradient region in the inner layer. A prediction using Cebeci and Smith's model in the
+relation
+y
+
+= p -au
+ay
+
+is in reasonable agreement with the inner layer data a t 86.5 in.
+At first it is a little surprising that there is similarity in the inner layer mixing-length
+distributions and similarity in the inner layer eddy viscosity distributions near
+separation when 6is used for scaling y. However, the ratio of U,S at successive stations
+is near unity in this region, so y + / ( y / 6 )is the same for successive stations and the
+profiles near the wall are similar with respect to y+ as well. In the intermittent separation region, the inner layer similarity disappears and the eddy viscosity decreases
+with respect to x in the outer layer. In the separated region, v, can be defined everywhere except where aU/ay = 0. Eddy viscosity profiles also show some similarity in
+the outer layer as well as near the wall in the separated region.
+For both mixing length and eddy viscosity, the data in the vicinity of separation
+indicate much lower values in the outer region than for attached boundary layers.
+This is understandable since part of the momentum transport is due to normal stresses.
+As shown below, normal stresses effects can be used to explain this behaviour.
+
+48
+
+R.L. Simpson, Y . - T .Chew and B. G.8hivapra.sad
+0.016 A
+
+2 0.012 :I
+-
+
+A
+
+A
+
+A
+A
+
+46ooos 0.004
+
+A
+
+A
+
+AAa
+
+a
+
+-
+
+A
+
+A
+
+A
+
+A
+
+0
+
+0.10 -
+
+:
+
+0.02
+0100
+
+120
+
+140
+
+160
+
+5.4. Eflects of normal stresses on mixing length and eddy viscosity
+
+As noted in the earlier work of Simpson et al. (1977), the normal stresses turbulence
+energy production terms are important in separating flows. Simpson et al. defined a
+non-dimensional factor F as the ratio of total turbulence energy production to the
+shear-stress-related turbulence energy production
+
+Figure 16 shows F - 1 for the several locations in the vicinity of separation. As indicated by the present data and the data of Simpson et al. (1977) and Schubauer &
+Klebanoff (1950), the normal stresses effect becomes increasingly important as
+separation is approached. In fact both sets of data from Southern Methodist University
+show good agreement in the corresponding regions of development, with a near doubling of the ratio in the intermittent separation region. The present data in that region
+indicate the presence of a hump in the distributions near y / 6 of 0.05 to 0.1, which
+becomes more significant as separation is approached. This is a result of the mean
+velocity profiles becoming inflexional in nature, which produces a reduced aU/ay in
+that region. In fact these humps increase rapidly along the flow until aU/ay attains
+a zero value for each profile in the backflow region where the velocity reaches a minimum value. The earlier data of Simpson et al. (1977) at 124.3 in. also suggest the
+
+Structure of a separating turbulent boundary layer. Part 1
+
+49
+
+presence of a hump. I n the backflow region the two types of production oppose each
+other as shown in figure 16(b),but they aid one another in the forward flow region.
+The distributions in the outer layer tend toward similarity and the ratio seems to be
+almost a constant of 0.6 for 0.2 < y/6 < 0.7.
+As shown in figures 14 and 15, the mixing-length and eddy viscosity distributions
+in the outer region decrease in magnitude in the downstream direction. This seems to
+be consistent with Gartshore’s ( 1967) suggestion of decreased Reynolds shear stress
+in flows with an extra strain rate 8V7/8y,as in his own experiments on retarded wakes.
+Figures 17(a, b ) show these parameters at the maximum shearing stress for each
+location. F was fitted to these data with the following results :
+
+and
+
+These results were obtained in the following manner. The normally accepted value of
+0.08 was used for 116 a t F = 1 . Using this, an average value for 116 in the outer region,
+and the value of F at the location of the maximum shearing stress, the exponent on F
+in equation (15) was determined at each streamwise location. This exponent was
+within 12 % of 1.25 and the modified correlation F1‘251/6
+agrees within the limits of
+experimental uncertainty of 21 % with the normally accepted value of 0.08.
+For evaluating the exponent in equation (16)’all values were taken at the location
+of the.maximum shearing stress; 105.3 in. was considered the location where F = 1.
+Equation (16) agrees with the data within the uncertainty of 26 yo.
+
+6. Conclusions - the nature of a separating turbulent boundary layer
+These experiments confirm the conclusions of Simpson et al. (1977) regarding a
+separating-airfoil-type turbulent boundary layer. The mean flow upstream of the
+beginning of intermittent separation obeys the law of the wall and the Perry &
+Schofield (1973) velocity profile correlation for the outer region. The correlations of
+Sandborn & Liu for the locations of intermittent separation (ypu= 0.8) and fully
+developed separation hold. Pressure gradient relaxation begins upstream of intermittent separation near the wall jet control in this flow and continues until the
+location of fully developed separation. The upstream-downstream intermittency ypu,
+u’, v’ and - UV profiles each approach similarity profiles downstream of separation.
+Much new information about the separated region has been gathered and leads to
+significant conclusions about the nature of the separated flow. For reference the most
+important results are summarized below.
+( 1 ) The backflow mean velocity profile scales on the maximum negative mean
+velocity U, and its distance from the wall N . A U+ vs. y+ law-of-the-wall velocity
+profile is not consistent with this correlation since both U, and N increase with
+streamwise distance, while the law-of-the-walllength scale v/U, varies inversely with
+the velocity scale U,. It does not appear possible to describe the separated flow mean
+velocity profiles by a universal ‘backflow function’ that is added to a universal
+‘wake function ’.
+
+50
+
+R. L. Simpson, Y.-T.
+Chew and B. G. Shivaprasad
+(2) High turbulence levels exist in the backflow. U‘ and v’ are of the same order as
+
+IU 1. Since the free-stream velocity in the separated region is rather steady, this means
+that the near wall fluctuations are not due mainly to a flapping of the entire shear
+layer, but are due to turbulence within the separated shear layer.
+(3) Low levels of Reynolds shearing stress occur in the backflow. -uv/u’v’ and
+- TE/(u‘z+ v ‘ ~correlations
+)
+are very low in the backflow.
+(4) -G/u’v’ and - Z ? / ( U ’ ~ + V ‘ ~correlations
+)
+are about 25% lower in the outer
+region of the separated flow than for the upstream attached flow.
+(5) Mixing-length and eddy viscosity models are adequate upstream of separation
+and in the outer region, but are physically meaningless in the backflow. Normal
+stresses effects appear to account for the lower mixing-length and eddy viscosity
+values observed in the outer region of the separated flow.
+Downstream of fully developed separation in these experiments, the mean backflow region appears to be divided into three layers: a viscous layer nearest the wall
+that is dominated by the turbulent flow unsteadiness but with little Reynolds shearingstress effect; a rather flat intermediate layer that seems to act as an overlap region
+between the viscous wall and outer regions; and the outer backflow region that is
+really part of the large-scaled outer region flow.
+The Reynolds shearing stresses in this region must be modelled by relating them
+t o the turbulence structure and not to the local mean velocity gradients. The mean
+velocity profiles in the backflow are a result of time-averaging the large turbulent
+fluctuations and are not related to the cause of the turbulence. I n contrast, in flows
+for which the eddy viscosity and mixing-length models appear to be useful, the
+instantaneous velocity gradients are not extremely different from the local mean
+velocity gradient, i.e. the Reynolds shearing stress is physically related to the mean
+velocity gradient.
+This work was supported by Project SQUID, an Office of Naval Research Program.
+REFERENCES
+BRADSHAW,
+P. 1967 J . Fluid Mech. 29, 625-645.
+BRADSHAW,
+P., FERRISS,D. H. & ATWELL,
+N. P. 1967 J . FZuid Mech. 28, 593-616.
+BRAGG,
+G. M. 1974 Principles of Experimentation and Measurement. Prentice-Hall.
+CEBECI,T., KHALID,
+E. E. & WHITELAW,
+J. H. 1979 A.I.A.A.J. 17, 1291-1292.
+CEBECI,
+T. & SMITH,A. M. 0. 1974 Momentum Transfer in Boundary Layers. Hemisphere.
+COLES,D. & HIRST,E. 1969 Computation of Turbulent Boundary Layers - 1968 A F O S R - I F P
+Stanford Conf. VoZ. 11, Data, Compilation. Dept Mechanical Engng, Stanford Univ.
+COLES,D. & WADCOCK,
+A. 1979 A.I.A.A.J . 17, 321-329.
+COLLINS,M. A. & SIMPSON,
+R. L. 1978 A.I.A.A.J . 16, 291-292.
+DURXO,D. F. G. & WHITELAW,
+J. H. 1975 Proceedings of LDA Symposium Copenhagen, pp.
+138-149. P.O. Box 70, DK - 2740 Skovlunde, Denmark.
+EAST,L. F. & SAWYER,
+W. G. 1979 Proc. N A T O - A G A R DFluid Dynamics Symp.
+GARTSHORE,
+I . S . 1967 J . Fluid Mech. 30, 547-560.
+HICUCHI,
+H. & PEAKE,D. J. 1978 N . A . S . A . Tech. Memo 78531.
+KLEBANOFF,
+P. 1954 N.A.C.A. Rep. 1247.
+KLINE,S . J. & MCCLINTOCK,
+F. A. 1953 Mech. Engng 75, 3-8.
+MCLAUGHLIN,
+K. D. & TIEDERMAN,
+W. G . 1973 Phys. Fluids 16, 2082-2088.
+MILLER,
+J. A. 1976 Trans. A.S.M.E. I, J . Fluids Engng 98, 550-557.
+
+Structure of a separating turbulent boundary layer. Part 1
+
+51
+
+MURTHY,
+V. W. & ROSE,W. C. 1978 A.I.A.A. J. 16, 667-672.
+O n , S. & KOSTI~,
+2. 1972 D I S A Information, no. 13, pp. 29-33.
+PERRY,A. E. & SCHOFIELD,
+W. H. 1973 Phys. Fluids 16, 2068-2074.
+PLETCHER,
+R. H. 1978 Trans. A.S.M.E. I, J . Fluids Engng 100, 427-433.
+RUBESIN,
+M. W., OKUNO,
+A. F., MATEER, G. G. & BROSH,
+A. 1975 N.A.S.A. Tech. Memo. X-62,
+465.
+SANDBORN,
+V. A. & KLINE,S. J. 1961 Trans. A.P.M.E. D , J . Basic Engng 83, 317-327.
+SANDBORN,
+V. A. & LIU, C. Y. 1968 J. Fluid Mech. 32, 293-304.
+SCHUBAUER,
+G. B. & KLEBANOFF,
+P. S. 1951 N.A.C.A. Rep. 1030.
+SHILOH,
+K., SHIVAPRASAD,
+B. G. & SIMPSON,
+R. L. 1981 J. Fluid Mech. 113, 75-90.
+SHIVAPRASAD,
+B. G. & SIMPSON,
+R. L. 1981 Trans. A.S.M.E. J, J . Fluids Engng (accepted).
+SIMPSON,R. L. 1976 A.I.A.A.J. 14, 124-126.
+SIMPSON,
+R. L. 1979 Trans. A.S.M.E. I, J. Fluids Engng (to appear). (Also Project SQUID
+Rep. SMU-3-PU.)
+SIMPSON,
+R. L. & BARR,P. W. 1975 Rev. Sci. Instrum. 46, 835-837.
+SIMPSON,
+R. L. & CHEW,Y.-T. 1979 Proceedings of Third Int. Worbhop on LaGer Velocimetry,
+pp. 179-196. Hemisphere.
+SIMPSON,
+R. L., CHEW,Y.-T. & SHIVAPRASAD,
+B. G. 1980 Project SQUID Rep. SMU-4-PU.
+(To appear as DTIC or NTIS Report.)
+SIMPSON,
+R. L., CHEW,Y.-T. & SHIVAPRASAD,
+B. G. 1981 J. Fluid Mech. 113, 53-73.
+SIMPSON,
+R. L. & COLLINS,
+M. A. 1978 A.I.A.A.J. 16, 289-290.
+SIMPSON,
+R. L., HEIZER,K. W. & NASBURC,
+R. E. 1979 Trans. A.S.M.E. I, J . FluidgEngng 101,
+381-382.
+SIMPSON,
+R. L., STRICKLAND,
+J. H. & BARR,P. W. 1974 Thermal and Fluid Sciences Center,
+Southern Methodist Univ., Rep. WT-3; also AD-A001115.
+SIMPSON,
+R. L., STRICKLAND,
+J. H. & BARR,P. W. 1977 J. Fluid Mech. 79, 553-594.
+SPANCENBERC,
+W. G., ROWLAND,
+W. R. & MEASE,N. E. 1967 Fluid Mechanics of Internal Flow
+(ed.G. Sovran), pp. 110-151. Elsevier.
+STRICICLAND, J. H. & SIMPSON,
+R. L. 1973 Thermal and Fluid Sciences Center, Southern Methodist Univ., Rep. WT-2; also AD-771170/8GA.
+WOOD,N. B. 1975 J. Fluid Mech. 67, 769-786.
+
+

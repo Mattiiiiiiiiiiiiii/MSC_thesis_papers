@@ -1,0 +1,316 @@
+author: Dilgen, Sumer B. and Dilgen, Cetin B. and Fuhrman, David R. and Sigmund, Ole
+  and Lazarov, Boyan S.
+author_list:
+- affiliation: []
+  family: Dilgen
+  given: Sumer B.
+- affiliation: []
+  family: Dilgen
+  given: Cetin B.
+- affiliation: []
+  family: Fuhrman
+  given: David R.
+- affiliation: []
+  family: Sigmund
+  given: Ole
+- affiliation: []
+  family: Lazarov
+  given: Boyan S.
+citations:
+- author: N Aage
+  doi: 10.1007/s00158-012-0869-2
+  first-page: '493'
+  issue: '4'
+  journal-title: Struct Multidiscip Optim
+  unstructured: Aage N, Lazarov B (2013) Parallel framework for topology optimization
+    using the method of moving asymptotes. Struct Multidiscip Optim 47(4):493–505
+  volume: '47'
+  year: '2013'
+- author: N Aage
+  doi: 10.1007/s00158-007-0128-0
+  first-page: '175'
+  issue: '2'
+  journal-title: Struct Multidiscip Optim
+  unstructured: "Aage N, Poulsen TH, Gersborg-Hansen A, Sigmund O (2008) Topology
+    optimization of large scale stokes flow problems. Struct Multidiscip Optim 35(2):175–180.
+    \n                    https://doi.org/10.1007/s00158-007-0128-0"
+  volume: '35'
+  year: '2008'
+- author: N Aage
+  doi: 10.1007/s00158-014-1157-0
+  first-page: '565'
+  issue: '3'
+  journal-title: Struct Multidiscip Optim
+  unstructured: 'Aage N, Andreassen E, Lazarov B (2015) Topology optimization using
+    petsc: An easy-to-use, fully parallel, open source topology optimization framework.
+    Struct Multidiscip Optim 51(3):565–572'
+  volume: '51'
+  year: '2015'
+- author: J Alexandersen
+  doi: 10.1016/j.ijheatmasstransfer.2016.05.013
+  first-page: '876'
+  journal-title: Int J Heat Mass Transf
+  unstructured: "Alexandersen J, Sigmund O, Aage N (2016) Large scale three-dimensional
+    topology optimisation of heat sinks cooled by natural convection. Int J Heat Mass
+    Transf 100:876–891. \n                    https://doi.org/10.1016/j.ijheatmasstransfer.2016.05.013\n
+    \                   \n                  . \n                    http://www.sciencedirect.com/science/article/pii/S0017931015307365"
+  volume: '100'
+  year: '2016'
+- author: S Amstutz
+  doi: 10.1051/cocv:2005012
+  first-page: '401'
+  issue: '3'
+  journal-title: Esaim-control Optim Calc Var
+  unstructured: "Amstutz S (2005) The topological asymptotic for the navier-stokes
+    equations. Esaim-control Optim Calc Var 11(3):401–425. \n                    https://doi.org/10.1051/cocv:2005012"
+  volume: '11'
+  year: '2005'
+- unstructured: 'Arquis E, Caltagirone JP (1984) Sur les conditions hydrodynamiques
+    au voisinage d’une interface milieu fluide-milieux poreux: application à la convection
+    naturelle. In: C.R. Acad. Sci., Paris II, vol 299, pp 1–4'
+- doi: 10.1007/978-1-4612-1986-6_8
+  unstructured: 'Balay S, Gropp WD, McInnes LC, Smith BF (1997) Efficient management
+    of parallelism in object oriented numerical software libraries. In: Arge E, Bruaset
+    AM, Langtangen HP (eds) Modern Software Tools in Scientific Computing. Birkhȧuser
+    Press, pp 163–202'
+- doi: 10.2172/1409218
+  unstructured: "Balay S, Abhyankar S, Adams MF, Brown J, Brune P, Buschelman K, Dalcin
+    L, Eijkhout V, Gropp WD, Kaushik D, Knepley MG, May DA, McInnes LC, Rupp K, Sanan
+    P, Smith BF, Zampini S, Zhang H, Zhang H (2017a) PETSc users manual. Technical
+    Report ANL-95/11 - Revision 3.8, Argonne National Laboratory. \n                    http://www.mcs.anl.gov/petsc"
+- unstructured: "Balay S, Abhyankar S, Adams MF, Brown J, Brune P, Buschelman K, Dalcin
+    L, Eijkhout V, Gropp WD, Kaushik D, Knepley MG, May DA, McInnes LC, Rupp K, Smith
+    BF, Zampini S, Zhang H, Zhang H (2017b) PETSc Web page. \n                    http://www.mcs.anl.gov/petsc"
+- author: MP Bendsøe
+  unstructured: Bendsøe MP, Sigmund O (2003) Topology Optimization - Theory, Methods
+    and Applications. Springer Verlag, Berlin Heidelberg
+  volume-title: Topology Optimization - Theory, Methods and Applications
+  year: '2003'
+- author: T Borrvall
+  doi: 10.1002/fld.426
+  first-page: '77'
+  issue: '1'
+  journal-title: Int J Numer Methods Fluids
+  unstructured: Borrvall T, Petersson J (2003) Topology optimization of fluids in
+    stokes flow. Int J Numer Methods Fluids 41(1):77–107
+  volume: '41'
+  year: '2003'
+- author: B Bourdin
+  doi: 10.1002/nme.116
+  first-page: '2143'
+  journal-title: Int J Numer Methods Eng
+  unstructured: Bourdin B (2001) Filters in topology optimization. Int J Numer Methods
+    Eng 50:2143–2158
+  volume: '50'
+  year: '2001'
+- unstructured: "CoDiPack (2016) code differentiation package. \n                    http://www.scicomp.uni-kl.de/software/codi/\n
+    \                   \n                  . Accessed: 2016-10-18"
+- unstructured: 'Dede E (2009) Multiphysics topology optimization of heat transfer
+    and fluid flow systems. In: Proceedings of the COMSOL users conference'
+- author: CB Dilgen
+  doi: 10.1016/j.cma.2017.11.029
+  first-page: '363'
+  journal-title: Comput Methods Appl Mech Eng
+  unstructured: "Dilgen CB, Dilgen SB, Fuhrman DR, Sigmund O, Lazarov B (2018) Topology
+    optimization of turbulent flows. Comput Methods Appl Mech Eng 331:363 – 393. \n
+    \                   https://doi.org/10.1016/j.cma.2017.11.029\n                    \n
+    \                 . \n                    https://www.sciencedirect.com/science/article/pii/S0045782517307478"
+  volume: '331'
+  year: '2018'
+- author: JH Ferziger
+  unstructured: Ferziger JH, Peric M (2001) Computational Methods for Fluid Dynamics.
+    Springer, Berlin Heidelberg
+  volume-title: Computational Methods for Fluid Dynamics
+  year: '2001'
+- author: A Gersborg-Hansen
+  doi: 10.1007/s00158-004-0508-7
+  first-page: '181'
+  issue: '3'
+  journal-title: Struct Multidiscip Optim
+  unstructured: 'Gersborg-Hansen A, Sigmund O, Haber R (2005) Topology optimization
+    of channel flow problems. Struct Multidiscip Optim 30(3): 181–192'
+  volume: '30'
+  year: '2005'
+- author: A Griewank
+  doi: 10.1137/1.9780898717761
+  unstructured: 'Griewank A, Walther A (2008) Evaluating derivatives : principles
+    and techniques of algorithmic differentiation. SIAM, Bangkok'
+  volume-title: 'Evaluating derivatives : principles and techniques of algorithmic
+    differentiation'
+  year: '2008'
+- author: P Guillaume
+  doi: 10.1137/S0363012902411210
+  first-page: '1'
+  issue: '1'
+  journal-title: Siam J Control Optim
+  unstructured: "Guillaume P, Idris K (2004) Topological sensitivity and shape optimization
+    for the stokes equations. Siam J Control Optim 43(1):1–31. \n                    https://doi.org/10.1137/S0363012902411210"
+  volume: '43'
+  year: '2004'
+- author: RJ Hogan
+  doi: 10.1145/2560359
+  first-page: '26'
+  issue: '4'
+  journal-title: ACM Trans Math Softw
+  unstructured: Hogan RJ (2014) Fast reverse-mode automatic differentiation using
+    expression templates in C++. ACM Trans Math Softw 40(4):26
+  volume: '40'
+  year: '2014'
+- author: AA Koga
+  doi: 10.1016/j.ijheatmasstransfer.2013.05.007
+  first-page: '759'
+  issue: '0'
+  journal-title: Int J Heat Mass Transf
+  unstructured: Koga AA, Lopes ECC, Nova HFV, de Lima CR, Silva ECN (2013) Development
+    of heat sink device by using topology optimization. Int J Heat Mass Transf 64(0):759–772
+  volume: '64'
+  year: '2013'
+- author: EA Kontoleontos
+  doi: 10.1080/0305215X.2012.717074
+  first-page: '941'
+  issue: '8'
+  journal-title: Eng Optim
+  unstructured: Kontoleontos EA, Papoutsis-Kiachagias EM, Zymaris AS, Papadimitriou
+    DI, Giannakoglou KC (2013) Adjoint-based constrained topology optimization for
+    viscous flows, including heat transfer. Eng Optim 45(8):941–961
+  volume: '45'
+  year: '2013'
+- author: T Matsumori
+  doi: 10.1007/s00158-013-0887-8
+  first-page: '571'
+  issue: '4'
+  journal-title: Struct Multidiscip Optim
+  unstructured: "Matsumori T, Kondoh T, Kawamoto A, Nomura T (2013) Topology optimization
+    for fluid-thermal interaction problems under constant input power. Struct Multidiscip
+    Optim 47(4):571–581. \n                    https://doi.org/10.1007/s00158-013-0887-8"
+  volume: '47'
+  year: '2013'
+- author: FR Menter
+  doi: 10.2514/3.12149
+  first-page: '1598'
+  journal-title: Aiaa J
+  unstructured: "Menter FR (1994) Two-equation eddy-viscosity turbulence models for
+    engineering applications. Aiaa J 32:1598–1605. \n                    https://doi.org/10.2514/3.12149"
+  volume: '32'
+  year: '1994'
+- doi: 10.1007/s00158-017-1708-2
+  unstructured: Nørgaard SA, Sagebaum M, Gauger NR, Lazarov B (2017) Applications
+    of automatic differentiation in topology optimization. Struct Multidiscip Optim:1–12
+- author: L Olesen
+  doi: 10.1002/nme.1468
+  first-page: '975'
+  issue: '7'
+  journal-title: Int J Numer Methods Eng
+  unstructured: Olesen L, Okkels F, Bruus H (2006) A high-level programming-language
+    implementation of topology optimization applied to steady-state navier-stokes
+    flow. Int J Numer Methods Eng 65(7):975–1001
+  volume: '65'
+  year: '2006'
+- author: C Othmer
+  doi: 10.1002/fld.1770
+  first-page: '861'
+  issue: '8'
+  journal-title: Int J Numer Methods Fluids
+  unstructured: Othmer C (2008) A continuous adjoint formulation for the computation
+    of topological and surface sensitivities of ducted flows. Int J Numer Methods
+    Fluids 58(8):861–877
+  volume: '58'
+  year: '2008'
+- unstructured: Patankar S (1980) Numerical heat transfer and fluid flow. Hemisphere
+- author: M Pietropaoli
+  doi: 10.1115/1.4036358
+  first-page: 102,101
+  issue: '10'
+  journal-title: J Eng Gas Turbines Power
+  unstructured: 'Pietropaoli M, Ahlfeld R, Montomoli F, Ciani A, D’Ercole M (2017)
+    Design for additive manufacturing: Internal channel optimization. J Eng Gas Turbines
+    Power 139(10):102,101–102:101–8'
+  volume: '139'
+  year: '2017'
+- author: G Pingen
+  doi: 10.1007/s00158-007-0105-7
+  first-page: '507'
+  issue: '6'
+  journal-title: Struct Multidiscip Optim
+  unstructured: Pingen G, Evgrafov A, Maute K (2007) Topology optimization of flow
+    domains using the lattice boltzmann method. Struct Multidiscip Optim 34(6):507–524
+  volume: '34'
+  year: '2007'
+- unstructured: Spalart P, Allmaras S (1994) A one-equation turbulence model for aerodynamic
+    flows. Recherche Aerospatiale (1):5–21
+- author: K Svanberg
+  doi: 10.1002/nme.1620240207
+  first-page: '359'
+  journal-title: Int J Numer Methods Eng
+  unstructured: Svanberg K (1987) The method of moving asymptotes - a new method for
+    structural optimization. Int J Numer Methods Eng 24:359–373
+  volume: '24'
+  year: '1987'
+- author: H Versteeg
+  unstructured: 'Versteeg H, Malalasekera W (2007) An Introduction to Computational
+    Fluid Dynamics: The Finite Volume Method. Prentice Hall, Upper Saddle River'
+  volume-title: 'An Introduction to Computational Fluid Dynamics: The Finite Volume
+    Method'
+  year: '2007'
+- author: F Wang
+  doi: 10.1007/s00158-010-0602-y
+  first-page: '767'
+  issue: '6'
+  journal-title: Struct Multidiscip Optim
+  unstructured: Wang F, Lazarov B, Sigmund O (2011) On projection methods, convergence
+    and robust formulations in topology optimization. Struct Multidiscip Optim 43(6):767–784
+  volume: '43'
+  year: '2011'
+- unstructured: Wilcox D (2006) Turbulence Modeling for CFD. DCW Industries, Incorporated
+- author: D Wilcox
+  doi: 10.2514/1.36541
+  first-page: '2823'
+  journal-title: AIAA J
+  unstructured: "Wilcox D (2008) Formaulation of the k-ω Turbulence Model Revisited.
+    AIAA J 46:2823–2838. \n                    https://doi.org/10.2514/1.36541"
+  volume: '46'
+  year: '2008'
+- author: K Yaji
+  doi: 10.1016/j.ijheatmasstransfer.2014.11.005
+  first-page: '878'
+  journal-title: Int J Heat Mass Transf
+  unstructured: 'Yaji K, Yamada T, Kubo S, Izui K, Nishiwaki S (2015) A topology optimization
+    method for a coupled thermal-fluid problem using level set boundary expressions.
+    Int J Heat Mass Transf 81: 878–888'
+  volume: '81'
+  year: '2015'
+- author: K Yaji
+  doi: 10.1016/j.jcp.2015.12.008
+  first-page: '355'
+  journal-title: J Comput Phys
+  unstructured: Yaji K, Yamada T, Yoshino M, Matsumoto T, Izui K, Nishiwaki S (2016)
+    Topology optimization in thermal-fluid flow using the lattice boltzmann method.
+    J Comput Phys 307:355–377
+  volume: '307'
+  year: '2016'
+- author: AS Zymaris
+  doi: 10.1016/j.compfluid.2008.12.006
+  first-page: '1528'
+  issue: '8'
+  journal-title: Comput Fluids
+  unstructured: Zymaris AS, Papadimitriou DI, Giannakoglou KC, Othmer C (2009) Continuous
+    adjoint approach to the Spalart-Allmaras turbulence model for incompressible flows.
+    Comput Fluids 38(8):1528–1538
+  volume: '38'
+  year: '2009'
+doc_url: http://link.springer.com/content/pdf/10.1007/s00158-018-1967-6.pdf
+doi: 10.1007/s00158-018-1967-6
+files:
+- density_based_topology_optimization_of_turbulent_flow_heat_transfer_systems_Dilgen_Dilgen_Fuhrman_et_al_2018.pdf
+issue: '5'
+journal: Structural and Multidisciplinary Optimization
+language: en
+month: 5
+pages: 1905--1918
+papis_id: a350ac422b173f81da636fb7d9b9c6c9
+publisher: Springer Science and Business Media LLC
+title: Density based topology optimization of turbulent flow heat transfer systems
+type: article
+url: https://doi.org/10.1007/s00158-018-1967-6
+volume: '57'
+year: 2018

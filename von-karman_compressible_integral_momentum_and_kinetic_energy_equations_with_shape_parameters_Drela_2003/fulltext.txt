@@ -1,0 +1,563 @@
+Von-Karman
+Idea:
+
+Integral Momentum
+
+Equation
+
+2
+
+ee”
+
+Integrate BL flow in y, to “wash out” details in u(y) profile.
+Converts PDEs in x,y into ODE
+
+Combine
+
+Continuity, c-momentum equations:
+
+wn [9B =e)
+O pu
+
+n
+
+Ou
+
+ot
+
+Pay
+
+O pu
++ (u— te) Da
+o
+
+or
+
+ge llue— woul
+
+Integrate
+———_—
+ve
+
+d
+
+al
+
+|
+O
+
+=
+Fy
+[ve
+
+Ye
+
+0
+
+(+)dy
+
+yy Mee
+
+=|
+Oy
+
++
+
+Ou
+pra, + (u—
+
++
+
+Flue
+
+a)
+
+Opu
+Ue) ay
+
+|
+
+due
+Pele
+
+Dov]
+
+= =(pette
+- pu) — ay
+
+d
+
+(peu28)
+
+[
+
+Ye
+
+fa
+
+a
+By
+
+[(ue _— u) pu] dy
+0
+
++
+
++ petted™ a
+
++ (H +2—- M?)
+
+=
+
+2 tie
+
+Ty
+
+=
+
+=
+
+— i
+
+=
+
+-=
+
+due
+
+re)
+
+(*)
+
+/ (1 - =)
+
+pe
+
+dy
+
+momentum thickness
+
+Ue]
+
+Pete
+
+oo=
+
+/ (1 _
+
+) dy
+
+H
+
+=
+
+77
+
+shape parameter
+
+Cr
+
+=
+
+wv
+
+skin friction coefficient
+
+Pete
+
+displacement thickness
+
+6*
+
+dite
+
+_
+
+— pu)dy
+
++
+
+(Pete —— pu) pu)—2 dy
+[¥
+
+(pete
+
+Dimensionless form
+
+Definitions
+=
+
+Ye
+
+Dimensional form
+
+e€
+
+g
+
+Or
++ ay
+
+term by term:
+
+[(ue — u)pu] dy
+
+d
+S
+
+yw lifh-
+
+~ Pele Te
+
+Hue _— wleul d dy +
+
+<
+
+fy
+
+e]
+
+Pu On
+
+Ou
+pur
+
+>
+
+i
+
+in z.
+
+>
+
+Ye
+
+Or
+
+nal
+oy
+Tw
+
+Integral Kinetic Energy Equation
+Idea:
+
+Integrate BL flow in y, to “wash out” details in uy) profile.
+Converts PDEs in zx, y into ODE in z.
+
+u(xy)
+
+Combine
+
+Continuity, z-momentum equations:
+
++
+
+d
+
+| ou
+
+ay
+
+us
++
+xz
+
+Ou
+
+pv
+
+Oy
+
+du
+pu
+42 OZF"
+y2)
+2pu 2 2"
+Aa + (u° 2_ ~ —uZ)
+Az
+
++
+
+or
+
+re)
+2
+2
+—_
+Da [(u2 _ u )pu
+
++
+
+uw OT
+
+=f
+
+|
+
+2
+
+On [(ue
+Ye
+
+2
+
+Ye
+
+0
+
+(x)dy
+
+Pele
+
+Ou
+2ouv—
+puus
+
+2
+
+u )pul dy
+
++
+
+2
+
+6)
+2
+2
+—
+dy [(u? _ u )pr]
+
+i
+
+% Of
+a
+
+[(u
+
+212
+
+u pr]
+
++
+
+0
+
+de"
+de
+
+2H**
++ ( ra +3
+
+*
+
+=
+
+*
+oe
+
+=
+
+.
+
+u2\
+/ ( ~-5
+,
+
+H**
+
+=
+
+Cp
+
+=
+
+=
+
+du e
+Or
+Qupete ——
+dn + ty
+“sy
+
+=
+
++ 2(pe _— p)ute due
+—~
+=
+
+_
+
+=
+
+M2
+
+—2ue
+
+2(
+
+Pati
+
+due
+
+=
+
+|
+
+Or
+— Qy——
+“5
+
+(*)
+
+o**
+
+— p)udy
+
++
+
+2 [" ody
+
+0* du
+owe
+2) u, da
+
+_
+
+2Cp
+
+Dimensionless form
+
+dy
+
+.
+
+kinetic energy thickness
+
+woe
+ae
+dissipation integral
+
+o*
+
+* 2uSE
+
+Dimensional form
+
+Ou
+"Oy dy
+3
+
+=
+
+2D
+
+.
+
+os
+
+kinetic energy shape parameter
+.
+
+.
+
+Or
+
+OY
+
+=
+
+Pete
+
+Ue
+
+(Pe
+
+i
+
+—_
+
+.
+volume flux thickness
+
+Pe/
+
+e
+
+dite
+
+dt
+
+pu
+
+MH
+
+Ye
+
+=
+
+,_f\4
+—-—)—dy
+
+/
+
+D=
+=
+
+Ue
+
+_
+
+_
+
+dy
+
+.
+
+=dz ( Pe uZo")
++ Ypeu26 Pet e
+e
+
+H*
+
+.
+O pu
++ (u° 2_ —-y)j)
+— uz)42 ay
+
+term by term:
+
+[(u2 —u )pu dy
+
+Definitions
+
+ayOy |
+
+due
+
+=
+
+=>
+
+Integrate
+oo
+i
+
+2u
+
+-o|
+
+d pu
+
++
+
+7
+
+density thickness shape parameter
+
+-2
+
+dissipation coefficient
+
+2
+
+

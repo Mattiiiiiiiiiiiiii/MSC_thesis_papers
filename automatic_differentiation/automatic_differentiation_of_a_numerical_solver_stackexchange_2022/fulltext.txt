@@ -1,0 +1,408 @@
+Automatic diﬀerentiation of a numerical solver - Computa...
+
+1 of 8
+
+https://scicomp.stackexchange.com/questions/41935/autom...
+
+Computational Science
+Automatic differentiation of a numerical solver
+Asked 4 years ago
+
+Modified 3 years, 11 months ago
+
+Viewed 2k times
+
+We often want to use numerical methods to evolve a system in time.
+
+3
+
+That is, for a set of differential equations, we can specify some parameters 𝜃¯ and pass
+these into our numerical solver program 𝑓 and get an output 𝑦(𝑡) = 𝑓(𝜃¯ ).
+
+Does automatic differentiation still apply to these types of numerical systems? Is it possible
+with AD to compute 𝑑𝑦(𝑡)/𝑑𝜃¯ ?
+numerical-modelling
+
+automatic-differentiation
+
+Share Cite Improve this question Follow
+
+asked Sep 29, 2022 at 1:50
+
+user1887919
+243
+
+1
+
+2
+
+5
+
+I think you need to be more specific what you want the function 𝑓(𝜃) to contain. Is it an ODE
+solver? A PDE solver? Just an algebraic expression? – Wolfgang Bangerth Sep 29, 2022 at 20:13
+Have you looked into adjoint solvers such as cvodes? – Brian Borchers Oct 1, 2022 at 15:09
+
+2 Answers
+
+Sorted by:
+
+Highest score (default)
+
+9/30/26, 10:24
+
+Automatic diﬀerentiation of a numerical solver - Computa...
+
+2 of 8
+
+5
+
+https://scicomp.stackexchange.com/questions/41935/autom...
+
+I agree with the comment, that the kind of "solver" embodied by 𝑓(𝜃¯ ) will guide you how to
+make it AD-aware. At one extreme, if it's just a 10 line function and you have the source
+code, it's probably not difficult to rewrite it to use dual/AD-numbers. If it's some large blackbox nonlinear optimizer without any source, that's obviously a heavier lift.
+−1
+
+It's worth pointing out that you can deduce the sensitivity of a solution operator 𝐀 in
+terms of the sensitivity of a forward operator 𝐀, because the sensitivity of their product/
+composition (the identity operator) must be zero:
+
+𝑑/𝑑𝜃 [𝐈] = 0
+𝑑/𝑑𝜃 [𝐀−1 ⋅ 𝐀] = 0
+𝑑/𝑑𝜃 [𝐀−1 ] ⋅ 𝐀 + 𝐀−1 ⋅ 𝑑/𝑑𝜃 [𝐀] = 0
+(solve for 𝑑/𝑑𝜃 [𝐀
+
+−1
+
+])
+
+𝑑/𝑑𝜃 [𝐀−1 ] = −𝐀−1 ⋅ 𝑑/𝑑𝜃 [𝐀] ⋅ 𝐀−1
+(a composition of solve, multiply, solve, negate)
+−1
+
+Here your 𝑓 is analogous to 𝐀
+write.
+
+, and 𝑑/𝑑𝜃 [𝐀] represents something new you'll have to
+
+I apologize for introducing a different (linear-algebraic-like) symbol 𝐀. But I spelled it this
+way on purpose, because this arises often in practice: you discretize some continuum
+model into a linear-algebraic one (like 𝐀), then submit it to some black-box library
+−1
+
+(LAPACK, a krylov solver, whatever) which furnishes the solution operator 𝐀 in some
+opaque way. It's probably out of the question to rewrite LAPACK (or whatever) to use
+some dual/AD-number system, but if you wrote the discretization procedure to form 𝐀, it's
+probably reasonable to extend it to compute 𝑑/𝑑𝜃 [𝐀] too, then pursue this line of attack
+to find 𝑑/𝑑𝜃 [𝐀
+
+−1
+
+]
+
+Share Cite
+Improve this answer Follow
+
+edited Oct 1, 2022 at 17:22
+
+answered Sep 30, 2022 at 17:48
+
+rchilton1980
+5,226
+
+15
+
+23
+
+9/30/26, 10:24
+
+Automatic diﬀerentiation of a numerical solver - Computa...
+
+3 of 8
+
+https://scicomp.stackexchange.com/questions/41935/autom...
+
+tl;dr is that yes, automatic differentation does apply to solvers. But whether it's a good idea
+is a very deep topic.
+
+4
+
+Automatic differentiation of a "solver" is a subject with many details for doing it in the most
+effective form. For this reason, there are a lot of talks and courses that go into lots of depth
+on the topic. I recently gave a talk on some of the latest stuff in differentiable simulation
+with the American Statistical Association, and have some detailed notes on such adjoint
+derivations as part of the 18.337 Parallel Computing and Scientific Machine Learning
+graduate course at MIT. And there are entire organizations like my SciML Open Source
+Software Organization which work day-in and day-out on the development of new
+differentiable solvers.
+I'll give a brief summary of all my materials here below.
+
+Continuous vs Discrete Differentiation of Solvers
+AD of a solver can be done in essentially two different ways: either directly performing
+automatic differentiation to the steps of the solver, or by defining higher level adjoint rules
+that will compute the derivative. In some cases these can be mathematically equivalent.
+For example, forward sensitivity analysis of an ODE
+
+𝑢′ = 𝑓(𝑢, 𝑝, 𝑡)
+follows by the chain rule:
+
+𝑑 𝑑𝑢
+𝑑
+𝑑𝑓 𝑑𝑢
+∂𝑓
+=
+𝑓(𝑢, 𝑝, 𝑡) =
++
+𝑑𝑝 𝑑𝑡
+𝑑𝑝
+𝑑𝑢 𝑑𝑝
+∂𝑝
+Thus if you solve the extended system of equations:
+
+𝑢′ = 𝑓(𝑢, 𝑝, 𝑡)
+𝑠′ =
+
+𝑑𝑓
+∂𝑓
+𝑠+
+𝑑𝑢
+∂𝑝
+
+𝑑𝑢
+
+then you get 𝑠 = 𝑑𝑝 as the solution to the new equations. So therefore, solve these
+bigger ODEs and you get the derivative of the solution with respect to parameters as the
+extra piece. One way to do "automatic differentation" is to add a derivative rule to the AD
+library that "if you see ODE solve, then replace the solve with this extended solve and take
+the latter part as the derivative". The other way of course is to simply do forward-mode
+automatic differentation of the ODE solver library steps itself. It turns out that in this case, if
+you work out the math the two are mathematically equivalent. Note that it's not
+computationally equivalent though since the AD process may SIMD the expressions in a
+different way, doing some constant folding and common subexpression elimination (CSE)
+in a way that's different from the handcoded version, and thus the performance can be
+very different even though it's computationally the same algorithm.
+However, there are cases where the "analytical" way of writing the derivative is not
+
+9/30/26, 10:24
+
+Automatic diﬀerentiation of a numerical solver - Computa...
+
+4 of 8
+
+https://scicomp.stackexchange.com/questions/41935/autom...
+
+However, there are cases where the "analytical" way of writing the derivative is not
+equivalent to its automatic differentiation counterpart. For example, the adjoint method is a
+different way to get 𝑑𝑝 values in (𝑛 + 𝑝) time (instead of the (𝑛𝑝) time of the forward
+𝑑𝑢
+
+sensitivities above) by solving an ODE forward and some related ODE backwards (for a
+full derivation and description, see the lecture notes or the recorded video). If you were to
+do reverse-mode automatic differentiation of the solver, you do not get a mathematically
+equivalent algorithm. For example, if the solver for the ODE was Euler's method, reversemode AD would be mathematically equivalent to solving the forward ODE with Euler's
+method and the reverse ODE with something like implicit Euler (where part of the implicit
+equation is solved exactly using a cached value from the forward solve).
+
+So What is Better, Continuous Derivative Rules or Discrete
+Derivatives of the Solver?
+Like any complex question, it depends. We had a manuscript which looked at this in quite
+some detail (and a biologically-oriented follow-up), and can boil it down to a few basic
+notes:
+• Forward-mode outperforms reverse-mode / adjoint techniques when the equations are
+"sufficiently small". For modern implementations this seems to be at around 100.
+• For forward-mode cases, "good" automatic differentiation libraries can make use of
+structure between the primal and derivative constructions to better CSE/SIMD the
+generated code for the derivative term, thus forward-mode AD of the solver can be
+much faster than forward sensitivity analysis even though the two are mathematically
+the same operation.
+• For reverse-mode cases, the continuous adjoints seem to be faster with current
+implementations.
+But that last bit then has many caveats to put on it. For one, there seems to be a trade-off
+between performance and stability here. This is noted in the appendix of the paper
+"Universal Differential Equations for Scientific Machine Learning, which states:
+Previous research has shown that the discrete adjoint approach is more stable
+than continuous adjoints in some cases [53, 47, 94, 95, 96, 97] while continuous
+adjoints have been demonstrated to be more stable in others [98, 95] and can
+reduce spurious oscillations [99, 100, 101]. This trade-off between discrete and
+continuous adjoint approaches has been demonstrated on some equations as a
+trade-off between stability and computational efficiency [102, 103, 104, 105, 106,
+107, 108, 109, 110]. Care has to be taken as the stability of an adjoint approach
+can be dependent on the chosen discretization method [111, 112, 113, 114, 115]
+with the references pointing to those in the manuscript.
+This is discussed in even more detail in the manuscript Stiff Neural Ordinary Differential
+Equations which showcases how there are many ways to implement "the adjoint method",
+
+9/30/26, 10:24
+
+Automatic diﬀerentiation of a numerical solver - Computa...
+
+5 of 8
+
+https://scicomp.stackexchange.com/questions/41935/autom...
+
+Equations which showcases how there are many ways to implement "the adjoint method",
+and they can have major differences in stability, essentially trading off memory or
+performance for improved stability properties.
+
+Special Case: Implicit Equations
+The above discussion shows that there are good reasons to differentiate solvers directly,
+and good reasons to instead write derivative rules for solvers which use forward/adjoint
+equations. For time series equations, this always has a trade-off. There is an important
+special case here though that for methods which iterate to convergence, automatic
+differentiation of the solver is essentially never a good idea. The reason is because the
+implicit function theorem gives that the derivative of the solution is directly defined at the
+solution point. For example, for solving 𝑓(𝑥, 𝑝) = 0 , if 𝑥∗ is the value of 𝑥 which satisfies
+𝑑𝑥∗
+
+the equation, then 𝑑𝑝 =. . .. In other words, Newton's method might take 𝑛 steps, and
+thus automatic differentation will need to differentiate 𝑓 at least 𝑛 times. But if you use the
+implicit function theorem result, then you only need to differentiate it once!
+Note of course a similar performance vs stability trade-off does apply here. Since this
+derivation assumes you have 𝑥∗ such that 𝑓(𝑥∗ , 𝑝) = 0 exactly, but you don't. Newton's
+method from the solve will give you something that satisfies the equation to tolerance, so
+
+maybe 𝑓(𝑥∗ , 𝑝) ≈ 10−8 , which means that the derivative expression is also only
+approximate, and this then induces an error in the gradient etc. Thus direct differentiation
+of Newton's method can be more accurate, and you need to worry about tolerance here if
+the gradients seem sufficiently off.
+This does lead to some counter-intuitive results. For example, we had a paper where we
+exploited this to note that differentiating and ODE solve which goes to infinity (steady
+state) is faster than a "long ODE", since steady states have a similar implicit definition. It's
+quicker to go to infinity than it is to go to 1000, who would've thought? Math is fun.
+
+Does Differentiation of Solver Internals Make Sense or Have
+a Meaning?
+"ODE solvers" have all sorts of things in there, like adaptivity parameters and heuristics.
+One of the things that happens when you do automatic differentiation of the solver is that
+you aren't just differentiating the solver's states and parameters, but the process will
+differentiate everything. It turns out that AD of a solver can thus be useful in some tricky
+ways which put this to use. For example, at ICML we had a paper which regularized the
+parameters of a neural ODE by the sum of the computed error estimates of the adaptivity
+heuristics. This would then push the learned equation towards an area of parameter space
+where the adaptivity gives the largest time steps possible, and thus the learned equation is
+the "fastest possible learned equation that fits the time series". Such a trick is only possible
+if you are doing automatic differentiation of the solver since you'd need to differentiate the
+solver's internals in order to have access to those values in the loss function! This just
+shows one of many ways in which AD's "extra information" which analytical continuous
+derivative definitions don't have could potentially be useful for some applications.
+
+9/30/26, 10:24
+
+Automatic diﬀerentiation of a numerical solver - Computa...
+
+6 of 8
+
+https://scicomp.stackexchange.com/questions/41935/autom...
+
+derivative definitions don't have could potentially be useful for some applications.
+
+Automatic Differentiation in Continuous Sensitivity Methods
+Finally, I want to note that even when you attempt to avoid automatic differentation of the
+solver by using continuous sensitivity methods, it turns out that the optimal way to build the
+extended equations is to use automatic differentiation!
+Summary: there are many good reasons to do automatic differentiation of solvers, but
+there are also many good reasons to use some analytical derivative techniques. But even
+if you do analytical derivative techniques, you still want to automatic differentiate
+something in order to do it optimally! For example, let's return to the forward sensitivity
+equations:
+
+𝑢′ = 𝑓(𝑢, 𝑝, 𝑡)
+𝑠′ =
+
+𝑑𝑓
+∂𝑓
+𝑠+
+𝑑𝑢
+∂𝑝
+
+𝑑𝑓
+
+It turns out that 𝑑𝑢 𝑠 does not require computing the full Jacobian. This operation, known
+
+as Jacobian-vector products or jvps, are the primitive operation of forward-mode automatic
+differentation and thus special seeding of a forward-mode AD tool gives a faster and more
+robust algorithm than a finite difference form. When done correctly, this operation is
+computed without ever building the full Jacobian. A trick for this does exist in the finite
+difference sense as well:
+
+𝑑𝑓
+𝑓(𝑢 + 𝜖𝑠) − 𝑓(𝑢)
+𝑠≈
+𝑑𝑢
+𝜖
+since it is equivalent to the directional derivative. This is explained in more detail in these
+lectures (or accompanying video).
+In the same vein, continuous adjoints of ODE solves boil down to defining a differential
+equation which is solved backwards and that differential equation which is solved
+𝑑𝑓 𝑇
+
+backwards has a term which is 𝑑𝑢
+
+𝑠 , i.e. Jacobian transposed times a vector, also known
+𝑑𝑓
+
+as the vector-Jacobian product because it's equivalent to 𝑠𝑇 𝑑𝑢 when transposed. It turns
+
+out that this is the primitive operation of reverse-mode AD, which then allows for
+computing this operation without fully building the Jacobian. There is no analogue for this
+operation with finite differencing, which means that there's a pretty massive performance
+gain from doing this properly. Our paper A Comparison of Automatic Differentiation and
+Continuous Sensitivity Analysis for Derivatives of Differential Equation Solutions measures
+this effect on a stiff partial differential equation, getting:
+
+9/30/26, 10:24
+
+Automatic diﬀerentiation of a numerical solver - Computa...
+
+7 of 8
+
+https://scicomp.stackexchange.com/questions/41935/autom...
+
+The takeaway from this plot is that using these AD tricks results in a few orders of
+magnitude performance improvements (by avoiding the Jacobian construction, which are
+the "seeding" versions on the left, the right shows the difference that different AD
+techniques make, which itself is another few orders of magnitude). When people note that
+the Julia differential equation adjoint solvers are much faster than the adjoints from
+Sundials COVDES and IDAS on large equations, this part right here is one of the major
+factors because Sundials does not embed a reverse AD engine into its adjoint code to do
+the vjp definitions, and instead falls back to using a numerical formulation unless the user
+provides a vjp override, which is seemingly to be uncommon to do but from these plots
+clearly should be done more often.
+
+Summary
+In total, what can we takeaway so far about differentiating solvers?
+• There are some advantages to differentiating solvers, but there are also some
+advantages to mixing in analytical continuous adjoints. It's context-dependent which is
+better.
+• Even when mixing in analytical continuous derivative rules, these are best defined
+with automatic differentiation within their constructed equations, so one cannot avoid
+AD completely if one wishes to achieve full performance on arbitrary models.
+• For cases which converge to some kind of implicitly defined solution, using special
+adjoint tricks will be much better than direct differentiation of the solver.
+There's still a lot more to mention, especially as stochastic simulation gets involved, but I'll
+cut this here for now. As you can see, there's still some open questions that are being
+investigated in the field, so if you find this interesting please feel free to get in touch.
+
+Start asking to get answers
+Find the answer to your question by asking.
+
+9/30/26, 10:24
+
+Automatic diﬀerentiation of a numerical solver - Computa...
+
+8 of 8
+
+https://scicomp.stackexchange.com/questions/41935/autom...
+
+Ask question
+
+Explore related questions
+numerical-modelling
+
+automatic-differentiation
+
+See similar questions with these tags.
+
+9/30/26, 10:24
+
+

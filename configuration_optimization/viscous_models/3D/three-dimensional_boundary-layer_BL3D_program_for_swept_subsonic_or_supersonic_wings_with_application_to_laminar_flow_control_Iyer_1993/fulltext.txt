@@ -1,0 +1,21984 @@
+NASA
+
+Contractor
+
+Report
+
+4531
+
+Three-Dimensional
+Boundary-Layer
+(BL3D)
+
+Program
+
+for Swept
+
+or Supersonic
+
+Subsonic
+
+Wings
+
+With Application
+to
+Laminar
+Flow Control
+
+i'n
+p.
+o
+
+0
+Ul
+rO
+
+p4
+I
+.,1.
+
+imw
+
+O
+
+Z
+
+0
+
+4-
+
+Venkit
+
+Iyer
+
+ViGYAN,
+
+Inc.
+
+Hampton,
+
+Virginia
+
+:E
+¢n
+,<QZ3
+Z 14. _ 0
+0
+3.J
+b.4 _.,_
+I,L.
+
+Prepared
+
+Z_
+W ,,,J Z
+
+for
+
+Langley Research Center
+under Contract NASl-19672
+
+National
+
+Aeronautics
+
+Space
+
+Administration
+
+Office
+
+of
+
+Scientific
+Information
+1993
+
+'<
+
+I
+
+EW<
+
+m
+
+,-I
+
+uJ _-41.--
+
+O_
+
+and
+
+Management
+and
+
+Technical
+
+,COP-
+
+_
+
+Z
+
+C)
+
+Program
+C3 ::¢ _
+
+U
+
+Summary
+This report deals
+
+with the theory,
+
+dimensional
+
+boundary-layer
+
+equations
+
+supersonic
+
+wings
+
+flow.
+
+incorporated,
+1990.
+
+in laminar
+
+algorithm
+
+A number
+
+that uses the inviscid
+
+Euler solutions
+
+application
+
+in laminar
+
+flow control
+
+quantities
+
+required
+
+in boundary-layer
+
+to compare
+
+results
+
+with Navier-Stokes
+
+numerical
+
+calculation
+
+applications
+user's
+
+is a stand-alone
+
+manual
+
+computer
+
+design
+
+is included
+
+described
+
+with thin-layer
+
+subsonic
+
+or
+
+and new features
+
+are
+
+in NASA CR 4269, Jan.
+improvements
+
+An interface
+
+routine is presented
+
+Code modifications
+
+analysis
+
+profiles
+
+document
+
+code.
+
+swept
+
+three-
+
+and overall
+
+applications.
+
+stability
+
+of three-dimensional
+
+and validation
+
+of modifications
+
+procedure
+
+as input.
+
+of compressible
+
+to general
+
+has been employed,
+
+been made that result in a user-friendly
+
+report
+
+and solution
+
+with applications
+
+based on an earlier general
+
+A more efficient
+
+This
+
+formulation,
+
+Output
+
+are implemented
+
+of solution
+
+is included.
+
+have
+
+profiles
+
+Conversion
+
+for
+and
+
+routines
+
+are also presented.
+
+that provides
+swept-wing
+Navier-Stokes
+
+all the necessary
+
+boundary
+solutions
+
+details
+
+for
+
+Examples
+
+of
+
+are presented.
+
+A
+
+layers.
+
+as an appendix.
+
+Keywords
+
+Boundary
+
+layer
+
+Compressible
+
+flow
+
+Laminar
+
+flow control
+
+Transition
+
+prediction
+
+Swept-wing
+
+flow
+
+iii
+
+PRECF.._I_IG PAGE BLANK NOT FILMED
+
+Table of Contents
+
+Page
+iii
+
+Summary
+
+vii
+
+Nomenclature
+1.
+
+INTRODUCTION
+
+1
+
+2.
+
+FORMULATION
+
+3
+
+.
+
+,
+
+.
+
+2.1
+
+Three-Dimensional
+
+Boundary-Layer
+
+Coordinates
+
+3
+
+2.2
+
+Three-Dimensional
+
+Boundary-Layer
+
+Equations
+
+6
+
+2.3
+
+Transformation
+
+9
+
+2.4
+
+Transformed Equations
+
+11
+
+2.5
+
+Quasi-Two-Dimensional
+Conditions
+
+2.6
+
+Equations in Vector Form
+
+Equations for Initial
+
+14
+
+17
+
+DISCRETIZATION
+
+21
+
+3.1
+
+Differencing Formulas
+
+21
+
+3.2
+
+Linearized
+
+System at (i,j)
+
+22
+
+3.3
+
+Boundary
+
+Conditions
+
+24
+
+3.4
+
+Discretization
+
+INVISCID
+
+INTERFACE
+
+4.1
+
+Attachment-Line
+
+Relocation
+
+31
+
+4.2
+
+Edge Values by Interpolation
+
+32
+
+4.3
+
+Edge Values From BL-EDGE
+
+BL3D EXAMPLE
+
+in the (i,j) directions
+
+28
+30
+
+Equations
+
+32
+34
+
+CASES
+
+34
+
+5.1
+
+Geometry
+
+5.2
+
+Euler Solution for Case 1
+
+35
+
+5.3
+
+Euler - BL3D Interface
+
+36
+
+5.4
+
+BL3D Solution for Case 1
+
+38
+
+5.5
+
+BL3D Results for Case 1
+
+40
+
+5.6
+
+Results
+
+42
+
+5.7
+
+Geometry
+
+and Conditions
+
+for Case 1
+
+for Case 1
+
+With Suction for Case 1
+and Conditions
+
+for Case 2
+
+V
+
+PRECEDING PAGE FJLArJ,
+X _j'3.,T FtLMt_.L,_
+
+42
+
+Euler Solution and BL3D Interface for Case 2
+
+43
+
+BL3D Solution for Case 2
+
+43
+
+REFERENCES
+
+45
+
+FIGURES
+
+46
+
+APPENDIX A
+Coefficients of the Linearized System of Compressible Three-Dimensional
+Boundary-Layer Equations Discretized With a Fourth-Order Pade Formula
+
+A-1
+to
+A-7
+
+APPENDIX B
+User's Manual for the BL3D Program
+
+B-1
+to
+B-26
+
+Nomenclature
+A1, A2, A3, A4
+al_
+
+a2_
+
+a3
+
+ak
+
+coefficients
+coefficients
+(129)-(130))
+diagonal
+
+l,rn
+
+Bi, i = 1,6
+
+in the transformed continuity
+in the (-direction differencing
+
+elements
+
+of the linear system
+
+in the transformed
+
+/)i, i = 3, 6
+
+coefficients
+(55)-(60))
+coefficients
+
+/)3,
+
+coefficients
+
+(see eq. (94))
+
+bl,
+
+b2,
+
+b4,
+
+b5
+
+b3,
+
+superdiagonal
+
+/,m
+
+(47)-(50))
+
+given by eq. (101) or (108)
+
+( momentum
+
+equation
+
+(see eqs.
+
+(see eq. (91))
+
+coefficients in the q-direction
+(see eqs. (131)-(133))
+
+bk
+
+equation (see eqs.
+formula (see eqs.
+
+elements
+
+differencing
+
+formula
+
+of the linear system
+
+given by eq. (101) or
+
+(lO8)
+
+Ci, i = 1,6
+Ci, i = 3, 6
+
+d4,d
+G
+
+coefficients
+(62)-(67))
+coefficients
+
+in the transformed
+
+coefficients
+
+(see eq. (95))
+
+pressure
+
+r/momentum
+
+equation
+
+(see eqs.
+
+(see eq. (92))
+
+coefficient
+
+G a, C24,C25,
+C26,
+
+C34,
+
+C35,
+
+metric coefficients
+
+(see eqs. (6)-(12))
+
+G6
+
+Csx
+Di,
+
+skin-friction
+
+coefficient
+
+i = 1, 5
+
+coefficients
+coefficients
+
+in the transformed
+(see eq. (96))
+
+ds2
+
+incremental arc lengths, nondimensional,
+eqs. (4)-(5))
+coefficients (see eq. (87))
+u/u_
+an arbitrary function
+
+O3,b4
+
+dsl,
+
+El, i = 1,4
+F
+
+f
+fe
+
+in x direction
+
+normalized
+
+energy
+
+equation
+
+with free-stream
+
+(see eqs. (69)-(70))
+
+in the x and y directions
+
+G
+
+v/v_
+
+g12
+
+metric coefficient (see eq. (3))
+total enthalpy, nondimensional
+(see eq. (24))
+free-stream total enthalpy, dimensional (see eq. (23))
+metric coefficient (see eqs. (1)-(2))
+metric term (see eq. (8))
+
+H
+
+HL
+hb h2
+h_
+I
+
+He
+
+i,j,k
+
+indices in the (, r/, and ( directions
+
+ke
+
+index k that corresponds to the boundary-layer
+edge
+factor for stretching the grid in the _ direction (see eq. (128))
+
+k_
+L
+
+vii
+
+values
+
+(see
+
+L*
+
+reference
+
+length, dimensional
+
+I
+I/Pr
+M
+
+c¢
+
+M_
+
+free-stream
+
+t/X,
+
+maximum
+
+Mach number
+number
+
+of boundary-layer
+
+grid points in x and y directions
+
+limits set on _, ny to restrict computation
+
+to a smaller
+
+nxlim, nylim
+P
+Pr
+
+static pressure,
+laminar Prandtl
+
+PL
+
+free-stream
+
+Q
+
+vector (see eq. (85))
+absolute velocity, nondimensional
+(see eq. (25))
+normalized suction rate defined as qs = (pawl)/(pooU=)
+wall heat flux, dimensional
+
+q
+qs
+qw
+R*
+Reoo
+
+Re 0
+
+[s]
+$2
+
+T
+U*C.X9
+V I,
+
+W l
+
+Vr
+W
+
+(v
+Co
+
+scaled normal velocity (see eq. (28))
+surface-normal
+velocity, nondimensional
+boundary-layer
+coordinates in streamwise,
+directions, nondimensional
+Cartesian coordinates,
+nondimensional
+
+x, y, z
+
+7
+
+¢
+
+dimensional
+
+boundary-layer
+velocities along and orthogonal to the edge streamline
+reference velocity for v
+transformed
+normal velocity (see eqs. (44)-(45))
+
+Us, l_s
+
+ak
+
+pressure,
+
+temperature,
+nondimensional
+free-stream temperature,
+dimensional
+free-stream velocity, dimensional
+velocities in streamwise and spanwise directions, nondimensional
+velocities, nondimensional,
+in Cartesian coordinate directions
+
+TL
+
+U l,
+
+nondimensional
+number
+
+gas constant
+crossflow Reynolds number (see eq. (138))
+free-stream Reynolds number, based on reference length L_ (see eq.
+(29))
+momentum-thickness
+Reynolds number (see eq. (139))
+residual, right-hand side of equation (108)
+solution vector at location (i, j)
+nondimensional
+arc lengths in the x and y directions (see eqs. (4)-(5))
+
+RecF
+
+Sl,
+
+region
+
+ilk
+
+@, 6k
+
+stretched
+elements
+
+spanwise,
+
+and normal
+
+boundary-layer
+normal coordinate (see eq. (27))
+of block tridiagonal system (see eqs. (122)-(t24))
+
+angle between x- and y-coordinate lines
+ratio of specific heats
+step size in ( (see eq. (110))
+transformed
+normal coordinate (see eq. (36))
+
+viii
+
+prefix used to indicate change in a solution vector or solution vector
+element at iteration level n and at location (i, j) (see eq. (105), for
+example)
+boundary-layer
+
+_*0.1
+
+thickness,
+
+dimensional,
+
+percent of its maximum value
+transformed
+boundary-layer
+surface
+
+coordinates
+
+(p lp)
+
+0
+A
+
+/]
+
+sweep angle
+coefficients (see eq. (97))
+absolute viscosity, nondimensional
+kinematic viscosity, nondimensional
+
+p
+
+density,
+
+AO,
+
+at which v, reduces
+
+A1,
+
+/_2,
+
+A3
+
+#
+
+nondimensional
+
+x/Pe#eSlUe
+XI_
+
+X2_
+
+X3
+
+¢,
+
+¢1,
+
+¢2,
+
+¢3
+
+ff)W
+
+Cq
+_at
+
+coefficients (see eq. (87))
+surface partial derivative functions
+coefficient
+coefficient
+
+(see eqs. (14)-(17))
+
+in normal velocity transformation
+(see eq. (115))
+in wall heat flux transformation
+(see eq. (118))
+
+relaxation parameter
+relaxation parameter for attachment-line
+iteration
+factor used in finite differencing in ( direction
+
+Subscripts:
+e
+
+k=l
+k = ke
+m_
+r
+
+boundary-layer
+at the wall
+
+edge
+
+at boundary-layer
+maximum
+reference value
+
+edge
+
+x, y, z
+_,_,(
+
+wall quantity
+partial derivatives
+partial derivatives
+
+1,2
+
+free-stream quantity
+x and y directions
+
+w
+
+in x, y, and z directions
+in _, 7/, and ¢ directions
+
+Superscripts:
+
+!
+t
+
+dimensional quantity
+Cartesian coordinate
+
+n
+
+partial derivative
+iteration number
+
+T
+
+transpose
+
+(as in x', y', z')
+
+in ( (except for x', y', z')
+
+ix
+
+to 10
+
+Abbreviations:
+BL
+
+Boundary
+
+layer
+
+BL3D
+INV
+L
+LISW
+LHS
+NS
+RHS
+Z
+
+Boundary
+Inviscid
+
+layer three dimensional
+
+Left-pointing
+Locally infinite swept wing
+Left-hand side
+Navier-Stokes
+Right-hand
+Zig-zag
+
+side
+
+1. INTRODUCTION
+A renewed
+
+interest
+
+has developed
+
+laminar flow in the subsonic
+
+and supersonic
+
+or active means is a multiparameter
+surface
+
+pressure
+
+conditions.
+
+in the design
+
+gradients,
+
+To aid in the design
+
+regimes.
+
+optimization
+
+leading-edge
+
+of wings with extensive
+
+Design for laminar flow by passive
+
+problem that involves
+
+radius, sweep,
+
+process,
+
+a reliable
+
+stability.
+
+An important
+
+the accurate
+
+generation
+
+of smooth
+
+mean-flow
+
+profiles.
+
+of generating
+
+these profiles.
+for mean-flow
+
+prediction.
+
+accurate
+
+are available
+
+thin-layer
+
+Navier-Stokes
+
+solver
+
+in which
+
+and numerical
+
+dissipation.
+
+design
+
+Navier-Stokes
+
+solution
+
+boundary-layer
+
+method
+
+the
+
+the use of an accurate
+which
+
+is particularly
+
+attractive
+
+such variables
+
+procedure
+
+prediction
+
+is
+
+the issue
+
+The first one is the use of an
+
+particular
+
+attention
+
+However,
+
+for repeated
+
+is expensive.
+
+for experimentation
+
+is needed
+
+This report addresses
+
+coupled
+
+as
+
+rates, and free-stream
+
+part of this computational
+
+issues as grid resolution
+calculations,
+
+suction
+
+computational
+
+to predict boundary-layer
+
+Two options
+
+lengths of
+
+is paid to such
+preliminary
+
+The second
+
+with an inviscid
+
+option
+
+is
+
+Euler solution,
+
+with different
+
+pressure
+
+and suction
+
+formulation,
+
+and solution
+
+of compressible
+
+with specific
+
+reference
+
+distributions.
+This report deals
+dimensional
+
+with the theory,
+
+boundary-layer
+
+equations,
+
+or supersonic
+
+wings
+
+in laminar
+
+incorporated
+
+from an earlier general
+
+(i.e., ref. 1; see also ref. 2).
+that provides
+swept-wing
+
+flow.
+
+The modifications
+
+procedure
+
+However,
+
+all of the necessary
+boundary
+
+A number
+
+to general
+
+of modifications
+described
+
+the present
+
+swept subsonic
+
+and new features
+
+are
+
+in NASA CR 4269, Jan.
+
+1990
+
+report is a stand-alone
+
+details for numerical
+
+three-
+
+calculation
+
+document
+
+of three-dimensional
+
+layers.
+to the original
+
+procedure
+
+provide
+
+a more efficient
+
+algorithm.
+
+The
+
+solution scheme has been modified to solve the continuity, energy, and momentum equations simultaneously, with iterative update of nonlinear terms. Streamwise and spanwise
+differencing schemes have been modified to ensure that the boundary-layer solution
+is consistent with the boundary-layer-edge boundary conditions. Overall improvements
+have been made that result in a more user-friendly computer code. An interface routine has been developed to use the Euler solutions as input. Code modifications have
+been implemented for application
+
+in laminar flow control design.
+
+provides
+
+the output of profiles and quantities
+
+analysis.
+
+Conversion
+
+profiles
+
+routines
+
+with Navier-Stokes
+
+Two applications
+case.
+
+of the
+
+For the subsonic
+
+presented.
+
+Detailed
+
+layer properties.
+
+profiles
+
+comparisons
+
+A user's
+package
+
+manual
+
+is archived
+
+made available
+
+is included
+
+with the thin-layer
+
+case, comparisons
+
+with a conical swept wing boundary-layer
+
+code developed
+
+as an appendix
+
+request.
+
+the boundary-layer
+
+solution
+
+case and a supersonic
+
+Navier-Stokes
+profiles
+
+solutions
+
+by Kaups and Cebeci
+
+system
+
+are
+
+and other boundary-
+
+are given of the present
+
+to this report.
+
+in the NASA Langley computer
+
+per individual
+
+stability
+
+a subsonic
+
+are made of the solution
+
+For the supersonic
+
+in boundary-layer
+
+are also provided.
+
+code are presented:
+
+case, validations
+
+code also
+
+that are required
+
+that enable one to compare
+
+solution
+
+The modified
+
+The complete
+
+mass storage
+
+code
+
+(ref. 3).
+program
+
+and can be
+
+2.
+2.1 Three-Dimensional
+
+FORMULATION
+
+Boundary-Layer
+
+We start with the definition
+
+Coordinates
+
+of the surface-oriented
+
+nates used in the three-dimensional
+
+boundary-layer
+
+curvilinear
+
+nonorthogonal
+
+equations.
+
+Let us assume that the surface of interest is defined in terms of Cartesian
+(x'*,
+
+y'*, z'*) in dimensional
+
+(M_,
+
+P_o, T*)
+The body
+
+components
+resulting
+
+units
+
+(see Figure
+
+with a corresponding
+coordinates
+
+of velocity
+
+normalized
+
+are ( _', v', w').
+
+l(a)).
+
+free-stream
+
+are normalized
+
+with
+
+The free-stream
+
+velocity
+
+length
+
+quantities
+
+are
+
+L_o; the Cartesian
+
+by the reference
+
+are ( x', y', z_), and the normalized
+
+(See Figure 1(b).) The normalization
+
+coordinates
+
+U_o.
+
+a reference
+
+(u'*, v'*, w'*) are normalized
+
+coordinates
+
+coordi-
+
+velocity
+
+U%. The
+
+velocity
+
+components
+
+of other flow quantities
+
+is discussed
+
+in the next section.
+The boundary-layer
+
+coordinates
+
+where x is the predominant
+(not necessarily
+
+streamwise
+
+along the constant
+
+is mutually perpendicular
+
+defined
+
+directions
+
+x and y,
+
+and y is the general
+
+spanwise
+
+direction
+
+percent chord direction
+
+as surface
+
+for a wing).
+
+arc lengths.
+
+direction
+
+line on the surface,
+
+perpendicular
+
+to the chord.
+
+metric quantities
+
+h.2, gl_) defined
+
+of the physical
+
+The grid line x =
+
+later in this section
+
+grid into the computational
+0 coincides
+
+with the starting
+
+z
+
+for the case
+
+coordinate
+
+The coordinates
+
+to the (0, l) range in the computational
+
+shearing
+
+For example,
+
+but can be expressed
+
+also be normalized
+(hi,
+
+The coordinate
+
+x and y are surface conforming,
+
+flow on a swept wing, the boundary-layer
+
+along the attachment
+
+in the spanwise
+
+direction
+
+in the two surface
+
+to both z and y. The coordinates
+
+but do not need to be measured
+of the attachment-line
+
+are defined
+
+domain.
+
+characterize
+
+y may be
+as distance
+
+x and
+
+y can
+
+The three
+
+basic
+
+the stretching
+
+and
+
+grid.
+location
+
+of the boundary
+
+layer as
+
+shown in Figure 1(c) (in this case, the attachment line of a swept wing). The choice of
+z = 0 is important
+layer origination
+
+because
+point,
+
+the system
+
+and a special
+
+of equations
+
+becomes
+
+at the boundary-
+
+must be solved
+
+here to initialize
+
+set of equations
+
+singular
+
+the solution.
+The transformation
+
+of quantities
+
+from the (x I, yl z') to the (x,
+!
+
+mined by the set of six partial derivatives
+layer theory,
+
+the planes
+
+formation
+
+from
+
+dimensional
+fined
+
+to another.
+
+boundary-layer
+
+equations
+
+I
+
+are assumed
+
+partial derivatives
+
+one system
+
+is deter-
+
+(x_, y_, z=, xy, yy, z_y). Note that in boundary-
+
+where z = constant
+
+which means that the surface
+
+!
+
+#, z) system
+
+to be parallel
+
+are sufficient
+
+These
+
+partial
+
+via the three
+
+to the surface,
+
+to characterize
+
+derivatives
+
+enter
+
+metric quantities
+
+the trans-
+
+into the three-
+
+(hi,
+
+h2, g12) de-
+
+as
+
+h_ .= V/(_,)_ + (y,)_ + (z,) _
+
+(1)
+
+h2=
+
+(2)
+
++
+
++
+
+I
+
+g12
+
+The metric coefficients
+directions
+
+hl
+
+h2 cos
+
+fl
+
+=
+
+h_ and h2 represent
+
+with reference
+
+in the two directions
+
+=
+
+to the physical
+
+1
+
+-F YxYy
+
+the stretching
+
+grid.
+
+sl and s2 are defined
+
+!
+
+XxXy
+
+I
+
+I
+
++
+
+l
+
+(3)
+
+zxzy
+
+in the two surface
+
+The nondimensional
+
+surface
+
+by the two incremental
+
+relations
+
+coordinate
+arc lengths
+
+dsa =
+
+hi dx
+
+(4)
+
+ds2
+
+h2 dy
+
+(5)
+
+=
+
+Further,
+x and
+
+the quantity
+y. The
+
+is the cosine
+
+912/hlh2
+
+additional
+
+coefficients,
+
+based
+
+C13
+
+024
+
+C25
+
+-
+
+=
+
+of the angle/_
+
+=
+
+-
+
+hlx
+
+h2 and
+
+hi,
+
+V/ hlh5
+2
+
+919_, f912
+C13
+[_1
+
+C231.{hshly
+
+on
+
+-
+
+9122
+
+hly
+
+--
+
+)
+
+@
+
+between
+
+2912h2x},"
+
+912,
+
+the two coordinates
+
+are defined
+
+as
+
+(6)
+
+i gl2x
+h-_
+
+hs = hlh2
+
+(7)
+
+}
+
+l+
+
+C26
+
+--
+
+hi
+C23
+
+{ 912y
+
+--
+
+h2h2._
+
+g12
+h2 h2y }
+
+C34
+
+=
+
+h2{3
+C2-.-_,
+
+gl2x
+
+-
+
+hlhly
+
+912
+hi
+
+_hih2j
+
+(9)
+
+(10)
+
+hlx}
+
+1
+
+,
+636
+
+The
+the
+
+transformation
+
+inversion
+
+nondimensional
+
+of
+
+the
+
+C35
+
+--
+
+--
+
+g12
+023
+
+of velocities
+system
+
+surface-normal
+
+given
+
+C123
+
+{]_sh2x
+
+_.ql_
+h2y
+1, ].12
+
+from
+
+(u',
+
+below.
+
+velocity;
+
++
+
+--
+
+2912hly}
+
+h2x
+
+--
+
+v',
+Note
+
+the
+
+(11)
+
+, }
+
+-h2
+
+u,r) to (u,
+that
+
+symbol
+
+(12)
+
+gl2y
+
+v, d,) is accomplished
+
+5, is the
+_v is
+
+symbol
+
+reserved
+
+for
+
+by
+
+used
+
+for
+
+the
+
+later
+
+use
+
+as
+
+transformed
+
+normal
+
+velocity.
+1
+X x
+
+xy
+
+¢
+
+U t
+
+u
+
+y,
+
+(13)
+I
+
+I
+Zx
+
+z_
+
+¢ _
+
+W I
+
+_wJ
+
+where
+t_ 1 --__ y_I zui
+
+_
+
+i r
+Zxyy
+
+(14)
+
+_
+
+I .,,I
+Xy_'x
+
+--
+
+!
+l
+ZyXx
+
+(15)
+
+=
+
+Xxyy
+
+--
+
+Xyy x
+
+(16)
+
++ ,,/,2
+3
+
+(17)
+
+_2
+
+¢ = V/
+
++
+
+The metric terms defined above allow the flow to be described
+
+in terms of surface-oriented
+
+quantities.
+
+to that on a developed
+
+surface
+
+As a result, the flow can be treated
+
+described
+
+by two families
+
+terms do not represent
+that the effect
+pressure
+
+coordinates.
+
+curvature
+
+shape on the boundary
+
+However,
+
+on the physics
+
+the metric
+
+of the flow.
+
+layer is felt only through
+
+flat
+
+Note
+
+the inviscid
+
+distribution.
+
+2.2 Three-Dimensional
+
+Boundary-Layer
+
+The three-dimensional
+oriented
+
+of nonorthogonal
+
+the effects of surface
+
+of surface
+
+as equivalent
+
+curvilinear
+
+laminar,
+
+nonorthogonal
+
+tial derivatives).
+The continuity
+
+equation
+
+is
+
+Equations
+
+compressible
+coordinates
+
+boundary-layer
+
+equations
+
+are given below (subscripts
+
+in surfaceindicate
+
+par-
+
+(18)
+hi
+
+The
+
+momentum
+
+fl
+
+The
+
+equation
+
+llx
+
+momentum
+
+p
+
+pu
+
++ k, h,2 pv
+
+x
+
+in the
+
+-'}- -_21ty
+
++
+
+equation
+
+in the
+
+Vx
+
+Vy
+
+-'[- _2
+
++
+
+Y
+
+x direction
+
+I_lik
+
++
+
++ (Clap
+
+is
+
+C24
+
+l/2
+
+--[- C25
+
+hlh_
+
+hlgl2
+
+y direction
+
+is
+
+tVV_
+
+-t-
+
+=
+
+C34u
+
+2
+
+ttv
+
+--l- C35
+
+-it- C26
+
+)
+
+1
+
+uv
+
+-t-
+
+v 2
+
+)-
+
+(19)
+
+C361)2
+
+(20)
+{'h2912
+
+The energy
+perfect
+
+p,
+
+h2h2
+
+equation
+
+is written
+
+in terms
+
+gas and constant
+
+specific
+
+heats
+
+is defined
+
+py
+
+)1
+
+"/M2
+
+of the nondimensional
+
+are assumed,
+
+total enthalpy
+
+the dimensional
+
+total
+
+H. When
+
+enthalpy
+
+I-I*
+
+as
+
+H*
+
+R*_
+
+T*
+
++
+
+1 q,Z
+
+(21)
+
+where
+q ,2
+The
+
+nondimensional
+
+=
+
+u,,Z
+
+total
+
++ v,*2 + w_*2 _
+
+enthalpy
+
+H
+
+=
+
+-
+
+R*7
+-_-1
+
+u .2 + v .2 +
+
+H*/H_
+
+is based
+
+2u'v'cos/3
+
+on the reference
+
+(22)
+
+value
+
+1
+H*
+which
+
+results
+
+in the
+
+T_
+
++
+
+U_
+
+(23)
+
+definition
+T + 0.5(_/-1)M
+1 + 0.5(3 _ -
+
+2qz
+1) ML
+
+(24)
+
+with T
+
+=
+
+T*/T_o
+
+and
+
+q2
+
+The
+
+resulting
+
+energy
+
+equation
+
+p(uHx
+
++ vHv
+
+In the equations
+
+above,
+
+number
+
+scaling
+
+applied
+
+=
+
+u 2 + v 2 + 2uvcosfl
+
+(25)
+
+is
+
++ (vIIs)
+
+[.
+
+=
+
+_r.rH_
+
++
+
+_ and t_ are stretched
+
+.(1)
+
+2
+
+1______.
+r
+
+quantities
+
+(q2);
+
+]
+
+with a free-stream
+
+Reynolds
+
+as
+
+_" =
+
+_"_
+
+(27)
+
+,b =
+
+_ RV/-R--_
+
+(28)
+
+where
+Redo
+
+Other
+
+variables
+
+equation
+
+are
+
+of state
+
+normalized
+is then
+
+as
+
+written
+
+= ULL_/._
+* *
+
+The
+
+pressure
+
+variation
+
+coefficient
+
+of viscosity
+
+and
+
+t_* by u_.*
+
+The
+
+p T
+
+(30)
+
+C,,-
+
+2(P- 1)
+-/ML
+
+(31)
+
+with temperature
+
+is modeled
+
+can
+
+be written
+
+as
+
+.
+
+'7'* =
+
+=
+
+by P_;
+
+as
+
+,a
+
+tt*
+
+(29)
+
+p* by p;_', T* by T2_; P*
+
+P =
+
+The
+
+*
+
+2.27x
+
+10 -s
+
+by the Sutherland
+
+law as
+
+/_,*T *1.5
+-
+
+T*
+
++ T*
+
+198.6°R
+
+=
+
+110.33
+
+K
+
+lb-sec
+
+-
+
+1.458
+
+x 10 -6
+
+ft 2 oR1/2
+
+(32)
+
+N - sec
+m 2 K1/2
+
+In nondimensional
+
+form,
+
+the Sutherland
+
+law is expressed
+
+T .s(1 + r,)
+# =
+
+With the assumption
+derivatives
+
+that pressure
+
+t,;
+
+r,*
+
+t_;o ; T, =
+
+T---;o_
+
+(33)
+
+in the normal direction
+
+and that the normal
+
+; #" -
+
+is constant
+
+tend to zero at the boundary-layer
+
+e), the right-hand
+quantities
+
+T+T,
+
+sides (RHS) of equations
+
+as
+
+edge (which
+
+is denoted
+
+by the subscript
+
+(15) and (16) can be replaced
+
+by the edge
+
+to yield
+p
+
+ux +
+
+_U_
+
+-_2uy +
+
+_-
+
+C24u
+
+2
+
+nc
+
+C25
+
+uv
+
+2c
+
+C26v
+
+2)
+
+-
+
+(#u_)_
+
+(34)
+lit
+
+Yx
+
+=
+
+-1-
+
+c
+
+-'_2Vy
+
+Pe
+
+The equations
+
+Ve,x
+
+direction.
+
+boundary-layer
+
+edge.
+
+tte,y
+
+-1-
+
+C24
+
+tte
+
+-_-
+
+C25
+
+?/eVe
+
+nL
+
+tVt_£,
+
+@
+
+C34
+
+t t2
+
+@
+
+C35
+
+uv
+
+-[-
+
+@
+
+-'_2Ve,y
+
+marching
+
+@
+
+C34U
+
+e
+
+-[-
+
+C35
+
+The boundary
+of _,,
+
+The solution
+
+conditions
+
+_t_
+
+C36
+
+UeVe
+
+in the stream-surface
+
+The value
+
+at the surface.
+
+the solution
+
+-_2
+
+are hyperbolic
+
+surface-normal
+
+specified
+
+-t-
+
+C26
+
+)
+
+y2
+
+nL
+
+-
+
+(flv_)_
+
+(35)
+
+C36t'
+
+directions
+
+and parabolic
+
+in the
+
+(ue, re, He) are specified
+
+at the
+
+and one of the values,
+
+profiles
+
+t,
+
+Tw, Hw, or //',o, are
+
+at x = 0 and y = 0 are required
+
+to initiate
+
+procedure.
+
+2.3 Transformation
+A transformation
+equations
+
+for the 5 and _ variables
+
+at x = 0. The transformation
+
+computational
+resulting
+
+is required
+
+coordinates.
+
+equations
+
+Further,
+
+in a closed
+
+form.
+
+also reduces
+
+a transformation
+
+to handle the singularity
+
+of the
+
+the boundary-layer
+
+growth
+
+in the
+
+for _ is necessary
+
+to express
+
+the
+
+The
+
+transformation
+
+is defined
+
+as
+
+=
+
+pe/_e _1
+
+(36)
+
+p d5
+0
+
+Z:
+
+=
+
+x;
+
+71 =
+
+y; sl
+
+=
+
+fhldx
+
+(37)
+
+0
+
+Although
+
+_ = x, the
+
+is ._ J,1,¢. A similar
+gradients
+
+partial
+
+derivative
+
+distinction
+
+of an arbitrary
+
+_
+
+exists
+
+function
+
+is actually
+
+between
+
+f between
+
+_
+
+the (x,
+
+0
+
+_
+
+ly,_, and
+
+the partial
+
+derivative
+
+and
+
+_.
+
+The
+
+transformations
+
+of the
+
+y, ,_) and ((,
+
+r/, _,') systems
+
+are given
+
+by
+=
+
+Because
+
+the (3 × 3) matrices
+
+0
+1
+0
+
+1
+0
+0
+
+i.
+_
+_¢
+
+1
+
+0
+
+C_
+
+0
+0
+
+1
+0
+
+_'y
+_.;
+
+are inverses
+
+(38)
+
+fu
+
+(39)
+
+of each
+
+other,
+
+the following
+
+relations
+
+are
+
+valid:
+
+OC
+
+1
+
+¢
+
+--
+
+"_ p VPe/-te
+
+OC
+
+4/
+
+0"-_" =
+
+a_
+
+_
+
+Oy.
+
+We also define
+w such
+
+_
+
+_/
+
+Zrl P VPe
+
+the new variables
+
+(40)
+
+ue
+
+(41)
+
+u_
+81
+
+u_
+
+(42)
+
+#e S l
+
+F and G and a transformed
+
+normal
+
+velocity
+
+variable
+
+that
+
+F
+
+=
+
+u/u_;
+
+G =
+10
+
+v/v_
+
+(43)
+
+w =
+
+where
+
+v, is an arbitrary
+
+the continuity
+
+equation
+
+_1 O(
+sl
+0(
+Sl
+t,, 0(
+,b---+
+F
++ --C-uc 0S
+/71 O-7
+h2
+u, 09
+
+reference
+
+velocity
+
+by the explicit
+
+for w can also be rewritten
+
+removal
+
+,Sl
+
+(,t}
+
+term.
+
+w simplifies
+
+The transformation
+
+U
+
+V
+
+)
+
+(45)
+
+Equations
+
+The application
+
+of the transformations
+
+(26) is straightforward
+
+and is described
+
+report the notations
+here.
+
+of the density
+
+velocity
+
+as
+
+_/
+
+2.4 Transformed
+
+for v. The transformed
+
+(44)
+
+The continuity
+
+for coefficients
+equation
+
+t_U¢ =
+
+for _.and _bto equations
+
+in detail in reference
+
+have been simplified.)
+
+reduces
+
+to
+
+A 1 F,_
+
+@
+
+A 2 F
+
+@
+
+At
+
+=
+
+-_11
+
+A 3 Gq
+
+A4 =
+
+The results are summarized
+
+G
+
+(46)
+
+(47)
+
+sl ¢',
+
+Aa -
+
+1. (Note that in the present
+
+--_ A4
+
+st
+
+(18), (34), (35), and
+
+(49)
+
+h,2 Ue
+
+- S_l
+C13 ¢ {Cla
+
+]1
+
+O'v-----Lh,z_ r } ,y
+
+(50)
+
+(_
+
+=
+
+Also note that at the boundary-layer
+
+(51)
+
+_¢/Pe //e "Sl tie
+
+edge the transformed
+
+we,¢ =
+
+A2 +
+
+A3 Gem
+
+normal velocity
+
+becomes
+
++ A4 Gc
+
+At the boundary-layer
+
+edge, the partial derivatives
+
+in the x or # direction
+
+are the same as the corresponding
+
+(52)
+
+of £, G, ¢ and the metric coefficients
+partial derivatives
+
+in the ,_ or
+
+direction.
+To set up the fourth-order
+and/,
+
+defined
+
+fl, respectively.
+
+(lL
+
+Pade differencing,
+
+as the partial derivatives
+
+we introduce
+
+with respect to _ of the basic variables
+
+The ( momentum
+
+equation
+
+reduces
+
+=
+
+(FG),
+
+/33
+
+-wF)¢
+
+The new variables
+
+/31
+
+(F2)_
+
+introduced
+
+-4- /32
+
+three new variables
+
+7 +
+
+are defined
+
+F 2 +
+
+L, M,
+
+P, G, and
+
+to
+
+/34
+
+F G
+
++
+
+/35
+
+G 2
+
+4-
+
+/36 0
+
+(53)
+
+as
+
+\pope/
+The coefficients
+
+B, are given
+
+as
+
+/31
+
+-=-
+
+B2 =
+
+,_ l Vr
+-B4
+
+--
+
+A1
+
+(55)
+
+- A3
+
+(56)
+
+_q1 Vr
+
+h2 u_; u_,._ 12
+
+A4 + C2s- tl c
+
+(58)
+
+/35 = C2681¢'r
+2
+The
+
+coefficient
+
+B6 is evaluated
+
+(59)
+
+at the boundary-layer
+
+edge
+
+from
+
+equation
+
+(53) as
+
+v, = -{,,¥._+ B2c.., + v3+ _, c._+ B5c_}
+where
+
+wc,¢ is given
+
+by equation
+
+q momentum
+
+reduces
+
+The
+
+The
+
+(lM-wG)(
+
+=
+
+coefficients
+
+C, are given
+
+(60)
+
+(52).
+to
+
+CI(FG)_
+
++ C2(G°"),7
+
++
+
+C3F 2 + C4FG
+
++
+
+CsG 2 + C60
+
+(61)
+
+C1 =
+
+-
+
+A1
+
+(62)
+
+C2
+
+-
+
+A3
+
+(63)
+
+as
+
+C3 -
+
+=
+
+C34.sl
+
+u_
+
+(64)
+
+'/3/.
+
+=
+
+C4
+
+C5
+
+=
+
+-A2
+
+--
+
+A4
+
++
+
+.sl C35
+
++ C36 _81 vr
+
++
+
+81
+-Vr, _
+t_1 Vr
+
+(65)
+
+_ sl
+h2 'ue
+
+(66)
+
++
+
+ue
+
+The
+
+coefficient
+
+C6 is evaluated
+
+at the boundary-layer
+
+13
+
+Vr,T/
+
+edge
+
+from
+
+equation
+
+(61) as
+
+The
+
+energy
+
+('
+
+I
+
+equation
+
+-w
+
+H
+
+)
+
+in terms
+
+=
+
+¢
+
+of the transformed
+
+D1 (FH)_
+
++
+
+D2 (GH),
+
+variables
+
+7 + D3 F H
+
+becomes
+
++
+
+D4 G H
+
++
+
+D5
+(68)
+
+_ 2H_o
+U_
+
+D5
+
+The
+
+coefficients
+
+D, are given
+
+D1
+
+The
+
+term
+
+D5
+
+=
+
+-A1;
+
+be rewritten
+
+H_¢
+
+(,){[
+
+-
+
+-Pr
+fir
+
+2.5 Quasi-Two-Dimensional
+
+-Pr Pr ) (q2)(}(
+
+-A3;
+
+D3
+
+as
+
+D2
+
+D5 can
+
+{l (1
+
+l
+
+=
+
+equation
+
+(25)
+
+u_FL
+
++ v2_GM
+
++ ucv,
+
+Equations
+
+for
+
+of the transformed
+
+specification
+
+of profiles
+
+of F, G, and
+
+ideal
+
+a plane
+
+conditions.
+
+In the
+
+these
+
+planes.
+
+either
+
+,_ or q derivatives
+
+generation
+In the
+
+As a result,
+
+of initial
+case
+
+case,
+
+solution
+
+of flow
+
+necessary
+
+for simplification
+
+chordwise
+
+wing
+
+section
+
+= O) is a true symmetry
+
+Initial
+
+of symmetry
+simplify
+
+reduce
+
+to zero).
+
+This
+
+planes
+
+independent
+
+a wing
+
+attached
+
+of the initial
+at an angle
+plane
+
+only
+
+profiles.
+
+of attack,
+if we
+
+(69)
+
+-A4
+
+( g,2 "_
+k._j(FM
+
++ GL)
+
+(
+
+-- 0 and
+flow
+
+(70)
+
+¢
+
+equations
+
+requires
+
+q = 0 planes
+
+as initial
+
+or a conical
+
+simplification
+
+flow
+
+permits
+
+the
+
+of the full three-dimensional
+to a fuselage,
+For a swept
+the
+
+]}
+
+Conditions
+
+to quasi-two-dimensional
+
+assume
+14
+
+=
+
+boundary-layer
+
+H at the
+
+equations
+
+D.I
+
+as
+
+three-dimensional
+
+the
+
+past
+
+-A2;
+
+with
+
+The solution
+the
+
+=
+
+certain
+wing
+
+attachment-line
+that
+
+the
+
+will exist
+
+at
+
+form
+
+(i.e.,
+
+solution
+
+and
+
+flow region.
+
+assumptions
+
+are
+
+with a nonsymmetrical
+boundary
+
+coefficient
+
+layer
+
+C26 = 0.
+
+(at ,_
+This
+
+assumption
+
+is reasonable
+
+if the curvature
+
+more drastic
+
+assumption
+
+is necessary
+
+to a certain
+
+region
+
+the q = 0 boundary,
+
+of the attachment
+
+We restrict
+
+the calculation
+
+on the wing,
+
+where the boundary-layer
+
+assumptions
+
+are valid.
+
+we assume
+
+that the q gradients
+
+However,
+
+we permit variation
+
+edge
+
+quantities
+
+in both the ( and q directions.
+
+of the conical
+
+flow assumption
+
+assumption.
+
+The profiles
+
+A3 (hence,
+ferencing
+
+swept locally
+
+B2, C2, and 132)to zero.
+coefficients
+
+solution
+
+T/m,x boundary
+
+involved
+
+because
+
+u = 0.
+
+The gradient
+
+(LISW)
+
+by assuming
+
+that
+
+by setting the coefficients
+scheme,
+
+is relaxed to the LISW solution
+for a few planes
+whereas
+
+the q-direction
+
+dif-
+
+near this boundary,
+
+by incorporating
+adjacent
+
+a fac-
+
+to the r/ = 0
+
+a value
+
+of _ = 1 gives the
+
+of LISW flow
+
+is used at the 7-/ =
+
+A similar
+
+assumption
+
+equations
+
+that are valid for an attachment
+
+the ( momentum
+Ou/#(
+
+equation
+
+is finite,
+
+of the ( momentum
+
+becomes
+
+however.
+
+fe = o%e/0( on the attachment-line
+
+the ,_ derivative
+
+swept-wing
+
+version
+
+as well.
+
+The quasi-two-dimensional
+
+acceleration
+
+infinite,
+
+are generated
+
+In the finite-differencing
+
+to these coefficients
+
+solution.
+
+the equations
+
+as well.
+
+of _ = 0 gives the LISW solution,
+
+full three-dimensional
+
+are equal to
+
+is a more general
+
+are also set to zero. To obtain smooth solutions
+
+to be applied
+
+A value
+
+as the locally
+
+that are valid for an LISW flow are obtained
+
+the full three-dimensional
+
+plane.
+
+form. This assumption
+
+and is termed
+
+At
+
+as well as the boundary-layer
+
+With this assumption,
+
+at the ,_ = 0, 77= 0 location
+
+line is infinite
+
+tor _ = _(q)
+
+of the flow variables
+
+of the metric terms
+
+again reduce to quasi-two-dimensional
+
+The equations
+
+A
+
+for the q = 0 plane.
+
+zero.
+
+the attachment
+
+line is not significant.
+
+equation.
+15
+
+singular
+
+at ( = 0 by substituting
+
+The effect of the strong
+boundary
+
+line are more
+
+inviscid
+
+layer is characterized
+
+The new definitions
+
+flow
+
+by taking
+
+for the transformed
+
+normal
+
+coordinate
+
+and
+
+normal
+
+velocity
+
+are
+
+f
+
+e/_e hi
+
+P d_
+
+(71)
+
+o
+
+(72)
+
+With
+
+these
+
+before
+
+special
+
+(equations
+
+transformations,
+
+the transformed
+
+equations
+
+(46),
+
+and
+
+that
+
+(53),
+
+(61),
+
+(68))
+
+except
+
+are in the same
+
+the following
+
+form
+
+coefficients
+
+as
+are
+
+changed:
+=
+
+A1
+
+A2
+
+=
+
+0
+
+-
+
+(73)
+
+1
+
+(74)
+
+hi Vr
+--
+
+A3
+
+A4
+
+B4 =
+
+{ C13 h2feJ,y
+CvT'_
+
+h,
+C13¢
+
+-
+
+(75)
+
+h2 f_
+
+(76)
+
+¢ = Jp,.,hlL
+
+(77)
+
+B3 =
+
+(78)
+
+hl Vr fe41
+
+h2f_
+
+--
+
+2
+
+A4
+
+4-
+
+C25 v____L
+hi
+
+L
+
+(79)
+
+2
+hl Vr
+B5
+
+:
+
+C26,x
+
+16
+
+f_
+
+(80)
+
+c3 = o
+
+C4 =
+
+C5 =
+
+In the finite-differencing
+differencing
+
+coefficients
+
+As before
+
+U_ ° (1-Pr)Pr
+H_
+
+scheme
+
+Vr2(lGM)
+
+(83)
+
+(84)
+
+¢
+
+attachment-line
+
+solution,
+
+the
+
+(-direction
+
+for the case of the LISW equations,
+from
+
+the equations
+
+the attachment-line
+
+that characterize
+
+equations
+
+the
+
+with the added
+
+.43 = 0.
+
+2.6 Equations
+To apply
+equation
+
+for the
+
+hi
+h2f_vr'_/
+
+are also set to zero.
+
+flow at ( = 0, 7/ = 0 are obtained
+condition
+
+(82)
+
+-A2
+
+hi vT
++ C36_
++
+
+-A4
+
+D5
+
+(81)
+
+in Vector
+
+Form
+
+the fourth-order
+
+set is expressed
+
+Pade
+
+in vectorial
+
+differencing
+
+formula
+
+to the set of equations,
+
+form for convenience.
+
+The vector
+
+the
+
+Q is defined
+
+as
+
+where
+(86)
+The normal derivative
+respect
+
+Q' = OQ/OC (note that the prime denotes
+
+to C) can be written
+
+for Q' is presented,
+
+from the boundary-layer
+
+the following
+
+equations
+
+equations.
+
+are given.
+17
+
+the partial derivative
+
+with
+
+Before the expression
+
+The density
+
+ratio 8 can be written
+
+0 =
+
+E1
+
+ElF
+
+from
+
+2 + E2FG
+
+X2
+
+-
+
+equation
+
+2
+ue; E2
+
+(24) in terms
+
+of the elements
+
+of Q as
+
++ E3G 2 +E4H
+
+X2
+- 2 -- ue vr cos
+X3
+
+=
+
+3/3
+
+/3
+(87)
+
+E3
+
+X1
+
+The
+
+viscosity
+
+=
+
+i +
+
+ratio
+
+--
+
+"y-i
+---_-_I_o;
+z
+
+I can
+
+X2 Vr2.; E4
+X3
+
+=
+
+X]
+-X3
+
+=
+
+i; X3
+
+2
+X2
+
+be written
+
+X1
+
+from
+
+-
+
+equation
+
+=
+
+HeXI
+
+-
+
+X2 q_
+
+(33) as
+
+(88)
+The
+
+normal
+
+derivatives
+
+l' and
+
+0'
+
+=
+
+0' can
+
+2EIFL
+
+QI'
+
+substituting
+
+element
+
+is obtained
+
+for 0 from
+
+equation
+
+Q_
+
+=
+
+B1
+
+(F2)_
+
++
+
+in the form
+
++E2(FM+GL)
+
+i, =
+
+The
+
+be derived
+
++2E3GM
+
+10.___'
+1
+V'_ { 2v"-0
+
+from
+(87)
+
+into
+
+B2(FG).
+
++
+
+(46).
+
+The
+
+equation
+
+(53).
+
+/_3F
+
+B4FG
+
+2 +
+
+E4I
+
+(89)
+
+}
+
+t
+(1 + T.IT,)
+
+equation
+
++
+
+(90)
+
+Q2' element
+
++
+
+/_5C
+
+is obtained
+
+by
+
+2 -4- /_6H
+
+(91)
+/_3 -
+
+The
+
+element
+
+Q_
+
+B3
+
++ E1 B6;
+
+_4
+
+Q3' is similarly
+
+=
+
+C1 (FG),
+
++
+
+=
+
+B4
+
++ E2 B6;
+
+obtained
+
+C2 (a2),
+
+7 +
+
+/_5 = B5
+
++ E3 B6;
+
+B6 =
+
+B6 E4
+
+as
+
+C'%.3
+F 2 + C.4FC
+
++
+
+C.s G 2 + C.6H
+(92)
+
+C'3 = C3 -t- E1C6;
+
+C'4 = C4 -4- E2C6;
+
+18
+
+C5 = C5 -4- E3C6;
+
+C'6 = C6E4
+
+The
+
+second
+
+the vector
+
+derivatives
+
+L'
+
+representation
+
+=
+
+F",
+
+M'
+
+are obtained
+
+= G',
+
+and
+
+I'
+
+= H"
+
+by differentiation.
+
+required
+
+subsequently
+
+in
+
+For example,
+
+differentiation
+
+of
+
+Q2' yields
+
+If _
+
+(2'2 =
+
+1L' + LI'
+
+-wL-
+
+Fw'
+
+from
+
+equation
+
+(46) and
+
+rearranged,
+
+is substituted
+
+LI
+
+1
+=
+
+7
+
+[ ul
+
+B2 (FG),
+
++
+
+(F2)(
+
+-L#
+
+B3
+
+The
+
+expressions
+
+M'
+
+=
+
+for
+
+,,t# and
+
+_1 [CI(FG),
+1
+
+=
+
+7 +
+
+B4
+
+/' are similarly
+
+-Ml'
+
+_
+
++ [_4 FG
+
+=
+
+qL A2;
+
+[Y5 G 2 +
+
+[_6 H
+
+(94)
+
++ A3FG,_];
+
+obtained
+
++
+
++ A1GF(
+
+d_5
+
++
+
+/_4+A4
+
++ Ca F2
+
++ wM
+
+C4
+
+then
+
++ A1FF(
+
+/_a+A2;
+
+(93)
+
+RHSofequation(91)
+
+[?3 F2
+
++ wL
+
+7 + C2(G2),1
+
+C4
+
+=
+
+=
+
+as
+
+04FG
+
++
+
++ CsG 2 + C6H
+(95)
+
+AaGG,7];
+
+C,5 qt_ A4
+
+1
+[i
+
+=
+
+17 [D1 (FH)_
+
++ D2(GH),_
+
++ 15aFH
+
++ 154GH
+
+_.; + w1+ A,.r, + A..c..];
+/53
+
+The
+
+expression
+
+for
+
+D5 can
+
+=
+
+Da + A2;
+
+be obtained
+
+1)4
+
+from
+19
+
+=
+
+D4 + A4
+
+equation
+
+(70) as
+
++ D5
+(96)
+
+D5
+
+(97)
+U .2
+_
+tt*
+
+Ao -
+
+Note
+sentation
+
+that
+
+,_1
+
+is given
+
+=
+
+1-
+
+Pr
+_,
+
+Pr
+
+A3
+
+0
+
+=
+
+Aovr,2.
+
+, A1 =
+
+Aou_2; t2
+
+=
+
+for the
+
+attachment-line
+
+A3
+
+=
+
+AOUeVrCOS
+
+t_
+
+The
+
+final
+
+equations.
+
+vector
+
+repre-
+
+as
+
+<2
+
+1L -
+
+wF
+
+IM
+
+- wG
+
+lpI -- wH
+F
+
+(98)
+
+G
+H
+
+/
+
+AIF4
+BI(F2)(
+
++ B2(FG).
+
+CI(FG)(+C2(G
+I
+
+=
+
++ A2F
+
+DI(FH)(
+
++ A3Gq
+
++ A4G
+
++ B3F 2 + B4FG
+
+2)
+
++¢3F
+
+~
+
++ B5G"
+
+2+04Fc+C,5c
+
++ D2(GH)_
+
++ D3FH
+L
+
+'3'
+
++ t_6H
+
+2+06H
+
++ D4GH
+
+(99)
+
++ .D5
+
+31
+I
+
+AlL(
+2BI(FL)(
+
++ B2(FM
+
++ GL)o
+
+C,(FM
+
++ GL)_
+
++ 2C2(GM),
+
+D,(FI
+
++ fIL)(
+
++ D2(GI
+
++ A2L
+
++ A3M, I + A4M
+
+"_
+
++ 2133FL
+
++ 1_4(F3,I
+
++ GL)
+
++ 2135G'M
+
++ BG[
+
+7 + 2('3PL
+
++ (-;4(PM
+
++ GL)
+
++ 2CsGM
+
++ ('GI
+
++ HM),
+
+1 + D3(FI
+
++ HL)
+
+L' (equation
+
+(94))
+
+M'
+
+(equation
+
+(95))
+
+I' (equation
+
+(96))
+
++ D4(G[
+
++ [Jill)
+
++ Dr5
+
+(loo)
+
+2O
+
+3.
+3.1 Differencing
+
+DISCRETIZATION
+
+Formulas
+
+We apply the fourth-order Pade differencing
+point compact
+
+scheme
+
+is defined
+
+In the present
+
+case,
+
+if we assume
+
+remain
+
+constant
+
+midpoint
+
+-
+
+Qk-;
+
+in the normal direction.
+
+of the variable
+
+that the indices
+
+and that k is the normal
+
+of k and (k-
+
+Qk
+
+in terms
+
+formula
+
+direction
+
+This two-
+
+and its two higher derivatives.
+
+in the two surface
+index,
+
+directions
+
+then the discretization
+
+(i,j)
+at the
+
+1) is written as
+
+A(_2 (Q_ + Q_--1)
+
++ _A_2
+
+(Q_
+
+- Qk-1)"
+
++ O(A_
+
+5)
+
+=
+
+0
+
+(101)
+
+(102)
+The differencing
+some regions).
+fixed,
+
+in the surface
+
+For example,
+
+directions
+
+( and q are second
+
+in the ,_ direction,
+
+if we assume
+
+order
+
+(or first order in
+
+that the indices (j, k) are
+
+then
+Q(
+
+= alQi
+
++ {aQ}
+(103)
+
+{_Q} = a2Qi-1 + a3Q,_2
+Similarly,
+
+in the q direction,
+
+if we assume
+
+that the indices
+
+@1 = blQi,j
+
+k are fixed, then
+
++ {bQ}
+(104)
+
+{bQ}
+
+= b2 Qi,j-1
+
+The value of the coefficients
+the streamwise
+discretization
+q-direction
+
+differencing.
+
+We define a solution
+are nonlinear
+
+ai and b, are dependent
+
+and the crossflow
+in the ( direction
+
++ b3Qi,j-'2. + b4 Qi-l,j
+
+direction.
+
+-F
+
+on the location
+
+At present,
+
+in the (i,j)
+
+of the point (i,j)
+
+we restrict the discussion
+
+and will use the short notation
+
+(See " Discretization
+
+bsQi-l,j+1
+
+linearization
+
+to the
+
+given above for the (- and
+
+Directions"
+
+for more details.)
+
+vector {5'} = {w, F, C, H, L, M, I} T. Because
+
+in {S}, Newton
+
+in
+
+the equations
+
+is used to convert the system to a linear matrix
+21
+
+inversion
+
+problem.
+
+If superscript
+
+n denotes
+
+the current iteration
+
+stage, let us define {55'}
+
+as
+
+{5S}
+
+A linear system
+
+a term that involves
+
+(F") 2 =
+
+In what follows,
+
+(F n-'
+
+the superscript
+
+of {S} at iteration
+
+(105)
+
+n-
+
+level
+
+is written as
+
+(F'_-')2+2F
+
+n - 1 is dropped
+
+1. A few examples
+
+at iteration
+
+'_-' 5F
+
+(106)
+
+and is taken to imply the known values
+
+of the linearized
+
+formulas
+
+with this notation
+
+below:
+
+3.2 Linearized
+
+system
+
+The system
+
+2 = F 2 -4- 2F
+
+5F
+
+F{
+
+=
+
+F_ + alSF
+
+F_
+
+= F,_ + blSF
+
+F" F_ =
+
+FF_ + SF(alF
+
+(107)
+
++ F_)
+
+at (i,I)
+
+is explicit
+
+and is implicit
+
+sented at location
+
+in ( and rt because
+
+of our choice
+
+in the surface-normal
+
+direction.
+
+which corresponds
+
+to the solution
+
+(i,j),
+
+[""
+
+where a _,m
+k and bk_,mare elements
+locations
+
+n-]
+
+(F,,)2
+
++5F)2_
+
+(Fn)
+
+scheme
+
+S n-s
+
+is now set up to solve for {5S} in terms of the solution
+
+n - 1. For example,
+
+are given
+
+=
+
+of the linearized
+
+at_t,m b_m'"]
+
+{5S/_}
+
+=
+
+of the finite-differencing
+
+The linearized
+at iteration
+
+system.
+22
+
+The superscript
+
+is repre-
+
+level n as
+
+{r_}
+
+of the (7 x 7) blocks in the diagonal
+
+block bidiagonal
+
+system
+
+(108)
+
+and superdiagonal
+k denotes
+
+that the
+
+discretization
+
+corresponds
+
+to the
+
+midpoint
+
+of k and
+
+(k (101)
+
+from
+
+1 to 7, depending
+
+on which
+
+element
+
+of equation
+
+from
+
+1 to 7, depending
+
+on which
+
+element
+
+of {55}
+
+and
+
+bkt,m ] are the only
+
+nonzero
+
+blocks
+
+in the system
+
+point
+
+compact
+
+in the
+
+residual
+
+scheme
+
+of equation
+
+For example,
+sented
+
+(101),
+
+examine
+
+by equation
+
+(101),
+
+k direction.
+
+based
+
+The
+
+which
+
+can
+
+{S}
+
+The
+
+{r_}
+
+varies
+
+m varies
+
+we
+
+have
+
+corresponds
+(n-
+
+element
+
+z,m
+
+a twoto the
+
+11.
+
+of the system
+
+repre-
+
+as
+
+(IL-
+
+wP)k_
+
+1
+
+2
+
+-[2BI(FL)(
+
+I
+
+(7 x 7) blocks
+
+because
+
+at iteration
+
+index
+
+discretized;
+
+The
+
+above
+
+of the second
+
+-
+
+is being
+
+(7 x 1) vector
+
+be written
+
+(IL - wF)k
+
+points.
+
+it multiplies.
+
+on the solution
+
+the discretization
+
+t)
+
+k
+
++ B2(F,_I
+
++ GL)q
+
++ 2#3FL
+
++ [34(FJ'il
+
++ GL)
+
++ 2#5G_I
+
++/Y6/]
+
+k-1 }
+
+= 0
+
+(109/
+where
+
+A(k
+
+We can
+
+now construct
+
+the elements
+
+l = 2 from
+
+above
+
+by using
+
+are given
+
+below.
+
+The coefficient
+
+equation
+
+(101),
+
+which
+
+= (k - (k-1
+
+of the blocks
+
+the linearization
+
+(110)
+
+[a' z,= I ,
+
+procedure
+
+a_l is the coefficient
+
+is discretized
+
+at (k-
+
+½1, and
+
+23
+
+[bkt,= ] , and
+
+explained
+of 5wk_l
+
+earlier.
+
+{rt k} for thecase
+Some
+
+from the second
+
+b_l is the
+
+corresponding
+
+examples
+element
+coefficient
+
+of
+
+a21
+
+=
+
+Fk_
+
+b21
+
+=--Fk
+
+1
+
+AG
+ak2
+
+=
+
+Wk-l
+
+---2
+
+/k-1
+
+ACk
+-(2_lalr
+
+bk2 =--wk-
+
+2
+
+ak25 =
+
+--Ik-1
+
+--
+
+represented
+
+can
+
+by equations
+
+4- h4G)
+
++
+
+B2blG
+
+4- 2i)3F
+
++
+
+.B4G'_
+
+\
+
+/ _-1
+
+r2k = negative
+
+expressions
+
+4- _b3r
+
+,'k
+
+(2BlalF
+
+12
+
+Similar
+
+4- B2blG
+
+\
+
+of LtIS
+
+be derived
+
+(98)-(100).
+
+of equation
+
+from
+These
+
+the
+
+(109)
+
+7 elements
+
+expressions
+
+of the
+
+system
+
+for the 49 elements
+
+that
+
+are
+
+k
+of [ a l,m],
+L
+
+the 49 elements
+3.3
+
+of
+
+Boundary
+
+[bkt,,,, ] , and the 7 elements
+
+of {r_}
+
+are given
+
+in appendix
+
+J
+
+A.
+
+Conditions
+
+The boundary
+
+conditions
+
+at the boundary-layer
+
+Fk=k_ = 1;
+
+edge
+
+(k = k,,
+
+Gk=k_ = Ge = --;v_ Hk=k_
+
+¢ = Ce) are given
+
+= H_
+
+as
+
+(112)
+
+Vr
+
+The
+
+boundary
+
+conditions
+
+at the wall
+fk=l
+
+Hk=l
+
+The transformed
+
+normal
+
+velocity
+
+(k = 1, ( = 0) are given
+=
+
+Gk=l
+
+= H1
+
+or
+
+Wk=
+
+1 =
+
+=
+
+24
+
+0
+
+lk= 1 -----11
+
+(113)
+
+Ww
+
+at the wall (wk=l
+
+(45) as
+
+as
+
+or w, or Ww) is specified
+
+from equation
+
+where _'w is defined
+
+for general
+
+three-dimensional
+
+thw =
+Suction
+
+i
+
+rate is usually specified
+
+the free-stream
+
+momentum
+
+For an adiabatic
+
+_bw=
+
+i
+
+flow as
+(115)
+
+hi f e
+Pcffe
+
+in terms of the suction-rate
+
+momentum
+
+value
+
+scaled
+
+by
+
+For a nonadiabatic
+
+case,
+
+if
+
+as q, = plwl/poouoo.
+
+wall,
+
+[1 is specified
+
+the wall heat flux is known
+
+in dimensional
+
+can be written
+
+or
+
+Sl ue
+pe#_
+
+flow or attachment-line
+
+as equal to zero.
+
+units as _,_, then the wall heat flux equation
+
+as
+..
+qw =
+
+If we apply the transformation
+
+,.,/R*
+(_/ZSpr#W
+
+formulas
+
+. (OT*'_
+\Oz*Jw
+
+(116)
+
+and note that at the wall O" = E411 (from equation
+
+(89)), then we obtain
+., =
+q_
+where _q is defined
+
+Application
+equation
+
+for general
+
+¢qTepetteE411[
+
+three-dimensional
+
+flow or attachment-line
+
+_q
+
+__p eZ81
+u_
+
+of the heat flux
+
+boundary
+
+(117).
+
+A negative
+
+flow in the negative
+HI is specified
+
+value
+
+z direction).
+
+(from equation
+
+or
+
+Cq
+
+condition
+
+involves
+
+of ,_, corresponds
+
+flow as
+
+the
+
+(118)
+specification
+
+to a cold-wall
+
+situation
+
+of Ix with
+(i.e., heat
+
+T,,, is the known quantity,
+
+then
+
+(24)) as
+=
+
+T_
+Hw =
+1+
+
+of the boundary
+
+conditions
+
+into the linear discretized
+
+by four. This produces
+
+The block tridiagonal
+
+is defined
+
+by
+
+[...
+25
+
+(119)
+
+_-1
+2 M2 ocj"_
+
+in a shift of the rows downward
+system
+
+'
+
+_/ fle#ef_ hl
+
+If the wall temperature
+
+H1
+
+The incorporation
+
+(117)
+
+(T*It*)_
+L*
+
+('7- 7R*1).Pr
+
+system
+
+results
+
+a system that is block tridiagonal.
+
+where
+
+"&wk7
+5Gk
+611k
+
+6S k] =
+
+6Lk
+
+]
+
++M++
+l
+
+_ a[k J
+
+(121)
+
+r_
+r_
+
+[+,]=
+Note that the
+
+index
+
+in the
+
+(ke x ke)
+
+block
+
+refers
+
+blocks
+
+k on a k, ilk,
+
+system
+
+and @ corresponds
+
+of (7x7)
+
+to the discretization
+
+at row
+
+location
+
+iii
+
+blocks.
+
+The
+
+location.
+
+to the location
+
+index
+
+k of each
+
+The subdiagonal,
+
+k are obtained
+
+of a particular
+of the
+
+diagonal,
+
+elements
+
+block
+in a
+
+and superdiagonal
+
+as
+
+,,1+.+
+a,++'+,+4a,++a,++a_17
+a2k2
+a23
++ '+++4
+a+++
+a+++
+a_7
+a3kl
+
+a+2
+
+a+3
+
+a_4
+
+ak6
+
+ak7
+
+a4kl
+
+a4k3
+0
+
+a4k4 a4k5
+0
+0
+
+a4k+
+0
+
+ak47
+
+0
+
+a4k2
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+a3k5
+
+blkl
+
+blk2
+
++'1+++'h +',++
+
+bkl
+
+bk2
+
+a+3b
+
+bk24
+
+q,
+
+G
+
+bk33
+
+bk4
+
+bk35
+
+bkl
+
+bk2
+
+¢,3 G
+
++4
+
+akt
+
+1
+
+a_+l
+
+ak+1
+a_+
+
+.}}1
+
+ak+l
+1
+
+a_:
+
+1
+
+b#5
+
+akS: 1
+
+a k+l
+
+ak6+41
+
+a_t
+
+0
+
+b_7
+b_7
+_k46 G
+ak+l
+
+1
+
+(122)
+
+a_+l
+
+(123)
+
+_k+l
+:_-1
+a7 +1
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+bk+_
+
+bk¢ 1
+
+bk+_
+
+b_7q-1
+bblff:
+
+:lffll
+
+:..,.,}t._-:, bblff:
+
+26
+
+(124)
+
+The
+block
+
+boundary
+
+conditions
+
+at the
+
+boundary-layer
+
+edge
+
+result
+
+in a diagonal
+
+and
+
+RHS
+
+as
+
+4
+4
+
+The
+
+diagonal
+
+condition
+
+0
+
+1
+
+0
+
+0
+
+0
+
+0
+
+0
+
+r4k
+0
+
+0
+
+0
+
+1
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+0
+
+0
+
+block
+
+(adiabatic
+
+_'1 and
+
+RHS
+
+block
+
+or otherwise)
+
+51 that
+
+are as given
+
+result
+
+below
+
+(125)
+
+; k = ke
+
+from
+
+a specified
+
+wall
+
+(which
+
+corresponds
+
+to 5[1 = 0):
+
+1
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+l
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+heat
+
+flux
+
+; k = 1
+
+(126)
+
+;k=l
+
+(127)
+
+rk+l
+aktl
+
+_k+l
+
+k+l
+
+k+l
+
+k+l
+
+ok+l
+
+k+l
+r_-+l
+
+a_? 1
+
+F_ +1
+
+For
+
+a specified
+
+wall
+
+system.
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+0
+
+0
+
+_k+l
+
+Implementation
+solution,
+
+ak_,
+
+_k+l
+•"4
+
+the
+
+without
+
+at two
+
+ak_l
+
+which
+
+points
+
+degradation
+
+ak_l
+
+information
+
+of the boundary
+
+the Pade formula
+
+derivatives
+
+employed
+
+becomes
+
+0
+
+on the current
+
+their
+
+the system
+
+0
+
+A summarizes
+
+Because
+
+condition,
+
+1
+
+aktl
+
+Appendix
+
+temperature
+
+is done
+
+conditions
+
+is a compact
+that
+
+_k+l
+a_+l
+
+required
+
+with the
+
+span
+
+local
+
+of the fourth-order
+27
+
+to
+
+construct
+
+of the
+
+based
+cell
+
+ir_+
+
+1
+
+the
+
+block
+
+L4+1
+
+also requires
+
+update
+
+scheme
+the
+
+0
+rk+l
+
+nonlinear
+
+a stretched
+
+of the
+
+that is based
+
+terms.
+
+on the solution
+
+center,
+
+accuracy
+
+an update
+
+tridiagonal
+
+method.
+
+variables
+
+and
+
+grid
+
+be
+
+can
+
+A stretching
+
+constant
+
+k, is defined
+
+to exponentially
+
+stretch the grid in the ( direction
+
+as
+
+(128)
+
+3.4 Discretization
+
+in the (i,j) Directions
+
+In the fully three-dimensional
+
+region (away from the attachment
+
+aries, j = 1 or j = ny]im), the differencing
+second-order
+derivative
+
+accuracy.
+
+is obtained
+
+in the surface
+
+directions
+
+In accordance
+
+with the parabolic
+
+by the three-point
+
+upwind-differenced
+
+(fe)_,j = a_f,,j
+9
+
++ a2f,-_,j
+
+9
+
+A = ,--._iA_i-l(A_i
+
+4- A_i-1);
+
+When i = 2, the first-order
+
+A_i
+
+formula
+
+= -A ;la;
+= _i,j
+
+-
+
+( and 7j is done to
+
+nature of the equations,
+
+the
+
+formula
+
++ a3fi-2,j
+'3
+
+al = (A(;- zx(,_,)lA;
+
+line and side bound-
+
+= zx _,lA
+
+_i-l,j;
+
+A_i-1
+
+=
+
+_i-l,j
+
+(129)
+
+-
+
+_i-2,j
+
+with just two points is used, which results
+
+in the
+
+coefficients
+al = l/A(2
+
+= 1/(,_2 -,_1);
+
+A function _i is used to blend the first-order
+of marching
+in terms
+
+steps.
+
+The short notation
+
+of the coefficients
+
+contain any 0/0(
+
+and second-order
+
+is accomplished
+
+where the profile G is positive
+
+is incorporated
+
+three-point
+
+second-order
+
+scheme
+
+(which
+
+formulas
+
+in a small number
+
+(103) can thus be expanded
+
+solution
+
+into the solution
+
+grid-point
+
+equations
+
+scheme by setting
+
+of two schemes.
+
+locations,
+
+For situations
+
+the standard
+
+we refer to as the L scheme)
+28
+
+do not
+
+and to unity for i > 1.
+
+with a combination
+
+at all normal
+
+(130)
+
+At ,_ = 0, the attachment-line
+
+up a flag set to zero for the attachment-line
+The q differencing
+
+a3 = 0
+
+{aF} used in equation
+
+given above.
+
+terms; this condition
+
+a2 = -al;
+
+left-pointing
+
+is used.
+
+When
+
+the profile has negative
+proposed
+
+values,
+
+the "zig zag" scheme
+
+by Krause (ref. 4), is employed.
+
+automatically
+
+For moderate
+
+satisfies the zone-of-dependence
+
+The finite-differencing
+
+formula
+
+that combines
+
+= blfi,j
+
++ b2fi,j-1
+
+(fTI)i,j
+
+The coefficients
+bl = (_q_
+
+take these values
+- A,__,)/_;
+
+(also called the Z scheme),
+crossflow
+
+situations,
+
+first
+
+this scheme
+
+principle that is outlined by Wang (ref. 5).
+the above two schemes
+
++ b3fi,j-2
+
+-k b4fi-l,j
+
+can be written as
+
+(131)
+
++ b5fi-l,j+l
+
+for the L scheme:
+
+b2 = -Aq_/A;
+
+b3 = _q__l/_;
+
+b4 = b5 = 0
+(132)
+
+A =
+
+,2._rl/A.qj_l('2._q.
+
+The coefficients
+
+/ + Arlj_l);
+
+/kq./
+
+take these values
+
+= qi,j
+
+-
+
+Ill,j-l;
+
+_--_r]j-1 =
+
+7]i,j-1
+
+-
+
+Tli,j-2
+
+for the Z scheme:
+
+]
+bl = _(71ij - qi,j-a + _ti-lj+a
+
+- T/i_a,j)
+(133)
+
+1
+b2 =--_(_,._-qij-1);
+
+b3 =0;
+
+At q -- 0 (left boundary)
+in the LISW equations;
+
+1
+b4 =--_(qi-ij+_-qi-_,j);
+
+or at q -- T/re,× (right boundary),
+
+this condition
+
+is incorporated
+
+up a flag set to zero for the boundaries
+the fully three-dimensional
+Equations
+
+for Initial Conditions,"
+
+the fully three-dimensional
+{b£}
+
+region.
+
+that is used in equation
+
+b5 =-b4
+
+no O/Oq terms
+
+into the solution
+
+j = ! and j = nylim.
+
+As stated earlier
+
+in section
+
+are present
+
+scheme
+
+by setting
+
+The flag is set to unity in
+"Quasi-Two-Dimensional
+
+a factor _ = _ (_) is used to blend the LISW solution
+
+solution
+
+at the boundary-adjacent
+
+(104) is thus obtained
+
+29
+
+points.
+
+to
+
+The short notation
+
+directly from equations
+
+(131)-(133).
+
+4. INVISCID
+
+The three-dimensional
+
+boundary-layer
+
+tion of the edge quantities
+
+u_, v_, and
+
+directions
+ification
+
+( and q. In addition,
+of the inviscid
+
+a shock between
+nonorthogonal
+
+solution
+
+Further, the edge value of viscosity
+
+land formula
+
+(equation
+
+that a negligible
+
+regions,
+
+the edge conditions
+
+equations
+
+on a sufficiently
+
+potential
+
+panel
+
+interface
+
+procedure
+
+form
+
+required
+
+accurate
+
+code
+
+interaction
+
+to the free-stream
+
+L_o.
+
+between
+
+by solving
+
+the viscous
+
+of the Euler solver,
+
+is necessary
+
+to process
+code.
+
+from the attachment
+
+of the edge velocities
+in the required
+
+in surface
+
+T_. The first approach
+
+equations
+
+a
+
+after which
+
+an
+
+this procedure
+
+line, (b) the generation
+
+directions,
+
+the inviscid
+
+the edge velocities
+
+3O
+
+involves
+
+(a) the
+
+surface,
+
+(c) the
+
+and (d) the output
+
+code.
+
+the edge velocities
+
+equations
+
+them in the
+
+of the boundary-layer
+
+line on the upper or lower
+
+of the boundary-layer
+
+Euler
+flow,
+
+Specifically,
+
+is to interpolate
+
+grid and then calculate
+
+as low-speed
+
+results to express
+
+form for the boundary-layer
+
+are used to calculate
+
+such
+
+the inviscid
+
+grid-oriented
+
+and inviscid
+
+the three-dimensional
+
+in place
+
+calculation
+
+ing the limiting
+
+are referenced
+
+may be substituted
+
+originates
+
+the boundary-layer
+
+T_ with the Suther-
+
+cases
+
+by the boundary-layer
+
+Two approaches
+
+from
+
+length
+
+occurs
+
+case, for a
+
+h_, h2, and g12 are also assumed
+
+In some
+
+location of the inviscid attachment
+
+of quantities
+
+In the general
+
+mesh.
+
+grid which
+
+perature
+
+quantities
+
+can be obtained
+fine
+
+in the coordinate
+
+Cp (for flows that involve
+
+t_ is computed
+
+(U_o, P_o, and T_) and the reference
+
+If we assume
+
+line).
+
+grid, the metric quantities
+
+to be given.
+
+quantities
+
+grid defined
+
+coefficient
+
+and the attachment
+
+The above
+
+is based on the specifica-
+
+of the edge density p_ requires the spec-
+
+P or the pressure
+
+the free stream
+
+(33)).
+
+procedure
+
+T_ on a surface
+
+the computation
+
+pressure
+
+boundary-layer
+
+INTERFACE
+
+(u_, v_) and edge tempressure
+
+distribution
+
+onto
+
+and temperature
+
+by solv-
+
+at the boundary-layer
+
+edge.
+
+These limiting equations
+can be solved
+procedure.
+
+(henceforth
+
+with a marching
+
+called the BL-EDGE
+
+method that is analogous
+
+The source term in these equations
+
+rections ( and T/. The second method
+quantities
+
+from the inviscid
+
+The first procedure
+method;
+
+however,
+
+the solution
+solutions
+
+is, in principle,
+
+case, we have the edge velocities
+
+computed
+
+other case, the edge velocities
+
+are computed
+
+based on the Euler pressure
+
+gradient.
+
+is a constant,
+
+Note also that accurate
+
+enforcement
+
+is difficult from a coarse
+
+inviscid
+
+the attachment
+
+conditions
+
+line.
+
+by either
+
+4.1 Attachment-Line
+After the surface
+initial location
+the vicinity
+location
+
+solution
+
+from the two
+
+equations,
+
+based on the
+
+in the finite-differencing
+
+schemes.
+
+In one
+
+from the Euler equations,
+
+whereas,
+
+in the
+
+from the limiting boundary-layer
+equations
+
+is not necessarily
+
+of the condition
+
+program
+
+equations,
+
+also assume
+
+that the
+
+true for the Euler solution.
+
+_3P/c3x = 0 at the attachment
+
+grid, which may necessitate
+
+The interface
+
+edge
+
+in the edge quantities
+
+line be linear rather than spline to ensure
+
+at the attachment
+
+of all the required
+
+different from
+
+The BL-EDGE
+
+which
+
+in the two di-
+
+may be slightly
+
+in the BL-EDGE
+
+and (b) variations
+
+solution
+
+with the boundary-layer
+
+equations
+
+This mismatch
+
+gradient
+
+and
+
+grid.
+
+more consistent
+
+to (a) the terms dropped
+
+assumption,
+
+edge total enthalpy
+
+the interpolation
+
+of the BL-EDGE
+
+of the Euler equations.
+
+boundary-layer
+
+involves
+
+are hyperbolic
+
+to the boundary-layer
+
+is the pressure
+
+grid to the boundary-layer
+
+the solution
+
+is attributed
+
+equations)
+
+includes
+
+that the interpolation
+
+a negative
+
+line
+near
+
+pressure
+
+gradient
+
+an option to calculate
+
+the edge
+
+method.
+Relocation
+pressure
+
+of the attachment
+
+distribution
+
+is obtained
+
+line is obtained
+
+by scanning
+
+of the leading edge of the wing. However,
+
+may be located
+
+within a bandwidth
+
+from the inviscid
+
+calculation,
+
+for a maximum
+
+pressure
+
+in
+
+note that the true attachment-point
+
+of one grid point on either side.
+31
+
+the
+
+The true
+
+location
+
+of the attachment
+
+the attachment
+
+velocity
+
+in the direction
+
+normal to
+
+of the Euler solution
+
+are con-
+
+line is equal to zero.
+
+In this procedure,
+verted
+
+point is where the surface
+
+the Cartesian
+
+to surface-oriented
+
+velocity
+
+velocities
+
+that correspond
+
+generated
+
+from the initial attachment-line
+
+equations
+
+(13)-(17).
+
+nonzero.
+
+This point is then relocated
+
+In general,
+
+components
+
+location.
+
+the component
+
+to a boundary-layer
+
+This velocity
+
+is based on
+
+u_ at the initial attachment
+
+point will be
+
+or negative
+
+direction,
+
+the value and sign of u_ and the local estimated
+
+value of 0,_/0s1.
+
+upper surface
+
+in the positive
+
+point is moved to include more of the lower surface;
+value.
+
+After the points
+
+are relocated
+
+from these attachment-line
+
+are obtained
+
+by interpolation.
+
+tachment
+
+locations.
+
+This procedure
+
+point is less than a specified
+
+the relocation
+grid-point
+
+displacement
+
+bandwidth
+
+above.
+
+with a spline routine from the inviscid
+4.2 Edge
+
+Values
+
+Edge velocities
+
+for the
+
+means that the
+
+this is done when
+
+u_ has a positive
+
+New values
+
+value.
+
+surface
+
+of velocity
+
+grid
+
+components
+
+until the value of u_ at each atA parameter
+
+that the iterated
+
+Upon convergence,
+
+locations
+
+_,t is used to relax
+remain
+
+the pressure
+
+grid to the final boundary-layer
+
+within the
+
+is interpolated
+
+grid.
+
+by Interpolation
+and temperature
+
+inviscid
+
+grid, this method
+
+solution
+
+from
+
+usually
+
+the BL-EDGE
+
+4.3 Edge Values
+
+For example,
+
+on
+
+direction
+
+is repeated
+
+tolerance
+
+and to ensure
+
+mentioned
+
+depending
+
+with this logic, a new boundary-layer
+
+is generated
+
+grid
+
+conversion
+
+in the positive
+
+at an angle of attack, a relocation
+
+surface
+
+from
+
+produces
+
+smooth
+
+by spline
+
+interpolation.
+
+edge conditions
+
+For a fine
+
+comparable
+
+to the
+
+equations.
+
+BL-EDGE
+
+The three-dimensional
+
+are obtained
+
+Equations
+
+boundary-layer
+
+equations (eqs. (19) and (20)), when applied
+32
+
+at the edge
+
+of the boundary
+
+ue tte,z
+--hl
+
+-t- _Ve tte,y
+
+ue
+
+ve
+
+layer,
+
+. -t- C25
+lz;_
+
+nt- C24
+
+result
+
+uct¥
+
+in the BL-EDGE
+
+-[- 026v
+
+2
+
+(
+
+=
+
+equations
+
+H_ is assumed
+
+following
+
+equation
+
+to be
+
+provides
+
+constant.
+
+closure
+
+With
+
+as
+
+hlh_
+h1912 PY ) _/p_M_
+1
+Cf3_ Px + --C_3
+
+('h2g,2
+
+Further,
+
+and are given
+
+Pz
+
+h_h2
+
+_
+
+from
+
+the
+
+inviscid
+
+P specified
+
+for this hyperbolic
+
+Te=Hc(I-t-'_M_)
+
+(134)
+
+1
+'tPe M_
+
+(135)
+
+solution,
+
+the
+
+set of equations:
+
+"7-1_. M_q_
+(136)
+
+The solution
+
+to the
+
+above
+
+system
+
+is obtained
+
+full three-dimensional
+
+boundary-layer
+
+abbreviated
+
+for the _ and r/directions,
+
+yields
+
+the
+
+notations
+
+with a discretization
+
+equations
+
+in the two
+
+that
+
+surface
+
+a discretization
+
+is identical
+
+directions.
+
+with Newton
+
+to the
+
+With
+
+the
+
+linearization
+
+system
+
+[ ' (2alue+{aue}+blvc___
+_-[l(alt'e + {ave})
+
++ {b,,o})
+
+7_2(allte_-[-
+
+2blt¥
+
+nl
+
+-[- {bye})
+
+0£
+
+o 2
+
+]
+(137)
+
+oy
+
+where
+
+The terms
+terms
+are
+
+marked
+
+are set to zero
+retained
+
+The
+update
+
+for
+
+solution
+for
+
+by an underline
+per the LlSW
+
+LlSW,
+
+to the three-dimensional
+
+condition
+
+region
+
+only.
+
+These
+
+at j = I and j = ny. Note that the Py terms
+
+however.
+
+is obtained
+
+nonlinear
+
+apply
+
+by inversion
+
+of the system,
+
+terms.
+33
+
+which
+
+is followed
+
+by an iterative
+
+5.
+
+BL3D EXAMPLE
+
+Two test cases are presented
+(A = 33°) tapered
+
+here.
+
+wing in subsonic
+0012;
+
+The first test case is that of a moderately
+
+flow.
+
+correspond
+
+to NACA
+
+parameters
+
+are done with the assumption
+
+coordinates.
+
+The second
+
+flow,
+
+in planform
+
+similar
+
+discrete
+
+coordinates.
+
+Euler equations.
+viscous
+
+terms
+
+however,
+
+The streamwise
+
+for generality,
+
+to that of the F16XL
+
+The computer
+
+code CFL3D
+
+aircraft,
+
+(ref.
+
+edge conditions
+
+from BL3D are compared
+
+Stokes
+
+code,
+
+is also obtained
+
+present
+
+comparisons
+
+which
+
+boundary-layer
+
+code developed
+
+with the corresponding
+
+Navier-Stokes
+
+5.1 Geometry
+
+and Conditions
+
+The planform
+
+is constant
+
+edge sweep is constant
+
+An interface
+
+to BL3D.
+
+free-stream
+
+in supersonic
+
+sections
+
+defined
+
+in
+
+by solving
+
+the
+
+routine
+
+For validation
+
+with the
+
+processes
+
+the
+
+1 only),
+
+with the results from the thin-layer
+
+Navier-
+
+For the supersonic
+
+from a conical
+
+(ref. 3).
+
+(case 1 only). These
+
+wing case,
+swept
+
+In addition,
+
+we
+wing
+
+runs are
+
+results are also compared
+
+solution.
+
+for Case
+
+1
+for which
+
+the root chord
+
+is 1 ft and the
+
+at 32.73 °. The wing has a span of 2 ft and the trailing-
+
+at 18.88 °, which results in a tip chord of 0.398 ft. The tip-section
+
+cross section
+
+conditions
+
+of discrete
+
+(case
+
+edge is at x'* = 1.286 ft and the tip-section
+
+The streamwise
+
+in terms
+
+6) is used for this purpose,
+
+and Cebeci
+
+of this wing is a trapezoid
+
+sweep
+
+of this wing
+and other
+
+are obtained
+
+with the solution
+
+by Kaups
+
+suction distribution
+
+with cross
+
+swept
+
+of metrics
+
+(._ = 70°) wing
+
+results
+
+with CFL3D.
+
+of the BL3D results
+
+made with a uniform
+
+leading
+
+swept
+
+the inviscid
+
+the results obtained
+
+leading-edge
+
+calculations
+
+set to zero for the Euter calculation.
+
+results and feeds the resulting
+
+cross sections
+
+that the wing is defined
+
+test case is a highly
+
+For both cases,
+
+CASES
+
+of the wing corresponds
+
+are Moo = 0.5, ,_ = 2°, P*
+34
+
+trailing edge is at x'* -- 1.68.1 ft.
+to the NACA 0012 section.
+
+The
+
+= 2116 psf, and Y_o = 520°R. The wing
+
+is assumed
+5.2 Euler
+
+to be symmetrical
+Solution
+
+The surface
+
+for
+
+about the root chord plane.
+
+Case
+
+distribution
+
+1
+
+used in the Euler grid consists of constant
+
+and constant
+
+percent span lines. In the spanwise
+
+wing surface,
+
+which corresponds
+
+chordwise
+
+wraparound
+
+direction,
+
+direction,
+
+to a span distance
+
+the grid has 41 points on the
+
+of 0.05 ft between
+
+exponentially.
+
+The grid is further
+
+the wake region and off the tip of the wing. The Euler computation
+The results
+
+thus, 40 cell centers
+the symbol j(INV).
+
+from the calculation
+
+are obtained
+
+exist in the spanwise
+
+direction.
+
+to the region 7 < j(INV)
+
+that only every fourth
+
+Let us denote
+
+boundary-layer
+
+from the attachment
+
+these locations
+
+in the present case,
+
+by the maximum
+
+to 0.325 < gr. <
+
+of the velocity
+
+center
+
+for clarity).
+
+to y'* = 1.025.
+
+points
+
+(note
+
+Figure 2(b)
+
+The boundary-layer
+
+is measured
+
+in terms
+
+of
+
+by a length such as the local chord length or,
+coordinate
+
+y is defined
+
+results used in the interface
+
+routine are the three Cartesian
+
+components
+
+on the wing
+
+inviscid
+
+and the
+
+temperature.
+
+from the above.
+
+Alternately,
+
+as the local span distance
+
+The inviscid
+
+direction
+
+grid on the upper surface.
+
+the surface arc length, which is normalized
+
+by
+
+plane and the wingtip,
+
+of the Euler grid-cell
+
+line, and the z-coordinate
+
+into
+
+of the grid cells;
+
+< 35, which corresponds
+
+point is plotted in the chordwise
+
+shows the corresponding
+grid originates
+
+distribution
+
+direction
+
+extended
+
+1.725. The middle location of this region is at j(INV) = 21, which corresponds
+
+Figure 2(a) shows the surface
+
+In the
+
+is done with the code
+
+at the centers
+
+To avoid the region very close to the symmetry
+
+we restrict our analysis
+
+grid lines.
+
+the grid has 257 points, and in the wall-normal
+
+the grid has 49 points that are stretched
+
+CFL3D.
+
+percent chord lines
+
+arc length.
+
+from the symmetry
+
+surface,
+
+the
+
+The pressure
+
+coefficient
+
+on the surface
+
+the pressure
+
+coefficient
+
+can be specified,
+
+The spanwise
+
+plane.
+
+wall density,
+
+can be calculated
+
+and the edge temperature
+35
+
+can be calculated
+
+(assuming
+
+that the edge density
+
+coefficient
+
+obtained
+
+and 35.
+
+is given).
+
+from the Euler solution
+
+Note that the effect of the taper
+
+the spanwise
+
+Figure 3 shows the variation
+
+of the pressure
+
+at three span locations
+
+where j(INV)
+
+is to create
+
+pressure
+
+a favorable
+
+= 7, 21,
+
+gradient
+
+in
+
+direction.
+
+5.3 Euler-BL3D
+
+Interface
+
+for Case
+
+The details of the procedure
+in Figures 4-7.
+
+1
+
+for relocating
+
+the inviscid attachment
+
+Figure 4 shows a plot of the iterated attachment-line
+
+is in terms of (fl, _) of these surface
+
+points and corresponds
+
+the wing leading edge (not to scale).
+
+The initial attachment-line
+
+to the peak in the pressure
+
+coefficient
+
+line are presented
+locations.
+
+This plot
+
+to a view from upstream
+
+of
+
+location that corresponds
+
+near the leading edge is shown
+
+in solid symbols.
+
+The inviscid
+
+grid points on the upper and lower sides of this line are shown as dashed
+
+lines. These
+
+lines bound the uncertainty
+
+the coarseness
+
+of the inviscid
+
+the attachment
+
+line. As explained
+
+on a relocation
+
+strategy
+
+to the attachment
+much
+
+high
+
+the
+
+velocity
+
+to successive
+
+iterations.
+
+the attachment
+resulting
+
+of
+
+in Figure 4 are the iterated locations
+
+of
+
+such that the local inviscid
+
+Relocation,"
+velocity
+
+the iteration
+
+vector is exactly
+
+Figure
+
+line.
+
+variation
+
+ue interpolated
+
+iterations.
+
+6 shows
+
+of driving
+
+tangential
+locations
+
+is
+
+v_ variation
+
+location
+
+that
+
+of u_ are relatively
+
+_t_ to near zero (< 0.0001)
+
+the corresponding
+
+Here again, the final
+
+surface
+
+at the attachment-line
+
+Note that the initial values
+
+of Cp on the attachment
+
+The boundary-layer
+
+is based
+
+line.
+
+(_+0.04) and that the objective
+
+in seven
+
+because
+
+in "Attachment-Line
+
+than the original
+
+5 shows
+
+corresponds
+
+grid. Also shown
+
+location
+
+line. Note that the line that joins the final attachment-line
+
+smoother
+
+Figure
+
+on the true attachment-line
+
+is achieved
+
+variations
+
+of the velocity
+
+_,_on
+
+is smooth.
+
+Figure 7 shows the
+
+line.
+
+grid is generated
+36
+
+from the attachment
+
+line on the upper
+
+or lower side.
+between
+
+In the present
+
+the attachment
+
+the boundary-layer
+The stretching
+
+case, 40 points are generated
+
+line and the local 5 percent
+
+grid coincides
+
+of the surface
+
+in the chordwise
+
+chord location.
+
+Beyond
+
+with the inviscid grid, and no interpolation
+
+distribution
+
+near the attachment
+
+direction
+this point,
+
+is required.
+
+line is done so that the grid
+
+blends smoothly with the inviscid grid (at the 5 percent chord location in the present case).
+After the generation
+boundary-layer
+bounded
+these
+
+grid.
+
+of the surface
+
+grid, the inviscid
+
+The boundary-layer
+= 7 and j(INV)
+
+by the j(INV)
+
+limits are unsuitable;
+
+these regions
+
+because
+
+The boundary-layer
+
+pressure
+
+is interpolated
+
+to the
+
+calculation
+
+is restricted
+
+to the region
+
+that is
+
+= 35 spanwise
+
+locations.
+
+The regions
+
+outside
+
+the locally infinite-swept
+
+of the proximity
+
+grid notation
+
+of the flow to the symmetry
+
+denoted
+
+of j(INV) = 7. In other words, the j(BL3D)
+Figure 8 shows the chordwise
+layer grid at three spanwise
+routine.
+
+In the present
+
+leading edge and the inviscid
+However,
+
+in the absence
+
+In this event,
+
+the amount
+
+by j(BL3D)
+
+because
+
+The interpolation
+the inviscid
+
+and the resulting
+
+If the streamwise
+
+not negative,
+
+a marching
+
+of the boundary-layer
+
+introduce
+
+pressure
+
+nonnegative
+
+a locally linear interpolation
+pressure
+
+gradients
+
+spline interpolation
+
+pressure
+
+and other higher
+
+with a spline
+
+solution
+
+near the
+is required.
+
+may be required.
+
+interpolated
+
+gradient
+
+pressures
+
+at the attachment
+
+away from the attachment
+
+order interpolation
+
+at the attachment
+
+may be required
+
+Cp values on the boundary-
+
+in this region, no smoothing
+
+of smoothing
+
+monitored.
+
+= 7 location.
+
+grid has good resolution
+
+a smooth
+
+Spline
+
+plane or the wingtip.
+
+is accomplished
+
+of the above,
+
+be carefully
+
+in
+
+is thus based on the left boundary
+
+of the interpolated
+
+results are smooth
+
+may not be possible.
+
+does not apply
+
+= 1 location is identical to the j(INV)
+
+variation
+
+locations.
+
+case,
+
+wing assumption
+
+methods
+
+must
+line is
+line
+
+are likely to
+
+line. Hence, in some cases,
+
+near the attachment
+
+line to ensure negative
+
+gradients.
+
+All physical distances,
+
+such as the root chord length, are normalized
+37
+
+by a reference
+
+length L*.
+
+Further, the boundary-layer
+
+chordwise
+
+arc length divided
+
+boundary-layer
+
+the metric quantities
+
+case, the variation
+
+= 1 location
+
+is shown
+
+As explained
+by direct
+
+by the local maximum
+
+grid y- (and also T/-) coordinate
+
+With this definition,
+the present
+
+grid # (and _-) coordinate
+
+solution
+
+directions
+
+are obtained
+
+edge temperature
+
+In the second
+
+by an inversion
+
+is also interpolated
+
+as outlined
+
+Subsequently,
+
+comparison
+
+of the edge velocities
+
+to complete
+
+obtained
+
+a locally
+
+swept-wing
+
+condition
+
+equations
+
+Figure
+
+edge temperature
+5.4 BL3D Solution
+
+for Case
+
+The three-dimensional
+
+(13)-(17).
+
+are solved
+
+with the input pressure
+
+Equations."
+
+= 1 location.
+
+11 shows contour
+
+plots of the edge velocity
+
+from the two methods.
+
+= 1 and j(BL3D)
+
+= 29.
+
+solution
+
+assumes
+
+Another
+
+cause
+
+used in the Euler solution
+for the present
+comparison
+
+A slight
+
+case,
+
+is different
+
+of the edge velocity
+
+well.
+
+solution follows
+38
+
+the sequence
+
+for
+from
+
+both results are
+
+1
+
+boundary-layer
+
+The
+
+by either method at the j(BL3D)
+
+However,
+
+also compare
+
+in the z and y
+
+10 shows a
+
+12 shows the corresponding
+variations
+
+from
+
+to the BL3D program.
+
+by the fact that the BL-EDGE
+
+at j(BL3D)
+
+solution.
+
+components
+
+Figure
+
+is that the finite differencing
+
+that used in the BL-EDGE
+acceptable.
+
+the interface
+
+of the wing that are obtained
+is caused
+
+velocity
+
+can be obtained
+
+of the system given by equations
+
+Note that the two results agree well. Figure
+
+in the variation
+
+For
+
+at the j(BL3D)
+
+the edge velocities
+
+in "Edge Values from BL-EDGE
+
+difference
+
+(1)-(3).
+
+direction
+
+the edge velocities
+
+the three Cartesian
+
+the BL-EDGE
+
+distribution
+
+ue on the upper surface
+
+with equations
+
+distance.
+
+9.
+
+are interpolated.
+
+method,
+
+as the local spanwise
+
+can be computed
+
+In this method,
+
+the inviscid
+
+this difference
+
+is defined
+
+in "Edge Values by Interpolation,"
+
+interpolation.
+
+as the local
+
+arc length up to the trailing edge. The
+
+of hi, h_, and g12 in the chordwise
+
+in Figure
+
+is defined
+
+below:
+
+v_. The
+
+(a) Input boundary-layer
+
+edge data.
+
+The input consists
+
+of the boundary-layer
+
+dimensions
+
+(u=, ny); the coordinates
+
+(x, y); the metric quantities
+
+hi,
+
+edge values
+
+u_, re, and
+
+if the streamline
+
+the free stream
+
+the boundary-layer
+
+T_.
+
+attachment
+
+input of Cp or P is required
+free-stream
+solution
+
+Further,
+
+conditions,
+
+line contains
+to calculate
+
+the reference
+
+(nonisentropic
+
+the edge density
+
+length,
+
+p_.
+
+h2 and g12; and
+
+region),
+
+Other
+
+and other parameters
+
+and
+
+then the
+
+inputs
+
+are the
+
+that pertain
+
+to the
+
+procedure.
+
+(b) Setup of initial profiles.
+for a flat plate or wedge
+attachment-line
+(c) Setup
+gradients.
+
+solution
+
+This
+
+setup
+
+is obtained
+
+The terms
+
+Further,
+
+solution,
+
+(1, nylim).
+
+at i -- 1, the attachment-line
+region.
+
+such as the boundary-layer
+number
+
+distribution,
+
+After the convergence
+thickness,
+
+infinite,
+
+swept
+
+on the edge conditions
+
+that involve derivatives
+
+the three-dimensional
+
+on the pressure
+
+solution
+
+grid.
+
+at the two boundaries
+
+and
+
+A switching
+
+of the solution
+the skin-friction
+
+39
+
+in the y direction
+
+plane
+
+are
+
+are solved.
+solution
+
+and
+
+region can now be solved with the L
+
+the solution
+
+are calculated.
+
+j = 1 and j = ny]im
+
+equations
+
+Given the initial
+
+occurs when the profile of G has a negative
+
+Depending
+
+Reynolds
+
+to start the locally
+
+is based
+
+or the Z scheme for the span derivatives.
+
+Z scheme
+
+to the similarity
+
+and D, are calculated.
+
+of the three-dimensional
+
+the side boundary
+
+that correspond
+
+1 of the boundary-layer
+
+A_, B_, C,,
+
+in the x direction.
+
+(e) Solution
+
+scheme
+
+at i = 1, j -
+
+This solution
+
+set to zero for this case.
+
+profiles
+
+are used as initial profiles
+
+The coefficients
+
+by marching
+
+Solution
+
+of edge coefficients.
+
+(d) LISW solution.
+
+nxlim),
+
+a shock
+
+between
+
+grid
+
+from the L scheme to the
+
+element.
+region can be restricted
+
+to (1,
+
+at each (i, 3) point, quantities
+coefficient,
+
+and the crossflow
+
+5.5 BL3D Results
+Comparison
+
+for Case
+
+1
+
+of the BL3D solution
+
+is made with profiles
+
+solution of the NS equations with the code CFL3D.
+same surface
+
+distribution
+
+The grid stretching
+of the flow.
+
+that are obtained
+
+from the
+
+This code was run on a grid with the
+
+as the Euler grid, but with 81 points in the wall-normal direction.
+
+was designed to include about 30 to 40 points in the boundary
+
+layer
+
+The flow was assumed to have an abrupt transition to turbulence at the 25
+
+percent location on the wing. This assumption ensures that the flow remains attached
+and thereby avoids the numerical problems caused by the laminar separated
+The profile
+station.
+
+comparisons
+
+regions.
+
+are restricted to locations upstream of the 25 percent chord
+
+Because of the large amount of data, the comparison plots are presented
+
+few locations in the flow that are representative
+Figures 13-18
+
+compare
+
+We present comparisons
+approximately
+
+for a
+
+of the entire flow solution.
+
+of the BL3D and NS profiles at the j(BL3D)
+
+at six locations in the chordwise direction.
+
+= 1 plane.
+
+These
+
+locations
+
+correspond to chord locations of 1, 2, 3, 6, 12, and 23 percent.
+
+Shown
+
+are the profiles of spanwise
+
+velocity v, chordwise velocity u, and temperature
+
+these locations, the spanwise
+
+velocity profile assumes different shapes with inflection and
+
+reversal
+
+regions.
+
+T. At
+
+The NS profiles are shown in open square symbols. The BL3D profiles
+
+at this j location are the solution
+very good agreement
+
+of the LISW equations.
+
+In spite of this assumption,
+
+is obtained until the 23 percent chord location. Note that the edge
+
+velocities used as input for the BL3D computation are the interpolated values from the
+inviscid code. The edge velocities that are computed from the NS solution are slightly
+different than those from the Euler solution.
+the lack of better agreement
+
+between
+
+This difference
+
+the two solutions.
+
+attributable to the fact that the profiles are not compared
+The temperature
+
+profiles
+
+is the main contributor to
+Also, some
+
+differences
+
+at exactly the same location.
+
+at the 12 percent chord location and beyond
+4O
+
+are
+
+are different
+
+presumably
+region.
+
+because
+
+the boundary-layer
+
+Furthermore,
+
+that the attachment
+location.
+
+some differences
+
+interaction
+
+becomes
+
+near the attachment
+
+point from the NS solution
+
+more
+
+is shifted slightly
+
+compared
+
+the agreement
+
+is satisfactory
+
+and validates
+
+The program
+
+also calculates
+
+the crossflow
+
+within the boundary
+
+In the present
+
+report,
+
+when
+
+pointed
+
+profiles
+
+direction.
+
+toward the wing root. In Figure
+
+u8 at six representative
+
+shows the corresponding
+
+locations
+
+crossflow
+
+The crossflow
+
+Reynolds
+
+number
+
+*
+V,,m,_×is
+the maximum
+
+Rec£ is defined
+
+normal
+
+distance
+
+scanned
+
+from the edge down
+
+shows the variation
+compared
+
+22-30
+
+present
+
+spanwise
+
+station.
+
+in profiles
+
+exist mainly
+
+results
+
+coefficient
+
+NS profiles.
+
+Figure 20
+
+that is predicted
+crossflow
+
+region.
+
+(138)
+
+to less than
+
+This parameter
+
+velocity
+
+,* and 8_.1 is the
+v_
+
+10 percent
+
+of V*,m_,
+x (when
+
+has a strong
+boundary
+
+in the chord direction
+
+correlation
+
+layer.
+
+at the j(BL3D)
+
+Figure
+
+to
+21
+
+= 1 location
+
+with the NS solution.
+
+Figures
+
+Figure
+
+velocity
+
+as
+
+in a three-dimensional
+
+of this parameter
+
+as negative
+
+the streamwise
+
+in the negative
+
+value of the crossflow
+
+to the wall).
+
+instabilities
+
+is defined
+
+Ue'maxOO'lPe
+
+at which the v_ profile decays
+
+the growth of crossflow
+
+Euler
+
+absolute
+
+layer relative to the
+
+profiles of v,. The crossflow
+
+ReC_ p =
+
+where
+
+crossflow
+
+19, we compare
+
+by the BL3D code is slightly larger than the NS solution
+
+with the Euler
+
+the BL3D results.
+
+with the corresponding
+
+velocity
+
+in this
+
+point are caused by the fact
+
+Overall,
+
+local edge streamline
+
+significant
+
+the profiles
+
+The overall comparison
+because
+
+at the j(BL3D)
+
+= 15 location
+
+is good, although
+
+at the {
+
+= 1.025
+
+in some locations differences
+
+of the fact that the edge conditions
+
+from the NS and
+
+are different.
+
+31 shows the contours
+in the x direction
+
+of the boundary-layer
+
+thickness
+
+obtained from the BL3D calculation.
+41
+
+and the skin-friction
+
+The contours
+
+are smooth
+
+and blend smoothly
+
+with the infinite
+
+swept-wing
+
+solutions
+
+Note that the flow
+
+is close to laminar
+
+separation
+
+at the j boundary
+
+as indicated
+
+locations.
+
+by the near-zero
+
+values
+
+of Cf,x at ,_ = 0.25.
+Figure 32 shows the contours
+absolute
+
+percent
+
+crossflow
+
+of the crossflow
+
+Reynolds
+
+on the upper surface.
+
+under 100, and the maximum
+
+crossflow
+
+reaches
+
+of RecF for this case are
+
+a maximum
+
+of about 12 percent.
+
+With Suction
+
+for Case
+
+Solutions
+
+were obtained
+
+from the NS and BL3D solvers
+
+1
+
+A constant
+
+amount
+
+comparison
+
+of the resulting
+
+no suction
+
+are also shown for comparison.
+
+a substantial
+
+reduction
+
+The attachment-line
+
+q, (equal to 0.0005)
+
+solution
+
+is produced
+Reynolds
+
+and the maximum
+
+The values
+
+5.6 Results
+
+of suction
+
+number
+
+was assumed.
+
+profiles at the j(BL3D)
+
+suction.
+
+33 shows
+
+a
+
+= 15 plane. The profiles with
+Rec£ values;
+
+with suction.
+
+Re0 is defined
+
+V 'k
+
+Ree =
+
+Figure
+
+Figure 34 shows the resulting
+
+in the crossflow
+number
+
+with boundary-layer
+
+as
+
+i1_ '_
+
+_,i=l
+
+(139)
+
+m,i=lfle,i=l
+
+#*,i=]
+
+where
+
+e*
+
+is the
+
+attachment-line
+
+This
+
+and Conditions
+
+is important
+
+suction.
+
+The comparison
+
+because
+
+of
+
+of the Re8 values
+with the values
+
+is satisfactory.
+for Case
+
+Case 2 is the boundary-layer
+stream Mach number
+
+parameter
+
+Figure 35 shows a comparison
+
+line both with and without
+
+from the NS solution
+
+5.7 Geometry
+
+thickness.
+
+stability considerations.
+
+at the attachment
+obtained
+
+momentum
+
+2
+wing of 700 sweep
+
+at a free-
+
+Moo of 1.6 and at an angle of attack of 0 °. The planform
+
+is similar
+
+to the wing of the F16XL
+
+aircraft.
+
+flow on a supersonic
+
+The other
+42
+
+input free-stream
+
+conditions
+
+correspond
+
+to an altitude
+number
+
+of 40,000
+
+ft ( P% = 393.13 psf, Tgo = 390°R). The free-stream
+
+Reynolds
+
+is 3.06x 106 per ft.
+
+Figure 36 shows a top view of the Euler grid used in this case, with an inset showing
+a chordwise
+
+section.
+
+The wing is assumed
+
+to be symmetric
+
+the span station j(INV)
+
+= 1, which is at a distance
+
+flow region
+
+corresponds
+
+of interest
+
+5.8 Euler Solution
+
+solution,
+of x'*
+
+is shown
+
+-- .r '*
+LE , which
+
+location.
+
+distribution
+
+on the wing upper surface,
+
+Here, the streamwise
+
+corresponds
+
+to the chordwise
+
+of pressure
+
+coefficient
+
+= 16 (90.2 in. from fuselage
+
+flow does not exist beyond
+
+axis. The
+
+for Case 2
+
+in Figure 37.
+
+The variation
+
+location j(INV)
+
+of 27 in. from the fuselage
+
+to the y'* range of 72.8 to 132.2 in.
+
+and BL3D Interface
+
+The inviscid pressure
+
+about the (x'*, z'*) plane at
+
+distances
+
+distance
+
+from the Euler
+
+are shown
+
+in terms
+
+from the local leading-edge
+
+and the wing cross
+
+axis) is shown
+
+a x'* -- .7:LE
+_* distance
+
+obtained
+
+section
+
+at the span
+
+in Figure 38. Attached
+
+laminar
+
+of 3 ft; hence, the calculations
+
+reported
+
+in the same form as case 1, except
+
+for minor
+
+here are for an x'* - xL£'* of less than 3 ft.
+The interface
+changes
+
+program
+
+in reading
+
+grid is specified
+
+in and manipulation
+
+as containing
+
+The edge velocities
+solution
+
+of the BL-EDGE
+
+comparison
+
+equations.
+
+at the span station j(BL3D)
+
+Solution
+
+Following
+
+either by direct
+
+Good comparisons
+as shown
+
+The boundary-layer
+chordwise
+
+in Figures 39-41.
+section,
+
+location.
+
+interpolation
+
+of the edge values
+
+= 5. In the following
+
+will be presented
+
+input.
+
+within the 2 percent
+
+are calculated
+
+were obtained,
+
+at this span station
+
+5.9 BL3D
+
+of the Euler solution
+
+40 points clustered
+
+and temperature
+
+T_ from the two methods
+
+solution
+
+is essentially
+
+or by
+
+u_, v_, and
+
+Figure 42 shows a
+the boundary-layer
+
+in detail.
+
+for Case 2
+
+the interface
+
+run, the present code BL3D was run in a region bounded
+43
+
+by
+
+1 < j(BL3D)
+
+< 9. The results
+
+For comparison,
+
+reported
+
+the Kaups-Cebeci
+
+Figure 43 shows
+
+the comparison
+
+here correspond
+
+of the us, vs, T profiles
+
+line at the span station j(BL3D)
+
+except
+
+reduction
+
+from
+
+BL3D.
+
+small
+
+Figure
+
+2.26 ft in surface
+
+44 shows
+
+in the
+
+magnitude
+
+the comparison
+
+temperature
+
+profiles agree well. The crossflow
+
+crossflow.
+
+Note that because
+
+Figure
+from
+
+Again,
+
+of the resulting
+the reduced
+
+noted.
+
+44
+
+= 5. The agreement
+
+is good,
+
+line).
+
+profile
+
+obtained
+
+at two locations
+
+(1 ft and
+
+Here, the streamwise
+
+and
+
+profile from BL3D shows slightly reduced
+increasingly
+
+line the two codes are expected
+
+the two computations.
+
+locations
+
+of the profiles
+
+the flow becomes
+
+45 shows a comparison
+
+= 5.
+
+at two chordwise
+
+of the crossflow
+
+arc length away from the attachment
+
+from the attachment
+
+at j(BL3D)
+
+code was also run at this section.
+
+close to the attachment
+for a very
+
+to the solution
+
+three
+
+dimensional
+
+away
+
+to differ in solutions.
+crossflow
+
+crossflow
+
+Reynolds
+predicted
+
+number
+
+values
+
+by BL3D can be
+
+References
+°
+
+lyer, V., "Computation
+order accuracy
+
+boundary-layer
+
+compressible
+
+on wings and fuselages,"
+
+lyer, V. and Harris,
+
+.
+
+of three-dimensional
+
+NASA CR 4269, Jan.
+
+J. E. , "Fourth-order
+
+calculations,"
+
+Joumal
+
+boundary
+
+accurate
+
+of Aircraft,
+
+layers to fourth-
+
+1990.
+
+three-dimensional
+
+compressible
+
+Vol.
+
+27, No.
+
+3, Mar.
+
+laminar
+
+boundary
+
+layers
+
+1990, pp.
+
+253-261.
+
+°
+
+Kaups,
+
+K. and Cebeci,
+
+T. , "Compressible
+
+on swept
+
+and tapered
+
+wings,"
+
+E. , Hirschel,
+
+E. and Bothmann,
+
+Journal
+
+of Aircraft,
+
+Vol.
+
+24,
+
+No.
+
+with
+
+suction
+
+7, July
+
+1977, pp.
+
+integration
+
+der be-
+
+661-667.
+
+°
+
+Krause,
+
+wegungsgleichungen
+
+dreidimensionaler,
+
+DGLR-Fachbuch-reihe,
+
+=
+
+laminarer,
+
+Band 3, Braunschweig
+
+Wang, K., "On the determination
+dimensional
+
+T. , "Die numerische
+
+boundary-layer
+
+kompressibler
+
+1969, pp. 03-1
+
+of the zones of influence
+
+equations,"
+
+Fluid Mechanics,
+
+grenzschichten,"
+
+to 03-49.
+
+and dependence
+
+for three-
+
+Vol. 48, Part 2, 1971, pp.
+
+397-404.
+
+°
+
+Thomas,
+vortical
+
+J. L. , Taylor,
+
+S. L. and Anderson,
+
+flows over low aspect
+
+ratio wings,"
+
+45
+
+W. K.,
+
+"Navier-Stokes
+
+AIAA-87-0207,
+
+Jan.
+
+computation
+
+1987.
+
+of
+
+.
+
+E
+
+tO
+rt-
+
+E
+
+o_
+
+_
+
+o°_-_
+u3
+
+r- b_
+I= _o
+O
+
+s_
+
+_
+
+_
+O
+
+o
+•tJ3
+"_ _O
+(I)
+
+t-_
+O
+
+O
+
+>
+
+rn
+
+_
+
+>
+t'_
+
+v
+
+,,
+II
+
+t_
+tO
+O
+
+v
+v
+
+_D
+
+"O
+tO
+
+tO
+rE
+!
+
+t-
+
+Ii
+
+46
+
+It)
+
+,i
+
+o
+I,--
+
+_-o
+O
+in
+
+O
+i
+
+(/)
+v
+
+(-"l_
+.-,i
+1._
+
+(I)
+
+E_
+
+,
+
+:3
+
+0
+-Q
+
+>,
+
+(-
+
+O
+
+(_
+
+O
+
+"(3
+
+Q
+
+i
+
+_o
+
+i:_. _-(-- "O
+
+.E
+E
+
+eJ
+E_
+Ii
+
+47
+
+O
+II
+
+,_
+
+/
+
+o
+O
+
+"\ z
+
+//
+
+tO
+O
+
+\g
+
+O
+:z3
+U.I
+
+d
+
+E
+O
+
+-,._
+.i
+
+O
+
+"O
+
+E
+
+O
+O
+
+cO
+
+l-
+
+cO
+O
+O
+O
+
+O
+O
+
+o
+i.
+
+O
+--.1
+
+ffl
+ffl
+O
+Q.
+
+o5
+
+I
+
+,
+
+I
+
+,
+
+I
+
+;
+
+l
+
+,
+
+I
+
+O
+
+'_
+
+_
+
+d
+
+d
+
+_5
+
+!
+
+48
+
+I1
+
+_
+
+0
+0d
+
+0
+
+oo
+"If"
+
+.m
+
+a)
+m
+
+0
+5..
+
+-i
+LL
+
+c)
+0
+
+c_J
+0
+
+_
+0
+
+_0
+0
+
+00
+0
+
+0
+0
+0
+_--
+
+o
+
+o
+
+o
+
+o
+
+o
+
+o
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+i
+
+l
+
+,
+
+I
+
+I
+
+1
+
+i
+
+I
+
+,
+
+i
+
+i
+
+49
+
+I
+
+,
+
+I
+
+,
+
+I
+
+o
+
+(2)
+
+-oJ
+O
+(i
+
+c(D
+
+E
+(c.)
+(II
+
+"p_
+
+(II
+cO
+(7)
+c-
+
+,i
+
+O
+O
+
+(_.
+
+GO
+00
+o
+
+O
+O
+E
+(!.)
+_rj
+I,,,.
+
+.,¢
+
+c_
+
+cO
+
+O
+
+ui
+(D
+
+I
+00
+
+q
+O
+
+I
+O
+O
+
+,
+
+I
+
+_
+
+O
+O
+O
+
+i
+
+I
+o
+o
+
+I
+00
+o
+o
+!
+
+II
+
+5O
+
+o
+
+d
+
+{D'}
+LL
+.i
+
+0
+
+t_
+0
+0
+0
+
+CD
+e"
+°m
+m
+
+t_
+
+'I["-"
+
+CD
+
+E
+t-
+
+II
+
+O_
+
+0
+0
+t-
+
+t_
+"0
+tc_
+
+O
+0
+0
+
+O0
+0
+
+0
+0
+0
+tO
+0
+
+0
+
+tO'
+
+0
+
+I
+
+I
+
+I
+
+0
+O0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+H
+
+51
+
+,
+
+0
+
+II
+
+ffl
+0
+
+0
+L_
+
+t--
+
+.m
+m
+
+rm
+_0
+
+u
+
+E
+tO
+
+m
+
+e0
+
+N
+ffl
+"0
+
+O0
+0
+
+0
+0
+
+ffl
+ffl
+
+0
+(D
+0
+
+c_
+0
+
+0
+
+I
+
+I
+
+0
+0
+I'_
+
+0
+
+d
+
+c_
+
+I
+
+1
+
+II
+
+52
+
+, |
+
+0
+
+...........
+
+0
+0,1
+
+0
+CO
+I'_
+
+c_
+
+d
+
+(5
+LL
+
+c_
+c_
+vc
+Tim
+
+QL
+
+c_
+C_
+C
+
+0
+
+Q.
+0
+tO
+C_
+lira
+
+c_
+
+a_
+In
+
+c_J
+LL
+
+53
+
+o
+t_
+'1::
+
+0
+c_
+II
+0
+
+n
+
+o
+v
+
+0
+t-
+
+0,1
+o3
+0
+II
+
+o"
+o
+-__
+0
+
+E
+0
+IO
+
+0
+
+I,.....
+
+t_
+L..
+
+t,
+oJ
+
+I
+
+o
+
+0
+
+54
+
+C_
+
+_cz
+llm
+
+C_L
+0
+
+ctJ
+c_
+c_
+im
+
+0
+
+O
+
+C
+0
+
+im
+
+0
+lID
+
+W
+0
+tO
+
+om
+
+0
+
+W
+0
+
+c_
+W
+J
+i-J
+
+rn
+0
+CJ
+0
+
+cO
+cS_
+tin
+
+c_
+_L
+
+E
+0
+0
+O
+
+c_
+L_
+LL
+
+55
+
+o
+
+I,._
+
+E
+
+Q.
+
+-o.o
+Q)
+O
+O
+
+_cw
+
+O
+O
+CD
+Q;
+"O
+O
+cO
+
+E
+
+rn
+
+O
+
+O
+
+LL
+
+[
+O
+
+J
+
+i
+cO
+
+J
+
+I
+(_
+
+i
+
+I
+
+,
+
+00
+
+I
+,_"
+
+56
+
+,
+o
+
+t_
+
+O.
+O.
+
+¢1)
+03
+0
+
+o
+
+_w
+
+c.)
+O
+03
+(1)
+"O
+(2)
+O
+tO
+o_
+i.__
+
+t_
+O.
+
+E
+m
+
+'
+
+O
+
+o,
+
+O
+
+c_
+
+Ii
+
+I
+
+,
+
+I
+
+i
+
+I
+
+i
+
+I
+
+o
+
+_
+
+_
+
+_
+
+O_
+
+,r-
+
+T-
+
+O
+
+57
+
+_
+
+I
+
+o.
+O
+
+o
+
+O
+m_
+r
+
+8_
+
+O
+O
+o
+II
+
+II
+
+a
+
+°
+
+1
+
+O
+O
+o
+
+v
+
+_
+N
+
+I
+CO
+O
+O
+O
+O
+
+,
+
+I
+
+,
+
+O
+O
+O
+O
+
+o
+o
+o
+
+d
+
+d
+
+CO
+o
+0
+0
+III
+
+O
+o
+
+.¢-,
+
+(2)
+
+(D
+(J
+
+v
+
+o
+O
+
+q
+O
+II
+eto
+
+Z
+
+121
+I
+
+CO
+o
+O
+
+o
+o
+o
+
+_
+
+d
+
+o
+o
+
+I
+
+o
+o
+o
+
+6
+
+d
+
+e-
+
+II
+
+77
+
+OJ
+
+Z
+
+/ /
+
+o
+
+o
+eo
+
+[]
+
+._m
+e..-
+
+o
+
+E
+0
+
+0
+
+_II
+
+8
+
+eII
+
+_
+_
+
+c6
+
+E _.
+E >
+_Z
+
+23
+U-
+
+1
+"
+_N
+
+58
+
+o
+O
+O
+
+o
+O
+O
+
+o
+O
+O
+
+d
+
+d
+
+6
+
+O
+
+a
+cO
+_I
+nn
+
+cQ.
+
+v
+
+0
+II
+
+o.
+
+O
+
+c_
+
+0
+
+c5
+
+('O
+.._I
+v
+-,.,_
+
+O
+O
+
+.i.-,
+
+II
+
+II
+
+,,i
+=-
+
+.
+
+.
+"N
+
+I
+0
+0
+
+o
+
+o
+
+o
+
+IS
+
+.
+
+I
+o
+
+I
+O
+0
+
+o
+
+d
+
+o.
+
+.
+
+.
+o
+
+o
+
+_5
+_II
+
+c_
+E
+
+rn
+o
+
+.,i-,
+
+00
+o
+o
+II
+
+re0
+ffl
+
+(/)
+Z
+
+v
+O
+II
+
+u'_ il
+@d
+"-"
+n
+
+,I:::
+r.0
+
+cc_
+Q-
+
+L.I
+0
+o
+
+'7
+!
+_J
+
+0
+0
+
+d
+
+_jo
+0
+O
+
+d
+
+@,l
+o
+o
+o
+
+d
+
+II
+8
+
+II
+
+e-
+
+II
+_tp
+
+Z
+0
+e0
+
+[]
+
+O
+
+-o
+
+f-
+
+o
+
+en
+
+E
+0
+
+0
+
+Z,,v
+d
+
+E .-.
+E >
+
+,4
+
+Or) _.I1
+
+"N
+
+59
+
+0
+0
+d
+
+0
+_
+d
+
+0
+0
+d
+
+o
+
+e-
+
+0
+
+I
+
+ll
+
+r_
+tO
+_1
+n'l
+
+v
+
+o
+o
+II
+
+cO
+
+v
+"""b
+
+L .....
+co
+
+_
+
+°
+
+o
+o
+o
+
+.g
+
+1.....
+
+_L_
+
+°
+
+•_o
+o
+o
+o
+
+oJ
+o
+o
+o
+o
+
+d
+o
+0
+Ill
+
+Q)
+
+{0
+
+o
+
+00
+
+0
+o
+
+-!
+I1
+
+tO
+Q)
+
+o_
+
+r_
+
+;_
+
+o r)
+,_1
+nn
+t-
+
+_..
+
+,--
+
+d
+
+H
+
+J,
+
+O9
+
+[]
+
+o
+co
+
+o
+
+_
+
+.g
+
+/
+
+t
+
+_
+
+$ '
+
+o_
+
+=_
+
+o
+
+o°
+
+o°
+
+d
+
+d
+
+d
+
+z
+
+c_
+Q.
+
+E
+o
+
+O
+
+___
+
+_
+
+o_
+d
+
+ii
+
+o,I
+@
+"b,.1
+
+60
+
+CO
+O
+O
+O
+
+_O
+O
+O
+
+k'N
+O
+O
+O
+
+d
+
+d
+
+c5
+
+d,
+
+tC_
+0.
+II
+
+C_
+LO
+
+nn
+
+o.
+
+v
+
+0
+
+III
+0
+Q_
+
+D
+n
+
+E
+
+03
+__]
+en
+
+\
+
+v
+
+LO
+0
+0
+II
+
+cO
+
+z
+cII
+
+Q-
+
+L,_
+
+ii
+
+0
+0
+II
+
+co r_
+
+o_
+, _
+
+/
+
+/
+
+[]
+
+/
+/
+
+0
+
+_
+r-
+
+0
+
+0,1
+8
+II
+
+_
+II
+
+_
+
+_
+E >
+E
+
+>,Z
+
+_
+
+61
+
+_,
+o
+
+_
+o
+
+Od
+o
+
+o
+
+o
+
+o
+
+d
+
+d
+
+d
+
+,
+
+o
+
+"1""
+
+r.0..
+
+0
+v
+
+II
+
+o
+0
+
+r7
+
+II
+
+CO
+._1
+CO
+v
+
+*
+
+d
+to
+.w
+
+._J_._J
+
+o
+
+o.
+
+o
+
+0
+
+o
+
+I
+
+._-
+
+,
+
+I
+
+_
+o
+
+0
+
+0
+
+,
+
+I
+
+_
+
+0
+
+d
+
+o
+
+',r'-"
+
+c',J
+0
+Ill
+
+0
+
+Or)
+
+o9
+
+r7
+
+o
+
+0
+
+CO
+
+E
+
+v
+
+o
+OJ
+e5
+o
+II
+
+g
+
+I
+
+8
+
+c
+t--O
+
+d
+o_
+
+O9
+Z
+
+II
+
+d
+
+F 7
+
+e
+
+d
+
+I,
+
+I _o
+
+g
+
+8
+
+d
+
+d
+
+o
+
+121
+_J
+m
+
+o
+
+t'-
+
+/
+
+Z
+
+[]
+
+O
+l.-o
+
+/
+0
+
+/
+_
+
+d
+
+;
+
+I1
+
+/
+
+0,1
+[I
+
+I
+o
+
+O.
+
+n
+
+O
+II
+
+I,
+
+----
+
+q_
+c:
+
+d
+
+It
+
+t_
+¢'1
+O
+
+O
+E _
+E >
+_Z
+
+.__
+
+-,.,,._
+
+LI_
+
+'_t-,1
+
+62
+
+.___
+
+1
+o
+
+O
+O
+
+o
+o
+
+1
+_
+o
+o
+o
+
+_
+o
+o
+
+c:)
+
+tQ.
+
+0
+
+II
+
+C_
+0
+
+D
+00
+
+n_
+v
+
+I
+
+_
+
+l
+
+-._,.
+
+o
+
+t_
+
+o.
+o
+
+/o
+°_
+
+i
+
+_
+
+|
+
+I
+
+J_
+
+o
+
+_
+
+eJ
+
+o
+
+o
+
+o
+
+o
+d
+
+o
+o
+
+d
+
+o.
+o
+
+0
+
+D
+a_
+
+_0
+
+o
+
+CO
+
+E
+
+v
+
+o
+
+¢.0
+cO
+
+k;
+
+0
+11
+
+e-e-0
+ffl
+
+¢J)
+Z
+
+d
+[
+
+¢£)
+co
+II
+
+1
+
+I
+
+[
+
+I
+
+I
+
+_.1
+en
+
+N
+0
+
+C_l
+
+C_.
+
+I
+
+0
+
+d
+
+d
+
+O
+
+d
+
+0
+
+f-
+
+o
+
+0
+
+Lt_
+
+tl
+
+0.1
+
+"-"
+
+d
+
+to
+
+II
+
+II
+
+z
+
+F7
+
+/
+
+,.e..-
+
+0
+i-0
+
+[]
+.i
+
+¢-
+
+o
+
+11
+
+e_
+
+E
+0
+
+0
+
+0
+II
+
+II
+g
+
+4--_
+
+'V"--
+
+II
+
+E
+E >
+
+d
+
+>,7
+
+LI_
+
+-._
+
+._
+
+d
+
+63
+
+•
+
+..1--_
+0
+
+_1_ ___1__
+tad
+i'M
+
+d
+
+d
+
+d
+
+04
+
+o,
+
+II
+
+r_
+CO
+ml
+
+rn
+
+O
+LO
+
+v
+
+r_
+CO
+.._1
+
+O
+
+m
+"O
+c-
+
+®
+
+_0
+Z
+
+O
+
+E
+O
+.m
+
+o
+
+O
+
+o
+
+m
+.i
+
+d
+
+o
+
+O
+in
+Q.
+
+E
+
+i
+
+O
+
+d
+tn
+cO
+_j
+rn
+
+cO
+
+tY)
+Z
+
+0
+O
+
+T0
+
+Cxl _
+0
+0
+
+_
+T_-- 04
+
+II
+
+II
+
+o
+
+odood
+II
+
+II
+
+II
+
+E
+
+O
+
+II
+
+O0
+
+®@®®@®
+
+O
+cO
+
+d
+o
+
+d
+I
+
+I
+
+I
+
+0J
+0
+0
+0
+
+l
+
+I
+
+l
+
+0
+
+cO
+
+_
+
+0
+
+0
+0
+
+0
+0
+
+0
+0
+
+d
+
+d
+
+o
+
+c.o
+0
+0
+0
+0
+
+O
+O
+O
+
+d
+
+o_1
+O
+O
+o
+O
+
+O
+cO
+.w
+
+E
+O
+
+O
+
+c_
+
+LL
+
+64
+
+II
+
+121
+0")
+_1
+
+rn
+
+o
+
+v
+
+d
+121
+o')
+__1
+
+d
+
+m
+t--
+
+oo
+o
+
+\
+
+r.O
+Z
+
+E
+0
+M,--
+
+ffl
+0
+
+0
+
+a
+
+0
+
+0
+
+03
+-J
+
+CO
+
+_-
+
+CO
+
+O,I qD
+
+O
+
+rn
+
+d
+
+qqoq_._
+
+°
+
+!
+
+0
+0
+0
+0
+0
+0
+II II II II II II
+
+0
+o
+I,I.,-
+
+0
+c0
+
+O
+
+®@@®@®
+
+o,
+E
+o
+
+0
+
+0
+
+d
+I
+o
+0
+0
+
+d
+
+cO
+0
+0
+0
+0
+
+,
+
+I
+
+0
+0
+0
+0
+
+0
+0
+0
+0
+
+65
+
+,
+
+I
+0
+0
+0
+0
+
+,
+I.L
+
+I1
+CO
+._1
+
+tY1
+v
+
+--
+
+LO
+Od
+0
+
+IZI
+tO
+.-I
+
+n
+
+rn
+[]
+
+o
+
+"13
+ttO
+
+CO
+Z
+
+E
+o
+
+[] []
+
+(P
+[]
+[]
+
+c_
+
+n
+
+t-
+
+[]
+
+U)
+"10
+0
+c-
+
+D
+0
+
+[]
+
+E
+
+[]
+0
+
+o
+
+[]
+[]
+[]
+[]
+[]
+[]
+
+CIZ
+0
+
+0
+0
+
+o_
+0
+
+0
+tO
+
+a.
+
+E
+0
+0
+0
+
+0
+
+0
+
+0
+
+O0
+0,1
+q)
+Iw.
+
+O_
+
+I.L
+
+66
+
+o
+
+J
+¢D
+
+cQ.
+
+H
+D
+m
+
+cO
+¢D
+
+E
+
+o
+
+0
+U
+8
+
+¢'xI
+II
+
+_
+t'q
+
+6'7
+
+0
+0
+
+0
+(_
+
+0
+0
+
+d
+
+d
+
+d
+
+o
+
+t-
+
+t_
+
+O.
+II
+II
+
+C_
+nn
+
+o
+
+o
+
+o
+
+I_
+
+d
+
+d
+
+d
+
+III
+
+v
+
+/I
+E
+0
+
+E
+
+d
+
+_
+
+_
+
+--
+
+-
+
+0
+
+.
+
+_
+
+0
+
+E
+
+N
+
+"
+
+oo
+
+g
+
+o
+
+°
+o
+
+m
+
+o
+
+o
+
+g
+
+II
+
+II
+
+8
+
+_1_
+
+.l
+
+L_J_
+
+I
+
+"
+
+o
+0
+0
+
+o
+0
+0
+
+o
+0
+0
+
+cS
+
+cS
+
+d
+
+_
+"t,_
+
+6_
+
+_
+
+,
+
+_o.
+
+o
+
+0
+
+o
+c_
+
+1.0
+II
+
+II
+CO
+0
+
+o
+_
+
+Ill
+
+A
+
+- oo
+o
+d
+
+v
+
+._o
+
+o°
+
+o_
+
+o
+d
+
+d
+III
+
+121
+
+o
+en
+v
+
+(11
+
+.__
+
+0")
+
+E
+
+0
+0
+II
+
+CO
+_
+
+o
+
+0
+
+_
+II
+
+II
+
+*
+
+_
+"t_
+
+69
+
+o
+o
+o
+d
+
+o
+o
+o
+d
+
+o
+o
+o
+d
+
+0
+
+o
+--T,-
+
+II
+r_
+
+v
+
+e0
+
+.w
+
+o
+
+E
+f#')
+
+u_
+o
+
+II
+
+II
+
+8
+
+oJ
+
+_'"
+N
+
+g
+O.
+o
+
+70
+
+_
+o
+
+_
+o
+
+o
+
+o
+
+6
+
+d
+
+,
+
+0
+
+'o
+o.
+i--
+
+0
+
+c
+II
+
+L_
+II
+
+._1
+
+;
+
+I
+
+i
+
+I
+
+,
+
+1
+
+_
+
+O
+b-I
+v
+
+cO
+
+0
+
+0
+
+0
+
+0
+
+o
+d
+
+o
+o
+
+o
+o
+
+o
+
+(M
+o
+
+D
+
+o
+
+o
+v
+
+0
+
+e_
+
+E
+
+c_
+
+oo.
+
+II
+
+e--
+
+°--
+
+O0
+
+d
+
+II
+
+_
+
+o
+
+O0
+
+d
+I
+
+J'
+
+_
+
+•
+
+0
+
+d
+.
+
+,
+
+]
+
+,
+
+I
+
+,
+
+Z
+
+0
+
+_
+
+C,,,I
+
+','0
+0
+
+0
+0
+0
+
+0
+0
+0
+
+d
+
+d
+
+e"
+o
+m
+o
+e-I
+121
+t_
+.._1
+en
+
+d
+
+II
+
+Z
+o
+e-o
+
+[]
+
+._t_
+
+E
+
+L_
+
+o
+
+o
+
+II
+
+II
+8
+
+0
+
+g-,_
+
+_d
+
+E .-.
+E >
+:_Z
+
+__±=_
+
+1 __:_
+•==
+0
+0
+
+c_
+
+71
+
+[
+0
+0
+0
+d
+
+0
+0
+0
+d
+
+!
+
+.__
+u_
+
+o
+
+0
+
+tC_
+Q.
+
+v
+
+Lt_
+
+II
+
+II
+
+O_
+0
+OJ
+
+tn
+
+0
+
+I
+
+en
+t_
+
+,
+
+_
+
+I
+
+,
+
+I
+
+o
+o
+
+•,-0
+0
+
+0
+0
+0
+
+0
+0
+0
+
+d
+
+d
+
+o
+
+o
+
+I°
+0
+o
+
+Ill
+
+c',
+
+0
+
+o
+
+13Q
+
+rm
+v
+
+o
+o'_
+0
+04
+0
+li
+
+E
+o
+
+Q.
+
+oo
+
+00
+
+c5
+
+c5
+
+_
+
+It
+
+cO
+U)
+
+o
+
+co
+Z
+
+c5
+
+r_
+CO
+
+o4
+0
+
+r-.
+O_
+
+II
+,._,,
+
+•,-
+
+D
+
+If
+
+_
+_.1
+
+o
+
+_N
+
+0
+
+";_,m
+
+II
+
+\
+
+[]
+
+_"
+•0
+0
+
+0
+0
+0
+
+f_D
+0
+0
+0
+
+0
+0
+0
+
+o
+
+d
+
+d
+
+d
+
+m
+_3
+cO_
+Z
+0
+to
+00
+t-
+
+_
+e-
+
+0
+o
+
+cs
+II
+
+Q.
+
+E
+
+kO
+
+0
+
+C)
+
+II
+ll
+
+r_
+
+EE .-.
+E >
+
+c_
+
+• ...._
+
+U_
+
+,..
+L',-.1
+
+72
+
+_
+0
+0
+
+_
+0
+0
+
+0
+0
+0
+
+0
+0
+0
+
+d
+
+d
+
+d
+
+Ld
+II
+CO
+
+m
+O
+u3
+
+v
+
+C_
+CO
+_..I
+
+O
+co
+
+[]
+"1:3
+c-
+
+®
+O
+
+Z
+
+E
+.l-.a
+.m
+
+O
+
+o
+O
+
+o
+
+d
+
+o
+
+O
+(3.
+
+E
+
+O
+
+d
+a
+CO
+_J
+
+or)
+
+r_
+
+o
+
+E
+
+O
+09
+
+®@@®@®
+
+O
+03
+
+d
+
+O
+cO
+O0
+.i
+(3.
+
+o
+
+d
+
+vO
+O
+
+C_I
+v-O
+O
+
+O
+vO
+O
+
+OO
+O
+O
+O
+
+_
+O
+O
+O
+
+_"
+O
+O
+O
+
+C_I
+O
+O
+O
+
+d
+
+o
+
+d
+
+d
+
+d
+
+d
+
+d
+
+_4
+
+73
+
+E
+O
+
+O
+
+0d
+
+t33
+II
+
+II
+
+J
+
+rn
+v
+
+d
+n
+
+\
+
+O
+
+J
+m
+"o
+t-
+
+d
+
+O
+o
+
+d
+
+Z
+
+!
+
+E
+
+8
+
+O
+00
+u
+.m
+
+O
+t_
+'
+
+O
+I-
+
+O
+
+m
+
+O
+0 ",- 0_1
+o q o o,-.oodddo
+11 11 I1 11 II
+
+t.o
+O
+
+0
+_
+
+d
+!
+
+II
+co
+o
+
+®@@®@®
+
+o
+
+O
+o
+O
+tO
+.m
+ib-
+
+Q_
+
+E
+O
+
+o,
+
+O
+
+O
+
+c_
+O4
+
+I
+0
+_0
+0
+
+d
+
+i
+
+I
+cO
+0
+0
+0
+
+II
+
+o
+
+74
+
+L6
+II
+
+tO
+._J
+
+rn
+v
+
+n
+
+n
+
+O0
+_J
+
+[]
+
+rn
+tC_
+
+[]
+
+cO
+Z
+
+D
+[]
+[]
+
+E
+,o
+
+[]
+
+J_
+
+[]
+[]
+
+a
+
+E
+
+tO
+m
+
+0
+C
+
+[]
+
+Z
+[]
+
+"I0
+
+[]
+[]
+
+[]
+
+0
+r-
+
+[]
+0
+
+[]
+[]
+
+rr
+
+[]
+rl
+[]
+
+0
+0
+
+0
+[]
+0
+0
+0
+0
+tO
+00
+O.
+
+E
+[
+
+0
+
+0
+0
+
+!
+
+0
+_0
+
+O'
+
+O0
+
+O
+ml"
+
+O
+OJ
+
+O0
+
+0
+
+0
+
+d
+
+c_
+IJ-
+
+"75
+
+c_
+'tz
+
+O_
+Q.
+
+CO
+
+(I)
+
+o
+
+"O
+
+C_j
+
+c_
+(/3
+cD
+
+.I
+
+u
+¢.In
+
+oO
+O
+
+c_
+i
+!
+
+c_
+"0
+c-o
+0
+O
+-I
+0
+c
+0
+
+c_
+O
+O
+
+c_
+
+L_
+LL
+
+76
+
+Q_
+
+Q..
+
+C_
+O
+O
+
+m
+
+o
+
+Q.
+
+E
+E
+x
+c_
+
+E
+"O
+c
+c_
+
+O
+
+0
+O
+
+c_
+c_
+
+c_
+LL
+
+77
+
+o
+__.T--
+
+q)
+
+Q.
+
+0
+'T""
+
+II
+
+c_
+II
+
+co
+C_
+o
+o
+III
+
+t-o
+
+u)
+E
+o
+
+q)
+
+E
+
+Iz}
+_J
+
+m
+E
+
+cO
+z
+O
+c
+o
+"E
+e_
+
+E
+O
+
+O
+0
+II
+
+o4
+II
+
+?8
+
+0
+
+(./)
+
+1.0
+II
+
+a
+co
+_.1
+rn
+
+D
+
+0
+C_l
+0
+
+D
+[]
+
+o
+
+O0
+Z
+
+[]
+
+\
+
+c
+
+E
+
+o
+[]
+n
+
+E
+
+I
+
+o
+
+/
+/
+/
+/
+I
+
+[]
+
+o
+[]
+
+/
+
+I
+
+cz
+0')
+
+/
+
+I
+
+co
+_J
+rn
+"0
+c-
+
+D
+
+/
+
+D
+
+"o
+
+/
+
+o
+c>,
+
+/
+/
+
+n-
+
+/
+
+I
+
+o
+
+I
+I
+I
+I
+(
+
+0
+0
+
+u_
+u_
+o
+0
+o
+cO
+09
+c_
+O.
+
+I
+
+O
+O
+
+!
+
+0
+0
+
+I
+O
+
+0
+
+0
+
+O0
+
+E
+O
+
+O
+
+0--
+
+79
+
+d
+0
+O
+
+O
+0
+
+C
+0
+
+c
+0
+
+O4
+O
+
+[]
+
+I
+
+[]
+
+0
+
+I
+
+_O
+
+I
+
+=Sd
+
+/
+/
+
+Z
+
+--1
+
+J
+
+rn
+
+rn
+
+/
+\
+
+[]
+[]
+[]
+
+O
+
+/
+
+I
+
+[3
+[]
+
+I
+I
+I
+
+O
+(D
+.O
+
+/
+/
+
+[]
+
+I
+
+[]
+
+Od
+
+I
+
+[]
+13
+
+(-
+
+/
+
+00
+"O
+
+/
+
+[]
+
+/
+
+o
+D
+
+E
+
+O
+(.-
+
+/
+/
+
+[]
+
+/
+
+[]
+O
+
+rr-
+
+!
+
+00
+
+/
+
+0
+
+!
+
+C
+
+/
+C
+
+/
+/
+
+E
+cO
+
+/
+%
+
+[]
+
+\
+I
+I
+
+0
+O
+¢..
+O
+
+I
+
+I
+
+0
+_D
+
+0
+LO
+
+I
+0
+
+0
+03
+
+0
+0
+
+u5
+CO
+
+rr"
+LL
+
+80
+
+"_
+
+"_
+
+I"--
+
+II
+
+II
+
+I1
+
+>
+Z
+
+>
+Z
+
+>
+Z
+
+e_
+G)
+0
+Lo
+
+0")
+0
+
+o
+o
+
+L._
+ii
+
+E
+0
+(1)
+C_
+(D
+oi
+cO
+tO
+
+o°
+
+>
+Z
+
+(D
+C_
+cO
+0
+'4--
+
+"0
+.i
+cO
+
+o
+o
+c_
+
+0i
+
+C_
+i
+
+(D
+-s
+
+U2
+
+o
+-- 0
+
+CO
+(D
+
+w--
+
+C_
+LL
+°_
+
+i
+o
+o
+
+,
+
+i
+
+,
+
+o
+o
+
+I
+
+i
+
+o
+o
+
+J
+(D
+0
+
+,i
+
+81
+
+I
+
+TB
+
+vC
+T,B
+
+Q.
+Q.
+
+c_
+0
+_O
+Tm
+
+C
+
+II
+Z
+m
+v
+
+0
+
+--I
+
+OL
+0
+_D
+0
+C
+
+0
+
+c_
+r<
+cO
+0
+Z_
+
+LL
+I
+
+J
+
+I
+
+i
+
+*
+
+82
+
+].j 'e6pe 6u!peel leOOl o_,eA!].eleJ ,,:_
+
+I
+
+_
+
+_
+
+_
+
+0
+
+o
+
+o
+
+d
+
+o
+
+o
+
+I
+
+I
+
+'
+
+tl
+
+'
+
+I
+
+I
+
+0
+
+ai
+
+I
+
+o
+
+\
+
+I
+
+._-
+
+13
+O3
+J
+
+_
+
+LO
+II
+
+_
+
+rn
+
+_
+
+0
+
+o.
+
+13
+
+a
+O3
+_.1
+
+E
+£
+
+0
+I3.
+
+cO
+
+o
+i--
+
+e-
+
+ro
+Zl=
+
+C
+0..
+
+00
+
+0
+0
+
+o
+!
+
+13_"
+
+o5
+O3
+
+0
+Illltl
+
+0
+0
+
+o
+
+,
+
+0
+0
+_
+
+0
+0
+0
+
+0
+0
+_
+
+0
+0
+
+_
+
+o
+
+d
+
+o
+
+$3
+
+d
+
+Cr_
+LL
+
+0
+II
+cO
+
+>
+Z
+
+.m
+
+0
+0
+0
+
+U.I
+
+121
+0
+1.0
+'m"
+
+Iii
+I
+-.I
+
+rn
+"0
+r-
+
+cO
+
+.m
+
+0
+
+(.0
+
+.)(-
+
+r'l
+
+E
+0
+
+0
+0')
+
+ILl
+
+LI.I
+
+ILl
+
+.m
+
+C
+(D
+
+0
+0
+
+0
+G_
+0
+
+U..I
+
+if)
+
+I
+-.I
+
+0
+
+rn
+0
+0
+
+cO
+0
+0
+tO
+
+O
+
+E
+0
+
+0
+
+LI_
+
+84
+
+0
+II
+C
+
+0
+
+Z
+
+i--
+
+-
+
+0
+0
+L_
+
+0
+_0
+
+W
+
+0
+rn
+0
+
+U.l
+I
+_l
+
+r_
+
+II
+
+t-
+
+Z
+0
+0
+tO
+
+tO
+
+0
+tn
+
+0
+
+W
+
+°u
+
+o
+t-
+
+LLI
+
+O
+
+E
+O
+
+LO
+
+0
+
+0
+
+CO
+
+D
+LLi
+I
+
+M',,,,-
+
+O
+
+_l
+
+O
+
+n_
+0
+0
+CO
+
+C
+O
+
+O
+tO
+0
+I._
+
+.r-Q.
+
+E
+O
+
+o
+d
+-K-
+
+1.1_
+
+85
+
+_6
+tO
+.i
+
+O
+-- O
+u9
+
+O
+O9
+
+LU
+
+(D
+tn
+O
+
+Ill
+I
+..J
+
+nn
+"O
+t-
+
+tO
+°m
+
+O
+Q_
+
+tO
+
+L.
+
+CD
+
+Ill
+
+.i
+
+E
+O
+
+O
+
+W
+t-
+
+O
+O
+_-
+
+(D
+n
+
+O
+LO
+CO
+O
+_0
+
+Ill
+I
+..J
+
+O
+
+rn
+O
+O
+O3
+
+tO
+O
+tO
+
+O
+LO
+
+tn
+
+E
+O
+
+CD
+O
+O
+OJ
+
+(D
+
+II
+
+86
+
+O
+I=
+(/)
+o
+0")
+o
+
+0
+o
+
+Q.
+a.
+
+o
+or)
+
+o
+o
+°_
+
+O
+
+W
+
+O
+.m
+
+O
+W
+
+rn
+W
+I
+nn
+O
+O
+.m
+
+o
+o
+
+Q.
+
+E
+O
+
+O
+0
+o
+
+o
+
+I
+
+.o
+U_
+
+c_
+
+87
+
+o
+co
+
+E
+o
+
+O_
+
+o
+OJ
+u0
+co
+
+o
+
+O
+II
+
+o
+II
+t-
+
+1,1,1,1,
+.
+
+O
+
+_
+
+O
+
+o
+d
+
+o
+d
+
+o
+d
+
+__
+O
+
+o
+d
+
+"'lx_
+
+e9
+Q.
+o
+
+CO
+
+O
+O.
+o
+
+O.J
+
+O
+O.
+o
+
+OJ
+
+O
+O
+o
+
+','-
+
+O
+O
+o
+
+_
+O
+d
+
+O
+
+O
+O
+o
+
+CO
+O
+O
+II
+
+i.o
+O
+
+-o
+
+o
+o
+II
+
+o
+
+O
+O
+O
+
+c_
+
+,
+"1_
+
+o
+oJ
+o
+o
+c5
+
+u'_
+_
+o
+o
+c_
+
+o
+_
+o
+o
+d
+
+un
+o
+o
+_z)
+d
+
+d
+
+o
+"o
+o
+o
+a
+co
+_J
+n_
+
+0O
+.m
+
+O
+tn
+'_
+
+CO
+O
+O
+
+04
+O
+O
+
+O,I
+O
+O
+
+",-O
+O
+
+O
+O
+
+O
+O
+O
+
+d
+
+d
+
+d
+
+d
+
+d
+
+d
+
+.i
+
+tO
+
+O
+00
+
+CO
+
+,DO
+
+--O
+
+oq
+
+d
+
+O
+tO
+0O
+
+.i
+
+'ID
+d
+
+"_
+
+OJ
+
+o
+d
+
+_
+
+O
+
+o
+O
+
+_
+O
+
+o
+
+d
+
+d
+
+d
+
+O
+
+o
+
+o
+
+!
+
+o
+O
+
+d
+
+o
+
+d
+
+:3
+0_
+
+d
+
+[]
+
+E
+O
+
+O
+
+o5
+
+I..L
+
+[]
+
+,
+
+O
+
+"_
+
+88
+
+_
+
+O
+
+_
+
+_
+
+O_I
+
+_
+
+O
+
+_
+0
+
+o
+
+O
+
+o
+
+O
+
+o
+
+O
+
+o
+
+O
+
+_
+
+O
+
+d
+
+d
+
+d
+
+d
+
+d
+
+o
+d
+
+d
+
+(/)
+o
+El.
+
+E
+o
+o
+..o
+
+r4_
+
+oF.,
+
+v
+
+OJ
+II
+
+t,O
+O,I
+Oa
+II
+
+o
+
+I , I , I , I , I , I L I , I_._J
+0
+
+"_b2
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+dddodddd
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+tag
+0
+O.
+tO
+t'_
+0
+
+_1"_
+
+0
+d
+
+0
+0
+o
+
+0
+0
+o
+
+0
+0
+d
+
+E
+0
+d
+O
+
+11
+
+0
+
+0
+
+0
+
+II
+
+O
+
+OEI
+
+00
+
+d
+
+O
+
+c5
+d
+O4
+
+d
+
+R
+0
+
+___0
+00000000
+
+o
+o
+
+00
+O
+
+o
+o
+
+,m
+
+O
+¢0
+_J
+
+n7
+
+_00000000
+
+"lx_
+
+dddddddd
+
+Lr)
+0
+
+0
+0
+
+_1"
+0
+
+o
+0
+
+e')
+0
+
+o
+0
+
+0,1
+0
+
+o
+0
+
+E
+O
+
+0
+
+o.
+
+.n
+
+0
+
+O
+O
+CO
+{:3
+
+O
+
+d
+0
+o
+o
+
+c_
+
+o
+o
+
+d
+
+O
+
+o
+
+E
+o
+
+o
+
+o
+
+0
+
+o
+d
+
+o
+
+d
+
+o
+
+d
+.)(.
+.
+•_
+ix?
+
+_I"
+0
+0
+
+_
+0
+0
+
+_
+0
+0
+
+dddddddd
+
+C_i
+0
+0
+
+L_J
+0
+0
+
+_
+0
+0
+
+_-0
+0
+
+0
+0
+0
+
+0
+
+, g
+
+[]
+[]
+
+LF)
+0
+
+_
+0
+
+O')
+0
+
+0,1
+0
+
+'_1'-4 0
+
+0
+
+0
+
+0
+
+d
+
+89
+
+d
+
+d
+
+d
+
+d
+
+0
+
+d
+
+o_
+
+LL
+
+oJ
+(D
+0_
+o
+0
+0
+
+[]
+
+/
+
+"g
+
+7_
+
+II
+
+c)
+
+[]
+---
+
+_
+
+.,=
+
+°
+
+v
+
+4
+
+cO
+.J
+rn
+v
+
+00
+CD
+
+m
+
+E
+e0_
+"0
+0
+err
+
+Oo\
+
+u
+
+o
+¢J0
+¢,0
+0
+o
+0
+cO
+
+._O.
+
+E
+0
+
+0
+
+I t I
+0
+0
+0
+0
+0,.I _
+
+,
+
+I
+0
+0
+0
+
+,
+0
+0
+O_
+
+0
+0
+CO
+
+0
+0
+I_
+
+0
+0
+_D
+
+0
+0
+_
+
+9O
+
+0
+0
+_
+
+0
+0
+CO
+
+0
+0
+0.1
+
+0
+0
+',--
+
+0
+U_
+
+Appendix
+
+A
+
+Coefficients
+of the Linearized System of Compressible
+Three-Dimensional
+Boundary-Layer
+Equations Discretized With a Fourth-Order
+Pade Formula
+
+(1) Coefficients
+
+alkl =
+
+of Continuity
+
+Equation:
+
+--I
+
+akl2 = --Clk(Cll)k_
+akl3 = --Clk@12
+
+1
+)k_ 1
+
+akl4 = 0
+akl5 = --C2k(ell)k_l
+
+a_ = --_k(_l_)k-1
+a_7
+
+= 0
+
+b_l =
+
+1
+
+b_2 =
+
+--Clk@ll)
+
+k
+
+b_3= -_1k(_12)k
+b_4 =
+
+0
+
+b_6 =
+
+C2k(el2)k
+
+b_7 = 0
+
+r_
+
+=--(qll)k+(qll)k_l
+
+qll
+
+= W
+
+A-Clk(ql2)k+elk(ql2)k_l
+
+ql_ = A1F_ + A2F + A3G, 1 + A4G
+q13 = A1L( + A2L + A3M, 1 + A4M
+Cll = alA]
+
++ A2
+
+e12 = blA3 + A4
+
+1A_
+
+clk = _- _,_
+
+A-1
+
+-- e2k(q13)k-t-C2k(q13)k_l
+
+(2) Coefficients
+
+of _ Momentum
+
+a2kl =
+
+Fk-1
+
+a2k2 =
+
+Wk-1
+
+--
+
+Clk(e21)k-1
+
+ak3
+
+=
+
+--Clk(623)k_
+
+1 --
+
+ak4
+
+=
+
+--¢lkB6
+
+ak 5 --
+
+--lk_l
+
+bk22 =
+
+--Wk
+
+bk23 =
+
+--¢lk(e23)k
+
+bk4 = -c]k
+
+Equation:
+
+-- C2k(e22)k-1
+C2k(e24)k_
+
+1
+
+-- C2k(e21)k_l
+
+-- Clk(e21)k
+
+-4- C2k(e22)k
+
+3L C2k(e24)k
+
+B6
+
+b2k5
+= tk + c2k(e21)k
+b2k6
+= c2k(*23)k
+b2k7
+= c2k_6
+r2k =
+
+--(q21)k
+
+-I- (q21)k-i
+
+-1- Clk(q22)k
+
+-F Clk(q22)k_l
+
+--C2k(q23)k
+
+-1- C2k(q23)k_l
+
+q21 = (1L - wF)
+q22 = B1 (F2)_
+
++ B2(FG)u
+
+q23 = 2BI(FL)_
+
++ B2(FM
+
+e23:
+
++/_3F
+
+2 + [34FG
+
++ GL),_ + 2[_3FL
+
+(blB2-t-B4)F+2[_sG
+
+A-2
+
++/35G
+
+2 +/_6H
+
++ B4(FM
+
++ GL)
+
++ 2115GM
+
++ [3_I
+
+(3) Coefficients
+
+of _ Momentum
+
+ak31 =
+
+Gk_
+
+ak32 =
+
+--Clk(e31)k_
+
+ak33 =
+
+wk_
+
+ak34 =
+
+--clkC
+
+Equation:
+
+1
+
+1 --
+
+1 -- c2k(e32)k_
+Clk(eZZ)k_
+
+1 --
+
+1
+
+C2k(eZ4)k_
+
+1
+
+6
+
+ak35 = --c2k(e31)k_
+
+1
+
+a_ = -c2kdo
+b3kl =-Gk
+
+b3k3
+= -wk - _lk(_33)k
++ _2k(_34)_
+b3k4
+= -_1_d6
+b3_5
+= ¢2_(_31)k
+bk36 =
+
+lk "4- C2k(e33)k
+
+bk37
+= _2kd6
+r_
+
+=
+
+--(q31)k+(q31)k_l-t-Clk(q32)k+Clk(q32)k_l
+
+q31 = (IM
+
+-
+
+--C2k(q33)k-t-C2k(q33)k_l
+
+wG)
+
+q32= C,(FC)_+ C2(C2),+ C3F 2 + C4FG
+q33 =
+
+CI(FM
+
++ GL)_
+
++ 2C2(GM),
+
+1 + 2CaFL
+
+(o, 1
+
+e31 --
+
+e32
+
+=
+
+2C3L
+
+633
+
+=
+
+(alC1-4-C4)
+
+¢34
+
+=-- (alCI-FC4)L+
+
+-4- (alCl-t-C4)M
+
+FnL
+
+(2blC2-Jc2C5)_
+
+(261C2-1-2C5)"
+
+A-3
+
++ C'sG 2 + C'6H
++ C4(FM
+
++ GL)
+
++ 2CsGM
+
++ C6I
+
+(4)
+
+Coefficients
+
+of Energy
+
+Equation:
+
+a_l
+
+=
+
+Hk-1
+
+a_2
+
+=
+
+--Clk(e41)k_
+
+1 --C2k(e42)k-1
+
+a_3
+
+=
+
+--Clk(e43)k_l
+
+--C2k(e44)k-1
+
+a_4
+
+=
+
+Wk_l--Clk(e45)k_
+
+a_5
+
+=--C2k(e41)k_l
+
+a_6
+
+=
+
+--C2k(e43)k_
+
+bkl
+
+=
+
+-Hk
+
+1 --c2k(e46)k-1
+
+1
+
+b4k2
+= -_k(.41)_ + c2k(.42)_
+bk43 =
+
+--Clk(e43)k
+
++
+
+C2k(e44)k
+
+b_ = -_k - _k(_4_)k+ _2k(_46)k
+
+b_7= (lp)k+ _2k(_45)k
+r_
+
+--
+
+--(q41)k+(q41)k_l-l-Clk(q42)k+Clk(q42)k-l--C2k(q43)k
+
+q41 = (lfl
+
+- wH)
+
+DI(FH)_
+
+q43
+
+=
+
+DI(FI
+
++ HL)_
+
+e41
+
+_--- (aiD1
+
++ D3)H
+
+e42
+
+--'-- (aiD1
+
++ D3)I
+
+e43 =
+
+(biD2
+
++ D4)H
+
+C44 =
+
+(biD2
+
++ D4)I
+
+C45 _--- (aiD1
+
++ D3)F
+
++ (biD2
+
++ D4)G
+
++
+
++
+
++
+
+=
+
+(aiD1
+
++ D2(GH),
+
+I + D3FH
+
+q42 =
+
+e46
+
+-t-c2k(q43)k-1
+
+D3)L
+
++ D2(GI
+
+(biD2
+
++ HM)_
+
++ D4GH
++ D3(FI
+
+D4)M
+
+A-4
+
++ D5
++ HL)
+
++ D4(GI
+
++ HM)
+
++ 015
+
+I
+
+(5) Coefficients
+
+a51
+
+=
+
+of F-L-L
+
+Equation:
+
+--C2k l-__l Lk-1
+1
+
+a52 =
+
+-1 - c2k1--__l
+(_sl)__1
+1
+
+a53 =
+
+--C2kl__l(e52)k-1
+
+a54 =
+
+a55
+
+=
+
+a56
+
+=
+
+a57
+
+=
+
+b51 =
+
+1
+
+--Clk
+
+(--l'+wlk_l
+
+-- C2k __lk--_
+
+0
+
+C2k_kLk
+
+1
+
+bs_= 1 + c2k_(e51)k
+b53 = C2k_-_(e52)k
+b54 = C2k
+
+B6
+
+b55
+
+-_-
+
+=
+
+--elk
+
+C2k _--_(--l'
+
+A- W)k
+
+b56 = 0
+b57 = 0
+
+r_ =
+
+--(qS1)k+(OS1)k_l
+
+q51 =
+
+F
+
++Clk(q52)k+Clk(q52)k_l--C2k(q53)k+C2k(q53)k-1
+
+q52 = L
+q53 =
+
+1{
+
+_
+
+BI(F2)_
+
++ B2(FG)_
+
+651
+
+--_
+
+(2al"l
+
+652
+
+:
+
+(biB2-_-
+
++/?3F
+
+Ll' + wL + A1FF_
+
+7L2[_3-_-alA1)F-_
+
+[_4
+
+-4- blA3)F
+
+2 + B4FG
+
+A-5
+
+2 +/)6H
+
++ A3FG,}
+
+(blB2-_-[_4)G-_-A1F,_-A3
+
+-_- 2B5G
+
++/_sG
+
+G71
+
+I
+
+(6) Coefficients
+
+of G-M-M
+
+Equation"
+
+a61 =
+
+--C2k-].Z_1k-1
+lk-1
+
+a62
+
+--C2k _ l--'_-(e61)k_l
+%-1
+
+=
+
+1
+
+a65 =
+
+0
+
+1
+
+i
+
+_ = -c,_ - c_l-__(-l + _)_-1
+a67 =
+
+0
+
+b_l = c2k_Alk
+
+b62= c2k¼(_6a)k
+1
+b63 =
+
+1 + c2k_(e62)k
+
+b_4 = c2kld6
+tk
+b65 = 0
+b66 = --Clk
+
+-t- C2k _-_(--l'
+
+"4- W)k
+
+b67 = 0
+
+rk =
+
+--(q61)k
+
+q61 :
+
+G
+
+q- (q61)k-1
+
+q- Clk(q62)k
+
++ Clk(q62)k-1
+
+-- C2k(q63)k+C2k(q63)k-1
+
+q62 = ._I
+
+q63 =
+
+1{
+
+7
+
+CI(FG)_
+
++ c_(c_). + d_r 2 + d_Fc + d_c 2 + d_H
+- Ml'
+
++ wM
+
++ A1GF_
+
++ AaGGu_
+)
+
+¢61 = 2(_3F
+e62=
+
++ (a,C,
+
++ C4 q-alA1)G
+
+(alCI+C4)F+(2blC2+2Cs+blA3)G+AIF,+A3Grl
+
+A-6
+
+!
+
+(7) Coefficients
+
+of H-I-!
+
+Equation:
+
+--Wk_
+
+1
+
+a71 = --c2k (lp)k_ 1
+1
+
+a72 = -_2k (lp)__1(_71)k-1
+1
+
+a74 = -1
+
+1
+
+- c2k_(_73)k_l
+t
+
+I
+
+I
+
+_'P]k-1
+a75
+
+=0
+
+a76
+
+---- 0
+
+1
+
+.77 = -_1_ - _2k,I _
+
+(-l_ + w)_-x
+
+k'P]k-I
+
+1
+571
+
+---- C2k(_v)tWk
+P)k
+
+1
+b72
+
+=-- C2k (_._L(e71)k
+
+b73
+
+=
+
+1
+C2k--(e72)k
+
+(lp)k
+
+1
+b74 = 1 q- C2k._-'_-_---.(673)
+
+(lp)k
+
+k
+
+b75 = 0
+b76 = 0
+b77 = -clk
+
+1
++ c2k--(-lp
+(Ip)k
+
+rk = --(q71)k
+
++ w)k
+
++ (q71)k-1
+
+q71
+
+=
+
+H
+
+q72
+
+=
+
+I
+
+q73
+
+=
+
+_-_{DI(FH),
+
++ Clk(q72)k
+
++ D2(GH).
+
+e71=
+
++ [93 + a]A1)H
+
+e72 = (blD2
+
+-4- [_4 + blA3)H
+
+(alDI+D3)F+
+
++ D3FH
+
+II'p + wI + A1HF_
+
+(a,D,
+
+e73=
+
++ Clk(q72)k-1
+
++ D4GH
+
++ D5
+
++ A3HG,_}
+
+(blD2+£)4)G+A1F_+A3Go
+
+A-7
+
+-- C2k(q73)k
+
++ c2k(q73)k-1
+
+Appendix
+
+User's
+
+The BL3D program
+
+Manual
+
+package
+
+B
+
+for the BL3D Program
+
+consists
+
+of a collection
+
+of program
+
+files, input files, and
+
+output files that relate to the solution of three-dimensional
+
+boundary-layer
+
+wing.
+
+package
+
+In addition
+
+to the BL3D program
+
+to the Euler and Navier-Stokes
+programs.
+
+files, the program
+
+calculations
+
+Some of these files are not directly
+
+were developed
+
+for the validation
+
+grid and solution
+
+files as well as programs
+
+for comparison
+
+with the BL3D results.
+
+Langley
+
+system
+
+Masstor
+
+of the code.
+
+in the programs
+
+These include
+
+the Navier-Stokes
+
+All the files have been archived
+per individual
+
+gives a list of important
+
+computer
+
+variable
+
+be useful
+
+Structure
+are divided
+
+results
+
+request.
+
+list may
+
+Program
+
+but
+
+on the NASA
+
+in "Nomenclature".
+
+for a particular
+
+BL3D,
+
+Euler and Navier-Stokes
+
+to the variables
+
+program
+
+names
+
+used in the
+
+for customizing
+
+the
+
+application.
+
+into subdirectories
+
+README file with a short description
+
+as follows.
+
+of the contents
+
+Each subdirectory
+
+of the subdirectory
+
+contains
+
+a
+
+and instructions
+
+the programs.
+
+bl3d/euler/casel.
+solution
+
+to the core program
+
+used in processing
+
+This
+
+files related
+
+cases and the interface
+
+translation
+
+as listed
+
+for running
+
+includes
+
+and the corresponding
+
+formulation
+
+The files
+
+related
+
+and can be made available
+
+Table 1 at the end of this section
+used
+
+for the two example
+
+flow on a swept
+
+for case 1 (subsonic
+
+Contains
+
+files that correspond
+
+to generation
+
+swept wing) with the code CFL3D.
+
+of the Euler
+
+The program
+
+CFL3D
+
+and input files
+
+used in
+
+is not included.
+bl3d/interface/casel.
+processing
+
+the Euler solution
+
+Contains
+
+interface
+
+programs
+
+for case 1 and generation
+
+BL3D run.
+B-I,
+
+of the data file required
+
+in the
+
+bl3d/bl/casel.
+
+Contains
+
+the BL3D program
+
+files used for case 1.
+
+bl3d/ns/casel.
+
+Contains
+
+files that correspond
+
+to the Navier-Stokes
+
+CFL3D
+
+for case
+
+Similarly,
+
+bl3d/euler/case2,
+
+bl3d/interface/case2,
+
+tion of the Kaups-Cebeci
+
+bl3d/euler
+
+for more detailed
+
+interface
+
+and boundary-layer
+
+Interface
+
+Program
+
+program
+
+and bl3d/ns
+and comment
+
+information.
+
+along the constant
+
+statements
+
+in the program
+
+below are details on the
+
+files for the two test cases.
+
+the interpolation,
+
+on this assumption.
+
+The surface
+
+Euler results are assumed
+
+to be available
+
+grid is also, in general,
+
+to be available
+
+solution
+
+nonorthogonal.
+
+contains
+
+the grid points
+
+points.
+
+The actual
+
+f) is as follows:
+
+The grid file:
+
+open(unit=l,file='grid',form='unformatted',status='old')
+read(l)
+jdim, kdim, idim
+read(1)
+(((xg(j,k,i),j=l,jdim),k=l,kdim),i:l,idim),
+(((yg(j,k,i),j=l,jdim),k=l,kdim),i:l,idim),
+(((zg(j,k,i),j=l,jdim),k=l,kdim),i=l,idim)
+
+file:
+B-2
+
+(though not
+
+The boundary-
+
+procedure
+
+in either of the two following
+
+at the cell center
+
+from bl3d/interface/casel/rinvis,
+
+chord directions.
+
+and the BL-EDGE
+
+files, one of which
+
+the Euler solution
+
+on a grid that is generally
+
+span and constant
+
+layer grid stretching,
+
+The solution
+
+Presented
+
+are not of direct interest
+
+Inputs
+
+The inviscid results are assumed
+
+(a) Two separate
+
+files that relate to the applica-
+
+code for case 2.
+
+here. The README files in these subdirectories
+files may be consulted
+
+contains
+
+bl3d/ns/case2
+
+The files in the subdirectories
+
+contains
+
+bl3d/bl/case2,
+
+are subdirectoriesthatcorrespond to case 2 runs for a supersonic
+
+swept wing. The subdirectory
+
+oriented
+
+with
+
+1.
+
+bl3d/ns/case2
+
+strictly)
+
+solution
+
+are based
+The inviscid
+
+formats:
+
+and the other, which
+read statement
+
+(e.g.,
+
+dimension
+titlw(20)
+open(unit=l,file='rest.bin',form='unformatted',status='old,)
+read(2)
+titlw,
+xmachw,
+jt,kt,
+it,alphw,
+ntr,ntime
+read(2)
+((((q(j,k,i,l),j=l,jdim-l),k=l,kdim-l),i=l,idim-l),l=l,5)
+
+The above file format
+
+corresponds
+
+indices in the read statement
+
+to output
+
+are defined
+
+from the program
+
+differently
+
+compared
+
+CFL3D.
+
+j,
+
+k
+
+to the BL3D terminology.
+
+Here, i refers to the span direction,
+
+and j refers to the chord wraparound
+
+starts from the wing lower
+
+trailing
+
+surface
+
+The i,
+
+edge or the downstream
+
+direction
+
+that
+
+plane of the lower
+
+surface
+
+wake.
+
+Note that in this case the solution
+
+points are one less than the grid points
+
+because
+
+they
+
+are obtained
+
+Following
+
+i,
+
+j indices are switched
+
+reference
+
+The variable
+
+q contains
+
+file for more detailed
+(b) A provision
+
+to BL3D notation
+
+The coordinates
+
+In some cases,
+
+may have to be switched
+
+surface
+
+to correspond
+
+length reflen.
+
+then extracted.
+
+at the cell centers.
+
+and solution
+
+is included
+
+open (uni t=21, file='edge.
+read (2 I, *)iv, jv
+read
+(2 i, *) ((xc(i,j)
+,i=l,
+read(21,*)
+( (yc(i
+j) ,i=l,
+read(21,*)
+( (zc(i
+j) ,i=l,
+read(21,*)
+( (uc(i
+j)
+i=l
+read(21,*)
+( (vc(i
+j)
+i=l
+read(21,*)
+( (wc(i
+j)
+i=l
+read(21,*)
+( (tc(i
+j)
+i=l
+read(21,*)
+( (pc(i
+j)
+i=l
+read(21,*)
+( (xs(i
+j)
+i=l
+read(21,*)
+( (ys(i
+j)
+i=l
+read(21,*)
+( (zs(i
+j) ,i=l
+
+wraparound
+
+in the interface
+
+of the cell centers
+
+system
+
+CFL3D
+
+alone
+
+are
+
+component
+
+vc
+
+assumes
+
+notation
+
+with the
+
+a right wing.
+
+(see the README
+
+program
+
+data on the
+
+format:
+
+iv)
+j=1 iv)
+iv)
+j=1 iv)
+iv)
+j=1 jr)
+iv)
+j=1 iv)
+iv)
+j=1 iv)
+iv)
+j=1 iv)
+iv)
+j=1 iv)
+iv)
+j=1 iv)
+iv+l)
+, j=l, jv+l)
+iv+l)
+, j=l, jv+l)
+iv+l)
+, j:l, iv+l)
+
+and the span direction.
+
+(assumed
+
+to input the inviscid
+
+dat',status='unknown')
+
+iv, jv refer to the surface
+
+direction
+
+y and velocity
+
+the
+
+information).
+
+only from a single ASCII file in the following
+
+The variables
+
+on the wing surface
+
+in BL3D the coordinate
+
+the solution vector in standard
+
+read statements,
+
+and are normalized
+
+the sign of the coordinate
+
+because
+
+these
+
+grid cell center
+The variables
+
+to be nondimensionalized
+B-3
+
+dimensions
+
+xc, yc,
+
+with reflen)
+
+in the chord
+
+zc are coordinates
+and uc, vc, wc are
+
+the Cartesian
+
+velocity
+
+components
+
+(normalized
+
+by free-stream
+
+solution
+
+at the cell centers.
+
+The variables
+
+pressure
+
+coefficient
+
+at the cell centers.
+
+normalized
+
+values
+
+grid locations
+
+bl3d/interface/casel
+
+i,
+
+input variables
+variables
+
+The variables
+
+from the inviscid
+temperature
+
+and
+
+xs, ys, zs are the actual
+
+except for plot output).
+
+run is in the following
+
+format:
+
+/ inp. dat
+
+INTERFACE
+gam
+1.40
+ite2
+289
+j2
+35
+xcp
+0.05
+uerlim
+0. 0002
+j lw
+7
+
+Note that each
+
+are nondimensional
+
+(not used in the program
+
+The input file for the interface
+
+CASE
+amach
+0.5
+itel
+33
+jl
+7
+ncp
+40
+itat
+50
+nxw
+i00
+
+tc,pc
+
+velocity)
+
+RUN
+isur f
+1
+jtel
+1
+reflen
+1.0
+
+is tar t
+0
+jte2
+43
+
+omatt
+0.8
+j 2w
+35
+
+input
+
+iout
+1
+
+line is preceded
+
+(read as a character
+
+by a line that contains
+
+variable
+
+and ignored).
+
+a description
+
+The description
+
+of the
+
+of the input
+
+is as follows:
+
+amach
+
+Mach
+
+number
+
+gam
+
+ratio
+
+of
+
+specific
+
+isurf
+
+upper
+
+or
+
+lower
+
+istart
+
+restart
+option
+=0
+full
+run,
+input
+from
+inviscid
+files
+'grid',
+'rest.bin'
+=i run
+with
+data
+read
+from
+'edge.dat'
+=2 read
+inviscid
+files,
+write
+'edge.dat'
+and
+stop
+
+itel,ite2,jtel,jte2
+
+indices
+corresponding
+to wing
+edges
+itel,ite2:
+lower
+and
+upper
+surface
+TE
+indices
+(inviscid
+data
+assumed
+to be
+indexed
+in
+the
+chord-wrap-around
+direction
+from
+lower
+TE
+to LE
+to upper
+TE)
+jtel,jte2;
+span
+direction
+wing
+boundaries
+
+jl,j2
+
+limit
+
+reflen
+
+normalizing
+length,
+if grid
+units
+are
+
+inviscid
+
+B_
+
+heats
+surface
+
+data
+
+(i
+
+or
+
+0)
+
+processing
+
+in
+
+usually
+inches
+
+to
+root
+for
+
+(jl->j2)
+
+chord;
+example,
+
+reflen
+units
+
+can be used to be consistent
+
+number of points
+in the BL grid between
+attachment
+point and local
+chord fraction
+=xcp (30,0.05
+for example for 30 points
+from attach,
+point to 5% chord
+location)
+
+ncp,xcp
+
+itat,uerlim,
+
+max
+number
+or
+attachment
+point
+relocation
+iterations
+and
+error
+tolerance
+on ue
+(20,0.001
+recommended)
+omatt
+is a relaxation
+factor
+for
+attachment
+point
+relocation
+iteration,<l;
+smaller
+values
+give
+slower
+convergence,
+but
+less
+oscillation
+
+omatt
+
+nxw, jlw, j2w
+
+BL3D
+output
+option
+output
+file
+write
+will
+be
+from
+i=l
+to i=nxw,
+j=jlw
+to
+j=j2w
+nxw. LE.nx;
+jlw. GE.jl
+; j2w. LE.j2
+if nxw
+is set
+to 0, nxw
+taken
+to
+
+iout
+
+=i,
+=2,
+
+Note that the istart=l
+ASCII file as described
+
+output
+output
+solution
+
+interpolated
+ue,ve,te
+from
+of BL-EDGE
+
+option corresponds
+
+previously.
+
+ue,ve,te
+
+If the calculation
+
+is for the lower surface
+
+reverses the i indexing direction
+
+surface
+
+the upper surface
+
+of an inverted
+
+Program
+
+values
+
+to the input of inviscid data from a single
+
+then the program
+
+becomes
+
+be=nx
+
+equations
+
+and if istart=0,
+
+Interface
+
+with
+
+(isurf=0)
+
+(in effect, the lower
+
+wing).
+
+Output
+
+The output for the BL3D code is written
+for this write is as follows
+
+to a binary file called bl.bin.
+
+(see also the file blout,
+
+f):
+
+nyw=j
+2w- j lw+l
+write
+( i0 )nxw, nyw
+write(10)
+((x(i,j),i=l,nxw),j=jlw,
+j2w)
+write(10)
+((y(i,j),i=l,nxw)
+,j=jlw,
+j2w)
+write(10)
+((hl(i,j),i=l,nxw),j=jlw,
+j2w)
+write
+(I0) ( (h2 (i, j ) , i=l, nxw) , j=j lw, j2w)
+, j=j lw, j2w)
+write
+(i0) ( (g12 (i, j) ,i=l,nxw)
+if (iout.
+eq . i) then
+write
+(i0) ( (ue (i, j ) , i=l, nxw) , j=j lw, j2w)
+write
+(i0) ( (ve (i, j ) , i=l, nxw) , j=j lw, j2w)
+else
+write
+(i0) ( (use (i, j) , i=l, nxw) , j =j lw, j2w)
+,i=l,nxw)
+,j=jlw,
+j2w)
+write
+(I0) ( (vse(i,j)
+
+B-5
+
+The format
+
+endi f
+write(lO)
+((pb(i,j),i=l,nxw),j=jlw,
+j2w)
+if (iout. eq. i) then
+write(lO)
+((tb(i,j),i=l,nxw),j=jlw,
+j2w)
+else
+write (i0) ((tse(i,j),i=l,nxw),j=jlw,
+j2w)
+endi f
+write (I0 ) ((xb(i,j),i=l,nxw),j=jlw,
+j2w)
+write (i0 ) ( (yb (i, j ) , i=l, nxw) , j:jlw,
+j2w)
+write (i0) ( (zb(i, j) , i=l, nxw) , j=jlw, j2w)
+write (I0) ( (ub(i, j) , i=l, nxw) , j=j lw, j2w)
+write (i0) ( (vb(i, j) , i=l, nxw) , j=j lw, j2w)
+write (i0) ((wb(i,j),i=l,nxw),j=jlw,
+j2w)
+write (i0) (xsave (nx, j ) , j=jlw, j2w)
+The output of xsave
+span station
+
+j=jlw,
+
+in the x direction
+
+corresponds
+
+j2w.
+(i.e.,
+
+accuracy
+
+Note that the dimensional
+
+surface
+
+Other output files contain
+
+to the normalizing
+
+arc length)
+
+information
+
+of the interpolation,
+
+and the BL-EDGE
+
+statements
+
+throughout
+
+for more
+
+information
+
+on these outputs.
+
+Running
+
+the Interface
+
+used in each
+
+distance
+
+from the attachment
+
+by x (i,
+
+j ) *xsave
+
+about attachment-line
+
+as well as comment
+
+The program
+
+is given
+
+arc length values
+
+solution.
+
+the various
+
+iteration
+
+(j)
+
+line
+
+*reflen.
+
+convergence,
+
+the
+
+The files README, main.
+
+subroutines,
+
+f,
+
+may be consulted
+
+Program
+
+routines
+
+are contained
+
+in the following
+
+files:
+
+main.
+f
+attach.f
+blout.f
+inputs.f
+metrix.f
+pack.
+f
+ploti.f
+rinvis.f
+sdist.f
+solv3.f
+sur f. f
+
+In addition,
+file into. dat
+inputs.f.
+
+the include
+
+files
+
+are also provided.
+Reads
+
+corn,
+
+compack,
+
+A brief description
+
+the inputfile
+
+inp.dat.
+
+B-6
+
+the makefile
+
+makefile,
+
+and the input
+
+of some of these files follows:
+
+f. Reads the inviscid
+
+rinvis,
+
+lower surface;
+attach,
+
+normalization
+f.
+
+Locates
+
+boundary-layer
+calls sdist,
+metrix,
+
+surface
+
+of coordinates
+
+the initial
+
+data needed for the upper or
+
+line (for first pass only);
+
+from the currently
+
+grid stretching.
+
+f.
+
+metric quantities
+
+hi,
+
+h2, g12
+
+defined
+
+based
+
+generates
+
+attachment
+
+on currently
+
+a
+
+line;
+
+defined
+
+grid.
+
+surf.
+
+f. Solves the BL-EDGE
+
+blout,
+
+f.
+f.
+
+attachment
+
+grid that originates
+
+Calculates
+
+required
+
+and flow quantities.
+
+f for a suitable
+
+boundary-layer
+
+pack.
+
+data; extracts
+
+Outputs
+Library
+
+The include
+
+equations
+
+the file bl.bin
+
+if this input option is selected.
+
+required
+
+for BL3D run.
+
+of cubic tension spline interpolation
+
+file corn has the following
+
+parameter
+
+routines.
+
+statements
+
+(which correspond
+
+to
+
+case 1 in this example):
+
+parameter(jdim=321,kdim=49,idim=53)
+parameter(ivm=257,jvm=43)
+parameter(nxm=3OO,nym=jvm)
+
+The dimensions
+see comment
+
+depend
+
+statements
+
+on the inviscid
+
+in the file corn for selection
+
+The include
+
+file compack
+
+The program
+
+is run as follows:
+
+statements
+by a.
+
+out
+
+is used in conjunction
+choose
+
+to run the program.
+
+with the spline routines
+
+appropriate
+
+32, fort.
+
+fort.
+
+51, fort.
+
+Please
+
+refer to the various
+
+subroutines
+
+An appropriate
+
+50,
+
+The output files
+
+selection
+
+for successful
+
+dimensions
+
+3,
+
+fort.
+
+for a description
+
+B-7
+
+f.
+
+then type make followed
+20,
+
+fort.
+
+30,
+
+fort.
+
+31,
+
+the results.
+
+of these outputs.
+
+and inviscid
+
+of the interface
+
+in pack.
+
+in the parameter
+
+99 are useful for plotting or checking
+
+of input quantities
+
+completion
+
+fort.
+
+grid size;
+
+of these values.
+
+in the file corn; remove all. o files if corn is modified;
+
+fort.
+
+required
+
+grid size and the boundary-layer
+
+data of good resolution
+
+are
+
+run. Run times on the Cray are only a
+
+few CPU seconds
+and suggested
+
+error
+from
+no
+solution
+change
+ak
+change
+
+so that runs can usually be made interactively.
+
+fixes
+
+values
+
+The possible
+
+Convergence
+
+to
+
+problem
+
+choose
+
+combinations
+
+a lower
+
+value
+
+s/r
+
+This problem
+invariably
+
+of omatt
+
+or increase
+
+or the inviscid
+
+boundary-layer
+
+grid stretching;
+
+in the attachment-line
+itat,uerlim
+
+attachment
+
+near
+
+relocation
+
+values.
+
+If various
+
+near the attachment
+
+line is too curved.
+
+surf
+,hse(ii,j)
+
+,pb(ii,j)
+
+•
+
+•
+
+•
+
+•
+
+•
+
+is due to lack of convergence
+
+by an amplification
+
+•
+
+in the BL-EDGE
+
+coP/oqx at the attachment
+
+in the oscillations
+
+caused
+
+drop back to linear interpolation
+
+for P for a few points
+
+statements
+
+;
+
+grid may also be too coarse
+
+line from the spline interpolation
+
+comment
+
+•
+
+data is too coarse 9_[the solution
+
+caused by a small nonnegative
+
+OP/Ox is caused
+
+The inviscid
+
+,vse(ii,j)
+
+•
+
+•
+
+achieved
+
+do not work, inviscid
+
+no
+convergence;
+i,j
+=...
+ii,use(ii,j)
+
+•
+
+xcp.
+
+not
+
+•
+
+...'
+
+is due to the lack of convergence
+
+enough
+
+•
+
+of ncp,
+
+uerlim
+
+line is not smooth
+
+•
+
+ncp,xcp
+
+to
+
+...
+or
+
+here is the use of inappropriate
+
+combination
+edge.
+
+loop;
+
+of
+
+problem
+
+the leading
+
+This
+
+below.
+
+s/r
+SDIST;
+ipass=...
+for
+ak
+found
+in
+the
+range
+or dak
+values
+in s/r
+ATTACH
+
+input
+
+try a different
+
+are given
+
+Some error messages
+
+in pressure
+
+by a coarse inviscid
+
+can be found in attach,
+
+back to linear interpolation.
+
+B-8
+
+equations,
+
+which
+
+is
+
+line. The nonnegative
+near the attachment
+
+grid. One possible
+
+near the attachment
+
+line.
+
+f, which can be "uncommented"
+
+fix is to
+Some
+to drop
+
+Boundary-Layer
+
+Program
+
+Inputs
+
+The inputs to the boundary-layer
+(a) The boundary-layer
+the interface
+for example).
+
+program
+
+edge data file bl.
+
+and is assumed
+
+are composed
+bin.
+
+of two files:
+
+This binary file is created
+
+to be available
+
+by running
+
+in the current directory
+
+The format for this file has been described
+
+in the subroutine
+
+previously.
+
+(bl/casel,
+
+This file is read
+
+rinvis.
+
+(b) The boundary-layer
+
+input options file inp.
+
+dat.
+
+to be in the following
+
+format
+
+inputs
+
+and is assumed
+
+preceded
+
+by a line that contains
+
+a character
+
+program
+
+variable
+
+a description
+
+This file is read in the subroutine
+(note that
+
+each
+
+of the input variables,
+
+input
+
+which
+
+line is
+
+is read as
+
+and ignored):
+
+bl3d/bl/casel/inp.dat
+
+CASE
+AMACH
+0.5
+ZMAX
+8.0
+ITMAX
+20
+
+1
+
+: BL
+INPUTS
+PFS
+2000
+AK
+1.05
+EPSF
+l.e-6
+
+The description
+
+TFS
+520
+NXLIM
+68
+EPSG
+l.e-6
+
+PRL
+0.72
+NYLIM
+29
+EPSH
+
+IWALL
+0
+
+is given below:
+
+free-stream
+
+Mach
+
+pfs
+
+free-stream
+
+static
+
+pressure
+
+tfs
+
+free-stream
+
+static
+
+temperature
+
+prl
+
+laminar
+
+iwall
+
+wall
+=0
+=i
+
+reflen
+
+0
+
+5
+
+amach
+
+Prandtl
+
+I_IT
+
+1.0
+
+IORD
+
+l.e-06
+
+of the input variables
+
+REFLEN
+
+number
+(lb/ft2)
+(deg
+
+R)
+
+number
+
+boundary
+condition
+adiabatic
+wall
+wall
+temperature,
+deg
+R specified
+(read
+in
+'main.
+f')
+=2
+wall
+heat
+flux
+specified
+,ib/(ft.sec)
+(read
+in main.f)
+note:
+suction
+rates
+are
+also
+specified
+
+in
+
+reference
+(similar
+
+but
+
+length
+to input
+
+in
+ft.
+in interface
+
+B-9
+
+program,
+
+'main.f'
+
+in
+
+ft.)
+
+US or
+
+iunit
+
+SI
+units
+
+SI
+
+units,
+=0
+for
+US
+units
+not
+currently
+implemented
+
+zmax
+
+maximum
+value
+corresponding
+
+ak
+
+stretching
+distributed
+
+nxlim
+
+number
+
+of
+
+stations
+
+nylim
+
+number
+
+of
+
+span-wise
+
+itmax
+
+maximum
+
+epsf
+
+convergence
+
+epsh
+iord
+
+convergence
+
+Boundary-Layer
+
+i
+
+order
+
+in
+
+the
+
+information
+
+subroutine
+
+coefficient;
+
+refer to subroutine
+j) location
+
+Output
+
+x
+
+direction
+
+iterations
+
+at
+
+each
+
+criterion
+
+for
+
+f-prime
+
+at
+
+wall
+
+criterion
+
+for
+
+h-prime
+
+at
+
+wall
+
+of
+
+for
+
+which
+
+scheme
+
+direction
+
+becomes
+
+(i,j)
+
+point
+
+fully
+
+second-
+
+fort.
+
+stream-wise
+
+direction
+
+program
+
+is output to several
+
+files.
+
+The
+
+can be found
+
+in fort.
+
+2. Most of the results are output
+
+from
+
+as required.
+
+thickness,
+
+and crossflow
+
+quantities
+
+include
+
+displacement
+
+thickness,
+
+and skin-friction
+
+and crossflow
+
+Reynolds
+
+number.
+
+profiles;
+
+for more details.
+
+phys
+
+The output
+
+Note that these "writes"
+
+Please
+
+are for each (i,
+
+(with j as the inner loop).
+
+Format
+
+The output
+edge-normalizing
+
+for Stability
+
+of profiles
+quantities,
+
+open(unit=7,file='fort.7'
+
+Analysis
+
+and their derivatives
+
+to first and second
+
+are made in the format
+
+described
+
+below.
+
+,form='unformatted',status='unknown')
+
+write(7)title
+Title
+
+in
+
+are
+
+Outputs
+
+boundary-layer
+
+streamwise
+
+march
+
+points
+
+y
+
+and can be modified
+
+phys
+
+z*, u, v, 7" profiles;
+
+to
+
+which
+wall
+
+in
+
+number
+
+of
+
+by
+the
+
+'zeta'
+
+variable
+edge
+
+stations
+
+The output from the boundary-layer
+convergence
+
+transformed
+boundary-layer
+
+coefficient
+away
+from
+
+value
+
+Program
+
+of
+to
+
+in character*80.
+
+B-IO
+
+order,
+
+as well as
+
+write(7)nxlim,
+
+nylim,
+
+reflen
+
+nxlim
+
+is number
+
+of chordwise
+
+stations.
+
+nylim
+
+is number
+
+of spanwise
+
+stations.
+
+reflen
+
+write
+
+is reference
+
+(7) pfs,
+
+Quantities
+
+tfs,
+
+length,
+
+ufs,
+
+amach,
+
+rofs
+
+P_o, T_o, U_o, Moo, p*.
+
+For each profilei=l,nxlim;
+
+_=l:nylim:
+
+write
+write
+
+(7)i,j,nz,x(i,j),y(i,j)
+(7)hl(i,j),h2(i,j),gl2(i,j)
+
+write
+
+(7) ues,ves,
+
+tes,
+
+i is streamwise
+
+index.
+
+j is spanwise
+nz is no.
+
+dimensional.
+
+,xbs,ybs,zbs
+,sls
+
+roes,pes,
+
+res,
+
+ales,prl,
+
+rcr
+
+in profile (constant).
+
+x (i,
+
+j ) is boundary-layer
+
+coordinate
+
+x.
+
+y (i,
+
+j ) is boundary-layer
+
+coordinate
+
+y.
+
+xbs,
+
+ybs,
+
+zbs are Cartesian
+
+hl
+
+(i, j ) ,h2 (i, j ) ,g12
+
+sls
+
+is s_*, dimensional
+
+ues,
+
+ves,
+
+roes,
+
+coordinates
+
+res
+
+is local Reynolds
+
+ales
+
+is reference
+
+x'*, 2'*, z'*.
+
+(i, j ) are metricshl,h2,g12.
+
+arc-length
+
+in the x direction.
+
+pes are edge quantities
+For i=l,
+
+ales
+
+thetax,
+
+index.
+
+of points
+
+tes,
+
+deltax,
+
+number
+
+Ou,/Os,
+
+based on s_, u,,
+
+length by which normal
+
+= l* =
+
+,_
+
+u,,
+
+for i=l.
+
+B-ll
+
+ve, Te, p,,
+
+is output
+
+instead
+
+Ue •
+
+distance
+
+is scaled.
+
+P,.
+of u, .
+
+= 1" = _/yesl/u_
+
+ales
+
+is laminar
+
+prl
+
+Prandtl
+
+number.
+
+deltax
+
+is boundary-layer
+
+thetax
+
+is momentum
+
+rcr
+
+Profile
+
+for i>l.
+
+thickness
+
+thickness
+
+is radius of curvature,
+
+(99 percent)
+
+based on u, dimensional.
+
+based on u, dimensional.
+
+dimensional.
+
+outputs:
+
+write(7)
+
+(zp(k),k=l,nz)
+
+zp is zp = (z*/l*);
+
+This
+
+note
+
+1" definition
+
+for i=l
+
+and
+
+i>l.
+
+box only for i>1:
+
+write(7)
+(up(k),k=l,nz)
+write
+(7) (upz (k) ,k=l,nz)
+write
+
+up
+
+(7) (upzz
+
+is u*/.,*;
+
+(k) , k=l,
+
+upz
+
+is O%/Ozp;
+
+write(7)
+write(7)
+
+(vp(k),k=l,nz)
+(vpz(k),k=l,nz)
+
+write(7)
+
+(vpzz(k),k=l,nz)
+
+Vp
+
+is 1}*lYe* if i=l,
+
+_z,vpzz
+
+V*/Ue*
+
+(tp(k),k:l,nz)
+(tpz (k),k=l,nz)
+
+write(7)
+
+(tpzz
+
+upzz
+
+is 02up/Oz 2
+
+if i>l;
+
+are derivatives
+
+write(7)
+write(7)
+
+tp
+
+nz)
+
+defined
+
+similar
+
+defined
+
+similar
+
+to upz,
+
+upzz.
+
+(k),k=l,nz)
+
+is T*/Te*; tpz,
+
+tpzz
+
+are
+
+B-12
+
+to upz,
+
+upzz.
+
+write(7)
+write(7)
+
+(wp(k),k=l,nz)
+(wpz(k),k=l,nz)
+
+write(7)
+
+(wpzz(k)
+
+wp is _*/v*
+
+,k=l,nz)
+
+if i=l,
+
+2 for i>l;
+
+_*/u
+
+This box only for i>2;
+
+write(7)
+write
+(7)
+write(7)
+write
+(7)
+
+output
+
+wpz, wpzz
+
+are defined
+
+of streamwise
+
+derivatives:
+
+similar to upz, upzz.
+
+(duds(k)
+,k=l,nz)
+(dvds (k) ,k=l, nz)
+(dtds(k),k=l,nz)
+(dwds (k) , k=l, nz)
+
+duds=(a.*la, )l(U lt*)
+/l*)
+dtds=(
+
+OT* / cgS*l) / ( U_o/ l* )
+
+These
+
+output
+
+writes
+
+are
+
+implemented
+
+bl3d/bl/casel
+
+(and
+
+also
+
+bl3d/bl/case2).
+
+Running
+
+the Boundary-Layer
+
+The program
+
+routines
+
+in
+
+subroutine
+
+out
+
+Program
+
+are contained
+
+in the following
+
+blk. f
+der. f
+etac.
+f
+main.
+f
+phys.
+f
+rinvis,
+f
+sumk.
+f
+cl3phi,
+f
+derk.
+f
+initial,
+f
+nextep,
+f
+read7,
+f
+solve,
+f
+updte,
+f
+
+B-13
+
+files:
+
+in
+
+the
+
+subdirectory,
+
+conv.
+f
+edge.
+f
+inputs,
+out. f
+ref. f
+sum. f
+
+f
+
+In addition,
+
+the include
+
+input file inp.
+
+dat
+
+files com and compack, the makefile
+
+are also provided.
+
+inputs,
+
+f.
+
+ref.
+
+Calculates
+
+reference
+
+f.
+
+boundary-layer
+
+f.
+
+rinvis,
+initial,
+f.
+
+specifies
+edge.
+
+Calls various
+
+f.
+
+etac.
+
+routines;
+
+specification
+
+point i = l, j = ].
+
+of wall temperature
+
+or wall heat flux;
+
+rate.
+edge coefficients
+
+f, etac.
+
+f to calculate
+
+f. Sets up the y differencing
+
+(L scheme
+
+follows:
+
+edge data bl.bin.
+
+Specifies
+
+calls cl3phi,
+
+subroutines
+
+quantities.
+
+Sets up initial profile at the attachment
+
+wall suction
+
+of important
+
+and the
+
+input file inp.dat.
+
+Reads
+f.
+
+main.
+
+blk.
+
+Reads
+
+A brief description
+
+makefile,
+
+depending
+
+on boundary
+
+some additional
+coefficients
+
+point or interior
+
+point;
+
+edge parameters.
+
+based on the local crossflow
+
+direction
+
+or Z scheme).
+
+f.
+
+Sets up and solves the
+
+updte,
+
+(7x7xnz)
+
+block tridiagonal
+
+f.
+
+Updates
+
+nonlinear
+
+quantities
+
+f.
+
+Checks
+
+convergence.
+
+Outputs
+
+dimensional
+
+quantities,
+
+f: storing
+
+of variables
+
+prior to stepping
+
+system.
+
+0, 0', I, f, Ds, and l at k = ! for the current
+
+iteration.
+updte,
+phys.
+
+f.
+
+boundary-layer
+
+properties;
+
+calculates
+
+crossflow.
+nexstep,
+out.
+
+f: output
+
+The include
+
+of quantities
+
+and profiles
+
+in i.
+
+for boundary-layer
+
+file corn has the following
+
+example):
+B-14
+
+parameter
+
+stability
+
+statement
+
+analysis.
+
+(for casel
+
+in this
+
+par
+
+ame ter
+
+( nx=
+
+10 0, ny=2
+
+The nx and ny values
+nz corresponds
+
+are as written
+
+to the number
+
+The program
+
+9, nz = 61 )
+
+of points in the boundary-layer
+
+is run with input files inp.
+
+in parameter
+
+statement
+
+was modified.
+
+Type make, followed
+
+interactively
+the boundary
+in subroutine
+condition
+
+out from the interface
+
+for moderate
+
+can be checked
+
+and bl.
+
+in the file corn are selected;
+by a. out
+
+grids. The program
+
+layer separates;
+update.
+
+dat
+
+bin.
+
+of
+
+dimensions
+
+all . o files
+
+if com
+
+Runs can be made
+
+stops at the (L ]) location where
+of negative
+
+is printed out, and the incipient
+
+by the local skin-friction
+
+B-15
+
+Appropriate
+
+to run the program.
+execution
+
+The value
+
+normal direction.
+
+then remove
+
+this results from the calculation
+
+An error message
+
+program.
+
+coefficient.
+
+temperature
+separation
+
+Table
+List of Important
+
+Computer
+
+variable
+
+1
+
+Program
+
+Variables
+
+Symbol
+
+Description
+
+a_m,
+
+elements
+
+k
+,_kl,m, _l,m
+
+of linearized
+
+system
+
+A1, A2, ,43, A4
+
+coefficients of transformed
+equations (eqs. (47)-(50))
+
+al, a2, a3
+
+,_ direction
+
+coefficients
+
+ak
+
+k_
+
+stretching
+(128))
+
+constant
+
+al
+
+l
+
+ratio (Pl_)/(P_#_)
+
+alp
+
+f
+
+o /o¢
+
+alpr
+
+I/Pr
+
+alprp
+
+l'/Pr
+
+amach
+
+Mc¢
+
+Mach number
+
+amu e
+
+#e
+
+edge viscosity,
+
+amuel
+
+_e at (i,j)
+
+local value of #_
+
+adl,
+
+ad2,
+
+ad3
+
+free-stream
+
+amufs
+
+/lr
+
+bl,b2,b3,b4,b5,b6
+
+B1,
+
+B2,
+
+Bs,
+
+B6
+
+B3:
+
+B4
+
+b3h,b4h
+
+B3,
+
+B4,
+
+for ( distribution
+
+nondimensional,
+
+viscosity,
+
+dimensional
+
+coefficients
+
+(eqs. (55)-(60))
+
+coefficients
+
+(eq. (94))
+
+B-16
+
+continuity
+
+(eq. (129))
+
+reference viscosity function,
+nondimensional
+(eq. (33))
+
+amur
+
+(eq. (120))
+
+(eq.
+
+(eq. (33))
+
+Computer
+
+variable
+
+Symbol
+
+Description
+
+b3t,b4t,b5t,b6t
+
+coefficients
+
+(eq. (91))
+
+bdl,bd2,bd3,bd4,
+
+7t direction
+(132))
+
+differencing
+
+coefficients
+
+(eqs. (62)-(67))
+
+coefficients
+
+(eq. (95))
+
+coefficients
+
+(eq. (92))
+
+bd5
+
+bet
+
+9'/(7-1)
+
+bet2
+
+(;- 1)/2
+
+ci,c2,c3,c4,c5,c6
+
+C1, C2, C3, C4,
+
+coefficients
+
+Cs, C6
+
+04,0
+
+c4h,c5h
+
+c3t,
+
+c4t,
+
+c5t,
+
+04,
+
+c6t
+
+metric coefficient
+
+(eq. (6))
+
+metric coefficient
+
+(eq. (48))
+
+metric coefficient
+
+(eq. (50))
+
+c13
+
+Cl3
+
+c132
+
+0132
+
+cl3phix
+
+(C13¢/hl),x
+
+cl3phiy
+
+{ C13¢Yr
+
+c24,c25,c26
+
+C24, C2s, C26
+
+coefficients
+
+(eq. (19))
+
+c26x
+
+£9C26/c9x
+
+coefficient
+
+(eq. (80))
+
+c34,c35,c36
+
+C34, C35, C36
+
+coefficients
+
+(eq. (20))
+
+cbetal
+
+_os (5),,j
+
+angle between
+
+cdl,cd2
+
+l
+1
+2_ 12
+
+constants
+
+(eq. (101))
+
+chil,chi2,chi3
+
+XI_ X2, X3
+
+coefficients
+
+(eq. (87))
+
+/ ( ]12tte) },y
+
+B-17
+
+grid lines (eq. (3))
+
+(eq.
+
+Computer
+
+variable
+
+Symbol
+
+dl,d2,d3,d4,d5
+
+Dl, D2, D3,
+D5
+
+d5p
+
+ODs/O(
+
+d3 t, d4 t
+
+del
+
+Description
+
+coefficients
+
+(eqs. (68)-(69))
+
+D3,D4
+
+coefficients
+
+(eq. (96))
+
+aSS, aS6, OS¢
+
+solution
+
+delfpmax,
+
+max.
+
+convergence
+
+delgpmax,
+
+0S5, aS6,0S7
+
+fp, delgp,
+
+D4,
+
+vector elements
+
+(eq. (108))
+
+delhp
+
+of
+
+indicators
+
+delhpmax,
+
+deltax
+
+boundary-layer
+thickness based on F
+reaching 99 percent value, dimensional
+
+duds
+
+attachment-line
+
+el, e2, e3, e4
+
+coefficients
+
+eps
+
+convergence criterion for change
+f',g', h' at wall (k = 1)
+
+f, epsg,
+
+epsh
+
+F
+
+(OuJOx)i=l
+
+fe
+
+(eq. (87))
+
+1 and i - 2
+
+attachment-line
+
+velocity
+
+fel
+
+local value
+
+of fe
+
+fey
+
+used
+
+(76)
+
+fp
+
+a(_,l,_o)la(
+
+fpl,
+
+gradient
+
+U/?Ae
+
+F at i -
+
+fl, f2
+
+velocity
+
+in eq.
+
+ati-landi-2
+
+fp2
+
+B-18
+
+gradient
+
+in
+
+Computer
+
+g
+
+variable
+
+Symbol
+
+Description
+
+G
+
+v/vr
+
+fl, f2
+
+F at i -
+
+1 and i -
+
+2
+
+gl, g2
+
+Gati-
+
+1 and/-
+
+2
+
+metric
+
+coefficient
+
+gl2,gl21
+
+812
+
+gl2x
+
+Og12/_gx
+
+gl2y
+
+09912/ogy
+
+gam
+
+7
+
+gel
+
+local
+
+gex,gey
+
+x,y gradients
+
+gP
+
+gpl,
+
+G I
+
+value
+
+of Gk=ke
+of Gk=k_
+
+8(v lvr ) /cg¢
+G rat/-land/-2
+
+gp2
+
+h
+
+H
+
+nondimensional
+
+hl
+
+hl
+
+metric
+
+hll
+
+ha
+
+local
+
+hlx,hly
+
+hi,z,
+
+h2
+
+h2
+
+metric
+
+h21
+
+h2
+
+local
+
+h2x,h2y
+
+h2,x,
+
+he
+
+Hk=ke
+
+hl,y
+
+h2,y
+
+total
+
+enthalpy
+
+of metric
+
+coefficient
+
+coefficient
+value
+
+x,y gradients
+
+of hi
+
+coefficient
+value
+
+of metric
+
+x,y gradients
+
+of h2
+
+boundary-layer
+
+B-19
+
+(eq.
+
+edge
+
+coefficient
+
+value
+
+of H
+
+(24))
+
+Computer
+
+variable
+
+Symbol
+
+Description
+
+local value of H
+
+hel
+
+free-stream
+
+Hi
+
+hfs
+
+value of total enthalpy
+
+(eq.
+
+(23))
+Hati-
+
+hhl,hh2
+
+hp
+
+hpl,
+
+aHla
+
+H'
+
+H'ati-
+
+hp2
+
+]andi-2
+
+He from BL-EDGE
+
+hse
+
+i
+
+landi-2
+
+streamwise
+
+i
+
+equations
+
+index
+
+iat
+
+attachment-line
+
+idim
+
+Euler grid maximum
+
+ile
+
+i index of leading edge
+
+iord
+
+value of i at which scheme
+order in x
+
+iout
+
+flag to output edge values by interpolation
+or from BL-EDGE
+solution
+
+istart
+
+flag for interface
+
+isurf
+
+flag for upper or lower surface
+
+it
+
+superscript
+
+n
+
+boundary-layer
+
+iteration
+
+count
+
+dimension
+
+run mode
+
+iteration
+
+number
+
+count
+
+itat
+
+maximum
+iterations
+
+itel,ite2
+
+wing trailing edge indices
+
+B-20
+
+is fully second
+
+of attachment-line
+
+Computer
+
+variable
+
+Symbol
+
+Description
+
+itmax
+
+maximum
+iterations
+
+number
+
+of boundary-layer
+
+iunit
+
+flag for U.S. units or S.I. units
+number of points in streamwise
+from interface run
+
+iv
+
+ivm
+
+maximum
+
+iwall
+
+flag for wall boundary
+
+J
+
+spanwise
+
+jl,j2,j3,j4,j5
+
+neighboring
+differencing
+
+j lw, j2w
+
+spanwise indices that correspond
+interface output
+
+j dim
+
+Euler grid maximum
+
+j tel,
+
+jv
+
+j te2
+
+dimension
+
+direction,
+
+for iv
+condition
+
+index
+points of (i,
+
+wing symmetry
+
+j ) used in y
+
+dimension
+
+plane and tip indices
+
+number of points in spanwise
+from interface run
+
+jvm
+
+maximum
+
+kdim
+
+Euler grid maximum
+
+i flagx
+
+flag to signify attachment-point
+three-dimensional
+solution
+
+iflagy
+
+flag to signify LISW or general
+three-dimensional
+case
+
+B-21
+
+to
+
+dimension
+
+direction
+
+for jv
+dimension
+solution
+
+or
+
+Computer
+
+variable
+
+Symbol
+
+Description
+
+ncp
+
+number of points in boundary-layer
+grid
+between attachment point and point at
+which local chord fraction = ×cp
+
+nx
+
+streamwise
+grid
+
+nxlim
+
+value of i<nx
+
+nxm
+
+maximum
+
+nxw
+
+number of streamwise
+from interface code
+
+ny
+
+spanwise
+
+dimension
+
+nylim
+
+value of j
+
+(<ny)
+
+nym
+
+maximum
+
+dimension
+
+nz
+
+number
+
+nzl
+
+nz-I
+
+omatt
+
+relaxation
+iteration
+
+omega
+
+blending factor between LISW and
+three-dimensional
+solutions
+
+dimension
+
+of boundary-layer
+
+limiting march
+
+dimension
+
+in x
+
+for nx
+stations
+
+written
+
+out
+
+of boundary-layer
+
+grid
+
+limiting sweep
+
+in ),
+
+for ny
+
+of points in normal
+
+direction
+
+factor _,, for attachment-line
+
+pb
+
+G
+
+pressure
+
+coefficient
+
+on boundary-layer
+
+pc
+
+Cp
+
+pressure
+
+coefficient
+
+on Euler grid
+
+pfs
+
+free-stream
+
+phil
+
+local value of _,
+
+B-22
+
+static pressure,
+
+dimensional
+
+grid
+
+Computer
+
+variable
+
+Symbol
+
+Description
+
+prl
+
+Pr
+
+laminar
+
+Prandtl number
+
+q
+
+q
+
+absolute
+
+velocity, nondimensional
+
+pi
+
+qel
+
+local value of absolute
+
+edge velocity
+
+reflen
+
+reference
+
+refls
+
+free-stream Reynolds
+L_o (eq. (29))
+
+number
+
+based on
+
+refs
+
+free-stream
+
+number
+
+per unit
+
+length
+
+Reynolds
+
+length
+roe
+
+Re
+
+roel
+
+Re
+
+boundary-layer
+nondimensional
+
+local value of boundary-layer
+free-stream
+
+rofs
+
+edge density,
+
+density,
+
+edge density
+
+dimensional
+
+rstar
+
+R*
+
+gas constant
+
+sll
+
+$1
+
+nondimensional
+
+arc length
+
+tb
+
+nondimensional
+temperature
+
+boundary-layer
+
+edge
+
+tC
+
+nondimensional
+solution
+
+temperature
+
+from Euler
+
+re,tel
+
+nondimensional
+tempe ratu re
+
+boundary-layer
+
+edge
+
+tfs
+
+free-stream
+
+B-23
+
+dimensional
+
+temperature
+
+Computer
+
+Symbol
+
+Description
+
+O, O'
+
+temperature
+and (89))
+
+ratio and gradient
+
+thetax
+
+momentum
+dimensional
+
+thickness
+
+based on F,
+
+til,ti2
+
+temperature
+
+profiles
+
+at i - 1 and i - 2
+
+thel,
+
+the2
+
+variable
+
+(eqs. (54)
+
+tr
+
+Tr
+
+reference
+
+temperature
+
+(eq. (33))
+
+trs
+
+_*
+
+reference
+(32))
+
+temperature,
+
+dimensional
+
+tse
+
+edge temperature from the solution
+BL-EDGE
+equations
+
+tst
+
+streamwise
+
+tw
+
+TW
+
+derivative
+
+wall temperature,
+
+(eq.
+
+of the
+
+of T
+
+nondimensional
+
+(eq.
+
+(119))
+ub
+
+Cartesian velocity
+nondimensional
+
+component,
+
+uc
+
+Cartesian velocity component
+solution, nondimensional
+
+ue
+
+He
+
+streamwise
+
+uel
+
+Ue
+
+local value of streamwise
+
+edge velocity
+edge velocity
+
+uerlim
+
+error tolerance on streamwise
+at attachment line
+
+uex
+
+streamwise
+
+uey
+
+spanwise
+
+B-24
+
+from Euler
+
+velocity
+velocity
+
+gradient
+
+gradient
+
+velocity
+
+.e
+
+Computer
+
+ufs
+
+variable
+
+Symbol
+
+Description
+
+U_o
+
+freestream velocity, dimensional
+
+uil,ui2
+
+velocity
+
+profiles at i -
+
+url
+
+= 0 on attachment
+attachment
+
+1 and i - 2
+
+line, = 1, away from
+
+line; used to compute
+
+q
+
+use
+
+edge velocity from the solution
+BL-EDGE
+equations
+
+ustr
+
+velocity profile in the edge streamline
+direction
+
+vb
+
+Cartesian velocity
+nondimensional
+
+vc
+
+Cartesian velocity component
+solution, nondimensional
+
+from Euler
+
+vcross
+
+crossflow velocity
+streamline)
+
+to edge
+
+component,
+
+(orthogonal
+
+ve
+
+Ve
+
+edge velocity in span direction,
+nondimensional
+
+vel
+
+Ve
+
+local value of Ve
+velocity
+
+vil,vi2
+
+vrl
+
+vrx,
+
+Vr
+
+derivatives
+
+vry
+
+1 and i - 2
+
+used in the definition
+
+in x,y of vr
+
+edge velocity from the solution
+BL-EDGE
+equations
+
+vse
+
+w
+
+profiles at i -
+
+reference velocity
+G (eq. (43))
+
+w
+
+transformed
+
+B-25
+
+of the
+
+normal velocity
+
+of the
+
+(eq. (44))
+
+of
+
+Computer
+
+variable
+
+Symbol
+
+Description
+
+wb
+
+Cartesian velocity
+nondimensional
+
+wc
+
+Cartesian velocity component
+solution, nondimensional
+
+wil,wi2
+
+velocity
+
+component,
+
+from Euler
+
+profiles at i - ] and i - 2
+
+x,y
+
+streamwise
+
+x'
+
+Cartesian
+grid
+
+coordinate
+
+of boundary-layer
+
+xc,yc,zc
+
+Cartesian
+
+coordinate
+
+of Euler grid
+
+xcp
+
+percent chord value at which
+
+xnorm
+
+normalizing
+
+arc length, nondimensional
+
+z
+
+transformed
+coordinate
+
+boundary-layer
+
+zcon
+
+coefficient
+
+zil,zi2
+
+zphys
+
+x, y
+
+xb, yb,
+
+zphys
+
+zb
+
+Z
+
+boundary-layer
+
+to calculate
+
+±=ncp
+
+normal
+
+zphys from z
+
+ati- l and i- 2
+
+boundary-layer
+dimensional
+
+zphysx
+
+streamwise
+
+zphysy
+
+spanwise
+
+B-26
+
+coordinates
+
+grid normal
+
+gradient
+gradient
+
+of z
+
+of z
+
+coordinate,
+
+REPORT
+
+DOCUMENTATION
+
+Form Approved
+OMBNo
+0704_188
+
+PAGE
+
+Publlcreporting
+burdentot thiscollection
+ofInformation
+Is estimated
+to average1 hourper responseincluding
+the timeforreviewinginslruCliorts,
+sea'chin0 exislingdata sourCes,
+gatheflngand maintaining
+the dataneededandcompleting
+andreviewingthe collection
+ofinformationSendcommentsregardingthisburdenestimateor ;anyotherespecl ofthis
+collection
+ol infornlatJen,
+including
+suggestloi_forreducing
+this I:un:len,
+to WashingtonHeadquarters
+Se_,_oesDirestora_e
+forInformatio,
+n Opera_ions
+andReports1215JeffersonOav_
+Hig_vay Suite1204,Arlington,
+VA 222024,302,endtotheOfficeof Management
+andBudge(,Paperv_rk
+ReductbnProjen_
+(07D4_)188),
+Washington,
+CC 205_0
+1 AGENCY USE ONLY (l.mave blank)
+2 REPORT DATE
+3 REPORT TYPE AND DATES COVERED
+August
+
+1993
+
+Contractor
+
+Report
+
+4 TITLE AND SUBTITLE
+
+5 FUNDING NUMBERS
+
+Three-Dimensional
+Boundary-Layer
+Wings With Application
+to Laminar
+
+Program
+(BL3D)
+Flow Control
+
+for Swept
+
+Subsonic
+
+or Supersonic
+C NAS1-19672
+
+WU 537-03-23-03
+
+6. AUTHOR(S)
+VenY3t Iyer
+
+8. PERFORMING ORGANIZATION
+REPORT NUMBER
+
+7. PERFORMING ORGANIZATION NAME(B) AND ADDRESS(ES)
+ViGYAN,
+Inc.
+30 Research
+Drive
+Hampton.
+
+VA
+
+23666-1325
+
+10. SPONSORING/MONITORING
+AGENCY REPORT NUMBER
+
+9. SPONSORING / MONITORING AGENCY NAME(S) AND ADDRESS(ES)
+National
+
+Aeronautics
+
+Langley
+
+Research
+
+Hampton,
+
+VA
+
+Space
+
+Administration
+
+Center
+
+23681-0001
+
+11. SUPPLEMENTARY
+Langley
+
+and
+
+NASA
+
+CR-4531
+
+NOTES
+
+Technical
+
+Monitor:
+
+Julius E. Harris
+
+12b. DISTRIBUTION CODE
+
+12a. DISTRIBUTION / AVAILABILITY STATEMENT
+
+Unclassified/Unlimited
+
+Subject
+
+Category
+
+34
+
+13. ABSTRACT (Maximum 200 word=)
+The
+
+theory, formulation,
+
+subsonic
+procedure
+
+and
+
+solution
+
+of three-dimensional,
+
+or supersonic
+flow are discussed.
+This report
+described
+in NASA
+CR 4269, January 1990.
+
+inviscid
+
+Euler
+
+manual
+
+and
+
+given.
+
+Output
+
+equations
+
+example
+
+are discussed.
+
+cases.
+
+of solution
+
+The
+
+Comparison
+prof'des
+
+and
+
+report
+
+also
+
+of solutions
+derivatives
+
+compressible
+
+attached
+
+laminar
+
+flows,
+
+includes
+with
+
+a description
+
+Navier-Stokes
+
+of the computer
+
+computations
+
+required
+
+in boundary-layer
+
+control;
+
+transition
+
+stability
+
+with
+
+layer; compressible
+
+flow;
+
+laminar
+
+flow
+
+to swept
+
+program,
+
+complete
+
+or without
+
+boundary-layer
+
+analysis
+
+14. SUBJECT TERMS
+boundary
+flow
+
+applied
+
+wings
+
+in
+
+incorporates
+several
+new features
+and modifications
+to an earlier general
+DetaiLs of interfacing
+the boundary-Iayer
+computation
+with so]ution
+of the
+
+prediction;
+
+sweptwing
+
+with
+
+user's
+suction
+
+is
+
+is provided.
+
+15. NUMBER OF PAGES
+136
+18. PRICE CODE
+
+A07
+
+17. SECURITY CLASSIFICATION
+OF REPORT
+Unclassified
+NSN 7540-01-280-5500
+
+18. SECURITY CLASSIFICATION
+OF THIS PAGE
+Unclassified
+
+19, SECURITY CLASSIFICATION
+OF ABSTRACT
+
+20. LIMITATION OF ABSTRACT
+
+Unclassified
+Standard Form 298 (Rev_ 2-89)
+Prmcrbedby ANSIStd Z3_IO
+298tro
+
+

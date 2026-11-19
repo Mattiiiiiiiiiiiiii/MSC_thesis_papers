@@ -1,0 +1,3250 @@
+Time-Dependent Problems with the Boundary
+Integral Equation Method
+Martin Costabel1 and Francisco-Javier Sayas2
+1 IRMAR, University of Rennes 1, Rennes, France
+2 Department of Mathematical Sciences, University of Delaware, Newark, DE, USA
+
+1 Introduction
+2 Space–Time Integral Equations
+3 Laplace Transform Methods
+4 Time-Stepping Methods
+5 New Developments in Scattering Problems
+6 Related Chapters
+References
+
+1
+4
+11
+12
+17
+20
+20
+
+1 INTRODUCTION
+Like stationary or time-harmonic problems, transient problems can be solved by the boundary integral equation (BIE)
+method. When the material coefficients are constant, a fundamental solution is known and the data are given on the
+boundary, the reduction to the boundary provides efficient
+numerical methods, in particular for problems posed on
+unbounded domains.
+Such methods are widely and successfully being used
+for numerically modeling problems in heat conduction and
+diffusion, in the propagation and scattering of acoustic, electromagnetic, and elastic waves, and in fluid dynamics.
+One can distinguish three approaches to the application
+of boundary integral methods on parabolic and hyperbolic initial-boundary value problems: space–time integral
+Encyclopedia of Computational Mechanics Second Edition,
+Edited by Erwin Stein, René de Borst and Thomas J.R. Hughes.
+© 2017 John Wiley & Sons, Ltd.
+DOI: 10.1002/9781119176817.ecm2022
+
+equations, Laplace transform methods, and time-stepping
+methods.
+1. Space–time integral equations use the fundamental
+solution of the parabolic or hyperbolic partial differential
+equations.
+The construction of the BIEs via representation formulas
+and jump relations, the appearance of single- and doublelayer potentials, and the classification into first- and secondkind integral equations follow in large part the formalism
+known for elliptic problems. Causality implies that the integral equations are of the Volterra type in the time variable,
+and time invariance implies that they are of the convolution
+type in time.
+Numerical methods constructed from these space–time
+BIEs are global in time, that is, they compute the solution
+in one step for the entire time interval. The boundary is the
+lateral boundary of the space–time cylinder and therefore
+has one dimension more than the boundary of the spatial
+domain. This increase in dimension at first means a substantial increase in complexity:
+•
+•
+•
+
+To compute the solution for a certain time, one needs the
+solution for all the preceding times since the initial time.
+The system matrix is much larger.
+The integrals are higher dimensional. For a problem with
+three space dimensions, the matrix elements in a Galerkin
+method can require six-dimensional integrals.
+
+While the increase in memory requirements for the storage
+of the solution for preceding times cannot be completely
+avoided, there are situations in which the other two reasons
+for increased complexity are, in part, neutralized by special
+features of the problem:
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+•
+
+The system matrix has a special structure related to
+the Volterra structure (finite convolution in time) of the
+integral equations. When low-order basis functions in
+time are used, the matrix is of block-triangular Toeplitz
+form, and for its inversion, only one block – which
+has the size of the system matrix for a corresponding
+time-independent problem – needs to be inverted.
+• When a strong Huyghens principle is valid for the partial
+differential equation, the integration in the integral representation is not extended over the whole lateral boundary
+of the space–time cylinder, but only over its intersection with the surface of the backward light cone. This
+means, first, that the integrals are of the same dimensionality as for time-independent problems and, second,
+that the dependence is not extended arbitrarily far into the
+past, but only up to a time corresponding to the time of
+traversal of the boundary with the fixed finite propagation
+speed. These “retarded potential integral equations” are
+of importance for the scalar wave equation in three-space
+dimensions, and, to a certain extent, for equations derived
+from them in electromagnetics and elastodynamics. On
+the other hand, such a Huyghens principle is not valid
+for the wave equation in a two-space dimension, or for
+the heat equation or for problems in elastodynamics or
+in fluid dynamics.
+2. Laplace transform methods solve frequency-domain
+problems, possibly for complex frequencies. For each fixed
+frequency, a standard boundary integral method for an
+elliptic problem is applied, and then the transformation
+back to the time domain employs special methods for the
+inversion of Fourier or Laplace transforms. The choice of
+a numerical method for the inverse Laplace transform can
+be guided by the choice of an approximation of the exponential function corresponding to a linear multistep method
+for ordinary differential equations. This idea is related to
+the convolution quadrature (CQ) method (Lubich, 1994),
+frequently also called the operational quadrature method.
+Laplace or Fourier transform is also used the other way
+round to pass from the time domain to the frequency domain.
+This can be done using fast Fourier transform (FFT) in
+order to simultaneously solve problems for many frequencies from one time-domain computation, or one can solve
+a time-domain problem with a time-harmonic right-hand
+side to get the solution for one fixed frequency. It has been
+observed that this can be efficient too (Sayah, 1998) because
+of less strict requirements for the spatial resolution.
+3. Time-stepping methods, also known as marching-onin-time (MOT) methods, start from a time discretization of
+the original initial-boundary value problem via an implicit
+scheme and then use BIEs to solve the resulting elliptic
+problems for each time step. Here, the difficulty lies in the
+
+form of the problem for one time step, which has nonzero
+initial data and thus is not in the ideal form for an application of the boundary integral method, namely vanishing
+initial conditions and volume forces, and nonhomogeneous
+boundary data. The solution after a time step, which defines
+the initial condition for the next time step, has no reason to
+vanish inside the domain. Various methods have been devised
+to overcome this problem.
+Using volume potentials to incorporate the nonzero initial
+data often is not desirable since it requires discretization
+of the domain and thus defies the advantage of the reduction to the boundary. Instead of a volume potential (Newton
+potential), another particular solution (or approximate particular solution) of the stationary problem can be used. This
+particular solution may be obtained by fast solution methods,
+for example FFT or a fast Poisson solver on a fictitious
+domain, or by meshless discretization of the domain using
+special basis functions like thin-plate splines or other radial
+basis functions (the so-called dual reciprocity method); see
+Aliabadi and Wrobel (2002).
+Another idea is to consider not a single time step, but all
+time steps up to the final time together as a discrete convolution equation for the sequence of solutions at the discrete
+time values. Such a discrete convolution operator whose
+(time-independent) coefficients are elliptic partial differential operators has a fundamental solution, which can then
+be used to construct a pure boundary integral method for
+the solution of the time-discretized problem. A fundamental
+solution, which is also a discrete convolution operator, can
+be given explicitly for simple time-discretization schemes
+like the backward Euler method (“Rothe method”, Chapko
+and Kress, 1997). For a whole class of higher order one-step
+or multistep methods, it can be constructed using Laplace
+transforms via the CQ method (Lubich and Schneider, 1992;
+Lubich, 1994).
+These three approaches for the construction of boundary
+integral methods cannot be separated completely. There are
+many points of overlap:
+The space–time integral equation method leads, after
+discretization, to a system that has the same finite time
+convolution structure that one gets from time-stepping
+schemes. The main difference is that the former needs the
+knowledge of a space–time fundamental solution. But this
+is simply the inverse Laplace transform of the fundamental
+solution of the corresponding time-harmonic problem.
+The Laplace transform appears in several roles. It can be
+used to translate between the time domain and the frequency
+domain at the level of the formulation of the problem, and
+also at the level of the solution.
+The stability analysis for all known algorithms, for the
+space–time integral equation methods as for the timestepping methods, usually passes by the transformation to
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+2
+
+the frequency domain and corresponding estimates for the
+stability of BIE methods for elliptic problems. The difficult
+part in this analysis is to find estimates uniform with respect
+to the frequency.
+For parabolic problems, some analysis of integral equation
+methods and their numerical realization has been known for
+a long time, and the classical results for second-kind integral
+equations on smooth boundaries are summarized in the book
+by Pogorzelski (1966). All the standard numerical methods
+available for classical Fredholm integral equations of the
+second kind, like collocation methods or Nyström methods,
+can be used in this case.
+Later, variational methods have been studied in a setting
+of anisotropic Sobolev spaces that allow the coverage of
+first-kind integral equations and nonsmooth boundaries. It
+has been found that, unlike the parabolic partial differential
+operator with its time-independent energy and no regularizing property in time direction, the first-kind boundary
+integral operators have a kind of anisotropic space–time
+ellipticity (Costabel, 1990; Arnold and Noon, 1989; Brown,
+1989; Brown and Shen, 1993).
+This ellipticity leads to unconditionally stable and convergent Galerkin methods (Costabel, 1990; Arnold and Noon,
+1989; Hsiao and Saranen, 1993; Hebeker and Hsiao,
+1993). Because of their simplicity, collocation methods are
+frequently used in practice for the discretization of space–
+time BIEs. An analysis of collocation methods for secondkind BIEs for the heat equation was given by Costabel et al.
+1987. Fourier analysis techniques for the analysis of stability
+and convergence of collocation methods for parabolic BIEs,
+including first-kind integral equations, have been studied
+by Hamina and Saranen 1994 and by Costabel and Saranen
+(2000, 2001, 2003).
+The operational quadrature method for parabolic problems was introduced and analyzed by Lubich and Schneider
+(1992).
+For hyperbolic problems, the mathematical analysis is
+mainly based on variational methods as well (Bamberger
+and Ha Duong, 1986; Ha-Duong, 1990, 1996). There is
+now a lack of ellipticity, which on one hand leads to a
+loss of an order of regularity in the error estimates. On
+the other hand, most coercivity estimates are based on a
+passage to complex frequencies, which may lead to stability
+constants that grow exponentially in time. Instabilities (that
+are probably unrelated to this exponential growth) have been
+observed, but their analysis does not seem to be conclusive
+(Becache, 1991; Peirce and Siebrits, 1996, 1997; Birgisson
+et al., 1999). Analysis of variational methods exists for the
+main domains of application of space–time BIEs, first of all
+for the scalar wave equation, where the boundary integrals
+are given by retarded potentials, and also for elastodynamics
+
+3
+
+(Becache, 1993; Becache and Ha-Duong, 1994; Chudinovich, 1993a,b,c), piezoelectricity (Khutoryansky and Sosa,
+1995), and for electrodynamics (Bachelot and Lange, 1995;
+Bachelot et al., 2001; Rynne, 1999; Chudinovich, 1997). An
+extensive review of results on variational methods for the
+retarded potential integral equations is given by Ha-Duong
+(2003).
+As in the parabolic case, collocation methods are practically important for the hyperbolic space–time integral
+equations. For the retarded potential integral equation, the
+stability and convergence of collocation methods have been
+established (Davies, 1994, 1998; Davies and Duncan, 1997,
+2004).
+Finally, let us mention that there have also been important developments in the field of fast methods for space–time
+BIEs (Michielssen, 1998; Jiao et al., 2002; Michielssen
+et al., 2000; Greengard and Strain, 1990; Greengard and Lin,
+2000).
+In the following, we will first present the basic mathematical principles of these methods. In Section 2, we
+describe the construction of space–time BIEs and explain
+the variational arguments that lead to stability estimates for
+Galerkin and collocation methods. We emphasize the formal
+similarities that exist between the BIE method applied to
+elliptic, parabolic, and hyperbolic problems.
+In Section 3, we study methods based on the Laplace
+transformation with respect to the time variable. The
+resulting frequency-domain formulations show again the
+close similarity between problems coming from elliptic
+(e.g., Helmholtz equation), parabolic (e.g., heat equation),
+and hyperbolic (e.g., wave equation) origins.
+In Section 4, we describe the principles underlying several
+different variants of the time-stepping methods. In particular,
+Lubich’s CQ method is introduced here, and we explain how
+it can be equivalently constructed either as a solution method
+for a time-discretized evolution problem or as a discretization
+method for the inverse Laplace transformation in a Laplace
+transform method.
+Finally, in Section 5 we focus on the strong growth of
+the BIE method for time-dependent problems in the last
+decade and two aspects that dominate this development. On
+one hand, all the basic methods described in the preceding
+sections are now routinely being applied to many problems
+of practical importance, and a lot of practical knowledge
+has accumulated about appropriate choices of the type of
+integral equation, the type of discretization method and
+its implementation, and the selection of parameters to use.
+Here we give an overview of the relevant literature. On
+the other hand, new, simple, but powerful ways of proving
+stability and error estimates have been found, and we
+describe some of these ideas for the case of the scalar wave
+equation.
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+2
+
+SPACE–TIME INTEGRAL EQUATIONS
+
+2.1
+
+Notations
+
+We will now study some of the above-mentioned ideas in
+closer detail. Let Ω ⊂ ℝn , (n ≥ 2), be a domain with a
+compact boundary Γ. The outer normal vector is denoted by
+n and the outer normal derivative by 𝜕n .
+Let T > 0 be fixed. We denote by Q the space–time cylinder
+over Ω and Σ its lateral boundary:
+
+The first ingredient for a boundary element method (BEM)
+is a fundamental solution G. As an example, in three dimensions, we have, respectively
+G𝜔 (x) =
+{
+
+ei𝜔|x|
+4𝜋|x|
+
+()
+
+(4𝜋t)−3∕2 e(−|x| ∕4t) (t ≥ 0)
+0
+(t ≤ 0)
+(
+)
+|x|
+1
+𝛿 t−
+G(t, x) =
+4𝜋|x|
+c
+2
+
+G(t, x) =
+
+()
+()
+
+Q = (0, T) × Ω
+Σ = (0, T) × Γ
+𝜕Q = ({0} × Ω) ∪ Σ ∪ ({T} × Ω)
+For the description of the general principles, we consider
+only the simplest model problem of each type. We also
+assume that the right-hand sides have the right structure for
+the application of a “pure” boundary integral method. The
+volume sources and the initial conditions vanish, so that the
+whole system is driven by boundary sources.
+Elliptic problem (Helmholtz equation with frequency
+𝜔 ∈ ℂ):
+
+or 𝜕n u = h (Neumann)
+
+on Γ
+
+or 𝜕n u = h (Neumann) on Σ
+
+()
+
+for t ≤ 0
+
+Hyperbolic problem (wave equation with velocity c > 0):
+
+u = g (Dirichlet)
+
+or 𝜕n u = h (Neumann)
+
+u=0
+
+2.2
+2.2.1
+
+∫0 ∫Γ
+
+{𝜕n(y) G(t − s, x − y)[u(s, y)]
+
+− G(t − s, x − y)[𝜕n u(y)]}d𝜎(y)ds
+u(t, x) =
+
+in Q
+
+in Q
+
+()
+
+()
+
+t
+
+Parabolic problem (heat equation):
+
+(c−2 𝜕t 2 − Δ)u = 0
+
+{𝜕n(y) G(x − y)[u(y)]
+
+t
+
+()
+
+radiation condition at ∞
+
+u = g (Dirichlet)
+
+∫Γ
+
+− G(x − y)[𝜕n u(y)]}d𝜎(y)
+
+in Ω
+
+u = g (Dirichlet)
+
+u=0
+
+u(x) =
+
+u(t, x) =
+
+(Δ + 𝜔2 )u = 0
+
+(𝜕t − Δ)u = 0
+
+Representation formulas for a solution u of the homogeneous partial differential equation and x ∉ Γ are obtained
+from Green’s formula, applied with respect to the space variables in the interior and exterior domain. We assume that u
+is smooth in the interior and the exterior up to the boundary,
+but has a jump across the boundary. The jump of a function
+v across Γ is denoted by [v]:
+
+on Σ
+
+()
+
+for t ≤ 0
+
+Space–Time representation formulas
+Representation formulas and jump relations
+
+The derivation of BIEs follows from a general method that
+is valid (under suitable smoothness hypotheses on the data)
+in the same way for all three types of problems. In fact,
+what counts for () and () is the property that the lateral
+boundary Σ is noncharacteristic.
+
+∫ 0 ∫Γ
+
+{𝜕n(y) G(t − s, x − y)[u(s, y)]
+
+− G(t − s, x − y)[𝜕n u(y)]}d𝜎(y)ds
+)]
+{
+[ (
+|x − y|
+1
+,y
+=
+𝜕n(y)
+u t−
+∫Γ
+4𝜋|x − y|
+c
+)]
+[ (
+𝜕n(y) |x − y|
+|x − y|
+−
+,y
+𝜕t u t −
+4𝜋c|x − y|
+c
+[
+)]
+}
+(
+|x − y|
+1
+−
+𝜕 u t−
+,y
+d𝜎(y)
+()
+4𝜋|x − y| n
+c
+Thus, the representation in the parabolic case uses integration
+over the past portion of Σ in the form of a finite convolution
+over the interval [0, t], whereas in the hyperbolic case, only
+the intersection of the interior of the backward light cone with
+Σ is involved. In three dimensions, where Huyghens’ principle is valid for the wave equation, the integration extends
+only over the boundary of the backward light cone, and the
+last formula shows that the integration can be restricted to Γ,
+giving a very simple representation by “retarded potentials”.
+We note that, in the representation by retarded potentials,
+all those space–time points (s, y) contribute to u(t, x) from
+where the point (t, x) is reached with speed c by traveling
+through the space ℝ3 . In the case of waves propagating
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+4
+
+in the exterior of an obstacle, this leads to the seemingly
+paradoxical situation where a perturbation at (s, y) can
+contribute to u(t, x), although no signal from y has yet
+arrived in x, because in physical space, it has to travel around
+the obstacle.
+All three representation formulas can be written in a unified
+way by introducing the single-layer potential  and the
+double-layer potential :
+u = ([u]) − ([𝜕n u])
+
+(1)
+
+In all the cases, there hold the classical jump relations in
+the form
+[v] = v; [𝜕n v] = 0
+[𝜑] = 0; [𝜕n 𝜑] = −𝜑
+It therefore appears natural to introduce the boundary operators from the sums and differences of the one-sided traces
+on the exterior (Γ+ ) and interior (Γ− ) of Γ:
+V ∶= |Γ
+(single-layer potential)
+1
++
+−
+K ∶= (|Γ + |Γ )
+(double-layer potential)
+2
+1
+K ′ ∶= (𝜕n |Γ+ + 𝜕n |Γ− ) (normal derivative of
+2
+single-layer potential)
+W ∶= −𝜕n |Γ
+
+2.2.2
+
+(normal derivative of
+double-layer potential)
+
+Boundary integral equations
+
+In a standard way, the jump relations, together with these
+definitions, lead to BIEs for the Dirichlet and Neumann
+problems. Typically, one has a choice of at least four
+equations for each problem: The first two equations come
+from taking the traces in the representation formula (1)
+(direct method), the third one comes from a single-layer
+representation
+u = 𝜓
+
+with unknown 𝜓
+
+5
+
+For the exterior Neumann problem (u|Γ = g = v unknown,
+𝜕n u|Γ = h given)
+)
+1
+− K v = −Vh
+2
+(
+)
+1
++ K′ h
+Wv = −
+2
+)
+(
+1
+− K ′ 𝜓 = −h
+2
+Ww = −h
+(
+
+(N1)
+(N2)
+(N3)
+(N4)
+
+Remember that this formal derivation is rigorously valid
+for all three types of problems. One notes that secondand first-kind integral equations alternate nicely. For open
+surfaces, however, only the first-kind integral equations exist.
+The reason is that a boundary value problem on an open
+surface fixes not only a one-sided trace but also the jump
+of the solution; and therefore the representation formula
+coincides with a single-layer potential representation for the
+Dirichlet problem and with a double-layer potential representation for the Neumann problem.
+The same abstract form of space–time BIEs (D1)–(D4)
+and (N1)–(N4) is obtained for more general classes of
+second-order initial-boundary value problems. If a space–
+time fundamental solution is known, then Green’s formulas
+for the spatial part of the partial differential operator are
+used to get the representation formulas and jump relations.
+The role of the normal derivative is played by the conormal
+derivative.
+Since for time-independent boundaries the jumps across
+the lateral boundary Σ involve only jumps across the spatial
+boundary Γ at a fixed time t, the jump relations and representation formulas for a much wider class of higher order
+elliptic systems (Costabel and Dauge, 1997) could be used
+to obtain space–time BIEs for parabolic and hyperbolic
+initial-boundary value problems associated with such partial
+differential operators. In the general case, this has yet to be
+studied.
+
+and the fourth one from a double-layer representation
+u = w with unknown w
+For the exterior Dirichlet problem (u|Γ = g given, 𝜕n u|Γ = 𝜑
+unknown)
+)
+(
+1
+(D1)
+V𝜑 = − + K g
+2
+(
+)
+1
++ K ′ 𝜑 = −Wg
+(D2)
+2
+V𝜓 = g
+(D3)
+)
+(
+1
++K w=g
+(D4)
+2
+
+2.2.3
+
+Examples of fundamental solutions
+
+The essential requirement for the construction of a BIE
+method is the availability of a fundamental solution. This
+can be a serious restriction on the use of the space–time
+integral equation method because explicitly given and sufficiently simple fundamental solutions are known for far less
+parabolic and hyperbolic equations than for their elliptic
+counterparts.
+In principle, one can pass from the frequency domain
+to the time domain by a simple Laplace transform, and
+therefore the fundamental solution for the time-dependent
+problem always has a representation by a Laplace integral of
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+the frequency-dependent fundamental solution of the corresponding elliptic problem. In practice, this representation can
+be rather complicated. An example where this higher level
+of complexity of the time-domain representation is visible,
+but possibly still acceptable, is the dissipative wave equation
+with a coefficient 𝛼 > 0 (and speed c = 1 for simplicity)
+(𝜕t2 + 𝛼𝜕t − Δ)u = 0
+In the frequency domain, we obtain the same equation
+as
+√ for2 the wave equation, with 𝜔 simply replaced by 𝜔𝛼 =
+(𝜔 + i𝛼𝜔). The time-harmonic fundamental solution in
+three dimensions is therefore simply
+√
+
+G𝜔𝛼 (x) =
+
+1 i|x| 𝜔2 +i𝛼𝜔
+e
+4𝜋|x|
+
+From this, we obtain by inverse Laplace transformation
+(
+𝛼|x|
+e−𝛼t∕2
+𝛿(t − |x|) + √
+G(t, x) =
+4𝜋|x|
+2 t2 − |x|2
+)
+( √
+)
+𝛼
+× I1 2 t2 − |x|2 𝜃(t − |x|)
+with the Dirac distribution 𝛿, the Heaviside function 𝜃, and
+the modified Bessel function I1 . We see that there is no
+strong Huyghens principle, and the integrals in the corresponding space–time integral equations will be extended
+over the whole intersection of the boundary Σ with the solid
+backward light cone {(s, y) ∣ t − s > |x − y|}.
+For the case of elastodynamics, the corresponding space–
+time integral equations have not only been successfully used
+for a long time in practice (Mansur, 1983; Antes, 1985,
+1988) but also been studied mathematically. Isotropic homogeneous materials are governed by the second-order hyperbolic system for the n-component vector field u of the
+displacement
+𝜌𝜕t 2 u − div 𝜎 = 0
+
+with 𝜎ij = 𝜇(𝜕i uj + 𝜕j ui ) + 𝜆𝛿ij div u
+
+Here, 𝜌 is the density and 𝜆 and 𝜇 are the Lamé constants.
+The role of the normal derivative 𝜕n is played by the traction operator Tn , where Tn u = 𝜎 ⋅ n is the normal stress. The
+role of the Dirichlet and Neumann boundary conditions are
+played by the displacement and traction boundary conditions, respectively:
+u = g (displacement)
+
+or Tn u = h (traction)
+
+on Σ
+
+In three dimensions, the space–time fundamental solution
+shows the longitudinal (pressure) and transversal (shear)
+waves that propagate with the two velocities
+
+√
+cp =
+
+𝜆 + 2𝜇
+𝜌
+
+√
+and
+
+cs =
+
+𝜇
+𝜌
+
+But there is no strict Huyghens principle; the support of the
+fundamental solution is not contained in the union of the two
+conical surfaces determined by these two speeds but rather
+in the closure of the domain between these two surfaces. The
+fundamental solution is a (3 × 3) matrix G, whose entries are
+given by
+1
+4𝜋𝜌|x|3
+{ [
+(
+) (
+) (
+)]
+x j xk
+xj x k
+|x|
+|x|
+× t2
+𝛿
+t
+−
+−
++
+𝛿
+𝛿
+t
+−
+jk
+cp
+cs
+|x|2
+|x|2
+(
+)[ (
+)
+(
+)]}
+xj xk
+|x|
+|x|
++ t 3 2 − 𝛿jk 𝜃 t −
+−𝜃 t−
+cp
+cs
+|x|
+
+Gjk (t, x) =
+
+Here, 𝛿jk is the Kronecker symbol, 𝛿 is the Dirac distribution,
+and 𝜃 is the Heaviside function.
+Detailed descriptions of the space–time BIEs in elastodynamics corresponding to (D1)–(D4) and (N1)–(N4)
+above can be found in many places (Chudinovich, 1993a,b;
+Becache and Ha-Duong, 1994; Brebbia et al., 1984; Antes,
+1988; Aliabadi and Wrobel, 2002).
+Whereas the frequency-domain fundamental solution is
+explicitly available for generalizations of elastodynamics
+such as certain models of anisotropic elasticity or thermoelasticity (Kupradze et al., 1979) or viscoelasticity
+(Schanz, 2001b), the time-domain fundamental solution
+quickly becomes very complicated (for an example in twodimensional piezoelectricity, see Wang et al., 2003) or is
+completely unavailable.
+For the case of electrodynamics, space–time integral
+equations have been used and analyzed extensively, too, in
+the past 12 years (Pujols, 1991; Däschle, 1992; Terrasse,
+1993; Bachelot and Lange, 1995; Chudinovich, 1997). An
+analysis of numerical methods on the basis of variational
+formulations is available, and the coupling of space–time
+integral equation methods with domain finite element
+methods (FEMs) has also been studied (Sayah, 1998;
+Bachelot et al., 2001).
+Maxwell’s equations being a first-order system, the
+above formalism with its distinction between Dirichlet and
+Neumann conditions and between single- and double-layer
+potentials makes less sense here. There are, however, additional symmetries that allow giving a very “natural” form
+to the space–time BIEs and their variational formulations.
+The close relationship between the Maxwell equations and
+the scalar wave equation in three dimensions implies the
+appearance of retarded potentials here, too.
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+6
+
+The system of Maxwell’s equations in a homogeneous and
+isotropic material with electric permittivity 𝜀 and magnetic
+permeability 𝜇 is
+𝜇𝜕t H + curl E = 0
+𝜀𝜕t E − curl H = 0
+√
+The speed of light is c = 1∕ (𝜀𝜇), and the corresponding
+retarded potential can be abbreviated as
+
+(u)(t, x) =
+
+1
+4𝜋 ∫Γ
+
+(
+)
+u t − |x−y|
+,
+y
+c
+|x − y|
+
+d𝜎(y)
+
+Then, an analog of representation formula (1) can be written
+in the following form:
+1
+E(t, x) = −𝜇(𝜕t [j])(t, x) + gradx (𝜕t −1 divΓ [j])(t, x)
+𝜀
+− curl ([m])(t, x)
+H(t, x) = −𝜀(𝜕t [m])(t, x) +
+
+1
+gradx (𝜕t −1 divΓ [m])(t, x)
+𝜇
+
++ curl ([j])(t, x)
+where [j] and [m] are the surface currents and surface charge
+densities given by the jumps across Σ:
+[j] = [H ∧ n] ;
+
+[m] = [n ∧ E]
+
+and 𝜕t −1 is the primitive defined by
+t
+
+𝜕t −1 𝜑(t, x) =
+
+∫0
+
+𝜑(s, x)ds
+
+Taking tangential traces on Σ, one then obtains systems of
+integral equations analogous to (D1)–(N4) for the unknown
+surface current and charge densities. Owing to special
+symmetries of the Maxwell equations, the set of four
+boundary integral operators V, K, K ′ , W appearing in the
+boundary reduction of second-order problems is reduced to
+only two different boundary integral operators, which we
+denote by V and K, defined by
+V𝜑 = −n ∧ 
+K𝜑 =
+
+(
+
+)
+1
+𝜕t 𝜑 + curlΓ (c𝜕t −1 𝜑)
+c
+
+1 +
+(𝛾 + 𝛾 − )n ∧ curl(𝜑)
+2
+
+In the definition of K, one takes the principal value that also
+corresponds to the mean value between the exterior trace 𝛾 +
+and the interior trace 𝛾 − , analogous to the definition of the
+double-layer potential operator K in Section 2.2.1.
+
+7
+
+For the exterior initial value problem, the traces
+√
+𝜇
+v = m = n ∧ E and 𝜑 = 𝜇c j =
+H∧n
+𝜀
+then satisfy the two relations corresponding to the four integral equations (D1), (D2), (N1), (N2) of the direct method
+)
+(
+)
+(
+1
+1
+− K v = −V𝜑 and
+− K 𝜑 = Vv
+2
+2
+From a single-layer representation, that is, [m] = 0 in the
+representation formula for the electric field, one obtains the
+time-dependent electric field integral equation, which can
+now be written as
+V𝜓 = g
+where g is given by the tangential component of the incident
+field.
+
+2.3
+
+Space–time variational formulations
+and Galerkin methods
+
+We will not treat the analysis of second-kind BIEs in detail
+here. It suffices to say that the key observation in the
+parabolic case is the fact that for smooth Γ, the operator norm
+in Lp (Σ) of the weakly singular operator K tends to 0 as T →
+0. This implies that (1∕2) ± K and (1∕2) ± K ′ are isomorphisms in Lp (and also in Cm ), first for small T and then by
+iteration for all T. The operators K and K ′ being compact, one
+can use all the well-known numerical methods for classical
+Fredholm integral equations of the second kind, including
+Galerkin, collocation, and Nyström methods (Pogorzelski,
+1966; Kress, 1989), with the additional benefit that the integral equations are always uniquely solvable. If Γ has corners,
+these arguments break down, and quite different methods,
+including variational arguments, have to be used (Costabel,
+1990; Dahlberg and Verchota, 1990; Brown, 1989; Brown
+and Shen, 1993; Adolfsson et al., 1994).
+
+2.3.1
+
+Galerkin methods
+
+For the first-kind integral equations, an analysis based on
+variational formulations is available. The corresponding
+numerical methods are space–time Galerkin methods. Their
+advantage is that they inherit directly the stability of the
+underlying variational method. In the elliptic case, this
+allows the well-known standard boundary element analysis
+of stability and errors, very similar to the standard FEMs.
+In the parabolic case, the situation is still similar, but in the
+hyperbolic case, some price has to be paid for the application
+of “elliptic” techniques. In particular, one has then to work
+with two different norms.
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Let X be some Hilbert space, and let a be a bilinear form
+on X × X. If we assume that a is bounded on X:
+∃M ∶ ∀u, v ∈ X ∶ |a(u, v)| ≤ M ||u||||v||
+but that a is elliptic only with respect to a smaller norm
+||c||
+̇ 0 , associated with a space X0 into which X is continuously
+embedded
+∃𝛼 > 0 ∶ ∀u ∈ X ∶
+
+a(u, v) = ⟨f , v⟩
+
+∀v ∈ X
+
+and for its Galerkin approximation, find uN ∈ XN such that
+a(uN , vN ) = ⟨f , vN ⟩
+
+∫Γ
+
+2.3.2
+
+||uN ||0 ≤ C ||u||
+||u − uN ||0 ≤ C inf {||u − vN ||∣ vN ∈ XN }
+
+The finite-dimensional space XN for the Galerkin approximation of space–time integral equations is usually
+constructed as a tensor product of a standard boundary
+element space for the spatial discretization and of a space
+of one-dimensional finite element or spline functions on the
+interval [0, T] for the time discretization. Basis functions are
+then of the form
+(i = 1,…, I,
+
+(i)
+
+⟨𝜑, V𝜑⟩Γ ≥ 𝛼||𝜑||2̃ −1∕2
+H
+
+(k = 1,…, I,
+
+H
+
+In the following, we restrict the presentation to the
+single-layer potential operator V. We emphasize, however,
+that a completely analogous theory is available for the
+hypersingular operator W in all cases.
+The variational methods for the first-kind integral operators
+are based on the first Green formula, which gives, together
+
+(Γ)
+
+− k(𝜑)
+
+If 𝜔 is not an interior or exterior eigenfrequency, then
+V is an isomorphism, and every Galerkin method in
+̃ −1∕2 (Γ) for the equation V𝜓 = g is stable and converH
+gent.
+
+2.3.3
+l = 1,…, J)
+
+(Γ)
+
+For any 𝜔 and n, there is an 𝛼 > 0 and a compact
+̃ −1∕2 (Γ) such that
+quadratic form k on H
+Re ⟨𝜑, V𝜑⟩Γ ≥ 𝛼||𝜑||2̃ −1∕2
+
+(iii)
+
+a(𝜑ij , 𝜑kl )𝛼ij = ⟨f , 𝜑kl ⟩
+
+(|∇u|2 − 𝜔2 |u|2 ) dx
+
+̃ −1∕2 (Γ) → H 1∕2 (Γ) is an
+For 𝜔 = 0, n ≥ 3: V ∶ H
+isomorphism, and there is an 𝛼 > 0 such that
+
+𝛼ij 𝜑ij (t, x)
+
+i,j=1
+
+∫ℝn ∖Γ
+
+Theorem 1. Let Γ be a bounded Lipschitz surface, open
+or closed. H 1∕2 (Γ) and H −1∕2 (Γ) denote the usual Sobolev
+̃ −1∕2 (Γ) for an open surface is the dual of
+spaces, and H
+1∕2
+H (Γ). Then
+
+i,j=1
+
+I,J
+∑
+
+(2)
+
+This gives the following theorem, which serves as a model
+for the other two types. It holds not only for the simple case of
+the Laplacian but also, in particular its assertion (ii), for more
+general second-order systems, including the Lamé system of
+linear elasticity (Costabel, 1988).
+
+j = 1,…, J)
+
+The system of Galerkin equations for the unknown coefficients 𝛼ij is
+
+{∇u ⋅ ∇v + uΔv}dx
+
+()
+
+⟨𝜑, V𝜑⟩Γ =
+
+(ii)
+I,J
+∑
+
+∫ℝn ∖Γ
+
+For the elliptic case, we obtain (⟨⋅, ⋅⟩Γ denotes L2 duality on
+Γ)
+
+and the trial functions are of the form
+uN (t, x) =
+
+𝜑V𝜓d𝜎 =
+
+∀vN ∈ XN
+
+There are stability and error estimates with a loss
+
+𝜑ij (t, x) = 𝜒i (t)𝜓j (x)
+
+then
+
+|a(u, u)| ≥ 𝛼 ||u||20
+
+then for the variational problem, find u ∈ X such that
+
+and
+
+with the jump relations, a formula valid again for all three
+types of equations: If 𝜑 and 𝜓 are given on Γ or Σ, satisfy a
+finite number of conditions guaranteeing the convergence of
+the integrals on the right-hand side of the formula (2) below,
+and
+u = 𝜑,
+v = 𝜓
+
+()
+
+For the parabolic case of the heat equation, integration over
+t in the Green formula (2) gives
+T
+
+⟨𝜑, V𝜑⟩Σ =
+=
+
+∫0 ∫ℝn ∖Γ
+∫ ∫
+
+{|∇x u(t, x)|2 + 𝜕t uu}dx dt
+
+|∇x u(t, x)|2 dx dt +
+
+1
+|u(T, x)|2 dx
+2 ∫ℝn
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+8
+
+From this, the positivity of the quadratic form associated
+with the operator V is evident. What is less evident is the
+nature of the energy norm for V, however. It turns out (Arnold
+and Noon, 1989; Costabel, 1990) that one has to consider
+anisotropic Sobolev spaces of the following form:
+̃ r (Γ)) ∩ H s (0, T; L2 (Γ))
+̃ r,s (Σ) = L2 (0, T; H
+H
+0
+0
+
+can integrate a second time over t. But in any case, here the
+bilinear form ⟨𝜕t 𝜑, V𝜑⟩Σ will not be bounded in the same
+norm where its real part is positive. So there will be a loss
+of regularity, and any error estimate has to use two different
+norms. No “natural” energy space for the operator V presents
+itself.
+
+2.4
+The index 0 indicates that zero initial conditions at t = 0 are
+incorporated. The optional ∼ means zero boundary values
+on the boundary of the (open) manifold Γ. One has the
+following theorem, which is actually simpler than its elliptic
+counterpart because the operators are always invertible due
+to their Volterra nature.
+Theorem 2. Let Γ be a bounded Lipschitz surface, open or
+closed, n ≥ 2. Then
+(i)
+
+̃
+(Σ) → H0
+(Σ) is an isomorV∶H
+0
+phism, and there is an 𝛼 > 0 such that
+(−1∕2),(−1∕4)
+
+(1∕2),(1∕4)
+
+⟨𝜑, V𝜑⟩Σ ≥ 𝛼||𝜑||2(−1∕2),(−1∕4)
+(ii)
+
+̃
+Every Galerkin method in H
+(Σ) for the
+0
+equation V𝜓 = g converges. The Galerkin matrices
+have a positive-definite symmetric part. Typical error
+estimates are of the form
+(−1∕2),(−1∕4)
+
+||𝜑 − 𝜑h,k ||(−1∕2),(−1∕4)
+
+9
+
+Fourier–Laplace analysis and Galerkin
+methods
+
+A closer view of what is going on can be obtained using
+space–time Fourier transformation. For this, one has to
+assume that Γ is flat, that is, a subset of ℝn−1 . Then all the
+operators are convolutions and as such are represented by
+multiplication operators in the Fourier space. If Γ is not flat
+but smooth, then the results for the flat case describe the
+principal part of the operators. To construct a complete analysis, one has to consider lower order terms coming from
+coordinate transformations and localizations. Whereas this
+is a well-known technique in the elliptic and parabolic cases,
+namely part of the calculus of pseudodifferential operators,
+it has so far prevented the construction of a completely satisfactory theory for the hyperbolic case.
+We denote the dual variables to (t, x) by (𝜔, 𝜉), and x′ and
+′
+𝜉 are the variables related to Γ ⊂ ℝn−1 . It is then easily seen
+that the form of the single-layer potential is
+̂ ′)
+V𝜓(𝜉
+
+= 12 (|𝜉 ′ |2 − 𝜔2 )−1∕2 𝜓
+̂ (𝜉 ′ )
+
+()
+
+≤ C (hr+(1∕2) + k(r∕2)+(1∕4) )||𝜑||r,r∕2
+
+̂
+̂ (𝜔, 𝜉 ′ )
+V𝜓(𝜔,
+𝜉 ′ ) = 12 (|𝜉 ′ |2 − i𝜔)−1∕2 𝜓
+
+()
+
+if 𝜑h,k is the Galerkin solution in a tensor product space
+of splines of mesh-size k in time and finite elements of
+mesh-size h in space.
+
+̂
+̂ (𝜔, 𝜉 ′ )
+V𝜓(𝜔,
+𝜉 ′ ) = 12 (|𝜉 ′ |2 − 𝜔2 )−1∕2 𝜓
+
+()
+
+2.3.4
+
+()
+
+For the wave equation, choosing 𝜑 = 𝜓 in the Green formula
+(2) does not give a positive-definite expression. Instead, one
+can choose 𝜑 = 𝜕t 𝜓. This corresponds to the usual procedure
+for getting energy estimates in the weak formulation of the
+wave equation itself where one uses 𝜕t u as a test function,
+and it gives
+T
+
+⟨𝜕t 𝜑, V𝜑⟩Σ =
+=
+
+∫0 ∫ℝn ∖Γ
+
+{𝜕t ∇x u ⋅ ∇x u + 𝜕t u𝜕t 2 u}dx dt
+
+1
+{|∇x u(T, x)|2 + |𝜕t u(T, x)|2 }dx
+2 ∫ℝn ∖Γ
+
+Once again, as in the elliptic case, this shows the close
+relation of the operator V with the total energy of the system.
+In order to obtain a norm (H 1 (Q)) on the right-hand side, one
+
+Note that () and () differ only in the role of 𝜔; for (), it is
+a fixed parameter, for (), it is one of the variables, and this is
+crucial in the application of Parseval’s formula for ⟨𝜑, V𝜑⟩.
+
+2.4.1
+
+()
+
+For the elliptic case, the preceding formula implies Theorem
+1. If 𝜔 = 0, then the function (1∕2)|𝜉 ′ |−1 is positive and for
+large |𝜉 ′ | equivalent to (1 + |𝜉 ′ |2 )−1∕2 , the Fourier weight
+defining the Sobolev space H −1∕2 (Γ). If 𝜔 ≠ 0, then the principal part (as |𝜉 ′ | → ∞) is still (1∕2)|𝜉 ′ |−1 , so only a compact
+perturbation is added. There is an additional observation by
+Ha-Duong (1990): If 𝜔 is real, then (1∕2)(|𝜉 ′ |2 − 𝜔2 )−1∕2 is
+either positive or imaginary, so its real part is positive except
+on the bounded set |𝜉 ′ | ≤ |𝜔|. This implies
+Proposition 1. Let 𝜔2 > 0, Γ flat, supp 𝜑 compact. Then
+there is an 𝛼(𝜔) > 0 such that
+Re ⟨𝜑, V𝜑⟩Γ ≥ 𝛼(𝜔) ||𝜑||2̃ −1∕2
+H
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+The work of transforming this estimate into error estimates
+for the BEM in the hyperbolic case is still incomplete. See
+Ha-Duong (2003) for a review of the state of the art on this
+question.
+
+2.4.2
+
+()
+
+We give one example of a theorem obtained in this way.
+Theorem 3. Let Γ be bounded and smooth, r, s ∈ ℝ. Then
+(i)
+(ii)
+(iii)
+
+∞
+
+For the parabolic case, the symbol of the single-layer potential
+𝜎V (𝜔, 𝜉 ′ ) =
+
+a(𝜑, 𝜓) =
+
+1 ′2
+(|𝜉 | − i𝜔)−1∕2
+2
+
+()
+
+In the hyperbolic case, the symbol 𝜎V does not have a positive
+real part. Instead, one has to multiply it by i𝜔 and use a
+complex frequency 𝜔 = 𝜔R + i𝜔I with 𝜔I > 0 fixed. Then,
+one gets
+Re (i𝜔(|𝜉 ′ |2 − 𝜔2 )1∕2 ) ≥
+
+𝜔I ′ 2
+(|𝜉 | + |𝜔|2 )1∕2
+2
+
+and similar estimates given first by Bamberger and Ha Duong
+(1986). Note that, with respect to |𝜔|, one is losing an order
+of growth here. For fixed 𝜔I , the left-hand side is bounded by
+|𝜔|2 , whereas the right-hand side is (|𝜔|). One introduces
+another class of anisotropic Sobolev spaces of the form
+H s,r (ℝ × Γ) = {u ∣ u, 𝜕t r u ∈ H s (ℝ × Γ)}
+with the norm
+||u||s,r,𝜔I
+=
+
+∫Im 𝜔=𝜔I ∫ℝn−1
+
+|𝜔|2r (|𝜉 ′ |2 + |𝜔|2 )s |̂
+u(𝜔, 𝜉 ′ )|2 d𝜉 ′ d𝜔
+
+∫Γ
+
+(V𝜑)(t, x) 𝜕t 𝜓(t, x)d𝜎(x)dt
+
+I
+
+(iv)
+
+The Galerkin matrices for the scheme: Find 𝜑N ∈ XN
+such that
+a(𝜑N , 𝜓) = ⟨g, 𝜕t 𝜓⟩Σ
+
+C1 ||𝜉 ′ |2 − i𝜔|−1∕2 ≤ Re 𝜎V (𝜔, 𝜉 ′ ) ≤ C2 ||𝜉 ′ |2 − i𝜔|−1∕2
+
+2.4.3
+
+e−2𝜔I t
+
+Re a(𝜑, 𝜑) ≥ 𝛼 𝜔I ||𝜑||2(−1∕2),0,𝜔
+
+This has the consequence that its real part and absolute value
+are equivalent (an “elliptic” situation):
+
+In addition, for large |𝜉 ′ |2 + |𝜔|, this is equivalent to
+((1 + |𝜉 ′ |2 ) + |𝜔|)−1∕2 , the Fourier weight defining the space
+H (−1∕2),(−1∕4) (Σ). This explains Theorem 2. It also clearly
+shows the difference between the single-layer heat potential
+operator on the boundary and the heat operator 𝜕t − Δ itself:
+The symbol of the latter is |𝜉|2 − i𝜔, and the real part |𝜉|2
+and the absolute value (|𝜉|4 + |𝜔|2 )1∕2 of this function are
+not equivalent uniformly in 𝜉 and 𝜔.
+
+∫0
+
+Then there is an 𝛼 > 0 such that
+
+again has a positive real part. In addition, it is sectorial:
+𝜋
+| arg 𝜎V (𝜔, 𝜉 ′ ) | ≤
+4
+
+̃ s,r+1 (Σ) → H s+1,r (Σ) and
+V∶H
+0
+0
+̃ s,r (Σ) are continuous.
+V −1 ∶ H s+1,r+1 (Σ) → H
+0
+Let 𝜔I > 0 and the bilinear form a(𝜑, 𝜓) be defined by
+
+∀𝜓 ∈ XN
+
+have a positive-definite Hermitian part, and there is an
+error estimate
+−1∕2
+
+||𝜑 − 𝜑N ||(−1∕2),0,𝜔I ≤ C 𝜔I
+
+inf ||𝜑 − 𝜓||(−1∕2),1,𝜔I
+
+𝜓∈XN
+
+Thus, one has unconditional stability and convergence for
+𝜔I > 0. In practical computations, one will use the bilinear
+form a(𝜑, 𝜓) for 𝜔I = 0, where the error estimate is no longer
+valid. Instabilities have been observed that are, however,
+probably unrelated to the omission of the exponential factor.
+They are also not caused by a too large CFL number (ratio
+between time step and spatial mesh width). In fact, too small
+and too large time steps have both been reported to lead to
+instabilities.
+Corresponding results for elastodynamics and for electrodynamics can be found in the literature (besides the
+above-mentioned works, see the references given in Chudinovich (2001) and Bachelot et al. (2001).
+
+2.5
+
+Collocation methods
+
+In order to avoid the high-dimensional integrations necessary
+for the computation of the matrix elements in a Galerkin
+method such as the ones described in Theorems 2 and 3,
+one often uses collocation methods. Just like in the elliptic
+case, even for the classical first-kind integral operators for the
+Laplace operator, the mathematical analysis lags seriously
+behind the practical experiences.
+In more than two dimensions, only for very special
+geometries that are amenable to Fourier analysis, stability of
+collocation schemes can be shown. For time-dependent integral equations, even two-space dimensions create theoretical
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+10
+
+problems which only recently have been overcome, and this
+is only for special geometries, mainly flat boundaries or
+toroidal boundaries.
+Collocation schemes for the single-layer potential integral
+equation (D3) are easy to formulate. One usually takes basis
+functions of tensor product form, that is
+𝜑ij (t, x) = 𝜒i (t)𝜓j (x)
+where 𝜒i (i = 1,…, M) is a basis of a space of finite elements
+(splines) of degree dt on the interval [0, T], and 𝜓j (j =
+1,…, N) is a basis of a space of finite elements of degree dx
+on the boundary Γ. Then, the trial functions are of the form
+
+3
+
+11
+
+LAPLACE TRANSFORM METHODS
+
+To pass from the time domain to the frequency domain, we
+define the (Fourier-) Laplace transform by
+∞
+
+̂
+u(𝜔) = u(𝜔) =
+
+∫0
+
+ei𝜔t u(t)dt
+
+(3)
+
+If u is integrable with a polynomial weight or, more generally, a tempered distribution, and if, as we assume here
+throughout, u(t) = 0 for t < 0, then ̂
+u is holomorphic in
+the upper half plane {𝜔 = 𝜔R + i𝜔I ∣ 𝜔R ∈ ℝ, 𝜔I > 0}. The
+inversion formula is
+∞+i𝜔
+
+∑
+
+M,N
+
+ukh (t, x) =
+
+𝛼ij 𝜑ij (t, x)
+
+i,j=1
+
+Here, the indices kh indicate the time step k ∼ T∕M and the
+mesh width h of the discretization of the boundary Γ.
+The linear system for the unknown coefficients is obtained
+from the equations
+Vukh (ti , xj ) = g(ti , xj )
+where ti ∈ [0, T](i = 1,…, M) are the time collocation
+points, and xj ∈ Γ(j = 1,…, N) are the space collocation
+points. The collocation points are usually chosen in a “natural” way, meaning midpoints for even-degree splines in
+time, nodes for odd-degree splines in time, barycenters
+for piecewise constants dx = 0, nodes of the finite element
+mesh on Γ for dx = 1, and, more generally, nodes of suitable
+quadrature rules for other values of dx .
+
+2.5.1
+
+()
+
+For the heat equation in a smooth domain in two-space
+dimensions, it was shown in Costabel and Saranen (2000,
+2003) that for dt = 0, 1, one gets convergence in anisotropic
+Sobolev spaces of the “parabolic” class defined in Section
+2.3.3. There is a condition for optimality of the convergence,
+which corresponds to a kind of anisotropic quasiuniformity:
+k ∼ h2
+
+2.5.2
+
+()
+
+For the retarded potential integral equation, that is, the
+equation of the single-layer potential for the wave equation
+in three-space dimensions, Davies and Duncan (2004) prove
+rather complete stability and convergence results for the case
+of a flat boundary.
+
+u(t) = −1 u(t) =
+
+I
+1
+e−i𝜔t ̂
+u(𝜔) d𝜔
+2𝜋 ∫−∞+i𝜔I
+
+(4)
+
+Frequently, it is customary to define the Laplace integral by
+∞
+
+∫0
+
+e−st u(t) dt
+
+which is the same as (3) when s and 𝜔 are related by s = −i𝜔.
+The upper half plane 𝜔I > 0 coincides with the right half
+plane Re s > 0.
+The function t → u(t) can take values in some Banach
+space (Arendt et al., 2001), for example, in a space of functions depending on x, in which case we write
+∞
+
+̂
+u(𝜔, x) = u(𝜔, x) =
+
+∫0
+
+ei𝜔t u(t, x) dt
+
+By Laplace transformation, both the parabolic and the
+hyperbolic initial-boundary value problems are transformed
+into elliptic boundary value problems with an eigenvalue
+parameter 𝜆 depending on the frequency 𝜔. Thus, both
+the heat equation (𝜕t − Δ)u = 0 and the wave equation
+(c−2 𝜕t 2 − Δ)u = 0 are transformed into the Helmholtz
+equation (Δ − 𝜆)̂
+u(𝜔, x) = 0, where
+𝜆(𝜔) = −i𝜔 for the heat equation
+and
+
+𝜔2
+𝜆(𝜔) = − 2 for the wave equation
+c
+
+The idea of the Laplace transform BIE method is to solve
+these elliptic boundary value problems for a finite number
+of frequencies with a standard BEM and then to insert the
+results into a numerical approximation of the Laplace inversion integral (4).
+There exist various algorithms for numerical inverse
+Laplace transforms (see e.g., Davies and Martin, 1979 or
+Abate and Whitt, 1995). One will, in general, first replace
+the line of integration {Im 𝜔 = 𝜔I } by a suitable equivalent contour  and then choose some quadrature rule
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+approximation of the integral. The end result will be of the
+form
+u(t) =
+
+L
+∑
+1
+e−i𝜔t ̂
+u(𝜔)d𝜔 ∼
+w𝓁 e−i𝜔𝓁 t ̂
+u(𝜔𝓁 )
+2𝜋 ∫
+𝓁=1
+
+(5)
+
+with quadrature weights w𝓁 and a finite number of frequencies 𝜔𝓁 .
+One obvious candidate for such a quadrature formula is the
+trapezoidal rule on a large interval [−R, R], where the line
+{Im 𝜔 = 𝜔I } is replaced by [−R, R] + i𝜔I . This can then be
+evaluated by FFT, which is clear when we write the Laplace
+inversion integral as inverse Fourier transform over the real
+line:
+u(t) = −1̂
+u(t) = e𝜔I t 𝜔−1R →t [̂
+u(𝜔r + i𝜔I )]
+Let us describe the resulting procedure in more detail for
+the formulation with a single-layer potential representation
+for the initial-Dirichlet problem, keeping in mind that any
+other type of BIE constructed in Section 2.2.2 would do
+just as well and lead to a similar formalism. By Laplace
+transform, we get the boundary value problem
+(Δ − 𝜆(𝜔))̂
+u(𝜔, x) = 0
+
+in Ω
+
+̂
+u(𝜔, x) = ̂
+g(𝜔, x)
+
+on Γ
+
+where the right-hand side is the Laplace transform of the
+given boundary data g. For the unknown density 𝜓, we get
+the first-kind integral equation on Γ
+V𝜆(𝜔) 𝜓
+̂ (𝜔) = ̂
+g(𝜔)
+
+(6)
+
+where V𝜆(𝜔) is the weakly singular integral operator generated by convolution with the kernel (in three dimensions)
+√
+
+e 𝜆(𝜔)|x|
+G𝜆(𝜔) (x) =
+4𝜋|x|
+Now, let V𝜆(𝜔),h be some finite-dimensional boundary
+element approximation of V𝜆(𝜔) , so that
+−1
+𝜓
+̂h (𝜔) = V𝜆(𝜔),h
+̂
+g(𝜔)
+
+is the corresponding approximate solution of equation (6).
+Inserting this into the numerical inversion formula (5) finally
+gives the following expression for the approximation of the
+unknown density 𝜓(t, x) via the Laplace transform BEM:
+𝜓h (t, x) =
+
+L
+∑
+𝓁=1
+
+)
+(
+−1
+w𝓁 e−i𝜔𝓁 t V𝜆(𝜔
+g(𝜔𝓁 ) (x)
+),ĥ
+𝓁
+
+(7)
+
+Note that, on this level of abstraction, (7) looks the same for
+the parabolic case of the heat equation, the hyperbolic case
+of the wave equation, or even the dissipative wave equation.
+The only difference is the function 𝜆(𝜔), which then determines, depending on the contour√
+ and its discretization 𝜔𝓁 ,
+for which complex frequencies (−𝜆(𝜔𝓁 )) the single-layer
+potential operator has to be numerically inverted.
+For practical computations, this difference can be essential.
+In a precise quadrature rule in (5), which is needed for high
+resolution in time, there will be some 𝜔𝓁 with large absolute
+values. In the hyperbolic case (but not in the parabolic case!),
+this means large negative real parts for 𝜆(𝜔𝓁 ), hence highly
+oscillating kernels, and some machinery for high-frequency
+BEMs has to be put in place (Bruno, 2003).
+Applications of the Laplace transform BIE methods in
+elastodynamics have a long history (Cruse and Rizzo,
+1968; Cruse, 1968). For generalizations such as viscoelasticity, poroelasticity, or piezoelectricity, these methods are
+more practical than the space–time BIE methods because
+space–time fundamental solutions are not explicitly known
+or are very complicated (Gaul and Schanz, 1999; Schanz,
+1999, 2001a; Wang et al., 2003). Laplace domain methods
+related to the operational quadrature method (Section 4.4)
+have been used successfully in practice (Schanz and Antes,
+1997a,b; Schanz, 2001b; Telles and Vera-Tudela, 2003).
+A final remark on the Laplace transform BEM: Instead
+of, as described in this section, performing first the Laplace
+transform and then the reduction to the boundary, one can
+also first construct the space–time BIEs as described in the
+previous section and then apply the Laplace transform. It
+is easy to see that the resulting frequency-domain BIEs are
+exactly the same in both procedures.
+
+4
+
+TIME-STEPPING METHODS
+
+In the previous sections, the boundary reduction step was
+performed before any discretization had taken place. In
+particular, the description of the transient behavior of the
+solution by a finite number of degrees of freedom was
+introduced via a Galerkin or collocation method for the
+space–time integral equation or via numerical Laplace inversion, only after the construction of the BIE.
+It is possible to invert the order of these steps by first
+applying a time-discretization scheme to the original initialboundary value problem and then using a BIE method on
+the resulting problem that is discrete in time and continuous in space. One advantage of this idea is similar to the
+motivation of the Laplace transform method: The parabolic
+and hyperbolic problems are reduced to elliptic problems for
+which boundary element techniques are well known. Another
+attraction is the idea that, once a procedure for one time step
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+12
+
+is constructed, one can march arbitrarily far in time by simply
+repeating this same procedure.
+In this section, we will, for simplicity, only treat the
+parabolic case of the initial-Dirichlet problem for the heat
+equation. Quite analogous procedures are also possible for
+the hyperbolic case, and, in particular, the CQ method
+has been analyzed for both the parabolic and the hyperbolic situation (Lubich, 1994). In the literature on applied
+BEMs, one can find many successful applications of similar
+time-stepping schemes to parabolic and hyperbolic problems
+of heat transfer, fluid dynamics, elastodynamics, and various
+generalizations (Nardini and Brebbia, 1983; Partridge et al.,
+1992; Gaul et al., 2003).
+
+4.1
+
+We consider the initial-boundary value problem
+in Q
+
+(8)
+
+r
+∑
+
+𝛼j un−j − k
+
+j=0
+
+r
+∑
+
+𝛽j Δun−j = 0 in Ω;
+
+j=0
+
+The coefficients 𝛼j and 𝛽j define the characteristic function
+of the multistep scheme
+r
+∑
+𝛼j 𝜁 j
+𝛿(𝜁) =
+
+j=0
+r
+∑
+
+𝛽j 𝜁 j
+
+j=0
+
+4.2
+
+One step at a time
+
+for t ≤ 0
+
+𝜂 2 u − Δu = f in Ω;
+as an ordinary differential equation in time with operator
+coefficients. Consequently, we can employ any kind of
+one-step or multistep method known from the numerical
+analysis of ordinary differential equations. Only implicit
+schemes are of interest here, for two reasons: The first reason
+is the stability of the resulting scheme, and the second is that
+explicit schemes would not really require a BIE method.
+The solution u(t, x) for 0 ≤ t ≤ T is approximated by a
+sequence un (x), n = 0,…, N, where
+un is understood as an approximation of u(tn , ⋅),
+tn = nk =
+
+nT
+N
+
+The simplest discretization of the derivative 𝜕t with time step
+k is the backward difference that gives the backward Euler
+scheme for (8):
+un − un−1
+− Δun = 0 in Ω (n = 1,…, N)
+(9)
+k
+un (x) = gn (x) = g(tn , x) on Γ (n = 1,…, N)
+u0 = 0
+
+for t ≤ 0
+
+un = gn on Γ
+
+(10)
+
+u = g on Γ
+
+(12)
+
+Here, 𝜂 2 = 1∕k for (10) and 𝜂 2 = 𝛼0 ∕(k𝛽0 ) for (11). The
+right-hand side f is computed from the solution of the
+previous time step(s), and it has no reason to vanish except
+possibly for the very first time step. For the integral equation
+method, we therefore have to apply a representation formula
+that takes into account this inhomogeneous differential
+equation.
+Let up = Pf be a particular solution of the equation 𝜂 2 up −
+Δup = f in Ω. Then, u0 = u − up satisfies the homogeneous
+equation and can therefore be computed by a standard BIE
+method, for example, by one of the methods from Section
+2.2. For an exterior domain, we thus have the representation
+formula in Ω
+u0 (x) =
+
+∫Γ
+
+{𝜕n(y) G(x − y)u0 (y) − G(x − y)𝜕n u0 (y)}d𝜎(y)
+
+= (𝛾0 u0 )(x) − (𝛾1 u0 )(x)
+Here, G is the fundamental solution of the Helmholtz
+equation, given in the three-dimensional case by
+G(x) =
+
+The actual elliptic boundary value problem that one has to
+solve at each time step, n = 1,…, N, is therefore
+un − kΔun = un−1 in Ω;
+
+un = gn on Γ (11)
+
+The problem to solve for one time step in both (10) and (11)
+is of the form
+
+u = g on Σ
+u(t, x) = 0
+
+Higher order approximation in time can be achieved by
+multistep methods of the form
+
+Consistency of the scheme (11) is characterized by 𝛿(1) =
+0, 𝛿 ′ (1) = −1, and the scheme is accurate of order p if
+𝛿(e−z )∕z = 1 + (zp ) as z → 0. One can assume that 𝛼0 𝛽0 >
+0.
+
+Time discretization
+
+(𝜕t − Δ)u(t, x) = 0
+
+13
+
+e−𝜂|x|
+4𝜋|x|
+
+Using our abbreviations for the single- and double-layer
+potentials and
+𝛾0 u = u|Γ
+
+𝛾1 u = 𝜕n u|Γ
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+4.2.2
+
+we have the representation for u:
+u = (𝛾0 u) − (𝛾1 u) + Pf − (𝛾0 Pf ) + (𝛾1 Pf )
+
+(13)
+
+For the unknown 𝜑 = 𝛾1 u in the direct method for the
+Dirichlet problem or for the unknown 𝜓 in a single-layer
+potential representation
+u = 𝜓 + Pf
+
+(14)
+
+or the unknown w in a double-layer representation
+u = w + Pf
+
+(15)
+
+(
+)
+(
+)
+1
+1
+V𝜑 = − + K g +
+− K 𝛾0 Pf + V𝛾1 Pf (D1)
+2
+2
+(
+)
+)
+(
+1
+1
+′
++ K 𝜑 = −Wg + W𝛾0 Pf + − + K ′ 𝛾1 Pf
+(D2)
+2
+2
+V𝜓 = g − 𝛾0 Pf
+(D3)
+)
+(
+1
++ K w = g − 𝛾0 Pf
+(D4)
+2
+These are standard BIEs that can be discretized and numerically solved in many ways. The one peculiarity is the
+appearance of the particular solution Pf in the representation
+formula (13) and in the integral equations (D1)–(D4).
+There are various possibilities for the construction of (an
+approximation of) Pf. Let us mention some of them that are
+being used in the boundary element literature and practice.
+
+Newton potential
+
+In the standard representation formula for the inhomogeneous Helmholtz equation derived from Green’s formula, Pf
+appears in the form
+Pf (x) =
+
+∫Ω
+
+Another method to get an approximate particular solution Pf
+̂ then
+is to embed the domain Ω into a rectangular domain Ω,
+̂ by trigonometric polyapproximate an extension of f to Ω
+nomials using FFT, solve the Helmholtz equation in Fourier
+space, and go back by FFT again. Other fast Helmholtz
+solvers that exist for simple domains can be used in the
+same way.
+
+4.2.3
+
+this leads to the choice of integral equations
+
+4.2.1
+
+Fourier series
+
+Radial basis functions
+
+In the previous sections, the right-hand side f was approximated by a linear combination of special functions for which
+particular solutions of the Helmholtz equation are known:
+the Dirac distribution for the Newton potential method, and
+exponential functions for the FFT method. The particular
+solution Pf is then given by the corresponding linear combination of the individual particular solutions. Other special
+functions that can serve in the same way are radial basis
+functions, in the simplest case functions of the form |x − xj |,
+where the xj belong to some discretization of Ω by an unstructured grid. One advantage of the radial basis function technique is that there exist many practical and theoretical results
+about interpolation by such functions (Powell, 1992; Faul
+and Powell, 1999).
+
+4.2.4
+
+Higher fundamental solutions
+
+In the first time step, the solution u = u1 is given, after
+solving the appropriate BIEs, by the representation formula
+(13) with f = 0, that is, by a combination of single- and
+double-layer potentials. This u1 is then used as right-hand
+side f in the next time step. A particular solution Pf can
+then be found, without any domain integral, by replacing
+the fundamental solution G of (𝜂 2 − Δ) in the representation
+formula by a fundamental solution G(1) of (𝜂 2 − Δ)2 satisfying
+
+G(x − y) f (y)dy
+
+This representation has the advantage that the last two terms
+in the representation formula (13) cancel, and therefore also
+the integral equations (D1) and (D2) simplify in that the
+integral operators acting on the traces of Pf are absent. For
+computing the Newton potential, the domain Ω has to be
+discretized, thus neutralizing one of the advantages of the
+BEM, namely the reduction of the dimension. Note, however,
+that this domain discretization is done only for purposes
+of numerical integration. No finite element grid has to be
+constructed. It is also to be noted that the domain discretization only enters into the computation of the right-hand side;
+the size of the linear system to be solved is not affected.
+
+(𝜂 2 − Δ)G(1) (x) = G(x)
+Thus, if
+f (x) =
+
+∫Γ
+
+{𝜕n(y) G(x − y)w(y) − G(x − y)𝜑}d𝜎(y)
+
+then a particular solution Pf is given by
+Pf (x) =
+
+∫Γ
+
+{𝜕n(y) G(1) (x − y)w(y) − G(1) (x − y)𝜑}d𝜎(y)
+
+In the next time step, the right-hand side is then constructed
+from single- and double-layer potentials plus this Pf.
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+14
+
+Repeating the argument, one obtains a particular solution by
+using a fundamental solution G(2) of (𝜂 2 − Δ)3 . In the nth
+time step, one then needs to use higher order fundamental
+solutions G(j) , (j < n), which satisfy the recurrence relations
+
+Section 4.2.4. It is a lower triangular Toeplitz matrix 𝔊 with
+entries (Gi,j ), where
+Gj,j (x) = G(x)
+
+(𝜂 2 − Δ)G(j+1) (x) = G(j) (x)
+Such functions G(j) can be given explicitly in terms of Bessel
+functions. In this way, the whole time-marching scheme
+can be performed purely on the boundary, without using
+domain integrals or any other algorithm requiring discretization of the domain Ω. Two other points of view that can
+lead, eventually, to an entirely equivalent algorithm for
+the time-discretized problem are described in the following
+sections.
+
+4.3
+
+All time steps at once
+
+Just as in the construction of the space–time integral
+equations the heat equation or wave equation was not
+considered as an evolution equation (i.e., as an ordinary
+differential equation with operator coefficients) but as a
+translation-invariant operator on ℝ1+n whose fundamental
+solution was used for integral representations, one can
+consider the time-discretized problem as a translationinvariant problem on ℤ × ℝn and construct a space–time
+fundamental solution for this semidiscretized problem. The
+role of the time derivative is then played by its one-step or
+multistep discretization, as in (10) or (11), and the role of
+the inverse of the time derivative and of other finite time
+convolutions appearing in the space–time integral operators
+is played by finite discrete convolutions.
+In simple cases, such discrete convolution operators can be
+inverted explicitly. For a two-part recurrence relation, such as
+the backward Euler method (9), the convolution operator can
+be represented by a triangular Toeplitz matrix with just one
+lower side diagonal. Let u denote the vector u1 ,…, uN and
+define g correspondingly. Then the backward Euler scheme
+(10) can be written as a system
+Au = 0
+
+in Ω;
+
+u = g on Γ
+
+(16)
+
+Here, A is an elliptic system of second order, given by the
+matrix elements
+aj,j = 1 − kΔ;
+
+aj,j−1 = −1;
+
+all other ai,j = 0
+
+Once a fundamental solution of this system is found, the
+system of equations (16) can be solved numerically by standard elliptic BEMs. Because of the simple form of A, such a
+fundamental solution can be written using the higher fundamental solutions G(j) of the Helmholtz equation defined in
+
+15
+
+Gi,j (x) = G(i−j)
+
+for j < i
+
+Gi,j (x) = 0
+
+for j > i
+
+All boundary integral operators constructed from this fundamental solution will have the same lower triangular Toeplitz
+(finite convolution) structure, and their solutions can be
+found by inverting the single operator that generates the diagonal and by subsequent back substitution.
+For a detailed description of the approximation of the
+two-dimensional initial-Dirichlet problem for the heat
+equation using such a method, including formulas for the
+kernels in 𝔊 and a complete error analysis of the resulting
+second-kind integral equation as well as numerical results,
+see Chapko and Kress (1997).
+
+4.4
+
+The convolution quadrature or operational
+quadrature method
+
+In the previous section, the simple structure of the backward Euler scheme was essential. The resulting numerical
+approximation is of only first order in time. If one wants to
+use schemes that are of higher order in time, one can employ
+multistep methods, as described above. The resulting
+schemes still have the lower triangular Toeplitz structure
+of finite discrete convolutions in time. From the algebraic
+structure of these convolutions, it is clear that fundamental
+solutions, the resulting boundary integral operators, and
+their solution operators all have this finite convolution
+structure.
+Explicit constructions of kernels, however, will not be
+possible, in general. Just as for the original continuous-time
+problem the appropriate functional transform – the Laplace
+transform – allowed the reduction of the parabolic to elliptic
+problems, here, for the discrete-time problem, one can
+use the appropriate functional transform – namely the
+z-transform. In order to conserve the approximation order
+of the multistep method, one has to use a certain translation
+between continuous convolutions and discrete convolutions or, equivalently, between Laplace transforms and
+z-transforms.
+For the generators of the convolution algebras, namely
+the derivative 𝜕t in the continuous case and its time step k
+discretization 𝜕t k , this translation is given by the definition
+(11) of the multistep method, characterized by the rational
+function 𝛿(z). For the whole convolution algebras, this
+translation leads to the discretization method described by
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Lubich’s CQ method, see Lubich and Schneider (1992) and
+Lubich (1994). The general translation rule is the following
+(we use our notation for the (Fourier-)Laplace transform
+introduced above, not Lubich’s notation):
+Denote a finite convolution operator with operator-valued
+coefficients by
+̂ u(𝜔)]
+̂ t )u(t) = −1
+K(i𝜕
+𝜔→t [K(𝜔)̂
+̂
+If K(𝜔)
+decays sufficiently rapidly in the upper half plane,
+this operator is given by an integrable kernel K whose
+̂
+Laplace transform is K(𝜔):
+̂ t )u(t) =
+K(i𝜕
+
+t
+
+∫0
+
+K(s) u(t − s) ds
+
+The corresponding discrete convolution operator is given by
+̂ t k )u)n =
+(K(i𝜕
+
+n
+∑
+
+where the coefficients Kj are defined by their z-transform
+)
+(
+𝛿(z)
+̂
+Kj z = K i
+k
+j=0
+j
+
+Here, k is the time step, and 𝛿(z) is the characteristic function
+of the multistep method. The inverse of the z-transform is
+given by the Cauchy integral over some circle |z| = 𝜌:
+(
+)
+1
+̂ i 𝛿(z) z−j−1 dz
+Kj =
+K
+2𝜋i ∫|z|=𝜌
+k
+It is not hard to see that this translation rule reduces, for
+̂ t ) with K(𝜔)
+̂
+= −i𝜔, to
+the case of the derivative 𝜕t = K(i𝜕
+the convolution defined by the characteristic function 𝛿(z):
+𝜕t k un =
+
+n
+∑
+j=0
+
+𝛿j un−j
+
+with 𝛿(z) =
+
+∞
+∑
+
+𝛿j zj
+
+j=0
+
+In addition, this translation rule is an algebra homomorphism, that is, it respects compositions of (operator-valued)
+convolution operators. This is easy to see because
+̂2 (i𝜕t ) = (K
+̂1 K
+̂2 )(i𝜕t )
+̂1 (i𝜕t )K
+K
+and also
+
+Gj (x) =
+
+𝛿(z)
+1
+G𝜔(z) (x) z−j−1 dz with 𝜔(z) = i
+2𝜋i ∫|z|=𝜌
+k
+
+This integral over holomorphic functions can be evaluated
+numerically with high speed and high accuracy using the
+trapezoidal rule and FFT. In simple cases, it can be evaluated
+analytically, for example, in the case of the backward Euler
+method, where we have the simple characteristic function
+𝛿(z) = 1 − z
+
+Kj un−j
+
+j=0
+
+∞
+∑
+
+This CQ method can be applied at several different stages
+of an integral equation method for the time-discretized initial
+value problem.
+It can be used to find a fundamental solution for the
+whole system in the form of a Cauchy integral over the
+frequency-domain fundamental solutions G𝜔 . We get for the
+coefficients Gj of the semidiscrete space–time fundamental
+solution 𝔊(i𝜕t k ) the formula
+
+̂2 (i𝜕t k ) = (K
+̂1 K
+̂1 (i𝜕t k )K
+̂2 )(i𝜕t k )
+K
+
+By the relation z = ei𝜔k , one can see the analogy between the
+Cauchy integral over |z| = const with measure z−j−1 dz and
+the Laplace inversion integral for the time t = tj = jk over
+Im 𝜔 = const with measure e−itj 𝜔 d𝜔.
+
+The Cauchy integral then gives the higher order fundamental
+solutions G(j) of the previous section.
+This fundamental solution 𝔊(i𝜕t k ) can then be used in a
+standard BEM, keeping in mind that the time-discretized
+solution will be obtained by finite convolution.
+The CQ scheme can also (and equivalently) be introduced
+at a later stage in the integral equation method, after the
+frequency-domain integral equations have been solved. Let
+us describe this with the example of the single-layer representation method for the initial-Dirichlet problem of the heat
+equation.
+The space–time single-layer heat potential operator
+̂
+̂ t ), where V(𝜔)
+is the
+on Σ can be written as V = V(i𝜕
+frequency-domain single-layer potential operator on Γ
+whose kernel is the fundamental solution of the Helmholtz
+operator (−i𝜔 − Δ). Inverting V amounts to evaluating
+the Cauchy integral of the inverse z-transform where the
+frequency-domain single-layer integral equations have been
+solved for those frequencies needed for the Cauchy integral.
+For the approximation 𝜓n of the solution 𝜓(tn ) at the time
+tn = nk with time step k and a space discretization Vh (𝜔) of
+V(𝜔), one then obtains
+)
+(
+)−1 ( n
+∑
+𝛿(z)
+1
+V i
+gn−j z−j−1 dz (17)
+𝜓n =
+2𝜋 ∫|z|=𝜌 h
+k
+j=0
+This can be compared to the Laplace inversion integral (5)
+where the contour  is the image of the circle |z| = 𝜌 under
+the mapping z → 𝜔 = i(𝛿(z)∕k). When the Cauchy integral
+in (17) is evaluated numerically by a quadrature formula, we
+obtain an end result that has a form very similar to what we
+got from the Laplace transform BEM in formula (7).
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+16
+
+In the papers by Lubich and Schneider (1992) and Lubich
+(1994), the CQ method has been analyzed for a large class
+of parabolic and hyperbolic initial-boundary value problems
+and multistep methods satisfying various stability conditions. Computational results show its efficiency in practical
+applications (Schanz and Antes, 1997a,b).
+
+where the unknown functions 𝛼j ∶ ℝ → ℝ satisfy 𝛼j (t) = 0
+for all t ≤ 0, and
+N
+∑
+
+𝛼j (t − |x−y|
+)
+c
+
+j=1
+
+∫Γ ∫Γ 4𝜋|x − y|
+=
+
+5
+
+NEW DEVELOPMENTS IN
+SCATTERING PROBLEMS
+
+In recent years, there has been much advance in theoretical and practical aspects of time-domain BIEs, especially
+in the realm of the simulation of propagation and scattering of waves. We start this section by showing some
+arguments that explain why equations of the first kind
+lead to long-term stable formulations even after Galerkin
+semidiscretization-in-space (a sort of method of lines applied
+to the retarded integral equation) is used. To keep the
+ideas simple, we focus on a single equation, solving the
+single-layer operator equation for the Dirichlet problem and
+then inputting the density in a single-layer potential:
+
+In scattering applications, g = −uinc |Γ , where uinc is a given
+incident wave which we assume not to have reached Γ at
+time t = 0. We thus assume that g(t, ⋅) = 0 for all t ≤ 0.
+For space semidiscretization, we choose an N-dimensional
+1
+subspace XN of the Sobolev space H − 2 (Γ) (in the simplest
+case, piecewise constant functions on a triangulation of Γ).
+The semidiscrete scheme looks for 𝜑N ∶ ℝ × Γ → ℝ such
+that
+𝜑N (t, ⋅) ∈ XN
+
+∀t,
+
+𝜑N (t, ⋅) ≡ 0 t ≤ 0
+
+(18a)
+
+𝜇 (x)(V𝜑N )(t, x) d𝜎(x)
+∫Γ N
+𝜇 (x)g(t, x) d𝜎(x)
+∫Γ N
+
+∀𝜇N ∈ XN
+
+(18b)
+
+The acoustic field is then constructed with the single-layer
+potential
+(18c)
+uN (t, x) = (𝜑N )(t, x)
+If {𝜓1 ,…, 𝜓N } is a basis for XN and we are working in the
+three-dimensional case, then
+𝜑N (t, x) =
+
+N
+∑
+j=1
+
+𝜓i (x)d𝜎(x)𝜓j (y)d𝜎(y)
+
+g(t, x)𝜓i (x)d𝜎(x),
+
+i = 1,…, N
+
+The acoustic pressure in free space is just the postprocessed
+field
+N
+𝛼j (t − |x−y|
+)
+∑
+c
+𝜓 (y)d𝜎(y)
+uN (t, x) =
+∫ 4𝜋|x − y| j
+j=1 Γ
+Instead of paying attention to the unknown density 𝜑N , we
+can follow the classical arguments for steady-state problems
+(Nedelec and Planchard, 1973) and turn our attention to the
+potential uN , which is a solution of the wave equation
+c−2 𝜕t2 uN = ΔuN
+
+in ℝ × (ℝd ∖Γ)
+
+(19a)
+
+with the exotic transmission conditions
+∀t,
+
+< 𝜇N , uN (t, ⋅)|Γ − g(t, ⋅) >Γ = 0
+
+∀𝜇N ∈ XN
+
+∀t
+
+(19b)
+
+and vanishing initial conditions. The first transmission condition is a reflection of the fact that we are looking for the
+density in the discrete space XN , while the second one is
+the semidiscrete integral equation written from the point of
+view of the potential. There is a weak-variational formulation of (19) using the space of fields that are not seen on the
+boundary by the test functions
+UN ∶= {v ∈ H 1 (ℝd ) ∶< 𝜇N , v|Γ >Γ = 0
+
+∀𝜇N ∈ XN }
+
+(The argument and the results will be written for the
+d-dimensional physical setting, since they are essentially
+dimension-independent.) The acoustic field uN satisfies the
+semidiscrete Dirichlet condition
+
+and
+
+=
+
+∫Γ
+
+[𝜕n uN ](t, ⋅) ∈ XN
+
+u = 𝜑
+
+V𝜑 = g,
+
+17
+
+𝛼j (t)𝜓j (x)
+
+< 𝜇N , uN (t, ⋅)|Γ − g(t, ⋅) >Γ = 0
+
+∀𝜇N ∈ XN
+
+∀t
+
+(20a)
+
+(only some moments of the Dirichlet condition are
+observed), the weak form of the wave equation
+∫ℝd
+
+(∇uN (t, x) ⋅ ∇v(x) + c−2 𝜕t2 uN (t, x)v(x))dx = 0
+∀v ∈ UN
+
+(20b)
+
+and vanishing initial conditions. To continue the argument,
+let us now solve a steady-state problem for each time to lift
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+g
+
+the boundary data: we look for uN (t, ⋅) ∈ H 1 (ℝd ) satisfying
+(20a) and
+g
+
+∫ℝd
+
+g
+
+(∇uN (t, x) ⋅ ∇v(x) + c−2 uN (t, x)v(x)) dx = 0
+
+∀v ∈ UN
+
+g
+
+It is clear that uN (t, ⋅) = 0 whenever g(t, ⋅)|Γ = 0. We now
+g
+define u0N = uN − uN and note that u0N (t, ⋅) ∈ UN for all t.
+Testing (20b) with v = 𝜕t u0N (t, ⋅) and reordering the resulting
+expression, we obtain the energy estimate
+)
+(
+d 1
+(|∇u0N (t, x)|2 + |c−1 𝜕t u0N (t, x)|2 ) dx
+dt 2 ∫ℝd
+g
+
+= − (∇uN (t, x) ⋅ ∇𝜕t u0N (t, x)
+∫ℝd
+
+of the problem. These bounds seem to require much regularity for the data (in the case of the plane incident wave,
+everything can be transferred to smoothness of the incoming
+signal f ), which can be blamed on the goal to provide uniform
+estimates in the time variable. However, the operator g →
+(uN , 𝜑N ) can be interpreted as a convolution operator in the
+time variable, and shift theorems apply. In particular, if g is
+not very smooth but 𝜕t−k g has enough regularity for the estimates to hold, then we have uniform estimates on 𝜕t−k uN and
+𝜕t−k 𝜑N , which can be understood as weak-norm estimates for
+the actual quantities uN and 𝜑N .
+A similar argument can be used to obtain estimates for the
+semidiscrete error. The error eN = u − uN satisfies homogeneous initial conditions, the property of having zero observed
+moments for its value on the boundary,
+
+g
+
++ c−2 uN (t, x)𝜕t u0N (t, x))dx
+
+eN (t, ⋅) ∈ UN
+
+This gives a formal argument for stability. Take a plane wave
+uinc = f (x ⋅ d − ct) (with |d| = 1) hitting the boundary Γ of
+the scatterer, and assume that f is a signal with compact
+support. This means that there is a final incidence time
+T > 0 such that g(t, ⋅)|Γ = 0 for t > T. Therefore, for t >
+T, uN = u0N , and the previous estimate shows that the total
+energy stays constant after the incident wave stops hitting
+the obstacle. With some more analytical work, the following
+stability estimate
+||uN (t, ⋅)||H 1 (ℝd ) ≤ CΓ
+
+2
+∑
+𝓁=0
+
+t
+
+∫0
+
+||𝜕t𝓁 g(𝜏, ⋅)|| 1 ,Γ d𝜏
+2
+
+∀t ≥ 0
+
+(21)
+can be proved. From the point of view of the semidiscrete
+density, the bound that can be obtained with this kind of
+energy estimates is
+||𝜑N (t, ⋅)||− 1 ,Γ ≤ CΓ
+2
+
+3
+∑
+𝓁=1
+
+t
+
+∫0
+
+||𝜕t𝓁 g(𝜏, ⋅)|| 1 ,Γ d𝜏
+2
+
+∀t ≥ 0
+
+(22)
+This mismatch of the smoothness requirements for the potential and the density [compare the right-hand-sides of (21)
+and (22)] seems to be typical of the complicated mapping
+properties of the retarded integral operators: one apparent
+paradox is that, even if in practice 𝜑N is computed first and
+uN is postprocessed, and even if one would not expect the
+retarded potential to have much of a smoothing effect in
+the time variable, the smoothness requirements on the side
+of the data are milder for the potential than for the density.
+One important feature of the stability bounds (21) and (22)
+is the fact that the constant CΓ depends only on geometric
+aspects of the problem: it is independent of time and of the
+choice of the semidiscrete space XN . In fact, the same bounds,
+with the same constant, can be proved for the exact solution
+
+∀t
+
+(23a)
+
+and
+∫ℝd
+
+(∇eN (t, x) ⋅ ∇v(x) + c−2 𝜕t2 eN (t, x)v(x))dx
+
+= < v|Γ , 𝜑(t, ⋅) − ΠXN 𝜑(t, ⋅)>Γ
+
+∀v ∈ UN
+
+(23b)
+
+Here, ΠXN is any projection on the space XN ; for example, the
+1
+
+best approximation operator H − 2 (Γ) → XN . Equation (23b)
+can be formally understood as the wave equation surrogate
+for Galerkin orthogonality. We can then test (23b) with v =
+𝜕t eN (t, ⋅) and integrate in time to obtain a bound of the energy
+of the error
+1
+(|∇eN (t, x)|2 + |c−1 𝜕t eN (t, x)|2 )dx
+2 ∫ℝd
+t
+
+=
+
+∫0
+
+< 𝜕t eN (𝜏, ⋅)|Γ , 𝜑(𝜏, ⋅) − ΠXN 𝜑(𝜏, ⋅)>Γ d𝜏
+
+With some additional analytical work, we can prove that the
+potential satisfies a shifted-integrated Céa estimate
+||uN (t, ⋅) − u(t, ⋅)||H 1 (ℝd )
+1
+∑
+
+≤ CΓ
+
+t
+
+𝓁=−1
+
+∫0
+
+||𝜕t𝓁 𝜑(𝜏, ⋅) − ΠXN 𝜕t𝓁 𝜑(𝜏, ⋅)||− 1 ,Γ d𝜏 (24)
+2
+
+while the density satisfies
+||𝜑N (t, ⋅) − 𝜑(t, ⋅)||− 1 ,Γ
+2
+
+∑
+2
+
+≤ CΓ
+
+𝓁=0
+
+t
+
+∫0
+
+||𝜕t𝓁 𝜑(𝜏, ⋅) − ΠXN 𝜕t𝓁 𝜑(𝜏, ⋅)||− 1 ,Γ d𝜏
+
+(25)
+
+2
+
+The stability estimates (21) and (22) and the semidiscrete
+convergence estimates (24) and (25) can be used as a first
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+18
+
+step in the analysis of many of the available fully discrete
+methods (full Galerkin with tensor product structure, CQ,
+MOT, discrete convolution) as long as they are based on
+integral formulations of the first kind. These ideas were
+developed by Sayas (2013), Domínguez and Sayas (2013),
+Banjai et al. (2015), and Qiu and Sayas (2016). A full
+mathematical introduction to time-domain integral equations
+for wave propagation can be found in a recent monograph
+(Sayas, 2016). Formulations based on integral equations of
+the second kind have much less theoretical support. Some
+recent work by Epstein et al. (2016) has explored the stability
+properties of second-kind integral equations for transient
+wave propagation. At the current stage, it is unknown how
+discretization affects the stability properties of these formulations since the variational energy arguments are not valid in
+these new situations. It is also unclear how the mapping properties of the double-layer operator K interact with discretization: the elliptic mindset of the identity plus compact operator
+is easily shown not to hold in the hyperbolic case; even
+if the operator K regularizes in the space variable, it loses
+regularity in the time variable. Regularized, combined field
+integral equations for acoustics have been explored by Chen
+and Monk (2014), showing that regularization is needed in
+the space variable (to take care of nonsmooth domains where
+K fails to be formally compact) and in the time variable.
+Theoretical considerations apart, interest in different
+discretization schemes for time-domain integral equations
+in scattering has increased in the past decade. Galerkin (in
+space and time) methods based on piecewise polynomial
+approximation are still a favorite in some of the research
+communities (Messner and Schanz, 2012). The justification for dropping the exponentially decaying weight in the
+variational formulation (take 𝜔I = 0 in the bilinear form of
+Theorem 3) is still an open problem. However, some energy
+arguments seem to justify the stability of this kind of choice,
+which experiments support (Aimi et al., 2011, 2012, 2013,
+2014).
+New ideas to simplify the difficult and very delicate
+numerical quadrature issues involved in Galerkin-in-time
+time-stepping methods are being explored, looking into
+additional connections between MOT, Galerkin, and CQ
+approaches. Much of the goal has been to derive high-order
+stable schemes that lead to simple quadratures and have
+low dispersion error. A simple idea consists of using
+smooth-in-time basis functions, instead of discontinuous
+piecewise polynomials, as the shape functions for a Galerkin
+scheme (Veit, 2012; Sauter and Veit, 2013). So far, the main
+disadvantage of this approach is the full coupling of the
+space–time discretization, leading to a large linear system
+with sparse-block structure. Exploiting the convolutional
+structure of the retarded integral operators has been the
+goal of new schemes with low dispersion error (Davies and
+
+19
+
+Duncan, 2013, 2014). MOT schemes are still the most used
+in the engineering EM (electromagnetics) literature (see
+Cools et al., 2009; Andriulli et al., 2009; Valdés et al., 2013;
+Beghein et al., 2013; Pray et al., 2014; Ülkü et al., 2013).
+CQ or operational quadrature schemes (Lubich, 1988)
+regained much momentum with Hackbusch et al. (2007 and
+2009). Schemes based on Galerkin-in-space and CQ in time
+seem to be a very cheap to code (CQ can be coded as a
+parallel collection of time-harmonic problems with complex
+frequencies, see Banjai and Sauter, 2008/09) but expensive to
+run (the memory requirements are much larger than in MOT
+or Galerkin schemes) option for numerical approximation of
+transient scattering problems. Much work has been done to
+make these methods faster (Banjai, 2014; Banjai and Gruhne,
+2011; Banjai and Kachanovska, 2014a; Kager and Schanz,
+2015). Very naive computational tools for two-dimensional
+scattering problems in acoustics and elastodynamics have
+been developed in the framework of the deltaBEM suite
+(Domínguez et al., 2014; 2015), providing methods that are
+almost as easy to code as low-order finite difference methods
+for boundary value problems.
+Much recent work has been developed to show that
+the scope of reliable application of time domain integral
+equations and their full discretization with Galerkin-CQ
+methods is much wider than the model problems for acoustics (Chappell, 2009; Laliena and Sayas, 2009; Laliena,
+2011; Falletta et al., 2014; Monegato and Scuderi, 2015),
+electromagnetism (Wang et al., 2008; Chen et al., 2012;
+Chan and Monk, 2015), or elastodynamics (Furukawa et al.,
+2014; Li and Schanz, 2013). The simplest CQ methods are
+based on a background multistep A-stable solver, which
+makes them subject to Dahlquist second barrier, that is,
+they can only be of the second order. In particular, the
+second-order methods (BDF2 and the trapezoidal rule) are
+quite dispersive. One way out of this double barrier (low
+order and high dispersion error) is given by Runge–Kutta
+convolution quadrature (RK–CQ) methods (Lubich and
+Ostermann, 1993). The introduction of RK–CQ methods
+for the full discretization of time-domain integral equations
+is far from intuitive. One can understand multistage CQ
+methods as the substitution of the time partial derivative in
+(19a) by an implicit finite difference discretization. For RK
+methods, the mindset has to be changed to think in terms
+of the stages instead of the steps. The full discretization of
+(19) is then blown to a system of r equations (where r is the
+number of internal stages of the RK solver) for the stages.
+At the level of the integral equations, some intuitive understanding of elementary Dunford calculus is needed (Hassell
+et al., 2016) to get the proper view of what happens when
+RK–CQ methods are used. The understanding of RK–CQ
+schemes for hyperbolic problems is quite recent: (Banjai and
+Lubich, 2011; Banjai et al., 2011). It was then proved that
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+the classical order of convergence of the RK is recovered
+for potential computations, while the densities are stuck in
+the stage order of convergence. A thorough introduction of
+RK–CQ methods and applications to acoustics and elastodynamics can be found in Banjai and Schanz (2012), with
+more work on the topic aviable at (Banjai, 2010; Banjai
+et al., 2012; Ballani et al., 2013; Banjai and Kachanovska,
+2014b).
+Another area of intense development has been the coupling
+of time-domain integral equations with volume-based
+discretizations, with an emphasis in the interplay of retarded
+potential equations with finite element with traditional
+time-stepping methods. These coupled schemes can deal
+with penetrable scatterers with nonhomogeneous material properties. The coupling of an explicit time-stepping
+technique for the FEM domain with a discrete retarded
+integral equation has been explored by Abboud et al. (2011)
+[Galerkin in time for the integral equation, DG (discontinuous Galerkin) in the bounded domain] and Banjai et al.
+(2015) (CQ–BEM for the integral equation, leapfrog for
+the FEM domain). Experiments with different schemes
+and some theoretical justification can be found in recent
+work, exploring acoustics and wave-structure interaction:
+(Rüberg, 2007; Rüberg and Schanz, 2008; Romero et al.,
+2013; Falletta et al., 2012; Falletta and Monegato, 2014;
+Hsiao et al., to appear).
+Finally, interest in the area of BIEs for parabolic problems has been reactivated in recent work by Tausch (2012),
+Messner et al. (2014), and Bacuta et al. (2015).
+
+6
+
+RELATED CHAPTERS
+
+Aimi A, Diligenti M, Frangi A and Guardasoni C. A stable 3D
+energetic Galerkin BEM approach for wave propagation interior
+problems. Eng. Anal. Bound. Elem. 2012; 36(12):1756–1765, doi:
+10.1016/j.enganabound.2012.06.003.
+Aimi A, Diligenti M, Frangi A and Guardasoni C. Neumann exterior
+wave propagation problems: computational aspects of 3D energetic Galerkin BEM. Comput. Mech. 2013; 51(4):475–493, doi:
+10.1007/s00466-012-0796-5.
+Aimi A, Diligenti M, Frangi A and Guardasoni C. Energetic
+BEM-FEM coupling for wave propagation in 3D multidomains. Int. J. Numer. Methods Eng. 2014; 97(5):377–394, doi:
+10.1002/nme.4602.
+Aimi A, Diligenti M and Guardasoni C. On the energetic Galerkin
+boundary element method applied to interior wave propagation
+problems. J. Comput. Appl. Math. 2011; 235(7):1746–1754, doi:
+10.1016/j.cam.2010.02.011.
+Aliabadi MH and Wrobel LC. The Boundary Element Method. John
+Wiley & Sons, Inc.: New York, 2002.
+Andriulli FP, Cools K, Olyslager F and Michielssen E. Time
+domain Calderón identities and their application to the integral equation analysis of scattering by PEC objects. II. Stability.
+IEEE Trans. Antennas Propag. 2009; 57(8):2365–2375, doi:
+10.1109/TAP.2009.2024464.
+Antes H. A boundary element procedure for transient wave propagations in two-dimensional isotropic elastic media. Finite Elem. Anal.
+Des. 1985; 1:313–322.
+Antes H. Anwendungen der Methode der Randelemente in der Elastodynamik. Teubner: Stuttgart, 1988.
+Arendt W, Batty C, Hieber M and Neubrander F. Vector-Valued
+Laplace Transforms and Cauchy Problems. Birkhäuser Verlag:
+Basel, 2001.
+Arnold DN and Noon PJ. Coercivity of the single layer heat potential.
+J. Comput. Math. 1989; 7:100–104.
+Bachelot A, Bounhoure L and Pujols A. Couplage éléments
+finis–potentiels retardés pour la diffraction électromagnétique par
+un obstacle hétérogène. Numer. Math. 2001; 89(2):257–306.
+
+(See also Boundary Element Methods: Foundation
+and Error Analysis, Coupling of Boundary Element
+Methods and Finite Element Methods, Boundary Integral Equation Methods for Elastic and Plastic Problems,
+Boundary Element Methods for the Dynamic Analysis of
+Elastic, Viscoelastic, and Piezoelectric Solids)
+
+Bacuta C, Hassell ME, Hsiao GC and Sayas F-J. Boundary integral solvers for an evolutionary exterior Stokes problem. SIAM J.
+Numer. Anal. 2015; 53(3):1370–1392, doi: 10.1137/14099173X.
+
+REFERENCES
+
+Ballani J, Banjai L, Sauter S and Veit A. Numerical solution of
+exterior Maxwell problems by Galerkin BEM and Runge-Kutta
+convolution quadrature. Numer. Math. 2013; 123(4):643–670, doi:
+10.1007/s00211-012-0503-7.
+
+Abate J and Whitt W. Numerical inversion of Laplace transforms of
+probability distributions. ORSA J. Comput. 1995; 7:36–43.
+Abboud T, Joly P, Rodríguez J and Terrasse I. Coupling discontinuous Galerkin methods and retarded potentials for transient
+wave propagation on unbounded domains. J. Comput. Phys. 2011;
+230(15):5877–5907, doi: 10.1016/j.jcp.2011.03.062.
+Adolfsson V, Jawerth B and Torres R. A boundary integral method for
+parabolic equations in non-smooth domains. Commun. Pure Appl.
+Math. 1994; 47(6):861–892.
+
+Bachelot A and Lange V. Time dependent integral method for
+Maxwell’s system. In Mathematical and Numerical Aspects of
+Wave Propagation (Mandelieu-La Napoule, 1995), Cohen G (ed.).
+SIAM: Philadelphia, PA, 1995; 151–159.
+
+Bamberger A and Ha Duong T. Formulation variationnelle
+espace-temps pour le calcul par potentiel retardé d’une onde
+acoustique. Math. Methods Appl. Sci. 1986; 8: 405–435 and
+598–608.
+Banjai L. Multistep and multistage convolution quadrature for the
+wave equation: algorithms and experiments. SIAM J. Sci. Comput.
+2010; 32(5):2964–2994, doi: 10.1137/090775981.
+Banjai L. Time-domain Dirichlet-to-Neumann map and its
+discretization. IMA J. Numer. Anal. 2014; 34(3):1136–1155,
+doi: 10.1093/imanum/drt032.
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+20
+
+Banjai L and Gruhne V. Efficient long-time computations of timedomain boundary integrals for 2D and dissipative wave
+equation. J. Comput. Appl. Math. 2011; 235(14):4207–4220,
+doi: 10.1016/j.cam.2011.03.015.
+Banjai L and Kachanovska M. Fast convolution quadrature for the
+wave equation in three dimensions. J. Comput. Phys. 2014a;
+279:103–126, doi: 10.1016/j.jcp.2014.08.049.
+Banjai L and Kachanovska M. Sparsity of Runge-Kutta convolution
+weights for the three-dimensional wave equation. BIT 2014b;
+54(4):901–936, doi: 10.1007/s10543-014-0498-9.
+Banjai L, Laliena AR and Sayas F-J. Fully discrete Kirchhoff formulas with CQ-BEM. IMA J. Numer. Anal. 2015;
+35(2):859–884, doi: 10.1093/imanum/dru017.
+Banjai L and Lubich C. An error analysis of Runge-Kutta convolution
+quadrature. BIT 2011; 51(3):83–496.
+Banjai L, Lubich C and Melenk JM. Runge-Kutta convolution
+quadrature for operators arising in wave propagation. Numer. Math.
+2011; 119(1):1–20.
+Banjai L, Lubich C and Sayas F-J. Stable numerical coupling of
+exterior and interior problems for the wave equation. Numer. Math.
+2015; 129(4):611–646, doi: 10.1007/s00211-014-0650-0.
+Banjai L, Messner M and Schanz M. Runge-Kutta convolution quadrature for the boundary element method. Comput.
+Methods Appl. Mech. Eng. 2012; 245/246:90–101, doi: 10.1016/
+j.cma.2012.07.007.
+Banjai L and Sauter S. Rapid solution of the wave equation
+in unbounded domains. SIAM J. Numer. Anal. 2008/09;
+47(1):227–249, doi: 10.1137/070690754.
+Banjai L and Schanz M. Wave propagation problems treated with
+convolution quadrature and BEM. In Fast Boundary Element
+Methods in Engineering and Industrial Applications, Lecture
+Notes in Applied and Computational Mechanics, Langer U, Schanz
+M, Steinbach O and Wendland W (eds). Springer-Verlag: Heidelberg, 2012; 145–184.
+Becache E. Résolution par une méthode d’équations intégrales d’un
+problème de diffraction d’ondes élastiques transitoires par une
+fissure. Thèse de doctorat, Université Paris VI, 1991.
+Becache E. A variational boundary integral equation method for an
+elastodynamic antiplane crack. Int. J. Numer. Methods Eng. 1993;
+36(6):969–984.
+Becache E and Ha-Duong T. A space-time variational formulation
+for the boundary integral equation in a 2D elastic crack problem.
+RAIRO Modél. Math. Anal. Numér. 1994; 28(2):141–176.
+Beghein Y, Cools K, Bagcı H and De Zutter D. A space-time
+mixed Galerkin marching-on-in-time scheme for the time-domain
+combined field integral equation. IEEE Trans. Antennas Propag.
+2013; 61(3):1228–1238, doi: 10.1109/TAP.2012.2226553.
+Birgisson B, Siebrits E and Peirce AP. Elastodynamic direct
+boundary element methods with enhanced numerical stability
+properties. Int. J. Numer. Methods Eng. 1999; 46(6):871–888.
+Brebbia CA, Telles JCF and Wrobel LC. Boundary Element Techniques. Springer-Verlag: Berlin, 1984.
+Brown RM. The method of layer potentials for the heat equation in
+Lipschitz cylinders. Am. J. Math. 1989; 111:339–379.
+Brown RM and Shen ZW. A note on boundary value problems for the
+heat equation in Lipschitz cylinders. Proc. Am. Math. Soc. 1993;
+119(2):585–594.
+
+21
+
+Bruno O. Fast, high-order, high-frequency integral methods for
+computational acoustics and electromagnetics. In Topics in
+Computational Wave Propagation: Direct and Inverse Problems,
+Ainsworth M, Davies P, Duncan D, Martin P, Rynne B (eds).
+Springer-Verlag: Berlin, 2003; 43–82.
+Chan JF-C and Monk P. Time dependent electromagnetic scattering by a penetrable obstacle. BIT 2015; 55(1):5–31, doi:
+10.1007/s10543-014-0500-6.
+Chapko R and Kress R. Rothe’s method for the heat equation
+and boundary integral equations. J. Integr. Equ. Appl. 1997;
+9(1):47–69.
+Chappell DJ. A convolution quadrature Galerkin boundary
+element method for the exterior Neumann problem of the wave
+equation. Math. Methods Appl. Sci. 2009; 32(12):1585–1608, doi:
+10.1002/mma.1111.
+Chen Q and Monk P. Discretization of the time domain CFIE for
+acoustic scattering problems using convolution quadrature. SIAM
+J. Math. Anal. 2014; 46(5):3107–3130, doi: 10.1137/110833555.
+Chen Q, Monk P, Wang X and Weile D. Analysis of convolution quadrature applied to the time-domain electric field integral equation. Commun. Comput. Phys. 2012; 11(2):383–399, doi:
+10.4208/cicp.121209.111010s.
+Chudinovich IY. The boundary equation method in the third
+initial-boundary value problem of the theory of elasticity. I. Existence theorems. Math. Methods Appl. Sci. 1993a; 16(3):203–215.
+Chudinovich IY. The boundary equation method in the third
+initial-boundary value problem of the theory of elasticity. II.
+Methods for approximate solutions. Math. Methods Appl. Sci.
+1993b; 16(3):217–227.
+Chudinovich IY. On the solution by the Galerkin method of boundary
+equations in problems of nonstationary diffraction of elastic waves
+by three-dimensional cracks. Differentsial′ nye Uravneniya 1993c;
+29(9):1648–1651–1656.
+Chudinovich I. The solvability of boundary equations in mixed problems for non-stationary Maxwell system. Math. Methods Appl. Sci.
+1997; 20(5):425–448.
+Chudinovich I. Boundary equations in dynamic problems of the
+theory of elasticity. Acta Appl. Math. 2001; 65(1-3):169–183.
+Special issue dedicated to Antonio Avantaggiati on the occasion
+of his 70th birthday.
+Cools K, Andriulli FP, Olyslager F and Michielssen E. Time
+domain Calderón identities and their application to the integral equation analysis of scattering by PEC objects. I. Preconditioning. IEEE Trans. Antennas Propag. 2009; 57(8):2352–2364,
+doi: 10.1109/TAP.2009.2024460.
+Costabel M. Boundary integral operators on Lipschitz domains:
+Elementary results. SIAM J. Math. Anal. 1988; 19:613–626.
+Costabel M. Boundary integral operators for the heat equation. Integr.
+Equ. Oper. Theory 1990; 13:498–552.
+Costabel M and Dauge M. On representation formulas and radiation
+conditions. Math. Methods Appl. Sci. 1997; 20:133–150.
+Costabel M, Onishi K and Wendland WL. A boundary element
+collocation method for the Neumann problem of the heat equation.
+In Inverse and Ill-Posed Problems, Engl HW and Groetsch CW
+(eds). Academic Press: Boston, MA, 1987; 369–384.
+Costabel M and Saranen J. Spline collocation for convolutional
+parabolic boundary integral equations. Numer. Math. 2000; 84(3):
+417–449.
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Costabel M and Saranen J. Parabolic boundary integral operators
+symbolic representation and basic properties. Integr. Equ. Oper.
+Theory 2001; 40(2):185–211.
+Costabel M and Saranen J. The spline collocation method for
+parabolic boundary integral equations on smooth curves. Numer.
+Math. 2003; 93(3):549–562.
+Cruse T. A direct formulation and numerical solution of the general
+transient elastodynamic problem. II. J. Math. Anal. Appl. 1968;
+22:341–455.
+Cruse T and Rizzo F. A direct formulation and numerical solution of
+the general transient elastodynamic problem I. J. Math. Anal. Appl.
+1968; 22:244–259.
+Dahlberg B and Verchota G. Galerkin methods for the boundary
+integral equations of elliptic equations in non-smooth domains.
+Contemp. Math. 1990; 107:39–60.
+Däschle C. Eine Raum-Zeit-Variationsformulierung zur Bestimmung
+der Potentiale für das elektromagnetische Streuproblem im Außenraum. Dissertation, Universität Freiburg, 1992.
+Davies PJ. Numerical stability and convergence of approximations of
+retarded potential integral equations. SIAM J. Numer. Anal. 1994;
+31(3):856–875.
+Davies PJ. A stability analysis of a time marching scheme for the
+general surface electric field integral equation. Appl. Numer. Math.
+1998; 27(1):33–57.
+Davies PJ and Duncan DB. Averaging techniques for time-marching
+schemes for retarded potential integral equations. Appl. Numer.
+Math. 1997; 23(3):291–310.
+Davies PJ and Duncan DB. Stability and convergence of collocation schemes for retarded potential integral equations. SIAM
+J. Numer. Anal. 2004; 42(3):1167–1188 (electronic), doi:
+10.1137/S0036142901395321.
+Davies PJ and Duncan DB. Convolution-in-time approximations of
+time domain boundary integral equations. SIAM J. Sci. Comput.
+2013; 35(1):B43–B61, doi: 10.1137/120881907.
+Davies PJ and Duncan DB. Convolution spline approximations for
+time domain boundary integral equations. J. Integr. Equ. Appl.
+2014; 26(3):369–410, doi: 10.1216/JIE-2014-26-3-369.
+Davies B and Martin B. Numerical inversion of the Laplace transform: a survey and comparison of methods. J. Comput. Phys. 1979;
+33(1):1–32.
+Domínguez V, Lu SL and Sayas F-J. A Nyström flavored Calderón
+calculus of order three for two dimensional waves, time-harmonic
+and transient. Comput. Math. Appl. 2014; 67(1):217–236, doi:
+10.1016/j.camwa.2013.11.005.
+Domínguez V, Sánchez-Vizuet T and Sayas F-J. A fully discrete
+Calderón calculus for the two-dimensional elastic wave equation.
+Comput. Math. Appl. 2015; 69(7):620–635, doi: 10.1016/j.camwa.
+2015.01.016.
+Domínguez V and Sayas F-J. Some properties of layer potentials and
+boundary integral operators for the wave equation. J. Integr. Equ.
+Appl. 2013; 25(2):253–294.
+Epstein CL, Greengard L and Hagstrom T. On the stability of
+time-domain integral equations for acoustic wave propagation,
+Discrete Contin. Dyn. Syst. 2016; 36(8):4367–4382.
+Falletta S and Monegato G. An exact non reflecting boundary condition for 2D time-dependent wave equation problems. Wave Motion
+2014; 51(1):168–192, doi: 10.1016/j.wavemoti.2013.06.001.
+
+Falletta S, Monegato G and Scuderi L. A space-time BIE method
+for nonhomogeneous exterior wave equation problems. The
+Dirichlet case. IMA J. Numer. Anal. 2012; 32(1):202–226, doi:
+10.1093/imanum/drr008.
+Falletta S, Monegato G and Scuderi L. A space-time BIE method
+for wave equation problems: the (two-dimensional) Neumann
+case. IMA J. Numer. Anal. 2014; 34(1):390–434, doi: 10.1093/
+imanum/drs040.
+Faul AC and Powell MJD. Proof of convergence of an iterative
+technique for thin plate spline interpolation in two dimensions.
+Adv. Comput. Math. 1999; 11(2-3):183–192. Radial basis functions
+and their applications.
+Furukawa A, Saitoh T and Hirose S. Convolution quadrature
+time-domain boundary element method for 2-D and 3-D elastodynamic analyses in general anisotropic elastic solids. Eng.
+Anal. Bound. Elem. 2014; 39:64–74, doi: 10.1016/j.enganabound.
+2013.11.006.
+Gaul L, Kögl M and Wagner M. Boundary Element Methods for
+Engineers and Scientists. Springer-Verlag: Berlin, 2003.
+Gaul L and Schanz M. A comparative study of three boundary
+element approaches to calculate the transient response of
+viscoelastic solids with unbounded domains. Comput. Methods
+Appl. Mech. Eng. 1999; 179(1-2):111–123.
+Greengard L and Lin P. Spectral approximation of the free-space heat
+kernel. Appl. Comput. Harmon. Anal. 2000; 9(1):83–97.
+Greengard L and Strain J. A fast algorithm for the evaluation of heat
+potentials. Commun. Pure Appl. Math. 1990; 43(8):949–963.
+Hackbusch W, Kress W and Sauter SA. Sparse convolution quadrature for time domain boundary integral formulations of the
+wave equation by cutoff and panel-clustering. In Boundary
+Element Analysis, Lecture Notes in Applied and Computational
+Mechanics, vol. 29. Springer-Verlag: Berlin, 2007; 113–134, doi:
+10.1007/978-3-540-47533-0_5.
+Hackbusch W, Kress W and Sauter SA. Sparse convolution quadrature for time domain boundary integral formulations of the
+wave equation. IMA J. Numer. Anal. 2009; 29(1):158–179, doi:
+10.1093/imanum/drm044.
+Ha-Duong T. On the transient acoustic scattering by a flat object. Jpn.
+J. Appl. Math. 1990; 7(3):489–513.
+Ha-Duong T. On boundary integral equations associated to scattering problems of transient waves. Z. Angew. Math. Mech. 1996;
+76(Suppl. 2):261–264.
+Ha-Duong T. On retarded potential boundary integral equations and
+their discretisation. In Topics in Computational Wave Propagation:
+Direct and Inverse Problems, Ainsworth M, Davies P, Duncan
+D, Martin P and Rynne B (eds). Springer-Verlag: Berlin; 2003.
+p 301–336.
+Hamina M and Saranen J. On the spline collocation method for
+the single-layer heat operator equation. Math. Comput. 1994;
+62(2):41–64.
+Hassell, M and Sayas F-J. Convolution quadrature for wave simulations. In Numerical Simulation in Physics and Engineering,
+Lecture Notes of the XVI ‘Jacques-Louis Lions’ Spanish-French
+School, SEMA SIMAI Springer Series, vol. 9. Higueras I, Roldán
+T and Torrens JJ (eds). Springer International: Switzerland, 2016;
+71–159.
+Hebeker F-K and Hsiao GC. On Volterra boundary integral equations
+of the first kind for nonstationary Stokes equations. In Advances
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+22
+
+in Boundary Element Techniques, Springer Series Computational
+Mechanics, Kane JH, Maier G, Tosaka N and Atluri SN (eds).
+Springer-Verlag: Berlin, 1993; 173–186.
+Hsiao GC and Saranen J. Boundary integral solution of the
+two-dimensional heat equation. Math. Methods Appl. Sci. 1993;
+16(2):87–114.
+Hsiao GC, Sayas F-J and Weinacht RJ. Time-dependent fluidstructure interaction. Math. Methods Appl. Sci., doi: 10.1002/
+mma.3427.
+Jiao D, Ergin AA, Balasubramaniam S, Michielssen E and Jin J-M.
+A fast higher-order time-domain finite element-boundary integral
+method for 3-D electromagnetic scattering analysis. IEEE Trans.
+Antennas Propag. 2002; 50(9):1192–1202.
+Kager B and Schanz M. Fast and data sparse time domain BEM for
+elastodynamics. Eng. Anal. Bound. Elem. 2015; 50:212–223, doi:
+10.1016/j.enganabound.2014.08.001.
+Khutoryansky NM and Sosa H. Dynamic representation formulas
+and fundamental solutions for piezoelectricity. Int. J. Solids Struct.
+1995; 32(22):3307–3325.
+Kress R. Linear Integral Equations. Springer-Verlag: Berlin, 1989.
+Kupradze VD, Gegelia TG, Bashelĕıshvili MO and Burchuladze TV.
+In Three-Dimensional Problems of the Mathematical Theory of
+Elasticity and Thermoelasticity, North-Holland Series in Applied
+Mathematics and Mechanics, vol. 25, russian edn. North-Holland
+Publishing Co.: Amsterdam, 1979. Edited by V. D. Kupradze.
+Laliena A. Theoretical and Algorithmic Aspects of the Convolution Quadrature Method Applied to Scattering of Acoustic Waves
+(Spanish). PhD thesis, Universidad de Zaragoza, 2011.
+Laliena AR and Sayas F-J. Theoretical aspects of the application
+of convolution quadrature to scattering of acoustic waves. Numer.
+Math. 2009; 112(4):637–678, doi: 10.1007/s00211-009-0220-z.
+Li P and Schanz M. Time domain boundary element formulation for
+partially saturated poroelasticity. Eng. Anal. Bound. Elem. 2013;
+37(11):1483–1498, doi: 10.1016/j.enganabound.2013.08.002.
+Lubich C. Convolution quadrature and discretized operational
+calculus. I. Numer. Math. 1988; 52(2):129–145, doi: 10.1007/
+BF01398686.
+Lubich C. On the multistep time discretization of linear
+initial-boundary value problems and their boundary integral
+equations. Numer. Math. 1994; 67:365–390.
+Lubich C and Ostermann A. Runge-Kutta methods for parabolic
+equations and convolution quadrature. Math. Comput. 1993;
+60(201):105–131, doi: 10.2307/2153158.
+Lubich C and Schneider R. Time discretisation of parabolic boundary
+integral equations. Numer. Math. 1992; 63:455–481.
+Mansur WJ. A Time-Stepping Technique to Solve Wave Propagation Problems Using the Boundary Element Method. PhD thesis,
+University of Southampton, 1983.
+Messner M and Schanz M. A symmetric Galerkin boundary
+element method for 3d linear poroelasticity. Acta Mech. 2012;
+223(8):1751–1768, doi: 10.1007/s00707-012-0637-9.
+Messner M, Schanz M and Tausch J. Galerkin method for parabolic
+space-time boundary integral equations. J. Comput. Phys. 2014;
+258(1):15–30.
+Michielssen E. Fast evaluation of three-dimensional transient wave
+fields using diagonal translation operators. J. Comput. Phys. 1998;
+146(1):157–180.
+
+23
+
+Michielssen E, Ergin A, Shanker B and Weile D. The multilevel
+plane wave time domain algorithm and its applications to the
+rapid solution of electromagnetic scattering problems: a review.
+In Mathematical and Numerical Aspects of Wave Propagation
+(Santiago de Compostela, 2000), Bermúdez A, Gómez D, Hazard
+C and Joly P (eds). SIAM: Philadelphia, PA, 2000; 24–33.
+Monegato G and Scuderi L. A space-time BIE method for 2D wave
+equation problems with mixed boundary conditions. Appl. Math.
+Comput. 2015; 259:1046–1070, doi: 10.1016/j.amc.2015.02.082.
+Nardini D and Brebbia C. A new approach to free vibration analysis
+using boundary elements. Appl. Math. Modell. 1983; 7:157–162.
+Nedelec J-C and Planchard J. Une méthode variationnelle d’éléments
+finis pour la résolution numérique d’un problème extérieur dans
+ℝ3 . RAIRO 1973; 7:105–129.
+Partridge PW, Brebbia CA and Wrobel LC. The dual reciprocity
+boundary element method. In International Series on Computational Engineering. Computational Mechanics Publications:
+Southampton, 1992.
+Peirce A and Siebrits E. Stability analysis of model problems for
+elastodynamic boundary element discretizations. Numer. Methods
+Partial Differ. Equ. 1996; 12(5):585–613.
+Peirce A and Siebrits E. Stability analysis and design of time-stepping
+schemes for general elastodynamic boundary element models. Int.
+J. Numer. Methods Eng. 1997; 40(2):319–342.
+Pogorzelski W. Integral Equations and their Applications. Pergamon
+Press: Oxford, 1966.
+Powell MJD. The theory of radial basis function approximation in
+1990. In Advances in Numerical Analysis, (Lancaster, 1990), vol.
+II. Oxford Science Publications, Oxford University Press: New
+York, 1992; 105–210.
+Pray A, Beghein Y, Nair N, Cools K, Bağci H and Shanker B.
+A Stable Higher Order Space-Time Galerkin Scheme for Time
+Domain Integral Equations, 2014, http://arxiv.org/abs/1401.2435.
+Pujols A. Equations intégrales espace-temps pour le système de
+Maxwell – application au calcul de la surface équivalente Radar.
+Thèse de doctorat, Université Bordeaux I, 1991.
+Qiu T and Sayas F-J. The Costabel-Stephan system of boundary
+integral equations in the time domain. Math. Comput. 2016;
+85:2341–2364, doi: 10.1090/mcom3053.
+Romero A, Galvín P and Domínguez J. 3D non-linear time
+domain FEM-BEM approach to soil-structure interaction problems. Eng. Anal. Bound. Elem. 2013; 37(3):501–512, doi: 10.1016/
+j.enganabound.2013.01.001.
+Rüberg T. Non-conforming Coupling of Finite and Boundary Element
+Methods in Time Domain. PhD thesis, Graz University of Technology, 2007.
+Rüberg T and Schanz M. Coupling finite and boundary element
+methods for static and dynamic elastic problems with nonconforming interfaces. Comput. Methods Appl. Mech. Eng. 2008;
+198(3-4):449–458, doi: 10.1016/j.cma.2008.08.013.
+Rynne BP. The well-posedness of the electric field integral equation
+for transient scattering from a perfectly conducting body. Math.
+Methods Appl. Sci. 1999; 22(7):619–631.
+Sauter S and Veit A. A Galerkin method for retarded boundary integral equations with smooth and compactly supported temporal
+basis functions. Numer. Math. 2013; 123(1):145–176, doi:
+10.1007/s00211-012-0483-7.
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Time-Dependent Problems with the Boundary Integral Equation Method
+
+Sayah T. Méthodes de potentiels retardés pour les milieux
+hétérogènes et l’approximation des couches minces par conditions d’impédance généralisées en électromagnétisme. Thèse de
+doctorat, Ecole Polytechnique, 1998.
+Sayas F-J. Energy estimates for Galerkin semidiscretizations of
+time domain boundary integral equations. Numer. Math. 2013;
+124(1):121–149, doi: 10.1007/s00211-012-0506-4.
+Sayas F. Retarded Potentials and Time Domain Booundary Integral
+Equations. A Road Map, Springer Series in Computational Mathematics, vol. 50. Springer-Verlag, 2016, http://www.springer.com/
+fr/book/9783319266435.
+Schanz M. A boundary element formulation in time domain
+for viscoelastic solids. Commun. Numer. Methods Eng. 1999;
+15(11):799–809.
+Schanz M. Application of 3D time domain boundary element formulation to wave propagation in poroelastic solids. Eng. Anal. Bound.
+Elem. 2001a; 25(4-5):363–376.
+Schanz M. Wave Propagation in Viscoelastic and Poroelastic
+Continua: A Boundary Element Approach, Lecture Notes in
+Applied and Computational Mechanics. Springer-Verlag: Berlin,
+Heidelberg, New York, 2001b.
+Schanz M and Antes H. Application of ‘operational quadrature
+methods’ in time domain boundary element methods. Meccanica
+1997a; 32(3):179–186.
+Schanz M and Antes H. A new visco- and elastodynamic time
+domain: boundary element formulation. Comput. Mech. 1997b;
+20(5):452–459, doi: 10.1007/s004660050265.
+Tausch J. Fast Nyström methods for parabolic boundary integral
+equations. In Fast Boundary Element Methods in Engineering and
+Industrial Applications, Lecture Notes in Applied and Computational Mechanics, vol. 63. Springer-Verlag: Heidelberg, 2012;
+185–219, doi: 10.1007/978-3-642-25670-7_6.
+
+Telles JCF and Vera-Tudela CAR. A BEM NGF technique coupled
+with the operational quadrature method to solve elastodynamic
+crack problems. In Advances in Boundary Element Techniques IV,
+Gallego R and Aliabadi MH (eds). Department of Engineering,
+Queen Mary, University of London: London, 2003; 1–6.
+Terrasse I. Résolution mathématique et numérique des équations de
+Maxwell instationnaires par une méthode de potentiels retardés.
+Thèse de doctorat, 1993, Ecole Polytechnique.
+Ülkü HA, Bağc̆ı H and Michielssen E. Marching on-in-time solution of the time domain magnetic field integral equation using a
+predictor-corrector scheme. IEEE Trans. Antennas Propag. 2013;
+61(8):4120–4131, doi: 10.1109/TAP.2013.2262016.
+Valdés F, Andriulli FP, Bağci H and Michielssen E. Time-domain
+single-source integral equations for analyzing scattering from
+homogeneous penetrable objects. IEEE Trans. Antennas Propag.
+2013; 61(3):1239–1254, doi: 10.1109/TAP.2012.2227655.
+Veit A. Numerical Methods for Time-Domain Boundary Integral
+Equations. PhD thesis, Universität Zürich, 2012.
+Wang X, Wildman RA, Weile DS and Monk P. A finite difference delay modeling approach to the discretization of the time
+domain integral equations of electromagnetics. IEEE Trans.
+Antennas Propag. 2008; 56(8, part 1):2442–2452, doi: 10.1109/
+TAP.2008.926753.
+Wang CY, Zhang C and Hirose S. Dynamic fundamental solutions
+and time-domain BIE formulations for piezoelectric solids. In
+Advances in Boundary Element Techniques IV, Gallego R and
+Aliabadi MH (eds). Department of Engineering, Queen Mary.
+University of London: London, 2003; 215–224.
+
+10.1002/9781119176817.ecm2022, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2022 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+24
+
+

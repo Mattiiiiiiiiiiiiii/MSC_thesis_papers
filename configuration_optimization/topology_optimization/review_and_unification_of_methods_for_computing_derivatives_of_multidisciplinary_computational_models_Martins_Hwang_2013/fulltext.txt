@@ -1,0 +1,2852 @@
+AIAA JOURNAL
+Vol. 51, No. 11, November 2013
+
+Review and Unification of Methods for Computing Derivatives
+of Multidisciplinary Computational Models
+Joaquim R. R. A. Martins∗ and John T. Hwang†
+University of Michigan, Ann Arbor, Michigan 48109
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+DOI: 10.2514/1.J052184
+This paper presents a review of all existing discrete methods for computing the derivatives of computational models
+within a unified mathematical framework. This framework hinges on a new equation, the unifying chain rule, from
+which all the methods can be derived. The computation of derivatives is described as a two-step process: the evaluation
+of the partial derivatives and the computation of the total derivatives, which are dependent on the partial derivatives.
+Finite differences, the complex-step method, and symbolic differentiation are discussed as options for computing the
+partial derivatives. It is shown that these are building blocks with which the total derivatives can be assembled using
+algorithmic differentiation, the direct and adjoint methods, and coupled analytic methods for multidisciplinary
+systems. Each of these methods is presented and applied to a common numerical example to demonstrate and
+compare the various approaches. The paper ends with a discussion of current challenges and possible future research
+directions in this field.
+
+Nomenclature
+C
+c
+
+=
+=
+
+df
+dx
+
+=
+
+ei
+F
+f
+N
+n
+nf
+nx
+ny
+R
+r
+Ri
+
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+=
+
+ri
+
+=
+
+T
+t
+v
+x
+y
+Yi
+yi
+
+=
+=
+=
+=
+=
+=
+=
+
+∂F
+∂x
+
+=
+
+I.
+
+C1 ; : : : ; Cn T vector of constraint functions
+c1 ; : : : ; cn T vector of constraint values
+h i
+df i
+dxj nf ×nx Jacobian of total derivatives of f with respect
+to x
+0; : : : ; 1; : : : ; 0T ith standard basis vector
+F1 ; : : : ; Fnf T vector of output functions
+f1 ; : : : ; fnf T vector of output variables
+number of disciplines
+number of variables in a given context
+number of output variables
+number of input variables
+number of state variables
+R1 ; : : : ; Rny T vector of residual functions
+r1 ; : : : ; rny T vector of residual values
+R1;i ; : : : ; Rny ;i T vector of residual functions for the
+ith discipline
+r1;i ; : : : ; rny ;i T vector of residual values for the
+ith discipline
+T 1 ; : : : ; T n T vector of functions at the line-of-code level
+t1 ; : : : ; tn T , vector of variables at the line-of-code level
+v1 ; : : : ; vn T , vector of variables
+x1 ; : : : ; xnx T vector of input variables
+y1 ; : : : ; yny T vector of state variables
+Y 1;i ; : : : ; Y ny ;i T vector of functions for the ith discipline
+y1;i ; : : : ; yny ;i T vector of state variables for the
+ith
+h discipline
+i
+
+T
+
+Introduction
+
+HE computation of derivatives is part of the broader field of
+sensitivity analysis. Sensitivity analysis is the study of how the
+outputs of a model change in response to changes in its inputs. It plays
+a key role in gradient-based optimization, uncertainty quantification,
+error analysis, model development, and computational model–
+assisted decision making. There are various types of sensitivities that
+can be defined. One common classification distinguishes between
+local and global sensitivity analyses [1]. Global sensitivity analysis
+aims to quantify the response with respect to inputs over a wide
+range of values, and it is better suited for models that have large
+uncertainties. Local sensitivity analysis aims to quantify the response
+for a fixed set of inputs, and it is typically used in physics-based
+models in which the uncertainties tend to be lower. In this paper, we
+focus on the computation of local sensitivities in the form of firstorder total derivatives, in which the model is a numerical algorithm
+representing a deterministic model. Although stochastic models
+require approaches that are beyond the scope of this paper, some of
+these approaches can benefit from the deterministic techniques
+presented herein. Although we focus on first-order derivatives, the
+techniques that we present can all be extended to compute higherorder derivatives.
+In the engineering optimization literature, the term “sensitivity
+analysis” is often used to refer to the computation of derivatives. In
+addition, derivatives are sometimes referred to as “sensitivity
+derivatives” [2–4] or “design sensitivities” [5–7]. Although these
+terms are not incorrect, we prefer to use the more restrictive and
+succinct term, i.e., derivative.
+Derivatives play a central role in several numerical algorithms. In
+many cases, such as Newton-based methods, the computational effort
+of an algorithm depends heavily on the run time and memory
+requirements of the derivative computation. Examples of such
+algorithms include Newton–Krylov methods applied to the solution
+of the Euler equations [8] and coupled aerostructural equations [9–
+12]. There are general-purpose numerical libraries that implement
+many of these methods [13,14]. In these applications, it is desirable to
+have the Jacobian matrix of the system (the derivatives of the
+residuals of the equations to be solved with respect to the state
+variables) or at least an approximation of this Jacobian to help
+precondition the system.
+In other applications, it is desirable to compute the derivatives of
+the complete system with respect to a set of parameters. Such
+applications include gradient-enhanced surrogate models [15], the
+sensitivity analysis of eigenvalue problems [16], structural topology
+optimization [17–20], aerostructural optimization [21,22], and the
+computation of aircraft stability derivatives [23,24]. As we will see,
+some methods for computing these derivatives involve computing
+
+∂Fi
+∂xj nf ×nx Jacobian of partial derivatives of F with respect
+
+to x
+
+Presented as Paper 2012-1589 at the 53rd AIAA/ASME/ASCE/AHS/ASC
+Structures, Structural Dynamics, and Materials Conference, Honolulu, HI,
+23–26 April 2012; received 23 July 2012; revision received 25 April 2013;
+accepted for publication 9 May 2013; published online 13 September 2013.
+Copyright © 2013 by the authors. Published by the American Institute of
+Aeronautics and Astronautics, Inc., with permission. Copies of this paper may
+be made for personal or internal use, on condition that the copier pay the
+$10.00 per-copy fee to the Copyright Clearance Center, Inc., 222 Rosewood
+Drive, Danvers, MA 01923; include the code 1533-385X/13 and $10.00 in
+correspondence with the CCC.
+*Associate Professor, Department of Aerospace Engineering. Associate
+Fellow AIAA.
+†
+Ph.D. Candidate, Department of Aerospace Engineering. Student Member
+AIAA.
+2582
+
+2583
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+MARTINS AND HWANG
+
+the Jacobian mentioned in the preceding paragraph. Although
+gradient-based optimization algorithms are usually more difficult to
+use than gradient-free algorithms, they are currently the only way to
+solve optimization problems with O102  or more design variables.
+This is especially true when the gradient-based optimization
+algorithm is used in conjunction with an efficient computation of the
+derivatives.
+The accuracy of the derivative computation affects the convergence behavior of the algorithm. For instance, accurate derivatives
+are important in gradient-based optimization to ensure robust and
+efficient convergence, especially for problems with large numbers
+of constraints. The precision of the gradients limits that of the
+optimal solution, and inaccurate gradients can cause the optimizer to
+halt or to take a less direct route to the optimum that involves more
+iterations.
+Despite the usefulness of derivatives, and the significant progress
+made in derivative computation in the last two decades, only a small
+fraction of software packages for computational models include
+efficient derivative computations. Therefore, much of the research in
+this area has not yet been widely used in engineering practice. There
+are various reasons for this, including the fact that gradient-based
+methods require some expertise and are sensitive to noise and
+discontinuities in the computational models, whereas gradient-free
+methods are much easier to use. In addition, few of the experts in a
+given computational model have the necessary background to
+implement efficient derivative computations for that model. This is
+because derivative computation methods are not usually included in
+courses on computational models. This paper aims to address this by
+providing an overview of all the existing methods, complete with
+examples.
+In this review, we assume that the numerical models are algorithms
+that solve a set of governing equations to find the state of a system.
+The computational effort involved in these numerical models, or
+simulations, is assumed to be significant. Examples of such simulations include computational fluid dynamics (CFD) and structural
+finite element solvers. We also extend our review to consider multiple
+coupled simulations, which appear in multidisciplinary design optimization (MDO) problems [25].
+The simplest method for computing derivatives uses an appropriate finite difference formula, such as a forward finite difference, in
+which each input of interest is perturbed and the output reevaluated to
+determine its new value. The derivative is then estimated by taking
+the difference between the output and the unperturbed value and
+dividing by the value of the perturbation. Although finite differences
+are not usually accurate or computationally efficient, they are
+extremely easy to implement and therefore widely used.
+In addition to the inaccuracies inherent in finite differences,
+computing derivatives with respect to a large number of inputs using
+these methods is prohibitively expensive when the computational
+cost of the simulations is significant. Although finite differences are
+adequate for certain applications, other applications require more
+accuracy and efficiency than is afforded by this approach, motivating
+the pursuit of the more advanced methods that we describe in this
+paper.
+The overarching goal of this paper is to review the available
+discrete methods for the sensitivity analysis of coupled systems
+and to advance the understanding of these methods in a unified
+mathematical framework. Some of this material has been the subject
+of excellent reviews and textbooks, but they have either been limited
+to a single discipline [2,5,6,26,27] or limited in scope [28–30].
+Spurred by the recent advances in this area, we decided to make a
+connection between derivative computation methods that are usually
+not explained together, leading to new insights and a broader view of
+the subject. We also aim to help researchers and practitioners decide
+which method is suitable for their particular needs.
+We start by defining the nomenclature and by presenting a
+framework that unifies all derivative computation methods. Then, we
+progress through the methods for differentiating functions, which
+represent the options available for computing partial derivatives.
+Finally, we review the methods for computing total derivatives in
+single- or multidisciplinary systems, and we show how each is
+
+derived from the unified theory. Each of these methods is applied to a
+common numerical example to illustrate how the method works and
+how it is related to the others. The historical literature is cited, and
+recent advances are mentioned as the theory is presented.
+
+II.
+
+Mathematical Framework
+
+To ensure that the methods are explained for the most general case
+and to show how they can be derived under a single theoretical
+framework, it is important to characterize the computational model
+that is involved and to precisely define the relevant terms. In the most
+general sense, a computational model takes a series of numerical
+inputs and produces outputs. As mentioned in the preceding section,
+the computational model is assumed to be deterministic, and it is
+ultimately implemented as a computer program. Depending on the
+type of method, we might take the computational-model view or the
+computer-program view. In either case, we might refer to the model or
+program as a system, because it is an interconnected series of
+computations.
+A. Definitions
+
+It is particularly important to realize the nested nature of the
+system. The most fundamental building blocks of this system are
+the unary and binary operations. These operations can be combined
+to obtain more elaborate explicit functions, which are typically
+expressed in one line of computer code. Multiple lines of code are
+grouped into an organizational unit, such as a subroutine, method, or
+class, that contains a sequence of explicit functions, denoted V i ,
+where i  1; : : : ; n. In its simplest form, each function in this
+sequence depends only on the inputs and the functions that have been
+computed earlier in the sequence. Thus, we can represent such a
+computation as
+vi  V i v1 ; v2 : : : ; vi−1 
+
+(1)
+
+Here, we adopt the convention that the lower case represents the value
+of a variable, and the upper case represents the function that computes
+that value. This is a distinction that will be particularly useful in
+developing the theory presented herein.
+In the more general case, a given function might require values that
+have not been previously computed; i.e.,
+vi  V i v1 ; v2 : : : ; vi ; : : : ; vn 
+
+(2)
+
+The solution of such systems requires iterative numerical methods
+that can be programmed via loops in which the variables are updated.
+Such numerical methods range from simple fixed-point iterations to
+sophisticated Newton-type algorithms. Note that loops are also used
+to repeat one or more computations over a computational grid.
+One concept that will be used later is that it is always possible to
+represent any given computation without loops or dependencies, as
+written in Eq. (1), if we unroll all the loops and represent all values a
+variable might take in successive iterations as separate variables that
+are never overwritten. This means that, if the solution of a system of
+equations requires iteration, we would treat each iteration as a new set
+of variables that is dependent on the previous set.
+When a computational model involves the solution of a system of
+equations, it is helpful to denote the computation as a vector of
+residual equations:
+r  Rv  0
+
+(3)
+
+where the algorithm that solves a given computational model changes
+certain components of v until all of the residuals converge to zero (in
+practice, within a small acceptable tolerance). The subset of v that is
+iterated to achieve the solution of these equations is called the vector
+of state variables.
+To relate these concepts to the usual conventions in sensitivity
+analysis, we now separate v into the independent variables x, state
+variables y, and quantities of interest f. Using this notation, we can
+write the residual equations as
+
+2584
+
+MARTINS AND HWANG
+
+r  Rx; Yx  0
+
+(4)
+
+where Yx denotes the fact that y depends implicitly on x through
+the solution of the residual equations (4). It is the solution of these
+equations that completely determines y for a given x. The functions of
+interest (usually included in the set of outputs) also have the same
+type of variable dependence in the general case; i.e.,
+f  Fx; Yx
+
+(5)
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+When we compute the values f, we assume that the state variables y
+have already been determined by the solution of the residual
+equations (4). The dependencies involved in the computation of the
+functions of interest are represented in Fig. 1. Our assumption is that
+we are ultimately interested in the total derivatives of f with respect
+to x.
+B. Unifying Chain Rule
+
+In this section, we derive and present a matrix equation from
+which we can obtain all the known methods for computing the total
+derivatives of a system. All methods can be derived from this
+equation through the appropriate choice of the level of decomposition
+of the system, because the methods share a common origin: a basic
+relationship between partial derivatives and total derivatives.
+Consider a set of n variables, denoted v  v1 ; : : : ; vn T , and n
+functions, denoted C  C1 v; : : : ; Cn vT . The value of v is
+uniquely defined by the n constraint equations ci  Ci v  0, for
+1 ≤ i ≤ n. If we define C i v as the linearization of Ci v about the
+point v0 , the multivariate Taylor series expansion of the vector-valued
+function C is
+Δc 
+
+∂C
+Δv
+∂v
+
+e1 Δc1 j · · · jej Δc j j · · · jen Δcn 
+∂C
+Δv1 j · · · jΔvj j · · · jΔvn 
+∂v
+
+We call the left-hand side the forward chain rule and the right-hand
+side the reverse chain rule. As we will see throughout the remainder
+of this paper: all methods for derivative computation can be derived
+from one of the forms of the chain rule (9) by changing what we
+mean by “variables” and “constraints,” which can be seen as a level
+of decomposition. We will refer to this equation as the unifying
+chain rule.
+The derivatives of interest df∕dx are typically the derivatives of
+some of the last variables in the sequence (v1 ; : : : ; vn ) with respect to
+some of the first variables in the same sequence. The variables and
+constraints are not necessarily in sequence, but we denote them as
+such for convenience without loss of generality.
+Now we recall that each variable vi is associated with a constraint
+Ci vi . In the case of input variables, which are independent
+variables, this constraint is simply ci  xi − x0i  0, where x0i is the
+chosen value for the given input. Thus, x0i is the set of values at which
+we are evaluating the computational model and its derivatives.
+Defining the constraints on the input variables in this way, we can
+write
+2
+
+df1
+6 dx1
+
+df 6 .
+6 .
+dx 4 df.nf
+dx1
+
+···
+..
+.
+···
+
+3
+
+2
+
+df1
+dxnx 7
+
+6
+6
+.. 7
+
+7
+6
+.
+4
+dfnf 5
+dxnx
+
+dvn−nf 1
+
+···
+..
+.
+···
+
+dc1
+
+..
+.
+
+dvn
+dc1
+
+dvn−nf 1
+dcnx
+
+..
+.
+
+dvn
+dcnx
+
+3
+7
+7
+7 (10)
+5
+
+This is an nf × nx matrix that corresponds to the lower-left block of
+dv∕dc or the corresponding transposed upper-right block of dv∕dcT .
+The two sections that follow show how to use the unifying chain
+rule (9) to compute total derivatives in practice. Section III reviews
+the methods for computing the partial derivatives in the ∂C∕∂v
+matrix. Section IV presents the methods for computing total derivatives (monolithic differentiation, algorithmic differentiation (AD),
+analytic methods, and coupled analytic methods) that correspond
+to different choices for v and C, choices that reflect the level of
+decomposition of the system.
+
+III.
+
+variation 0; : : : ; 0; Δcj ; 0; : : : ; 0T . We now move the scalars Δc j
+in Eq. (7) to the right-hand side to obtain
+
+ j 
+ n 
+
+ Δv 
+
+∂C Δv1 
+
+ · · ·  Δv
+·
+·
+·
+
+
+
+ Δcn
+1
+j
+∂v Δc
+Δc
+
+(9)
+
+(7)
+
+where each vector Δvj represents the changes to v that produce the
+
+e1 j · · · jej j · · · jen  
+
+∂C dv
+∂CT dvT
+I
+∂v dc
+∂v dc
+
+(6)
+
+
+because all higher-order derivatives are zero, and ∂C∕∂v
+ ∂C∕∂v.
+The solution of the linear system (6) yields the vector of changes to v
+
+required to obtain the perturbations in the linearized constraints, Δc,
+assuming ∂C∕∂v is invertible.
+Because this equation uniquely defines Δv for any left-hand side,
+we choose the vectors of the standard basis for Rn with the jth vector
+multiplied by Δcj ; i.e.,
+
+
+
+variations in v that comes about through an implicit dependence on c,
+which is perturbed only in the jth entry.
+Thus, the ∂C∕∂v and dv∕dc matrices are inverses of each other,
+and they commute, so we can switch the order and take the transpose
+to get an alternative form. Therefore, we can write
+
+(8)
+
+where we now have an identity matrix on the left-hand side.
+Alternatively, Δvj can be interpreted as the direction in Rn along
+which only the jth constraint Cj v changes, whereas all other constraints remain unchanged to the first order. Therefore, Δvj ∕Δc j is
+the jth column of the dv∕dc matrix, because it represents the vector of
+
+Methods for Computing Partial Derivatives
+
+For a given choice of v in the unifying chain rule (9), the ∂C∕∂v
+matrix must be assembled by computing partial derivatives in the
+appropriate context. Any variable that is used in computing Ci but is
+not one of the entries of v is treated as part of the black-box function
+Ci . These variables are not held fixed while computing a partial
+derivative of Ci . Thus, the meaning of a partial derivative changes
+based on the variables v that are exposed in the current context.
+Consider a vector-valued function F with respect to a vector of
+independent variables x. We are interested in the Jacobian
+2 ∂F1
+∂x1
+
+∂F 6
+ 6 ..
+∂x 4 ∂F.n
+
+f
+
+∂x1
+
+···
+..
+.
+···
+
+∂F1
+∂xnx
+
+3
+
+.. 7
+7
+. 5
+
+∂Fnf
+
+(11)
+
+∂xnx
+
+which is an nf × nx matrix. In this section, we examine three methods
+for computing the entries of this matrix.
+A. Finite Differences
+Fig. 1 Dependency of the quantities of interest on the independent
+variables both directly and through the residual equations that determine
+the state variables.
+
+Finite difference formulas are derived by combining Taylor series
+expansions. Using the right combinations of these expansions, it is
+possible to obtain finite difference formulas that estimate an arbitrary
+
+2585
+
+MARTINS AND HWANG
+
+order derivative with any required order truncation error. The
+simplest finite difference formula can be directly derived from one
+Taylor series expansion, yielding
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+∂F Fx  ej h − Fx
+ Oh
+
+∂xj
+h
+
+(12)
+
+which is directly related to the definition of derivative. Note that in
+general there are multiple functions of interest, and thus, F can be a
+vector that includes all the outputs of a given computational model.
+The application of this formula requires the evaluation of the model at
+the reference point x and one perturbed point x  ej h and yields one
+column of the Jacobian (11). Each additional column requires an
+additional evaluation of the computational model. Hence, the cost of
+computing the complete Jacobian is proportional to the number
+of input variables of interest, nx . When the computational model is
+nonlinear, the constant of proportionality with respect to the number
+of variables can be less than one if the solutions for the successive
+steps are warm started with the previous solution.
+Finite difference methods are widely used to compute derivatives
+because of their simplicity and the fact that they can be implemented
+even when a given computational model is a black box. Most
+gradient-based optimization algorithms perform finite differences
+by default when the user does not provide the required
+gradients [31,32].
+When it comes to accuracy, we can see from the forward-difference
+formula (12) that the truncation error is proportional to the magnitude
+of the perturbation, h. Thus, it is desirable to decrease h as much as
+possible. The problem with decreasing h is that the perturbed value of
+the functions of interest will approach the reference values. With
+finite precision arithmetic, this leads to subtractive cancellation: a
+loss of significant digits in the subtraction operation. In the extreme
+case, when h is small enough, all digits of the perturbed functions will
+match the reference values, yielding zero for the derivatives. Given
+the opposite trends exhibited by the subtractive cancellation error and
+truncation error, for each x there is a best h that minimizes the overall
+error [33].
+Despite these inherent problems, finite differences can sometimes
+be advantageous when the function of interest is noisy. This
+numerical noise could be, for example, due to poor convergence of
+the computational model or remeshing of the computational domain.
+In such cases, using a large enough step can effectively smooth the
+derivative and capture the correct trend in the function of interest [6].
+Because of their flexibility, finite difference formulas can always
+be used to compute derivatives, at any level of nesting. They can be
+used to compute derivatives of a single function, composite
+functions, iterative functions, or any system with multiply nested
+functions.
+B. Complex Step
+
+The complex-step derivative approximation computes derivatives
+of real functions using complex variables. This method originated
+with the work of Lyness [34] and Lyness and Moler [35]. They
+developed several methods that made use of complex variables,
+including a reliable method for calculating the nth derivative of an
+analytic function. However, only later was this theory rediscovered
+
+by Squire and Trapp [36], who derived a simple formula for
+estimating the first derivative.
+The complex-step derivative approximation, like finite difference
+formulas, can also be derived using a Taylor series expansion. Rather
+than using a real step h, we now use a pure imaginary step, ih. If f is a
+real function in real variables and it is also analytic, we can expand it
+in a Taylor series about a real point x as follows:
+Fx  ihej   Fx  ih
+
+∂F h2 ∂2 F ih3 ∂3 F
+−
+−
+ :::
+6 ∂x3j
+∂xj 2 ∂x2j
+
+(13)
+
+Taking the imaginary parts of both sides of this equation and dividing
+it by h yields
+∂F ImFx  ihej 
+ Oh2 
+
+∂xj
+h
+
+(14)
+
+Hence, the approximation is an Oh2  estimate of the derivative. Like
+a finite difference formula, each additional evaluation results in a
+column of the Jacobian (11), and the cost of computing the required
+derivatives is proportional to the number of design variables, nx .
+Because there is no subtraction operation in the complex-step
+derivative approximation (14), the only source of numerical error is
+the truncation error, which is Oh2 . By decreasing h to a small
+enough value, we can ensure that the truncation error is of the same
+order as the numerical precision of the evaluation of f.
+The first application of this approach to an iterative solver is due to
+Anderson et al. [37], who used it to compute the derivatives of a
+Navier–Stokes solver and later multidisciplinary systems [38].
+Martins et al. [33] showed that the complex-step method is generally
+applicable to any algorithm and described a detailed procedure for its
+implementation. They also presented an alternative way of deriving
+and understanding the complex step, and connected it to AD.
+The complex-step method requires access to the source code of the
+given computational model, and thus, it cannot be applied to blackbox models without additional effort in most cases. To implement
+the complex-step method, the source code must be modified so that
+all real variables and computations are replaced with complex ones.
+In addition, some intrinsic functions need to be replaced, depending
+on the programming language. Martins et al. [33] provide a script
+that facilitates the implementation of the complex-step method in
+FORTRAN codes, as well as details for implementation in
+MATLAB®, C∕C  , and Python.
+Figure 2 illustrates the difference between the complex-step and
+finite difference formulas. In the complex-step method, the differencing quotient is evaluated using the imaginary parts of the function
+values and step size, and the quantity Fx has no imaginary
+component to subtract.
+The complex-step approach is now widely used, with applications
+ranging from the verification of high-fidelity aerostructural
+derivatives [12,39] to the development of immunology models
+[40]. In at least two cases, it was implemented in an aircraft design
+optimization framework that involves multiple languages (Python, C,
+C  , and FORTRAN) [12,41], demonstrating the flexibility of this
+approach. Other applications include uncertainty propagation [42],
+Hessian matrices in statistics [43], derivatives of matrix functions
+[44], Jacobian matrices in liquid chromatography [45], first and
+
+Fig. 2 Computation of ∂F∕∂x using a forward step in the real axis via a forward difference (left) and via a step in the complex axis (right). Here, F and x
+are scalar valued.
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+2586
+
+MARTINS AND HWANG
+
+Fig. 3 Equations for computing total derivatives in a general system of equations.
+
+second derivatives in Kalman filters [46], local sensitivities in
+biotechnology [47], and climate modeling [48]. The complex-step
+approach has also been extended to enable the computation of higherorder derivatives using multicomplex variables [49] and hyper-dual
+numbers [50].
+
+just expand the matrices in the chain rule. The two boxes at the bottom
+show the forward and reverse forms of the method.
+In the sections that follow, we present one such table for each of the
+methods, in which the variables and constraints are specified differently depending on the method, and the application of the unifying
+chain rule to those variables and constraints yields the method.
+
+C. Symbolic Differentiation
+
+Symbolic differentiation is possible only for explicit functions and
+can either be done by hand or by appropriate software, such as Maple,
+Mathematica, or MATLAB®. For a sequence of composite functions, it is possible to use the chain rule, but for general algorithms, it
+may be impossible to produce a closed-form expression for the
+derivatives.
+Nevertheless, symbolic differentiation is useful in the context
+of computational models, because it often can be applied to simple
+functions within the model, reducing the computational cost of
+obtaining certain partial derivatives that are needed in other methods.
+
+A. Numerical Example
+
+Before discussing the methods, we introduce a simple numerical
+example that we use to demonstrate each method. The example can
+be interpreted as an explicit function, a model with states constrained
+by residuals, or a multidisciplinary system, depending on what is
+needed.
+This example has two inputs, x  x1 ; x2 T , and the residual
+equations are
+  
+
+ 
+x y  2y2 − sin x1
+0
+R1 x1 ; x2 ; y1 ; y2 
+
+R
+ 1 1
+2
+−y1  x2 y2
+R2 x1 ; x2 ; y1 ; y2 
+0
+(15)
+
+IV.
+
+Methods for Computing Total
+Derivatives in a System
+
+As mentioned before, we are going to derive all the methods from
+the unifying chain rule (9). Each method corresponds to a specific
+choice of the variables v and the constraints C. To facilitate the
+unification of the theory, we present these choices and the derivation
+from the chain rule in figures with a common layout. Figure 3 shows
+the layout for the general case, with no specific choice of variables or
+constraints.
+In the top box, we show the definition of the variables and
+constraints on the right, and a diagram showing the dependence of
+the constraint functions on the variables on the left. For this diagram,
+we use the extended design structure matrix (XDSM) standard
+developed by Lambe and Martins [51], which enables the
+representation of both the data dependency and the procedure for a
+given algorithm. The diagonal entries are the functions in the process,
+and the off-diagonal entries represent the data. For the purposes of
+this work, we only need the data dependency information, which is
+expressed by the thick gray lines. The XDSM diagram in Fig. 3 shows
+the constraints or vectors of constraints along the diagonal, and
+variables or vectors of variables in the off-diagonal positions. The offdiagonal entry in row i and column j expresses the dependence of the
+jth constraint on the ith variable.
+The middle box is used for the derivation of the method from the
+unifying chain rule (9). In this general case, we have no derivation and
+
+where y  y1 ; y2 T are the state variables. The output functions are
+
+
+ 
+F1 x1 ; x2 ; y1 ; y2 
+y1
+F
+(16)
+
+y2 sin x1
+F2 x1 ; x2 ; y1 ; y2 
+Because the residuals (15) are linear with respect to the state variables
+in this problem, we solve the following linear system:
+  
+
+
+x1 2
+y1
+sin x1
+
+(17)
+−1 x22 y2
+0
+In Fig. 4 we list a FORTRAN program that takes the two input
+variables, solves the preceding linear system, and computes the two
+
+Fig. 4 FORTRAN code for the computational model of the numerical
+example.
+
+2587
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+MARTINS AND HWANG
+
+Fig. 5
+
+Monolithic (black box) differentiation.
+
+output variables. In this case, the algorithm solves the system directly,
+and there are no loops. The vs introduced in the preceding sections
+correspond to each variable assignment; i.e.,
+v   x1;
+
+x2; det; y1;
+
+y2;
+
+f1; f2 T
+
+ df1
+dx1
+df2
+dx1
+
+df1 
+dx2
+df2
+dx2
+
+(19)
+
+B. Monolithic Differentiation
+
+In monolithic differentiation, the entire computational model is
+treated as a “black box.” This may be the only option in cases for
+which the source code is not available, or if it is not deemed
+worthwhile to implement more sophisticated approaches for
+computing the derivatives.
+In monolithic differentiation, the only variables that are tracked are
+the inputs x and the outputs f. Thus, the variables are defined as
+v  xT ; f T T , as shown in Fig. 5. The constraints are just the
+residuals of the inputs and outputs, i.e., the differences between the
+actual values of the variables and the corresponding functions. Thus,
+the input variables x are simply forced to match the specified values
+x0 , and the output variables f are forced to match the results of the
+computational model, F.
+The result of replacing these definitions of the variables and
+constraints is rather simple; we just obtain
+dfi ∂Fi
+
+dxj
+∂xj
+
+v2  x2 ;
+
+v3  f 1 ;
+
+v4  f2
+
+df1 ∂f1
+
+;
+dx1
+∂x1
+
+df1 ∂f1
+
+dx2
+∂x2
+
+(22)
+
+For this method, computing df1 ∕dx1 simply amounts to computing
+∂f1 ∕∂x1 , which we can do with the forward-difference formula (with
+step size h  10−5 ), yielding
+∂f1
+f x  h; x2  − f1 x1 ; x2 
+1; 1 ≈ 1 1
+ 0.0866023014079
+∂x1
+h
+(23)
+or the complex-step method (with step size h  10−15 ). At
+x1 ; x2   1; 1, this yields
+∂f1
+Imf1 x1  ih; x2 
+ 0.0866039925329
+1; 1 ≈
+h
+∂x1
+
+(24)
+
+The digits that do not agree with the exact result are underlined.
+Figure 6 confirms the expected orders of convergence for these two
+formulas and illustrates how subtractive cancellation errors severely
+limit the accuracy of finite difference methods. Because of
+subtractive cancellation in finite differencing, the error worsens with
+decreasing step size once it is below a critical value; eventually, the
+subtraction operation yields zero, resulting in a relative error of 1. The
+first-order forward-difference formula is used, which is consistent
+
+(20)
+
+for each input xj and output variable fi . This relationship is simply
+stating that the total derivatives of interest are the partial derivatives of
+the model when considered in this context. The derivation shown in
+Fig. 5 is a rather roundabout way of obtaining such a trivial result, but
+we felt it was important to unify all the methods from the same
+equation.
+C. Numerical Example: Monolithic Differentiation
+
+The monolithic approach treats the entire piece of code as a black
+box for which the internal variables and computations are unknown.
+Thus, the tracked variables at this level of decomposition are
+
+(21)
+
+Inserting this choice of vi into Eq. (9), we find that both the forward
+and reverse chain-rule equations yield
+
+(18)
+
+The objective is to compute the derivatives at x  1; 1 of both
+outputs with respect to both inputs, i.e., the Jacobian,
+
+df
+
+dx
+
+v1  x1 ;
+
+Fig. 6
+
+Relative error in the sensitivity estimate vs step size.
+
+2588
+
+MARTINS AND HWANG
+
+with the observed slope of 1, whereas the complex-step formula
+has second-order convergence, which agrees with the slope of 2 in
+the plot.
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+D. Algorithmic Differentiation
+
+AD, also known as computational differentiation or automatic
+differentiation, is a well-known method based on the systematic
+application of the differentiation chain rule to computer programs
+[52,53]. Although this approach is as accurate as an analytic method,
+it is potentially much easier to implement because the implementation can be done automatically. To explain AD, we start by
+describing the basic theory and how it relates to the unifying chain
+rule (9) introduced in the preceding sections. We then explain how the
+method is implemented in practice and show an example.
+From the AD perspective, the variables v in the chain rule (9) are all
+of the variables assigned in the computer program, denoted t, and AD
+applies the chain rule for every single line in the program. The
+computer program can thus be considered a sequence of explicit
+functions T i , where i  1; : : : ; n. In its simplest form, each function
+in this sequence depends only on the inputs and the functions that
+have been computed earlier in the sequence, as expressed in the
+functional dependence (1).
+As mentioned in Sec. IV.B, for this assumption to hold, we assume
+that all of the loops in the program are unrolled. Therefore, no
+variables are overwritten, and each variable depends only on earlier
+variables in the sequence. This assumption is not restrictive,
+because programs iterate the chain rule (and thus the total derivatives)
+together with the program variables, converging to the correct total
+derivatives.
+In the AD perspective, the independent variables x and the
+quantities of interest f are assumed to be in the vector of variables t.
+To make clear the connection to the other derivative computation
+methods, we group these variables as follows:
+v  t1 ; : : : ; tnx ; : : : ; tj ; : : : ; ti ; : : : ; tn−nf  ; : : : ; tn T
+|{z}
+|{z}
+x
+
+(25)
+
+f
+
+Figure 7 shows this definition and the resulting derivation. Note that
+the XDSM diagram shows that all variables are above the diagonal,
+indicating that there is only forward dependence, because of the
+
+Fig. 7
+
+unrolling of all loops. The constraints just enforce that the variables
+must be equal to the corresponding function values. Using these
+definitions in the unifying chain rule, we obtain a matrix equation, in
+which the matrix that contains the unknowns (the total derivatives
+that we want to compute) is either lower triangular or upper triangular.
+The lower triangular system corresponds to the forward mode and can
+be solved using forward substitution, whereas the upper triangular
+system corresponds to the reverse mode of AD and can be solved
+using back substitution.
+These matrix equations can be rewritten as shown at the bottom of
+Fig. 7. The equation on the left represents forward-mode AD. In this
+case, we choose one tj and keep j fixed. Then, we work our way
+forward in the index i  1; 2; : : : ; n until we get the desired total
+derivative. In the process, we obtain a whole column of the lower
+triangular matrix, i.e., the derivatives of all the variables with respect
+to the chosen variable.
+Using the reverse mode, shown on the bottom right of Fig. 7, we
+choose a ti (the quantity we want to differentiate) and work our way
+backward in the index j  n; n − 1; : : : ; 1 all of the way to the
+independent variables. This corresponds to obtaining a column of the
+upper triangular matrix, i.e., the derivatives of the chosen quantity
+with respect to all other variables.
+Given these properties, the forward mode is more efficient for
+problems in which there are more outputs of interest than inputs,
+whereas the opposite is true for the reverse mode.
+Although AD is more accurate than finite differences, it can require
+more computational time. This is generally the case when using
+forward-mode AD. The computational cost of both methods scales
+linearly with the number of inputs. As mentioned in the previous
+sections, when finite differences are used to compute the derivatives
+of a nonlinear model, the perturbed solution can be warm started
+using the previous solution, and so the constant of proportionality can
+be less than one. However, the standard forward-mode AD always
+has a constant of proportionality approximately equal to one.
+E. Numerical Example: Algorithmic Differentiation
+
+We now illustrate the application of AD to the numerical example
+introduced in Sec. IV.A. If we use the program listed in Fig. 4, seven
+variables are required to relate the input variables to the output
+variables through the lines of code in this particular implementation.
+These variables are
+
+Derivation of AD.
+
+2589
+
+MARTINS AND HWANG
+
+3
+3 2
+x1
+t1
+6 t2 7 6 x2 7
+7
+6 7 6
+6 t3 7 6 det 7
+7
+6 7 6
+7
+7 6
+v6
+6 t4 7  6 y1 7
+6 t5 7 6 y2 7
+7
+6 7 6
+4 t6 5 4 f1 5
+f2
+t7
+2
+
+(26)
+
+2
+
+As shown in Fig. 7, AD defines constraints of the form
+Ci v  ti − T i t1 ; : : : ; ti−1 . For this problem, the functions T i are
+3 2
+3
+T1 
+x1
+7 6
+7
+6
+T2 
+x2
+7 6
+7
+6
+6 T 3 t1 ; t2  7 6 2  t1 t22 7
+7 6 2
+7
+6
+7 6
+7
+Tt  6
+6 T 4 t1 ; t2 ; t3  7  6 t2 sint1 ∕t3 7
+6 T 5 t1 ; t3  7 6 sint1 ∕t3 7
+7 6
+7
+6
+5
+4 T 6 t4  5 4
+t4
+T 7 t1 ; t5 
+t5 sint1 
+2
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+variables with respect to t1 and t2 . In the next subsection, we will see
+how this is implemented in practice.
+Now we demonstrate the mathematical analog of the reverse mode
+of AD. Again, because we are interested only in the derivatives of the
+outputs with respect to the inputs, we can ignore some of the columns
+of dt∕dt. In this case, we want to keep only the last two columns, and
+so we obtain
+
+(27)
+
+−t22
+
+1 0
+
+6
+6
+60
+6
+6
+60
+6
+6
+60
+6
+6
+60
+6
+6
+60
+4
+
+1 −2t1 t2
+
+" dt
+
+6
+
+dt1
+dt7
+dt1
+
+dt6
+dt2
+dt7
+dt2
+
+#
+
+" df
+
+
+1
+
+dx1
+df2
+dx1
+
+df1
+dx2
+df2
+dx2
+
+#
+(28)
+
+which corresponds to the bottom left-most 2 × 2 block in the dt∕dt
+matrix.
+To compute these four derivatives, we can apply the forward mode
+or reverse mode of AD. These methods are equivalent to solving the
+corresponding form of the unifying chain rule, Eq. (7), using forward
+or back substitution, respectively, after assembling the Jacobian of
+partial derivatives using symbolic differentiation.
+For the forward mode, we have
+2
+
+1
+
+6
+6
+0
+6
+6
+6
+−t22
+6
+6 t2 cos t
+1
+6 − 2
+6
+t3
+6
+6
+6 − cost t1
+3
+6
+6
+6
+0
+4
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+0
+
+0
+
+−2t1 t2
+
+1
+
+0
+
+0
+
+t1
+− 2t2 tsin
+3
+
+t22 sin t1
+t23
+
+1
+
+0
+
+0
+
+sin t1
+t23
+
+0
+
+1
+
+0
+
+0
+
+−1
+
+0
+
+0
+
+0
+
+− sin t1
+
+−t5 cos t1
+0
+3
+2
+2
+1 0
+1
+7
+6 dt2
+6 dt1 1 7 6
+7 60
+6
+6 dt3 dt3 7 6
+6 dt dt 7 6
+60
+6 1
+2 7
+6 dt dt 7 6
+4 7
+6
+6 4
+× 6 dt1 dt2 7  6 0
+7 6
+6
+6 dt5 dt5 7 6 0
+6 dt1 dt2 7 6
+7 6
+6
+6 dt6 dt6 7 6 0
+6 dt dt 7 4
+2 5
+4 1
+dt7
+dt7
+0
+dt1
+
+dt2
+
+0
+
+0 0
+
+3
+
+7
+0 07
+7
+7
+0 07
+7
+7
+0 07
+7
+7
+7
+0 07
+7
+7
+1 07
+5
+0 1
+
+− cost3 t1
+
+0
+
+−t5 cos t1
+
+t1
+− 2t2 tsin
+3
+
+0
+
+0
+
+0
+
+1
+
+t22 sin t1
+t23
+
+sin t1
+t23
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+−1
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+− sin t1
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+0 0
+2 dt
+
+0
+
+0
+
+0
+
+0
+
+1
+
+dt
+
+6 1
+6 dt6
+6 dt2
+6
+6 dt6
+6 dt3
+6
+6
+× 6 dt6
+6 dt4
+6 dt
+6 6
+6 dt5
+6
+61
+4
+0
+
+3
+
+2
+0
+7
+dt7 7
+6
+60
+dt2 7
+7 6
+6
+dt7 7
+60
+dt3 7
+7 6
+6
+dt7 7
+7  60
+dt4 7
+6
+7 60
+dt7 7
+6
+6
+dt5 7
+7 61
+dt7 7
+4
+dt6 5
+0
+1
+dt7
+dt1
+
+0
+
+3
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+7
+5
+
+3
+
+7
+07
+7
+7
+07
+7
+7
+07
+7
+07
+7
+7
+07
+5
+
+(30)
+
+1
+
+where the large matrix is the upper-triangular, transposed Jacobian of
+partial derivatives in Eq. (7), the solution vectors represent the last
+two columns of the transposed Jacobian of total derivatives, and the
+right-hand side is the last two columns of the identity matrix. The
+derivatives of interest are in the upper 2 × 2 block in the dt∕dtT
+matrix. In contrast to the forward mode, the derivatives of interest are
+computed by performing two back substitutions, through which the
+derivatives of t6 and t7 with respect to all variables are computed
+incidentally.
+F. Implementation and Tools
+
+3
+
+7
+17
+7
+7
+07
+7
+7
+07
+7
+07
+7
+7
+07
+5
+
+t2 cos t1
+
+0
+
+6
+
+Applying AD to the function in Fig. 4 is mathematically equivalent to
+solving a linear system that arises from the unifying chain rule with
+this choice of constraints and variables. In this case, we are interested
+in a 2 × 2 submatrix of dt∕dt, specifically,
+
+− 2 t3
+
+(29)
+
+0
+
+where the large matrix is the lower-triangular Jacobian of partial
+derivatives in Eq. (7), the solution vectors represent the first two
+columns of the Jacobian of total derivatives, and the right-hand side is
+the first two columns of the identity matrix. The derivatives of interest
+are in the lower 2 × 2 block in the dt∕dt matrix. The four derivatives
+of interest can be computed by performing two forward substitutions
+to obtain the first two columns of dt∕dt. In addition to computing the
+derivatives of interest, we have also computed the derivatives of all
+
+There are two main approaches to AD. The source-code
+transformation approach intersperses lines of code that compute the
+derivatives of the original code [52,54] and is demonstrated in the
+next subsection. The additional lines of code and other required
+changes to the original source code are made automatically using an
+AD tool. The other approach to AD uses operator overloading
+[52,55]. In this approach, the original code does not change, but the
+variable types and the operations are redefined. Each real number v is
+replaced by a type that includes not only the original real number but
+the corresponding derivative as well; i.e., v  v; dv. Then, all
+operations are redefined such that, in addition to the result of the
+original operations, they yield the derivative of that operation [52].
+When we introduced the complex-step method, we mentioned that
+there is a close connection between the complex-step method and
+AD. In essence, the complex-step method can be viewed as an
+implementation of operator-loading AD, because the complex
+number is a type that includes the original real number, and the
+complex part represents the derivative. All the complex arithmetic
+operations result in an approximation of the derivative in the complex
+part [33]. In theory, the complex step yields the same result as AD
+only in the limit, as the complex-step size approaches zero, but if this
+step is made small enough, identical results can be obtained with
+finite precision arithmetic.
+There are a variety of AD tools available for the most popular
+programming languages used in scientific computing, including
+FORTRAN, C∕C  , and MATLAB®. They have been
+extensively developed and provide the user with great functionality,
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+2590
+
+MARTINS AND HWANG
+
+Fig. 8 FORTRAN code differentiated using the forward mode of the AD tool Tapenade.
+
+including the calculation of higher-order derivatives and reversemode options. For C∕C  , the software packages ADIC [56],
+OpenAD [57], and Tapenade [58] use the source-code transformation
+approach, whereas ADOL-C [59] and FADBAD   [60] use the
+operator-loading approach. For FORTRAN, the following tools
+implement source-code transformation: ADIF95 [61], ADIFOR
+[62], OpenAD/F [63], TAF [64], and Tapenade [58,65]. The operatoroverloading approach is implemented in AD01 [55], ADOL-F [66],
+IMAS [67], and OPFAD/OPRAD [68,69]. There are also AD tools
+for MATLAB® [70], including ADiMat [71], which combine source
+transformation and operator overloading.
+
+H.
+
+Analytic Methods
+
+Like AD, the numerical precision of analytic methods is the same
+as that of the original algorithm. In addition, analytic methods are
+usually more efficient than AD for a given problem. However,
+analytic methods are much more involved than the other methods,
+because they require detailed knowledge of the computational model
+and a long implementation time. Analytic methods are applicable
+when we have a quantity of interest f that depends implicitly on the
+independent variables of interest x, as described in Eq. (5) in the
+preceding sections, which we repeat here for convenience:
+f  Fx; Yx
+
+(31)
+
+G. Source-Code Transformation Example
+
+In practice, automatic differentiation performs the sequence of
+operations shown at the bottom of Fig. 7 by changing the original
+source code. Applying the forward mode of the source-code
+transformation tool Tapenade [58] to the FORTRAN code listed in
+Fig. 4 results in the code listed in Fig. 8. Note that, for each variable
+assignment, Tapenade added an assignment (with a d added to the
+variable name) that corresponds to the symbolic differentiation of the
+operators in the original assignment. The variable xd is the seed
+vector that determines the input variable of interest with respect to
+which we differentiate. In our case, we want to compute all four terms
+in the Jacobian (28), and so we need to run this code twice, first with
+xd1  1, xd2  0 and then with xd1  0, xd2  1, to get
+the first and second columns of the Jacobian, respectively. If desired,
+directional derivatives can also be computed by combining multiple
+nonzero entries in the seed vector.
+Applying the reverse mode of Tapenade to our original FORTRAN
+code results in the code listed in Fig. 9. The resulting code is more
+complex than that generated in the forward mode because the reverse
+mode needs to do the computations in reverse, which corresponds to
+the back substitution step in the solution of Eq. (30). To complicate
+things further, this reverse sequence of computations requires the
+values of various variables in the original code. The resulting
+procedure is one in which the original calculations are first performed
+in the lines up to the assignment of y2, and only then do the reverse
+computations take place, ending with the final assignment of the
+derivatives of interest, xb.
+In this example, no variables are overwritten. If that were the case,
+then Tapenade would store all temporary values of the variables in the
+original computation using its own memory space in order to be able
+to recall these variables at the reverse computation stage.
+Tapenade and other AD tools have many advanced features that are
+not mentioned here. For example, it is possible to significantly
+decrease the memory requirement of the reverse mode. For more
+details, please see the references for each AD tool.
+
+The implicit relationship between the state variables y and the
+independent variables is defined by the solution of a set of residual
+equations, which we also repeat here:
+r  Rx; Yx  0
+
+(32)
+
+By writing the computational model in this form, we have assumed a
+discrete analytic approach. This is in contrast to the continuous
+approach, in which the equations are not discretized until later. We
+
+Fig. 9 FORTRAN code differentiated using the reverse mode of the AD
+tool Tapenade.
+
+2591
+
+MARTINS AND HWANG
+
+will not discuss the continuous approach in this paper, but ample
+literature can be found on the subject [72–77], including discussions
+comparing the two approaches [27,78,79].
+In this section, we derive the two forms of the analytic method, the
+direct and the adjoint forms, in two ways. The first derivation follows
+the derivation that is typically presented in the literature, whereas the
+second derivation is based on the unifying chain rule (9) and is a new
+perspective that connects analytic methods to AD.
+
+The linearized residual equations (34) provide the means for
+computing the total sensitivity matrix dy∕dx. We rewrite these
+equations as
+∂R dy
+∂R
+−
+∂y dx
+∂x
+
+(35)
+
+Substituting this result into the total derivative equation (33), we
+obtain
+
+1. Traditional Derivation
+
+As a first step toward obtaining the derivatives that we ultimately
+want to compute, we use the chain rule to write the total derivative
+Jacobian of f as
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+df
+∂F ∂F dy
+
+
+dx
+∂x ∂y dx
+
+(33)
+
+where the result is an nf × nx matrix. As previously mentioned, it is
+important to distinguish the total and partial derivatives and define the
+context. The partial derivatives represent the variation of f  Fx; y
+with respect to changes in x for a fixed y, whereas the total derivative
+df∕dx takes into account the change in y that is required to keep the
+residual equations (32) equal to zero. As we have seen, this
+distinction depends on the context; i.e., what is considered a total or
+partial derivative depends on the level that is being considered in the
+nested system of functions.
+We should also mention that the partial derivatives can be
+computed using the monolithic methods that we have described
+earlier (finite differences and complex step), as well as AD.
+Because the governing equations must always be satisfied, the total
+derivative of the residuals (32) with respect to the design variables
+must also be zero. Thus, using the chain rule, we obtain
+dr ∂R ∂R dy
+
+
+0
+dx
+∂x
+∂y dx
+
+(34)
+
+The computation of the total derivative matrix dy∕dx in Eqs. (33) and
+(34) has a much higher computational cost than any of the partial
+derivatives, because it requires the solution of the residual equations.
+The partial derivatives can be computed by differentiating the
+function F with respect to x while keeping y constant.
+
+The inverse of the square Jacobian matrix ∂R∕∂y is not necessarily
+calculated explicitly. However, we use the inverse to denote the fact
+that this matrix needs to be solved as a linear system with some righthand-side vector.
+Equation (36) shows that there are two ways of obtaining the total
+derivative matrix dy∕dx, depending on which right-hand side is
+chosen for the solution of the linear system. Figure 10 shows the sizes
+of the matrices in Eq. (36), which depend on the shape of df∕dx. The
+diagrams in Fig. 10 illustrate why the direct method is preferable
+when nx < nf and why the adjoint method is more efficient when
+nx > nf . This is the same fundamental difference that we observed
+between the forward and reverse forms of the unifying chain rule.
+2. Direct Method
+
+The direct method involves solving the linear system with −∂R∕∂x
+as the right-hand side vector, which results in the linear system (35).
+This linear system needs to be solved for nx right-hand sides to get the
+full Jacobian matrix dy∕dx. Then, we can use dy∕dx in Eq. (33) to
+obtain the derivatives of interest, df∕dx.
+As in the case of finite differences, the cost of computing
+derivatives with the direct method is proportional to the number of
+design variables, nx . In a case in which the computational model is a
+nonlinear system, the direct method can be advantageous. Both
+methods require the solution of a system of the same size nx times, but
+the direct method just solves the linear system (35), whereas the finite
+difference method solves the original nonlinear system (4). Even
+though the various solutions required for the finite difference method
+
+Fig. 10 Block matrix diagrams illustrating the structure of the direct and adjoint equations.
+
+2592
+
+MARTINS AND HWANG
+
+can be warm started from a previous solution, a nonlinear solution
+will typically require multiple iterations to converge. The direct
+method is even more advantageous when a factorization of ∂R∕∂y is
+available, because each solution of the linear system consists in an
+inexpensive back substitution. There are some cases in which a
+hybrid approach that combines the direct and adjoint methods is
+advantageous [80].
+
+generalization for the case in which f is a vector. This linear system
+needs to be solved for each column of ∂F∕∂yT , and thus, the
+computational cost is proportional to the number of quantities of
+interest, nf . The adjoint vector can then be substituted into Eq. (36) to
+find the total sensitivity:
+df
+∂F
+∂R
+
+ ψT
+dx
+∂x
+∂x
+
+(42)
+
+3. Numerical Example: Direct Method
+
+We now return to the numerical example introduced in Sec. IV.A
+and apply the direct method. Because there are just two state
+variables, Eq. (35) becomes the following 2 × 2 linear system:
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+"
+
+1
+− ∂R
+∂y1
+2
+− ∂R
+∂y1
+
+1
+− ∂R
+∂y2
+2
+− ∂R
+∂y2
+
+#" dy
+
+1
+
+dx1
+dy2
+dx1
+
+dy1
+dx2
+dy2
+dx2
+
+#
+
+" ∂R
+
+1
+
+
+
+∂x1
+∂R2
+∂x1
+
+∂R1
+∂x2
+∂R2
+∂x2
+
+#
+(37)
+
+In a more realistic example, the computation of the partial derivatives
+would be more involved, because the residuals typically do not have
+simple analytical expressions. In this case, the residuals do have
+simple forms, so we can use symbolic differentiation to compute each
+partial derivative to obtain
+
+
+−x1
+1
+
+−2
+−x22
+
+" dy1
+dx1
+dy2
+dx1
+
+dy1
+dx2
+dy2
+dx2
+
+#
+
+"
+
+
+y1 − cos x1
+0
+
+0
+2x2 y2
+
+#
+
+5. Numerical Example: Adjoint Method
+
+(38)
+
+Although we are not interested in finding any derivatives with respect
+to x2 , both right-hand sides of the system are shown for completeness.
+Because the analytic methods are derived based on a linearization of
+the system at a converged state, we must evaluate the system at
+x1 ; x2   1; 1 and y1 ; y2   sin 1∕3; sin 1∕3. The computed
+values for dy1 ∕dx1 and dy2 ∕dx1 can be used to find df1 ∕dx1 via the
+following equation:
+df1 ∂F1 ∂F1 dy1 ∂F1 dy2
+
+
+
+dx1
+∂x1
+∂y1 dx1 ∂y2 dx1
+
+(39)
+
+which simplifies to
+df1 dy1
+
+dx1 dx1
+
+Thus, the cost of computing the total derivative matrix using the
+adjoint method is independent of the number of design variables nx
+and instead proportional to the number of quantities of interest, f.
+Note that the partial derivatives shown in these equations need to
+be computed using some other method. They can be differentiated
+symbolically or computed by finite differences, the complex-step
+method, or even AD. The use of AD for these partials has been shown
+to be particularly effective in the development of analytic methods for
+partial differential equations solvers [85].
+By comparing the direct and adjoint method, we also notice that all
+the partial derivative terms that need to be computed are identical, and
+that the difference in their relative cost comes only from the choice of
+which right-hand side to use with the residual Jacobian.
+
+(40)
+
+when the partial derivatives are evaluated.
+4. Adjoint Method
+
+Adjoint methods have been known and used for over three
+decades. They were first applied to solve optimal control problems
+and thereafter used to perform sensitivity analysis of linear structural
+finite element models. The first application to fluid dynamics is due to
+Pironneau [81]. The method was then extended by Jameson to
+perform airfoil shape optimization [72], and since then, it has been
+used to optimize airfoils suitable for multipoint operation [82] and to
+design laminar-flow airfoils [83]. The adjoint method has been
+extended to three-dimensional problems, leading to applications such
+as the aerodynamic shape optimization of complete aircraft configurations [84] and shape optimization considering both aerodynamics
+and structures [21,22]. The adjoint method has also been generalized
+for multidisciplinary systems [39].
+The adjoint equation can be seen in the total derivative
+equation (36), in which we observe that there is an alternative option
+for computing the total derivatives: the linear system involving the
+square Jacobian matrix ∂R∕∂y can be solved with ∂f∕∂y as the righthand side. This results in the following linear system, which we call
+the adjoint equations:
+ T
+ T
+∂R
+∂F
+ψ−
+(41)
+∂y
+∂y
+where we will call ψ the adjoint matrix (of size ny × nf ). Although
+this is usually expressed as a vector, we obtain a matrix due to our
+
+We now apply the adjoint method to compute df1 ∕dx1 in the
+numerical example from Sec. IV.A. In this case, the linear system is
+"
+
+1
+− ∂R
+∂y1
+∂R1
+− ∂y2
+
+2
+− ∂R
+∂y1
+∂R2
+− ∂y2
+
+#
+
+Ψ11
+Ψ21
+
+Ψ12
+Ψ22
+
+" ∂F
+
+
+
+
+1
+
+∂y1
+∂F1
+∂y2
+
+∂F2
+∂y1
+∂F2
+∂y2
+
+#
+(43)
+
+We can obtain the partial derivatives through symbolic differentiation, and the second column of the adjoint matrix is not required
+because we are interested only in f1 , and so, the linear system
+becomes
+
+ 
+
+
+−x1
+1
+Ψ11
+1
+0
+
+(44)
+−2 −x22 Ψ21
+0 sin x1
+This linear system can now be solved to find the adjoint variables Ψ11
+and Ψ21 . After evaluating the system at x1 ; x2   1; 1 and using the
+resulting values of the state variables, y1 ; y2   sin3 1 ; sin3 1, we can
+compute df1 ∕dx1 using
+df1 ∂F1
+∂R
+∂R
+
+ Ψ11 1  Ψ21 2
+dx1
+∂x1
+∂x1
+∂x1
+
+(45)
+
+where we can replace the partial derivatives with the symbolically
+differentiated terms to obtain
+df1
+ Ψ11 y1 − cos x1 
+dx1
+
+(46)
+
+6. Derivation from Unifying Chain Rule
+
+Figure 11 shows the derivation of the analytic methods from the
+unifying chain rule. In this case, the variables are the independent
+variables x, the state variables y, and the functions of interest, f.
+The constraints force the independent variables to be equal to the
+specified values, and the residuals and functions of interest to be
+equal to the values resulting from the computational model.
+Substituting these definitions in the unifying chain rule yields the
+familiar direct and adjoint methods, for which the equations are
+shown at the bottom of Fig. 11. As we can see, the direct method
+comes from the forward chain rule, whereas the adjoint method is
+derived from the reverse chain rule.
+Note that the adjoint variables here are represented by df∕dr,
+which is a notation that has not been used previously in the literature.
+However, this notation is consistent with the physical interpretation
+that has been noted before, which is that the adjoint variables
+
+2593
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+MARTINS AND HWANG
+
+Fig. 11 Derivation of the analytic methods: direct and adjoint.
+
+represent the derivative of the functions of interest with respect to
+variations in the residuals of the governing equations. Also, note that
+df∕dr  ΨT , because the convention adopted in the literature
+defines an adjoint vector for a given output quantity as a column
+vector.
+Although we do not address time-dependent problems here, the
+equations in Fig. 11 can be extended to handle such problems. To
+accomplish this, we would include the states for all the time instances
+in the state variable vector, i.e., y  yT1 ; : : : ; yTnt T . Substituting this
+y into the unifying chain rule would yield a block lower triangular
+∂R∕∂y. Because this matrix is transposed in the adjoint equations, the
+linear system becomes block upper triangular. The consequence of
+this is that the time-dependent adjoint equations need to be solved
+using block back substitution, starting from the last time instance.
+Because the adjoint equations depend on the states themselves, we
+must store the complete time history of the states when the timedependent solution of the states is obtained. More details on the timedependent adjoint method and proposed solutions to handle the
+memory requirements have been presented by various authors
+[86–88].
+I. Coupled Analytic Methods
+
+We now extend the analytic methods derived in the preceding
+section to multidisciplinary systems. The direct and adjoint methods
+for multidisciplinary systems can be derived by partitioning the
+various variables by discipline as follows:
+R  RT1 ; : : : ; RTN T ;
+
+y  yT1 ; : : : ; yTN T
+
+(47)
+
+where N is the number of disciplines. All the design variables are
+included in x. If we substitute these vectors into the unifying chain
+rule, we obtain the block matrix equations shown at the bottom
+of Fig. 12.
+These are the coupled versions of the direct and adjoint methods,
+respectively. The coupled direct method was first developed by
+Bloebaum [89] and Sobieszczanski-Sobieski [29], whereas the
+coupled adjoint was originally developed by Martins et al. [39,90].
+Both the coupled direct and adjoint methods have since been applied to
+the aerostructural design optimization of aircraft wings [12,21,91,92].
+
+Figure 13 shows another alternative for obtaining the total
+derivatives of multidisciplinary systems that was first developed by
+Sobieszczanski-Sobieski [29] for the direct method and by Martins
+et al. [39] for the adjoint method. The advantage of this approach is
+that we do not need to know the residuals of a given disciplinary
+solver but can instead use the coupling variables. To derive the direct
+and adjoint versions of this approach within our mathematical
+framework, we consider the same definition of the variables but
+replace the constraints with the residuals of the coupling variables:
+Ci  yi − Y i
+
+(48)
+
+where the yi vector contains the coupling variables of the ith
+discipline, and Y i is the vector of functions that explicitly defines
+these variables. This leads to the equations at the bottom of Fig. 13,
+which we call the functional form. This contrasts with the residual
+form shown in Fig. 12.
+A useful outcome of the unification of these two forms using
+Eq. (9) is a natural extension to hybrid methods that combine
+disciplines that use the residual form with other disciplines that use
+the functional form. To derive and prove the validity of such a
+method, we can set the appropriate entries of C to be ri − Ri or
+yi − Y i , based on which form is appropriate for the ith discipline.
+This hybrid form for computing coupled derivatives is likely to be
+very useful for multidisciplinary systems in which the residuals of the
+governing equations and their partial derivatives are available for
+some disciplines but not for others, such as disciplines that run blackbox codes. The hybrid form is demonstrated in Fig. 14 for the
+numerical example.
+The yi vector is treated as a vector of state variables in the
+terminology of systems with residuals. In general, the functions in the
+vector Y i can depend on all other coupling variables in the ith
+discipline as well as any other disciplines, signifying that this
+development allows for coupling to be present among the coupling
+variables, even within a discipline. The only change in the final
+equations would be the replacement of the identity submatrices in the
+∂Y∕∂y matrix with submatrices that have 1 on the diagonal and
+−∂Y i ∕∂yi in the off diagonals representing the dependence of
+coupling variables on each other within the same discipline.
+To illustrate the coupled analytic methods, we now interpret the
+numerical example from Sec. IV.A as a multidisciplinary system. In
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+2594
+
+MARTINS AND HWANG
+
+Fig. 12 Derivation of the residual form of the coupled derivative methods.
+
+Fig. 13 Derivation of the functional form of the coupled derivative methods.
+
+2595
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+MARTINS AND HWANG
+
+Fig. 14 Application of the coupled direct and coupled adjoint methods in the residual, functional, and hybrid forms to the numerical example.
+
+this interpretation, the state variable y1 belongs to discipline 1 and is
+solely constrained by residual R1 , whereas y2 and R2 are the
+corresponding variables associated with discipline 2.
+From Fig. 12, we can see that the residual approach yields the same
+equations as the analytic methods, except for the classification of
+blocks corresponding to different disciplines in the former case. In
+this example, each block is 1 × 1, because both disciplines have only
+one state variable.
+For the functional approach, the residuals are eliminated from the
+equations, and it is assumed that explicit expressions can be found for
+all state variables in terms of input variables and state variables from
+other disciplines. In most cases, the explicit computation of state
+variables involves solving the nonlinear system corresponding to the
+discipline. However, in this example, this is simplified because the
+residuals are linear in the state variables and each discipline has only
+one state variable. Thus, the explicit forms are
+Y 1 x1 ; x2 ; y2   −
+
+2y2 sin x1
+
+x1
+x1
+
+(49)
+
+y1
+x22
+
+(50)
+
+Y 2 x1 ; x2 ; y1  
+
+Figure 14 shows how df1 ∕dx1 can be computed using the coupled
+residual, functional, and hybrid approaches, which correspond to
+
+cases in which neither discipline, both disciplines, or just discipline 2
+have this explicit form.
+
+V.
+
+Future Research Directions
+
+The development of methods for obtaining the derivatives of
+computational models has generally lagged the development of
+the computational models themselves. However, the theory and
+implementation of efficient methods for computing derivatives is
+now well understood, and so it is now possible to implement the
+derivative computations concurrently with the code for the computational model.
+We would argue that this concurrent development is advisable,
+because it pays off in the long term to keep in mind that the code is
+going to be differentiated. It often happens, for example, that artificial
+discontinuities or noise are introduced by certain numerical
+procedures, even when the original computational model is smooth
+and differentiable. These avoidable discontinuities or noise may
+result in inaccurate derivatives and also cause difficulties for
+gradient-based optimizers. The concurrent implementation of the
+model and its derivatives can also provide insight into how to
+implement the model in a way that makes the derivative computation
+more efficient. In addition, when derivatives are readily available,
+they can be used to accelerate the convergence of the model solver
+using Newton-type methods. Thus, we expect that the development
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+2596
+
+MARTINS AND HWANG
+
+of new solvers will increasingly be accompanied by the development
+of efficient methods for computing the derivatives of these solvers.
+As mentioned in the preceding sections, one of the major
+applications of derivatives is gradient-based optimization. Most
+gradient-based optimization algorithms perform finite differences to
+estimate the gradients by default, and indeed, most users of this
+software do not change this default setting. As we have discussed in
+this paper, finite differences are costly when the number of inputs is
+large, adding to the computational cost of the optimization.
+Furthermore, finite differences are subject to large errors, which are
+responsible for many failures in numerical optimization. These
+problems have prevented the more widespread use of gradient-based
+optimization because many users erroneously blame the computational cost and lack of robustness on the optimization algorithm itself.
+The careful development of codes that do not introduce artificial
+discontinuities to smooth models, and the development of adjoint
+solvers that can compute gradients much more efficiently will go a
+long way toward increasing the size of optimization problems that
+can be solved.
+Given the usefulness of having the derivatives of computational
+models and the maturity of this field of research, it is surprising that
+the efficient computation of derivatives is not more widespread in
+commercial software. Adjoint methods have been in place in some
+structural analysis software for some time [93], but they are only
+now starting to appear in CFD commercial software [94]. We predict
+that these advances in commercial software will result in a drastic
+increase in the use of numerical optimization for engineering design
+applications.
+One of the most significant current challenges in gradient-based
+optimization is that there is no efficient way for computing all the
+terms in a large square Jacobian (i.e., when nx ≈ nf ), because neither
+the direct nor the adjoint approach is advantageous. In design optimization, these large square Jacobians arise when we use gradient-based
+optimization to solve a problem with many constraints and many
+design variables, because we need the derivatives of all the constraints
+with respect to all the variables. This is often the case for structural
+optimization problems in which the weight is minimized with respect
+to sizing variables, subject to stress constraints. Currently, one way to
+circumvent this problem is to aggregate the constraints to make the
+adjoint method more advantageous, but this usually slows down the
+convergence of the optimization [95]. One promising approach is to
+develop a matrix-free optimizer that does not require the Jacobian to
+be stored explicitly but instead relies on matrix-vector products that
+can be efficiently computed using techniques based on those
+presented in this review.
+The use of efficient methods for the computation of derivatives of
+multidisciplinary systems is far from widespread. Although the basic
+theory has been developed over the last two decades, with the coupled
+adjoint being developed about 10 years ago, the practical implementation of these methods remains challenging. If coupling disciplines
+to obtain a multidisciplinary model is challenging, implementing
+the computation of the coupled derivatives of that model is bound to
+be even more so. There are some promising techniques that can
+automate the computation of coupled derivatives, albeit with some
+sacrifices in efficiency [96].
+Looking into the future, one major challenge is that the coupled
+derivative methods as presented herein do not scale well with the
+number of disciplines, because of the potentially large off-diagonal
+blocks in the Jacobian of partial derivatives, which represent the
+interdisciplinary derivatives. One possible solution might be to
+approximate some of the terms and use an indirect method to solve for
+the derivatives.
+Another avenue for future work is the extension of this unification
+to higher-order derivatives. Equation (9) yields derivatives of any
+quantity, and so we could choose to append first derivatives to the
+vector of variables and the expressions that define them to the vector
+of constraints. The solution of the resulting linear system would
+simultaneously yield first and second derivatives, which could in turn
+be selected as additional variables in Eq. (9) to compute third
+derivatives. This technique could be repeatedly applied to obtain
+expressions for derivatives of any order, though it remains to be seen
+
+how efficient such an approach could be and which method (AD,
+analytic, etc.) could and should be used. At each of the n steps for nth
+order derivatives, the forward or reverse form of Eq. (9) must be
+selected, yielding various combinations such as the direct-adjoint and
+adjoint-direct methods for second derivatives.
+Although the present work is largely theoretical, it has recently led
+to more practical results [97]. Previous work used the mathematical
+formulation developed herein as the basis for a computational
+framework that was applied to the gradient-based multidisciplinary
+design optimization (MDO) of a small satellite. The MDO problem
+involved tens of thousands of design variables and millions of state
+variables. The framework greatly facilitated the implementation of
+the problem and also led to high efficiency in both the multidisciplinary analysis and the optimization. It is believed this computational framework greatly reduces development time, computation
+time, or both for many gradient-based multidisciplinary analysis and
+optimization applications.
+
+VI.
+
+Conclusions
+
+In this paper, the unifying chain rule, a simple matrix equation that
+achieves a full unification of all known discrete methods for
+computing derivatives for general computational models, was
+presented. By selecting the right variables and equations to represent
+the computational model, any existing derivative computation
+method can be derived from the unifying chain rule in a straightforward manner.
+Within this unification, any method is defined by three choices: the
+variables and constraints exposed in the method, the strategy for
+solving the linear system, and the method for computing the Jacobian
+of partial derivatives in the unifying chain rule.
+When it comes to methods for computing partial derivatives, finite
+differences, the complex-step method, and symbolic differentiation
+were presented, and their relative advantages and disadvantages were
+discussed.
+The methods for computing total derivatives (monolithic differentiation, algorithmic differentiation (AD), analytic methods, and
+coupled analytic methods) that come about from inserting particular
+choices of variables and constraints into the unifying chain rule were
+then discussed.
+Black-box finite differences and the complex-step method fit into
+this unification if the inputs and outputs are considered as the only
+variables of interest. In this case, called monolithic differentiation, it
+was shown that the unifying chain rule yields a trivial identity: each
+total derivative of an output with respect to an input is equal to the
+corresponding partial derivative, which in turn is computed using
+finite differences or the complex-step method.
+AD exposes quantities computed at the line-of-code level as the
+relevant variables. Because each variable depends only on earlier
+ones, the Jacobian of partial derivatives is lower or upper triangular,
+and the nonzero terms are evaluated using symbolic differentiation.
+For the same reason, the Jacobian of total derivatives is also
+triangular, allowing the use of forward or back substitution to solve
+the linear system in the forward or reverse form of the unifying chain
+rule, respectively, yielding the corresponding mode of AD.
+For analytic methods, the inputs, outputs, states, and residuals
+represent the variables and functions of interest. It was shown that in
+this case the unifying chain rule contains a block triangular Jacobian
+of partial derivatives. After block solving to simplify the linear
+system, the forward and reverse forms of the unifying chain rule
+produce the direct and adjoint methods if the right column in the
+right-hand side is used.
+The Jacobian of the residuals with respect to the states and the other
+partial derivatives can be computed using any of the monolithic
+methods or AD. The selective use of AD to compute these terms, with
+either the forward or the reverse mode, can be particularly
+advantageous, because it can dramatically decrease the effort of
+implementing analytic methods.
+For multidisciplinary systems, two different approaches are
+possible for both the coupled direct and coupled adjoint methods,
+resulting in four possible combinations. It was shown that separating
+
+MARTINS AND HWANG
+
+the states and residuals by discipline yields the residual approach,
+whereas the functional approach is obtained by treating each
+discipline as a black box in which only its output variables can be
+seen. In addition, it was shown that it is possible to take any
+combination of the residual and functional approaches to create a
+hybrid approach. This flexibility is valuable, because it is not always
+possible to use one or the other, because of the limitations of the
+disciplinary solvers. This perspective on the computation of
+derivatives of coupled systems extends previous work.
+
+Acknowledgments
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+This work was partially supported by NASA’s Subsonic Fixed Wing
+program through award number NNX11AI19A. We would like to
+thank Graeme J. Kennedy for his insights and Kenneth T. Moore for his
+suggestions. This paper would not be the same without the valuable
+feedback from the anonymous reviewers, to whom we are indebted.
+
+References
+[1] Saltelli, A., Ratto, M., Andres, T., Campolongo, F., Cariboni, J., Gatelli,
+D., Saisana, M., and Tarantola, S., Global Sensitivity Analysis: The
+Primer, Wiley, Hoboken, NJ, 2008.
+[2] Barthelemy, J.-F., and Sobieszczanski-Sobieski, J., “Optimum
+Sensitivity Derivatives of Objective Functions in Nonlinear Programming,” AIAA Journal, Vol. 21, No. 6, 1983, pp. 913–915.
+doi:10.2514/3.8172
+[3] Sherman, L. L., Taylor, A. C., III, Green, L. L., Newman, P. A., Hou, G.
+W., and Korivi, V. M., “First- and Second-Order Aerodynamic
+Sensitivity Derivatives via Automatic Differentiation with Incremental
+Iterative Methods,” Journal of Computational Physics, Vol. 129, No. 2,
+1996, pp. 307–331.
+doi:10.1006/jcph.1996.0252
+[4] Zole, A., and Karpel, M., “Continuous Gust Response and Sensitivity
+Derivatives Using State-Space Models,” Journal of Aircraft, Vol. 31,
+No. 5, 1994, pp. 1212–1214.
+doi:10.2514/3.46632
+[5] Haug, E. J., Choi, K. K., and Komkov, V., Design Sensitivity Analysis of
+Structural Systems, Vol. 177, Mathematics in Science and Engineering,
+Academic Press, London, U.K., 1986, pp. 1–49.
+[6] van Keulen, F., Haftka, R., and Kim, N., “Review of Options for
+Structural Design Sensitivity Analysis. Part 1: Linear Systems,”
+Computer Methods in Applied Mechanics and Engineering, Vol. 194,
+Nos. 30–33, 2005, pp. 3213–3243.
+doi:10.1016/j.cma.2005.02.002
+[7] Barcelos, M., Bavestrello, H., and Maute, K., “A Schur–Newton–
+Krylov Solver for Steady-State Aeroelastic Analysis and Design
+Sensitivity Analysis,” Computer Methods in Applied Mechanics and
+Engineering, Vol. 195, Nos. 17–18, 2006, pp. 2050–2069.
+doi:10.1016/j.cma.2004.09.013
+[8] Hicken, J., and Zingg, D., “A Parallel Newton–Krylov Solver for the
+Euler Equations Discretized Using Simultaneous Approximation
+Terms,” AIAA Journal, Vol. 46, No. 11, 2008, pp. 2773–2786.
+doi:10.2514/1.34810
+[9] Biros, G., and Ghattas, O., “Parallel Lagrange–Newton–Krylov–Schur
+Methods for PDE-Constrained Optimization. Part I: The Krylov–Schur
+Solver,” SIAM Journal on Scientific Computing, Vol. 27, No. 2, 2005,
+pp. 687–713.
+doi:10.1137/S106482750241565X
+[10] Biros, G., and Ghattas, O., “Parallel Lagrange–Newton–Krylov–Schur
+Methods for PDE-Constrained Optimization. Part II: The Lagrange–
+Newton Solver and its Application to Optimal Control of Steady
+Viscous Flows,” SIAM Journal on Scientific Computing, Vol. 27, No. 2,
+2005, pp. 687–713.
+doi:10.1137/S1064827502415661
+[11] Kennedy, G. J., and Martins, J. R. R. A., “Parallel Solution Methods for
+Aerostructural Analysis and Design Optimization,” 13th AIAA/ISSMO
+Multidisciplinary Analysis Optimization Conference, AIAA Paper
+2010-9308, Sept. 2010.
+[12] Kenway, G. K. W., Kennedy, G. J., and Martins, J. R. R. A, “A Scalable
+Parallel Approach for High-Fidelity Steady-State Aeroelastic Analysis
+and Derivative Computations,” AIAA Journal (in press).
+[13] Balay, S., Buschelman, K., Eijkhout, V., Gropp, W. D., Kaushik, D.,
+Knepley, M. G., McInnes, L. C., Smith, B. F., and Zhang, H., “PETSc
+Users Manual,” Argonne National Lab. TR-ANL-95/11, Rev. 3.3, 2012.
+[14] Heroux, M. A., Bartlett, R. A., Howle, V. E., Hoekstra, R. J., Hu, J. J.,
+Kolda, T. G., Lehoucq, R. B., Long, K. R., Pawlowski, R. P., Phipps, E.
+
+2597
+
+T., Salinger, A. G., Thornquist, H. K., Tuminaro, R. S., Willenbring, J.
+M., Williams, A., and Stanley, K. S., “An Overview of the Trilinos
+Project,” ACM Transactions on Mathematical Software, Vol. 31, No. 3,
+2005, pp. 397–423.
+doi:10.1145/1089014
+[15] Chung, H. S., and Alonso, J. J., “Using Gradients to Construct Response
+Surface Models for High-Dimensional Design Optimization Problems,”
+39th AIAA Aerospace Sciences Meeting, AIAA Paper 2001-0922,
+Jan. 2001.
+[16] Seyranian, A. P., Lund, E., and Olhoff, N., “Multiple Eigenvalues in
+Structural Optimization Problems,” Structural and Multidisciplinary
+Optimization, Vol. 8, No. 4, 1994, pp. 207–227.
+doi:10.1007/BF01742705
+[17] James, K., Hansen, J. S., and Martins, J. R. R. A., “Structural Topology
+Optimization for Multiple Load Cases Using a Dynamic Aggregation
+Technique,” Engineering Optimization, Vol. 41, No. 12, 2009,
+pp. 1103–1118.
+doi:10.1080/03052150902926827
+[18] Sigmund, O., “On the Usefulness of Non-Gradient Approaches in
+Topology Optimization,” Structural and Multidisciplinary Optimization, Vol. 43, No. 5, 2011, pp. 589–596.
+doi:10.1007/s00158-011-0638-7
+[19] Lee, E., James, K. A., and Martins, J. R. R. A., “Stress-Constrained
+Topology Optimization with Design-Dependent Loading,” Structural
+and Multidisciplinary Optimization, Vol. 46, No. 5, Nov. 2012,
+pp. 647–661.
+doi:10.1007/s00158-012-0780-x
+[20] Lee, E., and Martins, J. R. R. A., “Structural Topology Optimization
+with Design-Dependent Pressure Loads,” Computer Methods in Applied
+Mechanics and Engineering, Vols. 233–236, 2012, pp. 40–48.
+doi:10.1016/j.cma.2012.04.007
+[21] Martins, J. R. R. A., Alonso, J. J., and Reuther, J. J., “High-Fidelity
+Aerostructural Design Optimization of a Supersonic Business Jet,”
+Journal of Aircraft, Vol. 41, No. 3, 2004, pp. 523–530.
+doi:10.2514/1.11478
+[22] Kenway, G. K. W., and Martins, J. R. R. A., “Multi-Point High-Fidelity
+Aerostructural Optimization of a Transport Aircraft Configuration,”
+Journal of Aircraft (accepted for publication).
+[23] Mader, C. A., and Martins, J. R. R. A., “Derivatives for Time-Spectral
+Computational Fluid Dynamics Using an Automatic Differentiation
+Adjoint,” AIAA Journal, Vol. 50, No. 12, 2012, pp. 2809–2819.
+doi:10.2514/1.J051658
+[24] Mader, C. A., and Martins, J. R. R. A., “Computation of Aircraft
+Stability Derivatives Using an Automatic Differentiation Adjoint
+Approach,” AIAA Journal, Vol. 49, No. 12, 2011, pp. 2737–2750.
+doi:10.2514/1.J051147
+[25] Martins, J. R. R. A., and Lambe, A. B., “Multidisciplinary Design
+Optimization: A Survey of Architectures,” AIAA Journal, Vol. 51, No. 9,
+2013, pp. 2049–2075.
+doi:10.2514/1.J051895
+[26] Adelman, H. M., and Haftka, R. T., “Sensitivity Analysis of Discrete
+Structural Systems,” AIAA Journal, Vol. 24, No. 5, 1986, pp. 823–832.
+doi:10.2514/3.48671
+[27] Peter, J. E. V., and Dwight, R. P., “Numerical Sensitivity Analysis for
+Aerodynamic Optimization: A Survey of Approaches,” Computers and
+Fluids Journal, Vol. 39, No. 3, 2010, pp. 373–391.
+doi:10.1016/j.compfluid.2009.09.013
+[28] Sobieszczanski-Sobieski, J., “Sensitivity Analysis and Multidisciplinary Optimization for Aircraft Design: Recent Advances and Results,”
+Journal of Aircraft, Vol. 27, No. 12, Dec. 1990, pp. 993–1001.
+doi:10.2514/3.45973
+[29] Sobieszczanski-Sobieski, J., “Sensitivity of Complex, Internally
+Coupled Systems,” AIAA Journal, Vol. 28, No. 1, 1990, pp. 153–160.
+doi:10.2514/3.10366
+[30] Sobieszczanski-Sobieski, J., “Higher Order Sensitivity Analysis of
+Complex, Coupled Systems,” AIAA Journal, Vol. 28, No. 4, 1990,
+pp. 756–758.
+doi:10.2514/3.10458
+[31] Gill, P., Murray, W., and Saunders, M., “SNOPT: An SQPAlgorithm for
+Large-Scale Constraint Optimization,” SIAM Journal on Optimization,
+Vol. 12, No. 4, 2002, pp. 979–1006.
+doi:10.1137/S1052623499350013
+[32] Perez, R. E., Jansen, P. W., and Martins, J. R. R. A., “pyOpt: a PythonBased Object-Oriented Framework for Nonlinear Constrained
+Optimization,” Structural and Multidisciplinary Optimization, Vol. 45,
+No. 1, Jan. 2012, pp. 101–118.
+doi:10.1007/s00158-011-0666-3
+[33] Martins, J. R. R. A., Sturdza, P., and Alonso, J. J., “The Complex-Step
+Derivative Approximation,” ACM Transactions on Mathematical
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+2598
+
+MARTINS AND HWANG
+
+Software, Vol. 29, No. 3, 2003, pp. 245–262.
+doi:10.1145/838250
+[34] Lyness, J. N., “Numerical Algorithms Based on the Theory of Complex
+Variable,” Proceedings — ACM National Meeting, Thompson Book
+Co., Washington, D.C., 1967, pp. 125–133.
+[35] Lyness, J. N., and Moler, C. B., “Numerical Differentiation of Analytic
+Functions,” SIAM Journal on Numerical Analysis, Vol. 4, No. 2, 1967,
+pp. 202–210.
+doi:10.1137/0704019
+[36] Squire, W., and Trapp, G., “Using Complex Variables to Estimate
+Derivatives of Real Functions,” SIAM Review, Vol. 40, No. 1, 1998,
+pp. 110–112.
+doi:10.1137/S003614459631241X
+[37] Anderson, W. K., Newman, J. C., Whitfield, D. L., and Nielsen, E. J.,
+“Sensitivity Analysis for Navier–Stokes Equations on Unstructured
+Meshes Using Complex Variables,” AIAA Journal, Vol. 39, No. 1,
+Jan. 2001, pp. 56–63.
+doi:10.2514/2.1270
+[38] Newman, J. C., III, Whitfield, D. L., and Anderson, W. K., “Step-Size
+Independent Approach for Multidisciplinary Sensitivity Analysis,”
+Journal of Aircraft, Vol. 40, No. 3, 2003, pp. 566–573.
+doi:10.2514/2.3131
+[39] Martins, J. R. R. A., Alonso, J. J., and Reuther, J. J., “A Coupled-Adjoint
+Sensitivity Analysis Method for High-Fidelity Aero-Structural Design,”
+Optimization and Engineering, Vol. 6, No. 1, 2005, pp. 33–62.
+doi:10.1023/B:OPTE.0000048536.47956.62
+[40] Luzyanina, T., and Bocharov, G., “Critical Issues in the Numerical
+Treatment of the Parameter Estimation Problems in Immunology,”
+Journal of Computational Mathematics, Vol. 30, No. 1, 2012,
+pp. 59–79.
+doi:10.4208/jcm
+[41] Sturdza, P., “An Aerodynamic Design Method for Supersonic Natural
+Laminar Flow Aircraft,” Ph.D. Dissertation, Dept. of Aeronautics and
+Astronautics, Stanford Univ., Stanford, CA, 2004.
+[42] Blackwell, B. F., and Dowding, K. J., “Sensitivity Analysis and
+Uncertainty Propagation of Computational Models,” Handbook of
+Numerical Heat Transfer, edited by Minkowycz, W. J., Sparrow, E. M.,
+and Murthy, J. Y., Wiley, Hoboken, NJ, 2009, pp. 443–469,
+Chap. 14.
+[43] Ridout, M. S., “Statistical Applications of the Complex-Step Method of
+Numerical Differentiation,” The American Statistician, Vol. 63, No. 1,
+2009, pp. 66–74.
+doi:10.1198/tast.2009.0013
+[44] Al-Mohy, A. H., and Higham, N. J., “The Complex Step Approximation
+to the Fréchet Derivative of a Matrix Function,” Numerical Algorithms,
+Vol. 53, No. 1, 2010, pp. 133–148.
+doi:10.1007/s11075-009-9323-y
+[45] Forssen, P., Arnell, R., and Fornstedt, T., “An Improved Algorithm for
+Solving Inverse Problems in Liquid Chromatography,” Computers and
+Chemical Engineering, Vol. 30, No. 9, 2006, pp. 1381–1391.
+doi:10.1016/j.compchemeng.2006.03.004
+[46] Lai, K.-L., Crassidis, J., Cheng, Y., and Kim, J., “New Complex-Step
+Derivative Approximations with Application to Second-Order Kalman
+Filtering,” AIAA Guidance, Navigation, and Control Conference and
+Exhibit, AIAA Paper 2005-5944, Aug. 2005.
+[47] De Pauw, D. J. W., and Vanrolleghem, P. A., “Using the Complex-Step
+Derivative Approximation Method to Calculate Local Sensitivity
+Functions of Highly Nonlinear Bioprocess Models,” Proceedings 17th
+IMACS World Congress on Scientific Computation, Applied
+Mathematics and Simulation (IMACS 2005), École centrale de Lille,
+Paris, France, July 2005.
+[48] Roberts, J. L., Moy, A. D., van Ommen, T. D., Curran, M. A. J., Worby,
+A. P., Goodwin, I. D., and Inoue, M., “Borehole Temperatures Reveal a
+Changed Energy Budget at Mill Island, East Antarctica, over Recent
+Decades,” The Cryosphere, Vol. 7, No. 1, 2013, pp. 263–273.
+doi:10.5194/tc-7-263-2013
+[49] Lantoine, G., Russell, R. P., and Dargent, T., “Using Multicomplex
+Variables for Automatic Computation of High-Order Derivatives,” ACM
+Transactions on Mathematical Software, Vol. 38, No. 3, 2012, pp. 16:1–
+16:21.
+doi:10.1145/2168773
+[50] Fike, J. A., and Alonso, J. J., “Automatic Differentiation Through the
+Use of Hyper-Dual Numbers for Second Derivatives,” Recent Advances
+in Algorithmic Differentiation, edited by Forth, S., Hovland, P., Phipps,
+E., Utke, J., and Walther, A., Vol. 87, Lecture Notes in Computational
+Science and Engineering, Springer–Verlag, Berlin, 2012, pp. 163–173.
+[51] Lambe, A. B., and Martins, J. R. R. A., “Extensions to the Design
+Structure Matrix for the Description of Multidisciplinary Design,
+Analysis, and Optimization Processes,” Structural and Multidiscipli-
+
+nary Optimization, Vol. 46, No. 2, Aug. 2012, pp. 273–284.
+doi:10.1007/s00158-012-0763-y
+[52] Griewank, A., Evaluating Derivatives, SIAM, Philadelphia, 2000.
+[53] Naumann, U., The Art of Differentiating Computer Programs — An
+Introduction to Algorithmic Differentiation, SIAM, Philadelphia, PA,
+2011.
+[54] Juedes, D., “A Taxonomy of Automatic Differentiation Tools,”
+Automatic Differentiation of Algorithms: Theory, Implementation, and
+Application, edited by Griewank, A., and Corliss, G. F., SIAM,
+Philadelphia, 1991, pp. 315–329.
+[55] Pryce, J. D., and Reid, J. K., “AD01, a Fortran 90 Code for Automatic
+Differentiation,” Rutherford Appleton Lab. Rept. RAL-TR-1998-057,
+Chilton, England, U.K., 1998.
+[56] Bischof, C. H., Roh, L., and Mauer-Oats, A. J., “ADIC: An Extensible
+Automatic Differentiation Tool for ANSI-C,” Software: Practice and
+Experience, Vol. 27, No. 12, 1997, pp. 1427–1456.
+doi:10.1002/(SICI)1097-024X(199712)27:12<1427::AID-SPE138>
+3.3.CO;2-H
+[57] Utke, J., “OpenAD: Algorithm Implementation User Guide,” Argonne
+National Lab. TM-274, Argonne, IL, April 2004.
+[58] Hascoët, L., and Pascual, V., “TAPENADE 2.1 User’s Guide,” institut
+national de recherche en informatique et en automatique (INRIA) TR300, Villers-lès-Nancy, France, 2004.
+[59] Griewank, A., Juedes, D., and Utke, J., “Algorithm 755: ADOL-C: A
+Package for the Automatic Differentiation of Algorithms Written in
+C∕C  ,” ACM Transactions on Mathematical Software, Vol. 22,
+No. 2, 1996, pp. 131–167.
+doi:10.1145/229473.229474
+[60] Bendtsen, C., and Stauning, O., “FADBAD, a Flexible C   Package
+for Automatic Differentiation—Using the Forward and Backward
+Methods,” Technical Univ. of Denmark TR-IMM-REP-1996-17,
+Lyngby, Denmark, 1996.
+[61] Straka, C. W., “ADF95: Tool for Automatic Differentiation of a
+FORTRAN Code Designed for Large Numbers of Independent
+Variables,” Computer Physics Communications, Vol. 168, No. 2, 2005,
+pp. 123–139.
+doi:10.1016/j.cpc.2005.01.011
+[62] Carle, A., and Fagan, M., “ADIFOR 3.0 Overview,” Rice Univ. TRCAAM-TR-00-02, 2000.
+[63] Utke, J., Naumann, U., and Lyons, A., “OpenAD/F: User Manual,”
+Argonne National Lab. TR, Dec. 2012.
+[64] Giering, R., and Kaminski, T., “Applying TAF to Generate Efficient
+Derivative Code of Fortran 77-95 Programs,” Proceedings of GAMM
+2002, Gesellschaft für Angewandte Mathematik und Mechanik
+(GAMM), Dresden, Germany, 2002.
+[65] Pascual, V., and Hascoët, L., “Extension of TAPENADE Towards
+Fortran 95,” Automatic Differentiation: Applications, Theory, and
+Tools, edited by Bücker, H. M., Corliss, G., Hovland, P., Naumann, U.,
+and Norris, B., Lecture Notes in Computational Science and
+Engineering, Springer–Verlag, Berlin, 2005, pp. 1–5.
+[66] Shiriaev, D., “ADOL–F Automatic Differentiation of Fortran Codes,”
+Computational Differentiation: Techniques, Applications, and Tools,
+edited by Berz, M., Bischof, C. H., Corliss, G. F., and Griewank, A.,
+SIAM, Philadelphia, 1996, pp. 375–384.
+[67] Rhodin, A., “IMAS—Integrated Modeling and Analysis System for the
+Solution of Optimal Control Problems,” Computer Physics
+Communications, Vol. 107, Nos. 1–3, 1997, pp. 21–38.
+doi:10.1016/S0010-4655(97)00107-0
+[68] Bartholomew-Biggs, M., OPFAD — A Users Guide to the OPtima
+Forward Automatic Differentiation Tool, Numerical Optimization
+Centre, Univ. of Hertfordshire, 1995.
+[69] Brown, S., OPRAD — A Users Guide to the OPtima Reverse Automatic
+Differentiation Tool, Numerical Optimization Centre, Univ. of
+Hertfordshire, 1995.
+[70] Bischof, C., Lang, B., and Vehreschild, A., “Automatic Differentiation
+for MATLAB Programs,” Proceedings in Applied Mathematics and
+Mechanics, Vol. 2, No. 1, 2003, pp. 50–53.
+doi:10.1002/pamm.200310013
+[71] Bischof, C., Bucker, H., Lang, B., Rasch, A., and Vehreschild, A.,
+“Combining Source Transformation and Operator Overloading
+Techniques to Compute Derivatives for MATLAB Programs,”
+Proceedings of the 2nd IEEE International Workshop on Source
+Code Analysis and Manipulation, IEEE, New York, NY, 2002,
+pp. 65–72.
+[72] Jameson, A., “Aerodynamic Design via Control Theory,” Journal of
+Scientific Computing, Vol. 3, No. 3, 1988, pp. 233–260.
+doi:10.1007/BF01061285
+[73] Sirkes, Z., and Tziperman, E., “Finite Difference of Adjoint or Adjoint
+of Finite Difference?,” Monthly Weather Review, Vol. 125, No. 12, 1997,
+
+Downloaded by Technische Universiteit Delft on September 7, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.J052184
+
+MARTINS AND HWANG
+
+pp. 3373–3378.
+doi:10.1175/1520-0493(1997)125<3373:FDOAOA>2.0.CO;2
+[74] Jameson, A., Martinelli, L., and Pierce, N. A., “Optimum Aerodynamic
+Design Using the Navier–Stokes Equations,” Theoretical and
+Computational Fluid Dynamics, Vol. 10, Nos. 1–4, 1998, pp. 213–237.
+doi:10.1007/s001620050060
+[75] Anderson, W. K., and Venkatakrishnan, V., “Aerodynamic Design
+Optimization on Unstructured Grids with a Continuous Adjoint
+Formulation,” Computers and Fluids Journal, Vol. 28, Nos. 4–5, 1999,
+pp. 443–480.
+doi:10.1016/S0045-7930(98)00041-3
+[76] Giles, M. B., and Pierce, N. A., “An Introduction to the Adjoint
+Approach to Design,” Flow, Turbulence and Combustion, Vol. 65,
+Nos. 3–4, 2000, pp. 393–415.
+doi:10.1023/A:1011430410075
+[77] Liu, S., and Canfield, R. A., “Continuum Sensitivity Method for
+Aeroelastic Shape Design Problems,” 14th AIAA/ISSMO Multidisciplinary Analysis and Optimization Conference, AIAA Paper 2012-5480,
+Sept. 2012.
+[78] Nadarajah, S., and Jameson, A., “A Comparison of the Continuous and
+Discrete Adjoint Approach to Automatic Aerodynamic Optimization,”
+38th AIAA Aerospace Sciences Meeting and Exhibit, AIAA Paper 20000667, 2000.
+[79] Dwight, R. P., and Brezillon, J., “Effect of Approximations of the
+Discrete Adjoint on Gradient-Based Optimization,” AIAA Journal,
+Vol. 44, No. 12, 2006, pp. 3022–3031.
+doi:10.2514/1.21744
+[80] Kennedy, G. J., and Hansen, J. S., “The Hybrid-Adjoint Method: A
+Semi-Analytic Gradient Evaluation Technique Applied to Composite
+Cure Cycle Optimization,” Optimization and Engineering, Vol. 11,
+No. 1, 2010, pp. 23–43.
+doi:10.1007/s11081-008-9068-9
+[81] Pironneau, O., “On Optimum Design in Fluid Mechanics,” Journal of
+Fluid Mechanics, Vol. 64, No. 01, 1974, pp. 97–110.
+doi:10.1017/S0022112074002023
+[82] Nemec, M., Zingg, D. W., and Pulliam, T. H., “Multipoint and MultiObjective Aerodynamic Shape Optimization,” AIAA Journal, Vol. 42,
+No. 6, 2004, pp. 1057–1065.
+doi:10.2514/1.10415
+[83] Driver, J., and Zingg, D. W., “Numerical Aerodynamic Optimization
+Incorporating Laminar-Turbulent Transition Prediction,” AIAA Journal,
+Vol. 45, No. 8, 2007, pp. 1810–1818.
+doi:10.2514/1.23569
+[84] Lyu, Z., and Martins, J. R. R. A., “RANS-Based Aerodynamic Shape
+Optimization of a Blended-Wing-Body Aircraft,” In 21st AIAA
+Computational Fluid Dynamics Conference, San Diego, CA, July 2013.
+[85] Lyu, Z., Kenway, G. K., Paige, C., and Martins, J. R. R. A., “Automatic
+Differentiation Adjoint of the Reynolds-Averaged Navier–Stokes
+Equations with a Turbulence Model,” In 21st AIAA Computational Fluid
+Dynamics Conference, San Diego, CA, July 2013.
+
+2599
+
+[86] Mani, K., and Mavriplis, D. J., “Unsteady Discrete Adjoint Formulation
+for Two-Dimensional Flow Problems with Deforming Meshes,” AIAA
+Journal, Vol. 46, No. 6, 2008, pp. 1351–1364.
+doi:10.2514/1.29924
+[87] Wang, Q., Moin, P., and Iaccarino, G., “Minimal Repetition Dynamic
+Checkpointing Algorithm for Unsteady Adjoint Calculation,” SIAM
+Journal on Scientific Computing, Vol. 31, No. 4, 2009, pp. 2549–2567.
+doi:10.1137/080727890
+[88] Rumpfkeil, M., and Zingg, D., “The Optimal Control of Unsteady Flows
+with a Discrete Adjoint Method,” Optimization and Engineering,
+Vol. 11, No. 1, 2010, pp. 5–22.
+doi:10.1007/s11081-008-9035-5
+[89] Bloebaum, C., “Global Sensitivity Analysis in Control-Augmented
+Structural Synthesis,” 27th AIAA Aerospace Sciences Meeting, AIAA
+Paper 1989-0844, Jan. 1989.
+[90] Martins, J. R. R. A., Alonso, J. J., and Reuther, J. J., “Aero-Structural
+Wing Design Optimization Using High-Fidelity Sensitivity Analysis,”
+Proceedings of the CEAS Conference on Multidisciplinary Aircraft
+Design and Optimization, edited by Hölinger, H., Council of European
+Aerospace Societies, Cologne, Germany, June 2001, pp. 211–226.
+[91] Maute, K., Nikbay, M., and Farhat, C., “Coupled Analytical Sensitivity
+Analysis and Optimization of Three-Dimensional Nonlinear Aeroelastic Systems,” AIAA Journal, Vol. 39, No. 11, 2001, pp. 2051–2061.
+doi:10.2514/2.1227
+[92] Nykbay, M., Öncü, L., and Aysan, A., “Multidisciplinary Code
+Coupling for Analysis and Optimization of Aeroelastic Systems,”
+Journal of Aircraft, Vol. 46, No. 6, Nov. 2009, pp. 1938–1944.
+doi:10.2514/1.41491
+[93] Johnson, E. H., “Adjoint Sensitivity Analysis in MSC/NASTRAN,” MSC
+1997 Aerospace Users’ Conference, Paper 2897, 1997.
+[94] ANSYS FLUENT Adjoint Solver, ANSYS, Canonsburg, PA,
+Nov. 2011.
+[95] Poon, N. M. K., and Martins, J. R. R. A., “An Adaptive Approach to
+Constraint Aggregation Using Adjoint Sensitivity Analysis,” Structural
+and Multidisciplinary Optimization, Vol. 34, No. 1, 2007, pp. 61–73.
+doi:10.1007/s00158-006-0061-7
+[96] Marriage, C. J., and Martins, J. R. R. A., “Reconfigurable Semi-Analytic
+Sensitivity Methods and MDO Architectures Within the π MDO
+Framework,” 12th AIAA/ISSMO Multidisciplinary Analysis and
+Optimization Conference, AIAA Paper 2008-5956, Sept. 2008.
+[97] Hwang, J. T., Lee, D. Y., Cutler, J., and Martins, J. R. R. A., “Large-Scale
+MDO of a Small Satellite Using a Novel Framework for the Solution of
+Coupled Systems and Their Derivatives,” Proceedings of the 54th AIAA/
+ASME/ASCE/AHS/ASC Structures, Structural Dynamics, and Materials Conference, April 2013.
+
+K. Willcox
+Associate Editor
+
+

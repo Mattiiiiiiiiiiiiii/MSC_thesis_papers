@@ -1,0 +1,100 @@
+author: Drela, Mark
+author_list:
+- affiliation: []
+  family: Drela
+  given: Mark
+citations:
+- author: F Bauer
+  unstructured: F. Bauer, P. Garabedian, D. Korn, and A. Jameson Supercritical wing
+    sections I, II, III. In Lecture Notes in Economics and Mathematical Systems, Springer-Verlag,
+    New York, 1972, 1975, 1977.
+  volume-title: Lecture Notes in Economics and Mathematical Systems
+  year: '1977'
+- author: RE Melnik
+  unstructured: R. E. Melnik, R. R. Chow, and H. R. Mead. Theory of Viscous Transonic
+    Flow Over Airfoils at High Reynolds Number. AIAA-77–680, Jun 1977.
+  volume-title: Theory of Viscous Transonic Flow Over Airfoils at High Reynolds Number
+  year: '1977'
+- author: M Drela
+  unstructured: 'M. Drela and M. B. Giles. ISES: A Two-Dimensional Viscous Aerodynamic
+    Design and Analysis Code. AIAA-87–0424, Jan 1987.'
+  volume-title: A Two-Dimensional Viscous Aerodynamic Design and Analysis Code
+  year: '1987'
+- doi: 10.2514/3.9768
+  unstructured: M. B. Giles and M. Drela. Two-dimensional transonic aerodynamic design
+    method. AIAA Journal, 25(9), Sep 1987.
+- doi: 10.2514/3.9789
+  unstructured: M. Drela and M. B. Giles. Viscous-inviscid analysis of transonic and
+    low Reynolds number airfoils. AIAA Journal, 25(10), Oct 1987.
+- doi: 10.2514/3.45650
+  unstructured: 'M. Drela. Low-Reynolds number airfoil design for the MIT Daedalus
+    prototype: A case study. Journal of Aircraft, 25(8), Aug 1988.'
+- author: RJ McGhee
+  unstructured: R. J. McGhee, G. S. Jones, and R. Jouty. Performance Characteristics
+    from Wind-Tunnel Tests of a Low-Reynolds-Number Airfoil. AIAA-88–6070, Jan 1988.
+  volume-title: Performance Characteristics from Wind-Tunnel Tests of a Low-Reynolds-Number
+    Airfoil
+  year: '1988'
+- author: E Soinne
+  doi: 10.2514/3.45162
+  first-page: '541'
+  issue: '6'
+  journal-title: Journal of Aircraft
+  unstructured: 'E. Soinne and S Laine. An inverse boundary element method for single
+    component airfoil design. Journal of Aircraft, 22 (6): 541–543, Jun 1985.'
+  volume: '22'
+  year: '1985'
+- author: JL Kennedy
+  doi: 10.2514/3.58311
+  first-page: '47'
+  issue: '1'
+  journal-title: Journal of Aircraft
+  unstructured: 'J. L. Kennedy and D. J. Marsden. A potential flow design method for
+    multicomponent airfoil sections. Journal of Aircraft, 15 (1): 47–52, Jan 1978.'
+  volume: '15'
+  year: '1978'
+- unstructured: R. Eppler and D. M. Somers. A Computer Program for the Design and
+    Analysis of Low-Speed Airfoils. NASA TM 80210, Aug 1980.
+- author: M Drela
+  unstructured: M. Drela. An Integral Boundary Layer Formulation for Blunt Trailing
+    Edges. AIAA-89–2200, Aug 1989.
+  volume-title: An Integral Boundary Layer Formulation for Blunt Trailing Edges
+  year: '1989'
+- author: JE Green
+  unstructured: J. E. Green, D. J. Weeks, and J. W. F. Brooman. Prediction of Turbulent
+    Boundary Layers and Wakes in Compressible Flow by a Lag-Entrainment Method. R
+    & M Report 3791, Aeronautical Research Council, HMSO, London, 1977.
+  volume-title: Prediction of TurbulentBoundary Layers and Wakes in Compressible Flow
+    by a Lag-Entrainment Method. R & M Report
+  year: '1977'
+- author: T Cebeci
+  unstructured: T. Cebeci and R. W. Clark. An interactive approach to subsonic flows
+    with separation. In Second Symposium on Numerical and Physical Aspects of Aerodynamic
+    Flows, Long Beach, California, Jan 1983.
+  volume-title: An interactive approach to subsonic flows with separation
+  year: '1983'
+- author: AH Shapiro
+  unstructured: A. H. Shapiro. Compressible Fluid Flow I. Wiley, New York, 1953.
+  volume-title: Compressible Fluid Flow I
+  year: '1953'
+- author: PH Cook
+  unstructured: P. H. Cook, M. A. McDonald, and M. C. P. Firmin. Aerofoil RAE 2822
+    pressure distributions and boundary layer and wake measurements. In Experimental
+    Data Base for Computer Program Assessment, AR-188, AGARD, 1979.
+  volume-title: Experimental Data Base for Computer Program Assessment, AR-138
+  year: '1979'
+doc_url: http://link.springer.com/content/pdf/10.1007/978-3-642-84010-4_1.pdf
+doi: 10.1007/978-3-642-84010-4_1
+files:
+- XFOIL_an_analysis_and_design_system_for_low_reynolds_number_airfoils_Drela_1989.pdf
+isbn: '9783642840104'
+journal: Lecture Notes in Engineering
+pages: 1--12
+papis_id: 5a73014e989f89e02504dc1c41b7b507
+publisher: Springer Berlin Heidelberg
+tags:
+- needs-review
+title: 'XFOIL: An Analysis and Design System for Low Reynolds Number Airfoils'
+type: inbook
+url: https://doi.org/10.1007/978-3-642-84010-4_1
+year: 1989

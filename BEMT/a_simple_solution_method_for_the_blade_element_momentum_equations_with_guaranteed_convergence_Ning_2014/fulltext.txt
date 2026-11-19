@@ -1,0 +1,1844 @@
+Brigham Young University
+
+BYU ScholarsArchive
+Faculty Publications
+2014-9
+
+A Simple Solution Method for the Blade Element Momentum
+Equations with Guaranteed Convergence
+Andrew Ning
+Brigham Young University - Provo, aning@byu.edu
+
+Follow this and additional works at: https://scholarsarchive.byu.edu/facpub
+Part of the Mechanical Engineering Commons
+
+Original Publication Citation
+Ning, A., “A Simple Solution Method for the Blade Element Momentum Equations with
+Guaranteed Convergence,” Wind Energy, Vol. 17, No. 9, Sep. 2014, pp. 1327–1345. doi:10.1002/
+we.1636
+BYU ScholarsArchive Citation
+Ning, Andrew, "A Simple Solution Method for the Blade Element Momentum Equations with Guaranteed
+Convergence" (2014). Faculty Publications. 1673.
+https://scholarsarchive.byu.edu/facpub/1673
+
+This Peer-Reviewed Article is brought to you for free and open access by BYU ScholarsArchive. It has been
+accepted for inclusion in Faculty Publications by an authorized administrator of BYU ScholarsArchive. For more
+information, please contact ellen_amatangelo@byu.edu.
+
+RESEARCH ARTICLE
+
+A simple solution method for the blade element momentum
+equations with guaranteed convergence
+S. Andrew Ning
+National Renewable Energy Laboratory, Golden, CO, 80401
+
+ABSTRACT
+The blade element momentum equations, though conceptually simple, can be challenging to solve reliably and efficiently
+with high precision. These requirements are particularly important for efficient rotor blade optimization that utilizes
+gradient-based algorithms. Many solution approaches exist for numerically converging the axial and tangential induction
+factors. These methods all generally suffer from a lack of robustness in some regions of the rotor blade design space,
+or require significantly increased complexity to promote convergence. The approach described here allows for the blade
+element momentum equations to be parameterized by one variable: the local inflow angle. This reduction is mathematically
+equivalent, but greatly simplifies the solution approach. Namely, it allows for the use of one-dimensional root-finding
+algorithms for which very robust and efficient algorithms exist. This paper also discusses an appropriate arrangement
+of the equation and corresponding bounds for the one-dimensional search—intervals that bracket the solution and over
+which the function is well-behaved. The result is a methodology for solving the blade element momentum equations with
+guaranteed convergence and at a superlinear rate.
+KEYWORDS
+blade element momentum equations; robust solution methodology; guaranteed convergence
+Correspondence
+Andrew Ning, NREL, 15013 Denver West Parkway, Golden, CO, 80401.
+E-mail: andrew.ning@nrel.gov
+
+NOMENCLATURE
+α
+
+local angle of attack (φ − θ)
+
+γi
+
+parameters used in Glauert/Buhl correction
+
+κ
+
+nondimensional axial parameter
+
+κ0
+
+nondimensional tangential parameter
+
+λr
+
+local tip-speed ratio
+
+Ω
+
+rotor rotation speed
+
+φ
+
+local inflow angle
+
+σ0
+
+local solidity (Bc/(2πr))
+1
+
+This is the peer reviewed version of this article, which has been published in final form at http://dx.doi.org/10.1002/we.1636. This article may
+be used for non-commercial purposes in accordance with Wiley Terms and Conditions for Self-Archiving.
+
+Guaranteed Solution of the BEM Equations
+
+θ
+
+local twist angle
+
+a
+
+axial induction factor
+
+a0
+
+tangential induction factor
+
+B
+
+number of blades
+
+c
+
+local chord
+
+cd
+
+drag coefficient
+
+cl
+
+lift coefficient
+
+cn
+
+normal force coefficient
+
+CT
+
+thrust coefficient
+
+ct
+
+tangential force coefficient
+
+F
+
+tip/hub loss factor
+
+f (φ)
+
+residual equation
+
+fP B (φ)
+
+residual equation simplified for the propeller brake region
+
+r
+
+local radial position
+
+Re
+
+Reynolds number
+
+U∞
+
+freestream velocity
+
+W
+
+local inflow velocity
+
+A. Ning
+
+1. INTRODUCTION
+Blade element momentum (BEM) theory is still heavily used in wind turbine conceptual design and initial aerodynamic
+analysis. It combines a control volume conservation of momentum analysis with a blade sectional analysis [1–3]. Various
+additions have been used to augment BEM theory and account for neglected physics, such as the effect of a finite
+number of blades and skewed wakes. However, the fundamental methodology remains largely the same between various
+implementations. Except in a few restrictive cases, the BEM equations require a numerical solution. The most common
+approach is to form the BEM equations as a function of two variables, the axial and tangential induction factors, and
+solve the fixed-point problem (a, a0 ) = f (a, a0 ). This equation is solved through an iterative approach, typically a simple
+fixed-point iteration scheme or Newton’s method. A related approach is to use numerical optimization to minimize the
+sum of the square of the errors in the induction factors (or in the axial and tangential forces). This can be more robust, but
+generally converges much slower than a quadratically convergent method like Newton’s method.
+Recent publications highlight the still existing difficulties in solving the BEM equations. McWilliam and Crawford
+compared Newton’s method to fixed-point iteration using a simplified form of the BEM equations that only included the
+axial induction factor. They showed that Newton’s method was consistently more effective than fixed-point iteration [4].
+However, even with Newton’s method they demonstrated that every airfoil tested failed to converge in small regions of the
+design space. Masters et al. proposed a method that combines an initial Monte Carlo simulation with sequential quadratic
+programming [5]. This approach is more robust, although it is still not guaranteed to always converge and is certainly more
+computationally complex. Maniaci investigated sources for the convergence issues in the National Renewable Energy
+2
+
+A. Ning
+
+Guaranteed Solution of the BEM Equations
+
+Laboratory (NREL) BEM code WT Perf [6]. He demonstrated that the singularity that exists at an axial induction factor of
+a = 1 is a cause of convergence difficulty, and developed a heuristic smoothing approach that maintains continuity. Since
+that modification was incorporated, WT Perf has undergone continual improvements in robustness [7], but the complexity
+has increased tremendously and still results in occasional convergence failure reports from its users [8]. Figure 1 diagrams
+the current convergence strategy in WT Perf, which relies on a complicated combination of Newton’s method, a onedimensional bounds search, binary search, and careful management of bounds.
+use Parameters
+use ProgGen
+use WTP_Data
+
+y
+
+Converg
+
+Skew correction
+
+n
+Declarations
+
+!Converg &
+< MaxIter
+
+Initialize induction vars
+
+y
+Converg
+
+ZFound
+
+AxIndLo = -0.5
+AxIndHi = 0.6
+
+CALL BinSearch
+
+n
+
+CALL BinSearch
+
+CALL BinSearch
+
+y
+
+n
+n
+
+AxIndLo = AxInd - 1
+AxIndHi = AxInd + 1
+
+Converg
+y
+
+AxIndLo = -1.0
+AxIndHi = -0.4
+
+Skew correction
+CALL GetCoefs
+
+y
+Converg
+
+reset induction
+n
+
+CALL NewtRaph
+
+Converg
+
+Return
+
+CALL NewtRaph
+
+CALL FindZC
+
+Initial guess (AxInd / TanInd)
+!Converg &
+< MaxIter
+
+CALL GetCoefs
+
+reset induction
+
+n
+
+CALL BinSearch
+
+AxIndLo = 0.59
+AxIndHi = 2.5
+
+Skew correction
+
+CALL GetCoefs
+
+Return
+
+CALL GetCoefs
+
+Return
+
+Return
+
+y
+Converg
+
+y
+
+n
+AxIndLo = -1.0
+AxIndHi = 2.5
+
+CALL BinSearch
+
+Converg
+
+y
+
+Skew correction
+
+n
+Return
+
+Figure 1. Flowchart of the complex convergence strategy currently used in WT Perf [7].
+
+While failure to find a solution in certain cases may only be an inconvenience for analysis sweeps or rotor optimization
+using direct-search algorithms, robustness in solution convergence is critical for other applications such as rotor
+optimization using gradient-based algorithms. This paper presents a simple yet guaranteed to converge method to solve the
+BEM equations. This is accomplished by converting the two-variable, two-equation fixed-point problem into an equivalent
+one-variable, root-finding problem for which robust algorithms already exist.
+
+2. ONE EQUATION
+The main goal of this paper is to reduce the two equations developed from BEM theory into one equation. Equation
+reduction is a commonly used technique when seeking an analytical solution, but for a large set of equations that are
+solved numerically, there may not be any advantage to doing so. However, reducing a set of two nonlinear equations to one
+equation is enormously beneficial. Solving one-dimensional problems is much easier than solving n-dimensional problems
+(even if n is only two). The key to this reduction is that although two unknowns are always required to specify the inflow
+3
+
+Guaranteed Solution of the BEM Equations
+
+A. Ning
+
+conditions, a great simplification in procedure is possible if the local inflow angle (φ) and the magnitude of the local inflow
+(W ) are used as unknowns, rather than the traditional axial and tangential induction factors. Because of the dependence
+between the variables, this choice allows for a simplification in the solution procedure, whereas using the induction factors
+does not. If one of the induction factors is used as an unknown, then the local inflow angle cannot be updated without
+first computing the lift and drag coefficients. However, the lift and drag coefficients are functions of the local inflow angle,
+thus creating the need for an iterative solution method. Instead, if the local inflow angle is chosen as an unknown, the lift
+and drag coefficients can be updated without any knowledge of the induction factors. An overview of the algorithm is as
+follows:
+1. Specify the local inflow angle
+2. Compute the local angle of attack
+3. Estimate the lift and drag coefficients
+4. Rotate to rotor plane (compute normal and tangential force coefficients)
+5. Compute the induction factors
+6. Check the error in the governing equation
+7. Try another value of the local inflow angle until the residual approaches zero (using a root-finding method).
+The first four steps are straightforward and follow those of the standard method—except for one small potential
+modification that is discussed in Section 4.1. The fifth step is to estimate the induction factors from the normal and
+tangential force coefficients. Following the typical procedure, we equate the local thrust coefficient of an annulus of the
+rotor predicted by sectional theory
+
+CT =
+
+1−a
+sin φ
+
+2
+
+cn σ 0
+
+(1)
+
+to that predicted by momentum theory (with a hub/tip loss correction added)
+CT = 4a(1 − a)F
+
+(2)
+
+κ(φ)
+1 + κ(φ)
+
+(3)
+
+σ 0 cn (φ)
+4F (φ) sin2 φ
+
+(4)
+
+We then solve for the axial induction factor
+a(φ) =
+where κ is a convenience parameter defined as
+κ(φ) ≡
+
+Note that the induction factor is strictly a function of φ. Of course momentum theory is not applicable across all induction
+factors. If we let β represent the maximum value of the induction factor for which momentum theory is valid (typically
+between 0.3–0.5 [9]), then equation (3) is valid only for −1 < κ ≤ β/(1 − β).
+For axial induction factors between β and 1.0, momentum theory is invalid and empirical formulas must be used (e.g.,
+Glauert’s method). Because one of the goals of this methodology is to allow for use in gradient-based optimization,∗ the
+standard Glauert correction is not sufficient when tip/hub loss corrections are used. Buhl [9] derived an approach that
+maintains C 1 continuity between momentum theory and the empirical correction for cases with tip/hub loss corrections.
+The thrust coefficient in this range is given by
+
+CT =
+
+∗
+
+50
+− 4F
+9
+
+
+
+a2 −
+
+
+
+40
+− 4F
+9
+
+
+a+
+
+8
+9
+
+(5)
+
+If allowing gradient-based optimization is desired, then the lift and drag coefficients should also be parameterized with C 1 continuity. This is typically achieved using
+spline interpolation in one, two, or three dimensions (i.e., angle of attack, Reynolds number, and thickness-to-chord ratio).
+
+4
+
+A. Ning
+
+Guaranteed Solution of the BEM Equations
+
+Note that the coefficients reported in Buhl’s derivation were for an assumed value of β = 0.4, although the derivation could
+be generalized to allow for an arbitrary transition location between the momentum and empirical regions. Including this
+generality does not affect the conclusions of the following derivation, but it does make the equations more cumbersome.
+For simplicity, the remainder of the paper uses Buhl’s correction with β = 0.4. It is important to note that the following
+derivation is only an example and the methodology is not restricted to this particular correction choice. In fact, any
+description of the axial induction factor can be used as long as it can be parameterized as a(φ).
+Similar to the momentum region, equation (5) is equated to the thrust coefficient predicted by section analysis (1), which
+yields after simplification
+a(φ) =
+where
+
+
+γ1 ≡ 2F κ −
+
+
+10
+−F ,
+9
+
+√
+γ1 − γ2
+γ3
+
+
+γ2 ≡ 2F κ − F
+
+
+4
+−F ,
+3
+
+(6)
+
+γ3 ≡ 2F κ −
+
+25
+− 2F
+9
+
+
+
+(7)
+
+This form of the thrust coefficient is valid for 0.4 < a < 1.0 (κ ≥ 2/3). Care should be taken to avoid the point singularity
+where the denominator is zero (κ = 25/(18F ) − 1). For that value of κ, the numerator is also exactly zero and the
+expression is indeterminate. However, if a small number (e.g., 1 × 10−5 ) is added or subtracted from κ for this case, then
+the predicted value for a(φ) remains finite and introduces negligible error.
+The final potential region of interest is for induction factors larger than 1.0, the so-called propeller brake state (see
+Figure 2). In this region, momentum theory is used with a change in sign
+(8)
+
+CT = 4a(a − 1)F
+and equating this with sectional theory (1) and solving for a yields
+a(φ) =
+
+κ(φ)
+κ(φ) − 1
+
+(9)
+
+which is valid for κ > 1.
+
+2.0
+1.5
+
+empirical
+
+CT
+
+1.0
+0.5
+0.0
+0.5
+
+momentum
+(windmill)
+momentum
+(propeller)
+
+propeller
+brake
+
+1.00.2 0.0 0.2 0.4 0.6 0.8 1.0 1.2 1.4
+a
+
+Figure 2. Variation in thrust coefficient with the axial induction factor.
+
+The calculation of the tangential induction factor follows the same procedure by equating torque predicted by
+momentum and sectional theory. The result is the standard one (but written with a variable substitution for simplification
+5
+
+Guaranteed Solution of the BEM Equations
+
+A. Ning
+
+and to parallel the previous derivation)
+
+κ0 (φ)
+1 − κ0 (φ)
+
+(10)
+
+σ 0 ct
+4F sin φ cos φ
+
+(11)
+
+a0 (φ) =
+where
+κ0 (φ) ≡
+
+Now that the induction factors are specified as functions of the local inflow angle, we can relate the three variables using
+the geometric relationship between them (Figure 3)
+tan φ =
+
+1−a
+(1 + a0 )λr
+
+(12)
+
+This equation can be arranged many different ways to form a residual function, but not all will lead to a reliably
+convergent method. Singularities in the residual function are unavoidable, but it is convenient to have the quantities
+(1 − a) and (1 + a0 ) in the denominator so that singularities occur at the predefined locations: φ = 0, ±π. These locations
+are particularly convenient because they also separate regions where the physics change (e.g., φ < 0 corresponds to the
+propeller brake region). Note that forcing the singularities to the boundaries, and using the bracketing approach discussed
+in the following section, avoids the convergence issues associated with singularities that Maniaci demonstrated in the
+traditional two-dimensional problem [6]. A good choice for forming the residual function is
+f (φ) =
+
+sin φ
+cos φ
+−
+=0
+1−a
+λr (1 + a0 )
+
+(13)
+
+⌦r(1 + a0 )
+
+plane of rotation
+W
+
+U1 (1
+
+a)
+
+Figure 3. Inflow parameters for a rotating blade section.
+
+We have now reduced the solution approach of the BEM equations from a two-dimensional fixed-point algorithm to
+a one-dimensional root-finding algorithm. Although the derivation here follows a specific parameterization of the axial
+induction factor (Glauert/Buhl correction), any method that can be parameterized as a(φ) will result in a one-equation
+problem in the same manner. Furthermore, nothing specific to wind turbines has been introduced, and the same fundamental
+reduction to a one-equation model can be applied to propellers.
+
+3. SOLVING THE REDUCED EQUATION
+The advantage of reducing the problem to one dimension is that very robust and efficient one-dimensional root-finding
+algorithms already exist. For example, Brent’s method is one of the best root-finding algorithms for one-dimensional
+nonlinear functions. It retains the guaranteed convergence properties of bisection (assuming that an initial bracket is given),
+but converges much faster (superlinearly in most cases) [10]. Thus, if we can bracket a zero of f (φ) without including any
+singularities in the interior, then we have solved the problem. This task is made easier by the choice of residual function,
+which restricts the singularities to the known locations φ = 0, ±π. Any suitable approach can be used to determine a
+6
+
+A. Ning
+
+Guaranteed Solution of the BEM Equations
+
+bracket, and the best approach may differ depending on the application. At the very least, a marching algorithm can be
+implemented that simply checks for a change of sign. However, this section discusses a more efficient approach where
+the bracket is determined a priori. The following discussion is specific to the formulations for the axial induction factor
+introduced in the previous section, and is focused on wind turbine applications. Although the specific results of this section
+are not generally applicable to other parameterization choices of the axial and tangential induction factors, the approach
+is. It is also worth emphasizing that this discussion is of secondary importance compared to the more general conclusion
+already stated—namely that the blade element momentum equations can be reduced to a one-dimensional equation.
+Guaranteed convergence for the one-dimensional search depends on bracketing a region that does not contain any
+singularities in its interior. The residual equation (13) contains singularities at the boundaries between the two solution
+regions: the momentum/empirical region and the propeller brake region (see Figure 4). Appropriate brackets for solving
+the BEM equations in each of these two regions are explored in the following sections.
+
+Propeller Brake
+⌦r(1 + a0 )
+U1 (1
+
+a)
+
+Momentum/Empirical
+Figure 4. Two half-planes for different solution regions. The momentum/empirical region corresponds to φ ∈ C(0, π), and the
+propeller brake region corresponds to φ ∈ C(−π, 0).
+
+3.1. Momentum/Empirical Region
+The momentum/empirical region corresponds to local flow angles in the range φ ∈ C(0, π) (note that this is an open
+range to prevent evaluating right at the singularities). The vast majority of solutions for wind turbines are in this range, in
+particular, most solutions occur in the more restrictive range (0, π/2]. Solutions yielding local flow angles larger than π/2
+are mathematically possible, but do not typically occur as they correspond to locally reversed tangential flow (a0 < −1).
+As discussed previously, the axial induction factor can be parameterized by κ = σ 0 cn /(4F sin2 φ). Figure 5 shows
+the range where the different parameterizations of the axial induction factor apply. The propeller brake region does not
+apply for the range currently being examined. Note that exploring values of κ less than −1 is unnecessary, as a consistent
+solution to the BEM equations will not be found in that region (other than the trivial solution φ = 0, a = 1, which is always
+a solution). This can be understood by observing that if κ is negative, then the normal force coefficient must be negative and
+thus, by (1), the thrust is negative (since F ≥ 0). Negative thrust is only predicted by the momentum equation. However,
+equations (1) and (2) never intersect for κ < 1 (again excluding the trivial solution). This is not to say that negative thrust
+solutions (negative from the viewpoint of a wind turbine) are not admitted as solutions to this equation. On the contrary, the
+full domain of the propeller region is captured across the range −1 < κ < 0. (This curiosity does not occur when using a
+physical parameter like the axial induction factor. However, for the mathematically convenient parameter κ, not all values
+are consistent with the physics.)
+7
+
+Guaranteed Solution of the BEM Equations
+
+A. Ning
+
+momentum
+
+no solution
+
+κ
+
+-∞
+
+propeller
+brake
+empirical
+
+-1
+
+2/3 1
+
+∞
+
+Figure 5. The appropriate method for calculating the axial induction factor based on the value of κ.
+
+There are two possibilities for dealing with the region κ < −1. The first is to restrict the search for a bracket in the
+region where κ > −1. An alternative is to continue using a formulation that does not introduce any artificial solutions. A
+convenient choice is to continue to use the standard momentum equation for values of κ < −1. This will lead to predictions
+of a > 1 (propeller brake state) in this region. Because we have limited our range of φ from 0 to π, these predictions are
+not consistent with the BEM equations and do not introduce any artificial solutions (an assertion that is proved below).
+Figure 6 shows a typical plot of f (φ) across the range (0, π/2] (the function f (φ) is usually monotonic or very nearly
+so in this range. The possibility of multiple solutions is explored in Section 4.3.) The solution point φ∗ , where f (φ∗ ) = 0,
+is indicated in the figure. Also noted is point L, which is defined as the location where κ = −1 in the range (0, π/2]. This
+point represents a lower bound on the feasible region. Values for φ below φL fall in the no-solution region, though we have
+chosen to continue using the momentum method in that region for convenience. First, we prove that using the momentum
+method in the no-solution region does not introduce any artificial solutions. Next, we demonstrate that the lower limits of
+f (φ) are always negative (both at 0 and at point L, because the values for f (φ) between 0 and L are artificial). Finally, we
+
+f(φ)
+
+discuss the location of an upper bound, such that f (φ) is positive at the upper bound and thus brackets a zero of f (φ).
+
+2.0
+1.5
+1.0
+0.5
+φ∗
+0.0
+0.5
+L
+1.0
+1.5
+2.00.0 0.2 0.4 0.6 0.8 1.0 1.2 1.4 1.6
+φ
+
+Figure 6. Typical variation in f (φ) across the range (0, π/2]. The solution point φ∗ is shown (where f (φ∗ ) = 0). Point L corresponds
+to the point where κ = −1, and is a lower bound on feasible solutions. The function values f (φ) for φ < φL are artificially generated
+by continuing to use momentum theory.
+
+Theorem 1
+No artificial solutions to the residual equation (13) are introduced by continuing to evaluate in the no-solution region;
+provided that the formulation used in this region always produces axial induction factors larger than 1 (which is true using
+the momentum method).
+f (φ) < 0 for φ ∈ (0, π/2] if κ < −1, a > 1
+8
+
+(14)
+
+A. Ning
+
+Guaranteed Solution of the BEM Equations
+
+Proof
+The no-solution region corresponds to
+κ < −1
+
+(15)
+
+Because κ = σ 0 cn /(4F sin2 φ), a negative value for κ implies
+cn < 0
+
+(16)
+
+Using the definition of the normal force coefficient cn = cl cos φ + cd sin φ and the chosen range implies
+cl < 0
+
+(17)
+
+In turn, using the definition of the tangential force coefficient ct = cl sin φ − cd cos φ implies
+ct < 0
+
+(18)
+
+Using these facts, we can determine a bound on κ0 in the no-solution region. The inequality κ < −1 for the no-solution
+region can be expressed as
+
+− sin φ
+σ0
+>
+4F sin φ
+cn
+
+(19)
+
+where the direction of the inequality is switched because cn < 0. Then, using the definition of κ0 = σ 0 ct /(4F sin φ cos φ)
+and the fact that ct is negative, we can bound κ0 as
+κ0 <
+
+−ct sin φ
+cn cos φ
+
+(20)
+
+Then, equation (17) can be identically expanded to
+cl (cos2 φ + sin2 φ) + cd (cos φ sin φ − cos φ sin φ) < 0
+
+(21)
+
+cos φ(cl cos φ + cd sin φ) < − sin φ(cl sin φ − cd cos φ)
+
+(22)
+
+which can be rearranged as
+
+Dividing this inequality through by cn cos φ and switching directions of the inequality because cn is negative (16) yields
+−ct sin φ
+<1
+cn cos φ
+
+(23)
+
+κ0 < 1
+
+(24)
+
+and thus from (20) we see that
+
+The second term of the residual equation (13) can always be expressed as
+−
+
+cos φ(1 − κ0 )
+λr
+
+(25)
+
+which for κ0 < 1 will always be negative. The first term of the residual equation, sin φ/(1 − a), will be negative for any
+formulation that results in a value of a > 1 (e.g., set a = 1.5). However, using the momentum calculation is convenient
+because it allows for a smooth variation in a as a function of κ, which should generally allow for a more efficient solution
+9
+
+Guaranteed Solution of the BEM Equations
+
+A. Ning
+
+of f (φ) = 0. The momentum calculation always predicts values of a > 1 for κ < −1. Thus, the no-solution region will
+always evaluate to
+f (φ) < 0 for φ ∈ (0, π/2] if κ < −1
+
+(26)
+
+Because no change of sign in the residual function can occur in the no-solution region using this methodology, no artificial
+solutions can be introduced.
+Theorem 2
+The value of the residual function at the boundary between the no-solution region and the momentum region is always
+negative
+f (φL ) < 0
+
+(27)
+
+Proof
+At point L (see Figure 6), κ = −1. Because sin φ is finite at point L, the first term in the residual function (13) is zero
+sin φ
+= sin φ(1 + κ) = 0
+1−a
+
+(28)
+
+Borrowing the results of the previous proof, at point L the inequality from (20) results in the equality
+−ct sin φ
+cn cos φ
+
+(29)
+
+κ0 < 1
+
+(30)
+
+κ0 =
+and thus by equation (23)
+
+This makes the second term in the residual function (13) negative
+−
+
+cos φ(1 − κ0 )
+<0
+λr
+
+(31)
+
+f (φL ) < 0
+
+(32)
+
+and thus
+
+Theorem 3
+At the lower bound of 0, the residual function is always negative.
+lim f (φ) = −∞
+
+φ→0+
+
+(33)
+
+Proof
+The previous two proofs show that the residual function is negative both at point L and between point L and the lower
+boundary 0. However, point L does not always exist (i.e., κ does not always go below −1 in the range φ ∈ (0, π/2]). In
+this case, we can prove that the residual function is still negative at the lower bound (φ → 0+ ). If point L does not exist,
+then
+lim κ(φ) = +∞
+
+φ→0
+
+(34)
+
+(If κ were approaching −∞, then point L would exist). For this value of κ, the empirical (Glauert/Buhl) correction applies
+(6). Even after simplification the first term in the residual function (13) yields an indeterminate form 0/0 at the lower limit.
+10
+
+A. Ning
+
+Guaranteed Solution of the BEM Equations
+
+Using L’Hôpital’s rule
+lim
+
+sin φ
+
+φ→0+ 1 − a
+
+cos φ
+
+= lim
+
+φ→0+ −da/dφ
+
+=
+
+1
+−da/dφ(0)
+
+(35)
+
+At φ = 0, da/dφ is finite and negative for the empirical region. Thus, the first term in the residual equation is positive and
+finite.
+Using the definition of κ0 (11), we can show that
+lim κ0 = −
+
+φ→0+
+
+σ 0 cd
+= −∞
+4F sin φ
+
+(36)
+
+since cd is always positive. Thus, the second in the residual function (13) approaches
+lim −
+
+φ→0+
+
+(1 − κ0 )
+cos φ
+= lim −
+= −∞
+0
+λr (1 + a )
+λr
+φ→0+
+
+(37)
+
+Adding these two terms, we see that
+lim f (φ) = −∞
+
+φ→0+
+
+(38)
+
+This limit still holds even if φ = 0 falls into the no-solution region κ < −1. The first term in the residual equation
+evaluates to
+
+
+
+sin φ
+σ 0 cn
+lim
+= lim sin φ(1 + κ) = lim sin φ +
+= −∞
+4F sin φ
+φ→0+ 1 − a
+φ→0+
+φ→0+
+
+(39)
+
+(because cn is negative for κ < −1). The second term in the residual function is unchanged and approaches −∞. Thus, in
+either case, the lower limit always holds for this formulation
+lim f (φ) = −∞
+
+φ→0+
+
+(40)
+
+These three proofs demonstrate that f (0) is always negative. Furthermore, the first proof demonstrates that continuing
+to use the momentum method into the no-solution region has no effect on the solution, but is more efficient because it does
+not require solving a second one-dimensional equation to determine a new lower limit.
+At the upper limit, f (π/2) is almost always positive. However, because some exceptions exist, a rigorous proof is not
+available. The value of κ at the upper boundary is
+κ(φ = π/2) =
+
+σ 0 cd
+4F
+
+(41)
+
+which is always positive and finite. Thus, depending on the magnitude of κ, either the momentum region or empirical
+region applies (Figure 5). The smallest value f (π/2) can reach is in the momentum region (in the empirical region the first
+term is even larger and positive), and after simplification has the value
+f (π/2) = 1 +
+
+σ 0 cd
+σ 0 cl
++
+4F
+4F λr
+
+(42)
+
+Both force coefficients are evaluated at the angle of attack α = π/2 − θ. For positive twist angles, the lift coefficient
+should be positive, and thus f (π/2) is positive. Even for modest negative twist angles the angle of attack is still close to
+90◦ , where the drag coefficient is near its maximum and the lift coefficient is small in magnitude. In these cases, the sum of
+the second and third term may be slightly negative, but still generally much smaller than 1. For the vast majority of cases,
+11
+
+Guaranteed Solution of the BEM Equations
+
+A. Ning
+
+f (π/2) is close to 1. However, it is possible for f (φ) to be negative, for example, if κ is in the momentum region and
+
+cl < −λr
+
+4F
++ cd
+σ0
+
+
+
+(43)
+
+This could occur, for example, for sections with low tip-speed ratios and significant negative twist angles. For these cases,
+a solution does not exist in the range of (0, π/2] (but a solution does exist in a different range, as discussed below).
+We can test if a solution will exist in the range (0, π/2] simply by evaluating f (φ) at π/2. If the value is positive, then
+we can safely use the bounds (0, π/2]. If the value is not positive, then two alternatives exist: search for a solution in
+the range φ ∈ [π/2, π), or search for a solution in the propeller brake region. Let us first consider solutions in the range
+φ ∈ [π/2, π). The behavior of f (φ) in this range will not be described with the same rigor as what was described for
+the main range of (0, π/2]. This is primarily because these solutions are generally of little interest as they correspond to
+locally reversed tangential flow, but also because the rigorous proofs shown earlier in this section do not hold for all cases
+in this region. However, we can easily show that if a solution does not exist in the range φ ∈ (0, π/2], then a solution is
+guaranteed to exist in φ ∈ [π/2, π). This is proven by showing that the upper boundary of this region produces a positive
+residual value.
+Theorem 4
+If κ passes into the no-solution region as φ → π (let us define point U as the point where κ = −1 in the range [π/2, π))
+then
+f (φU ) > 0
+
+(44)
+
+The proof follows the procedure outlined for Theorem 2. Values of f (φ) for φ > φU are artificial.
+Theorem 5
+If point U does not exist, then the upper boundary approaches +∞
+lim f (φ) = +∞,
+
+φ→π −
+
+if cl (π − θ) < 0
+
+(45)
+
+The steps of this proof are the same as for Theorem 3.
+In either case, the residual function at the upper boundary is positive. Thus, if the first bracket does not contain a solution
+(i.e., f (π/2) < 0), then the bracket [π/2, φU ) (or [π/2, π) if point U does not exist) is guaranteed to bracket a solution to
+f (φ). In practice, using π as an upper limit for this bracket works well, but because a proof analogous to that for Theorem
+1 does not hold, one should find point U (by solving the one-dimensional equation κ(φ) = −1) and use φU as an upper
+boundary (to be safe).
+The second (and typically better) option for when the main bracket does not contain a solution (f (π/2) < 0), is to search
+for a solution in the propeller brake region. Although we are mathematically guaranteed to find a solution in φ ∈ C(0, π),
+the more physically likely solution may exist in the propeller brake region. This region is discussed in the following section.
+3.2. Propeller Brake Region
+The propeller brake region corresponds to local flow angles in the range φ ∈ C(−π, 0). Similar to the
+momentum/empirical region, physically realizable solutions are likely to occur in a much more restrictive range. We will
+focus on solutions within the range [−π/4, 0) for wind turbines, but like the previous section we can extend the bracket
+all the way to the lower boundary if necessary.
+For this range of local flow angles, the momentum and empirical regions can be ignored. Because only the propeller
+brake calculation for the axial induction factor applies, the residual equation can be simplified as follows
+fP B (φ) = sin φ(1 − κ) −
+12
+
+1
+cos φ(1 − κ0 )
+λr
+
+(46)
+
+A. Ning
+
+Guaranteed Solution of the BEM Equations
+
+where this equation is applicable for κ > 1. Following the same logic as the previous section, we will continue to use the
+propeller brake calculation even for κ < 1 as long as it does not introduce artificial solutions. A typical curve for fP B ,
+shown for a wind turbine with significant negative pitch, is shown in Figure 7. Below point M, the propeller brake equation
+no longer applies (i.e., κ < 1). To bracket a solution, we need to show that the function is negative at the lower bound and
+
+fPB(φ)
+
+at point M, and that the function is positive as φ → 0− .
+
+2.0
+1.5
+1.0
+0.5
+0.0
+0.5
+1.0
+1.5
+2.00.8
+
+φ∗
+
+M
+
+0.6
+
+0.4
+
+φ
+
+0.2
+
+0.0
+
+Figure 7. Characteristic plot of fP B (φ) across the range [−π/4, 0). The solution point φ∗ is shown (where fP B (φ∗ ) = 0). Point
+M corresponds to the point where κ = 1, and is a lower bound on feasible solutions. The function values fP B (φ) for φ < φM are
+artificial and only used for convenience.
+
+Theorem 6
+Point M is defined as the location where κ = 1 in the range φ ∈ [−π/4, 0). If this point exists, then
+fP B (φM ) < 0
+
+(47)
+
+Proof
+The first steps of the proof are omitted, as they parallel the proof of Theorem 2. Following the outlined steps, we can show
+that
+fP B (φM ) < 0,
+
+if cl > −cd tan(2φM )
+
+(48)
+
+However, we also know that at point M, cn > 0 (since κ = 1). This implies that
+cl > −cd tan φM
+
+(49)
+
+Across the range [−π/4, 0), tan φ is always larger than tan(2φ). Thus, if point M exists in this range, then
+fP B (φM ) < 0
+
+(50)
+
+13
+
+Guaranteed Solution of the BEM Equations
+
+A. Ning
+
+The upper and lower limit are not subject to a mathematical proof as their sign may change according to the conditions.
+At the upper limit of φ = 0
+lim fP B (φ) = −
+
+φ→0−
+
+σ0
+cd
+1
+(cl +
+)−
+4F sin φ
+λr
+λr
+
+(51)
+
+As we approach zero from below, the term sin φ is very small and negative. Thus, the function approaches +∞ if the term
+in parenthesis is positive, namely if
+cl (−θ) > −
+
+cd (−θ)
+λr
+
+(52)
+
+Searching for a solution in the propeller brake region implies that a solution in the main region could not be found. This
+occurs only if cl is strongly negative at φ = π/2 (see equation (42)). The aerodynamics of an airfoil suggest that the lift
+coefficient changes sign approximately every 90 degrees. Because the lift coefficient of this section is strongly negative
+at φ = π/2, then the lift coefficient at φ = 0 is almost certainly positive. Thus, this upper limit should be positive (i.e.,
+cl (−θ) > 0 ⇒ limφ→0− fP B (φ) = +∞). However, this is not a mathematical proof, and there is no harm in simply
+checking the sign of fP B (φ) at the upper bound numerically.
+At the chosen lower limit (φ = −π/4), the function evaluates to
+fP B (−π/4) =
+
+
+ √
+
+
+
+1
+2
+σ0
+1 − λr
+1+
+−
++
+cl + cd
+λr
+2
+4F
+1 + λr
+
+(53)
+
+√
+The − 2/2 term tends to dominate in magnitude over the other two terms in the bracket, leading to a negative value for
+the function. The lower limit of −π/4 was chosen somewhat arbitrarily, though it is a physically realistic range and is
+necessary to prove Theorem 6. A more negative lower bound can certainly be used, however, any solutions would need to
+be numerically verified to not be artificial (i.e., ensure that κ > 1).
+3.3. Solution Algorithm
+The presented proofs have shown that, for the chosen residual function and implementation of a(φ), a suitable rootfinding algorithm will always converge to a solution of the BEM equations. Furthermore, the appropriate bracket can be
+determined simply—with only one function call for the vast majority of cases. The specific details of this section are based
+on a particular choice for the parameterization of a(φ) and other corrections to the BEM model. Other parameterizations
+will still allow for a one-dimensional root-finding algorithm, but not all theorems of this section may be valid. This just
+means that, for an arbitrary parameterization, appropriate brackets may need to be found numerically (e.g., check that
+f (0) < 0 rather than rely on the mathematical proof). However, the general behavior of f (φ), the bracketing strategy, and
+the priority of which ranges to search first should be broadly applicable for wind turbine applications.
+An algorithm for solving the BEM equations using the chosen formulation of a(φ) is summarized below. In this
+algorithm, it is assumed that the most likely solution falls in the range (0, π/2], and indeed this is almost always the
+case. If such a solution does not exist, then one is sought in the propeller brake region. As was discussed in the previous
+section, the mathematics along with the airfoil aerodynamics suggest (not a mathematical proof) that if a solution does
+not exist for φ ∈ (0, π/2], then one almost certainly exists in the propeller brake region. As a last resort, the solution
+for φ ∈ [π/2, π) is found. Here, a mathematical proof is available, suggesting that if a solution could not be found for
+φ ∈ (0, π/2], then a solution is guaranteed to exist for φ ∈ [π/2, π).
+
+14
+
+A. Ning
+
+Guaranteed Solution of the BEM Equations
+
+Algorithm 1 determine solution φ∗ to BEM equations
+function zero(f , lb, ub)
+return x∗ where f (x∗ ) = 0 for lb < x < ub and f (lb)f (ub) < 0
+
+. e.g., Brent’s method
+
+function a(φ)
+if κ < 2/3 then
+a ← κ/(1 + κ)
+else
+√
+a ← (γ1 − γ2 )/γ3
+
+. only used for f (φ)
+
+return a
+function f (φ)
+return sin φ/(1 − a(φ)) − cos φ(1 − κ0 (φ))/λr
+function fP B (φ)
+return sin φ(1 − κ(φ)) − cos φ(1 − κ0 (φ))/λr
+function BEMSOLVE
+ ← 1 × 10−6
+if f (π/2) > 0 then
+φ∗ ← zero(f (φ), , π/2)
+else if fP B (−π/4) < 0 and fP B () > 0 then
+φ∗ ← zero(fP B (φ), −π/4, −)
+else
+φ∗ ← zero(f (φ), π/2, π)
+a ← a(φ∗ )
+a0 ← a0 (φ∗ )
+
+. or some other suitably small value
+. this is almost always true
+. propeller brake region
+. if all else fails, this is guaranteed to contain a solution
+
+4. ADDITIONAL CONSIDERATIONS
+4.1. Reynolds Number
+Section 2 introduced the idea of specifying the inflow through the local inflow angle (φ) and the local inflow velocity
+(W ), as opposed to the traditional induction factors. The benefit of this approach is that in each step of the algorithm the
+equations can be specified strictly as a function of φ, whereas the other unknown W is not directly needed. However,
+there is a case where the magnitude of the local inflow velocity is directly needed, and that occurs when Reynolds number
+dependence is included in the airfoil model. Fortunately, the methodology allows for precise Reynolds number dependence
+to be included by adding one modification.
+In the computation of a(φ) and a0 (φ), the inflow velocity must be computed in order to estimate the local Reynolds
+number. The inflow velocity is given by
+W =
+
+p
+
+2 (1 − a)2 + (Ωr)2 (1 + a0 )2
+U∞
+
+(54)
+
+However, the induction factors are not yet known and so the inflow velocity cannot be directly computed. The simplest
+option to resolve this is to ignore the induction factors for the purpose of computing the Reynolds number (W =
+p
+2 + (Ωr)2 ). However, if desired, the Reynolds number can also be computed exactly (within a given tolerance)
+U∞
+through internal iteration. After the initial computation, the newly computed induction factors can be used again in
+Equation (54) to re-compute the inflow velocity and subsequently re-compute the induction factors. As discussed below, at
+most only one additional iteration is necessary to achieve high accuracy, but additional iterations could be used as desired
+to ensure a specified convergence tolerance for the Reynolds number. This iteration loop happens internally within the
+computation of a(φ) and a0 (φ) and does not change the overall algorithm.
+15
+
+Guaranteed Solution of the BEM Equations
+
+A. Ning
+
+The impact of converging the Reynolds number exactly versus using an approximation to avoid extra iterations was
+assessed using the S815 Clean airfoil [11]. The BEM equations were solved repeatedly on a 200 x 200 x 200 grid for tipspeed ratios from 0.5 to 12, local solidities from 0.005 to 0.1, and local twist angles from -5 to 25 degrees. The freestream
+Reynolds number was set such that the local Reynolds number spanned the variation in Reynolds number defined for the
+p
+2 + (Ωr)2 ),
+S815 airfoil. The approximate solutions considered the cases of using only one iteration (assuming W = U∞
+as well as using two and three iterations with the updated induction factors. The “exact” solution was found by iterating
+until the Reynolds number was converged to the nearest whole number (at least 6 or 7 significant figures). Errors were
+reported relative to the magnitude of the terms used in the inflow velocity calculation ((1 − a) and (1 + a0 ) or equivalently
+the error in axial and tangential velocity) so as not to exaggerate small differences between very small numbers. Figure 8
+shows both the mean and maximum errors in the 8 million simulations as a function of the number of internal iterations on
+Reynolds number. Even when the induction factors are ignored in the Reynolds number calculation, the average error in
+the axial component of velocity is only 0.0048%. In all cases, the error in the tangential component of velocity is less than
+the error in the axial component. Figure 8b shows that the maximum error can be significant with only one iteration (2.3%
+for (1 − a)), but it turns out that such significant errors are extremely rare. Table I summarizes what percentage of the 8
+million simulations achieve certain error levels. We see that even if no additional iterations on Reynolds number are used,
+99.96% of the simulations produced less than 1% error for the axial component of velocity. Adding just one additional
+iteration achieves an error level less than 0.01% for 99.55% of the samples.
+
+0.005
+
+2.5
+
+(1−a)
+(1 + a )
+
+0.003
+0.002
+0.001
+0.000
+
+(1−a)
+(1 + a )
+
+2.0
+% error
+
+% error
+
+0.004
+
+1.5
+1.0
+0.5
+
+1
+
+2
+number of iterations
+
+3
+
+(a) Mean percent error in (1 − a) and (1 + a0 ).
+
+0.0
+
+1
+
+2
+number of iterations
+
+3
+
+(b) Maximum percent error in (1 − a) and (1 + a0 ).
+
+Figure 8. Mean and maximum errors in the velocity components across 8 million simulations as a function of the number of internal
+iterations.
+
+Table I. Percent error in (1 − a) relative to using an exact value for the Reynolds number across 8 million simulation cases.
+
+% of simulations that have less than 1% error
+% of simulations that have less than 0.1% error
+% of simulations that have less than 0.01% error
+
+1 iteration
+
+2 iterations
+
+3 iterations
+
+99.96%
+98.94%
+95.42%
+
+100%
+99.92%
+99.55%
+
+100%
+99.998%
+99.90%
+
+The data suggests that ignoring extra iterations on Reynolds number entirely, or even better, using the induction factors
+from the previous section, should be sufficient for most applications. The sensitivity of airfoil performance to Reynolds
+number generally operates on a significantly larger scale than the uncertainty of the inflow velocity due to neglecting the
+induction factors (especially given the level of uncertainty already inherent in including viscous effects in a strip-wise
+manner). But, if capturing many significant figures in the Reynolds number is crucial for the application, this can certainly
+be accomplished and generally with only one additional internal iteration.
+16
+
+A. Ning
+
+Guaranteed Solution of the BEM Equations
+
+4.2. Excluding Drag
+Whether or not drag should be included in the prediction of the induction factors is debatable. Wilson et al. argued that
+drag has little, if any, effect on induced forces, and thus should not be included in computing the induction factors [12].
+The discussion on bracketing a solution to the BEM equations in Section 3 is applicable for cd = 0, with one modification.
+Theorem 3 (limφ→0+ f (φ) = −∞) depends on cd being nonzero (see equation (36)). If cd = 0 and point L does not exist
+(see Figure 6), then
+lim f (φ) = −
+
+φ→0+
+
+1
+1
+−
+da/dφ(0)
+λr
+
+
+
+σ 0 cl
+1+
+4F
+
+(55)
+
+The sum of these two terms is generally negative, but is not guaranteed to be so. If drag is excluded from computing
+the induction factors, then the lower limit of 0 cannot be relied upon a priori. Instead, a bracket should be determined
+numerically.
+4.3. Multiple Solutions
+This discussion has implicitly assumed that f (φ) monotonically increases across the various ranges of interest. The
+derivative of f (φ) is
+da0 dκ0
+df
+cos φ
+sin φ da dκ
+sin φ
+cos φ
+=
++
++
++
+2
+0
+0
+2
+dφ
+1−a
+(1 − a) dκ dφ
+λr (1 + a )
+λr (1 + a ) dκ0 dφ
+
+(56)
+
+A term-by-term examination suggests that the gradient is almost always positive across the primary range of (0, π/2].
+However, for some airfoils, the gradient can reverse signs near f (0) and introduce multiple solutions. McWilliam and
+Crawford demonstrated the existence of multiple solutions for several airfoil types [4]. One of the more egregious cases
+was for the rough S815 airfoil. However, the existence of multiple nearby solutions can generally be eliminated by fitting
+the airfoil data with a spline using a small amount of smoothing. The raw data and spline fits for the S815 airfoil at a
+Reynolds number of 1 × 106 [11] are compared in Figure 9. Agreement is high except in areas of high-frequency variation.
+Using this airfoil section, a three-dimensional sweep was conducted on the same 200 x 200 x 200 grid used earlier where
+the local tip-speed ratio varies from 0.5 to 12, the local solidity from 0.005 to 0.1, and the twist from −5 to 25 degrees.
+Consistent with the findings in McWilliam and Crawford’s paper, if the raw data is used with linear interpolation, then
+three solutions exist across some sections of the design space. However, when the simulation was repeated using a twodimensional spline interpolation of the lift and drag coefficients, only one solution existed for every point sampled in the
+parameter space (specifically a bivariate B-spline interpolation across Reynolds number and angle of attack was used, with
+a smoothing factor of 0.1 for the lift and 0.001 for the drag).
+Although some of the variation missed by using a spline may be physical, usually most of it is not and is introduced by
+other experimental sources or numerical noise. High-frequency variation that is physics-based resides in regions of high
+uncertainty, and the existence of multiple solutions in these regions is not surprising given the limitations of the BEM
+model. To be clear, it is not necessary to fit the airfoil data for applications where that would be undesirable. The method
+described in this paper is still guaranteed to find a solution, but in the case of multiple solutions, there is no guarantee
+which solution is found. However, for the purposes of gradient-based optimization, a C 1 continuous spline interpolation
+is necessary anyway, and a slight approximation in airfoil data is consistent with the goals of conceptual design. This
+smoothing of airfoil data can be useful in removing many of the occurrences of multiple solutions.
+
+17
+
+Guaranteed Solution of the BEM Equations
+
+1.5
+
+A. Ning
+
+raw data
+spline
+
+1.0
+
+cd
+
+cl
+
+0.5
+0.0
+0.5
+1.0 20
+
+10
+
+0
+
+10
+α
+
+20
+
+30
+
+40
+
+(a) comparison between lift coefficients
+
+0.14
+0.12
+0.10
+0.08
+0.06
+0.04
+0.02
+0.00 15
+
+raw data
+spline
+
+10
+
+5
+
+0
+
+α
+
+5
+
+10
+
+15
+
+(b) comparison between drag coefficients
+
+Figure 9. Lift and drag curves for the rough S815 airfoil as a function of angle of attack, showing both the raw data and a spline
+interpolation.
+
+4.4. Comparison with Traditional Root-Finding Methods
+The robustness and convergence speed of the present method was compared with several alternatives that are typically used
+for general root-finding or fixed-point problems. Five alternative approaches were examined: basic fixed-point iteration,
+Newton’s method, Steffensen’s method, Powell’s hybrid algorithm, and the Levenberg-Marquardt algorithm.
+All of the alternative algorithms utilize the BEM equations in the form where the induction factors are treated as the
+unknowns and are updated as
+(anew , a0new ) = fBEM (a, a0 )
+
+(57)
+
+Fixed-point iteration is the most straightforward method and simply uses the updated values of the induction factor as the
+starting point for the next iteration.
+(ai+1 , a0i+1 ) = fBEM (ai , a0i )
+
+(58)
+
+Iteration is repeated until a convergence criteria is met. The next three methods are all different approaches to finding the
+roots of the vector function
+
+"
+fvector =
+
+(anew − a)2
+
+#
+
+(a0new − a0 )2
+
+(59)
+
+Newton’s method requires the Jacobian, which in this case was estimated using one-sided finite differences with a step size
+of 1 × 10−8 . Steffensen’s method is similar to Newton’s method and also converges quadratically, but has the advantage
+of not requiring derivatives. Powell’s method is also similar to Newton’s method but uses a rank-1 method to update the
+Jacobian rather than finite-differencing. A forward-difference approximation is used only to initialize the Jacobian or for
+steps where the rank-1 method performs poorly. Powell’s method also does not necessarily take a full Newton step but
+uses a combination of the Newton step and a scaled gradient step. The implementation used in this simulation came from
+MINPACK.† Finally, the Levenberg-Marquardt algorithm is an optimization approach that minimizes ||fvector ||2 by using
+a combination of gradient-descent and a modified version of Newton’s method for minimization. Its implementation was
+also contained in MINPACK.
+All six methods were compared across a wide range of local tip-speed ratios (0.5 to 12), local solidities (0.005 to 0.1),
+and local twist angles (-5 to 25 degrees) on a 20 x 20 x 20 grid. Furthermore, evaluation on this full grid was repeated
+for each of the 20 airfoils whose names, experimental data sources, and tested Reynolds numbers are summarized in
+Table II. The first six airfoils came from a Dutch Offshore Wind Energy Converter (DOWEC) 6-MW design [13] (the
+
+†
+
+More J, Garbow B, Hillstrom K. MINPACK, http://www.netlib.org/minpack/, March 1980, accessed January 2013.
+
+18
+
+A. Ning
+
+Guaranteed Solution of the BEM Equations
+
+same airfoils used in the NREL 5-MW reference model [14]). Five of these airfoils (DU-W-405LM, DU-W-350, DU-97W-300LM, DU-91-W2-250LM, DU-93-W-210LM) came from two-dimensional experimental data obtained at the Delft
+University of Technology [13]. The sixth airfoil is a NACA 64-618, for which experimental data came from Abbott and Von
+Doenhoff [15]. The next four airfoils came from Risø’s Wind Turbine Airfoil Catalogue [16] and include the NACA 63215, Risø-A1-18, Risø-A1-21, and the Risø-A1-24. Data for these airfoils were obtained in the Velux wind tunnel [17,18].
+The final 10 airfoils included the S801, S810, S813, S815, and S825, which were each tested both with and without
+leading-edge grit roughness (LEGR) to simulate surface irregularities. Their experimental data were collected at The Ohio
+State University Aeronautical and Astronautical Research Laboratory [11, 19–22]. For all 20 airfoils, three-dimensional
+rotational corrections were applied using the Du-Selig method [23] for lift and the Eggers method [24] for drag. The force
+coefficients were then extrapolated to ±180◦ , using Viterna’s method [25].
+For each combination of tip-speed ratio, solidity, and twist angle, the freestream velocity and chord were set such that
+the freestream Reynolds number was 0.75 × 106 . This value was chosen so that the local Reynolds number would range
+from about 0.5 to 9 million, and thus cover the span of Reynolds numbers included in the airfoil data. It was assumed in
+each simulation that the radial station of interest was near the middle of the blade, or in other words, hub and tip losses
+were assumed negligible so that each simulation would be more directly comparable.
+
+Table II. List of airfoils used in convergence comparison study.
+
+Airfoil Name
+
+Wind Tunnel Data Source
+
+Re (×106 )
+
+DU-W-405LM
+DU-W-350
+DU-97-W-300LM
+DU-91-W2-250LM
+DU-93-W-210LM
+NACA 64-418
+NACA 63-215
+Risø-A1-18
+Risø-A1-21
+Risø-A1-24
+S801 Clean
+S801 LEGR
+S810 Clean
+S810 LEGR
+S813 Clean
+S813 LEGR
+S815 Clean
+S815 LEGR
+S825 Clean
+S825 LEGR
+
+Delft University of Technology
+Delft University of Technology
+Delft University of Technology
+Delft University of Technology
+Delft University of Technology
+Abbott and Von Doenhoff
+Risø National Laboratory
+Risø National Laboratory
+Risø National Laboratory
+Risø National Laboratory
+The Ohio State University
+The Ohio State University
+The Ohio State University
+The Ohio State University
+The Ohio State University
+The Ohio State University
+The Ohio State University
+The Ohio State University
+The Ohio State University
+The Ohio State University
+
+7
+7
+7
+7
+7
+6
+1.1
+1.6
+1.6
+1.6
+0.75, 1.0, 1.25, 1.5
+0.75, 1.0, 1.25, 1.5
+0.75, 1.0, 1.25, 1.5
+0.75, 1.0, 1.25, 1.5
+0.75, 1.0, 1.25, 1.4
+0.75, 1.0, 1.25, 1.4
+0.75, 1.0, 1.25, 1.4
+0.75, 1.0, 1.25, 1.4
+0.75, 1.0, 1.25
+0.75, 1.0, 1.25
+
+All algorithms were considered converged when both induction factors were found to within 1 × 10−8 (or for the
+present one-dimensional method, when the local flow angle was found to within that same tolerance). For the present
+one-dimensional method, the initial bounds were set at φ ∈ (0, π/2]. Because some of the two-dimensional methods are
+particularly sensitive to the starting point, each of these simulations was repeated using five judiciously-chosen starting
+points. The first starting point assumed no knowledge: a = 0, a0 = 0. The second starting point set the axial induction
+factor to the optimal value for maximum power production (a = 1/3, a0 = 0). The third starting point added the optimal
+tangential induction factor assuming no losses [3]
+a=
+
+1
+,
+3
+
+a0 =
+
+2
+9λ2r
+
+(60)
+19
+
+Guaranteed Solution of the BEM Equations
+
+A. Ning
+
+The fourth starting point reset the tangential induction factor to zero and used an approximate analytic solution for the
+axial induction factor using the specific blade geometry and operational point (ignoring losses and using a small angle
+approximation) [26]
+a=
+
+i
+p
+1h
+2 + πλr σ 0 − 4 − 4πλr σ 0 + πλ2r σ 0 (8θ + πσ 0 )
+4
+
+(61)
+
+The final starting point used the same axial induction factor, and with the same approximations, estimated the tangential
+induction factor as
+
+
+
+
+a0 = 
+
+2
+πσ 0
+
+
+
+1−a
+−θ
+λr
+
+(62)
+
+ − 1
+
+Table III compares the speed and robustness of the various algorithms used during this study. Speed was quantified as
+the average number of function calls across the 800,000 (160,000 for the present method because only one starting point is
+necessary) simulations for the particular algorithm. Only simulations that were successful in converging were included in
+the average function call total. The failure rate denotes the percentage of simulations that did not converge. Arguably, the
+failure rate for some of the unbounded methods like Newton’s method should be even higher because widely unrealistic
+values were still considered successful as long as the algorithm converged. The only difference between each method is
+the solution approach; the blade-element momentum formulation is identical. The results show that the present method is
+much more robust than the other methods (0 failures). As a secondary benefit, the present method is also the fastest of all
+tested methods (1.45X faster than the next fastest method, and 7.0X faster than the next most robust method). Iteration
+on the Reynolds number was not used in the present methodology. Its inclusion would approximately double the function
+calls for airfoils whose data included Reynolds number variation (actually slightly less than that because only a portion of
+the function is iterated on internally). Even in that case, the present algorithm’s speed would be on par with the next fastest
+method. For the two-dimensional method, no one starting point was superior across all methods, but in general the second
+and third starting points that assumed optimal designs failed at a slightly higher rate than the others. For practical designs,
+the failure rate of the conventional methods would be much lower than these reported values, as simultaneous extremes
+in the parameters would be unlikely (e.g., low tip-speed ratio, low solidity, and large twist angle), and the inclusion of
+hub/tip losses tends to decrease the failure rates for most of the methods. However, such extreme combinations are likely
+to occur in the process of an optimization, thus these failure rates are more representative of the robustness of the methods
+for optimization applications.
+Table III. Comparison in convergence speed and failure rate of several algorithms used to solve the BEM equations.
+
+Algorithm
+Fixed-Point
+Newton
+Steffensen
+Powell Hybrid
+Levenberg-Marquardt
+Present Method
+
+Avg. Function Calls
+
+Failure Rate (%)
+
+31.8
+79.0
+16.4
+72.3
+92.3
+11.3
+
+12.6
+5.8
+16.3
+16.2
+8.8
+0.0
+
+To further test the robustness of the present method, the clean S813 airfoil was studied on the same range of tip-speed
+ratios, solidities, and twist angles, but with a finer grid (200 x 200 x 200). This airfoil was chosen because, in the study by
+McWilliam and Crawford [4], they showed that the clean S813 airfoil [21] was particularly problematic for convergence.
+They conducted a three-dimensional parameter sweep across the same limits and noted that significant regions of the
+parameter space exhibited convergence instabilities when using Newton’s method (fixed-point iteration showed even larger
+regions of instability). On the other hand, when using the proposed methodology of this paper every point in the design
+space converged to a solution. Perfect convergence for the present method was observed whether or not the airfoil data
+was used with linear interpolation or with a smooth spline fit. For the two-dimensional methods, using linear interpolation
+generally increased the failure rate slightly as compared to the reported values in Table III. Interestingly, when using the
+20
+
+A. Ning
+
+Guaranteed Solution of the BEM Equations
+
+present method for the studies in this section, the main bracket (0, π/2] was valid for every simulation. The alternative
+brackets are generally only needed in extreme cases (e.g., large negative pitch, or extremely small tip-speed ratios).
+
+5. CONCLUSION
+This paper demonstrated a solution approach for the blade element momentum (BEM) equations that simplifies the
+typical two-dimensional fixed-point problem to a one-dimensional root-finding problem. This approach is equally valid
+for propellers or wind turbines, and allows any parameterization of the axial induction factor as long as it can be expressed
+as a function of the local inflow angle (φ). Although the implementation details may differ depending on the application and
+the different corrections to the BEM equations that are used, as long as a bracket can be found in a well-behaved region of
+the one-dimensional residual function, a solution to the BEM equations is guaranteed. For wind turbines applications and
+a typical BEM formulation, appropriate brackets were identified, and a provably convergent approach was demonstrated.
+Bounds bracketing the zero can be determined easily through one function call, and is for the vast majority of cases
+(0, π/2]. With a bracket determined, a suitable root-finding algorithm (e.g., Brent’s method) will allow the BEM equations
+to be solved robustly (guaranteed convergence) and efficiently (with superlinear convergence).
+
+REFERENCES
+1. Manwell JF, McGowan JG, Rogers AL. Wind Energy Explained. 2nd edn., Wiley, 2009.
+2. Hansen MOL. Aerodynamics of Wind Turbines. 2nd edn., Earthscan, 2008.
+3. Burton T, Jenkins N, Sharpe D, Bossanyi E. Wind Energy Handbook. 2nd edn., Wiley, 2011.
+4. McWilliam M, Crawford C. The behavior of fixed point iteration and Newton-Raphson methods in solving the blade
+element momentum equations. Wind Engineering, 2011; 35(1):17–32, doi:10.1260/0309-524X.35.1.17.
+5. Masters I, Chapman J, Orme J, Willis M. A robust blade element momentum theory model for tidal stream
+turbines including tip and hub loss corrections. Proceedings of IMarEST-Part A-Journal of Marine Engineering and
+Technology, 2011; 10(1):25–35.
+6. Maniaci DC. An investigation of WT Pref convergence issues. AIAA Aerospace Sciences Meeting, AIAA 2011-150,
+2011.
+7. Platt A. WT Perf: Programming guide for v 3.05.00a-adp. Technical Report, National Renewable Energy Laboratory,
+October 2012.
+8. Buhl ML. Personal communication. National Renewable Energy Laboratory, February 2013.
+9. Buhl ML. A new empirical relationship between thrust coefficient and induction factor for the turbulent windmill
+state. Technical Report NREL/TP-500-36834, National Renewable Energy Laboratory, August 2005.
+10. Brent RP. An algorithm with guaranteed convergence for finding a zero of a function. The Computer Journal, 1971;
+14(4):422–425, doi:10.1093/comjnl/14.4.422.
+11. Ramsay RR, Hoffmann M, Gregorek G. Effects of grit roughness and pitch oscillations on the S815 airfoil: Airfoil
+performance report. Technical Report, The Ohio State University, December 1999.
+12. Wilson R, Lissaman P, Walker S. Aerodynamic performance of wind turbines. Technical Report, Oregon State
+University, Corvallis, OR, 1976.
+13. Kooijman H, Lindenburg C, Winkelaar D, van der Hooft E. DOWEC 6 MW pre-design: Aero-elastic modeling of
+the DOWEC 6 MW pre-design in phatas. Technical Report DOWEC 10046 009, Energy Research Center of the
+Netherlands, September 2003.
+14. Jonkman J, Butterfield S, Musial W, Scott G. Definition of a 5-MW reference wind turbine for offshore system
+development. Technical Report NREL/TP-500-38060, National Renewable Energy Laboratory, Golden, CO, February
+21
+
+Guaranteed Solution of the BEM Equations
+
+A. Ning
+
+2009.
+15. Abbott I, Von Doenhoff A. Theory of Wing Sections: Including a Summary of Airfoil Data. Dover publications, 1959.
+16. Bertagnolio F, Sørensen N, Johansen J, Fuglsang P. Wind turbine airfoil catalogue. Technical Report Risø-R1280(EN), Risø National Laboratory, Roskilde, Denmark, August 2001.
+17. Fuglsang P, Antoniou I, Sørensen N, Madsen H. Validation of a wind tunnel testing facility for blade surface pressure
+measurements. Technical Report Risø-R-981(EN), Risø National Laboratory, Denmark, 1998.
+18. Fuglsang P, Dahl K, Antoniou I. Wind tunnel tests of the Risø-A1-18, Risø-A1-21 and Risø-A1-24 airfoils. Technical
+Report Risø-R-1112(EN), Risø National Laboratory, Denmark, June 1999.
+19. Ramsay RR, Hoffmann M, Gregorek G. Effects of grit roughness and pitch oscillations on the S801 airfoil: Airfoil
+performance report. Technical Report, The Ohio State University, December 1999.
+20. Ramsay RR, Hoffmann M, Gregorek G. Effects of grit roughness and pitch oscillations on the S810 airfoil: Airfoil
+performance report. Technical Report, The Ohio State University, December 1999.
+21. Ramsay RR, Gregorek G. Effects of grit roughness and pitch oscillations on the S813 airfoil: Airfoil performance
+report. Technical Report, The Ohio State University, December 1999.
+22. Ramsay RR, Janiszewska J, Gregorek G. Effects of grit roughness and pitch oscillations on the S825 airfoil: Airfoil
+performance report. Technical Report, The Ohio State University, December 1999.
+23. Du Z, Selig M. A 3-D stall-delay model for horizontal axis wind turbine performance prediction. 1998 ASME Wind
+Energy Symposium, AIAA-1998-21, 1998.
+24. Eggers Jr AJ, Chaney K, Digumarthi R. An assessment of approximate modeling of aerodynamic loads on the UAE
+rotor. Aerospace Sciences Meeting and Exhibit, AIAA-2003-0868, 2003.
+25. Viterna L, Janetzke D. Theoretical and experimental power from large horizontal-axis wind turbines. NASA TM82944, National Aeronautics and Space Administration, Cleveland, OH. Lewis Research Center, September 1982.
+26. Moriarty PJ, Hansen AC. AeroDyn theory manual. Technical Report NREL/EL-500-36881, National Renewable
+Energy Laboratory, December 2004.
+
+22
+
+

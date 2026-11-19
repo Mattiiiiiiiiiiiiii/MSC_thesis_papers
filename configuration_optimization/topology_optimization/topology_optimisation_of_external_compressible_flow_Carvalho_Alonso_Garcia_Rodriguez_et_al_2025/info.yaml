@@ -1,0 +1,496 @@
+abstract: <jats:p>The problem of an immersed body interacting with the surrounding
+  fluid flow belongs to the category of external flows, wherein, despite the importance
+  of a plethora of applications, previous papers have only undertaken incompressible
+  or inviscid compressible flows. This is the first topology optimization work for
+  viscous compressible external flows. Topology optimization is hereby employed to
+  distribute solid and fluid to feature designs that are free from shape restrictions
+  and independent of the initial guess. Fluid-flow governing equations are solved
+  numerically, and sensitivities are obtained by automatic differentiation. Energy
+  dissipation, vorticity, lift, and drag forces are considered and combined into five
+  different objective functions, with a prescribed upper bound on the fluid volume
+  and a drag constraint. Flow-physics considerations are given to advance the understanding
+  of topology optimization for maximization of lift forces and minimization of drag,
+  and limitations are highlighted on the use of vorticity as an objective function,
+  linked to boundary-layer physics. Among our findings, intricately-curved, sharp-edged,
+  and non-intuitive designs are produced, and the resulting flows exhibit superior
+  behavior in most instances when contrasted with a renowned airfoil. In a particular
+  case, a topology reminiscent of a well-known airfoil structure emerges from the
+  application of our method—called “Gurney flap,” capable of maximizing lift and minimizing
+  drag—previously inspected through trial-and-error approaches and physical intuition,
+  rather than systematically generated through topology optimization, as is revealed
+  here.</jats:p>
+author: Carvalho, I. A. and Alonso, D. H. and Garcia Rodriguez, L. F. and Maffei,
+  F. S. and Silva, E. C. N.
+author_list:
+- affiliation:
+  - name: University of São Paulo 1 Department of Mechatronics and Mechanical Systems
+      Engineering, EPUSP, , São Paulo 05508-030,
+    place:
+    - Brazil
+  family: Carvalho
+  given: I. A.
+- affiliation:
+  - name: University of São Paulo 2 Department of Mechanical Engineering, EPUSP, ,
+      São Paulo 05508-030,
+    place:
+    - Brazil
+  family: Alonso
+  given: D. H.
+- affiliation:
+  - name: University of São Paulo 1 Department of Mechatronics and Mechanical Systems
+      Engineering, EPUSP, , São Paulo 05508-030,
+    place:
+    - Brazil
+  family: Garcia Rodriguez
+  given: L. F.
+- affiliation:
+  - name: University of São Paulo 1 Department of Mechatronics and Mechanical Systems
+      Engineering, EPUSP, , São Paulo 05508-030,
+    place:
+    - Brazil
+  family: Maffei
+  given: F. S.
+- affiliation:
+  - name: University of São Paulo 1 Department of Mechatronics and Mechanical Systems
+      Engineering, EPUSP, , São Paulo 05508-030,
+    place:
+    - Brazil
+  family: Silva
+  given: E. C. N.
+citations:
+- article-title: Topology optimization based on a two-dimensional swirl flow model
+    of Tesla-type pump devices
+  doi: 10.1016/j.camwa.2018.12.035
+  first-page: '2499'
+  journal-title: Comput. Math. Appl.
+  volume: '77'
+  year: '2019'
+- article-title: Flexible framework for fluid topology optimization with openFOAM®
+    and finite element-based high-level discrete adjoint method (FEniCS/dolfin-adjoint)
+  doi: 10.1007/s00158-021-03061-4
+  first-page: '4409'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '64'
+  year: '2021'
+- article-title: Topology optimization for flow machine rotor design considering resonance
+    and low mass density flows
+  doi: 10.1016/j.apm.2024.02.008
+  first-page: '806'
+  journal-title: Appl. Math. Modell.
+  volume: '129'
+  year: '2024'
+- article-title: Topology optimization for fluid flow devices modeled through the
+    multiple reference frame approach
+  doi: 10.1016/j.apm.2023.01.019
+  first-page: '592'
+  journal-title: Appl. Math. Modell.
+  volume: '118'
+  year: '2023'
+- article-title: On the multi-objective perspective of discrete topology optimization
+    in fluid-structure interaction problems
+  doi: 10.1016/j.apm.2023.11.024
+  first-page: '1'
+  journal-title: Appl. Math. Modell.
+  volume: '127'
+  year: '2024'
+- article-title: Suppressing vortex-induced vibrations via passive means
+  doi: 10.1016/j.jfluidstructs.2009.02.006
+  first-page: '848'
+  journal-title: J. Fluids Struct.
+  volume: '25'
+  year: '2009'
+- article-title: Generating optimal topologies in structural design using a homogenization
+    method
+  doi: 10.1016/0045-7825(88)90086-2
+  first-page: '197'
+  journal-title: Comput. Methods Appl. Mech. Eng.
+  volume: '71'
+  year: '1988'
+- article-title: 'Suppression of fluctuating lift on a cylinder via evolutionary algorithms:
+    Control with interfering small cylinder'
+  doi: 10.1063/1.5055016
+  first-page: '127104'
+  journal-title: Phys. Fluids
+  volume: '30'
+  year: '2018'
+- article-title: Active control of vortex shedding and galloping induced vibrations
+    in an auxetic aeroelastic structure
+  doi: 10.1063/5.0277576
+  first-page: 087186
+  journal-title: Phys. Fluids
+  volume: '37'
+  year: '2025'
+- article-title: Topology optimization of fluids in Stokes flow
+  doi: 10.1002/fld.426
+  first-page: '77'
+  journal-title: Int. J. Numer. Methods Fluids
+  volume: '41'
+  year: '2003'
+- article-title: Scaling strategies for Brinkman penalization in fluid topology optimization
+  doi: 10.1063/5.0280584
+  first-page: '073645'
+  journal-title: Phys. Fluids
+  volume: '37'
+  year: '2025'
+- article-title: Two-dimensional compressible viscous flow around a circular cylinder
+  doi: 10.1017/jfm.2015.635
+  first-page: '349'
+  journal-title: J. Fluid Mech.
+  volume: '785'
+  year: '2015'
+- article-title: Progress in analysis and prediction of dynamic stall
+  doi: 10.2514/3.45534
+  first-page: '6'
+  journal-title: J. Aircr.
+  volume: '25'
+  year: '1988'
+- article-title: Active control of vortex shedding past finite cylinders under the
+    effect of a free surface
+  doi: 10.1063/5.0147760
+  first-page: '045130'
+  journal-title: Phys. Fluids
+  volume: '35'
+  year: '2023'
+- article-title: Omnidirectional control of the wake of a circular cylinder with spinning
+    rods subject to a turbulent flow
+  doi: 10.1016/j.jfluidstructs.2024.104191
+  first-page: '104191'
+  journal-title: J. Fluids Struct.
+  volume: '130'
+  year: '2024'
+- article-title: 'Wake control of a circular cylinder with rotating rods: Numerical
+    simulations for inviscid and viscous flows'
+  doi: 10.1016/j.jfluidstructs.2021.103385
+  first-page: '103385'
+  journal-title: J. Fluids Struct.
+  volume: '106'
+  year: '2021'
+- article-title: Influence of Darcy and Reynolds numbers on flow past a porous circular
+    cylinder
+  doi: 10.1063/5.0284671
+  first-page: 083635
+  journal-title: Phys. Fluids
+  volume: '37'
+  year: '2025'
+- article-title: A review about the engineering design of optimal heat transfer systems
+    using topology optimization
+  doi: 10.1016/j.applthermaleng.2016.10.134
+  first-page: '841'
+  journal-title: Appl. Therm. Eng.
+  volume: '112'
+  year: '2017'
+- article-title: High-lift enhancement using active flow control
+  year: '2012'
+- article-title: Topology optimization of Navier–Stokes equations
+  first-page: '37'
+  year: '2004'
+- article-title: Topology optimization of slightly compressible fluids
+  doi: 10.1002/zamm.200410223
+  first-page: '46'
+  journal-title: Z. Angew. Math. Mech.
+  volume: '86'
+  year: '2006'
+- article-title: Deep reinforcement learning for bluff body active flow control in
+    experiments and simulations
+  year: '2020'
+- article-title: Minimization of vortex induced vibrations using surrogate based optimization
+  doi: 10.1007/s00158-015-1264-6
+  first-page: '717'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '52'
+  year: '2015'
+- article-title: Automated derivation of the adjoint of high-level transient finite
+    element programs
+  doi: 10.1137/120873558
+  first-page: C369
+  journal-title: SIAM J. Sci. Comput.
+  volume: '35'
+  year: '2013'
+- edition: '3'
+  volume-title: Computational Methods for Fluid Dynamics
+  year: '2002'
+- article-title: Passive and active flow control by swimming fishes and mammals
+  doi: 10.1146/annurev.fluid.38.050304.092201
+  first-page: '193'
+  journal-title: Annu. Rev. Fluid Mech.
+  volume: '38'
+  year: '2006'
+- article-title: Turbulence effects in the topology optimization of compressible subsonic
+    flow
+  doi: 10.1002/fld.5338
+  first-page: '44'
+  journal-title: Int. J. Numer. Methods Fluids
+  volume: '97'
+  year: '2025'
+- article-title: Topology optimization of channel flow problems
+  doi: 10.1007/s00158-004-0508-7
+  first-page: '181'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '30'
+  year: '2005'
+- article-title: 'Gmsh: A 3-D finite element mesh generator with built-in pre- and
+    post-processing facilities'
+  doi: 10.1002/nme.2579
+  first-page: '1309'
+  journal-title: Int. J. Numer. Methods Eng.
+  volume: '79'
+  year: '2009'
+- article-title: Efficient multi-stage aerodynamic topology optimization using an
+    operator-based analytical differentiation
+  doi: 10.1007/s00158-022-03208-x
+  first-page: '130'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '65'
+  year: '2022'
+- article-title: Gurney flap effects and scaling for low-speed airfoils
+  year: '1995'
+- volume-title: Perspectives in Flow Control and Optimization
+  year: '2002'
+- article-title: Dynamic roughness as a means of leading-edge separation flow control
+  doi: 10.2514/1.C031350
+  first-page: '108'
+  journal-title: J. Aircr.
+  volume: '49'
+  year: '2012'
+- article-title: Toward fully stabilized flow control using deep reinforcement learning
+  doi: 10.1063/5.0272178
+  first-page: '073617'
+  journal-title: Phys. Fluids
+  volume: '37'
+  year: '2025'
+- volume-title: Rhie-Chow Interpolation in OpenFOAM
+  year: '2006'
+- article-title: Drag minimization and lift maximization in laminar flows via topology
+    optimization employing simple objective function expressions based on body force
+    integration
+  doi: 10.1007/s00158-011-0730-z
+  first-page: '693'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '45'
+  year: '2012'
+- article-title: Adjoint lattice Boltzmann method-based multiscale topology optimization
+    of thermo-fluid systems using anisotropic porous media
+  doi: 10.1063/5.0279717
+  first-page: 087208
+  journal-title: Phys. Fluids
+  volume: '37'
+  year: '2025'
+- article-title: Optimization for internal turbulent compressible flows using adjoints
+  year: '2017'
+- article-title: Filters in topology optimization based on Helmholtz-type differential
+    equations
+  doi: 10.1002/nme.3072
+  first-page: '765'
+  journal-title: Int. J. Numer. Methods Eng.
+  volume: '86'
+  year: '2011'
+- volume-title: 'Automated Solution of Differential Equations by the Finite Element
+    Method: The FEniCS Book'
+  year: '2012'
+- article-title: Integer programming topology optimization for subsonic compressible
+    flows with geometry trimming
+  doi: 10.1016/j.ijheatmasstransfer.2022.123614
+  first-page: '123614'
+  journal-title: Int. J. Heat Mass Transfer
+  volume: '201'
+  year: '2023'
+- article-title: 'dolfin-adjoint 2018.1: Automated adjoints for FEniCS and Firedrake'
+  doi: 10.21105/joss.01292
+  first-page: '1292'
+  journal-title: J. Open Source Software
+  volume: '4'
+  year: '2019'
+- article-title: Shape optimization in fluid mechanics
+  doi: 10.1146/annurev.fluid.36.050802.121926
+  first-page: '255'
+  journal-title: Annu. Rev. Fluid Mech.
+  volume: '36'
+  year: '2004'
+- article-title: Topology optimisation for rotor-stator fluid flow devices
+  doi: 10.1007/s00158-022-03233-w
+  first-page: '142'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '65'
+  year: '2022'
+- article-title: A comparison of the continuous and discrete adjoint approach to automatic
+    aerodynamic optimization
+  year: '2000'
+- article-title: Wake transition of flow past porous D-shaped cylinder near a moving
+    wall
+  doi: 10.1063/5.0278277
+  first-page: 083612
+  journal-title: Phys. Fluids
+  volume: '37'
+  year: '2025'
+- article-title: Efficient construction of discrete adjoint operators on unstructured
+    grids using complex variables
+  doi: 10.2514/1.15830
+  first-page: '827'
+  journal-title: AIAA J.
+  volume: '44'
+  year: '2006'
+- article-title: A high-level programming-language implementation of topology optimization
+    applied to steady-state Navier–Stokes flow
+  doi: 10.1002/nme.1468
+  first-page: '975'
+  journal-title: Int. J. Numer. Methods Eng.
+  volume: '65'
+  year: '2006'
+- article-title: 'Continuous adjoint methods for turbulent flows, applied to shape
+    and topology optimization: Industrial applications'
+  doi: 10.1007/s11831-014-9141-9
+  first-page: '255'
+  journal-title: Arch. Comput. Methods Eng.
+  volume: '23'
+  year: '2016'
+- article-title: Evaluating the control of a cylinder wake by the method of sensitivity
+    analysis
+  doi: 10.1063/1.4979482
+  first-page: '044103'
+  journal-title: Phys. Fluids
+  volume: '29'
+  year: '2017'
+- unstructured: Payot, A. D. J., “Shape and topology optimisation of external flows,”
+    Ph.D. thesis (University of Bristol, 2020).
+- article-title: Numerical study of the turbulent flow past an airfoil with trailing
+    edge separation
+  doi: 10.2514/3.8284
+  first-page: '1525'
+  journal-title: AIAA J.
+  volume: '21'
+  year: '1983'
+- article-title: A topology optimization approach applied to laminar flow machine
+    rotor design
+  doi: 10.1016/j.cma.2014.06.029
+  first-page: '268'
+  journal-title: Comput. Methods Appl. Mech. Eng.
+  volume: '279'
+  year: '2014'
+- article-title: Topology optimization of subsonic compressible flows
+  doi: 10.1007/s00158-021-02903-5
+  first-page: '1'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '64'
+  year: '2021'
+- article-title: Direct numerical simulations of the flow around wings with spanwise
+    waviness
+  doi: 10.1017/jfm.2017.475
+  first-page: '714'
+  journal-title: J. Fluid Mech.
+  volume: '826'
+  year: '2017'
+- article-title: An experimental investigation of vortex-induced vibration of a rotating
+    circular cylinder in the crossflow direction
+  doi: 10.1063/1.4921683
+  first-page: '067101'
+  journal-title: Phys. Fluids
+  volume: '27'
+  year: '2015'
+- article-title: 'Topology optimization approaches: A comparative review'
+  doi: 10.1007/s00158-013-0978-6
+  first-page: '1031'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '48'
+  year: '2013'
+- article-title: Topology optimization of binary structures using integer linear programming
+  doi: 10.1016/j.finel.2017.10.006
+  first-page: '49'
+  journal-title: Finite Elem. Anal. Des.
+  volume: '139'
+  year: '2018'
+- article-title: On the formation and suppression of vortex ‘shedding’ at low Reynolds
+    numbers
+  doi: 10.1017/S0022112090000933
+  first-page: '71'
+  journal-title: J. Fluid Mech.
+  volume: '218'
+  year: '1990'
+- article-title: Topology optimization with vortex-intensity-based objective function
+    enables novel film cooling hole with superior performance
+  doi: 10.1063/5.0215213
+  first-page: 085121
+  journal-title: Phys. Fluids
+  volume: '36'
+  year: '2024'
+- volume-title: 'An Introduction to Computational Fluid Dynamics: The Finite Volume
+    Method'
+  year: '2007'
+- article-title: Multi-objective adjoint optimization of intake port geometry
+  year: '2012'
+- article-title: On the implementation of an interior-point filter line-search algorithm
+    for large-scale nonlinear programming
+  doi: 10.1007/s10107-004-0559-y
+  first-page: '25'
+  journal-title: Math. Program.
+  volume: '106'
+  year: '2006'
+- article-title: Gurney flap—Lift enhancement, mechanisms and applications
+  doi: 10.1016/j.paerosci.2007.10.001
+  first-page: '22'
+  journal-title: Prog. Aerosp. Sci.
+  volume: '44'
+  year: '2008'
+- article-title: A tensorial approach to computational continuum mechanics using object-oriented
+    techniques
+  doi: 10.1063/1.168744
+  first-page: '620'
+  journal-title: Comput. Phys.
+  volume: '12'
+  year: '1998'
+- article-title: Vortex dynamics in the cylinder wake
+  doi: 10.1146/annurev.fl.28.010196.002401
+  first-page: '477'
+  journal-title: Annu. Rev. Fluid Mech.
+  volume: '28'
+  year: '1996'
+- article-title: Vortex-induced vibrations
+  doi: 10.1146/annurev.fluid.36.050802.122128
+  first-page: '413'
+  journal-title: Annu. Rev. Fluid Mech.
+  volume: '36'
+  year: '2004'
+- article-title: Drag minimization using active and passive flow control techniques
+  doi: 10.1016/j.ast.2011.03.003
+  first-page: '21'
+  journal-title: Aerosp. Sci. Technol.
+  volume: '17'
+  year: '2012'
+- article-title: Topology optimization for stationary fluid–structure interaction
+    problems using a new monolithic formulation
+  doi: 10.1002/nme.2777
+  first-page: '591'
+  journal-title: Int. J. Numer. Methods Eng.
+  volume: '82'
+  year: '2010'
+- article-title: Topology optimization of acoustic–structure interaction problems
+    using a mixed finite element formulation
+  doi: 10.1002/nme.1900
+  first-page: '1049'
+  journal-title: Int. J. Numer. Methods Eng.
+  volume: '70'
+  year: '2007'
+- article-title: Topology optimization of hydrodynamic body shape for drag reduction
+    in low Reynolds number based on variable density method
+  doi: 10.3390/app13095461
+  first-page: '5461'
+  journal-title: Appl. Sci.
+  volume: '13'
+  year: '2023'
+doc_url: https://pubs.aip.org/aip/pof/article-pdf/doi/10.1063/5.0289424/20709665/097167_1_5.0289424.pdf
+doi: 10.1063/5.0289424
+files:
+- topology_optimisation_of_external_compressible_flow_Carvalho_Alonso_Garcia_Rodriguez_et_al_2025.pdf
+issue: '9'
+journal: Physics of Fluids
+language: en
+month: 9
+pages: 097167
+papis_id: c7c6a8b5fcceff89bbc1720bfa9f4527
+publisher: AIP Publishing
+tags:
+- needs-review
+title: Topology optimisation of external compressible flow
+type: article
+url: https://doi.org/10.1063/5.0289424
+volume: '37'
+year: 2025

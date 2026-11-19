@@ -1,0 +1,2854 @@
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+AIP/123-QED
+
+Topology optimisation of external compressible flow
+I. A. Carvalho,1 D. H. Alonso,2 L. F. Garcia Rodriguez,1 F. S. Maffei,1 and E. C. N.
+Silva1
+1) Department of Mechatronics and Mechanical Systems Engineering, EPUSP,
+
+University of São Paulo, 05508-030, Brazil
+2) Department of Mechanical Engineering, EPUSP, University of São Paulo, 05508-030,
+
+Brazil
+(*Electronic mail: amorim.icaro@usp.br)
+(Dated: 6 September 2025)
+
+The problem of an immersed body interacting with the surrounding fluid flow belongs
+to the category of external flows, wherein, despite the importance of a plethora of applications, previous papers have only undertaken incompressible or inviscid compressible
+flows. This is the first topology optimisation work for viscous compressible external flows.
+Topology optimisation is hereby employed to distribute solid and fluid to feature designs
+that are free from shape restrictions, and independent of the initial guess. Fluid-flow governing equations are solved numerically and sensitivities are obtained by automatic differentiation. Energy dissipation, vorticity, lift and drag forces are considered and combined
+into five different objective functions, with a prescribed upper bound on the fluid volume
+and a drag constraint. Flow-physics considerations are given to advance the understanding of topology optimisation for maximisation of lift forces and minimisation of drag,
+and limitations are highlighted on the use of vorticity as an objective function, linked to
+boundary-layer physics. Amongst our findings, intricately-curved, sharp-edged, and nonintuitive designs are produced, and the resulting flows exhibit superior behaviour in most
+instances when contrasted with a renowned aerofoil. In a particular case, a topology reminiscent of a well-known aerofoil structure emerges from the application of our method —
+called Gurney flap, capable of maximising lift and minimising drag — previously inspected
+through trial-and-error approaches and physical intuition, rather than systematically generated through topology optimisation, as is revealed here.
+
+1
+This article may be downloaded for personal use only. Any other use requires prior permission of the author and AIP Publishing. This article
+appeared in Carvalho, I. A., D. H. Alonso, L. F. Garcia Rodriguez, F. S. Maffei, E. C. N. Silva. "Topology optimization of external
+compressible flow" Physics of Fluids 1 September 2025; 37 (9):097167 and may be found at https://doi.org/10.1063/5.0289424.
+
+──────────────────────────────────────────────────────────────────────────────────
+Published article (in its final form: September, 2025):
+Carvalho, I. A., D. H. Alonso, L. F. Garcia Rodriguez, F. S. Maffei, E. C. N. Silva. "Topology optimization of external
+compressible flow" Physics of Fluids 1 September 2025; 37 (9):097167. https://doi.org/10.1063/5.0289424
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+I. INTRODUCTION
+Many methods have been adopted to exert flow control and harness flow loads. Classical
+trial-and-error attempts and parametric evaluations form the mainstay to attenuate flow-induced
+vibrations (Baek and Karniadakis, 2009, Fish and Lauder, 2006, Seyed-Aghazadeh and ModarresSadeghi, 2015), find lift-enhanced aerofoils (Desalvo et al., 2012, Giguere et al., 1995, Serson
+et al., 2017, Wang et al., 2008), develop passive modifications of the geometry (Bolat et al., 2025,
+Chen et al., 2025, Huebsch et al., 2012), sometimes with the inclusion of an external secondary
+body and active omnidirectional flow control for large scale systems (Carvalho and Assi, 2023;
+2024, Nguyen et al., 2025). Zeroth-order, gradient-based optimisation algorithms and data-driven
+methods have more recently been employed to improve active flow-control mechanisms (Fan et al.,
+2020, Farias Filho et al., 2015, Gunzburger, 2002, Jia and Xu, 2025), when some parameters are
+envisioned for optimisation, such as the position of flow-control devices (Bingham et al., 2018),
+geometry dimensions (Yagiz et al., 2012) and actuating mechanisms (Fan et al., 2020). Sensitivity
+analysis has also been investigated to locate sensible flow regions for placement of flow-control
+devices (Patino et al., 2017, Strykowski and Sreenivasan, 1990). Boundaries of the design can, to
+some extent, be optimised by means of shape optimisation. Nevertheless, it is unable to respond
+to the question whether it is best to have one or multiple structures (Mohammadi and Pironneau,
+2004).
+Indeed, in terms of design, none of these methods allow nucleation of material in the pursuit
+of optimised topologies, and most of them (e.g., trial-and-error and parametric evaluation or optimisation) rely on previous knowledge of the user about the intricate parameters to evaluate or
+optimise. Contrastingly, topology optimisation is able to overcome these limitations, since it allows removal and addition of material to different parts of the design domain with the ultimate
+goal of detecting regions where fluid and solid are optimally distributed. An exemplification of
+the topology optimisation process is given by figure 1: An objective function, constraints and an
+initial guess are specified (left of figure 1). The solution of the direct problem requires boundary
+and initial conditions. Over the iterations, the objective function is improved. At the end, an optimised flow is obtained (right of figure 1). The method allows insertion and removal of material
+from all parts of the design domain in order to meet the formulation.
+Originally from the context of structural mechanics (Bendsøe and Kikuchi, 1988), the topology
+optimisation method has ramified to a broad range of fields (Sigmund and Maute, 2013). The
+2
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+Topology
+Optimisation
+
+Far field
+Inlet
+
+Far field
+Inlet
+
+Outlet
+
+Far field
+
+Outlet
+
+Far field
+
+FIG. 1: Topology optimisation.
+
+seminal work of Borrvall and Petersson (2003) in Stokes flow set the stage for the use of topology
+optimisation for fluid flows. Since then, this method has found its way into a multitude of these
+problems, spanning the Navier-Stokes equations (Evgrafov, 2004, Olesen et al., 2006), heat transfer (Dbouk, 2017), lattice Boltzmann (Kong et al., 2025) and other formulations (Boscolo et al.,
+2025). Such advancement is justified principally by its robustness in finding optimised design solutions, which translate into optimised fluid flows, meeting desirable flow functionals, such as lift,
+drag, energy dissipation, vorticity, body forces and so on.
+Topology optimisation has been majorly applied for the design of internal flow devices in incompressible regime, as exemplified by two-dimensional swirl flow of Tesla-type turbines (Alonso
+et al., 2019), rotors (Romero and Silva, 2014), rotor-stator devices (Moscatelli et al., 2022), channel flows (Gersborg-Hansen et al., 2005, Papoutsis-Kiachagias and Giannakoglou, 2016) and fluidstructure interaction problems (Azevêdo et al., 2024, Yoon, 2010, Yoon et al., 2007).
+However, published articles on the matter of topology optimisation of compressible fluid flows
+remain scarce. Evgrafov (2006) first published a paper on the matter, where the incompressibleflow equations were relaxed to produce a slightly-compressible flow. A frozen-density approach
+was followed by de Villiers and Othmer (2012), whereby a constant density was imposed in an
+otherwise compressible flow, whilst Lapointe et al. (2017) and Sá et al. (2021) considered the full
+compressible Navier-Stokes equations. Maffei et al. (2023) introduced geometry trimming for
+topology optimisation of subsonic flows with discrete variables. Tang et al. (2024) optimised a
+film-cooling device based on an active mechanism of flow control driven by an objective function
+comprised of vorticity intensity. Progress was made by Garcia-Rodriguez et al. (2025) in taking into account compressible and turbulence effects in topology optimisation considering Favreaveraged Navier-Stokes equations.
+Nevertheless, to the best of our knowledge, topology optimisation of external flow problems
+has been treated only in the context of Stokes (Borrvall and Petersson, 2003) and incompress3
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+ible Navier-Stokes (Ghasemi and Elham, 2022, Kondoh et al., 2012) problems, besides inviscid
+compressible flows (Payot, 2020) leaving a gap for compressible external flows of viscous fluids.
+Viscosity is prime to describe practical applications, such as in stall conditions of aircraft (Carr,
+1988) or in the Kármán wake of bluff structures (such as large oil platforms employed in the offshore environment). In such cases, to employ potential-flow theory creates discrepancies because
+the boundary layer is nonexistent (Carvalho et al., 2021).
+In compressible regime, the Mach number surpasses 0.3 and relevant variations occur in density. To account for these effects, and properly describe the flow, the energy equation has to be
+considered (in contrast with the incompressible case). Besides, further specification on the fluid is
+necessary, such as the assumption of a perfect gas behaviour. To solve the resulting Navier-Stokes
+equations, the numerical framework requirements change by and large, stemming from the inclusion of the additional equations. From the viewpoint of computational fluid dynamics, different
+discretisation schemes and relaxation factors (when contrasted with incompressible flows) have to
+be employed.
+Adjoint equations allow the computation of the sensitivities in an efficient manner (Nadarajah
+and Jameson, 2000) in topology optimisation, where the design variable adopts a value for each
+cell of the design domain. These equations also differ from incompressible to compressible flow.
+Present incompressible, external, flow works typically employ the continuous adjoint model (Zhao
+et al., 2023) with the exception of the article from Kondoh et al. (2012), which employs discrete
+adjoint equations, based on Olesen et al.’s (2006) implementation in incompressible regime. Although computations with continuous adjoint are efficient in terms of computational cost, the
+derivation thereof for compressible flows by hand-differentiation becomes rather cumbersome and
+error-prone due to the energy equation in the already highly non-linear system. Its derivation is
+problem-dependent and may take years to become ready for use as the equations become more
+involved (Nielsen and Kleb, 2006), leaving room for exploring the application of discrete adjoint
+models to compressible external flow problems, as we seek in the present paper.
+This paper presents solutions to overcome the aforementioned difficulties and bridge research
+gaps by solving topology optimisation problems of compressible external flows. We contribute to
+the current literature with the following achievements: 1) We provide physical insights based on
+flow loads and boundary-layer physics to describe unexplored limitations and strategies, particularly, for the extremisation of lift and vorticity in unstable flows within a steady-regime formulation. This allows generating optimised topologies even when instabilities arise. 2) We formulate
+4
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+forces exerted by the fluid on the solid, modelled as a porous medium, using a volume integral. 3)
+We devise a set-up and numerical schemes capable of solving compressible unstable flows, thereby
+circumventing divergence in the simulations. 4) We generate innovative, non-intuitive topologies
+that successfully optimise various functionals.
+Resulting topologies are assessed by body-fitted grids and compared with the NACA 0012
+aerofoil. Our method is validated by generating — inherently from the optimisation — a Gurney
+flap, a device previously inspected strictly on the basis of physics intuition. Here, a systematic
+approach is followed.
+
+A.
+
+Objective
+We contribute to the current body of knowledge on topology topology optimisation of exter-
+
+nal flows of viscous fluids by considering the optimisation of compressible subsonic flow with
+different objective functions and constraints. Multiobjective functions are also explored.
+Since previous works have minutely focused on the method and implementation details, the
+fluid flow features and their relation with the optimisation process remain mostly abstruse. We
+sustain discussions on the limitations of the method to contribute with insights for promisingly
+more complex applications of topology optimisation which will require a robust, cost-effective,
+implementation.
+
+B. Outline
+The paper is structured as follows: In section II, governing equations are introduced. In section III, the topology optimisation problems are formulated. In section IV, the numerical framework is described. In section V, results are discussed by first presenting the boundary conditions
+(section V A), grids (section V B), finite volume numerical scheme (section V C), and then the
+optimisations (sections V D to V H). In section V I, body-fitted results are presented. Finally, in
+section VI, the main results are summarised. Compiled data are found in the appendix.
+
+II.
+
+GOVERNING EQUATIONS
+This work considers the direct problem of an external compressible flow of far-field velocity,
+
+pressure and temperature given by U∞ , p∞ and T∞ upon a solid or a body-fitted structure. By solid,
+5
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+we specifically refer to the case wherein the structure is represented by means of a porous material
+(employing a pseudo-density approach). By a body-fitted structure we refer to cases wherein the
+solid representation is collapsed to the definition of the boundary conditions for the fluid flow in a
+body-fitted grid, without material model.
+In general, mass, momentum and energy conservations for viscous compressible flow of a
+Newtonian fluid including the material model are given by the following expressions:
+∇ · (ρu) = 0
+
+(1)
+
+∇ · (ρ uu) = ∇ · (µ(∇u + ∇u⊺ )) − ∇p + λ ∇(∇ · u) − κ(α) u
+
+
+h 
+u · u i
+k
+∇· ρ h+
+u = −∇ · − ∇h + ∇ · (T · u)
+2
+cp
+
+(2)
+(3)
+
+with the stress tensor T given by
+T = µ(∇u + ∇u⊺ ) + λ (∇ · u)I.
+
+(4)
+
+In the above, u, p and T are the flow velocity, pressure and temperature; ρ, µ and λ describe
+the density, dynamic viscosity and bulk viscosity (λ := −2/3µ) of the fluid, respectively; h is
+the enthalpy, k is the thermal conductivity and c p is the specific heat of an isobaric process. I
+denotes the identity matrix. The fluid is modelled as perfect gas, following ρ = c p p/(Rh), where
+R stands for the gas constant, and h − href = c p (T − Tref ) (where href = 0 for Tref = 0 K), and
+c p is kept constant with respect to the temperature. κ represents the inverse permeability (or
+absorption coefficient), which stems from the presence of the porous medium. Its dependence on
+the design variable (or pseudo density) α is discussed in section III A. The term −κ(α)u represents
+a resistance to the fluid motion that drives the local velocity to zero when α = 0 and is inactive
+when α = 1. When κ = 0 throughout the domain, the Navier-Stokes equations without porous
+effects are retrieved from the equation set above.
+
+III.
+
+TOPOLOGY OPTIMISATION
+
+A.
+
+Material model
+The spatial distribution of material within the design domain as fluid or solid is performed
+
+alongside a design variable, which allows the use of the same grid to accommodate the changes
+in topology over the iterations. The goal of the optimisation is to find a distribution of material
+6
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+within the design domain which is discretely divided as either fluid or solid. However, to strictly
+use the binary form of κ = {κmin , κmax } (where κmin and κmax offer, respectively, null and full
+resistance to the flow, e.g., κmin = 0 and κmax → ∞) to represent the resistance of the solid against
+the flow poses a challenging ill-conditioned problem within the scope of topology optimisation
+[although recent advances have tackled this issue with integer linear programmin, as in Sivapuram
+and Picelli (2018)]. Therefore, the design variable continuously varies from α = 0 (to represent
+solid) to α = 1 (fluid) with allowable intermediate (grey) values 0 < α < 1.
+Following the approach first used by Borrvall and Petersson (2003), the inverse permeability κ
+is relaxed by a convex q-parametrised interpolation function
+κ(α) = κmax + (κmin − κmax )α
+
+1+q
+α +q
+
+(5)
+
+to accommodate intermediate values to ease convergence, so that the resistance of the porous
+medium in equation (2) is given by the term −κ(α) u. According to Borrvall and Petersson (2003),
+this relaxation steers the solution away from local minima more often than when it is not applied.
+The variable q > 0 is a penalty parameter: The lower the value of q, the steeper is the curve
+κ(α) between the lower and upper bounds, κmin and κmax , whilst higher values of q renders the
+interpolation linear and are bound to produce less “grey structures”. Balance is found between
+these effects to produce a discretised solution with clearly discernible fluid and solid regions.
+Table I compiles all the relevant topology optimisation parameters.
+
+B. Relevant functionals for the objective functions
+At each iteration of the optimisation, the direct problem is iteratively solved to provide the
+relevant fields p, u, T , and α for the subsequent computation of the objective function. In this
+work, energy dissipation (Φ), vorticity (w), drag (FD ) and lift (FL ) forces as presented below,
+
+Z 
+Z
+Z
+1
+Φ=
+µ(∇u + ∇u⊺ ) · (∇u + ∇u⊺ ) dΩ + λ (∇ · u)(I · ∇u) dΩ − κ(α) u · u dΩ (6)
+Ω 2
+Ω
+Ω
+Z p
+w=
+(∇ × u) · (∇ × u) dΩ
+(7)
+Ω
+
+FD = −Fres, mat · x
+
+(8)
+
+FL = −Fres, mat · y
+
+(9)
+
+are used and combined to provide the five optimisation problems of section III D. In equations (8)
+and (9), x and y are unit vectors, and Fres, mat is the total force exerted by the fluid on the body
+7
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+incorporating the material model.
+
+C.
+
+Total force exerted by the fluid on the body
+Pressure and velocity fields allow the computation of the total force exerted by the fluid upon
+
+the body as follows. The total force, Fres projected on the e direction, Fres · e, expressed by a
+surface integral, is transformed into a volume integral by means of the Gauss divergence theorem:
+
+Fres · e =
+
+Z
+
+Γ
+
+n · (T · e) dΓ =
+
+Z
+
+Ω
+
+∇ · (T · e) dΩ.
+
+(10)
+
+In this equation, n is a unit vector normal to the surface Γ, which encloses the volume Ω of the
+entire domain, and e is a unit vector in a specified direction (e.g., x or y for obtaining drag or lift).
+The right hand integrand is rewritten to avoid computing a second-order derivative in the finite
+element implementation in FEniCS (see section IV) as:
+Z
+
+Ω
+
+∇ · (T · e) dΩ =
+
+Z
+
+(∇ · T) · e dΩ +
+
+Ω
+
+Z
+
+Ω
+
+T · ∇e dΩ,
+
+(11)
+
+then, ∇ · T is replaced by the finite element approximation (∇ · T)approx . Now, using equation (11)
+— with wg instead of e — the following integration is performed:
+Z
+
+Ω
+
+(∇ · T)approx · wg dΩ =
+
+Z
+
+∇ · (T · wg ) dΩ −
+
+Ω
+
+Z
+
+Ω
+
+T · ∇wg dΩ.
+
+(12)
+
+Subsequently, we apply the divergence theorem to determine the weak form:
+Z
+
+Ω
+
+(∇ · T)approx · wg dΩ =
+
+Z
+
+Γ
+
+n · (T · wg ) dΓ −
+
+Z
+
+Ω
+
+T · ∇wg dΩ,
+
+(13)
+
+which is solved to compute (∇ · T)approx .
+Combining equations 10, 11 and 13 yields the resulting force, entailing the finite element approximation:
+Fres · e =
+
+Z
+
+Ω
+
+(∇ · T)approx · e dΩ +
+
+Z
+
+Ω
+
+T · ∇e dΩ.
+
+(14)
+
+In order to include the material model, the term (∇ · T)approx is penalised by means of an adjusted
+inverse permeability κplty to yield no contribution from the solid (α = 0). κplty is defined based on
+equation (5), but setting κmax = 1 and κmin = 0 and employing as argument 1 − α (instead of α,
+as in Borrvall and Petersson, 2003):
+κplty = 1 − (1 − α)
+8
+
+1+q
+.
+(1 − α) + q
+
+(15)
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+Equation 14 alongside equation 15 give the resulting force:
+Z
+
+Ω
+
+κplty (∇ · T)approx · e dΩ +
+
+Z
+
+Ω
+
+κplty T · ∇e dΩ.
+
+(16)
+
+Finally, the forces associated with the far-field surfaces are removed to derive the resulting force
+upon the solid topology considering the material model, Fres, mat :
+Fres, mat · e =
+
+Z
+
+Ω
+
+κplty (∇ · T)approx · e dΩ +
+−
+
+Z
+
+Γsym
+
+Z
+
+Ω
+
+κplty T · ∇e dΩ
+
+n · (T · e) dΓ −
+
+Z
+
+Γinlet
+
+n · (T · e) dΓ −
+
+Z
+
+Γoutlet
+
+n · (T · e) dΓ (17)
+
+where Γsym , Γinlet and Γoutlet refer, respectively, to the symmetry (top and bottom surfaces of
+figure 1), inlet and outlet. These will be further clarified in section V A.
+
+D.
+
+Optimisation problem statements
+The first problem set concerns with the minimisation of the objective functions J1 , . . . , J4 subject
+
+to an upper fluid volume constraint on the design domain fV,d [the subscript d in fV,d stresses the
+fact that the volume fraction refers to the volume of the design domain], and reads in general form
+as:
+Minimise J(ω, α)
+subject to:
+R
+
+Ω
+fV,d = R d
+
+α dΩ
+
+Ωd dΩ
+
+(18)
+≤ fV,d
+
+0≤α ≤1
+
+where the vector ω encompasses all the state variables with their dependence on the design variable
+(p(α), u(α), T (α)), and the objective functions assume the forms:
+J1 := Φ
+
+(19)
+
+J2 := we ln(Φ) + wv ln(|w|2 )
+
+(20)
+
+J3 := FD
+
+(21)
+
+J4 := −wL sign(FL ) ln(|FL |) + wD sign(FD ) ln(|FD |).
+
+(22)
+
+with their functionals specified in section III B, so that J is accordingly set to J1 , J2 , J3 or J4 . In
+equations (20) and (22), we , wv , wL and wD denote, respectively, weights for the energy dissipation, vorticity, lift and drag forces in the composition of the multiobjective functions, respecting
+9
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+we + wv = 1 and wL + wD = 1. The weights of this section, along with other parameters, are compiled in table I.
+Relative to multiobjective functions, we carry forward two considerations in their formulation.
+The first is in the use of the natural logarithm function, ln, to transform the exponents into multiplicative scalars, and so prevent our optimisation from becoming biased by the largest scales (e.g.,
+in equation (22) the scale of lift and drag are generally different). The second alludes to the sign
+function. Because the absolute value of the lift is used as the argument of the ln function, its sign
+is introduced outside of ln, in order to maximise this objective function. This precludes divergence
+of J4 , which could occur due to a negative argument in ln. Analogously, similar procedure is conducted for the drag, even though this force is unlikely to become negative (since the bulk of the
+flow adopts the direction from left to right, see figure 3).
+The second problem set reads:
+Minimise J(ω, α) = J5
+subject to:
+R
+
+Ω
+fV,d = R d
+
+α dΩ
+
+Ωd dΩ
+
+≤ fV,d
+
+(23)
+
+FD ≤ β FD∗
+0≤α ≤1
+
+and is focused on maximizing the lift (J5 )
+J5 := −FL
+
+(24)
+
+with volume fraction and drag constraints, where FD∗ represents the drag-minimised value resultant
+from the optimisation of the first set employing J3 (equation (21)). The parameters β = 1.0 and
+β = 1.4 are inspired by the procedure adopted by Ghasemi and Elham (2022, in incompressible
+flow) to vary how strictly this drag constraint is asserted.
+In terms of lift, problems employing the objective functions J4 and J5 aim their maximisation
+(hence the negative sign in their formulations).
+
+IV.
+
+NUMERICAL FRAMEWORK
+The employed numerical framework, termed FEniCS TopOpt Foam (Alonso et al., 2021,
+
+Alonso and Silva, 2023), leverages and modifies the robust and highly efficient C++ OpenFOAM
+10
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+Topology initial guess
+Initial 𝛼 distribution
+
+Topology Optimisation
+OpenFOAM
+
+Annotate the forward
+model from FEniCS
+
+Finite volume discretisation
+Boundary conditions
+
+FEniCS/dolfin-adjoint
+
+IPOPT
+
+Objective function,
+constraints,
+sensitivities
+
+Optimisation iteration
+
+Adjoint model
+Forward model
+
+Topology update
+
+No
+Convergence?
+
+Optimised topology
+
+Yes
+
+FIG. 2: Flow chart of the numerical framework.
+
+library (Weller et al., 1998) to account for the design variable and porous effects (see section III A)
+in finite volume simulations. The main advantage of this method lies in the conservation of fluxes
+across the interface of adjacent cells, providing numerical stability (Ferziger et al., 2002). The
+discrete adjoint model is derived in the same framework in a flexible manner through a high-level
+finite element implementation made in FEniCS (Logg et al., 2012) to compute sensitivities using
+automatic differentiation from dolfin-adjoint (Farrell et al., 2013, Mitusch et al., 2019).
+As figure 2 shows, firstly an initial guess is provided, specifying an initial distribution of fluid
+and solid in the grid. The forward model is annotated from FEniCS. The primal (direct) problem
+is solved for this initial distribution with OpenFOAM, where the SIMPLEC algorithm is applied
+with the rhoSimpleFoam solver for solving compressible steady flows in a body-fitted grid. We
+include the porous term in this solver to account for the material model as well (see, e.g., Alonso
+et al., 2024, and Garcia-Rodriguez et al., 2025, for a successful application and implementation
+details).
+The same governing equations and boundary conditions employed in the direct problem are
+provided to FEniCS in weak form for a finite element implementation with nodal (P1 ) and equalorder linear interpolation with pressure-velocity elements. Flow fields computed cell-wise by
+OpenFOAM are read by FEniCS TopOpt Foam and projected onto a finite element stencil in FEniCS, where the objective functions are calculated. Consecutively, with the dolfin-adjoint library,
+the adjoint model is assembled and sensitivities are computed through automatic differentiation.
+Because the sensitivities are affected by the cell volume in non-uniform meshes, these are adjusted
+11
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+as presented in Alonso et al. (2021) to lead to grid independence. Design variable (Helmholtz) filters (Lazarov and Sigmund, 2011) are used in section V F twice, explicitly stated.
+Lastly, the optimisation is carried out by the Interior Point Optimizer (IPOPT). Should convergence be reached to the tolerance of 10−10 of IPOPT optimality criterion (Wächter and Biegler,
+2006), the final optimised topology is determined and the process ends. Otherwise, the topology
+is updated and the process continues iteratively.
+Further details and the code structure of FEniCS TopOpt Foam framework are found in Alonso
+et al. (2021).
+We post-process two cases in section V E by means of a threshold in α: α-values below the
+threshold are set to 0; and those above it are set to 1. This is deemed relevant inasmuch as, despite
+slight residual grey, the topologies are largely defined over numerous iterations. Thresholding
+should be considered by the reader only when explicitly stated in the text.
+
+V.
+
+RESULTS
+We solve equations (1) to (3) with the perfect gas equation for a subsonic flow at a Reynolds
+
+number Re = ρ∞U∞ D/µ = 100 and Mach number Ma = U∞ /a∞ = 0.5, where D = 0.4825 m is the
+√
+diameter of a fixed solid cylinder, a∞ = γRT∞ is the speed of sound and γ is the ratio of specific
+heats.
+Other than the far-field density (ρ∞ = 1.212 kg/m3 ) and viscosity (µ = 1.000 Pa s), we employ
+air properties at T∞ = 291.15 K and p∞ = 1.01325 × 105 Pa: The ratio of specific heats is γ =
+c p /cv = 1.4, where cv = 719 J/kg K is the specific heat at constant volume and c p = cv + R (both
+coefficients are considered constant relative to T ); R = 287 J/kg K; the molar weight is 28.96
+g/mol; and k = 1437 kg/m3 s.
+Our choice of Re = 100 allows a two-dimensional flow to form in laminar regime, taking as
+a reference the flow over a cylinder. This dimensionless value also precludes the occurrence of
+transient turbulence and three-dimensionality (which would otherwise occur for Re & 180) and the
+formation of creeping flow (Re . 45, Williamson and Govardhan, 2004). Ma = 0.5 is chosen to
+comprehend compressible, yet subsonic, flow effects, therefore necessarily requiring the solution
+of the energy equation. In order to resolve unsteady flows, a transient formulation would be
+required, which falls outside the scope of the present paper. Steady three-dimensionality and
+turbulence, on the other hand, may be easily integrated into our framework (see Garcia-Rodriguez
+12
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+Physical domain (Ω)
+Symmetry
+
+Fluid (ɑ = 1)
+
+Outlet Ls
+
+Inlet
+Ls,d
+U = U∞
+T = T∞
+
+y
+
+D
+
+x
+
+Lu,d
+
+Solid (ɑ = 0) or structure
+(adiabatic, no-slip)
+
+Design domain (Ωd)
+
+(0 ≤ ɑ ≤ 1)
+
+Ld,d
+
+∂U/∂n = 0
+∂T/∂n =0
+p = p∞
+
+∂p/∂n=0
+
+Symmetry
+Lu
+
+Ld
+
+FIG. 3: Physical domain (Ω) dimensions Lu , Ld and Ls represent the distance from the
+non-optimisable solid cylinder centred at the origin (red) to the inlet, outlet, and symmetry
+surfaces. Analogous dimensions Lu,d , Ld,d and Ls,d delimit the design domain (grey). The initial
+guess of a solid is schematically represented by the black streamlined geometry. For clarity sake,
+the figure is not to scale.
+et al., 2025).
+
+A.
+
+Boundary conditions
+Boundary conditions are prescribed as Dirichlet’s for the velocity and temperature, U = U∞ ,
+
+T = T∞ , and Neumann’s for the pressure ∂ p/∂ n = 0 at the inlet; and vice versa for the outlet.
+For the top and bottom edges of the domain Ω (as indicated by figure 3), a symmetry condition
+is applied to represent the symmetric unperturbed far-field flow. The structure (or solid) is modelled with null gradient for the pressure and temperature (adiabatic), and no-slip condition for the
+velocity. Within the design domain Ωd (grey rectangle in figure 3) material is distributed.
+In general, within the design domain, we specify an initial guess of one or more solids (black in
+figure 4) immersed in fluid. Outside of the design domain, a fixed fluid-only region is maintained
+throughout the simulations. The domain spans a length Lu + Ld = 136.2D, with the downstream
+distance Ld from the origin to the outlet equal to 2/3 of the entire length. The non-optimisable
+13
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+y
+
+y
+
+y
+x
+
+x
+
+(a)
+
+(b)
+
+x
+
+(c)
+
+FIG. 4: Solid initial guesses (black): (a) A cylinder at the origin, (b) an optimised structure from
+another case and (c) three separate cylinders. The red dashed circumference marks the boundary
+of the non-optimisable solid region. Fluid is portrayed in blue and the design domain is the
+region delimited by the black dashed line.
+solid region centred at the origin fills a circle of diameter D. Sideways, the domain is symmetric,
+with half the height, Ls = 45.4D. These dimensions agree with the previous investigation of
+the compressible flow upon a cylinder by Canuto and Taira (2015). The design domain spans
+Lu,d + Ld,d = 9D in length (with Ld,d = 2Lu,d ), and 2Ls,d = 6D in height. Upper and lower surfaces
+yield a blockage ratio D/(2Ls ) = 1.1%.
+As a single body, initial guesses encompass a solid cylinder of diameter D (figure 4a) and an
+initial guess from another optimisation problem (figure 4b), motivated by speed-up and ease of
+convergence. As an initial guess with multiple separate structures, we employ three cylinders with
+uniform radii, specified to match the volume constraint (figure 4c). Other than the described solids,
+the domain is filled by fluid.
+
+B. Grids
+Discretisation of the domain in triangular cells is conducted in the same way for the grid employed with and without material model, see figure 5a. Distinction is made only within the design
+domain, as depicted, respectively, by the same zoom-ins of figures 5b and 5c; outside of it, the
+discretisation is the same. Of course, the body-fitted grid is adjusted to the topology for each
+structure. The grid employed for the optimisation (figures 5a and 5b) is comprised of 30,164 cells.
+The number of cells in the body-fitted case ranges from 37,761 to 63,513 cells (as specified in
+table II), and the surface of the bodies are discretised with 200 to 800 cells to capture features of
+the nearby flow. Refinement is concentrated in the design domain, toward the origin (where, as a
+14
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+(a)
+
+(b)
+
+(c)
+
+FIG. 5: (a) General aspect of the grids, and close-up view of (b) the grid with material model and
+(c) the grid for body-fitted simulations. Distinction amongst the grids is found in the design
+domain.
+premise made a priori, and confirmed a posteriori, the structure is formed) as well as in the wake
+region. All meshes are unstructured and were generated in Gmsh (Geuzaine and Remacle, 2009).
+
+C.
+
+Finite volume numerical scheme
+To provide numerical stability and sufficiently accurate results in OpenFOAM, all gradients are
+
+addressed in our unstructured grid by means of a least squares approximation; the convective term
+∇ · (ρuu) of equation (2) is discretised by means of a linear upwind scheme. The Laplacian term
+
+∇2 u, the transport of kinetic energy and enthalpy, as well as ∇ · (µ∇u⊺ ) follow a linear interpolation, which allows assessment of cell-centred values to estimate cell surface values (for application
+of the divergence theorem for integration of the equations). The Laplacian term is corrected for
+non-orthogonality (Versteeg and Malalasekera, 2007), since the centres of adjacent cells do not, in
+principle, form an orthogonal direction to the interface between them. All interpolants ensure at
+least a second-order truncation error.
+Because we employ a collocated grid, the checkerboard effect is prevented by an implicit OpenFOAM application of Rhie and Chow’s (1983) pressure-velocity coupling (as described in Kärrholm, 2006). The Semi-Implicit Method for Pressure-Linked Equations (SIMPLE), in the consistent version (SIMPLEC), including the material model, allows to iteratively solve the governing
+equations in porous medium through a guess-and-correct procedure (Versteeg and Malalasekera,
+2007). SIMPLEC is deemed converged when the residual reaches a value lower than 10−3 , re15
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+quiring concomitantly, at each SIMPLE iteration, a residual lower than or equal to 10−4 for the
+pressure and 10−8 for each velocity component and for the enthalpy. Relaxation is necessary to
+obtain a stable solution. For the density, a relaxation of 0.95 is applied; whereas for the momentum, continuity, energy and enthalpy equations, relaxation factors are of 0.95, 0.001, 0.95 and 0.01
+to preserve stable simulations. OpenFOAM simulations run up to 20,000 iterations, although in
+most cases convergence occurred in fewer iterations.
+Topology optimisation is conducted for the five problems described in section III D, each in a
+section. Fair comparison is made in the following sections by contrasting cases only when they
+share the same inverse permeability κ. By the end, we evaluate body-fitted results, and include a
+comparison with NACA 0012 aerofoil — which is a reference for practical applications.
+
+D.
+
+Minimisation of energy dissipation (J1 )
+It is of practical interest to attenuate the energy dissipation in a variety of fluid flows, namely
+
+those that are obstructed by a structure. In such cases, when the body is bluff, it establishes a
+large region leeway where the pressure is very low compared to that upfront. In steady cases, the
+difference in pressure fore and aft of the structure amounts to pressure drag that contributes to
+almost the entirety of the drag on the structure. Although the viscous contribution to the total drag
+is low, still, the presence of highly vortical bubbles past the structure is related with the separation
+points that precede its very formation [the term “bubble” here refers to the vortical recirculation
+regions that form downstream of the structure of opposite vorticity content, see Williamson, 1996].
+This rationale inspires this choice of objective function. Under these considerations, we infer that
+attenuation of the energy dissipation will occur if the structure is rather streamlined than bluff,
+downsizing the bubbles and closing-in the separation points.
+The formal optimisation problem statement is expressed by equation (18) with J := J1 . A small
+cylinder of diameter D is used as the initial guess. Here we consider maximum volume fractions
+spanning the range from fV,d = 0.60 to 0.90. For the low end of volume fractions, fV,d = 0.60 and
+0.65, convergence of the direct problem is challenging due to the structure’s large size and the flow
+instability at this Re. As a result, vortex-like structures form alternately from one iteration to the
+next, preventing residuals from achieving lower values and SIMPLEC from reaching convergence.
+This is rather due to the inherently unstable, transient-prone, nature of the problem (Williamson
+and Govardhan, 2004), in spite of our steady-regime formulation. Notwithstanding this difficulty
+16
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+(a) fV,d = 0.60.
+
+(b) fV,d = 0.65.
+
+(c) fV,d = 0.70.
+
+(d) fV,d = 0.87.
+
+FIG. 6: Flow-field of the optimised topologies employing the energy dissipation, J1 , as the
+objective function with a maximum fluid volume constraint, fV,d , as indicated in the subcaptions.
+Keys apply to the common colour maps.
+
+in the forward problem, our optimisation procedure is able to produce the streamlined structure of
+figure 6 (departing from a solid cylinder), capable of reducing the objective function compliantly
+with the volume constraint. The curved leading edge (frontmost region of the body relative to the
+incoming flow) accommodates the incoming flow and attempts to mitigate the pressure increase
+due to the stagnation region there. The streamlined aspect reduces the distance between separation
+points.
+It becomes clear from figure 6 that the higher the volume fraction, the more streamlined is the
+resulting structure and the bubble region downstream is downsized. Because of that, we reduce
+the initial guess and the non-optimisable solid cylinder for the cases with fV,d ≥ 0.80 to a diameter
+of 0.5D. For the flows represented in figure 6, we verify that the Mach numbers confirm the
+presence of a compressible subsonic flow. On the topology side, notably, the optimiser attempts to
+streamline the structure, mostly focused on the leading edge of the aerofoil-like structure for the
+lower fV,d (where the amount of solid is higher) and then also for the trailing edge (rearmost region
+of the body relative to the incoming flow) when fV,d adopts higher values (where the amount of
+solid is lower, so the optimiser is offered greater freedom to adjust upstream and downstream parts
+of the topology).
+Figure 7a exhibits reduced initial values for these lower volume fractions than those optimised,
+due to the violation of the constraint (as emphasised in figure 7b by the shaded region, where the
+constraint is violated), since we began the optimisation with a small cylinder which corresponds to
+a fluid volume fraction of 0.985 (greater than the constraints fV,d = 0.60 to 0.90). As the optimiser
+17
+
+2
+
+fV,d − fV,d
+
+4
+
+J1 = Φ (W)
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+×109
+
+fV,d = 0.60
+
+1
+
+−4
+
+fV,d = 0.75
+
+0
+
+3
+
+−2
+
+2
+
+0
+
+200
+
+400
+
+600
+
+Iteration
+
+800
+
+1000
+
+0
+
+fV,d = 0.80
+
+fV,d = 0.65
+
+fV,d = 0.85
+
+fV,d = 0.70
+
+fV,d = 0.87
+
+500
+
+1000
+
+fV,d = 0.90
+1500
+
+Iteration
+
+2000
+
+(b) Volume fraction constraint.
+
+(a) Optimisation history of J1 .
+
+FIG. 7: Minimisation of energy dissipation (J1 ) with fV,d = 0.60 to 0.90.
+increases the amount of solid in the design domain (thus decreasing fV,d to meet fV,d ), the objective
+function increases to peak value. Afterwards, the optimiser decreases the objective function until
+it flattens out to the lower plateau, maintained until the final iterations.
+Now, for higher volume fractions, convergence of the direct problem is achieved for all optimisation iterations or, at least, for those that already define well the topology (with marginal or no
+grey). Figures 7a and 7b present, respectively, the objective and the constraint curves. In these,
+abrupt fluctuations of the curves are due to the iterative procedure itself, but they are further magnified by the difficulty faced by the flow solver to converge, which, in turn, is due to the insertion
+of grey into the design domain and to the unstable flow.
+
+E. Minimisation of energy dissipation and vorticity (J2 )
+Although vorticity is indirectly affected by the minimisation of the energy dissipation, we also
+follow the approach whereby the vorticity is explicitly minimised in a multiobjective function,
+according to equation (18) with J := J2 given by equation (20). Here we perform continuation
+in α by employing the optimised topology with the same fV,d from the previous section as the
+initial guess (schematically depicted by figure 4b). This procedure serves as a paradigm: We
+assume a priori the possibility that the addition of vorticity could offset the minimisation of the
+energy dissipation to a midway solution that diminishes vorticity, should they be conflicting; or
+the reduction of both, for an existing correlation.
+For the first set of weights of the energy dissipation and vorticity, (we , wd ) = (0.6, 0.4), figure 8a
+shows that the objective function final value reduces below the initial one, i.e., that obtained in
+section V D for all cases, meeting the volume fraction constraints (figure 8b). Moreover, both
+18
+
+1.5
+
+fV,d = 0.70
+
+1.42
+0
+
+200
+
+400
+
+Iteration
+
+600
+
+0
+
+0
+
+fV,d = 0.85
+
+1.0
+
+fV,d = 0.90
+
+1000
+
+2000
+
+Iteration
+
+0.5
+
+×106
+
+4
+
+2
+0
+
+(b)
+
+(a)
+
+6
+
+Φ (W)
+
+fV,d − fV,d
+
+fV,d = 0.80
+
+1
+
+1.44
+
+×106
+
+|w|2 (s−2)
+
+J2, (we, wv ) = (0.6, 0.4)
+
+2
+
+1.46
+
+1000
+
+2000
+
+Iteration
+
+0
+
+1000
+
+2000
+
+Iteration
+
+(c)
+
+(d)
+
+FIG. 8: Minimisation of energy dissipation and vorticity (J2 ) with weights (we , wv ) = (0.6, 0.4).
+In (a) the optimisation history of J2 , (b) volume fraction constraint, and the break-down
+composition in (c) vorticity squared and (d) energy dissipation.
+
+6
+4
+
+1.2
+
+fV,d = 0.75
+
+1.4
+
+fV,d = 0.80
+fV,d = 0.90
+
+2
+
+1.0
+500
+
+1000
+
+Iteration
+
+(a)
+
+×106
+3.0
+
+1.2
+
+0
+
+500
+
+1000
+
+0
+
+Iteration
+
+(b)
+
+2.5
+2.0
+
+1.0
+
+0
+0
+
+×106
+
+Φ (W)
+
+×10−1
+
+×106
+
+|w|2 (s−2)
+
+1.4
+
+fV,d − fV,d
+
+J2, (we, wv ) = (0.9, 0.1)
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+×104
+
+500
+
+1000
+
+Iteration
+
+0
+
+(c)
+
+500
+
+1000
+
+Iteration
+
+(d)
+
+FIG. 9: Minimisation of energy dissipation and vorticity (J2 ) with weights (we , wv ) = (0.9, 0.1).
+In (a) the optimisation history of J2 , (b) volume fraction constraint, and the break-down
+composition in (c) vorticity squared and (d) energy dissipation.
+
+the vorticity (figure 8c) and the energy dissipation (figure 8d), which comprise the multiobjective
+function, decrease, probably due to the benefit of explicitly incorporating the vorticity into the
+objective function and its close relation with the energy dissipation, safeguarding the latter from
+increasing.
+Results for (we , wv ) = (0.7, 0.3) are similar to those of (0.9, 0.1). Hence, we describe only
+the latter for succinctness, although both were assessed. Compared with the results of (we , wv ) =
+(0.6, 0.4), the curves for weights (we , wv ) = (0.9, 0.1), reproduced by figure 9, demonstrate fewer
+oscillations and faster convergence, due to the lower weight wv attributed to the vorticity.
+To the best of our efforts, vorticity has proven a challenging objective function for the optimisation. On physical grounds, we reason that this is driven by the high levels of vorticity generated
+in the boundary layer which are inherent to any external optimisation problem. The optimiser
+algorithmically attempts to reduce |w|2 whilst the interaction between the fluid flow and the solid
+19
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+(we , wv ) = (0.6, 0.4)
+
+(we , wv ) = (0.9, 0.1)
+
+(a) fV,d = 0.70.
+
+(d) fV,d = 0.75.
+
+(b) fV,d = 0.80.
+
+(e) fV,d = 0.80.
+
+(c) fV,d = 0.85.
+
+(f) fV,d = 0.90.
+
+FIG. 10: Flow-field of the optimised topologies resultant from the minimisation of the energy
+dissipation and vorticity (J2 ). On the left, the weights assigned to energy dissipation and vorticity
+are (we , wv ) = (0.6, 0.4), whilst on the right (we , wv ) = (0.9, 0.1).
+
+necessarily generates vorticity essential to comply with the no-slip boundary condition. Ergo,
+emphasis on the vorticity weight renders the optimisation not only more difficult, but also less
+compatible with the physics of the problem. The optimised topologies and the associated flow are
+shown in figures 10 and 11, with zoomed-in views of the topology. Post-processing was carried
+out for figure 11 with a threshold in α of 0.2.
+The explanation above elucidates the difficulty found in the optimisation for wv ≥ 0.6. In
+fact, for high fV,d , note that the optimiser fills the entire design domain with grey, except for the
+fixed non-optimisable region that we have fixed. For fV,d = 0.65, one of the lowest values of our
+evaluation (see figure 11d), we note some resemblance with an actual structure, but grey fills a
+large part of the design domain nonetheless. Results for fV,d = 0.60 are not presented. Despite
+the similar aspect found to that of fV,d = 0.65, the energy dissipation increased significantly for
+fV,d = 0.60, leading J2 overall to increase as well.
+We relate the present section with the previous one in terms of the weights for the energy
+dissipation and vorticity. For briefness, we zoom in only on the structure with fV,d = 0.75, see
+20
+
+×106
+1.4
+1.2
+
+1.0
+
+−1
+
+4
+
+1.0
+0
+
+500
+
+Iteration
+
+1000
+
+×10−1
+
+fV,d − fV,d
+
+1.2
+
+0
+
+6
+
+|w|2 (s−2)
+
+1.4
+
+×106
+
+Φ (W)
+
+J2, (we, wv ) = (0.4, 0.6)
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+×106
+
+−2
+0
+
+(a)
+
+500
+
+Iteration
+
+1000
+
+0
+
+(b)
+
+500
+
+Iteration
+
+1000
+
+(c)
+
+0
+
+500
+
+1000
+
+Iteration
+
+(d)
+
+(e)
+
+FIG. 11: Minimisation of energy dissipation and vorticity (J2 ) with weights (we , wv ) = (0.4, 0.6)
+for fV,d = 0.65. In panels (a) optimisation history, (b) vorticity squared, (c) energy dissipation,
+(d) volume fraction constraint and (e) flow and unconverged topology. Post-processing of the
+topology was made using a threshold of 0.2 in α.
+figure 12. Although the topologies look similar in the present section to those of figure 6, now
+the optimiser smoothes out some of the rough-like aspect of the leading edge. This nuance can be
+better seen by comparing the result of the previous section (figure 12, left) with that employing
+the multiobjective function with (we , wv ) = (0.6, 0.4) (figure 12, right). This results in a more
+easily circumvented structure by the flow. Consequently, the surface of the structure produces
+lower velocity gradients. By visual inspection, figure 12 conveys that as the vorticity is weighted
+more significantly (e.g., wv = 0.4 and 0.2 in the top and middle of the right side of figure 12) the
+structure becomes smoother than in the case wv = 0.1 (bottom right of figure 12). The smoothing
+effect of the vorticity (as an objective function) fades away as its weight reduces, and the solid
+resulting from (we , wv ) = (0.9, 0.1) retrieves then some of the rough-like aspect of the left side of
+figure 12, where only the energy dissipation is employed.
+
+F.
+
+Minimisation of drag (J3 )
+Drag minimisation is investigated following the optimisation problem of equation (18) with
+
+J := J3 = FD . We set out with three separate solid cylinders as the initial guess (as exhibited by
+21
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+Surface
+roughness
+
+Vorticity
+weight
+𝑤𝑒 , 𝑤𝑣 = (0.6, 0.4)
+𝑤𝑒 , 𝑤𝑣 = (0.8, 0.2)
+𝑤𝑒 , 𝑤𝑣 = (0.9, 0.1)
+
+Energy dissipation (𝐽1 )
+
+Energy dissipation and vorticity (𝐽2 )
+
+FIG. 12: Upper half of the optimised topologies using the energy dissipation, J1 (left), and the
+present multiobjective function, J2 (right) involving energy dissipation and vorticity. On the right,
+vorticity weighting wv decreases from top to bottom. The use of vorticity leads to smoother
+topology. Here, fV,d = 0.75. Post-processed topologies are represented using a threshold of 0.5 in
+the represented α.
+
+figure 4c), to evaluate the robustness of the method. Their diameters are uniformly specified to
+match the respective fV,d constraint (with values equal to 0.80, 0.85 or 0.87).
+Figure 13a indicates reduction of the objective function for all constraints. As before, the oscillation in the objective function, particularly across the initial iterations is due to the appearance of
+grey in the design domain, which, with further iterations, disappears, giving rise to a well defined
+design, meeting the specified constraint (figure 13b). In this section, except for fV,d = 0.85, a
+design variable filter was used, with radius equal to half the size of the smallest cell.
+Reductions in the objective function of 51.8%, 55.6% and 56.0%, are verified, respectively,
+for the resulting topologies shown in figures 13c through 13e. The higher the fV,d values, the
+more streamlined is the resulting solid, with ever sharper trailing edge, in connection with the
+progressively greater drag reduction. Indeed, it is well known that most of the drag force results
+from the relative imbalance between frontal and rear pressure regions. The peak-shaped trailing
+edge allowed for the separation points to close in one another, thereby fostering a lower pressure
+decay downstream. The two- ( fV,d = 0.85) and three-pronged ( fV,d = 0.80 and 0.87) formation
+upstream allow for better accommodation of the incoming flow, alleviating the obstruction of the
+solid and smoothing the deceleration of the flow. In a nutshell, the optimised designs privilege the
+decrease of the (positive) pressure upfront and the increase of the (negative) pressure downstream,
+leading to minimised drag.
+22
+
+2.5
+
+×10−1
+
+fV,d − fV,d
+
+2.0
+
+J3 = FD (N)
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+×107
+
+1.5
+
+0.0
+
+−2.5
+
+fV,d = 0.80
+fV,d = 0.85
+
+−5.0
+
+1.0
+0
+
+100
+
+Iteration
+
+200
+
+−7.5
+
+300
+
+(a) Optimisation history of J3 .
+
+(c) fV,d = 0.80.
+
+fV,d = 0.87
+0
+
+500
+
+1000
+
+Iteration
+
+1500
+
+2000
+
+(b) Volume fraction constraint.
+
+(d) fV,d = 0.85.
+
+(e) fV,d = 0.87.
+
+FIG. 13: Minimisation of the drag force (J3 ) subject to a maximum fluid volume fraction. a)
+Convergence curves of the objective function, (b) constraint, while flow and optimised topologies
+are exhibited from (c) to (e).
+
+For comparison, we also carry out the optimisation with fV,d = 0.87 with an initial guess comprised of a single solid cylinder, rather than 3 disjoint solid structures. The two procedures are
+contrasted in figure 14. Figures 14a and 14b correspond to drag forces of 7.29 × 103 N and
+
+7.80 × 103 N. Their relative difference of 7.0% is probably due to the differing convergence paths
+adopted by the optimiser, departing from different initial guesses. Reportedly, topology optimisation depends on the initial guess. Choosing an initial guess in a feasible region and allowing
+convergence of the direct problem in the first optimisation iteration might ease the optimisation
+entirely. Surely, when the direct problem does not converge in the first iterations, the optimiser
+will be provided with residuals from the direct problem, which may hinder successive iterations.
+For even greater fV,d = 0.95, the results of figure 15 are obtained. The initial guess involves
+a single solid cylinder of diameter 0.5D. By the end of the optimisation, the drag reduces in
+77.8% (figure 15a), complying with the constraint with a fluid volume fraction lower than 95%
+23
+
+(b) Resulting topology with an initial guess
+
+comprised of a single solid cylinder.
+
+comprised of three separate solid cylinders.
+
+FIG. 14: Optimised topologies for different initial guesses with fV,d = 0.87. Red and blue
+circumferences outline the edges of the non-optimisable regions and initial guesses, respectively.
+On the left, the two circumferences coincide.
+6
+
+×106
+
+1 ×10
+
+fV,d − fV,d
+
+5
+
+−1
+
+4
+
+−2
+
+3
+
+−3
+
+2
+1
+
+−1
+
+0
+
+J3 = FD (N)
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+(a) Resulting topology with an initial guess
+
+−4
+0
+
+50
+
+100
+
+Iteration
+
+150
+
+200
+
+(a) Optimisation history of J3 .
+
+−5
+
+0
+
+100
+
+200
+
+300
+
+Iteration
+
+400
+
+(b) Volume fraction.
+
+500
+
+(c) Topology and flow.
+
+FIG. 15: Minimisation of the drag force (J3 ) for a maximum volume fraction fV,d = 0.95. The
+topology is represented through a threshold of 0.5 in α.
+of the design domain (figure 15b). The topology exhibited in figure 15c does not exhibit the twoor three-pronged sharp edges on the front, but retains the streamlined structure along the trailing
+edge. Although the justification for this topology is not clear-cut, we deem most likely that because
+in general the drag force FD diminishes as the solid size scales down and here we allow a superior
+amount of fluid, the optimiser focuses on smoothing the downstream flow with the sharp edge.
+Furthermore, the frontal obstruction here is smaller, due to fV,d . So, to prevent larger separation
+downstream might be more reasonable than to shrink the frontal stagnation region. The resulting
+flow is also shown in figure 15c.
+
+G.
+
+Maximisation of lift and minimisation of drag (J4 )
+Feasible designs often envision structures that not only are able to reduce drag, but that can also
+
+sustain large lift values. From an optimisation standpoint, this goal is formulated as a multiobjec24
+
+1.0
+5.8
+5.7
+
+0.5
+
+5.6
+0.0
+
+5.5
+0
+
+50
+
+100
+
+150
+
+Iteration
+
+200
+
+250
+
+300
+
+(a)
+
+−0.2
+
+1.75
+1.50
+
+−0.4
+
+1.25
+1.00
+
+−0.6
+−0.8
+
+0.75
+0.50
+0
+
+1000
+
+2000
+
+Iteration
+
+3000
+
+(b)
+
+4000
+
+×104
+
+×104
+
+1.2
+
+3.0
+
+1.0
+
+2.5
+
+0.8
+
+2.0
+
+0.6
+
+1.5
+
+0.4
+0.2
+
+FL, fV,d = 0.87
+
+FL, fV,d = 0.80
+
+FD , fV,d = 0.90 0.5
+FL, fV,d = 0.90
+0.0
+3000
+4000
+
+FD , fV,d = 0.87
+
+0.0
+0
+
+1.0
+
+FD , fV,d = 0.80
+
+1000
+
+2000
+
+Iteration
+
+FD , FL (N), (wL, wD ) = (0.5, 0.5)
+
+5.9
+
+2.00
+
+fV,d − fV,d, (wL, wD ) = (0.5, 0.5)
+
+fV,d = 0.87, (wL, wD ) = (0.5, 0.5) 1.5
+fV,d = 0.90, (wL, wD ) = (0.5, 0.5)
+
+6.0
+
+2.25
+
+0.0
+
+FD , FL (N), (wL, wD ) = (0.2, 0.8)
+
+×103
+
+fV,d = 0.80, (wL, wD ) = (0.2, 0.8)
+
+J4, (wL, wD ) = (0.5, 0.5)
+
+×103
+
+fV,d − fV,d, (wL, wD ) = (0.2, 0.8)
+
+J4, (wL, wD ) = (0.2, 0.8)
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+6.1
+
+(c)
+
+FIG. 16: Maximisation of lift and minimisation of drag (J4 ). In panels (a) optimisation history,
+(b) volume fraction constraints (red shade highlights the region where the constraint is violated
+for fV,d = 0.80. The other curves remained in the feasible region) and (c) break-down of lift and
+drag, respectively depicted by dark- and light-coloured curves.
+
+tive function problem, as expressed by equation (18), with J := J4 , in agreement with equation (22).
+Figure 16a reveals that for the sets { fV,d = 0.80; (wL , wD ) = (0.2, 0.8)}, { fV,d = 0.87; (wL , wD ) =
+(0.5, 0.5)}, as well as for { fV,d = 0.90; (wL , wD ) = (0.5, 0.5)} the objective function values reduce
+— for the first and second cases, in 88%, whilst for the third case, in 3.0% in terms of absolute
+values of J4 . In fact, for the first two sets, the objective function not only reduces to null value, but
+below, to a negative one. For reference, figure 16b exhibits that the volume fraction curves respect
+the constraints by the end of the optimisation. The curve for fV,d = 0.80 violates the constraint (red
+region of the figure) only initially, whilst those for fV,d = 0.87 and 0.90 stay within the feasible
+region throughout the iterations.
+To scrutinise J4 values, the break-down composition of the optimisation history, introduced by
+figure 16c, unveils that for fV,d = 0.80 and 0.87 the lift increases from the initial value and the
+drag decreases, driving J4 to a minimised value. A different tendency is delineated by fV,d = 0.90:
+Initially, both lift and drag (blue and cyan curves of figure 16c) increase to meet the constraint,
+then successively diminish, thereby approaching J4 to zero and later on are brought down to a
+negative value until convergence.
+Figures 17a and 17b expose the final topologies and the resulting flow. For { fV,d = 0.80;
+(wL , wD ) = (0.2, 0.8)}, the direct problem converges; whilst for the latter this is not achieved
+{ fV,d = 0.90; (wL , wD ) = (0.5, 0.5)}. In comparison with fV,d = 0.90, similar flow and topology
+are found for 0.87, omitted in this section for conciseness.
+25
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+(a) fV,d = 0.80, (wL , wD ) = (0.2, 0.8).
+
+(b) fV,d = 0.90, (wL , wD ) = (0.5, 0.5).
+
+FIG. 17: Maximisation of lift and minimisation of drag (J4 ) with respective weights (wL , wD ),
+constrained by maximum volume fraction fV,d . Topologies are shown in black. Keys apply for
+the common colour maps. The topology in (a) is represented through a threshold of 0.5 in α.
+
+In relation to the fluid flow solver, we anticipate that for the latter set this strictly reflects the
+challenging character of the simulation due to the material model. When the material model is
+considered, some of the smoothness of the body surface is lost, because even small grey areas (artificial surfaces with artificial boundary layer, i.e., low κ) impact the flow. Numerically, the system
+of equations becomes more ill-posed, since the material model adds −κ(α) u to equation (2), rendering the solution harder.
+Despite that, the solver was able to surmount a converged flow in a body-fitted grid, with the
+same topology. This discussion is deferred to section V I, and the resulting improved performance
+will justify the insertion of the present results to this section.
+Indeed, detrimental effects culminate in difficult convergence when maximisation of the lift is
+desired, as it (partly) is for J4 . Since the difference in pressure underneath and above the structure
+is encouraged, in order to maximise lift (see figure 18) — insomuch as this imbalance leads to
+greater force — the downstream flow is led to a wider wake for an already unstable flow. This is
+in stark contrast with the problems of the previous sections V D, V E and V F. In those problems,
+this imbalance countered the minimisation of J1 , J2 and J3 , for they seek streamlined structures,
+albeit with different topologies.
+26
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+FIG. 18: Normalised pressure p/p∞ contours for the case of maximisation of lift and
+minimisation of drag (J4 ) with respective weights (wL , wD ) = (0.5, 0.5) constrained by maximum
+volume fraction fV,d = 0.90. The topology is shown in black.
+
+H.
+
+Maximisation of lift with a drag constraint (J5 )
+We now strictly undertake the maximisation of the lift force as the objective function, J :=
+
+J5 = FL , given by equation (24), for the problem outlined by equation (23), where the drag is
+constrained by a multiple (β ) of the minimised drag (FD∗ ) of section V F as FD ≤ β FD∗ .
+We preface our discussion with the fact that our evaluation shortlists β values to 1.0 and 1.4,
+although 1.8 was considered. We found for this last value that too loose a constraint on the drag
+means a higher emphasis directed by the optimiser toward the lift, which in turn renders the topologies bluff, altogether onerous to the entire optimisation. We observe that Ghasemi and Elham
+(2022) were successful to perform this procedure with β = 1.8 in incompressible flow. Different from incompressible flows, where more dissipative schemes may be used to ease convergence,
+these schemes do not result in a reduction of the residuals of the fluid flow equations for compressible flow. To test our methodology respecting our premise of a subsonic flow, one could consider a
+flow with a lower Re, and a Ma sufficiently high for compressible flow behaviour, but this proves
+restrictive, because a subsonic flow inherently leads U∞ to high values (thus offsets the idea of
+considering a flow with a lower Re in order to ease convergence).
+In this section, we restrict our discussion to fV,d = 0.87 for conciseness. Firstly, we compare the
+optimisation employing as the initial guess one and three structures with β = 1.0. From inspection
+of figures 19a and 19b the resulting topologies show to be the same.
+The entire optimisation of figure 19b is illustrated in figure 20, where it is seen that topology
+optimisation is able to merge together separate solid bodies to provide a single optimised structure.
+27
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+(b) Initial guess as three solid cylinders.
+
+(a) Initial guess as a solid cylinder.
+
+FIG. 19: Lift-maximised topologies for fV,d = 0.87 and β = 1.0 with different initial guesses.
+
+FIG. 20: Topology optimisation. The red circle illustrates the non-optimisable region. The initial
+guess is given by three separate solid structures (in black), immersed in the external flow (white).
+After the initial iterations (where grey appears), the optimiser reduces grey whilst improving the
+solid topology; focus is then given to the trailing edge until convergence, which resembles the
+well known Gurney flap — intrinsically obtained through optimisation.
+
+More importantly, we observe that the small tab on the trailing edge of the optimised topology
+of figure 20 resembles a Gurney flap, a simple solution previously devised by Giguere et al. (1995,
+portrayed by figure 21) by means of an experimental parametric evaluation (rather than through
+numerical simulations using an optimisation algorithm as it is done in this work) for Re as high
+as 250,000. This flap is located at the trailing edge and is perpendicular to the chord. This small
+device was shown by these authors to enhance lift “at a very little cost in drag”(Giguere et al.,
+1995), and to provide a performance comparable with more complex designs. In that study, the
+authors also explored parametrically the height of the Gurney flap, hereby found in a single pass
+as a result of the overall optimisation.
+Figure 22 shows that the topologies experience higher lift values for both drag constraints
+(β = 1.0 and 1.4, refer to figure 22a, where −FL is plotted) relative to the initial guess. Strong
+oscillations in the curves develop, due to the difficult converging aspect of the direct problem.
+For β = 1.0, the direct problem converges for the final optimisation iterations with 70 fluid solver
+28
+
+Gurney
+flap
+
+FD
+Chord line
+
+FIG. 21: The Gurney flap is able to enhance lift (FL ) with little increase in drag (FD ).
+×107
+
+8
+
+−1
+
+0.00
+
+β = 1.0
+β = 1.4
+
+fV,d − fV,d
+4
+
+−3
+
+2
+
+−4
+0
+
+500
+
+1000
+
+Iteration
+
+1500
+
+2000
+
+(a) Optimisation history of J5 .
+
+0
+
+×104
+
+−0.25
+
+6
+
+−2
+
+−5
+
+×10−1
+
+FD (N)
+
+0
+
+J5 := −FL (N)
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+FL
+
+−0.50
+−0.75
+−1.00
+
+0
+
+2500
+
+5000
+
+7500
+
+Iteration
+
+10000
+
+12500
+
+(b) Volume fraction constraint.
+
+0
+
+2500
+
+5000
+
+7500
+
+Iteration
+
+10000
+
+(c) Drag constraint FD ≤ β FD∗ .
+
+FIG. 22: Maximisation of lift (J5 ) with an upper drag constraint and volume fraction. Here,
+fV,d = 0.87.
+iterations (although SIMPLEC was allowed to run up to 200 iterations).
+Higher β frees the optimiser to give further emphasis to the maximisation of the objective (lift),
+by allowing greater drag. In agreement with our discussion on the last paragraph of section V G,
+convergence is more difficult, both for the optimisation problem as well as for the fluid simulation
+solver. Notwithstanding none of these were achieved with the material model for β = 1.4, the next
+section shows that convergence is successfully achieved with a body-fitted grid of the resulting
+topologies of figure 23. For the present section, the verified trend of reduction in the objective
+function (captured by figure 22a) suffices to corroborate with the mainstay of robustness of the
+method, respecting the required constraints as confirmed by figures 22b and 22c. Besides, the
+optimisation generated a feasible design reminiscent of the Gurney flap (investigated in a different
+manner by Giguere et al., 1995, with the same aim as ours), thus, validating our method.
+
+I. Body-fitted grid evaluations
+The present section introduces body-fitted results relative to the optimised topologies found
+in previous sections. For briefness, this discussion is restricted to the constraint fV,d = 0.87.
+29
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+(a) β = 1.0.
+
+(b) β = 1.4.
+
+FIG. 23: Lift-maximised topologies for fV,d = 0.87. The constraint FD ≤ β FD∗ reads with β equal
+to (a) 1.0 and (b) 1.4.
+
+FIG. 24: Reference compressible flow fields of figure 25c normalised by inlet-specified values. A
+Mach number greater than 0.3 (left) and fluid density variation of 55% (middle) confirm the
+premise of a compressible flow regime. The temperature (right), in contrast, varied little.
+Figure 24 corroborates with our specification of a compressible flow, with a Mach number up
+to 0.7 and density variation of 55%.
+Figure 25 exhibits the main body-fitted flows (equivalent to the topologies found in sections V D
+to V G, with material model) and their grids. Table III compiles performance metrics for the
+following discussion.
+For the resulting body-fitted flows from the minimisation of the energy dissipation (J1 ),
+the attained value for the optimised structure of figure 25a is 1.61 × 106 W/m whilst our initial guess of a cylinder of diameter D (violating the constraint) produces an energy dissipation of 1.65 × 106 W/m, 2.36% higher. Now, considering a reference cylinder of diameter
+q
+D fV,d = 4(1 − fV,d )(Lu,d + Ld,d )(2Ls )/π (which is compliant with fV,d , see figure 3), the en-
+
+ergy dissipation is of 1.02 × 107 W/m, 533% higher than our J1 -optimised structure. We also
+
+simulate the same flow conditions upon the NACA 0012 aerofoil (figure 25e), sizewise compliant
+with our volume constraint. In such case, the energy dissipation is of 1.69 × 106 W/m, higher
+4.87% than our solution, see table III for numerical values.
+Our flow conditions allow the assessment of a compressible external flow at reasonable cost,
+30
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+(a) Body-fitted topology with minimised energy dissipation (J1 ).
+
+(b) Body-fitted topology with minimised drag (J3 ).
+
+(c) Body-fitted topology with maximised lift and minimised drag, (wL , wD ) = (0.5, 0.5) (J4 ).
+
+(d) Body-fitted topology with maximised lift with a drag constraint, β = 1.0 (J5 ).
+
+(e) Body-fitted flow evaluation of the NACA 0012 aerofoil model.
+
+FIG. 25: Contours of body-fitted flows normalised by inlet velocity (left) and grids (right).
+however, to the best of our knowledge, experimental results are unavailable. Therefore, we chose
+NACA 0012 as a benchmark, since this aerofoil is widely studied and data thereof are easily found.
+Drag and lift are appraised in this section in terms of their coefficients, CD = FD /(ρ∞U∞2 D) and
+CL = FL /(ρ∞U∞2 D), where D is employed as the characteristic length as a reference, taking into
+consideration that its definition is unclear a priori, since the solid may adopt different topologies
+31
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+(a)
+
+(b)
+
+(c)
+
+FIG. 26: Body-fitted variations of the solid material distribution for the drag minimisation (J3 ) of
+section V F. These are due to the discretisation employed for the solid distribution. In (a)
+non-smoothed structure with frontal tips (in contrast to figure 25b) (zoom-in is provided), (b)
+smoothed structure (without frontal tips) and (c) non-smoothed structure (without frontal tips).
+
+during the iterative process (where FD was used, instead of CD ). The motivation for the use of CD
+and CL is to vanish with the effect of the size of the body, since the premise of an external flow
+is considered, i.e., a fully immersed body an infinite medium, with negligible free-surface effects.
+The use of FD or FL would render the following discussion biased, favouring the smallest body.
+Minimisation of the drag force (J3 ) led to the structure depicted by figure 25b. Compared with
+the solution found for the energy dissipation (with CD = 2.75 × 10−2 ), the difference is negligible
+in terms of drag. Considering the economical discretisation we have employed, the exact topology
+to be smoothed from the solid found is not clear cut, and may assume the topologies evaluated in
+figure 26. For such cases, CD adopt values 2.71 × 10−2 , 2.85 × 10−2 or 3.05 × 10−2 , from left to
+right. This shows that one of the topologies presents a lower value than the J1 -optimised structure.
+Furthermore, relative to the NACA 0012 model, the solution of figure 25b, and the variations from
+figure 26 are subject to 10.3% to 24.1% greater drag depending on the smoothing of the solid
+surface (to generate the body-fitted grid) and on the presence or not of the upfront tips.
+Figure 25c corroborates with the assertion that convergence of the flow with the material model
+in section V G is strenuous. For the same topology, with a body-fitted grid, a steady-state fully
+converged solution is found. Its topology is unintuitive.
+During our attempts, the topology with the open cavity in the back was obtained, see figure 17b.
+One question that arises from the comparison of its body-fitted topology of figure 25c (for maximisation of the lift and minimisation of the drag) with figure 21 of Azevêdo et al. (2024, where the
+authors investigated maximisation of the downforce instead of the lift, also minimising the drag)
+is whether there is need for the cavity in the rear part of the topology. Inspired by this question,
+32
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+(a) Normalised flow velocity.
+
+(b) Grid.
+
+FIG. 27: Closed-rear investigation (of J4 ), in contrast with our optimised structure (figure 25c),
+which presented an open cavity in the back (see figure 19).
+we extend our investigation to the case with a closed rear. We manually close the rear cavity of the
+topology with a line, and compare forces acting on the topology with and without the rear cavity
+(figures 27 and 25c, respectively). We observe that the drag of the two are the same, whilst the lift
+of the structure with open rear is 6.27% greater (thus justifying the lower value of J4 ). Interestingly, both of these structures present some of the lowest drag forces of our minimised topologies
+throughout the cases, CD = 6.93 × 10−3 , 71.8% below that of NACA 0012.
+Finally, in terms of lift maximisation, the resulting body (see figure 25d) presents the largest
+lift value, CL = 3.73 × 10−2 . Most structures present values near zero due to symmetry, differing
+in such cases from that as a by-product of numerical errors. An analogous experiment to that
+described above for J4 was carried out for J4 with β = 1.4. Functional values are given in table III.
+
+VI.
+
+CONCLUSION
+
+Topology optimisation of external compressible flow was successfully carried out for the minimisation of the energy dissipation (J1 ), energy dissipation and vorticity (J2 ), drag (J3 ); maximisation of lift and minimisation of drag (J4 ); and maximisation of lift (J5 ) with fluid volume constraint,
+and an additional drag constraint for J5 in all cases. The direct problem of a compressible subsonic
+flow of a viscous fluid was solved with finite volume simulations in OpenFOAM, whilst the adjoint
+sensitivity was computed by FEniCS, altogether within the FEniCS TopOpt Foam framework.
+Appraisal of the flow physics and its consequent effects on topology optimisation elucidated
+that vorticity may be included in the objective function, however, to a limited extent, otherwise the
+optimiser resorts to removing solid as much as possible (leading to grey when compliant with the
+33
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+volume constraint) in the attempt to minimise the objective, thus leading to unfeasible solutions
+and failure of convergence for both the optimisation and the direct problem. This is by virtue of
+the fact that the boundary layer is intrinsically a region that produces high vorticity to comply with
+the no-slip condition upon solids.
+Different initial guesses were evaluated, including one wherein multiple separate structures
+were used. The employed methodology revealed robust enough to handle cases even when the
+direct problem was of difficult convergence (throughout the optimisation, and in cases where this
+happened only for the initial iterations) due to flow instability.
+The tendencies found with the material model, as demonstrated by convergence curves, were
+corroborated by body-fitted grid simulations, where only the fluid flow was considered. The resulting topologies were contrasted amongst themselves, with the initial guesses, and with a NACA
+0012 aerofoil. The results indicate improved performance of the optimised topologies, and functionals adequately extremised in agreement with the problem specification. Moreover, superior
+behaviour was detected relative to NACA 0012 aerofoil in many instances.
+Non-intuitive designs were attained and exhibited stark differences relative to the initial guess.
+These topologies would not be achievable through parametric or shape optimisation. The resulting
+structures require further study, from the perspective of fluid mechanics, to comprehend the improvement brought by their topologies to the objective functions. For the problem of J3 , two- and
+three-pronged tips were introduced by the optimiser (figures 13); for J4 , leveraging on removal
+of material from the rear part led to the same drag, but higher lift (see figure 25b compared with
+the same structure, manually designed, with a closed rear in figure 27); for J5 , the Gurney flap
+emerged inherently from the optimisation to increase lift at marginal drag increase (see figures 20
+and 25d), in agreement with the original purpose of this device (Giguere et al., 1995, but back then
+found by experiments and trial-and-error evaluations).
+Future work should be concerned with the development of unsteady adjoint formulations for
+transient compressible flows, with the outlook of overcoming the challenges of vortex-dominated
+unstable flows, ubiquitous in practical applications.
+
+ACKNOWLEDGMENTS
+We gratefully acknowledge the support of the RCGI – Research Centre for Greenhouse Gas Innovation (23.1.8493.1.9), hosted by the University of São Paulo (USP) and sponsored by FAPESP
+34
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+– São Paulo Research Foundation (2020/15230-5) and Shell Brasil, as well as the strategic importance of the support given by ANP (Brazil’s National Oil, Natural Gas and Biofuels Agency)
+through the R&DI levy regulation. IAC appreciates the support of FAPESP for his postdoctoral
+grant (2023/13351-8); Petrobras through the Foundation for the Technological Development of
+Engineering (FDTE); and the Fluids and Dynamics Research Group (NDF) for the computational
+resources. DHA is thankful for the financial support of FAPESP under grant 2022/07937-7. LFGR
+is grateful for the financial support of Fundação de Apoio à Universidade de São Paulo (FUSP) under project number 382502. ECNS acknowledges the financial support of CNPq (National Council
+for Research and Development) under grant 304508/2023-3.
+
+AUTHOR DECLARATIONS
+Conflict of interest
+The authors have no conflicts to disclose.
+
+DATA AVAILABILITY
+The data that support the findings of this study are available from the corresponding author
+upon reasonable request.
+
+Appendix A: Reference tables
+Table I summarises the parameters used throughout the simulations with the material model.
+Table II compiles timing information. AMD threadripper 2950X processors were used with 128
+GB random access memory.
+
+35
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+TABLE I: Topology optimisation simulation parameters. All simulations employ κmin = 0.
+Following section III D, for multiobjective functions prevail wL + wD = 1 and we + wv = 1, so
+only one of the weights of each case are specified in the table.
+Objective function composition
+Min Min
+J
+Φ
+
+|w|2
+
+X
+
+-
+
+X
+X
+X
+J1
+
+X
+
+-
+
+-
+
+103
+
+0.1
+
+-
+
+103
+
+-
+
+0.1
+
+-
+
+103
+
+-
+
+0.1
+
+-
+
+103
+
+-
+
+0.1
+
+-
+
+103
+
+-
+
+0.1
+0.1
+
+-
+
+-
+
+0.6
+
+- 0.65
+-
+
+0.7
+
+- 0.75
+-
+
+0.8
+
+-
+
+-
+
+-
+
+-
+
+- 0.85
+
+-
+
+-
+
+X
+
+-
+
+-
+
+-
+
+-
+
+- 0.87
+
+-
+
+-
+
+103
+
+0.1
+
+X
+
+-
+
+-
+
+-
+
+-
+
+-
+
+0.9
+
+-
+
+-
+
+103
+
+0.1
+
+X
+
+X 0.6
+
+-
+
+-
+
+-
+
+0.7
+
+-
+
+-
+
+103
+
+0.1
+
+X
+
+X 0.6
+
+-
+
+-
+
+-
+
+0.8
+
+-
+
+-
+
+103
+
+0.1
+
+-
+
+103
+
+0.1
+
+-
+
+103
+
+0.1
+
+-
+
+103
+
+0.1
+
+-
+
+103
+
+0.1
+
+-
+
+103
+
+0.1
+
+-
+
+103
+
+0.1
+
+-
+
+104
+
+0.1
+
+-
+
+104
+
+0.1
+0.1
+
+X
+
+X
+X
+-
+
+X 0.6
+X 0.6
+X 0.9
+X 0.9
+X 0.9
+X 0.4
+-
+
+-
+
+X
+X
+
+-
+
+- 0.85
+-
+
+0.9
+
+- 0.75
+-
+
+0.8
+0.9
+
+- 0.65
+-
+
+0.8
+
+- 0.85
+
+-
+
+-
+
+-
+
+-
+
+X
+
+-
+
+- 0.87
+
+-
+
+-
+
+104
+
+-
+
+-
+
+-
+
+X
+
+-
+
+- 0.95
+
+-
+
+-
+
+104
+
+1
+
+-
+
+-
+
+-
+
+X
+
+X 0.2 0.8
+
+-
+
+-
+
+103
+
+0.1
+
+-
+
+-
+
+-
+
+X
+
+X 0.5 0.87
+
+-
+
+-
+
+103
+
+1
+
+-
+
+-
+
+-
+
+X
+
+X 0.5 0.9
+
+-
+
+-
+
+103
+
+1
+
+1.0
+
+104
+
+0.1
+
+1.4
+
+104
+
+0.1
+
+J5
+
+-
+
+-
+
+-
+
+X
+
+J4
+
+-
+
+-
+
+X
+
+X
+
+J3
+
+-
+
+FL
+
+wL fV,d β × FD∗ β κmax
+
+q
+
+FD
+
+wv
+-
+
+Simulation parameters
+
+103
+
+X
+J2
+
+-
+
+Min Max
+
+Constraints
+
+-
+
+-
+
+-
+
+-
+
+X
+X
+
+- 0.87
+- 0.87
+36
+
+X
+X
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+TABLE II: Timing information of the main optimisations carried out in this work. The figures
+referenced on the right correspond to the body-fitted simulations carried out without the material
+model. The figures referenced on the left refer to simulations carried out with material.
+Optimisation with material model
+Body-fitted grid equivalent
+Grid count: 30,164 cells, fV,d = 0.87
+Parameters
+Figure Objective function
+
+Iterations Wall-clock time Figure
+
+κmax
+6d
+13e
+16a
+19a
+
+Cells
+
+q
+
+J1
+
+103 10−1
+
+1003
+
+10 hours 14 min 25a
+
+62,140
+
+J3
+
+104
+
+10−1
+
+276
+
+9 hours 26 min
+
+25b
+
+60,376
+
+J4
+
+103
+
+100
+
+239
+
+25 hours 12 min 25c
+
+63,513
+
+J5
+
+104
+
+10−1
+
+2263
+
+67 hours 17 min 25d
+
+55,613
+
+37
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+TABLE III: Performance metrics. Flow fields and grids of the J1 -optimised topology and those
+described in bold below are exhibited in figure 25. Manually designed cases are those comparing
+an optimised solution with a similar one (section V I) obtained through topology optimisation
+with a similae
+Φ (W/m) |w2 | (s−2 )
+
+Simulation
+
+CD
+
+CL
+
+Cylinder with diameter D
+
+1.65 × 106 1.63 × 106 3.33 × 10−2
+
+0
+
+Cylinder compliant with D fV,d
+
+1.02 × 107 1.01 × 107 2.06 × 10−1
+
+0
+
+J1
+
+1.61 × 106 1.60 × 106 2.75 × 10−2
+
+1.84 × 10−3
+
+J3
+
+J4
+
+Smoothed without frontal tips
+
+1.66 × 106 1.66 × 106 2.85 × 10−2 6.54 × 10−4
+
+Smoothed with frontal tips
+
+1.64 × 106 1.62 × 106 2.75 × 10−2 −1.14 × 10−4
+
+Non-smoothed without frontal tips
+
+1.55 × 106 1.54 × 106 3.05 × 10−2 7.57 × 10−5
+
+Non-smoothed with frontal tips
+
+1.58 × 106 1.56 × 106 2.71 × 10−2 −5.90 × 10−4
+
+open rear (wL , wD ) = (0.5, 0.5)
+
+3.92 × 106 3.89 × 106 1.39 × 10−2 3.72 × 10−2
+
+closed rear (wL , wD ) = (0.5, 0.5) (manually designed) 3.73 × 106 3.71 × 106 1.34 × 10−2 3.49 × 10−2
+1.98 × 106 1.95 × 106 1.09 × 10−2 3.73 × 10−2
+
+β = 1.0
+
+3.25 × 106 3.19 × 106 9.92 × 10−3 2.63 × 10−2
+
+J5 β = 1.4: closed rear (manually designed)
+
+3.26 × 106 3.20 × 106 1.01 × 10−2 2.69 × 10−2
+
+β = 1.4: open rear
+
+1.69 × 106 1.68 × 106 2.46 × 10−2 1.15 × 10−4
+
+NACA 0012
+
+38
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+REFERENCES
+Alonso, D.H., Garcia Rodriguez, L.F., Silva, E.C.N., 2021. Flexible framework for fluid topology optimization with openfoam® and finite element-based high-level discrete adjoint method
+(fenics/dolfin-adjoint). Structural and Multidisciplinary Optimization 64, 4409–4440.
+Alonso, D.H., Picelli, R., Meneghini, J.R., Silva, E.C.N., 2024. Topology optimization for flow
+machine rotor design considering resonance and low mass density flows. Applied Mathematical
+Modelling 129, 806–822.
+Alonso, D.H., de Sá, L.F.N., Saenz, J.S.R., Silva, E.C.N., 2019. Topology optimization based on
+a two-dimensional swirl flow model of tesla-type pump devices. Computers & Mathematics with
+Applications 77, 2499–2533.
+Alonso, D.H., Silva, E.C.N., 2023. Topology optimization for fluid flow devices modeled through
+the multiple reference frame approach. Applied Mathematical Modelling 118, 592–617.
+Azevêdo, A.S.d.C., Ranjbarzadeh, S., Gioria, R.S., Silva, E.C.N., Picelli, R., 2024. On the multiobjective perspective of discrete topology optimization in fluid-structure interaction problems. Applied Mathematical Modelling 127, 1–17.
+Baek, H., Karniadakis, G.E., 2009. Suppressing vortex-induced vibrations via passive means.
+Journal of Fluids and Structures 25, 848–866.
+Bendsøe, M.P., Kikuchi, N., 1988. Generating optimal topologies in structural design using a
+homogenization method. Computer methods in applied mechanics and engineering 71, 197–224.
+Bingham, C., Raibaudo, C., Morton, C., Martinuzzi, R., 2018. Suppression of fluctuating lift on
+a cylinder via evolutionary algorithms: Control with interfering small cylinder. Physics of Fluids
+30, 127104.
+Bolat, F.Ç., Çetin, B.T., Erdöl, M., Alujevic, N., 2025. Active control of vortex shedding and
+galloping induced vibrations in an auxetic aeroelastic structure. Physics of Fluids 37.
+Borrvall, T., Petersson, J., 2003. Topology optimization of fluids in stokes flow. International
+journal for numerical methods in fluids 41, 77–107.
+Boscolo, G., Lanzoni, S., Peruzzo, P., 2025. Scaling strategies for brinkman penalization in fluid
+topology optimization. Physics of Fluids 37.
+Canuto, D., Taira, K., 2015. Two-dimensional compressible viscous flow around a circular cylinder. Journal of fluid mechanics 785, 349–371.
+
+39
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+Carr, L.W., 1988. Progress in analysis and prediction of dynamic stall. Journal of aircraft 25,
+6–17.
+Carvalho, I.A., Assi, G.R.S., 2023. Active control of vortex shedding past finite cylinders under
+the effect of a free surface. Physics of Fluids 35.
+Carvalho, I.A., Assi, G.R.S., 2024. Omnidirectional control of the wake of a circular cylinder with
+spinning rods subject to a turbulent flow. Journal of Fluids and Structures 130, 104191.
+Carvalho, I.A., Assi, G.R.S., Orselli, R.M., 2021. Wake control of a circular cylinder with rotating
+rods: Numerical simulations for inviscid and viscous flows. Journal of Fluids and Structures 106,
+103385.
+Chen, Z., Liu, Y., Sung, H.J., 2025. Influence of darcy and reynolds numbers on flow past a porous
+circular cylinder. Physics of Fluids 37.
+Dbouk, T., 2017. A review about the engineering design of optimal heat transfer systems using
+topology optimization. Applied Thermal Engineering 112, 841–854.
+Desalvo, M., Whalen, E., Glezer, A., 2012. High-lift enhancement using active flow control, in:
+6th AIAA flow control conference, p. 3245.
+Evgrafov, A., 2004. Topology optimization of navier-stokes equations. Nordic MPS , 37–55.
+Evgrafov, A., 2006. Topology optimization of slightly compressible fluids. ZAMM-Journal of
+Applied Mathematics and Mechanics/Zeitschrift für Angewandte Mathematik und Mechanik: Applied Mathematics and Mechanics 86, 46–62.
+Fan, D., Yang, L., Wang, Z., Triantafyllou, M., Karniadakis, G., 2020. Deep reinforcement learning for bluff body active flow control in experiments and simulations, in: APS Division of Fluid
+Dynamics Meeting Abstracts, pp. R01–010.
+Farias Filho, U.P., E. Antunes, A.R., A. Bastos, S.M., M. Lyra, P.R., 2015. Minimization of
+vortex induced vibrations using surrogate based optimization. Structural and Multidisciplinary
+Optimization 52, 717–735.
+Farrell, P.E., Ham, D.A., Funke, S.W., Rognes, M.E., 2013. Automated derivation of the adjoint
+of high-level transient finite element programs. SIAM Journal on Scientific Computing 35, C369–
+C393.
+Ferziger, J.H., Perić, M., Street, R.L., 2002. Computational Methods for Fluid Dynamics. 3 ed.,
+Springer.
+Fish, F., Lauder, G.V., 2006. Passive and active flow control by swimming fishes and mammals.
+Annu. Rev. Fluid Mech. 38, 193–224.
+40
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+Garcia-Rodriguez, L.F., Alonso, D.H., Silva, E.C.N., 2025. Turbulence effects in the topology
+optimization of compressible subsonic flow. International Journal for Numerical Methods in Fluids
+97, 44–68.
+Gersborg-Hansen, A., Sigmund, O., Haber, R.B., 2005. Topology optimization of channel flow
+problems. Structural and multidisciplinary optimization 30, 181–192.
+Geuzaine, C., Remacle, J.F., 2009. Gmsh: A 3-d finite element mesh generator with built-in
+pre-and post-processing facilities. International journal for numerical methods in engineering 79,
+1309–1331.
+Ghasemi, A., Elham, A., 2022. Efficient multi-stage aerodynamic topology optimization using an
+operator-based analytical differentiation. Structural and Multidisciplinary Optimization 65, 130.
+Giguere, P., Lemay, J., Dumas, G., 1995. Gurney flap effects and scaling for low-speed airfoils,
+in: 13th applied aerodynamics conference, p. 1881.
+Gunzburger, M.D., 2002. Perspectives in flow control and optimization. SIAM.
+Huebsch, W.W., Gall, P.D., Hamburg, S.D., Rothmayer, A.P., 2012. Dynamic roughness as a
+means of leading-edge separation flow control. Journal of aircraft 49, 108–115.
+Jia, W., Xu, H., 2025. Toward fully stabilized flow control using deep reinforcement learning.
+Physics of Fluids 37.
+Kärrholm, F.P., 2006. Rhie-chow interpolation in openfoam. Department of Applied Mechanics,
+Chalmers University of Technology: Goteborg, Sweden .
+Kondoh, T., Matsumori, T., Kawamoto, A., 2012. Drag minimization and lift maximization in
+laminar flows via topology optimization employing simple objective function expressions based
+on body force integration. Structural and Multidisciplinary Optimization 45, 693–701.
+Kong, X., Zhang, H., Du, Y., Wang, X., Xiao, G., 2025. Adjoint lattice boltzmann method-based
+multiscale topology optimization of thermo-fluid systems using anisotropic porous media. Physics
+of Fluids 37.
+Lapointe, C., Christopher, J.D., Wimer, N.T., Hayden, T.R., Rieker, G.B., Hamlington, P.E., 2017.
+Optimization for internal turbulent compressible flows using adjoints, in: 23rd AIAA Computational Fluid Dynamics Conference, p. 4115.
+Lazarov, B.S., Sigmund, O., 2011. Filters in topology optimization based on helmholtz-type
+differential equations. International journal for numerical methods in engineering 86, 765–781.
+Logg, A., Mardal, K.A., Wells, G., 2012. Automated solution of differential equations by the finite
+element method: The FEniCS book. volume 84. Springer Science & Business Media.
+41
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+Maffei, F.S., Sá, L.F.N., Moscatelli, E., Picelli, R., Meneghini, J.R., Silva, E.C.N., 2023. Integer
+programming topology optimization for subsonic compressible flows with geometry trimming.
+International Journal of Heat and Mass Transfer 201, 123614.
+Mitusch, S., Funke, S., Dokken, J., 2019. dolfin-adjoint 2018.1: automated adjoints for fenics and
+firedrake. Journal of Open Source Software 4, 1292.
+Mohammadi, B., Pironneau, O., 2004. Shape optimization in fluid mechanics. Annu. Rev. Fluid
+Mech. 36, 255–279.
+Moscatelli, E., Alonso, D.H., Sá, L.F.N., Picelli, R., Silva, E.C.N., 2022. Topology optimisation
+for rotor-stator fluid flow devices. Structural and Multidisciplinary Optimization 65, 142.
+Nadarajah, S., Jameson, A., 2000. A comparison of the continuous and discrete adjoint approach
+to automatic aerodynamic optimization, in: 38th Aerospace sciences meeting and exhibit, p. 667.
+Nguyen, D.T.S., Palar, P.S., Ngo, I.L., Cao, Y., Duong, V.D., 2025. Wake transition of flow past
+porous d-shaped cylinder near a moving wall. Physics of Fluids 37.
+Nielsen, E.J., Kleb, W.L., 2006. Efficient construction of discrete adjoint operators on unstructured
+grids using complex variables. AIAA journal 44, 827–836.
+Olesen, L.H., Okkels, F., Bruus, H., 2006. A high-level programming-language implementation
+of topology optimization applied to steady-state navier–stokes flow. International Journal for Numerical Methods in Engineering 65, 975–1001.
+Papoutsis-Kiachagias, E.M., Giannakoglou, K.C., 2016. Continuous adjoint methods for turbulent
+flows, applied to shape and topology optimization: industrial applications. Archives of Computational Methods in Engineering 23, 255–299.
+Patino, G.A., Gioria, R.S., Meneghini, J.R., 2017. Evaluating the control of a cylinder wake by
+the method of sensitivity analysis. Physics of Fluids 29, 044103.
+Payot, A.D.J., 2020. Shape and topology optimisation of external flows. Ph.D. thesis. University
+of Bristol.
+Rhie, C.M., Chow, W.L., 1983. Numerical study of the turbulent flow past an airfoil with trailing
+edge separation. AIAA journal 21, 1525–1532.
+Romero, J.S., Silva, E.C.N., 2014. A topology optimization approach applied to laminar flow
+machine rotor design. Computer Methods in Applied Mechanics and Engineering 279, 268–300.
+Sá, L.F.N., Okubo Jr, C.M., Silva, E.C.N., 2021. Topology optimization of subsonic compressible
+flows. Structural and Multidisciplinary Optimization 64, 1–22.
+
+42
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+Serson, D., Meneghini, J.R., Sherwin, S.J., 2017. Direct numerical simulations of the flow around
+wings with spanwise waviness. Journal of Fluid Mechanics 826, 714–731.
+Seyed-Aghazadeh, B., Modarres-Sadeghi, Y., 2015. An experimental investigation of vortexinduced vibration of a rotating circular cylinder in the crossflow direction. Physics of Fluids 27.
+Sigmund, O., Maute, K., 2013. Topology optimization approaches: A comparative review. Structural and multidisciplinary optimization 48, 1031–1055.
+Sivapuram, R., Picelli, R., 2018. Topology optimization of binary structures using integer linear
+programming. Finite Elements in Analysis and Design 139, 49–61.
+Strykowski, P.J., Sreenivasan, K.R., 1990. On the formation and suppression of vortex ‘shedding’at low reynolds numbers. Journal of Fluid Mechanics 218, 71–107.
+Tang, H., Zhu, J., Tao, Z., Qiu, L., 2024. Topology optimization with vortex-intensity-based
+objective function enables novel film cooling hole with superior performance. Physics of Fluids
+36.
+Versteeg, H.K., Malalasekera, W., 2007. An introduction to computational fluid dynamics: the
+finite volume method. Pearson education.
+de Villiers, E., Othmer, C., 2012. Multi-objective adjoint optimization of intake port geometry.
+Technical Report. SAE Technical Paper.
+Wächter, A., Biegler, L.T., 2006. On the implementation of an interior-point filter line-search
+algorithm for large-scale nonlinear programming. Mathematical programming 106, 25–57.
+Wang, J.J., Li, Y.C., Choi, K.S., 2008. Gurney flap—lift enhancement, mechanisms and applications. Progress in Aerospace sciences 44, 22–47.
+Weller, H.G., Tabor, G., Jasak, H., Fureby, C., 1998. A tensorial approach to computational
+continuum mechanics using object-oriented techniques. Computers in physics 12, 620–631.
+Williamson, C.H.K., 1996. Vortex dynamics in the cylinder wake. Annual Review of Fluid Mechanics 28, 477–539.
+Williamson, C.H.K., Govardhan, R., 2004. Vortex-induced vibrations. Annual Review of Fluid
+Mechanics 36, 413–455.
+Yagiz, B., Kandil, O., Pehlivanoglu, Y.V., 2012. Drag minimization using active and passive flow
+control techniques. Aerospace Science and Technology 17, 21–31.
+Yoon, G.H., 2010. Topology optimization for stationary fluid–structure interaction problems using
+a new monolithic formulation. International journal for numerical methods in engineering 82,
+591–616.
+43
+
+This is the author’s peer reviewed, accepted manuscript. However, the online version of record will be different from this version once it has been copyedited and typeset.
+PLEASE CITE THIS ARTICLE AS DOI: 10.1063/5.0289424
+
+Yoon, G.H., Jensen, J.S., Sigmund, O., 2007. Topology optimization of acoustic–structure interaction problems using a mixed finite element formulation. International journal for numerical
+methods in engineering 70, 1049–1075.
+Zhao, N., Zhang, J., Han, H., Miao, Y., Deng, Y., 2023. Topology optimization of hydrodynamic
+body shape for drag reduction in low reynolds number based on variable density method. Applied
+Sciences 13, 5461.
+
+44
+
+

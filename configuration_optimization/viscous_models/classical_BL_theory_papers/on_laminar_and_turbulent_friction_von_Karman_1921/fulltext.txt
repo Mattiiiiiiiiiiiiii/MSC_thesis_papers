@@ -1,0 +1,4885 @@
+—.. —
+
+_-
+
+—
+
+.-.——.. .,
+
+~~.”’.
+4---
+
+.
+&
+
+\.‘*
+
+b..
+
+.*;
+
+.,.?,..
+
+&7..z,,..
+
+_
+
+4=,,”
+.,(T,
+
+‘ .,_,,
+s-.,
+
+,,.
+
+“>
+:+&;,@+:
+
+.-,
+c -.
+‘-
+
+.1
+
+1
+
+NATIONAL ADVISORY COMMITTEE
+
+‘i.,
+...
+.qi
+
+FOR AERONAUTICS
+TECHNICAL
+MEMORANDUM
+NO.1092
+
+ON LAMINAR
+
+TURBULENT FRICTION
+
+By Th . von Arm&n
+..
+
+Zeitschrift fm angewand.teMathematik und
+Vol. 1, NO. 4,August 1921
+
+Washington
+September 1946
+
+,.
+——.
+—
+
+,-. )
+,!
+
+.,
+
+.. . —
+
+NAT IOIIJAII
+ADV IS QIZY COMM IT!lW 3’UE AEROIWAUTICS
+,.. .
+
+TliCHXICAL ”MEMORAMDU11-H09
+
+‘1092
+
+.
+
+.
+
+OH LA.MIEAR AED TURBULEIJT ~RIC!J!ION1 “
+By Th. von K&rm&n
+
+The theoretical
+treatment of surface friction of liquids
+or gases at E eolld wall encounter
+eerlous diffiaultieo
+88
+SOOP aE the processes
+are no longer defined by the viscosity
+of the fluid alone, but aleo Involve the forces of Inertia
+with the probable exception of the flow phenomena
+In camlllaries and the probleme
+of lubricant friction - as Se the
+All the same, two
+caee in nearly all pr%ctical problem~,
+substantial
+advances have been achieved
+in this domain within the laet decadee; namely, by Prandtlts
+‘boundary layer
+theory” and Blaeius’
+confirmation
+of the prevlouely
+suspected nature of the friction loss In smooth pipes.
+Unfortunately,
+the results of Prandtlcs
+theory have
+remained confined to a comparatively
+narrow range, first
+for the more obvious reqson, that the paper work involved
+for specific cases Is enormoue, but then also because Its
+physical range of validlty
+is, like the theory of pure
+Just
+friction flow in pipes, restricted
+to narrow limits.
+as the pure friction flow, the so-called laminar flow in
+plpee, Ie replaced by a “turbulent
+flow” at higher velocities,
+so the laminar boundary
+layer Is replaced by a “turbulent”
+boundary layer.
+The preeent report deals, firet with the theory of the
+lamlnar friction flow, where the basfc concepts of Prandtl’s
+boundary layer theory are represented
+from mathematical
+and
+physical points of view, and a method is indicated by means
+of which even more complicated
+casee can be treated with
+simple mathematical
+means, at leaet approximately,
+An
+attempt is aleo made to secure a basis for the computation
+of formulas through which
+of the turbulent friction by means
+
+vol.
+
+“l”~ber laminare and turbulent Retbung.”
+1, No. 4! Aug. 1921, pp. 233-2S2.
+
+Z,.f,a.M.M.,
+
+——.
+
+,
+
+NAOA
+
+TM HO.
+
+2
+
+1092
+
+the empirical lave of the turbulent pipe reeietanee
+.. appl-ied to other problems
+on..friction
+drag.
+. .
+IMPORT OF THE BOUNDARY
+
+MATHEMATICAL
+
+LAYER
+
+can
+
+be
+
+THEORY1
+
+The @roblem
+Ie restricted
+to tw~dimeneional
+axie
+y + O
+ie choeen as fixed boundary to which
+adheree .
+
+flowe; the
+the fluid
+
+The differential
+equatlon~ of two-dlmenelonal
+flow with
+friction can, by introduction
+of the etream function
+~
+by
+means of the formula
+
+in x- and
+y-direction)
+(u
+and
+v velocity component
+be expreesed by the elngle
+and elimination
+of the preeeure,
+equation
+
+where
+
+A
+
+defioten the
+
+operation
+
+an + aa
+
+A = —
+iYx=
+
+-=’
+
+=~
+v
+
+P = dzzaity
+of ~luid ~.
+kinematic viecoefty
+(w = viecoeity,
+The boundary layer theory refere to flow phenomena
+for which
+at same dletance from the wall the friction ehall exert no
+perceptible
+effect on the velocity field, eo that for great
+valuee of y the etream function changee Into an aseumedly
+known potential function
+$0 (x, y, t). At the wall itself
+
+both velocity
+order to meet
+
+*
+
+Component
+u and
+v
+both conditions,
+flret
+
+=*~-
+
+It ie clear
+terme
+(the
+
+cancel
+stream
+
+..-
+
+.—
+
+.——--. -.
+
+“(a*)y
+=@ +-$%-1‘s ‘)
+
+that
+
+for small
+
+out, leaving
+
+___
+
+values
+
+of the boundary
+
+._
+
+of
+
+only the etream
+
+of reference
+1.
+
+—.. .—
+
+to disappear.
+
+Y
+
+function
+
+‘A net
+In reference
+
+are
+
+on bound~ry
+
+_
+
+--
+
+1P
+
+put
+
+layer
+
+y
+
+‘2)
+
+the flret
+
+function
+
+K“
+
+flow).
+
+This
+
+layer
+
+..
+
+theory
+
+two
+Is
+
+Ie given
+
+—-.-—
+
+“
+
+,,,
+
+..—-..
+
+..—.
+
+TM MO.
+
+1092
+
+,
+
+NACA
+
+.. .
+
+... .
+
+.
+
+—-—
+
+.—---
+
+3
+
+aw =aqtl=o
+On the
+then ao defined that at the wall
+..
+. .... --- . ...
+Txm
+‘~
+beother hand, when
+v represents
+a ●m”a”llqtia-nti-ty,
+%/7
+come8 very great $or all values
+of y @iffer ing appreciably
+from zero; hence, to comply with the first condltlon - transition to potential
+flow - tt :$oaufficient
+to determine
+*Z,
+aq~
+q. JL 81-.
+for
+such a way that fi—
+In
+ay = (–)
+a7y=0
+P
+Thus it is apparent that within the boundary layer (T =
+finite) the firet two terme, outoide the boundary layer (q
+(Strictly
+very great) the last two terms annul each other.
+taken, the
+u
+component of the boundary layer becomee the
+component
+v
+u—
+velocity
+of the potential flow; for the
+the boundary
+layer flow gtvee a quantity of the order of magnitude
+which is not contained
+in the potential
+flow. )
+
+F*
+
+Introduce
+of
+
+r v
+
+formula
+
+and retain
+
+the introduction
+expansion
+
+of
+
+a+ o
+—
+
+of
+
+aF
+
+(2)
+
+In eouqtlon
+
+(l),
+
+only-the
+
+highest
+
+terms with
+
+~ = ~
+
+arn variable
+
+and
+
+‘laqo
+—
+ax
+
+of
+
+according
+
+arrange
+
+—.
+&
+instead of
+
+In powers
+Then
+
+to the formulao
+
+avl
+and laetly,
+
+coneiderlng
+
+that
+
+AA*O
+
+= O,
+
+the
+
+y,
+
+()x-
+
+=
+
+y=o
+
+o,
+
+affords
+
+and,
+
+,.
+
+after
+
+one Integration:
+
+—.
+
+-
+
+.
+
+EACA
+
+Tk NO.
+
+4
+
+1092
+
+w.=.., Jw;’
+
+,.
+
+Introduced
+
+the variable
+
+—s-~,
+
+‘r ‘ith “ aq
+
+Y = ~~
+
+being
+..
+
+t)
+
+(4)
+
+again,
+
+aau
+
+au
+
+au
+
+au
+
+= f (x,
+
+K+uz+uyvw
+
+in agreement
+
+with
+
+The function
+Since
+Y=o=
+obtained
+
+u
+
+the Prandtl
+
+equationta.
+
+f
+
+determined
+
+(x,
+
+t)
+
+is
+
+must
+
+change
+
+auo
+
+ho
+
+K
+
+to
+
+by the condition for
+?)*o
+there 18
+U. = ()
+&-y
+= 0’
+
+= f (x, t)
++
+
+(4a)
+
+‘o-x_
+
+The frictionlese
+potential flow
+follows Bernoullt’s
+equation differentiated
+along the boundary as streamline
+(P. = pressure along the wall)
+
+auo + uo—auf) =--— I apo
+—
+at
+ax
+~ ax
+
+(4b)
+
+hence
+(4C)
+
+b
+
+The significance
+of (4) and (4b) obviously
+is “that”the
+assumedly known pressure distribution
+p.
+along the wall
+which arises from the potential flow is to a certain extent
+regarded ae Impreseed field (of force) for the boundary layer
+flow; the preseure differences
+perpendicular
+to.the wall vithin the boundary layer being dieregnrded.
+It Ie this very
+essential hypotbes$s
+in ?randtlts
+theory that leads to the
+reduction of the number of equations and the arrangement
+of
+the entire problem.
+
+. . -—
+
+—.—
+
+/
+
+6
+
+To bring out the physical sense
+of the boundary layer
+theory the evidence oontalned
+in the foregoing
+equations Is
+formulated
+as follows:
+(a)
+A boundary layer thickness
+8 (EO a function”of
+x)
+y2?&
+there no perceptible
+deIs to exist euch that for
+viation occurs in the flow pattern relat~ve to the potential
+flow; eepeclally
+the x-component
+u
+of the velocity cm be
+put equal to the wall “velocity of the potential
+flow
+U.
+for
+y=
+5 (x).
+(b)
+within the boundary layer itself the preeeure
+le
+only dependent
+on x and equal to the preesure that corresponds to the potential
+flow along the wall.
+By virtue of the two assumptions
+(a) and (b) the momentum theorem in the
+x direction
+can be applied to a fluid
+volume bounded by the wall, a short piece of the line
+and two crose sectione perpendicular
+to the wall
+Y = 6 (x)
+at
+x and
+x + dx
+(fig. 1.)
+The Increaee of momentum
+IS
+equated to the resultant
+of the outside forcem, which Involve
+the preeeure difference,
+and the friction
+R
+at tjhe wall ae
+outeide forcee.
+Since for
+y = 8 the flow changee into
+frictionleee
+potential flow, the friction at the traneltlonal
+area between the boundary layer and the outer field can be
+ignored.
+Hence
+
+of the momentum con6
+n=
+a
+taln”ed h the considered
+volume;
+Ie the excees
+~U dy
+K.. I
+“a !.
+of momentum leaving the front eurface over the amount of
+8
+
+K
+b
+
+r
+1’
+
+‘pudy
+
+J
+
+momentum
+
+is the time
+
+entering
+
+rate
+
+at the
+
+of change
+
+rear;
+
+pudy
+
+&
+
+is the
+
+Inflow
+
+.
+
+r
+#
+
+“!
+
+——
+
+.
+
+..—
+
+—
+
+volume per unit length
+-----.==. -
+
+of the side
+
+a
+‘o x
+
+the momentum
+
+Indicatee
+
+pudy
+
+area
+
+Y = 8 (x),
+
+entrained
+
+with
+
+00 that
+thie vol-
+
+“!
+ume of fluid,
+
+I
+
+In laminar
+unit
+
+surface
+
+18
+
+flow
+
+the frictional
+
+E = ‘o = k ()
+*
+
+force
+
+~ = o
+
+R
+
+referred
+
+‘T = ‘hearing
+
+to
+‘tree”
+
+In the fluid.)
+Later on, it Is shown that equation (5) le
+practical aleo for turbulent flow condltlone,
+if u and
+p
+are regarded aa the average valuee of the velocity with
+TO
+respect to time and
+is expressed by a corresponding
+empirical formula.
+
+&-
+
+Eauation (5) can, of course, be derived also by integration with respect to
+Y from equation (4) with due
+It obvimsly
+yields, on the baslo
+regard to (4a) and (4b).
+of plausible
+assumption
+for the velocity profile
+u (Y)
+In the boundary layer
+(O < Y c 8), elmply a differential
+equation for
+6, that is, for the boundary layer thickness
+proceeees
+ae a function
+of x and
+t. Llmlted to stntlonary
+It affordm an ordinary differential
+eouatlon of the flret
+so that the development
+order for
+& a8 a function of x,
+of the boundary layer can be followed by comparatively’
+The suboeouent
+report by K. Pohlhausen
+simple calculations.
+(reference
+1) contains the calculations
+for a number of
+practically
+important cases, so that this method need not
+be gone into further.
+His calculations
+show that in all
+caaes computed by Prandtl’s
+partial differential
+eauationn
+the approximate
+method ensures reeults commensurate
+for all
+In this manner a further development
+practical purposes.
+of the theory Is made possible even where the solution of
+the partial differential
+equations
+Is extremely tedious, If
+not Impossible.
+LAMIMAE
+
+AND
+
+TURBULENT
+
+BOUMDARY
+
+LAYER
+
+The eimplest and practically
+most important case that
+the boun~ary layer theory deals with Is the frictional
+reelstance of a plate towed in a fluid at rest parallel to
+Taking the case of two-dlmeneional
+motion
+ite own plane.
+and referring
+the motion to the assumedly
+static plate, the
+problem Is as follows:
+The parallel flow with the uniform
+
+.—
+
+7
+
+l!lACATK MO- 1092
+
+t’
+
+vp-locity- *U i? given as a potential
+motion, the frictional
+boundary is- to start In-the origin of”the
+coordinates
+x =
+X>o
+y=o.
+The
+be
+given--by
+the
+axis
+~nd for
+Y =
+boundary layer thickness
+and the wall friction Is to be
+This problem has already been
+x.
+oomputed as a function of
+solved by Blasius (reference
+2); he found that the boundary
+
+o
+
+the friction
+layer thlcknebs
+facreasee with
+fi
+. Computing
+1 and width 1 yielde the fric~
+drag for a plate of leneth
+(for friction on both sldee)
+tional force
+
+(6)
+or, If put,
+
+as usual,
+—
+w= cf~ P Ua
+
+(7)
+
+2g
+
+~h?rgtheres~stance
+is referred
+the
+
+surfece
+
+R’ and tbe
+
+w=
+
+specific
+
+1.327
+
+to the velocity
+weigr.t of the
+
+u=
+
+z
+
+F’Y —
+Ut
+2g
+f
+
+head
+fluid
+
+U*
+Zg ‘
+Y=pg,;
+
+(8)
+
+The coefficient
+of the frictional
+drag
+cfR I;nae:f:c:;:n
+of the Reynolds number, or ‘reduced velocityn
+nondimensional
+ouantlty: veloclty 8 plate length’~ivlded
+by
+coefficient
+of kinematic viecosity
+Is introduced
+as such, so
+that
+
+Cf
+
+= 1.327
+
+(8a)
+k
+
+Blasius indicated,
+in a later report (reference 3) based
+upon measurements,
+that fortias
+(8) and (8a) are no longer
+valid for large Reynolds numbers, that rather a eudden change
+occurs in the nature of the resistance and presuniably In the
+state of flow, similar to that occurring in nipe flow at the
+critical limit.
+On the other side of the sudden change the
+resistance
+in~reases at mope than the 3/2 power of the velocity;
+hence the resi~tance
+coefficient
+in equation (7) decreases
+slower than
+—.
+T
+.-.. . - _-——-
+
+MACA
+
+TM Ho.
+
+8
+
+1092
+
+-., . —-Next, ” it .~n aosupgd that the lamlnar boundary layer, for
+which the Prandtl-Blasius
+theory gives the afore-mentioned
+reeulte,
+Is replaoed by a “turbulent boundary layer,n an
+Ss
+whioh - as for the turbulent flow in pipes - the veloclt~
+subjected .to continuous
+fluctuations
+in magnitude
+and direcThe firet consequence
+of the fluctuations
+- when
+tion.
+plotting the streamlines
+of the average flow - is that the
+shearing stress Is not caused by the sliding of the adsacent
+fluid portions slope; the portion of the shearing stress
+corresponding
+to the friction becomes small relative to the
+momentum traneport owing to the Irregular convection
+of the
+up to now, It hae not eucceeded
+supplementary
+velocities.
+to explore in some way the nature of thle momentum
+convectionapparently
+obeying statletical
+lawe - and to make the fluctuation phenomena accompanying
+the turbulent flow amenable
+In this respect the present article
+to a theoretical
+study.
+The task
+contributes
+nothing to the solutlon of the pu=zle,
+undertaken
+here merely involves the introduction
+of plausible
+aeeumptions
+for the distribution
+of the average values of the
+velocity within the boundary layer, which are based on the
+empirical law of turbulent motion In pipes
+and the application of lihe previously
+derived momentum e~uatlon to the
+It results in relatione
+of
+the boundary layer.
+equilibrium
+of
+the turbulent friction at a towed plate which are In very
+good agreement with experience,
+TEE TURBULENT
+
+●
+
+B’LOH IN Sl!OOTH PIPES
+
+The laws of flow reelstmnce
+In pipes have been the subject of an unusually
+large number of experiment.
+But the
+empirical material has not Improved much up to within recent
+date because the different
+degrees of wall roughness had been
+frequently
+ignored and the teste were not referred to the
+hyslcally
+correct parameter,
+that is, tke Reynolds number.
+formula,ee
+far, which allows for the
+? The only ree~stance
+relative roughness and the Reynolde number Is that” by R. von
+Miges
+(reference
+4.)
+In many instances no consideration
+wae
+given to the fact that the conetant velocity profile In the
+pipe ie formed only after a fairly long ‘convection
+path.m
+Blneius merits the credit of having found an empirical
+formula by analyzing
+the material and comparing the beet experiments for smooth pipes which very accurately
+reproduces
+Accordover a wide range.
+the nature of the flow resistance
+a circular pipe Ie referred
+ing to It the preesure drop for
+to the velocity
+
+head
+
+of the average
+
+veloclty
+
+~
+2g
+
+—.
+
+IiACA TM EO.
+
+1092
+
+9
+
+(9)
+where
+
+t
+
+Ie pipe
+
+length,
+
+and
+
+d
+
+pipe
+
+diameter.
+
+By this formula, which represents
+the experiments
+extremely well over n wide velocity range the preeaure drop ia
+proportional
+to the 7/4 power of the average veloclty as
+against the previously
+held conception
+that the resistance
+law above the critical velocity would approach the square
+R. von Miees incidentally
+oonjectu~ed
+that
+law fairly soon.
+contemporarily
+with Increaelng velocity,
+the ~elocity distribution over the section becomee consistently
+more uniform
+eo that the measured parabolic velocity profiles merely
+form a transitional
+phenomenon
+and that the profile varies
+continuously
+with increasing velocity (reference
+4.)
+In
+the technical
+literature
+a parabolic
+distribution
+independent of the velocity
+10 for the most part tncitly aeeumed.
+The writer concure with Von Rieee to the extent of aseuming
+a distribution
+varying with the Rewnolde number but with the
+difference
+of aeeumtng a well defined dietrlbution
+function
+ae asymptotic
+form rather than the uniform distribution,
+which the velocity dietrlbution
+approaches
+at laree !?eynolde
+nur,bere and on perfectly
+emooth walls.
+Hence, the assumption that in the tu~bulent as in the laminar zone, St le~st,
+for large Reynolds numbere for which the reeietance
+law (~)
+holds true, a similar remaining velocity distribution
+over
+the croee eection exiete, so that for Increasing throughflow
+Prandtl raieed
+volume all velocitle~
+increaae in proportion.
+the oueetion whether conclusions
+could be drawn from the em-~irical law (9) regarding
+tliie veloc~ty distribution.
+He
+found on the baele of a dlmeneion%l
+analyele that, under
+certain plaueible
+aeeumptlons,
+the reeietance
+law definitely
+defines the distribution
+of the velocity
+In the direct
+vicinity of the wall.
+The euggeetion
+for
+the following analymim goee back to a convernatlon
+with Prandtl tn the fall
+The publication
+se with hie coneent, though the
+of 1920.
+proceee of derivation
+IS eomewhat different
+from hie.
+Coneider a pipe
+veloc~ty
+in the pzpe
+
+of
+axle
+
+circular croes eection,
+(F = O)
+ie indicated
+
+If the
+by Umax,
+
+of
+the assumption
+of a velocity pro$ile
+independent
+throughflow
+volume and increasing similarly
+implies
+
+ratio
+
+u#-max
+
+from pipe
+
+Ie a definite
+
+axle,
+
+a = pipe
+
+function
+radiue).
+
+of
+
+~
+
+only
+
+the
+that
+
+the
+
+(r = dietance
+
+...-
+
+-
+
+-.
+
+,
+
+19ACA TM MO.
+
+tance
+
+10
+
+1092
+
+Hence, the first ae-sunpt,$o-qread?:
+r from the p$pe axis can be put
+
+()
+
+U=%axl+
+T ~~)
+being independent
+of
+in ‘the center all velocities
+
+the velocity
+
+On doubling
+%lSx”
+are doubled.
+
+at dis-
+
+(10)
+the velocity
+
+The second assumption
+states:
+the velocity distribution
+r = a,
+Is to depend,
+in vicinity of the wall, that 1s, near
+aside from the physioal
+constants
+w and
+p,
+only on the
+and further, on the
+distance from the wall
+q = a - r
+transferred
+to the
+shearing stress (frictional
+force ~
+70
+wall 1
+
+Hence,
+
+for small
+
+values
+
+of
+
+q
+
+Specifically,
+the quantity
+u
+Is to be independent
+of
+for small values of
+the pipe dimensions,
+that is, of
+a,
+This assumption
+Is based upon the plausible
+concept
+n.
+that the velocity distribution
+next to the wall is independent of the other boundaries
+of the flow, so that a
+definite relation e~lste between the friction on a wall element and the Immediately
+ad~acent velocity distribution.
+Visual~ze
+eguatlon
+(11)
+developed by increasing powers of q;
+the first term of the development
+to read
+
+x
+
+to be defined
+
+later.
+
+The third assumption
+contains the empir~cal reelstanee
+on doubling the velocity the pressure drop and the
+law:
+Se to be Increased as
+shearing stress at the wall
+To
+1s27/4.
+The dimensional
+equality of the left- and right side
+f
+contains
+of (ha)
+can obvtously be maintained
+only when
+the quantlttee
+also only In powers; for, on
+M* P“S TO
+v
+o
+bearing in mind that
+have the dlmeneions
+of
+and
+F
+T
+
+n
+
+-
+
+1’
+
+7
+
+-
+
+—
+
+‘“
+
+tiACA TM MO.
+
+1092
+
+11
+
+velocities,
+it IEI readily apparent that
+dimensionally
+correct combination
+Is
+z +
+
+u=B~
+
+()
+
+B
+
+is a nondimensional
+
+the only poss Sble
+.
+
+r:’.
+
+-7r-
+
+P
+
+where
+
+-—
+
+nx
+—
+()
+v
+
+(1%?)
+
+constant.
+
+On the other hand, since
+u
+Io.creasee according to (10)
+TO
+SLCIn proportion
+to the throughflow
+volume; whereas,
+cordlng to the reslstanoe
+law increa~es with the 7/4 power
+of the throughflow
+volume, the relation
+I+x
+
+= 4/7,
+
+x = 1/7
+
+(13)
+
+2
+
+must
+
+apply.
+
+The first term of a development
+of the veloclty
+obt’ained as a function of the wall dietance
+
+is thus
+
+“=’(34’7
+(9”7
+U(n)
+or, with
+denoting the velocity
+imity of the wall, the shearing strese
+TO
+
+=
+
+(12a)
+
+distribution
+
+In prox-
+
+1
+—pu
+
+B4/7
+
+“;yo($)
+
+B
+Is a universsl
+constant valid for smooth walls the
+magnitude
+of which is obviously contingent upon the atatietlcal law of the turbulent fluctuation
+euullibrlum.
+It is somewhat surprising
+at first to find the differential auotient at the wall to be Infinitely great.
+Since
+no momentum
+convection
+can occur on a smooth wall because
+both velocity
+components
+disappear,
+the shearing force must
+be eaual
+
+to the frictional
+
+force
+
+au
+
+w ~.
+
+This
+
+expression
+
+should be infinite according to eauatlon (12a).
+The matter
+is explalned, however, by the fact that the eau%tions (l?)
+
+[.
+
+-
+
+MACA
+
+,-.
+
+I
+I
+
+i:!
+I
+
+.
+
+–
+
+TM EO.
+
+1092
+
+12
+
+and (128) must be regarded as an asymptotic
+expreselon for
+tlie’-velocity.dietributriozi at”>inf initely lmrge Reynolds numhers just ae the power law for the flow resistance
+represents
+an asymptotic
+law for absolutely
+smooth walls and for very
+The true velocity dietributlon
+Is
+large Reynolds numbers.
+to
+obtained by drawing a tangent with finite slope, say,
+the velocity
+
+curve,
+
+so that
+
+7 = k %
+‘compare’ ‘0’ ‘*
+ample, the Inter eetlng measurement
+in reference
+5.)
+It ie
+readily apparent that the pooint of contact of thie tangent
+q=o
+is ehlfted to the point
+with increasing Reynolde
+But it appeare that equation (12) Iteelf represents
+numb er.
+the velocity distribution
+with sufficient
+aocuracy for moderate Reynolds numbere.
+
+I
+/.
+
+The beet experiments
+on the velocity distribution
+In a
+circular pipe were undoubtedly
+thoee made by T. E. Stanton
+(reference
+6), first, because he originated the use of very
+fine pitot tubes in velocity measurement,
+and eecond,
+he
+employed a very long etraight entrance section ahead of the
+test section, thus eneuring that the measurement
+fell In
+the zone where the velocity profile no longer varied perFigure 2 shows Stantonss velocity values (ratio
+ceptibly.
+of local velocity to pipe axis velocity)
+against the wall
+It is seen that –
+distance,
+both on a logarithmic
+scale.
+apart from the first test point, 0.25 millimeter
+from the
+milliwall, so that the indication of the pltot tube of 0.33
+meter In diameter no longer seems reliable
+- that the test
+points lie very accurately
+on a straight line of 1/7 slope.1
+For the further applications
+quantity B In (128) and
+(12b), which according to the aesumptlons
+for
+smooth eurfaces
+signifies a universal
+conetant of the turbulent flow
+Por this purpose It is
+next.
+regimes must be determined
+really neceeeary
+to know the total velocity distribution
+from
+the wall vicinitv to the center of the pipe, whereas the formulas (128) and {12b) are valid, for the present,
+only in wall
+The chosen method of calculation
+Included the use
+proximity.
+of several appropriate
+interpolation
+formulas which *ntlefactorlly reproduce the velocity dletrlbutlon,
+ae measured
+by varioum experimenters, and change to eauatlon (1%)
+at the
+wall.
+lIt Ie to be noted that Christen proposed a veloclty
+distribution
+formula according to which the velocity
+is proportlonal
+to the 1/8 rather than 1/7 power of the d5etance
+from the wall (reference
+7).
+A detailed
+presentation
+of the
+various distribution
+formulae Is found in Forchheimer’e
+work
+(reference
+8) ae well as In -belts
+report (reference 9).
+
+‘
+
+—
+
+—.
+.i
+
+HAOA
+
+T?! EO.
+
+13
+
+1092
+
+(8) An extreme case occurs
+when the formulas which lndlcate the velocity
+It-proportional
+to the 1/7 power of the
+dietance from the wall are continued to the pipe center.
+Therefore
+
+u “ -FFY’7
+or for wall
+
+(13)
+
+proximity
+
+(3’” =‘max $
+
+u= ‘(y’
+Considering
+
+=‘max (’-:)’”
+
+the relation
+dp
+
+z ‘a
+
+a
+
+= 2naTo
+
+n
+
+and
+
+existing between the pressure drop
+of
+the flow resistance
+calculation
+
+To
+
+=
+
+y
+
+ma
+
+and the wall
+by Blas5us’s
+
+stresn,
+formula
+
+occurring
+The ratio of average veloclty
+v,
+formula, to maximum velocity 1s, b~ (13),:
+
+the
+given
+
+In BlnsiuR’a
+
+v
+
+—
+= 0.816
+‘max
+1/4
+
+Thus
+B
+
+with
+
+A = 0.316
+
+is
+
+B“
+
+(6)
+~
+v
+
+the value
+
+for the conmtant
+
+‘I’’(+ )4”0=8” = 8=57
+
+(b) A better approximation
+to the measurements
+Is
+afforded In the case where the velocity profile at the pipe
+This is beet obtained by
+center is ‘roun&ed Offm a llttle.
+the formula
+
+.
+
+—
+
+--
+
+... .,-,
+
+..
+
+(1-(yj”- #,
+
+u .= wax
+
+( 13E)
+
+n=l
+can be choeen arbitrarily;
+Where the exponent
+n
+Fi@re
+3 contains a number
+obviously leade back to (1 S).
+of measurement
+of different
+experimenters
+along with the
+1.25, and 2. The test points lie
+three curvee for n = 1,
+~=1
+and
+n = 2.
+almost without exception between curves
+n = 1.25
+Repeating
+the above calculating
+proceee with
+and
+B
+amounte to
+n=2,
+the conetant
+.
+B = 8.62
+
+with
+
+n = 1.25
+
+B = 8.82
+
+with
+
+n = 2.00
+
+.
+
+average velocity
+—
+are 0.838
+maximum velocity
+fOr
+n = 1.25
+and 0.875 for n = 2. The moat reliable
+measurement
+give 0.84.1
+l’rom this it Ie concluded that (13)
+with n = 1.25 to 2 represents
+the conditions fairly accuB = 8.7
+rately, tao that hereinafter
+is generally u~ed.
+The valuee
+
+Thus
+
+of the ratio
+
+eouation
+
+(12a)
+
+must
+
+be written
+
+‘=’(3’7
+
+u=
+
+If the shearing streee
+‘rO 1s expreseed
+the velocity,
+equation (12b) reade
+
+To
+
+three
+
+=
+
++
+
+( 14a)
+
+(:s”
+
+as function
+
+of
+
+‘::0{’”(:)”4}
+
+With the values of
+B
+obtained on the basle of the
+Interpolation
+formulae, the eouation would read
+
+lAIso worthy of mention are the measurements
+by G. J.
+Williams (reference
+10) and G-rebel (reference
+9)? where
+the proportionality
+factor decreaeee a llttle with lncreas–
+Ing Reynolds numbers and then approaches
+the llmiting value
+This would favor the simple Interpolation
+formula
+0.811.
+higher values (up to 0.8~) also
+under (a) . But eubstantlally
+occur, where the effect of entrance length and roughnese have
+not yet been fully explalned.
+
+.
+
+liACA TM HO,
+
+1092
+T
+
+“
+=
+
+15
+
+.
+p llm
+n = 0{’’(s”}
+
+0.0225
+
+( 14b)
+
+as the general e~rese ion for the wall friction
+in case the
+velocity dlstrtbutlon
+u (TI) ie known in the vicinity of
+l!he constant tn equation (14b) amounts to 0.0233
+the wall.
+in
+the pipe
+by (14), as againet
+for the velocity dlstrlbutlon
+and
+n = 2, by (14a).
+0.0231 and 0.022~ w3th
+q = 1.25
+WSL
+
+ICAT ION TO HEAT
+
+TRANSFER
+
+Eor compar~ng theee formulas with the representations
+expreeelng
+the turbulent
+friction by an apparent
+incre=oe
+In friction coefficient
+(reference
+11) the shearing etrees
+transmitted
+In a layer distant
+TI from the wall ie
+(15)
+If u
+in the pipe
+calculated,
+
+u,
+
+as a function of TI and the pressure gradient
+are known, the function
+g can be explleltly
+Hear the wall
+T. must
+become
+To “
+du
+Considering
+(14a) and especially
+the relation:
+7 rI —
+=
+d~
+yields for
+g:
+g (~~ W, p) = 0.805
+TETO;
+
+and putting
+.
+
+equilibrium
+
+To
+p ()
+7
+
+as follows
+
+for the circulsm
+
+pipe,
+
+3/7
+
+0/7
+
+1 /7
+Y
+
+from the
+
+n
+conditjon
+
+of
+
+givee
+3/7
+
+g(n,
+
+k,
+
+p)
+
+=
+
+0.805
+
+~ (:)
+
+#7
+
+( 15a)
+
+f/7
+
+1
+1
+1
+!
+
+I
+
+q
+Y being eolely a function of
+which
+m.
+~he relation (15a) is applicable
+to
+
+it Ie aesumed
+independent
+location.
+
+!
+
+that the
+of
+
+ratio
+
+the velocity
+
+of
+
+and
+
+shearing
+
+becomee
+any cross
+
+rI for small
+eectlon if
+
+streseem
+
+Is only a functson
+
+~.
+
+Is
+
+of the
+
+.
+
+‘?
+
+.—
+
+quantity
+g is a kind of “turbulent friction
+cient” or better expreesed n ‘turbulence
+factor.”
+
+.—
+
+—.
+
+coeffi-
+
+The portion of true friction at larger Reynolds numbers,
+to an extremely thin layer at the wall, is vaniehlngly
+small, hence the shearing strese is to be regarded almost
+convection,
+exclusively
+as an average value of the momentum
+This identiflca%lon
+is of Intereet because It makes It
+possible to develop further the analogy between frictional
+resistance
+and heat transfer In turbulent flow, dlncovered
+by Eeynolds
+(reference
+12) and Prandtl (reference
+13).
+Aeeuming
+that the momentum transport and the heat transfer
+is accomplished
+by the same mechanism
+of the Irregular molar
+fluctuating
+motion, evidently resulte in two analogous formulas for the shear$ng force transmitted
+perpendicular
+to the
+flow by ‘turbulent momentum conduction”
+per unit of surface
+by “turbulent
+heat con‘ and for the heat volume transferred
+duction:fl
+up
+
+( 158)
+a = 0.805
+
+()
+‘o
+—
+D
+
+3/7
+
+v
+
+1/7
+
+6/7
+
+Y—
+
+d(cea)
+dy
+
+CO = heat
+where
+c = speclf:c heat,
+e = temperature,
+hence
+Formula
+(15a)
+may
+be
+continued
+up to
+content per unit maOs.
+Sf the same proportionality,
+the wall with good approximation
+of the “turbulent
+momentum and he%t
+assumed for the mechanism
+tranafer,H
+exists for the tranafer of molecular
+momentum and
+heat , that 10, for the lamlnar 5nternal friction and for the
+Ae previously
+pointed out by Prandtl,
+true heat conduction.
+thie is evidenced by the fact that for the respective
+fluid,
+the relation
+
+exists
+
+between
+
+heat
+
+friction
+
+W, and specific
+
+heat
+
+*=3
+A
+coefficient
+
+conduction
+c.
+
+k,
+
+Thts oonditlon 18
+
+1
+approximately
+I
+[
+1
+
+complledwith,
+
+in gasee.
+
+If
+
+9~
+
+dlffere
+
+very
+
+much from unity, as, for example, for water, the formula may
+be extended only to the boundary of the lamlnar layer next
+to the wall; while the effect of thle layer = ae will be
+explained elsewhere - can be expreaeed by a limitlng condition.
+
+--
+
+NACA
+km
+, .,
+:,
+,..
+
+!1
+,:
+
+TM MO.
+
+17
+
+1092
+
+.-.
+The forntllan
+f-15a)
+enables the heat transfer to be computed in all cataea, where the “veloo~ty f~eld” of the turbulent flow 1s applicable
+to the average valuee Sn t~me, and
+With thih formula, H, Latsko (reference
+is known.
+hence
+g
+important ca~es of
+14) worked out a number of technically
+It succeeded,
+in particuheat transfem to turbulent flowe.
+lar, In showing, that it So tncorrect to speak of a “heat
+that the
+tranefer faotor,a ae 3s cuetomary in engineering,
+heat tranefer iii rather conditional
+upon the total arrangeIt alao rnucceeded Sn explaining
+the effect of the
+ment.
+indlvidu~l factors and 00 to organise the ooaamiori~lly conIn thla respect the calcutradictory
+experlmantal
+me4terial.
+lating poesibilltlee
+of heat tranefer processes
+appear subetantlally
+extended bepond the Prandtl anqlogy oonclu~iong,
+6ince for the latter n oomplete arraement
+In velocity tmd
+temperature
+field had to be assumed, while th~ formula of the
+between both also amenapresent report makes the differences
+ble to calculation.
+
+TURBULENT
+
+BOUNDARY
+
+LAYER
+
+OH THE 3’L4T PLATE
+
+The eubseouent
+calculation
+are based on the previously
+derived eouatlons (14a) and (14b) ~ccordlnp to whi~h the
+“
+velocity dietrlbution
+ae a function of the wall dietance iB
+
+U=8.7(:7’
+
+(:)’”
+
+( 14a)
+
+..
+
+~f
+
+I
+
+To,
+
+given,
+
+I
+
+the shearing atreee transferred
+while the shearing stress
+To is
+
+[’
+
+la
+
+1/4
+To = 0.0226
+
+i
+
+to the wall
+
+f#
+
+:
+
+()
+
+(lAb)
+
+u(q)
+being the velocity
+dletribution
+in the neighborhood
+of the wall.
+TO apply these relations
+to the ‘turbulent
+boundary layern requires a corresponding
+formula for the
+.
+velocity distribution.
+With
+8 = boundary layer thicknese,
+u=
+velocity
+in undisturbed
+flow, and
+Y = distance from the
+wall, the elementary formula reads
+
+[
+
+~
+Ussu-.
+() 8
+
+11
+
+1/7
+
+(16)
+
+.—-
+
+— .. -
+
+.- Equating..,
+
+that
+
+to
+
+is, the ohearing
+
+To
+
+,.0hvioun17 @v,e.Y .
+
+(Ma)
+
+stress
+
+=
+
+1 /4
+
+v
+
+()
+
+fl.0225 p@
+
+(17)
+
+m
+
+Equation (17) y~elde the formula that must be used In
+the momentum
+equation of the boundary layer as the frictional
+force in order to obtain a theory of the turbulent boundary
+layer whleh i6 to replace the Prandtl-Blataiuu
+theory for
+the laminar boundary layer.
+Placing,
+
+In fact,
+
+equation
+
+6
+d
+z’
+
+(17)
+
+in equation
+
+&
+
+Puady - U :
+
+1/4
+
+pudy = 0.0225
+.
+[
+0
+
+J
+0
+
+Determination
+
+of the
+
+pua
+
+~
+()
+
+.
+
+of (16) glvee
+thicknes~
+
+The eolutlon
+
+the differential
+
+of this
+
+“
+
+integrale
+p“
+
+meane
+layer
+
+(5) gives
+
+equation
+
+and }2”
+
+euuatlon
+
+by
+
+of the boundary
+
+reade
+4 /s
+
+,-
+
+Y?
+()
+
+or, for the
+
+4’5(0.022,)4’’(9”5
+
+7
+
+length
+
+u
+
+x
+
+(18)
+
+1
+(l@a)
+
+“
+
+-.
+
+—.-.
+
+EAGA
+
+--.
+
+—
+
+TM HO.
+
+.--—
+
+--
+
+1092
+
+19
+
+to
+G*
+.. .. . The
+,. laminar boundary layer grows proportional
+#/5
+the turbulent
+iayer prop brtioial to
+# ●ccording to eountion (18).
+Now
+the frictional
+resistance
+of a plate of length
+I
+cam be calculated,
+either by integration
+of the frictional
+forces along the plato ~ by applying the momentum theorem
+The reeietance
+(both etdee)
+*=1.
+to the end section for
+follows ae
+
+.
+
+(19)
+Referring
+
+the reaiatando
+
+to the velocity
+
+head,
+
+gives
+
+Cf
+the Reynolds
+
+number
+
+through
+
+R
+
+the formula
+
+the resistance
+
+coefficient
+
+( 19a)
+
+= 0.072 ~ o.a
+R
+bein~ put
+
+at
+
+cf
+
+U2
+R = —.
+v
+
+1
+
+~gluw 4 contatne the test data by ~ibbons and Wleaelaberger
+(reference
+15) on com aratlvely smooth plates, the line for
+Cf according
+to (19a T , the Reynolde
+number and the reaiatance coefficient
+are given on a logarithmic
+scale.
+The agreement ia exceptionally-good.
+Gebera (reference
+16) obtained
+a slightly higher exponent.
+It la auapected that towin~ of=
+very long platea ie accompanied
+by inevitable vibratlona
+which permit the realatance
+to increaae
+rapidly.
+——
+by letter, Prandtl pos‘According
+to a communication
+aesaed formula (19a) before the writer did.
+He indlcatea
+(cf. Ergebniaae,
+vol. 1) a elmilar formula with a aupplementarv
+term
+which allowa for the poaalble existence of
+lamlnar flow a$ the front edge of a suitably eharp plate.
+teats
+After determination
+of the numerieal factora from 0~~::
+1
+cf = 0,07~ —
+by Oebera, he gives the formula
+Ro.a - — R’
+where the numerical factor In the e~cond term generally depends upon the degree of aharpenlng,
+and should be practically
+vanlahingly
+small for a rounded-off
+leading edge.
+
+HACA
+
+TM HO.
+
+20
+
+.
+
+109?
+
+An equnlly good confirmation
+is afforded
+by the veloclt~
+Thus the
+measurements
+In the vlcinlty of a toved board.
+points in figure 5 represent the measured velocity distribution perpendicular
+tc a board towed in water as a function
+of the wall dlsta~ce and specifically
+in a section 8.!56meters
+The eolid line gives
+behind the front edge (r@ference17).
+the velocity distribution
+according to equation (15), the
+boundary layer thickness was computed by equation (18).
+A comparlaon
+of the test data with the curve aocording
+to
+above all, that It Is In no way
+equation (16) dtscloses,
+necessary.to
+assume a velocity jump at the wall, as ccmThe prssent
+monly reported
+in the technical llterature~
+formulas rather repr~aent
+the rapid decrease !n velocity
+next to the wall by the variation
+of the power
+curve with
+the exponent 1/7 correctly and unrestrictedly.
+LA1411!?AS
+~LO}l 011 A ROTATING
+
+DISX
+
+As a further illustrative
+example of applying tho ❑ ethods obtained for the calculation
+of laminar and turbulent
+frictlonml
+resistances,
+the case of a uniformly
+rotating
+The laminar state of flow caused
+disk 18 to be analy~ed.
+by a rctatlng flat disk Is of special interest for the reason that it represents
+one of the rare crises in which the
+differential
+equatinns of the viscous fluids can be inteIt offers an immediate check
+grated without omrcissions.
+on the accuracy with which Prandtl’s
+boundary layer eauations yield an approximation.
+The problem
+
+is posed
+
+as follows:
+
+The half space
+X>o
+shall be filled with llouid.
+XEO
+The boundary plane
+rotates about the x-a~is .wlth
+?i’hQt tS the
+StRtCl
+of
+the uniform rotational
+speed
+w.
+motion in the half space
+X>o
+with consideration
+to the
+fluid friction?
+.
+
+Introducing
+cyltndricnl
+coordinates
++,-d, x end deneting with
+the velocity components
+In radial,
+cr~ ct~ cx
+tangential
+and axial direction,
+and with
+p
+the hydrostatic preseure,
+the differential
+equation of the flow in
+cylindrical
+coordlnatee - when,
+as. f~llows from reasons of
+symmetry, all velocities
+are Independent
+of 6 - read:
+
+\
+
+--
+
+.
+
+04
+NACA
+
+TM EO:
+
+acx
+ax
+
+2CX
+
+—=
+
+—+CX
+
+c
+r
+
+ar
+
+21
+
+1G92
+
+--
+
+and the equation
+
+1 ap
+(a’cx
+—+u~~+rar
+p ax
+
+I acx aacx~
+-—
+‘TJ
+J
+
+of continuity
+
+acr
+
+Cr
+
+acx
+
+br
+
+r
+
+5X
+
+—+—+—
+
+=0
+
+(70a)
+
+The construction
+of the eouations shows
+that the system (20) and (20a) can be satiefled by the formula
+
+Cr = rf(x),
+
+ct = rg(x),
+
+Cx=
+
+h(x),
+
+p = p(x)
+
+f, g, h
+thus yielding for the three functions
+dinary simultaneous
+differential
+equ~tlons
+d~f
+
+f&-g=+h~=v—
+dti
+while
+
+the
+
+dg
+
+dxa ‘
+
+the or–
+
+dzg
+
+dh
+—+2f.
+dxa ’ dx
+
+2fg+h—=v—
+dx
+
+(21)
+
+o
+
+(22)
+
+equation
+
+●
+
+arising from
+the pressure
+
+h —dh =-- l~+wfi
+p dx
+dx
+
+(23)
+dxa
+
+the third eauatlon of the system
+dletribution
+p(x) .
+
+(20)
+
+defines
+
+51nce the fluid Is to poaee~s no rotation at Infinity,
+but Is to adhere to the rot~.i~~g wall for
+x = 0, the eyetem of the boundary conditions reads
+“ ““
+f(o) = o
+g(o) = w
+h(0) = O
+
+f(m) = o
+g(m) = o
+
+———. —
+
+I?ACA TM ~Oa 1092
+
+22
+
+The function
+h(x)
+has m finite limiting value for
+Xsm,
+This
+means that there ie a steady inflow against
+---.
+the rot~ting
+w~ll as 1s to be expected for reasons of
+of the fluid, the roOwing to the adherence
+continuity.
+tating wall acts l~ke a kind of centrifugal
+fan.
+Hext to
+the wall the fluid is continuously
+car~ied to the outside,
+to be replaoed by axial inflow.
+For nondimensional
+
+repregentatlon
+
+!! =x-
+
+r
+
+W
+
+(24)
+
+V
+
+Is introduced aa independent
+variable
+f, g, h
+tke functions
+:’ s’ 9
+f
+f = -t*=-l_ ‘h=—
+w
+(u
+so that
+
+with
+
+(22)
+
+nnd
+
+In place
+
+of
+
+h
+
+(24a)
+
+e
+
+becomes
+
+the boundary
+
+conditlona
+
+so that the equations are independent
+of all special data
+The similarity
+laws of the problem are
+of the problem.
+Since
+readily apparent.
+g(~)
+Indicates the proportlon–
+ality
+.-
+
+factor
+
+of the rotative
+
+speed
+
+at distance
+
+x = t~
+
+from the wall to speed of rotation
+w,
+It ie clear that
+with increasing velocity only one layer at the wall manifeita perceptible
+rotational
+epeeds, which decrease with
+Increafaing ve~oclty
+
+and deereaqing
+
+viscoeity
+
+as
+
+On the other hand, It follows from the last of
+(24a) that the axtal l~flow velocit~
+Increases
+as e.
+
+F ‘3“
+equation
+a$ $~flnlty
+
+..
+
+—-
+
+liACA TM EO.
+
+23
+
+1092
+
+The equation system (22) can be eolved by any numeriHowever,
+it Is precal method or by eer lee expane%on.
+ferred to apply F@hlhausents
+method described
+Sn reference
+1, far a first approximation.
+It is assumed that the function
+Z
+and
+g
+at a
+8 from the wall are already very little differdletance
+zero.
+From (21) it follows that the ‘boundary
+ent from
+layer
+thlckneesn
+In the present caee is constant along
+the wall, henee
+6
+Is Independent
+of !=
+
+.
+
+Integration
+of the first two eauation”e of (2?a) between
+X=8,
+that la, C = fl~~=
+*o, elvee
+k = ~ and
+
+1
+(25)
+
+i
+I
+
+J
+
+Part~al
+l~te?rztlon
+of the eecond integral, while
+be%ring In mln~hthat
+according to the last eouatlon of the
+system
+
+(2?a)
+
+~-
+
+cun be replaced
+
+by - 2f, finally
+
+affords
+
+Put
+
+P
+
+ae approximate
+exprees ione for
+f and ~w
+nifies a con~tant that 5s to be ~etermlned.
+It wae borne in msnd that
+
+where
+
+a
+
+si#!-
+
+I:
+
+EAOA
+
+,..
+
+..
+
+-:..
+
+TN NO.
+
+1092
+
+24
+
+-
+
+and also,
+
+(26)
+
+as is readily
+
+liumerical
+gives
+CC
+
+r
+
+seen from
+
+calculation
+
+of the
+
+gatlg = go [0.0301aa
+
+(22a),
+
+that
+
+integrals
+
+- 0.00326a
+
+contained
+
+Sn
+
++ 0.00159]
+
+~~
+
+gad~
+.
+J
+
+.r
+0
+which,
+s and
+
+= ~0 0.2357
+
+\
+
+(28)
+
+co
+—fgd~
+
+= go [0.0607a
+
+entered
+to
+
+- 0.00567]
+J
+
+in (26),
+
+The numerical
+
+gives
+
+solution
+
+a = 1.026,
+
+two
+
+ordinary
+
+equations
+
+for
+
+g$ves
+
+to = 2.50
+
+(70)
+
+On the baaie of these data the boundary layer thicknese
+8 and the axial inflow velocity
+Ca at Infinity
+Obviously
+can then be computed.
+
+. . ..-
+
+----
+
+—...-
+
+-
+
+——
+
+..
+
+—-
+
+—.
+
+$’
+NACA
+
+TM NO.
+
+25
+
+1092
+to
+
+8 = to &=
+
+2.58
+
+-
+
+._—.
+
+Assume ,
+
+for
+
+—-.
+
+centimeter
+..=
+
+.
+
+per eeeond
+
+to (31),
+
+and the axial
+
+air ao fluid
+
+v = 0.14 equare
+
+with
+
+and an rpm = 600 per minute,
+
+second;
+
+then
+
+would be
+8 = 0.122
+
+the boundary
+
+layer
+
+cubio
+
+centimeter
+
+centlmetem
+
+per eeaond
+
+inflow
+
+velocity
+
+cm=-
+
+7.6
+
+(31)
+
+~~d~ = 0.708~
+. .
+
+- Cm = ~
+-f .
+0
+
+example,
+
+= 62.8 per
+
+60
+according
+
+:,
+
+f
+
+thmt
+
+10,
+
+thioknees,
+
+The mast important problem is the calculation
+of the
+A@ewing
+the wall bounded by r = a,
+frictional
+reeletence.
+the oaee IEI obviously that of a rotating diOk with r~dlus
+a.
+X=o
+However, the faot thet the outer partO of the plane
+are missing,
+cannot be without some effect on the motion of
+the fluid, although it in to be preeumed that this effect
+remains insignificant,
+when bhe thickness of the boundary layer
+relative to disk radius is very mall, av is almost c.lway~thecaseb pmctlce.
+On these aseumptlorie, the moment of the shenrlng forcee acting on the disk Ie simply integrated from
+r = O to r = a,
+or what amounts to the same thing, the angular momentum leaving in unit time with the flu$d at the cylindrical
+eurfaoe
+Is computed and equated to the moment of the frictional
+r =a
+The angular momenforceO.
+The latter process ie preferred.
+tum of the fluid leaving Et the cylindrical
+eurface in unit
+time ie
+6
+D = 2waap
+
+cxcrdx
+
+#
+
+or, by (21),
+
+(24),
+
+r
+
+(32)
+
+= M
+
+and (24a)
+
+to
+M = 2wa4pw s la Vlla
+
+ing Its value
+
+~d~
+
+r
+0“
+from (28)
+
+E
+
+f
+o“
+
+Ec
+The integral
+
+Qd
+
+has already
+
+gives
+
+been
+
+computed.
+
+—.
+
+MACA
+
+TF NO.
+
+26
+
+1092
+H = 0.9% L4pVz’a
+
+where
+
+U = EUI
+
+is the elroumferent
+
+LU3’a
+
+ial velocity
+
+n=?
+
+and
+
+Equation (33) must, of oourse, be
+iFI the Reynolds number.
+used twice, to obtain the reaietanoe
+of the disk exposed to
+flow from both eides .
+
+FE IC!CIOliAL R3S 19TAHCE
+
+OF ROTAT IHG S)ISK IN TURBULENT
+
+FLUID
+
+KOTXO19
+
+The relation governing (33):
+a frictional moment proportional to the 3/Z power of the rotational
+epeed at higher rota–
+tional velocities
+is not borne out 1P praotiee,
+On the con–
+trary, a taubstantlally quloker increase
+In #’fictional moment
+la recorded with the rotational
+velocity.
+So the assumption
+im made again as for
+the towed flat plate that a turbulent
+boundery layer ie Involved, and an attempt 18 made to secure
+an approximate
+value for the boundary layer thickness and the
+frictional
+resistance
+by applying the momentum equation.
+5’or the rotating disk
+quired, one In the radial,
+tion.
+Employing
+the came
+and adding
+?r
+and
+Tt
+per unit surface
+redial direction
+
+two equilibrium
+condltlone
+are rethe other in the tangential
+direc-
+
+not~tion ne In the preceding
+(fig. 6) for the frictional
+
+at the wall,
+are:
+
+the momentum
+
+ouantltiee
+
+section
+foroes
+In the
+
+(a) E*cess of outgoing momentum auantity at the cvlin–
+drlcal surface
+(r + dr)8
+(for an arc element of openlne
+angle 1] over to the incoming momentum quantlt~
+at area
+r~
+
+& {r~c~dx~dr0
+
+.
+
+(b) The radial compupent of a respect Ively Ingoing and
+outgoing momentum quantity at the front surface (e ual to
+the centrifugal
+foroe of the rotat$ng fluid volume J
+
+NAC4
+
+TM HO.
+
+1092
+
+-(fj’’%’d’)
+‘r ~
+
+~
+
+,,
+
+.
+
+-
+
+0
+
+These momentum
+the shearing foroe
+
+p
+
+auantlties
+Trrdr;
+
+must
+hence
+
+be In equilibrium
+
+with
+
+&{ra/c,adx}-
+
+(34)
+
+P/ctad. = - .rr
+
+o
+
+In tangential
+direction the difference
+of the turning
+moment of the momentum leaving at the cylindrical
+surface
+can be ccm2nrd
+and entering at the surface
+2w(r + dr)8
+puted and equated to the turning moment of the frictional
+forces acting on the circular surface.
+
+an&{raf.rctdx}=
+
+(35)
+
+-Tt%rra
+
+o
+
+are- according
+The formulan for the velocity distribution
+to the results of the section Turbulent Elow in Smooth Plpee.
+
+‘r
+with
+
+for
+
+due consideration
+
+that
+
+x=()
+
+Cr = O,
+
+lVoW the
+
+integrals
+
+‘a
+Coa6
+Cr d. s 0.207
+/
+
+—
+
+.=&
+
+Ct = rw;
+
+for
+
+(34)
+
+and (35)
+
+in
+
+8
+
+i
+
+-(:)1”
+] (36)
+Ct = ‘w [1
+
+“J’N(
+l-3’
+
+Cr =Ct=o
+
+can be evaluated:
+6
+
+8
+
+,
+[f
+
+ZWCoa, ctadx = 0.027t5raUJa8
+crotdx = o.06tn
+f
+
+;
+
+—
+
+o“
+
+—.
+
+—
+
+-—-
+
+(37)
+
+—.
+
+.:
+?
+3
+
+.=-
+
+MACA TM MO.
+
+,,
+.
+
+—
+
+1092
+
+28
+
+Further, put. in conformity with the aesumptlons
+mea”tiure of tirbuleht friction eauation (14 b).
+
+‘t
+
+by combining
+the friction
+
+= 0.0225
+
+p(ra))“4
+
+-[1+
+
+equatlone
+
+(34)
+
+on the
+
+(:)”]””
+
+the velocity
+components at the wall
+formula to the reeultantP
+
+With this
+equatlona
+
+—
+
+and (35)
+
+d
+0.0661r3wco/3
+1“
+; s 0.0225
+r’wa (~’”
+-[
+dr L
+..
+
+and applying
+
+give the two differentl~l
+
+[1+
+
+(;}]’”
+
+The equationa are satiefied
+If the relationship
+between
+boundary layer thicknese and axial distance
+r
+is put ae
+
+(38)
+
+and which gives two ord~nmry equations
+gous to the equation system (29).
+
+for
+
+a
+
+and
+
+B
+
+analo-
+
+The equations
+
+0.7456
+
+aa~ - ().0278 ~ = - 0.0225
+
+0.3133
+
+aa
+~ (*)’”(,
+
+C@ = 0.0225 (;y”
+
++ _ly’”
+
+(I+m.,”’e
+
+(39)
+
+I
+
+-.
+
+—
+
+—.
+
+.. .
+
+—
+
+—-——_
+
+-..
+
+—-
+
+“
+
+— .~
+
+..
+
+..—
+
+>
+
+..
+
+NACA
+
+T)l EO.
+
+1092
+
+given
+..
+
+after
+
+division
+4 ...’---.- --1.0589
+
+%9
+
+The numerical
+
+.
+aa - 0.0278
+
+oolution
+
+= O
+
+gives
+1/6
+
+a = 0.162
+With
+
+these
+
+and hence
+
+figures
+
+the boundary
+
+layer
+
+v
+—
+ram
+
+l/15
+
+6 = 0.462
+
+The section
+in the preoedlng
+
+modulue
+chapter
+
+r
+
+()
+
+orctdx
+
+= 0.0364
+
+a=map
+
+/
+6
+and
+
+the friction
+
+for both
+
+M
+
+=
+
+th$oknese
+
+becomes
+
+can be computed by the method given
+or else based on equation (35);
+
+b
+M = 2maap
+
+(40)
+
+B = 0.462 ()~
+al
+
+sideO
+
+0.0728
+
+v
+1/6
+—
+()
+a aw
+
+(41)
+
+of the disk
+
+v
+—
+a%
+
+()
+
+aOuap
+
+1/5
+
+(41a)
+
+on the towing
+reelgsance
+In accord with the calculations
+of plates all friotlonal
+resistances
+are then referred to the
+velocity equare and velooity head, respectively.
+With
+U =
+circumferential
+speed of the disk, the moment Ie
+
+X/B
+
+Ua
+
+M=Oo146Y—a3
+
+~
+
+(42)
+
+()
+
+2g
+
+.
+
+or the reeietance
+Reynolde
+
+number
+
+ooefftclent
+of the dlek
+
+82
+
+ae a funotlon
+
+of the
+
+R = ~
+1
+
+‘f
+
+= 0.146 —
+‘m
+
+(43)
+
+0
+
+i,’
+
+———
+
+- -
+
+lVACA TH
+
+HO.
+
+l’igure
+
+---
+
+—-—
+
+30
+
+1092
+7 shows
+
+of
+
+plotted
+
+R-
+
+.both.on”a-”lo’garlthmlc scale.
+resistance
+coefficient
+
+against
+
+the
+
+The plot
+
+Reynolde
+
+also
+
+numbers
+
+contains
+
+the
+
+(44)
+
+secuxed from
+by equation
+
+the calculation
+(33a).
+
+of the laminar
+
+boundary
+
+layer
+
+The experimental
+data we~e taken from a recently published report on frictional
+reeietance
+of smooth disks in water
+by W. Schmidt (reference
+18).
+The agreement
+Ita good.
+Of particular Interest IS the fact that the measurements
+at smaller
+Reynolde numbere fall exactly in the transitional
+zone between laminar to turbulent flow.1
+
+NOTES
+
+OH ROUGHHESS
+
+Whtle for perfectly
+smooth pipee the Blaelus resistance
+law Is apparently
+applicable
+over a wide range of velocities,
+so that It seeme more than an interpolation
+formula, pipes
+with rough sides soon exhibit after exceeding the critical
+point an approximately
+square relationship
+between gradient
+l?or thie state the pressure gradient may be
+and velocity.
+put at
+
+(45)
+
+‘The experiments
+by Odell (Engiaeer$ng,
+Vol. 77, 1904,
+turbines, 4th W., Berlin 1910,
+p. 33 and b A. Stodola (steam
+PP ~ 120-129 T on the friction of rotating disks in air give 20
+to 30 percent higher values and a more raptd increase In frloS+c
+tlon with the circumferential
+velocity.
+Odell shows
+-m
+~l.e
+with
+c a small positive digit, Stodola
+inetead of
+~l.e
+
+). Odelltta tests are certainly doubtful, becauee the
+paper disks which he used,
+flutter emd thus eimulate greater
+14 Stodolase
+report the higher exfrictional resistance.
+ponent appears to correspond
+to the roughness of the disk.
+
+—.-
+
+..-.
+
+. —-
+
+—
+
+..
+
+.-
+
+._
+
+.9
+
+$!$.
+
+A
+
+is a function
+
+.,-._. .-
+
+of
+
+the relative
+..
+
+c
+~;..c
+
+roughneae
+
+denotee
+
+a
+
+quantlty with the dimension
+of a length, which, to a certain
+extent measures the average increase In the wall roughness.
+to the pipe diameter
+ie termed
+The ratio of this quantlt
+the ‘relative roughnesmw
+[ reference 4)=
+The square law for rough wane
+is plausible
+for the
+reaeon that the frictional
+resistance
+is visualized
+as being
+built up from the individual reslstmoes
+of the wall proThe mechanism
+tuberanoee , whioh eingly obey the equare law.
+of frictional
+reaietance
+la in these c!aees obviously caurned
+by uniform aheddlng of vorticee of well-defined
+Intenelty
+and dimeneione,
+aO la the aaee for flowe on realstanae
+bodice.
+The flow reeietance
+in perfectly
+smooth pipee might be
+visualized
+such that in this instance vortices of dleelmilar
+magnitude
+are eeparated and float at random in the turbulent
+flow, the frequency of the vortlcee of different
+Intensity
+and size being controlled
+by some unknown, statistical
+law.
+By this ooncept the frictional
+reslatance
+in smooth
+pipes oan be regarded as a fictitious
+combination
+of resistances that correspond
+to the Individual kinds of vortices.
+Aesumlng
+that a relationship
+exists between sige of vortices
+and roughnese,
+It may be said that the frictional
+resistance
+in smooth pipes can be obtained by euperpositlon
+of the individual reeistancee
+obtaerved on rough pipes and Increasing
+with the square of the velocity,
+if
+the individual equared
+resistances
+are entered with correct weights in the ealoulation.
+It is not
+about
+
+without
+
+the form
+
+of the
+
+interest
+function
+
+that
+k
+
+conclusions
+
+can be drawn
+
+E
+
+on tho basis of this
+z
+()
+
+conception,
+and specifically,
+without knowing the law of
+freouency and”the weight funation of the individual reelstances .
+In particular,
+it can be ehown that,
+for smooth plpee holds true, the function
+the formula
+A.
+
+denoting
+
+E al?
+()i
+a constant.
+
+A.
+
+—-—-
+
+at least
+
+for
+
+If the Blasius law
+A ~
+must have
+()
+
+emall
+
+values
+
+of
+
+~,
+
+.-
+
+...
+
+-b
+
+--”-
+
+-~
+
+.
+
+?
+
+IIAOA TM NO.
+
+32
+
+1092
+
+On superposing
+the squared resistances
+by (46) on nseumpthe resistance
+law for emooth
+tloxr-df-a we-l~ht-function
+g(c),
+Pipee
+reade3:- .
+
+h=
+
+(46)
+
+Next, it Ie aeeumed that the function
+~(q)
+for emall
+values of 6
+compared to pipe diameter 18 dependent only on
+the physical
+conetants and the veloclty dtetributlon
+in the
+Specifically,
+immediate proximity
+of the wall elements.
+On the other
+of’the pipe diameter.
+9(C ) Is to be independent
+hand, the velocity distribution
+directly adjacent to the wall
+is according
+to earner
+assumptlone
+entirely contingent upon
+the shearing etrese at the particular
+wall element,
+Therefore, put
+
+~, PST*)
+
+V(E) =9(C,
+
+From the four quantities
+only
+bination can be formed: namely,
+a =—
+()P
+To
+
+Hence,
+
+l/a
+
+one dimensionless
+
+com-
+
+~
+
+5
+
+(47)
+
+write:
+
+ha
+
+——-..
+
+‘The extent of the Integration
+to ~
+is m’erely a matter
+of form , ?( c ) decreaeee very substantially
+with increasing
+c,
+and from a certain value of c on eauals zero.
+
+.. .
+
+_.
+
+.
+
+-.
+
+. ——-
+
+?5
+
+‘.
+
+llACA TM EO.
+
+which,
+
+with
+
+1092
+
+z
+
+Introduced
+
+as variable gives
+m
+. ..--”
+-.
+.,.
+~
+~ q(s)d=
+Iv
+J()aA
+,“
+h=.——
+m
+d B$
+?( m)ds
+J
+
+m
+
+d z)dz
+.f
+
+0
+
+cm
+.n
+
+is a pure number.
+
+Considering
+
+the
+
+relation
+
+dam
+Yh —
+= drtTo1
+4
+existing
+
+between
+
+h
+
+and
+
+To
+
+Yhd
+or
+
+there
+
+To=—
+41
+Is obtained
+
+m
+
+..
+
+llACA TM NO. 1092
+
+which,
+
+.
+
+E-OIVe.@ f,or. h . leaves... .
+
+8m
+
+B
+hu
+
+K—
+
+B+m
+
+() z
+
+lva
+
+la+m—
+()(IV
+
+z=
+
+Thin law corresponds
+exactly
+law for smooth plpee provided
+
+(49)
+
+to the Bias ius resistance
+
+am = 1/4
+2+m
+or
+
+m E 2/71
+
+By introducing
+a specific formula for the weight function cp - eayr
+after the type of the law of error - the relationship
+between
+the conmtants of Blaslus’ law for smooth pipes and the conBtants of the law of roughness
+can be aecertalned.
+The writer
+hopes” to be able to meturn to the further development
+of
+these argumente.
+a17
+If , on the other
+
+hand,
+
+A=AO:
+
+the law
+
+()
+
+la in-
+
+s/7
+
+troduced
+
+In (45) the result
+
+with
+
+h=~——
+
+Aoe
+
+a
+9/7
+
+d
+
+=~la
+
+v“
+
+2g
+
+or .
+
+to the analo~ between pipee and channels the
+Accord~ng
+veloclty in a channel with gradient
+J and hydraulic radius
+P would be
+~fi c~netnn$
+Jo’s p0”e4
+result
+
+.—
+
+aF!r. Prandtl etates that he hae arrived
+by-’an
+entirely different process,
+
+—
+
+.—.—.-.— .—-
+
+-..
+
+—-
+
+fit the came
+
+,,”
+
+#
+
+NACA
+
+TM MO.
+
+1092
+
+35
+
+Incidentally,
+- ‘formula
+
+according
+
+to R. Manning,
+
+the empirical
+
+~ ~--c”~-netan~“Jo. 6”Po”.86, aocording
+
+the formula
+
+T a aonstant
+
+Jo-s
+
+Po07,
+
+to ~orchheimer,
+
+and accordin~
+
+to
+
+v = ~onatant
+Hermanek,
+the formula
+JO-5 P“”e
+givee et good
+representation
+of the test data $n rough channels
+(reference
+a, p. 70).
+Translation
+by J. Vanier,
+Eational Advisory Committee
+for Aeronautics.
+.
+
+EXFEREMCES
+
+Zur n~herungsweisen
+Integration
+der Differ1. pohlhausen,
+X.:
+Z.f.a.M.M.
+,
+entlalglelchung
+der laminaren Grenzschicht.
+Bd . 1, Heft 4, Aug. 1921, pp. 25%268.
+2. Blasius, H.:
+Ze5tschr. f~r Mnthematik
+Bd . 56, 1908, p. 13,
+3. Blasius,
+4.
+
+von
+
+H.:
+
+Z.V.D,I. , Heft
+
+131,
+
+Mises, R.:
+I!lemente der
+(Leipzig),
+1914, p. 50.
+
+und
+
+191S,
+
+Physik,
+
+p. 1.
+
+techn~schen
+
+IIydromechanik
+
+5, Stanton, T. E., Marshall, D., and Bryant, C. N.:
+Roy, Sot., London, vol. 97, 1920, p. 413.
+6.
+
+Stanton, T. E.:
+P= 369.
+
+7,
+
+Christen:
+
+Z.fo
+
+8. I’orchhelmer,
+9.
+
+Proc.
+
+Roy.
+
+Sot.,
+
+Gewasnerkunde,
+
+Ph.:
+
+Hydraulik
+
+Gfimbel: Schiffbautechnlsche
+14, 1913, p. 393.
+
+10. Williame,
+
+Gardner
+
+J.:
+
+Trans.
+
+Z.V.D.I. ,
+
+London,
+
+vol.
+
+Bd. 6, 1904,
+(Leipzig),
+
+85, 1911,
+
+p. 175.
+
+1914,
+
+pp. 93-119.
+
+Geeellechaft
+
+Jahrbuch,
+
+Am. Sot.
+
+En#.,
+
+Civ.
+
+Proc.
+
+Bd.
+1902.
+
+11. Boutasinesq, B.:
+Mdmolres des eavants itran~ers, Bd. 23,
+1877, p. 1, and ff
+Hahn, Herglot~,
+and Schwarzschlld:
+Z. f. Math. u. Phys.,
+51, 1$!04, p. 411.
+
+!!!
+
+-.
+
+,
+
+NACA
+
+>.
+
+I!H NO.
+
+36
+
+1092
+
+On the Passage of Heat between Metal $urfacen
+12, Reynolds:
+.Ph.11.Trans. Roy.
+and Liquids In Contact with Them.
+‘ ..Soci-,-L”oiidon~-vbl. 190; 1874, p. 9.
+13. Prandtl,
+
+L.:
+
+Phys.
+
+Zeiteohr. , vol.
+
+11, 1910, p. 1072.
+
+Der Warmefibergang an elnen
+14. Latsko, H.:
+Z.f.a.M.M.
+Fliiselgkeito- oder Qaeetrom.
+4, AUg. 1921, pp. 268-290.
+
+turbulenten
+, Bd. 1, Heft
+
+15. W5eeelsb-erger, 0., Bet= A,, and Prandtl, L.:
+Ergebnisse
+der aerodynamiecihen Persuchs~netalt
+8U (%ttingen,
+I. Lfg.
+R, Oldenbourg (Mfinchen and Berlin) 1921,
+p? 123.
+16. Gebers , Friedrich:
+Law of Simil~tude
+for the Surface
+Resistance
+of Lacauered Planes Moving in a Straight
+308,
+1925,
+NACA TM ~0,
+Line through Water.
+17.
+
+G~mbel:
+Das Problem der Obcrfl~chenwlderstandes
+, Schlffbautechnische
+Geeellschaft
+Jahrbuch, . vol. 14, 19139
+p. 478.
+
+Ein einfaches Ketasverfahren fiir Drehmomente,
+18. Sohmldt, W.:
+23,
+1921,
+pp. 441-444.
+Z.V.D,I. , Bd. 65, Er. 17, April
+
+NAGA
+
+TM ~0.
+
+1092
+
+,.,.
+
+Figure
+
+1.
+
+7-
+
+-2
+
+-is
+
+-f
+
+Figure 2.
+LG
+
+6?8
+
+(26
+
+6!4
+
+a
+
+Figure
+
+3.
+
+—
+
+*5
+
+NACA TM No: 1092
+
+Figs. 4,5
+
+Figure
+
+4.
+
+:mn
+(m?
+
+Figure
+
+5.
+
+NACA
+
+TM No.
+
+1092
+
+a?’?.
+
+b“p ‘?22
+
+I
+
+T
+
+Figure
+
+6.
+
+Figure
+
+7.
+
+

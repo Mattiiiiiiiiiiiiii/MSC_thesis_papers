@@ -1,0 +1,2155 @@
+RESEARCH ARTICLE | SEPTEMBER 15 2022
+
+Cross-flow linear instability in compressible boundary layers
+over a flat plate
+Zhiyong Liu (刘智勇) 
+
+Physics of Fluids 34, 094110 (2022)
+https://doi.org/10.1063/5.0110311
+
+ 
+View
+Online
+
+Export
+Citation
+
+Articles You May Be Interested In
+Compressible Falkner–Skan–Cooke boundary layer on a flat plate
+Physics of Fluids (December 2021)
+
+Optimal streaks in a Falkner–Skan boundary layer
+Physics of Fluids (February 2011)
+
+Near continuum gaseous Falkner-Skan flows
+AIP Conf. Proc. (December 2014)
+15 October 2026 08:31:18
+
+ARTICLE
+
+Physics of Fluids
+
+scitation.org/journal/phf
+
+Cross-flow linear instability in compressible
+boundary layers over a flat plate
+Cite as: Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Submitted: 15 July 2022 . Accepted: 18 August 2022 .
+Published Online: 15 September 2022
+Zhiyong Liu (刘智勇)a)
+AFFILIATIONS
+China Academy of Aerospace Aerodynamics, Beijing 100074, China
+a)
+
+Author to whom correspondence should be addressed: liuzhiyongtv@163.com
+
+ABSTRACT
+
+Published under an exclusive license by AIP Publishing. https://doi.org/10.1063/5.0110311
+
+I. INTRODUCTION
+Crossflow arises in the boundary layers under the combined effects
+of sweep and pressure gradient. The cross-flow velocity component is in
+the direction perpendicular to that of the inviscid streamline (Fig. 1),
+and a combined profile forms and twists along the wall-normal direction. Crossflow is commonly encountered in the three-dimensional
+(3D) boundary layers, such as swept wings,1–3 yawed cones,4–6 and
+high-speed flight vehicles with generally 3D configurations.7–9 The
+boundary layer is inviscidly unstable owing to the inflectional profile of
+cross-flow velocity component. In most of the 3D boundary layers, the
+cross-flow instability co-exists with the streamwise instabilities, like the
+T–S waves and Mack’s modes. While in contrast with the streamwise
+instabilities, the cross-flow instability exhibits unstable disturbances that
+are traveling as well as stationary. Linear stability theory (LST) shows
+larger amplification rates for the traveling modes than the stationary
+ones. Concerning the crossflow-induced boundary-layer transition,
+however, stationary waves usually play an important role in lowturbulence environments, while the traveling waves dominate in highturbulence environments.10 Recent evidence suggests that traveling
+waves may also dominate under real hypersonic flight conditions.11
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+Theoretical investigations on model flows have provided deep
+insights into the fundamental characteristics of the cross-flow instability, especially in subsonic boundary layers. As the destabilization of
+boundary layer starts from the modal growth of low-amplitude disturbances, the primary instability is of great importance to be studied.
+The problem of cross-flow instability originated from low-speed swept
+wings; thus, most attention has been paid to this problem, see Saric
+et al.10 and references therein, whereas the fundamental features of
+cross-flow instability are blurred by the effects of wall curvature and
+uniqueness of airfoil shape. Attachment-line instability may also affect
+the evolvement of cross-flow disturbances, since the cross-flow instability is found to be close to the leading edge. With this in mind,
+researchers resort to the swept flat plate, a prototype of swept wing, to
+explore the general fundamentals of cross-flow instability. In practice,
+a displacement body is often needed to produce pressure gradient on
+the plate, which is necessary to give rise to crossflow in boundary
+layers.
+Cooke12 reported a family of solution for incompressible boundary layer with crossflow, which is named Falkner–Skan–Cooke (FSC)
+flow thereafter. The exact solution provides feasibility to study the
+
+34, 094110-1
+
+15 October 2026 08:31:18
+
+The linear instability of compressible boundary layers over a flat plate in the presence of parameterized crossflow has been investigated by
+means of linear stability theory. A family of boundary layer with crossflow is obtained as the base flow from the compressible
+Falkner–Skan–Cooke (FSC) flow model. Two factors, that is, the local swept angle and the pressure-gradient parameter, are designed to create the crossflow with different directions and magnitudes, which further results in the variation of the cross-flow instability. Modal properties related to the cross-flow instability are emphasized. The association between the cross-flow mode and the Mack’s mode is clarified by
+extending the base flow from two dimension to three dimension. The cross-flow instability is discovered to be integrated with the slow-mode
+instability, that is, the instability related to the Tollmien–Schlichting (T–S) mode or the first mode, and it can hardly be distinguished as an
+individual mode in most cases. The effects of Mach number, pressure gradient, local sweep, and wall temperature are studied. The behaviors
+of the cross-flow instability under such effects resemble those of the slow-mode instability in the two-dimensional boundary layers. It is
+found that the unstable modes in the three-dimensional boundary layers are mainly affected by the streamwise pressure gradient and the
+crossflow per se. Specifically, the first mode is much more sensitive to the crossflow than the second mode. As a result, more marked variations are commonly observed for the first mode in the boundary layers with crossflow.
+
+Physics of Fluids
+
+FIG. 1. Sketch of velocity profile in a boundary layer with crossflow.
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+scitation.org/journal/phf
+
+Concerning the cross-flow instabilities in the subsonic and supersonic boundary layers, most of the attention has been paid to the
+boundary layers on generally 3D configurations, which are closer to
+practical flight vehicles in geometry. Pruett et al.17 replicated numerically the swept-wing boundary-layer transition experiment of
+Cattafesta et al.18 at Mach 3.5. Direct numerical simulation (DNS)
+confirmed the dominant stationary cross-flow modes observed in
+experiment when surface roughness was introduced, and the comparison of vortex spacing was qualitatively satisfactory. Balakumar and
+King19 conducted stability analysis of boundary layers in a swept cylinder and a swept wing at Mach 3. The accumulated amplification rate,
+N factor, was used, and it revealed that the traveling disturbances were
+generally more unstable than the stationary ones. The result was consistent with that in incompressible boundary layers reported by
+Mack.13 Craig and Saric20 investigated cross-flow instability in hypersonic boundary layer experimentally on a yawed cone in a quiet wind
+tunnel at Mach 6. The stationary cross-flow instability, in despite lower
+amplification than the traveling counterpart according to LST, was
+observed dominant in boundary-layer destabilization, which was in
+good agreement with that at low speeds. Multiple instabilities were
+studied in the hypersonic boundary layers on a yawed cone.5 It was
+revealed numerically the enhancing effect of stationary cross-flow
+instability on the second Mack mode. Multiple modes were also identified by Moyes et al.21 in the base flow distorted by stationary crossflow.
+The behaviors of traveling cross-flow mode and Mack’s second mode
+were demonstrated and compared. Paredes et al.22 analyzed the linear
+modal instabilities of the hypersonic flow over an elliptic cone. In addition to the symmetric and anti-symmetric attachment-line instability
+modes, the stationary and traveling cross-flow modes with low frequencies were discovered coexisting with high-frequency oblique second Mack mode.
+Special effort has been made to explore the cross-flow instabilities
+in the compressible boundary layers on simplified configurations. Asai
+et al.23 compared the cross-flow instability of a subsonic and a supersonic boundary layer. It was revealed that critical crosswise velocity
+beyond which cross-flow instability becomes dominant is almost the
+same for both boundary layers. Tempelmann et al.24 studied the spatial optimal growth in the 3D boundary layers over a plate, with and
+without curvature. They adopted the solution of corrected ordinary
+differential equations (ODEs) system as the starting profiles to integrate the full non-similar boundary-layer equations. Local stability
+analysis revealed notable stabilizing effect of wall cooling on the crossflow mode in a subsonic boundary layer. Xu et al.25 considered the 3D
+boundary layers on a swept flat plate at Mach 6. The boundary-layer
+flow was resolved numerically from partial differential equations
+(PDEs). It was found that the slow mode (mode S), excited by the slow
+acoustic waves, could evolve into traveling cross-flow waves. In comparison, free-stream slow acoustic waves generate unstable Mack
+mode in compressible 2D boundary layers, as reported by Ma and
+Zhong.26 Recently, Ma and Huang27 studied the nonlinear interactions
+of Mack’s second mode and the stationary cross-flow vortex on a blunt
+swept plate. A forced stationary disturbance, induced by two secondmode disturbances, was found to differ from a stationary cross-flow
+disturbance.
+Such understanding about primary instability sheds light on the
+research of receptivity,19,25,28 secondary instability,29–32 flow control,33–35 and transition prediction36–38 of the boundary layers
+
+34, 094110-2
+
+15 October 2026 08:31:18
+
+systematic behaviors of cross-flow instability in three-dimensional
+boundary layers. Mack13 reported the characteristics of linear instability under the influence of crossflow. Compared with the symmetric
+distribution of amplification rate about wave angle and positivefrequency disturbances in two-dimensional (2D) Blasius boundary
+layers, the crossflow in FSC boundary layer produces asymmetry of
+amplification-rate distribution and unstable disturbances with nonpositive frequencies. The most amplified cross-flow disturbance is
+traveling according to LST, whereas the stationary cross-flow instability is often observed in experiments. The crossflow makes it more
+unstable for the FSC flow with moderately favorable pressure gradient,
+since the critical Reynolds number is lower than the 2D flow. While
+for an adverse pressure gradient, the reverse is true. Bippes et al.14 conducted measurements of disturbance growth on a swept flat plate in
+wind tunnels by mimicking the FSC boundary layers. It was found
+that the amplified disturbances in experiments were not always the
+most unstable ones as predicted by LST, although the wavelengths of
+the stationary disturbances and the frequencies of the traveling disturbances were in the predicted ranges. Discrepancy between the experimental and theoretical results was believed to be caused by the
+secondary instability. In a nutshell, the observations of cross-flow
+instability in 3D boundary layers exhibited more complexity compared
+to the Blasius flows. Wassermann and Kloker15,16 used an analytical
+function to resemble the boundary-layer-edge velocity in the upper
+front region on a swept wing. The boundary-layer flow was numerically integrated from the inflow boundary where an FSC solution was
+imposed. Results from LST revealed that the primary cross-flow
+instability consisted of steady disturbances, weakly amplified waves
+traveling along with the crossflow and strongly amplified waves
+traveling against the crossflow. The two unstable regions of traveling waves were separate, which was different from the result presented by Mack.13 However, it seemed that the two parts could be
+combined, if negative frequency was permitted, to resemble Mack’s
+result.
+
+ARTICLE
+
+ARTICLE
+
+Physics of Fluids
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+Sec. II, based on the discussion of adequacy of the base flow for the
+crossflow-related instability. The concept of conjugate mode is
+introduced within LST in Sec. III. Two facts about the modal solution are presented as theorems. Next, the results of instability analysis are presented. In Sec. IV, the eigensolution of cross-flow mode is
+identified and the characteristics are discussed. The influences of
+crossflow on boundary-layer instabilities are studied by varying
+pressure gradient and local swept angle. We also clarify the association between cross-flow mode and Mack modes in this section. The
+significance of negative-frequency cross-flow instability is demonstrated. The effects of flow parameters on the cross-flow instability
+are investigated as well. Finally, concluding remarks are presented
+in Sec. V.
+II. A MODEL BASE FLOW
+To obtain the overall features of the cross-flow instability in compressible boundary layers, a preliminary step is to design a laminar
+base flow. Requirements to be an appropriate base flow are considered
+as follows.
+(i)
+
+(ii)
+
+(iii)
+
+(iv)
+
+Physical background
+A base flow with physical background is needed to reveal
+the physical nature of instability. Generally, the base flow
+needs to be governed by Navier–Stokes (N–S) equations, or
+the ones deduced with proper approximations like
+boundary-layer equations. It is inadequate to add a synthetic cross-flow component to a 2D compressible
+boundary-layer profile to imitate the typical 3D flow as
+depicted in Fig. 1.
+Easiness to solve
+Base flows under various combinations of flow parameters
+need to be calculated to achieve a broad overview of the
+cross-flow instability. It is required that the governing equations are easy to solve. On the one hand, this takes much
+less time and fewer computing resources to accomplish the
+computations of cases with large numbers. On the other
+hand, this makes it better to validate, replicate, and communicate. Thereby, a base flow governed by ODEs, rather than
+PDEs, would be preferred.
+Controllable crossflow
+The cross-flow instability relies on the crossflow in the base
+flow qualitatively and quantitatively. The emergence and
+variation of the instability are closely determined by the
+strength of cross-flow component. Therefore, some parameters need to exist in the problem to control the cross-flow
+strength, whose range covers zero and moderate extent
+encountered in practice.
+Simplicity
+Boundary-layer instability are usually subject to different
+influences like wall curvature, wall suction, pressure gradient, and so on. Although each factor is needed to consider to utmost extent in practical problems, some of
+them are extraneous to the fundamentals of stability.
+Regarding the cross-flow instability considered in this
+work, we are inclined to focus on a simple problem by
+excluding the effects of wall curvature, position angles,
+and leading-edge bluntness. Wall suction and rotation are
+also neglected.
+
+34, 094110-3
+
+15 October 2026 08:31:18
+
+dominated by the cross-flow instability. Numerical simulations17,39,40
+and experimental tests20,41,42 have benefited from the theoretical studies as well.
+Nevertheless, some common and fundamental issues about
+cross-flow instability still need to be figured out. First, both the crossflow mode and the Mack modes exist in compressible 3D boundary
+layers, whereas the association and difference have not been elucidated. The boundary-layer stability analyses on a yawed cone5 and an
+elliptic cone22 indicated distinct features between the cross-flow instability and Mack’s second-mode instability. However, the comparison
+between the evolvements of slow mode in the 2D26 and 3D25 compressible boundary layers implies some connection existing between
+the cross-flow mode and the Mack mode. Moreover, the relationship
+between traveling the cross-flow mode and Mack’s first mode has not
+been addressed, despite that the frequency band of the two modes
+overlaps in a large extent. Similar situation exists as well for the traveling cross-flow mode and the T–S mode in low-speed boundary layers.
+Second, it is not well understood that how do the stability characteristics change when crossflow plays a role in a 3D boundary layer.
+Specifically, the changes of interest include the quantitative variations
+of growth rate, unstable region, and dominance of different instabilities with increasing strength of crossflow in the base flow. Perhaps the
+most striking phenomenon caused by crossflow is the occurrence of
+zero- and negative-frequency cross-flow modes, in which the zerofrequency (stationary) one was proved to be crucial to the secondary
+instability and nonlinear interactions.1,17,20,43 The critical value, if it
+exists, of crossflow to induce cross-flow mode with non-positive frequency has not been unraveled yet. Third, the significance and characteristic of negative-frequency cross-flow mode have not been
+demonstrated in detail. The cross-flow instability with negativefrequency region has been discovered for long.13,29,44 Mack13 pointed
+out that the opposite sign of frequency indicated opposite propagation
+directions of disturbances, which was consistent with the statement of
+Itoh.44 However, the interpretation about negative-frequency mode is
+not in direct accordance with the eigensolution of LST equations.
+More details need to be disclosed to support a more satisfactory
+explanation.
+In addition, to shed some light on the general characteristics of
+cross-flow instability, analyses are made under different Mach numbers, Reynolds numbers, and temperature boundary conditions.
+However, systematic knowledge of cross-flow instability can hardly be
+obtained from case-by-case investigations aforementioned. Mack13
+presented a comprehensive study of the linear stability of the 2D compressible boundary layers, based on the mean flow with an exact solution. While for the 3D compressible boundary layers, the counterpart
+research has been substantially hindered due to the lack of a simplified
+solution of laminar base flow. Therefore, an appropriate boundarylayer solution needs to be obtained to initiate the comprehensive stability analysis of the cross-flow instability.
+Following the research paradigm of Mack,13 we developed a
+model problem for compressible boundary layers with parametric
+crossflow to study the linear instabilities due to the presence of typical
+crossflow as shown in Fig. 1. The purpose of present work is to illustrate some fundamentals of the crossflow-related instability and to
+clarify how it associates with the instabilities already known in the 2D
+boundary layers. The remainder of this paper is organized as follows.
+A model flow of compressible boundary layer is first introduced in
+
+scitation.org/journal/phf
+
+ARTICLE
+
+Physics of Fluids
+
+(v)
+
+Compatibility
+A well-designed problem needs to be in accordance with
+certain simple cases under special conditions. Some parameters are necessary to exhibit the reducing from generality
+to specialty. The 2D compressible boundary-layer problem,
+for example, is compatible with Blasius boundary layer since
+the self-similar solution is reduced to the Blasius solution
+along with the Mach number decreasing to zero. Therefore,
+the stability characteristics can be extended from the incompressible to compressible boundary layer, and vice versa.
+
+g¼0:
+
+f ¼ f 0 ¼ g ¼ 0; s ¼ sw ; or
+g ! 1 : f0 ¼ g ¼ s ¼ 1:
+
+s0 ¼ 0 ;
+
+(4)
+(5)
+
+In the system above, f 0 , g, and s denote the streamwise velocity, crosswise velocity, and temperature, respectively. Pr is the Prandtl number
+equal to 0.72 throughout this paper. By applying the Sutherland’s law,
+the Chapman–Rubesin factor N is written as
+
+
+1 þ Ts =Te
+;
+(6)
+N ¼ s1=2
+s þ Ts =Te
+where Ts ¼ 110.4 K. Parameters S and K are defined as
+
+
+c1
+Ma2 cos2 K ;
+S¼ 1þ
+2
+
+
+c1
+K ¼ 1þ
+Ma2
+S;
+2
+
+(7)
+(8)
+
+in which the specific heat ratio c ¼ 1.4. This ODE system is feasible to
+solve by routine numerical solvers, like bvp4c function in MATLAB
+software used in current paper.
+The pressure-gradient parameter m and local swept angle K are
+necessarily and sufficiently kept in the system to control the cross-flow
+velocity component. The absence of either one makes it impossible to
+produce crossflow, and the parameter duet excludes extra factors to
+make the problem simplest. When these two parameters vanish simultaneously, the governing equations are reduced to the ODEs for the
+2D compressible boundary layers without pressure gradient.46 In addition, the equations are reduced to the incompressible FSC equations12
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+when the Mach number vanishes. Therefore, the governing equations
+of current base flow are compatible with those in the 2D compressible
+and the 3D incompressible conditions. In a nutshell, the compressible
+FSC flow model is revealed to satisfy all the requirements mentioned
+above. Details of the model flow are suggested to refer to Liu.45
+The boundary-layer profiles under different Mach numbers on
+an adiabatic wall are given in Fig. 2 with incoming flow temperatures
+in wind tunnels. The scaled boundary-layer thickness increases unanimously with the increase in Mach number, based on the profiles of the
+streamwise velocity, crosswise velocity, and temperature. The distribution of cross-flow component bears typical features similar with the
+numerical results on a swept cylinder19 and a swept flat plate.25 The
+negativeness of the crosswise velocity under a favorable pressure gradient (m > 0) implies its direction pointing to the center of local streamline curvature. While under an adverse pressure gradient, the
+crosswise velocity is positive as shown in Fig. 3(c). In the Machnumber range considered in this paper, the magnitudes of the crossflow velocity vary within several percentages of the local streamwise
+velocity at the boundary-layer edge. The maximum, which is used to
+signify the strength of crossflow, appears in the lower part of boundary
+layer and the absolute value increases slightly with Mach number,
+from 3.4% at Ma ¼ 0.001 to 4.0% at Ma ¼ 6.
+Figure 3 shows the cross-flow profiles under different local swept
+angles, pressure-gradient parameters, and wall temperatures. The
+influence of local swept angle on the crossflow in an incompressible
+boundary layer is demonstrated in Fig. 3(a). The crossflow deviates
+from zero and gets stronger with the increase in local swept angle until
+a largest maximum is reached on the profile. The largest maximum of
+crossflow occurs precisely at K ¼ 45 . In addition, the distributions of
+crossflow under two swept angles, which are mutually complementary,
+are identical. However, slightly different results appear in the compressible boundary layers, where the largest maximum occurs at
+around K ¼ 70 and no special relations are observed for different
+local swept angles [Fig. 3(b)]. The pressure-gradient parameter affects
+the crossflow in both magnitude and direction, as shown in Fig. 3(c).
+Favorable pressure gradients produce positive cross-flow components,
+while adverse pressure gradients act otherwise. Meanwhile, for positive
+values of m, it is observed that a pressure gradient with larger magnitude produces stronger crossflow but thinner boundary layer. Finally
+in Fig. 3(d), wall cooling is found to weaken the crossflow as well as
+thin the boundary layer.
+The crossflow exhibits a variety of profiles under different combinations of flow parameters, which provides a rich diversity of base
+flow. Corresponding variations of the crossflow-induced instability
+characteristics can be expected to appear in the 3D boundary layers.
+III. LST METHODOLOGY
+Linear analysis is used to study the stability of the 3D compressible boundary layers presented above. Compressible linear stability
+equations are adopted in the local stream-fitted Cartesian coordinates,
+in which x is defined as the streamwise direction, y is the wall-normal
+direction, and z is the crosswise direction. Accordingly, the streamwise
+and crosswise velocities are denoted as u and w, respectively. The
+instantaneous values of flow variables are decomposed into the base
+flow and disturbance quantities. According to the linear theory, the
+disturbance equations can be obtained as30
+
+34, 094110-4
+
+15 October 2026 08:31:18
+
+Taking such ideas into consideration, a family of compressible
+FSC boundary layers45 on a flat plate is chosen to be the base flows for
+analyzing the linear instability of crossflow. By prescribing a
+Falkner–Skan external potential flow, a 3D boundary layer with crossflow is formed under local sweep. The model flow is governed by the
+boundary-layer equations, which can be reduced to an ODE system
+under the local similarity assumption, as shown in the following
+equations:
+
+
+ 00 0
+2m
+2
+f0  s ;
+þ ff 00 ¼
+(1)
+Nf
+ðm þ 1ÞS
+ 0 0
+Ng þ fg 0 ¼ 0;
+(2)
+   0
+
+0
+   0
+0
+N 0
+0
+2
+s þ ðS  1Þ N f 0
+þ ðK  1ÞS N g 2
+Pr
+
+
+ 0
+ 2 0
+2
+0
+0
+þ f s þ ðS  1Þ f
+þ ðK  1ÞS g
+¼ 0;
+(3)
+
+scitation.org/journal/phf
+
+ARTICLE
+
+Physics of Fluids
+
+scitation.org/journal/phf
+
+15 October 2026 08:31:18
+
+FIG. 2. Boundary-layer profiles of (a) streamwise velocity, (b) crosswise velocity, and (c) temperature for different Mach numbers (Tw ¼ Tad, m ¼ 0.1, K ¼ 30 ). The subscript
+“ad” denotes an adiabatic wall.
+
+C
+
+@u
+@u
+@u
+@u
+þA
+þB
+þC
+þ Du
+@t
+@x
+@y
+@z
+þ V11
+
+@2u
+@2u
+@2u
+@2u
+þ V22 2 þ V33 2 þ V12
+2
+@x
+@y
+@z
+@x@y
+
+þ V13
+
+@2u
+@2u
+þ V23
+¼ 0;
+@x@z
+@y@z
+
+(9)
+
+in which the disturbance vector u ¼ ðq0 ; u0 ; v0 ; w0 ; T 0 Þ and C, A, B, C,
+D, and Vjk (j, k ¼ 1, 2, 3) are real-coefficient matrices relating to the
+base-flow quantities. Meanwhile, LST allows wave-form disturbance as
+uðx; y; z; t Þ ¼ /ð yÞexp ½iðax þ bz  xt Þ þ c:c:;
+
+(10)
+
+^ Þ and c.c.
+^ ; ^v ; w
+^; T
+where the complex shape function / ¼ ð^
+q; u
+denotes the complex conjugate. The streamwise wave number a, crosswise wave number b and circular frequency x are generally complex.
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+In the spatial stability theory considered in this paper, b and x are
+assumed to be real while a is complex. Wave-number vector is defined
+as ~
+k ¼ ðar ; bÞ, where the subscript “r” denotes the real part and “i”
+will denote the imaginary part of a complex number. The growth rate
+is denoted by ai. Wave angle h ¼ arctan ðb=ar Þ denotes the angle
+between the directions of the wave-number vector and the local potential flow. Phase velocity~
+c ph satisfies that
+x ¼~
+c ph  ~
+k;
+
+(11)
+
+with direction parallel to the wave-number vector.
+Substituting Eq. (10) into Eq. (9), an ODE system can be
+obtained for disturbances as
+~ d / ¼ 0;
+~ þB
+~ d/ þ V
+D/
+dy
+dy2
+2
+
+(12)
+
+in which
+
+34, 094110-5
+
+ARTICLE
+
+Physics of Fluids
+
+scitation.org/journal/phf
+
+15 October 2026 08:31:18
+
+FIG. 3. Variations of cross-flow profile with (a) local swept angle at Ma ¼ 0.001 (m ¼ 0.1), (b) local swept angle at Ma ¼ 6.0 (Tw ¼ Tad, m ¼ 0.1), (c) pressure-gradient parameter at Ma ¼ 6.0 (Tw ¼ Tad, K ¼ 30 ), and (d) wall temperature at Ma ¼ 6.0 (m ¼ 0.1, K ¼ 30 ). Tw 7.0 for an adiabatic wall in this case.
+
+~ ¼ ixC þ D þ iaA þ ibC  a2 V11  abV13  b2 V33 ;
+D
+~ ¼ B þ iaV12 þ ibV23 ;
+B
+~ ¼ V22 :
+V
+
+(13)
+
+Equation (12), together with the homogeneous boundary conditions,
+constitutes an eigenvalue problem. Global and local methods are used
+to solve the problem based on the QZ algorithm and Newton iteration
+technique, respectively. Elements of the coefficient matrices and solving techniques can be referred to Malik.47 Mathematically, the combination of computed eigenvalue and eigenfunction is called a modal
+solution or a normal mode. Compared with Mack’s terminology about
+mode,13 a new terminology (fast and slow modes) proposed by
+Fedorov and Tumin48 is believed to be more appropriate to describe
+the mathematic solution, whereas two terminologies are adopted in
+this paper, in which Mack’s modes are used to describe the instability
+characteristics and fast (F) and slow (S) modes are used to categorize
+the eigensolutions.
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+Negative-frequency disturbance has been found theoretically in
+the 3D boundary layers particularly with crossflow.2,13,44 However, the
+disturbance with negative frequency is physically not allowed. Mack13
+explained that frequencies with opposite signs signified the phase
+velocities with opposite directions. Despite that Mack’s assertion is
+consistent with Eq. (11), it is still needed to explain the negativeness
+per se of the disturbance in depth. Here, we introduce the conjugate
+mode to clarify this confusion. A conjugate mode is the solution of the
+conjugate form of Eq. (12). Considering the homogeneities of the
+equation and boundary condition, a conjugate mode is also the solution of Eq. (12) itself. This fact stands as a theorem below and the
+proof is given in Appendix A.
+Theorem (Conjugate-Solution Theorem) Given ðx; a; b; /Þ_as the
+_
+solution of LST equation, the conjugate
+solution ðx; a ; b; / Þ for
+_
+_
+spatial theory, or ðx ; a; b; / Þ for temporal theory, exists.
+_
+_
+_
+a denotes the conjugate of a, and so do x and / . The counterpart solution is named conjugate solution, or conjugate mode to each
+
+34, 094110-6
+
+Physics of Fluids
+
+scitation.org/journal/phf
+
+growth rate in symmetric directions with respect to the streamwise
+direction. When crossflow plays a role in the base flow, the proof
+is ruined, and consequently, the symmetry of the solution is broken.
+LST results about the asymmetry are demonstrated repeatedly in
+Sec. IV.
+IV. RESULTS AND DISCUSSIONS
+In this section, we provide the LST results under different pressure gradients, local swept angles, Mach numbers, and wall temperatures. The fundamental stability characteristics and the variations
+under effects are presented and discussed.
+A. Basic characteristics of linear stability
+The boundary layer at Ma ¼ 4.5 is first considered to investigate
+the effects of crossflow on Mack’s first and second modes, which are
+commonly encountered in the 2D conditions. The flow condition is
+chosen to be the one in wind tunnel,4 that is, Te ¼ 65.15 K and unit
+Reynolds number Ree ¼ 7.2  106 m1. The superscript “ ” denotes
+the dimensional quantity, and an adiabatic wall is assumed. This condition is also used by Ma and Zhong50 for boundary-layer stability
+analysis. The subscript “e” denotes the boundary-layer edge and will
+be dropped in what follows.
+Based on the knowledge of eigenmode in 2D compressible
+boundary layers, the global method47 is first used to identify the unstable mode from 2D to 3D conditions. Figure 4 shows the spectra of
+eigenvalues obtained with the QZ algorithm. A discrete mode with a
+positive growth rate is discovered for a 2D boundary layer and
+highlighted by a circle in Fig. 4(a). The unstable mode is the wellknown Mack’s first mode, which is also the mode S according to the
+terminology proposed by Fedorov and Tumin.48 The result resembles
+the one obtained by Ma and Zhong50 except the fast mode (mode F),
+which lies among the continuous spectra on the left of Fig. 4(a), and it
+is not discernible unless the frequency is moderately large. Eigenvalue
+spectra are also obtained for the 3D boundary layers with crossflow by
+imposing pressure gradient and increasing local swept angle. Mode S
+
+FIG. 4. Eigenvalue spectra for boundary layers with Ma ¼ 4.5, Re ¼ 2000, x ¼ 0.04, and b ¼ 0.1. (a) Discrete and continuous spectra for a 2D base flow. (b) Trajectory of
+mode S for 3D base flows.
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+34, 094110-7
+
+15 October 2026 08:31:18
+
+other. Considering all the parameters as complex, it can be seen that
+the conjugate solution of ðx; a; b; /Þ is actually the negative and conjugate combination. Therefore, when a mode with positive frequency
+is found, there must exist a negative counterpart, and vice versa. Lu
+and Lele reported the same relation of solutions for the inviscid instability analysis of skewed mixing layers.49 Based on such association, a
+negative-frequency disturbance, which might be deficient in physical
+significance, relates to a positive-frequency disturbance with opposite
+wave-number vector and equal growth rate (ai). This provides alternative interpretation for the disturbance with negative frequency. By
+revisiting Mack’s assertion, it can be concluded that the negative frequency indeed signifies the propagation-direction reversal of disturbance, which, however, corresponds to a different eigensolution. LST
+results about conjugate mode are demonstrated in Sec. IV. The fact
+about conjugate mode holds for linear stability in all parallel flows, as
+long as the equation and boundary conditions are homogeneous.
+Compared with the 2D flows, three-dimensionality of base flow in
+the 3D flows gives rise to deviation of stability characteristics. Different
+from the three-dimensionality of Mack’s first mode in the 2D boundary
+layers, whose most amplified disturbance is three-dimensional, the
+crossflow in 3D base flows results in three-dimensionality of stability
+^ is
+characteristics in twofold. First, the crosswise perturbation velocity w
+non-zero for zero crosswise wave number b. Second, the linear growths
+of disturbances with opposite wave angles are not identical with respect
+to the streamwise direction. The somewhat straightforward results are
+supported by the fact that asymmetry of eigensolution arises due to the
+appearance of crossflow. This fact can be inferred from the following
+theorem, whose proof is presented in Appendix B.
+Theorem (Symmetry Theorem) In a 2D base flow (w ¼ 0), given
+^ ÞÞ as the solution of LST equation, a symmetric
+^ ; ^v ; w
+^;T
+ðx; a; b; /ð^
+q; u
+^ ÞÞ exists. Especially if b ¼ 0,
+^ ; ^v ; ^
+solution ðx; a; b; /ð^
+q; u
+w; T
+^ ¼ 0.
+w
+As a result, the stability characteristics, such as growth rate,
+wave angle, and phase velocity, are symmetrically distributed with
+respect to b. This also implies that the disturbances pertinent to the
+symmetry solutions propagate with the symmetric shape and identical
+
+ARTICLE
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+FIG. 5. Distributions of (a) growth rate and (b) phase velocity against frequency for 2D modes (Ma ¼ 4.5, Re ¼ 2000, b ¼ 0).
+
+mode is observed to be more unstable than the first mode for the 2D
+disturbances, with and without the effect of crossflow. However, the
+crossflow seems to stabilize both modes and shift the unstable frequency band in comparison with the 2D boundary layers. Phase velocities are plotted for mode S as well as mode F in Fig. 5(b). Apparent
+deviation is observed for the 2D and 3D base flows, while the local
+swept angle seems to make little effect on the phase velocity in the 3D
+base flows.
+The 3D stability characteristics are more concerned in boundary
+layers with crossflow. Based on the results of the 2D mode, the eigenvalue problems are solved for non-zero crosswise wave number, that
+is, b = 0. The growth rate of mode S is contoured in Fig. 6 at K
+¼ 60 , around which the maximum of crossflow in the base flow
+reaches the largest value. The result of a 2D boundary layer (m ¼ 0.1,
+K ¼ 0 ) is also presented for comparison. Two separate unstable
+regions with local maxima are observed and identified to be Mack’s
+first mode and second mode, respectively. Symmetry in growth-rate
+
+FIG. 6. Growth-rate contours of the unstable modes in boundary layers (Ma ¼ 4.5, Re ¼ 2000, m ¼ 0.1) for (a) K ¼ 0 and (b) K ¼ 60 .
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+34, 094110-8
+
+15 October 2026 08:31:18
+
+is still found to be the only unstable mode in each case, and its trajectory is illustrated in Fig. 4(b). Starting from the 2D condition without
+and with pressure gradient, the mode travels away due to the appearance of crossflow. Based on such observations, mode S is identified to
+be the target eigenmode for crossflow-induced instability analysis. An
+iterative technique will be used to solve the eigenvalue problem for
+higher efficiency, and the result obtained by global method can serve
+as a first guess.
+The growth rate and phase velocity are calculated for the 2D
+mode (Fig. 5). Mack’s first and second modes, both of which correspond to mode S, locate obviously at two distinct frequency regions.
+This agrees with the result of Ma and Zhong50 for a 2D boundary
+layer. Despite good comparisons for the phase velocities and firstmode growth rate, the second mode exhibits a discrepancy about 20%
+for the peak growth rate. It is believed that the difference arises from
+the base flow, which is obtained by Ma and Zhong through solving the
+2D Navier–Stokes equations numerically on a flat plate. Mack’s second
+
+Physics of Fluids
+
+scitation.org/journal/phf
+
+disturbing crosswise velocity of mode S, resembling the current result
+as shown in Fig. 7(a). It was illustrated that unstable traveling crossflow wave can be evolved from mode S upstream.
+It might be argued that the cross-flow mode is naturally qualified
+to name the unstable mode particularly induced by the crossflow.
+Nevertheless, conventional usages of mode disagree with this argument. On the one hand, based on the terminology of Fedorov and
+Tumin,48 the cross-flow mode is the solution related to mode S. Thus,
+it cannot stand as a mode coequal to mode S or mode F. On the other
+hand, based on the terminology of Mack,13 the cross-flow mode
+belongs to the deviated Mack’s first mode. No distinguishable features
+are observed pertaining uniquely to cross-flow mode, if it exists. Thus,
+it cannot be a coequal mode as the first or second mode as well.
+Therefore, the cross-flow mode is less appropriate to signify the
+crossflow-induced unstable mode. This viewpoint will gain more support from stability analysis in Subsections IV B and IV C.
+With the increase in cross-flow strength in the base flow, the
+unstable region of the first mode deviates from that shown in Fig. 6(a).
+For weak crossflow, the stationary mode stays stable. When the maximum of crossflow exceeds a threshold value (around 0.012 under such
+condition), the stationary first mode begins to be unstable. At even
+larger cross-flow strength, the stationary first mode gets more unstable
+with broader bandwidth of crosswise wave number, and the negativefrequency disturbances become unstable as well, as shown in Fig. 6(b).
+According to the Conjugate-Solution theorem aforementioned, a conjugate solution can be easily obtained based on a known solution by
+turning the parameters into their negative and conjugate counterparts.
+Figure 8 shows the growth-rate contours of mode S as well as the conjugate mode S. The contours are rotationally symmetric, while the two
+modes are related to different eigensolutions. Thus, the growth-rate
+contours cannot connect with each other continuously. The plane in
+Fig. 8 is divided into quadrant I, II, III, and IV. The unstable wave of
+mode S with negative frequency is surrounded with dashed lines in
+quadrant II, and the counterpart surrounded with solid lines in quadrant IV bears positive frequency. Therefore, when the negativefrequency mode needs to be considered, a more physical choice is to
+
+FIG. 7. Distribution of disturbing crosswise velocity for 2D and 3D most amplified disturbance of the (a) first mode and (b) second mode. K ¼ 0 for 2D base flow and
+K ¼ 60 for 3D base flow (Ma ¼ 4.5, Re ¼ 2000, m ¼ 0.1).
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+34, 094110-9
+
+15 October 2026 08:31:18
+
+distribution and negativeness in frequency are two marked features.
+For the 2D base flow, the growth-rate distributions of Mack’s first and
+second modes are strictly symmetric with respect to the horizontal line
+b ¼ 0, as shown in Fig. 6(a). The unstable regions of the first mode for
+positive and negative b coalesce, while the two regions are separate at
+lower Reynolds numbers with still symmetric distribution of growth
+rate. The result is in good agreement with the prediction of the
+Symmetry Theorem given in Sec. III. Furthermore, the disturbance of
+crosswise velocity in the 2D base flow is zero for the first and second
+mode (Fig. 7), as predicted by the Symmetry Theorem.
+In contrast, when crossflow plays a role in the base flow, the symmetry is broken for both the first and second modes. Meanwhile, the
+crosswise disturbing velocity becomes non-zero for the 3D disturbances in the 2D base flows and for the 2D and 3D disturbances in the 3D
+base flows (Fig. 7). Under the effect of the negative-value crossflow
+produced by a favorable pressure gradient, the unstable regions move
+toward the direction in which b gets larger [Fig. 6(b)], that is, opposite
+to the cross-flow direction. The asymmetry leads directly to the result
+that the 3D disturbance becomes the most amplified for the second
+mode, different from that in a 2D boundary layer. More striking
+changes are observed for the first mode, whose unstable region is
+found to become almost one-sided. First, the maximum growth rate
+exceeds that of the second mode, while the reverse is true in a 2D case
+as demonstrated in Fig. 6(a). This implies that crossflow produces
+greater effect on the first mode than on the second mode. Second, the
+unstable frequency band of the first mode extends to comprise the
+zero and negative frequencies, which is unique in the 3D boundary
+layers. The zero-frequency unstable mode is the commonly encountered stationary cross-flow mode, and the more amplified disturbance
+with positive frequency is the traveling cross-flow mode. However, the
+so-called cross-flow mode is no other than the slow mode, or Mack’s
+first mode, depending on the terminology chosen. Crossflow in the
+base flow does not essentially create a new unstable mode. Therefore,
+it seems more appropriate to name a stationary or traveling first mode
+rather than a cross-flow mode. This fact is supported by the numerical
+findings in a 3D high-speed boundary layer.25 They obtained the
+
+ARTICLE
+
+Physics of Fluids
+
+FIG. 8. Growth-rate contour of conjugate modes (mode S, Ma ¼ 4.5, Re ¼ 2000,
+m ¼ 0.1, K ¼ 60 ).
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+scitation.org/journal/phf
+
+The maximum growth rates and corresponding wave angles are calculated for the first and second modes. The 2D and 3D results are plotted
+for comparison, as shown in Figs. 9(b) and 9(c). The growth rates of
+both modes are found to increase with Reynolds number in a 3D
+boundary layer, which indicates a stabilizing effect of viscosity as in a
+2D case. Thus, the crossflow seems not to alter the viscous effect, while
+the crossflow does change the specific instability characteristics, like
+the growth rate and wave angle. Apparent discrepancies in maximum
+growth rate are observed for both modes [Fig. 9(b)]. The first-mode
+growth rate in a 3D base flow is unanimously larger than that in a 2D
+base flow. The reverse is true for the second mode. The contrary effects
+mean that the first mode is destabilized, while the second mode is stabilized by the crossflow. Consequently, the first mode becomes more
+unstable than the second mode in a broader Reynolds-number range.
+In addition, the most amplified disturbances for both modes are found
+to propagate in more tilted directions under the effect of crossflow.
+The wave angle of the second-mode disturbance with maximum
+growth rate varies between 4 and 5 , compared with the exact 0 in a
+2D case. This result quantitatively reveals the asymmetry of the second
+mode as discussed previously.
+Inconsistency can be observed about the effect of crossflow on
+the second mode by comparing Fig. 9 with Fig. 6. Under the effect of
+crossflow, the second-mode maximum growth rate in a 3D boundary
+layer is higher in Fig. 6, while lower in Fig. 9 than that in a 2D boundary layer. This is because the 2D base flow is subject to a favorable
+pressure gradient in Fig. 6, compared with the absence of pressure gradient for the 2D base flow in Fig. 9. Accompanied by imposing an
+additional local swept angle K to create crossflow, the streamwise pressure gradient parameter decreases to mcosK in Fig. 6. As pointed out
+by Zurigat et al.,51 a streamwise favorable pressure gradient has a stabilizing effect on the second mode in a 2D compressible boundary layer.
+According to this fact, decreasing the favorable pressure gradient in
+the streamwise direction suggests the increasingly unstable second
+mode, as shown in Fig. 6. In contrast, increasing the streamwise pressure gradient is imposed to produce crossflow in Fig. 9; thus, a
+decrease in the second-mode growth rate is observed.
+B. Effects of Mach number
+In the 2D boundary layers, the behaviors of the first and second
+modes are well known at varying Mach numbers. The first mode,
+which reduces to the T–S wave in subsonic flows,52 exists in the whole
+range of Mach number. In comparison, the second mode appears
+when Ma > 2.2 and becomes dominant in hypersonic flows. However,
+limited understanding has been recognized about the crossflowaffected instabilities in the 3D compressible boundary layers. In this
+section, we investigate the Mach-number effect on the instability in
+the boundary layers with crossflow.
+The incompressible boundary layer is first considered by setting
+the Mach number to be 0.001. The base flow in current model reduces
+to the FSC flow when the Mach number approaches zero. At such low
+Mach numbers, Mack’s second mode is not expected. In contrast, the
+T–S wave, which is more often termed as T–S mode or the first mode
+in this paper, is the main concern. To reveal the increasing effect of
+crossflow, a 2D base flow is preliminarily considered and crossflow is
+added gradually. Figure 10 shows the growth-rate contours for different local swept angles, corresponding to the cross-flow maximum of 0,
+0.013, and 0.034, respectively. Starting with the use of global method,
+
+34, 094110-10
+
+15 October 2026 08:31:18
+
+consider its conjugate mode with positive frequency and opposite
+wave numbers. The puzzle of negative-frequency mode is thus solved
+by resorting to the conjugate mode. In addition, as the usually encountered unstable wave of mode S in quadrant I has positive frequency, its
+conjugate mode in quadrant III is far less concerned. Exceptions may
+be encountered in the boundary layers with adverse pressure gradients.
+In such cases, the negative-frequency unstable region is stretched from
+quadrant IV to quadrant III; thus, the counterpart in quadrant I is
+worth consideration. It is also observed that, despite the rotational
+symmetry of conjugate modes, symmetry with respect to crosswise
+wave number does not exist. This indicates that the distributions of
+growth rate and unstable crosswise-wavenumber band are not symmetric for a given disturbance, unless its frequency is zero. The current
+results combined with the Conjugate-Solution Theorem provide an
+alternative approach to understand and treat negative-frequency
+mode. The understanding is in accordance with that of Mack13 and
+Itoh.44 However, the evidence has long been absent until it is supplemented theoretically in current work.
+The conjugate mode is significant in the 3D boundary layers
+regardless of Mach numbers. Borodulin et al.2 measured experimentally the unsteady cross-flow instability in the incompressible boundary layers on a swept airfoil. The crosswise-wavenumber spectra reveal
+two unstable modes for a given positive frequency. The mode with
+negative crosswise wave number is named mode 1 therein, and the
+other mode 2. The mode 1 has smaller growth rate and narrower
+unstable crosswise-wavenumber bandwidth. In addition, the two
+modes exhibit symmetry only for quasi-stationary disturbances. Based
+on such observations, it is believed that the mode 2 is the cross-flow
+mode, as called in that paper, and the mode 1 is the conjugate mode.
+The boundaries of growth-rate contours are extracted to denote
+the unstable regions and plotted in Fig. 9(a) for various Reynolds
+numbers. The unstable region enlarges along with the increase in
+Reynolds number, and the stationary disturbance emerges at a
+Reynolds number of around 400. At moderately small Reynolds numbers, the unstable region of the first mode is completely one-sided.
+
+ARTICLE
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+15 October 2026 08:31:18
+
+FIG. 9. Characteristics of unstable modes at various Reynolds numbers (Ma ¼ 4.5, K ¼ 30 , Tw ¼ Tad). m ¼ 0.1 for 3D base flows and m ¼ 0 for 2D base flows. (a)
+Unstable x–b region; (b) maximum growth rate; (c) wave angle.
+
+the unstable modal solution is found to be related to mode S for all
+three cases. In a 2D base flow, the growth rate of T–S mode is symmetrically distributed [Fig. 10(a)], and the most amplified wave is 2D as
+reported by Mack.13 Apart from the T–S mode, a new unstable region
+arises with the increase in crossflow, as shown in Fig. 10(b). Again, the
+asymmetry of growth-rate distribution for the T–S mode is observed
+due to crossflow. Despite the seeming disconnection of the two unstable regions, they belong to the same modal solution; thus, they are
+actually connected by the stable region in between. The newly emerging unstable region bears lower frequency, higher growth rate, and
+larger crosswise wave number than the T–S mode region. By comparing with Mack’s result13 about FSC boundary layers, it can be identified that this region corresponds to the cross-flow instability. At even
+stronger crossflow, the two unstable regions coalesce, accompanying
+with the decrease on the number of peaks from two to one [Fig. 10(c)].
+The cross-flow instability and the T–S instability cannot be distinguished in this case.
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+The appearance of the cross-flow instability at Ma ¼ 0.001 differs
+strikingly from the crossflow-affected instability at Ma ¼ 4.5 as shown in
+Subsection IV A. In the highly supersonic boundary layers with crossflow, Mack’s first mode deviates to exhibit some characteristics of the
+cross-flow instability, despite that the cross-flow instability can hardly be
+distinguished. While in the incompressible boundary layers, the crossflow produces an additional cross-flow instability competing with the
+T–S instability. The cross-flow instability occupies a separate unstable
+region at a moderate strength of crossflow. A local maximum of growth
+rate always exists for the cross-flow instability, corresponding to the most
+amplified traveling cross-flow wave. Although the T–S mode becomes
+fairly more unstable with the increase in crossflow, the intensity of crossflow instability grows even more sharply. Finally, the unstable region of
+cross-flow instability enlarges and swallows that of T–S instability.
+Similarity can be observed by comparing Figs. 6(b) and 10(b).
+Two unstable regions, both of which are related to mode S, exist separately with local maxima. In the supersonic boundary layers, the two
+
+34, 094110-11
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+15 October 2026 08:31:18
+
+FIG. 10. Growth-rate contours of the unstable modes in incompressible boundary layers for (a) K ¼ 0 , (b) K ¼ 10 , and (c) K ¼ 30 (m ¼ 0.1, Re ¼ 2000).
+
+regions correspond to Mack’s first mode and second mode, respectively, and the term cross-flow mode is not suggested. In the incompressible boundary layers, one region is the T–S mode. However, it is
+necessary to reconsider whether the other region deserves to be called
+cross-flow mode. Distinguishability problem may arise when two
+unstable regions merge, as shown in Fig. 10(c), and the continuous distributions of wavy parameters, such as frequency, wave number, and
+growth rate, inhibit the formation of clear-cut separate regions, which
+may potentially be used for mode identification. These facts are not in
+favor of naming the cross-flow mode. However, it is found that the
+growth-rate peak of cross-flow instability always exists as long as the
+unstable region exists. This makes it possible to define the cross-flow
+mode in a loose manner as the region around the peak. Thus, when
+the T–S instability and cross-flow instability are comparable as shown
+in Fig. 10(b), the two modes can be easily distinguished, and when the
+cross-flow instability dominates as shown in Fig. 10(c), the T–S mode
+is too weak to be considered. So, the boundary of the two modes is
+insignificant and the cross-flow mode is fairly qualified to depict the
+overall instability. As a matter of fact, the first and second modes in
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+the 2D boundary layers are named according to a rather loose definition. The merging of the first and second modes is common in the
+high-speed regime and difficulty occurs in distinguishing the two
+modes under such conditions. Thanks to the existence of growth-rate
+peaks for both modes, it is possible to define the first or the second
+mode roughly as the region close to each peak. Therefore, cross-flow
+mode is recommended to be named in a similar way for better designation of crossflow-induced instability in low-speed boundary layers.
+This naming stands in contrast with that in a high-speed boundary
+layer, as discussed in Subsection IV A. Further calculation reveals that
+there exists a dividing Mach number between 1.0 and 1.5, above which
+the peak of cross-flow instability does not exist and the naming of
+cross-flow mode is not appropriate consequently.
+Shapes of disturbing velocities are depicted in Fig. 11 for the
+most amplified disturbances of the T–S instability and cross-flow
+instability. Despite the effect of crossflow, the streamwise velocity perturbation of the T–S mode exhibits main features as in a 2D Blasius
+boundary layer. Dual peaks are found to locate in the inner and outer
+part of the boundary layer, which agree with the LST13 and
+
+34, 094110-12
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+FIG. 11. Shapes of disturbing (a) streamwise velocity and (b) crosswise velocity of the most amplified disturbances for T–S instability and cross-flow instability (Ma ¼ 0.001,
+Re ¼ 2000, m ¼ 0.1, K ¼ 10 ).
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+Under the same combination of pressure-gradient parameter and
+swept angle, the cross-flow instability plays a more important role at
+lower Mach numbers, as shown in Fig. 12. The cross-flow mode has a
+larger maximum growth rate than the T–S mode when Ma ¼ 0.5 and
+Ma ¼ 1.0. At higher Mach numbers, the cross-flow instability becomes
+weaker and weaker. Meanwhile, the cross-flow instability gets integrated into the T–S mode or the first mode when the Mach number
+exceeds a value less than 1.5. Although the cross-flow breaks the symmetry of growth-rate distribution, the strength of the Mack-mode
+instability varies against the Mach number in the same manner as in
+the 2D boundary layers.13 When Ma > 6.0, the maximum growth
+rates of the first mode and the second mode decrease with the increase
+in Mach number, indicating the dominant effect of Mach number at
+hypersonic speeds.
+Unstable stationary and traveling disturbances are revealed to be
+pertinent to either the cross-flow mode or the T–S mode. The traveling
+disturbances are found to be more unstable in comparison with the
+stationary ones for all Mach numbers. As a feature peculiar to the 3D
+boundary layers, the stationary disturbances are in particular, concerned. The growth rate and wave angle of stationary disturbance are
+plotted against crosswise wave number at different Mach numbers, as
+shown in Fig. 13. It is observed that the growth rate gets smaller and
+the unstable wave-number bandwidth gets narrower with the increase
+in Mach number, which implies a stabilizing effect of compressibility
+on the stationary disturbances. The wave angle of unstable stationary
+disturbances stays in a range between 85 and 90 , which is consistent
+with the measured results for quasi-stationary disturbances.2 The wave
+angle corresponding to the most amplified stationary disturbance is
+labeled as hmax in Fig. 13(b). The increase in hmax with respect to
+Mach number is shown, and the variation is constrained to a narrow
+band around 89 , almost in alignment with crossflow.
+C. Effects of pressure gradient
+In the current base-flow model, the effects of crossflow are the
+combined contributions of pressure gradient and local swept angle. In
+
+34, 094110-13
+
+15 October 2026 08:31:18
+
+numerical53 results. The zero-amplitude point between two peaks
+implies a phase change as described by Mack,13 and the amplitude
+decays exponentially beyond the boundary layer. In contrast, the
+streamwise-velocity perturbation of the cross-flow instability is fully
+confined in the boundary layer and only one peak is observed. The
+crosswise-velocity perturbations of the T–S and cross-flow modes
+resemble in shape, whereas large discrepancy is revealed for the normalized amplitude. Figure 11 exhibits differences in velocity perturbations for the T–S mode and cross-flow mode, although both modes
+are related to mode S. Thus, different flow structures may be expected
+in the evolution of disturbances for the two instabilities.
+Figure 12 provides an overview of growth-rate distribution for
+crossflow-affected instabilities at different Mach numbers. The unstable mode pertinent to the cross-flow instability occupies a region with
+continuous variation of frequency from negative to positive, typically
+centering around a growth-rate peak in the positive-frequency half
+plane. The result in each case is obtained by gradually increasing the
+strength of crossflow from zero. Thus, the presented instabilities can
+be traced and identified based on the 2D results. Under moderate
+strength of crossflow, the intensities are comparable for different instabilities, if there exists more than one instability in the case. Cross-flow
+modes are shown for cases with Mach numbers less than 1.5, while for
+larger Mach numbers, the cross-flow instability cannot be distinguished to be a mode, as discussed previously. In such cases, the crossflow instability is considered as the extension of the T–S mode or the
+first mode from a 2D base flow to a 3D one. The cross-flow mode and
+T–S mode get entangled at Ma ¼ 1.0 [Fig. 12(b)], and the mode entanglement is also observed for the first mode and the second mode at
+high Mach numbers in Figs. 12(f)–12(h). The phenomenal similarity
+underpins the proposition of naming the cross-flow instability as a
+mode at low speeds. In all cases, however, it should be kept in mind
+that the cross-flow instability is always associated with the slow-mode
+instability. The current stability analysis agrees well with the results of
+DNS, which revealed that the slow mode can evolve into Mack’s first
+mode in the 2D boundary layers26 and into traveling cross-flow waves
+in the 3D boundary layers.25
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+34, 094110-14
+
+15 October 2026 08:31:18
+
+FIG. 12. Growth-rate contours of the
+unstable modes in compressible boundary
+layers (Re ¼ 2000, m ¼ 0.1, K ¼ 10 , Tw
+¼ Tad) with (a) Ma ¼ 0.5; (b) Ma ¼ 1.0;
+(c) Ma ¼ 1.5; (d) Ma ¼ 3.0; (e) Ma ¼ 4.5;
+(f) Ma ¼ 6.0; (g) Ma ¼ 8.0; and (h)
+Ma ¼ 10.0.
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+FIG. 13. Stability characteristics of unstable stationary cross-flow disturbances (m ¼ 0.1, K ¼ 30 , Tw ¼ Tad, Re ¼ 2000). (a) Growth rate; (b) wave angle.
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+the destabilizing effect of the crossflow competes with the stabilizing
+effect of the streamwise pressure gradient. Consequently, the first mode
+in a 3D boundary layer with crossflow may be more stable or unstable
+than that in a correspondingly 2D flow from case to case. As a matter
+of fact, the competition exists for the second mode as well. However,
+the effect of the pressure gradient is much greater than that of the
+cross-flow; thus, the behavior of the second mode is basically dominated by the pressure-gradient effect.
+The characteristics of the most amplified disturbance of the first
+mode are presented under various pressure gradients in Fig. 15. For
+the cases with K ¼ 10 , the maximum growth rates are smaller for a
+positive m than that for a zero m, which implies more stable boundary
+layers with crossflows. This result is ascribed to the failure of the crossflow, with amplitude about 0.013 for both cases, in the competition
+with the pressure gradient. While for other cases at different Mach
+numbers, the crossflow becomes dominant with larger amplitudes
+(around 0.040), and makes the 3D boundary layers more unstable
+than the 2D ones. The wave angles of the most amplified disturbances
+are shown in Fig. 15(b). A unanimous increase in wave angle is
+observed for different cases. This trend is in accordance with the variation of crossflow in each case.
+The cross-flow mode can be identified in a 3D boundary layer at
+low Mach numbers under favorable pressure gradients (Figs. 10 and
+12). One of our interest is whether it can be identified under adverse
+pressure gradients. We have conducted a large amount of stability calculations with negative pressure-gradient parameters, among which
+typical examples are presented in Fig. 16. Quite similar with the results
+at Ma ¼ 4.5 as shown in Fig. 14, no clues of additional unstable modes
+are discovered apart from the T–S mode. Therefore, despite that the
+stability is substantially affected by crossflow, the cross-flow instability
+does not appear as a mode under adverse pressure gradient. This contrasts sharply with the cases with favorable pressure gradient discussed
+previously. In addition, an unidentified instability is observed to be
+attached to the first mode. This instability occurs at moderately low
+Mach numbers and large amplitudes of crossflow.
+
+34, 094110-15
+
+15 October 2026 08:31:18
+
+comparison, the pressure gradient plays a more essential role, since the
+local swept angle serves merely to redistribute the pressure gradient in
+the streamwise and crosswise directions. Despite of this, the effects of
+each ingredient are studied separately in what follows.
+In a 2D compressible boundary layer, it is well known that favorable pressure gradients are stabilizing, whereas adverse pressure gradients are destabilizing.51 However, the effects of pressure gradient on
+the crossflow-induced instabilities have scarcely been reported before.
+In this subsection, we focus on the pressure-gradient effects on the
+instabilities in 3D boundary layers. The growth-rate contours with various pressure-gradient parameters are shown in Fig. 14. In this case,
+the local swept angle is kept constant; thus, the streamwise and crosswise pressure gradients vary proportionately. The asymmetry of
+growth-rate distribution is revealed again. The most amplified traveling disturbance and stationary disturbance of the first mode are found
+to propagate in the negative z direction under adverse pressure gradients. Considering the base flow as shown in Fig. 13(c), it can be
+inferred that the propagating direction is still opposite to the crossflow,
+as in a favorable-pressure-gradient boundary layer.
+The maximum growth rate of the second mode decreases monotonously with the increase in the pressure-gradient parameter m, which
+is similar to the variation in a 2D flow. The first mode, however, is
+destabilized by adverse as well as favorable pressure gradients. The different behavior in the 3D boundary layers can be attributed to the
+cross-flow instability, which is integrated in the first mode. Although
+the cross-flow instability is not distinguishable, we can ambiguously
+divide the first-mode instability into a cross-flow component and a
+non-crossflow component. The non-crossflow component is supposed
+to inherit the characteristics in a 2D boundary layer. As the increase in
+m, the streamwise pressure gradient increases, which leads to the stabilization of the non-crossflow first mode. Meanwhile, the crossflow
+grows with the increase in m, which leads to the destabilization of the
+cross-flow first mode. Therefore, the cross-flow instability is more obvious at a larger pressure-gradient parameter m, as shown in Fig. 14(e).
+In comparison, under moderately small favorable pressure gradients,
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+15 October 2026 08:31:18
+
+FIG. 14. Growth-rate contours of the unstable modes in 3D boundary layers at Ma ¼ 4.5 under pressure gradient with (a) m ¼ 0.06, (b) m ¼ 0.03, (c) m ¼ 0, (d)
+m ¼ 0.1, and (e) m ¼ 0.5. (Re ¼ 2000, K ¼ 30 , Tw ¼ Tad).
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+34, 094110-16
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+FIG. 15. Variations of (a) maximum growth rate and (b) wave angle of the first mode against pressure gradients (Re ¼ 2000, Tw ¼ Tad).
+
+15 October 2026 08:31:18
+
+FIG. 16. Growth-rate contours of the unstable modes in 3D boundary layers under adverse pressure gradients (Re ¼ 2000, Tw ¼ Tad). (a) Ma ¼ 0.5, m ¼ 0.02, K ¼ 45 ;
+(b) Ma ¼ 1.0, m ¼ 0.05, K ¼ 45 ; (c) Ma ¼ 1.5, m ¼ 0.05, K ¼ 30 ; (d) Ma ¼ 3.0, m ¼ 0.05, K ¼ 30 .
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+34, 094110-17
+
+Physics of Fluids
+
+The variations of unstable regions are plotted against the
+pressure-gradient parameter m for Mach number 1.5 and 6.0, as
+shown in Fig. 17. Different asymmetries in unstable region are
+observed for favorable and adverse pressure gradients, respectively. As
+the absolute value of m increases, the growing strength of crossflow
+results in gradual enlargement of the unstable region, especially the
+negative-frequency region. For the case with Ma ¼ 1.5, the outlines of
+the unidentified instability can be observed for somewhat large values
+of m. Despite the obscure meaning of this instability, it is found to be
+unique in the 3D boundary layers at low Mach numbers. For the case
+with Ma ¼ 6.0, the first and second modes coalesce for all pressuregradient parameters. Based on the growth-rate distribution as shown
+in Fig. 12(f), the outlines of the first and second modes can be vaguely
+observed in Fig. 17(b).
+D. Effects of local sweep
+
+scitation.org/journal/phf
+
+crossflow. In comparison, the second mode is affected more weakly by
+the local swept angle. The unstable region shifts with barely observable
+change in size, and the maximum growth rate increases with the local
+swept angle slightly and monotonously, which is believed to be more
+ascribed to the monotonous decrease in the streamwise favorable pressure gradient. While the deviation of wave angle may signify the effect
+of crossflow, wave angle is largest when the cross-flow strength is
+largest.
+Further consideration is made about the boundary layers under
+adverse pressure gradients. The behaviors of the stability characteristics (Fig. 19) are similar to those shown in Fig. 18, while unanimously
+monotonous variations are observed for unstable region, maximum
+growth rate, and wave angle. This can be explained by the fact that the
+crossflow increases monotonously in the considered range of local
+swept angle.
+Combined with the effects of pressure gradient discussed in
+Subsection IV C, it can be noticed that the instability of the T–S mode
+or the first mode are highly correlated with the strength of crossflow.
+Larger magnitudes in crossflow usually indicate larger unstable regions
+and higher growth rates. As revealed previously, the cross-flow instability is integrated in the T–S mode or the first mode and inseparable
+in most cases. Therefore, despite the nominal correspondence between
+the crossflow and the cross-flow instability, it is the integrated instability that should be viewed as the object directly affected by the crossflow. In comparison, the second mode is found to be affected greatly
+by the pressure gradient that serves to create crossflow, nevertheless
+slightly by the crossflow per se.
+The cross-flow mode has been found to coexist with the T–S
+mode at low Mach numbers. To obtain more details about the association between the two modes, moderate crossflows are created by varying the local swept angle based on the case shown in Fig. 12(b). The
+maximum growth rates of both modes increase with increasing K, as
+shown in Fig. 20(a). In comparison, the growth rate of the cross-flow
+mode increases more sharply and exceeds that of the T–S mode at K
+ 8.5 . The frequency of the T–S mode decreases, compared with the
+increase in the crossflow-mode frequency. This indicates the trend of
+mode coalescing with the increase in the local swept angle, or the
+
+FIG. 17. Unstable x–b regions for various pressure gradients (Re ¼ 2000, K ¼ 30 , Tw ¼ Tad). (a) Ma ¼ 1.5 and (b) Ma ¼ 6.0.
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+34, 094110-18
+
+15 October 2026 08:31:18
+
+In current base-flow model, the local swept angle K acts to
+decompose pressure gradient into a streamwise component and a
+crosswise component. Between the two pressure-gradient components,
+the crosswise one is responsible for the occurrence of crossflow. As an
+essential role played in creating crossflow, local sweep is studied to
+reveal its effects on the boundary-layer instabilities.
+Stability characteristics of the compressible boundary layers
+under favorable pressure gradients are shown in Fig. 18. With the
+appearance of crossflow, the unstable regions are revealed to expand
+notably for the T–S mode, or the first mode at higher Mach numbers,
+while the increase in size is not monotonous as the way pressure gradient affects the instability. In all the four cases, the increase ceases
+before K reaches 75 , resulting in a shrink in size. The nonmonotonous variation, which is also observed for maximum growth
+rate, can be attributed to the change of crossflow. In the base flow, a
+largest value exists for the maximum crossflow with varying local
+swept angles, as typically shown in Fig. 13(b). The local swept angle
+corresponding to the largest value is denoted as Kmax in Fig. 18. The
+maximum growth rate increases until a largest value is reached near K
+¼ Kmax, which manifests almost full accordance with the variation of
+
+ARTICLE
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+34, 094110-19
+
+15 October 2026 08:31:18
+
+FIG. 18. Stability characteristics of boundary layers at various local swept angles
+(Re ¼ 2000, m ¼ 0.1, Tw ¼ Tad). Unstable
+x–b region: (a) Ma ¼ 1.5; (c) Ma ¼ 3.0;
+(e) Ma ¼ 4.5; (g) Ma ¼ 6.0. Maximum
+growth rate and wave angle: (b) Ma ¼ 1.5;
+(d) Ma ¼ 3.0; (f) Ma ¼ 4.5; (h) Ma ¼ 6.0.
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+FIG. 19. Stability characteristics of boundary layers at various local swept angles (Ma ¼ 4.5, Re ¼ 2000, m ¼ 0.03, Tw ¼ Tad). (a) Unstable x–b region; (b) maximum
+growth rate and wave angle.
+
+increase in local swept angle, the streamwise pressure gradient (signified by mcosK) becomes less favorable, which results in a slight
+increase in the maximum growth rate. However, the growth rate contributed by the streamwise pressure gradient (green solid line) is too
+small to be comparable to the total growth rate (red solid line). Thus,
+it can be inferred that the growth rate of the T–S mode in a 3D boundary layer is mostly contributed by the effect of the crossflow, rather
+than the streamwise pressure gradient.
+E. Effects of wall temperature
+In high-speed 2D boundary layers, wall cooling is widely known
+as stabilizing the first mode but destabilizing the second mode, and the
+reverse is true for wall heating, while the effects of wall temperature on
+
+FIG. 20. Characteristics of most unstable T–S and cross-flow modes (Ma ¼ 1.0, m ¼ 0.1, Tw ¼ Tad). (a) Maximum growth rates and frequency vs local swept angle,
+Re ¼ 2000. The green line represents the results in 2D boundary layers under equivalent streamwise pressure gradients to those (mcosK) in 3D ones. (b) Maximum growth
+rate and wave angle vs Reynolds number, K ¼ 10 .
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+34, 094110-20
+
+15 October 2026 08:31:18
+
+crossflow. At K  12.5 , which corresponds to a quite small value of
+maximum crossflow about 0.017, the growth rate peak of the T–S
+mode is submerged in the more unstable region of the cross-flow
+mode and becomes undistinguishable as typically shown in Fig. 10(c).
+Although the cross-flow mode is more unstable than the T–S mode at
+low Reynolds numbers, more calculations reveal that the reverse is
+true at high Reynolds numbers, as shown in Fig. 20(b). Meanwhile,
+the difference in curve monotonicity indicates different effects of viscosity, that is, stabilizing effect on the cross-flow mode and dual effects
+on the T–S mode.
+In addition, to analyze the contributions of the crossflow and the
+pressure gradient to affecting the T–S mode, the maximum growth
+rates are plotted for the 2D boundary layers with equivalent streamwise pressure gradients to those in the 3D counterparts. With the
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+15 October 2026 08:31:18
+
+FIG. 21. Growth-rate contours of the unstable modes in hypersonic boundary layers (Ma ¼ 6, Re ¼ 2000, m ¼ 0.1, K ¼ 30 ). (a) Tw ¼ 3; (b) Tw ¼ Tad (Tad  7); (c) Tw ¼ 11;
+(d) Tw ¼ 15.
+
+the crossflow-induced instabilities are scarcely recognized. Thus, in
+this subsection, we concentrate on the behaviors of unstable modes in
+the 3D boundary layers with various wall temperatures.
+The growth-rate contours are shown in Fig. 21 for the 3D hypersonic boundary layers with various wall temperatures. In general, the
+second mode is destabilized by wall cooling while stabilized by wall
+heating, as it does in the 2D boundary layers, while the first mode
+behaves differently in two aspects due to the existence of crossflow.
+First, although the first mode is more stable for a cooler wall than an
+adiabatic wall, wall heating is also found to stabilize the first mode at
+moderately high wall temperatures. This abnormal effect of wallheating is not able to be explained quite well for now. Second, the
+negative-frequency unstable region grows wider along with the
+increase in wall temperature. This partly reveals the variation of crossflow instability. This phenomenon is believed to be associated with the
+increase in crossflow, as shown in Fig. 3(d).
+The maximum growth rates of the first and second modes are
+shown in Fig. 22(a). The first-mode growth rate on an adiabatic wall is
+highest in almost the whole range of Reynolds number. This indicates
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+a stabilizing effect for both wall cooling and heating, despite that the
+effect is moderately weak. In comparison, the second mode is found to
+be more sensitive to the variation of wall temperature for all Reynolds
+numbers. In addition, it is found that a higher wall temperature results
+in a more oblique second mode [Fig. 22(b)], while the reverse is true
+for the first mode.
+V. CONCLUDING REMARKS
+The linear instability characteristics of the 3D boundary layers
+subject to controllable crossflow have been investigated. A base-flow
+model on a flat plate is used to create boundary layer with crossflow,
+which is parameterized by a pressure-gradient parameter and a local
+swept angle. Asymmetry and negativeness of frequency are found to
+be fundamental features for the cross-flow instability in the 3D boundary layers. Two theorems, that is, Symmetry Theorem and ConjugateSolution Theorem, are primarily proposed to reveal the intrinsic
+details. The symmetric distributions of stability characteristics in the
+2D flows are demonstrated by the Symmetry Theorem and the LST
+results. The occurrence of the instability asymmetry in a 3D flow is
+
+34, 094110-21
+
+Physics of Fluids
+
+ARTICLE
+
+scitation.org/journal/phf
+
+FIG. 22. Characteristics of the most amplified modes against Reynolds number (Ma ¼ 6, m ¼ 0.1, K ¼ 30 ). (a) Maximum growth rate; (b) wave angle.
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+modes may be stabilized or destabilized from case to case, depending
+on the competition of crossflow and streamwise pressure gradient.
+However, as the T–S/first mode is more sensitive to the destabilizing
+effect of crossflow, the behaviors of stability characteristics are commonly dominated by the crossflow. In contrast, the second mode is
+more sensitive to the effects of streamwise pressure gradient; thus, its
+behaviors are commonly dominated by the streamwise pressure
+gradient.
+Two more findings are also obtained as follows for the
+crossflow-affected instabilities. (i) The cross-flow mode is subject
+to a stabilizing effect of viscosity, compared with the dual effects
+on the T–S mode at low Mach numbers. (ii) Wall heating is
+revealed to stabilize the first mode in the 3D hypersonic boundary
+layers, which contrasts with the destabilizing effect in the 2D
+boundary layers.
+The current work focuses on the stability characteristics of the
+3D boundary layers with crossflow. The basic features are presented
+qualitatively, whereas quantitative results are not emphasized. The
+results may serve as foundations to understand and investigate the
+nonlinear instability and transition of the 3D boundary layers in vast
+applications.
+ACKNOWLEDGMENTS
+The author gratefully acknowledges Qing Shen, Wubing Yang,
+and Min Yu from China Academy of Aerospace Aerodynamics
+(CAAA) for useful discussions.
+AUTHOR DECLARATIONS
+Conflict of Interest
+The authors have no conflicts to disclose.
+Author Contributions
+Zhiyong Liu: Conceptualization (lead); Investigation (lead);
+Methodology (lead); Visualization (lead); Writing – original draft
+(lead).
+
+34, 094110-22
+
+15 October 2026 08:31:18
+
+believed to be attributed to the crossflow, whose existence ruins the
+symmetry of the base flow. The occurrence of negative-frequency disturbance is revealed repeatedly in the results of the stability analysis.
+According to the Conjugate-Solution Theorem, a conjugate solution
+with positive frequency exists for a negative-frequency solution.
+Therefore, although the negative-frequency disturbance per se is notorious for lack of physical significance, its conjugate counterpart is suggested to be resorted to for physical applications. Meanwhile, the
+Conjugate-Solution Theorem further indicates opposite propagating
+directions for the negative- and corresponding positive-frequency disturbances, which is accordant to what has been suppositionally
+recognized.
+Based on a large number of calculations, it is revealed that the
+occurrence of crossflow does not essentially create a new discrete
+modal solution. All the LST solutions obtained in this paper are found
+to be related to mode S, according to the mode terminology proposed
+by Fedorov and Tumin.48 However, the crossflow does give rise to different behaviors of mode S from those in the 2D boundary layers. The
+differences are in twofold. First, the cross-flow instability, which is
+characterized as containing zero and negative frequency bands,
+emerges. It is found to be integrated in the T–S mode at low Mach
+numbers or the first mode at high Mach numbers. The cross-flow
+instability can hardly be identified as a mode for most cases, even
+based on a loose definition of mode like Mack’s first and second
+modes. Moreover, exceptions are found to exist for moderate crossflow in the favorably pressure-gradient boundary layers with Mach
+number less than 1.5. Second, the crossflow seems to destabilize the
+T–S/first and second modes in general, by expanding unstable
+regions and increasing growth rates. Meanwhile, the unstable modes
+become more oblique toward crosswise or the opposite direction,
+depending on favorable or adverse pressure gradients. In comparison, the first mode is much more greatly affected by crossflow than
+the second mode.
+The effects of pressure gradient and local sweep are investigated.
+Based on current base-flow model, it is revealed that the combined
+effects of streamwise pressure gradient and crossflow per se account
+for the variations of instabilities. Therefore, the T–S/first and second
+
+ARTICLE
+
+Physics of Fluids
+
+DATA AVAILABILITY
+The data that support the findings of this study are available
+from corresponding author upon reasonable request.
+
+in which
+
+(A2)
+
+Assuming ðx; a; b; /Þ, which satisfies Eqs. (A1) and (A2), is one
+solution^ of^ Eq. (12), we consider the following combination
+^
+^
+ðx ; a ; b ; / Þ as:
+^
+
+x ¼ x;
+(A3)
+
+_
+
+a ¼ a ¼ ar þ iai ;
+^
+
+_
+
+u ¼ u ¼ ur  iui :
+This combination produces coefficient matrices, which are related
+to Eq. (A2) as
+^
+
+~r ¼ D
+~ r;
+D
+^
+
+~ i;
+~ i ¼ D
+D
+
+(A4)
+
+^
+
+~ r;
+~r ¼ B
+B
+^
+
+~ i:
+~ i ¼ B
+B
+Equation (A4) can be rewritten in standard complex form as
+^
+
+_
+
+^
+
+_
+
+~ r  iD
+~i ¼ D
+~ ;
+~ ¼D
+D
+
+(A5)
+
+~ r  iB
+~i ¼ B
+~:
+~¼B
+B
+
+It implies that the combination defined in Eq. (A3) produces conjugate
+counterparts of coefficient matrices. Finally, we note the equation
+^
+
+^
+
+_
+
+_
+
+2
+2
+^ ^
+^
+_ _
+_
+~ d/ þ V22 d / ¼ D
+~ / þB
+~ d/ þV22 d /
+~/ þ B
+D
+2
+dy
+dy
+dy
+dy2
+
+~ þB
+~ d/ þ V22 d /
+¼ c:c: D/
+dy
+dy2
+2
+
+!
+¼ 0:
+(A6)
+
+^
+
+^
+
+^
+
+^
+
+Therefore, it has been shown that the combination ðx ; a ; b ; / Þ is
+also a solution of the LST equations. Similar result can be obtained
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+(A7)
+
+Heretofore, the Conjugate-Solution Theorem has been proved.
+APPENDIX B: PROOF OF SYMMETRY THEOREM
+Consider Eq. (12) and the elements of coefficient matrices are
+referred to Malik.47 For a 2D flow, the disturbance equations can be
+rewritten as follows:
+
+
+ Dv þ iða
+q Þv ¼ 0;
+(B1)
+q
+u  xÞq þ i
+q au þ bw þ ðD
+
+
+
+l
+1
+l
+  Du þ ia
+sDT
+ Dv þ sD
+u  DT
+ D2 u 
+Re
+Re
+3
+
+
+
+
+
+
+ 2
+iaT
+ias 
+l
+2
+ð
+Þ
+
+u
+þ
+q
+D
+u
+
+D
+T
+v
+a
+q
+þ
+i
+q
+a
+u
+x
+þ
+þ
+b
+þ
+cMa2
+Re
+Re
+
+
+
+a
+l
+ia
+q
+s
+Ds 
+  DT
+au þ bw þ
+ D
+u T ¼ 0; (B2)
+ D2 u
+þ
+3Re
+cMa2 Re
+Re
+
+
+
+
+l
+i
+l 
+T
+ D2 v þ
+aDu þ bDw
+Dq 
+2
+Re
+3Re
+cMa
+
+
+
+
+q
+4sDT
+DT
+Dv þ
+DT þ
+q
+
+2
+cMa
+3Re
+cMa2
+
+
+
+
+
+
+2isDT
+l
+þ
+v
+au þ bw þ i
+a2 þ b2
+q ða
+u  xÞ þ
+3Re
+Re
+
+
+D
+q
+ias
+D
+u T ¼ 0;
+ðB3Þ
+þ
+
+cMa2 Re
+
+
+
+
+
+l
+1 ibl
+
+  Dw þ i b T q  i b sv DT
+ D2 w 
+ Dv þ sDT
+Re
+Re 3
+Re
+cMa2
+
+
+
+
+l
+a2 w þ b2 w
+þ i
+q ða
+u  xÞ w þ
+Re
+
+
+
+
+l
+q
+2
+abu þ b w þ ib
+T ¼ 0;
+(B4)
+þ
+3Re
+cMa2
+ck
+2cðc  1Þ
+l Ma2
+
+D2 T 
+D
+u  Du
+Pr  Re
+Re
+  DT
+  Dv  2jc DT
+T
+þ ðc  1Þq
+Pr  Re 
+
+
+
+2icðc  1Þ
+l Ma2
+
+
+ DT 
+aD
+u v
+þ iðc  1Þ
+q T au þ bw þ q
+Re
+
+
+
+
+ck
+T
+a2 þ b2
+þ i
+q ða
+u  xÞ þ
+Pr  Re
+
+
+cðc  1ÞsMa2
+c 
+2
+ Þ2 þ jD2 T
+ T ¼ 0:
+ðD
+Dj  ðDT
+
+uÞ þ
+Pr  Re
+Re
+(B5)
+In the equations above, D ¼ d/dy and q, u, v, w, and T denote
+the disturbing density, velocities, and temperature, respectively. The
+quantities of the base flow are denoted with bars. Consider the
+
+34, 094110-23
+
+15 October 2026 08:31:18
+
+^
+
+^
+
+_
+
+^
+
+(A1)
+
+b ¼ b;
+
+^
+
+x ¼ x ¼ xr þ ixi ;
+^
+a ¼ a;
+^
+
+Considering the spatial theory, we transform Eq. (13) into
+standard complex forms as
+
+
+
+~ r ¼ D  ai A  a2r  a2i V11  ar bV13  b2 V33 ;
+D
+~ i ¼ xC þ ar A þ bC  2ar ai V11  bai V13 ;
+D
+~ r ¼ B  ai V12 ;
+B
+~ i ¼ ar V12 þ bV23 :
+B
+
+in temporal theory, as long as the conjugate combination takes the
+form of
+
+b ¼ b;
+_
+u ¼ u ¼ ur  iui :
+
+APPENDIX A: PROOF OF CONJUGATE-SOLUTION
+THEOREM
+
+~ i;
+~ ¼D
+~ r þ iD
+D
+~ ¼B
+~ r þ iB
+~ i;
+B
+
+scitation.org/journal/phf
+
+ARTICLE
+
+Physics of Fluids
+
+terms containing bswt (framed in equations), in which s and t are
+integers. For a combination (b, w), one can obtain that
+sþt
+ðbÞs ðwÞt ¼ ð1Þ bs wt :
+
+(B6)
+
+From Eq. (B6), we know that an even value of (s þ t) does not
+change the term. In Eq. (B1), s ¼ 1 and t ¼ 1, and thus, s þ t ¼ 2.
+Therefore, Eq. (B1) keeps invariant after replacing (b, w) with (b,
+w). Similarly, the replacement does not change Eqs. (B2), (B3),
+and (B5) as well. While in Eq. (B4), the value of (s þ t) is odd in
+each term. This results in a sign change for the whole equation,
+which does not change the Eq. (B4) essentially. In a nutshell, the
+replacement of (b, w) with (b, w) does not change the equation
+system. Combining further consideration about the homogeneity of
+boundary conditions, it can be concluded that the equation systems
+are identical for (b, w) and (b, w). Therefore, once [x, a, b, /
+(q, u, v, w, T)] is a solution, [x, a, b, / (q, u, v, w, T)] is a solution as well.
+Especially, if b ¼ 0, Eq. (B4) can be reduced to
+
+
+
+
+ a2
+l
+l
+sDT
+ Dw þ i
+q ða
+u  xÞ þ
+w ¼ 0:
+(B7)
+ D2 w 
+Re
+Re
+Re
+Considering the vanishing boundary condition for the crosswise
+velocity disturbance, one can conclude that w ¼ 0 is the solution.
+Heretofore, the Symmetry Theorem has been proved.
+
+M. R. Malik, F. Li, M. M. Choudhari, and C. L. Chang, “Secondary instability of
+crossflow vortices and swept-wing boundary-layer transition,” J. Fluid Mech.
+399, 85–115 (1999).
+2
+€ u, A.
+V. I. Borodulin, A. V. Ivanov, Y. S. Kachanov, D. A. Mischenko, R. Orl€
+Hanifi, and S. Hein, “Experimental and theoretical study of swept-wing boundary-layer instabilities. Unsteady crossflow instability,” Phys. Fluids 31(6),
+064101 (2019).
+3
+L. D. Vincentiis, D. S. Henningson, and A. Hanifi, “Transition in an infinite
+swept-wing boundary layer subject to surface roughness and free-stream turbulence,” J. Fluid Mech. 931, A24 (2022).
+4
+J. M. Kendall, “Wind tunnel experiments relating to supersonic and hypersonic
+boundary-layer transition,” AIAA J. 13(3), 290–299 (1975).
+5
+F. Li, M. Choudhari, P. Paredes, and L. Duan, “High-frequency instabilities of
+stationary crossflow vortices in a hypersonic boundary layer,” Phys. Rev.
+Fluids 1, 053603 (2016).
+6
+A. Arndt, T. Corke, E. Matlis, and M. Semper, “Controlled stationary/travelling
+cross-flow mode interaction in a Mach 6.0 boundary layer,” J. Fluid Mech.
+887, A30 (2020).
+7
+A. Di Giovanni and C. Stemmer, “Cross-flow-type breakdown induced by distributed roughness in the boundary layer of a hypersonic capsule configuration,” J. Fluid Mech. 856, 470–503 (2018).
+8
+S. Liu, X. Yuan, Z. Liu, Q. Yang, G. Tu, X. Chen, Y. Gui, and J. Chen, “Design
+and transition characteristics of a standard model for hypersonic boundary
+layer transition research,” Acta Mech. Sin. 37(11), 1637–1649 (2021).
+9
+G. Tu, J. Chen, X. Yuan, Q. Yang, M. Duan, Q. Yang, Y. Duan, X. Chen, B.
+Wan, and X. Xiang, “Progress in flight tests of hypersonic boundary layer transition,” Acta Mech. Sin. 37(11), 1589–1609 (2021).
+10
+W. S. Saric, H. L. Helen, and E. B. White, “Stability and transition of threedimensional boundary layers,” Annu. Rev. Fluid Mech. 35, 413–440
+(2003).
+11
+B. Wan, G. Tu, X. Yuan, J. Chen, and Y. Zhang, “Identification of traveling
+crossflow waves under real hypersonic flight conditions,” Phys. Fluids 33,
+044110 (2021).
+12
+J. C. Cooke, “The boundary layer of a class of infinite yawed cylinders,” Math.
+Proc. Cambridge Philos. Soc. 46, 645–648 (1950).
+1
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+L. M. Mack, “Boundary-layer linear stability theory,” AGARD Report No. 709
+(1984).
+14
+H. Bippes, B. M€
+uller, and M. Wagner, “Measurements and stability calculations
+of the disturbance growth in an unstable three-dimensional boundary layer,”
+Phys. Fluids A 3(10), 2371–2377 (1991).
+15
+P. Wassermann and M. Kloker, “Mechanisms and passive control of crossflowvortex-induced transition in a three-dimensional boundary layer,” J. Fluid
+Mech. 456, 49–84 (2002).
+16
+P. Wassermann and M. Kloker, “Transition mechanisms induced by travelling
+crossflow vortices in a three-dimensional boundary layer,” J. Fluid Mech. 483,
+67–89 (2003).
+17
+C. D. Pruett, C. L. Chang, and C. L. Streett, “Simulation of crossflow instability
+on a supersonic highly swept wing,” Comput. Fluids 29, 33–62 (2000).
+18
+L. N. Cattafesta III, V. Iyer, J. A. Masad, R. A. King, and J. R. Dagenhart,
+“Three-dimensional boundary-layer transition on a swept wing at Mach 3.5,”
+AIAA J. 33(11), 2032–2037 (1995).
+19
+P. Balakumar and R. A. King, “Receptivity and stability of supersonic swept
+flows,” AIAA J. 50(7), 1476–1489 (2012).
+20
+A. S. Craig and W. S. Saric, “Crossflow instability in a hypersonic boundary
+layer,” J. Fluid Mech. 808, 224–244 (2016).
+21
+A. J. Moyes, P. Paredes, T. S. Kocian, and H. L. Helen, “Secondary instability
+analysis of crossflow on a hypersonic yawed straight circular cone,” J. Fluid
+Mech. 812, 370–397 (2017).
+22
+P. Paredes, R. Gosse, V. Theofilis, and R. Kimmel, “Linear modal instabilities
+of hypersonic flow over an elliptic cone,” J. Fluid Mech. 804, 442–466 (2016).
+23
+M. Asai, N. Saitoh, H. Seino, and N. Itoh, “Influence of compressibility on
+three-dimensional boundary layer stability,” Trans. Jpn. Soc. Aeronaut. Space
+Sci. 42(136), 76–84 (1999).
+24
+D. Tempelmann, A. Hanifi, and D. S. Henningson, “Spatial optimal growth in
+three-dimensional compressible boundary layers,” J. Fluid Mech. 704, 251–279
+(2012).
+25
+G. Xu, J. Chen, G. Liu, and S. Fu, “Role of freestream slow acoustic waves in a
+hypersonic three-dimensional boundary layer,” AIAA J. 56(9), 3570–3584 (2018).
+26
+Y. Ma and X. Zhong, “Receptivity of a supersonic boundary layer over a flat
+plate. Part 3. Effects of different types of free-stream disturbances,” J. Fluid
+Mech. 532, 63–109 (2005).
+27
+S. Ma and Z. Huang, “Nonlinear interaction between two second-mode disturbances with the same frequency in a hypersonic boundary layer over a swept
+blunt plate,” Phys. Fluids 33, 044102 (2021).
+28
+L. U. Schrader, L. Brandt, and D. S. Henningson, “Receptivity mechanisms in
+three-dimensional boundary-layer flows,” J. Fluid Mech. 618, 209–241 (2009).
+29
+M. H€
+ogberg and D. Henningson, “Secondary instability of cross-flow vortices
+in Falkner–Skan–Cooke boundary layers,” J. Fluid Mech. 368, 339–357 (1998).
+30
+G. Xu, J. Chen, G. Liu, S. Dong, and S. Fu, “The secondary instabilities of stationary cross-flow vortices in a Mach 6 swept wing flow,” J. Fluid Mech. 873,
+914–941 (2019).
+31
+J. B. Edelman and S. P. Schneider, “Secondary instabilities of hypersonic stationary crossflow waves,” AIAA J. 56(1), 182–192 (2018).
+32
+K. J. Groot, J. Serpieri, F. Pinna, and M. Kotsonis, “Secondary crossflow instability through global analysis of measured base flows,” J. Fluid Mech. 846,
+605–653 (2018).
+33
+C. Y. Schuele, T. C. Corke, and E. Matlis, “Control of stationary cross-flow
+modes in a Mach 3.5 boundary layer using patterned passive and active roughness,” J. Fluid Mech. 718, 5–38 (2013).
+34
+M. Brynjell-Rahkola, N. Shahriari, P. Schlatter, A. Hanifi, and D. S.
+Henningson, “Stability and sensitivity of a cross-flow dominated
+Falkner–Skan–Cooke boundary layer with discrete surface roughness,” J. Fluid
+Mech. 826, 830–850 (2017).
+35
+T. C. Corke, A. Arndt, E. Matlis, and M. Semper, “Control of stationary crossflow modes in a Mach 6 boundary layer using patterned roughness,” J. Fluid
+Mech. 856, 822–849 (2018).
+36
+X. Li, J. Chen, Z. Huang, Q. Yang, and G. Tu, “Stability analysis and transition
+prediction of streamwise vortices over a yawed cone at Mach 6,” Phys. Fluids
+32, 124110 (2020).
+37
+J. Chen, S. Dong, X. Chen, X. Yuan, and G. Xu, “Stationary cross-flow breakdown in a high-speed swept-wing boundary layer,” Phys. Fluids 33, 024108
+(2021).
+13
+
+34, 094110-24
+
+15 October 2026 08:31:18
+
+REFERENCES
+
+scitation.org/journal/phf
+
+ARTICLE
+
+Physics of Fluids
+
+M. V. Ustinov and Y. S. Kachanov, “Comparison of amplitude method of
+roughness-induced swept-wing transition prediction with experiment,” Phys.
+Fluids 33, 094105 (2021).
+39
+D. J. Dinzl and G. V. Candler, “Direct simulation of hypersonic crossflow
+instability on an elliptic cone,” AIAA J. 55(6), 1769–1782 (2017).
+40
+Y. Ide, M. Hirota, and N. Tokugawa, “Stability assessment on sinusoidal roughness elements for crossflow-transition control,” Phys. Fluids 33, 034112 (2021).
+41
+E. B. White and W. S. Saric, “Secondary instability of crossflow vortices,”
+J. Fluid Mech. 525, 275–308 (2005).
+42
+H. Niu, S. Yi, J. Huo, W. Zheng, and X. Liu, “Experimental study of hypersonic
+crossflow instability over a swept flat plate by flow visualization,” Acta Mech.
+Sin. 37(9), 1395–1403 (2021).
+43
+M. R. Malik, F. Li, and C. L. Chang, “Crossflow disturbances in threedimensional boundary layers: Nonlinear development, wave interaction and
+secondary instability,” J. Fluid Mech. 268, 1–36 (1994).
+44
+N. Itoh, “Simple cases of the streamline-curvature instability in threedimensional boundary layers,” J. Fluid Mech. 317, 129–154 (1996).
+45
+Z. Liu, “Compressible Falkner–Skan–Cooke boundary layer on a flat plate,”
+Phys. Fluids 33, 126109 (2021).
+38
+
+scitation.org/journal/phf
+
+46
+
+J. D. Anderson, Jr., Hypersonic and High-Temperature Gas Dynamics, 2nd ed.
+(AIAA Inc., Reston, 2006).
+47
+M. R. Malik, “Numerical methods for hypersonic boundary layer stability,”
+J. Comput. Phys. 86, 376–413 (1990).
+48
+A. Fedorov and A. Tumin, “High-speed boundary-layer instability: Old terminology and a new framework,” AIAA J. 49(8), 1647–1657 (2011).
+49
+G. Lu and S. K. Lele, “Inviscid instability of a skewed compressible mixing
+layer,” J. Fluid Mech. 249, 441–463 (1993).
+50
+Y. Ma and X. Zhong, “Receptivity of a supersonic boundary layer over a flat
+plate. Part 1. Wave structures and interactions,” J. Fluid Mech. 488, 31–78
+(2003).
+51
+Y. H. Zurigat, A. H. Nayfeh, and J. A. Masad, “Effect of pressure gradient on
+the stability of compressible boundary layers,” AIAA J. 30(9), 2204–2211
+(1992).
+52
+A. Fedorov, “Transition and stability of high-speed boundary layers,” Annu.
+Rev. Fluid Mech. 43, 79–95 (2011).
+53
+F. P. Bertolotti, T. Herbert, and P. R. Spalart, “Linear and nonlinear
+stability of the Blasius boundary layer,” J. Fluid Mech. 242, 441–474
+(1992).
+
+15 October 2026 08:31:18
+
+Phys. Fluids 34, 094110 (2022); doi: 10.1063/5.0110311
+Published under an exclusive license by AIP Publishing
+
+34, 094110-25
+
+

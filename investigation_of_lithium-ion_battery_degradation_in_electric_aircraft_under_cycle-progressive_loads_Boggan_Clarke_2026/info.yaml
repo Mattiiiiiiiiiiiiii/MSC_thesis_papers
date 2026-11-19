@@ -1,0 +1,68 @@
+author: Boggan, Cade and Clarke, Matthew A.
+author_list:
+- affiliation:
+  - department:
+    - Department of Aerospace Engineering
+    name: University of Illinois Urbana–Champaign
+    place:
+    - Champaign, IL, USA
+  family: Boggan
+  given: Cade
+- affiliation:
+  - department:
+    - Department of Aerospace Engineering
+    name: University of Illinois Urbana–Champaign
+    place:
+    - Champaign, IL, USA
+  family: Clarke
+  given: Matthew A.
+citations:
+- doi: 10.1109/ITEC63604.2025.11098123
+- doi: 10.1038/s41586-021-04139-1
+- doi: 10.1021/acsenergylett.9b02574
+- doi: 10.1038/s41597-023-02180-5
+- doi: 10.1021/acsenergylett.3c01216
+- doi: 10.2514/6.2022-1996
+- doi: 10.1039/D1CP00359C
+- doi: 10.1051/rees/2024006
+- doi: 10.1021/acsomega.2c04093
+- doi: 10.1109/TIA.2017.2756026
+- doi: 10.1016/S0378-7753(03)00029-6
+- doi: 10.1109/TTE.2017.2776558
+- doi: 10.1149/1.2113792
+- doi: 10.1016/j.est.2020.101729
+- doi: 10.1016/j.jechem.2018.02.016
+- doi: 10.2514/1.B38695
+- doi: 10.1016/j.egyr.2023.09.130
+- volume-title: RCAIDE—Rapid Conceptual Aircraft Integration and Design Environment
+  year: '2025'
+- doi: 10.2514/6.2015-3087
+- doi: 10.2514/6.2022-1929
+- doi: 10.2514/6.2025-2705
+- doi: 10.1016/j.jpowsour.2024.234159
+- doi: 10.1016/j.jelechem.2023.117627
+- doi: 10.1016/j.jechem.2022.07.005
+- doi: 10.1109/ELECO60389.2023.10415967
+- doi: 10.1016/j.pnsc.2018.11.002
+- doi: 10.1038/s41560-024-01675-8
+- doi: 10.3390/en9110896
+- doi: 10.1016/j.est.2019.02.015
+- doi: 10.1016/j.electacta.2013.10.101
+- doi: 10.3390/en12122247
+- doi: 10.3389/fenrg.2022.1023555
+doc_url: http://xplorestaging.ieee.org/ielx8/6687316/11622567/11475410.pdf?arnumber=11475410
+doi: 10.1109/tte.2026.3681423
+files:
+- investigation_of_lithium-ion_battery_degradation_in_electric_aircraft_under_cycle-progressive_loads_Boggan_Clarke_2026.pdf
+issue: '4'
+journal: IEEE Transactions on Transportation Electrification
+month: 8
+pages: 6267--6275
+papis_id: 9a483206cce93f3a26589d8ed094f952
+publisher: Institute of Electrical and Electronics Engineers (IEEE)
+title: Investigation of Lithium-Ion Battery Degradation in Electric Aircraft Under
+  Cycle-Progressive Loads
+type: article
+url: https://doi.org/10.1109/tte.2026.3681423
+volume: '12'
+year: 2026

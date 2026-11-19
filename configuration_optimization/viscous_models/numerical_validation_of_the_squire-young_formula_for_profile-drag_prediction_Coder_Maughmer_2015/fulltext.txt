@@ -1,0 +1,1451 @@
+JOURNAL OF AIRCRAFT
+Vol. 52, No. 3, May–June 2015
+
+Numerical Validation of the Squire–Young Formula
+for Profile-Drag Prediction
+James G. Coder∗ and Mark D. Maughmer†
+Pennsylvania State University, University Park, Pennsylvania 16802
+
+Downloaded by Technische Universiteit Delft on September 10, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C033021
+
+DOI: 10.2514/1.C033021
+The Squire–Young formula is widely used to calculate profile drag in two-dimensional airfoil analyses. Although
+experience shows that the formula provides reasonable and accurate predictions, full Navier–Stokes computational
+fluid dynamics allows for a numerical validation of the formula. A method is presented for evaluating the Squire–
+Young formula from a computational fluid dynamics solution, and demonstrated for several airfoils. The agreement
+between profile-drag coefficients determined using the Squire–Young formula and those calculated directly from the
+computational fluid dynamics solution using surface integration is typically within 2–3% in the low-drag range, with
+error increasing at higher lift coefficients. The applicability of the underlying assumptions is discussed, and the
+validity of the assumed variation of shape factor and edge velocity in the wake is investigated for a symmetric airfoil at
+zero lift. The formula is also demonstrated as being insensitive to spurious drag that may occur due to far-field
+boundary conditions. Finally, a derivation of the Squire–Young formula is included to further aid in understanding
+the influence of its assumptions on its predictions.
+
+body surface, and the boundary-layer approximations are assumed to
+be valid [1]. A key feature of Prandtl’s boundary-layer equations is
+that the pressure gradient normal to the surface can be regarded as
+negligible in the boundary layer, so the surface pressure can be
+directly related to the flow velocity at the edge of the boundary layer
+using Bernoulli’s equation (either incompressible or compressible).
+In turn, this separately predicted velocity distribution can be regarded
+as a parameter that drives the development of the boundary layer. If
+one considers momentum conservation in the boundary layer,
+Prandtl’s differential boundary-layer equations can be integrated
+normal to the wall to give the following ordinary differential equation
+for the momentum thickness δ2 :
+
+Nomenclature
+Cf
+c
+cd
+cl
+cm
+H12
+M
+P
+Re
+
+=
+=
+=
+=
+=
+=
+=
+=
+=
+
+s
+U
+u
+y
+γ
+δ1
+δ2
+ρ
+
+=
+=
+=
+=
+=
+=
+=
+=
+
+skin-friction coefficient
+airfoil chord
+section profile-drag coefficient
+section lift coefficient
+section pitching moment about the quarter-chord point
+boundary-layer shape factor, δ1 ∕δ2
+Mach number
+static pressure
+Reynolds number based on chord and freestream
+conditions
+wall-parallel boundary-layer coordinate
+local velocity magnitude
+local wall-parallel velocity
+wall-normal boundary-layer coordinate
+ratio of specific heats
+boundary-layer displacement thickness
+boundary-layer momentum thickness
+fluid density
+
+dδ2
+δ dUe Cf
+ 2  H 12 − M2e  2
+
+ds
+Ue ds
+2
+
+(1)
+
+in which
+H 12 
+
+δ1
+δ2
+
+(2)
+
+
+ρu
+dy
+ρe Ue
+
+(3)
+
+Subscripts
+e
+I
+TE
+∞
+
+=
+=
+=
+=
+
+boundary-layer-edge conditions
+equivalent inviscid conditions based on pressure
+trailing-edge conditions
+freestream conditions
+
+I.
+
+δ1 
+
+Z∞ 
+0
+
+δ2 
+
+Introduction
+
+Z∞
+0
+
+I
+
+NTEGRAL boundary-layer methods have long been used to
+predict the drag of airfoils and other aerodynamic shapes whenever it is possible to separately predict the pressure distribution on the
+
+1−
+
+
+
+ρu
+u
+1−
+dy
+ρe Ue
+Ue
+
+(4)
+
+The relations presented in Eqs. (1–4) hold for both compressible and
+incompressible flow. The edge velocity Ue is a parameter from the
+corresponding inviscid analysis of the shape of interest, but closure
+relations are still required for δ1 and Cf . Typically, this is done
+through concurrent integration of an integral kinetic-energy equation
+with the use of specific families of laminar and turbulent profiles
+(e.g., Falkner–Skan/Hartree profiles for the laminar regime). Ultimately, the values of H12 and δ2 can be determined at all streamwise
+locations in the boundary layer from the stagnation point to the
+trailing edge. Although the momentum thickness at the trailing edge
+is reflective of the momentum losses in the boundary layer, the
+conditions at the trailing edge do not reflect a proper control-volume
+momentum balance. Rather, one usually applies the Squire–Young
+formula [2] to the trailing-edge conditions on both the upper and
+lower surfaces of the airfoil to evaluate their contributions to the drag
+coefficient. The Squire–Young formula is typically given as
+
+Presented as Paper 2013-0966 at the 51st AIAA Aerospace Sciences
+Meeting including the New Horizons Forum and Aerospace Exposition,
+Grapevine, TX, 7–10 January 2013; received 4 June 2014; revision received
+18 July 2014; accepted for publication 22 July 2014; published online 12
+November 2014. Copyright © 2014 by the American Institute of Aeronautics
+and Astronautics, Inc. All rights reserved. Copies of this paper may be made
+for personal or internal use, on condition that the copier pay the $10.00 percopy fee to the Copyright Clearance Center, Inc., 222 Rosewood Drive,
+Danvers, MA 01923; include the code 1533-3868/14 and $10.00 in
+correspondence with the CCC.
+*Graduate Assistant, Department of Aerospace Engineering, 229
+Hammond Building. Student Member AIAA.
+†
+Professor, Department of Aerospace Engineering, 229 Hammond
+Building. Associate Fellow AIAA.
+948
+
+949
+
+CODER AND MAUGHMER
+
+
+cd  2
+
+δ2;TE
+c
+
+
+
+UTE
+U∞
+
+5H12;TE
+2
+
+(5)
+
+for incompressible flows. The formula can also be extended to
+compressible flows [3–5] as
+
+Downloaded by Technische Universiteit Delft on September 10, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C033021
+
+1
+
+ H12;TE 1γ−1M2∞ 
+
+2 γ−1
+1  γ−1
+2
+δ2;TE UTE 2
+2 M∞
+cd  2
+2
+c
+U∞
+1  γ−1
+2 M TE
+
+(6)
+
+The additional quantities present in Eq. (6), as compared to Eq. (5),
+are effectively density corrections due to compressibility effects. In
+the limit of incompressibility (M∞ → 0), Eq. (6) reduces to the
+classic, incompressible form of the Squire–Young formula [Eq. (5)].
+The formulae presented in Eqs. (5) and (6) are extrapolations of the
+momentum deficit at the trailing edge of an airfoil to the deficit that
+would exist in a wake far downstream. (Additional details of this,
+including the applicable assumptions, are described in the
+Appendix.) The extrapolated quantities are intended to represent the
+drag that would be calculated with a true control-volume momentum
+balance around an airfoil, and, as such, the calculated drag includes
+both the skin friction and any total-pressure losses in the boundary
+layer.
+In a full Navier–Stokes computational fluid dynamics (CFD)
+solution, such extrapolations are often regarded as being unnecessary
+because the entire flowfield is resolved without the use of boundarylayer approximations or any other decoupling of the viscous and
+inviscid regions. The wall shear stresses, as well as all boundary-layer
+pressure losses, are realized at the airfoil surface with sufficient
+resolution to directly integrate the total drag. Nevertheless, it is still
+possible to estimate the drag based on computations away from the
+body, such as in the wake-integration technique demonstrated by
+Chao and van Dam [6]. Their work used a control-volume analysis
+with the actual far-downstream wake to integrate the drag, in which a
+reasonably good agreement with experiment and surface integration
+was found.
+The present study follows a similar tone, except that the focus here
+is on the accuracy of the Squire–Young formula for predicting the
+profile drag of low-speed airfoils. As a primary means of investigating this, the section aerodynamic characteristics for several
+airfoils at varying Reynolds numbers are predicted using Reynoldsaveraged Navier–Stokes (RANS) CFD, and the profile drags are also
+calculated by applying the Squire–Young formula to the same CFD
+solutions. Both fully turbulent and transitional solutions are used to
+assess how the choice of model influences the physics of the flowfield
+and the accuracy of the predictions, although it must be noted that the
+solutions are affected by the limitations of the turbulence modeling.
+Additionally, the validity of the shape-factor/velocity relationship
+used to derive the Squire–Young formula is assessed and discussed.
+Finally, the ability of the Squire–Young formula to filter out spurious
+drag due to finite domain size is demonstrated.
+
+II.
+
+Application of the Formula to CFD Solutions
+
+The challenge in applying the Squire–Young formula to a full
+RANS solution for an external aerodynamic flow is that there is no
+explicit distinction between the boundary-layer region and the outer
+flow. Instead, the Navier–Stokes equations are solved for the entire
+flowfield with the influence of viscosity introduced by the presence
+of no-slip boundary conditions and nonzero viscosity. While the
+outer flow is typically characterized as being inviscid and irrotational,
+this is actually an asymptotic behavior, and the interface between
+it and the boundary layer is somewhat ill-defined. (For example,
+Blasius defined the “edge” of the boundary layer to occur when the
+inner solution is 99% of the outer solution.) Thus, it can be difficult to
+characterize a specific boundary-layer height and edge velocity when
+evaluating Eqs. (3) and (4). Instead, the analysis can make use of
+Prandtl’s boundary-layer approximations, which assume that the
+pressure gradient normal to the wall in the boundary layer is
+negligible. From this assumption and the assumption that the total
+enthalpy remains constant in the absence of viscosity, an equivalent
+
+inviscid flowfield based on the actual pressure field can now be
+defined. For a calorically perfect ideal gas, this flowfield can be
+described using the compressible Bernoulli equation, given by
+
+
+
+
+U2I
+γ
+P
+U2
+γ
+P∞
+
+ ∞
+γ − 1 ρI
+γ − 1 ρ∞
+2
+2
+
+(7)
+
+in which the subscript I represents the equivalent inviscid properties.
+There are, however, two unknowns with only one equation.
+Therefore, an additional closure relation is necessary. This can come
+from assuming an isentropic process within the equivalent inviscid
+flowfield from a known state to the local conditions. In the absence of
+shock waves, the far-upstream conditions can be used to estimate the
+equivalent inviscid density as
+ρI 
+
+ γ 1
+γ
+ρ∞
+P
+P∞
+
+(8)
+
+With these closure relations, the displacement and momentum
+thicknesses may be redefined as
+δ1 
+
+Z∞ 
+0
+
+δ2 
+
+Z∞
+0
+
+1−
+
+
+ρu
+dy
+ρI UI
+
+
+
+ρu
+u
+1−
+dy
+ρI U I
+UI
+
+(9)
+
+(10)
+
+so that the integrands are completely local and always approach
+zero outside of the boundary layer. The evaluation of these integrals is
+not strictly dependent on an estimated boundary-layer height, and
+integration can be stopped once a suitable convergence criterion is
+satisfied. For the present work, integration is performed using the
+trapezoidal rule, and ceases once the actual velocity magnitude is
+greater than 99% of the equivalent inviscid velocity. The Squire–
+Young formula still requires the ratio of the inviscid trailing-edge
+velocity to the freestream velocity. As the formula is an extrapolation
+of wake behavior, it would seem most appropriate to use the equivalent inviscid velocity near the edge of the boundary layer where the
+integration ceases.
+
+III.
+
+Comparison of Squire–Young and
+Surface-Integrated Drags
+
+The approach outlined in Sec. II was applied to predictions made
+using the OVERFLOW 2.2f solver [7]. Five airfoils were analyzed:
+the Pennsylvania State University (PSU) 94-097 winglet airfoil [8],
+the DAE 11 human-powered-aircraft airfoil [9,10], the Somers S824
+symmetric wind-turbine airfoil [11,12], the Somers S805 windturbine airfoil [13,14], and the NASA NLF(1)-0416 general-aviation
+airfoil [15]. These airfoils are shown in Fig. 1. The Reynolds numbers
+considered for these airfoils range from 0.24 × 106 to 4.0 × 106 .
+Although it is possible to analyze a single airfoil across this
+Reynolds-number range, doing so would inhibit the ability to
+understand the general behavior of the Squire–Young formula across
+different geometries. Experimental profile-drag measurements are
+available for these airfoils; however, those data are not included here
+because comparing CFD predictions to experiment is not the focus of
+this study.
+The turbulent eddy viscosity was calculated using the oneequation Spalart–Allmaras (SA) model [16] for both fully turbulent
+and transitional flow solutions. Transition is predicted using the
+amplification-factor transport equation of Coder and Maughmer
+[17]. All airfoils were discretized using a C-type grid to provide offbody grid clustering near the trailing edge, and to facilitate highquality surface-normal integration paths. All meshes were generated
+using Chimera Grid Tools [18] following best practices in grid
+generation [19] with 513 surface points and 129 wake points. The
+
+950
+
+CODER AND MAUGHMER
+
+PSU 94-097, Re = 0.24 x 106
+Transitional (Surface Integrated)
+Transitional (Squire-Young)
+
+Fully Turbulent (Surface Integrated)
+Fully Turbulent (Squire-Young)
+
+1.5
+
+1.0
+
+cl
+0.5
+
+Downloaded by Technische Universiteit Delft on September 10, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C033021
+
+0.0
+0.000
+
+0.005
+
+0.010
+
+0.015
+
+0.020
+
+0.025
+
+cd
+Fig. 2 Comparison of profile-drag-coefficient calculation methods for
+the PSU 94-097 airfoil.
+
+DAE 11, Re = 0.5 x 106
+Transitional (Surface Integrated)
+
+Fully Turbulent (Surface Integrated)
+
+Transitional (Squire-Young)
+
+Fully Turbulent (Squire-Young)
+
+Fig. 1 Airfoil shapes used in the study.
+1.5
+
+far-field boundaries were located approximately 1000 chords from
+the airfoil surface for all grids. The solutions were calculated using
+third-order-accurate upwinding with low-Mach preconditioning, and
+were run non-time-accurate until force and moment convergence was
+achieved. The true drag coefficients were calculated using USURP
+[20], which directly integrates the normal and shear stresses along the
+airfoil surface. For consistency, all profile-drag predictions made
+using the Squire–Young formula [Eq. (6)] were performed with the
+same flow solutions as used for the direct surface integrations.
+
+1.0
+
+cl
+
+0.5
+
+A. PSU 94-097 Airfoil
+
+The PSU 94-097 airfoil is a low-speed winglet airfoil intended for
+high-performance sailplanes, and designed for Reynolds numbers
+ranging from 0.07 × 106 (winglet tip in climb) to 1.0 × 106 (winglet
+root in cruise) [8]. For the present study, the airfoil was analyzed at a
+Reynolds number of 0.24 × 106 , which is the lowest Reynolds
+number studied in the experimental validation of the design [8]. The
+predicted transitional and fully turbulent profile-drag polars for this
+Reynolds number are plotted in Fig. 2. The Squire–Young formula
+agrees exceptionally well with the surface integration, particularly for
+the transitional solutions. At higher lift coefficients, the Squire–
+Young formula underpredicts the drag compared to the surface
+integration, with the discrepancy increasing with angle of attack.
+
+0.0
+0.000
+
+0.005
+
+0.010
+
+0.015
+
+0.020
+
+0.025
+
+cd
+Fig. 3 Comparison of profile-drag-coefficient calculation methods for
+the DAE 11 airfoil.
+
+lack of increase in drag coefficient with increasing lift. The source of
+this behavior is increasing separation in the boundary-layer profile,
+leading to a sudden decrease in trailing-edge momentum thickness,
+partially offsetting the increase in drag due to the rapidly increasing
+shape factor.
+C. S824 Airfoil
+
+B. DAE 11 Airfoil
+
+The DAE 11 airfoil was designed for the Massachusetts Institute of
+Technology’s Daedalus human-powered aircraft as the wing-root
+section operating at a Reynolds number of 0.5 × 106 [9,10]. The
+airfoil was analyzed in OVERFLOW for this Reynolds number, and
+the resulting profile-drag polars, both transitional and fully turbulent,
+are shown in Fig. 3. For the transitional solutions, the Squire–Young
+formula agrees very well with the surface integration up to a lift
+coefficient of approximately 1.3, beyond which the Squire–Young
+formula predicts less drag than the surface integration. Curiously, the
+drag predicted by the Squire–Young formula at maximum lift is less
+than 250 counts (1 drag count  0.0001cd ), which is significantly
+less than one would expect to observe experimentally. The fully
+turbulent data exhibit similar behavior, except that there is a jump in
+the Squire–Young polar around a lift coefficient of 1.1. While this
+looks ostensibly like a sudden jump in lift coefficient, it is actually a
+
+The S824 airfoil is a symmetric airfoil section designed for use on
+vertical-axis wind turbines [11]. It has been experimentally analyzed
+for Reynolds numbers ranging from 0.72 × 106 to 1.25 × 106 [12].
+For the purpose of studying the Squire–Young formula, the airfoil has
+been analyzed at the high end of this Reynolds-number range. These
+profile-drag data, plotted in Fig. 4, show good agreement between the
+two methods for evaluating the profile drag. The Squire–Young formula overpredicts the drag at lower lift coefficients, and underpredicts it at higher lift coefficients, more so than was seen with the
+previous two airfoils. A jump in the Squire–Young formula fully
+turbulent polar, similar to that of the DAE 11 fully turbulent polar,
+also occurs, and for the same reasons.
+D. S805 Airfoil
+
+The S805 airfoil, intended for stall-regulated horizontal-axis wind
+turbines, was designed with the primary objectives being low profile
+
+951
+
+CODER AND MAUGHMER
+
+S824, Re = 1.25 x 106
+Transitional (Surface Integrated)
+
+Fully Turbulent (Surface Integrated)
+
+Transitional (Squire-Young)
+
+Fully Turbulent (Squire-Young)
+
+1.0
+
+predicted profile-drag coefficients for the cruise condition,
+Re  4.0 × 106 , are plotted in Fig. 6. Once again, there is a very
+good agreement between the drags predicted using the Squire–Young
+formula and those evaluated using the surface integration. The
+Squire–Young formula underpredicts the drag at higher lift coefficients in a manner similar to the previous airfoil. Both the transitional
+and fully turbulent data show a jump in their respective Squire–
+Young profile-drag polars due to a sudden decrease in the trailingedge momentum thickness with increasing lift.
+
+cl
+
+IV.
+
+Downloaded by Technische Universiteit Delft on September 10, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C033021
+
+0.5
+
+0.0
+0.000
+
+0.005
+
+0.010
+
+0.015
+
+0.020
+
+0.025
+
+cd
+Fig. 4 Comparison of profile-drag-coefficient calculation methods for
+the S824 airfoil.
+
+drag and a roughness-independent maximum lift coefficient [13].
+The airfoil was tested at both the Delft University of Technology’s
+low-speed wind tunnel [13] and the PSU low-speed low-turbulence
+wind tunnel [14]. The Reynolds numbers ranged from 0.5 × 106 to
+1.5 × 106 for the latter set of experiments. The airfoil-section
+aerodynamic characteristics have been predicted using OVERFLOW
+for the higher end of that Reynolds-number range, and the corresponding profile-drag polars are included as Fig. 5. There is again
+good agreement between the Squire–Young formula and the surface
+integration; however, the Squire–Young formula underpredicts the
+drag for all lift coefficients. No jumps in the Squire–Young formula
+polars occur for this airfoil at this Reynolds number.
+E. NASA NLF(1)-0416 Airfoil
+
+The NASA NLF(1)-0416 was designed for operating conditions
+representative of an advanced, light, single-engine, general-aviation
+airplane using two primary objectives [15]. The first was that the
+airfoil needed to produce a roughness-independent maximum lift
+coefficient of 1.76. The second objective was that the airfoil needed to
+have low profile-drag coefficients, achieved with long runs of laminar
+flow that result from favorable pressure gradients, at the cruise lift
+coefficient of 0.4 for a Reynolds number of 4.0 × 106 . The aerodynamic design of the airfoil was experimentally verified in the
+NASA Langley Research Center’s low-turbulence pressure tunnel
+[15] for Reynolds numbers ranging from 1.0 × 106 to 9.0 × 106 . The
+
+NASA NLF(1)-0416, Re = 4.0 x 106
+
+S805, Re = 1.5 x 106
+Transitional (Surface Integrated)
+
+Fully Turbulent (Surface Integrated)
+
+Transitional (Squire-Young)
+
+Fully Turbulent (Squire-Young)
+
+Wake Shape Factor and Velocity
+
+One of the main assumptions involved in the derivation of the
+Squire–Young formula is that the shape factor in the wake varies
+linearly with the natural logarithm of the edge velocity. The zero-lift
+flow solutions for the symmetric S824 airfoil provide a unique opportunity to investigate the validity of this assumption because the wake is
+perfectly aligned with the C-cut in the computational mesh, and the grid
+clustering in this region facilitates an accurate determination of the
+wake properties. This quality does not hold for general flow solutions,
+which suffer from inadequate grid resolution in the wake.
+The shape factor and edge velocities were determined along the
+extent of the wake for both the transitional and fully turbulent S824
+zero-lift solutions. These data, plotted in Fig. 7, show a very sharp
+decrease in the shape factor immediately downstream of the airfoil
+trailing edge before settling into a nearly linear decay. It is unclear,
+however, if this behavior is actually representative of the flow physics
+or a result of RANS turbulence modeling. In the wake, the shapefactor decay is a function of the decay in the velocity deficit, which, in
+turn, is a function of the eddy viscosity in the wake, while the
+variation of the edge velocity is largely independent of the viscous
+modeling, as it is part of the inviscid outer flow. An additional fully
+turbulent zero-lift solution was generated using the Menter k-ω shearstress-transport (SST) eddy-viscosity model [21] that shows the same
+qualitative shape-factor behavior as the SA-based solutions. These
+data are also plotted in Fig. 7. Seeing this behavior from two different
+eddy-viscosity models does not confirm it to be representative of
+real flows, but it does show that the behavior is not limited to the
+SA model.
+Despite the differences between the actual and assumed shapefactor distributions in the wake, numerical integration reveals that this
+affects the predicted drag by 0.81 and 0.80% for the transitional and
+fully turbulent (SA) solutions, respectively. A unique property of the
+assumed velocity/shape-factor relationship in the wake is that it is
+equivalent to assuming that the shape factor is constant and equal to
+the arithmetic average of the trailing-edge and far-downstream values
+[22]. For all three distributions plotted in Fig. 6, the equivalent
+
+Transitional (Surface Integrated)
+
+Fully Turbulent (Surface Integrated)
+
+Transitional (Squire-Young)
+
+Fully Turbulent (Squire-Young)
+
+2.0
+
+1.5
+
+1.5
+1.0
+
+1.0
+
+cl
+
+cl
+0.5
+
+0.5
+
+0.0
+0.000
+
+0.005
+
+0.010
+
+0.015
+
+0.020
+
+0.025
+
+cd
+-0.5
+
+Fig. 5 Comparison of profile-drag-coefficient calculation methods for
+the S805 airfoil.
+
+0.0
+0.000
+
+0.005
+
+0.010
+
+cd
+
+0.015
+
+0.020
+
+0.025
+
+-0.5
+
+Fig. 6 Comparison of profile-drag-coefficient calculation methods for
+the NASA NLF(1)-0416 airfoil.
+
+952
+
+CODER AND MAUGHMER
+
+DAE 11, Transitional, Re = 0.5 x 106
+
+2.0
+
+S824
+
+50-chord (Surface Integrated)
+100-chord (Surface Integrated)
+1000-chord (Surface Integrated)
+
+Re = 1.25 x 106, cl = 0
+
+1.8
+
+Transitional
+Fully Turbulent (SA)
+Fully Turbulent (SST)
+
+50-chord (Squire-Young)
+100-chord (Squire-Young)
+1000-chord (Squire-Young)
+
+1.6
+1.5
+
+H12
+1.4
+
+1.0
+
+1.2
+
+cl
+
+1.0
+0.85
+
+0.90
+
+0.95
+
+1.00
+
+Ue/U
+
+Downloaded by Technische Universiteit Delft on September 10, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C033021
+
+Fig. 7
+
+0.5
+
+Variation of shape factor with velocity.
+0.0
+0.000
+
+average shape factor is biased toward the far-downstream value, such
+that it is approximately equal to (0.4H12;TE  0.6H12;∞ ). Nevertheless, the integrated results of the assumed and actual relationship
+between shape factor and velocity are very close to one another,
+validating the assumption.
+To contextualize the errors associated with the assumption, effective bounds may be placed on the possible profile drags predicted
+from extrapolating the trailing-edge properties. The two extreme
+possibilities of a monotonic shape-factor/velocity distribution are
+either that 1) the shape factor drops to its far-downstream value
+immediately aft of the trailing edge; or 2) the shape factor maintains
+its trailing-edge value far downstream until the velocity is exactly
+equal to the freestream. Therefore
+
+
+
+
+
+
+δ
+δ
+UTE 3
+UTE 2HTE
+2 2;TE
+≤ cd ≤ 2 2;TE
+(11)
+c
+U∞
+c
+U∞
+for incompressible flow, noting that the shape factor is equal to one
+far downstream. The compressibility effects have a minor impact on
+the far-downstream shape factor, while the density correction in
+Eq. (6) does not depend on the assumed variation of the shape factor
+with velocity. For the zero-lift S824 cases, the profile-drag coefficient
+can therefore vary by 6.2 counts for the transitional solution, and 11.2
+counts for the fully turbulent (SA) solution, both including compressibility effects, from the lowest to the highest possible values.
+This corresponds to 9.4 and 9.6%, respectively, of the drag predicted
+using the standard Squire–Young formula for the same solutions. In
+other words, all possible wake variations produce results within
+approximately 5% of those from the actual variation, and the results
+from the assumed variation are within 1% of those from the actual
+variation.
+
+V.
+
+Insensitivity to Spurious Drag
+
+A curious behavior at higher lift coefficients of the profile-drag
+coefficients predicted using the Squire–Young formula is that they
+are consistently less than the surface-integrated drag coefficients. It
+cannot be determined from the comparisons in Sec. III whether this
+behavior is a deficiency of the Squire–Young formula or an artifact of
+having a finite computational domain in the OVERFLOW simulations. Although the computational grids for all airfoils have far-field
+boundaries located 1000 chords from the surface, OVERFLOW lacks
+Table 1
+
+0.005
+
+0.010
+
+0.015
+
+0.020
+
+0.025
+
+cd
+Fig. 8 Comparison of profile-drag-coefficient calculation methods for
+varying far-field boundary distance.
+
+a far-field vortex correction, which can introduce spurious drag into
+the solution [23]. The errors in the far-field boundary treatment
+manifest primarily near the stagnation point of the airfoil, producing
+excess pressure drag. Away from the stagnation point, however, the
+pressure distribution is negligibly affected by the vortex correction or
+lack thereof. It then follows from boundary-layer theory that this
+would cause, at most, only a minor effect on the development of the
+boundary layer and the drag predicted by the Squire–Young formula.
+This has been investigated by analyzing the DAE 11 airfoil at
+Re  0.5 × 106 in OVERFLOW with varying far-field-boundary
+distances ranging from 50 to 1000 chords. To mitigate the influence
+of the grid resolution on the solutions, all grids used are subsets of the
+1000-chord grid. Consequently, the grids are identical near the
+surface of the airfoil. The resulting profile-drag polars, as calculated
+using both the surface integration and the Squire–Young formula
+[Eq. (6)], are plotted in Fig. 8 for 50-, 100-, and 1000-chord far-field
+boundaries. Unsurprisingly, the surface-integrated profile drags
+show a strong dependency on the boundary distance with an apparent
+spurious drag contribution roughly proportional to c2l . Such a dependency is not evident in the Squire–Young profile-drag coefficients, as
+the polars are nearly indistinguishable.
+Despite the visual agreement between the Squire–Young formula
+profile-drag polars in Fig. 8, it is nevertheless prudent to inspect the
+behavior of the actual boundary-layer properties used in the formula.
+The polars were predicted using angle-of-attack sweeps, which does
+not guarantee that the lift coefficients are identical between the
+sweeps. Indeed, slight differences in the lift appear as a result of
+changing the far-field boundary distance, and these differences are
+nonnegligible in their influence on the profile drag. To develop a
+meaningful comparison of the data sets, additional solutions were
+generated using the lift-coefficient driver that is available in
+OVERFLOW. The lift coefficients chosen for comparison are 0.5,
+1.0, and 1.5, and the solver was allowed to converge to machine-zero
+tolerances on the lift coefficients and solver residuals. The surfaceintegrated values of the drag, as well as the trailing-edge boundarylayer properties for those lift coefficients, are summarized in
+Tables 1–3. For cl  0.5, there is a 2.7-count difference in the
+
+Effect of far-field boundary distance at cl  0.5 for the DAE 11 airfoil
+
+Upper surface
+Lower surface
+cd
+UTE ∕U∞ δ2;TE ∕c
+H 12;TE UTE ∕U∞ δ2;TE ∕c
+H 12;TE
+Far-field radius, chords
+cl
+50
+0.500 0.011113 0.92722 0.004197 1.73565 0.91373 0.003032 1.44610
+100
+0.500 0.010974 0.92722 0.004198 1.73565 0.91372 0.003032 1.44609
+1000
+0.500 0.010835 0.92722 0.004198 1.73565 0.91372 0.003032 1.44609
+
+953
+
+CODER AND MAUGHMER
+
+Table 2
+
+Effect of far-field boundary distance at cl  1.0 for the DAE 11 airfoil
+
+Upper surface
+Lower surface
+cd
+UTE ∕U∞ δ2;TE ∕c
+H 12;TE UTE ∕U∞ δ2;TE ∕c
+H 12;TE
+Far-field radius, chords
+cl
+50
+1.000 0.010766 0.93188 0.005398 1.95199 0.90943 0.000879 2.14668
+100
+1.000 0.010210 0.93186 0.005398 1.95202 0.90942 0.000879 2.14663
+1000
+1.000 0.009656 0.93185 0.005398 1.95204 0.90941 0.000879 2.14660
+
+Table 3
+
+Effect of far-field boundary distance at cl  1.5 for the DAE 11 airfoil
+
+Downloaded by Technische Universiteit Delft on September 10, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C033021
+
+Upper surface
+Lower surface
+cd
+UTE ∕U∞ δ2;TE ∕c
+H12;TE UTE ∕U∞ δ2;TE ∕c
+H 12;TE
+Far-field radius, chords
+cl
+50
+1.500 0.015474 0.94400 0.007066 2.49174 0.92205 0.000655 1.91149
+100
+1.500 0.014223 0.94399 0.007067 2.49198 0.92204 0.000655 1.91143
+1000
+1.500 0.012974 0.94397 0.007067 2.49218 0.92202 0.000655 1.91135
+
+surface-integrated profile drag between the 50- and 1000-chord
+solutions, whereas the boundary-layer properties agree to at least
+four significant figures for nearly every quantity. The profile-drag
+coefficients evaluated using the Squire–Young formula vary by less
+than 0.01 counts across the boundary distances, which is well within
+the precision typically reported for profile-drag coefficients. The
+same agreement quality for the boundary-layer properties holds true
+for cl  1.0 and cl  1.5, except that the variation in the surfaceintegrated profile-drag coefficients increases to 11.1 and 25.0 counts,
+respectively. It must be noted, though, that small discrepancies persist
+between the Squire–Young formula drags and the surface-integrated
+drags extrapolated to an infinite far field.
+
+VI.
+
+Conclusions
+
+The use of the Squire–Young formula for estimating profile drag
+shows strong agreement with the surface-integration methods for full
+Navier–Stokes CFD solutions, with errors being within 2–3% in the
+low-drag ranges of the airfoils. The formula tends to be most accurate
+when laminar–turbulent transition is included in the CFD solutions.
+This is due to a combination of a thinner wake and lower shape factor
+at the trailing edge as compared to the fully turbulent solutions, which
+mitigates the errors in the underlying assumptions used to derive the
+formula. Furthermore, transitional flows are more representative of
+the wind-tunnel environment than fully turbulent flows, likely
+contributing to the continued practical success of the Squire–Young
+formula. The influence of boundary-layer thickness was observed at
+higher lift coefficients, even for the transitional solutions, as significant deviations between the Squire–Young formula and the surface
+integration occur as the boundary layer nears separation. An unexpected behavior was observed for cases in which a significant
+upper-surface trailing-edge separation occurs relatively suddenly, as
+the trailing-edge momentum thickness decreases with increasing lift,
+and an apparent jump in the profile-drag polar occurs. It must be
+emphasized, though, that the assumptions involved with the Squire–
+Young formula break down with separated flow.
+One of the key assumptions of the formula, which is the
+relationship between shape factor and edge velocity in the wake, was
+investigated for the special case of a symmetric airfoil at zero lift. It
+was found for several different turbulence-closure methods that the
+shape factor decreases very abruptly in the near wake before settling
+into a near-linear behavior toward the far wake. The difference
+between what was assumed in the formula and what was observed in
+the CFD solutions biases the average shape factor toward that of the
+far wake by approximately 10%, but this affects the predicted profiledrag coefficient by less than 1%.
+A useful quality of the Squire–Young drag estimates was demonstrated in that the formula is insensitive to spurious drags introduced
+by far-field boundary treatments. The validation cases were run with
+far-field boundaries located 1000 chords from the surface, which
+mostly mitigates the lack of a vortex correction in the solver and the
+accompanying spurious drag. Solutions were generated with closer
+
+boundaries, and while spurious drag became more significant as the
+distance decreased, the boundary-layer development was not affected. Accordingly, the Squire–Young formula predicts nearly identical
+profile-drag coefficients for all boundary distances.
+In the end, it is truly remarkable how accurate the Squire–Young
+formula is when one considers how many assumptions were used to
+derive it. It was assumed that the momentum-integral equation is
+valid at the airfoil trailing edge and that this equation is valid in the
+wake. A functional relationship between the velocity and shape factor
+in the wake was assumed to enable streamwise integration of
+the momentum-integral equation from the trailing edge to the fardownstream wake. Finally, it was assumed that the profile-drag contributions from the upper and lower surfaces can be separately
+evaluated and summed. And yet, the Squire–Young formula performs
+very well in spite of the assumptions used to derive it.
+
+Appendix: Derivation of the Squire–Young Formula
+This Appendix is intended to assist interested readers in understanding the assumptions and derivation of the compressible Squire–
+Young formula, in such a way that the classic, incompressible form
+can be recovered in the incompressible (M∞ → 0) limit while being
+consistent with the methodologies presented in [3–5].
+Through a control-volume analysis, the drag of a body in twodimensional flow is equal to the integral of the momentum deficit
+taken along a wake cut far downstream of the body and perpendicular
+to the freestream. This may be expressed as
+Z∞
+D
+
+ρuU∞ − u dy
+
+(A1)
+
+−∞
+
+in which D is the drag per unit span. If the drag is nondimensionalized
+into standard coefficient form and the integral is split into contributions from above (upper) and below (lower) the wake centerline, the
+definition of the momentum thickness [Eq. (5)] can be substituted
+into the results to give
+2
+2
+cd  δ2;∞  δ2;∞;upper  δ2;∞;lower 
+c
+c
+
+(A2)
+
+The goal of the Squire–Young formula is to predict profile drag by
+estimating the momentum thickness far downstream of an airfoil’s
+trailing edge through an extrapolation of the boundary-layer and flow
+properties at the trailing edge, which are assumed to be known.
+This process begins with Prandtl’s boundary-layer equations,
+which were derived from the Navier–Stokes equations using orderof-magnitude arguments with the assumption that all viscous effects
+in the flowfield are confined to a thin layer near the surface of the
+body and the centerline of the wake. In two dimensions, with the
+influence of compressibility for an ideal, calorically perfect gas
+included, these equations are
+
+954
+
+CODER AND MAUGHMER
+
+∂P
+0
+∂y
+
+(A3)
+
+
+
+∂ρu2 ∂ρuv
+dUe
+∂
+∂u
+ ρe Ue
+μ  μt 
+
+
+∂y
+∂y
+∂y
+∂x
+dx
+
+(A4)
+
+Downloaded by Technische Universiteit Delft on September 10, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C033021
+
+The primary consequence of Eq. (A3) is that the solution of the
+streamwise momentum equation can be decoupled from the solution
+outside of the boundary layer (the outer flow). Consistent with
+Prandtl’s assumptions, the outer flow is typically treated as being
+inviscid, irrotational, and, consequently, isentropic. Thus, pressure
+and velocity obey the Bernoulli equation in this region. The Bernoulli
+equation can be expressed as
+1
+1
+∇P  ∇U2e  0
+ρe
+2
+
+(A6)
+
+This equation is typically integrated along the airfoil surface from
+the stagnation point to the trailing edge on both the upper and lower
+surfaces. Past the trailing edge, the details of the wake are typically
+not known (and do not need to be calculated due to the parabolic
+nature of the boundary-layer development); hence, certain assumptions must be introduced to estimate the momentum thickness far
+downstream. The primary assumption required is that the momentum
+integral equation applies at the airfoil trailing edge and in the wake.
+This implies that the wake is assumed to be thin (i.e., minimally
+interactive with the outer flowfield) and that the normal pressure
+gradient is negligible in these regions. In an actual flowfield,
+however, the wake can become very thick and highly interactive,
+especially at higher lift coefficients when trailing-edge separation
+occurs, and the wall-normal pressure gradient at the trailing edge is
+generally nonzero. Nevertheless, these are the assumptions used in
+the derivation.
+Downstream of the trailing edge in the wake, there is no longer a
+wall against which to apply the no-slip condition. In this region, the
+wall-shear-stress term of the momentum integral equation is assumed
+to be zero. From here, Eq. (A6) can be simplified to
+1 dδ2
+1 dUe
+ −2  H12 − M2e 
+δ2 ds
+Ue ds
+
+(A7)
+
+The momentum thickness in the far wake can be evaluated by
+integrating Eq. (A7) from the trailing edge to a point sufficiently far
+downstream. The left-hand side can be readily integrated, but more
+manipulation of the right-hand side is necessary before integration.
+To start, the Mach-number dependency can be rewritten using the
+relation
+M2e 
+
+ρe U2e
+γP
+
+(A8)
+
+This, along the Bernoulli equation given as Eq. (A5) and simplified
+with Eq. (A3), leads to
+M2e
+
+1 dUe
+1 dP
+−
+Ue ds
+γP ds
+
+ 
+
+
+Ue
+H 12 − H 12;∞
+UTE
+ln
+ln
+
+U∞
+H 12;TE − H12;∞
+U∞
+
+(A9)
+
+(A10)
+
+which is differentiated to give
+
+
+1 dUe
+1
+U
+dH 12
+
+ln TE
+Ue ds
+H12;TE − H 12;∞
+U∞
+ds
+
+(A11)
+
+Substituting Eqs. (A9) and (A11) into Eq. (A7) results in
+
+
+(A5)
+
+for both compressible and incompressible flow. This allows the
+streamwise pressure derivative in Eq. (A4) to be expressed in terms of
+the density and velocity that occur at the edge of the boundary layer.
+After some manipulation, Eq. (A4) can be integrated from the wall to
+the boundary-layer edge, giving the well-known momentum integral
+equation
+dδ2
+δ dUe
+τ
+ 2  H 12 − M2e  2
+ w2
+ds
+Ue ds
+ρe Ue
+
+The H12 term must now be treated by making an assumption of
+how H 12 varies in the wake. Assuming, as Squire and Young did, that
+the quantity lnUe ∕U∞  is linear with H 12 , the relationship between
+Ue and H 12 takes the form
+
+1 dδ2
+2 dUe
+−
+−
+δ2 ds
+Ue ds
+
+lnUTE  − ln U∞
+H 12;TE − H 12;∞
+
+
+H 12
+
+dH 12 1 dP
+−
+γP ds
+ds
+(A12)
+
+Integrating this equation from the trailing edge to far downstream
+yields
+
+
+ 
+ 
+
+
+δ
+H
+ H 12;∞
+U
+1
+P
+ln 2;∞  2  12;TE
+ln TE  ln TE
+γ
+δ2;TE
+2
+U∞
+P∞
+(A13)
+It is curious to note that the form of Eq. (A13) is such that the shape
+factor in the wake can be treated as the arithmetic average of the
+trailing-edge and far-downstream shape factors [22]. Isolating the
+far-downstream momentum thickness and substituting an isentropic
+relation for the pressure ratio in Eq. (A13), the following form can be
+obtained:
+δ2;∞  δ2;TE
+
+
+
+UTE
+U∞
+
+2H12;TE H12;∞  
+2
+
+2
+1  γ−1
+2 M∞
+
+2
+1  γ−1
+2 M TE
+
+1
+γ−1
+
+(A14)
+
+Still missing at this point is the shape factor far downstream of the
+trailing edge. In the incompressible limit, the wake momentum
+thickness can be expressed solely in terms of the velocity deficit
+U∞ − u as
+ 
+
+Z∞ 
+u
+u 2
+dy
+(A15)
+1−
+− 1−
+δ2 
+U∞
+U∞
+−∞
+
+This, along with the definition of the displacement thickness, then
+allows the incompressible shape factor to be rewritten as
+H 12 
+
+1
+ R∞
+
+U∞ −u2 dy
+1 − R ∞−∞
+−∞
+
+(A16)
+
+U∞ U∞ −u dy
+
+Far downstream, the velocity deficit decays to zero as the wake
+thickness grows and the integrated momentum thickness remains
+constant, that is, Eq. (A1) remains constant with downstream distance. Therefore, the ratio of the integrals in Eq. (A16) approaches
+zero, and the shape factor approaches unity.
+Another way of stating this result is that the displacement thickness
+equals the momentum thickness in the far-downstream limit.
+The physical interpretation of the displacement thickness is that it is
+the distance the streamlines of the outer flow must shift away from the
+physical surface and wake centerline to allow for mass conservation
+in the boundary layer. This leads to a gap in the surface streamlines
+for the entirety of the wake. Any corresponding definition of the
+
+CODER AND MAUGHMER
+
+control volume therefore requires the surface streamlines defining the
+effective body to be open. In the sense of incompressible potential
+flow, this is equivalent to having net source strength in the flowfield.
+Interestingly, the effect on the outer-flow streamlines due to satisfying the conservation of mass is equivalent to a flowfield with mass
+addition! The mass flux due to the source must then be equal to the
+freestream mass flux through the total displacement thickness. If one
+uses the Blasius integral laws to evaluate the forces on a control
+volume due to the net source strength in an incompressible potential
+flow
+
+Downloaded by Technische Universiteit Delft on September 10, 2026 | http://arc.aiaa.org | DOI: 10.2514/1.C033021
+
+δ1;∞ cd
+
+c
+2
+
+(A17)
+
+is obtained, which is the same definition as the far-downstream
+momentum thickness.
+The influence of compressibility on the Squire–Young formula has
+been previously discussed by Zwaaneveld [4] and Cook [5], both of
+whom use a transformation for the shape factor given as
+
+
+γ−1 2
+H 12;compressible  1 
+Me 1  H 12;incompressible  − 1
+2
+(A18)
+When this is substituted into Eq. (A14) for the far-downstream
+conditions, Eq. (6) is recovered.
+
+Acknowledgments
+This research was conducted with government support under and
+awarded by the U.S. Department of Defense, High Performance
+Computing Modernization Program, National Defense Science and
+Engineering Graduate Fellowship, 32 CFR 168a. All computational
+fluid dynamics solutions were run on clusters maintained by Penn
+State Research Computing and Cyberinfrastructure. The authors
+thank P. Spalart for valuable discussion and suggestions regarding
+this work.
+
+References
+[1] Schlichting, H., Boundary-Layer Theory, 7th ed., McGraw–Hill, New
+York, 1979, pp. 158–162.
+[2] Squire, H. B., and Young, A. D., “The Calculation of the Profile Drag of
+Aerofoils,” Aeronautical Research Committee, Repts. and Memoranda
+No. 1838, 1938.
+[3] Young, A. D., “Note on Momentum Methods of Measuring Profile
+Drags at High Speeds,” Aeronautical Research Council, Repts. and
+Memoranda No. 1963, 1940.
+[4] Zwaaneveld, J., “Comparison of Various Methods for Calculating
+Profile Drag from Pressure Measurements in the Near Wake at Subcritical Speeds,” National Aerospace Laboratory, NLR Rept. NLR-MP73001-U, 1973.
+[5] Cook, T. A., “Measurements of the Boundary Layer and Wake of Two
+Aerofoil Sections at High Reynolds Numbers and High-Subsonic Mach
+Numbers,” Aeronautical Research Council, Repts. and Memoranda No.
+3722, 1973.
+[6] Chao, D. D., and van Dam, C. P., “Airfoil Drag Prediction and
+Decomposition,” Journal of Aircraft, Vol. 36, No. 4, 1999, pp. 675–681.
+doi:10.2514/2.2510
+
+955
+
+[7] Nichols, R., and Buning, P., “User’s Manual for OVERFLOW 2.2,”
+NASA Langley Research Center, Hampton, VA, Aug. 2010, http://
+people.nas.nasa.gov/~pulliam/Overflow/Overflow_Manuals.html [retrieved 4 June 2014].
+[8] Maughmer, M. D., Swan, T. S., and Willits, S. M., “Design and Testing
+of a Winglet Airfoil for Low-Speed Aircraft,” Journal of Aircraft,
+Vol. 39, No. 4, 2002, pp. 654–661.
+doi:10.2514/2.2978
+[9] Drela, M., “Low-Reynolds-Number Airfoil Design for the M.I.T.
+Daedalus Prototype: A Case Study,” Journal of Aircraft, Vol. 25, No. 8,
+1988, pp. 724–732.
+doi:10.2514/3.45650
+[10] Langford, J., “The Daedalus Project: A Summary of Lessons Learned,”
+AIAA/AHS/ASEE Aircraft Design, Systems, and Operations Conference, AIAA Paper 1989-2048, July–Aug. 1989.
+doi:10.2514/6.1989-2048
+[11] Somers, D. M., The S824 Airfoil, Airfoils, State College, PA, 1994.
+[12] Maughmer, M. D., “Wind-Tunnel Test of the S824 Airfoil,” National
+Renewable Energy Laboratory Subcontract, Rept. XAM-6-15504-01,
+Dec. 1999.
+[13] Somers, D. M., “Design and Experimental Results for the S805 Airfoil,”
+National Renewable Energy Laboratory Rept. SR-440-6917, Oct. 1988.
+doi:10.2172/437670
+[14] Medina, R., “Validation of the Pennsylvania State University LowSpeed, Low-Turbulence Wind Tunnel Using Measurements of the S805
+Airfoil,” M.S. Thesis, Dept. of Aerospace Engineering, Pennsylvania
+State Univ., University Park, PA, 1994.
+[15] Somers, D. M., “Design and Experimental Results for a NaturalLaminar-Flow Airfoil for General Aviation Applications,” NASA TP1861, 1981.
+[16] Spalart, P. R., and Allmaras, S. R., “A One-Equation Turbulence Model
+for Aerodynamic Flows,” 30th AIAA Aerospace Sciences Meeting and
+Exhibit, AIAA Paper 1992-0439, Jan. 1992.
+doi:10.2514/6.1992-439
+[17] Coder, J. G., and Maughmer, M. D., “Computational Fluid Dynamics
+Compatible Transition Modeling Using an Amplification Factor
+Transport Equation,” AIAA Journal, Vol. 52, No. 11, 2014, pp 2506–
+2516.
+doi:10.2514/1.J052905
+[18] Chan, W. M., Rogers, S. E., Nash, S. M., Buning, P. G., Meakin, R. L.,
+Boger, D. A., and Pandya, S., “Chimera Grid Tools User’s Manual,
+Version 2.0,” NASA Ames Research Center, July 2007, http://people
+.nas.nasa.gov/~wchan/cgt/doc/man.html [retrieved 4 June 2014].
+[19] Chan, W. M., Gomez, R. J., Rogers, S. E., and Buning, P. G., “Best
+Practices in Overset Grid Generation,” 32nd AIAA Fluid Dynamics
+Conference, AIAA Paper 2002-3191, June 2002.
+doi:10.2514/6.2002-3191
+[20] Boger, D. A., and Dreyer, J. J., “Prediction of Hydrodynamic Forces and
+Moments for Underwater Vehicles Using Overset Grids,” 44th AIAA
+Aerospace Sciences Meeting and Exhibit, AIAA Paper 2006-1148,
+Jan. 2006.
+doi:10.2514/6.2006-1148
+[21] Menter, F. R., “Two-Equation Eddy-Viscosity Turbulence Models for
+Engineering Applications,” AIAA Journal, Vol. 32, No. 8, 1994,
+pp. 1598–1605.
+doi:10.2514/3.12149
+[22] Eppler, R., “About Classical Problems of Airfoil Drag,” Aerospace
+Science and Technology, Vol. 7, No. 4, 2003, pp. 289–297.
+doi:10.1016/S1270-9638(03)00029-4
+[23] Vassberg, J. C., and Jameson, A., “In Pursuit of Grid Convergence for
+Two-Dimensional Euler Solutions,” Journal of Aircraft, Vol. 47, No. 4,
+2010, pp. 1152–1166.
+doi:10.2514/1.46737
+
+

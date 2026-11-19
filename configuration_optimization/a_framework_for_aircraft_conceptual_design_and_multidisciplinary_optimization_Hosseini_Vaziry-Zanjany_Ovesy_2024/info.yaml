@@ -1,0 +1,408 @@
+abstract: <jats:p>In this research, the architecture and the functionalities of the
+  LAMBDA (Laboratory of Aircraft Multidisciplinary Knowledge-Based Design and Analysis)
+  framework for the design, analysis, and optimization of civil aircraft are presented.
+  The framework is developed in MATLAB R2022a and comprises a modular architecture,
+  which gives the potential for the use of different methods and fidelities for each
+  discipline. The methods can be selected from a set of built-in methods or custom
+  user-defined scripts. Disciplinary modules of the LAMBDA are Requirements, Weight,
+  Sizing, Geometry, Aerodynamics, Engine, Performance, Cost, Emission, and Optimization.
+  This framework has been used for different types of design and optimization problems.
+  When it is applied for the design and optimization of a novel regional TBW (Truss-Braced
+  Wing) aircraft, the operating cost has been reduced by 7.7% in the optimum configuration
+  compared to the base configuration.</jats:p>
+author: Hosseini, Saeed and Vaziry-Zanjany, Mohammad Ali and Ovesy, Hamid Reza
+author_list:
+- affiliation:
+  - name: Department of Aerospace Engineering, Amirkabir University of Technology,
+      Tehran 159163-4311, Iran
+  family: Hosseini
+  given: Saeed
+- affiliation:
+  - name: Department of Aerospace Engineering, Amirkabir University of Technology,
+      Tehran 159163-4311, Iran
+  family: Vaziry-Zanjany
+  given: Mohammad Ali
+- affiliation:
+  - name: Department of Aerospace Engineering, Amirkabir University of Technology,
+      Tehran 159163-4311, Iran
+  family: Ovesy
+  given: Hamid Reza
+citations:
+- unstructured: 'Airbus (2024, March 21). Global Market Forecast 2022–2041. Report,
+    Airbus. Available online: https://bit.ly/3TuwJhT.'
+- unstructured: 'ACARE (2024, March 21). Flightpath 2050, Europ’s Vision for Aviation.
+    Report, ACARE. Available online: https://bit.ly/49Znm0H.'
+- article-title: Multipoint Aerodynamic Shape Optimization of a Truss-Braced-Wing
+    Aircraft
+  author: Li
+  doi: 10.2514/1.C036413
+  first-page: '1179'
+  journal-title: J. Aircr.
+  volume: '59'
+  year: '2022'
+- article-title: Aerodynamic Design Optimization Studies of a Blended-Wing-Body Aircraft
+  author: Lyu
+  doi: 10.2514/1.C032491
+  first-page: '1604'
+  journal-title: J. Aircr.
+  volume: '51'
+  year: '2014'
+- article-title: Analysis of the Aerodynamic Benefit from Boundary Layer Ingestion
+    for Transport Aircraft
+  author: Uranga
+  doi: 10.2514/1.J056781
+  first-page: '4271'
+  journal-title: AIAA J.
+  volume: '56'
+  year: '2018'
+- doi: 10.2514/6.2019-1587
+  unstructured: Zamboni, J., Vos, R., Emeneth, M., and Schneegans, A. (2019, January
+    7–11). A Method for the Conceptual Design of Hybrid Electric Aircraft. Proceedings
+    of the AIAA Scitech 2019 Forum, San Diego, CA, USA.
+- doi: 10.2514/6.2018-5010
+  unstructured: Connolly, J.W., Chapman, J.W., Stalcup, E.J., Chicatelli, A., and
+    Hunker, K.R. (2018, January 9–11). Modeling and Control Design for a Turboelectric
+    Single Aisle Aircraft Propulsion System. Proceedings of the 2018 AIAA/IEEE Electric
+    Aircraft Technologies Symposium, Cincinnati, OH, USA.
+- doi: 10.3390/aerospace10060566
+  unstructured: Karpuk, S., Ma, Y., and Elham, A. (2023). Design Investigation of
+    Potential Long-Range Hydrogen Combustion Blended Wing Body Aircraft with Future
+    Technologies. Aerospace, 10.
+- article-title: Comparison of Box-Wing and Conventional Aircraft Mission Performance
+    using Multidisciplinary Analysis and Optimization
+  author: Andrews
+  doi: 10.1016/j.ast.2018.05.060
+  first-page: '336'
+  journal-title: Aerosp. Sci. Technol.
+  volume: '79'
+  year: '2018'
+- doi: 10.1177/0954410020923060
+  unstructured: Hosseini, S., Vaziri-Zanjani, M.A., and Ovesy, H.R. (2020). Conceptual
+    Design and Analysis of an Affordable Truss-Braced Wing Regional Jet Aircraft.
+    Proc. Inst. Mech. Eng. Part J. Aerosp. Eng.
+- unstructured: 'Roskam, J. (1985). Airplane Design, Part I: Preliminary Sizing of
+    Aircraft, Roskam Aviation and Engineering Corporation. Available online: https://bit.ly/3TpT53P.'
+- doi: 10.1007/978-94-017-3202-4
+  unstructured: Torenbeek, E. (1982). Synthesis of Subsonic Airplane Design, Springer.
+- doi: 10.2514/4.869112
+  unstructured: 'Raymer, D. (2012). Aircraft Design: A Conceptual Approach, American
+    Institute of Aeronautics and Astronautics, Inc.. [5th ed.].'
+- doi: 10.2514/6.1976-909
+  unstructured: Vanderplaats, G.N. (1976, January 27–29). Automated Optimization Techniques
+    for Aircraft Synthesis. Proceedings of the AIAA Aircraft Systems & Technology
+    Meeting, Dallas, TX, USA.
+- unstructured: 'Mccullers, L.A. (2024, March 21). Aircraft Configuration Optimization
+    Including Optimized Flight Profiles. Report, NASA, Available online: https://ntrs.nasa.gov/citations/19870002310.'
+- doi: 10.2514/6.2018-2032
+  unstructured: Horvath, B.L., and Wells, D.P. (2018, January 8–12). Comparison of
+    Aircraft Conceptual Design Weight Estimation Methods to the Flight Optimization
+    System. Proceedings of the 2018 AIAA Aerospace Sciences Meeting, Kissimmee, FL,
+    USA.
+- doi: 10.2514/6.1988-4428
+  unstructured: Kroo, I.M., and Takai, M. (1988, January 7–9). A Quasi-Procedural,
+    Knowledge-Based System for Aircraft Design. Proceedings of the AlAA/AHS/ASEE Aircraft
+    Design, Systems and Operations Meeting, Atlanta, GA, USA.
+- unstructured: 'Lissys (2024, March 21). Piano 5 for Windows, Version 5.3. Available
+    online: https://www.lissys.uk/Piano5.html.'
+- unstructured: 'Simos, D. (1984). Computer Methods for the Preliminary Design and
+    Operational Optimisation of Twin Engine Propeller Driven AIrcraft. [Ph.D. Thesis,
+    Loughborough University]. Available online: https://dspace.lboro.ac.uk/2134/25116.'
+- unstructured: 'Roskam, J., Malaek, S.M., and Anemaat, W. (1990, January 9–14). AAA
+    (Advanced Aircraft Analysis): A User-Friendly Approach to Preliminary Aircraft
+    Design. Proceedings of the 17th International Congress of the Aeronautical Sciences,
+    Stockholm, Sweden. Available online: https://bit.ly/3IKMps20.'
+- doi: 10.2514/6.2011-162
+  unstructured: Anemaat, W., and Kaushik, B. (2011, January 4–7). Geometry Design
+    Assistant for Airplane Preliminary Design. Proceedings of the 49th AIAA Aerospace
+    Sciences Meeting Including the New Horizons Forum and Aerospace Exposition. American
+    Institute of Aeronautics and Astronautics, Orlando, FL, USA.
+- unstructured: 'Nah, S.H. (1991). DESAID: The Development of an Expert System for
+    Aircraft Initial Design. [Ph.D. Thesis, Cranfield University]. Available online:
+    https://dspace.lib.cranfield.ac.uk/handle/1826/3593.'
+- unstructured: 'Bardenhagen, A., Kossira, H., and Heinze, W. (1994, January 18–23).
+    Interdisciplinary Design of Modern Hypersonic Waveriders Using the Integrated
+    Program PrADO-HY. Proceedings of the 19th International Congress of the Aeronautical
+    Sciences, Anaheim, CA, USA. Available online: https://bit.ly/4akFxgW.'
+- doi: 10.2514/6.1992-4226
+  unstructured: Raymer, D.P. (1992, January 10–12). RDS—A PC-based aircraft design,
+    sizing, and performance system. Proceedings of the Guidance, Navigation and Control
+    Conference, Head Island, SC, USA.
+- unstructured: 'Isikveren, A.T. (2002). Quasi-Analytical Modelling and Optimization
+    Techniques for Transport Aircraft Design. [Ph.D. Thesis, KTH Royal Institute of
+    Technology]. Available online: https://kth.diva-portal.org/smash/record.jsf?pid=diva2:9126.'
+- unstructured: LeDoux, S., Herling, W., Fatta, G., and Ratcliff, R. (September, January
+    31). MDOPT—A Multidisciplinary Design Optimization System Using Higher Order Analysis
+    Codes. Proceedings of the 10th AIAA/ISSMO Multidisciplinary Analysis and Optimization
+    Conference, Albany, NY, USA.
+- article-title: Knowledge-Based Engineering Approach to Support Aircraft Multidisciplinary
+    Design and Optimization
+  doi: 10.2514/1.39028
+  first-page: '1875'
+  journal-title: J. Aircr.
+  volume: '46'
+  year: '2009'
+- unstructured: 'Kaenel, R.V., Rizzi, A., Oppelstrup, J., and Ghoreyshi, M. (2008,
+    January 14–19). CEASIOM: Simulating Stability and Control with CFD/CSM in Aircraft
+    Conceptual Design. Proceedings of the 26th International Congress of the Aeronautical
+    Sciences, Anchorage, AK, USA. Available online: https://bit.ly/499MekS.'
+- unstructured: 'Seeckt, K., and Scholz, D. (September, January 31). Application of
+    the Aircraft Preliminary Sizing Tool PreSTo to Kerosene and Liquid Hydrogen Fueled
+    Regional Freighter Aircraft. Proceedings of the DGLR: Deutscher Luft- und Raumfahrtkongress
+    2010: Tagungsband—Ausgewählte Manuskripte, Hamburg, Germany. Available online:
+    https://perma.cc/K94E-BW3Z.'
+- unstructured: 'Greitzer, E.M., Bonnefoy, P.A., DelaRosaBlanco, E., Dorbian, C.S.,
+    Drela, M., Hall, D.K., Hansman, R.J., Hileman, J.I., Liebeck, R.H., and Lovegren,
+    J. (2024, March 21). N+3 Aircraft Concept Designs and Trade Studies. Volume 2.
+    Appendices-Design Methodologies for Aerodynamics, Structures, Weight, and Thermodynamic
+    Cycles. Report NASA/CR-2010-216794/VOL2, NASA, Available online: https://ntrs.nasa.gov/citations/20100042398.'
+- doi: 10.1109/AERO.2011.5747542
+  unstructured: Böhnke, D., Nagel, B., and Gollnick, V. (2011, January 5–12). An approach
+    to multi-fidelity in conceptual aircraft design in distributed design environments.
+    Proceedings of the 2011 Aerospace Conference, Big Sky, MT, USA.
+- unstructured: 'Nagel, B., Böhnke, D., Gollnick, V., Schmollgruber, P., Rizzi, A.,
+    La Rocca, G., and Alonso, J.J. (2012, January 23–28). Communication in Aircraft
+    Design: Can We Establish a Common Language?. Proceedings of the ICAS, Brisbane,
+    Australia. Available online: https://www.icas.org/ICAS_ARCHIVE/ICAS2012/ABSTRACTS/201.'
+- unstructured: 'Munjulury, R.C., Berry, P., and Krus, P. (2013, January 16–19). RAPID—Robust
+    Aircraft Parametric Interactive Design: A Knowledge Based Aircraft Conceptual
+    Design Tool. Proceedings of the 4th CEAS Conference in Linköping, Linköping, Sweden.
+    Available online: http://liu.diva-portal.org/smash/record.jsf?pid=diva2:687478.'
+- article-title: A Knowledge-Based Integrated Aircraft Conceptual Design Framework
+  author: Munjulury
+  doi: 10.1007/s13272-015-0174-z
+  first-page: '95'
+  journal-title: Ceas Aeronaut. J.
+  volume: '7'
+  year: '2016'
+- unstructured: 'Schumann, H., Berres, A., Escher, S., Stehr, T., and Fricke, S. (2013,
+    January 10–12). ParADISE for Pre-Designing Aircraft and Systems. Proceedings of
+    the Deutscher Luft- und Raumfahrtkongress 2013, Stuttgart, Germany. Available
+    online: https://publikationen.dglr.de/?tx_dglrpublications_pi1[document_id]=301340.'
+- doi: 10.2514/6.2015-3243
+  unstructured: 'Herbst, S., and Hornung, M. (2015, January 5–9). ADDAM: An Object
+    Oriented Data Model for an Aircraft Design Environment in MATLAB. Proceedings
+    of the AIAA Modeling and Simulation Technologies Conference, Kissimmee, FL, USA.'
+- doi: 10.1108/AEAT-02-2015-0061
+  unstructured: 'Travaglini, L., Ricci, S., Bindolino, G., Isikveren, A.T., and Stumpf,
+    E. (2016). PyPAD: A multidisciplinary framework for preliminary airframe design.
+    Aircr. Eng. Aerosp. Technol., 88.'
+- doi: 10.2514/6.2015-3087
+  unstructured: 'Lukaczyk, T., Wendorff, A.D., Botero, E., MacDonald, T., Momose,
+    T., Variyar, A., Vegh, J.M., Colonno, M., Economon, T.D., and Alonso, J.J. (2015,
+    January 22–26). SUAVE: An Open-Source Environment for Multi-Fidelity Conceptual
+    Vehicle Design. Proceedings of the 16th AIAA/ISSMO Multidisciplinary Analysis
+    and Optimization Conference, Dallas, TX, USA.'
+- article-title: Development of a Java-Based Framework for Aircraft Preliminary Design
+    and Optimization
+  author: Nicolosi
+  first-page: '234'
+  journal-title: J. Aerosp. Inf. Syst.
+  volume: '13'
+  year: '2016'
+- unstructured: 'Corman, J.A., Weston, N., Friedland, C., Mavris, D.N., and Laughlin,
+    T.W. (2018, January 8–12). Rapid Airframe Design Environment (RADE): A Parametric,
+    Modular, and Multidisciplinary Framework for Conceptual Phase Airframe Design.
+    Proceedings of the 2018 AIAA Modeling and Simulation Technologies Conference,
+    Reston, VA, USA.'
+- doi: 10.1177/0954410018788922
+  unstructured: Smith, H., Sziroczák, D., Abbe, G., and Okonkwo, P. (2019). The GENUS
+    aircraft conceptual design environment. Proc. Inst. Mech. Eng. Part G J. Aerosp.
+    Eng., 233.
+- doi: 10.2514/6.2018-1754
+  unstructured: Welstead, J.R., Caldwell, D., Condotta, R., and Monroe, N. (2018,
+    January 8–12). An Overview of the Layered and Extensible Aircraft Performance
+    System (LEAPS) Development. Proceedings of the 2018 AIAA Aerospace Sciences Meeting,
+    Kissimmee, FL, USA.
+- doi: 10.2514/6.2021-1354
+  unstructured: Khan, K.H., Mallik, W., Kapania, R.K., and Schetz, J.A. (2021, January
+    11–21). Distributed Design Optimization of Large Aspect Ratio Wing Aircraft with
+    Rapid Transonic Flutter Analysis in Linux. Proceedings of the AIAA Scitech 2021
+    Forum, American Institute of Aeronautics and Astronautics, Virtual Event, USA.
+- article-title: A Distributed Toolbox for Multidisciplinary Preliminary Aircraft
+    Design
+  author: Liersch
+  doi: 10.1007/s13272-011-0024-6
+  first-page: '57'
+  journal-title: Ceas Aeronaut. J.
+  volume: '2'
+  year: '2011'
+- article-title: Collaborative understanding of disciplinary correlations using a
+    low-fidelity physics-based aerospace toolkit
+  author: Moerland
+  doi: 10.1007/s13272-015-0153-4
+  first-page: '441'
+  journal-title: Ceas Aeronaut. J.
+  volume: '6'
+  year: '2015'
+- doi: 10.2514/6.2017-4397
+  unstructured: Moerland, E., Pfeiffer, T., Böhnke, D., Jepsen, J., Freund, S., Liersch,
+    C.M., Pinho Chiozzotto, G., Klein, C., Scherer, J., and Hasan, Y.J. (2017, January
+    5–9). On the Design of a Strut-Braced Wing Configuration in a Collaborative Design
+    Environment. Proceedings of the 17th AIAA Aviation Technology, Integration, and
+    Operations Conference, Denver, CO, USA.
+- unstructured: 'Hartmann, J., Pfeiffer, T., Breymann, B., Silberhorn, D., Moerland,
+    E., Weiss, M., and Nagel, B. (2018, January 9–14). Collaborative Conceptual Design
+    of a Mid-Range Aircraft under Consideration of Advanced Methods for Technology
+    Assessment. Proceedings of the 31st International Congress of the Aeronautical
+    Sciences, Belo Horizonte, Brazil. Available online: https://www.icas.org/ICAS_ARCHIVE/ICAS2018/data/preview/ICAS2018_0167.htm.'
+- unstructured: 'Woehler, S., Atanasov, G., Silberhorn, D., Fröhler, B., and Zill,
+    T. (2020, January 25–28). Preliminary Aircraft Design within a Multidisciplinary
+    and Multifidelity Design Environment. Proceedings of the Aerospace Europe Conference,
+    Bordeaux, France. Available online: https://elib.dlr.de/185515.'
+- article-title: Multidisciplinary Aircraft Integration within a Collaborative and
+    Distributed Design Framework using the AGILE Paradigm
+  author: Fioriti
+  doi: 10.1016/j.paerosci.2020.100648
+  first-page: '100648'
+  journal-title: Prog. Aerosp. Sci.
+  volume: '119'
+  year: '2020'
+- unstructured: 'The MathWorks Inc. (2024, March 21). MATLAB 9.12.0 (R2022a). Available
+    online: https://bit.ly/497xLWO.'
+- unstructured: 'Roskam, J. (1985). Airplane Design, Part II: Preliminary Configuration
+    Design and Integration of the Propulsion System, Roskam Aviation and Engineering
+    Corporation. Available online: https://bit.ly/3IONFdM.'
+- article-title: 'Determination of optimum specific thrust for civil aero gas turbine
+    engines: A multidisciplinary design synthesis and optimisation'
+  author: Guha
+  doi: 10.1177/0954410011435623
+  first-page: '502'
+  journal-title: Proc. Inst. Mech. Eng. Part G J. Aerosp. Eng.
+  volume: '227'
+  year: '2013'
+- doi: 10.2514/4.861444
+  unstructured: Mattingly, J.D. (2002). Aircraft Engine Design, AIAA.
+- doi: 10.2514/4.861789
+  unstructured: 'Mattingly, J.D., Boyer, K.M., and von Ohain, H. (2006). Elements
+    of Propulsion: Gas Turbines and Rockets, AIAA.'
+- unstructured: Hosseini, S., Vaziry-Zanjany, M.A., and Ovesy, H.R. (2023, January
+    9–13). Multi-Objective Multidisciplinary Design Optimization of Regional Truss-Braced
+    Wing Jet Aircraft. Proceedings of the Aerospace Europe Conference 2023, Lausanne,
+    Switzerland.
+- unstructured: 'Fink, R.D. (2024, March 21). USAF Stability and Control DATCOM. Report
+    AFWAL-TR-83-3048, Air Force Wright Aeronautical Laboratories, USAF. Available
+    online: https://apps.dtic.mil/sti/citations/ADB072483.'
+- unstructured: 'Gudmundsson, S. (2014). General Aviation Aircraft Design: Applied
+    Methods and Procedures, Butterworth-Heinemann.'
+- unstructured: 'Drela, M. (2024, March 21). AVL (Athena Vortex Lattice). Available
+    online: https://bit.ly/4afMbVW.'
+- unstructured: 'Dassault Systèmes (2024, March 21). CATIA V5. Available online: https://bit.ly/4aGUkmv.'
+- unstructured: 'Hosseini, S., Vaziri-Zanjani, M.A., and Ovesy, H.R. (2021, January
+    18–21). Aircraft Automated Layout and Architecture Conceptual Design Using Knowledge-Based
+    Engineering. Proceedings of the 19th International Conference of Iranian Aerospace
+    Society, Tehran, Iran. Available online: https://bit.ly/3TvUCpd.'
+- unstructured: 'MSC Software (2024, March 21). Nastran. Available online: https://bit.ly/3TW8qLf.'
+- unstructured: 'Hosseini, S., Ovesy, H.R., and Vaziri-Zanjani, M.A. (2022, January
+    4–9). Wing Loading Process in Knowledge-Based Aircraft Design and Optimization
+    Framework. Proceedings of the ICAS 2022, 33th Congress of the International Council
+    of the Aeronautical Sciences, Stockholm, Sweden. Available online: https://www.icas.org/ICAS_ARCHIVE/ICAS2022/data/preview/ICAS2022_0519.htm.'
+- doi: 10.2514/6.2013-1809
+  unstructured: Walch, D., Tetreault, S., and Dervault, F. (2013, January 8–11). Smeared
+    Stiffeners in Panel for Mesh Simplification at Conceptual Design Phase. Proceedings
+    of the 54th AIAA/ASME/ASCE/AHS/ASC Structures, Structural Dynamics, and Materials
+    Conference, Boston, MA, USA.
+- unstructured: 'LMS Virtual.Lab Team (2024, March 21). LMS Virtual.Lab 11-SL2. Available
+    online: https://bit.ly/3vIxjjU.'
+- doi: 10.3390/aerospace5010003
+  unstructured: Dababneh, O., Kipouros, T., and Whidborne, J.F. (2018). Application
+    of an Efficient Gradient-Based Optimization Strategy for Aircraft Wing Structures.
+    Aerospace, 5.
+- unstructured: 'Vanderplaats, G.N. (2024, March 21). ADS: A FORTRAN Program for Automated
+    Design Synthesis: Version 1.10. Report NASA-CR-177985, NASA, Available online:
+    https://ntrs.nasa.gov/citations/19860002427.'
+- doi: 10.1016/j.ast.2022.107531
+  unstructured: Sohst, M., do Vale, J.L., Afonso, F., and Suleman, A. (2022). Optimization
+    and comparison of strut-braced and high aspect ratio wing aircraft configurations
+    including flutter analysis with geometric non-linearities. Aerosp. Sci. Technol.,
+    124.
+- article-title: Flutter Analysis for Wing Structure Using Finite Element Modeling
+    with Equivalent Stiffness
+  author: Ouyang
+  first-page: '1483'
+  journal-title: J. Vibroeng.
+  volume: '16'
+  year: '2014'
+- article-title: Sizing High-Aspect-Ratio Wings with a Geometrically Nonlinear Beam
+    Model
+  author: Calderon
+  doi: 10.2514/1.C035296
+  first-page: '1455'
+  journal-title: J. Aircr.
+  volume: '56'
+  year: '2019'
+- unstructured: 'FAA (2024, March 21). Advisory Circular: Aeroelastic Stability Substantiation
+    of Transport Category Airplanes, 2014. Available online: https://bit.ly/3VrjjWg.'
+- doi: 10.1016/B978-0-12-822868-5.00023-1
+  unstructured: Megson, T.H.G. (2021). Aircraft Structures for Engineering Students,
+    Elsevier. [7th ed.].
+- unstructured: 'Roskam, J. (1985). Airplane Design, Part V: Component Weight Estimation,
+    Roskam Aviation and Engineering Corporation. Available online: https://bit.ly/4a2NqYK.'
+- doi: 10.2514/4.473500
+  unstructured: Jenkinson, L.R., Simpkin, P., and Rhodes, D. (1999). Civil Jet Aircraft
+    Design, AIAA.
+- article-title: 'Indices for comparing greenhouse gas emissions: Integrating science
+    and economics'
+  author: Kandlikar
+  doi: 10.1016/S0140-9883(96)00021-7
+  first-page: '265'
+  journal-title: Energy Econ.
+  volume: '18'
+  year: '1996'
+- article-title: Metric for Comparing Lifetime average Climate Impact of Aircraft
+  author: Dallara
+  doi: 10.2514/1.J050763
+  first-page: '1600'
+  journal-title: AIAA J.
+  volume: '49'
+  year: '2011'
+- unstructured: 'Roskam, J. (1990). Airplane Design, Part VIII: Airplane Cost Estimation,
+    Roskam Aviation and Engineering Corporation. Available online: https://bit.ly/3TLpuTL.'
+- doi: 10.1016/j.simpat.2021.102403
+  unstructured: 'Soares do Amaral, J.V., Montevechi, J.A.B., Miranda, R.d.C., and
+    Junior, W.T.d.S. (2022). Metamodel-based Optimization: A Systematic Literature
+    Review. Simul. Model. Pract. Theory, 114.'
+- unstructured: Benegas Jayme, D. (2019). Evaluation of the Hybrid-Electric Aircraft
+    Project Airbus E-Fan X. [Master’s Thesis, Faculty of Engineering and Computer
+    Science, Hamburg University of Applied Science].
+- unstructured: 'Boeing Media Relations (2024, March 21). Airplane Arrives at Boeing
+    Site for X-66A Modification. Available online: https://bit.ly/4afRepm.'
+- article-title: Turbofan engine database as a preliminary design tool
+  author: Svoboda
+  doi: 10.1016/S1369-8869(99)00021-X
+  first-page: '17'
+  journal-title: Aircr. Des.
+  volume: '3'
+  year: '2000'
+- unstructured: 'Roskam, J. (1987). Airplane Design, Part VI: Preliminary Calculation
+    of Aerodynamic, Thrust and Power Characteristics, Roskam Aviation and Engineering
+    Corporation. Available online: https://bit.ly/3vlYm4s.'
+- article-title: Airplane Design Optimization for Minimal Global Warming Impact
+  author: Proesmans
+  doi: 10.2514/1.C036529
+  first-page: '1363'
+  journal-title: J. Aircr.
+  volume: '59'
+  year: '2022'
+- doi: 10.2514/4.104909
+  unstructured: 'Raymer, D.P. (2018). Aircraft Design: A Conceptual Approach, AIAA.
+    [6th ed.].'
+- unstructured: 'Bajpai, P.R., and Chandrasekhar, U. (2016, January 22–24). PreSTo
+    Wing Module Optimization for the Double Trapezoidal Wing. Proceedings of the Innovative
+    Design and Development Practices in Aerospace and Automotive Engineering: I-DAD,
+    Avadi, Chennai, India.'
+doc_url: https://www.mdpi.com/2226-4310/11/4/273/pdf
+doi: 10.3390/aerospace11040273
+files:
+- a_framework_for_aircraft_conceptual_design_and_multidisciplinary_optimization_Hosseini_Vaziry-Zanjany_Ovesy_2024.pdf
+issue: '4'
+journal: Aerospace
+language: en
+month: 3
+pages: '273'
+papis_id: 1280b0ed0a7d9ae6263b41d25948788b
+publisher: MDPI AG
+title: A Framework for Aircraft Conceptual Design and Multidisciplinary Optimization
+type: article
+url: https://doi.org/10.3390/aerospace11040273
+volume: '11'
+year: 2024

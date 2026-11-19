@@ -1,0 +1,87 @@
+author: Mariens, J. and Elham, A. and van Tooren, M. J. L.
+author_list:
+- affiliation:
+  - name: Flight Performance and Propulsion Group, Faculty of Aerospace Engineering,
+      Delft University of Technology, 2629 HS Delft, The Netherlands
+  family: Mariens
+  given: J.
+- affiliation:
+  - name: Flight Performance and Propulsion Group, Faculty of Aerospace Engineering,
+      Delft University of Technology, 2629 HS Delft, The Netherlands
+  family: Elham
+  given: A.
+- affiliation:
+  - name: Flight Performance and Propulsion Group, Faculty of Aerospace Engineering,
+      Delft University of Technology, 2629 HS Delft, The Netherlands
+  family: van Tooren
+  given: M. J. L.
+citations:
+- doi: 10.1007/BF01197554
+- doi: 10.1002/0470855487
+- doi: 10.2514/2.938
+- doi: 10.2514/2.3156
+- doi: 10.2514/1.16991
+- doi: 10.2514/2.2887
+- doi: 10.2514/6.2006-1268
+  unstructured: 'HindmanR.CristN.WilliamsB.ChiX.ChooY.ShihT. I.P. “Q3D-Wing: Validation
+    of a Modern Lifting-Line Method for Application to Clean and Iced Wings,” AIAA
+    Paper 2006-1268, 2006.'
+- doi: 10.2514/6.2007-453
+- doi: 10.2514/1.29051
+- unstructured: 'FlandroG. A.McMahonH. M.RoachR. L., Basic Aerodynamics: Incompressible
+    Flow, Cambridge Univ. Press, New York, 2012, p. 422.'
+- doi: 10.2514/4.479359
+- unstructured: HoltD. R. “Introduction to Transonic Aerodynamics of Aerofoils and
+    Wings,” ESDU Data Item 90008, London, U.K. April 1990.
+- doi: 10.3233/978-1-58603-970-7-i
+  unstructured: ObertE., Aerodynamic Design of Transport Aircraft, IOS Press, Amsterdam,
+    2009, p. 638.
+- unstructured: 'DrelaM. “N+3 Aircraft Concept Designs and Trade Studies, Volume 2
+    (Appendices): Design Methodologies for Aerodynamics, Structures, Weight, and Thermodynamic
+    Cycles (Appendix A: TASOPT—Transport Aircraft System OPTimization),” NASA Final
+    Rept. CR-2010-216794/VOL2, Dec. 2010.'
+- unstructured: 'AbbottI. H.Von DoenhoffA. E., Theory of Wing Sections: Including
+    a Summary of Airfoil Data, Dover Books on Physics and Chemistry, Dover, New York,
+    1959, p. 693.'
+- doi: 10.1007/978-3-662-02646-5
+- author: Selig M. S.
+  volume: '2'
+  volume-title: Summary of Low-Speed Airfoil Data
+  year: '1995'
+- unstructured: Royal Aeronautical Society, “VGK Method for Two Dimensional Aerofoil
+    Sections,” ESDU Data Item 69028, London, Sept. 1996.
+- doi: 10.1016/0376-0421(87)90003-0
+- doi: 10.2514/3.9789
+- doi: 10.2514/6.1993-3026
+  unstructured: van der WeesA., J.van MuijdenJ.van der VoorenJ. “A Fast and Robust
+    Viscous-Inviscid Interaction Solver for Transonic Flow About Wing/Body Configurations
+    on the Basis of Full Potential Theory,” AIAA Paper 1993-3026, July 1993.
+- doi: 10.1016/j.ast.2013.01.012
+- doi: 10.1017/S0001924000008563
+- unstructured: TorenbeekE., Synthesis of Subsonic Airplane Design, Delft Univ. Press,
+    Delft, The Netherlands, 1976, p. 598.
+- doi: 10.2514/4.473500
+- doi: 10.2514/4.869211
+- unstructured: RoskamJ., Airplane Design, Part I, DARcorp., Kansas, Lawrence, 1999,
+    p. 202.
+- doi: 10.1002/9780470640425
+- doi: 10.1080/10556780500140029
+- doi: 10.1007/s10589-006-8716-2
+- doi: 10.1007/978-0-387-95857-6_23
+doc_url: http://arc.aiaa.org/doi/pdf/10.2514/1.C032261
+doi: 10.2514/1.c032261
+files:
+- quasi-three-dimensional_aerodynamic_solver_for_multidisciplinary_design_optimization_of_lifting_surfaces_Mariens_Elham_van_Tooren_2014.pdf
+issue: '2'
+journal: Journal of Aircraft
+language: en
+month: 3
+pages: 547--558
+papis_id: 7429b1854730b5d270f4c614dde0ae87
+publisher: American Institute of Aeronautics and Astronautics (AIAA)
+title: Quasi-Three-Dimensional Aerodynamic Solver for Multidisciplinary Design Optimization
+  of Lifting Surfaces
+type: article
+url: https://doi.org/10.2514/1.c032261
+volume: '51'
+year: 2014

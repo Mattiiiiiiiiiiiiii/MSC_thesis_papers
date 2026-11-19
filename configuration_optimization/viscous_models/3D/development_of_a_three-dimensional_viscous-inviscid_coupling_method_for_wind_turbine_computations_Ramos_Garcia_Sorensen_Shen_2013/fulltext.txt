@@ -1,0 +1,1280 @@
+Downloaded from orbit.dtu.dk on: Sept 10, 2026
+
+Development of a Three-Dimensional Viscous-Inviscid coupling Method for Wind
+Turbine Computations
+
+Ramos García, Néstor; Sørensen, Jens Nørkær; Shen, Wen Zhong
+
+Published in:
+Proceedings of the 2013 International Conference on aerodynamics of Offshore Wind Energy Systems and
+wakes (ICOWES2013)
+
+Publication date:
+2013
+
+Link back to DTU Orbit
+
+Citation (APA):
+Ramos García, N., Sørensen, J. N., & Shen, W. Z. (2013). Development of a Three-Dimensional ViscousInviscid coupling Method for Wind Turbine Computations. In W. Z. Shen (Ed.), Proceedings of the 2013
+International Conference on aerodynamics of Offshore Wind Energy Systems and wakes (ICOWES2013) (pp.
+69-81). Technical University of Denmark.
+
+General rights
+Copyright and moral rights for the publications made accessible in the public portal are retained by the authors and/or other copyright
+owners and it is a condition of accessing publications that users recognise and abide by the legal requirements associated with these rights.
+ Users may download and print one copy of any publication from the public portal for the purpose of private study or research.
+ You may not further distribute the material or use it for any profit-making activity or commercial gain
+ You may freely distribute the URL identifying the publication in the public portal
+If you believe that this document breaches copyright please contact us providing details, and we will remove access to the work immediately
+and investigate your claim.
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+DEVELOPMENT OF A THREE-DIMENSIONAL
+VISCOUS-INVISCID COUPLING METHOD FOR WIND
+TURBINE COMPUTATIONS
+Néstor Ramos Garcı́a , Jens Nørkær Sørensen and Wen Zhong Shen
+Department of Wind Energy, Fluid Mechanics Section, Building 403,
+Technical University of Denmark, DK-2800 Lyngby Denmark,
+E-mail: nerga@dtu.dk
+
+June 7, 2013
+
+Abstract
+M IRAS, a computational model for predicting the aerodynamic behavior of wind turbine blades and wakes subject to unsteady motions and viscous effects has been developed.
+The model is based on a three-dimensional panel method using a surface distribution of
+quadrilateral singularities with a Neumann no penetration condition. Viscous effects inside
+the boundary layer are taken into account through the coupling with the quasi-3D integral
+boundary layer solver Q3 U IC. A free-wake model is employed to simulate the vorticity
+released by the blades in the wake. In this paper simulations are presented in an effort to
+validate the code for three different rotor geometries, the MEXICO experiment rotor, the
+DELFT rotor and the NREL 5MW rotor.
+
+1 Introduction
+GPU and parallel computing, endless terabytes of memory, high speed connections, and other
+aspects of computer resources have become more powerful and accessible in recent years. However it is still behind our limits to use Navier-Stokes simulations for the design of wind turbines
+due to the large amount of computations involved in an optimization procedure. The free-wake
+vortex methods, extensively studied during the last four decades [1] [7] [2] [3], are now a mature tool with the potential to become the new generation of fast-tools for analysis and design
+of wind turbines. This type of code permits a direct interaction between the design procedure
+and the blade geometry (CAD) with a low computational cost. Unlike Navier-Stokes codes that
+need to solve the entire flow domain, panel methods can simulate the flow around a complex
+geometry by distributing singularity elements on the body surface. Panel methods become even
+more attractive by the possibility of solving the integral boundary layer equations and take into
+account the viscous effects using the transpiration velocity concept [4].
+Wind turbine wake is a key element in the performance of rotor blade aerodynamics, having
+a strong influence in the rotor plane. From an engineering point of view, the free-wake vortex
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+approach is suitable to accurately model the inviscid phenomena that drives the general characteristics of the flow in the rotor wake, including the blade root and tip vortices, which are
+the most dominant structures in the wake. The basic free-wake vortex filament method consist
+of infinitely thin vortex filaments. To avoid numerical singularities, previous researchers have
+applied a viscous core model, modeling in this way a more physical distribution of the velocities
+induced by each one of the vortex filaments that forms the wake, desingularizing in this way the
+Biot-Savart law near the center of the filament, [8]. The diffusive time scales can be represented
+by changes in the vortex core radius as a function of the vortex age, using a turbulence eddy viscosity parameter [15]. Other improvements in the viscous core model include the introduction
+of changes in vortex strength due to filament stretching or squeezing, Ananthan and Leishman
+[9].
+It is known that the viscous effects are important in the area surrounding the body surface,
+the boundary layer, playing a key role in the blade aerodynamics, especially at high angles of
+attack just before and after separation takes place. During the last decades simplified approaches
+to resolve the boundary layer equations have been developed by many researchers. In the twodimensional case, panel methods have evolved to include viscous effects by solving the boundary
+layer in an integral manner, [10], [11] and [12] amongst others. Recently the Quasi-3D Unsteady
+Interactive Code Q3 U IC was developed by Ramos-Garcı́a et al. [5] [6] to take into account the
+rotational effects arising from Coriolis and centrifugal forces. In the three-dimensional case,
+various researchers have previously implemented a viscous-inviscid coupling using the strip
+theory approach. Cebeci et al[20] combined a three-dimensional panel method with an inverse
+finite-difference boundary layer solver. Pesonen et al [21] and Lemmerman et al [22] coupled a
+three-dimensional panel method with an integral boundary layer solver. To the knowledge of the
+authors the present method has not yet been applied for the study of wind turbine aerodynamics
+and its wake dynamics.
+In the present work a zonal viscous-inviscid coupling method is developed in which the
+inviscid part is composed by a three-dimensional panel method with a free-wake model, the
+viscous effects confined inside the boundary layer are computed with the integral boundary layer
+solver Q3 U IC. This viscous-inviscid interactive code will be referred as M IRAS, Method
+for viscous-inviscid Interactive Rotor Aerodynamic Simulations. In what follows M IRAS is
+used to simulate the DELFT and MEXICO wind turbine model rotors and the NREL 5MW
+virtual rotor, simulated aerodynamic forces and wake velocities have been compared against
+experiments and Navier-Stokes simulations.
+
+2 Governing equations
+A wind turbine rotor is usually composed by two or three blades, their rotation generates a spiral
+vortex wake convected downstream. The rotor wake is formed by strong vortex structures and
+has a large impact in the aerodynamics of the rotor itself. To simulate the flow around a wind
+turbine rotor, we use a viscous-inviscid coupling method where the inviscid flow around the
+wind turbine rotor is solved using a panel method to simulate the blades, in which the viscous
+effects are taken into account by the Q3 U IC code. The wake is modeled by vortex filaments
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+released at the blades trailing edges in form of straight lines and convected downstream using
+the Biot-Savart law.
+In the following paragraphs the theory behind this approach will be introduced briefly. For
+more detailed information about the model, the the reader is referred to Ramos-Garcia et al [5]
+[6].
+For a potential flow around a solid body with surface S, the velocity at a point P in the flow
+domain can be expressed as a superposition of the undisturbed translating velocity, U ∞ , and the
+disturbance velocity created by the solid body, Up , resulting in
+U I = U ∞ + Up
+
+(1)
+
+If the flow is considered to be incompressible, inviscid and irrotational, Up can be expressed as
+Up = −∇φ
+
+(2)
+
+where φ is a potential function that satisfies the Laplace equation
+∇2 φ = 0
+
+(3)
+
+As the solid body surface S is impermeable, the normal component of the velocity must be zero
+at the wall which gives a Neumann condition of no penetration across the body
+∂φ
+= ∇φ · n = U ∞ · n
+∂n
+
+(4)
+
+In practice, the problem is considered in two regions, the solid body and the downstream
+wake. The body is simulated by a distribution of quadrilateral surface dipoles, µ, and quadrilateral sources, σ. An extra source distribution, σwT , equal to the transpiration velocity computed
+with Q3 U IC, is introduced to account for viscous effects confined inside the boundary layer.
+The first row of wake elements is simulated using quadrilateral panel dipoles while further downstream the panels are converted into wake elements formed by straight line vortex filaments, Γ.
+ 
+
+
+ 
+ 
+Z
+Z
+1
+∂ 1
+∂ 1
+1
+1
+(σ + σwT ) ∇
+µ∇
+Γ∇
++
++
++ ∇Φ∞
+r
+4π b
+∂n r
+4π w
+∂n r
+b
+(5)
+The vortex wake is released at the bodies trailing edges using the unsteady Kutta-Joukowsky
+condition of zero trailing edge loading. To satisfy this condition, at each time step a quadrilateral
+panel with a doublet distribution is created as the first wake panel for each one of the span-wise
+stations. The strength of these panels, Γf st , is equal to the difference between the corresponding
+upper and lower trailing edge quadrilateral doublets
+−1
+∇Φ =
+4π
+
+Z
+
+Γf st = µu − µl
+
+(6)
+
+Following Katz and Plotkin [7] the first wake panel is convected downstream from the trailing edge with a 30% of the local undisturbed velocity. Downstream of the first row of wake
+panels the quadrilateral doublets are transformed into vortex filaments and clustered into vortex
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+elements. The strength of the vortex filaments remains constant in time with their motion represented by Lagrangian fluid markers placed at its end points which are convencted downstream
+with the total velocity u
+u = u∞ + ubody + uwake
+
+(7)
+
+where u∞ is the freestream velocity, ubody is the influence of the solid body and uwake is
+the induction created by the other wake elements.
+The velocity induced by the wake vortex filaments is computed by applying the Biot-Savart
+law. In order to desingularize its behavior as r tends to zero the Biot-Savart formula is modified
+following Leishman et al. [13]. Where a viscous core is applied to all the released vortex
+filaments during the time updating procedure. Therefore, an approximation to viscous diffusion,
+vortex core growth and vortex straining is included modifying the Biot-Savart law as follows
+uwake = K
+
+Γ dl × r
+4π |r|3
+
+(8)
+
+where K is the kernel parameter, which uses the Scully profile account for the vortex filament
+viscous core [14]. To include the core growth rate, Squire model is applied by introducing the
+turbulent eddy viscosity parameter [15]. Following Bhagwat and Leishman a straining model has
+been implemented to take into account the change in vortex filament radius due to its variations
+in length, stretching or squeezing [16].
+Once the wake updating procedure is finalized, the new solution for the solid body singularities is calculated. Knowing the doublets, µ, the local inviscid perturbation velocities are
+calculated using a nodal interpolation of the doublets strength. Finally, the unsteady Bernoulli
+equation is used to compute the surface pressure on each one of the rotor blades,
+∂φ 1 2 1
+1
++ |v| + p = + pref
+∂t
+2
+ρ
+ρ
+
+(9)
+
+Viscous-inviscid coupling
+The viscous boundary layer is solved by using the in-house Q3 U IC code. Q3 U IC is an
+aerodynamic tool developed to solve the quasi three-dimensional integral boundary layer equations, [5] [6]. The model is based on a viscous-inviscid interaction technique using strong coupling between the viscous and inviscid parts. In Q3 U IC, the inviscid part is solved using a
+two-dimensional potential flow panel method and the viscous effects are taken into account by
+solving the integral form of the boundary layer r− and θ− momentum equations with extension
+for three-dimensional rotational effects created by Coriolis and centrifugal forces.
+The r and θ integral momentum boundary layer equations can be written in terms of the
+boundary layer edge velocity, ue , and the integral boundary layer parameters θ1 , θ2 , δ1∗ , δ2∗ , δ, δ3 , H, Cf
+and βw as:
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+Cf
+∂θ1
+1 d
+∂θ1 ∂ue
+2RO l ∗
+= − 2 (ue δ1∗ ) −
+(2 + H) +
++ s w pr
+δ
+∂s
+ue dt
+ue ∂s
+2
+ue c 2
+Cf
+2θ2 ∂ue
+1 ∂ue
+∂θ2
+=−
++ tanβw
+−
+(2δ3 + δ)
+∂s
+ue ∂s
+2
+ue ∂r
+
+
+l
+2RO
+∗
+∗
++
+(δ − δ1 )
+θ 1 + δ 1 − δ − δ 3 + s w pr
+c
+ue
+
+(10)
+
+(11)
+
+In the laminar flow region, the solution of the integral form of the r− momentum Equation 10 is obtained using Twaites’ method while in turbulent flow region, the solution of the
+integral form of the r− and θ−momentum Equations 10 and 11 is carried out using a set of
+three dimensional turbulent closure relations for the streamwise and spanwise boundary layer
+variables.
+The coupling between the viscous and inviscid parts in M IRAS is done locally for each
+of the spanwise stations through the transpiration function using the angle of attack calculated
+upstream the blades leading edge to set the viscous computations. Q3 U IC is used to compute
+the boundary layer parameters and obtain the chordwise distribution of the transpiration velocity at the center line of the discrete spanwise sections. Q3 U IC computations are performed
+for the given sectional airfoil geometry at the calculatedpangle of attack using the following
+non-dimensional parameters: Reynolds number, Re = (Ωr)2 + (Qw )2 c/ν, ratio between
+rotational speed and relative velocity, RO = Ωr/Urel and ratio between chord length and radial
+position, l = c/r.
+The transpiration velocity is computed using the following expression,
+wT =
+
+1 ∂
+(ρue δ1∗ )
+ρ ∂s
+
+(12)
+
+wT is introduced in the three dimensional panel method as a source distribution, which acts
+blowing outwards the limiting streamlines, mimicking the effect of a viscous boundary layer
+around the blade contour.
+
+3 Results
+In this section results obtained with the M IRAS code for the DELFT model rotor, the MEXICO
+rotor and the virtual NREL 5MW rotor will be presented.
+DELFT model rotor
+In this section M IRAS simulations of flows past the DELFT model rotor, Figure 1, are compared against hot-film measurements performed by Sant [17] in the open jet wind tunnel of Delft
+University of Technology. The two bladed DELFT rotor has a radius of 0.6 m. The blade has a
+constant chord of 0.08 m and varying twist angle, constructed using NACA 0012 airfoil along
+the full blade span. The incoming wind speed in the presented simulations is 5.5 ms−1 while
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0
+
+0
+
+z
+
+z
+
+the blades are rotating at a constant angular velocity of 73.3 s−1 . A surface mesh consisting of
+20 spanwise cells and 50 chordwise cells has been used for the M IRAS simulations.
+
+−0.2
+
+−0.2
+
+−0.4
+
+−0.4
+
+−0.6
+
+−0.6
+
+−0.8
+
+−0.8
+0.5
+0
+−0.5
+
+0
+
+1
+
+0.5
+
+y
+
+0.5
+
+1.5
+
+0
+−0.5
+
+0
+
+y
+
+x
+
+1.5
+
+1
+
+0.5
+x
+
+(a)
+
+(b)
+
+Figure 1: The wake behind the DELFT rotor at T SR = 7.96 (a) full free wake (b) tip vortex
+filaments.
+In Figure 2, the viscous and inviscid axial velocity predictions computed with M IRAS
+are compared against measurements at distances of 3.5 cm and 9 cm downstream of the rotor
+plane at a radial location of 0.6R along the azimuthal direction from 0 to 360 degrees. Small
+differences arise between the viscous and inviscid simulations, and the viscous solution is closer
+to experimental data at the 3.5 cm locations and vice versa at 9 cm. Simulations capture pretty
+well the axial velocity step created by the passage of the blade at the azimuthal positions of 180
+and 360 degrees.
+EXP
+MIRAS Inv.
+MIRAS Vis.
+
+0
+
+−1
+
+−2
+
+−3
+
+−4
+0
+
+EXP
+MIRAS Inv.
+MIRAS Vis.
+
+1
+
+Axial Induced Velocity [m/s]
+
+Axial Induced Velocity [m/s]
+
+1
+
+0
+
+−1
+
+−2
+
+−3
+
+−4
+50
+
+100
+
+150
+200
+o
+Azimuth Angle [ ]
+
+(a)
+
+250
+
+300
+
+350
+
+0
+
+50
+
+100
+
+150
+200
+o
+Azimuth Angle [ ]
+
+250
+
+300
+
+350
+
+(b)
+
+Figure 2: Axial induced velocity along the azimuthal direction at (a) 3.5 cm and (b) 9 cm
+downstream of the rotor and a radial location of 0.6R.
+In Figure 3, M IRAS predictions are compared against the measurements performed at a
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+radial location of 0.9R and two downstream positions. Calculated induced velocities are in good
+agreement with measurements at the 3.5 cm location, implying therefore that the correct rotor
+loading was predicted. Larger differences can be appreciated at 9cm, where inviscid simulations
+are closer to experiments. The more concentrated tip vortices computed in simulations and
+perhaps a deficient prediction of the wake filaments development near the tip region could give
+rise to such increasing mismatches between viscous, inviscid simulations and experiments with
+the downstream location. The use of a finer angular and spanwise discretization or even an
+adaptative mesh approach could improve the vortex roll-up characteristics.
+EXP
+MIRAS Inv.
+MIRAS Vis.
+
+0
+
+−1
+
+−2
+
+−3
+
+−4
+0
+
+EXP
+MIRAS Inv.
+MIRAS Vis.
+
+1
+
+Axial Induced Velocity [m/s]
+
+Axial Induced Velocity [m/s]
+
+1
+
+0
+
+−1
+
+−2
+
+−3
+
+−4
+50
+
+100
+
+150
+200
+Azimuth Angle [o]
+
+(a)
+
+250
+
+300
+
+350
+
+0
+
+50
+
+100
+
+150
+200
+Azimuth Angle [o]
+
+250
+
+300
+
+350
+
+(b)
+
+Figure 3: Axial induced velocity along the azimuthal direction at (a) 3.5 cm and (b) 9 cm
+downstream of the rotor and a radial location of 0.9R.
+The calculated wake vortex filaments for the viscous simulations presented above are shown
+in Figure 4. The influence of the wake passage crossing through the hot-film sampling vicinity
+is clearly seen at the 0.9R locations around 180 and 360 degrees, although its influence diminish
+with the decreasing radial location due to the weaker vortices shed in that region.
+
+Figure 4: Calculated wake filaments for the DELFT rotor including hot-film location.
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+MEXICO model rotor
+A further validation of the viscous and inviscid versions of the M IRAS code is carried out for
+flows past the MEXICO rotor, Figure 5. In what follows the blade normal and tangential forces
+are compared against measurements and wake velocities are validated against PIV experimental
+data.
+The MEXICO experiment was executed on a three-bladed wind turbine model with a diameter of 4.5 m under controlled conditions in the Large Scale Low Speed Facility of the GermanDutch Wind tunnel Organization DNW with a 9.5 X 9.5 m2 open test section. The test cases
+considered here are the rotor rotating with a constant angular speed of 424.5 rpm at wind speeds
+of 10, 15 and 24 ms−1 . The blades are subjected in all the three cases to a negative collective
+pitch of δ0 = −2.3◦ . Instantaneous velocities were extracted in a plane at 9 o’clock when looking downstream at the rotor when the first blade pointed upwards. For more detailed information
+about the MEXICO experiment campaign the reader is referred to Schepers and Snel [18].
+A surface mesh consisting of 20 spanwise cells and 50 chordwise cells was used for M IRAS
+simulations. Laminar to turbulent transition was forced at a 5% of the chord from the leading
+edge on both the upper and lower sides of the airfoil sections.
+
+2
+
+z
+
+1
+
+0
+
+−1
+
+−2
+
+2
+0
+−2
+
+0
+
+y
+
+(a)
+
+1
+
+2
+
+3
+
+4
+
+5
+
+x
+
+(b)
+
+Figure 5: MEXICO rotor at T SR = 6.67 (a) full free wake (b) Tip vortex filaments.
+In Figure 6, the predictions of the normal an tangential blade forces are compared against
+experimental values for the wind speeds cases of 10, 15 and 24 ms−1 . As the wind speed increases the inviscid computations predict higher values of both normal and tangential forces
+while the viscous simulations are in much better agreement with experiments, except in the root
+region where rotational effects arising from Coriolis and centrifugal forces seem to be underpredicted. At 24 ms−1 differences between the viscous and inviscid predictions are enormous, this
+is related to the existence of regions with trailing edge separation.
+In Figures 7 and 8 M IRAS viscous and inviscid predicted velocities are compared against
+PIV measurements in axial and radial traverses for a wind speed of 24ms−1 . Viscous simulations
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+1100
+
+1100
+EXP
+MIRAS Inviscid
+MIRAS Viscous
+
+1000
+
+1100
+EXP
+MIRAS Inviscid
+MIRAS Viscous
+
+1000
+
+900
+
+900
+
+800
+
+800
+
+800
+
+700
+
+700
+
+700
+
+600
+500
+
+N & T (N/m)
+
+900
+
+N & T (N/m)
+
+N & T (N/m)
+
+1000
+
+600
+500
+
+600
+500
+
+400
+
+400
+
+400
+
+300
+
+300
+
+300
+
+200
+
+200
+
+200
+
+100
+
+100
+
+0
+
+0.2
+
+0.4
+
+0.6
+r/R [m]
+
+0.8
+
+0
+
+1
+
+EXP
+MIRAS Inviscid
+MIRAS Viscous
+
+100
+0.2
+
+0.4
+
+(a)
+
+0.6
+r/R [m]
+
+0.8
+
+0
+
+1
+
+0.2
+
+0.4
+
+(b)
+
+0.6
+r/R [m]
+
+0.8
+
+1
+
+(c)
+
+Figure 6: Blade normal and tangential forces at wind speeds of (a) 10, (b) 15 and (c) 24 ms−1 .
+capture much better the axial velocities while the radial and tangential ones are more difficult to
+predict. Overall a good agreement was obtained against experiments in all the cases.
+4
+
+25
+EXP PIV
+MIRAS Inviscid
+MIRAS Viscous
+
+4
+
+EXP PIV
+MIRAS Inviscid
+MIRAS Viscous
+
+3.5
+
+EXP PIV
+MIRAS Inviscid
+MIRAS Viscous
+
+3
+
+3
+Tangential velocity [m/s]
+
+Radial velocity [m/s]
+
+Axial velocity [m/s]
+
+2
+
+2.5
+
+20
+
+15
+
+2
+1.5
+1
+0.5
+
+1
+0
+−1
+−2
+
+0
+−3
+
+−0.5
+10
+−6
+
+−4
+
+−2
+0
+2
+Distance from rotor [m]
+
+4
+
+−1
+−6
+
+6
+
+−4
+
+−2
+0
+2
+Distance from rotor [m]
+
+(a)
+
+4
+
+−4
+−6
+
+6
+
+−4
+
+−2
+0
+2
+Distance from rotor [m]
+
+(b)
+
+4
+
+6
+
+(c)
+
+Figure 7: (a) Axial, (b) radial and (c) tangential velocities in an axial traverse of z = 1.38 m at a
+wind speed of 24 ms−1 .
+26
+
+6
+
+25
+
+1
+
+5
+24
+
+22
+21
+20
+19
+18
+
+Tangential velocity [m/s]
+
+Radial velocity [m/s]
+
+23
+Axial velocity [m/s]
+
+0
+
+4
+3
+2
+1
+
+−2
+
+−3
+
+0
+
+17
+
+−4
+EXP PIV
+MIRAS Inviscid
+MIRAS Viscous
+
+16
+15
+0
+
+−1
+
+0.5
+
+1
+
+1.5
+2
+Radial Position [m]
+
+(a)
+
+2.5
+
+EXP PIV
+MIRAS Inviscid
+MIRAS Viscous
+
+−1
+
+3
+
+−2
+0
+
+0.5
+
+1
+
+1.5
+2
+Radial Position [m]
+
+(b)
+
+2.5
+
+EXP PIV
+MIRAS Inviscid
+MIRAS Viscous
+
+−5
+3
+
+0.5
+
+1
+
+1.5
+2
+Radial Position [m]
+
+2.5
+
+3
+
+(c)
+
+Figure 8: (a) Axial, (b) radial and (c) tangential velocities in a radial traverse of x = 0.30 m at a
+wind speed of 24 ms−1 .
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+NREL 5 MW virtual rotor
+In this section M IRAS simulations are compared against Navier-Stokes computations for
+the NREL 5 MW virtual wind turbine. The CFD computations were carried out using the
+EllipSys3D code in fully turbulent mode with the k − ω SST turbulence model [19]. The
+mesh used by EllipSys3D is a cylindrical mesh of 4.2 · 106 mesh points which covers a domain
+with a radius of 245 m and inlet and outlet located at 287 m in front and behind the rotor. A
+surface mesh consisting of 20 spanwise cells and 50 chordwise cells has been used in this case
+and 14 wake revolutions were simulated with an angular discretization of 10◦ .
+The wake calculated in M IRAS simulations, Figure 9, shows an important wake expansion
+and it can be appreciated how the interaction between the vortex sheets breaks the smooth shape
+of the wake as it moves downstream. This effect is clearly observed when following the vortex
+filaments released from the blades tip, Figure 9(b). After two wake revolutions the blade to blade
+filament interaction grows and generates a vortex pairing phenomena which makes the filaments
+tangle with each other as they move further downstream.
+
+60
+40
+
+z
+
+20
+0
+−20
+−40
+−60
+
+50
+0
+−50
+
+0
+
+y
+
+(a)
+
+50
+
+100
+
+x
+
+(b)
+
+Figure 9: (a) Full free wake (b) Tip vortex filaments of flows pass the NREL 5MW rotor at a
+T SR = 6.65.
+Predicted normal and tangential forces are compared for the cases at wind speeds of 6 ms−1
+and 10 ms−1 , Figures 10 and 11. In terms of normal forces M IRAS viscous predictions are in
+excellent agreement with CFD data, while the inviscid ones are overpredicted as expected. From
+the figures, it is seen that viscous simulations underpredict the tangential force near the blade
+tip region at the higher wind speed case, 10 ms−1 , although a better agreement is obtained at
+6 ms−1 .
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+5000
+
+900
+
+4000
+
+800
+
+3500
+
+700
+
+Tangential force [N / m]
+
+Normal force [N / m]
+
+4500
+
+1000
+CFD
+MIRAS Inviscid
+MIRAS Viscous
+
+3000
+2500
+2000
+1500
+
+600
+500
+400
+300
+
+1000
+
+200
+
+500
+
+100
+
+0
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+0
+0
+
+70
+
+CFD
+MIRAS Inviscid
+MIRAS Viscous
+
+10
+
+20
+
+30
+
+r [m]
+
+40
+
+50
+
+60
+
+70
+
+r [m]
+
+(a)
+
+(b)
+
+Figure 10: (a) Normal and (b) tangential forces on the NREL 5MW blades. Viscous and inviscid
+M IRAS and Navier-Stokes EllipSys3D simulations for 6 ms−1 .
+1500
+
+10000
+9000
+
+CFD
+MIRAS Inviscid
+MIRAS Viscous
+
+CFD
+RPM Inviscid
+RPM Viscous
+
+7000
+
+Tangential force [N / m]
+
+Normal force [N / m]
+
+8000
+
+6000
+5000
+4000
+3000
+
+1000
+
+500
+
+2000
+1000
+0
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+0
+0
+
+10
+
+20
+
+30
+
+(a)
+
+40
+
+50
+
+60
+
+70
+
+r [m]
+
+r [m]
+
+(b)
+
+Figure 11: (a) Normal and (b) tangential forces on the NREL 5MW blades. Viscous and inviscid
+M IRAS and Navier-Stokes EllipSys3D simulations for 10 ms−1 .
+
+4 Conclusion
+The M IRAS code, an unsteady three-dimensional panel method coupled with the integral
+boundary layer solver Q3 U IC has been presented and validated against experiments and CFD
+simulations for three different wind turbine rotors.
+Near wake axial velocities computed with M IRAS have been compared with hot-film measurements for the DELFT model wind turbine obtaining a good agreement.
+Computed axial, radial and tangential velocities have been validated against MEXICO PIV
+measurements, as well as normal and tangential blade forces.
+To conclude the study, M IRAS simulations of the virtual NREL 5 MW wind turbine have
+been compared against Navier-Stokes simulations in terms of blade forces, obtaining an excel-
+
+ICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+lent agreement for the normal forces and a fairly good comparison for the tangential ones.
+
+5 Acknowledgements
+We gratefully acknowledge the support from the Danish Council for Strategic Research for
+the project ’Center for Computational Wind Turbine Aerodynamics and Atmospheric Turbulence’ (2104-09-067216/DSF), the Energy Technology Development and Demonstration Program (EUDP-2011-64011-0094) and the Danish Energy Agency (EUDP-2012-64012-0146).
+
+References
+[1] J.L. Hess 1971 Numerical solution of inviscid subsonic flows Von Karman Institute for Fluid
+Dynamics, Lecture Series, 34
+[2] J. Katz 1985 Calculation of the Aerodynamic Forces on Automotive Lifting Surfaces Transactions of the ASME, 107: 438–443
+[3] L. Morino, Z. Kaprielian and S.R. Sipcic 1985 Free Wake Analysis of Helicopter Rotors
+Vertica, 9: 127–140
+[4] M.J. Lighthill 1958 On displacement thickness Journal of Fluid Mechanics, vol. 4, pp. 383392
+[5] N. Ramos-Garcı́a 2011 Unsteady viscous-inviscid interaction technique for wind turbine airfoils PhD. Thesis, Technical University of Denmark, Department of Mechanical Engineering,
+ISBN 978-87-90416-53-9
+[6] N. Ramos-Garcı́a, W.Z. Shen and J.N. Sørensen 2013 A Strong Viscous-Inviscid Interaction
+Model for Rotating Airfoils Submitted to Wind energy
+[7] J. Katz and A. Plotkin 1977 Low speed aerodynamics McGraw-Hill, second edition
+[8] J.G. Leishman 2000 Principles of Helicopter Aerodynamics Cambridge University Press
+[9] S. Ananthan and J.G. Leishman 2004 Role of Filament Strain in the Free-Vortex Modeling
+of Rotor Wakes Journal of the American Helicopter Society
+[10] T. Cebeci, M. F. Platzer, H. M. Jang and H. H. Chen 1993 An inviscid-viscous interaction
+approach to the calculation of dynamic stall initiation on airfoils Journal of Turbomachinery,
+115: 714-723
+[11] J. N. Sørensen 1988 Prediction of Separated FLow Past Airfoil using Viscous-Inviscid
+Interaction Technique La Recherche Aerosptatiale 1-11
+
+REFERENCESICOWES2013 Conference
+
+17-19 June 2013, Lyngby
+
+[12] M. Drela and M. B. Giles 1987 Viscous-inviscid analysis of transonic and low Reynolds
+number airfoil AIAA journal 25: 1347–1355
+[13] J.G. Leishman, M.J. Bhagwat and A. Bagai 2002 Free-Vortex Filament Methods for the
+Analysis of Helicopter Rotor Wakes Journal of Aircraft 5: 759–775
+[14] M.P. Scully 1975 Computation of Helicopter Rotor Wake Geometry and Its Influence on
+Rotor Harmonic Airloads Ph.D. Thesis, Massachusetts Institute of Technology. Dept. of Aeronautics and Astronautics
+[15] H.B. Squire 1965 The growth of a vortex in turbulent flow Aeronautical Quarterly 16:
+302–306
+[16] M.J. Bhagwat and J.G. Leishman 2001 Accuracy of Straight-Line Segmentation Applied
+to Curvilinear Vortex Filaments Journal of the American Helicopter Society 46:2:166-169
+[17] T. Sant 2007 Improving BEM-base Aerodynamic Models in Wind Turbine Design Codes
+PhD Thesis, ISBN: 978-99932-0-483-1, Delft University Wind Energy Research Institute
+[18] J.G. Scheepers and H. Snel 2007 Model Experiments in Controlled Conditions Final Report The Energy Research Center of the Netherlands The Energy Research Center of the
+Netherlands
+[19] W.Z. Shen, W.J. Zhu, J.N. Sørensen, N.N. Sørensen and P.E. Réthoré 2012 Study of tip
+loss corrections using CFD rotor computations The Science of Making Torque from Wind,
+Oldenburg
+[20] T. Cebeci, D. Sedlock, K.C. Chang and R.W.Clark 1988 Analysis of Wings with Flow
+Separation Journal of Aircraft, 26:3:214-220
+[21] U.J. Pesonen, R.K. Agarwal and S. Laine 2000 Fast and Robust Viscous/Inviscid Interaction Code for Wing Flowfield Calculations Journal of Aircraft, 37:4:730-733
+[22] L.A. Lemmerman and V.R. Sonnad 1979 Three-Dimensional Viscous-Inviscid Coupling
+Using Surface Transpiration Journal of Aircrfact, 16:6:353-358
+
+

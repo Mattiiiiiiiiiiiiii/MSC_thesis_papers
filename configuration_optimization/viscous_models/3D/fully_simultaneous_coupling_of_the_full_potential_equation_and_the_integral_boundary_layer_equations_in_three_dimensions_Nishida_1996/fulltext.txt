@@ -1,0 +1,13830 @@
+Fully Simultaneous
+
+Coupling of the
+
+Full Potential Equation
+
+Integral Boundary
+Three
+
+and
+
+the
+
+Layer Equations
+
+in
+
+Dimensions
+by
+
+Brian
+
+Allen Nishida
+
+B.S., University of California at Davis (1987)
+M.S., Stanford University (1988)
+SUBMITTED TO THE DEPARTMENT OF
+AERONAUTICS AND ASTRONAUTICS
+IN PARTIAL FULFILLMENT OF THE REQUIREMENTS
+FOR THE DEGREE OF
+
+Doctor of Philosophy
+at the
+
+Massachusetts Institute of Technology
+February 1996
+
+(©1996 Massachusetts Institute of Technology
+All rights reserved
+
+Signature of Author
+
+Certified by
+
+ome:
+
+Department,of Aeronautics
+
+and Astronautics
+
+September 7, 1995
+
+Professor Mark Drela
+Thesis Supervisor, Department of Aeronautics and Astronautics
+
+Certified by
+
+c--
+
+Department
+Certified by
+
+Professor Kenneth S. Breuer
+of Aeronautics and Astronautics
+
+Professor Ain A. Sonin
+
+y Yepartment of Mechanical Engineering
+Accepted by
+
+MASCACHUSENTS INSTI UTE
+OF TECHNOLOGY
+
+FEB 211996
+LIBRARIES
+
+"\rofessor Harold Y. Wachman
+:
+Chairman, Department Graduate Committee
+
+ARCHIVES
+
+Fully Simultaneous
+
+Coupling
+
+of the Full Potential Equation
+
+and the Integral Boundary Layer Equations in
+Three Dimensions
+Brian
+
+by
+
+Allen
+
+Nishida
+
+Submitted to the Department of Aeronautics and Astronautics
+on September 7, 1995
+in partial fulfillment of the requirements for the degree of
+Doctor of Philosophy in Aeronautics and Astronautics
+A Fully Simultaneous viscous/inviscid coupling method for three-dimensional flows has
+been developed. The inviscid outer flow is modeled by the Full Potential equation, the
+viscous inner flow is modeled by a set of three-dimensional integral boundary layer equations,
+
+and viscous/inviscid interaction is achieved using a wall transpiration boundary condition
+
+and an edge velocity formula. The viscous and inviscid equations are discretized using
+finite elements and solved by the Newton method. At each iteration the solution to a large,
+sparse, linear system is computed with a pre-conditioned Generalized Minimal Residual
+Method (GMRES). Test cases are presented for several wings. The algorithm performs well
+for small to moderate three-dimensional effects.
+Thesis Supervisor:
+
+Mark Drela,
+Associate Professor of Aeronautics and Astronautics
+
+Acknowledgments
+First and foremost, I wish to thank my advisor and friend Prof. Mark Drela who gave
+me the opportunity to study at MIT. His physical intuition and mathematical dexterity
+provided me with a world-class aeronautical engineering education.
+I would also like to thank the other members of my thesis committee for their recommendations and insightful questions: Prof. Kenneth Breuer and Prof. Ain Sonin. I owe a
+special thanks to Prof. Jaime Peraire for taking the time to discuss finite element concepts
+and for being a reader of my thesis. In addition, I would like to thank the other readers
+of my thesis for their useful suggestions: Prof. Eugene Covert and Dr. J. Douglas McLean.
+Several other people offered their valuable advice during the course of rny research and I
+thank them: Dave Darmofal, Josh Elliot, Bilal Mughal, Phil Poll, Tom Sorensen, and the
+TRANAIR group at Boeing. And I wish to thank Steve Ellis and Bob Haimes for keeping
+me computationally afloat.
+Next I wish to thank all of my previous officemates for always being considerate and
+
+for diplomatically humoring my ranting and raving: Dave M., Eric, Pam, and Ray. And I
+thank everyone in CFDL, CASL/SPPL, and Chico’s Bail Bonds for their comraderie in and
+out of the lab. There are too many to name here (~ 50), and I would surely leave someone
+out, but you know who you are! I also wish to thank some people outside cf the lab for
+their friendship: Matt, Yildiz, Ashanthi.
+Finally, I wish to thank my parents who have selflessly given me everything that I need
+to live and thrive.
+
+This research was sponsored by the Boeing Airplane Company under the supervision
+of Dr. Wen-Huei Jou.
+
+Contents
+
+Abstract
+
+Acknowledgments
+List of Figures
+
+12
+
+Nomenclature
+
+14
+
+1
+
+16
+
+Introduction
+
+1.1
+
+Viscous/Inviscid Interaction...
+
+1...
+
+1.2
+
+Coupling Methods
+
+. pe ee ee
+
+1.3
+
+3-D Boundary
+
+1.4
+
+Contents of Thesis
+
+...
+
+ee
+
+16
+
+ns
+
+17
+
+..........0.
++. eee eee eee eee
+
+20
+
+ce
+
+22
+
+1... ..
+
+Layer Equations
+
+.. 2...
+
+1 ee eeee
+
+ce
+
+te te
+
+ee
+
+ee
+
+ee ew
+
+ee
+
+ww
+
+et
+
+ee wes
+
+23
+
+Full Potential Equation
+2.1
+
+Definition
+
+2.2
+
+Finite Element Discretization
+
+2.3
+
+. 2...
+
+0.
+
+ee
+
+ee
+
+.. 2...
+
+te et
+
+1...
+
+1. eee
+
+ee
+
+te ee ee ee es
+
+eee
+
+eee
+
+ee
+
+ee
+
+ne
+
+2.2.1
+
+Residual Equation
+
+........0
+0c eevee enn e een evees
+
+2.2.2
+
+Artificial Viscosity
+
+.. 2... 2.2...
+
+Boundary
+
+Conditions.
+
+...
+
+0...
+
+0 eee
+
+eee
+ee
+
+ee
+
+ee
+ee
+
+tt
+ww
+
+tt te es
+we et
+
+te
+
+ens
+
+2.3.1
+
+Dirichlet Condition. ........2.6.
+2. eee eee eee ee eee
+
+2.3.2
+
+Neumann Condition
+
+2.3.3
+
+Wake Boundary Conditions
+
+...........
+000 cee eee eee eeese
+..........00
+2.222 eee eee
+
+2.4
+
+2.5
+3
+
+Global Variables
+
+..........0.0
+2. ce eee tee ee ee ne tk ke
+
+2.4.1
+
+a-Specified
+
+.. 2...
+
+2.4.2
+
+Cr-Specified
+
+. 2...
+
+Vacuum Speed Clamp
+
+Integral Boundary
+
+Layer
+
+2...
+
+ee
+
+te
+
+ee
+
+ee
+
+eee
+
+0...
+
+30
+31
+
+...........
+0... ee eee eee eee ee ene
+
+31
+
+Equations
+
+33
+
+for Three-Dimensional Flows
+
+3.1
+
+Definitions... 2.2...
+ee
+
+3.2
+
+Boundary
+
+3.3
+
+Nodal Variables...
+
+es
+
+33
+
+Layer Domain.............
+2.2000 0c eevee evens
+
+34
+
+2...
+
+.
+
+ee
+
+es
+
+35
+
+................028.
+
+36
+
+..............
+02.00 wees
+
+36
+
+.............0
+200 ee ee eenee
+
+37
+
+3.3.1
+
+Primary Boundary Layer Variables
+
+3.3.2
+
+Edge Velocity Definitions
+
+3.4
+
+Finite Element Discretization
+
+3.5
+
+Boundary Conditions...
+
+1...
+
+0...
+
+ee
+
+eee
+
+tt
+
+te
+
+ee ee
+
+te
+
+ee
+
+ee
+
+40
+
+..........
+0... eee eee ee eee tes
+
+40
+
+3.5.1
+
+Attachment Line
+
+3.5.2
+
+Transition Line...
+
+3.5.3
+
+Natural Boundary Conditions...............-2.-0-0000.
+
+42
+
+3.5.4
+
+A Word on Characteristic Boundary Conditions
+
+42
+
+.....
+
+ee
+ee
+
+ts
+
+...........
+
+Fully Simultaneous Coupling
+4.1
+
+Wall Transpiration
+
+4.2
+
+4.3
+
+4.4
+
+30
+
+46
+es
+
+46
+
+Edge Velocity Components
+
+........
+0... cee eee eee eee eens
+
+47
+
+Source/Sink Subgrid Model
+
+...............-.0022
+eee:
+
+48
+
+4.3.1
+
+The Problem
+
+4.3.2
+
+A Remedy...
+
+.. 2...
+
+41
+
+2.0...
+
+......
+......
+
+ee
+
+0...
+ee
+
+cc cece
+et
+
+tt
+
+ee
+
+te
+
+ee
+
+te te et
+
+eee
+tt
+
+ee
+
+eee
+
+48
+
+tt ee es
+
+51
+
+Coupling Method... .........
+0. 2c ee
+tn
+
+54
+
+5
+
+Solution Process
+
+56
+
+5.1
+
+Newton Method Ce
+
+96
+
+5.2
+
+Assembling the Jacobian system
+
+ee eee
+
+56
+
+5.2.1
+
+Global Equation Numbers............2.0.0 + eee uee
+
+58
+
+5.2.2
+
+Matrix Mapping
+
+te
+
+58
+
+5.2.3
+
+Column Format...
+
+5.2.4
+
+Assembly Process...
+
+7
+
+1...
+
+ee
+
+1...
+
+6. ee eee
+
+Linear System Solution
+
+.......
+
+5.4
+
+PracticalIssues
+
+1.
+
+..
+
+2...
+
+02-02-5202.
+
+tt
+
+2.0...
+
+ee
+
+ee
+
+ee
+
+we
+
+ee te ee
+
+60
+
+eee
+
+rene
+
+nee
+
+re ee ene
+
+61
+
+ee eee
+
+eee
+
+ee tt
+
+te
+
+61
+
+te
+
+ee
+
+ee
+
+62
+
+..............0..02006.
+
+63
+
+eee
+
+ee
+
+Debugging the Newton Method
+
+ee
+
+ee ee
+
+. 2.2.2. eee
+
+5.3
+
+5.4.1
+6
+
+..
+
+..........-0
+
+65
+
+Results
+...
+
+Infinite Swept Wing
+
+6.2
+
+RAE 2822 Airfoil... 6...
+ee eee te ee te ee es
+
+68
+
+6.3
+
+RAE 101 45-degree Swept Wing
+
+6.4
+
+MBB-AVA Wing
+
+........
+
+2-2.
+
+6.5
+
+Boeing 747 Wing
+
+.. 1...
+
+ee
+
+6.6
+
+H, Difficulties.
+
+ws
+
+84
+
+6.7
+
+Performance of the Code...........0c0cc0ce
+cece ev eenveves
+
+85
+
+. 2...
+
+1...
+
+2...
+
+ee
+
+...
+
+0
+
+ce
+
+2...
+eee
+
+ee
+
+ee
+
+2...
+eee
+
+ee
+
+te
+
+ee ee
+et
+
+ee
+
+ee
+
+ee
+
+he
+
+ee
+
+eee
+ee
+
+te
+
+ee
+
+ee
+
+et
+
+65
+
+6.1
+
+we
+
+ee eee
+
+te
+
+ee
+
+69
+
+ee
+
+ee
+
+te
+
+75
+
+ee
+
+ee
+
+ee ee
+
+80
+
+we ww
+
+ew
+
+86
+
+Conclusions
+7.1
+
+FS Coupling for 3-D Flows
+
+...........
+2.2.0. eee ee eee
+
+7.2
+
+FEM Discretization of the 3-D Integral BL Equations
+
+7.3
+
+Newton Method Solution
+
+7.4
+
+Recommendations for Future Work
+
+............
+
+..........
+2... ee eee cee eer ene
+..........000
+008 eee eeees
+
+7.4.1
+
+Improvements in 3-D Boundary Layer Modeling
+
+7.4.2
+
+Examination of Farfield Drag Formula
+
+7.4.3
+
+Newton Method Speedup
+
+.............2..0.-00200
+0
+
+7.4.4
+
+Viscous Design Work...
+
+1...
+
+...........
+
+............00084.5
+
+2... eee
+
+eee
+
+ee ee ee
+90
+
+Bibliography
+
+A
+
+Finite Element Methed
+
+for the Full Potential Equation
+
+95
+
+A.l
+
+2...
+
+95
+
+A.2
+
+FEM Details
+
+2...
+
+A.1.1
+
+Isoparametric Trilinear Elements
+
+A.1.2
+
+Shape Function Gradients
+
+A.1.3
+
+Surface Gradients
+
+...........2-.+0
+500020 ee
+
+.. 2... 0.0...
+
+eee
+
+ee ee ee
+
+...........0080
+00 ee ee eneeneenae
+
+96
+97
+
+Full Potential Equation Sensitivities
+
+..........0.
+20 eee we eae
+
+99
+
+A.2.1
+
+Velocity Vector...
+
+1...
+
+eee
+
+99
+
+A.2.2
+
+Velocity Squared
+
+.. 1...
+
+A.2.3
+
+Mach Number
+
+A.2.4
+
+Upwinding Factor
+
+A.2.5
+
+Density
+
+A.2.6
+
+Upwinded Density
+
+........
+0.0.02 eee eee eee eee eee
+
+100
+
+A.2.7
+
+Full Potential Residual... ......0...0....2020
+2.0002 we eae
+
+101
+
+tt
+
+et
+
+ee
+
+eete
+
+......
+
+. 2...
+
+te
+
+eee
+
+eee
+
+eee
+
+ee eee
+
+ee
+
+99
+ee ee
+
+..........
+0. eee eee eee ee ee ne
+et
+
+tt
+
+te
+
+ee
+
+ee
+
+ee
+
+A.2.8
+
+B
+
+95
+
+99
+100
+100
+
+102
+
+Closure for Three-Dimensional Boundary
+
+Layer Equations
+
+B.1
+
+1-2 Coordinate Definitions
+
+............0
+000 ee ee eee een ae
+
+B.2
+
+z-z Coordinate Definitions
+
+..........00000
+cee vee vvneves
+
+B.3
+
+Crossflow Model
+
+...........0-202
+2 ce eee eee eter e ee een
+
+10
+
+103
+
+B.4
+
+Derived Thicknesses
+
+......
+
+B.5
+
+Empirical Closure Relations...
+
+2. ee
+
+eee
+
+0...
+
+eee
+2 ee
+
+ee
+
+et ttt
+
+ee
+
+te
+
+et
+
+wt
+
+ee
+
+tt
+
+ee
+
+te
+
+105
+106
+
+Wall Transpiration
+
+112
+
+C.1
+
+Real Viscous Flow
+
+ee
+
+113
+
+C.2
+
+Equivalent Inviscid Flow...
+
+es
+
+113
+
+C.3
+
+Wall Transpiration for Drag Calculations
+
+...............026.4.
+
+114
+
+C.3.1
+
+3-D Integral Momentum Equations ...............002..
+
+114
+
+C.3.2
+
+Vector Product Rule and Combining...............2.6..
+
+115
+
+C.3.3
+
+Differencing Coordinate Vectors
+
+115
+
+Drag
+
+Calculation
+
+D.1
+
+Preliminaries
+
+...
+
+2...
+
+.
+
+eee
+
+2...
+
+ee
+
+2
+
+ee
+
+ee
+
+ee
+
+ee
+
+ee ee
+
+ee
+
+ee
+
+te
+
+........-.
+ce eee eens
+
+117
+.. 2...
+
+.
+
+eee
+
+eee
+
+ee
+
+ee ee ee ee
+
+D.1.1
+
+Small Perturbation Pressure and Density
+
+D.1.2
+
+V, Operator
+
+D.1.3
+
+Continuity Result
+
+2...
+
+0. eee
+2...
+
+2...
+
+es
+
+119
+
+...............
+
+119
+
+ee
+
+ew
+
+te
+
+1 ee
+
+ee
+
+ee
+
+es
+es
+
+120
+
+........
+2.2... 2 ee eee eee eens
+
+122
+
+D.2
+
+Integral Momentum Theorem
+
+D.3
+
+Farfield Fluxes and Pressure...
+
+1...
+
+D.4
+
+Surface Fluxes ar
+
+. 2...
+
+D.5
+D.6
+
+ee
+
+tenes
+
+122
+
+te et
+
+ts
+
+123
+
+Interior Momentum Sources
+
+.........-2..2.0 ee eee ere rena
+
+124
+
+Total Drag
+
+ee
+
+125
+
+...
+
+Pressure...
+
+1...
+
+. cw
+
+2...
+
+ee ee et
+
+120
+
+ce eee
+
+et we
+
+11
+
+epee
+
+tw
+
+eee
+
+ete
+
+ee ee
+
+ee
+
+ee
+
+ee
+
+List of Figures
+1.1
+
+Viscous/Inviscid Domains
+
+.............
+000. eee eee eee
+
+17
+
+1.2
+
+Direct Coupling Method
+
+.............
+0.00000 peewee ee nas
+
+18
+
+1.3
+
+Semi-inverse Coupling Method
+
+1.4
+
+Fully Simultaneous
+
+.................0
+000 eee
+
+19
+
+Coupling Method..................000.
+
+20
+
+2.1
+
+Wing/Body with Wake... .......2..
+2.2.0.0 0c eee eee eee ae
+
+25
+
+2.2
+
+Mass Conservation Wake Boundary Condition. ................
+
+30
+
+2.3
+
+Density Function
+
+32
+
+3.1
+
+Physical Boundary Layer Domain. .............00000
+002 eee
+
+35
+
+3.2
+
+2-D BL coordinate system .....
+
+ee
+
+37
+
+3.3
+
+BL element weighting function
+
+..........0.
+002 ewe eee eenee
+
+40
+
+3.4
+
+Leading Edge Region of an Airfoil
+
+..............2. 000020
+
+Al
+
+3.9
+
+External velocity vectors for testing boundary conditions...........
+
+43
+
+3.6
+
+Contours of H, for BC typel...........
+eee eet te ee ee
+
+44
+
+3.7
+
+Contours of H, for BC type2........0....0..
+00.000 cee eee ee
+
+44
+
+3.8
+
+Contours of H, for medified BC type3
+
+45
+
+4.1
+
+Sawtooth in §*
+
+4.2
+
+BL sensitivity in separating flow
+
+4.3
+
+Source Sink Subgrid Model
+
+4.4
+
+Source/Sink Parameters
+
+........0.0
+0.000 eee eee ee ee eee ee
+
+2.2...
+
+2...
+
+2. eee
+
+ee
+
+ee et
+
+ee
+
+..........2.0
+0040 pene
+ee
+
+ee
+
+49
+
+..........
+0.000 ee eee eee
+
+51
+
+...........
+2... pee eee ee ee es
+
+52
+
+..........
+
+12
+
+te
+
+002.
+
+ee ee
+
+e eee
+
+nae
+
+53
+
+6.1
+
+van den Berg/Elsenaar Experiment. ..........
+2.2.0. eee eeae
+
+66
+
+6.2
+
+Convergence of 6,, for Infinite Swept Wing
+
+66
+
+6.3
+
+Infinite Swept Wing Results... 2...
+ee ee
+
+67
+
+6.4
+
+Infinite Swept Wing, Velocity Profiles
+
+.............
+
+2.000000
+
+68
+
+6.5
+
+Computed C, and H;, vs. Experiment
+
+.........-..500
++ eee eee
+
+70
+
+6.6
+
+Convergence of Drag for RAE 2822. .........0.2.
+5.02. ee eevee
+
+71
+
+6.7
+
+RAE 101 Wing, C; profiles at experimental span stations
+
+72
+
+6.8
+
+RAE
+
+6.9
+
+RAE 101 45-degree Swept Wing, Cz, vs.
+
+................6.
+
+101 Wing, Upper surface BL quantities at7
+
+..........
+...
+
+73
+
+aand Cz vs. Cp..........
+
+74
+
+6.10
+
+MBB-AVA Wing, attached case, Cp at experimental span stations. .....
+
+76
+
+6.11
+
+MBB-AVA Wing, separated case, C, at experimental span stations
+
+.....
+
+77
+
+te
+
+ee
+
+78
+
+6.13 MBB-AVA wing, separated case, 7, direction vectors... ........6..
+
+79
+
+6.12 Cy distributions at
+
+6.14
+
+MBB-AVA
+
+7+ 0.76
+
+= 0.50 and7=0.80
+
+2...
+
+ee
+
+Wing, M,, = 0.80, Cr vs.
+
+aand Cz vs. Cp
+
+......---4-
+
+79
+
+6.15 B-747 Wing, attached case, C, at experimental span stations
+
+........
+
+81
+
+B-747 Wing, separated case, C, at experimental span stations
+
+........
+
+82
+
+2. eee
+
+6.16
+
+6.17 B-747 wing, separated case, 7, direction vectors...
+
+. 2...
+
+eee
+
+83
+
+6.18 B-747 Wing, M.
+
+...--ee eevee
+
+84
+
+= 0.838, Cr vs.
+
+aand Cy vs. Cp
+
+A.l
+
+Hexahedral Elements...
+
+1... ...
+
+2. ewe
+
+eens
+
+95
+
+A.2
+
+Construction of 2-D Coordinate System
+
+..........02.2
+08 ee eee
+
+98
+
+C.1
+
+Equivalent Inviscid Flow Calculation
+
+............
+2.0 eee eee
+
+112
+
+D.1
+
+Velocity Defect in RVF vs. EIF
+
+ns
+
+118
+
+D.2
+
+Control Volume for Integral Momentum Theorem............2.4.4-
+
+119
+
+. 1... 1...
+
+13
+
+e errr
+
+ee
+
+ee
+
+ee
+
+ew tt
+
+rr eee
+
+tw te ew
+
+Nomenclature
+
+Roman
+
+Symbols
+wing span
+local airfoil chord
+skin friction coefficient
+
+lift coefficient
+drag coefficient
+moment coefficient
+
+mean aerodynamic chord
+
+ov Pee
+
+S2RR
+
+pressure coefficient
+turbulent shear stress coefficient
+turbulent dissipation
+shape parameter
+kinematic shape parameter
+empirical constant for lag equation
+Mach number
+FEM shape function
+on the order of
+pressure
+speed
+velocity vector
+
+freestream Reynold’s number
+local residual vector for node 7
+global residual vector
+surface Cartesian velocity components
+streamwise-crossflow BL edge velocity components
+z-2 BL edge velocity components
+local solution vector for node 7
+global solution vector
+wall transpiration velocity
+weighting function
+transition point location
+
+Greek
+
+Symbols
+freestream angle-of-attack
+
+14
+
+Bw
+g
+
+b7
+
+*
+
+2
+
+62,67
+
+g
+E
+
+oc BEB
+
+IRS
+
+é**
+é6**
+zi2
+
+P11
+
+Tz w
+
+O22, O22
+O22, 622
+
+0.vir
+, OFz
+
+eee
+
+ee
+
+o—
+
+ee
+
+eee
+
+=
+
+eee”
+
+Superscripts and
+
+limiting streamline angle
+boundary layer thickness
+streamwise displacement thickness
+crossflow displacement thickness
+z,z displacement thicknesses
+z,z density thicknesses
+span station
+ratio of specific heats
+circulation
+artificial dissipation ccefficient
+perturbaticn velocity potential
+density
+z,z wall shear stresses
+
+streamwise momentum thickness
+z-momentum thicknesses
+z-momentum thicknesses
+z,z kinetic energy thicknesses
+
+Subscripts
+streamwise boundary layer quantity
+crossflow boundary layer quantity
+boundary layer quantity
+boundary layer edge quantity
+freestream quantity
+
+Acronyms
+BC
+BL
+FEM
+FP
+FS
+GMRES
+LU
+Vil
+
+Boundary Condition
+Boundary
+
+Layer
+
+Finite Element Method
+Full Potential
+Fully Simultaneous
+Generalized Minimal RESidual Method
+
+Lower-Upper (matrix factorization)
+Viscous/Inviscid Interaction
+
+15
+
+Chapter
+
+1
+
+Introduction
+
+The computation of three-dimensional, viscous, transonic flows is useful for the aerodynamic design of modern aircraft.
+
+For these problems, viscous/inviscid interaction (VII)
+
+methods are attractive because they can match experimental data as well as Navier-Stokes
+
+(N-S} solvers but at a lower cost. N-S solvers require more mesh points in order to resolve
+thin shear layers, and their convergence is hampered by the resulting fine-mesh time-step
+
+limits.
+
+On the downside, VII methods are not as general as N-S solvers and many VIL
+
+methods break down in flows with separation.
+
+The lack of generality is due to the sim-
+
+plifications inherent in the models (e.g. an assumed triangular crossflow profile), but this
+is not an issue if VII methods are restricted to flows for which the approximations are
+accurate (e.g.
+
+wings and wing-bodies).
+
+This research addresses the second problem and
+
+presents a Fully Simultaneous (FS) coupling method which is numerically stable for flows
+with separation.
+
+1.1
+
+Viscous/Inviscid Interaction
+
+In 1904 Prandtl introduced the important concept of the boundary layer [1]. For high Re
+flows, except in a thin boundary layer region, viscous effects are negligible. Then using order
+of magnitude evaluations of Navier-Stokes terms, the pressure is determined to be nearly
+constant though the thickness of the boundary layer and only the diffusion in the wallnormai direction is significant.
+
+These simplifications are a so-called first-order boundary
+
+layer theory yielding approximate, but extremely useful, solutions to the Navier-Stokes
+equations.
+
+These concepts were rigorously re-derived and extended using the method of
+
+matched asymptotic expansion [47].
+
+One result of the mathematical analysis is a higher-
+
+order BL theory which allows for a finite pressure gradient through the thickness of the
+
+16
+
+boundary layer.
+
+<«——
+
+|
+
+Outer Inviscid Flow
+
+——»
+
+|
+Boundary Layer Flow
+
+Figure 1.1: Viscous/Inviscid Domains
+Using the boundary
+
+layer concept,
+
+the flowfield may be divided
+
+into two regions:
+
+an
+
+outer inviscid flow where viscous effects are negligible and an inner viscous flow which is
+approximated by the boundary layer equations. The inviscid flow feels the presence of the
+boundary layer through a displacement effect and the viscous flow senses the presence of
+the outer inviscid flow through the pressure field at the boundary layer edge. Both sets of
+equations must be solved using a coupling method.
+
+1.2
+
+Coupling
+
+Methods
+
+Coupling methods include two main components:
+
+an inviscid solver and a viscous solver.
+
+The inviscid solver usually contains a wall transpiration (V.,) boundary condition to simulate the displacement effect of the boundary layer. A direct inviscid solver takes V,,, (or
+equivalently displacement thickness, 5*) as its input and outputs edge velocity, g.
+inverse inviscid solver has gq, as its input and V,, as its output.
+
+An
+
+While a direct viscous
+
+solver uses g- to compute 6*, and an inverse viscous solver uses 6* to compute g.. Coupling
+methods are combinations of these solvers.
+
+17
+
+The available coupling methods are:
+and
+
+fully simultaneous.
+
+Williams [34].
+
+An
+
+excellent
+
+direct, inverse, semi-inverse, quasi-simultaneous,
+overview
+
+of these
+
+methods
+
+is given
+
+by Lock
+
+and
+
+All of these have been used in 2-D with varying amounts of success—FS
+
+coupling being the most robust. For 3-D flows, the most popular coupling algorithms have
+been
+
+the direct and semi-inverse methods.
+
+The direct method has been employed by Firmin [19], Lazareff [31], and McLean [35],
+and works well for attached flows.
+
+The method is a direct inviscid solver coupled to a
+
+direct viscous solver in an iteration loop. The iteration process continues until the inviscid
+
+direct inviscid
+
+direct viscous
+
+Figure 1.2: Direct Coupling Method
+equations and the viscous equations are converged. A stability analysis demonstrates that
+this coupling scheme is unstable in 2-D separations where skin friction, Cy, approaches zero
+as analyzed by Wigton and Holt [64]; and an argument based on the theory of characteristics
+reveals that the direct viscous solvers are ill-posed in swept wing separations when
+wall shear stress vector becomes perpendicular to the marching direction.
+
+the
+
+The modified
+
+direct method of Yoshihara and Wai (65] uses the direct boundary layer equations cast in
+characteristic form to avoid an ill-posed marching direction and this allows the algorithm
+to compute mildly separated flows.
+
+The semi-inverse method has been used by Cebeci [9], Kovalev [30], and Le Balleur [32].
+Here, a direct inviscid solver is coupled with an inverse viscous solver. In one semi-inverse
+
+18
+
+form, a direct inviscid solver yields one calculation of edge velocity and an inverse viscous
+solver produces another calculation of edge velocity.
+
+The difference in edge velocities is
+
+used in an empirical formula to correct the specified 6*.
+
+Vw
+OF
+
+The iteration process continues
+
+de
+
+direct inviscid
+
+§
+
+§
+
+correction formula
+
+ae
+
+inverse viscous
+
+Figure 1.3: Semi-inverse Coupling Method
+until the edge velocities computed from the inviscid equations match those from the viscous
+equations. In theory this method should work for any separated flow (34], but in practice
+
+the method breaks down in moderate separation regions [65].
+
+It should be noted that
+
+the semi-inverse boundary layer formulation of Le Balleur was able to handle quite severe
+
+separations in two dimensions [32] but the same capability has not been demonstrated in
+three dimensions.
+
+The direct, inverse, and semi-inverse methods use viscous and inviscid equation solvers
+which require V,, and q, as fixed inputs. In addition, the viscous and inviscid equations are
+solved separately in a sequence. In contrast, the Fully Simultaneous coupling method solves
+both the viscous and inviscid equations simultaneously, and both V,, and gq, are allowed to
+float within the equations. The motivation is that viscous and inviscid equations together
+form a well-posed set of equations in attached and separated flows so that their simultaneous
+
+solution should be well-posed (and stable) for all flows.
+The 2-D FS coupling method of Drela [15] is able to compute flows with large separations
+in 1-2 minutes on a workstation. The simultaneous solution of the 2-D Euler equations and
+
+19
+
+inviscid
+viscous
+
+Figure 1.4: Fully Simultaneous Coupling Method
+the integral BL equations is computed by the Newton method using an efficient banded
+matrix solver.
+
+However in 3-D, the Newton
+
+method matrices are too large to apply a
+
+banded solver and iterative techniques must be used. The solution of these linear systems
+pushes the limits of speed and memory on current workstations.
+FS coupling has also been applied to a 3-D Full Potential solver with 2-D boundary
+layer strips by the TRANAIR group at Boeing [8]. Their research addressed the solution to
+large, sparse, non-symmetric matrix systems [46]. However, the three-dimensional integral
+
+boundary layer equations are more complicated than their two-dimensional counterparts.
+Issues such as side boundary conditions, crossflow profiles, and transverse shear stresses
+now appear.
+
+1.3.
+
+3-D Boundary
+
+Layer Equations
+
+VII methods can employ either differential or integral boundary layer equations. Although
+less general, the integral boundary layer equations permit the tracking of key integral thicknesses and shape parameters. In addition, the integral boundary layer equations are much
+quicker to solve than the differential equations because far fewer unknowns
+
+are present.
+
+Hence, the integral boundary layer equations are solved in this research.
+Systems of 3-D integral BL equations in non-orthogonal coordinates have been derived
+
+20
+
+by Myring [39], and discretized by Smith [49], and Swafford and Whitfield [54].
+
+Their
+
+formulations, which are typical of most schemes, contain surface metric terms which fulfill
+two purposes.
+
+The first type of metric takes into account the skewing and stretching of
+
+the surface mesh.
+
+For a flat sheet BL domain with a distorted mesh, these are the only
+
+metric terms that exist.
+
+The second type of metric takes into account the curving of the
+
+BL surface when the differential boundary layer equations are integrated in the normal
+direction. For a rectangular grid wrapped around a circular cylinder, these are the metrics
+that remain. These metrics are undesirable not only because they complicate the equations,
+(which complicates debugging and solution interpretation) but also because they require
+smooth finite-difference grids which bring a certain rigidity to the algorithm.
+Most BL formulations, including the current one, neglect the second type of metric term
+and solve the three-dimensional boundary layer equations over an equivalent flat domain:
+this is known as first-order BL theory. The approximation is valid when 6 < R where 4 is
+
+a measure of the BL thickness, and R is a local streamwise radius of curvature [40]. If one
+starts out with a flat domain, the integral boundary layer equations may be derived in a
+
+Cartesian coordinate system which eliminates these metrics altogether [38].
+The equations are derived on a flat domain, but may be applied to a curved surface provided that the two-dimensional derivatives 2 and 2 can be locally computed on a curved
+surface. The finite volume discretization of Mughal [38] uses Green’s theorem in an integration of the Cartesian BL equations which eliminates the need for computing the derivatives.
+An alternative is to assume a local z-z coordinate system and compute derivatives using
+
+the Finite Element Method (FEM). This research develops a Petrov-Galerkin Finite Element Method for the discretization of the 3-D integral boundary layer equations. The FEM
+has the added benefits of: unstructured surface meshes, natural boundary conditions, and
+inherent crossflow stability.
+
+21
+
+1.4
+
+Contents
+
+of Thesis
+
+This thesis presents an algorithm for Fully Simultaneous coupling in three-dimensions. The
+finite element discretizations of the Full Potential equation and the 3-D integral boundary
+layer equations are described in Chapters 2 and 3. Viscous/inviscid interaction procedures
+are discussed in Chapter 4. The Newton method solution is presented in Chapter 5. Finally,
+results and conclusions are given in Chapters 6 and 7.
+
+22
+
+Chapter
+
+2
+
+Full Potential Equation
+
+2.1
+
+Definition
+
+The Full Potential equation is the continuity equation
+
+V-(pg) = 0
+restricted to irrotational and isentropic flow.
+
+(2.1)
+
+The irrotational flow assumption leads to a
+
+definition for the velocity, q:
++
+
+Tx
+
+q =
+
+(2.2)
+
+Vo
+
+Using the isentropic assumption the density, p, and pressure, p may be derived from the
+energy equation:
+
+P =
+
+Po
+
+1+
+
+P = Po
+
+jl +
+
+Y¥-1,,2
+
+7
+
+Me
+
+Y-1,.2
+
+a
+
+Mx
+
+rs
+
+q’
+
+a
+
+(2.3)
+
+q’
+
+i
+
+(2.4)
+
+7
+
+where q.. and ¢ are the freestream velocity and perturbation velocity potential, and
+
+p.0,
+
+M.., and 7 are the freestream density, Mach number, and ratio of specific heats. Equations
+2.1, 2.2, and 2.3 form a nonlinear partial differential equation for ¢ which must be solved
+numerically.
+Equations 2.1, 2.3, and 2.4 are the continuity and conservation of energy equations. The
+momentum equations are then automatically satisfied with the irrotationality condition (for
+
+23
+
+incompressible flow, see [36]). To prove this, the momentum equations may be expressed
+as:
+
+pq- Vu;
+
+=
+
+—
+
+Op
+
+1=1,2,3
+
+Oz;
+
+(2.5)
+
+where z = 1, 2,3 refers to the 3-D Cartesian components. Using the definition of velocity in
+the left-hand-side.
+
+pg-Vur = reveal
+,
+
+@—
+
+=
+
+PIco° aa,+¥%)
+
+=
+
+ps
+
+(Joo * Vd)
+
+0
+
++
+
+)
+
++
+
+1
+spa
+
+Next using the formulae for pressure, density, and velocity in the right-hand-side.
+
+Op
+Oz;
+
+|
+
+14,47 Yat
+
+Poo y¥—-1
+
+we
+
+1-£
+
+q?,
+
+i
+
+Y-1 ye
+2
+
+1 dg?
+
+~ q2, Oz;
+
+1
+¥—1
+4,2
+g\|7* 0...
+>
+= wh
+-<po|1+
+Aaz, 2 a@-m Goo. ++ wt:
+5P
++ m2
+> “4 (1-L)\)"
+‘)
+2Ga- Vb + VO: LV V¢)
+0
+
+=p
+
+Since the left-hand-side and right-hand-side of equation 2.5 match for any i, the momentum
+equations are satisfied.
+
+Hence,
+
+the continuity equation is sufficient to satisfy the Euler
+
+equations (inviscid flow mass, momentum, and energy) restricted to irrotational, isentropic
+flows.
+
+In flows with strong shocks the isentropic assumption of the Full Potential equation is
+violated and non-unique solutions may appear [46, 45]. But for weak or moderate shocks
+the Full Potential equation yields solutions in close agreement with the Euler equations,
+while at a much lower computational expense. And for many three-dimensional wing-body
+configurations the shocks are weak, and the addition of viscous effects further weakens the
+
+24
+
+shocks through displacement body effects. Hence, the Full Potential equation is selected as
+the inviscid flow model over the Euler Equations.
+
+All lifting surfaces in the domain have a trailing vortex sheet which allows for a jump in
+potential
+
+(Ad). This vortex sheet models the actual wing’s wake of concentrated vorticity
+
+caused by the pressure differential between the upper and lower surfaces [3]. The wake is
+unstable and rolls up, but in practice the vortex sheet is represented by a flat, non-moving
+
+surface to avoid computing the complicated deformation of the wake. A typical domain for
+the Full Potential equation is illustrated in Figure 2.1.
+Vortex Sheet
+
+Figure 2.1: Wing/Body with Wake
+The boundary conditions of the Full Potential equation are:
+
+1. The velocity potential in the farfield (except at the outflow) is set zero (Dirichlet BC):
+
+dep = 0
+
+(2.6)
+
+2. The flux through the outflow is set equal to the freestream flux (Neumann BC). This
+condition allows a jump in ¢ at the outflow on the wake.
+
+25
+
+q: Tl out flow
+
+=
+
+Too ° Nout flow
+
+(2.7)
+
+3. At any location on the vortex sheet there are two values for ¢, so two conditions must
+be imposed.
+
+First,
+
+the mass
+
+flux through
+
+the wake is continuous
+
+and second,
+
+the
+
+pressures on the upper and lower wake must match (or the speeds on the upper and
+
+lower wake must be equal).
+pq: Tt| upperwake
+
+2
+upper
+
+2.2
+
+Finite
+
+Element
+
+=
+
+—
+
+pq: Tt| lowerwake
+
+(2.8)
+
+2
+lower
+
+Discretization
+
+The weak form of the Full Potential equation is discretized by the Galerkin Finite Element
+Method
+
+(FEM)
+
+[42, 22, 14].
+
+Because this discretization scheme is well known, only the
+
+residual equations will be documented in this chapter and the details of the FEM
+
+are
+
+relegated to Appendix A. The weighted residual form of equation 2.1 is:
+
+[[[ wiv -(oayav = 0
+where
+
+W
+
+is a weighting function and 2 is the volume of the domain.
+
+(2.9)
+The weak form is
+
+derived by integrating 2.9 by parts and applying the Divergence Theorem:
+
+//
+
+Q
+
+VW -(pa) av - ||
+
+an
+
+W (pq) ads = 0
+
+(2.10)
+
+where O2 is the surface of the domain with n being the unit normal outwards.
+
+2.2.1
+
+Residual Equation
+
+For the discrete form, the flowfield is partitioned into 8-node hexahedral elements, and
+elements with collapsed edges and faces may be present in the domain. Within each element,
+the $°(z, y, z) field is represented by
+
+26
+
+8
+
+=D j=l N5 4
+where N°
+
+is a trilinear shape function. N* is also used as the weighting function (i.e. the
+
+Galerkin method), and it is given in Appendix A.
+
+When
+
+¢° is substituted into equation
+
+2.10, discrete equations in terms of the nodal ¢§ values result. For example, at node 2, the
+
+Ps)
+
+p=
+
+th
+
+residual contribution from element e
+
+[ff
+
+ye
+
+is:
+
+vnr-(edyav
+- [ff Ne(org)-nas
+Sin
+
+8
+
+Gg = qo + >) VN5 $5
+j=
+Pp
+
+=
+
+pPofl
+
+|
+
+Y¥-1,,2
+
+(2.11)
+q°?
+
+i
+
++ ——Me{1-=>
+
+2
+
+(
+
+)
+
+V¢ is the volume of the element, and if any of the elemental faces forms part of the domain
+
+boundary (02) then the 5%, integral makes a contribution to the residual, otherwise the
+surface integral is zero.
+
+These volume and surface integrals are evaluated using 2 x 2 x 2
+
+and 2 x 2 gauss quadrature [6].
+
+Unless otherwise stated, all residual equations such as
+
+Equation 2.11 are elemental residual equations and the superscript e will now be dropped
+for convenience.
+
+The ¢ field which satisfies the nen-linear residual equations is computed with the standard Newton Method algorithm (see Chapter 5). The required
+
+Jacobian matrix sensitivities
+
+for the inviscid equations are also listed in Appendix A.
+
+2.2.2
+
+Artificial Viscosity
+
+Some form of artificial viscosity must be added in supersonic flow regions to capture shocks
+and to keep the Jacobian matrix non-singular.
+
+27
+
+This research employs the artificial com-
+
+pressibility method [23]: which upwinds the density.
+
+p
+
+p
+
+_
+
+_
+
+Op
+
+u (5)
+__
+
+A
+
+s
+
+(2.12)
+
+p — (2
+— Pup)
+
+ee
+
+-
+
+where Pup is the density in the element upstream of the current element and yp is defined
+below.
+
+pe =
+
+pemax(0, 4, Pup)
+(2.13)
+
+Here yp, is a specified upwinding factor ~ O(1);
+
+M is the local Mach number; and M,,;; is a
+
+user-defined critical Mach number ~ ©(0.98).
+
+An upstream element must be specified for
+
+every element cf a given mesh and it turns out that the nearest element in the upstream zdirection is a good approximation to the streamline upstream element (42].
+
+then replaces
+
+the p in equation 2.11.
+
+2.3
+
+Boundary
+
+Conditions
+
+The algorithm described above is not complete without the boundary conditions. After the
+entire Jacobian matrix is assembled (see Chapter 5), boundary conditions are applied by
+modifying the matrix.
+
+2.3.1
+
+Dirichlet
+
+Condition
+
+Dirichlet conditions are enforced by adding a large number,
+of the
+
+Jacobian matrix corresponding to Dirichlet ¢, and
+
+B ~ (107°), to the diagonal
+
+B- const is added to the residual
+
+vector. After scaling the rows of the Jacobian matrix, the new equation for this ¢ becomes:
+
+$; = const
+
+28
+
+(2.14)
+
+2.3.2
+
+Neumann
+
+Conaition
+
+Neumann conditions are enforced by specifying a flux at a face (see equation 2.10). At the
+outflow, the flux integral is represented by:
+
+I]
+
+Ni pG). nds
+
+BD one
+
+(2.15)
+
+This term is added to the residual on outflow elements, and the corresponding sensitivities
+are added
+
+2.3.3
+
+to the Jacobian
+
+Wake
+
+matrix.
+
+Boundary
+
+Conditions
+
+The first boundary condition requires that the flux into the upper element must equal the
+flux out of the lower element.
+
+Using equation 2.10 a lower wake surface integral may be
+
+expressed in terms of an upper wake volume integral:
+
+N(pq)-ndS
+
+II
+
+ONlower
+
+\|
+
+-ff
+
+where Quer
+wake node
+
+N(pq)-ndS
+
+ONupper
+
+(2.16)
+
+If¥.VN -(pq) dV
+
+is a volume of fluid on the upper wake.
+
+Hence the discrete form of a lower
+
+becomes:
+
+(Riower), = | / VN
+
+(pa) dV + / / | Wi
+
+(pa)av
+
+(2.17)
+
+After the Jacobian matrix has been assembled, the matrix row corresponding to an
+upper wake node is added to the matrix row of a lower wake node, and the upper node
+equation is subsequently zeroed out.
+
+The replacement upper node equation is a weighted
+
+residual speed-matching equation.
+
+(Rupper); = /f,.™ (G2oper — Ginwer) 45
+
+29
+
+(2.18)
+
+Upper Wake Fluxes
+Cc
+
+>
+
+t
+
+Lower Wake Condition
+
+Lower Wake Fluxes
+
+Figure 2.2: Mass Conservation Wake Boundary Condition
+To prevent odd-even oscillations in g on the wake, an upwinded weighting function is employed.
+
+W,
+
+= N+ ~A- WN;
+(2.19)
+
+A
+
+=
+
+Azi+
+
+Azk
+
+Az and Az are typical length scales for the two-dimensional surface element.
+
+This is a
+
+Petrov-Galerkin formulation [27], and it removes wiggles while maintaining h? accuracy (h
+is the mesh size).
+
+2.4
+
+Glebal
+
+Variables
+
+A global equation is added to the Newton system (see equation 5.1) to allow the option of
+lift specified, Cr,,--, or angle-of-attack specified, a,pe-. The extra degree of freedorn in both
+cases is freestream angle-of-attack, a, which influences all of the inviscid residual equations
+through the g,.-term in Equation 2.11.
+
+2.4.1
+
+a-—Specified
+
+The equation for user specified angle-of-attack is simply:
+
+30
+
+=
+
+Re
+
+2.4.2
+
+&@
+
+—
+
+(2.20)
+
+Agpec
+
+Cy ,-Specified
+
+The equation for user specified lift is
+R,
+
+=
+
+Cr-
+
+CLspec
+
+(2.21)
+Cr
+
+=
+
+| 5 Pees | (upper — prover) dt
+
+5 Poo Gz Sref
+
+where the lift is computed from a Trefftz plane integration and 6 is the span of the vortex
+
+sheet. This is valid for compressible, irrotational, isentropic flows [4].
+
+2.5
+
+Vacuum
+
+Speed
+
+Clamp
+
+Under some compressible conditions, regions exist where the density reaches zero when the
+flow speed approaches the vacuum speed, quyac-
+
+2
+
+Vac = Io
+
+2
+(
+
+{1 +
+
+2
+(7 - i) a)
+
+\
+
+2.22
+
+This might occur at a wingtip trailing edge where the velocity should theoretically be
+infinite. Under these conditions, numerical difficulties arise and the density definition must
+be modified.
+To compute in the presence of this singularity, a modified density function is generated.
+First, the maximum speed for true density calculations (Eqn. 2.3) is determined by setting
+a maximum local Mach number squared ~ O(3.0) and computing the corresponding speed
+from the formula for Mach number (see Appendix A):
+2
+
+Minar
+
+=
+
+M2,
+
++
+
+Io
+
+-1
+
+1 +
+
+17”
+
+2
+
+2
+
+M2,
+
+31
+
+(1 ™~ £
+
+To
+
+~t
+
+|
+
+=
+
+q
+
+= Uraz
+
+seeereneeee
+
+true density
+clamped density
+
+Figure 2.3: Density Function
+Then, when the speed squared exceeds g?,,., the density function is switched over to
+a modified density that asymptotes with q? to prevent zero density. This formulation was
+
+constructed by Sorensen [51].
+
+32
+
+Chapter
+
+Integral Boundary
+
+3
+
+Layer Equations for
+
+Three-Dimensional
+
+3.1
+
+Flows
+
+Definitions
+
+The three-dimensional integral boundary layer equations derived using a Cartesian coordinate system are:
+
+£ as
+
+~
+
+K. (c1/?., - c1/?)
+
+(3.1)
+
++ peqeds" ie = 2D
+
+(3.2)
+
+<-(pea20cz) + <(pe920z2) + pededsy Ss + pete?SE = Tey
+
+(3.3)
+
+=~ (p2a26:2) + - (225 + peGed; ee + peqe’: as = Tey
+
+(3.4)
+
+i (p.9262) + * (1-920:) + pea2és?
+
+Equation 3.1 is the two-dimensional turbulent shear stress lag equation, 3.2 is the kinetic
+energy equation, and 3.3 and 3.4 are the z and z momentum equations.
+
+The origin of
+
+equation 3.1 is given in reference (21] and the derivation of equations 3.2-3.4 may be found
+in (38]. K, is an empirical constant set to 5.6. € is the lag direction which is taken to be
+the chordwise direction, and the z-z coordinate system is an arbitrary, local, 2-D surface
+coordinate system in a plane tangent to the 3-D BL surface. The main assumptions in these
+equations are that pressure is constant in the normal direction through the thickness of the
+boundary layer, and that only diffusion normal to the wall is significant.
+
+33
+
+In Equations 3.1 to 3.4, 6*’s denote displacement thicknesses, 6’s signify momentum
+thicknesses, 0°’s represent energy thicknesses, and 6°*’s are density thicknesses.
+
+1/2 +5 the shear stress coefficient, ci?
+
+In addition,
+
+is the equilibrium shear stress coefficient, 7’s are
+
+wall shear stresses, and D is the turbulent dissipation function.
+
+Section §B.1 provides the
+
+definitions of the thicknesses for a streamwise-crossflow coordinate system (called the 1-2
+
+coordinate system).
+These integral boundary layer equations have a physical interpretation.
+
+Equation 3.2
+
+3
+3
+may be thought of as a divergence of kinetic energy deficit (the p.q:63
+and p.q:6$
+terms)
+e
+€
+
+balanced
+
+by mechanical
+
+work
+
+deficit
+
+(0eq262° Sue, Peqrds* 2s ) and
+
+dissipation
+
+(D).
+
+The
+
+mechanical work terms are the products of pressure forces and densities; the pressures may
+be recognized using Euler’s Relation dp = —pqdg;
+definitions of q.6**,q-6%*.
+
+Equation
+
+and the densities may be seen by the
+
+3.3 contains the z-momentum
+
+deficit due to fluxes in
+
+the z-direction (p.q26,.) and z-momentum deficit due to fluxes in the z-direction ( 292522)
+
+balanced by pressure gradient term (Peqeds Sue + Peqeds Sue ) and wall shear stresses (Tz,,).
+The pressure gradient term is seen once again using Euler’s Relation.
+
+Equation 3.4 is a
+
+similar expression for z-momentum deficit.
+
+3.2
+
+Boundary
+
+Layer Domain
+
+The three-dimensional boundary layer equations are a set of hyperbolic partial differential
+equations (59, 11]. Consequently, these equations require an initial or starting solution, and
+boundary conditions which depend on the mathematical characteristics entering or leaving
+the domain.
+
+A typical boundary
+
+layer domain is depicted in Figure 3.2.
+
+The starting
+
+solution for Equations 3.2 to 3.4 is specified at the attachment line near the wing leading
+edge, and the starting solution for Equation 3.1 is specified at the transition line. Boundary
+conditions are applied along the symmetry line, and the wingtip and waketip boundaries.
+The main purpose of this research is to implement Fully Simultaneous coupling in three
+dimensions which is a difficult problem in itself.
+
+Therefore more complicated issues such
+
+as corner flows (at wing/body junctures) and three-dimensional free transition will not be
+
+34
+
+Transition Line
+
+Attachment Line
+
+ae
+
+—
+
+Boundary
+
+Figure 3.1: Physical Boundary Layer Domain
+addressed and initial and boundary
+
+conditions are treated in a simple and approximate
+
+manner.
+
+3.3.
+
+Nodal
+
+Variables
+
+Nodal boundary layer variables for the Newton method must be selected from the many
+z-z variables introduced.
+
+In Equations
+
+3.1 to 3.4, the boundary
+
+layer variables depend
+
+upon an arbitrary, local z-z coordinate system. These z-z variables are not appropriate for
+nodal variables, because there is no unique z-z coordinate system for a node.
+
+Actually, the
+
+z-z coordinate system is associated with a given surface element, not a node.
+
+Unknowns in the 1-2 (streamwise-crossflow) coordinate system have unique definitions
+at any point independent of the z-z coordinate system.
+
+Hence, 1-2 variables may be used
+
+for the nodal BL unknowns. The z-z quantities in the boundary layer equations are derived
+from the 1-2 quantities through vector rotation identities. These relations are listed in §B.2
+
+and some of these are derived in reference [49].
+
+35
+
+3.3.1
+
+Primary Boundary
+
+There are many
+
+Layer Variables
+
+1-2 variables, but only four boundary layer equations.
+
+Thus only four 1-
+
+2 variables may be independent and these are deemed the primary BL variables.
+
+ci 2 611,
+
+§;, and 65 are selected as independent: C1?
+
+is the square root of the shear stress coefficient,
+
+6,, and é[ are the streamwise momentum
+
+and displacement
+
+thicknesses,
+
+and 63 is the
+
+crossflow displacement thickness. All other 1-2 boundary layer quantities are computed in
+terms of these four variables by using two-dimensional closure relations in the streamwise
+direction and the Johnston triangular crossflow profile (28, 38].
+
+For completeness, these
+
+relations are listed in §B.5.
+
+3.3.2
+
+Edge Velocity Definitions
+
+ue and
+
+w, in the boundary
+
+layer equations
+
+are the components
+
+of velocity in the z-
+
+z coordinate system, and because they depend upon on orientation of the z-z system they
+are not suitable for nodal variables.
+
+The Cartesian velocity components (u,v, w), on the
+
+other hand, are independent of the z-zsystem.
+
+u, and w, may easily be expressed in terms
+
+of u,v, and w. For example, an z-z coordinate system is defined by:
+
+*
+
+€z
+
+=
+
+€zzt
+
++
+
+€zyjJ
+
+€é,
+
+=
+
+Czet
+
+t+ Cryj
+
++
+
+€zzk
+
++ ezzk
+
+*
+
+Then u,. and w,., are computed by dotting the Cartesian velocity, g, into é, and é¢, respectively. i.e.:
+Ue
+
+=
+
+G-@z
+
+=
+
+UCze
+
++
+
+VExgy
+
++
+
+Wz,
+
+(3.5)
+We
+
+=
+
+q-€,
+
+=
+
+Uezz
+
++
+
+VEZ,
+
++
+
+We,
+
+This is the projection of the 3-D Cartesian velocity onto the 2-D BL panel.
+
+36
+
+Figure 3.2: 2-D BL coordinate system
+
+The 3-D BL method of Mughal [38] has two nodal velocity components which are rotated
+through angles on each panel. From past experience, this process is difficult if not impossible
+over a general surface.
+
+Dot products are simple to calculate and can handle any surface
+
+that can be paneled. Thus, in spite of the extra velocity component, the Cartesian velocity
+provides a great simplification to the calculation of edge velocities. The computation of the
+3-D Cartesian velocity will be described in Chapter 4.
+
+3.4
+
+Finite Element
+
+Discretization
+
+The three-dimensional integral boundary layer equations are discretized with a PetrovGalerkin Finite Element Method.
+
+The Petrov-Galerkin method uses a different weighting
+
+function than the shape function, N, in the Galerkin method. The weighted residual forms
+of equations 3.1-3.4 are:
+
+)-K. (c? q- 0! )} dS = 0
+
+If. W (265; (log?
+
+[[
+
+a
+
+wis
+
+39*
+
+(9262)
+
++
+
+a
+
+az
+
+3
+
+(p.9265
+
+9*
+
+2
+
+on Otte
+
+Oe
+
+De
+
++
+
+PeGe
+
++
+
+peqrett Ozue _ 2D} dS =0
+
+37
+
+(3.6)
+|
+
+|
+
+3.7
+
+(7-928:)
+
+J Ir . fe (7.9285) r
+
+If.
+
+Ww
+
+|
+
+9
+
+5;
+
+(5.920:c)
+
+(#026)
+
++ —-(
+
++
+
+ay
+
+(Ped
+
+pea?
+
+Ore)
+
++
+
+pegeds is
+
++
+
+=— - Tow} dS = 9
+PeGed; a
+
++
+
+PeGe5,
+
+, ou,
+Fe
+
++ petedsOwF - Tew}
+Ge:
+
+——
+
+— Tey
+
+(3.9)
+dS
+
+=
+
+0
+
+Equation 3.6 uses the relation:
+
+1ac, = 5elloeCr)
+9
+al
+48
+1/2
+= 25- (5 leer] = 25, (log C; }
+
+aoe
+
+The surfaces of a wing and wake are divided into 4-node elements or panels.
+
+On each
+
+panel a local z-zcoordinate system (é, and é,) is set up (see §A.1.3), and at each node z-zBL
+variables (e.g. peq20e2, Peq202z, - - .) are computed using the relations in Appendix B and
+the independent BL variables (cl! - 611, 67,63, u,v, w). Next, standard FEM operations are
+applied to equations 3.6-3.9 to derive elemental residual equations.
+bu ? Equation
+
+If. wD
+
+MOE
+
+i (log c¥/?)
+
+~ K. Ns [(ct?..)
+
+(3.10)
+
+(cv?) | dS = Reap
+
+Kinetic Energy Equation
+
+[pu {3x (rate),
++ FE (oa),
++N
+
+(oaz6r"), Se (Me)
++N; (pate),
+i
+
+(3.11)
+
+ON;
+
+j
+
+FE (wg,
+
+38
+
+2
+
+ry
+
+MD), h
+
+= Rhee.
+
+X-Momentum
+
+Equation
+
+[f¥ {SFE (ott) + OE (ote),
+t
+
++L Nil (Peqe62);
+j
+
++N
+
+ON; (ue),
+az
+
+(3.12)
+
+(peqed: ); o5“3 (ue); ~ 2M roa
+
+a5 = R.
+
+Z-Momentum Equation
+
+[fw ie * (pe929:0) +L5 ~
++
+
+(pea? O22)
+
+ON;
+
+NiL (Peqedz); 5 5, (We)
++ »
+3
+
+N; (Peqed: ); »
+
+(3.13)
+
+ON;
+
+a
+
+3
+
+(we); ~ »
+
+N; ah
+
+dS
+
+=
+
+R,
+
+ri
+
+where N; is a 2-D elemental shape functions over the panel, and (---); are the nodal BL
+values. These integrals are computed using 2 x 2 gauss integration.
+In equation 3.10, the directional derivative of N in the £-direction may be computed
+from:
+
+ONdE as = OMOz (6,we" eg)€6 + azSM a,“2°- e)
+The € direction is approximated as the chordwise direction.
+Because of the hyperbolic nature of the 3-D boundary layer equations, a Galerkin FEM
+
+approach (W = N)
+
+produces an ill-conditioned set of discrete equations [27], and some
+
+form of upwinding is required for numerical stability. The 2nd order accurate finite differ-
+
+ence scheme of Drela {15] and the 2nd order accurate finite volume scheme of Mughal [38]
+are essentially box schemes [2] which provide the required upwinding without jeopardizing
+accuracy.
+
+This suggests a finite element scheme using the following elemental weighting
+
+functions for upwinding in the &-direction:
+
+39
+
+Ws =
+
+- 7)
+
+2 (1
+
+pee oe See
+Oe
+
+i
+ee
+
+ee eee
+
+Le
+
+oe
+
+ee
+
+ee
+eee
+
+oe
+
+=0
+
+i
+
+ips
+
+ae
+
+es
+
+ee
+
+—
+Ly >2
+
+Le ee
+
+Ye
+ge~/
+LE/
+7
+Dee
+oe
+
+soe
+
+Wi
+
+al
+ae
+§
+
+Co
+
+es
+
+5{(1+n)
+
+os Tae,De
+soa
+
+Llane
+
+7 ae ie
+Le
+bsLe
+pet
+
+| =
+RS
+
+1
+
+‘
+
+ee
+
+CX
+
+/y
+
+ata
+
+eos Goa BBS
+sot or
+
+Figure 3.3: BL element weighting function
+
+Thus far, no crosswind dissipation [38] has been required.
+
+This scheme is similar to a
+
+Crank-Nicholson scheme which is neutrally stable to sawtooth oscillations in the crossflow
+direction.
+
+3.5
+
+Boundary
+
+Conditions
+
+3.5.1
+
+Attachment
+
+Line
+
+Nodal boundary layer values at the attachment line are set to the analytic values from
+
+(laminar) Falkner-Skan stagnation flow (61).
+
+§¢ = 0.64791,/—*—
+Reote
+
+1, = 0.29234, /—4Con Ue_,
+
+(3.14)
+*
+
+Re,, is the freestream Reynolds number, ug is the chordwise velocity component (ug = q°),
+and € is the arc length distance to the attachment point.
+
+cil ? is zero since this is a
+
+laminar flow region, and 43 is set to zero approximating a 2-D flow.
+
+40
+
+This is an adequate
+
+approximation and as mentioned in [38] the solution over the majority of the wing is not
+sensitive to the initial conditions.
+
+Ae.”
+
+Vso"
+
+oe
+ne St
+chee
+
+é
+
+Attachment Region
+
+Prgreer
+
+Figure 3.4: Leading Edge Region of an Airfoil
+In cases with high Re and large sweep, the attachment line may be turbulent, but this is
+not treated here. It is examined by Cumpsty and Head [12}.
+The attachment points are determined by calculating the location of minimum velocity
+
+on airfoil sections via linear interpolation. The setup is shown in Figure 3.4. In a straightforward implementation,
+
+the two nodes
+
+stagnation flow conditions.
+
+that surround
+
+the attachment point are set to
+
+However, this strategy suffered from convergence problems as
+
+the attachment point oscillated between two locations. A more robust approach is to set a
+
+small group of nodes ~ O(3-6) to stagnation flow conditions.
+
+3.5.2
+
+Transition
+
+Line
+
+Only fixed transition is simulated in this research.
+
+Initial values of cl ? at the transition
+
+line are set by the empirically based formula of Drela for two dimensional flows [16] .
+(ci?
+T ) sitter
+
+cll ?
+
+= 1.8exp (a5) Cy!
+
+is computed using the closure relations of Appendix B.
+
+41
+
+(3.15)
+
+3.5.3
+
+Natural Boundary
+
+Conditions
+
+Two natural BC’s arise from the FEM discretization of the boundary layer equations. The
+first is a symmetry
+boundary.
+
+condition or 5a
+
+= Q where 7 is the direction perpendicular
+
+to the
+
+This BC results automatically when no flow enters or leaves the domain.
+
+If a
+
+mirror solution is attached to the domain then the resulting FEM equations for the boundary
+
+nodes are merely twice the magnitudes of the equations without the mirror image.
+The second natural BC is an infinite-swept-wing-like condition. This BC arises naturally
+when flow enters or leaves the domain.
+
+If an extension of the solution is attached at the
+
+boundary, then the boundary node equations will be approzimately twice the magnitudes
+of tne equations without the extended solution. If this is an infinite swept wing problem,
+then the boundary node equations will be exactly twice the magnitudes.
+
+3.5.4
+
+A Word
+
+on Characteristic Boundary Conditions
+
+The eigensystem decomposition of the 3-D integral BL equations is non-trivial due to the
+empirical closure formula, and the relations betweea the z-z and 1-2 coordinate systems.
+However, using a symbolic manipulation program, Mughal has determined that the eigenvalues of the system are real [37], hence this system of equations is of hyperbolic type. One
+eigenvalue corresponds roughiy to the outer streamline angle, one eigenvalue corresponds
+to the limiting streamline or wall angle, and the third eigenvalue is an angle between these
+two.
+
+A methodical way to set the boundary conditions is to use eigensystem iniormation to
+
+determine stability for a given BC [20]. This process is difficult for the 3-D BL equations due
+to the complicated form of the eigenvalues and eigenvectors. As a first cut, the sensitivity of
+the solution to boundary conditions may be demonstrated by numerical experimentation.
+There are several options for boundary conditions:
+
+BC type 1 is to set all of the BL
+
+variables at the wingtip; BC type 2 is to use natural BC’s; and BC type 3 is to set the
+characteristic variables of the 3-D BL equations corresponding to incoming characteristics.
+
+42
+
+AES
+NNN ANNAN NANNY
+NNNNNNNANN ANALY AAS
+EEE ES
+ARTE YV
+NN NNNANNAA
+
+en
+
+0.20-
+
+SRNNNANNANAVALY
+LV AEE ES
+
+0.46~
+
+LEE
+NVV
+EV VV
+DRNNNNNN
+MN NAN AN NAVA NV VEEL ES
+NNV
+oP NNNNNNANA
+AVAL
+A GS
+
+——
+
+VwWwVewveevvyeves
+
+0.60
+
+Me ne ee
+ae
+
+oe
+
+oe
+
+ee
+
+He ee ee
+
+ue
+ie
+
+eee
+
+Oe
+
+ee
+Oe
+
+Oe
+
+OO
+Oe
+
+-
+
+Oe
+
+ee
+
+ee
+
+ee
+
+ie
+
+OS
+
+Oe
+
+Oe
+
+ee
+
+OO
+
+OO Oe
+
+OL
+
+Le
+
+ee
+
+ee
+
+OO
+
+ee
+
+oe
+
+ol
+
+oe
+
+Le
+Le
+
+ee
+
+Le
+
+a
+
+ee
+
+el
+
+aed
+
+ae
+
+eee
+
+ele
+
+ele ae
+
+el
+
+ee
+
+ae
+
+ee
+
+ae
+
+ee
+
+ee
+
+ee
+
+a
+
+adi
+
+and
+
+ee
+
+le
+
+ee
+
+ee
+
+ee
+
+EE
+
+OE
+
+OE
+
+OT
+
+OE
+
+TT
+
+ET
+
+a
+
+a
+
+ae
+
+ae
+
+a
+
+a
+
+ae
+
+ale
+
+ale ale ale
+
+ale ae
+
+A
+
+A
+
+AF
+
+A
+
+A
+
+A
+
+FF
+
+an
+
+a
+
+a
+
+a
+
+an a
+AA
+dl
+
+ae
+
+ae
+
+ae
+
+OT
+
+a
+
+A
+
+A
+
+A
+
+A
+
+LF
+
+A
+
+AF
+
+A
+
+A
+
+ae
+
+ae
+
+ae
+
+ae
+
+ae
+
+a
+
+ae
+
+ae
+
+an an ale ae ale ae ae ae a
+A A LF AF LM
+A
+0
+pl
+
+0.40
+
+dl
+
+A
+
+ae
+
+ol
+
+eee
+
+a
+AA
+
+ae
+
+nl
+
+ae
+
+hho
+0.60
+
+0.80
+
+xX
+
+Figure 3.5: External velocity vectors for testing boundary conditions
+To illustrate the effects, these BC types were applied to a direct marching, wake calculation.
+The external flowfield is the irrotational flow near a stagnation point in Figure 3.5 (5, p.
+
+106]. This flow looks similar to that over the trailing wake of a wing.
+
+BC type 1 is the simplest to apply and it is only valid if all of the the characteristics
+
+of the 3-D BL equations are entering the domain. The results (contours of H,) are plotted
+in Figure 3.6. Numerical noise within an envelope of influence appears, indicating that not
+all of the characteristics are entering the domain. It was later discovered that the pressure
+gradient points out of the demain which causes the surface shear, 7, and hence at least
+one characteristic to point out of the domain.
+also implies a domain-of-error.
+
+The hyperbolic equation domain-of-influence
+
+When a large separation region is presert (starting at a
+
+wing/body junction say), an erroneous BC may pollute a sizable portion of the wing.
+
+Several authors have applied BC type 2 in the form of zero-gradient or extrapolation
+boundary conditions. Strictly speaking this violates the well-posedness of the problem since
+at least one of the characteristics is entering the domain, but nonetheless, they were able to
+
+43
+
+0.60
+
+0.40
+
+0.20
+
+0.06~
+0.00
+
+_
+0.20
+
+:
+
+3
+
+Sa
+0.40
+
+0.60
+
+0.60
+
+0.40
+
+0.20
+
+Figure 3.7: Contours of H, for BC type 2
+
+44
+
+0.80
+
+0.60
+
+0.00 ~
+0.00
+
+XN
+0.206
+
+0.40
+
+0.60
+
+,
+
+0.80
+
+X
+
+Figure 3.8: Contours of H; for modified BC type 3
+
+compute solutions [53, 19]. And in Figure 3.7, the results are smoother than those of BC
+type 1 but there is unusual waviness at (z, z) = (0.6,0.0) to (0.8,0.0) which does not look
+physical.
+BC type 3 should be the proper boundary condition, however, it too is difficult to apply.
+The 3-D BL equations must be cast into characteristic form so that the correct characteristic
+variables may be set. A modified form of this BC is to assume only one characteristic points
+out of the domain, and assume that one piece of information must float while the rest of
+the BL variables must be set. This may or may not work depending upon the results of the
+eigensystem analysis [20].
+are specified.
+
+Here 53 is allowed to float, while all of the other BL variables
+
+The results are shown in Figure 3.8. It appears to be a reasonable solution
+
+to this flowfield, and it is an improvement over BC type 1 and BC type 2.
+This study implies that some sort of characteristic information should be incorporated
+into the boundary
+
+conditions.
+
+However,
+
+determining the characteristic variables is too
+
+difficult, and usually can not be constructed from the available data anyway. Hence, in this
+research, BC type 3 is applied to the suction surface of wings and wakes.
+
+45
+
+Chapter 4
+
+Fully Simultaneous
+
+Coupling
+
+This chapter discusses the link between the inviscid model of chapter 2 and the viscous model
+of chapter 3 which is known as viscous/inviscid interaction (VII). VII is achieved through
+a wall transpiration boundary
+
+conditicn and an edge velocities formula.
+
+In addition, the
+
+Fully Simultaneous (FS) coupling method is described here.
+
+4.1
+
+Wail Transpiration
+
+The displacement effect of the boundary layer on the inviscid outer flow may be simulated
+by a mass flux on wall and wake surfaces, in both cases called wall transpiration.
+
+The
+
+velocity normal to the wall is matched for the cases of a real, viscous flow and an inviscid
+
+flow with wall transpiration at a distance of the boundary layer’s edge (see Appendix C).
+This wall flux is:
+pVw
+
+=
+
+<(pege62)
+
++
+
+Ay° (Petes)
+
+(4.1)
+
+z and z refer to an arbitrary, local, 2-D surface coordinate system just as in the 3-D
+boundary layer equations. This wall transpiration formula is applied in the normal velocity
+
+condition for the Full Potential equation (equation 2.11):
+If.
+
+where
+
+Ni (pq): ndS
+
+= Ihe™ {o%a
+
+(pete52) 1+
+
+D5“i
+
+(peae62) J} 4
+
+O09), are the wall and wake surfaces where the boundary layer is computed.
+
+(4.2)
+
+A
+
+separate blowing is computed for the upper and lower wakes, and these are combined when
+
+46
+
+the upper nodal equations are added to the lower nodaij equations in the wake boundary
+
+condition (see §2.3.3).
+
+4.2
+
+Edge Velocity Components
+
+Viscous/inviscid interaction also requires the edge velocity distribution over the boundary
+layer.
+
+In reference [34], wall curvature effects are taken into account in the edge velocity
+
+computations which is known as higher-order boundary layer theory. These corrections are
+not used here for simplicity, but it is believed that they may be added without affecting the
+robustness, speed, etc. of the FS coupling procedures.
+As discussed in Chapter 3, the edge velocities are computed from the Cartesian velocity
+components. These velocities are given by:
+
+vy
+
+=
+
+(v0 + 5),
+
+(4.3)
+
+Unless otherwise stated (u,v, w) denotes the Cartesian velocity components on the surfaces
+where the boundary layers are computed.
+
+And u, and w, are the components of these
+
+Cartesian edge velocities projected to an arbitrary, 2-D, z-z coordinate system.
+These Cartesian velocities are computed with the Galerkin finite element method. The
+weighted residual equations for the velocity components are:
+
+47
+
+= Mo,{o- (+H), 8
+R,
+
+=
+
+Iho.
+
+N {» - (vc + x),
+
+dS
+
+(4.4)
+
+re = Jf, *{e~ (m+ $8),}
+where N is a 2-D surface shape function and ON, is the boundary layer surfaces.
+
+The
+
+Galerkin discretization produces the following residuals:
+(Ru);
+
+=
+
+Ifo.
+
+N;
+
+SN
+
+_
+
+(..
+
++ »
+
+J
+
+(Ry);
+
+=
+
+Iho.
+
+J
+
+=
+
+Iho.
+
+d$
+bf
+
+ON;
+
+Ni ps Njvj — (>. + ye ie,
+I
+
+(Ry);
+
+se,
+
+N; Sa
+
+J
+
+_ (
+
+o>
+
+4.3
+
+Source/Sink Subgrid Model
+
+4.3.1
+
+The
+
+dS
+bl
+
+ON;
+es)
+
+|
+
+(4.5)
+
+d$
+
+Problem
+
+The current discretization contains a null space in the viscous/inviscid interaction equations.
+This can be seen by the example of two dimensional flow over a flat plate with uniform edge
+velocities.
+
+A sawtooth distribution in 6* produces
+
+regions of blowing and suction from
+
+Vo = 5g (Ued”) and u, = constant.
+
+These wall transpiration fluxes cancel over a supercell (which consists of two BL panels)
+producing zero wall flux in the Full Potential equation residuals.
+
+Consequently, the edge
+
+velocity equations do not detect the sawtooth distribution, and the magnitude of the saw-
+
+48
+
+yyy
+
+Uy
+
+blowing
+
+ii
+suction
+
+|
+
+Ue
+
+y;
+
+Wf
+
+blowing
+
+oy,
+
+suction
+
+Yy
+
+blowing
+
+Figure 4.1: Sawtooth in 5°
+tooth distribution can be any value. In three dimensions, the checkerboard mode as well as
+the sawtooth distributions mode lies in the null space.
+This null space of the blowing and FP equations is not an issue in attached flow because
+the boundary layer equations do not allow 6* wiggles for a smooth edge velocity distribution,
+but in separated flow neither the inviscid nor the viscous equations constrain the sawtooth
+in 6*. The result is an ill conditioned Jacobian matriz in separated flows.
+To make this concept concrete, examine the system of coupled equations for a simplified
+two-dimensional Full Potential and boundary layer VII scheme:
+
+, Equation
+, BC:
+Full Potential
+
+Op
+an
+
+u. Equation:
+
+ue - (ue ft *)
+Os
+06*
+
+BL Equation:
+
+ae
+
+A,OF (ted ayy
+)=0
+
+E
+
+= 0
+ue]
+
+_
+
++ B As | = 0
+
+The BL equation is a combination of the von Karman integral momentum equation and the
+2-D kinetic energy equation so as to eliminate ee. The coefficient B — oo at separation.
+Using finite differences, the discretization of these three equations becomes:
+
+49
+
+(Pijt1 — Pig) — (Meter bf,1 — err 671)
+An
+
+Ru.
+
+=
+
+Uezy—
+
+2As
+
+(eos
+
+(bi41,5 —- Boa
+
++
+
+oAs
+
+6? — 67,
+As
+
+As
+
+The first two residuals use central differences analogous to the Galerkin FEM that is used
+in the larger three-dimensional problem.
+
+The BL residual uses a box scheme.
+
+Notice that
+
+the @ terms have double subscripts because they are two-dimensional field values while the
+other terms are BL values with only one subscript.
+If these equations are solved using
+
+Jacobian matrix is represented by:
+be;
+
+56?
+
+1
+
+&
+
+69¢;,;
+
+oe
+
+diagonal of the global
+
+a Newton method, the submatrix which lies on the
+
+An
+
+0
+
+0
+
+(Bie), (a),
+
+where the sensitivities of the BL equation are expressed symbolically because they use rather
+complicated closure relations.
+After row scaling, oR
+
+~
+
+=
+
+In attached flow
+
+(Sat)
+
+is negative, but as the flow
+
+separates this sensitivity goes through zero. Since this term is on the diagonal and there is
+no fill-in for this slot, the global
+
+Jacobian matrix becomes ill conditioned in separated flow.
+
+Paradoxically, the purpose of the Fully Simultaneous method is to have a numerically stable
+scheme in separated flow. The present instability is an artifact of the way the VII equations
+are discretized and any boundary layer coupling method that uses this discretization will
+be ill conditioned in separated flow.
+
+50
+
+OR
+as
+
+>
+
+an
+
+separating flow
+
+Figure 4.2: BL sensitivity in separating flow
+
+4.3.2
+
+A Remedy
+
+The sawtooth 6* displacement body of §4.3.1 should produce edge velocities that accelerate
+over the crests and decelerate over the troughs. This suggests the application of a subgrid
+One subgrid model is to implant local sources
+
+model (see for example [15, pp.
+
+101-102]).
+
+and sinks on the BL surfaces.
+
+These sources/sinks have strengths equal to the local wall
+
+transpiration and they only affect the edge velocities at the given panel’s nodes.
+
+The resulting kick in velocity is equal to the velocity perturbation of a 2-D source
+
+Aue
+
+o
+
+=
+
+=
+
+——
+
+2nT
+
+(4.6)
+
+2V,As
+
+o is the source/sink strength, r is the distance from the source/sink to the node in the
+direction of the edge velocity, and As is the length of the BL panel (see figure 4.4).
+The total nodal contribution from two adjacent panel (using V,,As = A (u,6*)) is given by:
+
+51
+
+AUe
+
+AUe
+
+AUe
+
+5*
+
+———
+
+——
+
+—A Ue
+
+y
+
+SU
+source
+
+!
+
+sink
+
+—-A Ue
+
+‘ty YY
+
+WHE
+
+source
+
+sink
+
+i404:
+
+WY
+
+source
+
+Figure 4.3: Source Sink Subgrid Model
+
+Au;
+
+—_
+
+=
+
+2 (ter41 6345 _ ue;d;)
+2ur
+1
+
+er
+
+2 (ue;6! — Uei-163_ 1)
+
+~
+
+2uPT
+
+(4.7)
+
+(tei41 8344 ~ 2u.,;6; + Ues—163_1)
+
+This provides the necessary velocity perturbation. If the curvature of the 6° distribution
+is negative (a crest), Au, will be positive. Furthermore, the resulting submatrix is given by:
+
+5¢;;
+
+-1
+
+Sue;
+
+68
+
+9
+
+0
+
+0 (Se), (a),
+After Gaussian elimination, the lower left term becomes
+
+(32s) + c 2s where c < 0. Hence,
+
+the source/sink subgrid mode! keeps the global Jacobian matrix from becoming ill conditioned.
+
+In three dimensions, point sources/sinks placed in the center of BL panels will prevent
+sawtooth distributions in the displacement body.
+transparent to this source/sink subgrid model.
+
+52
+
+However, checkerboard modes
+
+will be
+
+Instead, 2-D source sinks may be placed
+
+v
+
+Ue
+
+“—_
+
++L
+
+/
+
+7,
+
+Sapaeueeaeeaes
+
+a
+
+2
+
+Ly
+
+AS
+
+Figure 4.4: Source/Sink Parameters
+along panel edges.
+
+For a wing with moderate sweep (< 45° say), it has been observed
+
+that the outer streamwise flow is primarily in the chordwise direction, except at the very
+tip. And as a good approximation, the crossflow direction is in the direction of the spanwise generators.
+
+Hence, source/sinks based on df may be placed on chordwise strips, and
+
+source/sinks based on 63 may be positioned on spanwise generators.
+
+For example, the chordwise direction and chordwise velocity are defined by a 3-D unit
+vector and a dot product:
+*
+
+€o
+
+=
+
+Cegt
+
++
+
+ul
+
+=
+
+g-é,
+
+€eyJ
+
++
+
+€¢,k
+(4.8)
+
+Then the 2-D source/sink velocity perturbation is given by:
+Au.
+
+=
+
+2Vin As
+2ur
+
+V
+
+we
+
+_
+
+*
+
+*
+
+(u-dt)s — (uedt )i-1
+As
+
+The velocity perturbations in Cartesian coordinates are then:
+
+od
+
+(4.9
+
+Au
+
+= Au.ecs
+
+A similar expression
+
+Av
+
+= Auec,
+
+exists for the spanwise
+
+used in the source strength.
+
+Aw
+generator
+
+= Aue,
+
+direction,
+
+except
+
+(4.10)
+that 63 is
+
+In addition, there is a negative sign because by convention
+
+55 ~ f —u,dn:
+Au,
+
+=
+
+2V.4,A8
+20 T
+
+V,,
+
+=
+
+“yy
+
+(4.11)
+
+.
+
+.
+
+(uaba)i = (4483)i-1
+As
+
+The modified velocity formula for stable VII calculations is given by:
+
+(R.); = Ih. ees
+
+-_
+
+J
+
+(Rw);
+
+=
+
+Ih
+
+NS
+
+bl
+
+Mies
+
+-_
+
+J
+
+4.4
+
+Coupling
+
+} as
+
+aval
+
+dS$
+bl
+
+Method
+
+All of residual equations have now been described. There is the Full Potential equation residual (2.11) with a wall transpiration BC (4.2); there are the 3-D integral boundary layer equa-
+
+tion residuals (3.11-3.13); and lastly there are the Cartesian edge velocity residuals (4.12).
+The residuals are functions of the nodal unknowns,U*P = (¢, u,v, w, oi? 911,
+5%, 65)".
+Nodes in the field possess only the Full Potential equation residual, while nodes on wing
+and wake surfaces have the Full Potential residual, boundary layer equation residuals, and
+edge velocity residuals.
+
+A final solution must satisfy all of these residual equations.
+
+54
+
+lf R
+
+|
+
+is the vector of all the residual equations, and U is the vector of all the nodal unknowns,
+then we require that:
+
+R(U)
+
+This is a nonlinear set of equations.
+
+= 0
+
+(4.13)
+
+Previous VII coupling methods divided R into
+
+an inviscid equation vector and a viscous equation vector, and performed a complicated
+iteration process between the pieces (see the flow diagrams of Chapter 1). The Fully Simultaneous coupling method, on the other hand, solves the residual vector as a whole. This is
+achieved by using the Newton Method described in the next chapter.
+
+55
+
+Chapter
+
+Solution
+
+5.1
+
+Newton
+
+5
+
+Process
+
+Method
+
+The equations represented by 4.13 are solved using the standard Newton Method:
+
+1. Initialize U, the global unknowns vector
+2. Compute the residuals vector, R, and the
+
+Jacobian matrix { oR
+
+3. Find the solution to the linear system
+
+{9B}
+50 =
+
+4, Wpdate the solution U"t! = U" + 5U, where n is the iteration counter
+5. Iterate (steps 2-4) until converged (R = 0 or 6U = 0)
+
+5.2
+
+Assembling the Jacobian system
+
+The flowfield is divided into 8-node volume elements with 4-node surface elements (or panels). Each node is assigned one or eight degrees-of-freedom (DOF) for its local unknowns
+veeren U;. Inviscid nodes have one DOF, U? = = {d}7, and viscous nodes have eight DOF,
+= {¢, u, U, w, ci? 1811, 53,63) . The global unknowns
+local nodal unknowns vectors:
+
+56
+
+vector, U, is comprised of the
+
+v
+
+w
+
+U;
+
+|
+
+Ui41
+
+7 i+1
+
+In addition, nodes have one or eight equations in their local residual vectors, R;. Inviscid
+nodes have the Full Potential equation, while viscous nodes have the Full Potential equation,
+three velocity definition equations, and four boundary layer equations.
+
+The local residual
+
+vectors make up the global residual vector, R.
+The Newton system appears as:
+
+f 2B, aR
+OR
+
+OR
+
+OR
+
+BU,
+
+BU,
+
+ae \ ( su, |
+
+f Rp, \
+
+oR
+
+OR
+
+OR,
+aut
+
+ao
+OR
+
+]
+one
+
+OR
+BU,
+
+6U2
+
+OR,
+aU 1
+
+OU;
+
+fs)
+507,
+
+5U,
+
+soe} \ Ue}
+OR
+
+R;
+
+_
+7
+
+Ry
+
+.
+
+(5.1)
+
+R,
+
+\ Roe |
+
+where the aut matrix elements are 1 x 1 or 8 x 8 submatrices. The Uj), are global DOF’s
+corresponding to global residual equations Ry, (e.g. Cy-specified equation).
+
+57
+
+5.2.1
+
+Global
+
+Equation
+
+Numbers
+
+The numbering of nodes has a large effect on the structure of the Jacobian matrix and
+hence the cost of solving the linear system. For unstructured meshes, algorithms have been
+written to generate
+
+nodal numbers
+
+that produce
+
+an “optimal” matrix structure.
+
+This is
+
+beyond the scope of this research, and in the test cases that follow a structured grid is
+converted into an unstructured mesh and the nodes are numbered such that the bandwidth
+of the matrix is minimized.
+
+The equation numbers may be determined systematically and accessed cleanly with an
+
+identification array, ID(m,n), from reference [6]. m is the local DOF
+
+number, which is a
+
+number from cne to eight and n is the global node number. Initially, the ID array is zeroed
+out, each node is visited and all active DOF
+
+(m = 1 for inviscid nodes, m = 1,---,8 for
+
+viscous nodes) are toggled to a value of one in the iD array. Then, each node is re-visited
+and a sequential global equation number is assigned to each
+value of one.
+
+[D(m,n) member that has a
+
+For example, the equation number for node 5178, degree-of-freedom 3, may
+
+be found in JD(3, 5178).
+5.2.2
+
+Matrix Mapping
+
+Sparse matrices are usually stored using a set of one-dimensional arrays. One combination
+
+is to store the row, column and matrix entries in the arrays
+AMAT(n);
+
+IMAT(n),
+
+where n goes from 1 to the number of nonzeroes, NZ.
+
+JMAT(n), and
+
+In this research the
+
+row & column indices (i,j) of all non-zeroes, known as the map of the matrix, must be
+constructed before the matrix can be assembled.
+
+The mapping procedure amounts to using the FEM connectivity array and the JD array
+to determine all of the (2, 7) indices for the non-zeroes. An efficient way to build the map is
+to use a skipping array which stores the number of n indices that must be skipped to find
+
+the next occurrence of 7. To make this clear take the following matrix to be mapped.
+
+58
+
+f
+
+aii
+
+0
+
+Q13
+
+0
+
+0
+
+0
+
+Q22
+
+4923
+
+0
+
+0
+
+0
+
+0
+
+233
+
+0
+
+0
+
+41
+
+0
+
+0
+
+G44
+
+G45
+
+0
+
+ds2
+
+as3
+
+0
+
+ass|
+
+\
+
+\
+
+First, the diagonal entries are mapped and store sequentially in IMAT, JMAT:
+IMAT
+
+mat?
+ixip™
+
+,
+
+=
+
+{123450000000}
+
+=
+
+{123450000000}
+
+=
+
+{9
+
+00000000000}
+
+T
+
+T
+
+T
+
+Now assume that there is a non-zero required in matrix position (4, 5) based on connectivity
+
+and ID array information. First, the diagonal (n = 4) will be checked. Because this is not
+So it is appended
+
+a diagonal entry and JSKIP(4) = 0, this is a new member of the map.
+
+to the IMAT, JMAT arrays and JSKIP(4) is set to the number of n entries that need to be
+skipped in order to reach the next i = 4 entry: in this case JSKIP(4) = 2.
+
+mat?
+
+=
+
+{123454000000}
+
+mat”
+
+=
+
+{123455000000}
+
+ix™
+
+=
+
+{9
+
+00200000000}
+
+Now assume that (4,1) needs to be mapped.
+
+T
+
+T
+
+T
+
+Again, the diagonal will be examined.
+
+Since there is no match, the algorithm determines that JSKIP(4) = 2 and checks the 4 + 2
+entry of IMAT, JMAT.
+
+There is no match and JSKIP(6) = 0, so it appends (4,1) to the
+
+IMAT, JMAT arrays and sets JSKIP(6) = 1.
+
+59
+
+|
+
+maT
+
+=
+
+mMaT™
+
+{123454400000}
+
+=
+
+{1234551000004
+
+JSKIPt
+
+{000201000000}
+
+This process continues until all (z,7)’s are mapped.
+
+T
+
+r
+
+T
+
+The JSKIP strategy was devised by the
+
+author and Darmofal [13]
+
+5.2.3
+
+Column
+
+Format
+
+After the matrix is mapped, the (7,7) indices are condensed into an efficient column format
+[48]. All nonzeros are grouped by columns and re-stored in the one-dimensional arrays of
+§5.2.2.
+
+The first array (JMAT)
+
+contains the indices pointing to the beginning of matrix
+
+columns stored in the other two arrays, the second array (IMAT) contains the global row
+numbers for each matrix non-zero, and the third array (AMAT)
+
+contains the actual matrix
+
+values. For example the matrix:
+f
+
+Q11
+
+0
+
+ai3
+
+0
+
+0
+
+0
+
+422
+
+493
+
+0
+
+0
+
+0
+
+0
+
+233
+
+0
+
+0
+
+Q4,
+
+O
+
+OO
+
+agg
+
+Gag
+
+0
+
+Qs2
+
+as53
+
+«CO
+
+ass |
+
+\
+
+)
+
+is stored as follows:
+T
+
+JMATT
+
+=
+
+{1
+
+35
+
+mamT
+
+=
+
+{1
+
+4/25/3125,
+
+AMAT”
+
+T
+
+9 10
+
+1 |
+
+4/5
+
+4}
+
+T
+
+T
+
+=
+
+{
+
+an
+
+G4,
+
+|
+
+G22
+
+Gs2
+
+|
+
+G33
+
+60
+
+G13
+
+G23
+
+G53
+
+|
+
+daa
+
+455
+
+ass
+
+}
+
+where the
+
+| symbols demarcate the columns.
+
+The last entry of JMAT indicates the total
+
+Note that the columns are loaded such that the first
+
+number of non-zeros of the matrix.
+
+column entry is the diagonal followed by the other non-zero column members in ascending
+row order.
+
+5.2.4
+
+Assembly
+
+Process
+
+The Jacobian matrix is assembled in standard FEM
+
+fashion.
+
+First, volume elements are
+
+visited and the Full Potential contributions are added to the residual vector and the Jacobian
+matrix, and surface elements are visited and the boundary layer equation contributions are
+added to the system. Next the wall transpiration and edge velocity contributions are added.
+Lastly the boundary conditions are applied to the system.
+
+The ID array and the FEM connectivity array provide the global (7, 7) indices associated
+with the DOF within an element.
+
+within array members npegin
+
+Given column j, the IMAT
+
+= JMAT(j) and tend
+
+array is searched for row 2
+
+= JMAT(j +1) —1. When the z value is
+
+matched for n = Nmatch, the sensitivity contribution is loaded in AMAT(nmatch).
+
+The row
+
+search is conducted using a bisection method [43].
+
+As an example, given the previous matrix and a contribution for (7,7) = (2,3), the
+
+IMAT array is searched from negin = JMAT(3) = 5 and neng = JMAT(4) — 1 = 8 for the
+value 2. This occurs at n = 7 in the IMAT array.
+
+5.3.
+
+Linear System
+
+Solution
+
+For a typical problem, the resulting Jacobian matrix is large (~ O(100,000) equations),
+
+sparse (~ O(0.05%) non-zero entries), and non-symmetric.
+
+There are several iterative
+
+techniques designed to solve such matrices (48], and the method used here is the GMRES
+algorithm of Saad and Schultz [44].
+
+This is one of the Krylov subspace methods which
+
+compute a series of orthogonal vectors or search directions using a “Gram-Schmidt”-like
+
+61
+
+process. A solution to the linear problem
+Ax=b
+
+is estimated with a set of search directions (vo,v1,
+
+V2...
+
+) multiplied by scalar weights
+
+(Q1,Q2,...).
+X
+
+=
+
+Vo
+
++t Q1V1
+
++
+
+G@2V2
+
+4+
+
+°°?
+
+The weights are computed to minimize the error (some vector norm ot
+
+b— A).
+
+Typically,
+
+20-30 search directions are used when the system is preconditioned.
+In most cases, GMRES
+
+will not converge uniess the system is preconditioned. Depend-
+
+ing upon the matrix, a poor preconditioner may result in an unstable calculation.
+
+Elman
+
+[18] demonstrates this for two preconditioners IL1(0) and MILU(0) (Incomplete LU factorization with zero fill-in and Modified Incomplete LU factorization) using recursion formulas
+for the preconditioned systems.
+
+In generai, however, it is too difficult to predict whether
+
+or not a given preconditioner will work for a given problem, and preconditioners are implemented and discarded if they do not work.
+
+The preconditioner used in this research is
+
+the Incomplete LU decomposition with drop tolerances [66]. This is a particularly robust
+preconditioner because it tailors itself to the problem at hand through an appropriate level
+of fill-in.
+
+5.4
+
+Practical Issues
+
+There are several numerical issues which should be mentioned.
+
+should be row and column scaled for better conditioning.
+
+First, the Jacobian matrix
+
+The BL unknowns (611,
+67, 63)
+
+vary a great deal in magnitude so it is best to compute a logarithmic correction.
+the matrix is fully assembled,
+
+the matrix columns corresponding
+
+multiplied by the thicknesses. For example
+ORge
+
+0611
+
+66
+
+=
+
+(a
+
+06;,
+
+62
+
+6
+
+(>)
+
+‘
+
+—
+O11
+
+After
+
+to BL thicknesses are
+
+ORke
+
+=
+
+A log
+
+61,
+
+6 log O11
+
+Then it is the log-corrections that are computed in the linear system. The regular corrections
+are calculated by multiplying once again by the boundary layer thicknesses.
+
+6014
+
+=
+
+(6 log 43; )
+
+O41
+
+7")
+—— | 0
+
+( 6,)
+
+After the column scaling, the rows are scaled by the largest row term.
+
+In addition, Newton methods usually need under-relaxation or clamping during the
+calculation process to prevent over-shooting [24].
+
+Each DOF
+
+type is clamped differently.
+
+The ¢ corrections are under-relaxed such that the new ¢ does not produce vacuum speeds
+in the flowfield. The u,v, and w are clamped such that a 50% change is not exceeded.
+
+The
+
+BL variables are clamped such that a 60% change is not exceeded and such that the shape
+parameter, H;, does not go below 1.0.
+
+5.4.1
+
+Debugging the Newton
+
+Method
+
+Once the residual formulae are validated, the sensitivity formulae may be verified using two
+methods. The first is to run in double-precision, have GMRES
+
+converge its error ‘o machine
+
+zero, and check that the program is achieving quadratic convergence.
+Another method for catching bugs is pinging the elemental sensitivities. First, a state
+for U; is set.
+
+Then one DOF
+
+in the element is perturbed or pinged.
+
+The average of the
+
+original and pinged analytic sensitivities is compared to the finite difference estimate of the
+sensitivity. This is best done in double precision with a pinged value of 0.01% of the original
+U;. For example, the pinging of an elemental Full Potential residual amounts to
+
+63
+
+(55). = 24 (a5), * (35)
+9;
+
+ave
+
+(FE)
+
+00;
+
+-
+
+2
+
+09;
+
+(Ri) pinged
+f.d
+
+org
+
+7
+
+Od;
+
+pinged
+
+(Ri)org
+
+(Pi pinged — (Pa org
+
+The average analytic sensitivity and the finite difference sensitivity should have a difference
+of no more than 0.0001% in double-precision.
+
+If the elemental sensitivities pass this test,
+
+then the global matrix should be properly linearized since it is composed of these elemental
+linearizations.
+
+Both quadratic convergence checking and pinging were invaluable in the
+
+construction of the code.
+
+64
+
+Chapter
+
+6
+
+Results
+
+6.1
+
+Infinite Swept
+
+The FEM
+
+Wing
+
+discretization and the closure relations of the three-dimensional boundary layer
+
+equations were checked against the infinite swept wing experiment of van den Berg and
+
+Elsenaar [56]. The experimental set-up is illustrated in Figure 6.1. It is a swept flat plate
+with guiding vanes, and a separation inducing body placed above. Various 3-D BL quantities
+were measured at ten stations along the plate.
+
+In theory, a viscous/inviscid calculation of the entire experiment can be done but some
+features of the geometry were unknown.
+
+Consequently, the boundary layer equations were
+
+spatially marched using the experimental edge velocities as inputs. This is a direct viscous
+solver and the calculation breaks down when separation is encountered,
+
+or when one of
+
+the characteristics of the boundary layer equations becomes perpendicular to the marching
+direction. The purpose of this case is not to check the algorithm’s performance in separation,
+but rather to examine the accuracy of the finite element discretization and the BL model.
+The computation was performed over a 101 x5 node mesh of the swept flat plate. Natural
+BC’s were imposed on the side boundaries,
+
+experimental data at the first measurement
+
+station is used as the initial data, and Re = 2.42 x 10° and M,. = 0.01 are the freestream
+conditions.
+
+The computation was halted at z = 1.1 because
+
+one of the characteristics
+
+(associated with the 7,,-direction) becomes perpendicular to the marching direction, while
+separation actually occurs at z = 1.3.
+
+Plots of 3-D boundary layer data are shown in Figure 6.3. The computed BL thicknesses
+6,1, 6%, and 53 are in excellent agreement with the experimental measurements. Bw, the angle
+
+65
+
+AG.GG
+
+M
+
+MAM
+
+A
+
+pressure inducing body
+
+guiding vane
+SS
+
+NN
+
+SS
+
+flow
+
+measurement stations
+
+\
+
+SS
+
+Figure 6.1: van den Berg/Elsenaar Experiment
+
+—3.50
+
+—4.50
+
+log{
+
+E)
+
+See
+
+‘
+
+—§.50
+
+—6.50
+—3.50
+
+—2.50
+
+—1.50
+
+—0.50
+
+log(h)
+
+Figure 6.2: Convergence of 6,; for Infinite Swept Wing
+
+66
+
+1.90
+
+0.0126
+
+1.70
+
+Ai,
+1.50
+
+0.0000
+0.40
+
+0.80
+
+1.60
+
+1.60
+
+0.0240
+,
+
+0.0080
+
+CFD
+
+Exp
+
+0.0000
+
+0.0160
+
+5
+
+=
+
+.
+*
++
+
+:
+.
+
+‘
+.
+*
+
+*
+‘
+‘
+
+.
+
+ry
+
+,
+‘
+a
++
+2
+‘
+.
+
+‘
+.
+‘
+4
+"
++
+.
+
+‘
+‘
+*
++
++
+:
+:
+
+’
+'
++
++
+L
++
+
+‘
+
+CFD
+
+a
+
+,Exp
+
+‘
+‘
+‘
+‘
+°
+:
+:
+.
+a
+.
+
+-—0.0080
+
+0.008C
+
+wal
+
+‘
+*
+‘
+*
++
+‘
+’
+,
+’
+
+0.0160
+0.40
+
+1.60
+
+60.
+nN
+
+0.00360
+
+CFD
+
+1.60
+
+___ CFD
+
+,
+
+,Exp
+
+0.00280
+
+40..
+
+Cy
+
+es
+
+Bu
+
+0.80
+
+0.00200
+
+20.
+
+0.00120
+0.40
+
+1.60
+
+0.80
+
+Figure 6.3: Infinite Swept Wing Results
+
+67
+
+1.60
+
+«xp
+
+40.
+
+40.
+
+CFD
+EXP
+
+Y (mm)
+
+|
+
+CFD
+EXP
+
+Y (mm)
+20.°
+
+0.°
+
+0.00
+
+20.+
+
+0.40
+
+rT
+
+Uy
+
+T
+
+0.80
+
+r
+
+0.°
+
+1.20
+
+0.00
+
+r
+
+0.20
+
+de
+
+r
+
+U2
+
+T
+
+0.40
+
+r
+
+0.60
+
+Ge
+
+Figure 6.4: Infinite Swept Wing, Velocity Profiles
+between the outer flow velocity vector and the limiting streamline, is in close agreement.
+The skin friction, Cy does not agree as well as the other BL quantities, but it compares as
+
+well as, or better than the other 3-D BL codes of Reference [57].
+Streamwise and crossflow velocity profiles may be extracted from the integral BL vari-
+
+ables [16]. The profiles at z = 1.00 (which corresponds to z = 1020 mm in the experiment)
+are plotted in Figure 6.4. The agreement is good, except near the wall layer of the crossflow
+velocity (U2) where the limitation of the Johnston triangular crossflow model is evident.
+The Johnston profile a = A, (1 _ us | specifies a finite velocity at the wall.
+Finally the convergence of the code (based on the convergence of 0,; at a particular
+z-station) was examined using a series of finer meshes. The results are displayed in Figure
+6.2, where E is the percent difference between 6,; on the current mesh and 9,; on the finest
+
+mesh: second-order accuracy is exhibited.
+
+6.2
+
+RAE
+
+2822 Airfoil
+
+Next, the viscous/inviscid interaction of the entire code was checked on Case 10 of Cook
+et. al.
+
+[10] which is a commonly used test case for viscous airfoil codes.
+
+This case was
+
+simulated by a straight wing between two inviscid walls and natural boundary conditions.
+The Reynolds number, Mach number and lift coefficient were matched (M,, = 0.75, C; =
+
+68
+
+0.743, Re = 6.2 x 10°), and the flow was tripped at z/c = 0.05 on both the upper and lower
+surfaces. Presented in Figure 6.5 are plots of C, and H;, vs. experiment for a 129 x 34 x 2
+node
+
+mesh.
+
+The agreement is reasonable and is on par with other viscous codes for this case [25].
+The calculated drag seems extremely accurate, but this is deceptive for as the mesh is refined
+the computed drag grows larger (~ ©O(0.0252)), and further away from the experimental
+value.
+
+Nevertheless, the calculated drag is in good agreement with experiment using this
+
+VII method.
+
+More importantly, H, > 2.9 behind the shock which indicates turbulent flow
+
+separation for typical Reg values.
+
+This demonstrates the ability of FS coupling to handle
+
+separated flows.
+Lastly, grid convergence based on Cq was examined. Drag based on farfield (FF) quantities (see Appendix D) and drag based on standard surface integration were calculated,
+and their convergence as the mesh is refined is shown in Figure 6.6.
+
+It shows that the
+
+discretization of the entire algorithm is second-order accurate. An interesting point is that
+the convergence is not too sensitive to the type of drag formula used.
+
+6.3
+
+RAE
+
+101 45-degree Swept Wing
+
+The RAF 101 wing is an untapered wing with a 45-degree sweep and the symmetric RAE 101
+
+airfoil section.
+
+In addition to C, data [60], a small number of 3-D velocity profiles were
+
+measured [7] enabling the calculation of experimental BL thicknesses.
+Meshes for this wing and the ones that follow were generated by stacking 2-D grids at
+span stations. Input airfoils were splined in the chordwise direction and linearly interpolated
+in the spanwise direction. Then 2-D H-H grids were generated using algebraic interpolation
+formulae [2] and elliptic smoothing [55].
+
+The tip region was constructed by rotating the
+
+last H-H grids around the tip creating a rounded tip.
+The
+
+mesh
+
+contained
+
+21,000
+
+nodes
+
+with
+
+67 nodes
+
+69
+
+in the chordwise
+
+direction and
+
+14
+
+oe
+ree
+
+20 RARE 2822
+
+Expa
+
+4
+
+RAE 2822 CFO
+
+en
+am
+cee
+
+ee
+
+x
+
+6
+
+ALFA
+
+CM
+
+CD
+
+3.19
+
+-0.1060
+
+0.02420
+
+2.48
+
+-0.1120
+
+!
+
+0.02364
+
+|
+
+0.00
+
+G. 200x108
+
+i
+
+ee
+
+ee
+
+0.75
+0.7430
+
+Sy
+
+i
+
+().5
+
+:
+
+1.Q+
+
+:
+
+ee
+
+SS
+
+|
+
+L_
+ALFA
+x
+
+:
+
+| H
+
+20
+
+RAE
+
+RAE
+
+2822
+
+EXP «
+
+2822
+
+a
+
+CFO
+
+rn
+
+3.19
+
+2.48
+
+G.Q7
+
+ETA
+
+5
+
+RE
+
+MACH
+
+=
+
+=
+
+=
+
+0.00
+
+6.200108
+
+0.75
+
+“U.OfF
+3.0%
+)
+
+2
+
+0+
+
+A
+A
+
+r%
+
+,
+
+A
+———_
+
+«1.04
+0.0
+
+Figure 6.5: Computed C, and H, vs. Experiment
+70
+
+|
+
+-1.20
+
+lyp——oFF drag
+> —-¢ surf drag
+
+.
+.
+.
+
+’
+.
+.
+
++
+
+.
+4
+
+.
+
+a
+
+.
+
+’
+
+a
+.
+4
+
+»
+*
+.
+— 1 GO ap once cece eb.‘ eee eee ec eet+‘ ecerencephetes
+focccccecdeceeceeeccebeceeecceees
+e
+’
+’
+.
+
+.
+.
+
+a
+.
+Re
+eee
+.
+
+og
+
+‘
+
+‘
+
+.
+
+— 200
+
+.
+’
+]
+.
+
+ncn e cece neh' cece
+.
+'
+.
+
+.
+
+»
+
+.
+
+1
+
++
+
+’
+
+.
+cy
+ee)
+'
+
+'
+
+,
++
+
+cere
+
+a
+
+.
+4
+
+.
+,
+ee
+‘
+
+,
+.
+'
+
+1
+
+a
+
+*
+
+r
+
+.
+
+er
+
+ee
+
+e
+‘
+
+.
+
+ee
+
+ee
+
+’
+
+*
+*
+
+.
+.
+
+‘
+.
+
+a
+.
+
+‘
+
+.
+.
+.
+
+‘
+.
+*
+
+*
++
+
++
+
+*
+
+ee
+
+'
+
+.
+
+‘
+
+et+ fees Dec eect . cece ere te be' neaeeeeeeab ene eeeeeees
+’
+
+—2.40
+—0.80
+
+0.40
+
+log(h)
+
+Figure 6.6: Convergence of Drag for RAE 2822
+
+nodes in the spanwise direction. A case which contains noticeable 3-D effects
+
+(M,. = 0.179,
+
+a = 6.3°, Re = 2.1.x 10® based on ¢ma-) is examined in more detail. The transition locations
+
+were set to the experimentally observed transition locations [7].
+The C, profiles at four span stations are displayed in Figure 6.7 where the computation
+is shown as a solid line and the experiment is plotted as symbols.
+
+‘The agreement is good
+
+except at tip. This is probably because the tip BC’s are very approximate. Upper surface
+BL thicknesses (6,,, 6, 63) for percent span stations 7 = 0.50 and 7 = 0.80 are displayed
+in Figure 6.8.
+
+The experimental BL
+
+data, represented as symbols,
+
+numerically integrating the experimental velocity profiles.
+
+was determined by
+
+The thicknesses are treated as
+
+if incompressible (p = p,) because no density profiles were provided, and because M,, is
+low. The agreement is reasonable, except perhaps the 63 values. Here the correct trends are
+observed, but the magnitudes are off by 50% to 100%.
+
+However, 65 is a very small quantity
+
+and small absolute errors become large percentage errors.
+Lift and drag computed with a farfield formula and by standard surface integration are
+displayed in Table 6.1 and Figure 6.9.
+
+In the Figure, the farfield formula is represented
+
+by the solid line, the surface integration is given by the dashed line, and the experirnent is
+plotted as symbols.
+
+The farfield lift formula is Trefftz plane integration of circulation (see
+
+71
+
+-
+
+Ape 10) EXP®
+#
+«
+ARE $0) CFO —————-_
+
+— -2.0
+' CP
+-1.5
+
+Ag
+
+MACH
+
+1,680308
+2.100910
+
+0.15
+0.18
+
+ETA
+
+_ ALFA
+
+6.20
+6.30
+
+le
+
+ARE 108 EP
+860i
+ms
+ARE 101 CFC ——————
+
+BBOHIOF
+2.100e!0%
+
+AE
+
+= 1S
+0.18
+
+WACH
+
+_ ALFA
+
+.
+
+ARE 10L Exp a) 0 wt—i(
+eS
+RAE 101 CFO ——————._
+
+AE
+BGHIO®
+2, 100910"
+
+MACH
+OS
+0.18
+
+ALFA
+6.20
+6.30
+
+6.20
+6.30
+
+0.00
+
+-1.0
+
+1.0
+
+P
+
+APE 10) Expos)
+RRE 101 CFO
+
+=
+
+-2.0
+cP
+-1.5
+
+—
+
+sits
+
+AE
+BOO’
+2.:00005
+ETA
+
+MACH
+OS
+0.18
+8
+
+ALFA
+6.20
+6.30
+
+-2.0
+CP
+-1.5
+
+0.85
+
+ae
+Figure 6.7: RAE
+
+ETA
+
+0.95
+
+ae
+101 Wing, C, profiles at experimental span stations
+
+Ref. (4]) and the farfield drag formula is derived in Appendix D.
+The surface integration is in better agreement with the experiment. However, the farfield
+formula relies on farfield 3-D mon:entum integral values (6.2, 622, etc.) and due to numerical
+
+difficulties these thicknesses could not be computed (see §6.6). Instead, 2-D thicknesses were
+used for the drag calculation of Figure 6.9. Hence, this is not a sufficient comparison of the
+two drag formulae.
+
+Kovalev simulated this experiment (up to a = 6°) using a set of 3-D differential boundary
+layer equations and achieved comparable results in Cz vs. Cp [30}.
+
+72
+
+|
+rr
+
+ARE
+
+101 EXP @
+
+ARE 101 CFD
+
+a
+
+#
+
+RE
+
+"MALH
+
+ALFA
+
+2.100008
+
+0.18
+
+6.30
+
+ETA
+
+= =O. 50
+
+2.100008
+
+i 4u.o
+' HK
+i
+
+3.5
+
+3.0
+
+0.18
+
+“
+
+6.30
+
+ARE
+
+e.0
+
++
+
+v7
+
+ARE tor exes = @
+ARE
+
+101
+
+MACH
+
+ALFA
+
+g,18
+
+6.30
+
+ETA
+
+== =O. 80
+
+2.100105
+
+0.18
+
+6.30
+
+3.0
+
+2.0
+
+|
+
+AE
+2.100108
+
+3.5
+
+2.5
+
+‘a
+
+a
+
+W.0
+HK
+
+2.5
+
+q
+
+rs
+
+AME 101 CFO ————._
+
+|
+
+1.0
+
+103 EXP o
+
+1.0
+
+RE
+
+MACH
+
+ALFA
+
+2.100808
+
+0.18
+
+6.30
+
+#2, 100008
+
+CFO
+
+0.005
+
+THET
+
+0.18
+
+6.30
+
+:
+
+nee ior exea
+ARE
+
+10)
+
+CFO
+
+AE
+
+HACH
+
+ALFA
+
+2.100905
+
+o.18
+
+6.30
+
+2 = #2, 100808
+
+0.005
+
+EIR «= =~. SO
+
+THET
+
+0.004
+
+0.004%
+
+0.003
+
+0.003
+
+0.002
+
+\7C
+
+.
+
+ETA
+
+0,002
+
+0.18
+=
+
+6.30
+
+0.80
+
+«
+a
+
+0.001
+
+0.001
+
+0.000
+
+r
+
+<7¢
+
+“
+
+APE 101 EXE ao
+ARE 101 CFO
+
+@
+
+¢
+
+0.000
+
+RE
+2.100808
+2.1G0808
+
+0.006
+
+osTAl
+
+EIR
+
+0,005
+
+MACH
+0.18
+0.18
+=
+
+_ ALFA
+6.30
+6.30
+
+"
+
+t7e
+
+AE
+sé, 100810")
+2.100808
+
+AE tor Exp @® = #—<‘ i—s
+ARE 101 CFO
+0.006
+
+0.50
+
+OSTRR
+
+ETA
+
+0.005
+
+0.004
+
+0.004
+
+0.093
+
+0.003
+
+0.002
+
+Q.002
+
+0.001
+
+MACH
+«= 1B
+0.18
+«=
+
+_ ALFA
+6.30
+6.30
+
+0.80
+
+°
+a
+
+0.001
+
+0.000*—+
+
+“
+
+a
+
+ee
+
+ARE tol ExP®
+RARE 101 CFO
+
+2
+
+t7ec
+
+0.000—*
+
+Ag
+«6 «2, 100808
+2.100008
+
+0a
+
+0.003
+
+OSTRP
+
+ETR
+
+MACH
+3 0.18
+0.18
+
+©
+
+— ALFA
+6.30
+6.30
+
+.
+
+ane 101 ExPa
+ANE 103 CFO
+
+.
+
+.
+
+'
+
+0 wti‘(‘
+
+We
+
+ak
+
+AE
+LOOTIC®
+2.100008
+
+0.003
+
+0.50
+
+OSTRE
+
+06.002
+
+ETA
+
+MACH
+Ot
+0.18
+
+=
+
+_ ALFA
+6.30
+6.30
+
+0.80
+
+0.002
+
+0.001
+
+4
+
+0.000
+
+|
+
+*
+
+FY
+
+0.001
+
+a
+
+<4
+
+778
+
+0.000
+
+70.001
+
+-0.001
+
+#0.002
+
+-0.002
+
+'
+
+ve
+
+Figure 6.8: RAE 101 Wing, Upper surface BL quantities at 7 = 0.50 and 7 = 0.80
+13
+
+0.60
+
+it
+
+0.404
+Ke
+Cr
+
+ff
+“
+
+0.20%
+
+/
+
+jf
+‘a
+
+/
+
+js
+
+,
+
+,
+
+0.60
+
+__ FF
+_._. SURF
+
+f
+
+___ FF
+
+_-- SURF
+
+,EXP
+
+. ,EXP
+
+fy
+
+0.40:
+
+i
+
+Cr
+
+ik
+0.204
+H
+
+‘
+
+0.00
+
+Y
+4.0
+
+0.0
+
+r
+8.0
+
+4
+!
+
+0.00
+i,
+0.000
+
+12.0
+
+a, deg.
+
+Figure 6.9: RAE
+
+t
+
+Y
+0.020
+
+r
+0.040
+
+0.060
+
+Cp
+
+101 45-degree Swept Wing, Cy, vs. a and Cz vs. Cp
+
+a || (Cr)exe | (Cr)pr | (Cr)sunr || (Cp)exe | (Cp)er | (Cd) sure
+0.0 |} 0.0040
+
+| 0.0006
+
+0.0006
+
+0.0064
+
+| 0.0060
+
+0.0062
+
+1.0 || 0.0640
+
+| 0.0604
+
+0.0583
+
+0.0071
+
+| 0.0062
+
+0.0068
+
+2.1
+
+0.1240
+
+| 0.1280
+
+0.1237
+
+0.0082
+
+| 0.0072
+
+0.0081
+
+4.2 || 0.2410
+
+| 0.2548
+
+0.2455
+
+0.0127
+
+| 0.0111
+
+0.0130
+
+6.3 |} 0.3510
+
+| 0.3789
+
+0.3628
+
+0.0197
+
+|; 0.0176
+
+0.0212
+
+7.9 || 0.4310
+
+| 0.4733
+
+0.4507
+
+0.0260
+
+| 0.0248
+
+0.0297
+
+9.9 || 0.5350
+
+| 0.5838
+
+0.5596
+
+0.0354
+
+| 0.0342
+
+0.0415
+
+Table 6.1: RAE
+
+101 Wing: Force coefficients
+
+14
+
+6.4
+The
+
+MBB-AVA
+
+Wing
+
+DF VLR MBB-AVA model is a fighter type wing/body configuration with a supercritical
+
+wing [29]. Various M,, and a combinations were tested, including some cases with extensive
+rear separation.
+
+When separation occurred, it was observed to begin at the trailing edge
+
+starting at the tip.
+The mesh for this case consisted of 21,000 nodes with 67 nodes in the chordwise direction
+
+and 14 span stations. Because of grid generation limitations only the wing was modeled. An
+attached flow case (M,, = 0.80, a = 4.0°, Re = 1.26 x 10® based on c,,q-) and a separated
+
+case (M,, = 0.88, a = 2.0°, Re = 1.32 x 10°) are presented. The experiment was run with
+free transition, but because transition is not predicted by the code the flow was tripped
+near the leading edge—this is a good approximation for high Re, transonic flows over swept
+wings. At the suggestion of an experienced engineer [17], the flow was tripped at z/c = 0.05
+and 0.10 on the upper and lower surfaces respectively.
+In the sets of C, plots for both the MBB-AVA wing and Boeing 747 wing, the following
+conventions
+
+should be noted:
+
+the C, profiles are at experimental span stations, the CFD data was linearly interpolated to these span stations
+- the dotted horizontal lines on the plots indicate C5 or where the flow goes supersonic
+the percent span stations (ETA) is printed in the upper-right quadrants of the plots
+- the experimental data is represented by the symbols, the VII calculation is given by
+the solid line and a Full Potential calculation is given by the dashed line
+The results for the attached case are shown in Figure 6.10.
+
+In the calculation, the
+
+small effect of the boundary layer is to push the shock forward which agrees better with
+experimental data. The experimental data exhibits large separation near the tip (7 = 0.92),
+but the VII method does not predict this. The discrepancy is probably due to the crudeness
+
+of the boundary conditions at the tip.
+
+75
+
+mes-AYA EXF 2
+MBB-AVA CFO
+MBQ-AVA
+
+4
+
+«o@
+
+CFO -recesverseereeee
+
+RE
+
+MACH
+
+ALFA
+
+1.260808
+}.2609105
+
+0.860
+0.80
+
+4.00
+4.00
+
+INVISCID
+
+0.80
+
+.
+
+map-ava expe
+MBB-AVA CFO
+
+4.90
+
+MBB-AVA
+
+«
+
+«
+
+CFD cocecerecossecees
+
+AE
+
+KACH
+
+ALFA
+
+43,2600"
+1.260105
+
+0.80
+0.80
+
+4.00
+Y.00
+
+INVISCIO
+
+0.60
+
+4,00
+
+-2.0
+
+ETA
+
+a
+
+CP
+-1.5
+
+0.0%
+
+ETA
+
+8
+
+0.11
+
+“1.0;
+-0.5
+
+*
+
+F
+
+0.0
+
+Pa
+
+eg
+
+0.5
+
+1.0
+
+mBB-AVA ExPa
+MAS-AVA CFO
+MOB-AVA
+
+CFD
+
+o
+
+AE
+4.260908
+1.260910
+
+«»
+
+-o-ceseeececenere
+
+MACH
+0.90
+0.80
+
+INVISCIO
+
+ETA
+
+ALFA
+4.00
+4.06
+
+0.60
+
+=
+
+"
+
+MBB-AVA ExP a
+MBB-AYA CFO
+
+4.06
+
+MBB-AVR
+
+CFD
+
+0a
+
+)—siamts«éiG«s
+
+cscesseccessereee
+
+___ Ag
+
+RACH
+
+INVISCIO
+
+0.80
+
+2GOSLO® =o. BT.
+1.260910
+0,80
+
+-2,0
+
+0.16
+
+cP
+“1.5
+
+ETA
+
+ALFA
+
+4.00
+4Y.00
+y,00
+
+0.31
+
+moe
+
+aie
+
+-1.0
+
+a
+
+-0.5
+0.0
+
+0.5
+
+XC
+a
+
+\~
+
+1.0
+
+AE
+
+MACH
+
+nap-AVA expe
+06060}
+260030"
+MBS-AVA CFO
+1.260005
+MBB-AVA CED cereeesercesverse [INVISCIO
+ETA
+-*
+
+=. 80
+0.80
+0.80
+8
+
+ALFA
+
+4.00
+4.00
+4.00
+
+“
+
+mOB-AVA Expo
+MOB-AYA CFO
+MBB-AVE
+
+a
+
+CFD -rrecrerccsscesee
+
+-2.0
+cP
+-1.5
+
+0.45
+
+a
+
+“AO TT
+
+MACH
+0.80
+0.80
+
+INVISCID
+
+0.60
+
+ALFA
+4.00
+W.GO
+4.60
+
+0.61
+
+See,
+
+-6.5
+es,
+
+Ag
+1.260010"
+1.260908
+ETA
+
+-1.0
+
+ae
+
+«
+
+E
+
+ea
+0.5
+1.0
+
+mBS-Ava expe
+MBB-AVA CFO
+MBB-RVA
+
+«©
+
+AE
+4.260908
+1.260010
+
+«
+
+CED cecceecessscreeee
+
+“MACH
+0.80
+0.80
+
+INVISCID
+ETA
+
+0.80
+
+8
+
+|ALFA
+y.00
+4,00
+
+—____fAe
+MACH
+ALFA
+
+«
+
+meg-AVA expe
+=o
+ws 2600108
+MBO-AVA CFO
+1.260310
+HBB-AVA CFD crmrrserserenees INVEISCIO
+
+4,00
+
+-2.0
+
+cP
+
+0.76
+
+eta
+
+-1.5
+
+“
+
+-1.0
+
+#ay
+
+=. 80
+0.40
+0.80
+
+=
+
+4.00
+4.00
+4.00
+
+0.92
+
+a
+
+0.0
+
+——e
+
+3
+
+‘
+
+a
+
+-0.5
+4
+
+a
+
+vf
+
+0.5
+1.0
+
+Figure 6.10: MBB-AVA
+
+a
+
+Wing, attached case, C, at experimental span stations
+76
+
+.
+i
+
+MBH-AVA
+
+EXP o
+
+MBB-AVA
+
+CED -scesssersessoeee
+
+mas-ava
+
+'
+
+CFO
+
+a
+
+—————_
+
+*
+
+AF
+
+MACH
+
+ALFA
+
+1.320908
+
+0.88
+
+2.00
+
+[NYVISCID
+
+0.88
+
+1.320910
+
+-2.0
+
+! CP
+
+0.98
+
+ETA
+
+-1.5
+
+-1.0
+
+;
+
+“0.5,
+
+«ee 7
+
+"
+
+2.00
+
+2a? @
+
+HBB-RVA
+
+CFD ccncecerceesscene
+
+map-ava
+
+2.00
+
+CFO
+
+a
+
+——————
+
+«
+
+RE
+
+HACH
+
+1.320908
+
+0.88
+
+2.00
+
+INVISCID
+
+0.88
+
+2.00
+
+1.320105
+
+-2.0
+
+0.04
+
+CP
+
+ETA
+
+-1.5
+
+oe
+
+ALFA
+
+0.88
+
+os
+
+2.00
+
+O.11
+
+-1.0
+
+.
+
+0.0
+
+MBB-Ava
+
+-0.5
+
+tS
+
+—
+
+0.0
+
+0.5
+
+0.5
+
+1.0
+
+1.0
+
+TT
+Ag
+a
+
+MBB-AVA EXP &
+a
+»
+1.32008
+MaB-ava CFO ——————_
+1.320310
+MBB<AVA CED crorerscsrersense INVISCIO
+-2.0
+CP
+-1.5
+
+s
+
+ALFA
+
+0.68
+0.98
+0.86
+
+2.00
+2.00
+2.00
+
+MACH
+
+ALFA
+
+EXP4
+o
+»
+1.320908
+CPO ——————.._
+1.320s105
+CED crsccserreccsees INVISCIO
+
+RE
+
+0.88
+0.88
+0.38
+
+2.00
+2.00
+2,00
+
+_fié
+1,320908
+1.320010
+
+WACH
+06.88
+0.68
+
+ALFA
+2.00
+2.00
+
+"
+
+MBO-AYA
+MBB-AVA
+MBB-AVA
+
+"
+
+mpa-AvA exes
+«©
+«
+MBB-AVYA CFO ——————_
+
+0.18
+
+'
+
+.
+
+"
+
+=
+
++
+
+>
+
+*
+
+uw
+
+Oo
+
+»
+
+:
+
+°
+
+A
+
+»
+
+ETA
+
+MACH
+
+0.5
+1.04
+
+|
+
+“
+
+.
+
+a
+2OHLO®
+1. 3203108
+
+mes-Ava exes = ois
+MAB-AYA CFO ——————.._
+MBB-AVA
+
+CFD -ercescereeesenee
+
+(NVISCID
+
+-2.0
+CP
+-1.5
+
+-1.0
+
+MACH
+= 0. 88
+0.86
+0.866
+
+EIAs
+aa
+
+ALFA
+2.00
+2.00
+
+2.00
+
+MBB-RVA
+
+0.45
+
+08
+
+Poti
+
+-0.5
+
+0.0
+
+0.0
+
+0.5
+
+0.5
+
+1.0
+
+1.0!
+
+“
+
+moo-ava exPa
+os
+«
+mes-aAVA C¥O ——————.._
+MBB-AVA
+
+___ Ag
+
+ACH
+
+ALFA
+_
+
+(NVISCID
+
+0.68
+
+2.00
+
+1,320:908
+1.320108
+
+CED -seeeereeseccreee
+
+-2.0
+cP
+
+a
+
+-3.0
+
+-0.5
+
+ETA
+o
+
+.*
+
+a
+
+0.88
+0.88
+
+os
+
+INVISCID
+
+ETA
+
+oe
+
+-0.5
+
+i
+
+CFD crccccercoccerene
+
+-2.0
+cP
+-1.5
+
+2.00
+2.00
+
+"
+
+ao
+
+#&
+
+@
+
+,
+
+meB-AVA ExPa
+4
+64
+nBB-AVA CPO ——————.._
+-2.0
+cP
+
+“NSP
+
+«4
+
+cma
+
+-1.0
+
+2
+
+-0.5
+
+0.0
+
+0.0
+
+0.5
+
+0.5
+
+1.0
+
+1.0%
+
+os
+
+2.00
+
+0.61
+
+lene,
+
+|
+
+MBB-AVA CED csccesssceerees ~
+
+0.76
+
+0.88
+
+A
+
+a
+.
+
+aa
+
+___ Ag
+
+ACH
+
+ALFA
+
+INVISCIO
+
+0.88
+
+2.00
+
+1,3920008
+1.320910"
+ETA
+
+*
+
+a
+
+rc:
+
+0.88
+0.68
+
+2.00
+2.00
+
+0.92
+
+.
+
+Aa
+
+'
+
+=
+
+—-
+
+:
+4
+—
+
+Figure 6.11: MBB-AVA
+
+Wing, separated case, C’, at experimental span stations
+V7
+
+—1.60
+
+-
+
+A
+
+A
+
+A
+
+—___.
+
+VII
+
+.
+
+BU
+
+A
+
+—._
+A
+
+—0.80-
+
+Cp
+
+~“
+
+0.00-
+
+0.80
+—0.10
+
+T
+
+T
+0.30
+
+T
+
+T
+0.70
+
+T
+
+1.10
+
+Figure 6.12: C, distributions at 7 ~ 0.76
+The results for the separated case are shown in Figures 6.11. The effect of the boundary
+layer is to move the shocks forward due to the decambering effect of the displacement body.
+The
+
+computed
+
+shock
+
+locations
+
+of the VII method
+
+are near
+
+the experimental positions,
+
+however, the level of the C, roofs on the upper surface do not match.
+
+It is believed that
+
+some sort of blockage effects may be responsible since this is a fairly high M,,.
+
+To lend
+
+confidence to this theory, an Euler solution [41] of this case was computed. The C, profiles
+for the Euler code, the VII code, and experiment at one span station are displayed in Figure
+6.12 and they indicate that the experimental conditions are different than freestream or
+flight conditions.
+The most important feature of this case is the large 3-D separation. A planform view of
+the upper surface wall shear stress directions is shown in Figure 6.13 and the area where the
+vectors are pointing upstream and outboard is the separation region. Finally, the total lift
+and drag coefficients (farfield formula) for M,, = 0.80 are plotted in Figure 6.14. Viscous
+effects were small for this range of a so that most of the drag is induced drag.
+
+Although
+
+the body was not modeled, the lift and drag are in good agreement with experiment.
+
+78
+
+:
+
+MB3-AVA
+
+CFD
+
+RE
+
+MACH
+
+ALFA
+
+1.320105
+
+0.88
+
+2.00
+
+1,007
+ETA
+
+| 0.80:
+|
+:
+
+0. 80;
+
+.
+
+0.20;
+
+:
+
+J
+
+-
+
+SON
+
+ANN
+
+BS SSQ
+
+SN
+
+—.——_—_———_———
+
+oo
+
+oe
+
+X/B
+
+eee
+
+ee
+
+0.00
+ee
+
+VECTGRS
+
+ae
+
+|
+
+:
+
+OF
+
+ETW:
+
+TOP
+
+Figure 6.13: MBB-AVA wing, separated case, 7,, direction vectors
+
+0.79
+
+0.70
+
+— CFD
+. ~abXP
+
+A
+
+a
+
+a
+
+0.30°
+
+0.10
+
+—2.0
+
+0.30°
+
+LJ
+
+,
+
+2.0
+
+'
+
+v
+
+6.0
+
+¥
+
+0.
+
+10.0
+
+a, deg.
+
+Figure 6.14: MBB-AVA
+
+°
+
+3
+
+Cr
+
+4
+
+Cr
+
+a
+
+0.50-
+
+0.50%
+
+0
+
+$°010
+
+a
+
+¥
+
+v
+
+0.030
+
+¥
+
+¥
+
+0.050
+
+v
+
+0.070
+
+Cp
+
+Wing, M,. = 0.80, Cz vs. a and Cy vs. Cp
+
+79
+
+CFD
+«EXP
+
+6.5
+
+Boeing
+
+747 Wing
+
+The final test case is a Boeing 747 wing from a wing-body experiment for viscous code
+validation (NASA
+
+Ames Transonic Test No.
+
+ARC502,
+
+1981).
+
+This wing is representative
+
+of a commercial transport wing, but it is not the actual production wing.
+The
+
+mesh
+
+possessed
+
+35,060
+
+nodes
+
+with
+
+67 nodes
+
+in the chordwise
+
+direction
+
+and
+
+22
+
+nodes in the spanwise direction. Again, only the wing could be gridded. An attached case
+(M..
+
+= 0.838, a = 6.75, Re = 7.72 x 10°
+
+a = 6.74, Re = 2.12 x 10°
+
+per foot) and a separated case (M.,
+
+per foot) are presented.
+
+consistent with the experiment.
+
+= 0.860,
+
+The flow was tripped at z/c = 0.10
+
+In addition, several corrections were applied to the wing
+
+and angle-of-attack:
+
+- The wing possessed 2° incidence relative to the body. (68, 26]
+- Twist corrections as a function of a due to aeroelastic effects are applied.
+
+This is
+
+provided in the test data.
+
+- A —0.35° degree a correction is applied to account for other experimental effects [26]
+The pressure distribution for the attached case is displayed in Figure 6.15.
+
+The C,
+
+profiles predicted by the VII method are in generally in good agreement with experiment,
+however at several span stations the shock is somewhat smeared due to lack of grid resolution. The shock locations are also slightly aft of the experimental locations. This may be
+due to neglecting wake curvature effects in the trailing edge pressures (higher-order boundary layer theory) which ultimately affects the lift. In spite of all its simplifications, the VI
+method does well.
+
+The pressure distributions for the separated case are shown in Figure 6.16. The shock
+locations are in generally good agreement with experiment, and separation is evident at
+n = 0.81 -nd 7 = 0.89.
+
+There is a non-physical C, gap at the trailing edge, and an
+
+improved Kutta condition
+
+(incorporatin
+rp
+B 8?
+an across the BL)
+
+80
+
+may be required.
+q
+
+a
+
+—___AE
+MACH ALFA
+
+a-747 EXP&® = 8&
+«=© 7,72Q0808
+3-747 CFO —————_
+7.720108
+B- TED CED cerneerereseneee INVISCID
+
+' 22.0
+CP
+-3.5
+
+ETA
+
+0.94
+0.84
+0.84
+
+ss
+
+"
+
+7.10
+6.75
+6.75
+
+7, 7208108
+7.720808
+
+0.13
+
+MACH
+
+ALFA
+
+0.84
+
+6.75
+
+= BY
+o.ay
+
+INVISCID
+
+-~2.0
+CP
+
+ETA
+
+-1.0
+
+<& aw
+
+7.10
+6.75
+
+0.26
+
+awe,
+ae
+
+-0.5
+
+* # amma.”
+
+0.5
+
+RE
+
+aks
+
+-1.5
+
+| 0.5
+0.0!
+
+0 kei
+
+B- THI CED -oeesrevenscereee
+
+7 =1.0
+}
+
+a-7u7 Expa
+8-747 CFO
+
+}
+
+#~s
+
++
+
+0.0
+
+“te
+
+saAsA.
+
+4.1.2
+
+*.
+
+‘
+
+be
+
++
+
+0.5
+
+r
+
+1.0
+
+1.0
+
+Te
+
+AE
+3-747 ExPa
+&
+o@ 7.720308
+8-747 CFD —————~ _ 7.720910
+
+P
+
+Qa Me?
+
+CED
+
+coccercerserseres
+
+[INVISCIO
+
+-2.0
+| CP
+-1.5
+
+ETA
+
+oe
+
+a
+
+0.84
+
+.
+
+=
+
+0.38
+
+.
+
+a
+
+_ ALFA
+7.10
+
+CED
+
+crccsrecsecceceee
+
+INVISCID
+
+0.84
+
+6.75
+
+RE
+sti 720210"
+7.720105
+
+MACH
+= =. BY
+0O.6N
+
+6.75
+
+=e 7
+
+tn
+
+VOD)
+
+0.0
+
+eee
+
+1.0
+
+Expo )— ati
+
+B- TG) CED cerereeserecceere
+
+i -2.0
+i CP
+-1.5
+
+asi
+
+na
+
+RE
+7202108
+
+MACH
+= BY
+
+_ALFA
+7.10
+
+{[NVISCID
+
+0.84
+
+6.75
+
+7.72010
+
+0.84
+
+a
+
+6.75
+
+e-747 expat
+8-747 CFO
+BINT
+
+CED coneececserserses
+
+INVISCID
+
+-2.0
+
+ETA
+
+-1.0
+
+cP
+-1.5
+
+0.69
+
+ETA
+
+_
+
+-1.0
+
+a
+
+0.0
+1s
+
+— —
+
+yo
+
+ALFA
+7.10
+6.75
+
+0,64
+
+=
+
+6.75
+
+0.at
+
+,
+a
+
+-0.5
+
+-0.5
+
+=
+
+—
+
+°
+erlordratnten
+
+1.6
+
+1.0
+
+<<
+
+RE
+MACH
+8-747 EXP®
+06 )=— ws 7x 720010® = 8
+8-747 CFO ———————._
+7.720808
+0.84
+BTU) CED cercecsreseseesee INVISCID
+0.84
+-2.0
+
+cP
+-1.5
+
+-1.0
+
+O.84
+
+-0.5
+Pw
+eee
+
+8-747 CFO —————._
+
+a“
+
+7.720008
+
+0.5
+
+a-747
+
+he
+
+MACH
+=O
+
+-1.0
+
+* ang
+
+¥ aera
+
+9.0
+
+AE
+s«éia?«zC 72S
+
+CP
+-1.5
+
+1.0
+
+|
+
+8-747 CFO
+B-TUT
+
+0.5
+
+j
+te
+
+= wti
+
+e-7N7 ExPa
+
+6.75
+
+ae
+ao
+
+-0.5
+0
+
+ALFA
+7.10
+6.75
+
+-2.0
+
+-1.0
+0
+
+MACH
+O.8u
+0.84
+
+.
+
+ETA
+
+=
+
+ALFA
+7.10
+6.75
+6.75
+
+RE
+
+"
+
+6-247 Expo)
+ti wksia72«C T7POCLO®
+8-747 CFO
+7.720108
+B- 27 CED crreerserencerees INVESCIO
+-2,0
+
+CP
+“1.5
+
+0.69
+
+°
+
+-0.5
+
+a
+
+ETA
+
+-1.0
+
+“
+
+0.5
+
+| ALFA
+
+7,10
+6,75
+6.75
+
+0.96
+
+—
+
+-0.5
+
+0.0
+
+=
+
+MACH
+
+=o
+a.8y
+0.84
+
+i
+
+0.0
+
+ra
+
+o.s}
+
+'
+
+Ne
+2
+P<.
+=
+ad
+
+*
+
+1.0
+
+1.0
+—
+
+he
+
+Figure 6.15: B-747 Wing, attached case, C, at experimental span stations
+81
+
+5747? EXP @
+
+s
+
+3747 CFD —————-._
+
+BIG?
+
+CED
+
+RE
+
+MACH
+
+ALFA
+
+2.120105
+
+0.86
+
+7.09
+
+INVISCIO
+
+0.86
+
+«
+
+2.120105
+
+verceereceesceeee
+
+-2.90
+
+cP
+“1.5
+
+ETA
+
+0.86
+=
+
+6.74
+
+™
+
+BINT
+
+ai
+
+0.13
+
+MACH
+0.86
+
+convrcesscecesees
+
+INVISCID
+
+0.66
+
+2, 1208105
+
+cP
+-1.5
+
+\
+
+ALFA
+7.99
+
+0.66
+
+ETA
+
+6.74
+6.74
+
+0.26
+
+“.
+
+-0.5
+
+AE
+2,320908
+2.200105
+(NVISCIO
+
+Su? EXP®
+o
+B77 CFD ——————-__
+BIWT CED ceveceeestesseree
+
+CFD
+
+RE
+2.120908
+
+s
+
+2.0)
+
+-1.0
+
+-0.5
+
+a
+
+e747 CFO ————.._
+
+6.74
+
+-1.0
+
+-2
+
+B7N7? EXP «
+
+MACH
+0.86
+0.86
+0.85
+
+LFA
+7.09
+6.74
+6.74
+
+RE
+BINT ExPa
+oo
+«o 2,1208108
+eva? CFO —————-__
+2.1205108
+BIND CED cereseeesesseseee INVISCIO
+
+x
+
+Q
+
+MACH
+0.86
+0.86
+0.86
+
+ALFA
+7,09
+6.74
+6.74
+
+-2.0
+
+CP
+
+ETA
+
+=
+
+0.38
+
+cP
+
+ETA
+
+=
+
+0.53
+
+-1,.5
+
+-1.0
+-0.5
+0.0
+0.5
+
+1.0
+
+1.0
+
+ee
+
+OO
+
+S747 EXP
+o@
+o
+8747 CFO —————.._
+BINT CFD ceveeesecrorceeee
+
+RE
+
+MACH
+
+_ ALFA
+
+2,120108
+2.120810
+
+0.66
+0.86
+
+7.09
+6.74
+
+INYISCID
+
+-2.0
+cp
+
+ETA
+
+“4.5
+
+-]
+
+0.86
+
+ss
+
+"
+
+6.74
+
+BIW? CFD cveccenccesscenee
+
+0.69
+
+“1.5
+
+na
+Os
+a
+
+ar
+.
+
+H
+
+EN
+
+eee
+
+a
+
+—
+
+7.09
+6.74
+
+INVISCID
+
+ee
+
+ae
+
+0.66
+
+6.74
+
+0.81
+
+i’
+
+SMANteseae
+
+I
+
+>
+
+cre
+
+BIQT CEQ ceccecccerecrecee
+
+[INVISCIO
+
+-2.0
+
+cP
+
+ETR
+
+“1.5
+
+tT
+
+a,
+
+Datei
+
+MACH ALFA
+_
+
+=. 86
+0.86
+0.86
+
+7.09
+6.74
+
+.
+
+BIW? CED <reccresrsccwecee
+-2.9
+
+0.89
+
+cP
+
+Tt
+
+RE
+
+aT
+
+‘ waa
+
+RC
+
+——
+etu7 expe
+oo
+o
+8747 CFO ———————_
+
+6.74
+
+i
+-»
+
+ww
+
+1.0
+
+-RE
+
+Ag
+
+MACH ALFA
+_
+
+INVISCIO
+
+0.86
+
+2.120808
+2.1209105
+ETA
+
+0.86
+0.88
+
+=
+
+7,09
+6.74
+6.74
+
+0.96
+
+“1.5
+
+;
+
+-1.0
+
+-0.5
+;
+
+oie | Sane
+
+0.5
+
+avu7 expe
+60 e
+2.120808
+8747 CPD ———————
+2.120810
+
+0
+
+ALFA
+
+ETA
+a
+
+[ir
+
+-0.5
+
+ee
+
+0.5
+
+-1.90
+
+HACH
+
+0.86
+0.86
+
+-1.0
+
+-0.5
+
+1.0
+
+RE
+
+2.120008
+2.1209108
+
+-2.0
+cP
+
+0
+
+0.0
+
+emuzexrpa
+o
+ao
+8747 CFO —————_
+
+-0.5}
+
+a
+
+0
+
+.
+
+0
+
+0.5
+
+0.5
+
+1.0
+
+1.0
+
+,
+
+{f
+
+*
+
+4
+
+Mareen
+
+one
+
+YX,
+pees
+
+heenet
+
+.
+
+eo"
+
+Figure 6.16: B-747 Wing, separated case, C, at experimental span stations
+82
+
+;
+
+RE
+
+8757 250
+1,
+
+MACH
+
+2.120x1065
+
+0.86
+
+ALFA
+
+6.74
+
+CQO-
+
+ETA
+
+0.80-
+
+ra,
+
+sean
+
+|
+
+0.60
+
+,
+
+if
+
+U0)
+
+LNT
+
+;
+|
+
+Z
+eae
+Lehi: rs
+
+Fy
+
+ZRII
+
+‘
+
+0.20:
+
+e
+
+<
+
+\)
+
+EMU
+EMM
+ESM)
+OU
+
+,
+
+9.004
+
+Hi
+
+be.
+
+VECTORS
+
+OF
+
+ETW:
+
+X/B
+
+TOP
+
+Figure 6.17: B-747 wing, separated case, 7, direction vectors
+
+The wall shear stress directions are displayed in Figure 6.17. A large portion of the wing
+
+is separated demonstrating the ability of FS coupling to handle separated flow.
+For M., = 0.838, the lift versus angle-of-attack and lift versus viscous and wave drag,
+"yp, are presented in Figure 6.18 where Cp = Cp — i.
+
+~ Cre=3.69°-
+
+This modified drag
+
+is an attempt to remove the body’s drag and the drag due to lift: this reduces the abscissa
+scale from 1000 drag counts to 500 drag counts for better evaluation.
+drag is not excellent, but it is respectable.
+
+The agreement in
+
+However, only a small range of angle-of-attack
+
+(1.69° < a < 5.71°) could be simulated because the code experienced non-physical behavior
+(H, <1) for lower a’s, and non-convergence for higher a’s.
+
+83
+
+1.00
+
+1.00
+
+CFD
+
+___CFD
+
+| ,EXP
+
+| EXP
+
+a
+
+0.60"
+
+Cr
+
+fa
+
+4
+
+A
+
+a
+
+a
+
+0.60-
+
+a
+
+a
+
+a
+
+a
+
+A
+
+Cr
+
+.
+
+a
+4
+
+0.20rN
+4
+
+r’
+
+'
+—~0.20
+
+rs
+
+—2.0
+
+Aa
+
+ry
+
+4
+
+4
+
+4
+
+4
+
+0.204
+
+a
+
+4
+
+7
+
+a
+
+v
+
+¥
+
+2.0
+
+r
+
+¥
+
+v
+
+6.0
+
+¥
+
+-—0.20
+
+10.9
+
+a
+ry
+a
+a
+4
+
+—0.010
+
+a, deg.
+
+a
+
+ry
+
+a
+
+a
+¥
+
+¥
+
+0.010
+
+rT
+
+Co
+
+0.930
+
+0.050
+
+«igure 6.18: B-747 Wing, M.. = 0.838, Cz vs. a and Cr vs. Ch
+
+6.6
+
+H, Difficulties
+
+In lifting cases, the kinematic shape parameter, H;, on the wake tended to drop below
+unity.
+
+H, less than unity represents
+
+physical.
+
+a momentum surplus or jet, and it is entirely non-
+
+H, is controlled by the H* versus H; relation (see Equation B.16) where H°
+
+the streamwise kinetic energy thickness.
+
+The problem may be that the crossflow acts like
+
+a source of kinetic energy deficit whereby the streamwise k.e.
+bound causing H®
+
+is
+
+deficit may grow without
+
+to grow larger than 2 and thus Hj, to go below 1. These spurious sources
+
+mzy be due to inaccurate 3-D profile correlations, or due to the approximate side boundary
+conditions.
+
+As « short term fix, the 3-D BL equations are replaced with the 2-D BL equations on
+the wake several nodes downstream of the trailing edge. Because there is no source of k.e.
+deficit due to crossflow in the 2-D equations, H;, should not go below 1. It is believed that
+
+the solu:j-on of the wake has negligible effect on the wing surface solution.
+
+84
+
+6.7
+
+Performance
+
+of the
+
+Code
+
+All computations were run on a Silicon Graphics IRIS Indigo 2 with R8800 processor. The
+vital statistics for the B-747 test case are:
+
+- 35,000 nodes, 57,000 equations, 3 million nonzeroes
+
+0.001 to 0.0001 drop tolerance, 20 GMRES
+
+directions
+
+- Converged solution takes approximately 10 iterations per 2 degree change in angle-of-
+
+attack (550 CPU sec per iteration)
+200 MB of disk space needed to store the ILU preconditioner
+96 MB of core space needed for program memory
+This is a relatively small problem,
+
+yet a large amount
+
+of memory
+
+is requirea because
+
+the Jacobian matrices for 3-D problems tend to be large. In addition, the CPU time for the
+solution is large compared to other VII methods (in attached or mildly separated fiows).
+
+85
+
+Chapter
+
+7
+
+Conclusions
+
+7.1
+
+FS Coupling
+
+for 3-D Flows
+
+This thesis presented a Fully Simultaneous coupling method for three-dimensional flows.
+FS coupling is based on the premise that the inviscid and viscous equations together form
+a well-posed problem in attached and separated flows.
+
+The concept is straight-forward:
+
+define residual equations for the VII prubiem, and solve the set of non-linear equations
+simultaneously with
+
+a
+
+Newton method.
+
+The implementation, however, is rather involved.
+
+The Full Potential equation is discretized with the Galerkin finite element method and
+the 3-D integral boundary layer equations are discretized with a Petrov-Galerkin finite element
+
+scheme.
+
+The displacement effect of the boundary
+
+transpiration boundary
+
+layer is simulated with a wall
+
+condition on the inviscid equations, and inviscid edge velocities
+
+communicate the pressure field to the boundary layer equations.
+
+Edge velocity smoothing
+
+must be present in separated flow to remove a nullspace which appears due to the discretization. At each iteration the solution to a large, sparse, non-symmetric, linear system
+is computed with GMRES
+
+an1a
+
+drop-tolerance ILU preconditioner.
+
+The algorithm was tested on the van den Berg/Elsenaar infinite swept wing, the RAE 2822
+airfoil, a 45°-swept wing, the MBB-AVA
+between
+
+experimental data (C,’s, BL
+
+demonstrated.
+
+wing, and the Boeing 747 wing. Good agreement
+thicknesses,
+
+Cz and Cp)
+
+and this VII method is
+
+Moreover, the Fully Simultaneous coupling method is able to handle three-
+
+dimensional separated flows. The main drawback with the FS coupling method is the large
+computer resource requirements for the solution of the Newton system.
+
+86
+
+FEM
+
+7.2
+
+Equations
+
+Discretization of the 3-D Integral BL
+
+This thesis also presented a second-order accurate finite element discretization of the 3-D
+integral boundary
+
+layer equations.
+
+The integral boundary
+
+layer equations are first cast
+
+in a Cartesian coordinate form and all z-z boundary layer quantities are related to four
+primary nodal variables and the 3-D surface velocities. z-z-variables are derived from 1-2
+variables using vector identities; and 1-2 variables are related to the primary variables using
+strearawise closure relations and the Johnston triangular crossflow profile.
+
+Edge velocities
+
+are computed with simple dot product operations between the z-z coordinate system and
+the 3-D
+
+surface velocities.
+
+A weighted residual form of the 3-D BL equations is solved with the Petrov-Galerkin
+finite element method.
+
+Here, an upwinded weighting function is required for the numerical
+
+stability of these hyperbolic equations. The finite element method automatically produces
+natural boundary couditions which satisfy symmetry or infinite swept wing-like BC’s, requires no explicit crossflow smoothing, and allows for the unstructured assemblage of the
+Jacobian matrix.
+
+This discretization of the 3-D integral boundary layer equations is inde-
+
+pendent of the coupling method and may be used in other VII methods.
+
+7.3
+
+Newton
+
+Method
+
+Solution
+
+This thesis describes efficient bookkeeping processes for the sparse matrix assembly. After
+an “optimal” node numbering
+freedom
+
+are stored
+
+is determined,
+
+ir an identification
+
+the equaticn numbers
+
+array.
+
+Then,
+
+for each degree-of-
+
+the identification
+
+array,
+
+the finite
+
+elernent connectivity, and a column skipping array are used to map the (1,7) locations of
+all the non-zeroes in the matrix.
+column format and
+
+Once mapped, the indices are ze-stored in a convenient
+
+the matrix can be assembled.
+
+The Jacobian matrix may be checked for proper linearization by testing for quadratic
+convergence and by pinging elemental sensitivities.
+can be used in other finite element Newton methods.
+
+87
+
+All of these processes are general and
+
+7.4
+
+Recommendations
+
+7.4.1
+
+Improvements
+
+for Future
+
+in 3-D Boundary
+
+Work
+
+Layer Modeling
+
+As discussed in Chapter 6, the kinematic shape parameter sometimes goes below unity on
+the wake.
+
+This is entirely non-physical and although a 2-D strip wake calculation may not
+
+noticeably affect the pressure field on the wing, it is important to have a full 3-D wake
+calculation for viscous drag estimation (see Appendix D) and for consistency.
+The wingtip side boundary conditions provide another area for improvement. Currently
+the tip BC’s are approximated using the solution to the 2-D boundary
+The solutions near the tip were consistently in poor agreement
+and perhaps a better tip BC
+
+would improve these results.
+
+layer equations.
+
+with experimental data,
+
+Alternative BC’s should be
+
+formulated, and their stability should be checked with an eigensystem analysis. In addition,
+the physically correct BL variable magnitudes at the boundaries need to be determined (this
+
+is analogous to a farfield model).
+
+7.4.2
+
+Examination
+
+of Farfield Drag Formula
+
+The farfield drag formula of Appendix D should provide drag calculations which are more
+accurate than the standard surface integration. Furthermore it is able to separate the drag
+into vortex, viscous and wave components.
+
+Because
+
+of the state of the wake
+
+calculation,
+
+however, the soundness of the farfield formula could not be determined. With a better wake
+calculation, a drag study with a series of finer meshes should be conducted.
+
+7.4.3
+
+Newton
+
+Method
+
+Speedup
+
+The computation times for 3-D problems is large, and any speedup in the Newton method
+is desirable.
+
+One time saving technique is grid sequencing.
+
+The procedure is to solve the
+
+problem on an inexpensive coarse mesh, and then interpolate the solution to a finer mesh.
+Since this is a better initial solution, fewer Newton steps will be required on the fine mesh.
+
+88
+
+The process may be extended by using a sequence of meshes. In addition, any advances in
+the solution of large, sparse, non-symmetric systems would also be beneficial.
+
+7.4.4
+
+Viscous
+
+Design Work
+
+The Newton System provides flowfield sensitivities which can be used in an inverse design
+
+method (see Poll [42] or Sorensen (52]) where the pressure is specified and the resulting wing
+shape is computed.
+
+The sensitivity of other relevant quantities like Cz, Cp, and Cy can
+
+also be determined. This opens up numerous possibilities for use in optimization methods.
+
+89
+
+Bibliography
+[1] D. J. Acheson.
+
+Elementary Fluid Dynamics.
+
+Oxford University Press, New York, NY,
+
+1990.
+
+[2] D. A. Anderson, J. C. Tannehill, and R. H. Pletcher. Computational Fluid Mechanics
+and Heat Transfer. Hemisphere Publishing Corp., New York, NY, 1984.
+(3] J. D. Anderson Jr.
+1984.
+
+Fundamentals
+
+[4] H. Ashley and M. Landahl.
+NY,
+
+of Aerodynamics.
+
+McGraw-Hill,
+
+Aerodynamics of Wings and Bodies.
+
+New York, NY,
+
+Dover, New York,
+
+1965.
+
+[5] G. Batchelor. An Introduction to Fluid Dynamics.
+York, NY,
+
+Cambridge University Press, New
+
+1980.
+
+[6] K. J. Bathe. Finite Element Procedures in Engineering Analysis.
+glewood Cliffs, NJ, 1982.
+
+Prentice-Hall, En-
+
+[7] G. G. Brebner and L. A. Wyatt. Boundary Layer Measurements at Low Speed on Two
+Wings of 45° and 55° Sweep. CP 554, Aeronautical Research Council, 1961.
+
+[8] J. E. Bussoletti, F. T. Johnson, et al. “TRANAIR: Solution Adaptive CFD Modeling
+for Complex 3D Configurations.” In Proceedings of the 1993 European Forum on Recent
+Developments and Applications in Aeronautical CFD, pp. 10.1-10.14, 1994.
+
+(9] T. Cebeci,
+
+Dimensional
+
+L. T. Chen,
+Transonic
+
+and K. C. Chang.
+
+Flows.”
+
+In
+
+Numerical
+
+“An Interactive Scheme
+
+and
+
+Physical Aspects
+
+for Three-
+
+of Aerodynamic
+
+Flows III, Springer-Verlag, 1986.
+
+[10] P. H. Cook, M. A. McDonald, and M. C. P. Firmin.
+
+Aerofoil RAE 2822-Pressure
+
+Distributions, and Boundary Layer and Wake Measurements.
+AGARD, May 1979.
+
+Advisory Report 138,
+
+[11] J. Cousteix. Three-Dimensional Boundary Layers. Introduction to Calculation Methods. Advisory Report 741. AGARD, 1986.
+[12] N. A. Cumpsty and M. R. Head. “The Calculation of Three-Dimensional Turbulent
+Boundary Layers. Part II: Attachment-line Flow on an Infinite Swept Wing.” The
+Aeronautical Quarterly, 28:150-164, 1967.
+
+[13] D. Darmofal. Personal Communication.
+[14] H. Deconinck and C. Hirsch. “Finite Element Methods for Transonic Blade-to—Blade
+
+Calculation in Turbomachines.” Journal of Engineering for Power, 103:665-677, 1981.
+
+90
+
+(15] M. Drela. Two-Dimensional Transonic Aerodynamic Design and Analysis
+Euler Equations. GTL Report 187, MIT, February 1986.
+
+Using the
+
+[16] M. Drela. Personal Communication.
+{17} J. K. Elliot. Personal Communication.
+
+[18] H. C. Elman. “A Stability Analysis of Incomplete LU Factorizations.” Mathematics of
+Computation, 47(175):191-217, July 1986.
+[19] M.
+
+C. P. Firmin.
+
+Three-Dimensional
+1986.
+
+Applications
+
+Viscous
+
+of RAE
+
+Wings in Transonic Flow.
+
+Flow
+
+Methods
+
+Technical Report
+
+Near
+
+Separation for
+
+CP-412,
+
+AGARD,
+
+[20] M. Giles. Eigenmode Analysis of Unsteady One-dimensional Euler Equations.
+tractor Report NAS1-17130, ICASE, August 1983.
+
+(21] J. Green, D. Weeks, and J. Brooman.
+
+Con-
+
+Prediction of Turbulent Boundary Layer and
+
+Wakes in Compressible Flow by a Lag-Entrainment Method. R & M 3791, Aeronautical
+Research Council, 1977.
+
+[22] W. G. Habashi and M. M. Hafez. Finite Element Method for Transonic Cascade Flows.
+AJAA-81-1472, 1981.
+(23] M. Hafez, J. South, and E. Murman. “Artificial Compressibility Methods for Numerical
+Solutions of Transonic Full Potential Equation.” AJAA Journal, 17:838-844, August
+1979.
+
+(24) W. W. Hager. Applied Numerical Linear Algebra.
+Cliffs, NJ, 1988.
+[25] T. L. Holst. Viscous Transonic Airfoil Workshop
+1460, June 1987.
+
+Prentice-Hall, Inc., Englewood
+
+Compendium of Results.
+
+AIAA-87-
+
+(26] R. Ito and S. Takanashi. Validation of 3-D Navier-Stokes Simulations for Transonic
+Flows about Boeing 747-200 Wing-Fuselage Combination. AIAA-91-3202, 1991.
+[27] C. Johnson. Numerical Solutions of Partial Differential Equations by the Finite Element Method. Cambridge University Press, New York, NY, 1987.
+(28] J. P. Johnston.
+
+Three-dimensional Turbulent Boundary Layers. PhD thesis, Gas Tur-
+
+bine Laboratory, MIT,
+
+1957.
+
+[29] H. Korner, W. Lorenz-Meyer, et al. MBB-AVA Pilot-Model with Supercritical WingSurface Pressure and Force Measurements. Advisory Report 138, AGARD, May 1979.
+(30] V. E. Kovalev and O. V. Karas. “Computation of a Transonic Airfoil Flow Considering
+Viscous Effects and Thin Separated Regions.” Le Recherche Aérospatiale, 1991(1):1-15,
+1991.
+(31] M. Lazareff and J. C. L. Balleur. “Development of the MZM Numerical Method for
+3D Boundary Layer with Interaction on Complex Configurations.” In Proceedings of
+the Eigth GAMM-Conjerence on Numerical Methods in Fluid Mechanics, 1989. Notes
+on Numerical Fluid Mechanics, vol 29.
+
+91
+
+[32] J. C. Le Balleur. “New Possibilities of Viscous-Inviscid Numerical Techniques for Solving Viscous Flow Equations with Massive Separation.” In 4th Symposium on Numerical
+and Physical Aspects of Aerodynamic Flows, January 1989.
+(33} M. J. Lighthill. “On Displacement Thickness.” Journal of Fluid Mechanics, 4:383-392,
+1958.
+
+[34] R. C. Lock and B. R. Williams.
+
+“Viscous-Inviscid Interactions in External Aerody-
+
+[35] J. D. McLean and J. L. Randall.
+
+Computer Program to Calculate Three- Dimensional
+
+namics.”
+
+Prog. Aerospace Sci., 24:51-171, 1987.
+
+Boundary Layer Flows with Wall Mass Transfer. CR 3123, NASA, May 1979.
+
+[36] J. Moran.
+
+An Introduction to Theoretical and Computational Aerodynamics.
+
+Wiley & Sons, New York, NY, 1984.
+
+John
+
+[37] B. Mughal. Personal Communication.
+[38] B. H. Mughal. A Calculation Method for the Three-Dimensional Boundary-Layer Equations in Integral Form.
+
+September 1992.
+
+Master’s thesis, Dept. of Aeronautics and Astronautics, MIT,
+
+[39] D. F. Myring. An Integral Prediction Method for Three- Dimensional Turbulent Boundary Layers in Incompressible Flow. Technical Report 32647, Aeronautical Research
+Council, 1970.
+(40] J. F. Nash and V. C. Patel.
+
+Technical Books, Atlanta, 1972.
+
+Three-Dimensional
+
+Turbulent Boundary
+
+Layers.
+
+SBC
+
+[41] J. Peraire and J. Peiro. A 3D Finite Element Multigrid Solver for the Euler Equations.
+
+AIAA Paper 92-0449, January 1992.
+
+[42] P. B. Poll. Full Potential Analysis and Design of Transonic Propellers. Master’s thesis,
+
+Dept. of Aeronautics and Astronautics, MIT, February 1991.
+
+[43] W. H. Press, B. P. Flannery, §. A. Teukolsky, and W. T. Vetterling. Numerical Recipes,
+The Art of Scientific Computing. Cambridge University Press, New York, NY, 1986.
+
+[44] Y. Saad and M. H. Schultz. “GMRES: A Generalized Minimal Residual Algorithm for
+Solving Nonsymmetric Linear Systems.” SIAM J. Sct. Stat. Comput.,
+
+7(3):856-869,
+
+July 1986.
+
+[45] M. D. Salas and C. R. Gumbert.
+Technical Paper 2539, NASA,
+
+Breakdown of the Conservative Potential Equation.
+
+1986.
+
+[46] M. D. Salas, A. Jameson, and R. E. Melnik. A Comparative Study of the Nonuniqueness
+Problem of the Potential Equation. Technical Paper 2385, NASA, 1985.
+[47] H. Schlichting.
+
+Boundary Layer Theory.
+
+McGraw-Hill, New York, 7th ed. edition,
+
+1987.
+
+[48] M. K. Seager. A SLAP for the Masses.
+December 1988.
+
+92
+
+UCRL
+
+100195, Lawrence Livermore Labs,
+
+[49] P. D. Smith. An Integral Prediction Method for Three-Dimensional Compressible Turbulent Boundary Layers. R & M 3739, Aeronautical Research Council, 1972.
+[50] S. C. Smith and I. M. Kroo. “Computation of Induced Drag for Elliptical and CrescentShaped Wings.” Journal of Aircraft, 30:446-452, July/August 1993.
+
+[51] T. Sorensen. Personal Communication.
+
+(52| T. Sorensen.
+Method.
+
+[53] T.
+
+W.
+
+PhD
+
+Aeroelastic Analysis and Sensitivity Calculations
+
+Swafford
+
+Dimensional
+
+Using the Newton
+
+thesis, Dept. of Aeronautics and Astronautics, MIT, June 1995.
+
+and
+
+D.
+
+Compressible
+
+L.
+
+“Time-Dependent
+
+Whitfield.
+
+Turbulent
+
+Journal, 23(7):1005-1013, July 1985.
+
+Integral
+
+Boundary-Layer
+
+Solution
+
+of Three-
+
+Equations.”
+
+AJAA
+
+[54] T. Swafford. “Analytical Approximation of Two-Dimensional Separated Turbulent
+Boundary-Layer Velocity Profiles.” AIAA Journal, 21(6):923-926, June 1983.
+[55] J. Thompson, F. Thames, and C. Mastin. “Automatic Numerical Generation of BodyFitted Curvilinear Coordinate System for Field Containing Any Number
+
+of Arbitrary
+
+Two-Dimensional Bodies.” Journal of Computational Physics, 15:299-319, 1974.
+
+[56] B. van den Berg and A. Elsenaar. Measurements in a Three-Dimensional Incompressible Turbulent Boundary Layer in an Adverse Pressure Gradient Under Infinite Swept
+Wing Conditions. Technical Report NLR TR 72092 U, National Aerospace Laboratory
+NLR, August 1972.
+
+[57] B. van den Berg, D. A. Humphreys, E. Krause, and J. P. F. Lindhout, editors. ThreeDimensional Turbulent Boundary Layers—Calculations and Experiments. Vol. 19 of
+Notes on Numerical Fluid Mechanics, Vieweg, Braunschweig, 1988.
+
+[58] J. van der Vooren. Aircraft Drag Prediction for Transonic Potential Flows. Advisory
+Report 256, AGARD,
+
+[59] K. C. Wang.
+
+1989.
+
+“On the Determination of the Zones of Influence and Dependence for
+
+Three-Dimensional Boundary Layer Equations.” Journal of Fluid Mechanics, 48:397-
+
+404, 1971.
+
+[60] J. Weber and G. G. Brebner.
+
+Low-Speed
+
+Tests on 45-deg Swept-back
+
+Wings.
+
+R &
+
+M 2822, Aeronautical Research Council, 1958.
+
+[61] F. M. White.
+
+Viscous Fluid Flow. McGraw-Hill, New York, NY, 2nd ed. edition, 1991.
+
+(62] D. Whitfield. Analytical Description of the Complete
+locity Profile. AIAA-81-1158, 1978.
+
+(63] D. Whitfield, T. Swafford, and T. Donnegan.
+
+Method for Compressible Turbulent Boundary
+Fluid Mechanics, Springer-Verlag, 1982.
+
+[64] L. B. Wigton and M. Holt.
+1003, 1981.
+
+Turbulent Boundary Layer Ve-
+
+“An Inverse Integral Computational
+Layers.” In Receni Contributions
+
+to
+
+Viscous-Inviscid Interaction in Transonic Flow. ATAA-81-
+
+93
+
+'65| H. Yoshihara and J. Wai.
+
+to the Direct Formulation.
+
+Transonic Turbulent Separation on Swept
+AIAA-84-0265,
+
+1984.
+
+Wings-A
+
+Return
+
+‘66: D. P. Young, R. G. Melvin, F. T. Johnson, et al. “Application of Sparse Matrix Solvers
+as Effective Preconditioners.” SIAM J. Sci. Stat. Comput., 10(6):1186-1199, November
+1989.
+
+‘67: N. J. Yu, H. C. Chen, §. S. Samant, and P. E. Rubbert. Inviscid Drag Calculations for
+Transonic Flows.
+
+AIAA
+
+Paper 83-1928, 1983.
+
+'68! N. J. Yu, $. R. Allmaras, and K. G. Moschetti. Navier-Stokes Calculations for Attached
+and Separated Flows Using Different Turbulence Models. AIAA-91-1791, 1991.
+
+94
+
+Appendix
+
+Finite
+
+Element
+
+A
+
+Methed
+
+for the
+
+Full Potential Equation
+This appendix gives more details of the Finite Element Method (FEM) applied to the Full
+Potential equation.
+
+A good reference for FEM
+
+theory is {27'.
+
+second part of this appendix provides the sensitivity formulae for the
+
+The
+
+implementation is [6], and one for FEM
+
+Full Potential equation.
+
+Physical Coordinates
+
+Natural Coordinates
+
+Figure A.1: Hexahedral Elements
+
+A.l
+
+FEM
+
+Details
+
+A.1.1
+
+JIsoparametric Trilinear Elements
+
+Within an element, the sclution ¢ and the geometry (z, y, z) are expressed in terms of local
+basis or shape functions.
+
+For the 8-node trilinear element illustrated in Figure A.1, the
+
+eight functions expressed in natural coordinates (£, 17, ¢) are:
+
+95
+
+Me=5(0h-O(l-n-9
+
+N§=5(1-O(1-n) (149)
+
+Nes
+
+7 O0-n0-9
+
+N§= 51+ O(- (Lt 0)
+
+Nf=e(l+ Ota) (0-0
+
+Ne=5(l+ (L440)
+
+Ne=50- 90+ n0-6)
+
+NG=s(k- Oem AtO
+
+and the solution and geometry within the element are defined as:
+
+eo
+
+=
+
+8
+
+>
+
+NE¢S
+
+z*
+
+j=1
+
+=
+
+S° Nézé
+
+yo
+
+j=1
+
+=
+
+So NEyS
+
+8
+
+z=
+So NE 2é
+
+j=l
+
+j=l
+
+where 9, 25, yf, z; are nodal solution values and coordinates for element e.
+
+A.1.2
+
+Shape Function
+
+Gradients
+
+Residuals require the gradient of the shape function, VS
+
+For a given point (£,7,¢), the
+
+gradient in natural coordinates is computed via:
+
+aN§
+a
+
+ONS
+
+le
+
+to (ltn)(1+¢)
+
+a,
+
+te (£6) (1=¢)
+
+1
+
+L
+
+ONG
+
+tia
+
+tenit
+
+Then, the gradients of z, y, z with respect to £,7,¢€ may be computed from:
+
+96
+
+(A.1)
+
+dz _ > ON}
+
+—_
+
+aE
+
+2
+
+ae”?
+
+dz
+
+~.
+
+ONS
+
+On
+
+<=
+
+ON
+
+Oz
+
+SG. ONE
+
+aC
+
+ac
+
+—=))
+
+Oy
+
+r
+
+2
+
+—
+
+FY;
+
+—_——
+
+GQ
+
+ONS
+
+Ay
+
+—=)
+
+7
+
+dn
+,
+
+Oy
+
+4
+
+dz _ s ONS
+
+4.
+
+ge 43
+
+—_—
+
+FY;
+
+Oz
+
+—_
+
+—+y¥
+
+n
+
+On
+
+ON:
+a¢
+
+=
+
+5¢
+
+3
+
+ONS
+
+d
+
+,
+
+=
+
+=
+
+2.
+
+Ya
+
+<.
+
+ON’
+
+<=
+
+dz
+=
+
+a¢
+
+3
+
+On
+
+7
+
+a
+
+26
+
+ONS
+
+,
+
+a¢
+
+?
+
+(A.2)
+
+\
+
+Using the chain rule to define the gradient of the shape function in natural coordinates, one
+arrives at the following system of equations:
+
+(Oz
+
+Gy
+
+oz
+
+Og
+
+Oz
+
+Oz
+
+Oy
+
+Oz
+
+ON
+
+oes
+
+a
+
+de
+
+GE
+
+a
+
+ic
+
+\a¢
+
+be
+
+OC)
+
+aN
+
+dy |
+
+NG
+
+( ON
+d€
+
+_
+
+|
+
+ON
+
+a
+
+(AS)
+
+ON
+
+OS
+
+which may be solved for the gradient of the shape function in physical coordinates VN
+
+=
+
+($2,
+9%, aN
+Dz) Dy?
+dz ). The determinant of the matrix is the so-called metric Jacobian.
+
+A.1.3
+
+Surface
+
+Gradients
+
+Gradients at element surfaces are also required.
+
+In the case of Equation 2.15, the (¢,7,¢)
+
+coordinate corresponding to a surface of the element is computed, and then the method of
+§A.1.2 is employed.
+For surface equations such as Equation 3.11, each element is given a local 2-D coordinate
+system.
+
+This is done by computing a surface normal vector (é,,) to the element using the
+
+cross product of the diagonals:
+Then an z-z coordinate system is set up using one diagonal for the z-direction (é€,) and
+
+97
+
+a
+
+®
+
+Figure A.2: Construction of 2-D Coordinate System
+the normal
+
+to é, and
+
+é, for the z-direction
+
+(é,); where
+
+é,, é,, and é, are 3-D
+
+vectors.
+
+(z,z) coordinates for the four surface nodes may be computed from the (z, y, z )oartesian
+coordinates using dot products between the vector distances and é, and é,. For instance, if
+
+node 1 is set to (z, z) = (0,0) in the 2-D coordinate system. Then the coordinates for node
+2 may be found by:
+
+~ (21 )Cartesian
+
+(Ye) cartesian
+
+~ (¥1) Cartesian
+
+(22) Cartesian
+
+~~ (2 )oartesian
+
+1
+
+(zo \Cartesian
+
+Azi + Ayj+ Azk
+
+v2
+
+z,+A-é,
+
+22
+
+z+A-é,
+
+A 2-D analog of §A.1.2 is employed to compute surface gradients for Equations 3.11, 3.12,
+and 3.13.
+
+*
+
+98
+
+A.2
+
+Full Potential Equation
+
+Sensitivities
+
+Flowfield sensitivities for the Full Potential equation were derived by Poll in reference [42].
+These sensitivities are listed here for completeness.
+
+A.2.1
+
+Velocity Vector
+
+g
+
+=
+
+(so +8 wets)
+
+ag
+
+4 (+ “+d
+
+QN;..
+
+@N;.
+
+ON;;
+
+DU.
+
+- BU.
+
+IWeo;
+
+da
+
+da?’
+
+ies)
+
+33 (xn
+
++ 3Sjee)
+
+36, = bet
+ay it Or
+OG
+
+_—-
+
+da
+
+A.2.2
+
+Ox
+
+:
+
+Velocity Squared
+Pe
+
+=
+
+weyttw?
+
+=
+
+(v=
+
+an;
+
+>
+
+res
+
+\
+
++
+
+(ro
+
+j=l
+
+2(u ON; 4 ONG
+
+wi)
+
+Aq?
+
+2(
+
+ne)
+
+Oz
+
+Ja
+
+A.2.3.
+
+Mach
+
+wm
+
+ee,
+
+\-
+
+j=l
+
+Aq?
+
+a6;
+
+8 an,
+
+Oy | Oz
+
+Bus
+
+— OUe6
+
+0a
+
+"Gq
+
+7 é
+
+Ja
+
+Number
+
+= wef
+
+8 9?
+
+io)
+
+iy
+
+tote
+2
+
+©
+99
+
+(1
+
+q?,
+
+~
+
+an;
+
++(» +25.—1¢
+es
+
+\-
+
+QM?
+
+_
+
+Og?
+
+O0M*
+6
+
+A.2.4
+
+M
+
+—
+~——
+
+F
+
+©
+
+gz. F
+
+He
+
+max
+
+(
+
+Om
+
+va
+
+(
+
+_
+
+du
+
+_
+
+Aq?
+da
+
+~
+
+q2,
+
+0M? dq?
+~—«s Aq? «Oa
+
+Me)
+
+Merit
+
+=
+
+He Max {0, H, Lup}
+
+pt Merit
+
+Gfup
+
+_
+
+yp Merit
+
+Op
+
+OM ?
+
+Ofup
+
+_
+
+Obup
+
+On OM?
+
+Dtup
+
+_
+
+aM?,
+
+0M? 0q?
+0M?
+
+0qip
+
+da
+
+0a
+
+“M4,
+
+OM.
+
+OMi, 9492p
+Oftup OM:
+
+OM?
+
+Oa
+
+Density
+p
+
+Op
+
+Og?
+
+=
+
+Yo)
+—9
+
+p Po | {1 +
+
+2
+
+Po M3,
+
+eg?
+
+“
+
+2
+
+6;
+
+Upwinded
+
+|
+
+a2
+q
+Mi 2 ( |1->
+*)|
+
+¥-1,.
+
+f ty
+
+4p _ 9p dq"
+
+A.2.6
+
+2
+
+(y- q?\]~"
+
+up
+
+“M4
+
+Op
+
+y—1
+Yo yy?
+
++
+
+0M*
+da
+
+M?,
+0,{1-—],{1-
+
+aM?
+
+A.2.5
+
+2
+
+Factor
+
+U,
+
+mM
+
+y-1.,
+%7*
+ye 1
+
+8M? dq?
+Aq?-:*O@
+
+Upwinding
+
+=
+
+»f{1fo
+
+Melt
+
+y-1
+
+q’
+
+2\]
+
+dp _ Op 94°
+
+0q7 d¢;
+
+da
+
+Density
+
+P= p- Hs (P — Pup)
+100
+
+Aq? Ja
+
+aot
+
+\|7
+
+djup refers to nodal ¢’s in the upwind element.
+Case
+
+1: Flow is subsonic
+
+Op
+
+_
+
+Op
+
+=
+
+0¢;
+
+OPjup
+
+Op
+
+—--04;
+
+op
+
+0
+
+ap
+
+da
+
+Oa
+
+Case 2: Flow is supersonic and accelerating (M? > Mi.)
+
+in
+
+=
+
+a
+
+-
+
+Foes ~
+
+8
+
+ce
+
+se
+
+=
+
+Fon)
+
+|
+-
+
++ He
+
+3p
+
+SE (0 — pup) ~ wee
+
+Case 3: Flow is supersonic and decelerating (M? < M7)
+
+ge = 0
+“e
+A.2.7
+
+Full Potential
+
+=
+
+a
+
+[BE o-) ~ Han
+-
+
+[SS
+
+(p
+
+Pup)
+
+bap E2
+
+Residual
+
+With the relations in the previous sections, the Full Potential equation residual sensitivities
+
+may be computed. In reference [42], the density was assumed constant in the element and
+
+101
+
+taken outside of the integrals.
+because
+
+This produced erroneous shock positions for coarse grids
+
+it is an inconsistent formulation.
+
+In this research,
+
+the density is included in the
+
+integrals.
+
+R;
+
+36,
+
+[FL v-(n av - ff Nj (Aq) «A dS
+Hy,
+
+Ni (age
+
++ a3
+
+ou“ Nog
+
+™ (ox
+
++3 hee) ne
+
+Ga = LLP eM (ase
++ Ge) av [fm (5k + a52) -a as
+
+A.2.8
+
+Wake
+
+B.C.
+
+The second wake boundary condition (velocity matching on upper and lower surfaces) has
+the following sensitivities:
+
+(Ruake);
+
+=
+
+/ / [w i (ap — qi.)) av
+
+Staats = [ffm (BeB) e
+2
+
+sg(Ruare), = fff ws (F2- 3) av
+
+102
+
+Appendix
+
+Closure
+
+for Three-Dimensional
+
+Boundary
+
+B.1
+
+1-2
+
+Coordinate
+
+de /
+
+Layer Equations
+
+Definitions
+
+1 =
+
+Streamwise Direction
+
+2 =>
+
+Crossflow Direction
+
+Pe We
+
+de/
+
+Uu
+Uu
+65, = / (-=2)
+ban
+
+Pe We
+
+uUu
+Oo. = / (-=2)
+oe u an
+
+Ge / Pe Ye
+
+de /
+
+Pe Ye
+
+0p =
+
+B
+
+Pe We
+
+Pe We
+
+p
+[1-Fap
+De
+
+gr = [ (1-4) = dn
+Pe/
+
+a= [ (1-2) m2 dn
+
+We
+
+Pe/
+
+welh-G)]eee
+Uy
+
+;
+
+En = [ - (2)
+de
+
+2
+
+me /b-()] ER
+
+p uy,
+
+de
+
+ui
+
+Pe de
+
+PH
+Pe
+
+ay
+
+We
+
+2
+
+p U2
+
+de
+
+|
+
+En= [ - (=)
+
+de
+
+Je
+
+6, = Fy, + Ex
+
+63 = Fiz + E22
+
+103
+
+2
+
+Pe Ve
+
+PU
+Pe
+
+a
+de
+
+B.2
+
+x-z Coordinate
+
+Definitions
+
+Using a rotation matrix, the z-z thicknesses may be determined in terms of the 1-2 thicknesses and the angle between the two coordinate systems (cosa = qi sina = %*) (38, 49}.
+eG
+
+Orn
+
+—
+
+peu
+
+Ory
+
++
+
+—
+
+Pele
+
+We
+
+Pew? 62%
+(652
+
++
+
+e927 9x2
+051)
+
+Pelle
+
+We
+
+(O14
+
+_
+
+Pete
+
+_
+We
+
+pew? Oo,
+(O14
+
+~
+
+022)
+
++
+
+Pete
+
+We
+
+(62
+
++
+
+Pedebs = Pettedy — peweds
+
+PeGe5; = Peled2 + PeWed}
+
+peqed..”
+
+peqe 6s" = Petteds” + PeWedbs”
+
+= Peteds”
+
+Tew
+
+—
+
+Ue
+
+—
+
+de
+
+7T1
+
+—
+
+— peweds”
+
+We
+
+Tzw
+
+de
+
+The crossflow model is
+
+62)
+
+e929: = 92 (Pete; + Pew)
+
+—7T2
+
+Crosshlow
+
+622)
+
+PeQeOzz = Peti2O02 + pew2O11
+
+peqe92 = 92 (peueBt — pew.83)
+
+B.3
+
+peut2Oy>
++
+
+PeGeOrx = Peti2O21 — pew2Oy2
++
+
+=
+
+—
+
+Ue
+
+—T2
+
+de
+
++
+
+We
+
+—Ty
+
+de
+
+Model
+Johnston’s triangular profile [28]
+
+Weg (1
+Ge
+
+=)
+de
+
+(B.1)
+
+where A, is the crossflow parameter. Streamwise-crossflow thicknesses may now be defined.
+
+104
+
+B.4
+
+Derived
+
+b
+
+=
+
+|
+
+Thicknesses
+
+Pp U2
+—-——d
+Pe de
+
+7
+
+-
+
+[-A(Q _ a) 2g
+
+~
+
+|- A.(1-
+
+—
+
+A. (9,
+
+de/
+
+~
+
+221) dn + fA. (.- 2) an
+
+67)
+
+55
+
+A,
+= =>
+O11
+
+0,
+
+=
+
+(B.2)
+
+Pe
+
+1
+Hg,
+
+-
+
+[-243
+
+Ge Pe We
+
+(B.3)
+
+H
+
+4
+
+(B.4)
+
+de / Pe Ye
+
+A2
+
+=
+
+—-A,011
+
+=
+
+fQ-
+
+a)
+q
+
+fe
+
+u)
+
+Pe We
+
+U2
+pu Lan +
+[-242
+Ge Pe We
+
+| 2 u dn
+Pe Ye
+
+(B.5)
+
+62, — 53
+
+6.2
+
+uz Pp U2
+
+- fou(t-3) 28
+
+=
+
+[-242
+
+de Pe Ye
+
+dn
+
+de
+
+=
+
+De Ie
+
+—A,912
+
+105
+
+(B.6)
+
+5° = [( 7 P) 2 dy
+Pe
+
+B.5
+
+de
+
+-
+
+fe
+
+- £) A. (1 _ )
+
+=
+
+A,[6,
+
+-
+
+Pe
+
+de
+
+dn
+
+(B.7)
+
+é*|
+
+Fig = O42 + Ae (2011 — Fy)
+
+(B.8)
+
+E4
+
+=
+
+—Oo0
+
+-
+
+(B.9)
+
+E22
+
+_
+
+—A,
+
+(EF
+
+A..F
+
+—
+
+42
+
+622)
+
+(B.10)
+
+Empirical Closure Relations
+
+The following closure relations are taken from subroutines of Drela. The references for these
+relations are labeled along with the formula.
+Shape Parameters
+é*
+
+ZH
+
+=
+
+O11
+
+6,
+
+=
+
+6,
+
+8
+
+MoS
+
+_
+
+67°
+
+H*
+
+=
+
+Fy
+—
+O11
+
+(B.11)
+
+a
+
+106
+
+Kinematic Shape Parameter (62!
+
+k
+
+H — 0.290M?
+1.0 + 0.113M?
+
+=
+
+(B.12)
+
+Density Shape Parameter {63]
+
+0.064
+
+>
+
+(B.13)
+
+Auziliary Density Shape Factor [53]
+
+(B.14)
+
+Ho, = (0.185, + 0.150)M?
+
+Streamwise Kinetic Energy Shape Parameter
+
+laminar [16]
+H*
+
+H*
+
+H,
+
+(Hi
+
+— 4.35)"
+
+oy
+
+_ 9.0278
+
+(A, — 4.35)°
+
+=
+
+0.0111
+0
+
++
+
+1.528 — 0.000[ (Hi,
+2 — 4.35) Hz}?
+0.015
+
+HA, + 1.0
+
+(Hy, — 4.35)’
+Hi;
+
+A,
+
++1.0
+
+HA, < 4.35
+
+Ai, > 4.35
+
++ 1.528
+
+107
+
+(B.15)
+
+turbulent [15, 16]
+
+H,
+
+=
+
+min (3.0 +
+
+400.0
+
+, 4.0)
+
+Reg
+
+H,
+— Hi,
+
+Hy
+
+=
+
+H, — 1.0
+
+H,*
+
+=
+
+(0.5—
+
+f
+
+H,*
+
+(
+
+=
+
+a)
+
+1.5
+
+=
+
+4.0
+
+1.5 4+ —
+
+'H,+05 °° 7
+
+(H,
+— H.)* | 0.007
+
+$154
+H*
+
+4.0
+——) #?
+
+log (Reg)
+
+A,
+
+Reg
+
+(He Ho + watiesy)
+
+Me
+
+ae
+
++
+
+0.028M?2
+
+1.0
+
++
+
+0.014M?2
+
+(B.16)
+
+0.015
+al
+
+A,
+
+Reg
+
+H,*
+
+< HH,
+
+2
+
+H,
+
+Boundary Layer Thickness Estimate for Lag Equation (16]
+
+6 =
+
+(3.15 +
+
+1.72
+HA, — 1.0
+
+(B.17)
+
+) ou + &
+
+Equilibrium Si. er Stress Coefficient [16]
+
+cut
+
+Co
+
+=
+
+U,
+
+=
+
+7 eq
+
+0.5
+6.72 + 0.75
+0.5H8*(1.0 (
+
+A,
+— 1.0
+
+streamwise slip velocity
+
+0.75H
+
+C,H* (HA; — 1.0)°
+
+\ (1.0
+- U,) (1.0
++ A?) HAP
+
+108
+
+(B.18)
+
+Streamwise
+
+Skin Friction
+
+laminar [15]
+C
+
+ft
+
+=
+
+1
+
+Reg
+
+x— 4 0.0727
+
+(5.5 — H;)°
+
+A, + 1.0
+
+— 0.07
+
+H
+
+_ 5.5
+(B.19)
+
+C fy
+
+-.
+
+Reg
+
+0.015
+;
+
+(1.0
+
+A,
+
+1.0
+—
+
+4.5
+
+)
+
+0.07
+
+A,
+> 5.5
+he”
+
+turbulent [54]
+
+F. = \/1.0 + 1M
+C
+
+fo
+
+=
+
+0.3 0. exp
+
+—1. (-1.33.H;)
+
+log ( Fe}
+
+~1.74
+— 0.310
+
+2.3026;
+
+.
+
+(B.20)
+
+on = Ef oy + 1 x 10-*[taan(0 ~ 2) — 10]
+=
+
+l
+
+=
+
+1.1 x 1077 |t
+
+0
+
+A,
+
+—- ——}
+
+-1.
+
+Crossflow Skin Friction
+
+laminar [16]
+Cfo
+
+6
+1
+—- 0.420.42 —2—
+0, Reg
+
+109
+
+( B.21 )
+
+turbulent ‘16)
+U,
+
+=
+
+os
+
+W,
+
+=
+
+7
+
+Cy
+
+=
+
+streamwise slip velocity
+
+Ye
+
+=
+
+A,(1.0
+
+—
+
+U,)
+
+crossflow slip velocity
+
+2
+-1(p2
+——;
+tanh”"(Q?)
+
+(535)
+
+=
+
+2
+tog (18: )
+—lo
+(sta) 2
+1- Q3
+
+C fy
+
+=
+
+C f =
+Q,
+
+C's
+
+=
+
+Cy
+
+U
+
+=—=>
+
+U,
+
+C's
+
+—t
+C;
+
+B.22
+
+(B.22)
+
+Q s
+
+W,
+
+The streamwise slip velocity here is a different approximation than the one used elsewhere.
+The following nonlinear equation is solved for Q,
+
+Q} = UP+ Ww:
+s
+
+U2 + A? (1 - U,)
+
+=
+
+(B.23)
+
+(1+ A2)U? - 242U, + A?
+
+(
+
+Cy,\’
+C's
+1+ 42) Q? (S)
+_ 2420, (2)
++a
+C's
+
+C's
+
+110
+
+Dissipation [16]
+laminar wall layer
+
+i
+
+D,
+
+=
+
+~—[0.207 + 0.00205 (4.0 — Hx)°* |
+
+D,
+
+=
+
+1
+(ET, — 4.0)’
+——|0.207
+— 0.0016
+Reg |
+1.0 + 0.02 (Hy, — 4.0)?
+
+'
+
+Hy, < 4.0
+
+Reg
+
+Hy, > 4.0 |
+
+(B.24)
+
+Cou = Lar, +0015 (4)* 2
+Pu
+
+~
+
+2
+
+}
+
+611
+
+Reg
+
++
+
+C';,W,)
+
+turbulent wall layer
+Cay
+
+=
+
+1
+5 (C,,U,
+
+(B.25)
+
+wake layer
+
+ACp
+
+=
+
+rege dy + [ugar
+ian
+
++ [nH
+
+Tz
+
+4
+Ow
+
+d
+8w
+
+[ret ans [rfseou (ease ) am
+Ht Bn an
+
+= [roShans [$8 (2)
+li
+
+i
+
+"29
+
+7
+
+*0
+
+Gu
+
+(f 252Ou 40) (1.0
++ a2).
+
+= C,(1.0 — U,) (1.0 + A?)
+
+The total dissipation coefficient is given by Cp
+
+111
+
+= Cp,
+
++ ACp
+
+(B.26}
+
+Appendix
+
+C
+
+Wall Transpiration
+This appendix contains the derivation for the wall transpiration flux (pV,,) formula used in
+Chapter 4. It is an extension of the results for two-dimensional, incompressible flow from
+
+reference [33]. In addition, a useful expression for the wall transpiration’s contribution to
+drag is derived here to be used in Appendix D.
+First, define the boundary layer thickness components.
+Ye
+
+Peebz = i
+:
+
+Peed;
+
+(Pete — pu) dy
+
+(C.1)
+
+— pw) dy
+
+(C.2)
+
+Ve
+
+=
+
+(pewe
+
+|
+
+a
+
+———
+
+A
+
+ddd
+
+7
+
+L_anell
+
+TS
+
+Real Flow
+
+Equivalent Inviscid Flow
+
+Figure C.1: Equivalent Inviscid Flow Calculation
+The goal is simulate the displacement effect of the boundary layer in an inviscid flow.
+This is achieved by matching the normal velocity at a distance of a boundary layer’s edge,
+ye, for the case of a real viscous flow and an inviscid flow with wall transpiration.
+
+112
+
+C.1
+p eVe
+
+Real Viscous
+=
+
+,
+
+Flow
+
+ve O
+
+By (PP)v) dtdy
+
+a.
+
+= ["-|50s) + F000) 4
+Px
+Oz
+0
+
+—Ve
+
+_
+=
+
+C.2
+
+0
+
+| 5
+
+Pe
+
+ut,e — Pppu)} + Oz2-( Pe we
+e — pP pw)d y
+
+(Pete)
+
++
+
+7)
+
+5;
+
+(C.3)
+
+(Pete)
+
+8
+.
+80
+.
+v2
+a
+pq (Pede5z) + 3, \PeIedz) — ¥ 15g! (Pete) + 3,
+5 (PeWe)
+
+Equivalent
+peVe
+
+Inviscid Flow
+
+pVw + [sa (pv) dy
+=
+
+pV, +f
+
+=
+
+pVu—
+
+- | 5-(ou) +
+
+Ve |
+
+a
+
+(ow) dy
+
+(C.4)
+
+0
+
+(Pette) + 5z(Pew)
+az
+
+It is assumed that p,u, and p,w, are constant in an inviscid flow through the distance
+
+ye in equation C.4-this is a first order boundary layer assumption. In order to match p,V.
+for equations C.3 and C.4, the desired expression for pV,, becomes:
+pPVw
+
+=
+
+Fi)
+
+.
+
+Az (Pedebs)
+
+113
+
++
+
+0
+
+A,
+
+°
+
+Petede }
+
+C.3
+
+Wall Transpiration for Drag Calculations
+
+In Appendix D, an expression for (U pq: 7) will be required for drag calculations. U is the
+Cartesian velocity component in the freestream direction. On the body and wake surfaces
+(pq-n) would be the negative of the wall transpiration since 7 points out of the fluid. Using
+a slightly different notation, the wall transpiration is expressed as:
+PI:
+
+Thy
+
+=
+
+—V,
+
+° (ege5"
+
+|
+
+(C.5)
+
+where
+
+§* = 646, + 66,
+é, and é€, are a 3-D unit vectors which define a local, 2-D coordinate system that lies in the
+plane locally tangent to the surface. The V, operator is the gradient operator in this 2-D
+coordinate system.
+
+C.3.1
+
+3-D Integral Momentum
+
+Equations
+
+The 3-D integral momentum equations are:
+
+Vs
+
+( 7.9262)
+
+t
+
+Peed”
+
+° Vite
+
+=
+
+Tey
+
+V;
+
+° ( 7.9267)
+
++
+
+PeGed”
+
+. V,We
+
+=
+
+Try
+
+N
+
+|
+
+D i
+
+ee
+|
+
+where
+
+Gaz Cz + On; €,
+
+0.2
+
+é,
+
+114
+
++
+
+0.2
+
+é,
+
+(C.6)
+
+C.3.2
+
+Vector Product Rule and Combining
+
+As an intermediate step, the product rule with the V, operator produces the following
+expressions:
+
+V.- (peqed"ue) =
+
+te V+ (Peged*) + peded®
+- Vsti
+
+V.°
+
+w.V,-
+
+(peqe5° we
+
+=
+
+(peqe8" )
+
++
+
+PeGed” -V,We
+
+Combining these expressions with equation C.6 one arrives at:
+
+MWe Ve (peted*) = Ve (pat2d) + tow ~ Vs (poten)
+
+_w.V,- (peqe6*)
+
+—
+
+_V,. (p.926, | + Tay — Ve- (peqe wed” |
+
+(C.7)
+
+Since U = qg,-i = u, (62-7) + we (é, -i), and using equations C.5 and C.7 :
+
+U (peg-n)
+
+C.3.3
+
+=
+
+[ue (éz-2) + we (é, -2)| |-V,
+
+=
+
+|tew — Ve- (peqeted*) — Ve- (peq262)] (Ee- 4)
+
++
+
+[Teo
+
+~- V,°
+
+(reqewed” )
+
+—
+
+Differencing Coordinate Vectors
+
+Another application of the product rule yields
+
+115
+
+V,:
+
+(peqed*) |
+
+(0-926,
+
+| (é, ’ i)
+
+(C.8)
+
+Vs
+
+° (és
+
+° i) Peqeued*|
+
+=
+
+(é,
+
+(é. ’ z) peqewed" |
+
+=
+
+(é, ° i) Vs ° (peqewed”
+
+° |(ée
+
+2) p92.
+
+a
+
+(é,
+
+Vs ° (é. -2) p26,
+
+=
+
+(é,-1)V,-
+
+Vs:
+
+V;
+
+° t) V;
+
+° 2) V;
+
+i. (peqeted*)
+
+° (029262)
+
++
+
+DeGetted®
+
+|
+
++
+
+Peqew, 5" -V, (é, . 2)
+
++
+
+e922
+
+(2926, ) +
+
+° V;
+
+° Vs
+
+(2,
+
+(é,
+
+° z)
+
+. i)
+
+peq2 8, -V, (2: - 2)
+
+The third term on each of the relations in equation C.9 may be collected and rewritten as:
+L
+
+{
+
+(pede tied”
+
++ p.926e | -V;
+
+éz
+
++
+
+(reqewed™
+
++ p26:
+
+) -V,z
+
+é, \
+
+In the discrete case, €, aud é, are constant over each panel. Hence the above term is zero,
+
+and equation C.8 becomes:
+U (pq: 7) |w
+
+=
+
+Tew (€z-t)
+
+—
+
+V,-: I(é2 -i) Pedeted* | — V,- (ez - 4) peqewed"|
+
+—_
+
+V,
+
+° \(ée
+
+° t)
+
++ Tew (2°?)
+
+p92.
+
+™
+
+116
+
+2°
+
+(és
+
+° i)
+
+p92.
+
+(C.10)
+
+Appendix
+
+Drag
+
+D
+
+Calculation
+
+This appendix contains the derivation of a drag formula for a 3-D Full Potential and boundary layer simulation.
+
+The most direct method of computing drag is by the integration of
+
+shear stress and pressure over the body surface. However, this method is prone to numer-
+
+ical error as shown by Smith and Kroo [50]. Drag for aerodynamic shapes is typically a
+small quantity and subtracting nearly equal pressures from the front and rear of the body
+is inaccurate.
+
+An alternative to surface integration is to compute drag using only farfield quantities
+and body force-like terms.
+
+The goal is to sum srnall positive quantities which leads to a
+
+more accurate drag calculation. In addition, the farfield drag formula may be separated into
+vortex, wave, and viscous drag components, which is of much use to the aircraft designer.
+There are two ways to approach
+
+the farfield calculation, and both use the integral
+
+momentum theorem. The first is to assume a real viscous flow (RVF) and include viscous
+terms in the integral momentum theorem.
+computation of vortex drag.
+
+The difficulty with using the RVF
+
+is in the
+
+Vortex drag is derived with a Trefftz plane analysis which
+
+assumes that at a farfield plane there is no streamwise velocity perturbation along the
+
+vortex sheet and the flow is irrotational [4]. These assumptions are violated because of the
+velocity defect in the viscous wake (see Fig.
+
+D.1), and therefore, the viscous wake region
+
+must be neglected.
+Another farfield approach is to use the inviscid integral momentum
+
+theorem and to
+
+model the problem as an equivalent inviscid flow (EIf) with the wall transpiration BC. The
+benefit of this approach is that the vortex drag may be computed without neglecting the
+farfield wake region since there is no velocity defect at the Trefftz plane (Fig.
+
+D.i).
+
+The
+
+drag component corresponding to the viscous drag appears through the wail transpiration:
+
+117
+
+a mass source in an inviscid flow will experience drag, the source strength is related to
+the calculated displacement
+
+thickness
+
+(6*), and the displacement thickness is related to
+
+the momentum thickness (6) via the boundary layer equations.
+
+This derivation is slightly
+
+involved, but (as will be shown) it is feasible and the wake need not be neglected.
+
+Hence
+
+the EIF model will be used to derive the farfield drag formula.
+
+Figure D.1: Velocity Defect in RVF vs. EI
+It is first necessary to address whether the drag from the inviscid integral momentum
+
+theorem (using EIF) matches that of the viscous integral momentum theorem. If the surface
+pressure distribution in the inviscid integral is the same as that in the viscous integral, then
+the pressure drag will be equal.
+
+And
+
+indeed, the surface pressure distribution from an
+
+EIF matches that of the RVF within the order of the BL theory that is used. Furthermore,
+because an inviscid flow has no shear stress, the shear stress distribution from the boundary
+layer calculation needs to be added to the EIF drag.
+
+Hence the drag estimate from the
+
+inviscid integral momentum theorem (using EIF) will match that from the viscous integral
+momentum theorem: the drag being defined as
+
+p= |/
+
+Qe
+
+Tew (dei) + Tew (22-4) 8 + ||
+
+118
+
+aNe
+
+pa-idS
+
+D.1
+
+Preliminaries
+
+Figure D.2: Control Yolume for Integral Momentum Theorem
+First, an eclectic set of preliminary relations are derived which will be used later in the
+integral momentum theorem (§D.2). The coordinate system for this analysis is aligned such
+that the z-direction is the direction of freestream flow and drag forces.
+
+D.1.1
+
+Small Perturbation Pressure and Density
+U=Ug
+
++ vu’,
+
+v=’,
+
+q
+
+= ue, + 2uou’
+
+w= w',
+
++
+
+(u’? fy
+
+Yoo
+= Uo
+
+4 w"”)
+
+Using the above perturbation velocities, and with 151 M3, ( 1 - 5 ) <
+may be approximated using the binomial expansion:
+
+119
+
+(D.1)
+1 the pressure
+
+SS
+
+ec—————4
+
+8
+
+poond
+
++
+
+—
+
+“Poo
+
+~2
+
+Ce
+2
+
+Po
+
+ar
+
+—1
+
+| 2too 0
+
+2
+
+M2, ( _ £)
+4
+
+(x
+
++
+
+vy”
+
++
+
+(D.2)
+w'”)
+
+|
+
+q
+
+(D.3)
+
+—
+
+a
+
+al
+
+4+
+
+~
+
+i
+
+(
+
++
+
++
+
+os
+
+e
+
+8
+
+Ms
+
+e_
+
+bt
+
+8
+
+tho |
+
+8
+
+D.1.2
+
+2
+
+2
+
+a
+
+7
+
+4 - 1
+
+A)
+
++-
+
+a"
+
+re
+
+A)
+
+8
+
+2
+
+a
+
+re
+
+|
+
+Similarly, the density is given by:
+
+V, Operator
+
+Although not proven here, the surface gradient operator of Appendix C obeys a Divergence
+Theorem.
+
+/
+
+an
+
+V.- Fds = $ Fadi
+
+Typically, the boundary layer quantities represented by F (e.g.
+
+(D.4)
+Peqe6*) disappear every-
+
+where along the line integral path except along the span line in the exit plane.
+
+D.1.3
+
+Continuity Result
+
+The continuity equation, assuming that all inter-volume mass sources sum to zero, becomes:
+
+120
+
+[ff ed-aas = 0
+
+(D.5)
+
+After splitting this into integrals over the farfield surface,
+
+ON s;, and over the wing/wake,
+
+00,,, the following relation is derived:
+
+If
+
+an
+
+og-ndS
+
+The pote
+
+= If
+
+Ow
+
+og-nds
+
+constant integrated over a closed boundary is zero. The mass transpiration on
+
+wing and wake surfaces is defined by equation C.5 and manipulated by relation D.4.
+
+The
+
+final, useful relation is given by:
+
+i)
+
+Nyy
+
+po(uli-a
+
++ v'j-a + w'k-a)
+
+dS = i
+
+boo
+
+PeGed* -nrdl
+
+(D.6)
+
+The PeTed® term at the attachment line contributes nothing because the upper and lower
+surface line integrations cancel.
+
+This term is zero on the wingtip side boundaries because
+
+the boundary layer ends in space and §* is zerc there.
+
+the along the exit span line (6,.).
+
+121
+
+The only place it is not zero is at
+
+D.2
+
+Integral Momentum
+
+Theorem
+
+Now the drag is computed from the integral momentum theorem. The steady flow, inviscid
+integral momentum theorem is given by:
+
+(D.7)
+
+[fe eaa-a) as = - ff (P-Po)aras + fff gav
+Poo
+
+integrated over a closed surface adds
+
+zero to the equation,
+
+but
+
+this form of the
+
+pressure integral will be useful. g is a body force term. The only restriction is that we chose
+our outflow control surface to be normal to the wake some distance away from the body
+
+(see figure D.2). Now the momentum flux and pressure terms may be divided into those on
+the farfield surfaces and those on the solid surfaces.
+
+D.3
+
+Farfield
+
+Fluxes
+
+and
+
+Pressure
+
+The farfield flux and pressure integrals in equation D.7 may be computed using small perturbation velocities. Away from the outflow-plane vortex sheet, all of the velocity perturbations
+are small, so that equations may be linearized.
+
+Near the sheet, u’ is small, but v’ and w’
+
+are not. If the exit plane is positioned normal to the z-axis, the z-component of the farfield
+flux term is given by:
+
+[If
+
+pu(g-n)dS = [fe wo (too + wv’) [(uco + u/)i-a + v'j-at w'k-al as
+[fe
+=
+
+II
+
+4.
+
+[fe
+
+BDys
+
+(uz, + 2utgot') i +
+Pototi:-ndS
+
+any?
+
+II
+
+Nyy
+
+Upgd'j- ft + Uoow'k - Al dS
+
+(D.8)
+
+thao tt Ro + Uggv'j- A+
+
+Pottoui-ndS
+
+122
+
++ /
+
+boo
+
+uow'k. nl
+
+Uo PeJed®
+
+nd
+
+ds
+
+u'* terms are neglected in favor of other terms.
+
+u'v' and u'w! are not necessarily small at
+
+the exit plane, but j- 7 and &- 7 are zero there since we selected the exit plane such that
+
+n =i.
+
+Also equation D.6 has been used to replace the last group of flux terms.
+
+Now, the
+
+farfield pressure term is given by:
+
+= [J
+
+-|f ANyy (P — Po)i-idS
+
+=
+—
+
+1
+
+Poo [2tteou! + (u? +o? + w\li-ads
+
+AMyy 2
+
+Von,
+
+Poottot n-idS
+/
+
+-
+
+Py
+
+(D.9)
+
+a
+
+5 T Dona P= ("+ 0") a8
+exit
+
+Again, u’* terms have been neglected.
+
+D.4
+
+Surface
+
+Fluxes
+
+and
+
+Pressure
+
+Using the integral momentum BL equations in the form of equation C.10, the wall momentum flux becomes:
+
+dS
+Non. u(pg-n) ds = If. Tow (62-2) + Tew (éz 4)
+7
+
+I - |(ée -4) Peetted” + (é: 4) peqewed*| -adl
+
+-
+
+p.926. | -Adl
+[. (Cp peqeOz + (6: +i)
+
+(D.10)
+
+where 0N,, is over solid surfaces. The middle term on the right-hand-side becomes
+
+—~ /
+
+\(éz . 7) PeJetted”
+
++
+
+(é, . i) pedewed” | -ndl
+
+=
+
+-|[
+
+u (peqe5*)
+oO
+
+since u = u,-(€--i) + w.(é,-%). The surface pressure integral is simply
+
+123
+
+‘ndl
+
+(D.11)
+
+- [ff
+D.5
+
+Interior
+
+ONe
+
+(p-poo)t-ias
+
+Momentum
+
+-[f
+
+7
+
+pa-ias
+
+(D.12)
+
+Sources
+
+The artificial viscosity terms may be viewed as producing momentum sources [58].
+
+The
+
+equation that is being solved is the continuity equation with a modified density, p = p+ dp.
+Hence the actual Full Potential equation is:
+
+V-((p + 5p)q} = 0
+or
+
+V - (pq) = —V-(6pq)
+
+(D.13)
+
+Now, using a vector identity,
+
+V -(euq) — p(q-V)u = uV- (09)
+and combining this with Euler’s equation in the z-direction,
+
+.
+
+p(q-V)u
+
+_
+
+Op
+
+=
+
+—Z
+
+=
+
+—Vp-i
+
+we arrive at:
+
+V - (pug) = —V-(pi) + uV - (99)
+
+(D.14)
+
+Finally, taking the integral of D.14, combining with equation D.13, and employing the
+Divergence Theorem, we have:
+
+[ff weta)as=-
+
+ff paiast fff -w- (5a av
+
+(D.15)
+
+This is the steady, inviscid, integral momentum equation with artificial viscosity induced
+momentum sources, therefore
+
+124
+
+fff gaVv = Ife _uV «(6p q) dV
+
+(D.16)
+
+In the case of a wing with shocks, a surface pressure integration will indicate wave drag.
+However,
+
+a momentum integral evaluation in the farfield would yield no wave drag because
+
+the Full Potential equation is isentropic [67]. In this case, the surface pressure integral and
+monientum source integrals cancel in equation D.15 to yield no momentum loss in a farfield
+
+integration (Sloan, pu(q-n) dS = 0).
+
+D.6
+
+Total Drag
+
+Starting with the integral momentum theorem (Eqn.
+
+D.7), the farfield and body surface
+
+contributions (D.8, D.11, D.9, D.i2) and the interior momentum sources (D.16) are expressed as:
+
+//
+
+n II
+
++ I/
+
+O0w
+
+Tew
+
+any,»
+
+ON
+
+yy
+
+(é,
+
+: i)
+
++
+
+Tzw
+
+(é,
+
+. 2)
+
+dS
+
+Uauli-aidS = -ff
+
+pesto
+
+-ias += ff
+2
+
+—
+
+an.
+
+DDeawit
+
+/
+
+boo
+
+I(ée
+
+: t) pe92 Ox
+
++
+
+. t) p.926, |
+
+(é,
+
+Aids
+
+dl
+
+(D.17)
+
+poo (v + w") dS - If} uV «(5p4) dV
+N
+
+Two of the terms cancel, and the term containing kinetic energy at the exit plane (v’ 2
+
+ew! *)
+
+becomes:
+
+Ila te") 8 = dpe, 06-908
+= Boe 6861-} 0
+
+i
+dg di
+- 5Po | (Papper — Grower) ag,
+5nd -_ 1aa aga
+
+where the 2-D Divergence theorem and the continuity equation (V7@¢ = 0) have been used.
+Two of the terms in Eqn. D 17 constitute the definition of drag, hence:
+
+II
+
+D
+
+ONw
+
+l
+
+Tew (ée°8) + Tew (ei) ds + ff
+
+anew
+
+pa-rdS
+
+Od
+
+= Poo [ ag at
+
+(D.18)
+
+on
+
+—
+
+The Ags
+
+IT fe uV -(dpq) dV
+
+term is due to kinetic energy losses associated with vortex drag, the 6, and
+
+@, terms represent the viscous momentum
+
+wave drag.
+
+defect, and the body force term represents the
+
+The induced and viscous drag components are summations of small positive
+
+terms.
+
+And the wave drag is the sum of positive and negative terms that are not nearly
+
+equal.
+
+So it is expected that the drag calculation based on this formula will be less prone
+
+to numerical noise.
+
+126
+
+

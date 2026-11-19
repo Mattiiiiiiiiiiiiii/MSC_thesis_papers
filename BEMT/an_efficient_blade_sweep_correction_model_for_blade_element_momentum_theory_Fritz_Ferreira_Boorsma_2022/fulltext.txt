@@ -1,0 +1,1502 @@
+Delft University of Technology
+
+Document Version
+Final published version
+Licence
+CC BY
+Citation (APA)
+Fritz, E. K., Ferreira, C., & Boorsma, K. (2022). An efficient blade sweep correction model for blade element momentum
+theory. Wind Energy, 25(12), 1977-1994. https://doi.org/10.1002/we.2778
+
+Important note
+To cite this publication, please use the final published version (if applicable).
+Please check the document version above.
+Copyright
+In case the licence states “Dutch Copyright Act (Article 25fa)”, this publication was made available Green Open
+Access via the TU Delft Institutional Repository pursuant to Dutch Copyright Act (Article 25fa, the Taverne
+amendment). This provision does not affect copyright ownership.
+Unless copyright is transferred by contract or statute, it remains with the copyright holder.
+Sharing and reuse
+Other than for strictly personal use, it is not permitted to download, forward or distribute the text or part of it, without
+the consent of the author(s) and/or copyright holder(s), unless the work is under an open content license such as
+Creative Commons.
+Takedown policy
+Please contact us and provide details if you believe this document breaches copyrights.
+We will remove access to the work immediately and investigate your claim.
+
+This work is downloaded from Delft University of Technology.
+
+Received: 24 November 2021
+
+Revised: 13 July 2022
+
+Accepted: 21 August 2022
+
+DOI: 10.1002/we.2778
+
+RESEARCH ARTICLE
+
+An efficient blade sweep correction model for blade element
+momentum theory
+Erik Kaspar Fritz1,2
+
+|
+
+Carlos Ferreira2
+
+1
+Wind Energy, TNO Energy Transition, Petten,
+Netherlands
+2
+
+| Koen Boorsma1
+
+Abstract
+
+Faculty of Aerospace Engineering, Technical
+University of Delft, Delft, Netherlands
+
+This article proposes an efficient correction model that enables the extension of the
+
+Correspondence
+Erik Kaspar Fritz, Wind Energy, TNO Energy
+Transition, Petten, Netherlands.
+Email: e.fritz@tno.nl
+
+algorithms, assuming a straight blade in the rotor plane, cannot account for the
+
+Funding information
+Rijksdienst voor Ondernemend Nederland,
+Grant/Award Number: TEHE119018
+
+blade element momentum method (BEM) for swept blades. Standard BEM
+changes in the induction system introduced by blade sweep. The proposed extension
+corrects the axial induction regarding two aspects: the azimuthal displacement of the
+trailed vorticity system and the induction of the curved bound vortex on itself. The
+extended algorithm requires little additional processing work and maintains BEM's
+streamtube independent approach. The proposed correction model is applied to
+simulations of swept blade geometries based on the IEA 15 MW reference wind
+turbine. Results show good agreement with lifting line simulations that inherently can
+account for the swept blade geometry.
+Blade sweep couples bending and torsion deformations by curving the blade axis in
+the inplane direction. As such, it can be used to passively alleviate loads and, thus,
+aeroelastically tailor wind turbine blades. The implementation of aeroelastic tailoring
+techniques, and the aeroelastic analysis in general, becomes increasingly significant
+with the size of wind turbine rotors continually rising. Due to its low computing
+complexity, BEM remains a crucial tool in the aerodynamic and aeroelastic analysis of
+wind turbine rotors. Thus, the proposed correction model contributes to a fast and
+accurate evaluation of swept blade designs.
+KEYWORDS
+
+blade element momentum theory, blade sweep, engineering model, wind turbine
+aerodynamics
+
+1
+
+|
+
+I N T RO DU CT I O N
+
+With recent developments, the blades of horizontal axis wind turbines (HAWT) have grown beyond 100 m blade span. These increasingly slender
+and flexible structures necessitate a detailed aeroelastic analysis. Simultaneously, concepts for aeroelastic tailoring of the blades' properties
+become ever more relevant. One such tailoring technique is blade sweep, defined as a fore or aft displacement of the blade axis in the rotor plane.
+This idea was first introduced by Liebst1 in the context of wind turbine blades. By placing the aerodynamic axis at a distance to the blade's
+pitching axis, flapwise deformations are coupled to a twist of the blade similar to the effect that off-axis fibre orientation can have. Blade sweep
+can, therefore, be used as a passive load alleviation technique. For example, an aft-swept blade will experience a negative pitching moment that
+This is an open access article under the terms of the Creative Commons Attribution License, which permits use, distribution and reproduction in any medium,
+provided the original work is properly cited.
+© 2022 TNO and The Authors. Wind Energy published by John Wiley & Sons Ltd.
+Wind Energy. 2022;1–18.
+
+wileyonlinelibrary.com/journal/we
+
+1
+
+2
+
+FRITZ ET AL.
+
+locally twists the blade to lower angles of attack, thereby, reducing the loading. Ideally, this enables an extension of the rotor diameter while
+keeping the load envelope of a non-swept reference blade.
+The potential of blade sweep was demonstrated in the STAR (Sweep Twist Adaptive Rotor) experiment. Zuteck2 initially investigated swept
+blade planforms and found that up to 4 of twist could be reached at the blade tip. Larwood and Zuteck3 ran simulations using FAST and ADAMS
+to investigate the aeroelastic behaviour of a preliminary design of the STAR rotor. They found that a 20% decrease in peak flap bending can be
+achieved in comparison to a straight reference blade while power capture remains nearly constant. In the final project report, Ashwill et al4 report
+that using swept blades with slightly increased diameter led to an increase of annual energy capture of 10–12%. The measured blade root
+moments in flatwise and edgewise direction showed no significant increase while a conventional, straight rotor of equivalent diameter was
+expected to increase these loads by 80%.
+Next to the experimental approach, blade sweep has also been studied numerically. Suzuki et al5 used a hybrid Navier-Stokes/vortex-panel
+solver to simulate the NREL Phase VI rotor with aft sweep. The results showed no significant change in power. Kaya et al6 employed computational fluid dynamics (CFD) to study the NTNU rotor with various sweep configurations. The power coefficient increased for a forward swept
+blade while backward sweep led to a decrease in power production due to a lower thrust coefficient. Contrary results were obtained by Chattot7
+using a lifting line code based on the Goldstein model to study the NREL 6 kW rotor where backward sweep resulted in a slight power increase
+while the forward sweep reduced the rotor power. Picot et al8 studied the effect of swept blades on a free-yawing, stall controlled downwind
+rotor using HAWC2. They show that the bend-twist-coupling delays stall to higher wind speeds, thereby, increasing the rated power. Sessarego
+et al9 used the lifting line module of MIRAS to simulate the NREL 5 MW turbine in complex inflow conditions. Their results indicate that blade
+sweep can positively affect power and thrust performance of the turbine. Next to increased annual energy production, Larwood et al10 report a
+positive impact of blade sweep on flapwise bending loads. This is in line with a study by Verelst and Larsen, who simulated the NREL 5 MW rotor
+for various sweep configurations using HAWC2. Their study showed that backward sweep can be used to reduce flapwise fatigue and extreme
+loads. Using the lifting line code AWSM coupled to a structural solver, Grasso et al11 show that an aft swept blade oscillates less than a straight
+reference blade when hit by a gust, indicating the potential for a reduction of fatigue loading.
+An important effect of the bend-twist-coupling is the introduction of severe additional torsional loads. Suzuki et al5 and Verelst and Larsen12
+report increases in the range of 280–400%. When simulating the NREL 5 MW rotor, Larwood et al10 encountered a torsional instability
+potentially related to the flutter boundary.
+The studies presented above mainly rely on numerical models of medium and higher fidelity, such as lifting line models, CFD, and hybrid
+vortex panel/CFD. The computational cost of these methods prohibits their use in the concept design and certification phase of wind turbines
+where many design variations and load cases are calculated. In wind turbine applications, such calculations are generally performed using codes
+based on blade element momentum theory. BEM, however, assumes a straight blade geometry located in the rotor plane and, thus, cannot
+account for the effect of sweep on the induction. This effect is neglected in the studies presented above8,12 where the BEM based tool HAWC2
+is used. In order to further investigate and exploit the benefits of swept wind turbine blades, BEM based tools need to be extended to account
+for the effects of blade sweep. One such approach is presented by Li et al.13 The employed model is based on the near wake model originally
+adapted for wind turbine applications by Madsen and Rasmussen14 and further developed by Pirrung et al.15 It combines a lifting line
+representation of the near wake consisting of the first quarter revolution of the wake with a far wake BEM implementation. In their work,
+Li et al13,16 extend this near wake model to be able to account for swept blade geometries. Contrary to BEM, the near wake model models the
+coupling of the solutions of multiple streamtubes.
+The present work introduces a novel method to extend BEM so that it can account for the effect of blade sweep. For this purpose, a sweep
+correction model is derived that is applied to the axial induction. The proposed model retains the streamtube independent approach of BEM and
+adds little computational effort. Section 2 presents the methodology including the rotor model, the sweep parametrisation, and numerical tools
+used in this study. The sweep correction function is derived in Section 3. A comparison between results from lifting line and BEM simulations is
+shown in Section 4, validating the newly developed BEM extension. Finally, conclusions are presented in Section 5.
+
+2
+2.1
+
+M E TH O DO LO GY
+
+|
+|
+
+Sweep parametrisation
+
+Blade sweep is defined as displacement of the blade axis in the rotational plane. A schematic of a blade with aft sweep is shown in Figure 1.
+For the parametrisation of the blade sweep, a power law equation is chosen that was previously also applied by Zuteck,2 Verelst and
+Larsen,12 and Larwood et al.10
+(
+xΛ ¼
+
+for y ≤ ystart
+
+γ
+yystart
+xtip Ry
+for y > ystart
+start
+
+0
+
+ð1Þ
+
+3
+
+FRITZ ET AL.
+
+FIGURE 1
+
+Schematic of an aft swept blade
+
+Here, xΛ is the inplane displacement of the blade axis, xtip is the tip displacement, ystart is the sweep starting position, γ is the sweep exponent,
+and R is the blade radius. The local sweep angle Λ can be determined as ΛðyÞ ¼ tan 1 ðdx=dyÞ. The local aerofoil orientation is kept perpendicular
+to the blade pitching axis. In order to maintain the same tip radius as the unswept reference blade, the swept coordinates are scaled by
+ð1 þ x2tip =R2 Þ
+
+1=2
+
+. Several other approaches for sweep parametrisation can be found in the literature. Kaya et al6 report a parametrisation similar to
+
+Equation (1), based on xtip , ystart and a third sweep parameter. Hansen17 uses a combined linear-quadratic shape function to allow for combinations of fore and aft sweep. Li et al13 employ Bézier curves parameterised by sweep starting position, tip displacement, and tip sweep angle to
+describe the blade axis shape. The sweep correction model proposed in Section 3 is independent of the parametrisation variables and, thus, also
+applicable to all methods mentioned above.
+
+2.2
+
+Numeric models
+
+|
+
+2.2.1
+
+|
+
+Blade element momentum theory
+
+Despite the availability of numerical models of higher fidelity, such as CFD and vorticity-based methods, the blade element momentum theory
+remains a crucial model to analyse the aerodynamic performance of rotors such as wind turbines or propellers. This is due to its rapid calculation
+speed, which makes it suitable for the calculation of vast numbers of loadsets required, for example, for wind turbine certification.
+The BEM algorithm couples the momentum theory of an actuator disc with the blade element theory. To this purpose, the blade is discretised
+by a number of blade elements where the local loads are calculated by interpolating aerofoil polars based on the inflow conditions. Similarly, the
+actuator disc is discretised using concentric annuli that correspond to a number of streamtubes for which the momentum equations are solved
+independently. Many correction models exist to improve the accuracy of BEM algorithms, for example, correction models for obtaining 3D polars,
+unsteady aerofoil aerodynamics, tilt/cone/yaw angles, tower effects, and so forth. In the baseline algorithm used in this study, only Prandtl's tip
+and root correction and Glauert's correction for heavily loaded rotors are implemented as presented by Burton et al.18
+Based on an initial guess for the axial induction factor a and the tangential induction factor a0 , the local inflow angle ϕ is calculated as
+ϕ ¼ tan 1
+
+
+
+
+U∞ ð1  aÞ
+0
+ωrð1 þ a Þ
+
+ð2Þ
+
+where U∞ is the free stream velocity, ω is the rotational speed and r is the radial position of the regarded annulus. Together with information of
+the blade pitch and local twist, the inflow angle is used to calculate the local forces from aerofoil polars. The normal force F n in turn yields the
+local thrust coefficient
+F n drNb
+CT ¼ ρ 2
+:
+2 U∞ Aann
+
+ð3Þ
+
+Here, dr is the radial extent of the annulus, Nb is the number of blades, ρ is the density of air, and Aann is the annulus surface area. At high
+values for thrust coefficient or axial induction, respectively, BEM theory becomes invalid, and the momentum relation needs to be replaced with
+an empirical model. Glauert's correction model gives the following relation between axial induction factor a and thrust coefficient CT :
+8
+pﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+>
+1  CT
+1
+>
+>
+,
+for CT < CT 2
+
+<
+2
+2
+a¼
+CT  CT 1
+>
+>
+, for CT ≥ CT 2
+>
+: 1 þ 4pﬃﬃﬃﬃﬃﬃﬃ
+CT 1  4
+pﬃﬃﬃﬃﬃﬃﬃ
+where CT1 ¼ 1:816 and CT 2 ¼ 2 CT 1  CT 1 .
+
+ð4Þ
+
+4
+
+FRITZ ET AL.
+
+Prandtl's tip correction is applied to correct the momentum theory for the effects of finite numbers of blades. At the blade tip, a trailing tip
+vortex occurs, which leads to large values of induction and therefore altered inflow conditions. Similar effects occur at the blade root. The Prandtl
+factors for tip and root correct for this increase in induction and can be calculated as
+0
+qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ 1
+Nb R
+λr 2
+2
+1 @  2 ð r 1Þ 1þð1aÞ A
+Ftip ¼ cos
+e
+π
+0
+qﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ 1
+Nb r root
+λr 2
+2
+1 @ 2 ð r 1Þ 1þð1aÞ A
+Froot ¼ cos
+e
+π
+
+ð5Þ
+
+ð6Þ
+
+where rroot and R are the root and tip radius and λr is the local tip speed ratio. The total Prandtl factor FP ¼ F tip  Froot is then used to correct the
+annulus-averaged induction factors to account for the induction at the blade
+ab ¼ a=F P
+
+ð7aÞ
+
+a0b ¼ a0 =F P
+
+ð7bÞ
+
+Equations (2) to (7) are solved iteratively until convergence is reached.
+A BEM algorithm as described here inherently assumes a straight blade located in the rotor plane. Thus, it can account neither for the
+displacement of the trailed vorticity due to blade sweep, nor for the induction of the curved bound vortex representing a swept blade on itself. To
+include both effects, a correction model is developed in Section 3 that can represent the changes in induction as a function of the sweep shape
+and the radial position of the evaluation point.
+
+2.2.2
+
+|
+
+Lifting line theory
+
+In the lifting line theory, the rotor blade is represented by a bound vortex filament running through the quarter chord point of the specified blade
+cross sections. The rotor wake is represented by a system of trailed and shed vorticity usually referred to as vortex lattice. In this study, steady
+conditions are assumed so that no shed vorticity occurs. Wake self-induction is neglected leading to a wake represented by concentric helical
+vortex filaments trailing at the edges of the numerical elements by which the blade is discretised. No vortex core model is applied to the induction
+of the trailed vorticity elements. For the representation of the wake, an azimuthal increment of Δθ ¼ 1 ∘ is chosen and a downstream wake
+extension of Lwake ¼ 10D is simulated, where D is the rotor diameter. The trailed vortices are convected by U ¼ U∞ ð1  arotor Þ, where arotor is the
+
+
+rotor averaged axial induction factor in the rotor plane, and the helix lead angle is calculated as δ ¼ tan1 ð1aλrrotor ÞR . In this study, arotor is calculated by a BEM simulation with equivalent operating conditions as described in Section 2.2.1.
+Local loads are calculated based on the inflow conditions and interpolated aerofoil polars which are provided as input. Based on the loads,
+the bound circulation and the resulting wake circulation can be calculated. The induced velocity is determined by evaluating the Biot-Savart law.
+As described in Section 2.2.1, a curved bound vortex representing a swept blade induces a velocity on itself. In this study, simulations are run with
+and without accounting for the bound vortex self-induction. A more detailed discussion of the vortex core model and radius used in the calculation of the bound vortex' self-induction follows in Section 3.3. Knowing the local induction at the rotor blade, the inflow conditions, the blade
+loads and the bound and trailed vorticity can be updated. At the same time, the prescribed wake geometry is kept constant. This way, the loads
+are calculated in an iterative procedure until convergence is reached. Next to the prescribed wake approach described here, the free wake lifting
+line code AWSM19 is employed to evaluate the influence of the wake discretisation approach on the aerodynamic solution. The lifting line theory
+is capable of representing the blade axis and the wake in three-dimensional space and, therefore, is appropriate to simulate swept blade designs.
+
+3
+
+|
+
+S W E E P C O R RE C T I O N M O D EL
+
+By sweeping the blade, two main changes are made to the vorticity system.
+1. The release point of trailed vorticity is moved ahead or aft of a straight reference blade in the azimuthal direction. Based on Equation (1), it is
+obvious that the largest displacement occurs at the tip. Modern wind turbine blades are designed to achieve an almost constant circulation
+
+5
+
+FRITZ ET AL.
+
+distribution along their span, meaning that the majority of vorticity is trailed at the root and tip. Thus, the effect of sweep can be approximated
+by the effect of the changing tip vortex position. Compared to a reference case with a straight blade, the sweep will add or subtract a piece of
+the helical vortex filament that describes the tip vortex. For realistic sweep configurations and wind turbine blade dimensions, this
+additional/missing part of the tip vortex can be approximated as straight vortex filament and the induced axial velocity of a swept blade W ind,Λ
+can be described as
+W ind,Λ ¼ W ind,ref þ W ind,VF
+
+ð8Þ
+
+where the swept case, reference case and the additional/missing vortex filament are denoted with the subscripts “Λ,” “ref,” and “VF.”
+Consequently, the axial induction factor of a swept blade configuration can be expressed as
+
+
+W ind,VF
+aΛ ¼ aref 1 þ
+:
+W ind,ref
+
+ð9Þ
+
+2. The bound vortex is curved and, in contrast to a straight vortex filament, induces a velocity on itself.
+
+3.1
+
+|
+
+Velocity induced by a semi-infinite helical vortex filament
+
+The tip vortex of a wind turbine blade rotating in clockwise direction as seen from upstream can be described by a helical vortex filament, its
+curve defined as x ¼ R sin θ, y ¼ R cosθ and z ¼ θl. A schematic of this filament is shown in Figure 2.
+Kawada20 and Hardin21 independently derived the equations describing the velocity field induced by a infinitely extending helical vortex
+filament. Often overlooked, Kawada's contribution is related by Fukumoto et al.22 Using the Kawada-Hardin equations, the velocity field is
+calculated by means of the Kapteyn series. Extended to account for the tip vortices of multiple equispaced blades, the equation for the induced
+velocity along the helix axis reads
+
+uz ¼
+
+
+
+ 
+Nb X
+∞
+Im ðmr=lÞK 0m ðmR=lÞ
+Nb Γ 1
+ΓR X
+cos ðmχ n Þ
+ 2
+m 0
+2πl 0
+I m ðmR=lÞK m ðmr=lÞ
+πl n¼1 m¼1
+
+ð10Þ
+
+where l is the helix pitch, χ ¼ θ  z=l and χ n ¼ χ þ 2πðn  1Þ=Nb . Im ðxÞ and K m ðxÞ are the modified Bessel functions of first and second kind and the
+prime indicates their derivative with respect to the argument. The upper line in the notation “f:g” represents the solution for r < R while the lower
+P b
+line states it for r ≥ R. With multiple blades present, the wake exhibits a periodicity. The term Nn¼1
+cosðmχ n Þ then becomes zero if m is not a
+multiple of Nb , a circumstance referred to as “Kawada cancellation.” Okulov23 presents a more efficient approximation to the velocity field to
+which Wood et al24 apply the Kawada cancellation. While previous work24 still contained a typographic mistake, the correct equations are given
+by Wood et al.25
+8
+"
+# 
+rﬃﬃﬃﬃﬃ
+!
+>
+Nb Γ Γ cR Nb U
+1 9ðR=lÞ2 þ 2 3ðr=lÞ2  2
+U
+>
+>
+>
+þ
+þ
+for r < R
+þ
+log 1 þ
+>
+< 2πl 2πl cr 1  U 24
+c3r
+1U
+c3R
+!
+"
+#
+uz ¼
+rﬃﬃﬃﬃﬃ
+
+
+>
+>
+Γ cR Nb
+1 9ðR=lÞ2 þ 2 3ðr=lÞ2  2
+1
+>
+>
+for r ≥ R
+þ
+log 1 þ
+>
+3
+3
+: 2πl cr 1  U þ 24
+cr
+U1
+cR
+
+with
+
+FIGURE 2
+
+Schematic of a helical vortex filament
+
+ð11Þ
+
+6
+
+FRITZ ET AL.
+
+cR ¼
+
+sﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+ 2
+R
+1þ
+,
+l
+
+cr ¼
+
+U¼
+
+ð12Þ
+
+rﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+r 2
+1þ
+,
+l
+
+rðcR þ 1Þ
+expðcr  cR Þ
+Rðcr þ 1Þ
+
+ð13Þ
+Nb
+:
+
+ð14Þ
+
+Okulov23 presents additional terms to further improve the accuracy of this approximation. Wood et al25 compare Okulov's extended
+approximation to other approximations of the Kawada-Hardin equations. They conclude that, while increasing the accuracy at high helix pitch
+values, Okulov's additional terms do not significantly improve the accuracy for wind turbine relevant helix pitch angles ðl ≈ 0:1Þ. Thus, the
+additional terms are omitted from the discussion.
+Equation (11) gives an expression for the evaluation of the induction of an infinite helical vortex filament. The tip vortex of a wind turbine
+blade, however, only spans downstream of the rotor and, thus, resembles a semi-infinite helical vortex filament. It should be noted, that the
+problem of induction by a helical vortex filament is not symmetrical. Nonetheless, dividing the solution of Equation (11) by two gives a good
+approximation of the semi-infinite vortex filament's induction. This will be demonstrated by comparing this approach to results obtained when
+evaluating the Biot-Savart law for a discretised helical vortex filament only spanning downstream of the rotor. Both methods are compared for
+multiple helical vortex filaments defined by the axial induction factor a, tip speed ratio λ, number of blades Nb , wake extension Lwake =D and the
+azimuthal increment Δθ. The latter two parameters are only relevant for the discretisation of the filament when calculating the induction using
+the Biot-Savart law. The helix configurations are listed in Table 1, where the bold script indicates the parameter variation compared to Helix 1.
+Figure 3 shows the ratio of induced velocity calculated using the Biot-Savart law (subscript BS) over the solution of Equation (11) divided by
+two (subscript ∞=2, denoting a semi-infinite helix) as a function of the radial position.
+The influence of the input parameters when compared with the baseline helix 1 can be summarised as follows:
+• Changes in the axial induction a (helix 2) or tip speed ratio λ (helix 3) have no significant influence on the agreement of Equation (11) and the
+Biot-Savart evaluation.
+
+TABLE 1
+
+Helix parametrisation
+a [-]
+
+λ [-]
+
+Nb [-]
+
+Lwake =D [-]
+
+Δθ [ ]
+
+Helix 1
+
+0.3
+
+9
+
+1
+
+10
+
+1
+
+Helix 2
+
+0:2
+
+9
+
+1
+
+10
+
+1
+
+Helix 3
+
+0.3
+
+7
+
+1
+
+10
+
+1
+
+Helix 4
+
+0.3
+
+9
+
+3
+
+10
+
+1
+
+Helix 5
+
+0.3
+
+9
+
+1
+
+100
+
+1
+
+Helix 6
+
+0.3
+
+9
+
+1
+
+10
+
+5
+
+FIGURE 3
+
+Ratio of induction when evaluating a helical vortex filament using Equation (11) and Biot-Savart law
+
+7
+
+FRITZ ET AL.
+
+• A larger number of blades (helix 4) will result in more evenly spread vorticity, thereby reducing the impact of the symmetry assumption. The
+results of helix 4 show the best agreement between the Biot-Savart law and the analytical solution.
+• Instead of an exact representation of the helical vortex filament, the Biot-Savart law is used to evaluate a set of straight vortex filaments that
+approximate the helix shape. Whereas Equation (11) is a solution for an infinite helical vortex filament, the discretised helical filament spans a
+finite length Lwake downstream of the rotor. By increasing the discretised wake length (helix 5), deviations in the helix centre can be reduced
+while the error at the tip remains unchanged. Additionally, the azimuthal increment defines how closely the curved helical shape is
+approximated. By increasing the azimuthal increment (helix 6), this approximation becomes worse which increases the error particularly in the
+proximity of the vortex itself.
+Based on these observations, the helical filament of the tip vortex will be discretised using the parameters of helix 4, see Table 1 for all simulations presented in this section. As such, assuming symmetry of the velocity induced by a helical vortex filament extending infinitely both
+upstream and downstream of the rotor plane introduces an error smaller than 0.5%. It should be noted, that in this section, the wind turbine wake
+is treated as a helix with constant radius while the wake expands behind a real wind turbine. However, Wood26 demonstrates that the approximation of the Kawada-Hardin equation for the axial induced velocity presented, here, remains accurate when compared to a Biot-Savart evaluation
+of an expanding wake.
+
+3.2
+
+|
+
+Velocity induced by the additional/missing vortex filament
+
+The effect of blade sweep is approximated by adding/subtracting a straight piece of vortex filament located in the rotor plane from the
+semi-infinite vortex representing the tip vortex of the blade. A schematic of both a forward and backward swept case is given in Figure 4.
+For simplicity, the trailing vortex is also plotted as straight line, while in reality, it is a helical vortex filament.
+
+!
+
+Considering the Biot-Savart law, the velocity induced at a given point by a straight vortex filament of length d l can be calculated as
+!
+
+V ind ¼
+
+!
+ð!
+Γ r d l
+! 3
+4π
+r
+
+ð15Þ
+
+!
+
+where r is the distance vector between the vortex filament and the evaluation point and Γ is the filament's circulation. The induced axial velocity
+of the additional/missing vortex filament can then be expressed as
+W ind,VF ¼
+
+Γ
+ð cosθ2  cosθ1 Þ
+4πðyV  yP Þ
+
+ð16Þ
+
+where yV and yP refer to the radial position along the blade pitch axis of the trailed vortex and the evaluation point on the blade, respectively.
+Given that cosθ1 ¼ 0 for backward sweep and cosθ2 ¼ 0 for forward sweep, Equation (17) can be simplified to
+W ind,VF ¼ 
+
+FIGURE 4
+
+Γ
+sgnðxtip Þcos θΛ :
+4πðyV  yP Þ
+
+Schematic of the additional/missing vortex filament (dotted line) for an aft swept blade (left) and forward swept blade (right)
+
+ð17Þ
+
+8
+
+FRITZ ET AL.
+
+Here, θΛ is the angle between the trailing vortex filament and the swept blade axis (θ2 for backward sweep and θ1 for forward sweep). This
+angle can be calculated as
+θΛ ¼ tan 1
+
+
+
+
+ 
+yV  y P
+xP
+þ tan 1
+xV  xP
+yP
+
+ð18Þ
+
+where the coordinates of the evaluation point xP , yP and of the tip vortex starting point xV , yV are given in the rotated blade coordinate system
+with axes xB , yB . Note, that the length of the additional/missing vortex filament is not only a function of the sweep parameters xtip , ystart and γ, but
+also of the radial position of the evaluation point.
+Figure 5 shows the velocity induced by such a vortex filament with unit circulation for forward swept blade geometries with varying sweep
+parametrisation in blue. For comparison, the difference in induced velocity between lifting line simulations of the straight reference blade and the
+swept blade geometries are plotted in red. In the lifting line simulations, vorticity is only trailed at the tip. Overall, very good agreement can be
+observed, the differences visible inboard of 80% blade span only appear large due to the logarithmic ordinate. Identical results (with inverted sign)
+are obtained when sweeping the blade backward instead of forward while keeping the other sweep parameters constant.
+The analysis shown here and in Section 3.1 underlines that the axial induction of the tip vortex can be approximated for any swept blade
+configuration with good accuracy by the sum of Equation (11) divided by two and Equation (17).
+Figure 6 shows the ratio of the induced velocity simulated using a lifting line approach to the approximation described above. For this
+simplified case, where vorticity is only trailed at the tip, the maximum error increases the further the tip is deflected and the further outboard the
+sweep begins. However, even for the extreme cases with sweep parameters ystart ¼ 0:75R and xtip ¼ 0:2R, the maximum error remains below
+2.5% indicating a good approximation of the axial induction.
+
+F I G U R E 5 Difference in axial induction between swept and reference geometry. Simulated using a lifting line approach (red) and
+approximated by a straight vortex filament (blue) for swept geometries with xtip ¼ þ0:1R (left) and xtip ¼ þ0:2R (right)
+
+F I G U R E 6 Ratio of induced axial velocity simulated using a lifting line approach to the sweep model for swept geometries with xtip ¼ 0:1R
+(left) and xtip ¼ 0:2R (right)
+
+9
+
+FRITZ ET AL.
+
+3.3
+
+|
+
+Velocity induced by the bound vortex on itself
+
+In lifting line theory, a wind turbine blade is represented by the bound vortex which is discretised by a number of vortex filaments. If this bound
+vortex forms a straight line, it does not induce a velocity on itself. If, however, the bound vortex is curved, it is essential to consider its
+self-induction. In lifting line theory, this is done by evaluating the Biot-Savart law. The induced velocity behaves singular in the direct vicinity of a
+vortex filament. To avoid this effect, regularisation models are used. In this study, the bound vortex filaments are regularised using a Lamb-Oseen
+multiplication factor
+
+K ¼ 1  exp
+
+
+
+αr2
+2
+rc
+
+ð19Þ
+
+where r is the distance between evaluation point and vortex filament, rc is the viscous core radius, and α ¼ 1:25643.27 The choice of the viscous
+core radius has a strong influence on the velocity induced by the curved bound vortex on itself. This is demonstrated exemplary on the left of
+Figure 7. Here, the self-induction of a swept vortex filament with unit circulation strength is plotted. According to Equation (1), the sweep is
+defined by ystart ¼ 0:5R, xtip ¼ 0:2R and γ ¼ 2, where the unswept reference length of the vortex filament is R ¼ 100 m, which is comparable with
+the length of modern wind turbine blades. A blade of this length will have a chord distribution approximately ranging from a maximum of c ¼ 5 m
+to c ¼ 1 m towards the tip. Along this line of thought, the chosen viscous core radii are also related to a mean chord of c ¼ 3 m on the left of
+Figure 7. The filament is discretised using Nelem ¼ 50 elements. It is obvious, that larger viscous core radii lead to reduced self-induction. When
+lowering the viscous core radius, the self-induction increases. There is a lower limit of the viscous core radius beyond which the self-induction
+reaches a converged state that is equivalent to calculating the induced velocity without viscous core radius model.
+In the swept part of the bound vortex where self-induction is most present, the highest contribution to the locally induced velocity comes
+from the discretised vortex filaments in the proximity of the evaluation point. Assuming that the circulation distribution does not rapidly change
+over the span, the following correction model is proposed to account for the bound vortex' self-induction in BEM algorithms. At the beginning of
+a BEM simulation, a one-time evaluation of the bound vortex' self-induction is conducted using the Biot-Savart law. For each blade element i, the
+sum of velocities induced by each other blade element j based on a unit strength circulation distribution is calculated.
+
+!
+
+V ind,Γb ¼1,i ¼
+
+N
+elem
+X
+
+Kj
+
+j¼1
+
+!
+ð!
+1 r i,j  d l j
+3
+!
+4π
+r i,j
+
+ð20Þ
+
+This value of induced velocity per bound circulation strength is stored as a property of the respective blade element. During the iterative
+solution of each streamtube, the axial component of this relative induction W ind,Γb ¼1,i is multiplied by the currently calculated circulation of the
+blade element, thus, approximating the velocity that the entire bound vortex would induce.
+W ind,Γb ,i ¼ W ind,Γb ¼1,i Γb,i
+
+ð21Þ
+
+The resulting change in the axial induction factor is
+ΔaΓb ¼ 
+
+W ind,Γb ,i
+U∞
+
+F I G U R E 7 Self-induced velocity of a swept vortex filament defined by R ¼ 100m, Nelem ¼ 50, ystart ¼ 0:5R, xtip ¼ 0:2R, γ ¼ 2 for different
+viscous core radii (left) and relative integrated circulation of a flat plate (right)
+
+ð22Þ
+
+10
+
+FRITZ ET AL.
+
+The benefit of this correction model is that the streamtube independent approach of most BEM algorithms can be retained.
+On a real wind turbine blade, the bound circulation is distributed over the blade's surface instead of being lumped at the quarter chord point.
+Thus, a discussion regarding a reasonable viscous core radius size follows based on the example of a flat plate. The chordwise circulation
+distribution of a flat plate is given by
+
+γðxÞ ¼ 2U∞ α
+
+rﬃﬃﬃﬃﬃﬃﬃﬃﬃﬃ
+1x
+x
+
+ð23Þ
+
+where α is the angle of attack and x is the chordwise coordinate; see, previous studies, Katz and Plotkin.28 The relative integrated circulation is
+shown on the right of Figure 7. Representing the flat plate by a lifting line at the quarter chord location, it can be observed that a viscous core
+radius of rc ¼ 0:25c would encompass approximately 80% of the bound circulation. Deeming this a good approximation of real conditions, all
+simulations run for this study use this viscous core radius. On the left of Figure 7, the self-induction of a swept bound vortex with rc ≈ 0:25c is
+plotted as solid red line.
+
+3.4
+
+|
+
+Implementation of the sweep correction in BEM
+
+Combining the results of Sections 3.1 to 3.3, the axial induction factor of swept blades can be approximated. The resulting sweep correction can
+be implemented inside of the iterative loop that solves the local blade element loads in equilibrium with the annulus momentum theory. Inside the
+iterative loop, the rotor averaged induction factor arotor is not known. Therefore, the calculation of the helix pitch of the tip vortex (Equation 11) is
+based on the local induction factor a. Consequently, the helix pitch does not only change with the radial position but also during each iteration in
+which the local axial induction factor a is updated until convergence is reached. This approach can be justified by considering that blade sweep
+results in changes especially in the near wake induction. Slight changes in the tip vortex helix pitch due to the varying local induction have a
+relatively smaller impact on the axial induction compared to the additional/missing vortex filament introduced by the sweep.
+It should be noted that both the velocity induced by the vortex filament representing the shifted tip vortex position (Equation 17) and the
+velocity induced by the semi-infinite helical vortex filament representing the wake (Equation 11) are linearly proportional to the tip vortex
+strength. When calculating the correction for the axial induction factor (Equation 9), the division of the two induced velocity terms ensures that
+the circulation is cancelled from the equation. Consequently, this correction term is independent of the tip vortex strength. Numerically, this also
+guarantees the correction model's independence from the blade discretisation, which can have an influence on how the tip vortex strength is
+distributed over the outermost elements.
+Given the assumption that the effect of sweep is described only by an additional/missing vortex filament at the blade tip and the bound
+vortex' self-induction, the influence on the tangential induction factor a0 is negligible. Therefore, the tangential induction is not corrected.
+By placing the sweep correction inside the iterative loop, the solution process remains streamtube independent and minimal computational effort
+is added. The implementation of the sweep correction in BEM is shown in Algorithm 1.
+
+11
+
+FRITZ ET AL.
+
+4
+
+RESULTS
+
+|
+
+4.1
+
+|
+
+Baseline geometry
+
+The IEA 15 MW rotor is chosen as baseline geometry for the numerical investigations presented in this study. Details of this reference turbine are
+taken from the report by Gaertner et al29 and the corresponding GitHub repository.30 To simplify the geometry, slight modifications were done,
+namely, the tilt and cone angle were set to zero and the prebend was neglected. The main characteristics of the modified IEA 15 MW rotor model
+are listed in Table 2.
+Initially, the straight reference blade is simulated using the BEM algorithm described in Section 2.2.1, the lifting line algorithm described in
+Section 2.2.2 and the free wake lifting line code AWSM.19 The subscript ref represents the straight reference blade. The operational conditions
+are U∞ ¼ 10 m/s, λ ¼ 9, and βpitch ¼ 0 . Figure 8 shows the spanwise distribution of axial induction on the left and the circulation distribution on
+the right. There is good agreement between the numerical tools. It can be observed that the lifting line approaches give lower axial induction
+values along almost the entire blade. This is in line with observations documented by Schepers et al31,32 for comparisons between BEM and lifting
+line models of rotors with high induction values. Furthermore, the axial induction calculated using the free wake lifting line code AWSM is lower
+than that of the prescribed wake lifting line approach described in Section 2.2.2. This discrepancy can be attributed to the wake discretisation
+approach. The lower axial induction leads to slightly higher values of the bound circulation for the lifting line calculations. Independent of the
+numerical model, the IEA 15 MW turbine has a constant circulation distribution for large parts of the blade span. The circulation gradient, which
+represents the strength of the trailed vorticity, is largest at the blade tip. Thus, the assumption of vorticity mostly being trailed at the tip as made
+in the derivation of the sweep correction model, is in good agreement with the simulation results.
+The normal and tangential load distributions are plotted in Figure 9. In line with the induction and circulation distributions, the different
+numerical models agree well for the blade loads. Given the overall congruence between the two lifting line codes, the inaccuracy introduced by
+the prescribed wake formulation is deemed negligible. Thus, changes in the aerodynamic blade characteristics due to sweep are analysed based
+
+TABLE 2
+
+Parameters of the modified IEA 15 MW reference wind turbine
+
+Parameter
+
+Value
+
+Unit
+
+Number of blades
+
+3
+
+-
+
+Rotor diameter
+
+240.00
+
+m
+
+Rated power
+
+15.00
+
+MW
+
+Rated wind speed
+
+10.59
+
+m/s
+
+Rated pitch angle
+
+0.00
+
+deg
+
+Design tip speed ratio
+
+9.00
+
+-
+
+Tip prebend
+
+0.00
+
+m
+
+Tilt angle
+
+0.00
+
+deg
+
+Cone angle
+
+0.00
+
+deg
+
+Note: Compared with the original report,29 the prebend, tilt, and cone are removed.
+
+F I G U R E 8 Spanwise distribution of the axial induction factor (left) and circulation (right) of the straight reference blade, case: U ¼ 10 m/s,
+λ ¼ 9, βpitch ¼ 0
+
+12
+
+FRITZ ET AL.
+
+FIGURE 9
+βpitch ¼ 0
+
+Spanwise distribution of the normal force (left) and tangential force (right) of the straight reference blade, case: U ¼ 10 m/s, λ ¼ 9,
+
+TABLE 3
+
+Sweep parameter variation
+
+Parameter
+
+Value
+
+ystart
+
+½0:25, 0:50, 0:75R
+
+xtip
+
+½0:2,  0:1, þ 0:1, þ 0:2R
+
+γ
+
+2
+
+FIGURE 10
+
+Swept blade geometries for xtip ¼ 0:1R (left) and xtip ¼ 0:2R (right)
+
+on the lifting line algorithm with prescribed wake for the remainder of this paper. The cylindrical wake used in this approach matches the wake
+assumptions made in the derivation of the sweep correction model for BEM. Consequently, this model is well suited for the validation of the
+extended BEM algorithm.
+
+4.2
+
+|
+
+Sweep variation
+
+For the simulations presented in this section, the sweep starting position ystart and the tip displacement xtip are varied while keeping the sweep
+exponent γ constant. The parameter variation is listed in Table 3 and a graphical representation of the resulting blade geometries is shown in
+Figure 10.
+Both the prescribed wake lifting line model as well as the extended BEM model are employed for simulating the swept blade geometries. The
+lifting line results are denoted as LL, the subscripts ref and Λ represent the straight and swept blade simulations, respectively. Additionally, the
+subscript Γb indicates that the velocity induced by the bound vorticity on the blade itself has been taken into account. While the BEM simulations
+employ the correction model described in Section 3.3 to do so, the lifting line simulations directly evaluate the velocities induced by the bound
+vortex on itself. The operational conditions are U∞ ¼ 10 m/s, λ ¼ 9, and βpitch ¼ 0 . Exemplary, the simulation results of a swept blade with
+ystart ¼ 0:5R, xtip ¼ 0:2R, and γ ¼ 2 are graphically compared with those of the straight reference blade.
+
+13
+
+FRITZ ET AL.
+
+F I G U R E 1 1 Spanwise distribution of sweep induced changes to the axial induction factor (left) and normal force (right), case: U ¼ 10 m/s,
+λ ¼ 9, βpitch ¼ 0 ∘ , ystart ¼ 0:5R, xtip ¼ 0:2R, γ ¼ 2
+
+The sweep induced change of the axial induction factor a is plotted on the left in Figure 11. First, the results of the simulations not modelling
+the bound vortex induction are discussed (solid lines). As expected for the presented case with aft sweep, the axial induction factor drops towards
+the tip. This is due to the aft displacement of the tip vortex in azimuthal direction resulting in a “missing” part of vortex filament compared to the
+straight blade. Contrary to this, a forward sweep will cause an increase in axial induction close to the tip. The results from the extended BEM
+simulation show good agreement with the lifting line simulations. The changes in normal force F N are depicted on the right of Figure 11. Due to
+the decreased induction, the blade tip experiences higher angles of attack which entail increased sectional loads. These results demonstrate that
+the sweep correction model enables BEM to account for the sweep induced changes in the trailed vorticity system.
+Along with the normal force, also the tangential force and the bound circulation increase at the tip for aft swept blades. Since their sweep
+induced variation resembles that of the normal force in shape, plots of these changes have been omitted for brevity. The increased circulation at
+the tip moves the large circulation gradient indicating the tip vortex to even higher radial positions. This further supports the assumption of
+vorticity mostly being trailed at the tip as made in the derivation of the sweep correction model. In contrast to that, forward sweep decreases the
+bound circulation at the tip, and therefore, the peak of the circulation gradient is moved further inboard and is slightly smoothed out. Thus,
+forward sweep is less aligned with the model assumptions than aft sweep.
+In a second set of simulations, the induction of the bound vortex on itself is included, see the dashed lines in Figure 11. For aft swept blades
+the induction at the tip is still lower compared with straight reference blade. More inboard, however, the curved bound vortex increases the axial
+induction. Sweeping the blade forward has a comparable effect with inverted sign. As a consequence of the induction distribution, the normal
+force reduces at midspan and increases at the tip. Thus, blade sweep causes a load redistribution over the blade span. The BEM algorithm
+underpredicts the velocity induced by the bound vortex on itself slightly when compared to the lifting line model. Nonetheless, the agreement
+between the two models is very good. As mentioned in Section 3.3, velocity induced by the bound vortex on itself is highly dependent on the
+chosen viscous core radius, here 25% of the local chord. If a lower core radius were chosen, the load changes around the sweep starting point
+would appear stronger.
+In order to validate the sweep correction model for all swept cases, the integrated flapwise moment at the blade root is calculated as
+ðR
+Mf ¼
+
+Fn ðrÞrdr:
+
+ð24Þ
+
+r root
+
+The linear weighting of the force due to the radially increasing moment arm stresses the changes in blade loads due to sweep which mainly
+occur at the tip. The baseline flapwise moments of the straight reference case for BEM and the lifting line code are Mf,BEM,ref ¼ 5:9910  107 Nm
+and
+
+Mf,LL,ref ¼ 6:0393  107 Nm.
+
+Thus,
+
+the
+
+difference
+
+in
+
+flapwise
+
+moment
+
+between
+
+the
+
+two
+
+baseline
+
+simulations
+
+is
+
+ðMf,LL,ref  Mf,BEM,ref Þ=Mf,LL,ref ¼ 0:8%. Based on the parameter variation listed in Table 3, simulations are conducted and the changes in flapwise
+moment compared with the straight reference case are shown in Figure 12. both for simulations accounting for and neglecting the bound vortex'
+self-induction.
+Again, we first discuss the simulations neglecting the influence of the curved bound vortex on itself. The results confirm that both numerical
+models show the same trend for all sweep configurations. In comparison with the lifting line simulations, it can be observed that the relative
+change in flapwise moment is mostly underpredicted by the extended BEM code with the exception of the cases with ystart ¼ 0:25R and xtip < 0.
+The difference between the models grows with increasing tip deflection and sweep starting position. Furthermore, the relative change in flapwise
+moment generally matches slightly better for aft swept cases as was explained on the basis of the circulation distribution. Larger deviations
+between the lifting line and extended BEM code can primarily be found for the cases with ystart ¼ 0:75R and xtip ¼ 0:2R. It should be noted, that
+for these cases the tip displacement is almost equal to the spanwise extent of the blade that is being swept, resulting in a local sweep angle of
+
+14
+
+FRITZ ET AL.
+
+FIGURE 12
+βpitch ¼ 0 ∘
+
+Relative change in flapwise moment for ystart ¼ 0:25R (left), ystart ¼ 0:50R (middle), ystart ¼ 0:75R (right), case: U ¼ 10 m/s, λ ¼ 9,
+
+FIGURE 13
+
+Operating conditions of the IEA 15 MW reference wind turbine
+
+nearly Λ ¼ 60 at the tip. In such conditions, considerable crossflow will occur and the validity of either numerical model is questionable. A better
+solution would be the application of models that resolve the three-dimensional blade geometry such as panel methods or CFD.
+Accounting for the induction of the curved bound vortex on itself leads to a load redistribution as shown in Section 4.2. Figure 12 confirms
+this for all swept configurations that were simulated. While the flapwise root bending moment still increases for all aft swept blades and reduces
+for all forward swept blades, the extent of these changes is smaller compared to the simulations without bound vortex self-induction. The largest
+influence of the bound vortex occurs for the swept blades with ystart ¼ 0:75R. Those cases have the highest curvature in the swept part of the
+blade. As a consequence, the influence of the regularisation applied to the bound vortex' induced velocity reduces. The agreement between the
+lifting line and BEM simulations is reasonably good.
+
+4.3
+
+|
+
+Variation of the operating conditions
+
+The results presented in Section 4.2 demonstrate the effect of different sweep geometries on the aerodynamic performance of the wind turbine
+blade. Those simulations are conducted at operating conditions close to the rated conditions of the IEA 15 MW reference wind turbine. This
+section will extend that analysis to the whole range of operational conditions using the example of a swept blade with ystart ¼ 0:5R, xtip ¼ 0:2R
+and γ ¼ 2. Within the documentation of the IEA 15 MW reference wind turbine,29,30 the operating conditions are defined for wind speeds
+between U∞ ¼ 3 m/s and U∞ ¼ 25 m/s. The tip speed ratio λ and the pitch angle βpitch are plotted in Figure 13.
+The accuracy of the sweep correction model throughout the operating conditions is, again, investigated based on the blade root flapwise
+moment. The left of Figure 14 displays the absolute values of Mf as a function of the wind speed for the straight reference blade. Throughout the
+operational range, differences due to the employed numerical model are small compared to the variation due to the operating conditions. The
+impact of sweep can be seen when plotting the relative change in flapwise moment due to sweep per model, as done on the right of Figure 14.
+For most operating conditions (with the exception of below rated conditions for simulations including the bound vortex induction), the change in
+flapwise moment is underpredicted by the extended BEM model. The difference between the two models grows with increasing wind speed. At
+very high wind speeds, the BEM results even show a decrease in flapwise moment when sweeping the blade. In these conditions, negative
+
+FRITZ ET AL.
+
+15
+
+F I G U R E 1 4 Flapwise moment at the blade root (left), its changes due to sweep (middle) and the deviation between lifting line and BEM
+(right) along the operating conditions, case: ystart ¼ 0:5R, xtip ¼ 0:2R, γ ¼ 2
+
+F I G U R E 1 5 Spanwise distribution of axial induction (left) and normal force (right), case: U ¼ 25m=s, λ ¼ 3:8, βpitch ¼ 22:91 ∘ , ystart ¼ 0:5R,
+xtip ¼ 0:2R, γ ¼ 2
+
+induction and negative thrust occur in the outboard part of the blade. Exemplary, Figure 15 depicts the axial induction and normal force
+distribution at U∞ ¼ 25 m/s of the simulations neglecting the bound vortex influence. Since the sweep correction model for the altered trailed
+vorticity system is applied as a scaling of the axial induction factor it scales positive and negative values alike. In the case of aft sweep, it reduces
+the absolute value of axial induction for both positive and negative induction. This leads to increased negative thrust in the outboard region which
+reduces the integrated flapwise moment of the swept blade at very high wind speeds. The load redistribution caused by the influence of the
+bound vortex on itself as described in Section 4.2 is consistent throughout the operating range and expresses itself through a shift of the change
+in flapwise moments to lower values.
+
+5
+
+|
+
+C O N CL U S I O N S
+
+In the present study, an efficient correction model is presented that enables BEM codes to approximate the changes of axial induction due to
+blade sweep. The model consists of two separate corrections, one of which corrects for the altered trailed vorticity system and the other for the
+self-induction of the curved bound vortex. The former correction is based on the assumption that these changes in induction can be summarised
+in the altered release point of the tip vortex. This effect is modelled by adding/subtracting the induction of a straight vortex filament representing
+the displacement of the tip vortex to/from the induction of the helical tip vortex filament. Since no analytical solution exists for the induction of a
+semi-infinite helical vortex filament, an approximation of the Kawada-Hardin equations describing the induction of an infinite helical vortex
+filament is divided by two. While the introduced inaccuracy is demonstrated to be small, the model would, nonetheless, benefit from the
+derivation of an analytical solution of the velocity induced by a semi-infinite helical vortex filament.
+The influence of the curved bound vortex on itself is accounted for by evaluating the Biot-Savart expression for the swept bound vortex with
+unit circulation during the initialisation of the BEM simulation. The thus calculated induced velocity per circulation strength is stored as property
+of the individual blade elements. This relative velocity is multiplied by the local circulation to obtain an approximation of the velocity induced by
+the entire curved bound vortex.
+
+16
+
+FRITZ ET AL.
+
+The proposed correction function is placed inside the iterative loop of a BEM algorithm ensuring that the effect of sweep is accounted for
+during the convergence procedure. Additionally, the streamtube independent approach of BEM is retained and, thus, only minimal additional
+computational effort is introduced.
+Simulations of the IEA 15 MW reference wind turbine using the extended BEM algorithm are compared to a lifting line model with prescribed
+wake. For the reference case of a straight blade, good agreement is found between BEM and lifting line model regarding the distribution of
+circulation, induction, and local forces. Due to its ability to model the three-dimensional blade axis and rotor wake, the lifting line model can
+predict the changes in induction introduced by the blade sweep. Aft swept geometries result in a reduced axial induction particularly around the
+tip while forward swept geometries exhibit increased induction values. When the curved bound vortex is accounted for, the changes in induction
+at the tip are counteracted by a change of induction with inverted sign around the sweep starting point. This effect leads to a load redistribution
+for swept blade geometries.
+Initially, a set of swept blade geometries with varying sweep start position and tip displacement (both forward and aft sweep) are simulated
+at rated conditions. The trends of increased/decreased axial induction as calculated by the lifting line are approximated well with the correction
+model used in the BEM simulations. Consequently, the circulation distribution and the local blade loads are also in very good agreement between
+the two numerical models. In the second part of the study, simulations are conducted along the operational range of the wind turbine. Limitations
+to the proposed model are found for wind speeds far above rated. In such conditions, low axial induction occurs and the scaling due to the sweep
+correction function has limited effect. Furthermore, the circulation distribution departs from the favourable shape of constant values along large
+parts of the blade for high wind speeds. Hence, the assumption of the sweep correction model that most of the vorticity is trailed at the blade tip
+and root is being violated.
+Blade sweep is mainly motivated by the coupling of flapwise bending and blade twist. Hence, blade sweep can be classified as an aeroelastic
+tailoring technique. The simulations presented in this study are purely steady aerodynamic and no blade deformation is taken into account.
+In future work, the proposed model will be tested in unsteady aeroelastic simulations where the extended BEM algorithm is coupled to a
+structural solver. Such a model will enable extensive load case analyses accounting for the effect of blade sweep while retaining the rapid
+calculation speed inherent to BEM algorithms.
+ACKNOWLEDGEMEN T
+The authors thank Dr. Andreas Herrig for the valuable discussions.
+P EE R R EV I E W
+The peer review history for this article is available at https://publons.com/publon/10.1002/we.2778.
+DATA AVAI LAB ILITY S TATEMENT
+The data that support the findings of this study are openly available on the 4TU.ResearchData repository at doi:10.4121/c.5720048.
+ORCID
+Erik Kaspar Fritz
+
+https://orcid.org/0000-0003-1486-3643
+
+RE FE R ENC E S
+1. Liebst BS. Wind turbine gust load alleviation utilizing curved blades. J Propulsion Power. 1986;2(4):371-377.
+2. Zuteck M. Adaptive blade concept assessment: curved platform induced twist investigation. tech. rep., Office of Scientific and Technical Information
+(OSTI); 2002.
+3. Larwood S, Zuteck M. Swept wind turbine blade aeroelastic modeling for loads and dynamic behavior. AWEA Windpower. 2006:1-17.
+4. Ashwill T, Kanaby G, Jackson K, Zuteck M. Development of the sweep-twist adaptive rotor (STAR) blade. In: 48th AIAA Aerospace Sciences Meeting
+Including the New Horizons Forum and Aerospace Exposition. American Institute of Aeronautics and Astronautics; 2010:1582.
+5. Suzuki K, Schmitz S, Chattot J-J. Analysis of a swept wind turbine blade using a hybrid Navier–Stokes/vortex-panel model. Computational fluid dynamics 2010: Springer Berlin Heidelberg; 2011:213-218.
+6. Kaya MN, Kose F, Ingham D, Ma L, Pourkashanian M. Aerodynamic performance of a horizontal axis wind turbine with forward and backward swept
+blades. J Wind Eng Indust Aerodyn. 2018;176:166-173.
+7. Chattot J-J. Effects of blade tip modifications on wind turbine performance using vortex model. Comput Fluids. 2009;38(7):1405-1410.
+8. Picot N, Verelst D, Larsen T. Free yawing stall-controlled downwind wind turbine with swept blades and coned rotor. In: European Wind Energy
+Conference and Exhibition 2011, EWEC 2011; 2011.
+9. Sessarego M, Ramos-García N, Shen WZ. Analysis of winglets and sweep on wind turbine blades using a lifting line vortex particle method in complex
+inflow conditions. J Phys: Conf Ser. 2018;1037:22021.
+10. Larwood S, van Dam CP, Schow D. Design studies of swept wind turbine blades. Renew Energy. 2014;71:563-571.
+11. Grasso F, van Garrel A, Schepers G. Development and validation of generalized lifting line based code for wind turbine aerodynamics. In: 49th AIAA
+Aerospace Sciences Meeting Including the New Horizons Forum and Aerospace Exposition. American Institute of Aeronautics and Astronautics;
+2011:146.
+
+17
+
+FRITZ ET AL.
+
+12. Verelst DR, Larsen TJ. Load consequences when sweeping blades—a case study of a 5 mW pitch controlled wind turbine, Denmark. Forskningscenter Risoe.
+Risoe-R; Danmarks Tekniske Universitet, Risø Nationallaboratoriet for Bæredygtig Energi; 2010.
+13. Li A, Pirrung G, Madsen HA, Gaunaa M, Zahle F. Fast trailed and bound vorticity modeling of swept wind turbine blades. J Phys: Conf Ser. 2018;1037:
+62012.
+14. Madsen HA, Rasmussen F. A near wake model for trailing vorticity compared with the blade element momentum theory. Wind Energy. 2004;7(4):
+325-341.
+15. Pirrung GR, Madsen HA, Kim T, Heinz J. A coupled near and far wake model for wind turbine aerodynamics. Wind Energy. 2016;19(11):2053-2069.
+16. Li A, Pirrung GR, Gaunaa M, Madsen HA, Horcas SG. A computationally efficient engineering aerodynamic model for swept wind turbine blades;
+2021.
+17. Hansen M. Aeroelastic properties of backward swept blades. In: 49th AIAA Aerospace Sciences Meeting Including the New Horizons Forum and
+Aerospace Exposition. American Institute of Aeronautics and Astronautics; 2011:260-279.
+18. Burton T, Sharpe D, Jenkins N, Bossanyi E. Wind Energy Handbook 2e: John Wiley & Sons; 2011.
+19. van Garrel A. Development of a Wind Turbine Aerodynamics Simulation Module. tech. rep., Petten, Netherlands, ECN; 2003.
+20. Kawada S. Induced velocity by helical vortices. J Aeronaut Sci. 1936;3(3):86-87.
+21. Hardin JC. The velocity field induced by a helical vortex filament. Phys Fluids. 1982;25(11):1949.
+22. Fukumoto Y, Okulov VL, Wood DH. The contribution of kawada to the analytical solution for the velocity induced by a helical vortex filament. Appl
+Mech Revs. 2015;67(6):060801–1–7.
+23. Okulov VL. On the stability of multiple helical vortices. J Fluid Mech. 2004;521:319-342.
+24. Wood DH, Okulov VL, Bhattacharjee D. Direct calculation of wind turbine tip loss. Renew Energy. 2016;95:269-276.
+25. Wood DH, Okulov VL, Vaz JRP. Calculation of the induced velocities in lifting line analyses of propellers and turbines. Ocean Engring. 2021;235:
+109337.
+26. Wood D. Wake expansion and the finite blade functions for horizontal-axis wind turbines. Energies. 2021;14(22):7653.
+27. Branlard E. Wind Turbine Aerodynamics and Vorticity-Based Methods: Springer International Publishing; 2017.
+28. Katz J, Plotkin A. Low-speed aerodynamics: Cambridge University Press; 2001.
+29. Gaertner E, Rinker J, Sethuraman L, et al. Definition of the IEA Wind 15-Megawatt Offshore Reference Wind Turbine. NREL/TP-5000-75698, Golden,
+CO: National Renewable Energy Laboratory; 2020:44.
+30. Gaertner E, Rinker J, Sethuraman L, et al. Definition of the IEA wind 15-Megawatt Offshore Reference Wind Turbine, Github Repository.
+https://github.com/IEAWindTask37/IEA-15-240-RWT. Accessed: 2021-09-13.
+31. Schepers JG, Lutz T, Boorsma K, et al. Final Report of IEA Wind Task 29 mexnext (phase 3). tech. rep., ECN; 2018.
+32. Schepers JG, Boorsma K, Madsen HA, et al. IEA Wind TCP Task 29, Phase IV: Detailed Aerodynamics of Wind Turbines. tech. rep., Zenodo; 2021.
+
+How to cite this article: Fritz EK, Ferreira C, Boorsma K. An efficient blade sweep correction model for blade element momentum theory.
+Wind Energy. 2022;1‐18. doi:10.1002/we.2778
+
+APP E NDIX A: NOMENCLATURE
+
+Latin letters
+Aann
+
+annulus area
+
+a, a0
+
+axial and tangential induction factor
+
+arotor
+
+rotor-averaged axial induction factor
+
+CT
+
+rotor thrust coefficient
+
+D
+
+rotor diameter
+
+!
+
+dl
+
+finite length of vortex filament
+
+Fn , Ft
+
+normal and tangential force
+
+F tip , F root
+
+Prandtl tip and root correction factor
+
+h
+
+absolute helix pitch
+
+Im , K m
+
+modified Bessel function of first and second kind
+
+K
+
+regularisation function
+
+Lwake
+
+rotor wake length
+
+l
+
+relative helix pitch
+
+Mf
+
+flapwise moment
+
+(Continues)
+
+18
+
+FRITZ ET AL.
+
+Latin letters
+Mt
+
+torsional moment
+
+m
+
+order of Bessel functions
+
+Nannuli
+
+number of annuli
+
+Nb
+
+number of blades
+
+R
+
+blade tip radius
+
+r
+
+radial coordinate
+
+rc
+
+viscous core radius
+
+r root
+
+blade root radius
+
+!
+
+r
+
+distance vector (Biot-Savart law)
+
+U
+
+free stream velocity
+
+uz
+
+axial velocity induced by helical vortex filament
+
+!
+
+V
+
+velocity vector
+
+W
+
+axial induced velocity
+
+x, y, z
+
+global cartesian coordinates
+
+xB , yB , zB
+
+local blade cartesian coordinates
+
+xP , y P
+
+coordinates of evaluation point
+
+xtip
+
+tip displacement of swept blade
+
+xV , y V
+
+coordinates of tip vortex starting point
+
+xΛ
+
+edgewise blade sweep
+
+ystart
+
+sweep starting position
+
+Greek letters
+βpitch
+
+blade pitch angle
+
+Γ
+
+circulation
+
+γ
+
+sweep exponent
+
+δ
+
+helix lead angle
+
+θ
+
+azimuthal angle
+
+θ1 , θ2
+
+angles between vortex filament and distance vector to evaluation point
+
+Λ
+
+sweep angle
+
+λ, λr
+
+rotor and local tip speed ratio
+
+ρ
+
+density of air
+
+χ, χ n
+
+general and blade specific derived helical coordinate
+
+Subscripts
+BEM
+
+BEM simulation
+
+BS
+
+Biot-Savart
+
+ind
+
+induced velocity
+
+LL
+
+lifting line simulation
+
+ref
+
+straight reference blade geometry
+
+VF
+
+vortex filament
+
+Γb
+
+simulation modelling the bound vortex self-induction
+
+Λ
+
+swept blade geometry
+
+∞=2
+
+semi-infinite helical vortex filament
+
+

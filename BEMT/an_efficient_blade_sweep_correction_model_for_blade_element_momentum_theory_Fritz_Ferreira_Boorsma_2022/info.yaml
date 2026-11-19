@@ -1,0 +1,125 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>This article
+  proposes an efficient correction model that enables the extension of the blade element
+  momentum method (BEM) for swept blades. Standard BEM algorithms, assuming a straight
+  blade in the rotor plane, cannot account for the changes in the induction system
+  introduced by blade sweep. The proposed extension corrects the axial induction regarding
+  two aspects: the azimuthal displacement of the trailed vorticity system and the
+  induction of the curved bound vortex on itself. The extended algorithm requires
+  little additional processing work and maintains BEM's streamtube independent approach.
+  The proposed correction model is applied to simulations of swept blade geometries
+  based on the IEA 15 MW reference wind turbine. Results show good agreement with
+  lifting line simulations that inherently can account for the swept blade geometry.</jats:p>\n
+  \                 <jats:p>Blade sweep couples bending and torsion deformations by
+  curving the blade axis in the inplane direction. As such, it can be used to passively
+  alleviate loads and, thus, aeroelastically tailor wind turbine blades. The implementation
+  of aeroelastic tailoring techniques, and the aeroelastic analysis in general, becomes
+  increasingly significant with the size of wind turbine rotors continually rising.
+  Due to its low computing complexity, BEM remains a crucial tool in the aerodynamic
+  and aeroelastic analysis of wind turbine rotors. Thus, the proposed correction model
+  contributes to a fast and accurate evaluation of swept blade designs.</jats:p>"
+author: Fritz, Erik Kaspar and Ferreira, Carlos and Boorsma, Koen
+author_list:
+- affiliation:
+  - name: Wind Energy TNO Energy Transition  Petten Netherlands
+  - name: Faculty of Aerospace Engineering Technical University of Delft  Delft Netherlands
+  family: Fritz
+  given: Erik Kaspar
+- affiliation:
+  - name: Faculty of Aerospace Engineering Technical University of Delft  Delft Netherlands
+  family: Ferreira
+  given: Carlos
+- affiliation:
+  - name: Wind Energy TNO Energy Transition  Petten Netherlands
+  family: Boorsma
+  given: Koen
+citations:
+- doi: 10.2514/3.22897
+- doi: 10.2172/803289
+  unstructured: 'ZuteckM.Adaptive blade concept assessment: curved platform induced
+    twist investigation. tech. rep.  Office of Scientific and Technical Information
+    (OSTI);2002.'
+- article-title: Swept wind turbine blade aeroelastic modeling for loads and dynamic
+    behavior
+  author: Larwood S
+  first-page: '1'
+  journal-title: AWEA Windpower
+  year: '2006'
+- doi: 10.2514/6.2010-1582
+  unstructured: 'AshwillT KanabyG JacksonK ZuteckM.Development of the sweep‐twist
+    adaptive rotor (STAR) blade. In: 48th AIAA Aerospace Sciences Meeting Including
+    the New Horizons Forum and Aerospace Exposition.American Institute of Aeronautics
+    and Astronautics;2010:1582.'
+- doi: 10.1007/978-3-642-17884-9_25
+- doi: 10.1016/j.jweia.2018.03.023
+- doi: 10.1016/j.compfluid.2008.01.022
+- unstructured: 'PicotN VerelstD LarsenT.Free yawing stall‐controlled downwind wind
+    turbine with swept blades and coned rotor. In: European Wind Energy Conference
+    and Exhibition 2011 EWEC 2011;2011.'
+- doi: 10.1088/1742-6596/1037/2/022021
+- doi: 10.1016/j.renene.2014.05.050
+- doi: 10.2514/6.2011-146
+  unstructured: 'GrassoF vanGarrelA SchepersG.Development and validation of generalized
+    lifting line based code for wind turbine aerodynamics. In: 49th AIAA Aerospace
+    Sciences Meeting Including the New Horizons Forum and Aerospace Exposition.American
+    Institute of Aeronautics and Astronautics;2011:146.'
+- author: Verelst DR
+  series-title: Denmark. Forskningscenter Risoe. Risoe‐R
+  volume-title: Load consequences when sweeping blades—a case study of a 5 mW pitch
+    controlled wind turbine
+  year: '2010'
+- doi: 10.1088/1742-6596/1037/6/062012
+- doi: 10.1002/we.131
+- doi: 10.1002/we.1969
+- doi: 10.5194/wes-2021-96
+  unstructured: LiA PirrungGR GaunaaM MadsenHA HorcasSG.A computationally efficient
+    engineering aerodynamic model for swept wind turbine blades;2021.
+- doi: 10.2514/6.2011-260
+  unstructured: 'HansenM.Aeroelastic properties of backward swept blades. In: 49th
+    AIAA Aerospace Sciences Meeting Including the New Horizons Forum and Aerospace
+    Exposition.American Institute of Aeronautics and Astronautics;2011:260‐279.'
+- doi: 10.1002/9781119992714
+- unstructured: vanGarrelA.Development of a Wind Turbine Aerodynamics Simulation Module.
+    tech. rep. Petten Netherlands  ECN;2003.
+- doi: 10.2514/8.141
+- doi: 10.1063/1.863684
+- article-title: The contribution of kawada to the analytical solution for the velocity
+    induced by a helical vortex filament
+  author: Fukumoto Y
+  first-page: 060801–1–7
+  issue: '6'
+  journal-title: Appl Mech Revs
+  volume: '67'
+  year: '2015'
+- doi: 10.1017/S0022112004001934
+- doi: 10.1016/j.renene.2016.04.017
+- doi: 10.1016/j.oceaneng.2021.109337
+- doi: 10.3390/en14227653
+- doi: 10.1007/978-3-319-55164-7
+- doi: 10.1017/CBO9780511810329
+- unstructured: 'GaertnerE RinkerJ SethuramanL et al.Definition of the IEA Wind 15‐Megawatt
+    Offshore Reference Wind Turbine. NREL/TP‐5000‐75698  Golden CO: National Renewable
+    Energy Laboratory;2020:44.'
+- doi: 10.2172/1603478
+  unstructured: 'GaertnerE RinkerJ SethuramanL et al.Definition of the IEA wind 15‐Megawatt
+    Offshore Reference Wind Turbine Github Repository.https://github.com/IEAWindTask37/IEA-15-240-RWT.
+    Accessed: 2021‐09‐13.'
+- unstructured: SchepersJG LutzT BoorsmaK et al.Final Report of IEA Wind Task 29 mexnext
+    (phase 3). tech. rep.  ECN;2018.
+- unstructured: 'SchepersJG BoorsmaK MadsenHA et al.IEA Wind TCP Task 29 Phase IV:
+    Detailed Aerodynamics of Wind Turbines. tech. rep.  Zenodo;2021.'
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.2778
+doi: 10.1002/we.2778
+files:
+- an_efficient_blade_sweep_correction_model_for_blade_element_momentum_theory_Fritz_Ferreira_Boorsma_2022.pdf
+issue: '12'
+journal: Wind Energy
+language: en
+month: 12
+pages: 1977--1994
+papis_id: 498d6ac5ff331328b076aa97e473e359
+publisher: Wiley
+title: An efficient blade sweep correction model for blade element momentum theory
+type: article
+url: https://doi.org/10.1002/we.2778
+volume: '25'
+year: 2022

@@ -1,0 +1,4446 @@
+25
+
+Boundary layers
+Between the two extremes of sluggish creeping flow at low Reynolds number and
+lively ideal flow at high, there is a regime in which neither is dominant. At large
+Reynolds number, the flow will be nearly ideal over most of space, except near
+solid boundaries where the no-slip condition requires the speed of the fluid to
+match the speed of the boundary wall. Here will arise transition layers in which
+the flow velocity changes rapidly from the velocity of the wall to the velocity of
+the flow in the fluid at large. Boundary layers are typically thin compared to the
+radius of curvature of the solid walls, and that simplifies the basic equations.
+In a boundary layer the character of the flow thus changes from creeping near
+the boundary to ideal far from it. The most interesting and also most difficult
+physics characteristically takes place in such transition regions. But humans live
+out their lives in nearly ideal flows of air and water at Reynolds numbers in
+the millions with boundary layers only millimeters thick, and are normally not
+conscious of them. Smaller animals eking out a turbulent existence at the surface
+of a stone in a river may be much more aware of the vagaries of boundary layer
+physics which may influence their body shapes and internal layout of organs.
+Boundary layers serve to insulate bodies from the ideal flow that surrounds
+them. They have a “life of their own” and may separate from the solid walls and
+wander into regions containing only fluid. Detached layers may again split up,
+creating complicated unsteady patterns of whirls and eddies. Advanced understanding of fluid mechanics begins with the understanding of boundary layers.
+Systematic boundary layer theory was first advanced by Prandtl in 1904 and has
+in the 20’th century become a major subtopic of fluid mechanics [50, 51].
+In this chapter we shall mainly focus on the theory of incompressible laminar
+boundary layers without heatflow, and present a semi-empirical discussion of
+turbulence.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+Ludwig Prandtl (1875–
+1953). German physicist,
+often called the father of
+aerodynamics. Contributed
+to wing theory, streamlining, compressible subsonic
+airflow, and turbulence.
+
+484
+
+25. BOUNDARY LAYERS
+
+U
+
+...........................
+.....................
+.............
+.
+.... ...
+
+..... .... .... .... .... .... .... .... ....
+.... .... .... .
+..
+.... ....
+...
+...
+
+δ
+
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+qqqqqqqqqq
+The transition from zero
+velocity at the wall to the
+mainstream
+velocity
+U
+mostly takes place in a layer
+of finite thickness δ.
+
+U
+δ
+
+..
+..
+
+-.......
+-........
+-.......
+-.........
+-.......
+-.........
+-.........
+...
+....
+....
+....
+
+.
+....
+....
+....
+
+..
+...
+....
+....
+...
+.
+.
+.
+... ... ... ... ... ... ... ... ... ... ...
+... ... ... ... ... ... ... ... ... ... ...
+.... .... .... .... .... .... .... .... .... .... ....
+.... .... .... .... .... .... .... .... .... .... ....
+
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+Sketch of the flow in a laminar boundary layer with
+constant mainstream flow.
+The velocity rises linearly
+close to the solid wall but
+veers off to match the
+mainstream flow velocity U
+at a characteristic distance
+δ from the wall. The precise
+layer thickness depends on a
+choice of what one means by
+“matching” the mainstream
+flow.
+
+25.1
+
+Physics of boundary layers
+
+Consider a nearly ideal flow with velocity U along a solid wall at rest. The
+Reynolds number is as usual calculated as Re ≈ U L/ν where L is a typical
+length scale for significant changes in the flow, determined by the geometry of
+bodies and containers. The no-slip condition requires the velocity to vary from
+zero right at the wall to U in the flow at large. Under many — but not all—
+circumstances, this transition will for Re À 1 take place in a thin boundary layer
+of thickness δ ¿ L.
+Close to the wall, the velocity field is tiny because of the no-slip condition.
+The flow pattern will in this region always be laminar, in fact creeping, with
+the parallel (streamwise) velocity rising linearly from zero. The laminar flow
+may extend all the way to the edge of the boundary layer, or the flow may at
+sufficiently high Reynolds number become turbulent.
+
+Laminar boundary layer thickness
+The effective Reynolds number in a steady laminar boundary layer can be estimated from the ratio of advective to viscous terms in the Navier-Stokes equation,
+|(v · ∇)v|
+U 2 /L
+U δ2
+δ2
+¯
+¯ ∼
+=
+= 2 Re .
+2
+2
+¯ν∇ v ¯
+νU/δ
+νL
+L
+
+(25-1)
+
+Here the numerator was estimated from the change in mainstream velocity along
+the wall over a distance L, using that the flow in a laminar layer must follow
+the geometry of the mainstream flow. The denominator was estimated from the
+rapid change in velocity across the thickness δ of the boundary layer.
+The boundary layer is characterized by the transition from viscous dominance near the wall to advective dominance in the mainstream. We estimate the
+boundary layer thickness by requiring the effective Reynolds number (25-1) to be
+around unity, leading to
+r
+νL
+L
+=√
+δ∼
+.
+(25-2)
+U
+Re
+This estimate is valid up to a coefficient of order unity which will be discussed
+later (section 25.4). For large mainstream Reynolds number, Re À 1, the thickness of the boundary layer will thus be considerably smaller than the typical
+length scale of the mainstream flow.
+The Reynolds numbers for flows we encounter in daily life easily reach into the
+millions, making the boundary layer thickness smaller than a thousandth of the
+scale of the flow. Jogging or swimming, one hardly notices the existence of boundary layers that are only millimeters thick. The pleasant tingling skin sensation
+you experience from streaming air or water comes presumably from the complex
+flow at larger scale generated by the irregular shape of your body.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.1. PHYSICS OF BOUNDARY LAYERS
+
+485
+
+U..
+
+Wall shear stress
+In the laminar boundary layer, the velocity rises linearly with the distance from
+the boundary. The normal velocity gradient at the wall is approximately λ ≈ U/δ,
+and multiplying with the viscosity we obtain an estimate of the shear stress on
+the wall,
+σwall = ηλ ≈ η
+
+U
+ρ0 U 2
+∼ √
+.
+δ
+Re
+
+(25-3)
+
+In the last expression we have also used Rthe steady-flow estimate (25-2). The
+wall stress determines the skin drag, D = A σwall dS, on a flat surface of area A.
+The wall stress decreases with increasing Reynolds number, in agreement with
+the diminishing influence of viscosity at higher Reynolds numbers.
+
+.
+..
+..
+..
+..
+....
+..
+...
+...
+....
+...
+...
+...
+....
+.
+..
+...
+...
+..
+.
+..
+...
+...
+....
+....
+.
+.
+...
+...
+....
+....
+...
+.
+.
+.
+...
+...
+....
+....
+... ..... ...... ..... ..... ..... ..... ..... ..... ..... .....
+.
+.
+.... .... .... .... .... .... .... .... .... .... ....
+.... .... .... .... .... .... .... .... .... .... ....
+
+δ
+
+λ
+
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+The stress on the wall of
+a laminar boundary layer
+is determined by the slope
+λ ≈ U/δ of the linearly
+rising velocity near the wall.
+
+Initial viscous growth
+When a body in steady flow suddenly changes its velocity, the fluid immediately
+surrounding it will have to follow along in order to satisfy the no-slip boundary
+condition. Large velocity gradients and therefore large stresses will develop in
+the fluid next to the body, and these stresses will cause fluid layers farther out
+also to be dragged along. Eventually this process may come to and end and the
+flow will once again be steady. In the beginning the newly created boundary
+layer is extremely thin, so that the general geometry of the flow and the shape of
+the body must be unimportant. This indicates that suddenly created boundary
+layers always start out their growth in the same universal way.
+Suppose that both body and fluid initially are at rest, and that the body at
+t = 0 is suddenly set into motion with velocity U . If the boundary layer at time
+t > 0 has reached a thickness δ(t), the fluid in the boundary layer will on the
+average have changed its velocity from 0 to about 12 U in time t. This makes
+the local acceleration of order U/t (disregarding factors 1/2) and allows us to
+estimate the ratio between the local and inertial acceleration
+|∂v/∂t|
+U/t
+L
+≈ 2
+=
+.
+|(v · ∇)v|
+U /L
+Ut
+
+(25-4)
+
+The time the fluid takes to pass the body is L/U . For times much shorter than
+this, t ¿ L/U , the inertial acceleration term can be disregarded relative to the
+local acceleration, and the boundary layer will continue to grow. The boundary
+layer cannot “go steady” until it is much older than the passing time.
+In a “young” boundary layer with t ¿ L/U , the advective acceleration can
+thus be disregarded, and the physics is controlled by the ratio of local to viscous
+acceleration,
+U/t
+δ2
+|∂v/∂t|
+¯
+¯≈
+=
+.
+2
+2
+¯ν∇ v ¯
+νU/δ
+νt
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+(25-5)
+
+Revision 7.7, January 22, 2004
+
+..... .... .... .... .... .... .... .... ....
+.... .... .... .
+..
+.... ....
+...
+...
+
+r δ(t)
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+q
+qqqqqqqqq .............................................................
+
+.
+.... ...
+
+U
+
+The wall is suddenly set
+into motion. After a time
+t, the velocity at a point in
+the middle of the growing
+boundary layer has changed
+from 0 to 12 U .
+
+486
+
+25. BOUNDARY LAYERS
+
+U
+
+..
+.
+..
+..
+..
+...
+...
+.....
+.....
+......
+........
+.. ..
+... ......
+3
+... .....
+.. ... ...
+.
+... ... ...
+... ... ...
+2
+... .. ..
+... .... .....
+.
+.
+.
+... .. .
+.... ... ..
+1
+.... .... ...
+.... .... ..
+... ........... .....
+.
+.
+.
+.
+3
+....
+.... .......
+... ........ 2 ........
+1
+........... ............
+........... .............
+...................................
+.
+.
+.. .. ...... .. .. .. .. .. .. .. ..
+.... ....... ....... ....... ....... ....... ....... ....... ....... ....... .......
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.... .... .... .... .... .... .... .... .... .... ....
+
+δ
+
+This should be of order unity in the boundary layer, leading to
+δ∼
+
+√
+
+νt
+
+for t ¿ L/U .
+
+(25-6)
+
+δ
+
+δ
+
+t
+
+t
+
+t
+
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+
+Initial growth of a laminar boundary layer. The
+three velocity profiles correspond to increasing times
+t1 < t2 < t3 and increasing
+thicknesses δ1 < δ2 < δ3 .
+U-
+
+-
+
+...
+..
+.....
+...
+...
+
+....
+
+....
+
+.....
+
+........
+.......
+..
+..
+...
+..
+...
+...
+..
+.
+
+.......
+
+δ(x)
+
+x
+....
+
+....
+
+.....
+
+......
+........
+
+........
+
+A semi-infinite plate in an
+otherwise uniform flow.
+The dashed curve is the estimated parabolic boundary
+layer shape.
+
+-
+
+qqqqq
+qqqqqqqqqqqqqqq qqqqqqqqqqqqqqqq
+qqqqqqq
+qqq
+qqqq q
+qq
+qq
+qq
+q
+q
+q
+q
+q
+qqq
+q
+qqqqqqqqqqq
+qqqq
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+
+... .... ..... ..... .... .... .... ....
+... ...
+....
+....
+...
+.
+.
+..
+...
+..
+..
+...
+... ...
+....
+.... .... .... .... ... .... .... .... .... .... ....
+
+Sketch of the boundary layer
+around a bluff body in steady
+uniform flow. On the windward side the boundary layer
+is thin, whereas it widens
+and tends to separate on
+the lee side. In the channel
+formed by the separated
+boundary layer, unsteady
+flow patterns may arise.
+
+A suddenly created boundary layer always starts out like this, growing with the
+squareroot of time. This behavior is as we have seen before typical of viscous
+diffusion processes, and in is of same form as the estimate of the rate of momentum diffusion (page 333) and the core expansion rate of a decaying vortex (page
+451).
+After the initial universal growth, the boundary layer comes to depend on the
+general geometry of the flow for t ≈ L/U , when it reaches the thickness (25-2). It
+takes more careful analysis to see whether the flow eventually settles down into a
+steady boundary layer, or whether instabilities arise, leading to a radical change
+in the character of the flow such as boundary layer separation or turbulence.
+
+Influence of body geometry
+The simplest geometry in which a steady boundary layer can be studied is a
+semi-infinite plate with its edge orthogonal to a uniform mainstream flow (we
+shall solve this case analytically in section 25.4). Here the only possible length
+scale is the distance x from the leading edge, so that we must have
+r
+νx
+δ∼
+.
+(25-7)
+U
+This shows that boundary layers tend to grow thicker downstream, even if the
+mainstream flow is completely uniform and independent of x. If the flat plate is
+set abruptly into motion, the initial growth of the layer at a downstream distance
+x steadies at time t ≈ x/U . Disregarding sound waves, the time t = x/U
+is also the earliest moment that the edge causally can influence the flow near
+x. Intuitively one might say that the viscous growth of the boundary layer is
+curtailed by the encounter with the blast of undisturbed fluid coming in from
+afar.
+Boundary layers have a natural tendency towards downstream thickening, because they build up along a body in a cumulative fashion. Having reached a
+certain thickness, a boundary layer acts as a not-quite-solid “wall” on which another boundary layer will form. The thickness of a steady boundary layer is also
+strongly dependent on whether the mainstream flow is accelerating or decelerating along the body, behavior which in turn is determined by the geometry. If
+the mainstream flow accelerates, i.e. grows with x, the boundary layer tends to
+remain thin. This happens at the front of a moving body, where the fluid must
+speed up to get out of the way. Conversely, towards the rear of the body, where
+the mainstream flow again decelerates in order to “fill up the hole” left by the
+passing body, the boundary layer becomes rapidly thicker, and may even separate
+from the body, creating an unsteady, often turbulent, trailing wake.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.1. PHYSICS OF BOUNDARY LAYERS
+
+487
+
+Merging boundary layers
+The increase of a boundary layer’s thickness with body size implies for an infinite
+body that the boundary layer must be infinitely thick or at least so thick that
+it fills out all the available space. In steady planar flow between moving plates
+(section 18.1), the velocity profile of the fluid interpolates linearly between the
+plate velocities, and one sees nothing like a boundary layer with finite thickness
+near the plates. In pressure-driven steady pipe flow (section 19.6), the exact
+shape of the Poiseuille velocity profile is parabolic (as long as the flow is laminar),
+whatever the viscosity of the fluid. Again we see no trace of a finite boundary
+layer in the exact solution.
+Consider now pressure-driven flow between
+two half-infinite plates, a distance
+√
+d apart. The boundary layers grow like x from both sides downstream from the
+entrance and eventually merge with each other at a typical distance x = L0 , called
+the entrance length. Further downstream, the Poiseuille profile is established,
+and the distinction between boundary and mainstream flow is no more possible.
+The two boundary layers meet at x = L0 , determined
+p by solving the equation
+2δ(x) ≈ d. Using a conservative estimate δ(x) ≈ 3 νx/U , the entrance length
+becomes
+L0 ≈
+
+d
+Re
+36
+
+Sketch of the shape of the
+velocity profile in pressuredriven flow between halfinfinite plates at various
+distances downstream from
+the entrance at the left.
+
+(25-8)
+
+with Re = U d/ν À 1. The numerical computation in section 21.4 showed that
+this estimate is in fact not far off the mark.
+
+...
+...
+
+..
+
+...
+
+....
+
+.....
+
+.....
+
+......
+....... .
+.....
+.....
+
+-
+
+.......
+
+6
+
+.......
+
+..
+
+-
+
+6
+
+...
+
+Upwelling and downwash
+
+.
+..
+
+Inside a boundary layer, at a fixed distance from a flat solid wall with a uniform
+mainstream velocity U , the flow decelerates downstream as the boundary layer
+thickens due to the action of viscosity. Mass conservation requires a compensating
+upwelling of fluid into the fluid at large. If the boundary is permeable and fluid
+is sucked down through it at a constant rate, the upflow can be avoided, and a
+steady boundary layer of constant thickness may be created (problem 25.1).
+The mainstream flow is determined by bodies and containers that guide the
+fluid and will generally not be uniform but rather accelerate or decelerate along
+the boundaries. An accelerating mainstream flow will counteract the natural
+deceleration in the boundary layer and may even overwhelm it, leading to a
+downwash towards the boundary. Mainstream acceleration thus tends to stabilize
+a boundary layer so that it has less tendency to thicken, and may lead to constant
+or even diminishing thickness. Conversely, if the mainstream flow decelerates,
+this will add to the natural deceleration in the boundary layer and increase its
+thickness as well as the upwelling.
+
+The thickening of a boundary layer decelerates the
+flow and leads to upwelling
+of fluid from the boundary.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+qqq
+qqq
+qqq
+q
+q
+qqq
+qqq
+qqq
+qqqq
+qqq
+q
+q
+qqqq
+qqqq
+qqqqq
+qqqqq
+qqqqqqqq
+q
+q
+q
+q
+q
+q
+q
+qqqqqqqqqqqqqqqqqqq
+
+- ?
+
+-
+
+6
+
+-
+
+Mainstream acceleration in
+a
+converging
+channel
+produces a downwash of
+fluid, and conversely in a
+diverging channel.
+
+488
+
+25. BOUNDARY LAYERS
+
+qqqq
+qqqqq
+q
+q
+q
+q
+q
+qqqqq
+qqqqqq
+q
+q
+q
+q
+Separation
+qqqqqq
+qqqqqqq
+......
+q
+q
+q
+............
+.
+q
+.
+.
+q
+.
+.
+q
+.
+.
+q
+Even at very moderate mainstream deceleration, the upwelling can become so
+.......
+........ ...................
+qqqqqq
+........
+.
+........ ..... .....
+qqqqqqqq
+q
+q
+q
+q
+........ ..... ..........
+.
+q
+.
+.
+strong at some point that the fluid flowing in the mainstream direction cannot
+q
+.
+.
+q
+.
+.
+q
+.
+qq
+...
+......
+........ .... ....
+qqqqqqqqqqqq
+........ .... . .......
+........
+.
+.
+.
+.
+feed it. Some of the fluid in the boundary layer will then have to flow against
+.
+.
+.
+.
+.
+.
+.
+...
+.
+.....
+........................
+.....
+...
+.....
+.....
+...............
+.
+.
+.
+.
+the mainstream flow. Between the forward and reversed flows there will be
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+....................................
+....
+......................................
+..... .....
+.....
+a separation line ending on the wall. Such flow reversal was also noticed in
+...
+..s
+lubrication (page 473), although there are no boundary layers in creeping flow.
+Flow reversal and boundIn the region of reversed flow, the velocity still has to vanish right at the
+ary layer separation in
+boundary.
+Moving up from the boundary wall, the flow first moves backwards
+a diverging channel with
+decelerating flow.
+with respect to the mainstream, but farther from the wall it must again turn
+back to join up with the mainstream. The velocity gradient must accordingly
+be negative right at the boundary in the reversal region, corresponding to a
+negative wall stress σwall . The vanishing of the wall stress, σwall = 0, indicates that
+boundary layer separation may happen. It is not a sufficient condition, because
+..
+..
+...
+..
+flow reversal can in principle be a local phenomenon taking place entirely within
+-.......
+-.........
+..
+.
+.
+the boundary layer, as may be the case if there is a dent in the wall.
+.
+.
+.
+.
+.
+-....
+..
+....
+.....
+....
+.
+-.......
+.
+.
+....
+.......
+.......
+-.......
+...
+.
+Turbulence
+....
+.
+.
+.
+.
+-.......
+...¾
+...
+...
+.
+.
+.
+.
+.
+-......
+...¾
+..
+Boundary layers can also become turbulent. Turbulence efficiently mixes fluid in
+qqq.q...q.q...q..q..q...q..q..qqqq..q..q..qqqq..q..q..qqqq..q..q..qqqq...q.q..qqq.q..q..q.qqq...q....q.....q.qqq.q...q.q.qqq..q..q..qqqq..q..q..q
+.
+.
+.
+.
+.
+.
+.
+all directions. The orderly layers of fluid that otherwise isolate the wall from the
+.. ..... ..... ..... ..... ..... ..... ...... ...... ...... ......
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+mainstream flow all but disappear, and on average, the mainstream velocity will
+Velocity profiles before and
+press much closer to the wall. Turbulence typically sets in downstream from the
+after the separation point
+front of body when the laminar boundary layer has grown so thick that the local
+(dashed line).
+Reynolds number
+.
+...
+...
+...
+..
+...
+...
+....
+..
+..
+..
+...
+.....
+..
+...
+...
+.....
+..
+...
+...
+....
+...
+...
+...
+..
+.
+....
+.........
+.........
+.............
+...............
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.. .. ..... .. .. .. .. .. .. .. ..
+.... .... .... .... .... .... .... .... .... .... ....
+.... .... .... .... .... .... .... .... .... .... ....
+... ... ... ... ... ... ... ... ... ... ...
+
+δ
+
+turbulent
+
+qlaminar
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq
+In a turbulent boundary
+layer there will always be
+a thin nearly laminar sublayer, in which the velocity
+profile rises linearly from
+the wall.
+
+Reδ =
+
+Uδ
+,
+ν
+
+(25-9)
+
+becomes large enough, say in the thousands.. In a laminar boundary layer, the
+estimate (25-2) shows that Re ∼ Re2δ , so that turbulence will not arise until the
+mainstream Reynolds number reaches into the millions, which incidentally is just
+about the range in which humans and many of their machines operate.
+Although the turbulent velocity fluctuations press close to the wall, there will
+always remain a thin viscous, nearly laminar, sublayer close to the wall, in which
+the average velocity gradient normal to the wall rises linearly with distance. Since
+the mainstream velocity on average comes much closer to the wall, the average
+wall stress will be much larger than in a completely laminar boundary layer. The
+skin drag on a body is consequently expected to increase when the boundary layer
+becomes turbulent, though other changes in the flow may interfere and instead
+cause an even larger drop in the form drag at a particular value of the Reynolds
+number, as we saw in the discussion of the “drag crisis” (page 387).
+The phenomenology of turbulent boundary layers is discussed in some detail
+for a flat plate in section 25.5.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.2. GROWTH OF A BOUNDARY LAYER
+
+25.2
+
+489
+
+Growth of a boundary layer
+
+The initial growth of the boundary layer near a flat plate which is suddenly set
+into motion (Stokes first problem) must also follow the universal law (25-6). In
+this case there is no intrinsic length scale for the geometry, and the transition to
+geometry-dependent steady flow cannot take place. The planar boundary layer
+(called the Stokes layer) can for this reason be expected to provide a clean model
+for universal viscous growth.
+
+Analytic solution
+As usual it is more convenient to view the plate from the reference frame in which
+the plate and the fluid initially move with the same velocity U and the plate is
+suddenly stopped at t = 0. Assuming that the flow is planar with vx = vx (y, t)
+and vy = 0, the Navier-Stokes equation for incompressible flow reduces to the
+momentum-diffusion equation (18-5), which is repeated here for convenience
+∂vx
+∂ 2 vx
+=ν
+.
+∂t
+∂y 2
+
+(25-10)
+
+The linearity of this equation guarantees that the velocity everywhere must be
+proportional to U , and since there is no intrinsic length or time scale in the
+definition of the problem, the velocity field must be of the form,
+vx (y, t) = U f (s) ,
+
+s= √
+
+y
+2νt
+
+(25-11)
+
+where the so far unknown function f (s) should obey the boundary conditions
+f (0) = 0 and f (∞) = 1. The factor 2 in the squareroot is conventional.
+Upon insertion of (25-11) into (25-10) we are lead to an ordinary second order
+differential equation for f (s),
+fHsL
+
+f 00 (s) + sf 0 (s) = 0 .
+
+(25-12)
+
+1
+0.8
+0.6
+
+Viewed as a first order equation for f 0 (s), it has the unique solution f 0 (s) ∼
+exp(−s2 /2). Integrating this expression once more over s and applying the
+boundary conditions, the final result becomes
+r Z s
+µ
+¶
+s
+2
+−s02 /2
+0
+e
+ds = erf √
+,
+(25-13)
+f (s) =
+π 0
+2
+where erf(·)
+p is the well-known error function. For small values of s we have
+f (s) ≈ s 2/π whereas for large values the function approaches 1 with a Gaussian
+tail, 1 − f (s) ∼ exp(−s2 /2) = exp(−y 2 /4νt), typical of momentum diffusion (see
+page 333).
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+0.4
+0.2
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+s
+
+Plot of f (s). The sloping
+dashed line is tangent at s =
+0
+0
+p with inclination f (0) =
+2/π.
+
+490
+
+25. BOUNDARY LAYERS
+
+The Gaussian tail
+Notice that the Gaussian tail of the boundary layer extends all the way to spatial
+infinity for any positive time, t > 0. How can that be, when the plate was only
+brought to stop at time t = 0? Won’t it take a finite time for this event to
+propagate to spatial infinity? The short answer is that we have assumed the
+fluid to be incompressible, and this — fundamentally untenable — assumption
+will in itself entail infinite signal speeds. At a deeper level, a diffusion equation
+like (25-10) is the statistical continuum limit of the dynamics of random molecular
+motion in the fluid, and although extremely high molecular speeds are strongly
+damped, they may in principle occur. The limit to diffusion speed as well as to
+incompressibility is, as discussed before, always set by the finite speed of sound.
+
+Vorticity generation
+The vorticity field has only one component
+
+U
+
+¾
+
+?
+
+ωz (y, t) = −
+
+6
+L
+
+The circulation around an
+infinitely tall rectangle with
+side L Hagainst the moving
+wall is v · d` = −U L.
+vx
+
+6
+U
+0.99U
+
+...........................
+..................
+..........
+........
+......
+.
+.
+.
+.
+..
+.....
+....
+....
+....
+...
+.
+.
+.
+...
+...
+...
+..
+.
+...
+
+δ99
+
+-y
+
+Definition of conventional
+thickness δ99 as the distance
+from the wall where the
+velocity has reached 99% of
+the mainstream velocity U .
+
+∂vx (y, t)
+U f 0 (s)
+U −y2 /4νt
+=− √
+= −√
+e
+∂y
+πνt
+2νt
+
+(25-14)
+
+Before the plate stopped, the flow was everywhere irrotational. Afterwards there
+is evidently vorticity in the boundary layer. Where did it come from?
+Consider a (nearly) infinite rectangle with support of length L on the plate.
+The
+flow inHthe boundary layer has a total flux of vorticity (or circulation) Γ =
+R
+ω · dS = v · d` through this rectangle. The fluid velocity always vanishes on
+the plate, is orthogonal to the sides, and approaches the constant U at infinity,
+so that we obtain Γ = −U L. Since the circulation is constant in time, vorticity
+is not generated inside the boundary layer itself during its growth, but rather at
+the plate surface during the instantaneous deceleration to zero velocity. If the
+plate did not stop with infinite deceleration, but followed a gentler path U (t)
+from U to 0, the circulation Γ(t) = (U (t) − U )L would also have decreased gently
+from 0 to −U L. The conclusion is that vorticity is originally generated at the
+plate surface during acceleration and deceleration. Afterwards it diffuses away
+from the plate and into the fluid at large without changing the total circulation.
+
+Thickness
+The velocity√field is self-similar in the sense that it has similarly shaped velocity
+profile f (y/ 2νt) at all times. There is no cut-off in the infinitely extended
+Gaussian tail and therefore no “true” thickness δ. Conventionally, one defines
+the boundary layer thickness to be where the velocity has reached 99% of terminal
+velocity. The solution to f (k) = 0.99 is k = 2.5783 . . ., so that
+√
+√
+(25-15)
+δ99 = k 2νt ≈ 3.64 νt .
+In the following section we shall meet other and less arbitrary definitions of
+boundary layer thickness.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.3. BOUNDARY LAYER THEORY
+
+25.3
+
+491
+
+Boundary layer theory
+
+In his short 1904 paper [15] Prandtl introduced the concept of boundary layers
+and pointed out that there were simplifying features, allowing for less complicated equations than the full set of Navier and Stokes. The greater simplicity
+comes from the assumption of nearly ideal mainstream flow with Re À 1, which
+according to the estimate (25-2) implies that boundary layers are thin, i.e. δ ¿ L
+where L is the length scale for variations in the mainstream flow.
+We shall — as Prandtl did — consider only the two-dimensional case with
+an infinitely extended planar boundary wall at y = 0 and a unidirectional mainstream flow along x. The analysis can be extended to a curved boundary, as
+long as the boundary layer is much thinner than the radius of curvature R of the
+wall, δ ¿ R. In that case, the coordinates should be understood as curvilinear
+with the x-coordinate following the shape of the wall and the y-coordinate always
+pointing along the local normal.
+
+.........
+.........
+....
+.............
+...............................................................
+....
+....
+..
+. ..
+.
+.
+.
+.
+.. ...
+.... ..
+.... .... ....
+.... ....
+.... .... .... ... ....
+
+Ideal slip-flow
+
+qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq- x
+
+In the absence of viscosity, the incompressible ideal fluid would slip along the
+boundary, y = 0, with a slowly varying slip-velocity, vx = U (x). Leaving out
+gravity, it follows from Bernoulli’s theorem (16-16) that there must be an associated slip-flow pressure at the boundary,
+1
+P (x) = P0 − ρ0 U (x)2 ,
+(25-16)
+2
+where P0 is a constant. The slip-flow pressure simply reflects the variation in
+slip-velocity along the boundary. Even in the ideal case there will also be an
+upflow close to the boundary implied by mass conservation, i.e. the continuity
+equation
+∂vx
+∂vy
++
+=0.
+(25-17)
+∂x
+∂y
+
+Geometry
+of
+twodimensional planar boundary flow. In the absence of
+viscosity there would be a
+slowly varying ideal slip-flow
+U (x) along the boundary.
+Viscosity interposes a thin
+boundary layer of thickness
+δ(x) between the slip-flow
+and the boundary.
+
+y
+
+6
+
+mainstream flow
+U (x)
+
+δ(x)
+
+Inserting vx = U (x) and using that vy = 0 for y = 0, we have
+dU (x)
+(25-18)
+dx
+Only for constant U (x) = U0 will this upflow from the boundary layer be absent.
+It is generally negligible compared to U inside the boundary layer, y . δ.
+The no-slip condition implies that the true velocity must change rapidly from
+vx = 0 right at the boundary, y = 0, to vx = U (x) outside the boundary layer.
+Formulated more carefully, the slip-flow velocity U (x) and boundary pressure
+P (x) should be understood as describing the flow in the region δ ¿ y ¿ L, well
+outside the boundary layer but still so close to the boundary that the mainstream
+flow only depends on x. In the mainstream proper for y & L, flow and pressure
+depend on both x and y with a typical length scale L for major variations. So
+even if the upflow appears to grow indefinitely, it will be become part of the
+mainstream flow for y & L.
+vy = −y
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+492
+
+25. BOUNDARY LAYERS
+
+The Prandtl equations
+In the boundary layer vx depends also on y. Integrating the equation of continuity
+over y, and using the boundary condition vy = 0 for y = 0, we obtain the general
+exact relation,
+vy (x, y) = −
+
+∂
+∂x
+
+Z y
+
+vx (x, y 0 ) dy 0 .
+
+(25-19)
+
+0
+
+Inside the boundary
+layer for y . δ, this equation permits us to estimate vy ≈
+√
+U δ/L ∼ U/ Re. The upflow from the boundary layer will thus in general for
+Re À 1 be much smaller than the slipflow.
+In two dimensions the steady-flow Navier-Stokes equations (19-2) take the
+form
+µ 2
+¶
+∂vx
+∂vx
+1 ∂p
+∂ vx
+∂ 2 vx
+vx
++ vy
+=−
++ν
++
+,
+(25-20a)
+∂x
+∂y
+ρ0 ∂x
+∂x2
+∂y 2
+µ 2
+¶
+∂vy
+∂vy
+1 ∂p
+∂ vy
+∂ 2 vy
+vx
++ vy
+=−
++ν
++
+.
+(25-20b)
+∂x
+∂y
+ρ0 ∂y
+∂x2
+∂y 2
+In either of these equations, the double derivative after y is proportional to
+1/δ 2 , whereas the double derivative after x is proportional to 1/L2 , making
+it a factor 1/Re smaller and thus negligible for Re → ∞. From the estimate
+of the thickness of the boundary layer (25-2) it follows that the viscous terms
+on the right are of the same order of magnitude as the advective terms on
+the left, which are also both of comparable magnitude. Setting vx ≈ U and
+vy ≈ U δ/L we estimate from any of the remaining terms in the second equation
+that the normal pressure gradient is ∂p/∂y ≈ ρ0 U 2 δ/L2 . Finally, multiplying
+this expression with δ we obtain the pressure variation across the boundary layer
+∆y p ≈ δ ∂p/∂y ≈ ρ0 U 2 δ 2 /L2 ∼ ρ0 U 2 /Re. This is much smaller, by roughly a factor 1/Re, than the typical variation in slip-flow pressure (25-16), ∆p ≈ ρ0 U 2 and
+may thus be disregarded in this approximation. The true pressure in the boundary layer is accordingly essentially equal to the slip-flow pressure, p(x, y) ≈ P (x).
+Inserting p = P in (25-20a) and dropping the second order derivative after x,
+we arrive at Prandtl’s momentum equation,
+vx
+
+∂vx
+∂vx
+dU
+∂ 2 vx
++ vy
+=U
++ν
+∂x
+∂y
+dx
+∂y 2
+
+.
+
+(25-21)
+
+Since vy is given in terms of vx by (25-19), we have obtained a single integrodifferential equation which for any given U (x) determines vx , subject to the
+boundary conditions vx = 0 for y = 0 and vx → U for y → ∞. The preceding
+analysis shows that the correction terms to this equation are of order 1/Re. The
+Prandtl approximation breaks down near a separation point, where the upflow
+becomes comparable to the mainflow.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.4. LAMINAR BOUNDARY LAYER IN UNIFORM FLOW
+
+25.4
+
+493
+
+Laminar boundary layer in uniform flow
+
+The generic example of a steady laminar boundary layer is furnished by a semiinfinite plate with its edge orthogonal to a uniform flow with constant velocity
+U , a problem first solved by Blasius in 1908.
+
+Self-similarity
+As the main variation in vx happens across the boundary layer, it may be convenient to measurepy in units of the thickness of the boundary layer, estimated
+to be of order δ ∼ νx/U on page 486. Let us for this reason write the velocity
+in dimensionless self-similar form,
+r
+U
+vx (x, y) = U f (s) ,
+s=y
+,
+(25-22)
+2νx
+where f (s) must satisfy the boundary conditions, f (0) = 0 and f (∞) = 1. The
+factor of 2 in the squareroot is conventional. In principle the function could also
+depend on the dimensionless variable Rex = U x/ν, but the correctness of the
+above assumption will be justified by finding a solution satisfying the boundary
+conditions.
+
+Upflow
+From the equation of continuity (25-19) we obtain
+Z y
+i
+∂
+∂ h√
+vy (x, y) = −
+2U νx g(s) .
+vx (x, y 0 ) dy 0 = −
+∂x 0
+∂x
+Here we have for convenience defined the integral
+Z s
+g(s) =
+f (s0 ) ds0
+
+(25-23)
+
+0
+
+so that f (s) = g 0 (s). Carrying out the differentiation, we obtain the upflow from
+the layer,
+r
+Uν
+vy (x, y) = h(s)
+,
+(25-24)
+2x
+with
+h(s) = sf (s) − g(s) .
+
+(25-25)
+
+The asymptotic value h(∞) = lims→∞ (s−g(s)) determines the total upflow from
+the boundary layer into the mainstream.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+Paul
+Richard
+Heinrich
+Blasius (1883–1970). German physicist, a student
+of Prandtl.
+Worked on
+boundary-layer drag and
+smooth pipe resistance.
+
+494
+
+25. BOUNDARY LAYERS
+
+15
+
+10
+
+5
+
+y
+
+0
+
+-5
+
+-10
+
+-15
+-2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+x
+
+Figure 25.1: Streamlines around a semi-infinite thin plate with fluid flowing uniformly
+
+in from the left (see problem 25.5). Units are chosen so that U = ν = 1. The thin
+dashed streamline terminates√in a stagnation point. The heavy dashed curve indicates
+the 99% thickness, y = δ = 5 x. The kink in the streamlines at x = 0 signals breakdown
+of the Prandtl approximation in this region.
+
+Blasius’ equation
+Finally, vy is inserted into the Prandtl equation (25-21) and using that in this
+case U is constant, we obtain a single third order ordinary differential equation,
+called Blasius’ equation,
+g 000 (s) + g(s)g 00 (s) = 0 ,
+
+(25-26)
+
+which must be solved with the boundary conditions g(0) = 0, g 0 (0) = f (0) = 0,
+and g 0 (∞) = f (∞) = 1. Numeric integration yields the results shown in fig. 25.1
+and 25.2.
+The condition g 0 (∞) = 1 seems at first a bit troublesome to implement. The trick
+is first to find the solution ge(s) which satisfies the Blasius equation with with
+ge00 (0) = 1. This solution converges at infinity to a value α = ge0 (∞) = 1.65519 . . .
+instead of unity. The correct solution is finally obtained by the transformation,
+1
+g(s) = √ ge
+α
+
+
+
+s
+√
+α
+
+
+
+(25-27)
+
+It is a simple matter to verify that this function also satisfies the Blasius equation.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.4. LAMINAR BOUNDARY LAYER IN UNIFORM FLOW
+
+HaL
+
+fHsL
+1
+
+495
+
+HbL
+
+hHsL
+1.2
+
+0.8
+
+1
+
+0.6
+
+0.8
+0.6
+
+0.4
+0.4
+
+0.2
+
+0.2
+
+1
+
+2
+
+3
+
+4
+
+s
+
+1
+
+2
+
+3
+
+4
+
+s
+
+Figure 25.2:
+p Plot of the self-similar shape functions for (a) vx = U f (s), and (b)
+
+vy = h(s) U ν/2x. The dashed line in pane (a) has slope f 0 (0) = 0.46960 . . . and is
+tangent at s = 0. It crosses unity at s = 2.1295. The dashed line in pane (b) indicates
+the asymptotic value h(∞) = 1.21678 . . . and determines the resulting upwelling of fluid
+from the boundary layer into the mainstream flow.
+
+Thickness and local Reynolds number
+
+Wall stress and friction coefficient
+The wall stress becomes
+
+(25-30)
+
+It is customary also to make the wall stress dimensionless by dividing with 12 ρ0 U 2
+to get the so-called local friction coefficient,
+r
+2
+0.664
+σwall
+0
+= f (0)
+≈√
+,
+(25-31)
+cf ≡ 1
+2
+Rex
+Rex
+2 ρ0 U
+In a turbulent boundary layer (section 25.5), this expression is replaced by a
+semi-empirical power law of the same general form but with a different power
+and coefficient. Notice the singularity at x = 0, which signals breakdown of the
+boundary layer approximation at the leading edge of the plate.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+6
+U
+0.99U
+
+The conventional thickness of the Blasius layer is as for the Stokes layer (section
+25.2) defined to be the distance y = δ where the velocity has reached 99% of the
+slip-flow velocity, which happens for f (s) = 0.99. The solution of this equation
+is s = 3.4719 . . ., so that the thickness becomes
+r
+r
+2νx
+νx
+δ99 = 3.4719 . . .
+≈ 4.91
+.
+(25-28)
+U
+U
+p
+Typically, one uses δ ≈ 5 νx/U for estimates. In dimensionless form, this may
+be expressed in terms of the local Reynolds number,
+p
+Uδ
+Reδ =
+≈ 5 Rex ,
+(25-29)
+ν
+where as before Rex = U x/ν is the “downstream” Reynolds number. Turbulence
+typically sets in for a local Reynolds number between 2000 and 4000.
+
+r
+¯
+∂vx ¯¯
+U 0
+σwall = η
+f (0)
+= ηU
+¯
+∂y y=0
+2νx
+
+vx
+
+Revision 7.7, January 22, 2004
+
+.....................
+....................
+............
+........
+......
+.
+.
+.
+.
+....
+.....
+.....
+.....
+...
+.
+.
+.
+.
+....
+...
+...
+..
+.
+.
+...
+
+δ99
+
+-y
+
+Definition of conventional
+thickness δ99 as the distance
+from the wall where the
+velocity has reached 99% of
+the mainstream velocity U .
+
+496
+
+25. BOUNDARY LAYERS
+
+-
+
+¡
+%
+%
+- ¡
+¡
+%
+¡
+%
+- ¡
+K
+%
+¡
+%
+¡
+%
+U
+
+L
+A flat and thin wing aligned
+with the flow only experiences skin drag.
+
+Laminar skin drag on a flat wing
+Consider now an infinitely thin rectangular “wing” with “chord” L in the direction of flow, and a “span” K orthogonal to the flow (in the z-direction). Such an
+object generates no form drag, when it is aligned with the flow. Disregarding the
+influence of the rear and side edges of the wing, the total (skin) drag is obtained
+by integrating σwall = 21 ρ0 U 2 cf over both sides of the plate,
+Z L
+D=2
+
+0
+
+Z Lr
+
+σwall (x) Kdx = 2ηU Kf (0)
+0
+
+0
+
+U
+dx = 4ηU Kf 0 (0)
+2νx
+
+r
+
+UL
+.
+2ν
+
+This becomes more transparent when expressed in terms of the dimensionless
+drag coefficient for the wing,
+D
+8f 0 (0)
+2.6565
+= √
+≈ √
+,
+2
+ρ
+U
+A
+2Re
+Re
+2 0
+
+CD = 1
+
+(25-32)
+
+where A = KL is the wing’s area and Re = U L/ν is its wing’s Reynolds number.
+The skin drag coefficient decreases with the squareroot of the Reynolds number,
+and is of little importance in most everyday situations with Reynolds number
+in the millions. The skin drag is mostly dominated by the form drag coefficient
+which does not decrease but rather stays constant for Re → ∞.
+Example 25.4.1 (Weather vane): A little rectangular metal weather vane
+with sides L = 30 cm and K = 20 cm in a 10 m s−1 wind has Re = U L/ν ≈ 200, 000,
+well below the onset of turbulence. The drag coefficient becomes CD ≈ 0.0059 and
+the total skin drag D ≈ 0.018 N, when the vane aligned with the wind. This
+drag corresponds to a weight of merely 2 g, whereas the form drag and the other
+aerodynamic forces that align the vane are much stronger. One should not dimension
+the support of the vane on the basis of the laminar skin drag!
+
+25.5
+......
+........
+.........
+.........
+.......
+.
+.
+.
+.
+.
+..
+......
+.....
+.....
+......
+.....
+.
+.
+.
+...
+....
+.....
+....
+...
+.
+.
+..
+..........................
+........
+................
+..............................................
+............
+...............................
+........
+..................
+......
+
+laminar
+
+turbulent
+viscous
+
+Sketch of the shape of the
+boundary layer from the
+leading edge through the
+transition region. At the
+transition (dashed line),
+the turbulent layer grows
+rapidly whereas the viscous
+sublayer only grows slowly.
+
+Turbulent boundary layer in uniform flow
+
+Sufficiently far downstream from the leading edge, the Reynolds number, Rex =
+U x/ν, will eventually grow so large that the boundary layer becomes turbulent.
+Empirically, the transition happens for 5 × 105 . Rex . 3 × 106 , depending
+on the circumstances, for example the uniformity of the mainstream flow and
+the roughness of the plate surface. We shall in the following discussion take
+Rex = 5 × 105 as the nominal transition point.
+The line of transition across the plate is not a straight line parallel with the
+z-axis, but rather an irregular, time-dependent, jagged, even fractal interface
+between the laminar and turbulent regions. This is also the case for the extended, nearly “horizontal” interface between the turbulent boundary layer and
+the fluid at large. Such intermittent and fractal behavior is common to the onset
+of turbulence in all systems.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.5. TURBULENT BOUNDARY LAYER IN UNIFORM FLOW
+
+cf
+0.1
+
+laminar
+
+turbulent
+
+cf ~Rex - 2
+1
+
+0.01
+
+cf ~Rex - 7
+1
+
+cf ~const
+0.001
+
+smooth
+plate
+
+103
+
+104
+
+105
+
+106
+
+107
+
+rough
+plate
+Rex
+
+108
+
+109
+
+1010
+
+Figure 25.3: Schematic plot of the local friction coefficient cf = 2σ̄wall (x)/ρ0 U 2 across
+the laminar and turbulent regions as a function of the downstream Reynolds number
+Rex = U x/ν. The transitions at the nominal points Rex = 5 × 105 and 109 are in
+reality considerably softer than shown here (with the dashed curve as a possible transition
+shape). The position of the second transition and the terminal value of cf depend on
+the roughness of the plate surface (see [37] for details).
+
+Friction coefficient
+In a turbulent boundary layer, the true velocity field v fluctuates in all directions
+and in time around some mean value. Even very close to the wall, there will be
+noticeable fluctuations. The no-slip condition nevertheless has to be fulfilled and
+a thin sublayer dominated by viscous stresses must exist close to the wall. In
+this viscous sublayer the average velocity v̄x rises linearly from the surface with
+a slope, ∂v̄x /∂y|y=0 = σ̄wall /η that can be determined from drag measurements.
+A decent semi-empirical expression for the friction coefficient of a turbulent
+boundary layer is
+σ̄wall
+0.027
+cf ≡ 1
+≈ 1/7 .
+2
+Rex
+2 ρ0 U
+
+(25-33)
+
+The turbulent friction coefficient thus decreases much slower than the corresponding laminar friction coefficient (25-31). The two expressions cross each other at
+Rex ≈ 7800 which is far below the transition to turbulence , implying a jump
+from cf ≈ 9.4 × 10−4 to cf ≈ 4.1 × 10−3 at Rex ≈ 5 × 105 . Turbulent boundary
+layers thus cause much more skin drag than laminar boundary layers (by a factor
+of more than 4 at the nominal transition point).
+In fig. 25.3 the friction coefficient is plotted across the laminar and turbulent
+regimes. The transition from laminar to turbulent is in reality not nearly as
+sharp as shown here, partly because of the average over the jagged transition
+line. Eventually, for sufficiently large Rex , the roughness of the plate surface
+makes the friction coefficient nearly independent of viscosity and thus of Rex .
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+497
+
+498
+
+25. BOUNDARY LAYERS
+
+Drag on a flat wing
+Let us again consider a finite “wing” of size A = L × K. For sufficiently large
+Reynolds number Re = U L/ν, the boundary layer will always become turbulent
+some distance downstream from the the leading edge, and the skin drag will in
+general be dominated by the turbulent boundary layer’s larger friction coefficient.
+For a fully turbulent boundary layer, the dimensionless turbulent drag coefficient
+becomes (including both sides of the plate)
+Z L
+2
+0.063
+CD = 1
+(25-34)
+σ̄wall (x) Kdx = 1/7
+2
+Re
+2 ρ0 U A 0
+where A = KL as before is the wing area. If the leading laminar boundary layer
+cannot be disregarded, this expression is somewhat modified.
+Example 25.5.1: A 2 × 2 m2 flag in a 10 m s−1 wind has a Reynolds number of
+Re ≈ 1.3 × 106 , well inside the turbulent region. The laminar skin drag coefficient
+is CD ≈ 0.0023 whereas the turbulent skin drag coefficient is CD ≈ 0.0084. The
+turbulent skin drag is only D ≈ 1.68 N which seems much too small to keep the
+flag straight. But flags tend to flap irregularly in the wind, thereby adding a much
+larger average form drag to the total drag, and giving it even in a moderate wind
+the nearly straight form that we admire so much. The straight flag in the wind is
+an image so ingrained in our minds that NASA chose to simulate it when planting
+an aluminium edition of Stars and Stripes in the soil of the airless Moon.
+
+x1
+x2
+The drag on the plate between x1 and x2 must
+equal the rate of loss of
+momentum from the fluid
+between the dashed lines.
+
+Theodore
+von
+Kármán
+(1881-1963).
+Influential
+Hungarian-American
+engineer.
+Lived from 1930
+in the US, and became in
+1944 cofounder of the Jet
+Propulsion Laboratory at
+the California Institute of
+Technology.
+Made major
+contributions to the understanding of fluid mechanics,
+aircraft structures, rocket
+propulsion, and soil erosion.
+A crater on the Moon bears
+his name today.
+
+Local drag and momentum balance
+Momentum balance guarantees that the drag on any section of the plate, say
+for x1 < x < x2 , must equal the rate of momentum loss from the slice of fluid
+above this interval, independently of whether the fluid is laminar or turbulent.
+Formally, we may use the Prandtl equations to derive such a relation for an
+infinitesimal slice of the boundary layer, as was first done by von Kármán in
+1921.
+For constant slip-flow it follows trivially from (25-19) and (25-21) that
+−ν
+
+∂ 2 vx
+∂((U − vx )vx ) ∂(vy (U − vx ))
+=
++
+.
+2
+∂y
+∂x
+∂y
+
+(25-35)
+
+Integrating over all y and using the boundary conditions, we see that the second
+term on the right hand side does not contribute, and we obtain
+¯
+Z ∞
+∂vx ¯¯
+d
+(U − vx )vx dy .
+(25-36)
+ν
+=
+∂y ¯y=0
+dx 0
+The quantity on the left hand side is simply σwall /ρ0 , and the integral on the
+right hand side is the flux of lost momentum. In section 25.6 we shall make a
+more systematic study of such relations.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.5. TURBULENT BOUNDARY LAYER IN UNIFORM FLOW
+
+499
+
+U∆
+Re∆ = 
+Ν
+108
+107
+
+turbulent
+
+laminar
+
+∆~x
+
+106
+∆~x 7
+6
+
+105
+104
+
+smooth
+plate
+
+103
+∆~x 2
+1
+
+42
+∆0 ~x 
+1
+
+102
+103
+
+104
+
+rough
+plate
+
+105
+
+106
+
+107
+
+108
+
+∆0 ~const
+109
+
+1010
+
+Ux
+Rex = 
+Ν
+
+Figure 25.4: Schematic plot of the dimensionless “true” thickness, represented by Reδ =
+
+U δ/ν, as a function of downstream distance x, represented by Rex = U x/ν. Also shown
+is the thickness of the viscous sublayer δ0 . The momentum thickness δmom is obtained
+from the refined expression (25-42) and is everywhere roughly a factor 10 smaller than
+the “true” thickness δ. The real transition at the nominal value, Rex = 5 × 105 , is even
+softer than shown here. The transition from smooth to rough plate at Re = 109 is barely
+visible.
+
+Turbulent velocity profile and thickness
+Empirically, the flat-plate turbulent boundary layer profile outside the viscous
+sublayer is decently described by the simple model (due to Prandtl),
+³ y ´1/7
+vx
+=
+,
+(0 . y < δ) .
+(25-37)
+U
+δ
+Although the thickness δ is not known at this stage, we may use the von Kármán
+relation (25-36) to relate it to the friction coefficient, for which we have the semiempirical expression (25-33). Ignoring the thin viscous sublayer which cannot
+contribute much to the integral, we obtain
+Z δ
+7 2
+(U − vx )vx dy =
+U δ.
+(25-38)
+72
+0
+The von Kármán relation now becomes a differential equation for the thickness,
+36
+dδ
+=
+cf .
+dx
+7
+
+(25-39)
+
+In a fully turbulent boundary layer, we may integrate this equation using (25-33)
+with the initial value δ = 0 at x = 0, to get
+Z
+36 x
+ν
+.
+(25-40)
+δ=
+cf dx ≈ 0.16 Re6/7
+7 0
+U x
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+vx
+
+6
+U
+
+...................................
+...................
+.........
+........
+.......
+.
+.
+.
+.
+.
+...
+.....
+...
+...
+...
+...
+.
+...
+...
+...
+....
+..
+...
+..
+..
+
+-y
+
+δ
+
+The turbulent velocity profile is approximately a power
+v̄x ∼ y γ with γ ≈ 1/7. The
+vertical tangent at y = 0
+is unphysical, because it
+implies infinite wall stress.
+
+500
+
+25. BOUNDARY LAYERS
+
+Expressing the thickness in dimensionless form by means of the local Reynolds
+number, we finally have
+Reδ ≡
+
+Uδ
+= 0.16 Re6/7
+.
+x
+ν
+
+(25-41)
+
+The jump in the local Reynolds number at the nominal transition point x = x0
+where Rex0 = 5 × 105 , is only apparent. A more precise expression for the local
+Reynolds number may be obtained by using the Blasius result for 0 ≤ x ≤ x0 ,
+and integrating the turbulent expression only for x > x0 ,
+ √
+
+x < x0
+5 Rex
+Reδ =
+(25-42)
+³
+´
+p
+
+6/7
+5 Rex0 + 0.16 Re6/7
+−
+Re
+x
+>
+x
+0
+x
+x0
+By construction, this expression is continuous across the nominal transition
+point(see fig. 25.4).
+
+The viscous sublayer
+
+vx
+
+6
+U
+
+......................................
+................
+
+£.............................
+.....
+..£
+.
+.
+.
+...
+...
+... £
+...
+.... £
+.
+..
+... £
+...
+.... £
+..
+...£
+δ0 δwall
+
+It is also possible to get an estimate of the thickness δ0 of the viscous sublayer
+from the intercept between the linearly rising field, vx = yσ̄wall /η, in the sublayer
+and the power law (25-37). Demanding continuity at y = δ0 , we get
+σ̄wall
+δ0 = U
+η
+
+-y
+
+δ
+
+The “true” thickness δ0 of
+the viscous sublayer is
+obtained from the intercept
+between Prandtl’s power
+profile (25-37) and the
+linearly rising velocity in
+the sublayer.
+The kink
+at y = δ0 is unphysical,
+because it gives rise to a
+small jump in shear stress
+that violates Newton’s third
+law (slightly).
+The real
+transition
+from
+viscous
+sublayer to turbulent main
+layer is softer than shown
+here.
+
+µ
+
+δ0
+δ
+
+¶1/7
+.
+
+Solving this equation for δ0 and inserting σwall from (25-33) and δ from (25-41)
+we obtain1
+U δ0
+= 206Re1/42
+.
+x
+ν
+
+(25-43)
+
+At the nominal transition point Rex = 5 × 105 , this becomes 282, which grows
+to 337 at Rex = 109 . The sublayer thickness is also plotted in Fig. 25.4 and its
+variation with Rex is barely perceptible.
+It is now also possible to calculate the fraction of the terminal velocity that
+the fluid has at the “edge” of the sublayer
+vx |y=δ0
+U
+
+.
+= 2.8Re−5/42
+x
+
+(25-44)
+
+At the nominal transition point it is 0.59 and falls by roughly a factor 2 to 0.24
+at Rex = 109 .
+1 The remarkable 42’nd root may have deeper significance [48].
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.6. BOUNDARY LAYERS WITH VARYING SLIP-FLOW
+
+25.6
+
+501
+
+Boundary layers with varying slip-flow
+
+In the two preceding sections we have only discussed the case of constant slipflow, but now we turn to the study of slip-flows that vary with x. Although we
+shall always think of a flat plate boundary layer, the following discussion is also
+valid for slowly curving walls, such as the much-studied flow around a cylinder.
+A varying slip-flow U (x) will strongly influence the flow in the boundary layer
+(which we now again assume to be laminar). Accelerating flow (dU/dx > 0),
+tends to suppress√the boundary layer, so that its downstream thickness grows
+slower than the x of the Blasius layer. Sufficiently strong acceleration may
+even make the boundary layer thinner downstream. Conversely,
+√ if the slip-flow
+decelerates (dU/dx < 0), the thickness will grow faster than x, and sufficiently
+strong deceleration may lift the boundary layer off the plate and make it wander
+into the mainstream as a separated boundary layer.
+In this section we shall establish some relations that are valid for any exact
+solution to Prandtl’s equations. These relations will be useful for the discussion
+of the separation phenomenon to be taken up in the following sections.
+
+Exact wall derivatives
+At the wall, y = 0, we know that both vx and vy must vanish, and that the
+derivative of the velocity at the wall,
+¯
+∂vx ¯¯
+ω=
+(25-45)
+∂y ¯y=0
+is in general non-vanishing, except at a separation point, where it has to vanish.
+We have used the letter ω to denote this quantity, because it has dimension of
+angular velocity. It should not be confused with the wall vorticity ωz = −ω.
+Setting y = 0 in the Prandtl equation (25-21) we get immediately the double
+derivative, also called the wall curvature,
+¯
+∂ 2 vx ¯¯
+dU
+.
+(25-46)
+ν
+= −U
+∂y 2 ¯y=0
+dx
+Its direct relation to the slip-flow opens for a qualitative discussion of the shape
+of the velocity profile. If the slip-flow accelerates (dU/dx > 0), the wall curvature
+will be negative and favor the approach of the velocity towards its terminal value,
+U . Conversely, if the slip-velocity decreases (dU/dx < 0), the wall curvature will
+be positive and adversely affect the approach to terminal velocity. This forces an
+inflection point into the velocity profile and raises the need for including higher
+derivatives to secure the turn-over towards the asymptotic slip-flow. For constant slip-flow, i.e. the Blasius case, we have dU/dx = 0, and the wall curvature
+vanishes.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+vx
+.....................................
+U 6
+..............................
+......... ..........
+........ ..........
+dU/dx >....0
+........ ... ............
+. ...
+.....
+...... .... ....
+..... .... .......
+.....
+..... . ... .......
+.
+.
+.
+... .. ....
+... .
+.
+... .. .....
+... ..
+..
+... .. .
+.
+....
+.
+....
+... . .
+.
+.
+.
+.
+... ..
+....
+....
+... ...
+....
+...
+....
+.. ... ........
+.
+.
+.....
+...
+.. .. .....
+.. . ......
+... .........
+..........
+
+dU/dx < 0
+
+-y
+
+In
+accelerating
+flow,
+dU/dx > 0, the wall curvature is negative, whereas
+in decelerating flow the
+curvature is positive. The
+dashed curve sketches the
+velocity profile for vanishing
+wall curvature.
+
+502
+
+25. BOUNDARY LAYERS
+
+The higher order wall derivatives may be calculated by differentiating the
+Prandtl equation repeatedly after y. Differentiating once, we find
+¯
+∂ 3 vx ¯¯
+=0,
+(25-47)
+ν
+∂y 3 ¯y=0
+and once more
+¯
+∂ 4 vx ¯¯
+dω
+ν
+=ω
+.
+¯
+4
+∂y y=0
+dx
+
+(25-48)
+
+Clearly, this process can be continued indefinitely to obtain all wall derivatives
+of vx depending only on U and ω and their derivatives.
+
+Exact integral relations
+We have already derived a relation (25-36) from momentum balance in uniform
+flow. For general varying slip-flow we first rewrite the Prandtl equation (25-21)
+in the form,
+−ν
+
+∂ 2 vx
+dU
+∂[vx (U − vx )] ∂[vy (U − vx )]
+= (U − vx )
++
++
+.
+∂y 2
+dx
+∂x
+∂y
+
+(25-49)
+
+Integrating this equation over y from 0 to ∞, and using the boundary values
+vy → 0 for y → 0 and U − vx → 0 for y → ∞, we obtain the general von Kármán
+relation
+¯
+Z
+Z ∞
+∂vx ¯¯
+d
+dU ∞
+ν
+(U − vx ) dy +
+(U − vx )vx dy .
+=
+∂y ¯y=0
+dx 0
+dx 0
+
+(25-50)
+
+It states that the drag on any infinitesimal slice of the plate equals the rate of
+momentum loss from the fluid.
+We may similarly derive a relation expressing kinetic energy balance by multiplying the Prandtl equation with vx , and rewriting it in the form,
+µ
+ν
+
+∂vx
+∂y
+
+¶2
+=
+
+1 ∂ 2 (vx2 ) 1 ∂((U 2 − vx2 )vx ) 1 ∂(vy (U 2 − vx2 ))
+ν
++
++
+2 ∂y 2
+2
+∂x
+2
+∂y
+
+(25-51)
+
+Integrating this over all y and using the boundary conditions, we get
+Z ∞µ
+ν
+0
+
+∂vx
+∂y
+
+¶2
+dy =
+
+1 d
+2 dx
+
+Z ∞
+0
+
+(U 2 − vx2 )vx dy .
+
+(25-52)
+
+This relation states that the rate of heat dissipation in any infinitesimal slice
+equals the rate of loss of kinetic energy from the fluid. It is also possible to derive
+further relations for angular momentum balance and thermal energy balance [46].
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.6. BOUNDARY LAYERS WITH VARYING SLIP-FLOW
+
+503
+
+vx
+
+Dynamic thicknesses
+
+6
+
+The integrands in the momentum and energy balance equations, (25-50) and (2552), may be interpreted physically in terms of flow properties. The expression U −
+vx is the volume flux of fluid displaced by the plate, the expression ρ0 (U −vx )vx is
+the flux of “lost momentum” caused by the presence of the plate, 12 ρ0 (U 2 −vx2 )vx is
+the flux of “lost kinetic energy”, and (∂vx /∂y)2 is the density of heat dissipation.
+It is convenient to introduce dynamic length scales (or thicknesses) related to
+each of these quantities (and the wall stress),
+¯
+1
+1 ∂vx ¯¯
+=
+,
+(25-53a)
+δ wall
+U ∂y ¯y=0
+Z
+1 ∞
+δdisp =
+(U − vx ) dy ,
+(25-53b)
+U 0
+Z ∞
+1
+δmom = 2
+(U − vx )vx dy ,
+(25-53c)
+U 0
+Z ∞
+1
+(U 2 − vx2 )vx dy ,
+(25-53d)
+δener = 3
+U 0
+¶2
+Z ∞µ
+1
+∂vx
+1
+= 2
+dy .
+(25-53e)
+δ heat
+U 0
+∂y
+In terms of these thicknesses, the momentum and energy balance equations now
+take the compact and quite useful forms,
+¡
+¢
+d U 2 δmom
+dU
+νU
+=U
+δdisp +
+,
+(25-54a)
+δwall
+dx
+dx
+1 d(U 3 δener )
+νU 2
+=
+(25-54b)
+δheat
+2
+dx
+Again we emphasize that these relations, like the wall derivatives, must be fulfilled
+for any exact solution to Prandtl’s boundary layer equations.
+For the Blasius layer,
+p self-similarity make all thicknesses proportional to the
+same basic scale, λ = νx/U . Numeric integration yields,
+δwall ≈ 3.012 λ , δdisp ≈ 1.721 λ , δmom ≈ 0.664 λ ,
+δener ≈ 1.044 λ , δheat ≈ 3.830 λ ,
+δ99 ≈ 4.910 λ .
+
+(25-55)
+
+(25-56)
+
+These relations are of course fulfilled for the numeric values above.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+. .........
+.. .........
+............
+......... ...
+.
+...
+....
+...
+...
+..
+.
+...
+...
+..
+.
+...
+....
+..
+.
+...
+..
+.
+..
+
+δwall
+
+Revision 7.7, January 22, 2004
+
+-y
+
+Definition of wall stress
+thickness from the intercept
+between the linearly rising
+velocity at small y and the
+mainstream velocity U .
+
+U − vx
+
+6
+U
+
+....... ..... ..... ..... ..... ..... ..... ..... ..... .
+...
+...
+...
+... .
+... ..
+...
+... ..
+....
+...
+.......
+.
+. ....
+... .........
+......
+.......
+....
+........
+..........
+.................
+.......................................
+...
+
+δdisp
+
+-y
+
+Definition of displacement
+thickness from the integral
+of the flux of volume loss,
+U − vx .
+(U − vx )vx
+
+6
+U ..... ......... ..... ..... ..... ..... ..... ..... ..... .
+...
+.
+.
+...
+...
+...
+......................................
+........
+..........
+.
+.
+.
+.
+................
+..........................
+.... .
+...........................
+.. ...
+
+δmom
+
+The self-similarity thus guarantees that the ratios between any thicknesses are
+pure numbers independent of x. The integral relations (25-54) simplify in this
+case to,
+1
+νx
+1
+δwall δmom = δheat δener =
+.
+2
+4
+U
+
+U ..... ..... ..... ............ ..................................................................................
+
+-y
+
+Definition of momentum
+thickness from the integral
+of the flux of momentum
+loss, (U − vx )vx .
+
+504
+
+25. BOUNDARY LAYERS
+
+25.7
+.......
+.......
+....... .....
+....... . ..
+........ ..................
+.
+.
+.
+.
+.
+.
+.
+.
+........ .... ......
+......... .. .....
+......... ... .....
+......... ... .....
+........ .. .. ........
+.
+.
+.
+.
+.
+.
+.
+.
+...
+......
+...
+........
+.....
+........................
+.....
+......
+.....
+.....
+................
+...........
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+......................................
+..
+..................................
+....
+.....
+.....
+
+s
+
+xc
+Schematic picture of how
+separation is thought to take
+place in a decelerating flow.
+The mainstream flow is
+profoundly changed by the
+separation both upstream
+and downstream from the
+separation point.
+..............
+...................
+.................
+...............
+..........
+.
+.
+.
+.
+.
+.
+.
+.
+....
+........
+.......
+...............
+.......
+..........
+.......
+.....
+.....
+.
+.
+.....
+.
+..
+.
+.
+.
+.
+.
+.
+......
+....
+.......
+......
+.......
+......
+..........
+........
+.
+...........
+..............
+
+....................................
+......
+....
+.
+.
+.
+...
+..
+...
+...
+...
+...
+..
+..
+
+Sketch of the much-studied
+separation flow around a
+cylinder (of which only
+half is shown here). The
+separating streamline is
+dotted.
+
+Boundary layer separation
+
+When a separating boundary layer takes off into a decelerating mainstream, the
+character of the mainstream flow is profoundly changed, thereby actually invalidating the Prandtl approximation. Careful analysis has revealed that this is a
+generic problem, to which the boundary layer equations respond by developing
+an unphysical singularity right at the point of separation. This Goldstein singularity [?] prevents us in general from using boundary layer theory to connect the
+regions before and after separation.
+The existence of a singularity is nevertheless believed to be an indicator of
+boundary layer separation in the general vicinity of the point where the singularity occurs. During the 20’th century the problem of predicting the singular
+separation point for boundary layers around variously shaped objects has been
+of great importance to fluid mechanics, for fundamental as well as technological
+reasons. It has proven to be a challenging problem, to say the least [50]. A
+number of approximative schemes have been proposed and tried out, and with
+suitable empirical input, they compare reasonably well with analytic or numeric
+calculations [46].
+The Goldstein singularity is unavoidable as long as we persist in the belief that
+we can employ Prandtl’s equations and also specify the slip-flow velocity as we
+wish. The price to pay for avoiding the singularity is that the Prandtl equations
+must be replaced by the Navier-Stokes equations and that the mainstream flow
+cannot be fully specified in advance, but has to be allowed to be influenced by
+what happens deep inside the boundary layer. Since separation originates in the
+innermost viscous “deck” of the boundary layer, viscosity thus takes decisive part
+in selecting the presumed inviscid flow at large, again emphasizing that inviscid
+flow solutions are not unique, and that ideal flow is indeed — an ideal.
+In the last half of the 20th century, it has been conclusively demonstrated
+through theoretical analysis and numerical simulation that the Navier-Stokes
+equations do not lead to any boundary layer singularities and do in fact smoothly
+connect the regions before and after separation. The successful method goes
+under the name “triple deck” because the boundary layer near the separation
+point is divided into three “decks” characterized by different physics and different
+length scales. Afterwards the decks are “stitched together” to make the complete
+boundary layer continuous. Although Prandtl’s boundary layer theory strictly
+speaking is useless for separation problems, there does not seem to be any simple
+way of presenting the modern “interactive” boundary layer theory. We refer the
+reader to recent textbooks dedicated to the physics of boundary layers [50, 51].
+In this section we shall make a — not particularly successful — attempt to
+determine the separation point from Prandtl’s equations. The analysis demonstrates clearly the presence of a Goldstein singularity. In section 25.8 we shall
+see that empirical input is in fact not needed, and that it is possible to predict
+the position of the singularity to an accuracy better than 1%. A simplified but
+highly useful modification of this model yields an accuracy better than 3%.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.7. BOUNDARY LAYER SEPARATION
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+
+U (x)
+1√− x
+1−x
+(1 − x)2
+(1 + x)−1
+(1 + x)−2
+1 − x2
+1 − x4
+1 − x8
+cos x
+
+xc
+0.120
+0.218
+0.064
+0.151
+0.071
+0.271
+0.462
+0.640
+0.389
+
+wall
+0.176
+0.314
+0.094
+0.230
+0.107
+0.365
+0.565
+0.726
+0.523
+
+wall+mom
+0.157
+0.277
+0.084
+0.214
+0.098
+0.312
+0.491
+0.652
+0.447
+
+505
+
+mom+ener
+0.121
+0.219
+0.064
+0.154
+0.072
+0.270
+0.460
+0.643
+0.386
+
+approx
+0.123
+0.221
+0.065
+0.158
+0.074
+0.268
+0.449
+0.621
+0.383
+
+Table 25.1: Table of decelerating slip-flows and the positions of their Goldstein sin-
+
+gularities (“separation points”) calculated in various models discussed in the text. The
+exact values xc in the second column are taken from [46]. The separation points determined by the wall-anchored fourth order polynomial (25-57) are listed in the third
+column, and have typical errors of 40%. The fourth column is obtained by Pohlhausen’s
+method (25-94) and errors less than 25% in all cases better than wall-anchored approximation. In the fifth column the separation points are determined from both momentum
+and energy balance (25-65) with typical errors smaller than 1%. Finally, in the last
+column, the separation points are derived from the simple approximation (25-75) with
+the typical error being less than 3%.
+vx
+
+Wall-anchored model
+
+6
+
+The simplest model of boundary layer flow is obtained by approximating the
+velocity profile with a fourth order polynomial in y constructed from the exact
+wall derivatives (page 501)
+vx = ω y −
+
+U U̇ 2
+ω ω̇ 4
+y +
+y ,
+2ν
+24ν
+
+(25-57)
+
+where a dot is used to denote differentiation after x. Evidently, this expression is
+exact for y → 0, but for y → ∞ where all three terms diverge, there is a problem.
+In decelerating slip-flow (U̇ < 0), the second order term is always positive, and
+the fourth-order term is always negative just upstream from the separation point,
+because the slope ω is positive and decreasing towards zero at separation. After
+an initial rise governed by the first and second order terms, the fourth order
+term must eventually pull down the profile to minus infinity, unless we manage
+to “catch” it at the top by requiring the value at maximum to be vx = U (x).
+This double condition determines both the slope ω and the thickness δ, but
+we do not have to solve this model in order to see that the separation point must
+be singular. For if the fourth order term should continue to “do its job” as we
+approach the separation point, it is necessary that ω ω̇ be finite there, for example
+2ω ω̇ = d(ω 2 )/dx = −κ2 with κ > 0. It then follows that close to the separation
+point we must have ω 2 = κ2 (xc − x), or
+√
+ω ≈ κ xc − x .
+(25-58)
+Near the wall just upstream from the separation point, the velocity profile is
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+U
+
+..............................
+.....
+......
+....
+....
+....
+....
+...
+....
+.
+...
+..
+.
+...
+..
+.
+...
+..
+...
+.
+...
+..
+.
+.
+.
+.
+.
+..
+.
+.
+..
+.
+.
+..
+.
+.
+...
+...
+....
+....
+.....
+.
+.
+.
+.
+.
+.......
+..........
+
+-y
+δ
+Wall-anchored fourth order
+polynomial joins continuously with vx = U at its
+maximum y = δ.
+The
+continuation beyond δ drops
+to −∞ in a decelerating
+slip-flow is unphysical.
+
+506
+
+25. BOUNDARY LAYERS
+
+linear,
+√
+vx ≈ yω ≈ κy xc − x ,
+
+(25-59)
+
+and from mass conservation (25-19) we determine the corresponding upflow
+1 dω
+κ
+y2
+vy ≈ − y 2
+≈ √
+.
+2 dx
+4 xc − x
+
+(25-60)
+
+Evidently, the upflow diverges for all y at the separation point. Apart from
+being totally unphysical, this shows that it is not possible to solve the separation
+problem within the Prandtl approximation itself, because one of the conditions
+for this approximation, |vy | ¿ |vx |, fails miserably near the separation point.
+The model is solved in problem 25.7 and the solution confirms the existence
+of the Goldstein singularity and provides a definite value for κ. The separation
+points obtained from this model are listed in the third column (marked “wall”)
+in table 25.1 for nine decelerating slip-flows. They agree rather poorly with the
+exact results (second column), overshooting by up to 40%. The poor performance
+of the model must be ascribed to the much too solid anchoring of the boundary
+layer to the wall, which tends to generate large errors in the shape of the profile
+across the bulk of the boundary layer.
+
+∗ 25.8
+
+vx
+
+6
+
+U
+
+..
+....
+....
+....
+.
+.
+.
+.....
+......
+......
+..........
+........................
+.
+.
+.
+.
+.
+.
+.
+.
+..
+......
+.....
+....
+...
+...
+.
+...
+...
+..
+..
+.
+.
+...
+...
+....
+.....
+.....
+.
+.
+.
+.
+.
+.
+..
+..........
+
+-y
+
+δ
+The fourth order polynomial
+joins smoothly with vx = U
+with a horizontal inflection
+point at y = δ. The continuation beyond y = δ which
+diverges to +∞ for µ < 3 is
+not used.
+
+Locating the Goldstein singularity
+
+The wall-anchored approximation (25-57) suffers from an unnatural jump in the
+curvature ∂ 2 vx /∂y 2 at the edge of the boundary layer at y = δ. A smoother
+fourth-order polynomial was introduced by Pohlhausen in 1921, in which the
+coefficients are fixed by demanding the field to approach vx = U at y = δ with
+vanishing first and second order derivatives. Parameterizing the polynomial with
+the dimensionless slope at the wall, it becomes
+³ y ´2
+³ y ´3
+³ y ´4
+vx
+y
+= µ + 3(2 − µ)
+− (8 − 3µ)
++ (3 − µ)
+.
+U
+δ
+δ
+δ
+δ
+
+(25-61)
+
+It contains two unknown functions: the dimensionless slope at the wall¡ µ(x) and¢
+the layer thickness δ(x). One may readily verify that this indeed is O (y − δ)3
+for y → δ.
+Notice that for µ < 2, the second and fourth order terms are always positive.
+It is the negative third order term, which secures the smooth turn-over towards
+the slip-flow at y = δ. A selection of this family of profiles is shown in fig. 25.5.
+The profiles are well-defined for all µ, both before the separation point (µ > 0)
+and after (µ < 0). After separation they exhibit backflow, as one would expect,
+but as we shall see, the Goldstein singularity prevents us from connecting these
+solutions with the solutions before separation.
+Pohlhausen solved the model by imposing the wall-curvature condition (2546) together with the von Kármán relation (25-54a). The details are given in
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+25.8. LOCATING THE GOLDSTEIN SINGULARITY
+
+507
+
+vx U
+1
+0.8
+Μ=5
+
+0.6
+
+Μ=-5
+
+0.4
+0.2
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+y∆
+
+-0.2
+
+Figure 25.5: Profiles of the Pohlhausen family for integer values of µ from -5 to +5.
+
+The dashed curve is the profile at separation, corresponding to µ = 0, and the profiles
+with µ < 0 have backflow.
+
+problem 25.8, and the separation point predictions are tabulated in the fourth
+column (marked “wall+mom”) of table 25.1. The agreement is still rather poor
+with typical errors of 25%.
+
+Momentum and energy balance
+The nearly self-similar form of the Pohlhausen family (25-61), implies that all
+thicknesses are polynomials in µ scaled by δ. The wall, displacement, and momentum thicknesses become
+δ
+δwall
+
+=µ,
+
+δdisp
+8−µ
+=
+,
+δ
+20
+
+δmom
+144 + 12µ − 5µ2
+=
+.
+δ
+1260
+
+(25-62)
+
+and the energy and heat thicknesses,
+δener
+10512 + 876µ − 253µ2 − 21µ3
+=
+,
+δ
+60060
+
+δ
+δheat
+
+=
+
+48 − 4µ + 3µ2
+.
+35
+
+(25-63)
+
+Inserting these into the integral relations (25-54), one obtains two coupled first
+order differential equations for δ and µ.
+These rather messy differential equations are simplified by means of the auxiliary variable
+γ=
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+δ2 U
+,
+ν
+
+(25-64)
+
+Revision 7.7, January 22, 2004
+
+508
+
+25. BOUNDARY LAYERS
+
+HaL
+
+Μ
+2
+
+HbL
+
+Γ
+
+8
+25
+
+1.75
+
+7
+
+20
+
+1.5
+
+9
+1.25
+
+15
+1
+
+6
+2
+
+10
+
+0.75
+
+4
+1
+
+0.5
+
+5
+0.25
+3 5 1 4
+2
+0.1
+0.2
+
+6
+0.3
+
+9
+0.4
+
+7
+0.5
+
+8
+0.6
+
+x
+
+35
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+x
+
+Figure 25.6: Solutions to the coupled equations (25-65)for the nine fields in table (25.1).
+(a) The slope µ as a function of x. All curves have vertical tangent at the separation
+point, indicating a singularity. (b) The parameter γ defined in (25-64) as √
+a function
+of x. The linear envelope γ ≈ 32 x corresponds to the Blasius thickness δ ∼ x.
+which has dimension of length. In these variables, one finds the still rather
+complicated equations,
+U̇
+= 2520µ , (25-65a)
+U
+Ã
+!
+U̇
+2
+2
+3
+2(876 − 506µ − 63µ )γ µ̇ + (10512 + 876µ − 253µ − 21µ ) γ̇ + 5γ
+U
+4(6 − 5µ)γ µ̇ + (144 + 12µ − 5µ2 )γ̇ + 15(96 − 6µ − µ2 )γ
+
+= 6864(48 − 4µ + 3µ2 )
+
+(25-65b)
+
+The boundary conditions are as before that δ = 0 at the plate edge, x = 0, and
+this implies γ(0) = 0, but we must also know µ(0) to integrate the equations.
+Letting γ → 0 in both differential equations, we can solve for the derivative γ̇(0)
+in two ways
+γ̇(0) =
+
+2520µ
+6864(48 − 4µ + 3µ2 )
+=
+144 + 12µ − 5µ2
+10512 + 876µ − 253µ2 − 21µ3
+
+(25-66)
+
+This fourth order algebraic equation for µ has four real roots, with the one closest
+to zero being
+µ(0) = 1.85685 . . . ,
+
+γ̇(0) = 31.3955 . . . .
+
+(25-67)
+
+The solutions are plotted in fig. 25.6 as function of x. One notices the vertical
+tangent of the slope at the separation point, indicating the presence of a Goldstein
+singularity. The calculated separation points are shown in the fifth column of
+table 25.1 and agree with the exact results to better than 1% in nearly all cases.
+As a measure of how good the approximation really is, we calculate the error
+in satisfying the Prandtl equation,
+²x = vx
+
+∂vx
+dU
+∂ 2 vx
+∂vx
++ vy
+−U
+−ν
+.
+∂x
+∂y
+dx
+∂y 2
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+(25-68)
+
+Revision 7.7, January 22, 2004
+
+25.8. LOCATING THE GOLDSTEIN SINGULARITY
+
+HaL
+
+Εx
+
+509
+
+HbL
+
+Εx
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.1
+
+0.12
+
+x
+
+0.2
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+y
+
+∆
+
+-0.2
+-0.4
+
+-0.2
+-0.6
+-0.4
+-0.8
+-0.6
+-1
+
+Figure 25.7: The error field ²x for the case U = 1 − x calculated from eqs. (25-65).
+(a) The error field as a function of y/δ for x = 0.6. (b) The error field for y = 0.5δ
+as a function of x. One notices that the error is smallest close to the separation point
+x = xc = 0.121 . . ., whereas it becomes quite large near the leading edge of the plate at
+x = 0.
+It plays the same role as a gravitational field, and the integral relations (25-54)
+then simply express that the total force and power of the error field must vanish
+for any slice of the boundary layer.
+The error field is plotted for the case U = 1 − x in fig. 25.7 as a function of
+y/δ for x = 0.6 and of x for y/δ = 0.5. Although not particularly small compared
+to unity, the error oscillates with y/δ around zero because both the error force
+and power must vanish. The largest error is found near the leading edge of the
+plate at x = 0, where the Prandtl approximation anyway must break down. The
+smallest error is found near the separation point.
+
+Approximative solution
+Having established that the Pohlhausen family (25-61) yields precise values for
+the separation points when both momentum and energy balance are imposed,
+we now turn to the question of whether it is possible to simplify the model and
+still retain a reasonable predictive ability. Although the approximations below
+could also be made by manipulating the differential equations (25-65) directly,
+we prefer a more physical discussion in terms of the various thicknesses.
+Multiplying the energy relation (25-54b) with 4U 3 δener , we may rewrite it as
+2
+d(U 6 δener
+)
+δener
+= 4νU 5
+.
+dx
+δheat
+
+(25-69)
+
+The ratio between energy and heat thicknesses δener /δheat on the right hand side
+depends only on µ and is very nearly constant (close to 1/4) in the Pohlhausen
+model. As can be seen from fig. 25.8a, it varies only by about 12% in the whole
+interval 0 ≤ µ ≤ 2. Approximating the ratio δener /δheat by a perfect constant, we
+may immediately integrate the above equation to get,
+Z
+δener x
+6 2
+U (x)5 dx
+(25-70)
+U δener ≈ 4ν
+δheat 0
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+510
+
+25. BOUNDARY LAYERS
+
+HaL
+
+ener
+
+heat
+0.28
+
+HbL
+
+mom
+
+ener
+0.66
+0.655
+
+0.27
+
+0.65
+
+0.26
+
+0.645
+
+0.25
+0.64
+
+0.24
+
+0.635
+
+0.5
+
+1
+
+1.5
+
+2
+
+Μ
+
+0.5
+
+1
+
+1.5
+
+2
+
+Μ
+
+Figure 25.8: Nearly constant thickness ratios in the Pohlhausen family. (a) The energy/heat ratio varies by about 12% between µ = 0 and µ = 2. (b) The momentum/energy ratio varies only by about 2.5% in the same interval.
+The integral defines a slip-flow length scale
+Z x
+1
+L(x) =
+U (x)5 dx ,
+U (x)5 0
+
+(25-71)
+
+which for constant slip-flow becomes L(x) = x. The energy relation may then be
+expressed as
+δheat δener = 4
+
+νL(x)
+,
+U (x)
+
+(25-72)
+
+which is of the same form as the Blasius result (25-56), although in this approximation it is generally valid.
+The momentum equation (25-54a) is analogously multiplied with 2U 4 δmom ,
+and rewritten in the form,
+µ
+¶
+2
+)
+δmom
+d(U 6 δmom
+δdisp
+2
+2νU 5
++
+= 2U 5 U̇
+− 1 δmom
+.
+(25-73)
+δwall
+δmom
+dx
+The ratio of momentum to energy thicknesses δmom /δener is likewise a function
+of µ only in the Pohlhausen family. As seen from the plot in fig. 25.8b, it is
+very nearly constant (not far from to 2/3) and varies by only 2.5% in the interval
+0 ≤ µ ≤ 2. If δmom /δener is assumed to be perfectly constant, we may use (25-69)
+to get the following algebraic relation between the various thicknesses
+¶
+µ
+2
+δmom
+U̇ δmom
+δdisp
+δ2
+=
+− 1 + 2 mom .
+(25-74)
+δwall
+ν
+δmom
+δener δheat
+Neither of the ratios δmom /δwall nor δdisp /δmom are constants as functions of µ.
+At the separation point the wall stress vanishes so that δmom /δwall = 0. In
+the Pohlhausen family it follows from (25-62) that δdisp /δmom = 7/2 for µ =
+0. Making use of (25-72) we obtain an equation that must be satisfied at the
+separation point
+0=5
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+U̇ L
++1 .
+U
+
+Revision 7.7, January 22, 2004
+
+25.8. LOCATING THE GOLDSTEIN SINGULARITY
+
+HaL
+
+R
+
+0.5
+
+1
+
+HbL
+
+Μ
+2
+1.5
+
+2
+
+511
+
+Μ
+1.5
+
+-0.05
+1
+-0.1
+
+0.5
+
+-0.15
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.1
+
+0.12
+
+x
+0.14
+
+-0.5
+
+-0.2
+
+Figure 25.9: (a) The right hand side of (25-76) as a function of µ. (b) The slope determined from (25-76) for the slip-flow U = 1 − x (dashed line) compared with the solution
+to (25-65) (fully drawn). Notice that the Goldstein singularity has disappeared in the
+approximative solution, but that another singularity appears just beyond the separation
+point.
+
+More explicitly, the separation point must satisfy
+6
+
+Z x
+
+5U (x) + U̇ (x)
+
+U (x)5 dx = 0 .
+
+(25-75)
+
+0
+
+The separation points obtained by solving this equation for the usual test cases
+are shown in the last column of table 25.1. The errors are typically less than 3%.
+Recapitulating the derivation of this equation, the underlying input consists
+only in the constancy of δener /δheat and δmom /δener , plus the value of δdisp /δmom
+at separation, all of which may be obtained from the Pohlhausen family (25-61).
+It is remarkable that a model as simple this can lead to so precise results. The
+explanation is presumably that even if the velocity profile does not solve the
+Prandtl equation particularly well everywhere (see fig. 25.7), it is nevertheless
+quite precise in the vicinity of the separation point. And it does satisfy both
+momentum and energy balance.
+It is even possible to derive an approximative expression for the slope µ(x)
+by rewriting (25-74) in the form
+U̇ (x)
+U (x)6
+
+Z x
+
+U (x)5 dx =
+
+0
+
+δener δheat − 2δmom δwall
+≡ R(µ) .
+4δwall (δdisp − δmom )
+
+(25-76)
+
+The right hand side is a rational function of µ (for the Pohlhausen family) and
+may be solved numerically for µ given any x (see fig. 25.9b). Finally, δ(x) can
+be determined from (25-72).
+The coarseness of the approximation makes the Goldstein singularity disappear, but that should not lead us to believe that it is meaningful to continue
+the model beyond the separation point, where µ crosses through zero. Anyway,
+another singularity appears just past the separation point, as may be seen from
+fig. 25.9b, which prevents any continuation beyond that point.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+512
+
+25. BOUNDARY LAYERS
+
+HaL
+
+U
+2
+
+HbL
+
+lhs
+
+20
+1.5
+
+15
+1
+
+10
+0.5
+
+5
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+x
+
+0.5
+
+-0.5
+
+1
+
+1.5
+
+2
+
+x
+
+Figure 25.10: Cylinder separation. (a) Potential slip-flow (dashed) and empirical fit
+(25-77). (b) The left hand side of (25-75) as a function of x for potential slip-flow
+(dashed) and empirical fit (25-77). Notice the steepness with which the zero is passed
+in the latter case.
+
+Separation from cylinder
+Some of the more interesting slip-flows first accelerate and then decelerate.
+Among them the notorious cylinder in a uniform cross-wind, which has been
+the favorite target for boundary layer research during nearly a hundred years.
+The cylinder presents two difficulties, as does in fact every realistic separation
+problem. The first is the question of choosing the correct slip-flow. Since separation interacts with the mainstream flow, this is not so simple. The second is
+the technical question of calculating a precise value for the separation point in a
+slip-flow that may not purely decelerating.
+If the external flow around the cylinder is taken to be potential flow, the
+slip-flow is given by (16-56), i.e. U (x) = 2U0 sin x where U0 is the strength of
+the uniform cross-wind and x is the angle of observation (the upwind direction
+corresponds to x = 0). It is harder to make the coupled differential equations (2565) work in this case, whereas the approximative equation (25-75) immediately
+yields xc = 1.800 = 103◦ . The exact numeric separation point for this slip-flow
+is known to be xc = 1.823 = 104◦ (see [46]), so in this case the approximation
+works to a precision only slightly worse than 1%.
+The real flow around the cylinder is, however, not potential flow because of
+the vorticity induced into the main flow by the boundary layer, especially in the
+separation region and beyond. Hiemenz (1911) determined experimentally that
+the slip-flow at a Reynolds number Re = U0 a/ν = 9500 was well described by
+the odd polynomial,
+U = U0 (1.814x − 0.271x3 − 0.0471x5 ) .
+
+(25-77)
+
+Now the approximative equation (25-75) predicts separation at xc = 1.372 =
+78.6◦ which is about 2% away from the measured value xc = 80.5◦ . Even if
+agreement is obtained, this is not very impressive, because the slip-flow itself
+has not been calculated from first principles. Most of the information about the
+separation from the cylinder lies in fact in the empirical slip-flow (see fig. 25.10).
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+PROBLEMS
+
+513
+
+Problems
+25.1 a) Show that for constant slip-flow velocity it is possible to obtain a boundary
+layer of constant thickness on an infinitely extended plate, if fluid is sucked through the
+plate at a constant rate. b) Discuss what happens if fluid is pushed through instead.
+
+∗ 25.2 Show that for a plate moving with velocity to U (t) for t > 0 (and being at rest
+for t < 0) we have the general solution
+Z t
+
+vx (y, t) =
+
+y
+p
+2 2ν(t − t0 )
+
+erf
+0
+
+!
+
+dU (t0 ) 0
+dt
+dt0
+
+(25-78)
+
+25.3 Show that for the Blasius solution
+Z ∞
+
+Z ∞
+
+(1 − f (s)) ds = h(∞)
+
+(25-79a)
+
+f (s)(1 − f (s)) ds = 2f 0 (0)
+
+(25-79b)
+
+0
+
+0
+
+25.4 Show that well outside the boundary layer but still close to the wall, the continuity equation (25-19) implies that
+vy (x, y) =
+
+dQ(x)
+dU (x)
+−y
+,
+dx
+dx
+
+δ¿y¿L,
+
+(25-80)
+
+Interpret the two terms.
+
+25.5 The form of the streamlines in Fig. 25.1 may be obtained directly from the
+Blasius solution. Show that
+(a) the streamlines are solutions to (with s given by (25-22))
+dy
+=
+dx
+
+r
+
+ν
+Ux
+
+
+
+g(s)
+s−
+f (s)
+
+
+
+(25-81)
+
+(b) this may be written
+ds
+1 g(s)
+=−
+dx
+2x f (s)
+
+(25-82)
+
+C
+g(s) = √
+x
+
+(25-83)
+
+(c) a streamline satisfies
+
+where C is a constant.
+(d) the explicit solution is
+
+r
+
+y=
+
+νx −1
+g
+U
+
+r
+
+y0
+
+U
+νx
+
+!
+
+(25-84)
+
+where g −1 is the inverse function of g, and y0 the intercept with the y-axis.
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+514
+
+25. BOUNDARY LAYERS
+
+∗ 25.6 Assume that a two-dimensional flow is of the form
+vx = U (x)
+vy = −y
+
+(25-85)
+
+dU (x)
+dx
+
+(25-86)
+
+all over space and not just near a boundary. Derive a third order differential equation
+for U and discuss its possible solutions.
+Can one choose U freely if one adds V (x) to vy ?
+
+∗ 25.7 Consider the wall-anchored model (25-57).
+(a) Show that the polynomial has to satisfy the conditions
+U U̇
+ω ω̇ 3
+δ+
+δ =0,
+ν
+6ν
+U U̇ 2
+ω ω̇ 4
+ωδ −
+δ +
+δ =U ,
+2ν
+24ν
+ω−
+
+(25-87a)
+(25-87b)
+
+in order to reach maximum vx = U at y = δ.
+(b) Show that there exists an algebraic relation between ω and δ,
+ω=
+
+4U
+3δ
+
+
+
+1+
+
+U̇ δ 2
+4ν
+
+
+
+,
+
+(25-88)
+
+(c) Parameterize the model with a dimensionless slope µ,
+s
+
+U
+ω=µ ,
+δ
+
+ν(3µ − 4)
+.
+U̇
+
+δ=
+
+(25-89)
+
+(d) Show that µ must satisfy the differential equation
+µ̇ =
+
+24 2 − µ U̇
+4 − 3µ
+−µ
+µ 8 − 3µ U
+8 − 3µ
+
+
+
+2
+
+U̇
+Ü
++
+U
+U̇
+
+
+
+.
+
+(25-90)
+
+which should be solved with the initial condition µ(0) = 4/3.
+(e) Show that close to separation the differential equation becomes
+µµ̇ ≈ 6
+
+U̇c
+,
+Uc
+
+(25-91)
+
+where Uc = U (xc ) etc.
+(f ) Show that there is a Goldstein singularity with
+r
+
+κ = −U̇c
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+3Uc
+ν
+
+(25-92)
+
+Revision 7.7, January 22, 2004
+
+PROBLEMS
+
+515
+
+∗ 25.8 Consider the Pohlhausen family of velocity profiles (25-61).
+(a) Show that the wall-curvature condition implies that
+s
+
+δ=
+
+6ν(µ − 2)
+.
+U̇
+
+(25-93)
+
+(b) Show that the von Kármán relation leads to the differential equation
+µ̇ = 42
+
+48 − 20µ + 3µ2 U̇
+144 + 12µ − 5µ2
+− (2 − µ)
+(4 − µ)(24 + 25µ) U
+(4 − µ)(24 + 25µ)
+
+
+
+Ü
+U̇
+−4
+U
+U̇
+
+
+
+, (25-94)
+
+and integrate this equation numerically to obtain the separation points in the
+fourth column of table 25.1.
+(c) Is there a Goldstein singularity in this model?
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+516
+
+25. BOUNDARY LAYERS
+
+c 1998–2004, Benny Lautrup
+Copyright °
+
+Revision 7.7, January 22, 2004
+
+

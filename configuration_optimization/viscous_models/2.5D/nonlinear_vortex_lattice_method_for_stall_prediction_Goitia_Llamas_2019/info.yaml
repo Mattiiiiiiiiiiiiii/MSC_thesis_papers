@@ -1,0 +1,83 @@
+abstract: <jats:p>The stall behavior of an empennage is a crucial and conditioning
+  factor for its design. Thus, the preliminary design of empennages requires a fast
+  low-order method which reliably computes the stall behavior and which must be sensitive
+  to the design parameters (taper, sweep, dihedral, airfoil, etc.). Handbook or semi-empirical
+  methods typically have a narrow scope and low fidelity, so a more general and unbiased
+  method is desired. This paper presents a nonlinear vortex lattice method (VLM) for
+  the stall prediction of generic fuselage-empennage configurations which is able
+  to compute complete aerodynamic polars up to and beyond stall. The method is a generalized
+  form of the van Dam algorithm, which couples the potential VLM solution with 2.5D
+  viscous data. A novel method for computing 2.5D polars from 2D polars is presented,
+  which extends the traditional infinite swept wing theory to finite wings, relying
+  minimally on empirical data. The method has been compared to CFD and WTT results,
+  showing a satisfactory degree of accuracy for the preliminary design of empennages.</jats:p>
+author: Goitia, Hasier and Llamas, Raúl
+author_list:
+- affiliation: []
+  family: Goitia
+  given: Hasier
+- affiliation: []
+  family: Llamas
+  given: Raúl
+citations:
+- author: van Dam
+  doi: 10.1016/S0376-0421(02)00002-7
+  first-page: '10'
+  journal-title: Progress in Aerospace Sciences
+  volume: '38'
+  year: '2002'
+- doi: 10.1017/CBO9780511810329.014
+  unstructured: "Katz J. and \nPlotkin A., \n\"Three-Dimensional Numerical Solutions,\"
+    in Low-Speed Aerodynamics. From Wing Theory to Panel Methods, New York, Cambridge
+    University Press, 2001, pp. 331–368."
+- doi: 10.1017/CBO9780511810329.012
+  unstructured: "Katz J. and \nPlotkin A., \n\"Singularity Elements and Influence
+    Coefficients,\" in Low-Speed Aerodynamics. From Wing Theory to Panel Methods,
+    New York, Cambridge University Press, 2001, pp. 230–261."
+- doi: 10.1007/978-3-642-84010-4_1
+  unstructured: "Drela M., \n\"XFOIL: An Analysis and Design System for Low Reynolds
+    Number Airfoils,\" in Low Reynolds Number Airfoil Aerodynamics, \nUniversity of
+    Notre Dame, June 1989."
+- unstructured: "Drela M., \nA User's Guide to MSES 3.05, \nMassachusetts Institute
+    of Technology. \nDepartment of Aeronautics and Astronautics, July 2007."
+- unstructured: "Purser P. E. and \nSpearman M. L., \n\"NACA TN 2445: Wind-Tunnel
+    Tests at Low Speed of Swept and Yawed Wings Having Various Plan Forms,\" National
+    Advisory Committee for Aeronautics, Washington, December 1951."
+- unstructured: 'ESDU, "Data Item 90008: Transonic aerodynamics of aerofoils and wings,"
+    IHS ESDU, April 1990.'
+- author: Mariens
+  doi: 10.2514/1.C032261
+  first-page: '547'
+  issue: '2'
+  journal-title: Journal of Aircraft
+  volume: '51'
+  year: '2014'
+- doi: 10.2514/6.2015-3159
+  unstructured: "Hosangadi P., \nPaul R. and \nGopalarathnam A., \n\"Improved Stall
+    Predictions for Swept Wings Using Low-Order Aerodynamics,\" in AIAA, June 2015."
+- doi: 10.2514/6.2013-2916
+  unstructured: "Petrilli J., \nPaul R., \nGopalarathnam A. and \nFrink N. T., \n\"A
+    CFD Database for Airfoils and Wings at Post-Stall Angles of Attack,\" in AIAA,
+    2013."
+- unstructured: "Schneider W. C., \n\"Technical Report 1208: A comparison of the spanwise
+    loading calculated by various methods with experimental loadings obtained on a
+    45 degree sweptback wing of aspect ratio 8.02 at Reynolds number of 4.0x10(6),\"
+    NACA, 1951."
+- unstructured: "Chávez-Modena M., \nFerrer E., \nMartínez J. and \nCabello J., \n\"Industrial
+    benchmark simulations of detached flows using XFlow,\" in EUCASS, Madrid, 2019."
+- unstructured: "Sivells J. C. and \nNeely R. H., \n\"NACA Technical Note No. 1269,\"
+    \nNational Advisory Commitee for Aeronautics, Washington, 1947."
+doc_url: https://www.matec-conferences.org/10.1051/matecconf/201930402006/pdf
+doi: 10.1051/matecconf/201930402006
+files:
+- nonlinear_vortex_lattice_method_for_stall_prediction_Goitia_Llamas_2019.pdf
+journal: MATEC Web of Conferences
+month: 12
+pages: '02006'
+papis_id: 41b66a51b05ec71cb691dd25e81daadd
+publisher: EDP Sciences
+title: Nonlinear vortex lattice method for stall prediction
+type: article
+url: https://doi.org/10.1051/matecconf/201930402006
+volume: '304'
+year: 2019

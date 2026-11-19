@@ -1,0 +1,32 @@
+# Canonical tokens kept as written in file names (naming_rules.out 3.4 and 3.5).
+# A title token matches when it equals the entry exactly or is its all caps form.
+# Entries starting with a digit, and deal.II, also match in any case.
+BEMT
+MDAO
+MDO
+UAV
+RANS
+NACA
+NASA
+AIAA
+XFOIL
+VSPAERO
+IBL3
+Q3D
+BL3D
+F50
+VLM
+DG
+FAST
+RCAIDE
+MBSE
+INCOSE
+CFD
+TU
+Delft
+2D
+2.5D
+3D
+I
+eN
+deal.II

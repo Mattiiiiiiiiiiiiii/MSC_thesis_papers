@@ -1,0 +1,409 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>The essential
+  topics of classical and advanced adaptive finite element methods (FEMs) for linear
+  and finite elastic deformations of solids and structures are presented in this chapter
+  from both the mechanical and mathematical point of view.</jats:p>\n                  <jats:p>As
+  the mechanical and mathematical basis, nonlinear and linearized theories of elasticity
+  are derived in a rigorous way, followed by the classical variational principles
+  of elasticity, which are the basis for FEM, derived for classical and advanced Ritz–Galerkin
+  methods, such as the extended finite element method (XFEM) and the meshfree reproducing
+  kernel particle method (RKPM). Next to the discrete (one‐field) Dirichlet minimization
+  principle, the (two‐field) Hellinger–Reissner stationary dual‐mixed principle and
+  the (three‐field) Hu–Washizu stationary mixed principle are presented, including
+  the main features of the associated FEMs.</jats:p>\n                  <jats:p>\n
+  \                   The main objective of this chapter is the systematic treatment
+  of\n                    <jats:italic>a posteriori</jats:italic>\n                    error
+  estimators and their applications to both\n                    <jats:italic>verification</jats:italic>\n
+  \                   , that is, efficient mesh and particle adaptivity in order to
+  achieve optimal convergence rates for the discretized solutions with prescribed
+  error tolerances, and\n                    <jats:italic>validation</jats:italic>\n
+  \                   , that is, error‐controlled model adaptivity combined with\n
+  \                   <jats:italic>verification</jats:italic>\n                    .\n
+  \                 </jats:p>\n                  <jats:p>\n                    In
+  the framework of\n                    <jats:italic>verification</jats:italic>\n
+  \                   , linearized and finite elasticity problems are treated, using
+  both energy‐norm and goal‐oriented\n                    <jats:italic>a posteriori</jats:italic>\n
+  \                   error estimators for mesh‐based and meshfree methods. The four
+  basic classes, that is, residual‐type, hierarchical‐type, gradient averaging‐type,
+  and constitutive equation error estimators are presented and applied, for example,
+  to fracture mechanics problems.\n                  </jats:p>\n                  <jats:p>\n
+  \                   A challenging topic in the framework of\n                    <jats:italic>validation</jats:italic>\n
+  \                   is error‐controlled expansive hierarchical modeling of 2D thin‐walled
+  elastic plates and shells to 3D‐elastic continua by dimensional adaptivity of the
+  underlying mathematical models, especially in subdomains with boundary layers and
+  other disturbances where model expansion is necessary for validation.\n                  </jats:p>"
+author: Stein, Erwin and Olavi Rüter, Marcus
+author_list:
+- family: Stein
+  given: Erwin
+- family: Rüter
+  given: Marcus Olavi
+citations:
+- doi: 10.1007/s002110050370
+- doi: 10.1137/S1064827599356274
+- doi: 10.1007/BF01385738
+- doi: 10.1137/S0036142994264092
+- doi: 10.1002/9781118032824
+- doi: 10.1016/S0045-7825(01)00414-5
+- doi: 10.1007/978-1-4899-5850-1
+- doi: 10.1007/978-88-470-2592-9_9
+- doi: 10.1007/BF02576171
+- doi: 10.1017/S0962492906210018
+- doi: 10.1016/j.cma.2008.12.017
+- doi: 10.1090/S0273-0979-10-01278-4
+- article-title: Periodic table of the finite elements
+  author: Arnold DN
+  journal-title: SIAM News
+  volume: '47'
+  year: '2014'
+- doi: 10.1023/A:1024986427134
+- author: ASME
+  volume-title: V&V 10‐2006. Guide for Verification and Validation in Computational
+    Solid Mechanics
+  year: '2006'
+- doi: 10.1007/BF01436561
+- doi: 10.1090/S0025-5718-1973-0351118-5
+- doi: 10.1007/978-3-642-56103-0_1
+- doi: 10.1016/0045-7825(87)90114-9
+- doi: 10.1002/nme.1620121010
+- doi: 10.1137/0715049
+- doi: 10.2307/2006290
+- author: Babuška I
+  doi: 10.1093/oso/9780198502760.001.0001
+  volume-title: The Finite Element Method and its Reliability
+  year: '2001'
+- doi: 10.1016/S0045-7825(99)00330-8
+- doi: 10.1002/nme.1620330304
+- doi: 10.1137/0718033
+- article-title: Convexity conditions and existence theorems in nonlinear elasticity
+  author: Ball JM
+  first-page: '337'
+  journal-title: Arch. Ration. Mech. Anal.
+  volume: '3'
+  year: '1977'
+- author: Bank RE
+  first-page: '1'
+  volume-title: Acta Numerica
+  year: '1996'
+- doi: 10.1137/0730048
+- doi: 10.1090/S0025-5718-1985-0777265-X
+- author: Bathe K‐J
+  volume-title: Finite Element Procedures
+  year: '1996'
+- article-title: 'A feed‐back approach to error control in finite element methods:
+    basic analysis and examples'
+  author: Becker R
+  first-page: '237'
+  journal-title: East‐West J. Numer. Math.
+  volume: '4'
+  year: '1996'
+- doi: 10.1002/(SICI)1097-0207(19990620)45:5<601::AID-NME598>3.0.CO;2-S
+- doi: 10.1002/nme.1620370205
+- author: Belytschko T
+  volume-title: Nonlinear Finite Elements for Continua and Structures
+  year: '2000'
+- doi: 10.1002/nme.1620370309
+- doi: 10.1122/1.548937
+- doi: 10.1016/S0045-7825(02)00356-0
+- author: Bonet J
+  volume-title: Nonlinear Continuum Mechanics for Finite Element Analysis
+  year: '1997'
+- doi: 10.1016/j.cma.2007.03.011
+- doi: 10.1016/S0045-7825(98)00037-1
+- author: Braess D
+  doi: 10.1017/CBO9780511618635
+  volume-title: Finite Elements – Theory, Fast Solvers, and Applications in Solid
+    Mechanics
+  year: '2007'
+- doi: 10.1016/0045-7825(95)00841-3
+- doi: 10.1007/s10659-010-9271-8
+- article-title: Estimation of linear functionals on sobolev spaces with application
+    to fourier transforms and spline interpolation
+  author: Bramble JH
+  first-page: '112'
+  journal-title: SIAM J. Math. Anal.
+  volume: '7'
+  year: '1970'
+- doi: 10.1002/nme.1620030303
+- doi: 10.1007/978-1-4757-3658-8
+- article-title: On the existence, uniqueness and approximation of saddle‐point problems
+    arising from Lagrangian multipliers
+  author: Brezzi F
+  first-page: '129'
+  journal-title: Rev. Fr. Automat. Inf. Recherche Opér. Sér. Rouge
+  volume: '8'
+  year: '1974'
+- doi: 10.1007/BF01389710
+- doi: 10.1007/978-1-4612-3172-1
+- doi: 10.1016/S0045-7825(97)00310-1
+- doi: 10.1007/BF00532457
+- article-title: Constants in Clément‐interpolation error and residual based a posteriori
+    error estimates in finite element methods
+  author: Carstensen C
+  first-page: '153'
+  journal-title: East‐West J. Numer. Math.
+  volume: '8'
+  year: '2000'
+- doi: 10.1016/S0045-7825(00)00248-6
+- doi: 10.1002/nme.592
+- doi: 10.1002/nme.4512
+- doi: 10.1016/S0045-7825(96)01083-3
+- doi: 10.1016/0021-8928(67)90034-2
+- doi: 10.1007/s004660050286
+- author: Ciarlet PG
+  volume-title: 'Mathematical Elasticity: Three‐Dimensional Elasticity'
+  year: '1988'
+- doi: 10.1016/S0168-2024(08)70178-4
+- doi: 10.1016/S1570-8659(05)80039-0
+- doi: 10.1016/S0045-7825(97)00220-X
+- doi: 10.1002/(SICI)1097-0207(20000110/30)47:1/3<379::AID-NME776>3.0.CO;2-2
+- article-title: Approximation by finite element functions using local regularization
+  author: Clément Ph
+  first-page: '77'
+  journal-title: Rev. Fr. Automat. Inf. Recherche Opér. Sér. Rouge Anal. Numér.
+  volume: '9'
+  year: '1975'
+- doi: 10.1090/S0002-9904-1943-07818-4
+- author: Crisfield MA
+  volume-title: Non‐Linear Finite Element Analysis of Solids and Structures
+  year: '1997'
+- author: DeHoff RT
+  volume-title: Thermodynamics in Material Science
+  year: '1993'
+- doi: 10.1016/0899-8248(89)90018-9
+- author: de Veubecke F
+  volume-title: Matrix Methods in Structural Analysis
+  year: '1964'
+- doi: 10.1016/S0065-2156(08)70371-5
+- article-title: An h ‐ p adaptive method using clouds
+  author: Duarte CA
+  doi: 10.1016/S0045-7825(96)01085-7
+  first-page: '237'
+  journal-title: Comput. Methods Appl. Mech. Eng.
+  volume: '139'
+  year: '1996'
+- article-title: H ‐ p clouds – an h ‐ p meshless method
+  author: Duarte CA
+  doi: 10.1002/(SICI)1098-2426(199611)12:6<673::AID-NUM3>3.0.CO;2-P
+  first-page: '673'
+  journal-title: Numer. Methods Partial Differ. Equ.
+  volume: '12'
+  year: '1996'
+- doi: 10.1002/nme.2332
+- author: Eriksson K
+  first-page: '106'
+  volume-title: Acta Numerica
+  year: '1995'
+- doi: 10.1017/CBO9781139061377
+- doi: 10.1002/nme.2259
+- doi: 10.1002/nme.2496
+- doi: 10.1002/nme.850
+- doi: 10.1002/nme.3363
+- doi: 10.1002/nme.4768
+- author: Green AE
+  volume-title: Theoretical Elasticity
+  year: '1954'
+- doi: 10.1007/978-3-642-55627-2_27
+- doi: 10.1137/0715019
+- doi: 10.1007/978-3-662-04109-3
+- author: Hellinger E
+  first-page: '601'
+  volume-title: Enzyklopädie der Mathematischen Wissenschaften
+  year: '1914'
+- doi: 10.1016/0045-7825(96)00994-2
+- article-title: Sur un nouveau developpement en série des fonctions
+  author: Hermite C
+  first-page: '93'
+  journal-title: C.R. Acad. Sci., Paris
+  volume: '58'
+  year: '1864'
+- article-title: A residual error estimator for the XFEM approximation of the elasticity
+    problem
+  author: Hild P
+  journal-title: Comput. Mech.
+  year: '2011'
+- author: Holzapfel GA
+  volume-title: Nonlinear Solid Mechanics – A Continuum Approach for Engineering
+  year: '2000'
+- doi: 10.1007/978-88-470-2089-4_58
+- article-title: On some variational principles on the theory of elasticity and the
+    theory of plasticity
+  author: Hu H‐C
+  first-page: '33'
+  journal-title: Sci. Sin.
+  volume: '4'
+  year: '1955'
+- doi: 10.1002/1097-0207(20000820)48:11<1615::AID-NME883>3.0.CO;2-S
+- author: Hughes TJR
+  volume-title: 'The Finite Element Method: Linear Static and Dynamic Finite Element
+    Analysis'
+  year: '1987'
+- unstructured: IronsBMandZienkiewiczOC.The isoparametric finite element system –
+    a new concept in finite element analysis. InProceedings of Conference Recent Advances
+    in Stress Analysis Royal Aeronautical Society:London 1968.
+- author: Johnson C
+  volume-title: Numerical Solution of Partial Differential Equations by the Finite
+    Element Method
+  year: '1987'
+- doi: 10.1016/0045-7825(92)90020-K
+- doi: 10.1002/nme.1620200811
+- article-title: Boundary value problems for elliptic equations in domains with conical
+    or angular points
+  author: Kondratiev VA
+  first-page: '209'
+  journal-title: Tr. Mosk. Mat. Obs.
+  volume: '16'
+  year: '1967'
+- doi: 10.1016/0045-7825(95)00954-X
+- doi: 10.1002/(SICI)1097-0207(19980615)42:3<443::AID-NME366>3.0.CO;2-G
+- doi: 10.1137/0720033
+- article-title: A general methodology for recovering equilibrating finite element
+    tractions and stress fields for plate and solid elements
+  author: Ladevèze P
+  first-page: '533'
+  journal-title: Comput. Assisted Mech. Eng. Sci.
+  volume: '4'
+  year: '1997'
+- author: Ladevèze P
+  volume-title: Mastering Calculations in Linear and Nonlinear Mechanics
+  year: '2005'
+- doi: 10.1016/S0045-7825(97)00089-3
+- doi: 10.1002/nme.513
+- doi: 10.1016/j.cma.2004.01.039
+- doi: 10.1002/nme.661
+- doi: 10.1007/s00466-006-0140-z
+- doi: 10.1007/BF02736130
+- doi: 10.1002/fld.1650200824
+- author: Malvern LE
+  volume-title: Introduction to the Mechanics of a Continuous Medium
+  year: '1969'
+- author: Marsden JE
+  volume-title: Mathematical Foundations of Elasticity
+  year: '1983'
+- doi: 10.2514/3.1869
+- article-title: Influence of rotary inertia and shear on flexural motions of isotropic,
+    elastic plates
+  author: Mindlin RD
+  doi: 10.1115/1.4010217
+  first-page: '31'
+  journal-title: J. Appl. Mech.
+  volume: '18'
+  year: '1951'
+- doi: 10.1002/(SICI)1097-0207(19990910)46:1<131::AID-NME726>3.0.CO;2-J
+- doi: 10.1007/BF00281383
+- doi: 10.1016/S0045-7949(02)00004-4
+- doi: 10.1007/BF02995904
+- doi: 10.1016/0045-7825(95)00986-8
+- doi: 10.1002/(SICI)1097-0363(19990915)31:1<3::AID-FLD952>3.0.CO;2-B
+- doi: 10.1006/jcph.2002.7183
+- doi: 10.1016/S0045-7825(01)00256-0
+- doi: 10.1006/jcph.2000.6585
+- doi: 10.1016/0955-7997(84)90049-3
+- doi: 10.1002/nme.228
+- doi: 10.1002/nme.2705
+- doi: 10.1016/S0045-7825(99)00270-4
+- doi: 10.1016/j.cma.2004.06.047
+- doi: 10.2514/3.2546
+- doi: 10.1090/qam/25902
+- doi: 10.1002/nme.4331
+- doi: 10.1016/S0045-7825(98)00343-0
+- doi: 10.1007/s004660050191
+- doi: 10.1016/S0045-7825(98)00344-2
+- doi: 10.1090/qam/20440
+- doi: 10.1002/sapm195029190
+- doi: 10.1115/1.3601206
+- doi: 10.1016/j.cma.2010.04.010
+- doi: 10.1002/nme.2313
+- doi: 10.1002/nme.1903
+- doi: 10.1002/num.1690100509
+- author: Rüter M
+  first-page: '194'
+  volume-title: Applications of Mathematics 2015 – International Conference in Honor
+    of the 9 0 th Birthday of Ivo Babuška and the 8 5 th Birthdays of Milan Práger
+    and Emil Vitásek, Prague, Czech Republic
+  year: '2015'
+- doi: 10.1007/s00466-012-0816-5
+- author: Rüter M
+  first-page: '75'
+  volume-title: Meshfree Methods for Partial Differential Equations VI
+  year: '2012'
+- doi: 10.1007/s00466-006-0069-2
+- unstructured: RüterM LarssonF HansboP RunessonKandSteinE.Strategies for goal‐oriented
+    a posteriori error measures in nonlinear elasticity. InECCM 2001 – European Conference
+    on Computational Mechanics Cracow Poland 2001.
+- doi: 10.1016/j.commatsci.2004.03.006
+- doi: 10.1016/j.cma.2004.05.032
+- doi: 10.1007/978-3-642-17484-1_26
+- doi: 10.1007/s002110050215
+- author: Schwab C
+  volume-title: p ‐ and hp ‐Finite Element Methods – Theory and Applications in Solid
+    and Fluid Mechanics
+  year: '1998'
+- doi: 10.1002/nme.1620320406
+- doi: 10.1007/BF00034019
+- doi: 10.1002/nme.1620290802
+- doi: 10.1016/0045-7825(74)90007-3
+- doi: 10.1016/0045-7825(77)90005-6
+- author: Stein E
+  first-page: '165'
+  volume-title: Der Ingenieurbau
+  year: '1997'
+- doi: 10.1016/S0045-7825(97)00082-0
+- doi: 10.1016/S0045-7825(98)00345-4
+- doi: 10.1002/nme.956
+- doi: 10.1016/j.cma.2006.10.032
+- doi: 10.1007/978-1-4020-9231-2_10
+- doi: 10.1016/j.cma.2010.04.003
+- doi: 10.1002/nme.1620371508
+- doi: 10.1007/BF01397550
+- doi: 10.1016/0377-0427(95)00057-7
+- doi: 10.1016/0045-7825(87)90109-5
+- doi: 10.1016/S0045-7825(99)00077-8
+- author: Szabó B
+  volume-title: Finite Element Analysis
+  year: '1991'
+- doi: 10.1002/nme.1620220105
+- doi: 10.1007/978-3-642-46015-9_1
+- doi: 10.2514/8.3664
+- doi: 10.1016/0377-0427(94)90290-9
+- doi: 10.1016/S0045-7825(98)00347-8
+- doi: 10.1002/nme.2380
+- doi: 10.2307/2007498
+- doi: 10.2307/2007499
+- article-title: On a dimensional reduction method. III. A posteriori error estimation
+    and an adaptive approach
+  author: Vogelius M
+  doi: 10.1090/S0025-5718-1981-0628701-7
+  first-page: '361'
+  journal-title: Math. Comput.
+  volume: '37'
+  year: '1981'
+- unstructured: WashizuK.On the variational principles of elasticity and plasticity.
+    Technical Report 25‐18 Aeroelastic and Structures Research Laboratory MIT:Cambridge
+    MA 1955.
+- doi: 10.1002/nme.1620361603
+- doi: 10.1007/978-3-642-56865-7
+- doi: 10.1007/s004660050296
+- author: Zienkiewicz OC
+  volume-title: The Finite Element Method
+  year: '1977'
+- doi: 10.1002/(SICI)1097-0207(20000110/30)47:1/3<9::AID-NME793>3.0.CO;2-P
+- doi: 10.1002/nme.1620240206
+- doi: 10.1002/nme.1620330702
+- doi: 10.1002/nme.1620330703
+- doi: 10.1016/0045-7825(92)90023-D
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781119176817.ecm2025
+doi: 10.1002/9781119176817.ecm2025
+files:
+- finite_element_methods_for_elasticity_with_error-controlled_discretization_and_model_adaptivity_Stein_Ruter_2017.pdf
+isbn: '9781119176817'
+journal: Encyclopedia of Computational Mechanics Second Edition
+language: en
+month: 12
+pages: 1--96
+papis_id: 464a16c2636e80c7a89b47204e187c6e
+publisher: Wiley
+title: Finite Element Methods for Elasticity with Error‐Controlled Discretization
+  and Model Adaptivity
+type: misc
+url: https://doi.org/10.1002/9781119176817.ecm2025
+year: 2017

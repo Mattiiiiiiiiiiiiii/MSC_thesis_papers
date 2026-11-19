@@ -1,0 +1,6591 @@
+NASA
+
+Contractor
+
+Report
+
+3123
+
+Computer Program To
+Three-Dimensional
+Boundary
+Layer Flows Over Wings
+With Wall Mass Transfer
+
+J. D. McLean
+
+CONTRACT
+MAY
+1979
+
+and J. L. Randall
+
+NASl-15022
+
+I
+
+.
+
+~
+
+TECHLIERARY KAFB, NM
+
+.
+
+IlRlllIIIIlllll~llIIII
+
+NASA
+
+Contractor
+
+Report
+
+3123
+
+Computer Program To Calculate
+Three-Dimensional
+Boundary
+Layer Flows Over Wings
+With Wall Mass Transfer
+
+J.
+
+D. McLean
+
+and J. L. Randall
+
+Boeing Commercial
+Seattle, Washington
+
+Airplane
+
+Prepared
+for
+Langley
+Research Center
+under Contract
+NASl-15022
+
+NationalAeronautics
+and Space Administration
+Scientific and Technical
+Information Office
+1979
+
+Company
+
+OO.blFW
+
+-
+
+-
+
+CONTENTS
+Page
+I.
+
+INTRODUCTION
+
+II.
+
+SYMBOLS AND ABBREVIATIONS
+
+. . . . . . . . . . . . , . . . . .
+
+2
+
+III.
+
+VISCOUS-INVISCID
+
+PROCEDURE
+
+5
+
+IV.
+
+.....
+BOUNDARYLAYERPROGRAM
+..........................
+Basic Equations
+Numerical Method .........................
+
+V.
+
+........
+COMPARISONS WITH BOUNDARY LAYER EXPERIMENTS
+Two-Dimensional Flows .......................
+Infinite Swept Wing Experiment of Van Den Berg and Elsenaar ........
+Curved Duct Experiment of Vermeulen .................
+..............
+Swept Wing Experiment of Brebner and Wyatt
+
+18
+18
+18
+19
+20
+
+VI.
+
+INTERFACE PROGRAMS ......................
+Wing Boundary Layer Grid Generator ..................
+..................
+Displacement Thickness Interpolator
+
+21
+21
+23
+
+VII.
+
+.............
+VISCOUS-INVISCID
+INTERACTION
+RESULTS
+Wing Geometry and Flow Conditions ..................
+.................
+General Description of the Calculations
+Discussion of Results ........................
+
+24
+24
+24
+26
+
+INTERACTION
+
+. . . . . . . . . . .
+
+: .............
+
+DIFFERENCE EQUATIONS USED IN THE BOUNDARY
+...................
+LAYER PROGRAM
+..............
+3-D Momentum and Continuity Equations
+Attachment Line Momentum and Continuity Equations .........
+...................
+3-D Thermal Energy Equation
+Attachment Line Thermal Energy Equation ..............
+........................
+3-D 6* Equation
+...................
+Attachment Line 6* Equation
+
+APPENDIX
+1.
+2.
+3.
+4.
+5.
+6.
+
+. . . . . . . . . . . . . . . . . . . . . . . . .
+
+6
+7
+12
+
+A:
+
+REFERENCES
+FIGURES
+
+1
+
+............................
+
+29
+29
+38
+44
+50
+52
+56
+59
+
+..............................
+
+(11
+
+. ..
+ill
+
+I. INTRODUCTION
+This report describes a system of computer programs for calculating three-dimensional
+transonic flow over wings, including details of the laminar or turbulent flow in the threedimensional viscous boundary layer. The flow field is calculated in two overlapping
+regions: an outer inviscid flow region governed by the transonic potential equation, and
+a thin boundary layer in which the first order, three-dimensiona& compressible boundary layer
+equations are assumed to hold and in which the effects of surface heat and mass transfer can
+be computed. A consistent matching of the solutions in the two regions is achieved iteratively,
+thus taking into account viscous-inviscid interaction. The potential flow analysis is carried
+out by the Jameson-Caughey transonic inviscid wing program FL0 27, and the boundary
+layer analysis is performed by a finite difference boundary layer prediction program developed
+at Boeing. For the wing application, interface programs provide for convenient communication
+between the two basic flow analysis programs. The boundary layer program is general in
+nature and can be used in a wide variety of applications in addition to the wing application
+described in the present report.
+The purpose of the present report is to provide a general overview of the system, including
+detailed descriptions of the theoretical analyses embodied in the boundary layer and interface
+programs (the inviscid wing program is described in detail in Reference 1). Readers
+requiring detailed information on use of the programs or program structure are referred to the
+Program User’s Document (Reference 2) and the Program Maintenance Document (Reference
+3).
+
+II.
+
+A
+B
+C 1
+
+SYMBOLS
+
+AND ABBREVIATIONS
+
+coefficients in
+linearized momentum
+and energy equations
+
+TW
+112 PeQe2
+awe
+attachment line parameter = Ue2 / v dZ
+skin friction
+
+Cf
+C*
+
+coefficient
+
+pressure coefficient
+
+CP
+
+=
+
+=
+
+P-P,
+
+%pooQm2 ’
+
+also specific heat at
+constant pressure
+
+2
+
+PU
+
+velocity defect variable:
+
+f’ = 1 - PeQe
+
+g’,g
+
+velocity defect variable:
+
+g’ = 1 - PeQe
+
+h
+
+enthalpy = C,T
+
+hl, h3
+
+metric coefficients
+
+H
+
+2-D boundary layer shape factor - F
+
+K
+
+ratio of adjacent intervals = Aqj - 1
+
+K139 K31
+
+curvature coefficients
+
+QXYQz
+
+arc lengths in x and z directions
+
+M
+
+Mach number
+
+P
+
+pressure
+
+Pr
+
+Prandtl number
+
+prt
+s,s
+
+turbulent
+
+velocity magnitude, velocity vector
+
+4
+
+heat flux
+
+Qe
+r
+
+velocity magnitude in outer flow
+
+f’,
+
+f
+
+PW
+
+ATj
+
+Prandtl number
+
+recovery factor (eqn. 6b)
+
+q2
+; also total enthalpy = h + z
+
+Rs*,
+R,
+
+S
+
+6*m Reynolds number
+
+= -‘*mQe
+Ve
+
+=- Qe S*m
+v (rl)
+arc length along surface
+
+T
+
+temperature
+
+U
+
+velocity in x direction
+
+US
+
+velocity in outer flow direction
+
+ue
+
+outer flow velocity in x direction
+
+V
+
+velocity in y direction
+
+v,, vy3 vz
+
+velocity components from potential
+
+W
+
+velocity in z direction
+
+X
+
+boundary layer spatial coordinate
+
+xp, yp, zp
+
+Cartesian coordinates of potential
+
+Y
+
+boundary layer spatial coordinate normal to surface
+
+z
+
+boundary layer spatial coordinate
+
+Pl
+
+flow angle relative to spanwise (x) coordinate line
+
+PS
+
+flow angle relative to outer inviscid flow
+
+s*
+
+displacement thickness
+
+s*m
+
+3-D boundary layer length scale = L&p)
+
+6”s
+
+ZZ-
+
+6”l
+
+1
+=--/
+PeQe
+
+6*3
+
+=-
+
+(normal to surface)
+flow program
+
+flow data points
+
+2 + (E)‘3
+
+1’2 dY
+
+PeQe- PUS 1 dY
+
+O”
+0
+
+( PeUe -P” 1 dY
+PeWemPW
+
+1
+
+dY
+
+3
+
+-Y
+
+ratio of specific heats
+
+K
+
+von Karman constant = .41
+
+1)
+
+normal direction coordinate
+
+V
+
+molcular kinematic
+
+viscosity
+
+Vefl 7vef3
+
+effective kinematic viscosities in x and z directions
+
+vefh
+
+effective thermal diffusivity
+
+@,61,@3
+
+effective viscosity factors in boundary layer coordinate
+effective thermal diffusivity
+
+system
+
+factor
+
+effective viscosity factors in streamline coordinate system
+=b
+
+$3
+iid
+
+‘&i
+
+cp
+
+dummy variable illustrating
+
+P
+
+density
+
+u
+
+outer layer effective viscisity function
+
+71’73
+
+shear stresses in x and z directions
+
+7
+
+shear stress magnitude = ( ~1 2+,32)%
+
+X
+
+inner layer effective viscosity variable
+
+Subscripts:
+e
+
+edge of boundary layer
+
+M
+
+far field reference
+
+ref
+
+arbitrary reference condition
+
+Overbar:
+-
+
+difference expressions (pg. 15)
+
+denotes quantities nondimensionalized
+(-1
+
+by their values in the far field
+
+Prime:
+denotes differentiation
+
+with respect to 7)
+
+III.
+
+VISCOUS-INVISCID
+
+INTERACTION
+
+PROCEDURE
+
+The basic sequence of calculations used to obtain matched viscous and inviscid solutions
+consists of an iterative loop in which the inviscid outer flow analysis and the boundary layer
+analysis are performed sequentially, until either convergence (satisfactory matching) is
+achieved, or the maximum number of iterations specified by the user has been performed,
+as shown schematically in figure 1. In the first iteration, the potential flow is calculated for
+the bare wing shape, and in subsequent iterations, the effect of the boundary layer flow on
+the outer inviscid flow is felt as a modification to the wing shape through the addition of
+the boundary layer displacement thickness 6 *. During each boundary layer calculation,
+6” is computed by integration of the continuity equation. After this new 6* distribution
+has been interpolated from the boundary layer computational grid to the potential flow
+geometry input stations, the 6* to be used’for the next potential flow calculation is computed as a weighted average of the new 6:‘: and the 6” used for the previous iteration. Convergence is recognized, and the iterations are stopped, when the maximum change between
+the new and old 6*, expressed as a fraction of the maximum 6*, is less than the convergence
+tolerance chosen by the user. At this point a final boundary layer calculation can be carried
+out, if desired. This option allows, for example, the use of a fine boundary layer grid for
+the final calculation, while, to save computing time, a course grid was used for calculating
+the interaction. Finally, machine plotting programs can be called on to display intermediate
+or final boundary layer results.
+The procedure described above is carried out by a set of control cards (NOS procedure. file)
+that loads and executes the various programs in the proper sequence and controls the flow
+of data (disc storage files) between the programs. At the termination of the procedure,
+sufficient data files are always saved to allow the iterative analysis to be re-started where it
+left off, if, for example, the user decides the solutions have not yet converged adequately.
+This feature also allows a user to run the procedure one iteration at a time, with an opportunity to examine the results of each iteration and to hasten the convergence of the procedure by choosing a more nearly optimum 6 * weighting factor (under-relaxation factor) or
+boundary layer grid configuration for each iteration.
+The detailed convergence behavior of the procedure depends strongly on the internal convergence behavior of the inviscid analysis program FL0 27 and on the way in which FL0 27
+is used in the procedure. Most importantly, the final convergence of the inviscid solution on
+a fine grid in FL0 27 tends to be monotonic and can be very slow, especially if pronounced
+shocks are present. Partly as a result of this slow convergence behavior in FL0 27, the most
+economical way of reaching a matched viscous-inviscid solution is not to run the inviscid
+analysis to convergence for every iteration of the interaction procedure, but rather to run
+a relatively small number (between 10 and 50) of internal relaxation sweeps in the inviscid
+code for each repetition of the boundary layer analysis (calculations presented in Section VII
+illustrate this approach). Because of the resulting tendency of the inviscid solution not to
+change drastically between boundary layer calculations, the interaction procedure generally
+converges stably with an under-relaxation factor applied to 63’ of about 0.5 to 0.8. The
+number of iterations required to achieve a converged solution depends on the nature of the
+flow, e.g., the presence or absence of shocks and/or boundary layer separation, and the
+choice must be made on an individual basis. A case with entirely subcritical flow and no separation in early iterations can converge in three or four iterations, while a more difficult
+supercritical case might require eight or ten.
+
+IV.
+
+BOUNDARY
+
+LAYER
+
+PROGRAM
+
+The boundary layer program uses a finite difference method to generate numerical solutions
+to the three-dimensional, compressible boundary layer equations in curvilinear, orthogonal
+coordinates for either laminar or turbulent flow. The structure of the program is dictated
+primarily by the parabolic nature of the equations, which allows the solution to be generated
+in a marching sequence, and by the nature of the initial conditions (initial velocity profiles),
+which the three-dimensional equations require along any boundaries where fluid is flowing
+into the computation region. For either the upper or lower surface of a swept wing, this
+would generally mean that initial conditions would be required at boundaries along the
+wing root and along the leading edge. On a wing with a blunt leading edge, however, a simplification is available that allows for a direct solution for the leading edge flow, reducing the
+requirement for initial conditions to those along the wing root boundary. On a swept win:
+with a blunt leading edge that is free of sharp breaks, the outer inviscid flow will contain a
+surface attachment streamline near the leading edge along which an attachment line (line of
+symmetry) boundary layer analysis is applicable (ref. 4). The attachment line analysis
+is analogous to the laminar similarity boundary layer solution at the stagnation point of a
+two-dimensional, unswept airfoil. Because of spanwise flow in the swept wing case, the
+attachment line boundary layer is not necessarily laminar, but can be turbulent for sufficiently
+high values of the parameter C* (ref. 5). A module is included in the program for solving
+the special boundary layer equations applicable to this attachment line flow for either
+laminar or turbulent conditions.
+The numerical method used in the program is implicit with regard to the solution in the coordinate normal to the surface, and the differencing in the other two coordinates adapts to the
+direction of the local velocity vector in a manner consistent with the zones of dependence
+and influence in the governing equations. The method is general in nature, and can be applied
+in any surface-fitted orthogonal grid for which some mild restrictions on the velocity field
+are satisfied and for which initial conditions sufficient to determine the boundary layer solution can be specified. When the attachment line analysis is used along the leading edge of a
+swept wing, initial conditions are generally only required along the wing root, and the working
+boundary layer grid for either the upper or lower surface of the wing must be constructed so
+that the first spanwise coordinate line on the surface lies along the attachment streamline of
+the outer inviscid flow. A boundary layer grid constructed in this way for a typical jet transport wing is shown in figure 2. The grid shown was produced by the grid generation program
+described in Section V.
+The marching sequence generates the solution for one surface station (or column normal to
+the surface) at a time. In this sequence the marching proceeds from root to tip along successive spanwise coordinate lines, or Lines of constant z, starting with the attachment line and
+proceeding to the trailing edge. This marching sequence and the types of difference expressions used for the x and z derivatives lead to the following restrictions on the velocity field:
+
+u ,-hl
+-,W
+
+6
+
+Ax
+h3 n z
+
+at every point in the boundary layer. The program logic is set up to identify a forbidden
+zone in the solution region and to forbid calculation for any vertical column where the solution does not satisfy the above restrictions at all points in the layer. Under some conditions
+(to be discussed later) the boundary of such a forbidden zone will correspond approximately
+to a separation line in the flow field. For attached flow over most common swept wing planforms, using a working boundary layer grid of the type shown in figure 3.1, the solution is
+not hampered by restrictions imposed by the numerical method.
+For starting the calculations at the wing root boundary,
+
+two options are available:
+
+1.
+
+The flow can be assumed three-dimensional.
+If no fluid is entering the computation
+region through the boundary, the three-dimensional boundary layer equations can be
+solved. Otherwise, initial conditions (initial velocity profiles) must be specified.
+
+2.
+
+An infinite swept wing analysis can be performed
+spanwise (x direction) derivatives are set to zero.
+
+along the boundary, in which the
+
+A rigorously correct treatment would require option l.with the initial conditions supplied
+by an analysis of the viscous flow in the root region or by experimental measurements. In
+the absence of such definitive information concerning the wing root flow, the only alternative is to start the calculations using a plausible guess for the initial conditions and to
+acknowledge that the solution over some inboard portion of the wing may not reflect the
+real flow. Comparisons presented in ref. 6, however, show that the portion of the
+wing surface influenced by wing root initial conditions is generally small and that the choice
+of these conditions is not usually of great importance. For most wing planforms, it suffices
+to use the infinite swept wing analysis as a convenient wing root initial condition, even
+through it is not a realistic physical model of the wing root flow.
+BASIC EQUATIONS
+The program solves the three-dimensional,
+linear orthogonal coordinates:
+
+x momentum:
+
+pu au
+- + !!f k + (pv);
+h3 az
+hl ax
+
+z momen turn :
+
+hl
+
+-+E
+ax
+
+continuity:
+
+;
+
+(phy)
+
+thermal energy:
+
+PU aw
+
+h3
+
+a”+
+az
+
++ ;
+
+compressible boundary layer equations in curvi-
+
+(pv)g+
+
+(phlw)
+
++ puwK13 -pw2K31
+
+puwK31-&Q3=--
+
++ 111h3 $
+
+(PV> = 0
+
+=+
+
+g
+
+h3 az
+
+a71
++ ay
+
+(3)
+
+a73
++ ay
+
+(4)
+
+As an alternative to solving the thermal energy equation in cases with turbulent flow over
+adiabatic surfaces, the program gives the user the option of using an algebraic formula for
+the density:
+r = .89 turbulent
+
+(6b)
+
+= .84 laminar
+In the above equations h] and h3 are the metric coefficients
+system such that arc length along the surface is given by
+
+ds2 = (111 dx)2 +
+
+(
+
+of the surface-fitted
+
+coordinate
+
+113dz 2
+>
+
+and
+ah1
+K 13= -- 1
+hll13 az
+
+ah3
+
+K 31=
+
+l
+ill 11~ ax
+
+The thermal energy equation is expressed in total enthalpy form, where
+
+The boundary conditions
+
+applicable to equations (3) Wrough (6) are
+
+u = w = 0; (pv) = (PV)~; T = T,
+
+Ll-, u,;
+
+w+W,;
+
+or E
+
+T+T,
+
+= aT
+ay
+
+w
+
+aty=
+
+0
+
+as y+~
+
+The stresses ~1 and 73 represent the total effective shear stresses, including both the molecular shear stress and the Reynolds stress, and are expressed in terms of an effective viscosity
+coefficient, as for example:
+
+71 =
+
+’ “efl
+
+-au
+ay
+
+where
+
+Vef]=I@]( 171
+&J
+
+8
+
+(7)
+(8)
+
+Here v is the molecular kinematic viscosity, which for compressible flow is calculated as a
+function of temperature by the Sutherland viscosity formula:
+3i2
+
+T,,f+ 110
+; T in deg. K
+T+ 110
+
+and 4 1,43 are effective viscosity factors for which three options are available in the program:
+1.
+
+Isotropic eddy viscosity model for turbulent flow: $1 = ~$3= 9, where 4 is an effective
+viscosity function originally developed for use in two-dimensional flows and adapted as
+described below.
+
+2.
+
+“Non-isotropic”
+modification for turbulent flow: Separate $1 and 43 are resolved such
+that the component of the flow in the streamwise (outer flow) direction sees $Jas in 1),
+but the cross-flow component of flow sees a I$ whose turbulent part is reduced by a constant factor, generally .4. The expressions used for 41 and 43 are equivalent to:
+
+( >
+
+@n - 1 =0.4($-
+
+3.
+
+Laminar flow:
+
+1)
+
+~$1= ~$3= 1.
+
+The “non-isotropic”
+modification for turbulent flow is discussed in more detail in ref.
+6, where comparisons with two experimental flows are presented. Transition may be
+treated in a crude fashion by using the laminar viscosity for some upstream portion of the
+flow and then switching to the turbulent viscosity. As the program has no provision for predicting transition, its location must be specified as an input. For turbulent flow, the effective
+viscosity function 4 is an adaptation of the function used successfully by Mellor (ref. 7)
+for two-dimensional flows:
+
+in the inner layer, and
+
+$=$
+
+Qe6*m
+(
+
+V
+
+)
+
+in the outer layer.
+
+For computational purposes, an alternate form of the above hypothesis is used, based on the
+value of @and the resulting shear stress at the previous step in the iterative solution ,scheme,
+which is described in the next subsection. When the iterative solution converges, the two
+forms of the hypothesis are completely equivalent. The detailed functions used in the alternate form are:
+f#J=l+
+
+X4
+
+X3 + 6.93
+
+in the inner layer,
+
+where
+1%
+*=Ky
+v
+
+_7
+0p
+
+; 7=
+(
+
+++~~2
+
+l/2
+)
+
+and
+4=.
+
+Qe&*m
+
+in the outer layer,
+
+“e
+where u is a modification
+low Reynolds numbers:
+
+to the usual constant outer eddy viscosity for better predictions
+
+u = .2143 + .1378 log10 Rg*m
+
++ .032
+
+2 - .00248
+
+at
+
+log10R6*m
+
+m
+and 6”m is a three-dimensional
+
+outer layer length scale:
+
+The inner layer is defined to end at the value of y where the inner layer $Jcrosses and becomes
+greater than the outer layer $. The resulting composite $Jthus has a discontinuity in slope,
+but the numerical method is not adversely affected.
+The heat flux 4 is expressed.in terms of an effective thermal diffusivity
+
+;l’PVf
+
+ah
+
+--
+
+e h ay
+
+coefficient:
+
+)
+
+where
+
+and $h is related to the effective viscosity 6 through the turbulent
+is taken 2s a constant:
+
+Prandlt number PIT, which
+
+‘#‘h=;+& (6-l)
+Prt = constant, typically
+On the attachment line, the conventional
+to the following set of equations:
+
+0.9.
+
+plane of symmetry
+
+assumptions are made, leading
+
+10
+
+..-
+
+_... .-
+
+--
+
+3,
+
+PU au
+
+x momentum:
+
+j--ax
+
++
+
+(pv)-=
+
+au
+
+-‘aF)+A
+hl ax
+
+ay
+
+(9)
+ay
+
+(10)
+
+Continuity:
+
+&
+
+(dqu)+
+
+~111 (g)+
+
+hlh3
+
+$
+
+(11)
+
+(PV) = 0
+
+Thermal Energy:
+
+(12)
+
+where the same effective viscosity and thermal diffusivity formulations
+three-dimensional equations, and the boundary conditions are:
+
+u = g
+
+= 0 ; (pv)
+
+= (PV)~
+
+; T = T,
+
+or 2
+
+= g
+
+are used as with the
+
+W
+
+(13)
+
+aty=O
+aw
+awe
+u + u, ; --f -.
+T-+T,
+az
+aZ ’
+
+As in the 3-D case, the algebraic density formula (Equation
+to solving the thermal energy equation.
+Infinite
+
+(14)
+
+asy+m
+6b) can be used as an alternative
+
+Swept Wing Analysis
+
+When the infinite swept wing analysis is requested, all x derivatives are set to zero, and the
+three-dimensional equations then require initial conditions only at a single upstream station
+If, in addition, the attachment line analysis is requested at the initial station, no initial
+conditions at all are required.
+Displacement Thickness Calculation
+After the solutions for the velocity and density profiles have converged at a given station
+on the surface, an integrated form of the continuity equation is solved for the physical
+displacement thickness 6 *:
+
+& [ h31PeUe6*-PeQes*l
+
+)I+
+= hlh3
+
+( PeWes*-PeQe6*3jI
+
+k[hl
+
+~wvw
+
+(15)
+
+1
+
+11
+
+where
+( p,Ue - PU ) dy
+1
+6*3 = PeQe
+On the attachment
+
+m( peWe - PW) dy
+
+line this equation reduces to:
+
+The detailed difference equations used in solving these equations are given in the Appendix.
+TRANSFORMATION
+
+OF NORMAL
+
+COORDINATE
+
+To put the equations in the form used for computation,
+
+the y coordinate is transformed
+
+to
+
+where 6 *m, the outer layer length scale defined previously in connection with the effective
+viscosity formulation, is used as the normalizing length scale, whether the flow is laminar or
+turbulent. This transformation counteracts the effects of boundary layer growth, keeping
+the velocity profiles scaled advantageously in the computational grid at all stations on the
+surface. For turbulent flow, it has proved to be sufficient to terminate the grid and to apply
+the outer flow boundary conditions at 7 = 15. For laminar flow, a smaller value can be used.
+NUMERICAL
+
+METHOD
+
+The basic equations are non-linear and are solved iteratively by successive substitution, in
+which the non-linear coefficients are evaluated from the previous iteration. The sequence of
+calculations performed by this iterative procedure, in which the momentum equations and
+the energy equations are solved alternately, is shown schematically in figure 3. Because of
+the way in which the effective viscosity depends on the previous iterations, at least six iterations are performed, even if convergence is indicated earlier. Convergence to within a small
+tolerance in six iterations is not unusual, but if the solution is changing rapidly from one station to the next, larger numbers of iterations, often as high as 20 to 30, are needed. Stations
+near separation display the slowest convergence, but even then an iteration limit of 50 is
+usually sufficient for practical calculations.
+Convergence is recognized, and the procedure is stopped when S *m and the velocity gradients
+
+au
+
+aw
+
+and at the surface cease to change by more than a specified percentage tolerance
+ay
+ay
+from one iteration to the next.
+
+12
+
+The x and z momentum equations are treated as equations for the velocity components u and
+w, respectively, which are expressed in terms of velocity defect variables:
+
+f’
+
+g’=
+
+=
+
+]-EL
+PeQe
+
+]- -pw
+
+PeQe
+
+where primes denote differentiation
+with respect to 7). The continuity equation is used to
+express the (pv) terms in the momentum equations in terms off, f ‘, g, and g’. The continuity equation is thus eliminated and the momentum equations form a set of two third order
+equations for f and g. Since f and g appear only in nonlinear terms involving first or higher
+order 77derivatives, the linearized equations solved at each iteration are treated as second order
+equations for f ’ and g’.
+The energy equation is treated as an equation for the density ratio, or, since the pressure is
+assumed constant through the layer, the temperature ratio
+
+The numerical method used to solve the linearized momentum and energy equations is
+implicit, with the equations in effect being written only at the grid points on the unknown
+column normal to the surface. The z derivatives are represented by three-point, second order
+upwind difference formulas which take into account unequal intervals in z and which make
+use of known solutions at (i, k - 1) and (i, k - 2) and the unknown column at (i, k) as shown
+in figure 4(a). When the x component of velocity, u, is positive, the x derivatives are represented by the same type of 3-point upwind difference formula in terms of known solutions
+at (i - 1, k) and (i - 2, k) and the unknown column at (i, k). For positive u (w is always
+positive) the difference scheme is unconditionally
+stabIe. When u is negative, a 2-point, first
+order difference formula in terms of values on the previous spanwise line (k - 1) is used for
+the x derivatives, as shown in figure 4(b). Note that the sign of u is evaluated locally at
+each point in the layer, and that the different x difference formulas for positive and negative
+u can appear at different points along the same vertical column. In terms of its treatment of
+the x derivatives for negative u, this scheme is equivalent to one proposed by Dwyer (ref. 8),
+and by analogy with Dwyer’s stability analysis, the Courant-Friedrichs-Levy
+condition applicable for negative u is assumed to be given by equation (2).
+The above combination of x and z difference formulas is believed to be consistent with the
+concept of zones of dependence and influence in three-dimensional boundary layers (ref.
+9), and accurate results have been obtained for test cases (described below) containing both
+positive and negative u. The detailed difference equations are given in the Appendix.
+The change from second order to first order accuracy in the x derivatives whenever u becomes
+negative does not often cause a serious deterioration in the accuracy of the results. For practical wing calculations, it is of little consequence, since negative u seldom appears in the type
+of grid shown in figure 2. However, early in the development of the program, an attempt
+
+13
+
+was made to extend the accuracy to second order for negative u by using difference formulas
+equivalent to evaluating 3-point formulas for the x derivatives at (i, k - 1) and (i, k - 2)
+and extrapolating the values of those derivatives to the unknown column (i, k). This scheme
+displayed good accuracy for small negative values of u, but it became unstable long before the
+assumed Courant-Friedrichs-Levy
+condition (Equation 2) was violated. This proved to be
+an unacceptable limitation in the calculation of flows such as the duct flow experiment of
+Vermeulen (ref. 15), discussed later, and the second order x differences for negative u have
+since been discarded in favor of the first order.
+For special situations in the grid, the program uses alternatives to the x and z difference formulas described above. When proximity to a boundary makes a third point unavailable for
+either the 3-point x difference for positive u (figure 4a) or the 3-point z difference, the
+program uses 2-point, first order differences. When u is positive, and the solution is not
+available at (i - 1, k) (e.g., if an illegal velocity was encountered there), the x difference is
+taken at the last spanwise line on which solutions at i - 1 and i are available, provided the
+condition
+
+U
+W
+
+-<-
+
+hj Ax(17)
+
+h3 Az-
+
+is satisfied, where the difference interval AZ- goes back to the spanwise line actually used.
+Figure 4(c) shows this difference schematically for the case where the next spanwise line
+back (k - 1) is used. If none of the available difference meshes can be used legally, solution
+is forbidden, and the program proceeds to the next station.
+The result of replacing the x and z derivatives by finite difference can be written for the momentum equations:
+
+( P;;;;*m
+
+[-
+
+(1-f!)]‘)’
+
++A,f”+B,f+C,
+
+= 0
+
+(18)
+
+[ pI;@$m
+
+[F
+
+(1 -g’,ll’
+
++AZf”+
+
+= 0
+
+(19)
+
+B,f”+C,
+
+and for the energy equation:
+
++A,d’+B,d
+
++C,
+
+= 0
+
+where the coefficients A, B, C in the momentum equations depend on the solution at the
+previous iteration, and the coefficients in the energy equations depend on d, f, and g at the
+previous iteration and f’ and g’ from the present iteration.
+
+14
+
+(20)
+
+The n derivatives (primes) of f’ and g’ and d at an n mesh point j are represented by difference
+expressions of the following forms:
+f\ + 1 - f'j _ 1
+= 77j+l-Tj-1
+
+5”
+
+where
+Qj+‘/z
+
+=
+
+f
+
+(Qj
+
++ 1 + @j)
+
+@j-1/2
+
+=
+
+1
+
+(Qj
+
++?j-1)
+
+The result of writing these expressions at all the n mesh points along the unknown column
+except at the inner and outer boundaries is a set of linear algebraic equations. These equations, given in detail in the Appendix, combined with the known inner and outer boundary
+conditions on f’, g’, and d,are solved by tridiagonal matrix inversion.
+In order to resolve velocity profiles near the surface accurately in turbulent flow, while at
+the same time using an economical number of grid points, it is necessary to vary the grid
+spacing, using small spacings near the surface and larger spacings farther out. To minimize
+the effects of unequal intervals, a grid is used in which adjacent intervals are related by a
+constant ratio:
+
+The initial interval Aq 1 is dictated by requirements of resolving the inner part of the layer,
+and in turbulent flow, the higher the Reynolds number, the smaller it must be. For Reynolds
+numbers typical of full scale wings, An 1 should usually be less than .OO1 and small values of
+K (near 1) thus require large numbers of grid points. Large values of K, on the other hand,
+can degrade the numerical solution through the loss of second order accuracy associated
+with unequal intervals. Thus, for this source of numerical error, just as with any other truncation error, there is a trade-off between economy and accuracy. Figure 5 shows results for
+a very high Reynolds number flat plate flow, calculated in several different grids with different
+numbers of points. The calculations all started with the same initial conditions at x = 0, and
+the results are compared at the final station at x = 3.05 m. The results with 256 points and
+with 100 points are nearly identical, indicating that these represent essentially converged
+solutions. Even with only 25 points in the layer and K = 1.5, the results are accurate enough
+for most engineering purposes. A good compromise for this flow and for most practical,
+full-scale wing calculations is to use about 40 points and K = 1.25.
+
+15
+
+To test the behavior of the numerical method for various flow angles with respect to the computational grid, especially for negative spanwise velocity u, test cases were constructed from
+a two-dimensional flow for which a two-dimensional solution had been obtained previously.
+For these comparisons, the spillway flow measured by Bauer (ref. 10) was used. A
+comparison of the two-dimensional solution and the experimental results is shown in figure
+6, and agreement is seen to be good. The three-dimensional program was used to solve this
+flow in several different slanted coordinated systems (figure 7) in which the flow appeared
+three-dimensional, that is in which all velocity components and their derivatives along the
+two coordinate directions parallel to the surface were non-zero.
+The known
+two-dimensional solution from figure 6 was used to provide initial conditions along the upstream boundaries of these calculation regions, and the three-dimensional results were compared with the two-dimensional solution at the downstream boundaries. Differences observed
+were due entirely to the numerical method, since the same turbulence model was used to
+calculate both the two-dimensional and three-dimensional solutions. When the direction of
+marching resulted in a positive “spanwise” velocity u, the differences in 6”: and Cf were less
+than l/2%, as shown in figure 7(a). Marching in the other direction, with negative u, the
+differences depended on the slope angle of the grid, as shown in figure 7(b). Relatively
+small values of negative LI@ = 30”) resulted in differences of less than l%, while at larger
+values (0 = 43”) approaching, the Courant-Friedrichs-Levy
+condition (p = 45”), the difference
+is increased to almost 2%.
+The flow represented by the above test cases is, of course, undirectional, in that the sign of LI
+is the same at every point in the layer. In some cases it is important to be able to predict
+flows in which LIchanges sign within the layer, but it is more difficult to construct definitive numerical test cases containing such “cross-over” velocity profiles. Only one flow has
+been calculated containing an extensive region of cross-over profiles (Vermeulen’s curved
+duct flow, to be discussed in the next subsection), and indications are that the present
+method yields accurate results in such cases, provided the Courant-Friedrichs-Levy
+condition
+is met in regions of negative u.
+Since an important application of the present program is the prediction of separation, it
+is important to understand the behavior of the maching-numerical scheme in the neighborhood ofa three-dimensional separation line. The program logic is set up to forbid further
+calculation on any vertical column where it encounters velocity components which violate
+either condition (1) or (2). When solution is forbidden along one column, it is also forbidden
+along any neighboring columns whose difference formulas must reference the forbidden
+column. Which neighboring columns will be affected, of course, depends on which difference
+formulas are applicable, which in turn depends on the velocity field. Thus, a forbidden zone
+can propagate in the solution region in a way which depends on the velocity field in the
+emerging solution and on the alignment and spacings of the computational grid. Whether the
+boundary of such a forbidden zone approximates the location of a separation line in the flow
+field, thus providing a prediction of separation, depends strongly on the particular choice of
+computational grid. An examinatiorr of the mechanics of the propagation of a forbidden
+zone into the grid indicates that the present method, and other marching methods like it,
+can predict the location of a separation line only when the grid is chosen in such a way that
+one or the other of the coordinate line families lies at least roughly parallel to the separation
+line to be predicted.
+
+16
+
+An illustration of the above idea is provided by a hypothetical test case, Case A4, used at the
+recent “Trondheim Trials” (ref. 11) of three-dimensional boundary layer methods.
+The task in Case A4 was to compute the turbulent boundary layer on a flat plate with a circular cylinder of radius a protruding perpendicular to the plate. As initial conditions, flat
+plate turbulent boundary layer profiles with e/a = .Ol were specified along a cross-surface
+4 radii upstream of the cylinder axis, and as a boundary condition, the two-dimensional,
+incompressible potential flow about an infinite circular cylinder was specified. In a region
+extending laterally 3 radii from the plane of symmetry, the participants at the trials were
+asked to compute the flow from the initial plane as far downstream as possible. All of the
+participants chose to compute the flow in Cartesian coordinates, and as a result, the
+boundary of the forbidden zone propagated laterally from the saddle point of separation on
+the plane of symmetry, as shown by the straight boundary in figure 3.7. This forbidden
+zone boundary approximates the separation line only in the immediate neighborhood of
+the saddle point. In the experimental flow of East and Hoxey (ref. 12) which involved
+the same geometry but had a thicker initial boundary layer, the separation line was nearly
+circular from 0” to 904 A more advantageous coordinate system for calculating the flow in
+the neighborhood of such a separation line is a polar coordinate system centered on the
+cylinder axis. When the present method was applied in polar coordinates, the resulting forbidden zone boundary was the curved one shown in figure 8, with a nearly circular segment
+from 0” to 90”. Along this segment of the boundary, the predicted radial component of the
+skin friction was very small, indicating that a separation line in the predicted flow field had
+been approached very closely.
+
+17
+
+V. COMPARISONS
+
+WITH BOUNDARY
+TWO-DIMENSIONAL
+
+LAYER
+
+EXPERIMENTS
+
+FLOWS
+
+It should be regarded as a necessary but not sufficient condition in the validation of any
+three-dimensional method, that whenever the method is used to predict two-dimensional flows,
+the results should be the same as for an equivalent two-dimensional method containing the
+same turbulence model. The present method can be used to calculate two-dimensional flows
+in either of two ways: The program can be run in the infinite swept wing mode with zero
+sweep, or the attachment
+
+aw
+az
+
+line module can be used with e=
+
+0. Both of these modes of
+
+operation have been used to calculate a wide variety of the nominally two-dimensional
+flows used as test cases at the 1968 Stanford Conference (ref. 10) on turbulent boundary layer computation.
+In all cases, the degree of agreement with experiment was substantially the same as that displayed at the conference by programs based on effective viscosity
+models similar to the one used in the present analysis.
+
+In an experiment by Cumpsty and Head (ref. 5), measurements were made in the
+attachment line boundary layer on the leading edge of a swept strut in a wind tunnel. The
+boundary layer was thin enough, and the spanwise variations in all flow quantities were mild
+enough that infinite span wing conditions were effectively simulated on the attachment line.
+A range of values of the attachment line parameter C* was produced by setting the strut at
+various sweep angles. At low values of C* the attachment line boundary layer was laminar,
+and at higher values it was turbulent. The attachment line module of the present program,
+running in the infinite swept wing mode, was used to compute the flow in the turbulent
+cases. Agreement between the predicted and measured velocity profiles was quite good,
+the predicted profiles being essentially the same as those predicted by Cebeci (ref. 13)
+using a turbulence model similar to the present one.
+INFINITE SWEPT WING EXPERIMENT
+VAN DEN BERG AND ELSENAAR
+
+OF
+
+For this carefully executed set of measurements (ref. 14), infinite swept wing conditions were closely approximated on a swept flat plate, with a chord-wise pressure gradient
+being imposed on the plate by a swept wing-like body suspended nearby. The measurements covered the rear portion of the plate, which sustained an adverse pressure gradient
+similar to what generally occurs on the rearward upper surface of a lifting swept wing. The
+deceleration of the chordwise component of the outer flow velocity is shown by the decrease
+in streamline angle relative to the leading edge (bottom half of figure 9). Within the layer,
+the streamline angles change more rapidly than they do in the outer flow, and when the
+minimum angle occurring in the layer reaches zero, a swept separation line is indicated. Note
+that the magnitude of the skin friction need not go to zero at the separation line. The experimental flow is seen in figure 9 to separate in this way, and the location of separation is predicted reasonably well by the calculations using the simple non-isotropic effective viscosity
+model, while no separation is predicted by the conventional isotropic model.
+
+18
+
+Well upstream of separation, at x = 1020 mm, the non-isotropic model provides good predictions of the velocity and direction profiles through the layer, as shown in figure 10. The
+predicted direction profiles exhibit a peak near the surface (corresponding to the minimum
+pl of figure 9), whose existence seems to be confirmed by the experimental profile,
+though the experimental resolution does not show the detailed shape of the peak. Direction
+profiles predicted by the isotropic model do not exhibit a peak and do not agree as well with
+the data. Closer to separation, at x = 1220 mm, neither model predicts the profiles particularly well. This deterioration of the predictions near separation, however, cannot be attri;
+buted solely to the skewing of the velocity profiles in three-dimensional flows. In the nominally two-dimensional, planar flows studied in the past (see ref. lo), the predictions of simple effective viscosity models displayed the same sort of deterioration near separation.
+CURVED
+
+DUCT EXPERIMENT
+
+OF VJZRMEULEN
+
+In this experiment (ref. 15) extensive mean velocity measurements were carried out
+on the flat ceiling of a rectangular duct with a 60” bend. The locations of boundary layer
+measuring stations are shown in figure 11, along with patterns of external flow and limiting
+surface streamlines deduced from the measurements. The pressure along the center of the
+duct (streamwise row C of measuring stations) was roughly constant, but a strong radial pressure gradient resulted in large cross-flow angles in the boundary layer, as can be seen in the
+limiting surface streamline pattern.
+The flow has been computed by the present method using a computational grid aligned with
+the rows of measuring stations as shown in figure 12. Initial conditions from the experimental
+data were applied along the upstream boundary, row 1, and along the outer side boundary,
+row A. Since the coordinate system is rectangular between rows 1 and 4 and polar between
+rows 4 and 16, the curvature of the system is discontinuous at row 4. The solution region was
+therefore divided at row 4, and the solution was obtained in two steps. First, the solution
+was obtained for the straight section between rows 1 and 4, and the resulting velocity profiles
+along row 4 were saved. These profiles were then used as initial conditions for the solution
+in the curved section from row 4 to 16. Along the inner side boundary, row E, the radial
+velocity in the outer part of the layer is outward from row 8 onwards, and as a result, a
+forbidden zone propagated into the grid from that point and occupied just over half
+the width of the flow by row 16. Because of this, no attempt was made to continue the
+calculations for rows 17 through 19. It is possible that an even finer radial grid spacing between rows C and E would reduce the extent of the forbidden zone, but other grids have not
+yet been tried.
+Calculations were made with both the conventional isotropic effective viscosity and the simple
+non-isotropic model described in Section III. Experimental effective viscosity profiles plotted
+by Vermeulen had shown a reduced cross-flow effective viscosity related to the streamwise
+effective viscosity by a roughly constant ratio of about 0.4 (these data, in fact, were the reason the simple non-isotropic model was programmed in the present method). It was, therefore, expected that the non-isotropic model would result in better predictions than the isotropic one. The differences between the predictions turned out to be small, however, and if
+anything, the isotropic model shows slightly better agreement with the experiment. The
+predicted limiting surface streamline directions in figure 11 show generally good agreement,
+
+19
+
+as do the predicted boundary layer quantities along row C, shown in figure 13. For the
+velocity and direction profiles at station C-14, shown in figure 14, the predictions of the
+isotropic model show somewhat better agreement with the data then do the predictions of
+the non-isotropic model. Again, as in the van den Berg and Elsenaar experiment, the nonisotropic model predicts a peak in the direction profile near the surface, but in this case,
+there appears to be no evidence for it in the data. Thus, in contrast with the results for the
+van den Berg and Elsenaar test case, the isotropic viscosity model provides better agreement
+with the experiment data in this case.
+SWEPT WING EXPERIMENT
+
+OF BREBNER
+
+AND WYATT
+
+In this experiment (ref. 16), velocity magnitude and direction measurements were
+made in the boundary layer of a 45” swept wing of constant chord and AR = 5 at several
+angles of attack. The upper portion of figure 15 shows the locations on the planfonn of the
+profile measurement stations. The potential flow at several angles of attack was analyzed
+using one of Boeing’s panel-type influence coefficient potential flow methods. The boundary
+layer grid generation program (described in Section V) and the boundary layer program w,ere
+run for the highest angle of attack for which boundary layer profiles were measured, 01= 6.3,
+and the computed results were found to be in generally good agreement with experiment.
+Velocity profile comparisons are shown for inboard and outboard stations at 80% chord in
+figure 16. The small disagreement at the outer edge of the layer represents the discrepency
+between the potential flow analysis and the measured outer flow. (Note that velocity magnitudes are normalized by the far-field value and thus, do not go to 1.O.> Within the layer, agreement is good, considering the limitations of the eddy viscosity model at such low Reynolds
+numbers and the fact that the location of the transition front was not reported precisely for
+the experiment and had to be assumed for the analysis. The small reversal in the slope of the
+direction profiles very near the surface is a result of the simple non-isotropic eddy viscosity
+model, which is discussed in connection with the calculations presented earlier in this section
+for the infinite swept wing (van der Berg and Elsenaar) and the curved duct (Vermeulen).
+Comparisons with the data nearer the trailing edge (x/c=O.99) were not possible because the
+analysis predicted separation at about 96% chord (slightly sooner outboard; slightly later
+inboard). If viscous-inviscid interaction were taken into account in the analysis, the predicted
+separation would move aft or possibly not occur at all. The predicted displacement effect
+cannot be compared directly with the experiment because the experimental data were too
+sparse to allow integration for the experimental three-dimensional displacement thickness.
+
+20
+
+VI.
+
+INTERFACE
+
+PROGRAMS
+
+In the viscous-inviscid interaction procedure, the communication of data between the inviscid
+analysis program (FL0 27) and the boundary layer program depends on two basic interface
+programs (see figure 1). The first interface, described in detail below, transforms and interpolates the inviscid outer flow velocity vectors as required for input to the boundary layer
+program and, in the process, generates the curvilinear, orthogonal coordinate grid used in
+the boundary layer anaIysis. The second interface interpolates the dispIacement thickness
+calculated by the boundary layer program back to the potential flow geometry input data
+points and is also described in detail below.
+WING BOUNDARY
+
+LAYER
+
+GRID GENERATOR
+
+The function of this interface program is to convert potential flow velocity component and
+wing geometry data from FL0 27 ( figure 17) into a form usable by the boundary layer
+program and to generate the curvilinear, orthogonal boundary layer grid ( figure 18 ). The
+program requires that the wing geometry (xp, yp, z p ) and potential flow velocity (V,, Vy,
+V,) data be provided at data points arranged along rows or rib cuts roughly aligned in the
+flight direction as shown in figure 17 (data points on a rib cut need not be at strictly constant yp). To allow for a correct analysis of the leading edge boundary layer in the boundary
+layer program, the boundary layer coordinate system is constructed such that the spanwise
+coordinate line that divides the wing surface into upper and lower surfaces for purposes of
+the boundary layer analysis coincides with the attachment streamline of the potential flow
+solution. This is accomplished by an iterative procedure in which estimated locations of the
+intersections of the attachment line with the rib cuts are refined repeatedly. At each iteration,
+the directions that spanwise coordinate lines in the boundary layer grid would assume if they
+were to pass through potential flow data points are calculated, using the same quintic curve
+fitting routines that are used later in the construction of the final boundary layer grid. These
+spanwise coordinate line directions are then used to convert the potential flow velocity components V,, Vy, V, at each potential flow data point into a velocity component Wp perpendicular to the spanwise lines and a component Up parallel to the spanwise lines. These components are analogous to the velocity components We and U, being sought for the final
+boundary layer system. By interpolation, the location is found on each potential flow rib
+cut where Wp = 0, and this becomes the assumed location of the attachment line for the
+next iteration.
+The new attachment line intersections result in new spanwise coordinate line directions
+which in turn, result in new velocity components Wp and Up, and so on. Usually, after
+about five iterations, the procedure converges to within a very close tolerance such that
+Wp = 0 (interpolated) at the assumed attachment line location. This is a convergence criterion
+that could, in principle, be satisfied by any streamline on the surface, as the velocity component
+perpendicular to any streamline is zero. The fact that the procedure converges to the attachment line in particular results from the special nature of the attachment line as an assymptote
+for all streamlines emanating from the leading edge region. The procedure can be satisfied
+only if it identifies a single streamline that intersects all of the potential flow rib cuts, and
+only streamlines in extremely close proximity to the attachment streamline can satisfy this
+requirement. In practice, the convergence is sufficiently strong that an initial placement of
+
+21
+
+the assumed attachment line on the bisector of the rib cut arc length from the upper surface
+trailing edge to the lower surface trailing edge is sufficient to start the procedure.
+After convergence of the attachment line location, the velocity components Wp and Up
+(known now for the potential flow data points) are interpolated chordwise along the potential
+flow rib cuts to the locations where spanwise coordinate lines of the final boundary layer grid
+will intersect the rib cuts. These intersections form an intermediate potential flow-boundary
+layer grid (or PB grid, as shown in figure 19), and the interpolated velocity components art:
+referred to as WpB and Upg.
+The components Wp and Up are much better suited to chordwise interpolation than are the
+original potential flow components (V,, Vu, V,) which have large second derivatives around
+the leading edge. All chordwise interpolations of velocities and geometry coordinates are
+accomplished using a second order interpolation scheme in which the two adjacent known
+points are matched exactly, and two additional known points are matched in a least squares
+sense.
+The chordwise boundary layer coordinate lines are then constructed step by step as straight
+line segments tilat intersect adjacent spanwise coordinate lines in such a way as to form equal
+angles with spanwise coordinate line tangent vectors (figure 20), resulting in a very nearly
+orthogonal grid as shown in figure 2. During this process of geometric construction of the
+grid, the spanwise coordinate line segments between PB grid points are treated as fully threedimensional curves in space and are represented by explicit quintics xp (y,) and zB (yp), with
+the spanwise Cartesian coordinate yp (figure 17) as indeperrdent variable. The qumtic curvefitting routines used for this purpose produce a curve fit with continuous second derivatives
+across the defining data points (PB grid points), thus ensuring continuity of the curvature
+coefficient K 13. The quintic curve-fitting algorithm was also designed to keep curvature
+as small as possible in regions where the defining data favor small curvature. Wings consisting
+of straight tapered segments with nearly straight spanwise generators, connected to adjacent
+segments of localized spanwise curvature, are particularly well represented by the quintic
+spanwise curves, whose curvature remains localized in a manner consistent with the defining
+data. This is illustrated in figure 21, which shows the curvature of a typical spanwise coordinate line on the NASA F8 wing.
+The metric coefficients h 1 and h3 and the curvature coefficients K 13 and K3 1 are derived from
+the geometry of the final boundary layer grid. Second order finite difference formulas are used
+to compute hi and h3 as derivatives of arc length Q, and II, along the x and z coordinate directions, respectively:
+
+The curvature coefficient K 13, the surface-normal component of the curvature of the spanwise coordinate lines, is computed directly from the coefficients of the quintic spanwise
+curves. The chordwise curvature K3 1 is computed by first order finite differences as the
+chordwise derivative of the slope, in the local surface tangent plane, of the spanwise coordinate lines, also determined from the coefficients of the quintics.
+
+22
+
+The final potential flow velocity components We, U, in the boundary layer system are computed
+in several steps. First, the components WPB, UPB, at the PB grid points are converted back
+to Cartesian components V,, Vy, V,, analogous to the original potential flow data velocity
+components. These Cartesian components are then interpolated spanwise from the PB
+grid points to the final boundary layer grid points, using the quintic curve-fitting routines
+for interpolation, with yP as the independent variable. The Cartesian components, known
+now at the final boundary layer grid points, are then converted to a component We perpendicular to the spanwise coordinate line and a component U, parallel to the spanwise
+coordinate line, using the quintic coefficients to determine the coordinate line directions.
+
+DISPLACEMENT
+
+THICKNESS
+
+INTERPOLATOR
+
+To interpolate the displacement thickness 6’ from the boundary layer grid back to the potential flow input geometry data points, this interface program requires three basic bodies of
+data:
+1.
+
+A boundary layer solution tile containing boundary layer solution quantities, including
+6*, at boundary layer grid points.
+
+2.
+
+A boundary layer grid geometry file containing the Cartesian coordinates of all surface
+points in the boundary layer grids, both upper and lower surface.
+
+3.
+
+A potential flow input geometry file containing Cartesian coordinates of the wing geometry defining data points.
+
+Before the interpolation can begin, 6” must be known at all points in the boundary layer
+grid. If flow separation was predicted by the boundary layer program on either the upper
+or lower surface, the Szi:data (in 1.) above) will be incomplete and must be augmented. This
+is done by extrapolation along chordwise boundary layer coordinate lines from the last valid
+6 * data value on each line. The user has the choice of linear or constant-value extrapolation.
+The linear extrapolation option is usually the appropriate choice, but in some special cases,
+such as lower surface separation in the cove region of an aft-loaded airfoil (see F8 wing calculations, Section VII) constant-value extrapolation is preferable. The required output is &tic
+corresponding to each of the geometry input points in 3., above. For each of these points
+the program uses an iterative search and interpolation algorithm to determine a pair of coordinates X, z in the curvilinear, orthogonal boundary layer coordinate system corresponding
+to the Cartesian coordinates of the point in question (and thus, at the same time, determining
+whether the point is on the upper or lower surface). A standard two-dimensional interpolation
+algorithm is then used to determine 6 * at the potential flow data point, using the boundary
+layer coordinates x, z as independent variables.
+
+23
+
+VII.
+
+VISCOUS-INVISCID
+WING GEOMETRY
+
+INTERACTION
+
+RESULTS
+
+AND FLOW CONDITION
+
+To illustrate the capabilities of the viscous-inviscid interaction system, calculations were
+carried out for the NASA F8 research wing at M, = 0.8 and Q = 2”. The planfonn and
+defining section locations used are shown in figure 22. Because the planform leading and
+trailing edges display substantial curvature, this wing constitutes a more demanding test
+of the grid generation and boundary layer solution numerics than would a more typical
+transport wing design. Although this example is not at all typical of current LFC wing
+designs, the flow was calculated both with and without distributed surface suction to demonstrate the capability of the boundary layer program to treat flows with suction.
+The wing geometry used here is the same one for which Nash and Scruggs (ref. 17)
+have previously calculated the three-dimensional boundary layer development. Direct
+comparisons with their results, however, are not possible because experimental pressure
+distributions rather than inviscid flow calculations were used in their calculations, and our
+calculations were made for different, off-design, flow conditions.
+The choice of off-design flow conditions was imposed primarily by limitations inherent in
+the inviscid flow program (FL0 27). Possibly as a result of the large sweep angle of the inboard
+leading edge glove, FL0 27 could not be made to converge at the design Mach number of 0.98.
+A lower Mach number of 0.80 was therefore chosen, where it was possible to achieve a converged solution. However, as would be expected at a Mach number below the design point,
+a low angle of attack of 2” had to be chosen in order to avoid a strong leading edge suction
+peak. At (Y= 4.68”, for example, local peak Mach numbers above 1.8 were present, and
+the strength of the resulting shock clearly violated the assumptions inherent in the use of the
+transonic potential equation.
+GENERAL
+
+DESCRIPTION
+
+OF THE CALCULATIONS
+
+The calculations were carried out for five complete cycles without suction and four complete
+cycles with suction, in the general iterative sequence illustrated in figure 1, with numbers of internal inviscid sweeps in FL0 27 and 6* under-relaxation factors as shown in table 1. In both
+cases, a reasonable convergence of the 6 * distribution was achieved. Except for slight movements of the attachment line location with changes in the outer inviscid flow as the system
+converged, the upper and lower surface boundary layer grids remained nearly the same for
+all of the boundary layer calculations and are shown in plan view in figure 23. In all cases,
+the flow was assumed to be laminar ahead of the arbitrarily imposed transition lines shown
+in figure 23. In lieu of suitable initial conditions along the wing root boundary, the infinite
+swept wing option in the boundary layer program was used to start the calculations. In the
+case with suction, the suction distribution was:
+A, = -5. for 0 < x/c < .5
+A, = -2.5 for .5 < x/c < 1.O
+
+24
+
+The convergence of the interaction in the,case without suction is illustrated in figure 24,
+which shows the 6 * distribution, as predicted by each of the five boundary layer calculations, along one chordwise lower surface boundary layer coordinate line near mid-semispan. A more global view of the convergence behavior can be seen in figure 25, where the
+maximum corrections to S *, made by the displacement thickness interpolator program
+(Section VI) for each potential flow geometry defining section, have been plotted against
+defining section number, from root to tip (figure 22 shows the locations of these sections
+in plan view). From figure 24, it is clear that there was some oscillation in the convergence
+of 6 *, and it appears that convergence would probably have been faster with a lower underrelaxation factor, say 0.5. In view of these results, a factor of 0.5 was used after the second
+iteration in the case with suction, but in that case the boundary layer was much thinner, the
+interaction was weaker, and a fair comparison cannot be made.
+
+Table
+
+I.-lnviscid
+Relaxation
+Sweeps and
+6 * Under- Relaxation
+Factors
+
+F LO 27 relaxation
+
+sweeps
+
+Medium
+mesh
+
+Fine
+mesh
+
+6’
+Underrelaxation
+factor
+
+Without
+suction
+
+100
+100
+0
+0
+0
+
+10
+10
+20
+30
+40
+
+0.8
+0.8
+0.8
+0.8
+-
+
+With
+suction
+
+100
+100
+0
+0
+
+10
+20
+30
+40
+
+0.8
+0.5
+0.5
+-
+
+In the case without suction the optional algebraic (constant total enthalpy) formulas for
+density through the boundary layer were used rather than solving the thermal energy equation.
+To demonstrate that the viscous-inviscid interaction results would not have been significantly
+different if the energy equation had been used, the upper surface boundary layer for the
+final (fifth) iteration was re-calculated using the energy equation. Figure 26 compares the
+6 * distributions predicted by the two calculations, and it can be seen that the types of density calculation used had very little effect on 6’b in this case. In flows where the viscousinviscid interaction is primarily the result of a turbulent boundary layer, and the surface is
+adiabatic, the algebraic density formula is a good approximation and can be expected to
+give results nearly identical to the full energy equation at some saving in computing time.
+For laminar flow, however, the effective Prandtl number is farther from unity, and, in
+cases where it is important to predict the details of a laminar boundary layer, the energy equation should be used.
+
+25
+
+DISCUSSION
+
+OF RESULTS
+
+The calculated pressure distributions display the usual features associated with modern, aftloaded, transonic airfoil sections when operated below the design Mach number and at a
+low lift coefficient. As can be seen in figure 27, which shows the Cp distribution just outboard of mid-semi-span, the aft lower surface displays a pressure maximum at about 90%
+chord as a result of the substantial aft camber, and, even at this low lift coefficient, there is
+a pronounced upper surface suction peak near the leading edge corresponding to a small
+region of supersonic flow. The curve labelled “inviscid” in figure 27 was calculated for the
+bare wing shape (40 tine mesh inviscid sweeps in FL0 27 beyond the original 10 sweeps
+shown for iteration 1 in table 1), and in comparison with the other curves, it shows clearly
+the effects of viscous-inviscid interaction.
+In the case without suction, the boundary layer
+displacement effect producedconsiderable
+reductions in lift and pitching moment. In the
+case with suction, the effects are in the same direction but are much weaker.
+The final, converged pressure distributions and details of the corresponding boundary layer
+solutions for the upper and lower surfaces, both with and without suction, are shown in
+figures 28 through 3 1. For each surface and flow condition, the outer inviscid solution is
+depicted at its inner boundary (i.e., at the displacement surface) in terms of constant Cp contours and corresponding inviscid flow streamline patterns (these two plots constituting part a
+in each figure). The corresponding boundary layer solutions are depicted in terms of surface
+shear stress directions, contours of constant displacement thickness S *, and contours of
+constant S*, (these three plots constituting part b of each figure). The surface shear stress
+direction field in part b of each figure is shown in the form of surface streamlines, i.e.,
+curves constructed to be parallel everywhere to the surface shear stress direction. These surface streamlines are the computational equivalent of experimental surface oil flow patterns.
+Because S * in three-dimensional flows is such a volatile quantity, responding strongly to
+convergent or divergent cross-flow patterns, and even taking on negative values, it does not
+provide the familiar indication of local boundary layer thickness that it does in twodimensional flows. For this reason, the integral thickness S*, is included to give an indication of the thickness of the local streamwise velocity profiles.
+
+On the outboard wing, the isobars become nearly parallel to constant percent chord lines,
+and in the case without suction, qualitively at least, the boundary layer development follows
+a pattern that would occur on an infinite swept wing subjected to the same pressure distribution. In regions of strong adverse pressure gradient, S * increases rapidly, and the surface
+streamlines turn outboard. On the upper surface, the most rapid growth in ScKoccurs over
+the last 10% of the chord, while on the lower surface, S * grows rapidly only over the forward
+portion of the cove. Aft of 90% chord on the lower surface, the pressure gradient is strongly
+favorable, such that S * decreases, and the surface streamlines turn back inboard. As is typical
+of three-dimensional boundary layers with pressure-driven cross flows, streamline curvature
+near the surface is much stronger than the corresponding curvature of the outer inviscid flow
+streamlines. In the case with suction, the suction is strong enough that large areas of negative
+S* appear.
+On the aft inboard portion of both surfaces, with and without suction, an intricate, highly
+three-dimensional flow pattern develops. In response to the unsweeping of the isobars inboard near the plane of symmetry,,rhe flow near the surface diverges strongly, carrying fluid
+
+26
+
+away laterally and leaving a region of negative S *. This divergence effect can be seen in the
+surface streamline plots for both the upper and lower surfaces and is sufficiently strong to
+produce the decrease in S * in spite of adverse streamwise pressure gradients. The local integral thickness S *s, however, continues to increase in the streamwise direction. Just outboard
+of this region, the laterally displaced fluid accumulates in a region of converging flow, producing large positive values of S * but only modestly increased values of S *s. It is to be expected, of course, that the flow pattern described above is influenced to some extent by the
+assumed initial conditions along the wing root boundary (the numerical zone of influence of
+the wing root boundary is somewhat larger than the more strict zone of influence derived
+from the differential equations). And it should be remembered that these initial conditions
+were generated, for the sake of convenience, by the infinite swept wing equations, which do
+not represent a realistic model of the wing root flow. The quantitative details of the predicted
+flow pattern immediately adjacent to the boundary are therefore suspect, but experience has
+shown that the basic qualitative pattern tends to occur, regardless of the wing root initial conditions. Figure 32 shows S * contours predicted for a transport type wing using two widely
+different assumptions for wing root initial conditions (the calculations are described in more
+detail in ref. 6). The contour patterns for both calculations are qualitatively very similar. Predicted S* contour patterns such as these will be difficult to compare with experiment, however,
+because directly measurable quantities (local velocity profiles) do not show the strong spatial
+variations displayed by S *, and S * itself would be extremely difficult to derive accurately
+from experimental measurements. In most cases, however, the region in question does not
+constitute a large portion of the wing, and flow field details predicted there have relatively
+little influence on the flow field prediction for the wing as a whole.
+An interesting feature of the present test case is that a massive lower surface separation on the
+outboard wing was predicted when the boundary layer was calculated for the inviscid pressure
+distribution calculated for the bare wing shape. The resulting surface streamline pattern,
+shown in figure 33, contrasts sharply with the corresponding pattern in figure 29, where viscous-inviscid interaction has reduced the pressure gradient, and no separation occurs.
+
+27
+
+APPENDIX A: DETAILED
+IN THE BOUNDARY
+
+DIFFERENCE
+EQUATIONS
+LAYER PROGRAM
+
+This appendix lists the detailed finite difference equations used in solving the following
+tial differential equations:
+1.
+
+3-D momentum
+
+and continuity
+
+2.
+
+Attachment
+
+3.
+
+3-D thermal energy equation
+
+4.
+
+Attachment
+
+5.
+
+3-D 6” equation
+
+6.
+
+Attachment
+
+line momentum
+
+par-
+
+equations
+and continuity
+
+equations
+
+line thermal energy equation
+
+line S4’ equation
+1. 3-D MOMENTUM
+
+AND CONTINUITY
+
+EQUATIONS
+
+These non-linear eauations are linearized by successive substitution, and the resulting linear
+equations are solved in subroutine SOLVEL. The x and z momentum equations are,
+respectively:
+P
+T;i
+
+u”x
+
+0
+1
+
+0
+
+wuz
+
++ (PVJ
+
+0
+uw
+
+111
+
+f Q
+
+P
+
+x + G
+
+uy f p uwK13 - pw2K31 + $-(PueflUy)y =O
+
+0
+
+@
+
+wwz + (/=I wy
+
+0
+
+0
+
+@
+
++ P uwK3 1 -pu2K13
+
+0
+
+@
+
++ s-(pV,f3Wy)
+
+y=O
+
+G9
+
+0
+
+where the terms are numbered for future reference in defining the individual
+The equations are treated as equations for f’ and g’ respectively, where:
+
+coefficients.
+
+f’= 1 -pu
+PeQe
+g’
+
+SE 1 - pw,
+PeQe
+
+and are then expressed in the following
+
+computational
+
+form:
+
+- =‘&,2(p~efluy)y+Axf”+Bxf’+Cx
+
+= 0
+
+- p%2(pYeflwY)
+
+= 0
+
+y+Azg”+Bzg’+Cz
+
+9
+
+29
+
+where the coefficients A, B, and C contain the results of expressing the x and z derivatives
+as finite differences and are expanded below. Expressing the q derivatives (primes and y derivatives) as finite differences results in a tridiagonal system of equations:
+’ +A,f”+B,f’+C,
+
+= 0
+3
+
+‘+ A, g” + B, g’ + C, = 0
+or
+
+where the individual
+
+coefficients
+
++ a2j f’j + a3j f’j-1 + a4j
+
+= 0
+
+bljg’j+l
+
++ b2jg’j
+
+= 0
+
++ b3jg’j-1
+
+=
+
+b2j
+
+=
+
+b3j
+
+=
+
+1
+77j+l - 17j-1
+
+b4j
+
+=
+
+-1
+r)j+l - 5-l
+
+Z
+
+1
+-1
+azj
+=
+
+djsl
+
+1
+
+a4j
+
+=
+
++ (P3j +933-l)
+
+Z
+
+X
+
+1
+
++ {$::+$‘1
+
+1
+77j+l - rlj-1
+
+-A
+X
+
+1 x’
++c
+
+30
+
+Z
+
++ c
+
+dj + Bx
+
+Vj+l -nj-1
+
+=
+
+1
+
+dj + B
+
+(93j+l +93j)
+(nj+l - nj)
+
+= Vj+l - 77j-1
+
+a3j
+
+’
+
+1
+
+(‘3.j + ‘3j - 1)
+(Tj - qj - 1)
+
++@t3j +!t3j-l)
+(qj - Tj-I)
+
++b4j
+
+are:
+
+1
+Tj+l -Tj-1
+
+blj
+
+alj
+
+alj f;+l
+
+1
+
+d,
+’
+
+and where
+$1
+21=jg,f3=~d>
+
+The coefficients
+equations:
+
+$3
+
+and
+
+A, B, and C are sums of contributions
+
+IJ=
+
+QeS*m
+v 0)
+
+from the terms in the differential
+
+AX
+
+= Ax1 +Ax2
+
+BX
+
+= Bx 1+ Bxxl + Bx2 + Bxz2 + Bx3 + Bx4
+
+CX
+
+= cx1+c,,1+c,2+c,z2+cx3+cx4+cx5+cx6
+
+AZ
+
+= Azl +Az2+Az3
+
+BZ
+
+= Bzl + Bzxl + Bz2 + Bzz2 + Bz3 + Bz4
+
+CZ
+
+= c,l
+
++c,,l
+
++Ax3
+
++Cz2+C,,2+Cz3+Cz4+cz5+cz6
+
+’
+
+where the number appearing in each subscript designates the term responsible for the contribution. The (m) appearing in terms@ are replaced by the following expression, derived by
+integrating the continuity equation:
+
+(jm)=1hlh3 l -s*, [hYeQe(q - 01, -h3~,Q,G*m~ (qf' - f7 - S*m [h1P,Q,(WZ)l
+
+Z
+
+-hlPeQeS*‘m,
+(Vg’-g>+ hlh3 (E)wI .
+The individual
+
+B,,lf’
+
+contributions
+
+are:
+
+Ax1
+
+z-i
+hl
+
+dS*m,r!(l-f’)
+
+Bxl
+
+~1
+
+d’s* m,n(2-f’)-hlQe
+
++ C,,l
+
+Cxl
+
+AX2=
+
+hl
+
+s*m
+
+[dGe(l - f ‘)I,
+
+= --l- d’S*mx n
+hl
+= $&
+
+[doe (1 - f’)],
+
+$j s*mz7)(1-g’)f”
+
+31
+
+d’
+Bx2 = T;- s*n,, q (1 - g’) f’
+3
+B xz2f + cxz2 = $f
+
+(1 -g’)
+
+[dC& (1 -f ‘],
+
+d’
+= -- h3 S*mz q (1 -Et’>
+
+c,2
+
+A
+
+Sam
+
+[113&Qe (17-f;) x + h3 S”m,
+
+[hlFeQe(V-g)]
+
++ hlS*mz
+
+z
+
+B
+
+0-j
+
+hlh3
+
+PeQe
+
+(P)w
+
+(17
+
+(77-g)lz
+
+hlh3
++ h ls *m, (rig’ - Et) - PeQe
+
+[h3i@e
+
+(7) - 01, + h3S *m,f
+
+cx3
+
+-
+
+-
+
++ Fx
+
+[h3P<Ge
+
+s*m
++ 7
+[hlF&
+PeQe
+
+[hlE&
+
+(rlg’-g)
+
+C&f)
+
+x
+
++h3S*mx
+
+CM’-f-q)
+
+(rl - g)lz - hl Semz(qg’ -8) + s
+
+(j7V)w
+
+s*m
+- pT
+e e
+(mjw
+
+e
+B x4 = -S*mKl3d(l
+C x4
+
+=
+
+-g’)
+
+S*mK13d(l-g’)
+
+cx5 = -S*mK31d
+
+-ue”e x
+hl
+
+C
+
+A,1 = -d
+hl
+
+s* m,7) (1 -f+)
+
+d’
+hl
+
+” *m,rl (1 - f’)
+
+B,l
+
+B zxli
+
+(1 -g’)2
+
++ Czxl
+
+=-
+
+S*m
+= m
+
+czl=-j$
+
+(1 -f’)
+
+s*mx’I(l
+
+[da,
+
+-
+
+-we”ez
+-F
+
+_
+
+- Kl3UeWe
+
++ K31We2
+
+(1 -g’)Ix
+
+-f)
+
+. ..-.- -----
+
+._..
+
+.___
+
+A,2 = Ld6*mZq(l
+113
+l3z2 =
+I
+Bzzs
+
+-g’>
+
+sern
+-i. d’fj*
+mzq (2 - g’) - me
+h3
+[da,
+
+-i- Czz2 = j&
+
+Cz2 = -&
+
+1
+
+[da,
+
+(1 - g’)]z}
+
+(1 - g’)lz
+
+d’FmZq
+
+A,3 = Ax3
+Bz3 = -
+
+d’
+
+sern
+ZY==-- [h3peGe (rl - f-j, + h3 &‘:mx (qf’ - f)
+
+lllh3 ( peQe
+
+c,3
+
+d’
+= hlh3
+- F%e
+
+z*
+- pe
+
+[h3,5EQe (77- 01x - h3 6:brnJqf’ - f)
+
+[h 1EQe (‘rl - g)lz + 1’1 qmz
+
+B,4 = -6”:,K3ld(l
+
+-f’)
+
+C,4 = G”mK3ld
+
+(1 - f’)
+
+c,5
+
+= - 6:“mKl3d
+h*m
+
+Cz6 =
+
+v
+
+e
+
+111h3
+g + PQ
+(PV),
+e e
+I
+
+(1 - f’)2
+
+--x uewe
+
+hl
+
+-
+
+-wewe
+
+h3
+
+Z -
+
+--
+
+I<31 WeUe -I- K13 tie2
+
+I
+
+Replacing the x and z derivatives by finite differences results in the following expressions,
+depending on which adjacent points are used in differencing. Here i is the spanwise (x direction) index, and k is the z direction index, with i, k being the present station (unknown column).
+In cases where one index or the other is deleted, it is assumed that that index is not being
+incremented.
+
+33
+
+IZDIFF
+
+k-l
+
+= 1:
+
+k
+z
+‘*mkd6*mk
+Dz,
+
+6*mz’
+and similarly
+
+for [hl /s,a,(v-g)],
+
+1
+-
+
+, [da,( l-g’)lz
+
+, ue, , and %‘e, .
+
+1
+
+Bxz2
+
+=
+
+C
+
+(l-g’)
+
+cxz2
+
+=
+
+[s
+
+(l-g,~kk
+
+B,,2
+
+=
+
+dPm
+
+--
+
+h3Dzm
+
+Ilai?,]k~~~e(l-‘)]k-lJ
+
+d6”m
+-p
+h3Dzm I k
+[doe] k - [d&C 1-g’)] k- 1
+D zm
+
+IZDIFF
+
+k-2
+
+= 2:
+
+k-l
+k
+i
+
+=
+
+6*mz
+
+Z
+
+Rzmm - Rzm
+
+and similarly for [hl peQe(q-g)] z , [dGe(l-g’)]
+
+‘*mk
+
+z , ve, ? and wez .
+
+-R zmm [dQe (I’-f’)lk-1
+
+Bzz2
+
+34
+
+=
+
+a*rn
+&&
+
+- Rzmm 6*mk-1 ’ Rzm ‘*mk-2
+
++ Rzm [doe(l-f’)l
+
+R
+K zmm - Rzm) <-dae>kl
+
+\
+k-2 j
+
+C,,2
+
+6*
+m
+h3Qe
+
+=
+
+bmm
+
+bGe(l-g’lI
+
+IXDIFF
+
+IXDIFF
+
+Infinite
+
+= 0:
+
+= 1
+
+- bm I[ doe I k-%mm
+
+k-l + R,m [dne(l-g’d
+
+6*mx
+
+= Ue
+
+B xx1
+
+= C,,l
+
+vx
+
+X
+
+= We
+
+X = [dae(l-f)]
+
+X = [h3Feae(q-f)-Jx
+
+= B,,l
+
+= C,,l
+
+=
+
+li* mi -I!?*mi-l
+
+= 0
+
+mX
+
+D xm
+
+x , [h3j5eQe(q-f)]
+
+x, uex and me, .
+
+Bxxl
+
+= &Ii
+
+[%li
+
+cd”
+
+= [*Ii
+
+(
+
+[dQ,li-
+
+VXl6*mx
+
+and similarly for
+
+= 0
+
+1
+
+and similarly for [dQe(l-f’)]
+
+= 2 :
+
+1
+
+swept wing option
+
+6*
+
+IXDIFF
+
+k-2
+
+l=
+
+x , [h3P,~,(~-f;),
+
+= [z]
+
+-f’>li-
+
+1
+
+)
+
+1
+
+Rxmm - Rxm 1 6*m. 1- Rxmm
+
+[da,< l-f’)]
+
+Bxxl
+
+[dG,(l
+
+D,,
+
+i ((Rxmm-
+
+6*mi-l
+
++ Rxm ‘*mi-2
+
+, Uex , and We, .
+
+Rxm)
+
+PQIi]
+
+35
+
+&xl
+
+= [ali
+
+((R,,,-Rxm)[dQeli-RXmm
+
+[dae( l-f’)] i- 1 + Rx, [d:dQe(l-f’)] i-2
+Bzxl
+
+= r&
+
+(l-F)i]
+
+((Rxmm - Rxm) [-dQJi]
+
+czxl
+
+= [a
+
+Clsf’(i
+
+((Rxmm -Rxm)
+
+-R xmm [doe (l-g’)]
+
+IXDlFF
+
++ Rx,
+
+i-l
+
+lIdQeli
+
+[dC!e<l-d)]
+
+i-2
+
+= 3:
+
+'*llli
+6*mx
+
+=
+
+k-1 - '*mi+l
+’
+
+Dxp
+
+and similarly for [dQ,(l-f’)]
+
+x ,
+
+[113TeQe(V-f)]
+
+‘xx’
+
+i,k
+
+{
+
+[d@l-f’)]i,
+
+IXDIFF
+
+1
+
+= [a]
+
+k-1
+’
+
+x , De, , and wex .
+
+k-1 - [dQe(l-f’)]i+l,
+D,p
+
+= 5:
+k-l
+k
+
+k-1
+)
+
+fj*
+
+‘*mi,k-
+
+m,
+
+1 -6*lTli,
+
+=
+
+l,k-
+
+1
+
+D xm
+
+and similarly for all other x derivative terms.
+In the foregoing difference formulas, difference intervals with the following
+used:
+D zm = zk-zkR zm =
+
+definitions
+
+were
+
+1
+
+zk-zk1
+zk - zk - 2) (Zk - 1 - zk - 2)
+
+R zmm =
+(
+
+(zk-zk-2)
+l)(zk-
+
+zi(-zk-
+
+1 -z k - 2)
+
+D xm = Xi - Xi _ 1
+
+R xm =
+
+Cxi - xi - I)
+(Xi - Xi - 2) (Xi _ 1 - Xi _ 2)
+
+R xmm =
+
+( Xi - Xi _ 2>
+Xi - Xi _ 1) (xi - 1 - xi - 2)
+(
+
+D Xl, = Xi - Xi + 1
+
+Rxpp =
+
+( xj - Xi + 2)
+( xi - xi + 1>( xi + 1 - xi + 2>
+
+R xp =
+(
+
+( xi - xi + 1>
+Xi - Xi + 2 xi + 1 - xi + 2
+
+I(
+
+( zk-zk-
+
+Rzm12 =
+(
+
+zk-1
+
+-zk-2
+
+>
+
+1>
+)
+
+37
+
+2.
+
+ATTACHMENTLINEMOMENTUM
+ANDCONTINUITYEQUATIONS
+
+These equations are solved in. a form directly analogous to that used with the 3-D equations.
+The x-momentum equation and z-differentiated momentum equations are, respectively:
+
+6*
+
+-j+z
+
+(Pvef Uy)y + 22
+
+UUx + $2
+
+$
+
+Pv Uy + p32
+
+k
+
+Px = 0
+
+Pzz-pu2K13
+
+Z= 0
+
+e e
+
+03
+-p%2
+
+(PVef(wz)y)
+
+y +%2f3
+
+(wz)’
+
++ p%2$u(wz)x
+
+01
+
+02
+6*m.
+l
+peue2h3
+
+05
+Making the substitutions:
+
+f’
+
+= 1 -p%
+aw
+
+g’, = --
+
+pz
+
+-- pwz
+aWe
+
+=
+
+PeWeZ
+
+’
+
+Pe az
+we have the following
+
+equations:
+
+- (& [dU- f’)]‘)’ + A,f ” + B,f ’ + C, = 0
+-
+
+(&
+
+(dg,‘)
+
+‘1’ +A,g,“+B,g,‘+C,=0
+
+Replacing n derivatives by finite differences leads to the tridiagonal
+
+aljf\+
+
+1 + A2j f’j + A3j f’j _ 1 + A4j
+
+blj gZ>+ 1 + b2j gz’j + b3j gzI _ 1 + b4j
+
+system:
+
+= 0
+= 0 ,
+
+38
+
+1
+
+where
+
+al.
+
+J
+
+=
+
+1
+
+(($)j + 1 + ($)j 1 dj f 1
+
+77j+l-??j-1
+
+(r)j + 1 - Vj)
+
+[
+
+1
+1
+1
+
++A,
+
+-
+
++ {(!!!)j+(?!h-l)
+77j- Vj - 1
+
+a2. =
+J
+1
+a3. =
+J
+rlj+l-rlj-1
+
+d.+B
+J
+X
+
+{ <&>j + ($)j - 1) dj - 1 _ A
+X
+(Vj - 77j- 1)
+
+aq. =
+J
++
+
+blj
+
+=
+
+b2j
+
+=
+vj
+
+b3j
+
+=
+
+1
+
++ AZ
+Tlj+l-qj-1
+-1
++ 1-
+
++
+
+17j
+- 1
+
+1
+
+1
+
+((&)j + (2)j - 1t
+(Vj - Vj - 1)
+
+d. + B
+J
+z
+
+(<g>j + <e>j - lt
+
+qj+l-rlj-1
+
+[
+
+(7)j-Vj - 1)
+
+b4j = c,
+Again, as in the 3-D case, the coefficients A, B, and C are sums of contributions
+various terms in the differential equations:
+
+from the
+
++ Ax2
+
+AX
+
+=
+
+Ax1
+
+BX
+
+=
+
+BXl + Bxxl + Bx2
+
+CX
+
+=
+
+c,l
+
+A,
+
+=
+
+A,2 + Az3
+
++&,I
+
++cx2+cx3
+
+39
+
+The continuity
+
+=
+
+Bzl + Bzx2 + Bz2 + Bz3 + Bz4
+
+CZ
+
+=
+
+czx2
+
++ czs + cz7
+
+equation is eliminated by making the following
+
+(PV) = L
+
+-6*m
+
+[h3PeUe(V
+
++ 6*mhlPeUegz
+
++ lllh3bv)w
+
+hlh3
+
+The individual
+
+B,
+
+contributions
+
+-h3PeUeG*mx(Bf’-
+
+for (pv):
+
+0
+
+I
+
+are:
+
+Ax1 =’
+
+d 6*mx
+
+hl
+
+~(1 -f’)
+
+1
+= d’Pmx
+hl
+
+B,l
+
+Bxxlf’
+
+-01,
+
+substitution
+
++ Cxxl
+
+= se
+
+C,l
+
+= --
+
+6”,
+77(2 - f ‘) - hlUe
+_
+
+[due (1 -f’>J
+
+X
+
+[due (1 - fr>J X
+1
+
+d’6*mx
+
+17
+
+hl
+A
+
+d
+x2 = hlh3
+
+F*m
+,G-~U,
+
+d’
+x2 = hlh3
+
+X +h36*,
+
+5
+FeUe
+
+[h3P,CJe(v-f)]
+
+x+h3
+
+6*m
+
+- !Q.!3 pv,,ll
+PeUe
+[h3 Fe De (r~ - f>] x + 1136*mxf
+llIh3
+
++ tiern hlg,+
+
+40
+
+(qf’-f)
+
+- PvwaIl
+PeUe
+
+- a*mhlgz
+
+C x3=--
+
+X
+
+111113 -
+
+- 6*mh,gz
+
+B
+
+[h3p,u,(pf)]
+
+-
+
+a*,
+
+sx
+
+111
+
+Ue
+
+PeUe
+
+-
+
+Pwall
+
+X
+
+(qf’-f-77)
+
+B,l
+
+r
+= -s-E
+“,3
+
+dg,’
+
+‘mxV(lmf)
+6’
+
+A,2 = d
+hl
+
+d’
+B,7. = Frnx
+1’1
+
+&x2
+
+TJ(1 - f’)
+
+1 6 SE
+(1 - f’) (duegz’)x
+dz + Czx2 = - - 2
+hl ue
+d
+-5
+A,3 = 1111131 GUe
+
+[l13peUe (77- f-j],+ l136~:mx (qf’ - f-)
+
+- hlGSmgz -hlh3
+
+d’
+B,3 = 111113
+
+fiwall
+pu
+e e
+
+( same as A,3 )
+
+J3,4 = - K31 6’l’,d
+
+(1 - f’)
+
+""IJl
+
+c-5 = -- &*rn
+
+h3Ue2
+
+hl”e
++ P,Kl3,
+
+cz7 = -6:“,Kl3,d
+
+(1 -f’12
+
+Replacing the x derivatives by finite differences results in the following:
+
+1 =
+
+1: Infinite
+
+swept wing option
+[d&(1-f)],
+
+= 0
+
+41
+
+Bxxl
+
+[h3Feue (V - 01 x
+
+= 0
+
+= Bzx2 = Czx2
+
+= 0
+
+tPmx
+
+= 0
+
+= Cxxl
+
+w
+=o
+( ez) x
+I=2:
+
+h
+
+0
+
+i= 1
+
+X
+
+i=2
+
+‘*mx
+
+6*m2 - Pm1
+D
+xm
+
+=
+
+and similarly for [due (1 - f’>] x , [113Feue (17- 01 x 3and wez x .
+
+(
+
+Bxxl
+
+= -
+
+Cxxl
+
+=
+
+Bzx2
+
+= -
+
+czx2
+
+=
+
+d2 6’rnT
+h12 Dxm
+S*m,
+
+I> 2:
+
+-X
+
+S*m,
+
+=
+
+[due] 2 - [due (1 - f’)] 1
+Dxm
+
+h12 ue2
+
+d:! 6*m2
+
+(1 - 02
+
+hl2 Dxm
+
+- *,x2
+
+i-2
+
+Idue gz’l 1
+[duel 2
+
+i-l
+
+( Rxmm -Rxm
+
+and similarly for [due< 1 - f’)] x ,
+
+42
+
+>
+
+i
+
+> ‘*llli
+
+-Rxmm
+
+[h3FeUe (77- O] x , and
+
+‘*mi-1
+
++ Rxm ‘*mi
+
+_2
+
+Bxxl
+
+= [2]
+
+i ((Rxmm-Rxm)[-dueli}
+
+-R xmm [doe ( 1 - f’>Ji - 1 + Rx,
+
+(1 - f’)
+
+czx2
+
+=
+
+-
+
+S”,
+(1 - f’)
+[ hl Ue
+
++ Rxm [d&q’
+
+[dud 1 - f’)] i _ 2
+
+Rxmm - Rxm
+
+1(
+
+-Rx,,
+
+)[
+
+[duegz’]
+
+dUe i
+
+1)
+
+i _ 1
+
+i
+
+Ii - 2
+
+In all of the above expressions, the difference intervals have the same definitions
+3-D case.
+
+as in the
+
+43
+
+3. 3-D THERMAL ENERGY EQUATION
+The equation in total enthalpy form is:
+
+-(Puefhhy}y
+
++
+
+(F)Hy
+
++t
+
+PuHx
+
+03
+
+02
+
+01
+
++ t
+
+~wHz-(~7l]~-(~~3]~
+
+= 0
+@
+
+@O
+
+where
+
+q2
+H= h+;?
+11 = Y
+7-l
+
+-
+
+y
+
+‘e
+
+Y-1
+
+Pe
+
+d+g
+2
+
+P,d
+Pe
+
+For purposes of computation, it is treated as an equation for the density ratio d. Like the
+momentum equations, it is linearized by successive substitution, the linearized equation
+taking the form:
+
+Y
+Fe ae -(
+Y-1
+Y
+
+fhd’
+
+I
+
+’ + Ad’ +Bd+C
+
+= 0,
+
+where
+
+and where the coefficients A, B, and C contain the results of replacing x and z derivatives
+by finite differences. Replacing the y or 7) derivatives by finite differences results in a tridiagonal system:
+
+aljdj+l
+
+44
+
++a2d
+jj
+
++a3.d
+Jj-1
+
++a+=0
+J
+
+,
+
+where
+
+al.
+
+J
+
+=
+
+1
+~~~
+
+ye
+
+y
+Qe r-l
+
+(fhj+l
++““>
+Vj+l--5
+
+[(!?:;I:
+
+‘thj)
+
++
+
+Tlj+l-qj-1
+
+Fe ’ GeY-lr
+a2. =
+J
+17j+l-qj-1
+
++A]
+
+(:-tfhjl’)]
+
++B
+
+a4.J =c
+The coefficients
+ential equation:
+
+A, B, and C are sums of contributions
+
+from individual
+
+terms in the differ-
+
+A = Az+A3+A4
+B = B2 + I33 + B,3 + B4 + B,4
+c = cx3+cz4+c~+c6
+The individual
+
+contributions
+
+A2
+
+=
+
+B;!
+
+=
+
+are:
+
+(PV)
+
+PeQe
+-(PV)
+
+PeQe
+
+peY 0 e -?y-1
+
+t y M,2
+
+(rMm2FeQe3
+
+[(l -f’)+(l
+
+I
+
+Fe ae3 [( 1 - f’)’ + (1 - s’)~] d
+
+-g’)]
+
+d)
+
+where
+
+-(iz) =- 1 - s”:,
+lllh3 l PeQe
+PeQe
+-pg
+
+[hl&Qe(q-g)]
+
+[113&Qe (77- 0-J x - h3SBmx (qf’ - 0
+
+~-l~l~~5mz(~~‘~~)~l~ll~3
+
+F
+e e
+
+45
+
+( 1 - f’j - 7 Mm2 Fe Qe3 (1 - f’j ~6 *mx
+
+q6*mx
+[( 1 - f’j2 + (1 - g’jz]
+1
+Bx3d +Cx3
+
+= -
+
+B3
+
+= +i
+
+hl
+
+*
+
+P<Bea
+
+d
+
+m
+
+~M,~&Qe~S*m(l-f’j
+
+[(l-f’)
+
+(dQe(l-fj]x
+
+1
++(1-g’>
+
+A4
+
+dQe(l-g’)
+
+Y
+
+~1
+h3
+
+&
+
+Y
+
+Ge
+
+[(l -f’j2+(l
+
+Y-1
+
+mx ifje
+
+x+5
+
+I
+
+m
+
+(1 -g’j-rMoz2&Qe3
+
+Vs*mz
+
+(1 - f’jf”
+
++ (1 - g’jg”
+
+‘”
+
+qS*mz (1 -g’j
+
+-g’j2]d
+I
+
+B,4d + C,4 = l
+
+pe 0, 6*m -?-
+
+h3
+
+‘y-1
+
+c5
+
+= -rMW2fiQe3
+
+c6
+
+= -TM,
+
+((1 -f’):J
+
+2
+
+Replacing the x and z derivatives by finite differences results in the following
+IZDIFF
+
+k-l
+
+= 1:
+
+k
+t
+
+46
+
+Z
+
+expressions:
+
+(da,(l - fr))Z = (@,(l
+and similarly for (doe(l
+
+IZDIFF
+
+-g?}z
+
+- f’>} k - (6
+D zm
+
+and (hlP,Qe(q-g)}z
+
+(1 - f’)} k _ 1
+
+.
+
+B,4
+
+5
+= [IFeQes*m
+
+(l-d)]k [&qk
+
+Cz4
+
+=- Fe0 es*m-$ (1-d)lk [&‘- ‘dlk- 1
+
+4
+
+k-2
+
+= 2:
+
+k-l
+k
+Z
+
+dQe(1 -f’)
+
+1Z
+
+= Rzmm - Rzm) (da,
+(
++ Rzm (d&Al
+
+and similary for
+
+{dGe(l
+
+-gr)]z
+
+(1 - f’> k - RZmm
+I
+3
+
+-f’))k-2
+
+and (hlPeQe(v-g))z
+
+.
+
+B,4 =
+
+c,4
+
+=
+-Rzm[&7-
+
+IXDIFF
+
+= 0 :
+
+‘dlk-2
+
+infinite
+
+swept wing option
+
+(dae(l
+
+-f’)lx
+
+= (dBe(I-g’))x
+
+)
+
+=(hjpeGe(~-f)Jx
+
+= 0
+
+B,3 = C,3 = 0
+
+47
+
+IXDIFF
+
+= 1:
+
+i-l
+-@--A--X
+
+dQe(l
+
+’
+
+= IdQe(l
+
+-f’)
+
+-f’>}
+
+X
+
+and similarly for (da e( 1 - g’))x
+
+B x3 =
+
+i- {dQe(l
+D xm
+
+&ijetiern
+
+= 2:
+
+i- 1
+
+and (h3 Fe Qe (Q - f)} x .
+
+y
+Y-1
+-ILY-1
+
+IXDIFF
+
+-f’)}
+
+i-2
+
+i-l
+
+(1 -f’)li
+
+[P-i’-
+
+‘dli-
+
+1
+
+.
+
+--
+
+dQe(1 -f’)
+
+IX
+
+=
+
+(
+
+Rxmm -Rxm
+
++ Rxm dQe(l -f’>
+
+dQe(l
+I
+
+-f’)
+
+IdOe (1 -f’)] i _ 1
+
+. -Rxmm
+I1
+
+i- 2,
+
+and similarly for {da e ( 1 - 8’)) x and (h3 Fe 0 e (7 - 0) x.
+
+B x3 =
+
+f$
+
+(1-f’)
+
+Cx3 =
+
+y
+Y-1
+
+(1 -f’)li
+
+y-1
+
+IXDIFF
+
+48
+
+= 3:
+
+1(
+
+Rxmm-Rxm
+
+i
+
+{-Rxmm[&‘-
+
+1I
+
+d
+
+i-2
+i
+
+i+ 1
+
+)[ 1
+fiywl
+
+‘d]
+
+i- 1
+
+i
+
+da,(l
+
+andsimilarly
+
+IXDIFF
+
+- f’)
+
+= (dTie(l-f’)}
+
+i,k-
+
+IX
+
+for {d&(1
+
+1 -(dQe(l-f’)}
+
+i+ 13 k- 1
+9
+
+Dxp
+
+-g’))
+
+xand {h3p,a,(r,-f))
+
+= 5:
+
+i-1
+
+x.
+
+i
+k-l
+k
+X
+
+=I=
+
+1
+
+da, (1 -f’)
+
+and similarly for (da,
+
+z
+= (dQe(l
+
+IX
+
+- f’)} i, k - 1 - (dQe(1 -f’))
+D xm
+
+i - 1, k - 1
+
+( 1 - g’)) x and { 113pe G, (77- f)) x .
+
+B,3
+
+= 0
+
+49
+
+4. ATTACHMENT LINE THERMAL ENERGY EQUATION
+The development here is directly Bnalogous to that used with the 3-D equation.
+equation is:
+
+- (puefhhy)y
+01
+which results in a linearized equation for the density ratio d:
+
+-p;Yu
+
+e-
+
+7
+
+’ +Ad’+Bd+C
+
+= 0,
+
+Y-1
+
+in which
+A = A2 + A3
+B = B2 + B3 + B,3
+c = c,3+c4
+The resulting tridiagonal
+
+system is:
+aij dj + 1 + a2j dj + a3j dj - 1 + a4j = 0
+
+where
+ai.
+J
+
+1
+
+=
+
+Tj + 1 - 77j
+
+a4.J =C
+
+50
+
+-pe y Ue -i&
+
+(:;,1-;:)
+
++A]
+
+The basic
+
+The individual
+
+contributions
+
+A2
+
+=-
+
+to A, B, and C are:
+
+(PV>
+
++ 7 Moo2 Fe U,3 ( 1 - f’)2d
+
+Gy ue y21
+
+Pe’e
+B2
+
+= $
+
+,
+
++&2p;U,3(1-f’)f”d
+e e
+
+I
+
+where
+(i%)
+
+_
+
+1
+hlh3
+
+pe”e
+
++hjh3
+
+-6”,
+1 PeUe
+W)W
+
+[h&TI,(T-f)]x-h3
+
+Pe’e
+
+2
+
+rl 6*mx (1 - f’) - y Mm2 Fe Ue3q 6”mx (I - f’)3d
+
+e y-l
+
+Bx3d + Cx3 = $
+
+I =
+
+p? Ue6:‘,
+
+B3
+
+= 1
+hl
+
+7Mm2p;Ue2
+
+C4
+
+=-yM,
+
+2&fie3
+
+Substituting
+
+6*m,(qf’-f)+S*mhlgz
+
+[dUe(l
+
+6*m (1 -f’j2
+
+((1 -f’)+l)
+
+finite differences for the x derivatives yields:
+
+1: Infinite
+
+swept wing option
+
+due (1 - f’)
+B,3
+
+I =
+
+2:
+
+-f’~x+~6”,x~edf”
+6 1:
+m
+
+= 0
+=
+
+C,3
+
+= 0
+
+{dU,(l
+
+-f’)}2-
+
+i
+
+D xm
+
+(dUe(1 -f’)I
+
+1
+
+and similarly for
+
+h3 ~~ ue (7) - f)
+
+X
+
+B,3 =
+
+dU,(l
+
+-f’)
+
+due(l-f’)
+
+xmm. -Rx,
+due(l-f’)
+
+i
+I-
+
+I(
+
+i
+2’
+
+,
+
+and similarly for
+
+B x3 =
+
+c x3 =
+
+Fe ue6*m
+
+?Y-1
+
+(1 -f’>
+
+#FeTJePm
+
+5
+
+(1 -ff)li
+
+[
++ Rxm [G
+
+i
+
+Rxmm-Rx,)
+
+(-Rx,,
+
+y-1d]i-2)
+
+5. 3-D 6* EQUATION
+The equation is:
+
+= hlh3Feae
+
+;j
+e e
+
+52
+
+[ 1
+Fey-’
+
+i
+
+[& y-ld]i-
+
+1
+
+When derivatives are replaced by appropriate differe,nce expressions, the equation becomes:
+
+[ALX6*+
+
+peaep- pwvw
+e e
+
+DDX]+[ALZ~*+DDZ]=~~~~
+
+’
+
+01
+
+- DDX + DDZ
+6* =
+
+pwvw
+’ hlh3 Pe0.e peQe
+
+I
+
+ALX + ALZ
+where ALX, DDX, DDZ, and ALZ depend on the types of x and z differencing
+follows:
+IZDIFE
+
+used as
+
+k-l
+
+= 1:
+
+k
+Z
+
+\
+A LZ = &
+
+[hlpeweli,
+
+k
+
+D DZ = 1
+D zm
+
+IZDIFE
+
+k - [I1 1(Pewe~” - peQe&*3)]i,
+
+k _1
+
+k-2
+
+= 2:
+
+k-l
+k
+z
+ALZ
+
+= (Rzmm-Rzm)[hl~eWeli,k
+
+DDZ = ( Rzmm-
+
+Rzm )[ -h1p~Q~6”‘3
+
+-PeQe6”3)]i,k-l
+
++Rzm
+
+1i, k - Rzmm [II, (pewe8*
+* - Peoe6 “3>] i, k - 2
+
+53
+
+IXDIFE
+
+= 0: Infinite
+
+swept wing option
+ALX=O
+DDX=O
+
+IXDIFE
+
+IXDIFE
+
+= 1:
+
+WX
+
+&D
+
+1
+
+[h3Ppe]i,
+
+k
+
+ALx
+
+=
+
+DDX
+
+1
+= -‘~3PeeTje~*l]i,
+D xm I[
+
+-X
+
+= 2:
+
+k-[h3(EeCIe6*
+
+i-l
+
+i-2
+
+=
+
+( Rxmm - Rxm )[h3Peue]
+
+DDX
+
+=
+
+( Rxmm - Rxm > [sh3~eQe~* 11 i, k - Rxmm
+[QIIi-2,k
+
+i, k
+
+’
+
+where
+
+= 3:
+
+i
+
+i+ 1
+
+k-l
+k
+
+X
+?=
+
+54
+
+ALX
+
+=
+
+DDX
+
+=
+
+Z
+
+0
+
+CQIIi,k-1
+
+I> i- l,k/
+
+i
+
+ALX
+
++Rxm
+
+IXDIFE
+
+-- Peoe6*
+
+-
+
+CQIli+l,k-1
+
+[QII
+
+i - 1, k
+
+IC
+r
+
+IXDIFE
+
+i
+
+i-l
+
+= 5:
+k-l
+k
+
+ALX
+
+= 0.
+
+DDX = $xm
+
+[QIli,k-l
+
+-raIli
+
+-l,k-1
+
+In the special case when the u velocity profile is of the crossCross-Over Velocity Profile:
+over type (u is both positive and negative along the same column) the zone of dependence
+of the 6 * equation is not properly covered by any of the above difference expressions. In
+this case, a zig-zag difference expression is used when the required points are available:
+
+ALX = Rxpm [h3pe”e]
+
+i, k
+
+CaIIi+
+
+l,k-1
+
+DDX=R~~~p
+
+(
+
++R xpm
+
+-[QIIi,k-1
+
+I
+
+[mh3ijeQeG”1]i , k -[QI~i-l,k)
+
+’
+
+where
+[QI]
+
+i, k
+
+= [h3(DeU,h
+
+* -~eQes*
+
+I)]
+
+i, k
+
+- Dxp
+
+R xpm
+
+=
+
+R xmp
+
+=
+
+Dxm
+
+(- Dxp + Dxm)
+Dxm
+
+- Dxp (- Dxp + Dxm)
+
+55
+
+When the point at i - 1, k is not available, an alternate expression involving three points
+on the previous spanline is used:
+i-l
+
+i
+
+i+ 1
+
+k-l
+Ch
+
+k
+
+X
+‘Z
+
+ALX
+
+=
+
+0
+
+DDX
+
+=
+
+Rxmp CQII i + 1 k _ 1 + (R,pm
+
+-RxpmCQIIi-1
+
+- Rxmp)[QIli,
+
+>i-1
+
+6. ATTACHMENT LINE 6* EQUATION
+The equation is:
+
+= hlh375,ti,z
+
+.
+
+When the x derivative is replaced by appropriate
+becomes:
+[ALX
+
+A* + DDX]
+
++
+
+[hIpeWe,
+
+-
+
+pwvw
+
+or
+h,P,U,
+‘*
+
+=
+
+6;‘:3z-DDX
+
+6* - l’lPefie
+
+6*3z]
+
+- PWVW
+>+h 1h 3 PeUe- peUe ,
+
+(ALX +hlj7e%eZ)
+
+where ALX and DDX depend on the particular
+
+56
+
+difference’ expressions, the equation
+
+x-difference
+
+expression,
+
+as follows:
+
+k - 1
+
+I = 1:
+
+Infinite
+
+In this special case, the equation reduces to:
+
+swept wing option.
+
+a*
+
+I = 2:
+
+ALX
+
+=
+
+6:‘:3,
+
+-X
+1
+
+2
+
+PeQe
+
+xm
+
+i-2
+
+ALX
+
+P wvw
+
+h3FeUe
+= 7
+
+DDX = k(
+
+I > 2:
+
++ h3
+
+(-h3/5,E,
+
+i-l
+
+= (Rxmm
+
+DDX = (Rxmm
+
+62
+i
+
+a*1 j2
+
+X
+
+- Rxm) [lQpedeI
+- Rxm)
+
+-R xmm [QIII-,
+
+i
+
+[- 113Peoe
++ Rx,
+
+"'II i
+CoIIi -2
+
+57
+
+--I.,
+
+m
+
+,---1-m,.
+
+.I
+
+m-
+
+..
+
+REFERENCES
+
+1. Jameson,A., and Caughey, D. A., “A Finite Volume Method for Transonic Potential
+Flow Calculations,” AIAA Paper 77-635, 1977.
+
+2. Randall, J. L. and McLean, J. D., “Computer
+
+Program to Calculate Three-Dimensional
+Boundary Layer Flows over Wings with Wall Mass Transfer-Program User’s Document,”
+NASA CR-l 58967, 1979.
+
+3. Randall, J. L. and McLean, J. D., “Computer
+
+Program to Calculate Three-Dimensional
+Boundary Layer Flow over Wings with Wall Mass Transfer-Program Maintenance
+Document,”
+NASA CR-158968-1, -2, 1979.
+
+4. Nash, J. F. and Patel, V. C., “Three-Dimensional
+
+Turbulent
+
+Boundary Layers,”
+
+SBC
+
+Technical Books, 1972.
+
+5. Cumpsty, N. A. and Head, M. R., “The Calculation of the Three-Dimensional
+lent Boundary Layers, Part III.
+Experiment,” The Aeronautical
+
+TurbuComparison of Attachment Line Calculations with
+Quarterly, Vol. XX., May 1969.
+
+6. McLean, J. D., “Three-Dimensional
+AIAA Paper 77-03, AIAA
+
+Boundary Layer Calculations for Swept Wings,”
+15th Aerospace Sciences Meeting, January 1977.
+
+7. Mellor, G. L., “Incompressible
+
+Turbulent Boundary Layers with Arbitrary Pressure
+Gradients and Divergent or Convergent Gross Flows,” AIAA Journal, Vol. 5, NO. 9,
+1967.
+
+8. Dwyer, H. A., “A Physically Optimum Difference Scheme for Three-Dimensional
+Boundary Layers,” Proceedings, Fourth International Conference on Numerical
+Methods in Fluid Dynamics, Boulder, Colorado, June 1974.
+
+59
+
+9. Wang, K. C., “On the Determination of the Zones of Influence and Dependence for
+Three-Dimensional Boundary Layer Equations,”
+Journal of Fluid Mech., Vol. 48,
+Part 2, 1971.
+
+10. Kline, S. J., et al, Editors, “Computation
+IFP, Stanford Conference, 1968.
+
+Il.
+
+of Turbulent
+
+Boundary
+
+of Three-Dimensional Turbulent
+East, L. F., “Computation
+Proceedings, Euromech 60, Trondheim 1975, Aeronautical
+Sweden, FFA TN AE-1264.
+
+Layers,” AFOSR-
+
+Boundary Layers,”
+Research Institute of
+
+12. East, L. F. and Hoxey, R. P., “Low Speed Three-Dimensional Turbulent Boundary
+Layer Data, Part I.,” Royal Aircraft Establishment Technical Report 6904 1, March
+1969.
+
+13. Cebeci, T., “Attachment
+Line Flow on an Infinite
+Vol. 12, February 1974.
+
+Swept Wing,”
+
+AIAA Journal,
+
+14. Van den Berg, B. and Elsenaar, A., “Measurements in a Three-Dimensional Incompressible Turbulent Boundary Layer in an Adverse Pressure Gradient Under Infinite
+Swept Wing Conditions,” National Aerospace Laboratory, Netherlands, NLR TR72092 u.
+
+15. Vermeulen, A. J., “Measurements of Three-Dimensional Turbulent Boundary Layers,”
+PhD. Thesis, Department of Engineering, University of Cambridge, (197 1).
+
+16. Brebner, G. G. and Wyatt, L. A., “Boundary Layer Measurements at Low Speed on
+Two Wings of 45” and 55” Sweep,” Aeronautical Research Council, C. P. No. 554,
+1961.
+
+Boundary
+17. Nash, J. F. and Scruggs, R. M., “Three-Dimensional
+for a Finite Swept Wing,” NASA CR-l 12158, 1972.
+
+60
+
+Layer Computations
+
+Calculate transonic potential
+FL0 27
+
+I Yes
+
+flow
+
++
+
+Generate boundary layer grid
+1st interface program
+
+1
+
+1
+
+Generate boundary layer grid
+1st interface program
+
+I
+
+1
+Calculate 3-D boundary layer flow
+1. Boundary layer program-upper
+2. Boundary layer program-lower
+
+1
+Calculate final boundary layer flow
+1. Boundary layer program-upper
+2. Boundary layer program-lower
+
+I
+surf.
+surf.
+
+surf.
+surf.
+
+1
+Set up 6” for next iteration
+2nd interface program
+1. Interpolation
+2. 6” under-relaxation
+3. Convergence test
+I
+
+Figure
+
+l.-
+
+Viscous-inviscid
+
+Interaction
+
+Procedure
+
+61
+
+Figure 2.-Curvilinear,
+Orthogonal
+Coordinate
+System
+Layer Calculations
+on a Swept Wing
+
+62
+
+for Boundary
+
+Initialize solution
+Use adjacent known stations
+
+Adjust scale length 6,”
+(except 1st iteration)
+I
+
+?I
+
+Calculate
+
+effective
+
+viscosities
+
+I
+
+I
+1
+Calculate
+
+integrals f, g, 6,”
+
+Calculate
+
+derivatives
+
++
+
+I
+
+I
+
+Figure 3.-
+
+Iterative
+
+f”, g”
+
+Calculate output
+
+Procedure
+
+I
+quantities
+
+For Boundary
+
+Layer
+
+I
+
+Solution
+
+of a Single Station
+
+63
+
+i -2
+
+i -1
+1.
+
+..
+
+a) Positive u
+
+.
+
+::
+
+k-1
+
+:I
+
+k-
+
+2
+Unknown
+column
+i
+
+i+l
+k-2
+
+b) Negative u
+
+k-l
+
+column
+i -1
+
+I
+
+--'-
+
+c) Alternate
+
+form, positive
+
+u
+
+AL
+
+1.
+
+0
+
+f
+
+k-2
+
+::
+
+k-1
+
+Unknown
+column
+
+Figure 4. -Difference
+
+64
+
+Molecules
+
+for Positive
+
+and Negative
+
+u.
+
+Calculation started at x = 0 Ft ; Ax = 0.152 M
+Results shown for final station: x = 3.05 M
+
+0.98 -
+
+A n.
+1
+K=
+
+An.
+
+J-1
+
+Figure 5.-Effects
+of the Ratio K of Adjacent r] Intervals on the
+Calculation
+of a Fiat Plate Boundary
+Layer at High Re:
+M =2.80, Re =8.07x
+IO7 M-‘.
+1.4
+
+1.7
+
+1.6
+
+1.2
+
+6
+
+1.0
+
+1.5
+
+0.8
+
+1.4
+
+H
+
+“e
+K
+
+1.3
+
+0.6
+
+1.2
+
+0.4
+___
+
+1.1
+1 .o
+
+q
+
+I
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+2-D analysis
+A Experiment
+
+0
+
+I
+
+1
+
+I
+
+10
+
+11
+
+12
+
+0.2
+0
+13
+
+x Ft
+
+Figure
+
+6.-2-D
+
+Solution
+
+for Bauer’s
+
+60” Spillway
+
+Flow
+
+65
+
+2-D Flow
+
+2-D Flow
+
+Initial conditions
+from 2-D solution
+
+ations
+
+% Deviation
+from 2-D
+
+Marching /
+direction
+
+a----
+
+% Deviation
+from 2-D solution
+at downstream
+stations
+
+1
+b) Negative u
+
+a) Positive u
+
+Figure 7.-Results
+
+for 3-D Test Cases Generated
+
+From 2-D Solution
+
+for Bauer’s Spillway
+
+Flow
+
+p=30°
+p= 430
+
+-
+
+Forbidden zone boundaries
+Plane of symmetry
+nl
+
+Far
+field
+flow
+
+Region
+Cartesian coordinates
+(Trondheim participants)
+Region calculated
+Polar coordinates
+(present method)
+
+Figure 8.-Hypothetical
+
+Flow
+
+I
+9o”
+
+in
+ISa
+
+on Flat Plate with Protruding
+
+0.004 -
+
+Cylindrical
+
+Obstacle
+
+(Trondheim
+
+Case A4J.
+
+0 Experiment
+Non-isotropic
+vef
+-------- Isotropic Vef
+
+0.003 CfTOT.
+
+0.002 o
+
+0
+
+0
+
+1.1
+
+1.2
+
+1.3
+
+0.001 -
+
+30 4
+Deg.
+
+20 -
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1.0
+
+x (ml
+Figure
+
+9.-Predictions
+
+for Infinite
+
+Swept
+
+Wing Experiment
+
+of van den Berg and Elsenaar
+
+67
+
+50
+0
+40
+
+-
+
+Experiment
+Non-isotropic
+
+vef
+
+1.0
+q/Qe
+
+0
+
+Figure
+
+68
+
+10
+
+IO.-Predicted
+and Measured Velocity and Direction
+for Data of van den Berg and Elsenaar
+
+20
+
+30
+
+Profiles
+
+40
+
+a
+
+Flow
+direction
+
+0
+
+,
+
+.’
+
+Figure
+
+1 I.-
+
+Measuring stations
+
+-
+
+Surface streamlines
+
+---
+
+External
+
+*
+
+Surface streamline directionspresent method (isotronir
+viscosity)
+
+experiment
+
+streamlines
+
+r.-
+
+Comparison
+of Predicted Limiting
+Surface Streamline
+Directions
+With Streamline
+Pattern Measured By
+Vermeulen
+
+Initial conditions
+from experiment
+
+Figure
+
+12.-Computational
+
+Grid Used for Curved Duct
+
+Flow
+
+69
+
+40
+
+-
+
+30
+
+Max
+0,
+Deg
+
+I-
+
+20
+
+10
+
+Experiment
+
+-
+
+Non-isotropic
+
+@
+
+vef
+
+-
+
+-
+
+- --
+
+oE5C
+0.004
+
+r
+
+.
+
+0
+
+w
+
+-_--_-d0
+
+--
+
+_-0
+
+-/4-
+
+----
+
+0
+
+0
+
+Cf 0.002
+S
+
+0 L
+
+8 SS’
+
+mm
+
+c
+
+1
+
+70
+
+2
+
+3
+
+Figure
+
+13. -
+
+4
+
+Curved Section
+
+5
+
+6
+
+7
+8
+9
+10
+Streamwise station no.
+
+Comparison
+of Predicted and Measured
+Central Row (Cl of Measuring Stations
+
+11
+
+12
+
+13
+
+14
+
+15
+
+Boundary
+Layer Quantities
+for Data of Vermeulen
+
+Along
+
+16
+
+50 r
+
+0
+
+40
+
+Experiment
+Non-isotropic
+
+Vef
+
+------
+
+Isotropic
+
+Vef
+
+30
+
+40
+
+50
+
+30
+
+20
+
+10
+
+0
+0
+
+10
+
+20
+
+Ps Deg.
+
+Y
+
+(mm)
+
+Figure
+
+14.-
+
+Comparison
+of Predicted and Measured Velocity Profiles
+at Measuring Station C- 14 For Data of Vermeulen
+
+71
+
+Experimental
+measurement
+stations
+
+Boundary
+layer grid
+
+Predicted
+surface
+streamlines
+a = 6.3O
+
+Figure
+
+72
+
+15. -
+
+Plan form and Boundary
+Layer Calculations
+For Swept Wing Experiment
+of Brebner and Wyatt
+
+3
+
+0.04
+
+a = 6.3O
+
+= 0.80
+
+%=
+
+0.25
+
+B Location on
+planform
+$=
+
++= 0.80
+
+0.80
+
+0.03 ,-
+
+l
+
+Test data
+
+-
+
+3-D solution
+
+\
+v
+F
+
+\
+
+0.02
+
+0.01
+
+cl
+Velocity
+
+magnitudes
+m
+
+Figure
+
+Flow anglepositive outboard
+(degrees)
+
+16.-Velocity
+
+Profile
+
+Velocity
+
+magnitude 1
+
+Q,
+
+Comparison
+
+for Data of Brebner and Wyatt
+
+Flow anglepositive outboard
+(degrees)
+
+Figure
+
+17. - Potential
+
+With
+
+(xQ,
+
+Flow
+yQ,
+
+Coordinate
+
+System
+
+zp/ snd (vx, VP vz)
+
+Known at Data Points Arranged
+Along Rib Cuts
+
+Potential
+
+Figure
+
+18.-
+
+Boundary
+Layer Coordinate
+System
+With Ue, We Known at Grid
+In tersec tions
+
+flow rib cuts
+
+Uooer surface /A
+
+Figure
+
+74
+
+19.-
+
+PB Grid Consisting of fntersections
+of Boundary Layer Spanwise Lines
+and Potential
+Flow Rib Cuts
+
+Figure 20. -Final
+
+Boundary
+
+Layer
+
+Grid
+
+y, (in.)
+
+15
+
+20
+
+Spanwise coordinate
+line z = 0.31
+
+25
+
+30
+
+Xp (in.1 35
+
+40
+
+45
+
+5c
+
+55
+
+Figure 21.-
+
+Curvature
+
+of a Spanwise
+
+Coordinate
+
+Line
+
+on NASA
+
+F8 Wing
+
+75
+
+0
+
+14
+
+J-.=0
+
+b/2
+
+59
+
+0.
+
+I
+
+32
+0. 19
+0 .3Ei6
+
+0.464
+
+I
+\
+
+‘\
+
+Leading edge sweep=
+
+\
+
+44.34O
+
+\
+\
+
+r
+
+‘\
+
+9.73”
+\\
+
+0. Ei96
+\
+\
+\
+
+\
+\
+\
+
+\
+\
+
+I
+
+0.850
+
+t
+
+t
+
+2
+
+3
+
+\
+
+8
+
+IO
+k-
+
+Figlure 22.-NASA
+
++
+
+22.5”
+
+F8 Research
+
+Wing Planform
+
+‘I
+
+and Locations
+
+of Defining
+
+Section
+
+Used for Input
+
+to FL0
+
+27
+
+76
+
+I.
+
+II
+
+I
+
+I
+
+II
+
+,111
+
+1.11..1---
+
+,_.-
+
+--.--
+
+--...--
+
+20 .oo
+
+25.00
+
+30 .oo
+
+X
+
+35.00
+
+40 .oo
+
+45.00
+
+50.00
+
+Upper surface
+
+Figure 23a.-Boundary
+
+Layer
+
+Computational
+
+Grid
+
+x
+
+35.GO
+
+10-G’,
+
+Lower surface
+
+Figure 236. -Boundary
+
+78
+
+Layer
+
+Computational
+
+Grid
+
+1, --
+
+Iteration
+Number
+
+0.08
+
+0.07
+
+,0.06
+
+0.05
+
+Lower surface
+
+6” in.
+
+0.04
+
+0.03
+
+0.02
+
+0.01
+
+0
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1.0
+
+Z
+
+Figure 24.-Convergence
+
+of Lower
+
+Surface
+
+6 * (No Suction)
+
+79
+
+0. 6
+
+5
+
+0. 4
+
+Iteration
+
+Max 6”
+correction
+16”new - r;*old
+
+!!
+
+~*Ill,X
+
+0. 3
+
+Defining
+
+Root
+
+Figure 25.-Maximum
+
+80
+
+section number
+
+6 * Correction
+
+Versus Defining
+
+Tip
+
+Section
+
+Number
+
+0.007
+
+0.006
+
+0.005
+
+6’ in.
+
+0.004
+
+0.003
+
+0.002
+
+0.001
+
+0
+0.1
+
+Figure
+
+26.-
+
+Comparison
+
+0.2
+
+0.3
+
+of 6 * Predictions
+
+0.4
+
+0.5
+z
+
+0.6
+
+With and
+
+Without
+
+0.7
+
+the Thermal
+
+0.8
+
+Energy
+
+0.9
+
+1.0
+
+Equation
+
+81
+
+r
+-0.6
+
+0
+
+0.1
+
+0.2
+
+CL
+0.402
+
+I nviscid
+0.3
+
+0.4
+
+0.5
+
+I
+
+No suction-converged
+
+_
+
+_
+
+With suction-converged
+
+_
+
+._
+
+_
+
+0.370
+
+._
+
+0.391
+
+Sanwise location
+yp = 13.49 in
+
+Figure 27.-
+
+82
+
+_
+
+Predicted
+
+Cp on a Section
+
+Near Mid-Semi-Span
+
+Figure
+
+28a.-
+
+Outer
+
+lnviscid
+
+Flow
+
+Solution
+
+for Upper Surface
+
+(No Suction)
+
+83
+
+Surface streamlines
+
+Figure 28b.-Boundary
+
+84
+
+Layer Solution
+
+for Upper Surface
+
+(No Suction)
+
+lnviscid streamlines
+
+Figure
+
+29a.-Outer
+
+lnviscid
+
+Flow
+
+Solution
+
+for Lower
+
+Surface
+
+(No Suction)
+
+85
+
+Surface streamlines
+
+Figure 296. -Boundary
+
+86
+
+Layer Solution
+
+for Lower
+
+Surface
+
+(No Suction)
+
+Figure 30a.-Outer
+
+lnviscid
+
+Flow
+
+Solution
+
+for Upper Surface
+
+(With Suction)
+
+87
+
+1
+
+Surface streamlines
+
+ii
+
+Figure 30b.-Boundary
+
+88
+
+Layer Solution
+
+;br Upper Solution
+
+(With
+
+Suction)
+
+lnviscid streamlines
+
+Figure 3la.-Outer
+
+lnviscid
+
+Flow
+
+Solution
+
+for Lower
+
+Surface
+
+(With Suction)
+
+89
+
+-.006
+
+P
+Figure 31b.-Boundary
+
+90
+
+Layer Solutions
+
+for Lower
+
+Surface
+
+(With
+
+Suction)
+
+----
+
+Inf span analysis
+at root
+Quasi 2-D analysis
+at root
+
+MD2 = 0.7
+CL
+
+= 0.403
+
+Roa = 167,000
+
+in.-’
+
+.6
+
+0.6
+
+Figure 32.-
+
+Contours of Constant 6 * Predicted for a Transport
+Using Two Different
+Wing Root Initial Conditions.
+
+0.8
+
+Type Wing
+
+91
+
+25.00
+
+55.00
+
+r
+
+J
+0
+
+5.00
+
+10.00
+
+15:oo
+
+20.00
+
+25.00
+
+V
+
+Figure
+
+92
+
+33.-Surface
+Streamlines
+for Lower Surface
+From lnviscid (Bare Wing) Outer Flow
+
+Calculated
+
+I
+30.00
+
+I
+
+Reoort
+
+No.
+
+2.
+
+Government Accession
+
+No.
+
+NASA CR-3 123
+*. T’t’ea”tiSuht’t’e Computer Program To Calculate
+ThreeDimensional
+Boundary Layer Flows Over Wings With
+Wall Mass Transfer
+
+3
+
+Rec~pwnt’s
+
+5
+
+Report
+
+Catalog
+
+No.
+
+Date
+
+May 1979
+tj
+
+7. Authorfsl
+
+PerformIng
+
+Organlzatlon
+
+Code
+
+8. Performing
+
+Orgdnezatlon
+
+Report
+
+NO
+
+I
+
+J. D. McLean and J. L. Randall
+
+D6-46976
+IO.
+
+9
+
+Performing
+
+Orqanazatlon
+
+Name
+
+and Address
+
+Work
+
+Unit
+
+No
+
+Type
+
+of Report
+
+I
+
+Boeing Commercial Airplane Company
+P. 0. Box 3707
+Seattle, Washington 98 124
+13
+2. Sponsor!ng
+
+Aqency
+
+Name
+
+and Address
+
+and Period
+
+Contractor
+
+7
+
+Covewrl
+
+Report
+;’
+
+National
+Aeronautics
+& Space Administration
+Washington,
+DC 20546
+I
+5. Supplementary
+
+Technical
+Report
+
+Langley
+
+Final
+
+1
+
+Notes
+
+E. Harris
+
+Julius
+
+Monitor:
+
+1
+G
+
+Abstract
+
+A system of computer programs for calculating three-dimensional transonic flow over wings,
+including details of the three-dimensional viscous boundary layer flow, has been developed.
+The flow is calculated in two overlapping regions: an outer potential flow region, and a
+boundary layer region in which the first order, three-dimensional boundary layer equations
+are numerically solved. A consistent matching of the two solutions is achieved iteratively,
+thus taking into account viscous-inviscid interaction. For the inviscid outer flow cal’culations,
+the Jameson-Caughey transonic wing program FL0 27 is used, and the boundary layer calculations are performed by a finite difference boundary layer prediction program. Interface
+programs provide communication between the two basic flow analysis programs.
+Computed results are presented for the NASA F8 reseal-ch wing, both with and without
+distributed surface suction.
+
+17. Key Words
+
+(Suggested
+
+by Authorfsl
+
+)
+
+Boundary layer flow
+Transonic flow
+Wing aerodynamics
+19. Secunty
+
+Clawf.
+
+(of thas report1
+
+unlimited
+
+- Unclassified
+Subject
+
+20.
+
+Unclassified
+
+becurlty
+
+CMSIT.
+
+safe by the National
+
+Technical
+
+02
+
+94
+
+$6.00
+
+,OT this page)
+
+Unclassified
+‘For
+
+Category
+
+Information
+
+Service.
+
+Sprangfleld.
+
+Vlrglnla
+
+22151
+NASA-Langley,
+
+-
+
+1979
+
+

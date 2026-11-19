@@ -1,0 +1,1753 @@
+The Aeronautical Journal (2026), 130, pp. 1566–1596
+doi:10.1017/aer.2026.10131
+
+R E S E A RC H A RT I C L E
+
+Mission-centric design optimisation of unmanned aerial
+vehicles for enhanced operational eﬀectiveness
+H. Karali1 , A. Tsourdos1
+
+and P. Moinier2
+
+1 Faculty of Engineering and Applied Sciences, Cranﬁeld University, Cranﬁeld, UK
+2 BAE Systems, Air Sector, Bristol, UK
+
+Corresponding author: Hasan Karali; Email: hasan.karali@cranﬁeld.ac.uk
+Received: 23 March 2025; Revised: 26 December 2025; Accepted: 6 January 2026
+Keywords: Multidisciplinary design optimisation (MDO); deep neural networks (DNN); surrogate modeling; unmanned aerial
+vehicle (UAV); mission simulation
+
+Abstract
+This study introduces a mission-centric design optimisation framework for unmanned aerial vehicles (UAVs)
+to enhance mission performance across diverse operational scenarios. The proposed framework integrates multidisciplinary design optimisation with a wargaming-based simulation environment and leverages deep neural
+network-based surrogate models to balance key performance metrics, such as aerodynamic eﬃciency, radar cross
+section, structural weight and payload capacity. By incorporating automated task assignment, path planning and a
+probabilistic combat model, the framework evaluates UAV conﬁgurations in multi-domain, multi-asset scenarios.
+The algorithm identiﬁes optimal solutions that maximise mission success while managing trade-oﬀs among survivability, lethality and cost. Simulation results illustrate the framework’s functionality through representative mission
+scenarios, highlighting how design variables can inﬂuence operational eﬀectiveness relative to baseline conﬁgurations. Furthermore, the modular design approach enables rapid UAV reconﬁguration for evolving mission needs,
+oﬀering scalable and adaptable solutions. These ﬁndings highlight the importance of integrating mission simulation
+tools with advanced optimisation techniques to address challenges in dynamic, high-threat environments, providing
+a robust methodology for UAV and ﬂeet design.
+
+Nomenclature
+A
+AR
+CD
+CDinduced
+CDparasite
+CL
+Eop
+El
+Hf
+Pdetection
+RMS
+RMD
+Re
+RCS
+WMTOW
+
+planform area of the main wing (m2 )
+aspect ratio
+drag coeﬃcient
+induced drag coeﬃcient
+parasite drag coeﬃcient
+lift coeﬃcient
+operational eﬀectiveness metric
+layer eﬀectiveness vector
+ﬁrepower health
+detection probability of an asset
+mission success rate (MSR)
+mission damage rate (MDR)
+Reynolds number
+radar cross section (dBsm, m2 )
+maximum takeoﬀ weight of the UAV (kg)
+
+
+C The Author(s), 2026. Published by Cambridge University Press on behalf of Royal Aeronautical Society. This is an Open Access article, distributed
+under the terms of the Creative Commons Attribution-NonCommercial-ShareAlike licence (https://creativecommons.org/licenses/by-nc-sa/4.0/),
+which permits non-commercial re-use, distribution, and reproduction in any medium, provided the same Creative Commons licence is used to
+distribute the re-used or adapted article and the original article is properly cited. The written permission of Cambridge University Press or the rights
+holder(s) must be obtained prior to any commercial use.
+
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+Wemp
+Wfuel
+Wpayload
+SFC
+
+1567
+
+empty weight of the UAV (kg)
+fuel weight of the UAV (kg)
+payload weight of the UAV (kg)
+Speciﬁc fuel consumption
+
+Greek symbols
+α
+θ
+λ
+
+φ
+
+angle-of-attack (degrees)
+elevation angle
+taper ratio
+sweep angle (degrees)
+azimuth angle
+
+1.0 Introduction
+The future battleﬁeld is rapidly evolving into a domain where unmanned combat systems, enhanced by
+signiﬁcant advances in autonomy and artiﬁcial intelligence (AI), will play a central role. These systems,
+particularly unmanned combat aerial vehicles (UCAVs), are now essential to modern military scenarios.
+UCAVs are expected to be crucial across a wide range of operations, including intelligence, surveillance
+and reconnaissance (ISR), electronic warfare, air combat and ground attack missions. The operational
+capabilities of UCAVs often vary signiﬁcantly, depending on the mission type and speciﬁc requirements.
+Furthermore, operational costs, which generally increase with vehicle capabilities, are a critical factor,
+making optimal ﬂeet composition and asset characteristics complex to determine. To address this, a
+model-based approach can be employed to simulate operations in a digital environment, enabling the
+identiﬁcation of the optimal ﬂeet components and requirements necessary for mission success.
+UCAVs designed for mission-oriented operations must strike a balance between performance, modularity and cost-eﬃciency. Modularity enables UAVs to adapt to diverse mission requirements through
+conﬁgurable payloads, sensors and aerodynamic structures. This ﬂexibility is particularly advantageous
+in contested environments where rapid adaptability is essential. These UAVs include both attritable and
+reusable conﬁgurations, allowing deployment ﬂexibility for a wide range of missions [1]. Attritable
+UAVs, characterised by their low cost and expendability, represent a new category of low-cost drones
+that can be deployed in high-risk scenarios where losses are acceptable. Conversely, reusable conﬁgurations are designed for long-term use in sustained operations, providing reliability in prolonged
+engagements. In the U.S. Air Force’s Collaborative Combat Aircraft (CCA) programme, attritable platforms are emphasised for their potential to complement manned systems in roles such as electronic
+warfare, ISR and air-to-air combat, leveraging AI to enhance operational collaboration [2]. Similarly,
+the RAF’s Autonomous Collaborative Platform (ACP) strategy focuses on developing modular, low-cost
+systems that integrate advanced autonomy and human-machine teaming to address high-risk operational
+environments [3]. As shown in Fig. 1, modular UCAV designs facilitate rapid reconﬁguration to address
+varying operational needs, enhancing mission adaptability.
+In this context, mission-based design emerges as a critical methodology for aligning system capabilities with operational demands. This approach provides a systematic framework for addressing the diverse
+requirements of UCAV operations by tailoring system design speciﬁcally to the requirements of the
+missions they will perform. Detailed operational scenarios that encompass mission objectives, environmental conditions and potential threats are central to this methodology and serve as a blueprint to guide
+the engineering and design process. Such scenarios facilitate the evaluation of trade-oﬀs among design
+parameters, including survivability, lethality, and costs, ensuring that each design choice contributes to
+the system’s overall eﬀectiveness within its intended mission environment.
+The literature highlights several advancements in mission-based design. Albuquerque et al. [4]
+developed a multidisciplinary optimisation methodology for adaptive aircraft design, incorporating lowﬁdelity models to eﬃciently evaluate early-stage designs. Their approach tailored design parameters
+such as wing area and engine thrust to speciﬁc mission phases, achieving signiﬁcant improvements
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1568
+
+Karali et al.
+
+Figure 1. Modular UAV design enabling mission-speciﬁc adaptability (adapted from Ref. (1)).
+in mission eﬀectiveness. Clark et al. [5] proposed an eﬀectiveness-based design framework that integrates multidisciplinary design optimisation, uncertainty quantiﬁcation and nondeterministic surrogate
+modeling to reﬁne aircraft conﬁgurations under complex and uncertain mission conditions. This method
+emphasised mission-speciﬁc metrics, such as the probability of mission success, and employed advanced
+simulation techniques to assess trade-oﬀs among various design options. Pagan et al. [6] presented a
+methodology combining Monte Carlo simulations and surrogate modeling to optimise UAV designs
+for Air Interdiction and ISR missions. Their work demonstrated the eﬀectiveness of balancing costeﬃciency and operational performance through iterative evaluations of vehicle architectures and mission
+parameters. Similarly, Aleisa et al. [7] proposed a mission-oriented optimisation approach for a nonconstant swept ﬂying-wing UCAV, utilising multi-ﬁdelity surrogate modeling to enhance aerodynamic
+performance tailored to speciﬁc mission proﬁles. Klaproth et al. [8] introduced a multi-ﬁdelity aerodynamic modeling approach within a mission-based UAV design process, leveraging hierarchical
+Kriging to optimise computational eﬃciency while maintaining high accuracy across the design space.
+Sells and Crossley [9] developed a decision-making framework for small unmanned aircraft systems
+(UAS) ﬂeet design, integrating mission customer preferences into a multi-objective optimisation process to align ﬂeet conﬁgurations with operational demands eﬀectively. Setayandeh and Babaei [10]
+proposed a system-of-systems optimisation strategy for UAV networks, enabling coordinated task allocation and resource sharing to maximise mission eﬀectiveness in complex operational environments.
+Additionally, Chaudemar et al. [11] explored a mission-based UAV design methodology leveraging the
+Goal-Requirements Language (GRL) framework. Their work emphasised the importance of aligning
+UAV capabilities with mission-speciﬁc goals through rigorous modeling and validation, demonstrating
+how such an approach enhances the system’s adaptability and eﬀectiveness in dynamic environments.
+In addition, recent MDO studies align with a mission-centric perspective. Zhang et al. [12] presented
+a bi-level, system-integrated optimisation that treats the climb mission as a system-level driver and
+reported about a 10% reduction in minimum climb time by co-optimising conﬁguration variables with
+trajectory. Shen et al. [13] demonstrated constraint-preserving three-dimensional shape parameterisation combined with surrogate-assisted multi-objective optimisation to balance lift-to-drag, internal
+volume use and thermal loads. To address computational cost at mission scale, Leng et al. [14] proposed a multi-ﬁdelity, data-mining-guided framework that explores the design space with inexpensive
+estimates and then reﬁnes promising solutions with viscous computational ﬂuid dynamics (CFD),
+reporting range improvements; the same approach was extended to combined boost–glide scenarios while maintaining consistency with system-level constraints [15]. A recent survey by Leng et al.
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+
+1569
+
+[16] consolidates eﬃciency-oriented practices for aircraft MDO, including dimensionality-reduction of
+design variables, advanced three-dimensional shape parameterisation, MDO strategy selection and the
+use of machine learning to extract knowledge from optimisation data. Collectively, these methodologies illustrate the transformative potential of mission-based design. By integrating advanced modeling
+techniques, probabilistic frameworks and multi-objective decision-making strategies, these approaches
+enable the development of UAV systems that are not only cost-eﬀective but also highly responsive to
+the complexities of modern operational environments.
+Mission-based design optimisation requires a simulation environment that accurately reﬂects the
+complexity and variability of real-world scenarios. Uncertainty in the simulation environment directly
+inﬂuences the reliability of optimisation outcomes, as it allows for testing system performance under
+diverse and dynamic conditions. This consideration is particularly critical in mission planning systems,
+where adaptability and resilience are essential for success. Modern mission planning systems play a
+critical role in this context by facilitating eﬃcient and dynamic coordination of assets in defense operations. These systems provide essential capabilities for mission simulation, including task assignment,
+path planning, and resource allocation. In this context, advanced mission planning tools such as BAE
+Systems’ SCEPTRE [17], Anduril’s Lattice [18], General Dynamics’ IMPACT [19], Lockheed Martin’s
+MDSET [20] and Saab’s MSS [21] illustrate the range of capabilities available to support adaptive and
+coordinated defense operations.
+While these advanced mission planning tools signiﬁcantly enhance operational capabilities, wargaming techniques oﬀer an alternative approach for simulating operations and testing diﬀerent strategies.
+Wargaming, broadly deﬁned as the simulation of military operations using structured rules, data and
+methods, has a rich history dating back to the early 19th century [22]. This approach allows for detailed
+modeling of battleﬁeld dynamics, including terrain eﬀects, force distributions and adversarial strategies,
+which are often challenging to capture in traditional mission planning systems [23]. In the context of
+mission simulation, wargaming enables probabilistic evaluations of multiple scenarios, incorporating
+uncertainties and adversarial behaviours into the analysis. For instance, Filho et al. applied wargaming
+to optimise UAV positioning in beyond visual range combat scenarios, eﬀectively accounting for enemy
+movement and dynamic interactions [24]. Similarly, Chen et al. demonstrated the application of wargaming simulations to urban ﬂood disaster scenarios, highlighting their utility in optimising emergency
+management strategies through dynamic modeling and decision-tree analysis, demonstrating the adaptability of such techniques beyond military applications [25]. These examples highlight the versatility of
+wargaming in modeling complex systems and testing various strategies.
+In this work, we introduce a novel mission-centric design optimisation framework that directly
+addresses the complexities of designing UCAVs for diverse and contested operational environments.
+Unlike existing approaches, which often rely on isolated disciplinary models or simpliﬁed scenarios,
+our framework explicitly integrates complex mission dynamics into the design process. By combining
+wargaming-based simulations with multidisciplinary design optimisation (MDO), we establish a uniﬁed environment where aerodynamic, radar cross section and structural models are jointly evaluated
+under realistic mission conditions. Furthermore, we employ artiﬁcial neural network (ANN)-based surrogate models to accelerate analysis and enable rapid exploration of the design space. This contribution
+advances the state of the art by linking mission-level uncertainties with system-level design choices in
+a single, computationally eﬃcient framework, thereby enabling the development of robust and adaptive
+UCAV conﬁgurations tailored to mission-centric requirements.
+This paper is organised as follows: Section 2 introduces the mission-centric design optimisation
+framework together with the integration of wargaming-based simulations and surrogate driven multidisciplinary design optimisation. Section 3 details the methodology, including the multidisciplinary
+design optimisation process and the mission simulation algorithm. Section 4 presents the model simulation and results, including the simulation environment, evaluation metrics and comprehensive use
+cases in aerial combat and ground attack scenarios. Finally, Section 5 summarises the ﬁndings and
+discusses their implications for advancing mission-based UAV design optimisation.
+
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1570
+
+Karali et al.
+
+Figure 2. Representation of operational environment with multi-domain assets.
+2.0 Mission-centric design optimisation for UAVs
+Mission-centric design optimisation systematically tailors UAV designs to meet speciﬁc mission objectives and operational needs. Unlike traditional methodologies that often aim for generic performance
+goals, this approach ensures UAVs are optimised for cost-eﬃciency, adaptability and mission-speciﬁc
+performance.
+To address this challenge, an intelligent wargaming approach [26] has been further reﬁned and a
+combat model enhanced to serve as the basis for the mission simulation environment. This environment is integrated with a surrogate-driven MDO algorithm speciﬁcally developed for UAVs [27]. As
+illustrated in Fig. 2, the framework models a multi-domain, multi-asset operational environment. This
+includes interactions across aerial, ground and naval layers to provide a realistic simulation. The framework leverages mathematical models to automatically explore possible scenarios, assess outcomes and
+identify optimal design conﬁgurations. By automating this process, the framework enables systematic
+exploration of design options to address the complex requirements of diverse operational environments.
+To enhance adaptability, the framework incorporates modular UAV designs, enabling rapid reconﬁguration through interchangeable payloads, sensors and aerodynamic structures. Figure 3 illustrates the
+framework’s workﬂow, from ﬂeet conﬁguration to mission simulation and optimisation. The simulation
+
+Figure 3. Overview of the mission-centric design optimisation approach for UAVs.
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+
+1571
+
+Figure 4. General framework for mission-centric design optimisation process.
+environment integrates automated target assignment, optimal path generation and a probabilistic combat
+model to reﬂect real-world mission complexities. Through iterative simulations under diverse conditions, the framework evaluates trade-oﬀs among survivability, lethality and cost to determine optimal
+conﬁgurations.
+3.0 Methodology
+The methodology consists of two main components. The ﬁrst one is the Multidisciplinary Design
+Optimisation component, which incorporates a multidisciplinary design and optimisation loop and
+utilises deep neural networks based surrogate models from various sub-disciplines. Through multiobjective optimisation, a Pareto set is obtained, balancing diﬀerent objective functions. Within the
+simulation loop, the conﬁguration that maximises operational eﬀectiveness is selected from the Pareto
+set, allowing for the formation of the most suitable ﬂeet component for the mission.
+The second component is the Mission Simulation Environment, which includes three subcomponents: task assignment, path planning and the combat model. Since the simulation is dependent on
+probabilistic variables, it is run hundreds of times to explore diﬀerent probabilistic outcomes. The results
+of these simulations are evaluated using various evaluation metrics to assess operational eﬀectiveness.
+Based on these evaluations, the process iteratively reﬁnes the designs and informs the optimisation
+framework. The general framework for the mission-centric design optimisation process is illustrated in
+Fig. 4.
+The following subsections provide a detailed explanation of the multidisciplinary design optimisation, including the integration of deep neural networks driven surrogate models and multi-objective
+optimisation techniques, and the Mission Simulation Framework, which includes task assignment,
+path planning and the battle model. Together, these components are combined to achieve optimal mission
+outcomes.
+3.1 Multidisciplinary design optimisation
+Design optimisation of UCAVs is a complex, multidisciplinary challenge that involves tradeoﬀs between performance criteria such as aerodynamic eﬃciency, structural integrity, stealth and
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1572
+
+Karali et al.
+
+mission-speciﬁc capabilities. In this section, we describe a framework that integrates MDO with
+advanced surrogate models to achieve optimal UCAV conﬁgurations to meet speciﬁc operational
+requirements [27].
+The process begins with the initial sizing of the UCAV based on fundamental ﬂight performance
+criteria such as wing loading and thrust-to-weight ratio. These parameters are derived from mission
+requirements, including maximum speed, range and climbing rate. The initial sizing algorithm generates a feasible design space, which is then explored using a genetic algorithm-based search method
+to identify the optimal conﬁguration. To accelerate the optimisation process and reduce computational
+costs, deep learning-based surrogate models are employed. These models are trained on several thousand low- and mid-ﬁdelity simulations covering the design space. Once trained, the surrogate models
+provide predictions of key performance metrics, such as lift and total drag coeﬃcients, structural weight
+and radar cross section, in near real-time. Compared to high-ﬁdelity CFD and ﬁnite element analysis
+(FEA), which require signiﬁcantly longer runtimes for each evaluation, the surrogate models enable
+rapid exploration of the design space. Their accuracy has been validated, with coeﬃcients of determination (R2 ) around 0.99 and mean absolute percentage errors (MAPE) typically within 2–3%. This balance
+of speed and ﬁdelity makes them suitable for screening and ranking candidate conﬁgurations during the
+optimisation process.
+As outlined in the subsequent sections, the MDO framework is systematically developed through
+detailed modeling and analysis. Initially, the fundamental components of the UAV model are described,
+including Aerodynamics, Radar Cross Section (RCS), Structures and Propulsion & Weight modules. These models form the basis for evaluating key performance metrics and constraints. Following
+this, the development and integration of ANN-based surrogate models are detailed, highlighting their
+role in accelerating performance predictions. Finally, the optimisation methodology is presented to
+illustrate the iterative process of achieving optimal UAV conﬁgurations across multiple competing
+objectives.
+
+3.1.1 Aerodynamics
+
+Aerodynamic performance plays a vital role in analysing the forces that UAVs experience during ﬂight
+and how these forces inﬂuence their behaviour. In UAV design, aerodynamic eﬃciency strongly aﬀects
+overall ﬂight performance and also provides essential inputs for structural analysis and propulsion system
+evaluation.
+Among the available methods, the panel method is particularly advantageous for UAV conﬁgurations because of its low computational cost and fast turnaround. It solves the potential-ﬂow equations at
+subsonic or supersonic free-stream Mach numbers [28]. The governing equation is the Prandtl–Glauert
+formulation,
+
+
+2
+φxx + φyy + φzz = 0
+(1)
+∇˜ 2 φ = 1 − M∞
+where φ is the velocity potential and M∞ is the free-stream Mach number. To model the eﬀect of
+geometry on the ﬂow, singularities are distributed over the surfaces to satisfy boundary conditions.
+From the resulting velocity ﬁeld, pressure coeﬃcients are computed as
+2
+
+V
+Cp = 1 −
+(2)
+V∞
+and integrated to obtain aerodynamic forces and moments:
+
+F = pn dS
+S
+
+where p is surface pressure, n is the normal vector and S is the surface area.
+
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+(3)
+
+The Aeronautical Journal
+
+1573
+
+Because the panel method accounts mainly for induced drag, additional semi-empirical correlations
+are used to estimate parasite contributions such as form, skin-friction and interference drag. The total
+drag is then expressed as
+(4)
+CDtotal = CDinduced + CDparasite
+In this framework, the panel code is not part of the optimisation loop but is used oﬄine as a trainingdata generation tool. By sampling the design space and labeling each conﬁguration with aerodynamic
+responses, it enables the construction of surrogate models that provide rapid predictions during optimisation. Limited validation against higher-ﬁdelity references is performed to maintain conservative
+margins where required. This balance between accuracy and eﬃciency is appropriate for early-stage
+UAV design studies, where thousands of evaluations are needed and aerodynamic metrics serve directly
+as inputs to structures, propulsion and mission-level analyses.
+3.1.2 Radar cross section
+
+The RCS quantiﬁes how detectable an object is by radar, representing the eﬀective area that reﬂects radar
+signals back to the receiver. RCS is inﬂuenced by factors such as the object’s geometry, material composition, radar signal frequency, polarisation and the relative positions of antennas [29]. Mathematically,
+RCS is deﬁned as:
+
+
+r 2
+2 |E |
+(5)
+σ = 4π lim R t 2
+R→∞
+|E |
+where R is the range, and Er and Et represent the magnitudes of the backscattered and incident electric
+ﬁelds, respectively. RCS is typically expressed in square meters (m2 ) or in decibels relative to a square
+meter (dBsm), with the conversion given by:
+σ [dBsm] = 10log(σ ) [m2 ]
+
+(6)
+
+RCS is inherently variable, depending on factors such as viewing angles, frequency and material
+properties. To simplify the analysis, a mean RCS value (σ̄ ) is often used, calculated as:
+ θ2  φ2
+1
+σ̄ =
+σ (θ , φ) dφ dθ
+(7)
+(θ2 − θ1 )(φ2 − φ1 ) θ1 φ1
+where σ̄ represents the mean RCS, σ (θ , φ) is the RCS as a function of the elevation angle θ and the
+azimuth angle φ. The limits θ1 and θ2 deﬁne the range of the elevation angle, while φ1 and φ2 deﬁne the
+range of the azimuth angle. This equation calculates the average RCS over a speciﬁed angular region in
+the θ and φ domains.
+Numerical methods for RCS simulation fall into two categories: full-wave and asymptotic. Fullwave methods like the ﬁnite element method are accurate but computationally expensive, especially
+for high-frequency applications. Asymptotic methods, such as physical optics (PO) and ray tracing, are
+computationally eﬃcient. PO is eﬀective for convex surfaces, while ray tracing handles multi-scattering
+problems in concave geometries [30]. This study combines PO and ray tracing for RCS simulation of
+the aerial vehicle’s 3D surface model [31].
+The RCS calculations are performed on the triangular surface meshes, and the simulations assume
+ﬁxed signal properties across all cases, including a transmitted signal frequency of f = 9 GHz. This
+frequency was chosen because it falls within the X-band range (8–12 GHz), which is the most commonly
+used frequency band for military aerial vehicle RCS analyses. The X-band is preferred due to its shorter
+wavelengths, which allow for eﬀective resolution of the geometric and structural details of aircraft.
+Additionally, most air-to-air radar systems in military applications operate in this band, making it highly
+relevant for such analyses. The observation angles are set with φ ranging from 0◦ to 360◦ , enabling the
+measurement of the RCS from all possible azimuthal directions. The elevation angle (θ ) is ﬁxed at 90◦ ,
+as this conﬁguration corresponds to the radar and the aircraft being in the same horizontal plane. This
+setup is particularly useful for analysing the RCS of aircraft from a proﬁle view, which is a frequent focus
+in RCS studies. This standardised setup ensures consistency and comparability across cases, enabling
+detailed evaluation of the RCS under controlled conditions.
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1574
+
+Karali et al.
+
+3.1.3 Structures
+
+Structural models are fundamental in the aircraft design process, particularly in the early stages when
+rapid and ﬂexible evaluation of alternatives is essential. Simpliﬁed methodologies enable quick estimation of structural weight, guiding the development of more eﬃcient designs without resorting to
+high-ﬁdelity simulations.
+In this study, two structural models are employed. A simpliﬁed shell model is applied to the fuselage,
+allowing for geometry-based weight estimation [32, 33]. For the lifting surfaces, which bear the main
+structural loads, an eﬃcient beam-element ﬁnite element model is used [34]. The structural response is
+governed by the standard equilibrium relation
+Ku = f,
+(8)
+where K is the global stiﬀness matrix, u the displacement vector and f the applied loads. The formulation is designed to capture the dominant structural behaviours, such as axial stretching, bending about
+the principal axes and torsional resistance, through eﬀective stiﬀness parameters (E, G, Iy , Iz , J, A, L).
+These parameters collectively represent the contribution of material and geometric properties to stiﬀness, making it possible to characterise structural response without reproducing the full element stiﬀness
+matrices, which are well established in the literature.
+Aerodynamic loads are mapped onto the structure as nodal forces along the span, enabling deﬂection and stress proxies to be checked against limits such as material yield and buckling. The model thus
+provides both a structural weight estimate and feasibility checks. These outputs are used oﬄine to generate training data for surrogate models; during optimisation, the surrogate replaces the FEA, ensuring
+computational eﬃciency.
+This hybrid approach, combining beam-based FEM for lifting surfaces and simpliﬁed shell analysis for the fuselage, yields more reliable estimates than purely statistical methods while maintaining
+computational eﬃciency for multidisciplinary design studies.
+3.1.4 Propulsion and weight
+
+In the design of the proposed high-subsonic UAV, the propulsion system and weight calculation are
+tightly integrated to optimise performance. The propulsion system is modeled for jet engines, with fuel
+weight calculated based on speciﬁc fuel consumption (SFC). The SFC quantiﬁes the engine’s eﬃciency,
+relating fuel burn to the generated thrust:
+ṁfuel
+(9)
+T
+where ṁfuel is the mass ﬂow rate of fuel, and T is the thrust generated by the engine. The total fuel
+weight is derived from mission requirements and aerodynamic performance, with the fuel requirement
+primarily governed by the mission proﬁle. For a standard mission without payload release, fuel weight
+is the diﬀerence between take-oﬀ and landing weights:
+SFC =
+
+Wfuel = Wtake−off − Wlanding
+
+(10)
+
+where Wfuel represents the total fuel weight, Wtake−off is the take-oﬀ weight, and Wlanding is the landing
+weight. Alongside propulsion, the weight module plays a critical role in determining UAV capabilities.
+The maximum take-oﬀ weight (MTOW) comprises the empty weight, payload weight and fuel weight:
+WMTOW = Wempty + Wpayload + Wfuel
+
+(11)
+
+where WMTOW is the maximum take-oﬀ weight, Wempty is the empty weight of the vehicle (including
+structure, engine, and systems), Wpayload is the weight of the payload and Wfuel is the calculated fuel
+weight.
+The weights calculated in the structural module, together with the engine system from the propulsion
+module, contribute to determining the empty weight of the aircraft. The structural module accounts
+for the weight of components such as the wings, tail, fuselage and landing gear, while the propulsion
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+
+1575
+
+Table 1. Input and output parameters for neural network modeling
+Input parameters
+Area
+Aspect ratio
+Taper ratio
+
+Symbol
+A
+AR
+λ
+
+Units
+m2
+–
+–
+
+Sweep angle
+
+
+
+degrees
+
+Reynolds number
+
+Re
+
+–
+
+Mach number
+Angle-of-attack
+
+M
+α
+
+–
+Degrees
+
+Lift coeﬃcient
+
+CL
+
+–
+
+Drag coeﬃcient
+
+CD
+
+–
+
+Empty weight
+Radar cross section
+
+Wempty
+RCS
+
+kg
+dBsm
+
+Description
+Total planform area of the main wing
+Ratio of the wingspan squared to the wing area
+Ratio of the tip chord length to the root chord
+length
+Angle between the leading edge of the wing
+and the lateral axis
+Dimensionless number characterising ﬂow
+behaviour
+Ratio of vehicle’s speed to the speed of sound
+Angle between vehicle’s ﬂight path and airﬂow
+
+Output parameters
+Dimensionless coeﬃcient representing the
+aerodynamic lift
+Dimensionless coeﬃcient representing the
+aerodynamic drag
+Weight of the UAV excluding payload and fuel
+Measure of the UAV’s detectability by radar
+
+module adds the engine weight. In cases where the maximum take-oﬀ weight (WMTOW ) is predeﬁned, the
+algorithm utilises Equation (11) to compute the payload capacity based on the calculated empty weight
+and fuel weight. In this manner, variations in the structural module’s design directly inﬂuence the empty
+weight, which in turn aﬀects the payload capacity. This iterative approach ensures that structural changes
+are dynamically reﬂected in the optimisation process, enabling eﬃcient evaluation of the trade-oﬀs
+between aerodynamic, structural and propulsion parameters.
+3.1.5 Artiﬁcial neural network modeling
+
+ANNs are employed in this study as surrogate models to replace computationally expensive simulations,
+enabling eﬃcient and accurate predictions of UAV performance metrics. These metrics include aerodynamic coeﬃcients, RCS and structural weight, which are critical for UAV design optimisation. By
+leveraging ANNs, the iterative optimisation process is signiﬁcantly accelerated without compromising
+on the accuracy of predictions.
+The modeling process begins with the generation of a comprehensive dataset using Latin Hypercube
+Sampling (LHS). This statistical method ensures uniform coverage of the design space, allowing for a
+diverse representation of UAV conﬁgurations. Input parameters such as wing area, aspect ratio, taper
+ratio, sweep angle, Reynolds number, Mach number and angle-of-attack are systematically varied to
+cover a wide range of design possibilities. Corresponding output parameters include the UAV’s aerodynamic coeﬃcients (lift and drag), structural weight (as the main component of empty weight) and radar
+cross section. Table 1 summarises the input and output parameters used in the neural network models.
+The ANN architecture employed in this study is a multi-layer perceptron (MLP) with fully connected
+layers [35]. This structure maps the input features to the output performance metrics through nonlinear
+transformations applied by hidden layers. The computational process for each hidden layer is expressed
+mathematically as:
+
+
+(12)
+f (x, ξl ) = Zl wTl xl + bl ,
+where xl is the input to the l-th layer, wl and bl are the learnable weights and biases, Zl is the activation
+function, and ξl = {wl , bl } denotes the set of learnable parameters for the l-th layer. The variable x represents the overall input feature vector passed to the network. The ﬁnal output ŷ(x) represents a composite
+
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1576
+
+Karali et al.
+
+mapping across all layers:
+
+
+
+ŷ(x) := fwN ,bN ◦ fwN−1 ,bN−1 ◦ · · · ◦ fw1 ,b1 (x) .
+
+(13)
+
+During the learning process, the network adjusts its learnable parameters (wl and bl ) iteratively to
+minimise a predeﬁned loss function, which quantiﬁes the diﬀerence between the predicted outputs and
+the actual target values. This adjustment is achieved through backpropagation, a method that computes
+the gradients of the loss function with respect to the parameters by applying the chain rule of diﬀerentiation. These gradients indicate the direction and magnitude of the changes needed for each parameter
+to reduce the loss. The optimisation process involves iteratively updating the parameters based on these
+gradients to converge towards an optimal solution.
+The Yogi optimiser [36] was employed to enhance the training process. Yogi dynamically adapts
+the learning rates of parameters while accounting for noisy gradients, which helps achieve stable convergence even in challenging optimisation landscapes. Unlike traditional optimisers, Yogi modiﬁes
+the second moment estimates conservatively, making it well-suited for training deep neural networks
+with sparse gradients or varying curvature. This approach ensures robust performance and prevents
+issues such as vanishing or exploding gradients during training. The optimisation algorithm updates the
+weights and biases using the following equations:
+
+
+(14)
+mt = β1 t−1 +(1 − β1 ) gt , vt = vt−1 −(1 − β2 ) sign vt−1 − g2t g2t ,
+m̂t =
+
+mt
+vt
+η
+, v̂t =
+, θt+1 = θt − 
+m̂t ,
+1 − β1t
+1 − β2t
+v̂t + ε
+
+(15)
+
+where mt and vt are the ﬁrst and second moment estimates, β1 and β2 are exponential decay rates, gt is
+the gradient, η is the learning rate and ε is a small constant for numerical stability. The mean absolute
+error (MAE) was chosen as the loss function due to its interpretability and stability. Unlike the mean
+squared error (MSE), which ampliﬁes the inﬂuence of outliers due to the quadratic term, MAE treats all
+errors equally, providing a robust evaluation of the model’s predictive performance.
+1
+yi − ŷi .
+MAE =
+n i=1
+n
+
+(16)
+
+where yi represents the actual target value, and ŷi is the predicted value by the model for the i-th sample
+in the training set, and n is the total number of samples. The training process was conducted for 500
+epochs with a batch size of 128, ensuring eﬃcient data handling while maintaining convergence stability. A validation split of 5% was employed to monitor the model’s performance on unseen data, enabling
+early detection of overﬁtting. The model’s training progress was regularly assessed to ensure improvements in validation performance, and only the conﬁgurations demonstrating the lowest validation error
+were retained.
+The ANN-based UAV performance model integrates mathematical and computational models from
+multiple disciplines, as illustrated in Fig. 5. Aerodynamic, radar cross section, structural, propulsion
+and weight models are used to generate a multidisciplinary database through systematic sampling of the
+design space using LHS. This database provides the data needed to train ANN-based surrogate models,
+which predict performance metrics such as lift coeﬃcient (CL ), drag coeﬃcient (CD ), empty weight
+(Wempty ) and RCS.
+These ANN-based surrogate models replace computational simulations, enabling rapid evaluation of
+design conﬁgurations during optimisation. Detailed training processes and performance evaluations are
+discussed in Ref. (27).
+3.1.6 Optimisation
+
+In the optimisation cycle, a multi-objective genetic algorithm [37] is employed to optimise UAV
+design parameters by addressing conﬂicting objectives such as aerodynamic performance, RCS and
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+
+1577
+
+Design / Mission
+Requirements
+
+Design Space
+Generation (LHS)
+
+Aerodynamic Model
+
+Radar Cross Section
+Model
+
+Structural Model
+
+Propulsion Model
+
+Weight Model
+
+Multidisciplinary
+Database
+
+Neural Network Training
+
+UAV Performance
+Model
+
+CL , CD , Wempty , RCS
+
+Vehicle Geometry
+
+Figure 5. Workﬂow for generating the ANN-based UAV performance model from multidisciplinary
+data.
+structural weight. Genetic algorithms are robust optimisation techniques inspired by the principles
+of natural selection and genetics. They are particularly eﬀective for solving complex, multi-objective
+optimisation problems where multiple conﬂicting objectives need to be simultaneously satisﬁed.
+Initially, a population of potential design solutions is randomly generated within the deﬁned parameter space. Each solution, represented by a chromosome, encodes geometric parameters such as aspect
+ratio, sweep angle and taper ratio, as well as ﬂow parameters including angle-of-attack, Mach number and Reynolds number. These solutions are then evaluated using a set of objective functions,
+such as maximising aerodynamic lift-to-drag ratio, minimising structural weight and reducing RCS.
+Individuals, which represent potential design solutions, with superior ﬁtness scores are selected for
+reproduction, where genetic operators like crossover and mutation introduce variability and enhance the
+search for optimal solutions. The oﬀspring population undergoes ﬁtness evaluation, and the combined
+parent-oﬀspring population is sorted into fronts based on Pareto dominance. To maintain diversity, a
+crowding distance metric is calculated, and candidates with higher diversity are favoured for subsequent
+generations. This iterative process continues until termination criteria, such as a maximum number of
+generations or convergence of the Pareto front, are satisﬁed.
+The non-dominated sorting genetic algorithm-II (NSGA-II) is speciﬁcally employed due to its
+eﬃciency in handling multi-objective problems [38]. The algorithm generates a Pareto front, highlighting non-dominated solutions that oﬀer valuable insights into trade-oﬀs between design objectives.
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1578
+
+Karali et al.
+
+Algorithm 1 Multi-Objective UAV Design Optimization Using NSGA-II with Surrogate Models
+Input: Initial population size N, Objectives predicted by surrogate models f1, f2, f3 Maximum
+generations Gmax
+Output: Pareto front of optimized solutions
+Initialize:
+Generate initial population P ← x1 , x2 , . . . , xN (design solutions)
+Evaluate fitness for each xi using surrogate models fˆ1 , fˆ2 , fˆ3
+Perform non-dominated sorting and assign ranks
+Compute crowding distance for each individual
+for g ← 1 to Gmax do
+Select parents using tournament selection based on rank and crowding distance
+Generate offspring population Q using crossover and mutation
+Evaluate fitness for each offspring in Q using surrogate models fˆ1 , fˆ2 , fˆ3
+Combine populations: R ← P ∪ Q
+Perform non-dominated sorting on R and assign ranks
+Compute crowding distance for individuals in each rank
+Select the top N individuals based on rank and crowding distance to form next generation P
+return Pareto front from the final population P
+
+The use of surrogates in engineering design has been widely adopted to improve optimisation eﬃciency [39], and in this study, neural network-based surrogate models are integrated to accelerate ﬁtness
+evaluations. These models act as black-box predictors, providing rapid and accurate estimations of performance metrics, which in turn allow the algorithm to explore a broader range of design conﬁgurations
+eﬃciently. As a result, the overall optimisation process becomes signiﬁcantly more eﬃcient, reducing
+computational cost without compromising prediction accuracy.
+The optimisation problem is mathematically formulated as follows:
+minimise
+
+x∈X
+
+y∈Y
+subject to
+
+F = { f1 (x, y) , f2 (x) , f3 (x, y) , . . .}
+gi (x, y) ≤ 0,
+
+i = 1, 2, . . . , m
+
+hj (x, y) = 0,
+j = 1, 2, . . . , n
+xkmin ≤ xk ≤ xkmax , k = 1, 2, . . . , p
+ymin
+≤ yl ≤ ymax
+,
+l
+l
+
+(17)
+
+l = 1, 2, . . . , q
+
+where F = f1 (x, y) , f2(x) , f3(x, y) , . . . represents the set of objective functions derived from aerodynamic,
+structural and RCS performance metrics. Geometric parameters, x, include variables such as aspect ratio,
+sweep angle and taper ratio, while ﬂow conditions, y, encompass parameters like angle-of-attack, Mach
+number and Reynolds number. The constraints ensure the design remains feasible within the deﬁned
+operational and physical limits. In the use cases the constraints are implemented by enforcing upper and
+lower bounds for each variable (x and y) based on the physical and operational limitations of the UAV.
+While this section provides a general overview, objectives functions and constraints will be explored in
+the model simulation section.
+The surrogate models play a pivotal role in the optimisation by replacing high-cost simulations with
+fast and reliable predictions. This integration enables the algorithm to eﬃciently iterate over multiple
+generations, reﬁning the solutions and producing a diverse set of optimised conﬁgurations, as illustrated
+in Algorithm 1. The Pareto front obtained from the process reveals the trade-oﬀs among competing
+objectives, oﬀering decision-makers a comprehensive understanding of the design space.
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+
+1579
+
+This optimisation framework facilitates a structured exploration of the UAV design space, ensuring an
+eﬀective balance between computational eﬃciency and accurate performance assessment. By leveraging NSGA-II alongside surrogate models, the methodology addresses the challenges of multi-objective
+optimisation with improved precision and speed, resulting in a diverse set of UAV designs that eﬀectively
+trade oﬀ aerodynamic, structural and stealth characteristics.
+
+3.2 Mission simulation framework
+The mission simulation framework operates through three interconnected core algorithms. The task
+assignment algorithm allocates tasks to assets based on mission priorities and constraints, ensuring
+resources are eﬀectively distributed. The path planning algorithm generates optimal routes for assets,
+avoiding high-risk areas like exclusion zones and threat zones while maintaining eﬃciency. Finally,
+the combat model simulates engagement scenarios, incorporating probabilistic variables such as detection, targeting and hit probabilities. These three algorithms operate in a continuous cycle, where each
+algorithm’s output directly informs the next. This interconnected process ensures that the mission
+simulation runs smoothly, dynamically adapting to changes and maintaining consistent progression
+throughout the simulation.
+3.2.1 Task assignment
+
+Task assignment in mission planning is a fundamental process, especially in scenarios involving heterogeneous ﬂeets. The complexity of task assignment arises from the need to coordinate multiple agents
+(assets), each with varying capabilities, to accomplish a set of tasks in a dynamic and often contested
+environment. The eﬀectiveness of this process directly impacts mission success, operational eﬃciency
+and the survivability of assets. One of the most eﬀective methods for task assignment is the consensusbased algorithms [40–42]. The Consensus-based Bundle Algorithm (CBBA) used in this study is a
+decentralised, market-based protocol speciﬁcally designed to address multi-agent, multi-task allocation problems [43]. It is particularly advantageous in environments where centralised control is either
+impractical or undesirable due to communication constraints or the need for robustness in the face of
+agent losses [44]. In CBBA, each agent independently bids for tasks based on its capabilities and the
+mission’s current requirements. The algorithm operates in two primary phases: the bundle construction
+phase and the consensus phase.
+During the bundle construction phase, each agent evaluates the available tasks and adds them to its
+bundle based on priority, creating a list of tasks it intends to execute. This prioritisation is based on
+the perceived reward for completing each task, adjusted by the agent’s capabilities and the operational
+constraints such as fuel consumption and time to complete the task. The reward for each task Jj (aj , tj ) is
+calculated using the following cost/reward function:
+Jj (aj , tj ) = e−λ·tj Rj (aj )
+
+(18)
+
+where Rj (aj ) represents the nominal reward for completing task j assigned to agent aj , and e−λ·tj is the
+discount function that accounts for the decreasing value of the task over time. The discount factor λ
+captures how time-sensitive the task is, ensuring that agents prioritise tasks that need to be completed
+earlier. This function reﬂects real-world scenarios where the value of completing a task decreases the
+longer it takes to reach and complete it.
+The tasks are ordered in the bundle according to the sequence in which they were added, reﬂecting the
+agent’s strategy for maximising its utility in the mission. Once the bundle construction phase is complete,
+the consensus phase begins. During the consensus phase, agents communicate with each other to resolve
+any conﬂicts that arise when multiple agents select the same task. The overall process of task assignment
+using the CBBA, including the bundle construction and conﬂict resolution phases, is illustrated in Fig. 6.
+The consensus mechanism ensures that tasks are assigned to the most suitable agent by comparing the
+bids placed by each agent. If a conﬂict is detected – meaning that two or more agents have included
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1580
+
+Karali et al.
+
+UAV-11
+Bundle
+Construction
+
+Conflict
+Resolution
+
+UAV-2
+2
+
+Mission
+(Task List)
+
+Bundle
+Construction
+
+Conflict
+Resolution
+
+Environment
+
+UAV-N
+N
+Bundle
+Construction
+
+Conflict
+Resolution
+
+Figure 6. Task assignment process using consensus-based bundle algorithm (CBBA).
+the same task in their bundles – local communication is used to determine which agent retains the task
+based on predeﬁned criteria, such as the highest bid or the earliest selection. The agents then adjust
+their bundles accordingly, removing any tasks they were outbid on and potentially adding alternative
+tasks that were not initially selected. This iterative process continues until all conﬂicts are resolved,
+resulting in a ﬁnal, conﬂict-free assignment of tasks across all agents. This decentralised approach is
+particularly eﬀective in dynamic environments where conditions can change rapidly, as it allows for realtime reallocation of tasks without requiring constant communication with a central command. Moreover,
+the decentralised nature of CBBA enhances the robustness of the mission plan, as it reduces the impact
+of potential communication failures or agent losses on the overall task assignment process.
+The computational cost of the CBBA is also a signiﬁcant consideration, particularly as the number
+of agents and tasks increases. The decentralised nature of the algorithm allows it to scale eﬀectively
+with the number of agents, as the primary computational burden is distributed across the network rather
+than concentrated in a central node. The CBBA operates in polynomial time, which means that the
+computational complexity grows at a manageable rate as the network size or task list expands. This
+scalability is crucial in large-scale operations where numerous unmanned systems are deployed, as it
+ensures that the algorithm can handle the task allocation eﬃciently without overwhelming the available
+computational resources. The ability to function eﬀectively even with a large map and a high number of
+agents makes CBBA particularly suitable for complex mission scenarios.
+3.2.2 Path planning
+
+Path planning is a critical component of mission execution, particularly in scenarios involving multiple unmanned systems operating in dynamic and potentially hostile environments. The goal of path
+planning is to generate feasible, eﬃcient and safe routes for each agent to complete its assigned tasks
+while avoiding obstacles, threats and restricted areas. Once tasks are allocated to the agents, an eﬀective
+path planning strategy is necessary to ensure that each agent can accomplish its tasks within the given
+constraints.
+A commonly used algorithm for path planning in such scenarios is the A∗ algorithm, which is integrated into the mission simulation framework to compute optimal paths for agents [45, 46]. The A∗
+algorithm is a heuristic-based search algorithm that evaluates potential paths by considering both the
+cost of moving from the start point to the current point and an estimated cost from the current point to
+the destination [47]. This approach ensures that the generated path is not only feasible but also optimal
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+
+1581
+
+Algorithm 2 Optimal pathﬁnding using A∗ algorithm in hexagonal grids
+Input: Agent Type A, Start Hex (x s , y s ), Destination Hex (xd , yd )
+Output: Optimal Path
+Initialize:
+Open List O ← {(x s , y s )}
+Closed List C ← ∅
+Cost Map g(n) ← {(x s , y s ) : 0}
+CameFrom(n) ← ∅
+while Open List is not empty do
+Select the hex n from O with the lowest total cost ( f -cost)
+if n is (xd , yd ) then
+return the reconstructed path using CameFrom map
+else
+Add n to Closed List C
+foreach neighbors n of n do
+if n is passable for Agent Type A then
+Compute the movement cost g(n ) ← g(n) +MovementCost(n, n )
+Calculate total cost f (n ) ← g(n ) +h(n , Destination)
+Update path if f (n ) is lower
+
+in terms of the deﬁned cost metrics. The total cost function f(n) is deﬁned as:
+f (n) = g(n) + h(n)
+
+(19)
+
+where g(n) represents the cost from the start node to node n, and h(n) is the heuristic function estimating
+the cost from node n to the goal. A∗ guarantees to discover a path between the start and destination if
+one exists. If the heuristic function h(n) is appropriate, algorithm ensures that the path found is the
+least costly. As demonstrated in various implementations, including computer gaming, A∗ provides a
+robust foundation for pathﬁnding by combining optimal path determination with practical computational
+eﬃciency, making it suitable for interactive and time-sensitive applications [48].
+The path planning algorithm used in this study is provided in Algorithm 2. This process must also
+account for exclusion zones caused by enemy forces, hazardous terrain or other mission-speciﬁc constraints. These exclusion areas are deﬁned at the outset of the mission and are input into the A∗ algorithm
+as no-ﬂy zones that agents must avoid. By incorporating these exclusion zones into the path planning
+process, the algorithm ensures that the planned routes minimise exposure to threats, thereby enhancing
+the survivability of the agents. In addition to avoiding static obstacles and exclusion zones, the current
+path planning approach incorporates lethality distributions generated by potential threats in the environment. These lethality distributions represent the danger levels associated with diﬀerent areas on the
+map based on the proximity and capabilities of enemy forces. By integrating these lethality maps into
+the pathﬁnding algorithm, the path planning process can prioritise routes that minimise exposure to
+high-risk areas, thereby increasing the overall survivability of the agents. This approach ensures that
+the planned paths are not only feasible and eﬃcient but also strategically safer, taking into account the
+dynamic threat landscape that the agents must navigate.
+
+3.2.3 Combat model
+
+The combat model in this study simulates real-time engagements by evaluating the capabilities and
+behaviours of both friendly and enemy assets. This probabilistic model evaluates how engagements
+unfold by factoring in key elements such as detection, targeting and hit probabilities, as well as the
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1582
+
+Karali et al.
+
+destructive potential of each asset. The stochastic nature of the model captures the inherent unpredictability of combat scenarios, providing a more realistic representation of how diﬀerent engagements
+might play out in real-world situations [49, 50]. By using random processes to determine the success
+or failure of each step (e.g. detection or hitting a target), the model avoids deterministic outcomes and
+allows for a broader exploration of possible results.
+One of the primary advantages of this approach is its ﬂexibility; the stochastic model can simulate
+a range of outcomes, showing not just one potential scenario but many, reﬂecting the inherent uncertainty in military engagements [51]. This level of realism is invaluable when analysing the performance
+of diﬀerent asset conﬁgurations or operational strategies. However, the model’s complexity also introduces challenges. The random variability means that multiple simulation runs are required to achieve
+statistically meaningful results, increasing the computational cost and time required to conduct thorough
+analyses. Despite these challenges, the model’s ability to provide insights into diverse combat outcomes
+makes it an essential tool for mission-based design and tactical planning.
+To quantify the outcomes of these engagements, a comprehensive damage equation is employed
+within the combat model. This equation accounts for the various stages of an attack, from detection
+to the ﬁnal impact on the target, ensuring that the model accurately reﬂects the complex interactions
+between assets. By incorporating factors such as lethality, asset health and system reliability, the damage equation provides a detailed assessment of how much damage is inﬂicted on an enemy asset during
+an engagement. It is represented as:
+D = L · Hf · Sdetection · Stargeting · Sweapon · Shit · Il · El
+
+(20)
+
+where D represents the total damage, while L denotes the lethality value, Hf reﬂects the ﬁrepower health
+of the attacking asset, and the terms Sdetection , Stargeting , Sweapon , Shit are binary variables that indicate the success (1) or failure (0) of detection, targeting system, weapon system and hitting the target, respectively.
+Finally, Il and El are vectors used to model the impact and eﬀectiveness layers. Il determines the layer
+being targeted (air, ground or sea), while El models the asset’s eﬀectiveness across diﬀerent layers.
+To accurately capture the potential of each asset during engagements, the lethality function plays a
+crucial role in the damage equation. This function models how the weapon’s eﬀectiveness decreases
+with distance, ensuring that the further the target is from the attacker, the lower the inﬂicted damage.
+The lethality function is given by:
+⎧
+ d 2 2
+⎨ 15
+1
+−
+, if d ≤ h,
+h
+L(d) = 16
+(21)
+⎩ 0,
+if d > h.
+where d represents the distance between the attacker and the target, while h denotes the weapon’s maximum eﬀective range. This lethality function adopts a quartic (biweight) kernel form, a well-established
+functional shape in statistical modeling and simulation due to its smooth and bounded decay [52, 53].
+is a normalisation constant inherited from the standard quartic kernel deﬁnition, ensuring
+The factor 15
+16
+consistent scaling of the lethality curve. With this formulation, lethality decreases continuously from a
+maximum at d = 0 to zero at d = h, providing a smooth and physically meaningful cutoﬀ that avoids
+discontinuities or unrealistic jumps. Compared to simpler linear or exponential fall-oﬀ expressions, this
+form oﬀers a balanced and smooth decay that makes it well-suited for representing distance-dependent
+damage within the combat model.
+In Equation (20), the detection status, Sdetection , represents the binary variable that indicates whether
+the target has been successfully detected by the attacking asset. This binary value is determined using
+Pdetection , the detection probability. Pdetection is inﬂuenced by various factors, but in this study, the detection
+of aerial vehicles is based on their RCS. In the model, the detection probability is calculated as:
+1
+(22)
+1 + e−k(x−x0 )
+where x represents the RCS of the target, x0 is the threshold at which detection becomes likely and k
+controls the steepness of the curve.
+Pdetection =
+
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+
+1583
+
+Figure 7. Detection probability curve based on radar cross section (RCS).
+As shown in Fig. 7, this function scales the detection probability between 0 and 1 based on the current
+RCS value of the target vehicle. The detection threshold, x0 , in this study is set to −10 dBsm, consistent
+with the capabilities of modern radar systems optimised for detecting low-observable aerial platforms,
+including stealth-conﬁgured UAVs. Once Pdetection is calculated, a random value between 0 and 1 is generated. If this value is less than or equal to Pdetection , the target is considered detected, and Sdetection becomes
+1; otherwise, Sdetection = 0, meaning the asset will not take any damage for that round. This probabilistic
+approach ensures that detection depends on the RCS of the asset, eﬀectively modeling the impact of
+stealth characteristics in combat scenarios.
+Similarly, the remaining variables in the damage equation (Equation (20)), Stargeting , Sweapon and Shit ,
+are calculated based on the reliability and hit probabilities. The targeting status Stargeting is determined
+by the reliability of the targeting system Rtargeting , while the weapon system status Sweapon is based on
+the reliability of the weapon system Rweapon . The hit status Shit is derived from the hit probability Phit .
+Each of these parameters is scaled between 0 and 1, representing the likelihood of success in their
+respective phases. As with detection, random values are generated and compared to these probabilities
+to determine whether the action is successful (1) or unsuccessful (0), ensuring a consistent probabilistic
+approach throughout the combat model. Finally, El is used to scale the eﬀectiveness of the asset across
+diﬀerent layers and is deﬁned as follows:
+⎤
+⎡
+Eaerial
+⎥
+⎢
+El = ⎣ Eground ⎦
+(23)
+Enaval
+where Eaerial , Eground and Enaval represent the aerial, ground and naval eﬀectiveness of the asset, respectively. The asset’s capability to deliver damage varies depending on its platform capabilities and payload
+type. For example, while a main battle tank or infantry ﬁghting vehicle has a high Eground value due to
+its eﬀectiveness against ground targets, it has lower Eaerial and Enaval coeﬃcients, reﬂecting its reduced
+eﬀectiveness against aerial and naval targets.
+In the context of an engagement scenario involving the assets of both the blue and red teams, ﬁve
+distinct types of states are deﬁned. These states represent various probabilities associated with diﬀerent
+ 
+outcomes of the engagement. Speciﬁcally, the states include the kill probability of vehicle mobility Pkm ,
+which indicates the likelihood
+ the vehicle’s mobility will be disabled or destroyed; the kill proba that
+bility of the weapon system Pkf , representing the probability that the vehicle’s weapon system will be
+
+
+rendered inoperative; and the combined kill probability of both the ﬁre and mobility systems Pkm ∩ Pkf ,
+which reﬂects the likelihood that
+ both systems will be simultaneously neutralised. Additionally, the
+catastrophic kill probability Pkc denotes the chance of a catastrophic event leading to the complete
+destruction of the vehicle, rendering it beyond repair, as illustrated in Fig. 8. Finally, the miss probability(Pm ) is the probability that an attack will completely miss the target, resulting in no damage to the
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1584
+
+Karali et al.
+
+Algorithm 3 Damage calculation for combat engagements
+Input: Asset, Enemy, Status, Lethality, Layer Index
+Output: Updated Status
+Initialize Aim Layer Il based on layer index (Air, Ground, and Sea)
+Initialize Layer Effectiveness El based on asset
+Get Firepower health H f of asset
+Get Enemy Detection Probability Pdetection ← f (RCS enemy )
+Function CheckStatus (probability):
+Generate random number r ∼ U(0, 1)
+if r < probability then
+return 1
+else
+return 0
+Detection status S detection ← CheckStatus(Pdetection )
+Targeting System status S targeting ← CheckStatus(Rtargeting )
+Weapon System Status S weapon ← CheckStatus(Rweapon )
+Hit Status S hit ← CheckStatus(Phit )
+Calculate Damage D = L · H f · S detection · S targeting · S weapon · S hit · Il · El
+Generate random number r ∼ U(0, 1)
+if r ≤ Pk f then
+Decrease Firepower
+else if r ≤ Pk f + Pkm then
+Decrease Mobility
+else if r ≤ Pk f + Pkm + Pkc then
+Decrease both Firepower and Mobility (catastrophic damage)
+else if r ≤ Pk f + Pkm + Pkc + Pkm f then
+Decrease both Firepower and Mobility
+return updated status
+
+∩
+
+Figure 8. Probabilistic states in combat model for engagement scenarios.
+vehicle. The process, including all the stages of calculating the damage and its impact on the asset’s
+health level, is detailed in Algorithm 3.
+4.0 Model simulations and results
+This section provides a comprehensive evaluation of the proposed UAV optimisation framework, detailing its application across diverse mission scenarios. The Simulation Environment (4.1) introduces a
+grid-based mapping system, integrating layered threat maps for aerial, ground and naval domains to
+facilitate dynamic task assignment, path planning and combat modeling. In Evaluation Metrics (4.2),
+key performance indicators such as Mission Success Rate, Mission Damage Rate, and Operational
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+
+1585
+
+Figure 9. Lethality maps showing enemy presence and high-threat areas across diﬀerent layers.
+Eﬀectiveness are deﬁned to quantitatively assess mission outcomes. Through Case Studies (4.3), the
+framework’s functionality is illustrated in aerial combat and ground attack simulations, highlighting how
+the proposed approach can explore operational trade-oﬀs. The optimised UAV conﬁgurations demonstrate how design parameters inﬂuence survivability, adaptability and mission success within these
+simulated scenarios, underscoring the framework’s potential to support design exploration for complex
+operational environments.
+4.1 Simulation environment
+4.1.1 Grid-based mapping and routing
+
+In order to eﬀectively evaluate the proposed methodologies, a comprehensive simulation environment
+is developed. This environment is designed to bridge the gap between the theoretical framework laid out
+in Section 3 and operational scenarios. By incorporating elements of mission planning, task assignment
+and combat modeling, the simulation environment serves as a testing ground to validate the operational
+eﬀectiveness of the UAV designs. To achieve this, the problem was modeled at a macro scale by dividing
+the battleﬁeld into hexagonal grids. Grids provide a structured way to discretise the battleﬁeld, enabling
+the simulation to eﬃciently manage spatial data, such as asset positions, enemy locations and terrain
+features. By breaking the operational space into manageable units, grids allow for easier computation
+of key elements like pathﬁnding and engagement zones. In this grid-based structure, diﬀerent layers are
+created to represent various operational domains, such as aerial, ground and naval. Each layer contains
+speciﬁc assets and threat zones relevant to that domain, allowing the simulation to model interactions
+between aerial, ground and naval units more accurately. For instance, the aerial lethality map (see Fig. 9,
+left) illustrates regions where aerial vehicles face high risks from enemy Surface-to-Air Missile (SAM)
+system as well as enemy UAV. Similarly, the ground lethality map (see Fig. 9, middle) highlights areas
+of increased danger due to the presence of enemy Main Battle Tank (MBT), Infantry Fighting Vehicles
+(IFV), and hostile UAV. Lastly, the naval lethality map (see Fig. 9, right) indicates zones where enemy
+Oﬀshore Patrol Vessel (OPV) and UAV pose signiﬁcant risks to operations. Together, these maps represent the threat landscape in each area and provide critical insight into high-risk areas that require careful
+consideration during mission planning.
+Additionally, exclusion zones, such as no-entry or no-ﬂy zones, are mapped onto these layers to represent areas restricted due to geographical constraints or special circumstances. This layered grid system
+allows the simulation to eﬀectively manage complex multi-domain operations, ensuring that assets navigate through their respective environments while avoiding threats and successfully completing their
+tasks. The simulation environment also includes routing algorithms to determine optimal paths for assets
+while avoiding high-risk areas. As illustrated in Fig. 10, the path of a Blue UAV is plotted through the
+aerial domain, taking into account the threat zones posed by Red SAM units and designated no-ﬂy zones
+(NFZs). The algorithm evaluates potential routes based on factors such as threat density and distance to
+target, allowing the Blue UAV to navigate eﬃciently while minimising exposure to enemy defenses. This
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1586
+
+Karali et al.
+Table 2. List of simulated asset types by domain and abbreviation
+
+Asset
+Unmanned aerial vehicle
+Surface-to-air missile vehicle
+Main battle tank
+Infantry ﬁghting vehicle
+Unmanned surface vehicle
+Oﬀshore patrol vessel
+
+Unit type
+Aerial
+Ground
+Ground
+Ground
+Naval
+Naval
+
+Abbreviation
+UAV
+SAM
+MBT
+IFV
+USV
+OPV
+
+Primary role
+Multirole
+Aerial defense
+Ground combat
+Ground combat
+Naval combat
+Naval defense
+
+Team
+Blue/Red
+Red
+Red
+Red
+Red
+Red
+
+Figure 10. Path planning for UAV in threat zones and NFZs.
+capability is crucial for mission planning, as it ensures that assets can reach their objectives while maintaining a balance between mission success and survivability. The routing process, integrated into the
+broader simulation framework, enables dynamic adjustment to changes in the operational environment,
+such as the appearance of new threats or shifts in enemy positions.
+4.1.2 Assets
+
+In the simulation environment, assets represent key military units modeled with performance
+metrics such as lethality, mobility, survivability, detectability and eﬀectiveness across diﬀerent operational layers. The units simulated are detailed in Table 2. These assets include ground, aerial and naval
+vehicles, each exhibiting varying levels of lethality depending on the operational domain. For example,
+a SAM system demonstrates high lethality in the aerial domain but poses a very low threat to ground
+units.
+In the UAV optimisation process, the lethality metric is correlated with the payload capacity, meaning
+that a higher weapon load increases the lethality level of the asset. For each newly designed UAV, the
+current payload level is scaled against a baseline UAV to calculate the updated lethality value.
+
+
+(24)
+Lethality = f Wpayload
+The mobility parameter, on the other hand, is used to represent the asset’s manoeuvrability. Since
+this metric is the primary contributor to the asset’s survivability, it is also considered as a measure of the
+vehicle’s resistance to damage. Throughout the UAV design cycle, the increasing aerodynamic eﬃciency
+of the vehicle enhances both its manoeuvrability and its range-endurance performance. Therefore, the
+following equation is used for scaling the mobility of UAVs.
+ 3/2 
+CL
+(25)
+Mobility = f
+CD
+Once within the simulation framework, these assets follow predeﬁned task allocation and pathﬁnding
+algorithms, allowing them to adapt to dynamic events such as pop-up threats. When any two assets from
+opposing teams enter each other’s weapon range, the combat model is triggered. The progression of
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+
+1587
+
+combat is shaped by the assets’ metrics and associated probabilities. As discussed in the combat model
+section, one key parameter, detection probability, is linked to the assets’ RCS signatures.
+Detection = f (RCS)
+
+(26)
+
+The simulation begins by introducing the blue (friendly) and red (enemy) ﬂeets, consisting of a speciﬁed number and variety of assets. There are two modes for the red team in the simulation: active and
+passive. In the passive mode, the red team’s assets remain static in their current positions and do not
+perform any strategic actions. In the active mode, the red team dynamically performs task assignment
+and route planning, forming a strategy to launch a counter-attack.
+
+4.2 Evaluation metrics
+Operational eﬀectiveness, Eop , is a performance metric used to evaluate how eﬃciently and eﬀectively a
+system, operation, or mission achieves its predeﬁned objectives [54]. In military contexts, Eop assesses
+the likelihood of mission success and whether the intended outcomes are realised [55]. It is typically
+calculated by combining various operational parameters such as success rate, resource utilisation, time
+eﬃciency and enemy losses [56].
+In this study, Eop is deﬁned based on the Mission Success Rate, RMS , and the Mission Damage Rate,
+RMD , with the overall eﬀectiveness expressed as:
+Eop = RMS · RMD , where 0 ≤ Eop ≤ 1
+
+(27)
+
+Here, RMS is the ratio of eliminated enemy targets to the total number of targets, represented as:
+Neliminated
+(28)
+RMS =
+Nassets
+where Neliminated represents the total number of completely destroyed enemy assets, and Nassets is the initial
+count of all enemy assets at the start of the mission. If all enemy units are completely destroyed, RS
+reaches its maximum value of 1.
+Mission Damage Rate is more complex, as it takes into account both the enemy team’s losses and the
+own team’s resource utilisation. It is calculated by subtracting the own team’s losses from the enemy
+team’s losses and dividing by the total value of the enemy team’s assets:
+
+0
+if Denemy ≤ Dfriend
+(29)
+RMD = Denemy −Dfriend
+otherwise
+Nenemy
+i=1
+
+vi
+
+In this equation, Denemy and Dfriend represent the damage costs sustained by the enemy and friendly
+teams, respectively. These values are calculated at the end of the operation, ensuring a cumulative
+assessment of damage.
+The damage cost, Dteam , is calculated by summing the value of completely destroyed assets and the
+damage-adjusted value of partially damaged assets:
+
+
+
+
+Ndamaged
+
+Neliminated
+
+Dteam =
+
+vi +
+
+i=1
+
+(1 − Hj ) · vj
+
+(30)
+
+j=1
+
+Here, vi is the assigned value of an asset, which varies based on the asset type (e.g. UAV, SAM
+vehicle). Hj is the normalised health value of a damaged asset, ranging between 0 (completely destroyed)
+and 1 (completely undamaged).
+Alternatively, the damage cost can be expressed as:
+
+
+Nassets
+
+Dteam =
+
+(1 − Hk ) · vk
+
+(31)
+
+k=1
+
+This is an alternative formulation where Nassets represents the total count of all assets, including both
+destroyed and damaged ones.
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1588
+
+Karali et al.
+Table 3. Design variables of wing planform conﬁguration
+Parameter
+Aspect ratio
+Taper ratio
+Sweep
+
+Symbol
+AR
+λ
+
+
+Units
+−
+−
+◦
+
+Minimum
+2
+0.2
+15
+
+Maximum
+8
+0.6
+40
+
+Table 4. Comparison of mission performance metrics for default and optimised
+UAV conﬁgurations in aerial combat
+Metric
+Mission success rate
+Mission damage rate
+Operational eﬀectiveness
+
+Default conﬁguration
+0.556
+0.345
+0.345
+
+Optimised conﬁguration
+0.672
+0.485
+0.485
+
+This approach ensures that operational eﬀectiveness reﬂects not only the number of completed missions but also the cost of the targets and the resources used. The Eop reaches its maximum value of 1
+only if the own team eliminates all enemy assets without sustaining any damage.
+
+4.3 Case studies
+This section presents a comprehensive evaluation of UAV conﬁgurations in combat scenarios, starting
+with aerial combat performance and extending to ground attack assessments. In the aerial simulations,
+optimisation focused on enhancing UAV operational eﬀectiveness against airborne threats, while the
+ground attack scenarios evaluated UAV capabilities against diverse ground-based assets. By examining
+both contexts, the analysis highlights the improvements achieved through optimised conﬁgurations, with
+a particular emphasis on operational eﬀectiveness and mission success.
+4.3.1 Aerial combat
+
+Aerial combat simulations are essential for evaluating optimised UAV conﬁgurations in diﬀerent engagement scenarios. This study began with a basic one-on-one (1 vs. 1) aerial combat simulation, serving as
+a foundation to design an optimal UAV. The goal was to maximise aerodynamic eﬃciency, reduce RCS
+and minimise structural weight to allow a higher payload capacity. Table 3 lists the key design variables,
+such as aspect ratio, taper ratio and sweep angle, which deﬁne the wing planform. These variables were
+used to explore diﬀerent wing conﬁguration options for the UAV.
+The optimisation process identiﬁed Pareto-optimal conﬁgurations, meaning that these designs balanced the main objectives without being outperformed by any other conﬁguration. NSGA-II generated
+a set of 50 diﬀerent conﬁgurations in each iteration, and surrogate models quickly estimated the performance of each design. This approach generated a Pareto set that included conﬁgurations optimised for
+multiple objective functions. For each design in this set, 1000 mission simulations were run to evaluate
+the UAV’s mission performance metrics. Figure 11 shows the Pareto surface formed by these optimal
+designs, with colour gradients representing the operational eﬀectiveness of each conﬁguration based
+on simulation results. The individual markers represent the non-dominated solutions found by the optimisation algorithm. As observed from the Pareto surface, only a few conﬁgurations with the lowest
+RCSs achieve the highest eﬀectiveness in aerial combat. These optimal conﬁgurations generally feature a taper ratio within the 0.50–0.55 range, an aspect ratio around 5, and a quarter-chord sweep angle
+close to 20◦ .
+Table 4 compares the default and optimised conﬁgurations in the simulated environment, showing
+relative changes in Eop , mission success rate (MSR) and mission damage rate (MDR). These variations demonstrate the framework’s capability to explore the inﬂuence of design choices on eﬀectiveness
+metrics under given simulation conditions.
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+(a)
+
+1589
+
+(b)
+
+Figure 11. Pareto front of UAV conﬁgurations in the aerial combat scenario, illustrating the trade-oﬀs
+among aerodynamic performance, radar cross section, and structural weight. The discrete markers
+represent the Pareto-optimal conﬁgurations obtained using the NSGA-II algorithm. The colour map
+indicates the operational eﬀectiveness (Eop ) of each conﬁguration. To improve the visual interpretation of the three-dimensional trade-oﬀ geometry, two diﬀerent azimuth views are presented: (a) 135 ◦
+and (b) −135 ◦ .
+
+Figure 12. Comparison of mission outcomes for optimised vs default UAV conﬁgurations across
+diﬀerent ﬂeet sizes in aerial combat.
+Following the 1 vs. 1 analysis, the optimised UAV conﬁguration was further evaluated in multiasset scenarios, where a ‘Blue Fleet’ with varying team sizes engaged a ‘Red Fleet’ consisting of three
+UAVs. These scenarios assessed the impact of diﬀerent Blue Fleet sizes on mission success. As shown in
+Fig. 12, the simulations included conﬁgurations with two, three and four UAVs in the Blue Fleet. In the
+ﬁgure, lighter colours indicate the baseline conﬁguration, while darker colours represent the optimised
+conﬁguration results.
+In the 2 vs. 3 scenario, the optimised ﬂeet’s win rate nearly tripled, increasing from 16.8% to 49.4%.
+In the 3 vs. 3 scenario, where the initial win probability was balanced, the optimised ﬂeet achieved a
+win rate of 91.2%, eﬀectively doubling its success rate. Finally, in the 4 vs. 3 scenario, the win rate
+increased from 87% to 98.8%, with the Blue Fleet winning 988 out of 1,000 simulations. These results
+highlight the substantial performance advantage provided by the optimised conﬁguration, especially as
+the number of UAVs in the Blue Fleet increases. The optimised UAVs consistently demonstrate a marked
+reduction in losses and a signiﬁcantly higher probability of mission success across all tested conﬁgurations. However, as shown in the mission performance metrics in Fig. 13, operational eﬀectiveness does
+not improve beyond a certain ﬂeet size. This suggests that, when conﬁguring the ﬂeet, it is essential
+to balance between maximising the mission success rate and achieving overall operational eﬃciency,
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1590
+
+Karali et al.
+
+Figure 13. Mission performance metrics for aerial combat scenarios.
+
+Figure 14. Comparison of operational eﬀectiveness distributions for default and optimised UAV
+conﬁgurations across diﬀerent Blue Fleet sizes.
+as simply adding more units may not enhance outcomes. Consequently, determining whether mission
+success rate or operational eﬀectiveness is the critical priority becomes crucial in deciding the optimal
+ﬂeet composition for speciﬁc missions.
+Figure 14 highlights the distribution of operational eﬀectiveness for the Blue Fleet’s default and
+optimised conﬁgurations across varying ﬂeet sizes. The comparison underscores a signiﬁcant shift in
+eﬀectiveness distributions, with optimised conﬁgurations demonstrating broader and higher mean values
+compared to their default counterparts. In particular, at smaller ﬂeet sizes, the optimised conﬁgurations show a signiﬁcant increase in the probability of achieving higher operational eﬀectiveness scores.
+This trend becomes increasingly pronounced as ﬂeet size grows, reﬂecting the impact of optimisations
+in enhancing operational success rates while mitigating losses. The distribution patterns also indicate
+reduced variance for larger optimised ﬂeets, suggesting increased reliability and consistency in mission
+performance.
+
+4.3.2 Ground attack
+
+Ground attack simulations were conducted to assess the performance of optimised UAV conﬁgurations
+in scenarios involving mixed ground threats. In this scenario, the ‘Blue Fleet’, consisting of two UAVs,
+
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+(a)
+
+1591
+
+(b)
+
+Figure 15. Pareto front of UAV conﬁgurations in the ground attack scenario, illustrating the trade-oﬀs
+among aerodynamic performance, radar cross section and structural weight. The discrete markers
+represent the Pareto-optimal conﬁgurations obtained using the NSGA-II algorithm. The colour map indicates the operational eﬀectiveness (Eop ) of each conﬁguration, evaluated within ground attack mission
+proﬁles. To improve the visual interpretation of the three-dimensional trade-oﬀ geometry, two diﬀerent
+azimuth views are presented: (a) 135 ◦ and (b) −135 ◦ , to better visualise the three-dimensional trade-oﬀ
+geometry.
+engaged a ‘Red Fleet’, composed of two SAM units, and one MBT. The objective was to evaluate the
+eﬀectiveness of optimised UAV conﬁgurations against a diverse set of ground-based threats.
+The optimisation process in the ground attack scenario balanced multiple objectives, including
+aerodynamic eﬃciency, radar cross section minimisation and weight reduction, each having a more
+equal level of importance compared to the aerial combat case. This broader trade-oﬀ led to a wider
+range of Pareto-optimal conﬁgurations, as shown in Fig. 15. Each conﬁguration on the Pareto front
+was analysed through 1,000 mission simulations to determine performance metrics, with operational
+eﬀectiveness represented by the colour gradients. The individual markers correspond to the actual
+Pareto-optimal solutions obtained from NSGA-II. Unlike the aerial combat scenario, where a single
+discipline dominates, the ground attack case required a balanced consideration of aerodynamic, RCS,
+and structural objectives. As a result, multiple distinct geometric conﬁgurations achieved comparable
+levels of operational eﬀectiveness, highlighting that no single design pathway is uniquely optimal in this
+context.
+Figure 16 presents a representative simulation example, illustrated step-by-step to show the mission’s
+progression. As previously mentioned, the mission objective is deﬁned as the elimination of enemy
+ground assets. In this scenario, the enemy ﬂeet consists of two SAM units and one MBT, while the
+friendly forces are composed of two UAVs. At the start of the simulation (Step #1), tasks are automatically assigned to each UAV based on target prioritisation and proximity. The ﬁrst UAV is assigned to
+engage the MBT positioned in the southwest, while the second UAV is tasked with targeting the two SAM
+units in the north. Each UAV’s route is dynamically generated according to these assignments, optimising path eﬃciency while considering enemy engagement zones. By Step #7, the ﬁrst UAV reaches the
+engagement range of the MBT and successfully eliminates it in Step #8. With the MBT neutralised, the
+algorithm automatically assigns a new target to the ﬁrst UAV, redirecting it to the second SAM unit,
+while the second UAV prepares for engagement with the ﬁrst SAM. Following this, in Step #9, the second UAV successfully neutralises the ﬁrst SAM unit. The algorithm then reassigns the task of targeting
+the ﬁnal SAM to the second UAV, which is now positioned closer, placing the ﬁrst UAV on standby. The
+second UAV approaches the last SAM’s engagement zone by Step #12 and initiates an attack in Step
+#16. Although the second UAV is destroyed in this encounter, it inﬂicts damage on the SAM, reducing
+
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1592
+
+Karali et al.
+Table 5. Mission performance metrics for default and optimised UAV conﬁgurations in ground attack scenario
+Metric
+Default conﬁguration Optimised conﬁguration
+Mission success rate
+0.709
+0.930
+Mission damage rate
+0.246
+0.554
+Operational eﬀectiveness
+0.231
+0.548
+
+Table 6. Optimised wing geometry parameters for aerial combat and ground attack scenarios
+Parameter
+Taper ratio
+Sweep angle (deg)
+Aspect ratio
+
+Aerial combat
+0.51
+19.67
+5.16
+
+Ground attack
+0.43
+18.90
+7.99
+
+Table 7. Performance metrics for optimised UAV conﬁgurations in aerial
+combat and ground attack scenarios
+Parameter
+CL3/2 /CD
+RCS (dBsm)
+Wpayload (kg)
+
+Default
+10.0
+−6.5
+450
+
+Aerial combat
+10.2
+−8.7
+506.6
+
+Ground attack
+15.1
+−8.0
+498.2
+
+its lethality. At this point, the algorithm reassigns the ﬁnal task to the standby ﬁrst UAV, which proceeds along a new route to engage the weakened SAM. In Step #28, the ﬁrst UAV reaches the SAM’s
+engagement zone and successfully destroys it in Step #29, achieving the mission objective. In Step #32,
+after completing its mission, the ﬁrst UAV begins its return journey to the base. This example highlights
+the algorithm’s ability to dynamically adjust task assignments and reroute assets based on real-time
+engagement outcomes.
+Results indicated a signiﬁcant improvement in mission outcomes for the optimised UAV conﬁguration. The win rate increased from 35.4% in the default conﬁguration to 82.2% in the optimised
+conﬁguration, demonstrating enhanced survivability and adaptability of the optimised UAVs against
+a range of enemy assets. Additionally, the optimised conﬁguration reached an Eop value of 0.548, corresponding to about 2.4 times the baseline under the given simulation setup. This outcome reﬂects
+the behaviour observed within the simulated environment and illustrates the framework’s exploratory
+capability.
+Table 5 summarises the mission performance metrics, including mission success rate (MSR), mission damage rate (MDR) and operational eﬀectiveness for both the default and optimised conﬁgurations.
+These results highlight the substantial performance gains provided by the optimisation process, particularly in complex multi-threat environments where UAV conﬁgurations must eﬀectively balance
+survivability and lethality.
+Table 6 provides insights into the geometric parameters of the optimised conﬁgurations for aerial
+combat and ground attack scenarios. The results show that the aspect ratio is higher in the ground attack
+scenario, suggesting a preference for wings optimised for endurance and stability. Conversely, the aerial
+combat scenario features a more moderate aspect ratio and a slightly higher sweep angle, indicative of
+designs that prioritise manoeuvrability and reduced drag at higher speeds. The taper ratio also varies
+between the scenarios, balancing lift distribution and structural considerations.
+
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+(a)
+
+(b)
+
+Step #1
+
+(d)
+
+(c)
+
+Step #7
+
+(e)
+
+Step #9
+
+(g)
+
+Step #8
+
+(f)
+
+Step #12
+
+(h)
+
+Step #28
+
+1593
+
+Step #16
+
+(i)
+
+Step #29
+
+Step #32
+
+Figure 16. Progression of simulation steps in an example ground attack scenario (starting from top
+left to bottom right).
+The performance metrics in Table 7 highlight the enhancements achieved through optimisation across
+key aerodynamic, RCS and structural parameters for both aerial combat and ground attack scenarios.
+The optimised conﬁgurations demonstrate higher CL3/2 /CD values, indicating improved aerodynamic eﬃciency. Additionally, the RCS is substantially reduced, enhancing stealth capabilities in both operational
+contexts. Furthermore, the payload weight (Wpayload ) increases due to reductions in structural weight
+while preserving the MTOW. This reallocation of weight savings from structural components to payload
+capacity underscores the optimisation process’s success in achieving mission-critical improvements.
+These example applications were run on a personal laptop equipped with an Intel Core i7-11800H
+processor and 32 GB of RAM. Pareto front generation requires approximately 4–5 seconds, supporting
+rapid exploration of the design space, while a single mission simulation involving ﬁve assets completes
+in around 0.3 seconds. Although runtime increase as the number of assets grows, the model remains computationally eﬃcient, enabling extensive scenario testing. This eﬃciency facilitates robust evaluation of
+performance probabilities across diverse mission conditions and operational environments, highlighting the model’s suitability for iterative analysis and reﬁnement of UAV conﬁgurations in mission-centric
+design frameworks.
+
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1594
+
+Karali et al.
+
+5.0 Conclusions
+This work presents a mission-centric design optimisation framework for UAVs, integrating simulation
+and optimisation techniques to improve operational eﬀectiveness in diﬀerent mission environments. The
+framework optimises key performance metrics, including aerodynamic eﬃciency, RCS, and structural
+weight, by combining wargaming-based mission simulations with multidisciplinary design optimisation.
+This approach allows UAV conﬁgurations to be tailored to speciﬁc mission requirements, ensuring an
+appropriate balance between survivability, lethality and cost.
+The framework’s computational eﬃciency, achieved through deep neural network-based surrogate
+models, is a key strength. Rapid scenario testing and probabilistic simulations make it possible to model
+varied operational conditions and iteratively reﬁne UAV designs. Results from aerial combat and ground
+attack case studies demonstrate the framework’s ability to link design parameters with mission-level
+outcomes. The observed improvements reﬂect the outcomes of the conducted simulations, indicating
+the framework’s potential as a tool for design and analysis.
+While this study provides a foundation for mission-centric UAV design, there are opportunities
+for further research and development. First, the integration of higher-ﬁdelity models, particularly in
+aerodynamic and structural analysis, could enhance the accuracy of predictions, especially in extreme
+operational scenarios. Second, extending the framework to include cooperative behaviours among multiple UAVs, such as swarm intelligence and collaborative decision-making, could further improve mission
+outcomes in complex environments. Third, incorporating additional constraints, such as energy eﬃciency and environmental impact, would make the framework applicable to a broader range of civilian
+and military applications.
+In conclusion, the proposed framework provides a scalable approach to addressing the challenges
+of UAV design in modern operational contexts. By aligning design processes with mission objectives and using advanced simulation and optimisation techniques, the framework supports early-stage
+design exploration and decision-making. This capability helps identify cost-eﬀective and reliable UAV
+conﬁgurations that can perform eﬀectively across diverse mission environments.
+Acknowledgements. This research is co-funded by BAE Systems and UK Research & Innovation (UKRI), through the
+Engineering and Physical Sciences Research Council (EPSRC), under the Industrial Cooperative Awards in Science and
+Engineering (ICASE) scheme, as part of the research project entitled Towards Trustworthy AI-driven Autonomous Systems:
+Multidisciplinary Design Optimisation.
+
+References
+[1] Gunzinger, M. and Autenried, L. Understanding the Promise of Skyborg and Low-Cost Attritable Unmanned Aerial Vehicles,
+Mitchell Institute Policy Paper, 2020, 24.
+[2] Congressional Research Service. U.S. Air Force Collaborative Combat Aircraft (CCA) tech. rep. Accessed: January 4, 2025,
+Congressional Research Service, 2024, https://crsreports.congress.gov
+[3] Royal Air Force. Royal Air Force Autonomous Collaborative Platform Strategy. Accessed: January 4, 2025, UK, 2024.
+[4] Albuquerque, P.F., Gamboa, P.V. and Silvestre, M.A. Mission-based multidisciplinary aircraft design optimization methodology tailored for adaptive technologies, J. Aircr., 2018, 55, pp 755–770.
+[5] Clark Jr, D.L., Allison, D.L., Bae, H. and Forster, E.E. Eﬀectiveness-based design of an aircraft considering mission
+uncertainties, J. Aircr., 2019, 56, pp 1961–1972.
+[6] Pagan, J.E., Huynh, D., Schafer, S.R., Pinon-Fischer, O.J. and Mavris, D.N. Revolutionary Aﬀordable Architecture
+Generation & Evaluation-Application to a System of Attritable UAVs in 2018 AIAA Aerospace Sciences Meeting, 2018,
+1743.
+[7] Aleisa, H., Kontis, K., Pirlepeli, B. and Nikbay, M. Conceptual design of a nonconstant swept ﬂying wing unmanned combat
+aerial vehicle, J. Aircr., 2023, 60, pp 1872–1888.
+[8] Klaproth, T., Bäuerle, H. and Hornung, M. Multi-Fidelity Aerodynamic Modeling in a Mission-Based Conceptual UAV
+Design Process in AIAA AVIATION 2022 Forum, 2022, p 3739.
+[9] Sells, B.E. and Crossley, W.A. Optimization and decision-making framework for small unmanned aircraft systems ﬂeet
+design, J. Aircr., 2023, 60, pp 981–994.
+[10] Setayandeh, M.R. and Babaei, A.-R. Multidisciplinary design optimization of an aircraft by using knowledgebased systems,
+Soft Comput., 2020, 24, pp 12429–12448.
+[11] Chaudemar, J.-C., Aıello, O., de Saqui-Sannes, P. and Poitou, O. Mission-based design of UAVs, Syst. Eng., 2024, 27,
+850–868.
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+The Aeronautical Journal
+
+1595
+
+[12] Zhang, T., Yan, X., Huang, W., Che, X. and Wang, Z. Multidisciplinary design optimization of a wide speed range vehicle
+with waveride airframe and RBCC engine. Energy, 2021, 235, p 121386.
+[13] Shen, Y., Huang, W., Yan, L. and Zhang, T. Constraint-based parameterization using FFD and multi-objective design
+optimization of a hypersonic vehicle, Aerosp. Sci. Technol., 2020, 100, p 105788.
+[14] Leng, J. et al. Multi-ﬁdelity data mining-based design optimization framework for scramjet-based aircraft, Energy 2024,
+311, p 133448.
+[15] Leng, J., Xie, Z., Huang, W., Shen, Y. and Wang, Z. Multidisciplinary design optimization of the ﬁrst-stage waverider based
+on boost-glide ﬂight trajectory, Aerosp. Sci. Technol., 2025, 160, p 110033.
+[16] Leng, J., Wang, Z., Huang, W., Shen, Y. and An, K. Multidisciplinary design optimization processes for eﬃciency
+improvement of aircraft: state-of-the-art review, Int. J. Aeronaut. Space Sci., 2025, 26, pp 2020–2042.
+[17] BAE Systems. SceptreTM : Next Generation Platform Mission Plan and De-Brief System. Accessed: January 4, 2025, 2019.
+https://www.baesystems.com/en/feature/sceptre
+[18] Anduril Industries. Anduril Demonstrates Multi-Domain Unmanned Systems Command and Control, Undersea,
+and Airborne Capabilities at US Navy’s IBP 24.1. Accessed: January 3, 2025, 2024. https://www.anduril.com/
+article/ibp-24-1-commandand-control/
+[19] General Dynamics Mission Systems. Integrated Mission Planning & Airspace Control Tools (IMPACT). Accessed: January
+4, 2025, 2024, https://gdmissionsystems.com/command-and-control/impact
+[20] Lockheed Martin. Next Generation Command & Control. Accessed: January 4, 2025, 2024, https://www.lockheedmartin
+.com/en-us/products/command-and-control.html
+[21] Saab AB. Mission Support System: In Control of Tactical Information Document and information are property of Saab AB.
+Saab Aeronautics, Linköping, Sweden, 2021. https://www.saabgroup.com
+[22] The Development, Concepts and Doctrine Centre. Wargaming Handbook, United Kingdom Ministry of Defence, 2015,
+London, UK.
+[23] Hershkovitz, S. Wargame Business: Wargames in Military and Corporate Settings, Naval War College Review, 2019, 72,
+https://digital-commons.usnwc.edu/nwc-review/vol72/iss2/6
+[24] De Lima Filho, G.M. et al. Optimization of unmanned air vehicle tactical formation in war games, IEEE Access, 2022, 10,
+pp 21727–21741.
+[25] Chen, P., Zhang, J. and Sun, Y. Research on emergency rescue of urban ﬂood disaster based on wargame simulation,
+J. Indian Soc. Remote Sens., 2018, 46, pp 1677–1687.
+[26] Yuksek, B., Guner, G., Karali, H., Candan, B. and Inalhan, G. Intelligent Wargaming Approach to Increase Course of Action
+Eﬀectiveness in Military Operations in AIAA SCITECH 2023 Forum, 2023, p 2531.
+[27] Karali, H., Inalhan, G. and Tsourdos, A. Advanced UAV design optimization through deep learning-based surrogate models,
+Aerosp., 2024, 11, 669.
+[28] Katz, J. and Plotkin, A. Low-Speed Aerodynamics 2nd ed., Cambridge University Press, 2001, Cambridge, UK.
+[29] Karakoc, A. and Kaya, H. A multi-objective multi-disciplinary optimization approach for NATO AVT 251 UCAV–
+MULDICON in 2018 Applied Aerodynamics Conference, 2018, p 3001.
+[30] Peng, Z., Li, C. and Uysal, F. Modern Radar for Automotive Applications, Institution of Engineering and Technology, 2022.
+[31] Peng, Z. RadarSimPy: A Radar Simulator for Python, 2024, https://github.com/radarsimx/radarsimpy
+[32] Roskam, J. Airplane Design, DARcorporation, 1985, Lawrence, KS, USA.
+[33] Raymer, D. Aircraft Design: A Conceptual Approach, American Institute of Aeronautics and Astronautics, Inc., 2012,
+Reston, VA, USA.
+[34] Jasa, J.P., Hwang, J.T. and Martins, J.R. Open-source coupled aerostructural optimization using Python, Struct. Multidiscip.
+Optim., 2018, 57, pp 1815–1827.
+[35] Goodfellow, I., Bengio, Y. and Courville, A. Deep Learning, MIT Press, 2016, Cambridge, MA, USA.
+http://www.deeplearningbook.org
+[36] Zaheer, M., Reddi, S.J., Sachan, D., Kale, S. and Kumar, S. Adaptive Methods for Nonconvex Optimization in Advances in
+Neural Information Processing Systems, 2018, p 31.
+[37] Deb, K., Pratap, A., Agarwal, S. and Meyarivan, T. A Fast and Elitist Multiobjective Genetic Algorithm: NSGA-II, IEEE
+Transactions on Evolutionary Computation, 2002, 6, pp 182–197.
+[38] Blank, J. and Deb, K. Pymoo: multi-objective optimization in Python, IEEE Access, 2020, 8, pp 89497–89509.
+[39] Forrester, A., Sobester, A. and Keane, A. Engineering Design via Surrogate Modelling: A Practical Guide, John Wiley &
+Sons, 2008, Chichester, UK.
+[40] Choi, H.-L., Whitten, A.K. and How, J.P. Decentralized Task Allocation for Heterogeneous Teams with Cooperation
+Constraints in Proceedings of the 2010 American Control Conference, 2010, pp 3057–3062.
+[41] Johnson, L., Ponda, S., Choi, H.-L. and How, J. Asynchronous decentralized task allocation for dynamic environments in
+Infotech@ Aerospace 2011, 2011, p 1441.
+[42] Hunt, S., Meng, Q., Hinde, C. and Huang, T. A consensus-based grouping algorithm for multi-agent cooperative task
+allocation with complex requirements, Cogn Comput., 2014, 6, pp 338–350.
+[43] Choi, H.-L., Brunet, L. and How, J.P. Consensus-based decentralized auctions for robust task allocation, IEEE Trans. Rob.,
+2009, 25, pp 912–926.
+[44] Brunet, L., Choi, H.-L. and How, J. Consensus-Based Auction Approaches for Decentralized Task Assignment in AIAA
+Guidance, Navigation and Control Conference and Exhibit, 2008, p 6839.
+[45] Karur, K., Sharma, N., Dharmatti, C. and Siegel, J.E. A survey of path planning algorithms for mobile robots, Veh., 2021,
+3, pp 448–468.
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+1596
+
+Karali et al.
+
+[46] Kumar, P., Pal, K., Govil, M.C. and Choudhary, A. Rapid A∗ : a robust path planning scheme for UAVs, Int. J. Intell. Rob.
+Appl., 2023, 7, pp 720–739.
+[47] Hart, P.E., Nilsson, N.J. and Raphael, B. A formal basis for the heuristic determination of minimum cost paths, IEEE Trans.
+Syst. Sci. Cybern., 1968, 4, pp 100–107.
+[48] Cui, X. and Shi, H. A∗ -based pathﬁnding in modern computer games, Int. J. Comput. Sci. Netw. Secur., 2011, 11,
+pp 125–130.
+[49] Washburn, A.R., Kress, M., et al. Combat Modeling, Springer, 2009, New York, NY, USA.
+[50] Deitchman, S.J. A Lanchester model of guerrilla warfare, Oper. Res., 1962, 10, pp 818–827.
+[51] Lucas, T.W. The stochastic versus deterministic argument for combat simulations: tales of when the average won’t do,
+Military Operations Research, 2000, 5, pp 9–28.
+[52] Silverman, B.W. Density Estimation for Statistics and Data Analysis, Routledge, 2018.
+[53] Wand, M.P. and Jones, M.C. Kernel Smoothing, CRC press, 1994, Boca Raton, FL, USA.
+[54] Linick, M.E. et al. Measuring Strategic Readiness: Identifying Metrics for Core Dimensions tech. rep., RAND Corporation,
+2021.
+[55] Lambrecht, K.L. and Simpson, B.A. Mission Eﬀectiveness Methodology in Operational Testing, JSTOR, 2022.
+[56] Blanken, L.J. and Lepore, J.J. Performance measurement in military operations: information versus incentives, Def. Peace
+Econ., 2015, 26, pp 516–535.
+
+Cite this article: Karali H., Tsourdos A. and Moinier P. (2026). Mission-centric design optimisation of unmanned aerial vehicles
+for enhanced operational eﬀectiveness. The Aeronautical Journal, 130, 1566–1596. https://doi.org/10.1017/aer.2026.10131
+https://doi.org/10.1017/aer.2026.10131 Published online by Cambridge University Press
+
+

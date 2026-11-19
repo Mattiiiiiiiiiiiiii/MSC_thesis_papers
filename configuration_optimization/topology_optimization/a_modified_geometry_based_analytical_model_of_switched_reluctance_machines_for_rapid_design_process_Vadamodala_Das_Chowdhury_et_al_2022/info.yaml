@@ -1,0 +1,34 @@
+author: Vadamodala, Lavanya and Das, Shuvajit and Chowdhury, Anik and Sozer, Yilmaz
+author_list:
+- affiliation:
+  - name: The University of Akron,ECE Department,Akron,USA
+  family: Vadamodala
+  given: Lavanya
+- affiliation:
+  - name: The University of Akron,ECE Department,Akron,USA
+  family: Das
+  given: Shuvajit
+- affiliation:
+  - name: The University of Akron,ECE Department,Akron,USA
+  family: Chowdhury
+  given: Anik
+- affiliation:
+  - name: The University of Akron,ECE Department,Akron,USA
+  family: Sozer
+  given: Yilmaz
+booktitle: 2022 IEEE Energy Conversion Congress and Exposition (ECCE)
+doc_url: http://xplorestaging.ieee.org/ielx7/9947299/9947300/09948013.pdf?arnumber=9948013
+doi: 10.1109/ecce50734.2022.9948013
+files:
+- a_modified_geometry_based_analytical_model_of_switched_reluctance_machines_for_rapid_design_process_Vadamodala_Das_Chowdhury_et_al_2022.pdf
+journal: 2022 IEEE Energy Conversion Congress and Exposition (ECCE)
+month: 10
+pages: 1--7
+papis_id: 956f6138e8d7c1f79f9fe618f0d80ddb
+publisher: IEEE
+title: A Modified Geometry Based Analytical Model of Switched Reluctance Machines
+  for Rapid Design Process
+type: inproceedings
+url: https://doi.org/10.1109/ecce50734.2022.9948013
+venue: Detroit, MI, USA
+year: 2022

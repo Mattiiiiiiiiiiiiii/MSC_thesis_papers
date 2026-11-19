@@ -1,0 +1,6038 @@
+A Non-parametric Discontinuous Galerkin
+Formulation of the Integral Boundary Layer
+Equations with Strong Viscous-Inviscid Coupling
+by
+
+Shun Zhang
+B.S.E., Aerospace Engineering, University of Michigan (2015)
+B.S.E., Mechanical Engineering, Shanghai Jiao Tong University (2015)
+Submitted to the Department of Aeronautics and Astronautics
+in partial fulfillment of the requirements for the degree of
+Master of Science in Aerospace Engineering
+at the
+MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+February 2018
+c 2018 Massachusetts Institute of Technology. All rights reserved
+○
+
+Author . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Department of Aeronautics and Astronautics
+February 1, 2018
+Certified by . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Steven R. Allmaras
+Research Engineer of Aeronautics and Astronautics
+Thesis Supervisor
+Accepted by. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Hamsa Balakrishnan
+Associate Professor of Aeronautics and Astronautics
+Chair of Graduate Program Committee
+
+2
+
+A Non-parametric Discontinuous Galerkin Formulation of the
+Integral Boundary Layer Equations with Strong
+Viscous-Inviscid Coupling
+by
+Shun Zhang
+Submitted to the Department of Aeronautics and Astronautics
+on February 1, 2018, in partial fulfillment of the
+requirements for the degree of
+Master of Science in Aerospace Engineering
+
+Abstract
+A non-parametric discontinuous Galerkin (DG) finite-element formulation is developed for the integral boundary layer (IBL) equations with strong viscous-inviscid
+coupling. This DG formulation eliminates the need of explicit curvilinear coordinates in traditional boundary layer solvers, and thus enables application to complex
+geometries even involving non-smooth features. The usual curvilinear coordinates
+are replaced by a local Cartesian basis, which is conveniently constructed in the
+DG finite-element formulation. This formulation is also applicable to the general
+convection-source type of partial differential equations defined on curved manifolds.
+Other benefits of DG methods are maintained, including support for high-order solutions and applicability to general unstructured meshes. For robust solution of the
+coupled IBL equations, a strong viscous-inviscid coupling scheme is also proposed,
+utilizing a global Newton method. This method provides for flexible and convenient
+coupling of viscous and inviscid solutions, and is readily extensible to coupling with
+more disciplines, such as structural analysis. As a precursor to the three-dimensional
+strongly-coupled IBL method, a two-dimensional IBL solver coupled with a panel
+method is implemented. Numerical examples are presented to demonstrate the viability and utility of the proposed methodology.
+Thesis Supervisor: Steven R. Allmaras
+Title: Research Engineer of Aeronautics and Astronautics
+3
+
+4
+
+Acknowledgments
+I would like to thank everyone who helps make my quest at MIT a worthy one. In
+particular, I am grateful for the luxury of having Dr. Steven Allmaras and Professor
+David Darmofal as advisors during my study for the Master’s degree. I give thanks
+to Dr. Allmaras, my thesis supervisor, for his dedication throughout this journey to
+guiding and supporting me both professionally and personally. His having to join
+our Webex meetings from another time zone has never obscured his clarity, insight
+and attention. I also thank Professor Darmofal for opening the door to MIT for me
+and overseeing my edification from day one with thought and care. His mentoring
+and company keeps me confident in my continuing pursuit of PhD for the years to
+come.
+I give special thanks to Professor Mark Drela for allowing me to share and continue his work on 3D IBL and for being an accessible and inspirational mentor. I am
+much grateful to Dr. Marshall Galbraith for tirelessly answering my coding questions
+and generously lending helpful eyes on my research. I would also like to thank Bob
+Haimes for his input and advice, as well as our cheerful interaction that I always
+enjoy. My deep gratitude also goes to Professor Krzysztof Fidkowski for ushering me
+into the world of CFD and for setting a great example.
+The efforts and contributions from all the members of the SANS team in making
+SANS a better code suite are greatly appreciated. The programming implementation
+in this thesis would have been impossible without the solid foundation that the team
+has built up together over the years.
+Graduate life seldom runs short of color and joy thanks to all my friends. I
+would like to thank all the members of the Aerospace Computational Design Lab
+(ACDL) for making it a sociable and delightful workplace, and for sharing so many
+
+5
+
+work hours and beyond. I also give thanks to the awesome delicatessen cooking lab
+(ACDL) for cooking quality cuisines and battling food coma together with Avalon
+and board games alike. To all my intramural sports teammates, I am grateful for
+the much needed sweat and camaraderie we share, and for cheering me through my
+rookie seasons, especially ice hockey and cricket. To friends from far away, thanks
+for the visit, message, phone call and video chat, each of which feels like the sweet
+yesterday once more.
+I was fortunate to meet Yu at MIT. I owe great thanks to her for understanding
+and accepting my imperfect self and for patiently helping me become a better man.
+I would never have the strength and courage to march thus far on my tour of
+duty without my parents. Thanks to them for being the best friends to confide in,
+for being the role models to look up to and, more importantly, for being the family
+whose love is unconditional.
+
+This work was partially supported by the National Aeronautics and Space Administration (NASA) award NNX15AU41A, with Michael Aftosmis and David Rodriguez
+as technical monitors. Their support is greatly appreciated.
+
+6
+
+Table of Contents
+List of Figures
+
+9
+
+List of Tables
+
+13
+
+List of Abbreviations
+
+14
+
+Nomenclature
+
+17
+
+1 Introduction
+
+21
+
+1.1
+
+Motivation for Integral Boundary Layer Method . . . . . . . . . . . .
+
+21
+
+1.2
+
+Previous Work
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+24
+
+1.3
+
+Current Work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+25
+
+2 Integral Boundary Layer Formulation
+
+29
+
+2.1
+
+Viscous-Inviscid Zonal Decomposition . . . . . . . . . . . . . . . . . .
+
+29
+
+2.2
+
+Defect Control Area Integral Relations . . . . . . . . . . . . . . . . .
+
+30
+
+2.3
+
+Thin Shear Layer Approximations . . . . . . . . . . . . . . . . . . . .
+
+35
+
+2.4
+
+Integral Defect Definitions . . . . . . . . . . . . . . . . . . . . . . . .
+
+38
+
+2.5
+
+Integral Defect Equations . . . . . . . . . . . . . . . . . . . . . . . .
+
+41
+
+2.5.1
+
+42
+
+Mass . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+7
+
+2.5.2
+
+Momentum . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+44
+
+2.5.3
+
+Kinetic Energy . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+47
+
+Profile Construction and Equation Closure . . . . . . . . . . . . . . .
+
+51
+
+2.6.1
+
+Laminar Closure . . . . . . . . . . . . . . . . . . . . . . . . .
+
+55
+
+2.6.2
+
+Turbulent Closure . . . . . . . . . . . . . . . . . . . . . . . . .
+
+58
+
+2.7
+
+Viscous-Inviscid Interaction Formulation . . . . . . . . . . . . . . . .
+
+65
+
+2.8
+
+Governing Equations . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+66
+
+2.6
+
+3 Discontinuous Galerkin Discretization
+
+69
+
+3.1
+
+Solution Approximation and Local Basis . . . . . . . . . . . . . . . .
+
+69
+
+3.2
+
+Residual Definitions . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+71
+
+3.3
+
+Matching Conditions . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+76
+
+4 Strong Viscous-Inviscid Coupling
+
+79
+
+4.1
+
+Strongly-coupled System . . . . . . . . . . . . . . . . . . . . . . . . .
+
+79
+
+4.2
+
+Global Newton Method . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+82
+
+5 Results
+
+85
+
+5.1
+
+Shallow Water Flow on Elliptic Curve . . . . . . . . . . . . . . . . . .
+
+85
+
+5.2
+
+Flow over NACA 0004 Airfoil . . . . . . . . . . . . . . . . . . . . . .
+
+89
+
+6 Conclusions
+
+99
+
+A Quadrature Rule for Defect Integrals
+
+103
+
+B Panel Method
+
+107
+
+Bibliography
+
+117
+
+8
+
+List of Figures
+1-1 Computational cost comparison between a coupled IBL/full potential
+method and a RANS method (figure courtesy of Drela [1], reproduced
+with permission) . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+22
+
+1-2 Sample parametrization of an aircraft wing section surface, defined in
+global Cartesian coordinates (𝑥, 𝑦, 𝑧), by curvilinear coordinates (𝜉, 𝜂)
+
+24
+
+2-1 Real flow decomposed into defect control area and equivalent inviscid
+flow . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+30
+
+2-2 Partition of the DCA into a set of differential elements (figure adapted
+from [1] with permission) . . . . . . . . . . . . . . . . . . . . . . . . .
+
+31
+
+2-3 Real viscous flow and EIF velocity profiles across a shear layer on a
+flat (left) and curved (right) boundary (figure courtesy of Drela [1],
+reproduced with permission) . . . . . . . . . . . . . . . . . . . . . . .
+
+38
+
+2-4 3D streamwise and crossflow velocity profiles (figure courtesy of Drela
+[1], reproduced with permission) . . . . . . . . . . . . . . . . . . . . .
+
+51
+
+2-5 Profile basis vector orientation options (very large wall-normal velocity
+shown for emphasis) (figure courtesy of Drela [1], reproduced with
+permission) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+9
+
+53
+
+2-6 Assumed polynomials for laminar profile . . . . . . . . . . . . . . . .
+
+56
+
+2-7 Assumed polynomial for turbulent outer-layer profile . . . . . . . . .
+
+60
+
+2-8 Original and modified Spalding profiles for turbulent inner layer (figure
+courtesy of Drela [1], reproduced with permission) . . . . . . . . . . .
+
+61
+
+2-9 Assumed turbulent velocity profile validated against experimental measurement (figure courtesy of Drela [1], reproduced with permission) .
+
+62
+
+3-1 Discontinuous local basis vectors and interface unit normal vectors of
+linear grid elements
+
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+73
+
+5-1 Configuration of the shallow water flow on an elliptic curve . . . . . .
+
+86
+
+5-2 𝐿2 error of DG solution of water depth 𝐻 converges with uniform grid
+refinement at an asymptotic rate of 𝑝 + 1. . . . . . . . . . . . . . . .
+
+88
+
+5-3 Sample grid for the aerodynamic analysis of NACA 0004 airfoil (64
+and 14 elements on the airfoil and the wake respectively) . . . . . . .
+
+89
+
+5-4 Comparison of numerical results of XFOIL and the IBL/panel solver
+for fully laminar boundary layers . . . . . . . . . . . . . . . . . . . .
+
+93
+
+5-5 Comparison of numerical results of XFOIL and the IBL/panel solver
+for fully turbulent boundary layers . . . . . . . . . . . . . . . . . . .
+
+94
+
+5-6 Sectional drag coefficient 𝑐𝐷 of IBL/panel solution converges with grid
+refinement for fully laminar boundary layer cases . . . . . . . . . . .
+
+96
+
+5-7 Sectional drag coefficient 𝑐𝐷 of IBL/panel solution converges with grid
+refinement for fully turbulent boundary layer cases
+
+. . . . . . . . . .
+
+97
+
+B-1 Airfoil and wake panel configuration with vorticity and source distributions, and trailing edge details (figure adapted from [2] with permission) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 108
+
+10
+
+B-2 Panel local coordinates (figure adapted from [2] with permission) . . . 110
+B-3 Panel solution comparison between XFOIL (version 6.99) and the
+panel method of this thesis (SANS panel): NACA0004 airfoil with
+a finite-thickness trailing edge. 𝑅𝑒 = 105 , Mach ≈ 0, 128 panels on
+the airfoil . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 114
+B-4 Panel solution comparison between XFOIL Version 6.99 (XFOIL panel)
+and the panel method of this thesis (SANS panel): Joukowski airfoil (thickness-to-chord ratio 𝑡/𝑐 ≈ 0.378) with a cusp trailing edge.
+𝑅𝑒 = 105 , Mach ≈ 0, 128 panels on the airfoil . . . . . . . . . . . . . 115
+
+11
+
+12
+
+List of Tables
+4.1
+
+List of abbreviations, variables, residuals and governing equations in
+the coupled global system . . . . . . . . . . . . . . . . . . . . . . . .
+
+5.1
+
+Convergence of 𝑐𝐷 error with grid refinement for fully laminar boundary layer cases . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+5.2
+
+80
+
+95
+
+Convergence of 𝑐𝐷 error with grid refinement for fully turbulent boundary layer cases . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+13
+
+96
+
+14
+
+List of Abbreviations
+1D one-dimensional.
+2D two-dimensional.
+3D three-dimensional.
+CFD computational fluid dynamics.
+CG continuous Galerkin.
+DG discontinuous Galerkin.
+DNS direct numerical simulation.
+DOF degree of freedom.
+LES large eddy simulation.
+NASA National Aeronautics and Space Administration.
+PDE partial differential equation.
+PTC pseudo-transient continuation.
+RANS Reynolds-averaged Navier-Stokes.
+15
+
+TE trailing edge.
+DCA defect control area.
+DDCA differential defect control area.
+EIF equivalent inviscid flow.
+IBL integral boundary layer.
+IBL/panel integral boundary layer and panel.
+VII viscous-inviscid interaction.
+
+16
+
+Nomenclature
+𝑎, 𝐴; 𝑎, 𝐴; 𝑎, 𝐴 generic notation for scalar (normal font), vector (boldface), secondorder tensor (boldface with double overhead bars) quantitites respectively.
+ˆ generic notation for unit vector (angled hat). Also, in the context of discontinuous
+𝑎
+Galerkin (DG) finite-element discretization, the same “hat” notation denotes
+the numerical flux, which will be mentioned as necessary.
+( )𝑇 generic notation the transpose of a matrix/second-order tensor.
+⊗ outer (or tensor/dyadic) product of vectors.
+∇( ) gradient operator.
+̃︀ ) gradient operator restricted to the 𝑛 = 0 reference curve/manifold (i.e. exclud∇(
+̃︀ ( ) ≡ ∇ ( ) − n̂ [n̂ · ∇ ( )].
+ing n̂ component). ∇
+𝑥, 𝑦 two-dimensional global Cartesian coordinates associated with the {x̂, ŷ} basis
+vectors respectively.
+x̂, ŷ two-dimensional global Cartesian basis vectors.
+r position vector.
+
+17
+
+ê, n̂ local Cartesian basis vectors (tangent and normal, respectively, to the 𝑛 = 0
+reference curve). Also, n̂ ocassionally denotes the outward-pointing normal
+vector of the boundary of a control area, which will be mentioned as necessary.
+𝑛 normal coordinate associated with the n̂ basis vector.
+𝜂 normalized normal coordinate.
+𝜉 “surface” coordinate associated with the ê basis vector (along the 𝑛 = 0 reference
+curve).
+ŝ1 , n̂s streamwise and normal-to-stream local Cartesian basis vectors.
+𝑠1 , 𝑛s canonical coordinates associated with the {ŝ1 , n̂s } basis vectors respectively .
+t̂ outward-pointing unit normal vector of the perimeter boundary of an diffferential
+defect control area (DDCA) element (the same as the outward-point unit nor^ associated
+mal vector of the boundary of the 𝑛 = 0 curve segment (i.e. DDCA)
+with the DDCA element).
+d𝑠, d𝐴 generic differential length and area respectively.
+𝜅 curvature of the 𝑛 = 0 reference curve.
+( ) i equivalent inviscid flow (EIF) quantity.
+( )e viscous layer edge quantity.
+( )w wall quantity.
+( )1 streamwise quanity (along ŝ1 ).
+
+18
+
+( )0 stagnation state quantity. For example, 𝑝0 and 𝑇0 stand for stagnation pressure
+and temperature respectively.
+q velocity vector.
+̃︀ velocity vector tangent to the 𝑛 = 0 reference curve.
+q
+I identity tensor.
+𝜏 viscous stress tensor.
+𝜏 “in-plane” viscous stress vector (= 𝜏 · n̂; acting on the plane identified by the
+normal vector n̂).
+𝑞 speed (=|q|).
+𝜌 density.
+𝜇 dynamic viscosity.
+𝑝 pressure.
+𝑈, 𝑅, 𝑆, 𝑉 normalized profiles of velocity, density, shear stress and dynamic viscosity
+respectively.
+𝒟 dissipation integral.
+ℛ equation residual.
+𝑅𝑒 Reynolds number. The reference length scale is indicated with a subscript, for
+example, 𝑅𝑒𝐿 denotes the Reynolds number with respect to the length 𝐿.
+Fr Froude number.
+
+19
+
+𝜕DDCA the boundary of a differential defect control area element.
+^ the 𝑛 = 0 curve segment associated with a differential defect control area
+DDCA
+element.
+^ the boundary of the 𝑛 = 0 curve segment associated with a differential
+𝜕 DDCA
+defect control area element.
+
+20
+
+Chapter 1
+Introduction
+Computational fluid dynamics (CFD) has become an indispensable and powerful tool
+for the aerodynamic design and optimization of many engineering systems, such as
+aircraft, automobiles, marine vehicles and wind turbines. A broad spectrum of CFD
+methods of various complexity and capability have been developed to date. This
+thesis focuses specifically on the integral boundary layer (IBL) formulation with
+strong viscous-inviscid coupling. This is a zonal approach and its benefits include
+being fast, robust and readily compatible with multi-disciplinary coupling.
+
+1.1
+
+Motivation for Integral Boundary Layer Method
+
+The strongly-coupled IBL method is pursued primarily because of its exceptional
+computational speed. Established examples for two-dimensional (2D) aerodynamic
+flows include MSES [3] and XFOIL [2]. The latter is able to characterize an airfoil
+drag polar within a few seconds. Such speed enables a thorough aerodynamic design
+and optimization that is otherwise infeasible with much slower CFD methods like,
+
+21
+
+for example, those based on solving the Reynolds-averaged Navier-Stokes (RANS)
+equations.
+Figure 1-1 illustrates a ballpark comparison of computational cost between a IBL
+
+method coupled with a full potential (inviscid) solver and a RANS-based method.
+Motivation
+Motivati
+In order to attain solution accuracy similar to the RANS method, the coupled IBL
+
+BL) methods have
+proven very effective with Inviscid+Integral-BL
+(IBL)
+methods have p
+method requires a far coarser mesh 2D
+fewer variables at each grid point,
+resulting
+
+in far fewer degrees
+freedom (DOFs)
+and
+thus a much more
+rapid than
+computational
+an alternative Navier-Stokes
+forof similar
+accuracy
+• Enormously
+faster
+alternative Navie
+large eddy simucid flow solver turnaround. Higher-fidelity (than RANS)•CFD
+Canalgorithms,
+exploit such
+anyasinviscid
+flow solver
+lation (LES) and direct numerical simulation (DNS), are computationally yet more
+erse design methods
+• Compatible with inverse design methods
+expensive and thus beyond the reach of day-to-day design and optimization practice
+ual displacements for linearized aeroelasticity • Compatible with virtual displacements fo
+in the next decade or more [4]. On the other hand, it is worth noting that those
+
+Full potential+IBL
+
+les
+
+RANS
+
+Potential+BL (MSIS, TRANAIR-2D)
+Navier
+Stokes
+DOF ∼ 5,000
+DOF ∼ 500,000
+runtime
+∼ seconds
+runtime
+hours
+∼ 5 000
+variables
+∼ 500
+000∼variables
+∼1-1:
+1 sec.
+runtimecost comparison between
+∼ 1 ahr.
+runtime
+Figure
+Computational
+coupled
+IBL/full potential
+method and a RANS method (figure courtesy of Drela [1], reproduced with
+permission)
+
+Pote
+
+extend inviscid+integral-BL methods
+3D goal is to extend inviscid+
+⇒ toPresent
+higher-fidelity methods are necessary in scenarios of more complex physics such as
+1/23
+
+flows with significant unsteady effects, strong separation and thick boundary layers,
+
+22
+
+where the IBL method typically falls short. Hence, the fast computational speed of
+the IBL method makes it a favorable and appropriate tool for early design stages in
+which numerous iterations are made whereas only medium-fidelity physical details
+are required.
+The economy of IBL methods still stands out in comparison to traditional boundary layer solvers [5, 6] that are based on solving the differential form of the boundary
+layer equations (throughout the area of 2D flows or the volume of three-dimensional
+(3D) flows). Due to the need of resolving a boundary layer across its thickness, the
+profile representation at each boundary point requires hundreds of DOFs, whereas
+the alternative IBL formulation defines a boundary layer profile using a much more
+economical number of parameters (mostly less than 10).
+Another desirable feature of the IBL formulation is the convenient representation
+of viscous effects and geometry changes using a displacement body model [7]. It
+allows for exploiting various inviscid solvers (for example, the panel method, full
+potential and Euler solvers). Also, applications for inverse design, optimization,
+and aero-structural coupling are greatly simplified since small geometry changes,
+both steady and unsteady, are readily accounted for without any re-meshing. Such
+a feature is especially favorable in multi-disciplinary design and optimization. In
+contrast, current strategies for aero-structural coupling using RANS-based or higherfidelity methods mostly entail regenerating meshes in the presence of any geometric
+perturbation [8], which drives the computational cost even higher and subjects the
+overall implementation to potential meshing difficulty.
+These benefits of the strongly-coupled IBL method motivate research on extending this method to general 3D applications.
+
+23
+
+1.2
+
+Previous Work
+
+Foray into the development of the 3D viscous-inviscid method has already been made.
+For example, as an intermediate approach, Boeing’s proprietary code TRANAIR
+[9, 10] adopts a quasi-2D IBL formulation coupled with a 3D full potential solver.
+However, it fails to capture the fully 3D flow features in configurations such as
+wing/tail-fuselage joints and wing/blade tips.
+In order to handle those cases, a genuinely 3D boundary layer formulation is
+necessary. IBL formulations as such exist [11, 12] but are mostly restricted by the
+use of curvilinear coordinates to cover solid surfaces [13]. That is, they require
+an explicit parametrization of a general curved manifold geometry, for example,
+as shown in Figure 1-2. In light of such a requirement, the formulation cannot
+
+z
+y
+x
+
+Figure 1-2: Sample parametrization of an aircraft wing section surface, defined in
+global Cartesian coordinates (𝑥, 𝑦, 𝑧), by curvilinear coordinates (𝜉, 𝜂)
+tolerate any surface slope discontinuity which frequently appears where multiple
+surfaces intersect. Furthermore, the parametrization either loses full coverage of a
+general curved manifold geometry when using orthogonal curvilinear coordinates,
+or requires significantly complex transformation of the original partial differential
+equation (PDE) if non-orthogonal coordinates are employed.
+24
+
+Nishida [14] and Mughal [15] formulated the 3D IBL equations in a finite-element
+form which sidesteps the need of curvilinear parametrization and applies to relatively
+complex geometries on general meshes. This 3D IBL formulation was then improved
+by Drela [13] to recover in-surface rotational invariance and to incorporate a more
+suitable 3D transition prediction treatment.
+Another important aspect in developing the viscous-inviscid zonal method is solution robustness which is contingent on the viscous-inviscid coupling treatment.
+Lock and Williams [16] provided a review of existing coupling schemes for viscousinviscid interaction (VII). The classical direct method is a one-way coupling scheme
+in which the boundary layer equations are solved assuming that the inviscid outer
+flow is known a priori. This method, however, is restricted to attached flows and
+breaks down in the presence of flow separation due to the Goldstein singularity [17].
+Attempts to avoid this issue lead to development of methods that are fully-inverse,
+semi-inverse [18] and quasi-simultaneous [19, 20]. While achieving various degrees
+of success, all of these methods require iterating between the viscous and inviscid
+solvers. In consequence, they are not as reliable and efficient as the simultaneous
+solution of viscous and inviscid flows [16]. The strong simultaneous coupling scheme
+was also observed to be a key ingredient to the robust solution of 2D IBL methods
+such as MSES [3] and XFOIL [2], and is thus naturally expected to be desirable, if
+not indispensable, for 3D applications as well [13].
+
+1.3
+
+Current Work
+
+The current work presented in this thesis builds upon the earlier work of Drela [13],
+which adopts a continuous Galerkin (CG) finite-element discretization and assumes
+linear finite elements. Some of the current work has been presented by the author
+25
+
+et at. in an earlier paper [21] and more details are covered in this thesis.
+A primary contribution of this thesis is to develop a discontinuous Galerkin (DG)
+finite-element discretization for the IBL equations. The DG method is well suited
+for the convection-source type of PDEs, including the IBL equations, since they are
+free of viscous terms. The discretization of viscous terms is thus avoided, which
+sidesteps the additional complexity incurred by the use of lifting operators and the
+numerical stabilization of the viscous operator [22]. The DG formulation developed
+in this thesis is also suitable for general PDEs of the convection-source type that are
+defined on curved manifolds. In the current method, the IBL equations are resolved
+in a local Cartesian basis, free of any explicit construction of curvilinear coordinates,
+and readily applicable to complex or non-smooth geometries. The DG formulation
+allows for discontinuous local basis vectors across finite element interfaces and thus
+simplifies its construction compared to the CG formulation. In addition, the DG
+finite-element method supports high-order solution approximation (extending the
+previous linear finite-element IBL formulations [14, 15, 13] that assume linear finite
+elements), and applies to general unstructured meshes and complex geometries. It
+should be noted that Bernard et al. [23] also utilized a local basis in developing and
+applying a DG method to shallow water equations on spherical surfaces. However
+that formulation assumes that the unknown vector quantities are constructed from
+the local basis, which does not apply to IBL equations and more general PDEs.
+Necessary generalization is proposed in this thesis.
+This thesis also reiterates the importance of strong coupling between viscous and
+inviscid solvers. To that end, the IBL equations are strongly coupled with the inviscid
+solver by solving for both the viscous and inviscid solutions simultaneously using a
+global Newton method. In order to ease concerns of some researchers over coding
+complexity and (flow) modeling rigidity [20], the current coupling implementation
+26
+
+allows for a flexible choice of the inviscid solver, ranging from panel methods to full
+potential and Euler solvers. The jacobian of the coupled equation system used in
+the Newton method is conveniently evaluated via automatic differentiation.
+Note that the development of the DG formulation and the viscous-inviscid coupling framework here does not bear any assumption about a specific spatial dimension
+(2D or 3D). However, this thesis only demonstrates results of applying the current
+IBL formulation to 2D examples of steady-state incompressible viscous flows. Hence,
+the presentation throughout this thesis will focus on the 2D setting. This constitutes
+a stepping stone towards the 3D IBL formulation and application that are to be
+completed and presented in the future study.
+The organization of this thesis is to first present a 2D IBL formulation in Chapter 2. Then, the DG finite-element discretization is formulated and applied to the
+IBL equations in Chapter 3. Chapter 4 describes the strong viscous-inviscid coupling
+scheme. Numerical results are provided in Chapter 5 to verify the manifold DG
+method and to demonstrate the applicability of the strong viscous-inviscid coupling
+scheme in aerodynamic analysis. Finally, concluding remarks are given in Chapter 6.
+
+27
+
+28
+
+Chapter 2
+Integral Boundary Layer Formulation
+This chapter introduces the basic concepts underpinning the viscous-inviscid zonal
+method, derives the governing IBL equations, and completes the formulation with
+viscous closure models. Note that this thesis focuses on a 2D IBL formulation of
+steady-state incompressible boundary layer flows, while extension to 3D unsteady
+compressible flows is left for future study.
+
+2.1
+
+Viscous-Inviscid Zonal Decomposition
+
+The viscous-inviscid zonal approach for aerodynamic analysis starts from a subdivision of an overall flow domain as shown in Figure 2-1, which is identified by some
+defect control area (DCA) and the outer flow region. Also, an equivalent inviscid
+flow (EIF) [7] is defined as a hypothetical irrotational (i.e. potential) flow filling up
+the entire flow domain. The DCA is chosen to coincide with the viscous layer, and
+the EIF is assumed to match the viscous flow in the outer region. As in the standard
+boundary layer theory, this modeling assumption is justified when the outer flow has
+
+29
+
+negligible viscous effects and is thus effectively irrotational.
+Control Area
+
+=
+
+−
+Defect Control Area
+
+Figure 2-1: Real flow decomposed into defect control area and equivalent inviscid
+flow
+Then, let 𝑓 be some generic quantity associated with the real flow (e.g. density
+and pressure). It can be decomposed as 𝑓 = 𝑓 i − (𝑓 i − 𝑓 ) where 𝑓 i corresponds to
+the EIF (the subscript “i” is used to denote EIF quantities) and (𝑓 i − 𝑓 ) is called
+a defect quantity. This decomposition provides considerable flexibility in treating
+the EIF and defect quantities separately. Numerous fast methods exist to solve the
+potential flow 𝑓 i , such as panel methods and full potential or Euler solvers. On the
+other hand, the defect quantity 𝑓 i − 𝑓 vanishes in the outer flow region and thus only
+needs to be solved in the DCA. This enables the development of various boundary
+layer methods.
+
+2.2
+
+Defect Control Area Integral Relations
+
+Before presenting an integral approach of the boundary layer method, some integral
+relations related to the DCA need to be formulated. First, the DCA is partitioned
+into a set of differential elements, each of which spans the thickness of the viscous
+layer as illustrated in Figure 2-2. The 𝑛 = 0 reference curve is assumed to be
+placed on the wall (i.e. 𝑛w = 0) and the wake centerline for convenience, although
+30
+
+for generality it can be located elsewhere inside the viscous layer as in Figure 2-2.
+The goal here is to formulate the IBL equations on the 𝑛 = 0 curve which is a
+one-dimensional (1D) manifold subset of the 2D DCA.
+
+n
+n
+
+ne
+
+ne ( ξ )
+
+d e
+dA
+
+t
+
+t
+
+d
+dn
+
+dn
+nw
+
+d
+
+e
+
+ξ
+
+d w
+nw ( ξ )
+
+DCA
+
+DCA Element
+n
+...
+...
+
+...
+
+n
+...
+
+...
+
+...
+...
+
+...
+
+exit
+
+Figure 2-2: Partition of the DCA into a set of differential elements (figure adapted
+from [1] with permission)
+Next, the integral of the divergence of a vector defect quantity (f i − f ) over a
+differential defect control area (DDCA) element is considered, as the divergence
+term will appear in the governing conservation laws and the derivation of the IBL
+equations. By the divergence theorem,
+ˆˆ
+
+˛
+DDCA
+
+∇ · (f i − f ) d𝐴 =
+
+𝜕DDCA
+
+(f i − f ) · n̂ d𝑠
+
+(2.1)
+
+where 𝜕DDCA denotes the boundary of the DDCA element with an outward-pointing
+unit normal vector n̂. The differential area and length are denoted with d𝐴 and d𝑠
+31
+
+respectively.
+When forming the length differentials, the curvature of the DDCA element is
+accounted for via an appropriate metric factor that is linear in 𝑛. For example, some
+differential lengths shown in Figure 2-2 are given by
+dℓe = (1 − 𝜅𝑛e ) dℓ,
+
+dℓw = (1 − 𝜅𝑛w ) dℓ
+
+(2.2)
+
+where the subscripts “e” and “w” denote quantities at the viscous layer edge and
+the wall respectively. The 𝑛 = 0 curve segment associated with the DDCA element
+̃︂ (whose boundary is 𝜕 DDCA),
+̃︂
+is denoted as DDCA
+which has a differential length
+metric dℓ and a curvature of 𝜅 (of which a positive value corresponds to a curve
+that is concave towards the positive 𝑛-direction). Instead of using the higher-order
+treatment (2.2), a first-order approximation is adopted here. This is appropriate for
+the small-curvature case where 𝜅 (𝑛e − 𝑛w ) ≪ 1 and yields the following relations,
+⎧
+⎪
+n̂ dℓ ≈ n̂e dℓ
+(viscous layer edge)
+⎪
+⎪
+⎨ e e
+n̂ d𝑠 = −n̂w dℓw ≈ −n̂w dℓ (wall)
+⎪
+⎪
+⎪
+⎩
+t̂ d𝑛
+(perimeter boundaries)
+
+(2.3)
+
+d𝐴 ≈ d𝑛 dℓ
+
+(2.4)
+
+32
+
+Then, the integrals in (2.1) further transform as follows,
+ˆˆ
+
+˛
+DDCA
+
+∇ · (f i − f ) d𝐴 =
+=
+
+𝜕DDCA
+
+(f i − f ) · n̂ d𝑠
+
+∑︁ ˆ 𝑛e
+̃︂
+𝜕 DDCA
+
+ˆ
+
+𝑛w
+
+(f i − f ) · t̂ d𝑛
+
+[(f i − f )e · n̂e − (f i − f )w · n̂w ] dℓ
+ˆ
+∑︁
+=
+(F i − F) · t̂ −
+(f i − f )w · n̂w dℓ
++
+
+̃︂
+DDCA
+
+̃︂
+𝜕 DDCA
+
+ˆ
+=
+
+̃︂
+DDCA
+ˆ 𝑛e
+
+(F i − F) ≡
+
+𝑛w
+
+(2.5)
+
+̃︂
+DDCA
+
+[︁
+]︁
+̃︀ · (F i − F) − (f i − f ) · n̂w dℓ
+∇
+w
+
+(f i − f ) d𝑛
+
+(2.6)
+(2.7)
+
+where (f i − f )e vanishes by the definition of the EIF. In (2.5), the summation is
+carried out over the (left and right) perimeter boundaries of DDCA (sharing the same
+̃︂
+outward-pointing unit normal vector t̂ with 𝜕 DDCA),
+and the integral is performed
+̃︀ · ( ) gives the divergence of a vector
+along the 𝑛 = 0 reference curve. The operator ∇
+̃︂ and the divergence theorem is applied to obtain
+defined on the manifold DDCA,
+(2.6) from (2.5),
+ˆ
+̃︂
+DDCA
+
+̃︀ · (F i − F) dℓ =
+∇
+
+∑︁
+̃︂
+𝜕 DDCA
+
+(F i − F) · t̂
+
+(2.8)
+
+The expression (2.7) defines an integral defect quantity (F i − F) for a wall boundary
+layer, where the integral over the thickness along 𝑛 is performed from the wall (𝑛w )
+to the layer edge (𝑛e ). In the case of a wake layer, the integration limits in (2.7)
+become the lower and upper edges of the layer (i.e. from (𝑛e )lower to (𝑛e )upper ). This
+´
+convention of the integral [ ] d𝑛 is assumed throughout the discussion in this thesis.
+33
+
+The integration limits are occasionally dropped for simplicity and generality.
+In the numerical implementation, the line integral in is evaluated in the form of
+ˆ
+
+ˆ
+[ ] dℓ =
+
+̃︂
+DDCA
+
+[ ] 𝐽 d𝜉,
+̃︂
+DDCA
+
+𝐽 = |dr/d𝜉|
+
+(2.9)
+
+̃︂ r(𝜉) is a posiwhere 𝜉 is the canonical finite-element reference coordinate of DDCA;
+̃︂ 𝐽 is the norm of length metric transfortion vector that defines the shape of DDCA;
+mation. Note that all the physical vectors are defined in the global Cartesian basis
+{x̂, ŷ} with associated coordinates {𝑥, 𝑦}. Also, a set of local Cartesian basis vec̃︂ respectively) are constructed and will be
+tors {ê, n̂} (tangent and normal to DDCA
+used later (e.g. in the finite-element discretization). Note that the Cartesian normal
+basis vector n̂ here is not to be confused with the outward-pointing normal vector
+of 𝜕DDCA as in (2.1). This distinction is assumed to be clear based on the context
+under which those notations appear.
+For a defect quantity that is a second-order tensor (f i − f ), a relation similar to
+
+34
+
+(2.6) is derived as follows,
+ˆˆ
+
+(︁
+
+DDCA
+
+∇ · fi − f
+
+)︁
+
+˛
+
+(︁
+
+d𝐴 =
+𝜕DDCA
+
+=
+
+)︁
+f i − f · n̂ d𝑠
+
+∑︁ ˆ 𝑛e (︁
+𝑛w
+
+̃︂
+𝜕 DDCA
+
+ˆ
+
+)︁
+
+f i − f · t̂ d𝑛
+)︁
+
+(︁
+)︁
+]︁
+f i − f · n̂e − f i − f · n̂w dℓ
++
+e
+w
+̃︂
+DDCA
+ˆ
+)︁
+(︁
+)︁
+∑︁ (︁
+F i − F · t̂ −
+f i − f · n̂w dℓ
+=
+[︁(︁
+
+ˆ
+
+[︁
+
+=
+(︁
+
+)︁
+Fi − F ≡
+
+̃︂
+DDCA
+ˆ 𝑛e (︁
+𝑛w
+
+w
+
+̃︂
+DDCA
+
+̃︂
+𝜕 DDCA
+
+(︁
+)︁ (︁
+)︁
+]︁
+̃︀ · F i − F − f i − f · n̂w dℓ
+∇
+
+(2.10)
+
+w
+
+fi − f
+
+)︁
+
+d𝑛
+
+(2.11)
+
+̃︀ · ( ) defines the divergence of a tensor field. The
+Each of the operators ∇ · ( ) and ∇
+notes by Kelly [24] provide more details on the notation and theory of vector/tensor
+calculus.
+The relations (2.6) and (2.10) reduce an area integral to a line integral involving integral defect quantities and boundary terms, and are used to derive the IBL
+equations.
+
+2.3
+
+Thin Shear Layer Approximations
+
+Thin shear layer approximations are also utilized in deriving the IBL equations. Only
+key implications are stated here, while more a detailed order-of-magnitude analysis
+can be found in standard texts of fluid dynamics such as those by Kundu et al. [25]
+and Drela [26].
+The fundamental assumption is that the thickness (𝑛e − 𝑛w ) of the shear layer
+35
+
+is much smaller than other length scales such as the size of an aerodynamic body
+(e.g. the chord of an aircraft wing) and the radius of curvature of the solid wall (i.e.
+𝜅 (𝑛e − 𝑛w ) ≪ 1 where 𝜅 denotes the curvature as defined in Section 2.2). Hence,
+the defect integral relations derived in Section 2.2 can be used.
+A local streamwise-normal Cartesian basis {ŝ1 , n̂s } is defined with associated
+canonical coordinates {𝑠1 , 𝑛s }. The detailed construction of the basis vectors {ŝ1 , n̂s }
+is discussed in Section 2.6. As in the compressible Navier-Stokes equations, the total
+stress tensor of the viscous flow is formally defined and resolved in the {ŝ1 , n̂s } basis,
+−𝑝 I + 𝜏
+≡ (−𝑝 + 𝜏𝑠1 𝑠1 ) ŝ1 ⊗ ŝ1 + 𝜏𝑛s 𝑠1 ŝ1 ⊗ n̂s + 𝜏𝑠1 𝑛s n̂s ⊗ ŝ1 + (−𝑝 + 𝜏𝑛s 𝑛s ) n̂s ⊗ n̂s
+⎤
+⎡
+𝜏𝑛s 𝑠1 ⎥
+⎢−𝑝 + 𝜏𝑠1 𝑠1
+=⎣
+⎦
+−𝑝 + 𝜏𝑛s 𝑛s
+𝜏𝑠1 𝑛s
+
+(2.12)
+
+(2.13)
+
+where 𝑝 is the thermodynamic pressure, 𝜏 is the viscous stress tensor (also called
+the deviatoric stress tensor [25]), I denotes the identity tensor, and ⊗ gives the outer
+(or, equivalently, tensor/dyadic) product of two vectors. The notation, for example,
+𝜏𝑠1 𝑛s is understood to be the stress component acting on the edge identified with a
+normal vector ŝ1 and in the direction of n̂s . Also, note that this interpretation differs
+from and should not be confused with the meaning of “the 𝑠1 -row and 𝑛s -column” of
+the matrix in (2.13) or the tensor component corresponding to the dyadic product
+ŝ1 ⊗ n̂s .
+The following development assumes that the fluid is isotropic and Newtonian,
+satisfies the Stokes assumption, and has a symmetric stress tensor 𝜏 . It then follows
+
+36
+
+[25, 7] that
+𝜏 =𝜇
+
+{︂[︁
+
+∇q + (∇q)
+
+𝑇
+
+]︁
+
+}︂
+2
+− (∇ · q) I
+3
+
+(2.14)
+
+where ∇q gives the gradient (or, equivalently, the jacobian) of the vector field q as
+defined the same way as in [24, 26]. Let 𝜏1 be defined by 𝜏1 ≡ 𝜏𝑛s 𝑠1 = 𝜏𝑠1 𝑛s . Then,
+as a result of the thin shear layer approximation,
+⎡
+
+⎤
+
+⎢ 0 𝜏1 ⎥
+𝜏 ≈ 𝜏1 ŝ1 ⊗ n̂s + 𝜏1 n̂s ⊗ ŝ1 = ⎣
+⎦
+𝜏1 0
+
+(2.15)
+
+where the normal stress components 𝜏𝑠1 𝑠1 , 𝜏𝑛s 𝑛s are negligible compared to 𝜏1 .
+For convenience, the “in-plane” shear stress vector is defined as
+𝜏 ≡ 𝜏 · n̂
+
+(2.16)
+
+which gives the traction induced by the viscous stress tensor 𝜏 on the “plane” identified with the normal vector n̂. By the thin shear layer assumption, the normal-tostream basis vector n̂s is approximately the same as the local Cartesian basis vector
+n̂ defined in Section 2.2. Hence,
+𝜏 ≈ 𝜏1 ŝ1
+
+and
+
+)︂
+
+(︂
+
+𝜕𝜏1
+𝜕𝜏1
+𝜕𝜏1
+≪
+≈
+𝜕𝑠1
+𝜕𝑛s
+𝜕𝑛
+
+(2.17)
+
+Then, it follows that
+(︂
+∇·𝜏 =
+
+𝜕𝜏𝑠1 𝑠1 𝜕𝜏𝑛𝑠 𝑠1
++
+𝜕𝑠1
+𝜕𝑛𝑠
+
+ŝ1 +
+
+𝜕𝜏𝑛𝑠 𝑠1 𝜕𝜏𝑛𝑠 𝑛𝑠
++
+𝜕𝑠1
+𝜕𝑛𝑠
+
+)︂
+n̂s ≈
+
+𝜕𝜏
+𝜕𝜏1
+=
+ŝ1
+𝜕𝑛
+𝜕𝑛
+
+(2.18)
+
+Furthermore, the thin shear layer assumption implies that the static pressure 𝑝
+inside the viscous layer is approximately constant across the thickness along 𝑛.
+37
+
+n
+
+n
+ne
+
+ne
+
+1
+κ
+
+q i ( EIF )
+(un i )w
+
+q i ( EIF )
+(un i )w
+
+nw
+
+nw
+
+q
+
+q
+
+Figure 2-3: Real viscous flow and EIF velocity profiles across a shear layer on a flat
+(left) and curved (right) boundary (figure courtesy of Drela [1], reproduced with
+permission)
+The thinness of the viscous layer also has implications on the EIF formulation. By
+assumption, the EIF matches the real flow outside the viscous layer, i.e. q i = q for
+𝑛 > 𝑛e . Hence, in general, the EIF is not tangent to the bounding wall, i.e. q iw · n̂w ̸=
+0, as shown in Figure 2-3. For the shear layer on a curved boundary, |q ie − q iw | =
+𝒪(𝜅(𝑛e − 𝑛w )). Since 𝜅 (𝑛e − 𝑛w ) ≪ 1 by the thin shear layer approximation, it then
+follows that
+q i (𝑛) ≈ q iw ,
+
+𝑝 i (𝑛) ≈ 𝑝 iw
+
+(2.19)
+
+̃︀ i . In the folinside the viscous layer. Additionally, it is true that ∇𝑝 ≈ ∇𝑝 i ≈ ∇𝑝
+lowing discussion, the subscript “w” is occasionally dropped with the understanding
+that the EIF quantities q i , 𝑞 i , 𝑝𝑖 are constant across the thickness of the viscous layer
+and equal to the values at the wall (𝑛 = 𝑛w ).
+
+2.4
+
+Integral Defect Definitions
+
+As an integral approach, the IBL formulation characterizes the viscous layer by a
+few integral defect quantities, generically denoted by (F i − F) as defined in Sec38
+
+tion 2.2. Various integral defects are defined as follows and will be used throughout
+the subsequent discussion,
+ˆ
+Π ≡
+
+ˆ
+
+(𝑝 i − 𝑝) d𝑛
+
+pressure defect
+
+Q ≡
+
+ˆ
+
+(q i − q) d𝑛
+
+velocity defect
+
+𝑚 ≡
+
+ˆ
+
+(𝜌 i − 𝜌) d𝑛
+
+mass defect
+
+M ≡
+
+ˆ
+
+(𝜌 i q i − 𝜌 q) d𝑛
+
+mass defect flux
+
+≡
+
+ˆ
+
+𝜌 (q i − q) d𝑛
+
+momentum defect
+
+ˆ
+
+𝜌 (q i − q) ⊗ q d𝑛
+
+momentum defect flux (tensor)
+
+ˆ
+
+𝜌 (𝑞 2i − 𝑞 2 ) d𝑛
+
+kinetic energy defect
+
+ˆ
+
+𝜌 (𝑞 2i − 𝑞 2 ) q d𝑛
+
+kinetic energy defect flux
+
+(𝜌 i − 𝜌) q d𝑛
+
+density defect flux
+
+p
+
+P ≡
+𝑘
+
+≡
+
+K ≡
+D ≡
+
+(2.20)
+
+The integration limits are dropped for simplicity and generality, and are understood
+implicitly to follow the definition (2.7) described in Section 2.2. Note that M characterizes the mass flux deficit of the viscous layer compared to the EIF, while P and
+K quantify the momentum and kinetic energy losses respectively due to the viscous
+flow [25]. The definition of K differs from that in a text of Drela [7] by a factor of 2,
+but is only a matter of notation convention.
+Using the result of thin shear layer approximation (2.19) that q i (𝑛) ≈ q iw = q i ,
+
+39
+
+the following relations are obtained,
+ˆ
+M=
+ˆ
+M=
+
+[𝜌 (q i − q) + (𝜌 i − 𝜌) q i ] d𝑛 ≈ p + 𝑚 q i
+
+(2.21)
+
+[(𝜌 i − 𝜌) q + 𝜌 i (q i − q)] d𝑛 ≈ D + 𝜌 i Q
+
+(2.22)
+
+Note that the approximation in (2.22) becomes an exact equality for incompressible
+flows since 𝜌 i (𝑛) = 𝜌 i is constant.
+Also, the dissipation integral 𝒟 is defined and approximated as follows,
+ˆ
+
+ˆ
+
+dq
+d𝑛
+d𝑛
+
+(2.23)
+
+)︀
+(︀
+)︀
+𝜏 · ∇ · q ≡ 𝜏 : (∇q) ≡ tr 𝜏 · (∇q)
+
+(2.24)
+
+𝒟≡
+
+(︀
+
+)︀
+
+𝜏 · ∇ · q d𝑛 ≈
+
+𝜏·
+
+where the following notation definition is adopted,
+(︀
+
+The operator “:” (colon) defines the double contraction of two tensors. The operator
+tr( ) gives the trace of a tensor. The trace term has been rewritten and approximated
+as follows,
+𝜕 (q · ŝ1 )
+⎜ 0 𝜏1 ⎢ 𝜕𝑠1
+(︀
+)︀
+⎣
+⎦·⎢
+tr 𝜏 · (∇q) = tr⎜
+⎝
+⎣ 𝜕 (q · n̂ )
+s
+𝜏1 0
+𝜕𝑠1
+𝜕q
+𝜕q
+= 𝜏1 n̂𝑠 ·
++ 𝜏1 ŝ1 ·
+𝜕𝑠1
+𝜕𝑛s
+𝜕q
+≈𝜏·
+𝜕𝑛
+⎛
+
+⎡
+
+⎤
+
+⎡
+
+⎤⎞
+𝜕 (q · ŝ1 )
+⎟
+𝜕𝑛s ⎥
+⎥⎟
+𝜕 (q · n̂ ) ⎦⎠
+s
+
+𝜕𝑛s
+
+where the thin shear layer results (2.15) and (2.17) are used.
+40
+
+(2.25)
+
+2.5
+
+Integral Defect Equations
+
+The 2D IBL equations derive from the conservation laws for mass and momentum,
+of which the governing differential equations are
+𝜕𝜌
++ ∇ · (𝜌 q) = 0
+𝜕𝑡
+(︁
+)︁
+𝜕 (𝜌 q)
++ ∇ · (𝜌 q ⊗ q) + ∇ · 𝑝 I − 𝜏 = 0
+𝜕𝑡
+
+(mass)
+
+(2.26)
+
+(momentum)
+
+(2.27)
+
+Forming {2q · [equation (2.27)] − 𝑞 2 [equation (2.26)]} gives
+]︂
+[︂
+)︁}︂
+(︁
+𝜕 (𝜌 q)
+2 𝜕𝜌
++ ∇ · [q ⊗ (𝜌 q)] + ∇ · 𝑝 I − 𝜏
+−𝑞
++ ∇ · (𝜌 q)
+0 = 2q ·
+𝜕𝑡
+𝜕𝑡
+{︂
+(︁
+)︁}︂
+𝜕𝜌
+𝜕q
+= 2q · q
++𝜌
++ (∇q) · (𝜌 q) + [∇ · (𝜌 q)] q + ∇ · 𝑝 I − 𝜏
+𝜕𝑡
+𝜕𝑡
+[︂
+]︂
+2 𝜕𝜌
++ ∇ · (𝜌 q)
+−𝑞
+𝜕𝑡
+[︁
+(︁
+)︁]︁
+(︀ 2 )︀
+𝜕𝑞 2
+2 𝜕𝜌
+2
+=𝑞
++𝜌
++ 𝜌 q · ∇ 𝑞 + 𝑞 ∇ · (𝜌 q) + 2 q · ∇ · 𝑝 I − 𝜏
+𝜕𝑡
+𝜕𝑡
+[︁
+(︁
+)︁]︁
+(︀ 2 )︀
+𝜕 (𝜌 𝑞 2 )
++ ∇ · 𝜌𝑞 q + 2q · ∇ · 𝑝I − 𝜏
+=
+(2.28)
+𝜕𝑡
+{︂
+
+where the relations
+𝑞2 = q · q ,
+
+𝜕𝜌
+𝜕q
+𝜕 (𝜌 q)
+=q
++𝜌
+𝜕𝑡
+𝜕𝑡
+𝜕𝑡
+
+41
+
+(2.29)
+
+and the following vector/tensor identities are used,
+∇ · (𝑎 ⊗ 𝑏) ≡ (∇𝑎) · 𝑏 + (∇ · 𝑏) 𝑎
+
+(2.30)
+
+∇ (𝑎 · 𝑏) ≡ (∇𝑎)𝑇 · 𝑏 + (∇𝑏)𝑇 · 𝑎 ≡ 𝑏 · (∇𝑎) + 𝑎 · (∇𝑏)
+
+(2.31)
+
+or ∇ (𝑎 · 𝑏) ≡ (𝑏 · ∇) 𝑎 + 𝑏 × (∇ × 𝑎) + (𝑎 · ∇) 𝑏 + 𝑎 × (∇ × 𝑏)
+
+(2.32)
+
+(𝑎 · ∇) 𝑏 ≡ (∇𝑏) · 𝑎
+
+(2.33)
+
+The notation × is the cross product of vectors and ∇ × ( ) is the curl of a vector.
+Note that (2.31) and (2.32) are equivalent.
+The equation (2.28) governs the kinetic energy and is restated as follows.
+[︁
+(︁
+)︁]︁
+(︀
+)︀
+𝜕 (𝜌 𝑞 2 )
++ ∇ · 𝜌 𝑞 2 q + 2q · ∇ · 𝑝 I − 𝜏 = 0
+𝜕𝑡
+
+(kinetic energy)
+
+(2.34)
+
+Note that the differential equations (2.26), (2.27) and (2.34) also apply to the
+EIF except that the deviatoric stress tensor 𝜏 i vanishes. Subtracting the viscous
+equation from the EIF equation and integrating over a DDCA element result in the
+following form,
+
+ˆˆ
+DDCA
+
+[(Residual)EIF − (Residual)] d𝐴 = 0
+
+(2.35)
+
+This general form is the point of departure for deriving the IBL formulation and
+is applied separately to the mass, momentum and kinetic energy equations in the
+following sections.
+
+2.5.1
+
+Mass
+
+The goal is to derive a governing equation in terms of integral defect quantities.
+First, the form (2.35) is applied to the mass equation (2.26). Then, the integral
+42
+
+defect relations and definitions presented in Section 2.2 and 2.4 are used, as well as
+the thin layer approximations in Section 2.3. This procedure is carried out as follows,
+ˆˆ
+
+𝜕 (𝜌 i − 𝜌)
++ ∇ · (𝜌 i q i − 𝜌 q) d𝐴
+𝜕𝑡
+DDCA
+{︂ [︂ˆ 𝑛e
+]︂}︂
+ˆ
+𝜕
+=
+(𝜌 i − 𝜌) d𝑛
+dℓ
+𝜕𝑡 𝑛w
+̃︂
+DDCA
+{︂
+]︂
+}︂
+[︂ˆ 𝑛e
+ˆ
+̃︀
++
+(𝜌 i q i − 𝜌 q) d𝑛 − (𝜌 i q i − 𝜌 q)w · n̂w dℓ
+∇·
+
+0=
+
+ˆ
+
+̃︂
+DDCA
+
+=
+̃︂
+DDCA
+
+{︂
+
+𝑛w
+
+𝜕𝑚 ̃︀
++ ∇ · M − (𝜌 i q i − 𝜌 q)w · n̂w
+𝜕𝑡
+
+}︂
+dℓ
+
+(2.36)
+
+where the definitions (2.20) of integral defects (𝑚, M) are used. Note that the partial
+differentiation with respect to time (i.e. 𝜕(·)/𝜕𝑡) is interchanged with the integral
+along 𝑛 using the Leibniz rule of integration assuming that 𝜕(𝑛e − 𝑛w )/𝜕𝑡 = 0. The
+̃︂ implies that
+fact that (2.36) holds for any arbitrary DDCA
+𝜕𝑚 ̃︀
++ ∇ · M − (𝜌 i q i − 𝜌 q)w · n̂w = 0
+𝜕𝑡
+
+(2.37)
+
+In general, a nonzero flux (𝜌 q)w can be used to model blowing and suction of the
+viscous flow through the wall. However, in the scope of this thesis, a no-slip wall
+boundary condition qw = 0 is assumed for the viscous flow. Then, the equation
+(2.37) simplifies to
+𝜕𝑚 ̃︀
++ ∇ · M − (𝜌 i q i )w · n̂w = 0
+𝜕𝑡
+
+(2.38)
+
+In VII problems, the equation (2.38) is called a wall transpiration condition and
+sets the mass flux at the wall or wake cut for the inviscid flow (i.e. EIF) equations,
+typically as a modification to the flow-tangency boundary condition. Note that 𝑚 and
+𝜕𝑚/𝜕𝑡 may be omitted even for compressible unsteady flows since their magnitudes
+43
+
+are likely to be negligible [1].
+
+2.5.2
+
+Momentum
+
+As with the mass equation, a similar derivation is performed for momentum. Applying the form (2.35) to the momentum equation (2.27) gives
+ˆˆ
+
+[︂
+
+0=
+DDCA
+
+(︁
+)︁]︂
+𝜕 (𝜌 i q i − 𝜌 q)
++ ∇ · (𝜌 i q i ⊗ q i − 𝜌 q ⊗ q) + ∇ · (𝑝 i − 𝑝) I + 𝜏
+d𝐴
+𝜕𝑡
+(2.39)
+
+The three terms on the right-hand side of (2.39) are transformed separately as follows.
+The first term becomes
+ˆˆ
+
+]︂
+[︂ˆ 𝑛e
+𝜕
+(𝜌 i q i − 𝜌 q) d𝑛 dℓ
+̃︂ 𝜕𝑡
+DDCA
+𝑛w
+ˆ
+𝜕M
+=
+dℓ
+𝜕𝑡
+̃︂
+DDCA
+ˆ
+𝜕 (p + 𝑚 q i )
+dℓ
+=
+𝜕𝑡
+̃︂
+DDCA
+(︂
+)︂
+ˆ
+𝜕p 𝜕𝑚
+𝜕q i
+=
++
+qi + 𝑚
+dℓ
+𝜕𝑡
+𝜕𝑡
+𝜕𝑡
+̃︂
+DDCA
+
+𝜕 (𝜌 i q i − 𝜌 q)
+d𝐴 =
+𝜕𝑡
+DDCA
+
+ˆ
+
+where the approximation (2.21) is used.
+
+44
+
+(2.40)
+
+The second term on the right-hand side of (2.39) becomes
+ˆˆ
+DDCA
+
+ˆˆ
+
+∇ · (𝜌 i q i ⊗ q i − 𝜌 q ⊗ q) d𝐴
+
+=
+ˆ
+
+∇ · [𝜌 (q i − q) ⊗ q + q i ⊗ (𝜌 i q i − 𝜌 q)] d𝐴
+{︂[︂ˆ 𝑛e
+]︂
+}︂
+̃︀
+∇·
+𝜌 (q i − q) ⊗ q d𝑛 − [𝜌 (q i − q) ⊗ q]w · n̂w dℓ
+
+DDCA
+
+=
+̃︂
+DDCA
+
+ˆ
+
+𝑛w
+
+{︂[︂ˆ 𝑛e
+
++
+ˆ
+
+(2.41)
+
+̃︂
+DDCA
+
+̃︀ ·
+∇
+
+𝑛w
+
+[︂
+
+]︂
+
+}︂
+
+q i ⊗ (𝜌 i q i − 𝜌 q) d𝑛 − [q i ⊗ (𝜌 i q i − 𝜌 q)]w · n̂w dℓ
+
+)︂]︂
+𝜕𝑚
+̃︀ · M
+̃︀ · P + ∇
+̃︀ · (q i ⊗ M) − q i
+dℓ
++∇
+∇
+=
+𝜕𝑡
+̃︂
+DDCA
+[︂
+)︂]︂
+(︂
+ˆ
+(︁
+)︁
+(︁
+)︁
+𝜕𝑚
+̃︀ · P + ∇q
+̃︀ i · M + ∇
+̃︀ · M q i − q i
+̃︀ · M
+∇
+=
++∇
+dℓ
+𝜕𝑡
+̃︂
+DDCA
+[︂
+]︂
+ˆ
+(︁
+)︁
+𝜕𝑚
+̃︀
+̃︀
+∇ · P + ∇q i · M −
+=
+q i dℓ
+𝜕𝑡
+̃︂
+DDCA
+(︂
+
+(2.42)
+
+where the definitions (2.20) of integral defects (𝑚, M, P) are used, and the thin shear
+layer result (2.19) is applied (i.e. q i (𝑛) ≈ q iw = q i ). The identity (2.30) and the
+following relation are used,
+(𝑎 ⊗ 𝑏) · 𝑐 ≡ 𝑎 (𝑏 · 𝑐)
+
+(2.43)
+
+The no-slip wall condition (qw = 0) nullifies the following flux,
+[𝜌 (q i − q) ⊗ q]w · n̂w = [𝜌 (q i − q)]w (qw · n̂w ) = 0
+
+(2.44)
+
+Also, the mass defect equation (2.37) gives the following substitution,
+(︂
+[q i ⊗ (𝜌 i q i − 𝜌 q)]w · n̂w = q i [(𝜌 i q i − 𝜌 q)w · n̂w ] = q i
+45
+
+𝜕𝑚 ̃︀
++∇·M
+𝜕𝑡
+
+)︂
+(2.45)
+
+The third right-hand-side term of (2.39) becomes
+ˆˆ
+
+{︁
+[︁
+]︁}︁
+∇ · (𝑝 i − 𝑝) I + 𝜏
+d𝐴
+DDCA
+{︂
+]︂ [︁
+}︂ ˆ 𝑛e
+}︂
+{︂[︂ˆ 𝑛e
+ˆ
+]︁
+𝜕𝜏
+̃︀
+=
+d𝑛 dℓ
+∇·
+(𝑝 i − 𝑝) I d𝑛 − (𝑝 i − 𝑝) I · n̂w +
+w
+̃︂
+𝑛w 𝜕𝑛
+DDCA
+𝑛w
+ˆ
+[︁
+)︀ ]︁
+(︀
+̃︀ · (Π I) − (𝑝 i − 𝑝)w n̂w + 𝜏 e − 𝜏 w · n̂ dℓ
+=
+∇
+̃︂
+DDCA
+ˆ
+(︁
+)︁
+̃︀
+=
+∇ Π − (𝑝 i − 𝑝)w n̂w − 𝜏 w dℓ
+(2.46)
+̃︂
+DDCA
+
+where the definition (2.20) of Π and the approximation (2.18) are used. The viscous
+stress tensor vanishes at the edge of the viscous layer (i.e. 𝜏 e = 0). The viscous
+traction on the wall is defined and approximated as
+𝜏 w ≡ 𝜏 w · n̂w ≈ 𝜏 w · n̂
+
+(2.47)
+
+where the approximation n̂w ≈ n̂ stems from the thin shear layer assumption.
+Substituting (2.40), (2.42) and (2.46) into (2.39) gives
+ˆˆ
+
+(︁
+)︁]︂
+𝜕 (𝜌 i q i − 𝜌 q)
+0=
++ ∇ · (𝜌 i q i ⊗ q i − 𝜌 q ⊗ q) + ∇ · (𝑝 i − 𝑝) I + 𝜏
+d𝐴
+𝜕𝑡
+DDCA
+]︂
+[︂
+ˆ
+)︁
+(︁
+𝜕p
+𝜕q i ̃︀
+̃︀
+̃︀
++𝑚
++ ∇ · P + ∇q i · M + ∇ Π − (𝑝 i − 𝑝)w n̂w − 𝜏 w dℓ
+=
+𝜕𝑡
+𝜕𝑡
+̃︂
+DDCA
+[︂
+
+(2.48)
+̃︂ it follows that
+Since (2.48) holds for any DDCA,
+(︁
+)︁
+𝜕p
+𝜕q i ̃︀
+̃︀ i · M + ∇
+̃︀ Π − (𝑝 i − 𝑝)w n̂w − 𝜏 w = 0
++𝑚
++ ∇ · P + ∇q
+𝜕𝑡
+𝜕𝑡
+
+46
+
+(2.49)
+
+Using the first-order thin shear layer approximations that 𝑝 i − 𝑝 ≈ 0 and Π ≈
+0, the equation (2.49) then simplifies to the following integral defect equation for
+momentum,
+(︁
+)︁
+𝜕p
+𝜕q i ̃︀
+̃︀
++𝑚
++ ∇ · P + ∇q i · M − 𝜏 w = 0
+𝜕𝑡
+𝜕𝑡
+
+(2.50)
+
+Note that (2.50) is a vector equation, but formally has only a component tangent
+̃︂ as a result of the thin shear layer approximation [13, 1].
+to the DDCA
+
+2.5.3
+
+Kinetic Energy
+
+Similarly, for the kinetic energy equation (2.34), the form (2.35) is applied again,
+ˆˆ
+
+[︂
+
+0=
+DDCA
+
+ˆˆ
++
+
+]︂
+(︀ 2
+)︀
+𝜕 (𝜌 i 𝑞 2i − 𝜌 𝑞 2 )
+2
++ ∇ · 𝜌 i 𝑞 i q i − 𝜌 𝑞 q d𝐴
+𝜕𝑡
+)︀]︀
+[︀
+(︀
+2 (q i · ∇𝑝 i − q · ∇𝑝) + 2q · ∇ · 𝜏 d𝐴
+
+(2.51)
+
+DDCA
+
+The terms on the right-hand side of (2.51) are transformed separately as follows.
+The first term becomes
+ˆˆ
+
+[︂ˆ 𝑛e
+]︂
+(︀ 2
+)︀
+𝜕
+2
+𝜌 i 𝑞 i − 𝜌 𝑞 d𝑛 dℓ
+̃︂ 𝜕𝑡
+DDCA
+𝑛w
+}︂
+{︂ˆ 𝑛e
+ˆ
+[︀ (︀ 2
+)︀
+]︀
+𝜕
+2
+2
+𝜌 𝑞 i − 𝑞 + (𝜌 i − 𝜌) 𝑞 i d𝑛 dℓ
+=
+̃︂ 𝜕𝑡
+𝑛w
+DDCA
+ˆ
+𝜕 (𝑘 + 𝑚 𝑞 2i )
+=
+dℓ
+(2.52)
+𝜕𝑡
+̃︂
+DDCA
+
+𝜕 (𝜌 i 𝑞 2i − 𝜌 𝑞 2 )
+d𝐴 =
+𝜕𝑡
+DDCA
+
+ˆ
+
+where the definitions (2.20) of integral defects (𝑘, 𝑚) are used.
+
+47
+
+The second term on the right-hand side of (2.51) becomes
+ˆˆ
+[︀
+DDCA
+
+ˆˆ
+
+(︀
+)︀]︀
+∇ · 𝜌 i 𝑞 2i q i − 𝜌 𝑞 2 q d𝐴
+
+[︀
+]︀
+∇ · 𝜌 (𝑞 2i − 𝑞 2 ) q + 𝑞 2i (𝜌 i q i − 𝜌 q) d𝐴
+DDCA
+{︂
+[︂ˆ 𝑛e
+]︂
+}︂
+ˆ
+[︀
+]︀
+2
+2
+2
+2
+̃︀
+=
+∇·
+𝜌 (𝑞 i − 𝑞 ) q d𝑛 − 𝜌 (𝑞 i − 𝑞 ) q w · n̂w dℓ
+=
+
+𝑛w
+
+̃︂
+DDCA
+
+ˆ
+
++
+ˆ
+
+̃︂
+DDCA
+
+[︂
+
+}︂
+]︂
+{︂
+[︂ˆ 𝑛e
+]︀
+[︀ 2
+2
+̃︀
+𝑞 i (𝜌 i q i − 𝜌 q) d𝑛 − 𝑞 i (𝜌 i q i − 𝜌 q) w · n̂w dℓ
+∇·
+𝑛w
+
+(︂
+
+𝜕𝑚 ̃︀
++∇·M
+=
+𝜕𝑡
+̃︂
+DDCA
+[︂
+]︂
+ˆ
+(︀ 2 )︀
+𝜕𝑚
+2
+̃︀ · K + M · ∇
+̃︀ 𝑞 i − 𝑞 i
+∇
+=
+dℓ
+𝜕𝑡
+̃︂
+DDCA
+(︀
+)︀
+̃︀ · K + ∇
+̃︀ · 𝑞 2i M − 𝑞 2i
+∇
+
+)︂]︂
+dℓ
+(2.53)
+
+where the definitions (2.20) of integral defects (K, M) are used. The no-slip wall
+condition (qw = 0) results in the following relation,
+[︀
+]︀
+[︀
+]︀
+𝜌 (𝑞 2i − 𝑞 2 ) q w · n̂w = 𝜌(𝑞 2i − 𝑞 2 ) w (qw · n̂w ) = 0
+
+(2.54)
+
+and the mass defect equation (2.37) gives the following substitution,
+[︀ 2
+]︀
+𝑞 i (𝜌 i q i − 𝜌 q) w · n̂w = 𝑞 2i [(𝜌 i q i − 𝜌 q)w · n̂w ] = 𝑞 2i
+
+(︂
+
+𝜕𝑚 ̃︀
++∇·M
+𝜕𝑡
+
+)︂
+(2.55)
+
+The following identity is also applied,
+(︀
+)︀
+(︀ )︀
+̃︀ · 𝑞 2 M ≡ 𝑞 2 ∇
+̃︀ · M + M · ∇
+̃︀ 𝑞 2
+∇
+i
+i
+i
+
+48
+
+(2.56)
+
+The rest of terms in (2.51) becomes
+ˆˆ
+[︀
+(︀
+)︀]︀
+2 (q i · ∇𝑝 i − q · ∇𝑝) + 2q · ∇ · 𝜏 d𝐴
+DDCA
+}︂
+{︂ ˆ 𝑛e
+ˆ
+[(q i − q) · ∇𝑝 i + q · ∇(𝑝 i − 𝑝)] d𝑛 dℓ
+=
+2
+̃︂
+𝑛w
+DDCA
+ˆˆ
+[︀
+(︀
+)︀
+(︀
+)︀]︀
+2 ∇ · 𝜏 · q − tr 𝜏 · (∇q) d𝐴
++
+DDCA
+[︂
+)︂ ]︂
+ˆ
+ˆ 𝑛e (︂
+(︀
+)︀
+𝜕q
+̃︀
+=
+2 Q · ∇𝑝 i − 𝜏 · q w · n̂w −
+𝜏·
+d𝑛 dℓ
+𝜕𝑛
+̃︂
+DDCA
+𝑛w
+ˆ
+[︁
+]︁
+̃︀ i − 𝒟 dℓ
+=
+2 Q · ∇𝑝
+
+(2.57)
+
+̃︂
+DDCA
+
+where definition (2.20) of Q and the expression (2.23) of 𝒟 are applied. The thin
+̃︀ i is constant
+shear layer approximation implies that ∇(𝑝 i − 𝑝) ≈ 0 and ∇𝑝 i ≈ ∇𝑝
+across the thickness of the viscous layer. The following identity
+[︂
+(︂ )︂]︂
+)︁
+(︁
+)︁
+(︁
+𝑇
+𝑎· ∇· 𝑏
+≡ ∇ · 𝑏 · 𝑎 − tr 𝑏 · (∇𝑎)
+
+(2.58)
+
+𝑇
+
+and the symmetry of the viscous stress tensor 𝜏 (i.e. 𝜏 = 𝜏 ) are used. The trace
+(︀
+)︀
+term tr 𝜏 · (∇q) is substituted using (2.25). The divergence theorem is applied to
+transform the following term,
+ˆˆ
+DDCA
+
+∑︁ ˆ 𝑛e (︀
+)︀]︀
+)︀
+[︀
+(︀
+∇ · 𝜏 · q d𝐴 =
+𝜏 · q · t̂ d𝑛
+̃︂
+𝜕 DDCA
+
+ˆ
+
+𝑛w
+
+[︀(︀
+
++
+̃︂
+DDCA
+
+=0
+
+)︀
+(︀
+)︀
+]︀
+𝜏 · q e · n̂e − 𝜏 · q w · n̂w dℓ
+(2.59)
+
+(︀
+)︀
+where 𝜏 · q · t̂ ≈ 0 according to the thin shear layer assumption (𝜏 · q only has
+49
+
+a component along n̂s (≈ n̂) and is thus approximately orthogonal to t̂). The edge
+(︀
+)︀
+(︀
+)︀
+quantity 𝜏 · q e · n̂e is dropped since 𝜏 e = 0. The wall term 𝜏 · q w · n̂w vanishes
+given the no-slip wall boundary condition (qw = 0).
+Substituting (2.52), (2.53) and (2.57) into (2.51) gives
+ˆˆ
+
+[︂
+
+0=
+DDCA
+
+ˆˆ
++
+ˆ
+
+]︂
+)︀
+(︀ 2
+𝜕 (𝜌 i 𝑞 2i − 𝜌 𝑞 2 )
+2
++ ∇ · 𝜌 i 𝑞 i q i − 𝜌 𝑞 q d𝐴
+𝜕𝑡
+[︀
+(︀
+)︀]︀
+2 (q i · ∇𝑝 i − q · ∇𝑝) + 2q · ∇ · 𝜏 d𝐴
+
+DDCA
+
+]︂
+(︀ 2 )︀
+𝜕𝑚
+𝜕 (𝑘 + 𝑚 𝑞 2i ) ̃︀
+2
+̃︀ 𝑞 − 𝑞
+̃︀ i − 2 𝒟 dℓ
++∇·K+M·∇
++ 2 Q · ∇𝑝
+=
+i
+i
+𝜕𝑡
+𝜕𝑡
+̃︂
+DDCA
+[︂
+]︂
+ˆ
+(︀ 2 )︀
+𝜕𝑘
+𝜕 (𝑞 2i ) ̃︀
+̃︀
+=
++𝑚
++ ∇ · K + D · ∇ 𝑞 i − 2 𝒟 dℓ
+(2.60)
+𝜕𝑡
+𝜕𝑡
+̃︂
+DDCA
+[︂
+
+where the terms involving M and Q are combined into D using (2.22). The following
+relation is derived from the momentum equation of the EIF,
+(︀ )︀
+1
+∇𝑝 i = − 𝜌 i ∇ 𝑞 2i
+2
+
+(2.61)
+
+The gradient term is further expanded as
+1 (︀ 2 )︀ 1
+∇ 𝑞 i = ∇ (q i · q i ) = q i · (∇q i ) = (∇q i ) · q i = (q i · ∇) q i
+2
+2
+
+(2.62)
+
+using the identities (2.31) and (2.32), as well as the irrotationality of the EIF (i.e.
+∇ × q = 0).
+̃︂ it follows that
+Since (2.60) holds for any DDCA,
+(︀ )︀
+𝜕𝑘
+𝜕 (𝑞 2i ) ̃︀
+̃︀ 𝑞 2i − 2 𝒟 = 0
++𝑚
++∇·K+D·∇
+𝜕𝑡
+𝜕𝑡
+
+50
+
+(2.63)
+
+which is the integral defect equation for kinetic energy.
+Formulated in terms of integral defects, the momentum and kinetic energy equations (2.50) and (2.63) constitute the unsteady 2D IBL equations in the differential
+form. They also apply to compressible flows under the thin shear layer assumptions.
+To compose a well-defined problem, two variables {𝛿, 𝒜} are chosen as the primary
+unknowns, which are boundary parameters to be defined in Section 2.6. The IBL
+equations will also be closed with profile definitions and dissipation relations presented therein.
+
+2.6
+
+Profile Construction and Equation Closure
+
+This section introduces the viscous closure models, including profile construction and
+dissipation relations that are necessary to complete the IBL formulation.
+n
+qi
+
+Uq1
+Wq2
+
+∆ψ
+q
+s1
+s2
+
+Figure 2-4: 3D streamwise and crossflow velocity profiles (figure courtesy of Drela
+[1], reproduced with permission)
+Figure 2-4 illustrates the velocity profiles inside the viscous layer in a 3D configuration, where ŝ1 , ŝ2 are the local streamwise and crossflow (orthonormal) basis
+51
+
+vectors and form a local Cartesian basis together with the normal-to-stream basis
+vector n̂s ≡ ŝ1 × ŝ2 . As mentioned in Section 2.3, the approximation n̂s ≈ n̂ holds
+for thin shear layers. The crossflow profile (involving ŝ2 , ∆Ψ, 𝑊 q2 ) is dropped in the
+2D formulation.
+By the thin shear layer approximation, the viscous flow velocity q inside the
+̃︀ By definition the “in-plane”
+viscous layer is primarily comprised of the component q.
+̃︀ is tangent to the 𝑛 = 0 reference curve, which has been selected to coincide
+velocity q
+with the wall and the wake centerline. Hence,
+̃︀
+q(𝑛) ≈ q(𝑛),
+
+̃︀
+q(𝑛)
+≡ 𝑈 (𝑛) q1 ,
+
+q1 ≡ 𝑞e ŝ1 = 𝑞 i ŝ1
+
+(2.64)
+
+where 𝑈 (𝑛) is the non-dimensional normalized streamwise velocity profile that will
+be constructed later. The q1 factor gives the appropriate magnitude and vector
+direction.
+Note that the normal velocity component q · n̂ has been excluded in the approximation of (2.64). This is justified by the fact that the normal component (i.e. along
+n̂) of the momentum equation (2.50) is dropped in the first-order boundary layer
+theory which is employed here. In consequence, the component q · n̂ is implicitly
+determined by q · ŝ1 together with the mass equation (2.26). Nevertheless, in the
+interest of minimizing the errors associated with the boundary layer approximation,
+it is desirable to orient the q1 vector such that typical magnitudes of q · n̂ within the
+shear layer are minimized. This is accomplished by aligning q1 with the EIF velocity
+q i as sketched in the left part of Figure 2-5.
+q 1 ≡ q iw
+
+52
+
+(2.65)
+
+A possible difficulty with the particular q1 definition (2.65) is that it may fail in
+the vicinity of a stagnation point, where q i can be nearly parallel to n̂ so that the
+assumed profile velocities are nearly normal to the wall. A more robust definition is
+to define q1 via a projection
+q1 ≡ q iw − (n̂ · q iw ) n̂
+
+(2.66)
+
+which ensures that the profile velocities are tangent to the 𝑛 = 0 curve and thus the
+wall, as indicated in the right part of Figure 2-5. This definition is currently adopted
+in the numerical implementation of this thesis.
+n
+
+n
+
+n
+
+n
+qi
+
+q
+
+q1
+
+q
+
+nw
+
+q1
+
+n= 0
+
+Profile basis aligned with EIF
+
+qi
+
+nw
+
+n= 0
+
+Profile basis specified
+
+Figure 2-5: Profile basis vector orientation options (very large wall-normal velocity
+shown for emphasis) (figure courtesy of Drela [1], reproduced with permission)
+The non-dimensional normalized density and viscosity profiles, 𝑅(𝑛) and 𝑉 (𝑛),
+are also defined,
+𝑅(𝑛) ≡
+
+𝜌(𝑛)
+,
+𝜌e
+
+𝑉 (𝑛) ≡
+
+𝜇(𝑛)
+𝜇e
+
+(2.67)
+
+The assumption of incompressible viscous flow implies that 𝑅(𝑛) = 1 and 𝑉 (𝑛) = 1
+inside the viscous layer.
+Substituting the velocity profile q(𝑛) in (2.64), and the density and viscosity
+profiles, i.e. 𝑅(𝑛) and 𝑉 (𝑛) respectively, into the integral defect definitions (2.20)
+53
+
+gives the following expressions for the integral defects,
+𝑚 = 𝜌 i 𝛿𝜌
+Q = 𝛿1′ q1
+M = 𝜌 i 𝛿1* q1
+p = M − 𝑚 q1
+
+(2.68)
+
+P = 𝜌 i 𝜃11 q1 ⊗ q1
+𝑘 = 𝜌 i 𝑞 2i 𝜃0*
+K = 𝜌 i 𝑞 2i 𝜃1* q1
+in terms of the following definitions of various thickness integrals,
+𝛿1*
+𝜃11
+𝜃1*
+
+)︂
+ˆ 1 (︂
+≡ 𝛿
+1 − 𝑅𝑈 d𝜂
+0
+)︂
+ˆ 1 (︂
+≡ 𝛿
+1 − 𝑈 𝑅𝑈 d𝜂
+0
+)︂
+ˆ 1 (︂
+2
+≡ 𝛿
+1 − 𝑈 𝑅𝑈 d𝜂
+
+𝛿1′
+𝛿𝜌
+𝜃0*
+
+0
+
+)︂
+ˆ 1 (︂
+≡ 𝛿
+1 − 𝑈 d𝜂
+0
+)︂
+ˆ 1 (︂
+≡ 𝛿
+1 − 𝑅 d𝜂
+0
+)︂
+ˆ 1 (︂
+2
+≡ 𝛿
+1 − 𝑈 𝑅 d𝜂
+
+(2.69)
+
+0
+
+Here, 𝛿 is defined as the viscous layer thickness and chosen to be one of the two
+primary unknowns of the IBL equations, and 𝜂 denotes the normalized thickness
+coordinate defined as
+⎧
+⎨(𝑛 − 𝑛 )/𝐿, 𝐿 ≡ 𝛿
+(wall boundary layer)
+w
+𝜂≡
+⎩𝑛/𝐿
+𝐿 ≡ 𝛿/2 (wake layer)
+
+(2.70)
+
+where 𝐿 is a reference profile thickness scale. In the subsequent discussion of profile
+
+54
+
+closures, 𝜂 is assumed to be in [0, 1]. The wake profile is assumed to be symmetric
+about its centerline, so that the half corresponding to 𝜂 ∈ [−1, 0] is considered a
+
+duplicate of the half of 𝜂 ∈ [0, 1]. Note that 𝛿1* , 𝜃11 and 𝜃1* are the conventional mass,
+momentum and kinetic energy defect thicknesses respectively [7].
+
+The skin friction and dissipation coefficients, i.e. 𝐶𝑓1 and 𝐶𝒟 , are defined via the
+following expressions,
+𝜏w =
+
+1
+𝜌 i 𝑞 i 𝐶𝑓1 q1 ,
+2
+
+𝒟 = 𝜌 i 𝑞 3i 𝐶𝒟
+
+(2.71)
+
+and non-dimensionalize the wall shear stress vector 𝜏 w and the dissipation integral 𝒟.
+Closures of 𝐶𝑓1 and 𝐶𝒟 are developed later for laminar and turbulent flows separately.
+Note that 𝐶𝑓1 is generally nonzero for wall boundary layers but vanishes in the wake.
+The numerical quadrature rule for evaluating integrals such as the defect thicknesses is described in greater detail in Appendix A.
+
+2.6.1
+
+Laminar Closure
+
+The closure for laminar flows is described in this section. The assumed laminar
+velocity profile 𝑈 is defined as follows,
+⎧
+⎨𝑈 (𝒜 − 2)2 𝑓 (𝜂) + 𝒜 𝑓 (𝜂) + 𝑓 (𝜂) (wall)
+𝑘
+𝑚
+1𝑚
+𝑚 1
+0
+𝑈 (𝜂; 𝒜) ≡
+(2.72)
+⎩0.125 𝒜(1
+¯ − 𝑓0 (𝜂)) + 𝑓0 (𝜂)
+(wake)
+⎧
+⎪
+⎨𝒜,
+𝒜≥0
+𝒜
+𝒜
+¯
+𝑈𝑘 = 0.2,
+𝒜𝑚 = 𝒜𝑐 tanh( ) = 7 tanh( ),
+𝒜=
+(2.73)
+𝒜
+⎪
+𝒜𝑐
+7
+⎩
+, 𝒜<0
+1−𝒜
+
+55
+
+based on the polynomials {𝑓0 , 𝑓1 , 𝑓1𝑚 } (plotted in Figure 2-6),
+𝑓0 (𝜂) = 6𝜂 2 − 8𝜂 3 + 3𝜂 4
+(2.74)
+
+𝑓1 (𝜂) = 𝜂 − 3𝜂 2 + 3𝜂 3 − 𝜂 4
+𝑓1𝑚 (𝜂) = −2𝜂 2 + 7𝜂 3 − 9𝜂 4 + 5𝜂 5 − 𝜂 6
+
+The laminar wake is rare in practical aerodynamic flows and thus its inclusion here
+1
+
+1
+
+0.9
+
+0.9
+
+0.8
+
+0.8
+
+0.7
+
+0.7
+
+0.6
+
+0.6
+
+0.5
+
+0.5
+
+0.4
+
+0.4
+
+0.3
+
+0.3
+
+0.2
+
+0.2
+
+0.1
+
+0.1
+
+0
+0
+
+0.5
+
+0
+-0.1
+
+1
+
+0
+
+0.1
+
+0.2
+
+Figure 2-6: Assumed polynomials for laminar profile
+is only for completeness. The parameter 𝒜 determines the shape of the velocity
+profile, and is chosen as one of the two primary unknowns of the IBL equations. 𝒜𝑚
+
+and 𝒜¯ are regularized versions of the profile shape parameter. The velocity profile
+𝑈 (𝜂) is used in computing the thicknesses defined in (2.69).
+
+56
+
+The shear stress vector (2.17) profile inside the viscous layer is written as
+𝜏 (𝑛) = 𝜌 i 𝑞 i 𝑆(𝑛) q1
+
+(2.75)
+
+where 𝑆(𝑛) is the non-dimensional normalized streamwise shear stress profile that is
+obtained from the velocity and viscosity profiles (𝑈 and 𝑉 ),
+𝑆(𝜂; 𝒜) ≡
+
+𝜏1
+1
+d(q1 · ŝ1 )
+1
+d𝑈
+≈
+𝜇
+=
+𝑉
+,
+2
+2
+𝜌i 𝑞i
+𝜌i 𝑞i
+d𝑛
+𝑅𝑒𝐿 d𝜂
+
+𝑅𝑒𝐿 ≡
+
+𝜌i 𝑞i 𝐿
+𝜇e
+
+(2.76)
+
+Note that 𝑆 approaches infinity near the stagnation point (𝑞 i = 0), but 𝑞 i 𝑆 remains finite throughout the viscous layer. Hence, to sidestep that singularity, the
+actual computation treats 𝑞 i 𝑆 as a single entity. Only the following non-dimensional
+quantity is computed in the numerical implementation,
+⎧
+d𝑈
+⎪
+⎪
+⎨𝑉 d𝜂
+𝑅𝑒𝛿 𝑆(𝜂) =
+⎪
+⎪
+⎩2𝑉 d𝑈
+d𝜂
+
+(wall)
+,
+(wake)
+
+𝑅𝑒𝛿 ≡
+
+𝜌i 𝑞i 𝛿
+𝜇i
+
+(2.77)
+
+Then, following from the definitions in (2.71) and the expression (2.23), the skin
+friction and dissipation coefficients are
+⃒
+𝜌 i 𝑞 i 𝑆(0) q1 · ŝ1
+2
+d𝑈 ⃒⃒
+𝐶𝑓1 =
+=
+= 2𝑆(0) =
+𝑉 (0)
+1
+1
+𝑅𝑒𝐿
+d𝜂 ⃒𝜂=0
+𝜌 i 𝑞 i q1 · ŝ1
+𝜌 i 𝑞 i q1 · ŝ1
+2
+2
+ˆ
+ˆ
+d(𝑈 q1 )
+dq
+(𝜌 i 𝑞 i 𝑆 q1 ) ·
+d𝜂 ˆ
+𝜏·
+d𝑛
+𝒟
+d𝑈
+d𝜂
+d𝑛
+𝐶𝒟 =
+=
+=
+= 𝑆
+d𝜂
+3
+3
+3
+𝜌i 𝑞i
+𝜌i 𝑞i
+𝜌i 𝑞i
+d𝜂
+𝜏 w · ŝ1
+
+(2.78)
+
+which depend on the non-dimensional profiles (𝑈, 𝑉, 𝑆). To avoid the aforementioned
+
+57
+
+singularity at the stagnation point (𝑞 i = 0), the following quantities are computed
+in the numerical implementation instead,
+
+𝑅𝑒𝛿 𝐶𝑓1 =
+
+⎧
+⎪
+⎪
+⎨2 𝑅𝑒𝛿 𝑆(0), (wall)
+⎪
+⎪
+⎩0,
+
+⎧ˆ 1
+d𝑈
+⎪
+⎪
+𝑅𝑒𝛿 𝑆
+d𝜂, (wall)
+⎪
+⎨
+d𝜂
+0
+(2.79)
+𝑅𝑒𝛿 𝐶𝒟 =
+ˆ 1
+⎪
+d𝑈
+⎪
+⎪
+⎩2
+d𝜂, (wake)
+𝑅𝑒𝛿 𝑆
+d𝜂
+0
+
+,
+
+(wake)
+
+Note that the factor of 2 in the wake expression of 𝑅𝑒𝛿 𝐶𝒟 corresponds to doubling
+the value of a half wake layer.
+
+2.6.2
+
+Turbulent Closure
+
+The closure for turbulent flows is formulated separately in this section.
+Turbulent Velocity Profile
+The turbulent velocity profile in this thesis grows out of Bradshaw’s 3D extension
+[5] of the composite 2D turbulent profile of Coles [27], and is reduced to 2D here. It
+is first assumed that the boundary layer velocity profile 𝑈 (𝜂) to be defined satisfies
+that
+(︂
+
+𝜕𝑈
+𝜕𝜂
+
+)︂
+w
+
+= 𝒜
+
+(2.80)
+
+The overall velocity profile 𝑈 is constructed as a sum of the inner-layer (closer to the
+wall) and outer-layer parts, 𝑈 i and 𝑈o respectively,
+𝑈 (𝜂; 𝛿, 𝒜, 𝑞 i ) = 𝑈 i + 𝑈o
+
+58
+
+(2.81)
+
+where the inner-layer and the outer-layer profiles are defined as follows
+⎧
+⎪
+⎨ 𝒜 𝑢+ (𝜂; 𝑦+ ) (wall)
+𝑈 i (𝜂) ≡ 𝛿 +
+,
+⎪
+⎩𝑎 i 𝒜¯
+(wake)
+𝑎 i = 0.125,
+
+𝑄 o = 1 − 𝑈 ie ,
+
+𝑈o (𝜂) ≡ 𝑄o 𝑔o (𝜂)
+
+(2.82)
+
+𝑈 ie = 𝑈 i |𝜂=𝜂e =1
+
+(2.83)
+
+The regularized shape parameter 𝒜¯ is defined in (2.73). The outer-layer profile is
+assumed to take a polynomial form,
+(︀
+)︀
+𝑔o (𝜂; 𝑏) = 𝑏1 𝜂 + 𝑏2 𝜂 2 + 𝑏3 𝜂 3 𝜂 𝑏
+𝑏1 = 3
+
+(𝑏 + 2)(𝑏 + 3)
+,
+(𝑏 + 7)
+
+𝑏2 = −5
+
+(𝑏 + 1)(𝑏 + 3)
+,
+(𝑏 + 7)
+
+𝑏3 = 2
+
+(2.84)
+(𝑏 + 1)(𝑏 + 2)
+(𝑏 + 7)
+
+(2.85)
+
+While a profile shape parameter 𝑏 ≫ 1 produces “lift-off” separation profiles in both
+wall boundary layers and wakes, a value of 𝑏 ≈ 1 is appropriate for attached boundary
+flows and is adopted in the current numerical implementation. Figure 2-7 illustrates
+the assumed polynomial 𝑔o (𝜂).
+To complete the definition in (2.82), standard wall variables (denoted with the
+superscript “+”) are defined as follows, applied in the direction of the wall shear
+vector 𝜏 w ,
+𝜌 w 𝑞𝜏 𝑛
+= 𝜂 𝛿+
+𝜇w
+(︂
+)︂1/2
+𝜈i
+𝜌 w 𝑞𝜏 𝛿
++
+𝛿 ≡
+=
+𝑅𝑒𝛿 |𝒜|
+𝜇w
+𝜈w
+𝑦+ ≡
+
+59
+
+(2.86)
+(2.87)
+
+1
+0.9
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+Figure 2-7: Assumed polynomial for turbulent outer-layer profile
+with a suitable shear flow velocity scale,
+(︂
+𝑞𝜏 ≡
+
+|𝜏 w |
+𝜌w
+
+)︂1/2
+
+(︂
+=
+
+)︂1/2
+(︂
+)︂1/2
+𝜇w 𝑞 i
+𝜈w |𝒜|
+|𝒜|
+= 𝑞i
+𝜌w 𝛿
+𝜈 i 𝑅𝑒𝛿
+
+(2.88)
+
+The wall profile 𝑢+ (𝜂; 𝑦+ ) is governed by the following equation modified from Spalding’s law of the wall [28],
+0 = 𝑦+𝑚
+𝑦+𝑚 ≡
+
+(︂
+
+−𝜅𝐵
+
++
+
+− 𝑢 −𝑒
+
+𝜂𝑛
+1−
+𝑛+1
+
+)︂
+
+[︂
+
+𝜅𝑢+
+
+𝑒
+
+1
+1
+− 1 − 𝜅𝑢 − (𝜅𝑢+ )2 − (𝜅𝑢+ )3
+2
+6
++
+
+𝑦+
+
+]︂
+(2.89)
+(2.90)
+
+where 𝐵 ≈ 5 and 𝜅 ≈ 0.41. A suitable value for the exponent is 𝑛 = 3 or 𝑛 = 4 (𝑛 = 4
+is used in the current implementation). The wall profile 𝑢+ satisfies the following
+60
+
+conditions,
+⃒
+
++⃒
+
+𝑢
+
+w
+
+⃒
+d𝑢+ ⃒⃒
+= 1,
+d𝑦 + ⃒w
+
+= 0,
+
+⃒
+d𝑢+ ⃒⃒
+=0
+d𝑦 + ⃒e
+
+(2.91)
+
+where the first two equalities agree with the original wall profile of Spalding and
+the last one results from the modification, i.e. the leading factor multiplying 𝑦 + in
+(2.90).
+The nonlinear equation (2.89) is solved using the Newton’s method up to machine
+zero mostly with no more than four iterations when the following initial guess is used
+⎧
+⎪
+⎪𝑦+ ,
+0 ≤ 𝑦+ < 7
+⎪
+⎪
+⎪
+⎨
+1.6
++
+𝑢 initial ≈
+ln 𝑦+ + 𝐵 − 5.9, 7 ≤ 𝑦+ < 40
+⎪ 𝜅
+⎪
+⎪
+⎪
+⎪
+⎩ 1 ln 𝑦+ + 𝐵 − 0.4, 40 ≤ 𝑦+
+𝜅
+
+(2.92)
+
+Figure 2-8 compares the modified wall profile to the original Spalding profile, for the
+moderate Reynolds number case of 𝛿 + = 5000.
+30
+
+30
+
+Spalding
+25
+
+25
+
+modified Spalding
+20
+
+20
+
+u+
+
+u+
+15
+
+15
+
+10
+
+10
+
+5
+
+5
+
+0
+
+0
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1
+
+10
+
+100
+
+1000
+
+y+
+
+η
+
+Figure 2-8: Original and modified Spalding profiles for turbulent inner layer (figure
+courtesy of Drela [1], reproduced with permission)
+Note that the condition (2.80) is satisfied by construction of the velocity profile
+61
+
+𝑈 (𝜂). Also, the 2D turbulent boundary layer velocity profile takes the same form as
+the streamwise formulation of Bradshaw [5],
+𝑈 = 𝑈𝜏 𝑢+ (𝑦+ ) + (1 − 𝑈𝜏 𝑢+ (𝛿 + )) 𝑔o (𝜂),
+
+𝑈𝜏 ≡
+
+𝑞𝜏
+𝑞i
+
+(2.93)
+
+Figure 2-9 compares the assumed profile for the streamwise component 𝑈 with
+five 2D experimental profiles from Simpson et al. [29]. The 𝜏w parameters were set
+to their measured values, and 𝛿 were determined for a best visual fit to the outer
+part of the profile.
+1
+
+0.8
+
+0.6
+
+U
+0.4
+
+0.2
+
+0
+0
+
+0.2
+
+0.4
+
+y/δ
+
+0.6
+
+0.8
+
+1
+
+Figure 2-9: Assumed turbulent velocity profile validated against experimental
+measurement (figure courtesy of Drela [1], reproduced with permission)
+Next, the parametrization of the skin coefficient 𝐶𝑓1 is developed here. Following
+from the definition (2.71), the skin friction coefficient is written as
+⃒
+d(q1 · ŝ1 ) ⃒⃒
+𝜇w
+(︂
+)︂
+d𝑛 ⃒𝑛=𝑛w
+𝜏 w · ŝ1
+𝜇w 𝜕𝑈
+𝜇w
+𝑅𝑒𝐿 𝐶𝑓1 ≡ 𝑅𝑒𝐿
+≈ 𝑅𝑒𝐿
+=2
+=2
+𝒜 (2.94)
+1
+1
+𝜇 i 𝜕𝜂 w
+𝜇i
+2
+2
+𝜌i 𝑞i
+𝜌i 𝑞i
+2
+2
+62
+
+Note that negative 𝐶𝑓1 corresponds to a reverse flow at the wall, which is physically
+rare for turbulent flows but numerically admissible in the current model.
+As for the wake, the equality 𝐶𝑓1 = 0 holds invariantly since the wake profile is
+assumed to be symmetric about its centerline.
+Turbulent Dissipation Coefficient
+The total shear profile 𝜏 (𝑛) for turbulent flows cannot be directly related to the
+velocity profile as in the laminar case. Thus, the dissipation integral definition (2.23)
+is not readily usable. Instead, we will obtain the streamwise contribution to 𝒟 from
+an IBL equation for the special case of Clauser’s 2D self-preserving (or “equilibrium”)
+boundary layer flows [30], which is also a key element in the 2D IBL formulation
+of Drela [3]. The formulation of this turbulent equilibrium flow model is briefly
+summarized here while more details can be found in a text of Drela [7] and the
+references therein.
+Clauser’s shape parameter and pressure-gradient parameter are defined as
+ˆ 𝑛e
+
+[(qe − q) · ŝ1 /𝑞𝜏 ]2 d𝑛
+
+𝑛w
+𝐺≡ ˆ
+𝑛e
+𝑛w
+
+,
+
+(qe − q) · ŝ1 /𝑞𝜏 d𝑛
+
+𝛽≡
+
+𝛿1* d𝑝
+𝜏w d𝑠1
+
+(2.95)
+
+An empirical relation between them is known as the 𝐺-𝛽 locus, expressed as follows,
+√︀
+𝐺 = 𝐴 1 + 𝐵𝛽,
+
+𝐴 ≈ 6.7,
+
+𝐵 ≈ 0.75
+
+(2.96)
+
+where the {𝐴, 𝐵} constants are calibrated by matching experimental measurements
+for a variety of self-preserving boundary layers with (slightly) favorable and adverse
+pressure gradients.
+63
+
+Expressing the 𝐺 and 𝛽 definitions (2.95) in terms of conventional boundary layer
+parameters gives
+𝛿1*
+𝐻≡
+𝜃11
+
+2 𝐻𝜃11 d(qe · ŝ1 )
+𝛽≈−
+,
+𝐶𝑓1 qe · ŝ1 d𝑠1
+
+1
+𝐻 −1
+𝐺 ≈ √︀
+,
+𝐶𝑓1 /2 𝐻
+
+(2.97)
+
+where the two approximations assume an incompressible flow. Substituting (2.97)
+into (2.96) gives the non-dimensional velocity gradient parameter for the case of an
+equilibrium flow,
+(︂
+
+𝜃11 d(qe · ŝ1 )
+qe · ŝ1 d𝑠1
+
+)︂
+
+(︂
+=
+
+eq
+
+𝐶𝑓1
+− 𝐺2𝐴
+2
+
+)︂
+
+1
+,
+𝐵𝐻
+
+𝐺𝐴 ≡
+
+𝐻 −1
+𝐴𝐻
+
+(2.98)
+
+Next, to obtain a closure formulation for 𝐶𝒟 , the following 2D IBL equation for the
+kinetic energy shape parameter [3] is used,
+(︂
+)︂
+𝜃11 d𝐻 *
+2𝐶𝒟 𝐶𝑓1
+2𝐻 **
+𝜃11 d(qe · ŝ1 )
+= * −
++ 𝐻−
+−1
+,
+*
+*
+𝐻 d𝑠1
+𝐻
+2
+𝐻
+qe · ŝ1 d𝑠1
+
+𝐻* ≡
+
+𝜃1*
+(2.99)
+𝜃11
+
+which is valid for the turbulent mean flow. The density shape parameter 𝐻 ** = 0
+vanishes for incompressible flows. For an equilibrium flow which has constant 𝐺(𝑠1 ),
+the parameters 𝐻(𝑠1 ), and hence 𝐻 * (𝑠1 ), will be nearly constant as well, since the
+turbulent 𝐶𝑓 (𝑠1 ) variation in (2.97) is effectively negligible. There, it is assumed that
+d𝐻 * /d𝑠1 ≈ 0 for an equilibrium flow (i.e. with constant 𝛽).
+Replacing the d(qe · ŝ1 )/d𝑠1 term using equation (2.98), it then follows that the
+equation (2.99) becomes an explicit expression for the dissipation coefficient of equilibrium flows in terms of the local boundary layer parameters,
+]︂
+[︂
+𝐻 * 𝐶𝑓1
+2
+(𝐶𝒟 )eq =
+(1 − 𝐺𝐵 ) + 𝐺𝐵 𝐺𝐴 ,
+2
+2
+
+64
+
+𝐺𝐵 ≡
+
+𝐻 −1
+𝐵𝐻
+
+(2.100)
+
+The previous development of the dissipation formulation for boundary layer flows
+is adopted for the wake as well. Note that, in the case of a viscous wake layer,
+the dissipation coefficient (2.100) corresponds to a half layer and thus needs to be
+doubled.
+The current numerical implementation assumes an equilibrium turbulent flow and
+adopts the dissipation coefficient formulation in (2.100), whereas the development of
+a more sophisticated turbulent dissipation model is left for future study.
+
+2.7
+
+Viscous-Inviscid Interaction Formulation
+
+Note that the IBL equations (2.50) and (2.63) also involve EIF quantities, denoted
+with the subscript “i”, including the velocity q i , the stagnation pressure 𝑝0 i and
+temperature 𝑇0 i , which are governed by the EIF equations. In a viscous-inviscid
+coupling scheme, the viscous solver needs to access the inviscid solver in order to
+compute {q i , 𝑝0 i , 𝑇0 i }, and the corresponding interface has to be modified if the
+inviscid solver is altered.
+To avoid such direct dependence of the IBL equations on the inviscid flow solver,
+auxiliary viscous variables {qe , 𝑝0e , 𝑇0e }, that is, velocity and stagnation states at the
+edge of the viscous layer (denoted by the subscript “e”), are defined and set by the
+following auxiliary viscous equations,
+qe − q i = 0
+
+(2.101)
+
+𝑝0e − 𝑝0 i = 0
+
+(2.102)
+
+𝑇0e − 𝑇0 i = 0
+
+(2.103)
+
+where {q i , 𝑝0 i , 𝑇0 i } are provided by the inviscid solver.
+65
+
+Similarly, an auxiliary inviscid variable Λ is defined by the following auxiliary
+inviscid equation,
+̃︀ · M = 0
+Λ−∇
+
+(2.104)
+
+where M = 𝜌e 𝛿 * qe is computed from the IBL solution and the auxiliary viscous
+variables. In turn, the EIF boundary condition (2.38) becomes
+Λ − n̂w · (𝜌 i q i )w = 0
+
+(2.105)
+
+which only involves the inviscid and auxiliary inviscid variable so that the inviscid
+solver does not require direct access to the IBL solver. Note that the omission
+of 𝜕𝑚/𝜕𝑡 is generally a valid approximation even for unsteady compressible flows.
+Thus, the equation (2.105) can also be used to prescribe the instantaneous mass flux
+through the wall for the EIF.
+Hence, the viscous and inviscid solvers remain independent of each other and
+their coupling is realized through the interface of auxiliary equations and variables,
+which provides significant flexibility from an implementation perspective.
+
+2.8
+
+Governing Equations
+
+In summary, the viscous flow inside the DCA is governed by the IBL equations,
+(︁
+)︁
+𝜕p
+𝜕qe ̃︀
+̃︀ e · M − 𝜏 w = 0
++𝑚
++ ∇ · P + ∇q
+𝜕𝑡
+𝜕𝑡
+
+(momentum)
+
+(2.106)
+
+(︀ )︀
+𝜕𝑘
+𝜕 (𝑞e2 ) ̃︀
+̃︀ 𝑞 2 − 2 𝒟 = 0
++𝑚
++∇·K+D·∇
+e
+𝜕𝑡
+𝜕𝑡
+
+(kinetic energy)
+
+(2.107)
+
+66
+
+where the integral quantities are parametrized by the two unknown variables {𝛿, 𝒜}
+based on the viscous closure models in Section 2.6.
+The EIF is governed by the inviscid flow equation of choice, such as full potential
+and Euler equations. As an example, this thesis focuses on the EIF modeled as a
+steady-state incompressible potential flow which governed by the following equation,
+∇2 Φ = 0
+
+subject to
+
+(𝜌 i q i )w · n̂w = Λ
+
+(2.108)
+
+for the unknown velocity potential Φ where ∇Φ = q i .
+In a viscous-inviscid coupling scheme, the IBL and EIF equations are solved
+together with the following auxiliary equations,
+
+qe − q i = 0
+𝑝0e − 𝑝0 i = 0
+
+(auxiliary viscous equations)
+
+(2.109)
+
+(auxiliary inviscid equation)
+
+(2.110)
+
+𝑇0e − 𝑇0 i = 0
+̃︀ · M = 0
+Λ−∇
+
+which completes the formulation of the IBL equations in a VII setting.
+The subsequent discussion focuses on the steady-state IBL solution and thus
+drops all the unsteady terms (i.e. 𝜕 ( ) /𝜕𝑡 = 0)
+
+67
+
+68
+
+Chapter 3
+Discontinuous Galerkin
+Discretization
+This chapter develops a DG finite-element discretization scheme that applies to the
+general convection-source type of PDEs defined on curved manifolds. The DG finiteelement method was originally proposed by Reed and Hill in 1973 [31]. A more recent
+survey of DG methods is given by Shu [32]. The DG method developed in this thesis
+is presented using the example of its application to the IBL equations.
+
+3.1
+
+Solution Approximation and Local Basis
+
+The finite-element method starts with the discretization of a computational domain
+Ω into a triangulation 𝒯ℎ comprised of disjoint open finite elements 𝐾 such that
+Ω=
+
+⋃︁
+𝐾∈𝒯ℎ
+
+69
+
+𝐾
+
+(3.1)
+
+In the context of the IBL formulation, Ω refers to the 𝑛 = 0 curve associated with
+̃︂ element as defined in Section 2.2,
+the DCA and 𝐾 is a discrete instance of a DDCA
+the collection of which constitutes the set 𝒯ℎ .
+The DG finite-element solution space is
+{︀
+}︀
+𝒱ℎ ≡ 𝑣ℎ ∈ 𝐿2 (Ω) : 𝑣ℎ |𝐾 ∈ 𝒫 𝑝 (𝐾), ∀𝐾 ∈ 𝒯ℎ
+
+(3.2)
+
+where 𝒫 𝑝 (𝐾) denotes the space of polynomials of degree up to 𝑝 that are restricted
+to the element 𝐾. Let {𝒲𝑗 } (𝑗 = 1, 2, . . .) be a complete set of basis functions of
+𝒱ℎ that are locally supported on finite elements and discontinuous across element
+boundaries. The DG approximation of the primary unknowns 𝑣 = [𝛿, 𝒜]𝑇 is
+𝑣ℎ |𝐾 (𝜉) =
+
+∑︁
+𝑗
+
+𝑣ℎ,𝑗 𝒲𝑗 (𝜉)
+
+∀𝐾 ∈ 𝒯ℎ
+
+(3.3)
+
+Similar to the solution discretization, the shape of the triangulation 𝒯ℎ as defined by
+the position vector r|𝐾 is approximated as
+rℎ |𝐾 (𝜉) =
+
+∑︁
+𝑗
+
+rℎ,𝑗 𝒲𝑗 (𝜉)
+
+∀𝐾 ∈ 𝒯ℎ
+
+(3.4)
+
+In the discretization of PDEs on manifolds, rℎ can be represented using a different
+set of basis functions from the solution approximation 𝑣ℎ , but requires a sufficient
+polynomial degree to realize the optimal order of accuracy in the DG solution. Also,
+a continuity condition is imposed in the current numerical implementation for convenience, although the geometry representation rℎ is allowed to be discontinuous in
+general.
+The local basis vector of an element 𝐾 is conveniently constructed as a unit vector
+
+70
+
+tangent to the element,
+ê ≡
+
+𝜕rℎ /𝜕𝜉
+,
+‖𝜕rℎ /𝜕𝜉‖
+
+𝜕rℎ ∑︁
+𝜕𝒲𝑗
+=
+rℎ,𝑗
+𝜕𝜉
+𝜕𝜉
+𝑗
+
+(3.5)
+
+Note that this definition allows ê to be discontinuous across finite element interfaces
+since the local definition of the reference coordinate 𝜉 can vary across elements and
+two adjacent elements may not be tangent to each other at their interface.
+
+3.2
+
+Residual Definitions
+
+The goal here is to develop a DG discretization scheme for general manifold PDEs of
+the convection-source type and to apply it to the IBL equations. Bernard et al. [23]
+also proposed a DG scheme for manifold PDEs by resolving vectorial equations in a
+local basis and applied it to shallow water equations. That formulation assumes that
+the vector unknown can be expressed as a product of a scalar solution approximation
+and the local basis vector. However, this assumption does not apply to the IBL
+equations formulated in this thesis as well as general PDEs where the construction
+of vector quantities is not simply a scalar product with the local basis. Hence, a
+generalized manifold DG finite-element method is proposed here and applied to the
+2D IBL equations as an example.
+First, the discretization of the vectorial momentum equation (2.106) is developed
+here. The equation is resolved along the local basis vector ê with an inner product.
+The resulting scalar equation is weighted by a DG basis function 𝒲 ∈ 𝒱ℎ and
+integrated over a single finite element 𝐾. Then, using integration by parts, the
+
+71
+
+element-wise DG residual of the steady-state momentum equation (2.106) is
+ˆ
+
+[︁
+(︁
+)︁
+]︁
+̃︀ · P + ∇q
+̃︀ e · M − 𝜏 w dℓ
+𝒲 ê · ∇
+𝐾
+]︂
+)︂
+(︂
+[︂
+(︂
+ˆ
+)︁)︂
+(︁
+)︁
+𝑇
+𝑇 (︁
+̃︀
+̃︀ e · M − 𝜏 w · ê dℓ
+̃︀ · P · ê − tr P · ∇ê
++ ê · ∇q
+=
+𝒲 ∇
+
+(𝑣ℎ , 𝒲) =
+ℛmom
+𝐾
+
+𝐾
+
+ˆ
+
+=
+𝐾
+
+[︂
+(︂
+]︂
+)︁)︂
+(︁
+)︁
+𝑇 (︁
+̃︀
+̃︀ e · M − 𝜏 w · ê dℓ
+𝒲 − tr P · ∇ê
++ ê · ∇q
+
+ˆ
+
+−
+
+𝐾
+
+)︂
+)︂
+(︂
+∑︁ (︂
+𝑇
+𝑇
+̃︀
+𝒲 t̂ · P · ê
+∇𝒲 · P · ê dℓ +
+
+(3.6)
+
+𝜕𝐾
+
+where the identity (2.58) is used and t̂ is the outward-pointing unit normal vector of
+the element boundary 𝜕𝐾 (as shown in Figure 2-2).
+Similarly, the kinetic energy equation (2.63), which is already scalar, has the
+following element-wise DG residual
+ˆ
+ℛk.e.
+𝐾 (𝑣ℎ , 𝒲) =
+
+ˆ
+]︁
+∑︁ (︀
+(︀ 2 )︀
+)︀
+̃︀ 𝑞 − 2𝒟 dℓ −
+̃︀ · K dℓ +
+𝒲 D·∇
+𝒲 K · t̂ (3.7)
+∇𝒲
+e
+[︁
+
+𝐾
+
+𝐾
+
+𝜕𝐾
+
+The elemental DG residuals of the 2D IBL equations are assembled to give the
+following global residuals,
+[︂
+(︂
+]︂ }︂
+)︁)︂
+(︁
+)︁
+∑︁ {︂ˆ
+𝑇 (︁
+mom
+̃︀
+̃︀
+ℛIBL (𝑣ℎ , 𝒲) ≡
+𝒲 − tr P · ∇ê
++ ê · ∇qe · M − 𝜏 w · ê dℓ
+𝐾∈𝒯ℎ
+
+−
+ℛk.e.
+IBL (𝑣ℎ , 𝒲) ≡
+
+𝐾
+
+∑︁ [︂ˆ
+𝐾
+
+𝐾∈𝒯ℎ
+
+∑︁ {︂ˆ
+𝐾∈𝒯ℎ
+
++
+
+𝐾
+
+∑︁
+𝜕𝐾∈𝜕𝒯ℎ
+
+(︃
+)︃
+(︂
+)︂ ]︂
+∑︁
+𝑇
+𝑇
+\
+̃︀ · P · ê dℓ +
+𝒲 t · P · ê
+∇𝒲
+
+(3.8)
+
+𝜕𝐾∈𝜕𝒯ℎ
+
+)︂
+[︁
+]︁ }︂ ∑︁ (︂ˆ
+(︀ 2 )︀
+̃︀
+̃︀
+𝒲 D · ∇ 𝑞e − 2𝒟 dℓ −
+∇𝒲 · K dℓ
+𝐾∈𝒯ℎ
+
+(︁
+)︁
+[
+𝒲 K
+·t
+
+𝐾
+
+(3.9)
+
+72
+
+𝑇
+\
+[
+where 𝜕𝒯ℎ denotes the set of all the element boundaries 𝜕𝐾. The terms {t · P · ê, K
+· t}
+
+are the numerical fluxes. Using a Lax-Friedrichs scheme, they are defined as
+]︀ L 𝛼 [︀
+]︀
+L
+1 [︀ L L
+f (𝑣ℎ ; ê ) + f (𝑣ℎR ; êR
+𝑢(𝑣ℎL ; êL ) − 𝑢(𝑣ℎR ; êR
+f̂︂
+· t (𝑣ℎL , 𝑣ℎR ; êL , êR
+L ) · t̂ +
+L)
+L) ≡
+2
+2
+[︀
+]︀
+]︀
+R
+1
+𝛼 [︀
+f̂︂
+· t (𝑣ℎL , 𝑣ℎR ; êLR , êR ) ≡
+f (𝑣ℎL ; êLR ) + f (𝑣ℎR ; êR ) · t̂R +
+𝑢(𝑣ℎL ; êLR ) − 𝑢(𝑣ℎR ; êR )
+2
+2
+(3.10)
+where the superscripts “L” and “R” denote evaluation on, respectively, the left and
+right of an interface between neighboring elements, as shown in Figure 3-1. Deduced
+
+Interface
+Right
+
+Left
+
+Figure 3-1: Discontinuous local basis vectors and interface unit normal vectors of
+linear grid elements
+from the governing equations (2.106) and (2.107), the conservative variable 𝑢 and
+flux f for the IBL equations are
+⎡
+⎤
+p · ê
+⎦,
+𝑢(𝑣; ê) ≡ ⎣
+𝑘
+
+⎡
+⎤
+𝑇
+— P · ê —
+⎦
+f (𝑣; ê) ≡ ⎣
+—
+K
+—
+
+(3.11)
+
+Note that the definitions of 𝑢 and f both depend on the choice of ê which is defined
+L
+R
+by (3.5) and is local to each finite element. Then, the numerical fluxes f̂︂
+· t and f̂︂
+·t
+
+in (3.10) should use basis vectors that are defined consistently with the corresponding
+73
+
+elements (i.e. left and right, respectively) which they are associated with. Therefore,
+the local basis vectors in evaluating the numerical flux are necessarily modified as
+)︀
+(︀
+êLR ≡ − t̂R · êR t̂L
+
+(︀ L L )︀ R
+êR
+t̂ ,
+L ≡ − t̂ · ê
+
+(3.12)
+
+where êR
+L , for example, gives the proper basis vector that is located on the right of
+the element interface and consistent with the basis vector ê definition for the element
+to the left of that interface. The vector êR
+L is effectively rotated from a vector (i.e.
+t̂L ) tangent to the left element into the right one. This interpretation can be readily
+extended to 3D with the vector component unchanged along the axis of rotation (i.e.
+the local tangent line of the element interface).
+L
+Also, note that êR
+L , êR are not necessarily tangent to the left and right elements
+
+respectively, and that t̂L , t̂R are not collinear (or coplanar) in general. This stems
+from the discretization rℎ as in (3.4) of a generally curved manifold domain Ω of true
+geometry r. The discretization error associated with rℎ decreases as the mesh refinement and the order of approximation increases, similar to the solution discretization
+𝑣ℎ in (3.3). The numerical consistency of the overall discretization scheme remains
+intact, as evidenced by the numerical results in Section 5.1.
+Furthermore, in the interest of convenient numerical implementation, a unique
+interface unit normal vector t̂ is defined (in Figure 3-1) as pointing from the left
+element to the right element, and orthogonal to the bisector of interface normal
+vectors t̂L and t̂R . The following substitution is then applied to the numerical flux
+definition (3.10),
+t̂L ≈ t̂,
+
+t̂R ≈ −t̂
+
+(3.13)
+
+Such an approximation is justified since the error introduced is comparable to that
+
+74
+
+of the geometry discretization. It has been observed that switching the definition of
+t̂ to t̂ = t̂L or t̂ = t̂R introduces negligible changes to the numerical solution.
+The parameter 𝛼 in the numerical flux (3.10) carries the dimension of velocity
+and serves to stabilize the DG method by introducing numerical dissipation. In order
+to provide sufficient stabilization, the value of 𝛼 is often chosen to be the eigenvalue
+of the flux jacobian 𝜕f /𝜕𝑢 that is largest in magnitude, which characterizes the
+maximum propagation speed of the characteristic waves. Although the eigenvalue of
+the IBL flux jacobian is not readily available, a suitable and convenient alternative
+is to define 𝛼 with a representative convective speed normal to the interface based
+on the edge velocity,
+⃒ ⃒
+⃒}︀
+{︀⃒
+⃒
+𝛼 ≡ max ⃒qLe · t⃒̂ , ⃒qR
+e · t̂
+
+(3.14)
+
+A more conservative but dissipative choice of 𝛼 is
+{︀⃦ ⃦ ⃦ ⃦}︀
+⃦
+𝛼 ≡ max ⃦qLe ⃦ , ⃦qR
+e
+
+(3.15)
+
+which prevents 𝛼 from vanishing in the case of qe · t̂ = 0 (𝑞e ̸= 0) in 3D but is
+approximately the same as (3.14) in 2D. The formulation (3.15) is adopted in the
+current numerical implementation. The choice is insignificant in 2D, and the trade-off
+remains to be investigated in 3D.
+In addition, the fluxes at the domain boundary 𝜕Ω are defined as
+⎧
+⎨f · t̂,
+qe · t̂ > 0
+̂︂
+f ·t≡
+⎩f
+inlet · t̂, qe · t̂ < 0
+
+(3.16)
+
+where the inflow boundary flux finlet · t̂ is described in Section 3.3. The convectionsource nature of the IBL equations only requires a prescribed boundary condition at
+75
+
+the inflow boundary.
+
+3.3
+
+Matching Conditions
+
+Scenarios where viscous layers merge frequently occur in aerodynamic analysis. For
+example, in a 2D flow over an airfoil, the boundary layers on upper and lower walls
+combine into the wake at the trailing edge (TE). At this confluence of boundary
+layers, mass conservation is not automatically guaranteed by the IBL equations which
+govern the momentum and kinetic energy. However, it is essential to preserve mass
+at the wall-to-wake junction since mass defect directly figures in VII problems. In
+addition, given a momentum defect thickness 𝜃1 , the viscous profile employed in the
+IBL formulation is uniquely defined by the displacement thickness 𝛿1* , but can be
+*
+is given instead.
+ambiguous if the kinetic energy defect thickness 𝜃11
+
+Therefore, it is crucial that mass and momentum conservation is imposed explicitly when viscous layers join. As in XFOIL [2], for example, the matching conditions
+t the TE of an airfoil are,
+(𝛿1* )TE, upper + (𝛿1* )TE, lower + ℎTE = (𝛿1* )wake, inlet
+(𝜃1 )TE, upper + (𝜃1 )TE, lower = (𝜃1 )wake, inlet
+
+(mass conservation)
+
+(3.17)
+
+(momentum conservation) (3.18)
+
+where ℎTE is the thickness of the trailing edge gap, modeled as an additional displacement. All the defect thicknesses are evaluated from the DG solution 𝑣ℎ . The
+matching conditions (3.17) and (3.18) are introduced in addition to the IBL equations, so that the mass and momentum conservation is enforced at the wall-to-wake
+junction.
+Also, in order not to over-constrain the equation system, two more scalar unknowns are defined: {𝐹𝜃 , 𝐹𝜃* }, scalar momentum and kinetic energy defect fluxes
+76
+
+respectively, which provide the proper wake inflow boundary flux in (3.16),
+⎡
+
+⎤
+
+𝐹𝜃
+finlet · t̂ ≡ ⎣ ⎦
+𝐹𝜃*
+
+77
+
+(3.19)
+
+78
+
+Chapter 4
+Strong Viscous-Inviscid Coupling
+This chapter fits the aforementioned DG IBL formulation into a strongly-coupled
+viscous-inviscid scheme. The coupling method is designed to be sufficiently general
+to allow for a flexible choice of the inviscid solver. The current implementation
+adopts a panel method and, in the future, is expected to include full potential (e.g.
+an in-house code [33]) and Euler solvers (e.g. the Cart3D code by NASA [34]). The
+simultaneous solution method of VII problems is also described.
+
+4.1
+
+Strongly-coupled System
+
+The discretized global system of strongly-coupled IBL equations is constructed in this
+section. All the residuals and variables are summarized in Table 4.1. Auxiliary variables and residuals are introduced in order to couple the viscous and inviscid solvers
+without modifying their original implementations. In turn, the inviscid solver can
+be switched flexibly by using this coupling framework. Only the auxiliary residuals
+and variables need to be modified according to the chosen inviscid solver.
+
+79
+
+Abbreviation
+
+Variable 𝑄
+
+Residual ℛ
+
+Governing Equation
+
+IBL
+
+𝛿, 𝒜 (𝐹𝜃 , 𝐹𝜃* )
+
+2D IBL
+
+(4.1) ((3.17), (3.18))
+
+inv
+
+𝑄inv (generic)
+
+Inviscid
+
+By choice, e.g. (4.4) to (4.6)
+
+auxv
+
+qe , 𝑝0e , 𝑇0e
+
+Auxiliary viscous
+
+(4.7)
+
+auxi
+
+Λ
+
+Auxiliary inviscid
+
+(4.2)
+
+Table 4.1: List of abbreviations, variables, residuals and governing equations in the
+coupled global system
+
+Viscous Governing Equations
+The viscous formulation is defined by the following equations using the DG IBL
+global residuals (3.8) and (3.9),
+ℛmom
+IBL (𝑣ℎ , 𝒲) = 0,
+
+ℛk.e.
+IBL (𝑣ℎ , 𝒲) = 0,
+
+∀ 𝒲 ∈ {𝒲𝑗 }
+
+(4.1)
+
+Auxiliary Inviscid Equation: Wall Transpiration Prescription
+In the wall transpiration condition (2.110), the auxiliary inviscid variable Λ is discontinuous in general since it is prescribed as the in-manifold divergence of the mass
+defect flux M which is evaluated from the DG IBL solution. Hence, the auxiliary
+inviscid equation (2.110) is necessarily discretized using a DG method as follows,
+
+0 = ℛauxi ≡
+=
+
+∑︁ [︂ˆ
+𝐾∈𝒯ℎ
+
+𝐾
+
+)︁ ]︂
+̃︀
+𝒲 Λ − ∇ · M dℓ
+
+∑︁ [︂ˆ (︁
+
+𝐾∈𝒯ℎ
+
+𝐾
+
+(︁
+
+)︁ ]︂
+(︁
+)︁
+∑︁
+̃︀
+[
+𝒲 Λ + ∇𝒲 · M dℓ −
+𝒲 M
+· t , ∀ 𝒲 ∈ {𝒲𝑗 }(4.2)
+𝜕𝐾∈𝜕𝒯ℎ
+
+80
+
+[
+where the numerical flux M
+· t is defined using a simple upwinding formulation,
+⎧
+⎨ML · t̂, qL · t̂ > 0
+e
+[
+M
+·t≡
+⎩MR · t̂, qL · t̂ < 0
+
+(4.3)
+
+e
+
+The DG basis function 𝒲 is allowed to differ from that used in discretizing the
+IBL equations in terms of the polynomial degree. The inviscid solver adopted in
+this thesis is a panel method of a piecewise constant source distribution (despite a
+piecewise linear reconstruction procedure in the actual computation). Accordingly,
+the auxiliary inviscid variable Λ is discretized with a piecewise constant basis function
+𝒲 (i.e. polynomial degree 𝑝 = 0).
+
+Inviscid Governing Equations
+The EIF equations are defined by the inviscid solver and can be chosen flexibly. A
+panel method adapted from the XFOIL formulation [2] is used in the current implementation as an example. In this case, the incompressible potential flow equation
+(2.108) is reformulated and discretized as follows,
+0 = ℛΨ
+inv ≡ Ψ(𝛾, 𝜆) − Ψ0
+∑︁
+0 = ℛK
+≡
+𝛾𝑗
+inv
+
+(flow tangency)
+
+(4.4)
+
+(Kutta condition)
+
+(4.5)
+
+(source strength prescription)
+
+(4.6)
+
+𝑗∈TE
+
+0 = ℛ𝜆inv ≡ 𝜆 − Λ/𝜌 i
+
+where the inviscid variables 𝑄inv ≡ {𝛾, Ψ0 , 𝜆} are the vortex strength, the streamfunction and the source strength respectively. More details on the panel method are
+given in Appendix B. Note that the inviscid flow equations involve only the inviscid
+
+81
+
+and the auxiliary inviscid variable Λ instead of the IBL variables. This treatment fits
+in the current coupling scheme without direct interdependence between the viscous
+and inviscid solvers.
+
+Auxiliary Viscous Equation: Edge Velocity Projection
+In the coupling of the integral boundary layer and panel (IBL/panel) solver, the flow
+is assumed to be incompressible so that the stagnation pressure 𝑝0 i and temperature
+𝑇0 i remain constant. Thus, only (2.101) is necessary among all the auxiliary viscous
+equations. Since q i computed from the panel solver is continuous and piecewise
+linear, (2.101) is cast as the 𝐿2 -projection onto the auxiliary viscous variable qe ,
+
+0 = ℛauxv ≡
+
+∑︁ [︂ˆ
+𝐾∈𝒯ℎ
+
+𝐾
+
+]︂
+𝒲 (qe − q i ) dℓ ,
+
+∀ 𝒲 ∈ {𝒲𝑗 }
+
+(4.7)
+
+where {𝒲𝑗 } is the set of all the piecewise linear basis functions.
+
+4.2
+
+Global Newton Method
+
+The coupled system of equations is written compactly as
+⎛
+
+ℛ(𝑄) = 0,
+
+⎞
+
+⎜ ℛauxv (𝑄auxv , 𝑄inv ) ⎟
+⎜
+⎟
+⎜ℛ (𝑄
+⎟
+⎜ auxi auxv , 𝑄auxi , 𝑄IBL )⎟
+ℛ≡⎜
+⎟,
+⎜ ℛ (𝑄
+⎟
+,
+𝑄
+)
+⎜
+⎟
+IBL
+auxv
+IBL
+⎝
+⎠
+ℛinv (𝑄auxi , 𝑄inv )
+
+⎛
+
+⎞
+
+⎜𝑄auxv ⎟
+⎜
+⎟
+⎜𝑄 ⎟
+⎜ auxi ⎟
+𝑄≡⎜
+⎟
+⎜𝑄 ⎟
+⎜ IBL ⎟
+⎝
+⎠
+𝑄inv
+
+(4.8)
+
+where ℛ and 𝑄 denote the global residual and solution respectively. The global
+system (4.8) is solved simultaneously using a Newton method, in which the solution
+82
+
+is updated at iteration 𝑛 via the following formula,
+[︂
+
+𝜕ℛ
+ℛ(𝑄 ) +
+𝜕𝑄
+𝑛
+
+]︂𝑛
+
+∆𝑄𝑛 = 0
+
+(4.9)
+
+𝑄𝑛+1 = 𝑄𝑛 + ∆𝑄𝑛
+
+(4.10)
+
+where ∆𝑄 is the solution update step, and some initial solution guess 𝑄0 is required
+for the Newton update to start with.
+Depending on the characteristics of the inviscid solver, the global jacobian can
+be permuted to optimize fill-in and matrix storage. The current IBL/panel coupling
+implementation in particular has the following structure,
+⎛[︂ 𝜕ℛauxv ]︂
+⎜ 𝜕𝑄auxv
+⎜
+⎜ [︂
+⎜ 𝜕ℛauxi ]︂
+⎜
+[︂
+]︂ ⎜
+⎜ 𝜕𝑄auxv
+⎜
+𝜕ℛ
+]︂
+= ⎜ [︂
+⎜ 𝜕ℛIBL
+𝜕𝑄
+⎜
+⎜ 𝜕𝑄auxv
+⎜
+⎜
+⎝
+0
+
+[︂
+0
+[︂
+
+𝜕ℛauxi
+𝜕𝑄auxi
+
+0
+]︂ [︂
+
+𝜕ℛauxi
+𝜕𝑄IBL
+
+]︂
+
+[︂
+
+𝜕ℛIBL
+𝜕𝑄IBL
+
+]︂
+
+0
+[︂
+
+𝜕ℛinv
+𝜕𝑄auxi
+
+]︂
+0
+
+]︂
+𝜕ℛauxv ⎞
+𝜕𝑄inv ⎟
+⎟
+⎟
+⎟
+⎟
+0
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+0
+⎟
+⎟
+[︂
+]︂ ⎟
+⎠
+𝜕ℛinv
+𝜕𝑄inv
+
+(4.11)
+
+It is intentionally designed that the matrix blocks 𝜕ℛinv /𝜕𝑄IBL and 𝜕ℛIBL /𝜕𝑄inv are
+invariantly zero, resulting in the block-diagonal 2-by-2 system on the lower right of
+the current global jacobian. This prevents direct communication between the IBL
+and inviscid solvers, and thus allows for flexible swapping of the inviscid solver.
+For viscous and inviscid solvers that are developed separately, the computation
+of individual residuals (e.g. ℛIBL , ℛinv ) is reusable. Adding the auxiliary equations
+to build the coupled system of equations does not require much additional overhead.
+83
+
+The global jacobian is conveniently constructed using automatic differentiation [35].
+Note that the Newton update in its primitive form (4.10) may fail to solve the
+global nonlinear system (4.8) for some initial solution guesses 𝑄0 . For example, the
+updated solution can include non-physical states such as a negative boundary layer
+thickness 𝛿 which causes the solution iteration to stall. Hence, in order to enhance
+the solution robustness, the current numerical implementation augments the Newton
+method with a line-search algorithm. The corresponding solution update formula
+then becomes
+𝑄𝑛+1 = 𝑄𝑛 + 𝛽 ∆𝑄𝑛
+
+(4.12)
+
+where 𝛽 > 0 is a step-sizing factor that is halved from one iteratively in the presence
+of any difficulty in solution convergence, identified by the following criteria.
+1. Residual reduction failure: Any component of the global residual ℛ fails to
+decrease before the solution converges below the prescribed tolerance.
+2. Physical validity failure: the boundary layer thickness parameter fails to remain
+strictly positive; that is, 𝛿 ≤ 0.
+The line-search algorithm allows the nonlinear solution procedure to continue in
+some otherwise stalling solution iterations. The resulting nonlinear solution has been
+observed to be more robust in terms of admitting various initial solution guesses.
+
+84
+
+Chapter 5
+Results
+This chapter provides results of the numerical implementation to verify the DG
+discretization scheme for the convection-source type of PDEs on manifolds and to
+demonstrate utility of the proposed strongly-coupled IBL method for aerodynamic
+analysis.
+
+5.1
+
+Shallow Water Flow on Elliptic Curve
+
+To demonstrate that the current DG formulation is generally applicable to PDEs
+defined on curved manifolds and enables high-order solution, the first test case applies
+this discretization scheme to the shallow water flow on an elliptic curve.
+For the unknowns {𝐻, 𝑣𝑠 }, water depth and convective speed respectively, the
+governing 2D steady-state shallow water equations are
+
+̃︀ · (𝐻𝑣) = 0
+∇
+̃︀ · (𝐻 𝑣 ⊗ 𝑣) + 𝑔𝐻 ∇(𝐻
+̃︀
+∇
+− 𝑏) = 0
+85
+
+(mass conservation)
+
+(5.1)
+
+(momentum conservation)
+
+(5.2)
+
+where 𝑔 = 9.81 m/s2 is the gravitational acceleration constant, 𝑏 is the bathymetry,
+𝑣 ≡ 𝑣𝑠 ŝ is the water flow velocity, and ŝ is the streamwise unit vector. Equations
+
+Figure 5-1: Configuration of the shallow water flow on an elliptic curve
+(5.1) and (5.2) are solved on an elliptic curve defined by
+(︂
+r(𝜃) = 2 cos 𝜃 x̂ + sin 𝜃 ŷ,
+
+𝜃 ∈ (𝜃1 , 𝜃2 ) =
+
+1 23
+,
+60 360
+
+)︂
+radians
+
+(5.3)
+
+The streamwise unit vector is prescribed to be tangent to the elliptic curve,
+ŝ =
+
+(−2 sin 𝜃 x̂ + cos 𝜃 ŷ)
+√
+4 sin2 𝜃 + cos2 𝜃
+
+(5.4)
+
+The test case is set up such that the shallow water flow remains supercritical (i.e.
+√
+Froude number Fr ≡ 𝑣𝑠 / 𝑔𝐻 > 1) throughout the domain. Hence, the boundary
+conditions are a supercritical inflow (𝜃 = 𝜃1 ) condition and a natural outflow at the
+outlet boundary (𝜃 = 𝜃2 ). That is, only 𝐻(𝜃1 ) and 𝑣𝑠 (𝜃1 ) need to be prescribed.
+For the purpose of grid convergence study, an exact solution {𝐻, 𝑣𝑠 } is manufac-
+
+86
+
+tured as
+𝐻(𝜃) =
+
+5
+∑︁
+
+𝜃𝑘 ,
+
+𝑣𝑠 (𝜃) =
+
+𝑘=0
+
+𝐶
+,
+𝐻
+
+𝐶 ≡ 𝐻(𝜃1 ) 𝑣𝑠 (𝜃1 )
+
+(5.5)
+
+with a corresponding bathymetry 𝑏 that satisfies
+d𝑏
+=
+d𝜃
+
+(︂
+)︂
+𝐶 2 d𝐻
+1−
+𝑔𝐻 3 d𝜃
+
+(5.6)
+
+Note that 𝐻 and 𝑣𝑠 carry the units of m and m/s respectively. The corresponding
+inflow boundary condition is
+
+𝐻(𝜃1 ) =
+
+5
+∑︁
+
+𝜃15 ,
+
+√︀
+𝑣𝑠 (𝜃1 ) = 2 𝑔𝐻(𝜃1 )
+
+(5.7)
+
+𝑘=0
+
+Line grids of uniform sizing in 𝜃 are employed. Both structured and unstructured
+grids have been tested. Unstructured grids are constructed such that the basis vector
+ê of any two neighboring elements have opposite senses of direction as illustrated in
+Figure 3-1, whereas all the elements in a structured grid have the same sense of
+direction. The basis vector modification (3.12) has been observed to be the key in
+enabling solution on unstructured grids. The numerical results of these two types of
+grids turned out to effectively the same as expected, and thus only the unstructured
+grid solution is shown for this test in the following discussion.
+The discrete geometry representation rℎ uses basis functions of polynomial degree of 4 (which is greater than or equal to the polynomial degree of the solution
+approximation that has been tested; that is, the geometry approximation is either
+superparametric or isoparametric).
+A grid convergence study is conducted to examine the DG solution. The 𝐿2 error
+in the DG solution of water depth 𝐻 measured against the analytic solution (5.5) is
+
+87
+
+used as the error metric. As shown in Figure 5-2, the error in DG solution of polynomial degree 𝑝 converges at an asymptotic rate of 𝑝+1 as the grid is uniformly refined.
+This demonstrates the support of high-order solution accuracy using the proposed
+DG discretization. Also, it is worth noting that the order of solution convergence has
+-2
+slope=1
+
+-4
+
+-6
+
+slope=2
+
+-8
+slope=3
+-10
+slope=4
+
+-12
+
+slope=5
+-14
+-1.8
+
+-1.6
+
+-1.4
+
+-1.2
+
+-1
+
+-0.8
+
+Figure 5-2: 𝐿2 error of DG solution of water depth 𝐻 converges with uniform grid
+refinement at an asymptotic rate of 𝑝 + 1.
+been observed to fall short of the optimal value 𝑝+1 in general when a subparametric
+geometry representation is used. The reason is that the discretization error depends
+on not only the solution approximation but also the geometry discretization. Hence,
+it is recommended that at least an isoparametric geometry representation is used in
+the interest of obtaining optimal solution accuracy.
+
+88
+
+5.2
+
+Flow over NACA 0004 Airfoil
+
+The strongly-coupled DG IBL formulation is applied to aerodynamic analysis of the
+flow over a NACA 0004 airfoil at zero angle of attack. The flow is chosen to be
+effectively incompressible with a Reynolds number of 105 defined with respect to the
+chord length. The stagnation pressure and temperature are 105 Pa and 300 K respectively. Both the fully laminar and fully turbulent boundary layers are simulated.
+The viscous wake is invariantly chosen to be fully turbulent.
+The DG IBL formulation uses a 𝑝 = 1 solution approximation for all the tests
+as it is coupled with a panel method of piecewise linear vorticity distribution and
+piecewise constant source strength (with piecewise linear reconstruction). A sample
+grid is illustrated in Figure 5-3. In this airfoil-wake grid configuration, the airfoil TE
+has a finite thickness, and the wake length is chosen to be the same as the airfoil
+chord length since the results have been observed to be relatively insensitive to the
+wake length as it further increases.
+
+airfoil
+
+wake
+
+Figure 5-3: Sample grid for the aerodynamic analysis of NACA 0004 airfoil (64 and
+14 elements on the airfoil and the wake respectively)
+More details about the IBL/panel solver setup are summarized as follows.
+∙ Numerical quadrature: A 3-point Gauss-Legendre quadrature is used for
+evaluating the basis-weighted integrals in the discrete residuals {ℛIBL , ℛauxi , ℛauxv }.
+It is able to numerically integrate polynomials of degree 5 exactly up to machine
+precision.
+∙ Solution initialization: The initial solution 𝑄0 for the Newton solver is set
+89
+
+up using the following procedure. First, the initial inviscid solution 𝑄0inv is set
+to be the uncoupled inviscid solution obtained by solving the panel method
+with a zero source strength (i.e. no viscous effect). Given 𝑄0inv , the auxiliary
+viscous equation (4.7) is then solved to initialize the auxiliary viscous variable
+𝑄0auxv . Each of the first two steps only involves a single step of linear solution,
+and takes a negligible fraction of the computational time required to solve the
+nonlinear coupled IBL/panel system. The initial viscous solution 𝑄0IBL in a fully
+laminar boundary layer is solved inversely to match the thicknesses {𝛿1* , 𝜃11 } of
+the corresponding solution given by XFOIL. As for the fully turbulent boundary
+layer and the viscous wake, the solution 𝑄0IBL is initialized with constant values
+{𝛿 = 0.005 𝑐, 𝒜 = 1} where 𝑐 is the airfoil chord length. The auxiliary inviscid
+solution is initially set as 𝑄0IBL = 0.
+∙ Nonlinear solver: The Newton solver with a line-search algorithm described
+in Section 4.2 is used. The nonlinear solution is determined as converged when
+each component of the global residual ℛ has a magnitude that is smaller than
+the prescribed tolerance of 10−12 (with a proper dimension consistent with the
+respective equation). For the cases that have been run, solution convergence is
+mostly achieved within a few Newton iterations and with very few to none of
+line-search updates. For example, the case of a fully laminar boundary layer
+takes 8 iterations for a grid of 64 elements on the airfoil, and the fully turbulent
+case takes 9 iterations on a grid of 63 elements on the airfoil.
+Note that the strongly-coupled IBL/panel solver is sufficiently robust so that it tolerates most arbitrarily chosen initial guess 𝑄0IBL (albeit within the range of physical
+and modeling validity). In contrast, attempts to initialize 𝑄0IBL by solving the uncoupled IBL equations given 𝑄0auxv frequently encounters nonlinear solution failure
+90
+
+for lack of robustness. This provides supporting evidence of the improved solution
+robustness brought by the strong viscous-inviscid coupling.
+On the other hand, the choice of the initial solution has been observed to affect whether the solution converges or the number of Newton iterations required to
+achieve solution convergence, especially in the fully turbulent case. The current solution initialization strategy is selected based on trial and error, but it is worth further
+investigation and improvement for better efficiency and robustness.
+The IBL/panel coupled solution is compared to the viscous solution of XFOIL,
+which is an established code base for 2D viscous-inviscid analysis by coupling an
+IBL formulation with a panel method (from which the panel method in this thesis
+is derived). Since the turbulent closure modeling is not the primary focus of this
+thesis, it is desirable to minimize the modeling discrepancy between XFOIL and the
+current IBL/panel implementation. To that end, the turbulent lag effect is effectively
+neglected in the XFOIL simulation, so that its model resembles the equilibrium
+turbulent flow formulation used by the IBL/panel solver developed in this thesis as
+much as possible. In addition, since XFOIL cannot directly simulate a fully turbulent
+boundary layer flow, forced transition is imposed at 1% chord downstream from the
+leading edge of the airfoil. Note that this inevitably introduces a modeling difference.
+Figure 5-4 and 5-5 compare the solutions of the IBL/panel method and XFOIL
+in the cases of fully laminar and fully turbulent boundary layers respectively. A
+good agreement is observed for the fully laminar cases in terms of the edge speed
+distribution and integral defects including the scalar momentum defect 𝑃 ≡ 𝜌𝑒 𝑞𝑒2 𝜃11
+
+and kinetic energy defect 𝐾 ≡ 𝜌𝑒 𝑞𝑒3 𝜃1* in the non-dimensionalized form. These
+directly lead to a match in aerodynamic quantities of interest such as lift and drag
+coefficients. As for the fully turbulent cases, the comparison agrees not as closely,
+which is anticipated to mainly stem from the different dissipation closure models used
+91
+
+for turbulent flows between the IBL/panel method and XFOIL. Further comparison
+and investigation on the turbulent boundary layer cases will be conducted in future
+studies as the turbulent closure model is updated for the IBL/panel method.
+The integral defects 𝑃, 𝐾 of both upper and lower airfoil surfaces are shown in
+Figure 5-4 and 5-5. They sum up at the trailing edge and merge into the wake,
+hence the jumps in their values. Theoretically, the non-dimensionalized values of
+these integral defects in the far wake asymptote to the sectional drag coefficient 𝑐𝐷 ,
+𝑐𝐷 ≡
+
+2𝐷′
+2𝑃∞
+𝐾∞
+=
+≈
+2
+2
+3
+𝜌 ∞ 𝑞∞
+𝜌∞ 𝑞 ∞
+𝜌 ∞ 𝑞∞
+
+(5.8)
+
+where ∞ denotes the far-field downstream of the wake and 𝐷′ is the sectional drag
+(i.e. drag divided by the span). This asymptotic behavior is shown in Figure 5-4
+and 5-5, where 𝑐𝐷 is computed using the Squire-Young correction [7]. The resulting
+drag prediction for a fully laminar boundary layer agrees well between the XFOIL
+(𝑐𝐷 = 9.6524 × 10−3 for a grid of 159 airfoil elements) and the coupled IBL/panel
+solver (𝑐𝐷 = 9.5805 × 10−3 for a grid of 128 airfoil elements), with a difference of less
+
+than one drag count (i.e. 10−4 ). For fully turbulent boundary layers, the predicted
+drag coefficients differ more between XFOIL (𝑐𝐷 = 1.5735×10−2 ) and the IBL/panel
+solver (𝑐𝐷 = 1.7502×10−2 ) on the same grid of 127 airfoil elements, which is expected
+due to the difference in the turbulent boundary layer modeling.
+
+92
+
+1.1
+
+1.05
+
+1
+
+0.95
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+1.6
+
+1.8
+
+2
+
+Normalized edge speed distribution
+0.01
+0.009
+0.008
+0.007
+0.006
+0.005
+0.004
+0.003
+0.002
+0.001
+0
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+Non-dimensional integral defects 𝑃, 𝐾
+
+Figure 5-4: Comparison of numerical results of XFOIL and the IBL/panel solver
+for fully laminar boundary layers
+93
+
+1.1
+
+1.05
+
+1
+
+0.95
+
+0.9
+
+0.85
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+1.6
+
+1.8
+
+2
+
+Normalized edge speed distribution
+0.02
+0.018
+0.016
+0.014
+0.012
+0.01
+0.008
+0.006
+0.004
+0.002
+0
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+Non-dimensional integral defects 𝑃, 𝐾
+
+Figure 5-5: Comparison of numerical results of XFOIL and the IBL/panel solver
+for fully turbulent boundary layers
+94
+
+A grid convergence study is also conducted on the IBL/panel solution in which
+the error in the sectional drag coefficient 𝑐𝐷 is examined. The reference value is
+chosen to be (𝑐𝐷 )ref = 9.5790 × 10−3 for fully laminar boundary layer cases, which is
+obtained from the IBL/panel solution on a fine grid of 2048 elements on the airfoil.
+The reference value is (𝑐𝐷 )ref = 1.7483 × 10−2 for fully turbulent boundary layer
+cases, as obtained from the IBL/panel solution on a fine grid of 799 elements on
+the airfoil. Note that the fully turbulent boundary layer cases are not run on even
+finer grids due to the relatively slow nonlinear solution convergence and excessively
+long computational time, which are anticipated to be caused mainly by the turbulent
+closure model in use.
+Airfoil element #
+Absolute error
+Relative error (%)
+Convergence rate
+
+64
+96
+128
+192
+256
+5.0e-5 9.8e-6 1.5e-6 2.1e-6 1.4e-6
+5.2e-1 1.0e-1 1.6e-2 2.2e-2 1.4e-2
+4.01
+6.43
+-0.75
+1.51
+
+Airfoil element #
+Absolute error
+Relative error (%)
+Convergence rate
+
+360
+512
+640
+800
+1024
+1.3e-6 8.6e-7 6.2e-7 3.8e-7 2.5e-7
+1.3e-2 9.0e-3 6.5e-3 4.0e-3 2.6e-3
+0.14
+1.14
+1.48
+2.14
+1.70
+
+Table 5.1: Convergence of 𝑐𝐷 error with grid refinement for fully laminar boundary
+layer cases
+The grid convergence results are summarized in Table 5.1 and 5.2, and Figure 5-6
+and 5-7. The coefficient 𝑐𝐷 obtained from the IBL/panel solution converges to the
+reference value as the grid is refined for both fully laminar and fully turbulent boundary layers. Although the theoretical order of accuracy is not straightforward due to
+the coupling between solvers of different discretization schemes, an approximately
+second-order convergence is observed in the asymptotic regime. This rate of con95
+
+Airfoil element #
+Absolute error
+Relative error (%)
+Convergence rate
+
+63
+95
+127
+191
+255
+359
+6.2e-05 3.1e-05 1.9e-05 9.3e-06 5.1e-06 2.4e-06
+3.5e-01 1.7e-01 1.1e-01 5.3e-02 2.9e-02 1.4e-02
+1.71
+1.69
+1.71
+2.07
+2.22
+
+Table 5.2: Convergence of 𝑐𝐷 error with grid refinement for fully turbulent
+boundary layer cases
+10 -3
+9.62
+9.6
+9.58
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+1000
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+1000
+
+10 -6
+
+10 -6
+10 2
+
+10 3
+
+Figure 5-6: Sectional drag coefficient 𝑐𝐷 of IBL/panel solution converges with grid
+refinement for fully laminar boundary layer cases
+
+96
+
+vergence is considered satisfactory since it does not degrade the expected individual
+order of accuracy of the IBL and the panel solvers.
+0.01754
+0.01752
+0.0175
+100
+
+150
+
+200
+
+250
+
+300
+
+350
+
+100
+
+150
+
+200
+
+250
+
+300
+
+350
+
+10-5
+
+10-5
+
+100
+
+150
+
+200
+
+250
+
+300
+
+350
+
+Figure 5-7: Sectional drag coefficient 𝑐𝐷 of IBL/panel solution converges with grid
+refinement for fully turbulent boundary layer cases
+
+97
+
+98
+
+Chapter 6
+Conclusions
+This thesis presents a discontinuous Galerkin (DG) formulation of the integral boundary layer (IBL) equations in a 2D setting and with strong viscous-inviscid coupling.
+The proposed non-parametric formulation enabled by the DG discretization eliminates the need of constructing curvilinear coordinates explicitly and thus sets the
+stage for application to 3D general configurations. It applies to general PDEs of the
+convection-source type defined on manifolds, and also maintains the benefits of a
+DG method, such as convenient realization of high-order solution and applicability
+to unstructured meshes.
+The importance of strong viscous-inviscid coupling for robust solution is also
+stressed in this thesis. A flexible formulation and convenient implementation of the
+viscous-inviscid coupling framework is presented, featuring flexibility in interchanging
+the inviscid solver and simultaneous viscous-inviscid solution using a global Newton
+method.
+The numerical results of the proposed methodology are presented. The test case
+of shallow water flow on an elliptic curve demonstrates the applicability of the DG
+
+99
+
+discretization to general PDEs on manifolds and unstructured grids, as well as support for high-order solution. Another test case of aerodynamic flow over the NACA
+0004 airfoil corroborates the utility of the current strongly-coupled DG IBL method
+for aerodynamic analysis, with comparison to the well-established XFOIL code base.
+
+Future Work
+In future studies, the current work will be extended in many ways, with a focus on
+the boundary layer modeling and numerical implementation.
+In the modeling front, proper treatment of (laminar-to-turbulent) flow transition
+in the current DG IBL formulation remains to be investigated in both 2D and 3D
+settings. Turbulent closure relations can also be improved, including the dissipation
+closure model and an additional transport PDE for the shear stress.
+The numerical implementation will also be extended to include 3D, unsteady and
+compressible flow effects (following earlier developments in the 3D IBL formulation
+[13, 1]). The DG IBL formulation will be applied to genuinely 3D aerodynamic
+analysis on general configurations.
+The nonlinear solution algorithm can be further improved regarding efficiency
+and robustness. To that end, a better solution initialization strategy is anticipated
+to be beneficial for the current Newton solver. The pseudo-transient continuation
+(PTC) method [36, 37, 38] is also considered for future implementation in the coupled
+IBL solver.
+Moreover, the coupling between IBL and other inviscid solvers, such as full potential and Euler, will be implemented to leverage the flexibility of the current viscousinviscid coupling framework and expand the capability of the strongly-coupled IBL
+method to, for example, transonic aerodynamic analysis.
+100
+
+Another expected extension is to apply the strongly-coupled IBL method to multidisciplinary design and optimization, for example, in coupling with structural analysis for investigation of aeroelasticity. The current viscous-inviscid coupling scheme
+can be naturally enriched to include structural solvers, such as a hybrid shell model
+[39].
+
+101
+
+102
+
+Appendix A
+Quadrature Rule for Defect Integrals
+The numerical quadrature rule for evaluating the defect thickness and dissipation
+integrals is described in this appendix.
+For laminar flows and the turbulent wake flow, the velocity profile 𝑈 (𝜂) assumes
+a polynomial form as in (2.72) and (2.81), and so are the integrands in the thickness
+integrals (2.69) and the dissipation coefficient (2.79). Hence, a standard Gaussian
+quadrature rule (e.g. [40]) of some moderate order suffices to compute the integrals
+(2.69) exactly (up to machine precision). The current numerical implementation uses
+a 20-point Gauss-Legendre quadrature, which is able to exactly integrate polynomials of degree up to 39 and is the maximum quadrature order implemented in the
+current code base. This is more than what is necessary to evaluate the thickness and
+dissipation integrals of laminar flows and the turbulent wake exactly up to numerical precision. To improve the computational efficiency, the number of quadrature
+points can be reduced to what is necessary according to the polynomial degree of the
+corresponding integrands.
+The turbulent boundary layer flow velocity profile (2.81) is non-polynomial since
+
+103
+
+its inner-layer part is based on Spalding’s law. The wall-units velocity profile 𝑢+ (𝜂)
+(as shown in Figure 2-8) displays an approximately logarithmic growth rate. Hence,
+a Gaussian quadrature is no longer able to yield exact integration for the defect
+thickness integrals of turbulent flows.
+To ensure the accuracy of numerical integration, the quadrature rule is employed
+with caution. One strategy is to use a sufficiently high-order Gaussian quadrature
+(e.g. the current implementation uses an order of 39) in evaluating integrals so that
+the error is controlled within an acceptable range. This method is effective and
+simple to implement but can be computationally expensive for some flow regimes
+(e.g. flow region with large 𝑅𝑒𝛿 and 𝒜 where the turbulent boundary layer flow is
+more attached to the wall).
+A more economical strategy implemented by Drela [1] is to leverage properties of
+the Gaussian quadrature points. The turbulent boundary layer velocity profile 𝑈 (𝜂)
+defined in (2.81) is first extrapolated as follows,
+
+𝑈 (𝜂) ≡
+
+⎧
+⎨𝑈 (𝜂)
+
+𝜂 ∈ [0, 1]
+
+(A.1)
+
+⎩𝑈 (2 − 𝜂) 𝜂 ∈ (1, 2]
+
+Note that 𝑈 is smooth over 𝜂 ∈ (0, 2) since 𝑈 is smooth over 𝜂 ∈ (0, 1) and all
+its derivative vanishes at the viscous layer edge (i.e. d𝑘 𝑈/d𝑘 𝜂 = 0 at 𝜂 = 1 for
+𝑘 = 0, 1, 2, . . .). Let 𝜂𝑗 , (𝑗 = 1, 2, . . . , 𝑁𝑞 ) be the 𝑁𝑞 Gaussian quadrature point
+coordinates defined on the interval [0, 2] with associated weights 𝑤𝑗 . It is known
+that 𝜂𝑗 are distributed symmetrically with respect to 𝜂 = 1. It follows that some
+
+104
+
+generic integral of the velocity profile can be evaluated as follows,
+ˆ 1
+
+ˆ
+𝑁𝑞
+1 2
+1 ∑︁
+𝑈 d𝜂 =
+𝐼≡
+𝑈 d𝜂 ≈
+𝑤𝑗 𝑈 (𝜂𝑗 )
+2 0
+2 𝑗
+0
+⎧
+𝑁𝑞 /2
+⎪
+⎪ ∑︁
+⎪
+⎪
+𝑤𝑗 𝑈 (𝜂𝑗 ),
+⎪
+⎨
+𝑗=1
+=
+⃒
+(𝑁𝑞 −1)/2
+⎪
+∑︁
+⃒
+⎪
+1
+⎪
+⃒
+⎪
+𝑤
+𝑈
+(𝜂
+)
++
+𝑤𝑗 𝑈 (𝜂𝑗 ),
+𝑗
+𝑗
+⎪
+⃒
+⎩2
+𝑗=(𝑁𝑞 +1)/2
+𝑗=1
+⎧
+𝑁𝑞 /2
+⎪
+∑︁
+⎪
+⎪
+⎪
+𝑤𝑗 𝑈 (𝜂𝑗 ),
+⎪
+⎨
+= 𝑗=1
+⃒
+(𝑁𝑞 −1)/2
+⎪
+∑︁
+⃒
+⎪
+1
+⎪
+⃒
+⎪
+𝑤
+𝑈
+(𝜂
+)
++
+𝑤𝑗 𝑈 (𝜂𝑗 ),
+𝑗 ⃒
+⎪
+⎩2 𝑗
+𝑗=(𝑁𝑞 +1)/2
+𝑗=1
+
+𝑁𝑞 even
+(A.2)
+𝑁𝑞 odd
+
+𝑁𝑞 even
+(A.3)
+𝑁𝑞 odd
+
+which provides a numerical quadrature rule that is generalizable to the thickness
+integrals (2.69). Since the quadrature points are clustered more densely near the two
+end points of the interval (i.e. 𝜂 = 0, 2), the resulting accuracy turns out to be better
+than directly applying the Gaussian quadrature rule of 𝑁𝑞 points to the interval of
+𝜂 ∈ [0, 1].
+Investigation of other quadrature rules constitutes ongoing research. Another
+avenue for thickness integral evaluation is to sidestep the numerical integration.
+Instead, those thicknesses (2.68) can be explicitly parametrized by the boundary
+layer parameters (e.g. {𝛿, 𝒜}) and directly computed. For example, this method is
+adopted in MSES [3] and XFOIL [2] for 2D flows. Since the parametrization can
+be constructed offline and the explicit evaluation is straightforward, such a strategy is generally much faster than performing numerical integration using quadrature
+rules. Therefore, in practice, a production code is likely to favor the approach of
+explicit parametrization for its competitive speed. However, one caveat is that the
+105
+
+parametrization can be complicated by the larger number of boundary layer parameters involved in 3D flows. The parametrization needs to be carried out cautiously
+and using potentially more sophisticated regression techniques.
+
+106
+
+Appendix B
+Panel Method
+This appendix presents the details underlying the panel method implementation in
+this thesis. A 2D panel method is formulated using a linear-vorticity streamfunction
+with source distribution for viscous modeling. It closely follows the inviscid solver of
+the version 6.99 of XFOIL [41], and thus the following sections can be treated as an
+updated documentation compared to the original XFOIL formulation [2].
+A 2D potential flow field is represented by a superposition of uniform freestream
+flow of speed 𝑞∞ at an angle of attack 𝛼 and the velocity field induced by a vortex
+sheet of strength 𝛾 on the airfoil surface and a source sheet of strength 𝜆 on both
+the airfoil surface and the wake. The streamfunction of the overall flow field is given
+by
+Ψ(𝑥, 𝑦) = 𝑢∞ 𝑦 − 𝑣∞ 𝑥
+ˆ
+ˆ
+1
+1
++
+𝛾(𝑠) ln 𝑟(𝑠; 𝑥, 𝑦) d𝑠 +
+𝜆(𝑠) 𝜃(𝑠; 𝑥, 𝑦) d𝑠
+2𝜋 Ωa
+2𝜋 Ωa ∪ Ωw
+
+(B.1)
+
+𝜕Ψ
+𝜕Ψ
+, 𝑣=−
+𝜕𝑦
+𝜕𝑥
+
+(B.2)
+
+such that 𝑢 =
+
+where 𝑠 is the curvilinear coordinate along the vortex and source sheets; it is chosen to
+
+107
+
+be defined in a counterclockwise direction and forms a right-handed locally Cartesian
+𝑠-𝑛 coordinate system with a normal coordinate 𝑛. The relative position vector r
+from the integration point at 𝑠 to the field point (𝑥, 𝑦) has magnitude 𝑟 and vector
+angle 𝜃 which is chosen to be defined in the 𝑠-𝑛 coordinate system. Note that the
+definition of 𝜃 is arbitrary up to a constant, which changes Ψ only by a constant as
+well and results in the same velocity field. The 𝑥, 𝑦 components of the freestream
+velocity are 𝑢∞ = 𝑞∞ cos 𝛼 and 𝑣∞ = 𝑞∞ sin 𝛼 respectively, while 𝑢 and 𝑣 are the
+velocity components of the overall potential flow. The 1D domains of the airfoil
+surface and the wake are denoted by Ωa and Ωw respectively.
+
+Figure B-1: Airfoil and wake panel configuration with vorticity and source
+distributions, and trailing edge details (figure adapted from [2] with permission)
+The airfoil surface and the wake trajectory are discretized into flat panels, with 𝑁a
+(or simply 𝑁 ) nodes on the airfoil and 𝑁w nodes on the wake as shown in Figure B1. The vortex strength 𝛾(𝑠) is discretized in a continuously piecewise linear manner
+over all the airfoil panels and is defined by nodal values 𝛾𝑖 (1 ≤ 𝑖 ≤ 𝑁a ). The
+source strength 𝜆(𝑠) is first represented by constant distribution 𝜆𝑖 over each airfoil
+(1 ≤ 𝑖 ≤ 𝑁a − 1) and wake (𝑁a ≤ 𝑖 ≤ 𝑁a + 𝑁w − 2) panel. Each panel is further
+divided into halves. On the two sub-panels, 𝜆(𝑠) is reconstructed to be continuously
+piecewise linear and is defined by three nodal values: the interior nodal value 𝜆∘𝑖 ≡ 𝜆𝑖
+
++
+and the boundary nodal values, 𝜆−
+𝑖 and 𝜆𝑖 , which are averaged over neighboring
+
+panels and weighted by panel sizes. At nodes (𝑖 = 1, 𝑁a , 𝑁a + 1, 𝑁a + 𝑁w ) where only
+
+108
+
+one neighboring panel exists, the panel boundary nodal source strength is defined to
+be equal to the panel interior value. For example, on the airfoil, the reconstructed
+panel boundary values of source strength are given by
+𝜆−
+𝑖 ≡
+
+𝑚𝑖+1 − 𝑚𝑖−1
+|r𝑖 − r𝑖−1 |
+|r𝑖+1 − r𝑖 |
+=
+𝜆𝑖−1 +
+𝜆𝑖 , (2 ≤ 𝑖 ≤ 𝑁a − 1),
+|r𝑖+1 − r𝑖−1 |
+|r𝑖+1 − r𝑖−1 |
+|r𝑖+1 − r𝑖−1 |
+(B.3)
+
+𝜆−
+1 ≡ 𝜆1
+𝜆+
+𝑖 ≡
+
+𝑚𝑖+2 − 𝑚𝑖
+|r𝑖+1 − r𝑖 |
+|r𝑖+2 − r𝑖+1 |
+=
+𝜆𝑖 +
+𝜆𝑖+1 , (1 ≤ 𝑖 ≤ 𝑁a − 2),
+|r𝑖+2 − r𝑖 |
+|r𝑖+2 − r𝑖 |
+|r𝑖+2 − r𝑖 |
+
+(B.4)
+
+𝜆+
+𝑁a −1 ≡ 𝜆𝑁a −1
+where 𝑚𝑖 ≡ 𝑞e 𝛿1* is the mass defect normalized by the edge density 𝜌e (following a
+proper sign convention consistent with source strength 𝜆 and should not be confused
+with the mass defect defined in the IBL formulation) and r𝑖 is position vector. Both
+𝑚𝑖 and r𝑖 are defined at each node 𝑖. The definition on the wake panels follows
+similarly.
+If the airfoil has a finite thickness at the trailing edge, a panel of constant source
+strength 𝜆TE and vortex strength 𝛾TE needs to be placed across that the trailing edge
+gap. For a smooth flow off the trailing edge, the source and vortex strengths 𝜆TE
+and 𝛾TE must be related to the local airfoil surface vorticity by
+⃒
+⃒
+1
+𝜆TE = (𝛾1 − 𝛾𝑁a ) ⃒t̂ × ŝ⃒ ,
+2
+
+⃒
+⃒
+1
+𝛾TE = (𝛾1 − 𝛾𝑁a ) ⃒t̂ · ŝ⃒
+2
+
+(B.5)
+
+where t̂ is the unit vector bisecting the trailing edge angle and pointing away from
+the airfoil, and ŝ is the unit vector along the trailing edge panel pointing from the
+lower edge to the upper edge (i.e. counterclockwise around the airfoil).
+Based on the aforementioned discretization, the streamfunction defined in (B.1)
+
+109
+
+evaluates to the following expression at any field point (𝑥, 𝑦),
+𝑁a −1 [︁
+]︁
++
+−
+1 ∑︁
+Ψ(𝑥, 𝑦) = 𝑢∞ 𝑦 − 𝑣∞ 𝑥 +
+Ψ𝛾𝑗 (𝑥, 𝑦) (𝛾𝑗+1 + 𝛾𝑗 ) + Ψ𝛾𝑗 (𝑥, 𝑦) (𝛾𝑗+1 − 𝛾𝑗 )
+4𝜋 𝑗=1
+
+1
++
+4𝜋
++
+
+1
+4𝜋
+
+𝑁a +𝑁
+∑︁w −2 [︁
+𝑗=1
+
+(︀
+)︀
+(︀ ∘
+)︀]︁
++
+−
+𝜆−
+Ψ𝜆𝑗10(𝑥, 𝑦) 𝜆∘𝑗 + 𝜆−
++
+Ψ
+(𝑥,
+𝑦)
+𝜆
+−
+𝜆
+𝑗10
+𝑗
+𝑗
+𝑗
+
+𝑁a +𝑁
+∑︁w −2 [︁
+𝑗=1
+
+(︀
+)︀
+(︀ +
+)︀]︁
++
+∘
+𝜆−
+∘
+Ψ𝜆𝑗02(𝑥, 𝑦) 𝜆+
++
+𝜆
++
+Ψ
+(𝑥,
+𝑦)
+𝜆
+−
+𝜆
+𝑗
+𝑗02
+𝑗
+𝑗
+𝑗
+
+⃒
+⃒
+⃒
+⃒)︀
+1 (︀ 𝜆
+ΨTE (𝑥, 𝑦) ⃒t̂ × ŝ⃒ + Ψ𝛾TE (𝑥, 𝑦) ⃒t̂ · ŝ⃒ (𝛾1 − 𝛾𝑁a )
++
+4𝜋
+
+(B.6)
+
+Figure B-2: Panel local coordinates (figure adapted from [2] with permission)
+The unit streamfunctions in (B.6) are defined using panel local coordinates 𝑠¯, 𝑛
+¯
+
+110
+
+as shown in Figure B-2. Analytic expressions of the integrals are derived as
++
+
+Ψ𝛾𝑗 (𝑥, 𝑦) = 𝑠¯1 ln 𝑟1 − 𝑠¯2 ln 𝑟2 + 𝑠¯2 − 𝑠¯1 + 𝑛
+¯ (𝛽1 − 𝛽2 )
+)︂
+(︂
+)︀
+1
+1 (︀ 2
+𝛾−
+𝛾+
+2
+2
+2
+Ψ𝑗 (𝑥, 𝑦) = (¯
+𝑠1 + 𝑠¯2 ) Ψ𝑗 + 𝑟2 ln 𝑟2 − 𝑟1 ln 𝑟1 +
+𝑠¯1 − 𝑠¯2
+2
+𝑠¯1 − 𝑠¯2
+𝑟𝑝
++
+¯ ln
+Ψ𝜆𝑗𝑝𝑞(𝑥, 𝑦) = 𝑠¯𝑞 𝛽𝑞 − 𝑠¯𝑝 𝛽𝑝 + 𝑛
+𝑟𝑞
+(︁
+)︁ 1
+−
++
+Ψ𝜆𝑗𝑝𝑞(𝑥, 𝑦) = (¯
+𝑠𝑝 + 𝑠¯𝑞 ) Ψ𝜆𝑗𝑝𝑞 + 𝑟𝑝2 𝛽𝑝 − 𝑟𝑞2 𝛽𝑞 + 𝑛
+¯ (¯
+𝑠𝑞 − 𝑠¯𝑝 )
+𝑠¯𝑝 − 𝑠¯𝑞
+𝑟1
+Ψ𝜆TE (𝑥, 𝑦) = 𝑠¯1 𝜃1 − 𝑠¯2 𝜃2 + 𝑛
+¯ ln
+𝑟2
++
+
+Ψ𝛾TE (𝑥, 𝑦) = Ψ𝛾TE (𝑥, 𝑦)
+
+(B.7)
+(B.8)
+(B.9)
+(B.10)
+(B.11)
+(B.12)
+
+More details on the derivation can be found in, for example, a text by Katz [42].
+The canonical 1, 2 nodes of the trailing edge panel are nodes 𝑖 = 𝑁a , 𝑖 = 1 respectively. Note that that the equation (B.11) uses 𝜃 whereas other unit streamfunction
+definitions use 𝛽. That is,
+𝜃 ≡ arctan
+
+(︁ 𝑛
+¯ )︁
+𝑠¯
+
+,
+
+𝛽 ≡ arctan
+
+(︁ 𝑠¯ )︁
+𝑛
+¯
+
+,
+
+𝜃, 𝛽 ∈ [−𝜋, 𝜋] ,
+
+𝜃+𝛽 ≡
+
+𝜋
++ 𝑘𝜋 (∃𝑘 ∈ Z)
+2
+(B.13)
+
+This choice is intended to ensure that the arctan( ) branch cut does not intersect the
+airfoil surface.
+Flow tangency on the airfoil surface (approached from the inside) is attained by
+requiring the streamfunction to be equal to some constant value Ψ0 . That is,
+∇Ψ · ŝ = q i · n̂ = 0
+
+⇔
+
+Ψ − Ψ0 = 0
+
+(B.14)
+
+where q i is the flow velocity. This condition is imposed at each node (𝑥𝑖 , 𝑦𝑖 ) on the
+111
+
+airfoil surface, resulting in the following 𝑁a linear equations,
+𝑁a
+∑︁
+𝑗=1
+
+𝑎𝑖𝑗 𝛾𝑗 − Ψ0 = −𝑢∞ 𝑦𝑖 + 𝑣∞ 𝑥𝑖 −
+
+𝑁a +𝑁
+∑︁w −2
+
+𝑏𝑖𝑗 𝜆𝑗 ,
+
+𝑗=1
+
+1 ≤ 𝑖 ≤ 𝑁a
+
+(B.15)
+
+The coefficient matrices 𝑎𝑖𝑗 and 𝑏𝑖𝑗 are fully determined from the unit streamfunction
+and the panel geometry. Combining (B.15) with the Kutta condition
+𝛾1 + 𝛾𝑁a = 0
+
+(B.16)
+
+completes a (𝑁a + 1) × (𝑁a + 1) linear system for the 𝑁a nodal values 𝛾𝑖 and the
+airfoil surface streamfunction Ψ0 .
+A special treatment is required for an airfoil with a sharp trailing edge. In this
+case, the nodes 𝑖 = 1 and 𝑖 = 𝑁a coincide, rendering one equation redundant in
+(B.15) and thus a singular global linear system. This problem can be sidestepped
+by replacing the 𝑖 = 𝑁a equation in (B.15) with a linear extrapolation of the mean
+𝛾 (between upper and lower surfaces) to the trailing edge [2],
+(𝛾1 − 𝛾𝑁a ) − (𝛾2 − 𝛾𝑁a −1 ) = (𝛾2 − 𝛾𝑁a −1 ) − (𝛾3 − 𝛾𝑁a −2 )
+
+(B.17)
+
+The version 6.99 of XFOIL [41] treats this singularity issue differently by requiring
+the internal velocity inside airfoil near the trailing edge to be zero, which is adopted
+in the current numerical implementation as follows,
+(︀
+)︀
+q i · t̂ = ∇Ψ · ẑ × t̂ = 0
+
+at (𝑥, 𝑦) = (𝑥1 , 𝑦1 ) − 𝑑 (t̂ · x̂, t̂ · ŷ)
+
+(B.18)
+
+where ẑ = x̂ × ŷ and the velocity q i in (B.18) is computed such that only the vortex
+and source on the airfoil are accounted for, which is an ad-hoc implementation simply
+112
+
+for the purpose of being consistent with XFOIL. The length scale 𝑑 is set to be small
+compared to the panel sizes,
+𝑑 ≡ 0.1 min{|r1 − r2 | , |r𝑁a − r𝑁a −1 |}
+
+(B.19)
+
+The idea underlying the treatment (B.18) is that the discrete pure Neumann condition in (B.15) does not guarantee a well-posed problem. It can result in non-physical
+outflow from the airfoil interior through the trailing edge, which can be eliminated
+by requiring the internal velocity to vanish.
+Sample results of the panel method presented in this thesis are shown in Figure B3 and B-4, which demonstrate a good agreement with XFOIL solutions. In obtaining
+the results, the XFOIL viscous mode is used. Also, the source strength 𝜆 for the
+panel method formulated in this thesis is prescribed from the XFOIL viscous solution
+as in (4.6).
+
+113
+
+0.9
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+-0.1
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+1
+0.9
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+0.2
+0.1
+
+Figure B-3: Panel solution comparison between XFOIL (version 6.99) and the
+panel method of this thesis (SANS panel): NACA0004 airfoil with a finite-thickness
+trailing edge. 𝑅𝑒 = 105 , Mach ≈ 0, 128 panels on the airfoil
+
+114
+
+0.9
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+0.2
+0.1
+0
+-0.1
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+1
+0.9
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+0.2
+0.1
+
+Figure B-4: Panel solution comparison between XFOIL Version 6.99 (XFOIL
+panel) and the panel method of this thesis (SANS panel): Joukowski airfoil
+(thickness-to-chord ratio 𝑡/𝑐 ≈ 0.378) with a cusp trailing edge. 𝑅𝑒 = 105 ,
+Mach ≈ 0, 128 panels on the airfoil
+
+115
+
+116
+
+Bibliography
+[1] Drela, M., “IBL3: A Four-Equation 3D Integral Boundary Layer Formulation,”
+(unpublished). March 3, 2017.
+[2] Drela, M., “XFOIL: An Analysis and Design System for Low Reynolds Number
+Airfoils,” Low Reynolds number aerodynamics, Vol. 54, 1989, pp. 1–12.
+[3] Drela, M. and Giles, M. B., “Viscous-inviscid Analysis of Transonic and Low
+Reynolds Number Airfoils,” AIAA Journal , Vol. 25, No. 10, Oct. 1987, pp. 1347–
+1355.
+[4] Slotnick, J., Khodadoust, A., Alonso, J., Darmofal, D., Gropp, W., Lurie, E.,
+and Mavriplis, D., “CFD Vision 2030 Study: A Path to Revolutionary Computational Aerosciences,” Tech. rep., National Aeronautics and Space Administration, Mar. 2014.
+[5] Bradshaw, P. and Ferriss, D. H., “Calculation of Boundary-Layer Development
+Using the Turbulent Energy Equation: Compressible Flow on Adiabatic Walls,”
+Journal of Fluid Mechanics, Vol. 46, No. 01, Mar. 1971, pp. 83.
+[6] Mclean, J. and Randall, J., “Computer Program To Calculate ThreeDimensional Boundary Layer Flows Over Wings With Wall Mass Transfer,”
+Tech. rep., National Aeronautics and Space Administration, 1979.
+[7] Drela, M., Flight Vehicle Aerodynamics, The MIT Press, Cambridge, MA, USA,
+2014.
+[8] Martins, J. R., Kenway, G. K. W., and Brooks, T., “Multidisciplinary Design
+Optimization of Aircraft Configurations Part 2: High-fidelity Aerostructural
+Optimization,” May 2016, Lecture series, Von Karman Institute for Fluid Dynamics, Sint-Genesius-Rode, Belgium.
+
+117
+
+[9] Bieterman, M., Melvin, R., Johnson, F., Bussoletti, J., Young, D., Huffman,
+W., Hilmes, C., and Drela, M., “Boundary Layer Coupling in a General Configuration Full Potential Code,” Tech. rep., The Boeing Company, 1994.
+[10] Johnson, F. T., Tinoco, E. N., and Yu, N. J., “Thirty Years of Development
+and Application of CFD at Boeing Commercial Airplanes, Seattle,” Computers
+& Fluids, Vol. 34, No. 10, Dec. 2005, pp. 1115–1151.
+[11] Ashill, P. R. and Smith, P. D., “Integral Method for Calculating the Effects
+on Turbulent Boundary-Layer Development of Sweep and Taper.” Aeronautical
+Journal , Vol. 89, No. 882, 1985, pp. 43–54.
+[12] Swafford, T. W. and Whitfield, D. L., “Time-dependent Solution of Threedimensional Compressible Turbulent Integral Boundary-layer Equations,” AIAA
+Journal , Vol. 23, No. 7, Jul. 1985, pp. 1005–1013.
+[13] Drela, M., “Three-Dimensional Integral Boundary Layer Formulation for General Configurations,” 21st AIAA Computational Fluid Dynamics Conference,
+American Institute of Aeronautics and Astronautics, San Diego, CA, Jun. 2013.
+[14] Nishida, B. A., Fully Simultaneous Coupling of the Full Potential Equation and
+the Integral Boundary Layer Equations in Three Dimensions, Ph.D. thesis, Massachusetts Institute of Technology, 1996.
+[15] Mughal, B. H., Integral Methods for Three-Dimensional Boundary Layers, Ph.D.
+thesis, Massachusetts Institute of Technology, 1998.
+[16] Lock, R. and Williams, B., “Viscous-Inviscid Interactions in External Aerodynamics,” Progress in Aerospace Sciences, Vol. 24, No. 2, 1987, pp. 51–171.
+[17] Goldstein, S., “On Laminar Boundary Layer Flow Near a Position of Separation,” The Quarterly Journal of Mechanics and Applied Mathematics, Vol. 1,
+No. 1, Jan. 1948, pp. 43–69.
+[18] Le Balleur, J., “Strong Matching Method for Computing Transonic Viscous
+Flows Including Wakes and Separations. (English Edition),” La Recherche
+Aerospatiale, Vol. 3, 1981, pp. 21–45.
+[19] Veldman, A. E. P., “New, Quasi-simultaneous Method to Calculate Interacting
+Boundary Layers,” AIAA Journal , Vol. 19, No. 1, Jan. 1981, pp. 79–85.
+
+118
+
+[20] Veldman, A. E. P., “A Simple Interaction Law for Viscous-inviscid Interaction,”
+Journal of Engineering Mathematics, Vol. 65, No. 4, Dec. 2009, pp. 367–383.
+[21] Zhang, S., Galbraith, M., Allmaras, S., Drela, M., and Darmofal, D., “A Nonparametric Discontinuous Galerkin Formulation of the Integral Boundary Layer
+Equations With Strong Viscous/Inviscid Coupling,” 23rd AIAA Computational
+Fluid Dynamics Conference, 2017 AIAA Aviation and Aeronautics Forum and
+Exposition, American Institute of Aeronautics and Astronautics, Denver, Colorado, Jun. 2017.
+[22] Bassi, F. and Rebay, S., “A High-Order Accurate Discontinuous Finite Element
+Method for the Numerical Solution of the Compressible Navier-Stokes Equations,” Journal of Computational Physics, Vol. 131, No. 2, Mar. 1997, pp. 267–
+279.
+[23] Bernard, P.-E., Remacle, J.-F., Comblen, R., Legat, v., and Hillewaert, K.,
+“High-Order Discontinuous Galerkin Schemes on General 2D Manifolds Applied
+to the Shallow Water Equations,” Journal of Computational Physics, Vol. 228,
+No. 17, Sep. 2009, pp. 6514–6535.
+[24] Kelly, P., “Mechanics Lecture Notes Part III: Foundations of Continuum Mechanics. Chapter 1.14 Tensor Calculus 1: Tensor Fields,”
+Available at http://homepages.engineering.auckland.ac.nz/~pkel015/
+SolidMechanicsBooks/Part_III/index.html. Retrieved on December 7, 2017.
+[25] Kundu, P. K., Cohen, I. M., and Dowling, D. R., Fluid Mechanics, Elsevier, 5th
+ed., 2012.
+[26] Drela, M., Aerodynamics of Viscous Flows, (unpublished), 2015.
+[27] Coles, D., “The Law of the Wake in the Turbulent Boundary Layer,” Journal of
+Fluid Mechanics, Vol. 1, No. 02, Jul. 1956, pp. 191.
+[28] Spalding, D. B., “A Single Formula for the “Law of the Wall”,” Journal of Applied
+Mechanics, Vol. 28, No. 3, 1961, pp. 455.
+[29] Simpson, R. L., Chew, Y.-T., and Shivaprasad, B. G., “The Structure of a Separating Turbulent Boundary Layer. Part 1: Mean Flow and Reynolds Stresses,”
+Journal of Fluid Mechanics, Vol. 113, No. 1, Dec. 1981, pp. 23.
+[30] Clauser, F., “Turbulent Boundary Layers in Adverse Pressure Gradients,” Journal of the Aeronautical Sciences, Vol. 21, No. 2, Feb. 1954, pp. 91–108.
+119
+
+[31] Reed, W. H. and Hill, T. R., “Triangular Mesh Methods for the Neutron Transport Equation,” Tech. Rep. 836, Los Alamos Scientific Lab, New Mexico, US,
+1973.
+[32] Shu, C.-W., “Discontinuous Galerkin Method for Time-Dependent Problems:
+Survey and Recent Developments,” 2014, pp. 25–62, X. Feng et al. (eds.),
+“Recent Developments in Discontinuous Galerkin Finite Element Methods for
+Partial Differential Equations,”, The IMA Volumes in Mathematics and its Applications 157 .
+[33] Galbraith, M. C., Allmaras, S. R., and Haimes, R., “Full Potential Revisited:
+A Medium Fidelty Aerodynamic Analysis Tool,” 55th AIAA Aerospace Sciences Meeting, American Institute of Aeronautics and Astronautics, Grapevine,
+Texas, Jan. 2017, pp. 1–26.
+[34] Aftosmis, M. J., Berger, M. J., and Melton, J. E., “Robust and Efficient Cartesian Mesh Generation for Component-Based Geometry,” AIAA Journal , Vol. 36,
+No. 6, Jun. 1998, pp. 952–960.
+[35] Galbraith, M. C., Allmaras, S., and Darmofal, D. L., “A Verification Driven
+Process for Rapid Development of CFD Software,” 53rd AIAA Aerospace Sciences Meeting, American Institute of Aeronautics and Astronautics, Orlando,
+Florida, Jan. 2015, pp. 1–29.
+[36] Kelley, C. T. and Keyes, D. E., “Convergence Analysis of Pseudo-Transient
+Continuation,” SIAM Journal on Numerical Analysis, Vol. 35, No. 2, Apr. 1998,
+pp. 508–523.
+[37] Coffey, T. S., Kelley, C. T., and Keyes, D. E., “Pseudotransient Continuation
+and Differential-Algebraic Equations,” SIAM Journal on Scientific Computing,
+Vol. 25, No. 2, Jan. 2003, pp. 553–569.
+[38] Ceze, M. and Fidkowski, K. J., “Constrained Pseudo-Transient Continuation,”
+International Journal for Numerical Methods in Engineering, Vol. 102, No. 11,
+Jun. 2015, pp. 1683–1703.
+[39] Thalheimer, W. C., Structural Analysis and Optimization with a LocallyCartesian Hybrid Shell Model , Master’s thesis, Massachusetts Institute of Technology, 2016.
+[40] Hesthaven, J. S. and Warburton, T., Nodal Discontinuous Galerkin Methods,
+Vol. 54 of Texts in Applied Mathematics, Springer, New York, NY, 2008.
+120
+
+[41] Drela, M., “XFOIL: Subsonic Airfoil Development System,” Available at http:
+//web.mit.edu/drela/Public/web/xfoil/. Retrieved on December 6, 2017 .
+[42] Katz, J. and Plotkin, A., Low-Speed Aerodynamics, Second Edition, Cambridge
+University Press, New York, NY, 2001.
+
+121
+
+

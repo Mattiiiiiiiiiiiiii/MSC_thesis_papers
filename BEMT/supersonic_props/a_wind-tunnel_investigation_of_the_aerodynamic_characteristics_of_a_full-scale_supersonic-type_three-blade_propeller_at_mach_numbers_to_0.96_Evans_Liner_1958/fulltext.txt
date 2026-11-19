@@ -1,0 +1,11042 @@
+NATIONAL ADVISORY COMMITTEE
+FOR AERONAUTICS
+
+REPORT 1375
+
+A WIND·TUNNEL INVESTIGATION OF THE
+AERODYNAMIC CHARACTERISTICS OF A FULL· SCALE
+SUPERSONIC-TYPE THREE-BLADE PROPELLER AT
+MACH NUIUBERS TO 0.96
+
+By ALBERT J. EVANS and GEORGE LINER
+
+1958
+
+For sale by the Superintendent or Documents, U. S. Government Printing Office, Washingto n 25. D. C. Yearly subscription, $10; foreign, $13.00 :
+sina1e cop1 price varies accordina 10 size - - - - - - - • - Price 25 cents
+
+-.
+
+I
+
+REPORT 1375
+
+A WIND-TUNNEL INVESTIGATION OF THE
+AERODYNAMIC CHARACTERISTICS OF A FULL-SCALE
+SUPERSONIC-TYPE THREE-BLADE PROPELLER AT
+MACH NUMBERS TO 0.96
+By ALBERT J. EVANS and GEORGE LINER
+
+Langley Aeronautical Laboratory
+Langley Field, Va.
+
+National Advisory Committee for Aeronautics
+HeadquarteTs, 1512 H Street NW., Washington 25, D. O.
+Oreated by act of Oongress approved March 3, 1915, for the sup ervision and direction of the scientific study
+of the problems of flight (U. S. Oode, title 50, sec. 151). Its membership was increased from 12 to 15 by act
+approved March 2, 1929, and to 17 by act approved May 25, 1948. The members are appointed by the President,
+and serve as such without compensation.
+JAMES H. DOOLITTLE, Sc. D., Vice President, Shell Oil Company, Chairman
+LEONARD CARMICHAEL, PH. D. , Secretary, Smithsonian Institution, Vice Chairman
+ALLEN V. ASTIN, PH. D., Director, National Bureau of Standards.
+PRESTON R. BASSETT, D . Sc.
+DETLEV W. BRONK, PH. D ., President, Rockefeller Institute for
+Medical R e earch.
+FREDERICK C. CRAWFORD, Sc. D., Chairman of the Board.
+Thompson Products, Inc.
+WILLIAM V. DAVIS, JR., Vice Admiral, United States Navy,
+D eputy Chief of Naval Operations (Air).
+PAUL D . FOOTE, Ph. D ., Assistant ecretary of Defense, R esearch and Engineering.
+WELLINGTON T. HINES, Rear Admiral, United States Navy,
+Assistant Chief for Procurement, Bureau of Aeronautics.
+JEROME C. HUNSAKER, Sc. D., Massachusetts Institute of
+Technology.
+
+CHARLES J. MCCARTHY, S. B., Chairman of the Board, Chance
+Vought Aircraft, Inc.
+DONALD L. PUTT, Lieutenant General, United States Air Force.
+Deputy Chief of Staff (Development).
+JAMES T . PYLE, A. B ., Administrator of Civil Aeronautics.
+FRANCIS W. REICHELDERFER, Sc. D., Chief, United States
+Weather Bureau.
+EDWARD V. RICKENBACKER, Sc. D., Chairman of the Board,
+Eastern Air Lines, Inc.
+LOUIS S. ROTHSCHILD. PH. B., Under Secretary of Commerce
+for Transportation.
+THOMAS D. WHITE, General, United tates Air Force, Chief of
+Staff.
+
+HUGH L. DRYDEN, PH. D., Director
+
+JOHN F. VICTORY, LL. D., Executive Secretary
+
+JOHN W. CROWLEY, JR., B. S., Associate Director for Research
+
+EDWARD H . CHAMBERLIN, Executive Officer
+
+HENRY J. E. REID, D. Eng., Director, Langley Aeronautical Laboratory, Langley Field, Va.
+SMITH J. DEFRANCE, D. Eng., Director, Ames Aeronautical Laboratory, Moffett Field, Calif.
+EDWARD R . SHARP, Sc. D., Director, Lewis Flight Propulsion Laboratory, Cleveland, Ohio
+WALTER C. WILLIAMS, B. S., Chief. High-Speed Flight Station, Edwards, Calif.
+
+n
+
+REPORT 1375
+A WIND-TUNNEL INVESTIGATION OF THE AERODYNAMIC CHARACTERISTICS OF A
+FULL-SCALE SUPERSONIC-TYPE THREE-BLADE PROPELLER AT
+MACH NUMBERS TO 0.96 t
+By AIJBER1' J. EVA NS and GEO R GE LI NER
+
+SUMMARY
+
+An investigation oj the chamcte7'i tics oj a jult- cale supersonic-type propeller has been made in the Langley 16100t
+tran onic tunnel with the 6000-horsepowe7' propeller dynamometer. The tests covered a range oj blade angles Jrom 20.2° to
+60.2° atJorward Mach number up to 0.96 .
+The results showed that envelope efficiency at an advance
+ratio oj 2.8 decreased jrom 86 percent to 72 percent when the
+jorward Mach number was increased jrom 0.70 to 0.96. A
+comparison oj the experi mental re ults with calculated results
+howed that maximum propeller efficiency can be calculated
+with good accuracy by u ing ordinary ub onic trip the07'y
+when the blade-section peeds are supersonic. The investigation also howed javorable power-ab orption propertie oj the
+supersonic-type propeller at high speeds.
+INTRODUCTION
+
+The lack of aU'foil data and adequate theory at transonic
+fligh t speeds makes the d esign and performance prediction
+of au'craft propellers uncertain for high-subsonic- peed au'craft. It is therefore necessary that the aerodynamic characteristics of propellers designed to operate at transonic
+speeds be determined experiInentally . The experiInen tal
+r esul ts not only are necessary to determin e the characteristics
+of specific propellers but also to justify the assump tions that
+are nece sary with r e pect to airfoil data and propeller
+theory in th e transonic speed range.
+Two facili ties of the Langley Aeronautical Laboratory of
+the National Advisory Committee for Aeronautics, namely,
+the 6000-horsepower propeller dynamometer and the Langley
+16-foot transonic tunnel, have mad e it possible to conduct
+full-scale propeller tests at tra nsonic speeds. The tests
+of thi investigation are th e fu' t fu ll-scale propeller tests
+to be made in th e transonic peed range and in a slo tted
+wind-tunnel test section. Th e inve tigation included mea urements of t hrust and torqu e of the propeller , wake-pressure
+surveys to determin e the blade thrust loadings, dynamic
+blade twi t mea urements, I-P vibratory- tress meaSUl'ements, and a determination of the effects of propeller
+thr ust on the tunnel-airspeed calibration. The aerody namic
+data are presented in the form of plots of effi ciency and
+
+thrust and power coefficients against propeller advance
+r atio for a range of forward Mach numbers from 0.20 to 0.96 .
+An aU'stream calibration of the Langley 16-foot transonic
+tunnel with the 6000-horsepower propeller dynamometer
+installed in the test section is also included her ein.
+SYMBOLS
+
+A
+b
+
+propeller-disk area, sq ft
+blade width (chord ), ft
+.
+p
+power coeffi Clen t, pn 3D 5
+thru t coefficien t, pn~D4
+
+Cl
+
+D
+h
+J
+M
+M vrop
+
+section lift coefficien t
+propeller diamet er , ft
+blade-section maximum thickn ess, ft
+. V
+a d vance ratIo, n D
+forward Mach number
+forward Mach numb er wi th propeller installed
+and operating
+forward Mach number with no propeller on
+dynamometer
+helical tip Mach number, M
+
+n
+
+p
+
+propeller rotational speed, rps
+power , ft-Ib/sec
+power disk-loadin g coeffi cien t, q~V
+
+q
+
+R
+r
+
+T
+V
+x
+{3
+{30.75R
+
+'1
+'1maz
+
+p
+
+dy namic pressure, ! p V 2
+propeller tip radiu s, it
+radiu to a blade element, ft
+thrust , lb
+forward velo city, fps
+fraction of propeller tip radiu s, T/R
+blade angle
+blade angle a t O.75R, deg
+effi ciency
+maximum effi ciency
+air density, slugs/cu ft
+
+tSu persedes recen tly declassified N ACA Research Memoran dum L53FOI by Albert J . E vans and George Liner, 1953.
+
+2
+
+REPOR'f 1375-
+
+NA'l'IONAL ADVISORY COMMI'fTEE FOR AERO AUTI CS
+
+APPARATUS
+
+and photograph showing the arrangement of the dynamom- ,
+eter a nd the cylindrical fair·ing in the tunnel are hown in 1
+figures 1 and 2, r espectively.
+A variable-frequency power upply allow continuous
+speed control of the dynamometer . The rotational speed
+i set manually with the aid of an aircraft tachometer and
+measured to within X rpm on a Stroboconn, wh ich matches
+rotational fr equ ency with the known fr equ ency of a tuning
+fork.
+Highly refined pressure gages convert pneumatic pre ures
+from the tl1Tu t and torque cap ules in to direct readings of
+tIu·ust and torque. Simultan eou Iy, spinner-jun cture pressures arc mea ured on a micromanometer to correct thru t
+reading for effect of air·-pressure difference on the ends of
+the rotating pinn er.
+Th e pinn er diameter was 32 inches, the same as Lhe forward cylindrical fairing and the dynamometer case . The
+propeller blade airfoil ections extended inboard to the
+pinner sm-face.
+
+LANGLEY I6-FOOT TR ANSO Ie TU NEL
+
+The iDvestigation was mad e in the Langley 16-foot transonic tunnel. Th e test section i octagonal in cross section
+with longitudinal slots permitting in terference-free testing
+with the propeller dynamometer install ed to the top speed
+of the tunnel as limi ted by the maximum power. Additional
+details of the wind tunn el are give n in reference 1.
+THE 6000-HORSEPOWER PROPELLER DYNAMOMETER
+
+The 6000-hor epower propeller dy namometer i de cri bed
+in reference 2. The two 3000-hol'sepower units of the dynamometer were coupl ed in tandem, and the propeller was
+mounted on the forward end for the present tests. I n
+order to obtain a radially uniform axial flow field in the
+propeller plane, a long (2 .4D) cylindrical fairing extend ed
+from a point upstr eam of the minimum area ection of the
+tunn el to the propeller spin ner. Th e boundary-l ayer thickne s in the propeller plan e caused by the cylindrical fair·in g
+was computed to be mall enou gh in magn itude to produce
+no noticeable effect on the operating propeller. A sketch
+
+P R OPELLER
+
+Th tlu·ee-blade propeller used for this investigation had
+a diameter of 9.75 feet. Th e blades were made from solid
+
+Tunnel wall ····
+Air flow
+
+l---r
+9 .75'
+
+,......
+
+32" l
+
+I---- - -
+
+- - - - - - -- - - - - - --
+
+---. -
+
+'-----~\~----~-~--~~~----~---~---~-----1
+- - - -
+
+_ _+ - - 1_ _ _ _ _ _- . -
+
+_
+
+1/2" plate
+Triadic support ...
+
+Tunnel wa ll··,
+
+1.0
+
+~
+
+.8
+
+Q;
+.D
+
+E
+
+r ~LlLl
+
+:J
+
+C
+.!::
+
+u
+0
+
+LlLlLl
+
+LlLl Ll
+
+LlLlLl
+
+=, 66 'S
+
+LlLlLl LlLlLl
+
+LlLlLl LlLlLl
+
+.6
+
+:2
+"0
+
+-~
+
+(;
+
+I uu o
+
+OO U' I~ -~. U
+
+U
+
+000
+
+000
+
+000
+
+3
+
+tf .4
+
+,
+
+N
+
+000 000 I VVV (V 0
+
+000 000 000
+
+.2
+
+0
+
+100
+
+110
+
+120
+
+130
+
+140
+
+150
+
+160
+
+Tunnel sta tion, ft
+
+FIGURE I.- Sketch of propell er dynamom eter and Mach number distribu tion in the Langley 16-foot tran onic tunne l with dynamometer but
+without propeller. Flagged symbols indicate dynamometer body m ea urement wherea sym bols without flags rep resent t unn el-wa ll meas urement.
+
+AERODYNAMIC CHARACTERISTICS OF AS PERSONIC-TYPE THREE- BLADE PROPELLER TO MA CH NUMBER 0.96
+
+3
+
+L -75371
+FIG
+
+RE
+
+2.- Prop eller mounLcd on t he 6000-horsepo\\" r d y na mometer in t he La nglcy 16-foot t ranson ic t unn e l test
+section (tunn el open, vic\\" looking dO Il·' nstream).
+
+6415 steel and had symmetrical 16-seJ'ies airfoil sections.
+The blade-thickn ess ratio varied from 0.06 at the spinn er
+to 0.02 at the tip , and the chord was con tant for th e length
+of the exposed blade. Blad e-form characteri tic curves
+
+are hown in figlJl'e 3. The propeller wa design ed to operate at a rotation al peed of 2600 rpm at a forward Mach
+numb er of 0.95 at 35,000 fee t altitude, con e ponding to an
+advance ratio of 2.2.
+
+4
+
+R E P ORT 13 7 5-
+
+ATIO AL ADVISOR Y COMMIT 'l'EE F OR AE R ONAUTICS
+
+Developed plan form
+
+. 18 - , - r' , - _.
+
+~.1 6
+
+J
+
+70
+
+\
+
+-
+
+eN
+
+66
+
+I
+
+1\
+
+-Q
+
+,I; }< v ' l
+
+-- -
+
+62
+
+\
+
+I
+
+.' \
+
+.1 2
+
+'"o
+
+1\
+
+- - --\- - -
+
+0"
+
+'0
+.~
+
+\
+
+.. Upper-rake posit ion
+
+" biD
+
+58",
+
+'"
+
+'0
+
+'0
+
+I
+
+:0 .10
+
+11o
+
+'\
+
+~
+
+:::".0 8
+
+I
+
+-<::
+0"
+
+54 cQ
+
+"\ ..{3
+
+I
+
+"\
+
+"\
+
+\
+
+e·0 6
+
+\
+
+~
+
+--- -
+
+"'-
+
+"'" I'--- I.·hl b
+
+'"
+
+~·.04
+
+Plenum cha mber su rrounding
+the t est sec t ion
+
+"-
+
+'"
+-g.02
+iIi
+
+42
+
+'-..,
+
+i--::-
+
+£
+
+l- e-
+
+i"--
+
+• Toto 1- pressure tubes
+• Static - pr essure tubes
+
+38
+
+4.- Scctional vie\\" (looking down t ream) of dynamometer
+and surv ey rakes moun ted in t he t est section .
+tation 127.
+
+FIG U RE
+
+o
+
+.2
+
+.4
+
+.3
+
+.5
+
+.6
+
+Froc t ion of tip radius, x
+FIGURE 3.-
+
+.7
+
+.8
+
+.9
+
+Blade"form characteristics.
+
+W AKE-SU R VEY R AK ES
+
+Th e wake-survey rake were constru cted so that the
+orifices of the to tal-pre ure and static-pre m e probe were
+2 feet ahead of the leading edge of t be rake strut which was
+an 8-percen L-t hick circular-arc airfoil of con tan t 2-foo t chord .
+The ge nC'ral arran gement of the dynamometer with the
+wakC'-su)'vey rakes mou n ted wi th the orifice located 17
+inches behi.nd the propeller cen ter line i shown in figures
+2 a nd 4. B ecau e of the difficulty of te ting the propeller
+at high fo rward Mach numb ers, a is explained sub equ entl)r,
+the rake wcre set in the upper position for all te ts except
+for rotational speed of 1600 rpm .
+TESTS
+
+MosL of th e tests wer e made at co n tant value of forward
+'M ach numb er, and a range of advance ratio was covered b
+vary in g the propeller rotational specd. One group of te ts
+wa made with the propeller operating at a rotational speed
+of ] 600 rpm to cover a complete range of blade angles at
+low forward :M ach number. For these tests, the advan ce
+ratio \Va varied by varying the tunn el a ir peed . During
+the group of test at 1600 rpm, the tunnel ail' peed was
+lowered un til flu tter \Va a udible at each blade a ngle tested
+a nd, although no data were recorded at flu tter, the value
+of forward NIach number at which flu tter occurred wa
+determined.
+I n many cases the range of th e test was limi ted by the
+max imum dynamometer rotational speed and the available
+dy namometer power . These limitations did no t permit the
+
+testing of the propeller at it de ign condition of operation
+a nd al 0 did not permit te ting at low value of advance
+ratio at the high er Mach numb ers.
+CALIBRATION S
+TUNNEL AIRSP EED
+
+The tunnel airstream was calibrated wi h the dynamometer installed in the te t s tation with no propeller . Th e
+Mach number at which the propeller te t were r un was
+et by a lV1ach numb er indica tor that wa r eferenced to
+taLic pressure in the plenum chamber urrounding the test
+ection . Th e r elationship between the 11ach n umb er at
+the propeller plane (without propeller) and the Mach number
+determined from the plenum static pre SUl'e was establ i hed
+in the same manner a in r efer ence l. Evidence that propeller operation ha no ignifican t eff ect on tunnel wall
+pre sures is discu sed in a ubseq uen t section of th is repor t,
+A plot of the longitudinal Mach number di tribution a
+measured by static-pressure orifice neal' the ce nter lin e of
+one of the tunnel-wali flats and along the dynamometer body
+is hownin :figurel. At low speed (A1= 0.60) , thelongitudinal i\[ach numb er distribution i uniform throughout the
+tun nel te t cction. At the higher value of Mach number,
+howevcr, a n acceleration of the tunnel air tl'eam is indi cated
+in the region of the dynamometer upport tl'uts. Thi
+accelera t ion , which is due to the partial blockage effect of
+the suppor t truts, is accompanied by a deceleration of the
+airstream ahead of the str uts in the region of tbe propeller
+plane, The velocity gradien t through the propeller plane
+is mali, however , excep t at the high t value of N1ach
+numb er shown.
+A compari on of the 1'e ul ts obtained from the orifices on
+
+AERODYNAMIC CHARACT~RISTI CS OF A SUPE RSONIC-TYPE 'l'HREE- BLADE PROPELLER TO MACH NUMBER 0.96
+
+the Lunn el wall with tho e obtained from the dynamometer
+ody orifice showed a n egligible radial Mach number d ifren ce acro s the propeller plane ( ee fig. 1), the difference
+Mach numb er being of the order of 0.005 at a tream
+tIach numb er of 0.95. R es ults from static probes of the
+vake-survey rakes in he lower posit ion ind icaLed a marked
+ifference from the result hown in figuTe ]. The urvey
+'ake indicated a gradually varyino- radial },fach number
+listl'ibution wh ich amounted to a differe nce in Mach number
+f about 0.05 from the dynamometer to the tunnel wall at
+the highest value of :\Iach number. However , tbe te t
+made at Lhe con tant rotational peed of 1600 rpm were
+th e only tests mad e wi th t,h e wake-survey rakes ill the lower
+posi tion. The tream t[ach number for the te t at 1600
+rpm did noL exceed a val ue of about 0.70 , and the nonuniform
+rad ial di LribuLion up Lo M=0.70 is negligible.
+It i believed that with the urv ey rake in the lower
+po ition a partial stream blockage wa ' caused by the proximiLy of the wake rake struts 1,0 the dynamometer support
+lruL which caused the inboard static probe to r ecord a low
+velocity.
+hown in figur e 4, the dynamometer body
+-orifice wer e in tbe upper part of the te t section , ouL of the
+area of inAuen e of the struts, and the 1'e ults did not indicate
+th low velo itie indicated by the rake probe. In the plan e
+of the operating propeller, the nonuniformity of the axial
+veloci ty di tr ibution with the rakes in the lower po j tion
+wa further indicated by evere 1-P vibratory stresse at
+a ~rach number of 0.70 whi ch became wor e a the Mach
+number was increased. III order to overcome these lifii.culties, it wa nece ary to move Lhe wake-sur vey rakes
+to the upper position (:a.g. 4) . Tnfortu nat ely, no tunnel
+calibration wa made without the propeller with the wakeUl'vey rake in the upper po ilion, alLhough alleviaLion of
+the blockage eff ect wa indicated by lhe ab ence of the l-P
+v ibration on the operating propeller eve n to the maximum
+speed of the tunnel.
+With the wake- urvey rake in the upper po ition, the
+radial :M ach number distribution wa ther efore presumed
+to agrce wiLh he r es ul t indicated by figure 1. From the
+foregoing onsiderations, it has been concluded that the
+propeller data presen Led in the pre en t report do not include
+any detrimental effect that may b e considered to arise from
+propeller operation in a nonun iform ail' tream and that the
+value of t1' am Nlach numb er obtained from the tunn elwall orifice are thc value experienced by the operating
+propeller.
+1
+
+DY ' AMOMETE R CALIBR ATIO
+
+, tatic calibration of th e thru t a,nd torque m eter were
+made in a manner imilar to that for the 2000-horsepowcr
+propeller dynamometer de crib ed in reference 3. Th e calibrations were straight line when the indicated load wcre
+plotted again t the appliecl load and the slopcs of the lin e
+weI' determined by the method of least quare.
+Th e probable error in the thru t cale r ead ing wa 5.6
+pounds, which amounted to a maximum elTor of about 0.6
+pOl'cent in the important operating range of the propeller .
+
+5
+
+The probable error in the total Lorque readings was 4.9
+foot-pound , which was a maximum error of about 0.3 percent in the range of propeller operation for peak efficiency.
+REDUCTIO N OF DATA
+TH R UST
+
+P ropeller thru L as used herein i defined a the shaft
+ten ion proehl ed by the aerodynam ic force acting on the
+propeller bladcs from the pinner to the blade tips.
+Th e aerodynam ic force 011 the roLaling pinn er were determ ined by runn in g the tunnel and the dynamometer over
+a r a nge of airspeed and rotational speed wi th no propeller
+in taIled and record ing the readings of the Lhru t cales.
+Th e d lffel'ence in pres me b tween the upstream face and
+t.he downstream face of the rotating spinner was r ccorded
+simul taneou ly with the thru treading. The variation
+of thru t with thc spinner-jun ture pre m e diff rence wa
+on e traight line for all combination of tunnel ail' peed
+a ll el dynamometer rotational speed. With this relation
+determ ined, the . p inner-jun cture pre sure difference wa
+mea u red for test points with the propeller operating and
+the corre ponding value of thru t Wit subtracted from the
+indicated cale readings a a Lare thrust. Propeller thmst
+i , therefore, the indicated thru 1, of the propeller minu th e
+pinner tare thrust cr eated by the differencc in pinn erjunctme pre me between the up tream and down tream
+faces of the pinner, the pinner skin-friction drag being less
+than the accuracy of the thru t readings.
+TO R QUE
+
+Torqu e tarc readings were obtaine 1 s imulLan eou ly with
+the thru t tare readings during the Lare run. The torqu e
+tare forces varied with tunnel airspeed and to a slight exte nt
+with dynamometer rotational peed. The variation with
+rotational speed amounted to about 5 foot-pound for the
+range of rota tio nal peeds pre en ted Jl erein. Th e variation
+of torque with tunnel air p eed, however, was a straio-htlin variation which amounted to about 55 foot-pound at
+a val ue of ?-.fach number of 1.0. InherenL v ibration of thc
+dynamomcter with the wind t unn el was bell ved Lo cau e
+Lhe variation of torque with tunnel ail' peed.
+The torque tare force for all rolational peed were
+plotted aga in t a fun ction of tunnel airspeed and a Jaired
+lin e wa drawn through the point. This procedure neglected the small variation of torque with rotational speed
+so that there \Va an HOI' of ±2.5 foot-pounds. Propeller
+torque wa the indicated torque reading millu the torque
+tare reading.
+WI ND - TU
+
+EL WALL CORRECTIO
+
+A theory was presented in reference 4 for the olid blockage
+inierfere nce eflect in circular wind tunnel with wall lotted
+in lhe direction of flow. The theory indica.Led the po ibility
+of obtain ing zero blockage interference at high subsonic
+~1ach numbers , and to t on a model tunnel reported in th e
+arne reference onfu'med the theorelical result. Pre ure
+meas urement on a body of revolution in Lhe Langley 16foo t tran on ic tunnel are compared with mea mement
+
+6
+
+REPORT 137 5-
+
+NATIONAL ADVISORY COMMITTEE FOR AERO AU'fICS
+
+made on an identical body by the free-fall technique in
+r efer ence 5. The r e ult of r efer ence 5 showed that the
+tunnel-wall interfer ence effect wer e neo-ligible up to and
+including 'M ach numb er 1.0 .
+In order to check th e wall effec t of a slotted tes t ection
+on an operating propeller, pre sure mea urement were
+made along a r egion of th e wind-tunllel wall extending from
+1.3 feet ah ead to 4.2 feet behind the propeller plane. The
+r esult of th e pre sure measurements are presented in figuro
+5 a the var iation with tunn el station of the ratio of th e
+Mach number with the propeller operating to th e :vl:ach
+number obtain ed from calibration tes t without a propellel'.
+The haded area between the two cm ve include r epreentative data ob tained tln'ouo-hou t the entire Mach number
+and propeller-thru t-co effi cient ranges covered in th e investigation . The scatter of points in the enclosed area of
+figure 5 is within th e accuracy of th e tunn el- peed measurement. The Mach numb er with the propeller operating
+was within abou t ± l.0 per cent of the value obtain ed
+withou t th e propeller , and the tunnel l.ongitudinal {ach
+numb er gradient with the propeller operating wa s entially
+the same us hat obtain ed wi thou t the propeller (fig . 1).
+The variation of thru t coeffi cien t from a negative value
+to a rela tively high po itive valu e did no t appreciably affect
+th e Mach numb er ratio .
+ince it i eviden t that th e oper ating propeller had no ignifican t eff ect on the tunn el wall
+pressures, i t ha b een concluded that no wind-tunn el wall
+correc tion is n ce sary for the r a no-es of Mach numb er and
+Lhrust coeffi cient over ed in th e present Le Ls .
+ACCURA C Y
+
+In the significant ran ge of propeller operation th e data
+are accurate to 1.3 perce n t ba cd on the accuracy of the
+tatic calibrations. How ever, the accuracy of th e faired
+curv e is believed to be within l.0 percent.
+RESULTS AND DISCUSSION
+PRESENTATION OF BASIC RESULTS
+
+Th e aerody nami c data ob tain ed durin g t he te t are preented in figm es 6 to 14 a fair ed curv e of Lhrust coefficient ,
+power coefficient, propeller' efficien cy, air tream ::'-.lach number, and helical tip Mach number plo t ted against propeller
+advan ce r a tio. The data tes t poin ts are in cluded on th e
+plo ts of thru st and power coeffici ents.
+11a ny of the te ts were extend ed into the nega tive thru t
+and power rnnge of opera tion and the data hav e been
+
+included in figure 6 to 14. The curves indicate that data
+obtained in th e positive range of operation can be extrapo
+lated to mall negative value wi th good accuracy.
+The plot of thrust coeffici ent and efficiency in figure 1,
+for f30.75R=54.7 ° wa obtained from wake- ill'vey pre ur data, since the tln'ust data obtain ed for thi particular te
+were beli eved to be elToneous becau e of difficultie whic
+wer e encoun tered in the operation of the tlwu t cap ule.
+In orne case the data have been extrapolated to define
+the efficiency peaks better. The extrapolated portions of
+the curves arc hown in the fiO'ure a a da hed line. The
+valu e of peak effici ency obtain ed by extrapolation arc
+con idel'ed to be within the e>"'P erimental accuracy of the
+data.
+Di con tinuitie in some of the Mach number curve hown
+in figures 6 to 14 are attributed to change in air temp eratUl'fI
+which occurred from day to day.
+THE EFFECT
+
+Figure 15 show the variation of envelope efficiency wiLh
+advan ce ratio for everal value of forward 11ach number .
+Th e most no tabl e fea t ure of the Cill've in figure 15 i hat
+the los in efficiency with an increase in advance ratio is
+mall for any of the lIach numb er . Al though the design
+value of advance ratio (2.2) could not b reached at the
+higher Mach numbers, th e trend of the curves indicate that
+a sup er onic propeller design ed for an advanc ratio of 2.2
+will experience a los in envelope efficiency of only abouL
+1 pm'cen when operated a t an advan ce ratio of 3.2. A
+advan ce ratio i increased above 3.2 the drop in envelope
+efficiency i more rapid. The curves in fig m e 15 ugge t
+the po ibili ty that a super oni c propeller could be design ed
+for advance ratios as high as 3.4. At th e e higher advance
+ratios th e rotational peed would be mu ch lower, and the
+stru ctural problem cau ed by large centrifugal force would
+be less evere; th erefor e, thinner blade ection might be
+u cd. Although there is an incr-ea e in the tend ency to
+flutter, tb e u e of t hinn er blad e ection would be a definite
+advan tage becau e of their high er lift-drag ratio at high
+M:ach number . However the use of a lower rotational
+peed would lower the power-ab orp tion proper tie of th e
+propeller with a given diameter , ince the power varie a
+the cub e of the ro tational speed. Obviou ly, the selection
+of the proper advan ce ratio for a sup ersonic propeller involve
+a compromise between aerodynamic and tructural requiremen t.
+COMPARISO
+
+1.0 I It~r=nmmn;t;:;;:t::;:r,;Jn7t7l:m7t;mk:+--j
+Mprop 1.00 t-----t'if-j-fjff7'f1f:fflW,f.Nf-h'IHhtJ'HHt'fl:ff-t'IHft17'-H,j----/
+Mnoprop
+
+.98 L----:c12:::S:---'----:-1:2::6:---'---.,.1c!:
+27=--..l-- 1-!,.
+28,,---L-- 1-!,.
+29
+- =---L--I-30
+!,.-=---L----1
+131
+Tunnel station, ft
+
+F IGURE 5.- E ffect of prope ller operatio n on t he tu nn el-wa ll mea urem en t
+
+for t he range of
+
+taineel in t he te ts.
+
+{ ach number s and thrll st coe ffici ents ob-
+
+OF ADVANCE RATIO ON ENVELOPE EFFICI ENCY
+
+OF CALC LATED AND EXPERI ME TAL VAL ES OF
+ENVELOPE EFFICI ENCY
+
+I t wa no t possible to test th e pre en t propell er at the
+design operati ng condi tion since the maximum rotational
+peed of Lhe dy namometer (2300 rpm) did not permit operation at an ad vance ratio of 2.2 aL a forward 1I1ach number of
+0.95.
+Ll'ip-theory calculations, however , hav e been macIe
+for th e efficiency of the propeller by using the method described in reference 3 and the re ult are plotted in figill'e 15.
+The airfoil data, whi ch were cro -plotted and extrapolated
+for u e with the blade-thickn es ratios of t he tc t propeller,
+wer e obtained for the ca.leulations from reference 6.
+
+-
+
+I
+
+-
+
+- - --
+
+- -- - -
+
+-
+
+l
+
+7
+
+AERODYNAMIC CHARACTERISTICS OF A SUPERSO Ie- TY PE T H REE - BLADE PROPELLER TO MACH NUMBER 0 . 96
+.2 0
+
+. 18
+
+-<Flutter boundary
+
+l-
+
+V
+
+v
+
+III
+
+1\
+
+I"Q
+
+\
+
+1\
+
+11
+
+"\
+
+I I:>
+
+I\,
+
+1\
+
+I
+
+. 12
+
+1\
+
+.~
+
+1\
+
+f\
+
+b
+
+1\
+
+1\
+
+\
+
+~
+
+1\
+
+1\
+
+1\
+
+\
+r<.
+
+~
+
+\
+
+. 14
+
+1,\
+
+1\
+1\
+
+1\
+I
+
+1\
+
+1,\
+\
+
+. 16
+
+l" ~
+
+I'Q
+
+IQ
+
+I I I
+1600 rpm
+
+1\
+
+11;>
+
+C
+
+\
+
+\
+
+i
+i\
+\
+
+\
+
+i
+
+'"\
+
+II:>
+
+Q
+
+;.::
+
+Qj
+
+1\
+10
+
+I)"
+
+o
+
+(J
+
+\"
+
+IQ
+
+Q
+
+\
+
+\
+\
+
+I
+
+.04
+
+\
+
+\
+
+Ib
+
+.06
+
+\},
+
+r\
+
+1"\
+
+\
+
+.
+'u
+
+,\
+
+\
+
+\
+I
+
+A
+
+19
+
+\
+
+I}"
+
+.0 8
+
+1\
+
+\
+
+\
+
+1\
+
+I
+
+c
+
+-"
+
+1\
+
+\
+. 10
+
+R
+
+1\
+
+I}"
+
+Iq
+
+Iq
+
+1\
+1\
+f3 O.75R = 20 .2 ° t-I- 2 5.2,°-, ~ - 30.2~ ,....1-
+
+.02
+
+1\
+
+\
+
+"
+
+\
+
+\
+
+.
+
+'I'
+\
+
+l.1
+
+\
+'\
+
+1\
+\
+
+1\
+
+1\
+
+,
+
+I\.,
+
+q
+
+\
+
+-.06
+
+~
+
+50 .8° ~
+
+III
+
+"\
+10
+
+\
+I"
+
+"
+
+\
+\
+
+).,
+
+45.4.;0
+
+c
+
+\
+
+b
+
+I'?
+
+- .0 4
+
+.
+
+-0
+
+\
+-.02
+
+4 0 20 \
+
+35.zo'o
+
+\
+
+0
+
+o
+
+1\
+
+\
+
+'"\
+
+11
+
+1\
+
+.\
+
+"\
+~
+
+\
+
+I'
+- .0 8
+
+"\
+
+(0)
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+1.2
+
+1.6
+
+1.4
+
+1. 8
+
+2.0
+
+2.2
+
+2.4
+
+2.6
+
+2.8
+
+3.0
+
+3.2
+
+Advance rat io, J
+
+(a) Thru t coefficien t.
+FW U R E
+
+6.- Characte ristics of propeller .
+
+On the basis of the nearly con tant calculated valu e of
+efficiency between an advance ratio of 2.20 and 2. 6, the
+exp erim ental curve for a M ac h number of 0.96 is faired to
+J = 2.2 as shown in figure 15 . This extrapolation of the
+experimental curve indicates an efficiency of the test pro p eller for M = 0.96 , J = 2.20 of about 73 percent. There i
+remarkably clo e agreem cnt shown between the calculated
+valu e of efficiency for tbis propeller and the experimental
+data in figure 15. In the wor t case (J =3 .7 ) the difference
+b tween the caleulated efficiency a nd experimental efficiency
+is 0.025 , whereas at J = 2.86 the difference is 0.008 . For
+the calcul ations at J =3 .78, some of the effective blade
+479517-59--2
+
+Ro tational peed , 1600 rpm ; M < 0.67.
+
+section were operating in a transonic speed range, where a
+mall elTor of Macb number or angle of attack might r esul
+in a large error in drag. The agreement at the lower advance ratio hows that, when thc blade section speeds are
+supersonic, maxim um prop eller efficiency can be calculated
+with good accmacy by u ing ordinary sub onic trip theory
+and the airfoil da,ta eompiled in r ference 6. The calculations of thru t and torque coefficients , however, were about
+20 pcrcen t below thc exp erimen tal values. Thi r es uIt
+indicates that t he lift-drag ratios u ed in the calculation
+were satisfactory b ll t the values of both lift an d drag wer e
+somewhat low.
+
+-
+
+--
+
+8
+
+REPORT 1375-
+
+.56
+
+NATIO AL ADVISORY COMMITTEE FOR AERONAUTICS
+
+--- =r
+
+1
+I
+
+- ,--
+
+,-
+
+'-,--
+
+I
+1
+
+I
+.52
+
+-
+
+I
+
+.48
+
+.44
+
+--,
+
+-f- r-'
+
+-l-
+
+I
+
+.40
+
+I
+I
+
+I
+I
+
+.32
+
+-'
+
+-'-
+
+.. .-l
+
+I
+
+I
+
+/
+
+I
+
+I
+I
+
+I}
+
+'"
+
+~~
+
+~
+
+0;
+~
+
+!/
+
+X
+
+I
+I
+
+I
+
+-r:; ~
+-
+
+I
+
+.24
+
+I
+
+I
+
+1
+
+I
+
+lGt:
+
+L
+
+/
+
+1-
+
+\
+
+r-
+
+~\
+1\
+
+1H
+
+i-
+
+_I
+
+(L
+
+I
+
+I
+I
+
+0
+
+I - f- \
+
+'\.
+
+1 0.
+0...
+
+.12
+
+I <'\~
+
+f-
+
+I
+
+I
+
+Q.
+
+I
+
+1-
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+I
+I
+I
+
+J
+
+3520 t{
+
+I
+
+i
+
+I
+
+I
+
+I
+
+9.
+
+--!.
+
+q
+1---
+
+r-
+
+f
+
+I
+I
+II
+
+I
+
+I
+
+:- 1-
+
+I
+I
+
+1'(
+
+I
+
+II
+
+I
+
+I
+I
+
+b
+
+I},
+
+"\
+
+I
+
+.1
+
+I
+I
+I
+
+"\
+
+50.8°
+II
+
+I
+
+1'1
+
+I
+
+II
+
+\
+I
+
+\.
+"1
+1\
+\
+
+\
+
+L\.
+
+_\
+
+\
+
+\
+
+a.
+
+,b
+
+1\
+
+I'"
+
+1\
+
+l},
+
+1\. 1
+
+I
+
+.h
+
+1\
+
+:J...!
+i
+
+I
+
+I
+
+.6
+
+I
+
+!
+
+.8
+
+1.0
+
+Ib
+
+I
+
+I
+
+I
+
+I
+.4
+
+I~
+
+I\,
+
+"?
+\
+
+I },
+
+l..
+
+1\
+
+r r- 45.4° I
+
+I O· °
+14
+.2 "l
+
+I
+
+I
+
+c
+
+I
+
+\..
+
+\
+
+I
+
+!
+.2
+
+I
+
+Q
+
+\
+
+I
+
+I
+I
+
+H-
+
+-f--
+
+1_\c
+
+1
+
+i ~ - )- -- t XI -1 r
+
+6,
+
+I
+
+J
+
+f-
+
+~
+
+I
+.-+
+.\
+H-HI
+I
+I
+~ + H r )., 1
+
+-'I
+
+!
+(b)
+
+I
+
+\
+
+I
+
+I
+
+I
+
+I"
+
+IV- T
+
+I
+
+.
+
+1'1{
+
+I
+
+,--
+
+!
+
+\
+
+\
+
+b
+
+I
+
+t
+
+I
+
+I
+
+30.2°
+
+R
+
+I
+I
+
+- .08
+I
+
+\
+
+-'-
+
+13-
+
+I
+
+- .04
+
+,
+
+I
+
+'-\
+
+I
+
+0
+
+I
+I
+I
+
+f
+I
+
+H-- 25.2°[>.
+~
+
+I
+I
+
+1\
+
+'\
+
+I
+I
+I
+
+I
+
+-L
+
+'Q
+
+I
+
+.04
+
+- ~ f-r-
+
+I\. ,
+
+/3 O.7SR = 20.2~~
+
+.08
+
+I
+I
+
+I
+
+I
+
+!
+
+-
+
+=1 -
+
+I
+
+II
+
+I
+
+-~
+
+~
+
+I
+
+I
+
+I
+I
+
+-I-
+
+1\ r-f--t- L
+
+/
+
+I
+
++-h\
+
+I
+
+h~\
+
+I
+
+I
+
+.
+
+-t, i
+
+Q
+
+I
+
+I
+
+I
+
+r- ~
+
+,
+
+~
+
+I
+
+-l !
+-r
+1
+
+'It-- ~
+
+r\ f-
+
+1
+
+I
+I
+
+I -f-
+
+-
+
+~
+
+i
+
+- I--- r ~ '- il I-
+
+\
+
+I
+
+I
+
+i
+1-'
+
+f-'- Q
+
+1- H--
+
+.\
+
+r\
+
+I
+
+I
+
+I
+
+j. l - -~ tL "]\
+I
+I
+I -- -, ,\ fr
+...'.
+\
+~
+rr-t -- ~ .1 ,
+"\
+
+I
+
+.20
+
+0
+
+. 16
+
+r-
+
+f- f- +- 117~
+
+I
+
+I
+
+.-
+
+1
+
+\ '
+
+11
+
+[q'
+
+\
+
+-
+
+I- ib
+
+I\.
+
+Flutter boundary ..
+
+I
+
+.28
+
+/
+
+/
+
+I
+I
+
+.l
+
+C
+
+T
+
+I ;
+
+1\
+
+T
+
+I
+I
+
+I
+
+.36
+
+./
+
+V ~ 1--/- ~ -1-
+
+I
+
+.1
+
+\
+
+./
+
+r-I-
+
+I
+
+r ,-
+
+f--
+
+I -r-f-
+
+, -- -
+
+f-
+
+I
+
+-f- I- 1-1-1-
+
+0
+
+I
+
+I
+
+fL:-
+
+III
+
+~L
+1600 rpm
+
+1-
+
+-f-
+
+-,- -
+
+I
+-l-
+
+-\
+-
+
+I
+
+I
+
+--,--
+
+-'
+
+\
+
+I
+
+I
+
+~
+
+I
+
+I
+
+I
+
+I
+
+1.2
+
+1.4
+
+I
+1.6
+1.8
+Advance ratio, J
+
+(b) Power coeffici ent.
+]< WURE 6.-
+
+Co ntinued .
+
+2.0
+
+2.2
+
+2.4
+
+2.6
+
+2.8
+
+3.0
+
+3.2
+
+-
+
+- - - - - - -- - - - - -
+
+-' - ' - -
+
+- -- - ,- - --
+
+-----------
+
+AERODYNAMI C CH ARACTERIS'l' ICS OF A SUPERSON I C-T YPE THREE- BLADE PROPELLER TO MACH N UMBER 0, 96
+
+o~
+
+J
+
+~
+
+~
+
+1\
+\
+
+1\
+
+[\
+
+f- f-f- f f- f -
+
+e-
+
+·
+
+I
+
+V e-
+
+E
+
+~ -
+
+\
+
+10
+
+1\
+
+/
+
+\
+
+0
+0
+
+~
+
+1\
+\
+
+\
+1\
+
+I
+
+1\
+\
+
+\
+II
+
+\
+
+·~ -
+
+\1\
+
+~ ~I -
+
+\ \
+
+\ \
+
+/
+
+{
+
+\
+
+<;t
+
+\
+
+1\ \
+\
+\
+
+N
+
+N
+
+1\
+
+\
+\,
+
+I
+
+1\
+f\.
+
+v
+
+i--- L.-
+
+v
+
+\
+
+k:
+
+/
+
+1\
+f\.
+
+'" '"
+
+(
+
+1\
+
+,
+
+f"\
+
+:;::
+
+N
+
+ICi
+
+·
+N
+
+II
+
+\
+N
+
+\
+\
+
+i'--
+
+\
+
+f'.,
+
+~
+
+·.
+
+b..
+
+N
+
+. . . . f><
+
+t'-...
+
+0
+
+1\
+
+........
+
+I(
+
+<to
+
+N
+ICi
+"-
+
+N
+
+\
+
+""" f'.
+
+III
+
+6-
+
+'I'--..
+
+co.
+
+I"--
+
+f'-..
+
+r--..
+
+-
+
+<t
+
+\
+
+~
+
+I'--
+
+1
+\
+
+........ 1'--..
+
+j--...
+
+~
+
+-
+
+2
+~
+
+u. '~:lua ):lljJ 3
+
+r::l
+
+r::l
+0
+
+!fl
+
+§
+
+~
+
+'U
+
+~
+
+~
+
+<0
+
+i'1
+
+S
+0
+
+~
+
+I
+
+u
+
+~ -
+
+"-
+
+C)
+
+'<3 0
+
+\D
+
+r<J
+
+1\
+
+1"\
+f-t-
+
+'"
+:::
+:>.. Q
+"0
+
+· ,.,e '" I
+<1.
+
+"'-
+
+{
+\
+
+"Ci
+
+0-
+
+\
+
+~
+V I f'-,
+
+'" :><
+
+~
+
+..."
+
+1,\
+1\
+
+•N
+~\
+
+\
+
+\
+
+\
+
+0<;t _
+
+'\
+I
+
+,
+
+-
+
+1\
+
+o
+
+....
+
+f'::.<
+
+9
+
+- --
+
+10
+
+REPORT 13 7 5-NATIONAL ADVISORY COMMITTEE FOR AERO AUTICS
+
+.22
+
+M =0.60
+
+.20
+
+\
+
+\
+.1 8
+
+\,
+
+\
+
+\
+
+.16
+\
+
+\
+rt;>
+
+1\
+
+\
+
+b
+
+.14
+
+\
+
+\
+
+f\
+
+-'"
+
+1\
+
+\
+
+6
+
+.1 2
+
+~
+
+\
+
+\
+\
+
+\
+
+\
+
+\:
+
+.10
+
+L\
+
+.08
+
+~
+
+\
+
+~
+
+\
+
+~
+
+\
+
+\
+
+\
+
+\
+
+1\
+
+~
+
+l'b
+'\
+
+<
+
+\,
+
+\
+
+.04
+
+1\
+
+1\
+\
+
+\
+
+\
+
+"-.
+1\
+
+'<{
+
+'\
+
+'\
+
+.0 2
+
+1\
+'\
+f30 .75R =50.8
+
+1\
+
+1\
+
+0
+
+o
+
+\
+
+54.7
+
+\
+
+0
+
+602 0
+
+\
+
+.
+
+\
+
+\
+
+'"\
+
+\
+
+~
+
+1\
+
+\
+
+- .0 2
+
+\
+
+\
+
+- .04
+
+1\
+~
+
+\
+
+\
+
+\
+
+\
+
+\
+
+q
+
+- .0 6
+
+\
+
+\
+
+\
+1\
+
+\,
+
+-.0 8
+
+(0)
+
+- .1 02.2
+
+2.4
+
+2.6
+
+2.8
+
+3.0
+
+3.2
+
+3.4
+
+3.6
+
+3.8
+
+4.0
+
+Advance ratio, J
+
+(a) 'fhru t coefficient.
+F ICURE 7.-
+
+Cha ractc>r i. tics of propeller.
+
+Forward Mach number 0.60 .
+
+4.2
+
+4.4
+
+4.6
+
+11
+
+AERODYNAMIC CHARA CTERIS'fI CS OF A SUPERSO I C- 'l'YPE 'l' HREE- BLADE PROPELLER TO MACH NUMBER 0.96
+
+.8
+
+M =0 .60
+
+.7
+
+'\
+~
+
+.6
+
+\
+R,
+\
+
+P
+
+1\
+
+1\
+\
+
+\
+
+1\
+
+.5
+
+\
+
+['\..
+
+\
+
+\
+
+'I:
+1\
+.4
+
+I~
+
+q
+
+l'i
+
+\
+
+\;
+
+\
+c
+
+.~
+
+.3
+
+\
+
+i"..
+
+1
+
+""
+
+~
+
+\
+
+i\
+
+"\
+"q
+
+j
+.2
+
+\
+
+1\
+
+~
+
+\
+
+1\
+
+~
+
+\
+
+1\
+
+1\
+
+y,
+
+\
+
+c\
+'\
+
+\
+
+I) "
+
+I
+
+\
+
+\
+
+1\
+
+\
+
+\
+
+1\
+
+\
+
+o
+
+\
+
+\
+
+1\
+
+I~
+
+\
+q
+
+"\
+
+.80 75R =50.8° \
+
+54.7 \
+
+.
+
+I
+
+'b,
+60.2°
+
+0
+
+\
+
+1\
+\
+
+\
+
+(b)
+
+I-- I--
+
+,'..
+
+~
+
+2.6
+
+2.8
+
+3.0
+
+3.2
+
+3.4
+
+3.6
+
+Advance ratio, J
+
+(b) Power coefficient .
+F I GU RE 7.-
+
+Continued.
+
+3.8
+
+4.0
+
+4.2
+
+4.4
+
+4.6
+
+- - - - - - - - - - - - -_ . _--
+
+12
+
+REPORT 1375-
+
+I.U
+
+'WI
+
+~
+I
+.9
+
++ +1 ~
+-L
+I
+
+~
+
+[
+
+.8
+
+I
+
+I
+
+""
+
+-
+
+/
+
+I
+
+I
+
+-
+
+1--;-
+
+'---
+
+-
+
+I
+
+1\
+
+\
+
+I
+I
+
+~
+
+~- -
+
+.6
+
+\-r
+
+.. l - -
+
+f-
+
+l-
+
+----
+
+1 - . - t:--:
+
+J+
+
+-..... ~
+
+- -
+
+.4
+
+I
+
++-
+
+.3 I
+
+'I
+
+I
+
+~
+
+-
+
+~
+
+r
+
+~
+
+,-1-
+
+t
+
++- Ll t
+_I
+I
+
+I
+
+,
+
+-
+
+t
+
+I
+
+I
+
+I
+
+1
+
+I
+
+I
+
+I
+
+I
+
+2 .6
+
+2.8
+
+~
+1
+
+I
+
+I
+
+I
+
+"'-
+
+--1_ ~- I
+
+i+ H
+I-
+
+I
+
+'"
+
+I
+
+\
+
+r
+
+I
+
+r
+
+1-1-
+
+I
+
+I
+
+I
+
+1.4
+
+\
+\
+
+~
+
+Y-
+
+I
+
+1
+I
+
+1+ ~
+I
+
+I
+
+\
+
+I
+
+I
+
+I
+1
+
+:
+
+I
+
+H
+
+-
+
+-l~
+
+o
+
+2
+
+I
+
+.6
+
+I
+
+1
+
+I
+
+I
+
+60.2°
+
+I
+
+i
+
+\
+
+.4
+
+I
+
+1
+
+I
+
+J
+
+I
+
+.2
+
+I
+
+I
+
+1
+
+3.2
+
+3.4
+
+3.6
+
+Advance rat io, J
+
+(c) E ffi ciency.
+F I GU R E
+
+7.- Concluded .
+
+I
+I
+
+3. 8
+
+4.0
+
+4.2
+
+E
+
+u
+
+I
+
+- . - I---
+
+.8E
+.c
+
+\
+
+1
+
+1
+
+3.0
+
+\
+
+-
+
+.8
+
+1
+
+- - --L
+
+1.0
+
+I
+
+J
+
+I
+
+I
+
+1
+
+M
+
+54.7°
+
+I
+
+I
+
+i
+
+1. 2
+
+-LI - -
+
+\
+\
+
+t t
+
+l-
+
+r-l :-L
+
+I
+
+I
+
+,-1
+
+'I
+
+:r
+
+I--- I-
+
+\
+1\
+
+I
+
+,L W
+
+M, -
+
+1
+
+.,
+
+I
+
+I
+
+I
+
+-
+
+I
+
+I
+I
+
+Ie )
+
+I
+
+=--+-
+
+t- - -
+
+1-
+
+I
+
+1
+
+_I
+
+r--,.
+
+1
+
+I
+
++
+
+f3 0.75R =50.8°
+
+I
+
+.2
+
+-I
+
+L -+- -L
+I
+
+I--
+
+I
+
+I
+
+- r-- f-l-
+
+l-
+
+-
+
+-
+
+C--
+
+I
+
+'"--
+
+'--r1 --
+
+'~
+
+\
+
+I
+
+Q .5
+
+W
+
+f-+-
+
+1
+
+--1_
+
+I
+
+I
+
+\
+
+/"
+
+-
+
+I
+
+1
+,;;
+u
+c
+
+r--!-
+
+I- M = 0.60
+
+I
+
+I
+
+r-r- ., ~+
+
+r:
+
+.L
+
+,,-
+
+:
+
+I
+
+I
+
+'----.....-
+
++-
+
+~+
+
+r-
+
+1
+
+I
+
+I
+
+I
+I
+I
+
+I
+
+I
+
+r i 11
+
+-
+
+1
+
+1
+
+~
+
+I
+
+\
+-
+
+I
+
+-
+
+I
+
+I
+I
+
+~
+
+,.....,V
+
+\/
+
+I
+
++
+
+~
+
+. - --
+
+- -
+
+L
+
+-I
+
+- r - - 1--,--
+
+t ~ '-
+
+'----
+
+.7
+
+I
+
+1
+
+1
+
+~-
+
+-
+
+I
+
+-l-
+
+I
+
+I
+
+I
+
+NATIO AL ADVISORY COMMITTEE FOR AERO AU TICS
+
+-L -L
+
+I
+
+- --.~-- ----
+
+4.4
+
+o
+
+AERODYr AMIC CHARAC'rERIS'rIC' OF A SUPERSO Ie- TYPE THREE-BLADE PROPELLER TO MACH
+
+13
+
+UMBER 0.96
+
+.20
+[q
+.IS
+
+1\
+
+M·0.70
+
+\
+[I)
+
+.16
+
+\
+[6
+
+.14
+
+_\
+
+I;>
+
+[0
+
+\
+
+.12
+
+'\
+
+\
+
+0
+
+\
+
+PI
+
+.10
+
+\
+
+'-\
+
+\
+
+1\
+1
+
+1\
+\
+
+i\
+
+'t
+
+.oS
+
+'\
+
+'\
+
+\
+
+').,
+
+I).,
+
+a
+
+I\,
+
+\
+
+~- .06
+
+[\
+
+\
+
+J.
+
+:g
+.,
+
+t
+
+~
+
+o
+
+u
+
+cI.
+\
+
+_ .04
+on
+
+f-'"
+
+1\
+
+\
+
+~
+
+\
+
+\
+
+['Q
+~
+
+1\
+
+.02
+
+\.
+
+I~
+
+'\
+
+\
+
+r\
+
+),
+
+5Q8" \
+
+{30.75R .45.4° "\
+
+o
+
+\"
+
+\0
+
+\0
+
+54.7° \
+
+60.2° ,\
+
+'-\
+
+[
+
+\
+
+1\
+
+".I.
+
+-.02
+
+\
+
+\
+Q
+
+-.04
+
+1"-
+
+1\
+
+1\
+\
+
+\
+
+1\
+
+-.06
+
+\
+
+\
+\.
+
+-.oS
+(a)
+
+2.0
+
+22
+
+2.4
+
+2.6
+
+2B
+
+3.0
+
+3.2
+
+3.4
+
+3.6
+
+38
+
+4.0
+
+Advance rat i o, J
+
+(a) Thru t coeffi cient.
+FIGURE .-Characteristics of propeller.
+
+Forward Mach number 0 .70.
+
+4.2
+
+4.4
+
+4.6
+
+4.8
+
+14
+
+REPORT 1375-
+
+NATIONAL ADVISORY COMMITTEE FOR AERO AUTICS
+
+.8
+
+.7
+
+"\
+
+"\
+
+.6
+
+M = 0.70.
+
+_\
+~
+
+i\
+
+\
+~
+
+.5
+
+'\
+
+f--'-
+
+\
+).,
+
+.4
+
+R
+
+\.
+
+\
+
+\
+
+.
+
+\
+'\
+
+'9
+
+PI
+
+\
+
+\
+
+'\
+
+'\
+
+, '\
+
+1''0
+
+\
+
+!q
+
+I\V
+
+\
+
+1\
+
+1:
+
+.1
+
+IS
+
+1,\
+t
+
+f3 0 .75R =45.40 r.,
+
+_\
+
+'\
+
+50.801;
+
+I-
+
+o
+
+?
+1\
+
+54.7 0
+
+60..20 \
+
+1'0
+-.1
+
+'\
+
+~
+
+I\:
+-.2
+
+1\
+(b)
+
+1.8
+
+2.0
+
+2.2
+
+2.4
+
+2.6
+
+2.8
+
+3.0
+
+3.2
+3.4
+Advance folio, J
+
+(b) Power coefficient.
+FI GUR E
+
+. -Continu ed .
+
+3.6
+
+3.8
+
+40
+
+4.2
+
+4:4
+
+4.6
+
+4B
+
+- - - - -- -- - - -
+
+-~-----
+
+15
+
+AERODYNAMIC CHARAC'l'ERIS'rICS OF A SUPERSONIC-TYPE ~I'HREE-BLADE PROPELLER TO MA H NUMBER 0.96
+
+I.O ..---r---r-..-r-,--,.---,--,--,-r--r---r-,--r---r-"---'-'---'--'-"---j
+
+T~ r .
+
+T
+
+r
+
+T
+
+r
+
+-l-++~ ~ ~+- Hi=t-i ~~ +--!----;--+
+I± 1 -l--t--I---+ -l-~---:;!--.J----1
+<C4--__t_-+-t----'LI- 'PJ\
+r-+,~-f-- ~ = I~
+
+H-+--I-+--+-t--H1:-+}+f1->--1
+
+I
+
+I Tl---+---+r---1
+I
+
+M=0.70
+
+1
+
+-I---
+
+.9 ~-~
+;
+-+~~~~
+I--~+--+-,~--~-+,-~~~~~~-r1~~-7I-r~~r+-r~7-~~~+-~~
+
+I
+
+I
+
+r-
+
+1--+-+---+--1--+1-\-\-t---1--t--t--t-tI
+1
+
+f_
+
+I
+
+-1-----
+
+ttf---l---:--:-+-+--++---1--1
+
+.8 ~~,=:=~~~I---4-I\I------+
+l -t-_--r-I--!-~--r~--'-----,r\\---+-~+--+--1W
+---+f_-~~-j--'---+
+1-+-i[--+--+I-t--f--;--1--l--+tl----"-.\-+~---',
+
+H-i --i--t-+-+---1--+-+--l----1rl-l---i-+-+
+\\t--f--+----I-~+---+--+---"-+\+--+1
+I
+I --'- --
+
+-+-+--+--+-+-f-I-+----
+
+.7
+
+I
+
+:==~I~~~---++_-+-I--_--M-t-tt+-;-+-'---'I---,--t--+---'-+---I-.6
+
+-
+
+~
+
+~ _~
+
+!
+
+I
+
+- , --;
+
+- - I ! r--+-
+
+-;-"'r-- -
+
+I-
+
+I
+
+1 f-r--+--,---+-+--1-
+
+~- 1 ~ r-~
+I
+
+"-- -+ +-t---+--+-+--+-+-f- 1.2
+
+t.-
+
+I
+
+-1--1-- 1.0
+
+r-I--
+
+I
+
+;
+
+\
+i-t-t--+ 11-t--l1--+---1
+
+.+--t-i-+---t---t--t- -+-+--+--+-11-+-+-__1
+
+I
+
+!
+
+-j:f-l
+\\
+r I--I-if--+-t-----1
+
+~-+I------+--+-f--'-f---++-'--+
+-r--f-
+
+I-
+
+-r- ----f f---,\"i.- t-t-+--t-+-f-
+
+--+---r-
+
+1
+
+- +H---t-~
+
+t-I---r
+
+j
+
+4 ~--+-+-__t_+-r-~--+--t--I--t-+-~~_+-~_+_~+_~I--t-~~~~-~+-+---f---j-+-r--l-r,rl-+--lf--+-+-H+-+~ 8
+
+.
+
+J
+
+I
+
+~_+-+-_+_+_+---~_+_r--j--+-+--rl_+~--lf-._+---rl-+-~.-~_+-+--j- ~ +-~~-+-r~-t-+-~-+-+~-+--1
+.3 1---
+
+I
+
+T
+
+r
+
++---~I__+_+_t__t_+-~f--+_+-t---+--+-+_t--l__+_+_t__+_+_+___~_+__1
+
+r-
+
+I
+
+1--
+
+j
+
+-t -/---t--t-- - , - --
+
+I
+
+r- i-t---t--t -t-t--t- -t--I--l---l----l 6 c:
+
+..c;
+
+u
+
+o
+
+-- -
+
+:2
+
+-r--
+
+1
+
+,-----
+
+i l l
+
+- f _ l...-.1f--+-++---j
+
+~SO--~~2~
+.2--~~2~4--~~2~.6~~~2~.8J-~~3~O-~~3~2~--~3.~4--+---~36~--+---lC-~3B~~--lC-470~~~74.~2~LW~4R
+Advance
+
+r~tIO.
+
+J
+
+(c) Efficie ncy.
+FI G
+
+479 517- 59-
+
+;>'
+
+E
+:0
+
+-
+
+(c) r--+-t---t--+-r----H---j-T
+
+'"
+
+.D
+
+HB
+
+.-
+
+oncluclecl.
+
+--~--.~
+
+- - --
+
+'-'-'-' --~-"
+
+]6
+
+------
+
+REPORT I 375- 'NA'I'IONAL ADVISORY COMMITTEE FOR AERO Au'riCS
+
+.18
+
+\
+\
+
+.16
+
+M=O.74
+
+\
+1\
+
+11,
+
+\,
+
+\
+
+~
+
+.14
+
+~
+
+\
+
+~
+
+\
+
+l'b
+
+.12
+
+\
+
+1\
+
+\
+
+&
+
+\
+
+/\
+
+1
+\
+
+1\
+
+~
+
+.10
+
+\
+
+\
+~
+
+1\
+I~
+\
+
+I~
+
+\
+
+.08
+
+Ll
+
+1\
+
+'\
+
+\
+
+1,\
+1\
+
+c
+
+;g .06
+
+\
+
+\
+
+~
+
+~
+
+1,\
+
+Q;
+o
+
+'\
+
+\
+
+1\
+
+f?
+
+\
+
+.04
+
+1\
+
+\
+
+1\
+
+u
+
+1\
+
+.~
+
+_\
+
+/\
+
+1\
+
+\
+b
+
+R
+
+f30.75R=50.8° \
+
+....4.7°
+
+.02
+
+\
+
+\
+
+\
+
+f--
+
+0
+
+\
+
+;\
+
+60.2°
+
+\
+
+\
+
+I--
+
+l~
+
+Il
+-.02
+
+\
+
+\
+
+~
+
+1\
+q
+
+\
+
+\
+-,04
+
+1\
+
+11
+
+.i
+
+'1
+
+1-(0)
+I
+
+2.6
+
+2.8
+
+3.0
+
+3.2
+
+3.6
+
+3.4
+
+4.2
+
+4.0
+
+3.8
+
+Advance ratio, J
+
+(a) Thru L coefficienL.
+FI(1lJnr-: \).-
+
+'haracLeri Lics of propell er.
+
+Forward M ach number 0.74 .
+
+.
+
+-,.-
+
+-
+
+-
+
+-
+
+-
+
+---
+
+4.4
+
+17
+
+H ARACTE RIS'II CS OF A SUPERSO I C- 'rYPE T HREE-BLADE PROPELLER '1'0 MACH NUMBER 0.96
+
+AERODY rAMIC
+
+--
+
+.8
+
+1'1
+
+\
+M=O.74
+
+l'b
+
+.7
+
+b
+\
+
+"
+
+'\
+
+\
+
+~
+
+.6
+
+\
+
+0
+
+_\
+
+\
+.5
+
+q
+
+~
+
+-
+
+1\
+
+\
+
+\,
+\
+
+\
+
+\
+\
+
+.4
+
+~
+
+~
+
+\
+
+ccu
+
+1\
+'\
+
+Tj
+
+~ .3
+o
+<.)
+
+1\
+
+1\
+\
+
+\
+
+1\
+
+I~
+
+Q
+
+\e
+
+\
+
+"\
+
+I
+
+~.
+
+\
+
+.2
+
+\
+
+\
+
+\
+I~
+
+\
+\
+
+\
+
+1\
+
+1\
+
+\
+
+l3o.175R= 50.8 0
+
+54 .7°
+
+.1
+
+~
+~
+
+60)
+. \
+
+\
+
+1
+
+\
+
+0\
+
+\
+
+\
+
+1\
+1\
+
+1\
+
+o
+
+\
+
+I
+
+\
+
+~
+
+J
+
+\
+~
+
+I
+
+_\q
+
+- .1
+
+-f- I-
+
+~
+1
+
+L~
+
+- .2
+
+2.4
+
+1
+
+2.6
+
+2.8
+
+3.0
+
+3.2
+
+3.4
+3.6
+Advance ra I i 0, J
+
+(b) Powc r coefficicnt.
+FrGUJm 9.- Con t inu ed.
+
+3.8
+
+4.0
+
+4.2
+
+4.4
+
+4.6
+
+._---- - - - - -" - ' - -- _._ ._ -1)
+
+REPORT J 3 7 5-1 A'f'IONAL ADVI ORY
+
+1.0
+
+r
+
+,
+
+I
+
+1
+
+:J_- I
+
+.9 -
+
+-
+
+~
+
+-
+
+i
+
+r
+.8
+
+f-
+
+~
+
+-
+
+f-..
+
+/
+
+L
+
+I
+
+-
+
+-
+
+-
+
+I
+
+I
+
+-
+
+.7 I - - - [-J
+
+i
+
+.{L
+
+1--'
+
+t
+
+.
+
+/'
+
+-
+
+~
+
+~
+
+V
+
+-
+
+1 I
+
+\
+I
+
+\
+
+- - -
+
+f-
+
+-
+
+-"
+
+I
+
+L-
+
+-
+
+..
+
+----..
+
+I
+
+- I-..
+
+f-..
+
+-
+
+-
+
+I
+
+-
+
+..
+
+..
+
+"
+
+I
+
+-'-
+
+-
+
+- --
+
+..
+
+..
+
+;
+
+-
+
+..
+
+-
+
+I
+
+,
+
+-
+
+-
+
+-
+
+~
+
+I
+
+.
+
+-
+
+. t-
+
+,
+
+j
+
+(c)
+
+r
+
+I
+2.6
+
+..
+
+L
+
+I
+
+..
+
+II
+
+-
+
+--
+
+~
+
+I
+M
+
+....,.
+
+~
+
++
+
+-
+
+..
+
+'1
+
+..
+
+,
+
+54 .1'
+
+. .
+
+I
+
+I
+
+2.8
+
+..
+
+..
+
+I
+
+t
+
+j L -
+
+--'I
+
+1
+
+-
+
+t
+
++
+
+J..
+
+. ..
+
+..
+
+,
+
+.
+
+..
+
++
+
+-,
+
+~
+
+I
+
+II I
+3.0.
+
+3.2
+
+1
+
+3.4
+Advance ratiO, J
+
+.. ~
+
+..
+
+..
+
+1"
+
+L
+
+-,
+
+I
+~
+
+I
+
+-
+
+....,.
+
+..
+
+-
+
+.
+
+: f
+
+~
+
+3.8
+
+8
+
+.6
+
+4.0
+
+I I
+
+f---
+
+1
+T
+
+4.2
+
+~
+
+1
+
+J
+
+I
+
+3.6
+
+I-
+
+I
+
+I
+
+I--
+
+R'
+=
+
+t -
+
+I .cg
+
+,
+
+-
+
+~ .0
+
+t-HI
+
+.
+
+f -
+
+T
+
+I
+
+I
+
+.
+
+~
+
+I I-- \
+
++-H- I I
+I
+
+j
+
+f-- f---
+
+I
+
+~
+
+. 1 _ - ..
+
+.
+
+..
+
+1-+\
+
+I
+
+I
+
+I -
+
+f-- I -
+
+I
+
+T
+
+f-----:
+
+f - f-- f-- I.2
+
+I
+
+"I
+
+tI
+
+T
+
+f
+
+~
+
+..,
+
+I
+
+I
+
+l
+
+I-
+
+J
+
+I
+
+:
+
+Lt--- I 4
+
+~
+
+I
+
+I
+
+..L
+
+j
+
+f-t-- \~
+
+t
+
+I
+
+I
+
+I
+
+1- \!--
+
+I
+
+HI
+I
+
++
+\
+
+I
+
+I
+
+J..
+
+..
+
+--
+
+~-
+
+1 e- .
+
+-
+
+..
+
+-L-
+
+I I
+
+1
+
+1\
+
+I
+
+..
+
+.
+
+-j-
+
+!
+
+I
+
+I
+
+I
+
+-t-~
+
+I
+
+..
+
+I
+..
+
+.. -
+
+L
+
+I
+
+1M,
+
+t -J
+
+I
+
+(30.75R= 50.8"
+
+~
+
+..
+
+..
+
+1
+
+--
+
+.2 -
+
+- -
+
+;j
+
+-
+
+'--
+
+~
+
+r---r--
+
+-1
+
+--'-
+
+- ..
+.. -
+
+~
+
+.....
+
+I
+
+\---
+
+"
+
+1
+
+..
+
+..
+
+------
+
+I
+
+~
+
+\
+
+L
+
+.....1
+
+-
+
+-
+
+.
+
+- .3
+
+-i--
+
+--
+
+.4 f-
+
+I
+
+-
+
+±
+
+...
+
+I
+
+~
+
+- ' - f--
+
+..
+-
+
+-
+
+I---t---T
+I
+
+.
+
+-
+
+.....
+
+I
+
+I
+
+.-
+
+~-
+
+. -
+
+l"-
+
+.~ r-----r-.
+
+f-..
+
+I -
+
+-I
+
+~~-
+
+-
+
+.- I - -
+
+I
+
+~
+
+I
+
+-:-
+
+..
+
+.6
+
+-
+
+1
+
+~
+
+j
+
+I
+
+\
+
+.~ -t- -- 1-1- -
+
+-
+
+I
+
+I
+
+I
+
++- ~ ~r
+
+~.
+
+,\
+
+-- f----c-- l--r .
+
+..
+
+I
+
+t
+
+I
+M = 0.74
+
+--
+
+-
+
+-
+
+.J
+
+,
+
+I
+
+-
+
+D,
+
+,,
+
+1
+
+~ j
+
+t
+
+r-\ -
+
+f-
+
+I
+
+.. - .
+
+,-
+
+I
+
+---'-
+
+--1 \-
+
+-
+
+"t""-
+
+-
+
+I
+
+- -- - -
+
+OMMITTEE IcOR AEHO I AU'I'I CS
+
+,
+
+-
+
+-- -
+
+~;
+-
+
+1
+
+I
+
+I
+
+...
+
+,
+
+~
+
+I j
+
+1
+
+-.-----
+
+iTR
+.4
+
+60.2~
+
+f-.
+
+.2
+
+~ f-- ~
+o
+
+4.4
+
+ec) Efficiency.
+F IG
+
+RE !J .-
+
+Co ll cluclecl .
+
+- - - - - - - - --
+
+AERODYNAMI C CHARAC1'ERIS'rI CS OF A SUPERSONIC- TYPE THREE- BLADE PROPELLER TO MA CH NUMBER 0.96
+
+.16
+
+19
+
+\
+
+1\
+
+~
+
+.14
+
+M= 0 .80
+
+\
+Ih
+
+b
+
+I~
+
+\
+
+\
+~
+
+.12
+
+q
+
+\
+\
+
+},
+\
+
+.1 0
+
+\
+
+1,\
+\
+
+\
+\
+
+Q)
+
+0
+
+u
+
+1\
+\
+
+\
+
+\
+
+\
+
+C
+.!!!
+
+~
+
+\
+
+1\
+
+.0 8
+
+~
+
+1\
+'\
+
+~
+
+.0 6
+
+\
+
+U'
+
+\
+d
+
+tii
+
+::J
+
+1:
+
+\
+
+1\
+
+1\
+
+\
+
+\
+
+\
+
+I--
+
+.04
+
+\
+
+1\
+\
+
+1\
+-\
+
+b
+\
+
+1\
+
+\
+
+1\
+
+.02
+
+rI
+
+\
+
+~
+
+\
+
+\
+
+1\
+60.2°
+
+I\,
+
+o
+
+- !~
+f30.75R-50 .8 \
+
+1,\
+
+54 .7°\
+
+\
+-.02
+
+10\
+
+~
+
+\
+Ih
+
+(0)
+
+\
+
+2.6
+
+2.8
+
+3.0
+
+3.2
+
+3.4
+
+3.6
+
+3.8
+
+4.0
+
+Advance rat io, J
+
+(a) Thru st coefficien t.
+FIGmm lO.-Characteristics of propeller.
+
+H9517- 59-
+
+4
+
+- -- - -
+
+~
+
+---
+
+~-
+
+Forward Mach numb er 0.80.
+
+4.2
+
+4.4
+
+4.6
+
+~--""-- -
+
+-
+
+----- -~
+
+-- - "- - - - - -- - - -
+
+20
+
+REPORT 137;)- ·KA'I'IONAL ADVISORY COMMITTEE FOR AERONAUTI CS
+
+.8
+
+I
+
+I
+M=0.80
+.7
+
+...:i.
+
+"0-
+
+I
+
+\
+
+.6
+
+1\
+
+'\
+
+1\
+\,
+.5
+
+r'?
+
+~
+
+~
+
+1\
+
+1\
+.4
+
+h
+
+C
+
+.!!1
+u
+
+~
+
+.,
+
+8
+
+1\
+
+I~
+
+'I
+
+~
+
+.3
+
+1\
+1\
+
+IQ
+
+\
+
+\
+
+\
+
+\
+1\
+
+1\
+
+1\
+
+\
+
+.2
+
+I~
+
+'q
+
+I
+
+\
+
+\
+
+'\
+
+1\
+
+I~
+
+\
+
+\
+
+~
+
+\
+
+1\
+
+54.7~
+
+/30.75R : 50.8° !\
+
+\
+
+I
+
+\
+
+l\
+
+I\>
+
+Iq
+
+o
+
+\
+
+60 .2°
+
+1\
+
+~"
+\
+
+1'0
+
+\
+
+~"
+
+I
+
+I
+
+(b)
+
+. 22.4
+
+2.6
+
+2.8
+
+3.0
+
+3.4
+
+3.2
+
+3.8
+
+3.6
+
+4 .0
+
+4 .2
+
+4.4
+
+4 .6
+
+Advance ratio. J
+
+(b) P a we r coefficient.
+FIGU R E
+
+1O.-Co ntinued .
+
+-
+
+-
+
+. _ - - - - - --
+
+-- _._ - --
+
+21
+
+AERO DYNAMI C CHARACTERIS'rICS OF A SU PERSONIC-TY PE 'I'HREE-BLADE PROPELLER TO MA CH NUMB E R 0.90
+
+1.0
+
+M= 0.80
+
+.9
+
+- r-
+
+V
+
+""" \
+
+.8
+
+r----.
+
+""-.
+
+/
+
+\
+
+~
+
+1'\
+
+1\
+
+\
+
+\\
+
+\
+.7
+
+'\
+
+\
+
+1.4
+
+\
+
+'\
+
+...... t---
+
+.6
+
+1.2
+
+t-- r-
+
+r- ;--
+
+-
+
+r- r-- f-
+
+I""
+
+Q)
+
+M/
+
+~
+
+~.5
+
+-
+
+,\
+i
+
+:~
+
+.D
+
+E
+I .0 ~
+
+-
+
+~
+
+u
+
+o
+:2
+
+1:5
+.8
+
+M
+
+.4
+
+.3
+
+.6
+
+.2
+
+.4
+
+/30 . 75 R = 50.8°
+
+60.2 '
+
+54.7°
+
+I
+
+2
+
+I
+
+(cl
+2.6
+
+2.8
+
+3.0
+
+3.2
+
+3.4
+
+3.6
+
+Advance rot ia, J
+
+(c) Effic ie nc y.
+FI G
+
+RE
+
+lO .-Co ncluded .
+
+3.8
+
+4.0
+
+4.2
+
+4.4
+
+4.6
+
+o
+
+R EPORT 13 7 5 -NATIO AL ADVISORY COMMIT'rEE F OR AERO AU'l'I CS
+./ 4
+
+M =0.84
+.12
+
+\
+
+\
+
+\
+
+.10
+
+\'
+
+~
+
+\
+
+-Extrapolated
+I
+
+I
+\
+\
+
+i
+
+\
+
+'\
+
+.08
+
+\
+
+\
+\
+
+1
+
+\
+
+1\
+
+\
+
+r--
+
+\
+
+~
+
+\
+\
+
+1\
+
+L
+
+\
+
+\
+
+\
+
+'\
+
+\
+
+\
+\
+
+\
+
+~
+
+.02
+
+1\
+
+1\
+
+1\
+
+\
+
+I
+
+1\
+
+0
+
+i3a.75R =50.8°
+
+t-
+
+:\
+
+-
+
+54 ~!\
+.
+
+V\
+
+\
+
+i
+
+1\
+
+-.02
+
+\
+
+~
+
+(0)
+
+2.6
+
+2.8
+
+3.0
+
+3.2
+
+3.4
+
+3.6
+
+Advance rat io, J
+
+(a) Thru t coeffi cient.
+F IGURE ll .-C ha racteristic of prop eller. Forward Mach nu mber 0.84 .
+
+-
+
+-- -- -
+
+- - --- - - - -
+
+AEROD YNDMIC CHA RA CTE RISTICS OF A SUP E RS ONI C- TYP E T H REE- BLA DE P R O PEL LER TO MACH NUMBER 0.90
+.7
+
+.6
+
+M= 0.84
+
+.5
+
+[\ \
+.4
+
+\ " E xtrapolated
+1\
+
+\
+
+r\\
+~o..
+
+.3
+
+\
+
+\
+
+'\
+
+1\
+
+\
+
+r\
+
+\
+
+\
+1\
+
+2
+
+--
+
+1\
+
+1\
+
+\
+
+\
+
+1\
+~
+
+-1\
+
+\
+
+'\
+
+I
+
+},
+
+_\
+
+~
+
+/b o
+
+(
+
+\
+
+1\
+0
+
+f3 0 .75R =50.81
+
+0
+
+54.7° \
+
+\
+
+~.
+
+'\
+
+I
+
+(b)
+
+.2
+
+2.4
+
+2.6
+
+2.8
+
+3.0
+Advance ratio, J
+
+(b) P ower coeffi cient.
+F lGC R E 11.-Contin uC'c1 .
+
+3.2
+
+3.4
+
+3.6
+
+23
+
+~
+
+-
+
+-
+
+--
+
+- - - - -- - - -- - - - - - - - -
+
+24
+
+REPORT l 3 75-
+
+rATIONAL ADVISORY COMMl'l"J'EE FOI'!. AERONAU'JICS
+
+.9
+
+t-.8
+
+- --."
+
+~
+
+~
+
+Ex trapatated)
+
+M =0.84
+
+..........
+
+f""
+
+\
+
+1\
+
+--
+
+~\
+
+.7
+
+r\
+
+r--- 1 - -
+
+t--
+
+-,
+
+I. 4
+
+1\
+
+j
+
+--- r--- r-- r-- \
+
+I:--- I J\
+
+.6
+
+1
+
+M,
+
+- 1--r--
+
+\
+rJ
+
+I. 2
+
+-
+
+.5
+
+1--l -
+
+I.o
+
+w
+
+M
+
+.4
+
+.8
+
+-- r----'
+3
+
+.6
+
+2
+
+.4
+
+54 .7°
+
+(30.75R =50. 8°
+
+.1
+
+.2
+
+I
+
+(e)
+
+0
+
+2.4
+
+2.6
+
+2.8
+
+3.0
+Advance ratio, J
+
+(c) Efficiency.
+F IG
+
+l
+
+RE
+
+I I.-Concluded.
+
+3.2
+
+3.4
+
+o
+
+3.6
+
+AERODYNAMI C CHARAC'l'ERlSTI CS OF AS PERSONIC-TYPE ' I'HREE-BLADE PROPELLER '1'0 MA H NUMBER
+
+,-
+
+, -,-
+
+.18
+
+I
+
+.16
+
+\
+
+'-'-
+
+M : 0.89
+
+\
+
+\
+
+Iq
+
+.14
+
+\
+f--- f- -
+
+-
+
+I-
+
+I--- i -
+
+.12
+
+f-- r---
+
+f-
+
+~
+
+f-
+
+1\
+~
+
+1\
+
+.--Ex tra polated
+
+1\ t-i
+
+I
+
+I\>
+
+-
+
+-
+
+b
+
+c.,
+
+Q; .06
+
+,
+
+\
+
+v;
+
+\
+
+.c
+
+- I--
+
+1\
+\
+
+I-
+
+, t-
+
+.04
+
+i
+I
+
+J
+
+0\
+
+t-
+
+Ll
+\
+
+!
+
+I
+
+H-
+
+t-
+
+\
+
+I
+
+-- -
+
+L
+
+I
+
+-j-
+
+-
+
+.1\
+
+I
+
+I
+
+I
+
+I _
+
+54.7~\
+-
+
+II I
+
+\
+\
+60.2" \
+
+I
+
+~
+
+~
+
+"
+
+-f---
+
+I--
+
+\
+--
+
+-
+
+\
+.)..
+
+,
+
+-.04
+f-- f--
+
+- - - f--
+
+\
+
+\
+
+f-- ' - - f-
+
+f-b
+
+I
+
+C
+
+1.
+
+,
+
+.-
+
+1\
+j,
+
+I
+
+~
+
+1
+
+,
+
+1- -
+
+\
+
+t-
+
+-j-
+
+1\
+
+t---
+
+.B 0.75 R =50 .80\
+
+-.02
+
+-
+
+~P
+
+L\
+
+o
+
+-1--
+
+I
+
+\q
+
+1-
+
+-
+
+\\
+
+I
+
+1\
+
+.02
+
+1\
+
+L
+
+I
+
+(
+
+2
+
+!--
+
+~
+
+!--- -
+
+--'- -
+
+!-- . -
+
+I~
+
+0
+
+u
+
+\
+
+I
+
+-\
+
+;;=
+
+i\'
+
+\
+
+I
+
+!q
+
+\
+
+'u
+
+I
+
+,
+I~
+
+.08
+
+1\
+\
+
+1
+
+\
+
+\>
+....
+
+--
+
+v
+
+\'
+
+\..)
+
+-
+
+\
+1\
+\
+
+1'1
+'I
+
+.10
+
+25
+
+.96
+
+I-- '- -
+
+. _ ' - - I-
+
+(0)
+
+-
+
+2.6
+
+'-
+
+2.8
+
+3D
+
+'--'--
+
+3.2
+
+'---: '--L..
+
+3.4
+
+Advance
+
+L
+
+l-L
+
+3.6
+rat io, J
+
+_1_
+
+3.8
+
+4.0
+
+(a) Thru t coefficient.
+
+FIGunE 12.- CbaracLcri tic of propeller.
+
+Forward Mach number O. 9.
+
+4.2
+
+4.4
+
+4.6
+
+20
+
+REPORT L37:)- 'NAT IONAL ADVISORY COMMI'I'TEE FOR AER01\A T I C
+
+.9
+
+'1
+\
+
+1\
+.8
+
+I
+
+M= 0.S9
+
+q
+
+1\
+
+I
+
+1
+
+I
+
+\
+\r,
+
+.7
+1
+
+\
+
+1
+
+1
+
+:
+
+\
+
+I
+
+.
+
+1
+
+.6
+
+\
+
+\
+1\
+
+Q
+I
+
+\
+
+I
+
+.5
+
+\
+
+1\
+1
+
+~
+
+&
+
+\
+I
+
+\
+
+r'\
+
+I
+
+.3
+
+\,
+
+\
+
+\
+
+1\
+<l.l
+
+\
+
+f\
+
+I
+\ ExtroPoloted
+.4
+
+~
+
+~
+
+~
+
+\
+
+1\
+
+JO\
+
+~
+
+\
+
+ell
+
+1\
+.2
+
+1\
+'t
+
+1\
+
+'\
+
+'\
+'9
+
+o
+
+/3 0.75R = 50S ' \
+
+54.7
+
+1
+
+0
+
+60.2
+
+\
+
+I
+
+1\
+\
+
+1\
+
+\
+
+b
+
+\
+
+~
+
+1\
+
+f\
+
+o
+
+\
+p
+
+.1
+
+(b)
+
+2
+. 2.4
+
+2.6
+
+2.S
+
+3.0
+
+3.2
+
+3.4
+
+3.6
+
+Advance ratio, J
+
+(b) P o\\'cr coeffici ent.
+1,' I GUHE 12.-
+
+Conti nu cd.
+
+3.S
+
+4.0
+
+4.2
+
+4.4
+
+4 .6
+
+27
+
+AER .oDYNAMI C CH ARACTERIS'l' I CS .oF A SUPERS.oNIC-'l' YPE THREE- BLADE P R.oPELLER T.o MACH N UMBER 0 .96
+
+1.0
+
+11
+
+,
+
+I
+I
+
+I
+
+M =0. 89
+.9
+
+.8
+""":'"
+
+r..........
+
+f\
+.7
+
+1\
+t\ t:---
+
+~
+
+, ~
+
+, '
+"~
+
+.6
+
+..
+
+u
+c
+
+'u
+
+-
+
+-
+
+-
+
+\
+r- 1--1-
+
+1\
+
+,
+
+I'- I'-
+
+\
+\
+
+,
+
+t--
+
+'"
+,:;
+
+,
+
+~
+
+-
+
+'\
+
+:
+
+Ex trapolated:,
+
+,
+
+..........
+
+1.4
+
+"'" '\
+h-r\
+\
+
+\
+
+--
+
+M/
+
+\
+
+.5
+
+-
+
+~
+
+\
+1.0
+
+1\
+
+"
+
+W
+
+1.2
+
+-
+
+\
+
+M
+
+J
+
+4
+
+8~
+.0
+
+.3
+
+E
+::>
+c
+.c
+u
+o
+6 :::;
+
+.2
+
+4
+
+54 .r
+
+{3Q75R = 50.8"
+
+60.
+
+0
+
+2
+
+(c)
+
+t-- I-
+
+2.6
+
+2B
+
+3.0
+
+3.2
+
+3.4
+Advance
+
+3.6
+rat io , J
+
+(c) Efficiency.
+F I G U R E 12.-
+
+Concluded.
+
+3.8
+
+4 .0
+
+4 .2
+
+4.4
+
+2
+
+REPOR'£ 1375-
+
+ATIONAL ADVI SORY COMMITTEE FOR AERONAUTI CS
+
+.16
+
+-
+
+,.-
+
+M = 0.93
+.14
+
+- r--- -
+
+-
+
+- -
+
+-
+
+_.
+
+-.
+
+I
+I
+
+.12
+
+.~
+
+-~
+
+I
+
+I
+
+Extrapolated
+
+\ ~t ~
+I-
+
+'-
+
+.10
+
+~\
+
+~
+
+-
+
+-+--
+
+\
+
+I
+
+-r--- t--
+
+-
+
+-
+
+T
+
+r
+
+~ \ ~ ---l-.-
+
+.-
+
+~
+
+\
+
+1-r----t
+
+.06
+t--
+
+C
+ell
+
+~
+
+~
+
+I
+
+1\
+~
+
+\
+I.\,
+
+I
+
+....
+
+0
+
+I
+
+r
+
+,
+
+.08
+
+~
+
+t--
+
+IT
+
+r
+
+~
+
+\
+
+I
+
+~
+
+I
+
+:e
+\
+
+~
+~
+
+.1
+
+I
+
+I
+
+1\
+\
+
+'0
+
+I
+I
+
+ell
+
+o
+
+0
+
+<.)
+
+1
+
+<J>
+
+I
+I
+
+:>
+
+.c .0 4
+I-
+
+I
+
+!
+
+I'f> '
+
+\
+
+I
+I
+
+°i
+
+--
+
+!
+I
+
+!
+!
+
+I ~
+
+1\
+
+\
+
+I
+1
+
+\
+
+\ '
+I
+
+\
+
+\
+
+:
+
+,
+
+I
+
+1
+1\
+
+\
+
+I
+,
+
+1,\
+
+1
+
+.
+
+\
+
+1
+
+\
+
+\
+
+' - f--
+
+~
+
+,
+
+I
+
+-.0 2
+
+II
+
+\
+
+I
+
+\
+
+0
+
+v'\
+
+I
+
+.1
+
+I
+
+\
+1\
+
+I
+I
+
+.0 2
+
+I
+
+I
+
+i
+
+1\
+
+60.20\ -
+
+I
+
+f3 0 .75 R = 54.7"\
+
+U\
+1
+
+- .0 4
+
+1\
+~
+
+6
+
+- .0 2.8
+
+(a)
+
+3D
+
+32
+
+3.4
+
+3.6
+
+3.8
+
+4.0
+
+Advance rat io, J
+
+(a) Thrust coefficient.
+FIGURg 13 .-Charactc ri tics of propeller. Forward Mac h number 0.93.
+
+42
+
+4.4
+
+29
+
+AERODYNAMIC CHARACTERISTI CS OF A SUPERSONIC-'l'YPE THREE -BLADE PROPE LLER TO MACH NUMBE R 0 .96
+.8
+
+M = 0.93
+.7
+
+\
+
+'"\
+
+.6
+
+1\
+
+\
+~
+
+\
+
+.5
+
+1\
+
+1"\\ ...Extrapolated
+
+\
+.4
+
+\
+\
+
+1\
+
+1\
+
+\
+r\
+
+C
+
+41
+
+'u
+
+~ .3
+o
+u
+
+\
+
+&
+.2
+
+,
+
+I
+i
+
+1\
+\
+
+\
+
+i
+
+"\0
+\
+
+I
+
+,
+
+'\
+
+1\
+
+Q)
+
+\
+
+Itt
+0\
+
+1
+
+'\
+
+1\
+
+Ib
+
+1\
+
+\
+
+\
+
+I
+
+c
+
+\
+/3 0 .75R
+
+\
+
+o
+
+I~
+
+\
+
+= 54 .7"
+
+~
+
+1\
+
+60.20\r-'\
+
+1\
+
+I
+
+\
+
+I~
+
+~
+
+\
+
+- .1
+
+(b)
+
+-'~8
+
+3.6
+
+3.4
+
+Advance ratio, J
+
+(b) P ower coeffi cient.
+FIGUR E
+
+l 3.- Continued.
+
+3.8
+
+4.0
+
+4 .2
+
+4 .4
+
+30
+
+REPORT 1375-NATIO AL ADVISORY COMMIT'l'EE FOR AERONAUTI CS
+
+1.0
+
+M : 0.9 3
+
+.9
+
+.8
+
+- r-. f-l'
+.7
+
+. E xt r apala ted
+
+I
+
+-I
+
+'-
+
+-- - 1\
+""-
+
+I-- -..........
+
+~
+
+r--. r-
+
+I
+
+\
+
+r-- I---
+
+I---r--
+
+\
+
+.6
+
+Mf
+
+i--
+
+'"
+
+1\
+\
+
+\
+
+\\
+
+>.
+~ .5
+
+1,2
+
+t--- ..\
+
+1\
+:
+
+I'-....
+
+\
+
+1\
+
+\
+
+1.0
+
+\
+
+.~
+
+u
+
+M
+
+I
+
+w
+
+\
+
+_\
+
+\
+
+A
+
+\
+\
+
+\
+
+.8
+
+G;
+.0-
+
+E
+
+.3
+
+.6
+
+I
+
+u
+
+o
+
+II
+
+~
+
+-
+
+4
+
+.2
+
+{30.75 R - 54.r
+
+60.2°
+
+I
+
+.2
+
+(c )
+
+o
+
+2.8
+
+3.0
+
+3.2
+
+::>
+
+c
+.c
+
+3.6
+
+3.4
+
+Advance rotio, J
+
+(c) Efficiency.
+FIGUR E
+
+l3 .-Concluded.
+
+3.8
+
+4.0
+
+42
+
+o
+
+4.4
+
+-~----~--
+
+AERODYNAMIC CHARACTERISTI CS OF A SUPERSONIC-,]~YPE THREE- BLADE PROPELLER TO MACH NUMBER 0.96
+
+31
+
+./4
+
+1\ \
+.12
+
+M=0.96
+
+1\
+
+\
+
+\
+/ -Exl rapala l ed
+
+\
+
+1\
+
+\
+
+\
+
+1\
+./0
+
+0
+
+1\
+
+\
+
+\
+
+f\
+
+1\
+\
+
+1\
+
+.08
+
+\
+~
+
+\
+
+\
+
+1\
+
+\
+
+\
+
+1
+
+\
+
+1\
+
+.06
+
+\
+
+\
+\
+
+-
+
+-- J
+
+\
+
+1\
+
+c...
+
+\
+
+'0
+
+:E .0 4
+
+\-
+
+'"
+
+o
+o
+
+\
+
+-_-Wo ke surve
+
+\
+
+\
+
+\
+
+\
+\
+
+I
+
+\
+
+'\
+
+.0 2
+\
+
+- /--
+
+I
+
+1\
+I
+
+I~
+
+\
+
+\
+\
+
+\
+
+o
+\
+
+1\
+
+\
+
+60.2° \
+
+\
+
+-.0 2
+
+\
+
+i
+
+f3 0 .75R = 54 .7°
+
+1\
+
+\
+
+\
+
+-.04
+
+II
+
+\
+
+(0 )
+
+3.0
+
+3.2
+
+3.8
+
+3.6
+Advance
+
+4.0
+
+ralia, J
+
+(a) Thr u t coeffici ent.
+F I G URE l4.-
+
+Ch aracteristic of p ropeller .
+
+Fo rward Mach numb er 0.96.
+
+4.2
+
+4.4
+
+\
+\
+
+32
+
+REPORT 1375-
+
+A'fIO AL ADVISORY COMMITTEE FOR AERONAUTICS
+
+.8
+
+M=0.96
+.7
+
+1\
+
+" \0
+1\
+
+.6
+
+\
+5
+
+"'\
+
+"',
+
+\
+
+1\ 1\
+.... Extrapolated
+
+\
+
+1'\
+\
+
+1\
+
+\
+
+\
+\
+
+c
+
+R
+
+Q)
+
+'u
+
+:E
+
+1\
+
+\
+
+\...
+
+8
+
+li
+l'-...
+
+3
+
+\
+
+'\
+\
+
+\\
+\
+
+2
+
+\
+
+~
+
+\
+
+~
+
+\
+
+1\
+
+\
+
+I
+
+\
+
+{30.75R =54.7°
+
+\
+
+602\
+
+'\
+
+1\
+
+\
+
+\
+
+0
+
+\
+
+1\
+
+\
+
+(b)
+
+.1
+
+2.8
+
+3.0
+
+3.2
+
+3.4
+
+3.6
+Advance ratio, J
+
+(b) Power coefficient.
+FIG1.' RE H .-Continued.
+
+3.8
+
+4 .0
+
+4 .2
+
+4.4
+
+AERODYNAMIC CHARA CTERISTICS OF A SUPERSONIC- TYPE THREE-BLADE PROPELLER TO MACH
+
+33
+
+UMBER 0.96
+
+1.0
+
+rM =0.96
+.9
+
+.8
+
+r- I - .7
+
+r-- I--
+
+___ Extrapola ted
+
+~I'
+
+r- r- J--
+
+" '\
+
+t-- I'\
+
+I.4
+
+t---- t----
+
+~
+
+t--t-MI
+
+1\
+
+\
+\
+
+.6
+
+-
+
+""
+
+t--- r--- r---
+
+'\
+
+'\
+
+I.2
+
+[\
+
+\
+
+\
+
+I="
+
+,;.
+
+~
+
+'u
+;;::
+W
+
+\
+
+1\
+
+u
+
+.5
+
+\
+
+M
+
+\
+1
+
+I.o
+
+\
+
+'I
+1\
+
+1\
+
+.4
+
+\
+
+8
+1;;
+
+.n
+E
+
+"
+
+c:
+
+.J::
+U
+
+o
+
+::E
+
+.3
+
+6
+
+.2
+
+4
+
+f3 0 .75R =5 4 .7°
+
+60.2°
+2
+
+(el
+
+o2.8
+
+3.0
+
+3.2
+
+3.4
+
+3.6
+Advance ratio, J
+
+(c) Effi ciency.
+FI GU RE l4. -Concluded.
+
+3.8
+
+4 .0
+
+4.2
+
+34
+
+REPORT 1375-NATIONAL ADVISORY COMMIT 'l' EE FOR AERONAUTICS
+
+.88
+
+!
+0.70
+.5U
+
+I
+
+I
+
+.74
+
+::-
+
+I
+
+.84
+
+.80
+
+I
+
+I
+
+I
+
+I
+
+,:.
+
+-
+
+I
+
+I
+I
+
+r-- .84
+
+u
+
+I
+
+0.60
+
+r--!~
+---...: .74
+........... 80
+
+I
+
+I
+
+c
+.!!!
+
+r-- r--
+
+.,a.
+.,
+
+.2
+
+>
+
+.7 2
+
+I
+
+I
+
+u
+
+~ .76
+
+c
+w
+
+- ---
+
+::::::::t;::-4 M
+
+~
+
+-
+
+- - " , -, - - - - - r--
+
+0
+
+t-- I---
+
+---....
+
+- r--- ~ ::::::::::::~ t----
+
+" -Exlrapalaled
+
+--........
+
+1---=
+
+.68
+
+22
+
+21\
+
+26
+
+r--.....
+
+........
+
+~ ~3
+
+~ '89
+.96
+
+o Slrip Iheory for M =0 .96
+1
+I
+I
+I
+
+.6420
+
+~
+
+0
+
+.3.2
+
+2.8
+
+3:4
+
+4.0
+
+4.2
+
+4:4
+
+Advance ralio, J
+F I GURE
+
+EFFECT OF FORWARD MA CH
+
+15.- Variation of envelope efficiency wi th advance ratio for various forw ard Mac h number.
+MBER ON MAX1M UM EFFICIEN C Y
+
+The variation of ma:\imum propeller effi cien cy with forward :Mach number is shown in figure 16 for advance-ra tio
+value of 2.8, 3.4, and 4.0. The e data how that the maximum efficiency attained during the te ts wa
+6 percent
+between Mach numbers of 0.60 and 0.70 at an advance
+ratio of 2.. Above 111= 0.70, the effi ci e n c~- decr-ea ed
+gradually to a value of 72 per c nt at the :M ach number of
+0.96. At an advance r atio of 4.0, the maximum effi ciency
+was 2.5 to 4.0 per ce nt Ie s t han that for J = 2. over the
+Mach numb er range from 0.60 to 0.96. l
+R esults of th is inve Ligation of the superso nic propeller
+agree with trends shown for model propellers de igned for
+higher advance ratios (ref. 7) t han 2.2. A t a constant val ue
+of forward Mach number any in crease in advance ratio
+deerea e rotational speed and therefore re ults in lower
+values of blade-sectioll Mach Ilumber. It i t hus apparent
+that a propeller operating at high advance ratio will delay
+the on et of the adver e efl'ect of compressibili ty on th e
+blade ection s and will operate to higb er values of forwa rd
+1ach number before the blade sections r each the cri tical
+peed. I t i seen in figure 16 that th e critical peed of the
+test propeller wa delayed to hi gher Mach number a ad vance ratio wa in crea ed. A t J = 2. the point at which
+the efficiency began lo decrea e rapidly was 1\11 = 0.7l a.nd
+I In late r tests of this same propeller in which forward Mach number was extended to 1.0J.
+the va lues of propeller efficiency a t specds ncar M ach number 0.96 were slightly different from
+those presented in this report. 'The later tests indica te a contilluing decrease of effi ciency
+with increasing M ach numbcr rather than the tendency for values of ef11cienc y to level ofT
+in the regjon of Mach number 0.00 as indica ted in figure 16. T he actual differences in ef·
+Ileiency va lu es between the two sets of data are generally less than on(' percent. The resul ts
+of these tests we re published in NA CA Heseareh M emorandum L56E IO entitled "Effect
+of Dlade eelion Camber on Aerodynamic CharM teristics of Full-Scale Supcrsonie-'I' ype
+Propellers at Mach Numbers to 1.04" by Julian D. Maynard. John M. wihart, and Harry
+'1'. Norton, Jr .
+
+progres ed to 1\11= 0.7 5 at J =3 .4 and 1\11 = 0. 0 a t J = 4.0.
+Furth ermore, as t he val ue of forward Mach number i increa ed in to .he upercritical peed ran ge, the pre ent propeller and the model propeller of reference 7 will opera te
+at a low advance ratio more effi ciently than at a hio-h advance ratio b eca use of the more advantageo u orientation
+of the blade force vector .
+B elow the criti cal 'Mach number, there i a notable difference betwee n the advance ratio at whi ch maximum efficiency i atta ined for the model propeller te ted in the inve tigation of r eference 7 a nd the propeller u cd in th e pre ent
+investigation . Obviou ly, the model propeller operating
+at advance ratio lower than the de ign value of 3.36 will
+not have all blade sections at maximum lift-drag ratio, and
+a lower efficiency result . The pre en propeller will operate with efficien cy decreasing as advan ce ratio i in creased
+from th e de ign value of 2.2 for the sam e r ea on.
+POWER COEFFI CIENT FOR MAXIMUM EFFI C I ENCY
+
+The variat ion of power coefficient for maximum effi ciency
+wi th advance ratio i shown in figur e 17 for co n tant value
+of forward "M ach number. These curves can b e u ed to
+eval uate the power-absorp tion proper tie of the super onictype propeller de ignecl for a low advance ratio . If a constan t press ure altitude and a con tant )'1a h number of 0 .96
+is assumed, the propeller operating at an advance ratio of
+2. would ab orb nearly twice as much power and, as hown
+in figure 15, wo uld operate 3 per cent more effi ciently than
+a similar propeller operating at an advan ce ratio of 3 . .
+More power is absorb ed when operating at th lower advance
+ratio because the power absorbed is inversely proportional
+to advance ratio, although the power coeffi cient is lower at
+the lower advan ce ratio . Another way to iUu rate the
+
+------- -
+
+)
+
+I
+
+-- .--------~
+
+--~---
+
+AERODYNAMIC CHARAC'1'ERISTICS OF A SUPERSONIC-TYPE THREE- BLADE PROPELLER TO MACH
+
+UMBER 0.96
+
+35
+
+,88
+
+- r-----
+
+r-- ~ ........
+
+.84
+
+~
+
+- r--- :--~ ~
+
+f-
+
+~
+
+~BO
+1:
+
+f:""
+
+>.
+
+u
+
+'"
+
+~Q
+
+- I- -
+
+-
+
+f--V .76
+
+~~
+
+1'\ ~
+
+c
+
+"\
+
+f\
+
+E
+
+:J
+
+.s
+><
+0
+
+::. .72
+
+'\
+
+~
+
+~
+1'\
+
+""
+'\
+
+............
+
+~~
+
+I
+
+.68
+
+~ ~ t--
+
+J
+
+28
+
+t--- 3.4
+t--- 4.0
+
+I
+I
+.56
+
+.60
+
+FIG URE 16.-
+
+.64
+
+.68
+
+.72
+Forward
+
+M
+
+.60
+
+V
+1/
+
+.56
+
+/
+
+>.
+
+c
+
+"
+Extrapolaled-y
+./
+
+:>
+
+E .44
+
+Iv
+~
+V
+./ "v
+0- .40
+./
+V
+'"
+
+.,-
+
+.36
+
+V
+
+V
+
+v
+
+,,-
+
+..'" .32 V lv lv
+
+/
+
+0
+
+:l
+
+V
+
+.28
+
+.20
+
+lv
+
+h
+
+vvV
+
+r
+
+V
+
+V
+
+.89
+
+V
+
+.84
+
+v"
+
+-1
+
+.~
+
+~~8
+
+0 ~
+
+V
+
+~
+
+V/ V
+
+~V
+
+/V" V
+
+Iv
+
+V V
+V V V
+V
+
+.24 /
+
+/
+
+./
+
+u
+
+&.
+
+V
+
+./
+
+./
+
+/
+
+/
+
+/
+
+/
+
+1..:J<i..
+
+/
+
+/
+
+V
+
+v· 93 -
+
+/'"" /~ ~
+
+v"
+./
+
+V
+
+V
+
+~
+
+v
+
+"
+
+/
+
+/
+
+/
+
+v/
+
+.i(
+
+./
+
+V
+
+/
+
+/
+./
+/
+
+V
+
+V 1/
+./
+
+./
+
+u
+
+~
+
+/'
+
+V
+
+.52
+
+C
+
+0.96 -
+
+V
+./
+
+'"
+E
+
+/.
+
+l-/ ,- / 17
+
+'i1/
+v
+
+.162.2
+FIGURE 17.-
+
+2.4
+
+2.6
+
+.80
+number,
+
+B4
+
+.88
+
+2.8
+
+3.0
+3.2
+Advance rolia, J
+
+3.4
+
+3.6
+
+3.8
+
+Va ri ation of power coefficient at m ax imum effi ciency
+wi t h adva nce ratio.
+
+4.0
+
+.92
+
+.96
+
+1.00
+
+M
+
+Va ri ation of m aximum propel/er effi ciency lI'i th forw a rd Mach number for cveral valu
+
+.64
+
+:g'" .48
+
+.76
+Mach
+
+of advance ratio.
+
+advantage of operation at low advance ratio is to compare
+the diameter of propellers designed for a given power.
+In the forego ing example, the propeller operating at an
+advance ratio of 3. would have to be 40 percent greater in
+diameter to absorb the ame power as Lhe propeller operating at an aclvi1nce ratio of 2.8. Therefore, the supersonictype propeller with low de ign advance ratio has favorabl e
+powcr-ab orption characteristic which permit the u e of
+maIler propeller diameters.
+COMPA RI SON OF DA'l' A WITH CO MPRESSIBLE-FLOW
+MOMENTUM-THEORY DATA
+
+A compre ibl -flow momentum theory ha b ee n d eveloped
+in reference , orne re ults of which are reproduced in fiO"w· c
+1 . Values of maximum efficiency obtain ed experimentally
+in the pre ent tests are al 0 plotted as data point in figure 1 _
+Th e compressibl e momentum theory bn, ed on the assumption of a subsonic lipstream indicates that, as the
+propeller power disk loading is in creased beyond a certain
+valu e at a con tant forward Mach number, the ideal effi ieney decreases very rapidly and, jf such were t he case in
+practice, would preclud e the usc of propellers at Mach
+numbers above about 0.90. As poin ted out in reference
+how ever, th e propeller lipstream can attain uper onic
+speeds when the power is in crea ed, and t he valu es of effici ency hown in figure 1 for Lhe super ol1i c wake appear
+to be more reasonable. Although the calculated values of
+efficiency in figure 18 do not include any profile or rotational
+10 es, most of the experimental data for the higher Mach
+numb ers (0 .93 and 0,96 ) are above the ubsonic-wi1ke curves.
+I t app ear, therefore, that the propeller slipstream mu t
+have attained uper oni velocities for at least a shor ·
+distan ce behind the propeller for the te ts at M = 0.93 and
+M = 0.96 .
+
+36
+
+REPORT 13751.0
+
+I
+
+1\
+.9
+
+\
+
+\
+\
+
+M
+0 .84
+
+.89 ~
+
+\
+
+.7
+
+I
+
+I
+
+.93 .96
+
+\
+
+~
+
+I
+
+"'-,
+
+"~ .85
+M
+
+---
+
+.95
+
+"
+
+'\.
+
+~
+
+';Compressible
+(supe rsonic woke)
+
+"- I
+1"""-
+
+--0-
+
+.90
+
+' ,
+
+~
+
+~I~
+
+~
+~
+
+'\
+
+l=" .6
+
+"'"
+
+I
+
+\
+
+.8
+
+Incompressible .'
+
+-- \
+'\
+
+I ~ I--
+
+\
+
+NATLO TAL ADVISORY COMMITTEE Fon AERONAUTI CS
+
+'-..
+
+\
+
+"\.-l. .
+.
+
+I
+
+I
+
+compressible
+(subsonic woke)
+
+I
+
+I
+
+Compressible
+1 (subsonic
+woke).'-- i'~t--
+
+-- 1--
+
+t
+
+I
+
+1.95
+
+---
+
+.90 -
+
+.4
+
+.3
+
+.2
+
+.1
+0
+
+F I G UR E ]
+
+I
+.01
+
+.02
+
+.03
+
+.04
+
+.05
+
+.06
+.07
+Power-disk-Iooding coefficient. Pc
+
+.08
+
+.09
+
+.10
+
+.11
+
+.12
+
+.- Va ri a ti on of maximu m effi cicncy wi th power-d isk-l oacli ng coeffi cien t for scveral forward M ach n umbcr (fro111 fi g. 13 of ref. 8).
+OPERATING CHA RT S
+
+I II order to facilitate th e use of the data included herein
+for performan ce es timaLes, charts have been prepared and
+ar e includ ed in figure 19. Th e charts consist of plots of
+power coeffici ent against advan ce ratio with lin e of constant
+efficiency uperimposed. Exce pt for t he first chart (fig .
+19 (a )), whi ch presents da ta obtain ed at a rotational speed of
+1600 rpm (M < 0.67), tbe charts are pre ented for th e cons ta nt values of forward tIach numb er at which the tes ts
+were mad e. (See figs. 19 (b ) to (i).)
+STALL-FL UTTER DATA
+
+The purpose of the prese nt inve tigation was to determine
+t he aerod y namic characteristics of tb e propeller tes ted, and
+th e propeller was deliberately not opera ted at flu tter sin ce
+violent or su tain ed flutter would have been hazardous to
+t he test equipment. Flutter was detec ted , however, both
+a udibly and by strain gage during th e tests a t a constant
+
+rotational speed of 1600 rpm, durin g whi h propeller tall
+conditions were encoun tered. In ome case it was pos ible
+to record t he value of forward Mach numb er at flu tter
+wh ereas in oth er cases th e dynamometer sp cd wa dropped
+ligh tly before data wer e laken.
+No analy is of th e flut ter data is pre ented , but the data
+ob tained arc included ill figure 6. The values of advan ce
+ratio at which flu t ter occUlTed wer e spotted on the CUl'ves
+of t hrust and power coefficient and a curve drawn through
+the poin t to mark the flutter boundary.
+The flutter data, It r eplotted in figure 20, how the v aria tion of the sec tion lift coeffi cient a nd h elical tip Mach
+number at flutter with advance ratio for the x= 0.60 tation
+a determin ed from wake pre ure m easurement. The
+values are shown for the x= 0.60 station sin ce the maximum
+value of lift coefficient along the propeller-blade radius
+occW'l'ecl at approximately thi s station.
+
+- - - - - ---
+
+--
+
+.60
+
+II
+
+.56
+
+\
+
+I
+
+I
+.52
+
+\
+
+I
+48
+J
+
+.44
+
+1/
+
+\
+/ i\
+
+-
+
+\
+
+/
+
+\
+
+"(}
+
+E
+
+o
+'"
+<)
+
+~ .28
+a.
+
+II
+.24
+
+\
+\
+
+\
+
+20
+
+\
+
+/\
+
+1\
+.16
+
+/
+
+r =0.·~9
+.12
+
+~
+
+X
+
+/
+
+1\\
+I.
+
+.7 Q 75 , \
+
+'~
+
+.08
+
+/
+
+/
+I
+
+\
+
+1\ V
+
+1
+
+/
+
+\(
+
+/
+
+/
+
+\
+
+/
+
+K 17
+
+/
+(
+
+.86
+
+V
+
+/
+
+\
+
+.84
+
+Bo./ ~2X
+
+l-- I -
+
+1\ - --- \
+l--
+
+r\--
+
+~
+
+1----
+
+--
+
+V
+
+1----
+
+I---
+
+[7
+
+V
+/
+
+\
+"-
+
+tL
+
+-
+
+I ~
+
+V ./"v
+.....--- V
+
+cr ---
+
+H
+
+- J.--
+
+.04
+
+~
+(a)
+
+4
+
+I- -
+
+~
+
+f-
+
+PO.75R=
+-I
+
+.6
+
+-
+
+~o.7~
+
+f- .
+
+f-
+
+20.2");~
+I =-~ =~~ t:::::- I--- 352\
+I
+25.2
+302°
+.
+.8
+
+1.0.
+
+1.2
+
+1.4
+
+1.6
+A dvance
+
+~ 0. 2 °
+
+1.8
+
+-
+
+!.4U
+
+1\
+
+2.0.
+
+2.2
+
+rati o , J
+
+(a) 1600 rpm ; M < 0.67 .
+F IGU H E
+
+19.- 0per atin g ch a rt for t hree-blade prop ell er.
+
+V
+
+L.----
+
+\
+\-V- 1---- 1\
+/ \ 1( '1\ -r- +-S-_ __v__ \1-::: --- l\p;
+f\:1
+- \:r- ~ I\=== ~ _v1---;: Psc~
+I~
+-1= - ~~~ r-l.3&
+~\V
+
+V
+
+/
+
+/
+
+t-- - L---
+
+I---
+
+I--
+
+1\
+
+\
+
+/'
+
+/
+
+.85~ f-
+
+\
+
+\
+--V
+1\\
+
+/
+
+It-
+
+,..--- r--
+
+j'
+j
+
+/ \
+
+\
+1/
+V V .85~ - 1V
+I
+V
+1\ /
+/
+\
+V v\
+I\/
+/
+
+\
+
+/
+
+V
+
+/
+
+/
+
+V
+
+i7
+
+/
+
+/
+
+1/
+
+\. / /
+/\
+
+/
+
+1\
+
+/
+
+I II
+I / /
+v
+
+/
+
+1\
+
+1 IX
+
+/
+
+/\
+
+/
+
+II
+
+/
+
+/
+
+\/
+
+I
+
+11
+
+/
+
+/
+
+\
+
+7
+
+/
+
+V 1/ 1/ :x
+
+\
+
+/
+
+Y
+\/
+/
+
+/
+
+'/
+
+~/
+
+/[\
+
+1;\\
+
+V
+
+V
+
+/
+
+II
+
+1\
+
+/
+
+II
+
+7
+
+/
+
+\
+
+/
+
+/
+
+/
+
+1\
+
+1/
+
+\
+
+I
+
+1\
+
+/
+
+'\
+\
+
+/
+
+I
+
+\ll
+
+/
+
+~
+
+I
+
+7
+
+II
+
+\ /
+
+II
+
+~ .32
+
+7\
+
+/
+
+-;
+
+/ 1\
+
+,I
+
+.36
+
+II
+
+l!
+
+/
+
+40.
+
+o
+
+37
+
+UMBER 0.96
+
+AERo.DYNAMI C CHARA CTERIS'rI CS o.F A SU PERSo.NIC- T YPE THREE-BLADE PRo.PELLER 1'0. MACH
+
+'I
+45.4"
+
+2.4
+
+-
+
+1\
+
+\1
+V\
+
+~
+
+rr
+
+1/
+
+1\
+
+1---.-
+
+r\
+t1
+
+-J--- -- ~ \
+1
+
+~
+
+l--
+
+J--
+
+-- I- -: I--- I -~
+!--
+
+~.ei
+
+2.6
+
+2.3
+
+3.0
+
+38
+
+REPORT 1375-
+
+NATIONAL ADVISORY COMMITTEE FOR AERONAUTICS
+
+.7 ~--.----'--.---r---r--r---n--'--'--'--II
+
+\
+
+1\
+\
+
+l--
+
+~
+
+-
+
+-
+
+1-
+
+- -
+
+- r;-
+
+-
+
+r-
+
+___
+
+. 6 ~-+--+---~-+--~--r-~~~~\--r--+--~--r--+--4---+--+--~--+--4--~~+~
+~4---~~
+
+/'
+
+'\
+
+_ 1_ -
+
+---
+
+-
+
+f--
+
+I ","
+\ ---"f-
+
+1
+
+<Jc
+
+( b)
+
+Q)
+
+'0
+~
+
+0
+
+Q)
+
+0
+
+u
+
+.7
+
+~
+
+'\
+
+Q)
+
+3
+
+&
+-
+
+.6
+
+.1 -
+
+---r-
+
+\
+
+-I- -
+
+-
+
+-c---t--
+
+-
+
+(e)
+
+Adva nce rat io, J
+
+(b) M = O.60.
+(c) M = O.70 .
+F I G U RE 19.-
+
+Con tin uccl .
+
+\
+
+-r--..,
+
+\
+
+AERODYNAMIC CH ARACTERIS'l' I CS OF A SUPERSO I C-TYPE T H REE - BLADE P ROPELLER T O MA CH NUMBER 0 . 9 6
+8
+
+7
+
+---- --
+
+...---
+
+/ \ / -- --/ / ~\-\
+
+/
+
+-
+
+I-
+
+/ /
+
+5
+
+;/ /
+
+/ 1
+
+./
+
+\1; 1 Y
+...- ,.
+~ /' V
+
+4
+
+\:
+
+3
+
+.\- ---
+
+\
+
+-Y
+
+2
+
+)
+
+./'
+././
+
+~
+
+/
+
+/
+
+/
+
+---t -j,)(-
+
+:1.-l
+
+V
+
+)
+
+/
+
+~
+
+---
+
+T~
+
+\
+
+:~
+
+./
+~
+
+-
+
+.70
+
+J
+
+I ~
+
+-
+
+I--
+
+I
+
+-'-'
+
+I--
+
+1-
+
+~
+
+~
+
+\
+
+I
+
+60.2~
+
+~I
+
+r----..
+
+~
+
+\ '"
+
+./
+
+/
+
+\
+
+\
+
+\
+
+//
+/
+
+i\
+
+./
+
+i--
+
+.----:...-
+
+Iv --
+
+.5
+
+i.-
+
+.--\ .----
+
+f.--
+
+\
+
+.....
+
+f--1) )= 0., .82
+
+\
+I
+
+[\
+
+\.80
+
+\ '
+
+---
+
+1.,/\
+
+\--- -- ----- -----\
+\ .7:>
+1\
+~
+---- \ --V --\ ---- ---\
+A7
+- - ------- -- ---- -- -\
+-- \
+\ -j
+-\I-
+
+.-V
+
+'\
+
+.3
+
+----
+
+-~
+
+/
+
+__ -:0-
+
+V
+
+~
+
+f.--
+
+0
+
+-:;;;
+
+.-
+
+~
+
+I-
+
+~
+
+.1
+
+L----
+
+{30.75R =5 0 .8 \
+
+~.2
+
+2.4
+
+2.6
+
+2.8
+
+3.0
+
+:.-
+
+J.....--
+
+~ - I--I-- - :=- ~
+
+(e)
+
+1\
+
+.....-
+
+~
+
+--
+
+.2
+
+.50
+.40
+
+-
+
+.7
+
+\\V
+
+--
+
+--i
+
+-
+
+.4
+
+I
+
+I
+
+V _V -
+
+c
+
+r---
+
+- r - - - -- I -
+
+.6
+
+J\
+
+5 4 .7°\
+
+!30.75R = 50.80\
+
+8
+
+.81 1.80
+
+V~ :..- -1 ~
+
+~
+
+I
+
+I
+
+--- - ~5
+------- -- -- \
+---~
+---- .---- -- ~O
+.----- ------ - 1- - -f..-1\
+/
+
+_I--:r::-'S
+-:::
+~J.I~
+~
+
+(d)
+
+\
+
+\
+
+I
+
+L
+
+./
+
+./
+
+\
+"-..I
+
+1\ 83 1\82
+
+/-::::V V
+
+/
+/
+
+'\
+
+~
+
+vV
+
+\ 1)= 0.85
+
+/
+
+"'-
+
+"- "- "'-
+
+~ .84
+
+)
+
+~ \
+~I -=d/J
+,--- -
+
+~
+
+.1
+
+V
+
+I-
+
+)
+
+./
+
+-K'
+lA
+
+,-
+
+\
+
+-
+
+\
+
+/
+
+I-
+
+-
+
+V
+
+./
+
+I-
+
+---- V -
+
+V
+
+/
+
+--.....
+
+----...
+- "- \
+
+_f-- -
+
+6
+
+1\
+\
+
+-
+
+f---
+
+-
+
+1 - - ,.-
+
+f--
+
+- l- I--
+
+I---I--
+
+-
+
+i-~
+
+!--
+
+J.-- ~
+I--
+
+3.4
+
+3.6
+
+Advance ra tto , J
+
+(d) M = O.74 .
+
+(e) M = O.80.
+FIG U RE
+
+\50
+.40
+
+\
+
+6 0 .2° \
+
+54.70\
+3 .2
+
+.60
+
+19. - Continued.
+
+3.8
+
+4 .0
+
+4.2
+
+4.4
+
+4 .6
+
+39
+
+40
+
+REPORT 1375-NATIONAL ADVISORY COMMITTEE FOR AERONAUTI CS
+.5
+
+.4
+
+1/
+
+")=0.80
+
+\
+
+-\
+3
+
+f-
+
+~
+
+f - - ~8 I---- I - i \
+
+r-25 _
+
+I±
+
+~
+
+I
+
+-
+
+~
+
+r\
+
+- ?O l - - - I /-
+
+-
+
+- ~-
+
+~- l--
+
+~- F=
+
+~
+
+f\
+
+~
+\
+
+/30.7~= 50.80\
+
+o
+
+c
+
+1\
+
+-~
+
+.79
+
+.2
+
+~
+
+V
+
+-
+
+~ I--
+
+...~
+
+1\
+
+54.70\
+
+\
+(tl
+
+-. I
+
+§ .9
+
+~
+
+1\
+
+.6
+
+,
+
+\
+
+7
+
+\~\
+
+6
+
+-!-\
+
+..- V
+5
+
+V
+....\
+
+4
+
+-----
+
+---
+
+--- --
+
+.......-
+
+\ -~
+
+3
+
+\:
+
+2
+
+.1
+
+~
+
+-
+
+-
+
+F\
+
+\--
+
+I- -
+
+2.6
+
+O.75/?
+
+2 .8
+
+=50.8°\
+I
+
+3.0
+
+3.2
+
+h
+1\
+54r\
+
+V
+
+1-------
+
+V
+
+l.---
+
+-
+
+V
+
+/
+---
+
+\
+
+.65
+
+/ \
+/
+
+r\0
+
+1\50
+V
+.40
+... .-,............... ---------V\
+
+-- ---- .-'
+
+-
+
+~
+
+- I - - I---
+
+3.4
+
+/
+
+/
+
+J------
+
+I--~ -f--
+
+f-.-
+
+I--- -
+
+~
+
+h
+
+.7~
+
+//
+
+7
+
+~. I~ -------
+
+/ 72
+
+/
+
+....-/
+
+I-- \
+
+-
+
+1/
+
+/
+
+X7
+
+\
+
+/3
+
+('ill
+0
+2.4
+
+V
+
+f-f--
+
+~ I---~ r-- -
+
+/
+/
+
+V
+
+.....- V
+
+\
+
+/ 74
+
+7
+
+j\
+
+l\
+
+I
+
+).75
+
+")= 0.7~
+
+f.-
+
+\
+
+""
+
+\
+
+\
+
+\
+
+\ 1\
+
+l--
+
+!-i-
+
+f-
+
+1\
+
+\
+
+6~.2~
+
+3.6
+3.8
+Advance ratio, J
+
+4.0
+
+4.2
+
+4.4
+
+4.6
+
+4 .8
+
+(f) M = D. 4.
+
+(g) M = D. 9.
+FI GU HE 19.-Continued.
+
+--~
+
+--.~
+
+- - - - - - - - - _ .-
+
+-----
+
+--~------
+
+AE ROD YNAMI C CH ARACTERI STICS OF A SUPE RSO JI C- TYPE 'l'HREE - BLADE PROPELLER TO MACH NUMBER 0.96
+
+- - - --
+
+41
+
+7
+\
+
+\
+
+6
+/
+
+,. 71
+
+/
+
+) '7=0.72
+5
+
+V
+
+'\
+
+\'
+
+4
+
+/
+
+/
+
+V
+
+1/
+
+\:
+
+/
+
+~
+
+/
+
+\'
+
+/
+
+~
+
+-'I
+
+......-
+
+...-
+
+./'
+
+.65
+
+~/ r\
+
+V
+
+6O
+
+,//
+
+V"
+
+..-/"
+
+V
+
+....----
+
+------
+
+lA·\
+
+...-
+
+i.-
+
+...-
+
+V
+
+V
+...-
+
+...-
+
+...-
+
+-..-/"
+
+.............
+
+K·55
+~51
+- - \;40
+
+\
+
+...- ...............
+
+...........--
+
+~ ...........-
+
+I
+
+V
+
+./
+
+./
+
+: \67
+
+/
+
+/
+
+V
+
+,/
+
+V
+
+~
+
+(h)
+
+c
+
+/
+
+\ 68
+
+/
+
+/
+
+./
+
+,/
+
+.2
+
+V
+
+V
+~
+,/
+
+/
+/
+
+/
+
+/
+
+/
+
+/
+
+V V
+3
+
+V
+
+70 \
+
+\
+
+1\
+
+1\
+
+f30.75R=54 .7 0\
+
+60.20\
+
+.~ 0
+Q:;
+o
+u
+
+7
+"'1=0.69
+
+\' \
+
+.6
+
+\
+
+'"
+
+.5
+
+L \
+'\
+
+p\67
+
+/
+
+r-..
+
+1/
+
+'/
+
+\
+
+.4
+
+I
+X
+
+\
+
+/'
+\
+
+V , //'" ...V
+I-\; ~...... ...-...- ...........- ....../
+
+.3
+
+/
+
+~
+
+V
+
+l.---
+
+\
+
+.1
+
+/
+
+..-
+
+~65
+/'
+\
+
+,/
+
+~
+
+\: -- -
+
+.2
+
+""-
+
+/
+
+1/
+
+-----V----
+
+---- - -
+
+.60
+
+\
+...........--
+
+----
+
+2.6
+
+2 .8
+
+3.0
+
+3.2
+
+- \.40
+
+\
+
+\
+
+\
+
+\
+
+f30.75R=54.7° \
+
+(i)
+
+.50
+
+3.4
+
+60.2°
+3.6
+Ar1v"n C" "!
+
+3.8
+r lj tj(\
+
+J
+
+(h) M = O.93.
+
+(i) M = O.96.
+FIGURE 19.-Concluded.
+
+4.0
+
+4 .2
+
+1\
+
+4.4
+
+4.6
+
+4.8
+
+J
+
+42
+
+REPORT 1375-
+
+A'l'IO AL ADVI SORY COMMITTEE FOR AERO AUTI CS
+
+1.0
+
+with the clean propeller . At values of Mach number below
+0.90, th e differences in efficiency between the propeller with
+gages attached and the clean propeller were n egligible .
+
+'""----0
+
+.9
+
+--- 1'-0.
+I'---I'a.
+
+.8
+
+CONCLUSIONS
+
+f"- ez
+
+i'----
+
+.7
+
+.6
+1!
+
+~
+
+1.0
+
+"0 .5
+
+0!J- l--
+
+.4
+
+.8
+~
+
+OJ
+
+. 6::::
+.2
+
+3
+2
+
+.2
+
+I
+
+.4
+
+1.4
+
+1.0
+1.2
+.8
+Advance rat io, J
+
+.6
+
+1.8
+
+1.6
+
+2.0
+
+o
+
+FIGURE 20.-Variat ion with ad vance ratio of lift coefficient a nd t ip
+lVIach number at flu tter. x= 0.60; ro tat ional speed, 1600 rpm.
+EFFECT OF STIU I N GAGES 0
+
+p n OPELLER EFFICI ENCY
+
+Most of the tests for this were run wi tb strain gages
+cemented to the smface of one of t he propeller blades. Consideration of the eff ect of the strain gages on the aerodynamic
+characteristics leel to the repeat tests with the strain gaO'es
+r emoved from the propeller; thus, the propeller was aerody namically clean. Data shown in figure 21 gave indication
+of no difference in m aximum efficiency up to a IVIach number
+of 0.88. Above M=0.88, the clea n blades were slightly
+more effi cient (about 2 per cent at M=0.96) than the blades
+with gages attached.
+It should be noted that the aerodynamic characteristics
+pre ented ill this report at high Mach numb ers were obtained
+.84
+
+- r--.
+
+.80
+
+b"
+
+'",""-
+
+.76
+
+1,\
+I\.
+'::::~-Clean blade
+
+>.
+
+g .72
+OJ
+
+'u
+;;::
+Q; .68
+
+E
+::J
+E
+
+~
+
+SPi~ ~mb" fO"1~rl
+
+.§ .64 \-~
+
+\--
+
+.60 ~
+\--
+
+.5 6
+
+~
+
+r
+
+"'ti.. -.....::::::::Blade with gage
+
+,
+
+,
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+Blade radial station inches
+
+.5 ~60
+
+.64
+
+.68
+
+.72
+
+.76
+
+.80
+
+.84
+
+.88
+
+.92
+
+.96
+
+100
+
+Forward Mach number, M
+
+FIGURE 21.- Effect of st rain gages on max imum efficiency .
+
+T ests of a supersonic three-blad e propeller have been made
+on the 6000-horsepower propeller dynamometer in the
+Langley 16-foot transonic tunnel over a range of blade
+angle at forward Mach number up to 0.96. T he r esul t
+of the in vestigation indicate the following conclusions:
+l. In the range of the te ts the tunnel-wall interference
+was found to b e negligible for propeller operation in the
+slotted test ection of tbe Langley 16-foo t tran onic tunnel.
+2. Envelope effi ciency at an advance ratio of 2. decrea ed
+from 86 per cent to 72 percent when the forward Mach number wa in cr eased from 0.70 to 0.96.
+3. Maximum propeller efficieney can be calculaLed with
+good accuracy by u ing ordinary ubsonic strip theory when
+the blad e-section speed are supersonic .
+4. T he 10 s in envelope efficiency with in cl'ea e in advance
+ra tio is only about 1 percen t between advance ratio of 2.2
+and 3.2.
+5. Th e supersonic-type propeller with a low design advance
+ratio has favorable power absorption characteristic which
+permit the use of maIler propeller diameters.
+6. A comparison of the experimental data with compre ..
+ible momentum theory indi.cates tha t the propeller slip stream attained super on ic velocities for at least a short
+di tan ce behind the propeller a t forward :M acb number of
+0.93 and 0.96.
+L ANG L EY AERO NAUTI CAL L AB OR AT OR Y,
+
+N ATIO rA L ADVIS OR Y COMMIT'rEE FOR A E RO NA 'l'IC ,
+LANGLEY FI ELD, V A., May 18, 1953 .
+R EFERENCE S
+1. ,Ya rd, Vernon G., Whi tcomb, Cha rl es F. , and P ear on, M erwin D .:
+Airflow an d P ower Character istic of t he Lang ley 16-Foot Transonic Tunn el Wi t h Slotted T est Section.
+ACA RM L52E01,
+1952.
+2. Wood, J ohn H., and <:::wiha r t, J ohn M.: The Effect of Blade ection
+Camber on t he Static Chanlcteristics of Three NAC A Prope ller .
+N ACA RM L51L28, 1952.
+3. Co rso n, Blake VV., Jr. , and M aynard , Jul ian D.: The Langley 2000Horsepower Prop eller D y namometer and T es ts at Hig h peed
+of a n N ACA 10-(3)(0 )-03 T\\'o-B lade Propeller. N ACA 1'1
+2859, 1952. (Supe rsedes N ACA RM L7L29. )
+4 . W r ight, R ay H. , and W ard , Ve rnon G. : rACA T ran on ic "\VindTunnel T est Sections. N ACA R ep . 1231, 1955. (S uper edes
+N ACA RM L8J06.)
+5. H a llissy, J o eph M., Jr.: Pre ure Measurements on a B ody of
+R evolution in t he Langley 16-Foot Transoni c Tunnel and a
+Co mp arison "'lith Free-Fall D ata. NACA RM L51L07a, 1952.
+6. Anon .: P ropeller P erform a nce An a lysi. Aerodynam ic Characteri tics. N ACA 16 Series Airfoi l . R ep.
+o. 0-2000, Curti sWright Co rp. , P ropeller Div . (Caldwe ll, N. J .), D ec. 2, 1948.
+7. D elano, J ames E ., a nd Carmel, M lvin M.: Inve t igation of t he
+NACA 4-l0)(03)-045 and N A A 4-l0)(0 )- 045 Two-Blade
+Propellers at F orwa rd Mach
+umbers to 0.925.
+ACA RM
+L9L06a, 1950.
+8. Delano, J ame. B ., an d Crigler, Jo h n L .: Compressible· Flow Solut ions for the Actuator Disk. NACA RM L53A07, 1953.
+U.
+
+-
+
+-- - -
+
+---- ---
+
+s. GOVERNMENT PRINTING OFfiCE : 1959
+
+- - - - - - - - -- - - - - - - - - - - - - - .
+
+__._- - - - - -
+
+

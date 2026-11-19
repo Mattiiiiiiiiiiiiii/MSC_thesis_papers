@@ -1,0 +1,322 @@
+abstract: <jats:p>In this paper, the NWT600 airfoil with a thickness ratio of 60%
+  is taken as the research object. The aerodynamic performance of the airfoil is analyzed
+  by experiments and numerical simulations. The results simulated by various turbulence
+  models used in the 2D steady-state RANS method are compared, including the Spalart–Allmaras
+  model, k-ω SST model, k-ε realizable model, and Reynolds stress (linear pressure-strain)
+  model. The influence of blunt trailing-edge thickness on aerodynamic characteristics
+  is studied by adding thickness symmetrically. The results show that even under the
+  low subsonic flow with a Mach number of 0.149, the airflow is prone to severe separation.
+  The aerodynamic performance of the airfoil is very different from that of the conventional
+  thin airfoil. Although the 2D steady-state RANS models overestimate the pressure
+  on the surface of the airfoil in most cases, it is qualitatively acceptable to predict
+  the pressure distribution of the very thick airfoil. Numerical results simulated
+  by the Reynolds stress model are in the best agreement with the experimental data.
+  It is also found that symmetrically thickening the trailing edge effectively improves
+  the maximum lift coefficient and reduces the drag coefficient at a small angle of
+  attack.</jats:p>
+author: Pei, Zhen and Xu, He-Yong and Deng, Lei and Li, Ling-Xiao
+author_list:
+- affiliation:
+  - name: National Key Laboratory of Science and Technology on Aerodynamic Design
+      and Research, Northwestern Polytechnical University, Xi’an 710072, China
+  family: Pei
+  given: Zhen
+- affiliation:
+  - name: National Key Laboratory of Science and Technology on Aerodynamic Design
+      and Research, Northwestern Polytechnical University, Xi’an 710072, China
+  family: Xu
+  given: He-Yong
+- affiliation:
+  - name: National Key Laboratory of Science and Technology on Aerodynamic Design
+      and Research, Northwestern Polytechnical University, Xi’an 710072, China
+  family: Deng
+  given: Lei
+- affiliation:
+  - name: National Key Laboratory of Science and Technology on Aerodynamic Design
+      and Research, Northwestern Polytechnical University, Xi’an 710072, China
+  family: Li
+  given: Ling-Xiao
+citations:
+- article-title: 'China’s Energy Storage Industry: Develop Status, Existing Problems
+    and Countermeasures'
+  author: Yu
+  doi: 10.1016/j.rser.2016.12.103
+  first-page: '767'
+  journal-title: Renew. Sustain. Energy Rev.
+  volume: '71'
+  year: '2017'
+- article-title: A Hybrid Energy Storage System with Optimized Operating Strategy
+    for Mitigating Wind Power Fluctuations
+  author: Zhang
+  doi: 10.1016/j.renene.2018.02.058
+  first-page: '121'
+  journal-title: Renew. Energy
+  volume: '125'
+  year: '2018'
+- article-title: Development of Thick Airfoils for Wind Turbines
+  author: Grasso
+  doi: 10.2514/1.C032182
+  first-page: '975'
+  journal-title: J. Aircr.
+  volume: '50'
+  year: '2013'
+- article-title: A New Optimization Approach to Improve the Overall Performance of
+    Thick Wind Turbine Airfoils
+  author: Li
+  doi: 10.1016/j.energy.2016.09.108
+  first-page: '202'
+  journal-title: Energy
+  volume: '116'
+  year: '2016'
+- doi: 10.2172/1159116
+  unstructured: 'Griffith, D.T., and Richards, P.W. (2014). The SNL100-03 Blade: Design
+    Studies with Flatback Airfoils for the Sandia 100-Meter Blade, Sandia National
+    Laboratories. SANDIA Report No. SAND2014-18129.'
+- unstructured: Cooperman, A.M., Melennan, A.W., Chow, R., Baker, J.P., and Van Dam,
+    C.P. (July, January 28). Aerodynamic Performance of Thick Blunt Trailing Edge
+    Airfoils. Proceedings of the 28th AIAA Applied Aerodynamics Conference, Chicago,
+    IL, USA.
+- unstructured: Van Dam, C.P., Kahn, D.L., and Berg, D.E. (2008). Trailing Edge Modifications
+    for Flatback Airfoils, Sandia National Laboratories. SANDIA Report No. SAND2008-1781.
+- article-title: A Method for Reducing the Base Drag of Wings with Blunt Trailing
+    Edge
+  author: Tanner
+  doi: 10.1017/S0001925900006284
+  first-page: '15'
+  journal-title: Aeronaut. Q.
+  volume: '23'
+  year: '1970'
+- article-title: Experimental and Theoretical Study of Wings with Blunt Trailing Edges
+  author: Ramjee
+  doi: 10.2514/3.45311
+  first-page: '349'
+  journal-title: J. Aircr.
+  volume: '23'
+  year: '1986'
+- article-title: Experimental Research on Blunt Trailing-Edge Airfoil Sections at
+    Low Reynolds Numbers
+  author: Sato
+  doi: 10.2514/3.12905
+  first-page: '2001'
+  journal-title: AIAA J.
+  volume: '33'
+  year: '1995'
+- doi: 10.2172/6443460
+  unstructured: Law, S.P., and Gregorek, G.M. (1987). Wind Tunnel Evaluation of a
+    Truncated NACA 64-621 Airfoil for Wind Turbine Applications, NASA. NASA Report
+    No. NASA CR-180803.
+- unstructured: Fuglsang, P., Antoniou, I., and Dahl, K.S. (1998). Wind Tunnel Tests
+    of the FFA-W3-241, FFA-W3-301 and NACA 63-430 Airfoils, Risø National Laboratory.
+- article-title: Experimental Analysis of Thick Blunt Trailing-Edge Wind Turbine Airfoils
+  author: Baker
+  doi: 10.1115/1.2346701
+  first-page: '422'
+  journal-title: J. Sol. Energy Eng.
+  volume: '128'
+  year: '2006'
+- article-title: Computational Aerodynamic Analysis of a Blunt Trailing-edge Airfoil
+    Modification to the NREL Phase VI rotor
+  author: Chao
+  doi: 10.1002/we.239
+  first-page: '529'
+  journal-title: Wind Energy
+  volume: '10'
+  year: '2010'
+- article-title: Performance Prediction of NREL (National Renewable Energy Laboratory)
+    Phase VI Blade Adopting Blunt Trailing Edge Airfoil
+  author: Lee
+  doi: 10.1016/j.energy.2012.08.007
+  first-page: '47'
+  journal-title: Energy
+  volume: '47'
+  year: '2012'
+- article-title: 'The flow past a flatback airfoil with flow control devices: Benchmarking
+    numerical simulations against wind tunnel data'
+  author: Papadakis
+  doi: 10.5194/wes-5-911-2020
+  first-page: '911'
+  journal-title: Wind Energy Sci.
+  volume: '5'
+  year: '2020'
+- article-title: Papadakis, G, Investigation of the three-dimensional flow past a
+    flatback wind turbine airfoil at high angles of attack
+  author: Manolesos
+  doi: 10.1063/5.0055822
+  first-page: 085106
+  journal-title: Phys. Fluids
+  volume: '33'
+  year: '2021'
+- article-title: Aerodynamic and Acoustic Simulations of Thick Flatback Airfoils Employing
+    High Order DES Methods
+  author: Bangga
+  first-page: '2000129'
+  journal-title: Adv. Theory Simul.
+  volume: '2022'
+  year: '2022'
+- doi: 10.2514/6.2022-2860
+  unstructured: Fuchs, M., Weihing, P., Kuehn, T., Herr, M., Suryadi, A., Mockett,
+    C., Knobbe-Eschen, H., Kramer, F., and Knacke, T. (2022, January 14–17). Two computational
+    studies of a flatback airfoil using non-zonal and embedded scale-resolving turbulence
+    modelling approaches. Proceedings of the 28th AIAA/CEAS Aeroacoustics 2022 Conference,
+    Southampton, UK.
+- article-title: LES simulation and experimental validation of the unsteady aerodynamics
+    of blunt wind turbine airfoils
+  author: Wang
+  doi: 10.1016/j.energy.2018.06.093
+  first-page: '911'
+  journal-title: Energy
+  volume: '158'
+  year: '2018'
+- unstructured: Hoerner, S.F. (1985). Fluid-Dynamic Lift, Hoerner Fluid Dynamic.
+- article-title: Summary of the Delft University Wind Turbine Dedicated Airfoils
+  author: Timmer
+  doi: 10.1115/1.1626129
+  first-page: '488'
+  journal-title: J. Sol. Energy Eng.
+  volume: '125'
+  year: '2003'
+- doi: 10.2514/6.2022-0279
+  unstructured: Cene, A., Grasso, F., and Manolesos, M. (2022, January 3–7). Aerodynamic
+    and Aeroacoustic Measurements of the Flow Past a Very Thick Flatback Airfoil with
+    Passive Flow Control Devices. Proceedings of the AIAA SciTech 2022 Forum, San
+    Diego, CA, USA.
+- article-title: Experimental Parameter Study for Passive Vortex Generators on a 30%
+    Thick Airfoil
+  author: Baldacchino
+  doi: 10.1002/we.2191
+  first-page: '745'
+  journal-title: Wind Energy
+  volume: '21'
+  year: '2018'
+- article-title: Effects of vortex generators on aerodynamic performance of thick
+    wind turbine airfoils
+  author: Zhang
+  doi: 10.1016/j.jweia.2016.07.013
+  first-page: '84'
+  journal-title: J. Wind Eng. Ind. Aerodyn.
+  volume: '156'
+  year: '2016'
+- article-title: Experimental and Computational Investigation of Blunt Trailing-Edge
+    Airfoils with Splitter Plates
+  author: Metzinger
+  doi: 10.2514/1.J056098
+  first-page: '3229'
+  journal-title: AIAA J.
+  volume: '56'
+  year: '2018'
+- article-title: Experimental Study of Drag Reduction Devices on a Flatback Airfoil
+  author: Manolesos
+  doi: 10.2514/1.J054901
+  first-page: '3382'
+  journal-title: AIAA J.
+  volume: '54'
+  year: '2016'
+- article-title: Active Circulation Control on the Blunt Trailing Edge Wind Turbine
+    Airfoil
+  author: Xu
+  doi: 10.2514/1.J056223
+  first-page: '554'
+  journal-title: AIAA J.
+  volume: '56'
+  year: '2017'
+- article-title: 'State of the art in the aeroelasticity of wind turbine blades: Aeroelastic
+    modelling'
+  author: Wang
+  doi: 10.1016/j.rser.2016.06.007
+  first-page: '195'
+  journal-title: Renew. Sustain. Energy Rev.
+  volume: '64'
+  year: '2016'
+- article-title: Experimental and computational aerodynamic investigations of very
+    thick wind turbine airfoils
+  author: Zhang
+  doi: 10.1063/1.4942541
+  first-page: '013306'
+  journal-title: J. Renew. Sustain. Energy
+  volume: '8'
+  year: '2016'
+- article-title: Experimental study of Reynolds number effects on performance of thick
+    CAS wind turbine airfoils
+  author: Li
+  doi: 10.1063/1.5018744
+  first-page: 063309
+  journal-title: J. Renew. Sustain. Energy
+  volume: '9'
+  year: '2017'
+- doi: 10.2514/6.2011-352
+  unstructured: White, E.B., Kutz, D., Freels, J., and Hidore, J.P. (2011, January
+    4–7). Leading-Edge Roughness Effects on 633-418 Airfoil Performance. Proceedings
+    of the 49th AIAA Aerospace Sciences Meeting including the New Horizons Forum and
+    Aerospace Exposition, Orlando, FL, USA.
+- unstructured: Braslow, A.L., and Knox, E.C. (1958). Simplified Method for Determination
+    of Critical Height of Distributed Roughness Particles for Boundary-Layer Transition
+    at Mach Numbers from 0 to 5, National Advisory Committee for Aeronautics.
+- article-title: Research on Sidewall interference Control in Airfoil Wind Tunnel
+    Test Based on Vortex Generator
+  author: Wei
+  first-page: '38'
+  journal-title: Adv. Aeronaut. Sci. Eng.
+  volume: '12'
+  year: '2021'
+- article-title: Effects of Vortex Generators on a Blunt Trailing-Edge Airfoil for
+    Wind Turbines
+  author: Gao
+  doi: 10.1016/j.renene.2014.11.043
+  first-page: '303'
+  journal-title: Renew. Energy
+  volume: '76'
+  year: '2015'
+- article-title: Aerodynamic Analysis of Blunt Trailing Edge Airfoils
+  author: Standish
+  doi: 10.1115/1.1629103
+  first-page: '479'
+  journal-title: J. Sol. Energy Eng.
+  volume: '125'
+  year: '2003'
+- article-title: Delayed Detached Eddy Simulation of the Wind Turbine Airfoil S809
+    for Angles of Attack up to 90 Degrees
+  author: Xu
+  doi: 10.1016/j.energy.2016.10.131
+  first-page: '1090'
+  journal-title: Energy
+  volume: '118'
+  year: '2017'
+- article-title: Progress in the Development of a Reynolds-Stress Turbulence Closure
+  author: Launder
+  doi: 10.1017/S0022112075001814
+  first-page: '537'
+  journal-title: J. Fluid Mech.
+  volume: '68'
+  year: '1975'
+- article-title: 'Second-Moment Closure: Present… and Future?'
+  author: Launder
+  doi: 10.1016/0142-727X(89)90017-9
+  first-page: '282'
+  journal-title: Int. J. Heat Fluid Flow
+  volume: '10'
+  year: '1989'
+- article-title: Influence of the Modification of Asymmetric Trailing-edge Thickness
+    on the Aerodynamic Performance of a Wind Turbine Airfoil
+  author: Liu
+  doi: 10.1016/j.renene.2019.09.073
+  first-page: '1623'
+  journal-title: Renew. Energy
+  volume: '147'
+  year: '2020'
+doc_url: https://www.mdpi.com/2674-032X/3/4/25/pdf
+doi: 10.3390/wind3040025
+files:
+- influence_of_the_blunt_trailing-edge_thickness_on_the_aerodynamic_characteristics_of_the_very_thick_airfoil_Pei_Xu_Deng_et_al_2023.pdf
+issue: '4'
+journal: Wind
+language: en
+month: 10
+pages: 439--458
+papis_id: 16b9f94684c52bc49f463917f5e5076f
+publisher: MDPI AG
+title: Influence of the Blunt Trailing-Edge Thickness on the Aerodynamic Characteristics
+  of the Very Thick Airfoil
+type: article
+url: https://doi.org/10.3390/wind3040025
+volume: '3'
+year: 2023

@@ -1,0 +1,586 @@
+- name: a_simple_solution_method_for_the_blade_element_momentum_equations_with_guaranteed_convergence_Ning_2014
+  title: A simple solution method for the blade element momentum equations with guaranteed convergence
+  families:
+  - Ning
+  year: 2014
+- name: an_efficient_blade_sweep_correction_model_for_blade_element_momentum_theory_Fritz_Ferreira_Boorsma_2022
+  title: An efficient blade sweep correction model for blade element momentum theory
+  families:
+  - Fritz
+  - Ferreira
+  - Boorsma
+  year: 2022
+- name: nonlinear_aerodynamic_corrections_to_blade_element_momentum_model_with_validation_experiments_Merrill_2011
+  title: Nonlinear Aerodynamic Corrections to Blade Element Momentum Model with Validation Experiments
+  families:
+  - Merrill
+  year: 2011
+- name: sectional_prediction_of_3D_effects_for_separated_flow_on_rotating_blades_Snel_Houwink_Piers_1992
+  title: sectional prediction of 3D effects for separated flow on rotating blades
+  families:
+  - Snel
+  - Houwink
+  - Piers
+  year: 1992
+- name: a_wind-tunnel_investigation_of_the_aerodynamic_characteristics_of_a_full-scale_supersonic-type_three-blade_propeller_at_mach_numbers_to_0.96_Evans_Liner_1958
+  title: A WIND-TUNNEL INVESTIGATION OF THE AERODYNAMIC CHARACTERISTICS OF A FULL-SCALE SUPERSONIC-TYPE THREE-BLADE PROPELLER AT MACH NUMBERS TO 0.96
+  families:
+  - Evans
+  - Liner
+  year: 1958
+- name: aerodynamic_characteristics_at_high_speeds_of_related_full-scale_propellers_having_different_blade-section_cambers_Maynard_Salters_1957
+  title: AERODYNAMIC CHARACTERISTICS AT HIGH SPEEDS OF RELATED FULL-SCALE PROPELLERS HAVING DIFFERENT BLADE-SECTION CAMBERS
+  families:
+  - Maynard
+  - Salters
+  year: 1957
+- name: performance_analysis_of_two_early_NACA_high_speed_propellers_with_application_to_civil_tiltrotor_configurations_Harris_1996
+  title: performance analysis of two early NACA high speed propellers with application to civil tiltrotor configurations
+  families:
+  - Harris
+  year: 1996
+- name: propellers_at_high_speeds_Draley_1947
+  title: propellers at high speeds
+  families:
+  - Draley
+  year: 1947
+- name: the_high-speed_frontier_case_histories_of_four_NACA_programs_1920-1950_Becker_1980
+  title: the high-speed frontier case histories of four NACA programs 1920-1950
+  families:
+  - Becker
+  year: 1980
+- name: the_theory_of_propellers_I_determination_of_the_circulation_function_and_the_mass_coefficient_for_dual-rotating_propellers_Theodorsen_1944
+  title: the theory of propellers I determination of the circulation function and the mass coefficient for dual-rotating propellers
+  families:
+  - Theodorsen
+  year: 1944
+- name: tone_noise_of_three_supersonic_helical_tip_speed_propellers_in_a_wind_tunnel_at_0.8_mach_number_Dittmar_Blaha_Jeracki_1978
+  title: TONE NOISE OF THREE SUPERSONIC HELICAL TIP SPEED PROPELLERS IN A WIND TUNNEL AT 0.8 MACH NUMBER
+  families:
+  - Dittmar
+  - Blaha
+  - Jeracki
+  year: 1978
+- name: wind_tunnel_results_of_advanced_high_speed_propellers_in_the_takeoff_climb_and_landing_operating_regimes_Stefko_Jeracki_1985
+  title: Wind tunnel results of advanced high speed propellers in the takeoff, climb, and landing operating regimes
+  families:
+  - Stefko
+  - Jeracki
+  year: 1985
+- name: using_blade_element_momentum_methods_with_gradient-based_design_optimization_Ning_2021
+  title: Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+  families:
+  - Ning
+  year: 2021
+- name: RCAIDE_a_multidisciplinary_analysis_toolbox_for_aircraft_design_and_flight_simulation_Clarke_Guidotti_Shekar_et_al_2026
+  title: 'RCAIDE: A multidisciplinary analysis toolbox for aircraft design and flight simulation'
+  families:
+  - Clarke
+  - Guidotti
+  - Shekar
+  - Molloy
+  - Boggan
+  - Guerrero
+  year: 2026
+- name: a_standard_platform_for_benchmarking_MDAO_architectures_Gray_Moore_Hearn_et_al_2013
+  title: A Standard Platform for Benchmarking MDAO Architectures
+  families:
+  - Gray
+  - Moore
+  - Hearn
+  - Naylor
+  year: 2013
+- name: automatic_differentiation_of_a_numerical_solver_stackexchange_2022
+  title: Automatic differentiation of a numerical solver
+  families:
+  - stackexchange
+  year: 2022
+- name: boundary_layer_theory_part_I_laminar_flows_Schlichting_1942
+  title: boundary layer theory part I laminar flows
+  families:
+  - Schlichting
+  year: 1942
+- name: a_framework_for_aircraft_conceptual_design_and_multidisciplinary_optimization_Hosseini_Vaziry-Zanjany_Ovesy_2024
+  title: A Framework for Aircraft Conceptual Design and Multidisciplinary Optimization
+  families:
+  - Hosseini
+  - Vaziry-Zanjany
+  - Ovesy
+  year: 2024
+- name: a_new_approach_to_system_design_optimization_of_underwater_gliders_Yang_Wang_Liang_et_al_2022
+  title: A New Approach to System Design Optimization of Underwater Gliders
+  families:
+  - Yang
+  - Wang
+  - Liang
+  - Wang
+  year: 2022
+- name: aircraft_geometry_and_propulsion_architecture_visualization_for_the_future_aircraft_sizing_tool_FAST_Khailany_Mokotoff_Cinar_2025
+  title: Aircraft Geometry and Propulsion Architecture Visualization for the Future Aircraft Sizing Tool (FAST)
+  families:
+  - Khailany
+  - Mokotoff
+  - Cinar
+  year: 2025
+- name: basic_aerodynamics_incompressible_flow_Flandro_McMahon_Roach_2012
+  title: Basic Aerodynamics Incompressible Flow
+  families:
+  - Flandro
+  - McMahon
+  - Roach
+  year: 2012
+- name: boundary-layer_theory_Schlichting_Gersten_2017
+  title: boundary-layer theory
+  families:
+  - Schlichting
+  - Gersten
+  year: 2017
+- name: boundary_layer_analysis_Schetz_Bowersox_2011
+  title: Boundary layer analysis
+  families:
+  - Schetz
+  - Bowersox
+  year: 2011
+- name: computational_fluid_dynamics_an_open_source_approach_Vermeire_Pereira_Karbasian_2020
+  title: Computational Fluid Dynamics An Open Source Approach
+  families:
+  - Vermeire
+  - Pereira
+  - Karbasian
+  year: 2020
+- name: adaptive_wavelet_techniques_in_numerical_simulation_Cohen_Dahmen_DeVore_2017
+  title: Adaptive Wavelet Techniques in Numerical Simulation
+  families:
+  - Cohen
+  - Dahmen
+  - DeVore
+  year: 2017
+- name: discontinuous_galerkin_methods_for_computational_fluid_dynamics_Cockburn_2017
+  title: Discontinuous Galerkin Methods for Computational Fluid Dynamics
+  families:
+  - Cockburn
+  year: 2017
+- name: finite_element_methods_for_elasticity_with_error-controlled_discretization_and_model_adaptivity_Stein_Ruter_2017
+  title: Finite Element Methods for Elasticity with Error‐Controlled Discretization and Model Adaptivity
+  families:
+  - Stein
+  - Rüter
+  year: 2017
+- name: finite_volume_methods_foundation_and_analysis_Barth_Herbin_Ohlberger_2017
+  title: 'Finite Volume Methods: Foundation and Analysis'
+  families:
+  - Barth
+  - Herbin
+  - Ohlberger
+  year: 2017
+- name: iterative_solutions_of_nonlinear_systems_solution_manifolds_and_bifurcations_Rheinboldt_2017
+  title: Iterative Solutions of Nonlinear Systems, Solution Manifolds, and Bifurcations
+  families:
+  - Rheinboldt
+  year: 2017
+- name: linear_algebraic_solvers_and_eigenvalue_analysis_van_der_Vorst_Vuik_2017
+  title: Linear Algebraic Solvers and Eigenvalue Analysis
+  families:
+  - van der Vorst
+  - Vuik
+  year: 2017
+- name: mesh_generation_and_mesh_adaptivity_theory_and_techniques_George_Borouchaki_Alauzet_et_al_2017
+  title: 'Mesh Generation and Mesh Adaptivity: Theory and Techniques'
+  families:
+  - George
+  - Borouchaki
+  - Alauzet
+  - Laug
+  - Loseille
+  - Marcum
+  - Maréchal
+  year: 2017
+- name: models_and_finite_elements_for_thin-walled_structures_Bischoff_Ramm_Irslinger_2017
+  title: Models and Finite Elements for Thin‐Walled Structures
+  families:
+  - Bischoff
+  - Ramm
+  - Irslinger
+  year: 2017
+- name: time-dependent_problems_with_the_boundary_integral_equation_method_Costabel_Sayas_2017
+  title: Time‐Dependent Problems with the Boundary Integral Equation Method
+  families:
+  - Costabel
+  - Sayas
+  year: 2017
+- name: engineering_design_optimization_Martins_Ning_2021
+  title: Engineering Design Optimization
+  families:
+  - Martins
+  - Ning
+  year: 2021
+- name: flight_vehicle_aerodynamics_Drela_2014
+  title: Flight Vehicle Aerodynamics
+  families:
+  - Drela
+  year: 2014
+- name: introduction_to_aircraft_aeroelasticity_and_loads_Wright_Cooper_2015
+  title: introduction to aircraft aeroelasticity and loads
+  families:
+  - Wright
+  - Cooper
+  year: 2015
+- name: low-speed_aerodynamics_Katz_Plotkin_2001
+  title: Low-Speed Aerodynamics
+  families:
+  - Katz
+  - Plotkin
+  year: 2001
+- name: modern_compressible_flow_with_historical_perspective_Anderson_2021
+  title: Modern Compressible Flow With Historical Perspective
+  families:
+  - Anderson
+  year: 2021
+- name: nodal_discontinuous_galerkin_methods_algorithms_analysis_and_applications_Hesthaven_Warburton_2008
+  title: nodal discontinuous galerkin methods algorithms analysis and applications
+  families:
+  - Hesthaven
+  - Warburton
+  year: 2008
+- name: topology_optimization_theory_methods_and_applications_Bendsoe_Sigmund_2004
+  title: topology optimization theory methods and applications
+  families:
+  - Bendsøe
+  - Sigmund
+  year: 2004
+- name: computation_of_three-dimensional_compressible_boundary_layers_to_fourth-order_accuracy_on_wings_and_fuselages_Iyer_1990
+  title: computation of three-dimensional compressible boundary layers to fourth-order accuracy on wings and fuselages
+  families:
+  - Iyer
+  year: 1990
+- name: flightstream_theory_manual_Research_in_Flight_2026
+  title: FlightStream Theory Manual
+  families:
+  - Research in Flight
+  year: 2026
+- name: from_system_architecting_to_system_design_and_optimization_a_link_between_MBSE_and_MDAO_Bussemaker_Boggero_Ciampa_2022
+  title: 'From System Architecting to System Design and Optimization: A Link Between MBSE and MDAO'
+  families:
+  - Bussemaker
+  - Boggero
+  - Ciampa
+  year: 2022
+- name: mean_value-based_parallel_collaborative_optimization_method_for_modular_aircraft_structural_layout_Xu_Yao_Zhou_2022
+  title: Mean Value-Based Parallel Collaborative Optimization Method for Modular Aircraft Structural Layout
+  families:
+  - Xu
+  - Yao
+  - Zhou
+  year: 2022
+- name: advanced_UAV_design_optimization_through_deep_learning-based_surrogate_models_Karali_Inalhan_Tsourdos_2024
+  title: Advanced UAV Design Optimization Through Deep Learning-Based Surrogate Models
+  families:
+  - Karali
+  - Inalhan
+  - Tsourdos
+  year: 2024
+- name: intelligent_wargaming_approach_to_increase_course_of_action_effectiveness_in_military_operations_Yuksek_Guner_Karali_et_al_2023
+  title: Intelligent Wargaming Approach to Increase Course of Action Effectiveness in Military Operations
+  families:
+  - Yuksek
+  - Guner
+  - Karali
+  - Candan
+  - Inalhan
+  year: 2023
+- name: mission-centric_design_optimisation_of_unmanned_aerial_vehicles_for_enhanced_operational_effectiveness_Karali_Tsourdos_Moinier_2026
+  title: Mission-centric design optimisation of unmanned aerial vehicles for enhanced operational effectiveness
+  families:
+  - Karali
+  - Tsourdos
+  - Moinier
+  year: 2026
+- name: multidisciplinary_design_optimization_a_survey_of_architectures_Martins_Lambe_2013
+  title: 'Multidisciplinary Design Optimization: A Survey of Architectures'
+  families:
+  - Martins
+  - Lambe
+  year: 2013
+- name: software_testing_VSPAERO_Marien_2021
+  title: 'Software Testing: VSPAERO'
+  families:
+  - Marien
+  year: 2021
+- name: a_hybrid_level_set_method_for_the_topology_optimization_of_functionally_graded_structures_Fu_Shu_Gao_et_al_2022
+  title: A Hybrid Level Set Method for the Topology Optimization of Functionally Graded Structures
+  families:
+  - Fu
+  - Shu
+  - Gao
+  - Zhou
+  year: 2022
+- name: a_modified_geometry_based_analytical_model_of_switched_reluctance_machines_for_rapid_design_process_Vadamodala_Das_Chowdhury_et_al_2022
+  title: A Modified Geometry Based Analytical Model of Switched Reluctance Machines for Rapid Design Process
+  families:
+  - Vadamodala
+  - Das
+  - Chowdhury
+  - Sozer
+  year: 2022
+- name: a_review_of_topology_optimisation_for_fluid-based_problems_Alexandersen_Andreasen_2020
+  title: A Review of Topology Optimisation for Fluid-Based Problems
+  families:
+  - Alexandersen
+  - Andreasen
+  year: 2020
+- name: density_based_topology_optimization_of_turbulent_flow_heat_transfer_systems_Dilgen_Dilgen_Fuhrman_et_al_2018
+  title: Density based topology optimization of turbulent flow heat transfer systems
+  families:
+  - Dilgen
+  - Dilgen
+  - Fuhrman
+  - Sigmund
+  - Lazarov
+  year: 2018
+- name: discrete_adjoint_of_the_navier-stokes_equations_for_aerodynamic_shape_optimization_Brezillon_Dwight_2005
+  title: discrete adjoint of the navier-stokes equations for aerodynamic shape optimization
+  families:
+  - Brézillon
+  - Dwight
+  year: 2005
+- name: efficient_multi-stage_aerodynamic_topology_optimization_using_an_operator-based_analytical_differentiation_Ghasemi_Elham_2022
+  title: Efficient multi-stage aerodynamic topology optimization using an operator-based analytical differentiation
+  families:
+  - Ghasemi
+  - Elham
+  year: 2022
+- name: exploiting_the_generative_design_potential_to_select_the_best_conceptual_design_of_an_aerospace_component_to_be_produced_by_additive_manufacturing_Pilagatti_Atzeni_Salmi_2023
+  title: Exploiting the generative design potential to select the best conceptual design of an aerospace component to be produced by additive manufacturing
+  families:
+  - Pilagatti
+  - Atzeni
+  - Salmi
+  year: 2023
+- name: review_and_unification_of_methods_for_computing_derivatives_of_multidisciplinary_computational_models_Martins_Hwang_2013
+  title: Review and Unification of Methods for Computing Derivatives of Multidisciplinary Computational Models
+  families:
+  - Martins
+  - Hwang
+  year: 2013
+- name: to_CFD_or_not_to_CFD_comparing_RANS_and_viscous_panel_methods_for_airfoil_shape_optimization_Adler_Gray_Martins_2022
+  title: TO CFD OR NOT TO CFD? COMPARING RANS AND VISCOUS PANEL METHODS FOR AIRFOIL SHAPE OPTIMIZATION
+  families:
+  - Adler
+  - Gray
+  - Martins
+  year: 2022
+- name: topology_optimisation_of_external_compressible_flow_Carvalho_Alonso_Garcia_Rodriguez_et_al_2025
+  title: Topology optimisation of external compressible flow
+  families:
+  - Carvalho
+  - Alonso
+  - Garcia Rodriguez
+  - Maffei
+  - Silva
+  year: 2025
+- name: topology_optimization_of_fluids_in_stokes_flow_Borrvall_Petersson_2003
+  title: Topology optimization of fluids in Stokes flow
+  families:
+  - Borrvall
+  - Petersson
+  year: 2003
+- name: topology_optimization_of_turbulent_flows_Dilgen_Dilgen_Fuhrman_et_al_2018
+  title: Topology optimization of turbulent flows
+  families:
+  - Dilgen
+  - Dilgen
+  - Fuhrman
+  - Sigmund
+  - Lazarov
+  year: 2018
+- name: nonlinear_vortex_lattice_method_for_stall_prediction_Goitia_Llamas_2019
+  title: Nonlinear vortex lattice method for stall prediction
+  families:
+  - Goitia
+  - Llamas
+  year: 2019
+- name: quasi-three-dimensional_aerodynamic_solver_for_multidisciplinary_design_optimization_of_lifting_surfaces_Mariens_Elham_van_Tooren_2014
+  title: Quasi-Three-Dimensional Aerodynamic Solver for Multidisciplinary Design Optimization of Lifting Surfaces
+  families:
+  - Mariens
+  - Elham
+  - van Tooren
+  year: 2014
+- name: a_non-parametric_discontinuous_galerkin_formulation_of_the_integral_boundary_layer_equations_with_strong_viscous-inviscid_coupling_Zhang_2018
+  title: A Non-parametric Discontinuous Galerkin Formulation of the Integral Boundary Layer Equations with Strong Viscous-Inviscid Coupling
+  families:
+  - Zhang
+  year: 2018
+- name: computer_program_to_calculate_three-dimensional_boundary_layer_flows_over_wings_with_wall_mass_transfer_McLean_Randall_1979
+  title: Computer Program To Calculate Three-Dimensional Boundary Layer Flows Over Wings With Wall Mass Transfer
+  families:
+  - McLean
+  - Randall
+  year: 1979
+- name: development_of_a_three-dimensional_viscous-inviscid_coupling_method_for_wind_turbine_computations_Ramos_Garcia_Sorensen_Shen_2013
+  title: Development of a Three-Dimensional Viscous-Inviscid coupling Method for Wind Turbine Computations
+  families:
+  - Ramos García
+  - Sørensen
+  - Shen
+  year: 2013
+- name: fully_simultaneous_coupling_of_the_full_potential_equation_and_the_integral_boundary_layer_equations_in_three_dimensions_Nishida_1996
+  title: fully simultaneous coupling of the full potential equation and the integral boundary layer equations in three dimensions
+  families:
+  - Nishida
+  year: 1996
+- name: scaling_and_modeling_of_three-dimensional_end-wall_turbulent_boundary_layers_Goldberg_Reshotko_1984
+  title: Scaling and Modeling of Three-Dimensional, End-Wall, Turbulent Boundary Layers
+  families:
+  - Goldberg
+  - Reshotko
+  year: 1984
+- name: three-dimensional_boundary-layer_BL3D_program_for_swept_subsonic_or_supersonic_wings_with_application_to_laminar_flow_control_Iyer_1993
+  title: three-dimensional boundary-layer BL3D program for swept subsonic or supersonic wings with application to laminar flow control
+  families:
+  - Iyer
+  year: 1993
+- name: three-dimensional_integral_boundary_layer_formulation_for_general_configurations_Drela_2013
+  title: Three-Dimensional Integral Boundary Layer Formulation for General Configurations
+  families:
+  - Drela
+  year: 2013
+- name: three-dimensional_integral_boundary_layer_method_for_viscous_aerodynamic_analysis_Zhang_2022
+  title: Three-dimensional Integral Boundary Layer Method for Viscous Aerodynamic Analysis
+  families:
+  - Zhang
+  year: 2022
+- name: XFOIL_an_analysis_and_design_system_for_low_reynolds_number_airfoils_Drela_1989
+  title: 'XFOIL: An Analysis and Design System for Low Reynolds Number Airfoils'
+  families:
+  - Drela
+  year: 1989
+- name: boundary_layers_Lautrup_2004
+  title: Boundary layers
+  families:
+  - Lautrup
+  year: 2004
+- name: motion_of_fluids_with_very_little_viscosity_Prandtl_1904
+  title: motion of fluids with very little viscosity
+  families:
+  - Prandtl
+  year: 1904
+- name: on_laminar_and_turbulent_friction_von_Karman_1921
+  title: on laminar and turbulent friction
+  families:
+  - von Kármán
+  year: 1921
+- name: on_laminar_boundary-layer_flow_near_a_position_of_separation_Goldstein_1948
+  title: ON LAMINAR BOUNDARY-LAYER FLOW NEAR A POSITION OF SEPARATION
+  families:
+  - Goldstein
+  year: 1948
+- name: the_approximate_integration_of_the_differential_equation_for_the_laminar_boundary_layer_Pohlhausen_1921
+  title: THE APPROXIMATE INTEGRATION OF THE DIFFERENTIAL EQUATION FOR THE LAMINAR BOUNDARY LAYER
+  families:
+  - Pohlhausen
+  year: 1921
+- name: the_law_of_the_wake_in_the_turbulent_boundary_layer_Coles_1956
+  title: The law of the wake in the turbulent boundary layer
+  families:
+  - Coles
+  year: 1956
+- name: the_mean_velocity_profile_in_three-dimensional_turbulent_boundary_layers_Hornung_Joubert_1963
+  title: The mean velocity profile in three-dimensional turbulent boundary layers
+  families:
+  - Hornung
+  - Joubert
+  year: 1963
+- name: the_structure_of_a_separating_turbulent_boundary_layer_part_1_mean_flow_and_reynolds_stresses_Simpson_Chew_Shivaprasad_1981
+  title: The structure of a separating turbulent boundary layer. Part 1. Mean flow and Reynolds stresses
+  families:
+  - Simpson
+  - Chew
+  - Shivaprasad
+  year: 1981
+- name: implementation_of_a_new_transition_prediction_method_in_XFOIL_Bongers_2006
+  title: implementation of a new transition prediction method in XFOIL
+  families:
+  - Bongers
+  year: 2006
+- name: numerical_validation_of_the_squire-young_formula_for_profile-drag_prediction_Coder_Maughmer_2015
+  title: Numerical Validation of the Squire–Young Formula for Profile-Drag Prediction
+  families:
+  - Coder
+  - Maughmer
+  year: 2015
+- name: the_eN_method_for_transition_prediction_historical_review_of_work_at_TU_Delft_van_Ingen_2008
+  title: The eN Method for Transition Prediction. Historical Review of Work at TU Delft
+  families:
+  - van Ingen
+  year: 2008
+- name: NACA_0015_wing_pressure_and_trailing_vortex_measurements_McAlister_Takahashi_1991
+  title: NACA 0015 wing pressure and trailing vortex measurements
+  families:
+  - McAlister
+  - Takahashi
+  year: 1991
+- name: viscous-inviscid_analysis_of_transonic_and_low_reynolds_number_airfoils_Drela_Giles_1987
+  title: Viscous-Inviscid Analysis of Transonic and Low Reynolds Number Airfoils
+  families:
+  - Drela
+  - Giles
+  year: 1987
+- name: viscous-inviscid_interactions_in_external_aerodynamics_Lock_Williams_1987
+  title: Viscous-inviscid interactions in external aerodynamics
+  families:
+  - Lock
+  - Williams
+  year: 1987
+- name: conservation_vs_non-conservation_forms_of_conservation_equations_stackexchange_2013
+  title: Conservation Vs Non-conservation Forms of conservation Equations
+  families:
+  - stackexchange
+  year: 2013
+- name: cross-flow_linear_instability_in_compressible_boundary_layers_over_a_flat_plate_Liu_2022
+  title: Cross-flow linear instability in compressible boundary layers over a flat plate
+  families:
+  - Liu
+  year: 2022
+- name: influence_of_the_blunt_trailing-edge_thickness_on_the_aerodynamic_characteristics_of_the_very_thick_airfoil_Pei_Xu_Deng_et_al_2023
+  title: Influence of the Blunt Trailing-Edge Thickness on the Aerodynamic Characteristics of the Very Thick Airfoil
+  families:
+  - Pei
+  - Xu
+  - Deng
+  - Li
+  year: 2023
+- name: investigation_of_lithium-ion_battery_degradation_in_electric_aircraft_under_cycle-progressive_loads_Boggan_Clarke_2026
+  title: Investigation of Lithium-Ion Battery Degradation in Electric Aircraft Under Cycle-Progressive Loads
+  families:
+  - Boggan
+  - Clarke
+  year: 2026
+- name: low_reynolds_number_aerodynamics_Mueller_1989
+  title: low reynolds number aerodynamics
+  families:
+  - Mueller
+  year: 1989
+- name: riemannian_optimization_and_multidisciplinary_design_optimization_Bakker_Parks_2016
+  title: Riemannian optimization and multidisciplinary design optimization
+  families:
+  - Bakker
+  - Parks
+  year: 2016
+- name: the_complex-step_derivative_approximation_Martins_Sturdza_Alonso_2003
+  title: The complex-step derivative approximation
+  families:
+  - Martins
+  - Sturdza
+  - Alonso
+  year: 2003
+- name: the_dynamics_and_thermodynamics_of_compressible_fluid_flow_Shapiro_1953
+  title: the dynamics and thermodynamics of compressible fluid flow
+  families:
+  - Shapiro
+  year: 1953
+- name: von-karman_compressible_integral_momentum_and_kinetic_energy_equations_with_shape_parameters_Drela_2003
+  title: von-karman compressible integral momentum and kinetic energy equations with shape parameters
+  families:
+  - Drela
+  year: 2003

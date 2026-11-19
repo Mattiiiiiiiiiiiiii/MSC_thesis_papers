@@ -1,0 +1,363 @@
+10/23/26, 2:53 PM
+
+fluid dynamics - Conservation Vs Non-conservation Forms of conservation Equations - Physics Stack Exchange
+
+Conservation Vs Non-conservation Forms of conservation
+Equations
+Asked 13 years, 3 months ago
+
+Modified 7 years, 10 months ago
+
+Viewed 63k times
+
+I understand mathematically how one can obtain the conservation equations in both the conservative
+∂ρ
+
+20
+
++ ∇ ⋅ (ρu) = 0
+∂t
+
+∂ ρu
++ ∇ ⋅ (ρu)u + ∇p = 0
+∂t
+∂E
++ ∇ ⋅ (u(E + p)) = 0
+∂t
+
+and non-conservative forms. However, I am still confused, why do we call them conservative and nonconservative forms? can any one explain from a physical and mathematical point of view?
+Many off-site threads deal with this question (here and here), but none of them provides a good
+enough answer for me!
+If any one can provide some hints, I will be very grateful.
+fluid-dynamics
+
+conservation-laws
+
+Share Cite Improve this question
+
+continuum-mechanics
+
+edited Jul 9, 2013 at 23:41
+
+Follow
+
+asked Jul 9, 2013 at 22:35
+
+Qmechanic ♦
+230k
+
+53
+
+4 Answers
+
+659
+
+user2536125
+2.7k
+
+Sorted by:
+
+461
+
+2
+
+8
+
+15
+
+Highest score (default)
+
+What does it mean?
+38
+
+The reason they are conservative or non-conservative has to do with the splitting of the derivatives.
+Consider the conservative derivative:
+∂ ρu
+∂x
+
+When we discretize this, using a simple numerical derivative just to highlight the point, we get:
+
+https://physics.stackexchange.com/questions/70496/conservation-vs-non-conservation-forms-of-conservation-equations
+
+1/5
+
+10/23/26, 2:53 PM
+
+fluid dynamics - Conservation Vs Non-conservation Forms of conservation Equations - Physics Stack Exchange
+∂ ρu
+
+(ρu)i − (ρu)i−1
+≈
+
+∂x
+
+Δx
+
+Now, in non-conservative form, the derivative is split apart as:
+∂ρ
+
+∂u
+ρ
+
++ u
+∂x
+
+∂x
+
+Using the same numerical approximation, we get:
+∂ρ
+
+∂u
+ρ
+
++ u
+∂x
+
+∂x
+
+= ρi
+
+ρi − ρi−1
+
+ui − ui−1
+
++ ui
+
+Δx
+
+Δx
+
+So now you can see (hopefully!) there are some issues. While the original derivative is mathematically
+the same, the discrete form is not the same. Of particular difficulty is the choice of the terms
+multiplying the derivative. Here I took it at point i , but is i − 1 better? Maybe at i − 1/2? But then
+how do we get it at i − 1/2? Simple average? Higher order reconstructions?
+Those arguments just show that the non-conservative form is different, and in some ways harder, but
+why is it called non-conservative? For a derivative to be conservative, it must form a telescoping
+series. In other words, when you add up the terms over a grid, only the boundary terms should
+remain and the artificial interior points should cancel out.
+So let's look at both forms to see how those do. Let's assume a 4 point grid, ranging from i = 0 to
+i = 3. The conservative form expands as:
+(ρu)1 − (ρu)0
+
++
+
+(ρu)2 − (ρu)1
+
+Δx
+
++
+
+(ρu)3 − (ρu)2
+
+Δx
+
+Δx
+
+You can see that when you add it all up, you end up with only the boundary terms (i = 0 and i = 3).
+The interior points, i = 1 and i = 2 have canceled out.
+Now let's look at the non-conservative form:
+ρ1
+
+u1 − u0
+Δx
+
++ u1
+
+ρ1 − ρ0
+
++ ρ2
+
+Δx
+
+u2 − u1
+
++ u2
+
+ρ2 − ρ1
+
+Δx
+
+Δx
+
++ ρ3
+
+u3 − u2
+Δx
+
++ u3
+
+ρ3 − ρ2
+Δx
+
+So now, you end up with no terms canceling! Every time you add a new grid point, you are adding in a
+new term and the number of terms in the sum grows. In other words, what comes in does not balance
+what goes out, so it's non-conservative.
+You can repeat the analysis by playing with altering the coordinate of those terms outside the
+derivative, for example by trying i − 1/2 where that is just the average of the value at i and i − 1.
+
+How to choose which to use?
+Now, more to the point, when do you want to use each scheme? If your solution is expected to be
+smooth, then non-conservative may work. For fluids, this is shock-free flows.
+
+https://physics.stackexchange.com/questions/70496/conservation-vs-non-conservation-forms-of-conservation-equations
+
+2/5
+
+10/23/26, 2:53 PM
+
+fluid dynamics - Conservation Vs Non-conservation Forms of conservation Equations - Physics Stack Exchange
+
+If you have shocks, or chemical reactions, or any other sharp interfaces, then you want to use the
+conservative form.
+There are other considerations. Many real world, engineering situations actually like nonconservative schemes when solving problems with shocks. The classic example is the Murman-Cole
+scheme for the transonic potential equations. It contains a switch between a central and upwind
+scheme, but it turns out to be non-conservative.
+At the time it was introduced, it got incredibly accurate results. Results that were comparable to the
+full Navier-Stokes results, despite using the potential equations which contain no viscosity. They
+discovered their error and published a new paper, but the results were much "worse" relative to the
+original scheme. It turns out the non-conservation introduced an artificial viscosity, making the
+equations behave more like the Navier-Stokes equations at a tiny fraction of the cost.
+Needless to say, engineers loved this. "Better" results for significantly less cost!
+Share Cite Improve this answer Follow
+
+answered Jul 10, 2013 at 6:16
+
+tpg2114
+17k
+
+6
+
+56
+
+88
+
+Simple and to the point @tpg2114 !...Thank you very very much for taking the time to write such an explanation.
+You exaclty gave me what I was looking for. Cheers – user2536125 Jul 10, 2013 at 6:40
+@user2536125 Glad I could help. This was a question on my PhD qualifying exams a few years back :) Don't
+forget to accept this answer if you're satisfied it answers your question. You just click the check mark on the left
+side under the voting arrows! – tpg2114 Jul 10, 2013 at 6:47
+Agreed, nice and simple answer to something which quickly gets very complex. – ccook Jul 10, 2013 at 12:39
+
+You show the Euler Equations, reduced forms of Navier-Stokes, which are conservation laws for mass,
+
+6
+
+momentum, and energy along with Stoke's hypothesis. Now, conservative/non-conservative has
+nothing to do with conservation laws.
+In conservative form, you can directly integrate the derivatives once on a control volume and conserve
+the flux quantities through the control surfaces (i.e., finite volume method). That's conservative vs.
+non-conservative form (the flux).
+In CFD algorithms the form has important implications with shock placements and propagation
+speeds. For compressible flows, you want to utilize the conservative forms (where you have shocks).
+Share Cite Improve this answer Follow
+
+answered Jul 9, 2013 at 23:48
+
+ccook
+271
+
+1
+
+2
+
+5
+
+thanks for the reply. It would be very helpfull if you can be more generous about your last comment concerning
+the CFD algorithms. Could you please specify why one would use conservative forms for compressible flows?
+– user2536125 Jul 10, 2013 at 0:09
+Yes, but I will need to do so when I have more time on my hands to do it proper. – ccook Jul 10, 2013 at 12:39
+
+https://physics.stackexchange.com/questions/70496/conservation-vs-non-conservation-forms-of-conservation-equations
+
+3/5
+
+10/23/26, 2:53 PM
+
+fluid dynamics - Conservation Vs Non-conservation Forms of conservation Equations - Physics Stack Exchange
+
+@user2536125 The primitive flow variables vary discontinuously across a shock wave, and so the gradient
+operator employed in the non-conservation form loses all physical (and computational) significance. Simply
+put, we cannot solve a matrix equation that has infinite values in it. The conservation form handles this
+problem nicely, because the conservation variables are continuous through the shockwave, even if the pressure,
+temperature, and density are not. – Bryson S. Jun 26, 2014 at 15:29
+@BrysonS. how so? When using the conservation form, the time derivative of the density is still infinite if a
+shock passes. – Thomas Wagenaar Jul 6, 2023 at 16:41
+
+All answers are good, but those do not answer the question. The question is very basic, and reads:
+
+3
+
+Q: when is a mathematical model called conservative and when non-conservative?
+A: a mathematical model is called conservative when it directly stems from conservation of
+mathematical quantities within a control volume, i.e. from a conservation law.
+More in detail, if beside simple conservation (i.e. mass or momentum conservation) we also apply the
+chain rule then we obtain a non-conservative mathematical model, so called because it does not
+describe anymore conservation of a quantity on a control volume, since it does not directly stem from
+a conservation law. But aren't the two formulation equivalent? NO!!! They are equivalent only if the
+solution is continuous. We cannot apply the chain rule if the solution is not continuous! Therefore, the
+non-conservative form cannot properly describe the propagation of discontinuities (i.e. shocks). See
+Toro's book for more details.
+Summarizing: the question is about the mathematical model, not about the numerical discretization.
+Clearly there is a strong link between the numerical and mathematical model, and all the other
+answers are great. But they don't answer the question.
+Share Cite Improve this answer Follow
+
+answered Nov 29, 2018 at 16:18
+
+Millemila
+158
+
+7
+
+One important reason (maybe not the only one) to the labels "conservative" and "non-conservative"
+
+2
+
+forms of conservation equations is related to their numerical solution. When written in conservative
+form, after discretization of the differential equation by a numerical method, such as, the finite
+volume method, the resulting algebraic equation still holds the conservation principle, regardless of
+the size of the finite volume. In other words, one can still see the balance of the conserved variable
+(mass, momentum, species concentration) in the algebraic equation. On the other hand, when an
+equation in non-conservative form is discretized by, let´s say, a finite difference or finite element
+method, conservation is only guaranteed when the numerical mesh is refined. In this case, the balance
+cannot be seen in the algebraic, discretized equation. Therefore, this label only makes sense when
+handling conservation equations. It does not make any sense to try to write a differential equation
+that has no relation to a conservation principle in conservative or non-conservative form.
+Share Cite Improve this answer Follow
+
+answered Feb 21, 2018 at 16:40
+
+Marcelo A Martorano
+21
+https://physics.stackexchange.com/questions/70496/conservation-vs-non-conservation-forms-of-conservation-equations
+
+1
+4/5
+
+10/23/26, 2:53 PM
+
+fluid dynamics - Conservation Vs Non-conservation Forms of conservation Equations - Physics Stack Exchange
+
+Isn't this basically what tpq2114 wrote in his answer? – Kyle Kanos Feb 21, 2018 at 17:52
+
+Protected question. To answer this question, you need to have at least 10 reputation on this site (not
+counting the association bonus). The reputation requirement helps protect this question from spam and nonanswer activity.
+
+Start asking to get answers
+Find the answer to your question by asking.
+Ask question
+
+Explore related questions
+fluid-dynamics
+
+conservation-laws
+
+continuum-mechanics
+
+See similar questions with these tags.
+
+https://physics.stackexchange.com/questions/70496/conservation-vs-non-conservation-forms-of-conservation-equations
+
+5/5
+
+

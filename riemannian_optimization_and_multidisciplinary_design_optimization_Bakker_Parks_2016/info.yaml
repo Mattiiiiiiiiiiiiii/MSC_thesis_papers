@@ -1,0 +1,376 @@
+author: Bakker, Craig and Parks, Geoffrey T.
+author_list:
+- affiliation: []
+  family: Bakker
+  given: Craig
+- affiliation: []
+  family: Parks
+  given: Geoffrey T.
+citations:
+- doi: 10.2514/6.2013-1462
+  unstructured: 'Allison JT, Herber DR (2013) Multidisciplinary design optimization
+    of dynamic engineering systems. In: 54th AIAA/ASME/ASCE/AHS/ASC Structures, Structural
+    Dynamics, and Materials Conference, AIAA, Boston'
+- unstructured: Baker CG (2008) Riemannian manifold trust-region methods with applications
+    to eigenproblems. PhD thesis, Florida State University, Tallahassee, Florida
+- unstructured: Bakker C (2015) A differential geometry framework for multidisciplinary
+    design optimization. PhD thesis, University of Cambridge, Cambridge, United Kingdom
+- author: C Bakker
+  doi: 10.1007/s00158-014-1186-8
+  first-page: '27'
+  journal-title: Struct Multidiscip Optim
+  unstructured: 'Bakker C, Parks GT (2015a) Differential geometry tools for multidisciplinary
+    design optimization, part I: Theory. Struct Multidiscip Optim 52:27–38'
+  volume: '52'
+  year: '2015'
+- author: C Bakker
+  doi: 10.1007/s00158-014-1170-3
+  first-page: '39'
+  journal-title: Struct Multidiscip Optim
+  unstructured: 'Bakker C, Parks GT (2015b) Differential geometry tools for multidisciplinary
+    design optimization, part II: Application to QSD. Struct Multidiscip Optim 52:39–53'
+  volume: '52'
+  year: '2015'
+- doi: 10.2514/6.2012-5554
+  unstructured: 'Bakker C, Parks GT, Jarrett JP (2012) Geometric perspectives on MDO
+    and MDO architectures. In: 12 $$^{th}$$ t h aviation technology, integration and
+    operations (ATIO) conference and 14 $$^{th}$$ t h AIAA/ISSMO multidisciplinary
+    analysis and optimization conference, AIAA, Indianapolis'
+- doi: 10.2514/6.2013-1535
+  unstructured: 'Bakker C, Parks GT, Jarrett JP (2013a) Differential geometry and
+    design coupling in MDO. In: 54 $$^{th}$$ t h AIAA/ASME/ASCE/AHS/ASC structures,
+    structural dynamics, and materials conference, AIAA, Boston'
+- doi: 10.1115/DETC2013-12146
+  unstructured: 'Bakker C, Parks GT, Jarrett JP, (2013b) Optimization algorithms and
+    ODE’s in MDO. In: ASME, (2013) design engineering technical conferences and computers
+    and information in engineering conference. ASME, Portland'
+- author: JFM Barthelemy
+  doi: 10.2514/3.8155
+  first-page: '797'
+  journal-title: AIAA J
+  unstructured: Barthelemy JFM, Sobieszczanski-Sobieski J (1983) Extrapolation on
+    optimum design based on sensitivity derivatives. AIAA J 21:797–799
+  volume: '21'
+  year: '1983'
+- author: GC Bento
+  doi: 10.1007/s10957-011-9984-2
+  first-page: '88'
+  journal-title: J Optim Theory Appl
+  unstructured: Bento GC, Ferreira OP, Liveira PR (2012) Unconstrained steepest descent
+    method for multicriteria optimization on Riemannian manifolds. J Optim Theory
+    Appl 154:88–107
+  volume: '154'
+  year: '2012'
+- author: WM Boothby
+  unstructured: Boothby WM (1986) An introduction to differentiable manifolds and
+    Riemannian geometry. Academic Press Inc, Boston
+  volume-title: An introduction to differentiable manifolds and Riemannian geometry
+  year: '1986'
+- author: TR Browning
+  doi: 10.1109/17.946528
+  first-page: '292'
+  journal-title: IEEE Trans Eng Manag
+  unstructured: 'Browning TR (2001) Applying the design structure matrix to system
+    decomposition and integration problems: A review and new directions. IEEE Trans
+    Eng Manag 48:292–306'
+  volume: '48'
+  year: '2001'
+- author: E Cramer
+  doi: 10.1137/0804044
+  first-page: '754'
+  journal-title: SIAM J Optim
+  unstructured: Cramer E, Dennis JE Jr, Frank PD, Lewis RM, Shubin GR (1994) Problem
+    formulation for multidisciplinary optimization problems. SIAM J Optim 4:754–776
+  volume: '4'
+  year: '1994'
+- author: JX Da Cruz Neto
+  first-page: '89'
+  journal-title: Balkan J Geom Appl
+  unstructured: Da Cruz Neto JX, De Lima LL, Oliviera PR (1998) Geodesic algorithms
+    in Riemannian geometry. Balkan J Geom Appl 3:89–100
+  volume: '3'
+  year: '1998'
+- unstructured: 'Dean EB (1988) Continuous optimization on constraint manifolds. In:
+    TIMS/ORSA joint national meeting, Washington, DC'
+- author: OP Ferreira
+  doi: 10.1006/jcom.2001.0582
+  first-page: '304'
+  journal-title: J Complex
+  unstructured: Ferreira OP, Svaiter BF (2002) Kantorovich’s theorem on Newton’s method
+    in Riemannian manifolds. J Complex 18:304–329
+  volume: '18'
+  year: '2002'
+- author: D Gabay
+  doi: 10.1007/BF00934767
+  first-page: '177'
+  journal-title: J Optim Theory Appl
+  unstructured: Gabay D (1982) Minimizing a differentiable function over a differential
+    manifold. J Optim Theory Appl 37:177–219
+  volume: '37'
+  year: '1982'
+- author: VG Ivancevic
+  doi: 10.1142/6420
+  unstructured: 'Ivancevic VG, Ivancevic TT (2007) Applied differential geometry:
+    a modern introduction. World Scientific Publishing Co. Pte. Ltd., Singapore'
+  volume-title: 'Applied differential geometry: a modern introduction'
+  year: '2007'
+- unstructured: Ji H (2007) Optimization approaches on smooth manifolds. PhD thesis,
+    Australian National University, Canberra
+- doi: 10.1109/ICNN.1995.488968
+  unstructured: 'Kennedy J, Eberhart R (1995) Particle swarm optimization. In: IEEE
+    international conference on neural networks, IEEE, Perth'
+- author: C Li
+  doi: 10.1016/j.jco.2007.12.003
+  first-page: '423'
+  journal-title: J Complex
+  unstructured: 'Li C, Wang J (2008) Newton’s method for sections on Riemannian manifolds:
+    generalized covariant $$\alpha $$ α -theory. J Complex 24:423–451'
+  volume: '24'
+  year: '2008'
+- author: DG Luenberger
+  doi: 10.1287/mnsc.18.11.620
+  first-page: '620'
+  journal-title: Manag Sci
+  unstructured: Luenberger DG (1972) The gradient projection method along geodesics.
+    Manag Sci 18:620–631
+  volume: '18'
+  year: '1972'
+- doi: 10.2514/6.2012-1589
+  unstructured: 'Martins JRRA, Hwang JT (2012) Review and unification of methods for
+    computing derivatives of multidisciplinary systems. In: 53 $$^{rd}$$ r d AIAA/ASME/ASCE/ASC
+    structures, structural dynamics, and materials conference, AIAA, Honolulu'
+- author: JRRA Martins
+  doi: 10.2514/1.J051895
+  first-page: '2049'
+  journal-title: AIAA J
+  unstructured: 'Martins JRRA, Lambe AB (2013) Multidisciplinary design optimization:
+    survey of architectures. AIAA J 51:2049–2075'
+  volume: '51'
+  year: '2013'
+- author: JRRA Martins
+  doi: 10.1023/B:OPTE.0000048536.47956.62
+  first-page: '33'
+  journal-title: Optim Eng
+  unstructured: Martins JRRA, Alonso JJ, Reuther JJ (2005) A coupled-adjoint sensitivity
+    analysis method for high-fidelity aero-structural design. Optim Eng 6:33–62
+  volume: '6'
+  year: '2005'
+- unstructured: 'Mesmer BL, Bloebaum CL, Kannan H (2013) Incorporation of value-driven
+    design in multidisciplinary design optimization. In: 10 $$^{th}$$ t h world congress
+    on structural and multidisciplinary optimization, ISSMO, Orlando'
+- author: J Munier
+  first-page: '98'
+  journal-title: Balk J Geom Appl
+  unstructured: 'Munier J (2007) Steepest descent method on a Riemannian manifold:
+    the convex case. Balk J Geom Appl 12:98–106'
+  volume: '12'
+  year: '2007'
+- unstructured: Nishimori Y, (2005) A note on Riemannian optimization methods on the
+    Stiefel and the Grassman manifolds. In, (2005) international symposium on nonlinear
+    theory and its applications, Bruges
+- author: RM Paiva
+  doi: 10.2514/1.45790
+  first-page: '995'
+  journal-title: AIAA J
+  unstructured: Paiva RM, Carvalho ARD, Crawford C, Suleman A (2010) Comparison of
+    surrogate models in a multidisciplinary optimization framework for wing design.
+    AIAA J 48:995–1006
+  volume: '48'
+  year: '2010'
+- doi: 10.2514/6.2004-4537
+  unstructured: 'Perez RE, Liu HHT, Behdinan K (2004) Evaluation of multidisciplinary
+    optimization approaches for aircraft conceptual design. In: 10 $$^{th}$$ t h AIAA/ISSMO
+    multidisciplinary analysis and optimization conference, AIAA, Albany'
+- doi: 10.1007/978-3-642-76159-1_9
+  unstructured: Potra FA, Rheinboldt WC (1989) Differential-geometric techniques for
+    solving differential algebraic equations. Technical Report ICMA-89-143, University
+    of Pittsburgh, Pittsburgh
+- unstructured: Qi C (2011) Numerical optimization methods on Riemannian manifolds.
+    PhD thesis, Florida State University, Tallahassee
+- unstructured: 'Qi C, Gallivan KA, Absil PA (2010) An efficient BFGS algorithm for
+    Riemannian optimization. In: 19 $$^{th}$$ t h international symposium on mathematical
+    theory of networks and systems, Budapest'
+- author: T Rapcsák
+  doi: 10.1080/02331938908843405
+  first-page: '3'
+  journal-title: Optimization
+  unstructured: Rapcsák T (1989) Minimum problems on differentiable manifolds. Optimization
+    20:3–13
+  volume: '20'
+  year: '1989'
+- author: T Rapcsák
+  doi: 10.1007/BF00940467
+  first-page: '169'
+  journal-title: J Optim Theory Appl
+  unstructured: Rapcsák T (1991) Geodesic convexity in nonlinear optimization. J Optim
+    Theory Appl 69:169–183
+  volume: '69'
+  year: '1991'
+- author: T Rapcsák
+  doi: 10.1016/S0377-2217(02)00329-6
+  first-page: '365'
+  journal-title: Eur J Oper Res
+  unstructured: Rapcsák T (2002) On minimization on Stiefel manifolds. Eur J Oper
+    Res 143:365–376
+  volume: '143'
+  year: '2002'
+- author: T Rapcsák
+  doi: 10.1007/BF02192090
+  first-page: '459'
+  journal-title: J Optim Theory Appl
+  unstructured: Rapcsák T, Thang TT (1995) Nonlinear coordinate representations of
+    smooth optimization problems. J Optim Theory Appl 86:459–489
+  volume: '86'
+  year: '1995'
+- author: WC Rheinboldt
+  doi: 10.1016/0893-9659(96)00037-7
+  first-page: '83'
+  journal-title: Appl Math Lett
+  unstructured: Rheinboldt WC (1996) Geometric notes on optimization with equality
+    constraints. Appl Math Lett 9:83–87
+  volume: '9'
+  year: '1996'
+- author: W Ring
+  doi: 10.1137/11082885X
+  first-page: '596'
+  journal-title: SIAM J Optim
+  unstructured: Ring W, Wirth B (2012) Optimization methods on Riemannian manifolds
+    and their application to shape space. SIAM J Optim 22:596–627
+  volume: '22'
+  year: '2012'
+- doi: 10.2514/6.1996-714
+  unstructured: 'Sellar RS, Batill SM, Renaud JE (1996) Response surface based concurrent
+    subspace optimization for multidisciplinary system design. In: 34 $$^{th}$$ t
+    h aerospace sciences meeting and exhibit, AIAA, Reno'
+- author: ST Smith
+  first-page: '113'
+  unstructured: 'Smith ST (1994) Optimization techniques on Riemannian manifolds.
+    In: Bloch A (ed) Hamiltonian and gradient flows. Algorithms and control. American
+    Mathematical Society, Providence, pp 113–136'
+  volume-title: Hamiltonian and gradient flows. Algorithms and control
+  year: '1994'
+- author: J Sobieszczanski-Sobieski
+  doi: 10.2514/3.10366
+  first-page: '153'
+  journal-title: AIAA J
+  unstructured: Sobieszczanski-Sobieski J (1990) Sensitivity of complex, internally
+    coupled systems. AIAA J 28:153–160
+  volume: '28'
+  year: '1990'
+- author: P Szekeres
+  doi: 10.1017/CBO9780511607066
+  unstructured: Szekeres P (2004) A course in modern mathematical physics. Cambridge
+    University Press, Cambridge
+  volume-title: A course in modern mathematical physics
+  year: '2004'
+- author: K Tanabe
+  doi: 10.1016/0362-546X(79)90064-6
+  first-page: '495'
+  journal-title: Nonlinear Anal Theory Methods Appl
+  unstructured: Tanabe K (1979a) Continuous Newton-Raphson method for solving an underdetermined
+    system of nonlinear equations. Nonlinear Anal Theory Methods Appl 3:495–503
+  volume: '3'
+  year: '1979'
+- author: K Tanabe
+  doi: 10.1016/B978-0-12-434180-7.50069-3
+  first-page: '707'
+  unstructured: 'Tanabe K (1979b) Differential geometric methods in nonlinear programming.
+    In: Lakshikantham V (ed) Applied Nonlinear Analysis. Academic Press, New York,
+    pp 707–720'
+  volume-title: Applied Nonlinear Analysis
+  year: '1979'
+- author: K Tanabe
+  doi: 10.1007/BF00934495
+  first-page: '181'
+  journal-title: J Optim Theory Appl
+  unstructured: Tanabe K (1980) A geometric method in nonlinear programming. J Optim
+    Theory Appl 30:181–210
+  volume: '30'
+  year: '1980'
+- author: K Tanabe
+  first-page: '100'
+  unstructured: 'Tanabe K (1982) Differential geometric approach to extended GRG methods
+    with enforced feasibility in nonlinear programming: Global analysis. In: Campbell
+    SL (ed) Recent applications of generalized inverses. Pitman Advanced Publishing
+    Program, Boston, pp 100–137'
+  volume-title: Recent applications of generalized inverses
+  year: '1982'
+- doi: 10.2514/6.2000-1665
+  unstructured: 'Tappeta RV, Renaud JE, Rodríguez JF (2000) An interactive multiobjective
+    optimization design strategy for multidisciplinary systems. In: 41st AIAA/ASME/ASCE/ASC
+    structures, structural dynamics, and materials conference, AIAA, Atlanta'
+- unstructured: The MathWorks Inc (R2010a) Matlab®
+- unstructured: Thokala P (2005) Variable complexity optimization. Master’s thesis,
+    University of Toronto, Toronto
+- author: C Udrişte
+  doi: 10.1007/978-94-015-8390-9
+  unstructured: Udrişte C (1994) Convex functions and optimization methods on Riemannian
+    manifolds. Kluwer Academic Publishers, Dordrecht
+  volume-title: Convex functions and optimization methods on Riemannian manifolds
+  year: '1994'
+- author: C Udrişte
+  first-page: '99'
+  journal-title: Balk J Geom Appl
+  unstructured: Udrişte C (1996a) Riemannian convexity in programming (II). Balk J
+    Geom Appl 1:99–109
+  volume: '1'
+  year: '1996'
+- author: C Udrişte
+  first-page: '111'
+  journal-title: Balk J Geom Appl
+  unstructured: Udrişte C (1996b) Sufficient decrease principle on Riemannian manifolds.
+    Balk J Geom Appl 1:111–123
+  volume: '1'
+  year: '1996'
+- author: K Doel van den
+  doi: 10.1007/s10915-011-9521-3
+  first-page: '560'
+  journal-title: J Sci Comput
+  unstructured: van den Doel K, Ascher U (2012) The chaotic nature of faster gradient
+    descent methods. J Sci Comput 51:560–581
+  volume: '51'
+  year: '2012'
+- author: JH Wang
+  doi: 10.1007/s10957-010-9748-4
+  first-page: '125'
+  journal-title: J Optim Theory Appl
+  unstructured: Wang JH (2011) Convergence of Newton’s method for sections on Riemannian
+    manifolds. J Optim Theory Appl 148:125–145
+  volume: '148'
+  year: '2011'
+- unstructured: Whiting JK (2011) Path optimization using sub-Riemannian manifolds
+    with applications to astrodynamics. PhD thesis, Massachusetts Institute of Technology,
+    Cambridge
+- author: DH Wolpert
+  doi: 10.1109/4235.585893
+  first-page: '67'
+  journal-title: IEEE Trans Evol Comput
+  unstructured: Wolpert DH, Macready WG (1997) No free lunch theorems for optimization.
+    IEEE Trans Evol Comput 1:67–82
+  volume: '1'
+  year: '1997'
+- author: Y Yang
+  doi: 10.1007/s10957-006-9081-0
+  first-page: '245'
+  journal-title: J Optim Theory Appl
+  unstructured: 'Yang Y (2007) Globally convergent optimization algorithms on Riemannian
+    manifolds: Uniform framework for unconstrained and constrained optimization. J
+    Optim Theory Appl 132:245–265'
+  volume: '132'
+  year: '2007'
+doc_url: http://link.springer.com/content/pdf/10.1007/s11081-016-9323-4.pdf
+doi: 10.1007/s11081-016-9323-4
+files:
+- riemannian_optimization_and_multidisciplinary_design_optimization_Bakker_Parks_2016.pdf
+issue: '4'
+journal: Optimization and Engineering
+language: en
+month: 12
+pages: 663--693
+papis_id: cbe41f814ef38b3cbd1e0ac2b7967d25
+publisher: Springer Science and Business Media LLC
+title: Riemannian optimization and multidisciplinary design optimization
+type: article
+url: https://doi.org/10.1007/s11081-016-9323-4
+volume: '17'
+year: 2016

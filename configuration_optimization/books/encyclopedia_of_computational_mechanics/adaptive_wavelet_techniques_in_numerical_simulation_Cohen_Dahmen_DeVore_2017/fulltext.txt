@@ -1,0 +1,5446 @@
+Adaptive Wavelet Techniques in Numerical Simulation
+Albert Cohen1 , Wolfgang Dahmen2 and Ronald DeVore3
+1 Pierre and Marie Curie University, Paris, France
+2 RWTH Aachen University, Aachen, Germany
+3 University of South Carolina, Columbia, SC, USA
+
+1 Introduction
+2 Wavelets
+3 Evolution Problems – Compression of Flow
+Fields
+4 Boundary Integral Equations – Matrix
+Compression
+5 A New Adaptive Paradigm
+6 Construction of Residual Approximations and
+Complexity Analysis
+Acknowledgments
+Notes
+References
+
+1
+4
+13
+19
+25
+31
+38
+38
+38
+
+1 INTRODUCTION
+Increasingly realistic models in computational mechanics
+and the search for more and more accurate simulations
+place continuously growing demands on computation that
+surpass the ongoing increase of computing power. Thus,
+paradoxically, these finer models might be of limited
+use in the absence of new computational strategies. One
+promising, emerging strategy is to dynamically adapt
+discretizations in the course of the computational solution
+
+Encyclopedia of Computational Mechanics Second Edition,
+Edited by Erwin Stein, René de Borst and Thomas J.R. Hughes.
+© 2017 John Wiley & Sons, Ltd.
+DOI: 10.1002/9781119176817.ecm2011m
+
+process. Adaptive strategies of this type have been observed
+to reduce the complexity of computational problems arising
+in large scale numerical simulation. Therefore, adaptivity
+provides an enormous potential for advancing the frontiers
+of computability. By bringing more and more complex
+tasks into reach, it offers, in the long run, better and better
+access to physical phenomena through a powerful numerical
+microscope. On the other hand, to advance these techniques to their natural fruition requires an understanding
+of the power of adaptivity vis-a-vis traditional methods of
+computation. This includes clarifying the optimal performance that can be expected from adaptive methods and
+how this compares with the performance using nonadaptive
+techniques.
+This chapter describes adaptive numerical strategies in the
+context of multiscale decompositions using wavelet bases.
+In addition to formulating adaptive strategies to be used in
+a variety of settings, the chapter will provide an a priori
+analysis of the computational efficiency of adaptive methods.
+This will delineate the advantages of adaptive strategies
+versus standard computational methods.
+Adaptivity takes a variety of forms distinguished by their
+principal goals. In many applications, one is not interested in
+the complete solution of a given problem but only in certain
+local functionals of an object that may be globally defined
+like the solution of a boundary value problem. In this case,
+an adaptive discretization reflects how much has to be paid
+to the global character of the object when trying to recover
+local information about it. However, this is not the direction of the present chapter. Instead, this chapter focuses on
+recovering the whole object in question. In the context of
+fluid mechanics, this may mean recovering the vortices in the
+wake of an airfoil, or the interaction of shocks even at some
+distance of the airfoil, or the recovery of a full stress field,
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+or eventually, understanding more about developing turbulence. The objective is to develop numerical techniques that
+are able to extract information within desired error tolerances
+at minimal cost. This means that searched-for-quantities like
+pressure or velocity are to be recovered within some accuracy tolerance, for example, with respect to some norm. This
+should be done at the expense of a number of degrees of
+freedom that remains proportional to the minimal number of
+degrees of freedom (in a certain discretization framework)
+needed to approximate the object based on full information within the desired target accuracy. From the mathematical point of view, it is not clear beforehand at all whether
+this is possible solely based on a posteriori information
+acquired during a solution process. We shall indicate in this
+chapter an affirmative answer for a wide range of problems arising in engineering applications (Cohen et al., 2001,
+2002a, 2003a,b).
+Our approach involves expansions of functions into
+wavelet bases. In such expansions, the wavelet coefficients encode detail information that has to be added when
+progressing to higher levels of resolution of the underlying function. These coefficients convey local structural
+information such as the regularity of the expanded function. The decomposition naturally breaks the function into
+different characteristic length scales. A central question in
+many dynamical simulation tasks concerns the interaction
+of these different scales. As we shall show, wavelet analysis offers a promising way to describe the behavior of
+contributions from different length scales under nonlinear
+mappings. We shall see that wavelet expansions offer quantitative ways of estimating nonlinear effects that appear,
+for example, in the Navier Stokes equations. Moreover, we
+shall point out how such an analysis aids the adaptive solution process. This already indicates the marriage between
+the analysis and numerical resolution of a problem facilitated by wavelet concepts. Therefore, the understanding
+of these concepts and their potential requires a certain
+amount of functional analysis as will be described in this
+chapter.
+We do not attempt to give an exhaustive overview of
+wavelet analysis pertinent to computational mechanics
+issues. Nor will the topics presented here be treated in a
+self-contained way. Both would be far beyond the scope
+of this chapter. Rather, we shall focus on presenting some
+concepts and ideas, which in our opinion best reflect the
+potential of wavelets, thereby offering some orientation that
+could be complemented by the extensive list of references.
+The following surveys and text books are recommended as
+sources of more detailed expositions: Cohen (2000, 2003),
+Dahmen (1997, 2001), and DeVore (1998).
+The organization of the material is in some sense
+‘two-dimensional’. Most simulation tasks are based on
+
+continuous mathematical models formulated in terms of
+integral or (partial) differential equations. The ‘first dimension’ is to group the different concepts with respect to the
+following two major problem classes. The first one concerns
+evolution problems
+∂t u = (u)
+
+(1)
+
+together with initial and boundary conditions. The second
+class concerns stationary problems
+(u) = 0
+
+(2)
+
+which are usually given in variational form. The scope
+of problems covered by (2) will be illustrated by a list
+of examples including mixed formulations and nonlinear
+problems. Of course, there is no clear dividing line. For
+instance, an implicit time discretization of a parabolic evolution problem leads to a family of problems of the type (2).
+The problems grouped under (2) are typically elliptic (in
+the sense of Agmon–Douglis–Nirenberg) for which Hilbert
+space methods are appropriate. In contrast, we focus under
+(1) on nonlinear hyperbolic problems. It will be seen that the
+respective concepts are quite different in nature. The nature
+of the relevant function spaces, for example, L1 which admits
+no unconditional basis, causes an impediment to exploiting
+the full potential of wavelets.
+The ‘second dimension’ of organization concerns the way
+wavelet features are exploited. In Section 2, we review
+briefly the main features that drive wavelets as analysis and
+discretization tools. Aside from transform mechanisms, these
+are the locality (in physical and frequency domain), the
+cancellation properties, and the norm equivalences between
+function and sequence spaces. The latter facilitates a stable
+coupling of the continuous and the discrete world. Together
+with the first two features, this is also fundamental for fast
+numerical processing.
+In Section 3, these features are applied to (1). The primary
+focus of adaptivity here is the sparse approximation of the
+unknown solution, mainly owing to the cancellation properties. In this context, wavelets are not used as stand-alone
+tools but are rather combined with conventional finite volume
+discretizations. The numerical approximation represented by
+arrays of cell averages is compressed in a manner similar to
+image compression. This amounts to a perturbation analysis in which one seeks a significant data compression
+while preserving essentially the accuracy of the underlying
+reference discretization for a fixed level of resolution. The
+approach and the performance of such schemes are illustrated by some numerical examples concerning aerodynamical applications.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+2
+
+The remainder of the chapter is concerned with the problem
+class (2). Section 4 deals with global operators represented here by the classical boundary integral equations.
+Now the above-mentioned main features of wavelets are
+used mainly to obtain sparse approximations of operators.
+This time the elliptic nature of the problem allows one
+to formulate stable Galerkin discretizations. When using
+finite elements or boundary elements, the resulting stiffness
+matrices are densely populated and, depending on the operator, are increasingly ill-conditioned when the mesh size
+decreases. In wavelet formulations, the norm equivalences
+and cancellation properties are used to show that the stiffness matrices can be replaced by sparse well-conditioned
+ones without sacrificing discretization error accuracy. This
+allows one to solve such problems in linear time. Again,
+this is essentially a perturbation approach in which this time
+sparse approximations apply to the operator and not to the
+function. Adaptivity refers here primarily to the quadrature
+used to compute the compressed stiffness matrices with a
+computational effort that stays proportional to the problem
+size. As for the current state of the art, we refer to Dahmen
+et al. (2002), Harbrecht (2001), and the references cited
+there.
+In Section 5, we introduce a new algorithmic paradigm that
+emerges from exploiting both, the sparse approximation of
+functions and the sparse representation of operators together.
+It aims at intertwining in some sense the analysis and resolution aspects of wavelet concepts as much as possible. Here
+are the main conceptual pillars of this approach:
+A transform point of view Many studies of wavelet methods
+for the numerical solution of PDEs are very similar in spirit
+to classical finite element discretizations where the trial
+spaces are spanned by finite collections of wavelets. This
+has so far dominated the use of wavelets in the context of
+boundary integral equations and is the point of view taken in
+Section 4. However, this does not yet fully exploit the potential of wavelets. In fact, similar to classical Fourier methods,
+wavelets can be used to formulate transform methods that
+are best explained in the context of variational formulations
+of (linear or nonlinear) operator equations like boundary
+value problems or boundary integral equations. Unlike finite
+volume or finite element schemes, wavelet bases can be
+used to transform the original variational problem into an
+equivalent problem over 𝓁 2 , the space of square summable
+sequences indexed by the wavelet basis. Moreover, when the
+wavelets are correctly chosen in accordance with the underlying problem, the transformed (still infinite dimensional)
+problem is now well-posed in a sense to be made precise
+later. We shall point out now the main principles along these
+lines.
+
+3
+
+Staying with the infinite dimensional problem In many
+cases, the underlying infinite dimensional problem, for
+example, a PDE, is fairly well understood. In mathematical
+terms, this means that when formulated as an operator
+equation, the operator is known to be boundedly invertible
+as a mapping from a certain function space into its dual,
+which is another way of saying that the problem is well
+posed in a certain topology – there exists a unique solution,
+which depends continuously on the data in the topology
+given by that function space.
+When transforming to the wavelet domain, the properties
+of the operator are inherited by the transformed operator
+which now acts on sequence spaces. The main point we wish
+to stress is that the original infinite dimensional problem
+is often better understood than specific discretized finite
+dimensional versions and therefore there is an advantage in
+delaying the movement to finite discretizations as long as
+possible. A classical example of this is the Stokes problem in
+which a positive definite quadratic functional is minimized
+under the divergence constraint and thus has saddle point
+character. The Stokes problem is well posed in the above
+sense for the right pairs of functions spaces for the velocity
+and pressure component (Brezzi and Fortin, 1991, Girault
+and Raviart, 1986). It is well-known that Galerkin discretizations, however, may very well become unstable unless the
+trial spaces for velocity and pressure satisfy a compatibility
+condition called the Ladyšhenskaya-Babuška-Brezzi (LBB)
+condition. For the Stokes problem, this is well understood
+but in other situations, as in many physically very appropriate mixed formulations, finding stable pairs of trial spaces
+is a more delicate task. So, in some sense one may run into
+self-inflicted difficulties when turning to finite discretizations
+even though the original problem is well behaved. Is there an
+alternative?
+Stabilizing effects of adaptivity The very fact that, unlike
+conventional schemes, a suitable wavelet basis captures
+the complete infinite dimensional problem and puts it
+into a well-conditioned format over 𝓁 2 can be used to
+avoid fixing any finite dimensional dicretization. Instead
+the well-posedness offers ways of formulating an iterative scheme for the full infinite dimensional problem that
+converges (conceptually) with a fixed error reduction per
+step. Only after this infinite dimensional analysis is complete
+do we enter the numerical stage by applying the involved
+infinite dimensional (linear and also nonlinear) operators
+adaptively within suitable stage-dependent dynamically
+updated error tolerances. Roughly speaking, this numerical
+approach inherits the well-posedness of the original problem
+and allows us to avoid imposing compatibility conditions
+such as LBB.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive evaluation of operators A central issue is then
+to actually realize concrete adaptive evaluation schemes
+for relevant operators and to analyze their computational
+complexity. We shall engage this issue for both linear and
+nonlinear examples. While at the first glance nonlinear
+operators seem to interfere in an essential way with wavelet
+concepts (as they do with regard to the Fourier techniques), we claim that they offer particularly promising
+perspectives in this regard. In conventional discretizations, the image of a current adaptive approximation
+under a nonlinear mapping is usually discretized on the
+same mesh. However, a singularity, which may cause
+an adaptive local refinement, is often severely affected
+by a nonlinearity so that this mesh might no longer be
+optimal. In the present framework, the adaptive evaluation
+will be seen to generate at each stage the right choice of
+degrees of freedom for the image of the nonlinearity; see
+Section 6.2. This is based on quantitative estimates on
+the interaction of different length scales under nonlinear
+mappings.
+It would be far beyond the scope of this chapter to
+address any of the above issues in complete detail. Instead,
+our presentation will be more of an overview of this
+subject which should serve to orient the reader to the
+essential concepts and point of views. The interested
+reader will then find extensive references for further
+reading.
+
+2
+
+1
+
+is for each j ∈ ℕ0 a simple orthogonal projector from L2 ([0,
+1]) onto the space Sj of piecewise constant functions subordinate to the dyadic mesh of size 2−j . This projection resolves
+the function f up to scale j while finer details are averaged
+out; see Figure 1.
+If the resolution is found to be insufficient, one has to
+discard previous efforts and recompute with a larger j.
+In contrast,
+f =
+
+∞
+∑
+
+(Pj − Pj−1 )f (P−1 ∶= 0)
+
+(3)
+
+j=0
+
+is a multiscale representation of the function f. Each term
+(Pj − Pj−1 )f represents the detail in f at the scale 2−j .
+Moreover, the layers of detail at each scale are mutually
+orthogonal.
+As can be seen from Figure 2, to encode the difference
+information, one can use in place of the averaging profile ϕ(x)
+an oscillatory profile ψ(x) – the Haar wavelet – given by
+
+WAVELETS
+
+ψ(x) ∶= ϕ(2x) − ϕ(2x − 1)
+
+In this section, we give a brief overview of those features
+of wavelets and multiresolution that are important for our
+presentation. There are many different ways of viewing
+and motivating wavelet expansions (Daubechies, 1992). Our
+point of view in the present context is conveniently conveyed
+by the following example.
+
+2.1
+
+0
+
+ϕ(x) + ψ(x)
+2
+ϕ(x) − ψ(x)
+ϕ(2x − 1) =
+2
+
+and therefore
+
+ϕ(2x) =
+
+1
+
+which implies
+
+1
+
+The Haar basis
+
+The starting point is the box function ϕ(x) = 𝜒 [0, 1) (x),
+which takes the value one on [0, 1) and zero outside. The
+normalized dilates and translates ϕj,k = 2j∕2 ϕ(2j ⋅ −k),
+k = 0, … , 2j − 1, of ϕ are readily seen to be
+1
+orthonormal, that is, ⟨ϕj,k , ϕj,l ⟩[0,1] ∶= ∫0 ϕj,k (x)ϕj,l (x) dx =
+𝛿k,l . Hence
+2j −1
+
+Pj ( f ) ∶=
+
+∑
+k=0
+
+⟨f , ϕj,k ⟩ϕj,k
+
+0
+
+0
+1
+
+−1
+
+−1
+
+Hence, the fine scale averaging profiles can be recovered
+from a coarse scale average and an oscillatory profile. Thus,
+defining again ϕj, k := 2j/2 ϕ(2j ⋅ − k), ψ j, k := 2j/2 ψ(2j ⋅ − k),
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+4
+
+1
+cj+1,2k+1 = √ (cj,k − dj,k )
+2
+
+5
+
+(6)
+
+Thus the representation in terms of fine scale averages can be
+obtained from the coarse scale averages already in hand by
+simply adding the detail (lost through the coarse projection)
+encoded in terms of the oscillatory profiles. The translated
+dilations ψ j, k (x) := 2j/2 ψ(2j ⋅ −k) are easily seen to be pairwise orthonormal
+⟨ψj,k , ψj ′ ,k′ ⟩ℝ = 𝛿(j,k),(j ′ ,k′ ) ,
+
+Figure 1. Piecewise constant approximation.
+
+one easily verifies the two-scale relations
+
+cJ
+
+(4)
+
+which give rise to a change of basis
+2j+1 −1
+
+∑
+
+2j −1
+
+cj+1,k ϕj+1,k =
+
+k=0
+
+∑
+
+2j −1
+
+cj,k ϕj,k +
+
+k=0
+
+∑
+
+dj,k ψj,k
+
+k=0
+
+where
+1
+cj,k = √ (cj+1,2k + cj+1,2k+1 ),
+2
+1
+dj,k = √ (cj+1,2k − cj+1,2k+1 )
+2
+1
+cj+1,2k = √ (cj,k + dj,k ),
+2
+
+0
+
+Figure 2. Different levels of resolution of f.
+
+(7)
+
+Here and in the following, we use the notation ⟨f , g⟩Ω =
+∫Ω fgdx but suppress at times the subscript Ω when the reference to the domain is clear from the context.
+Obviously, the above change of basis (5) can be repeated
+which gives rise to a cascadic transform – the fast wavelet
+transform. It transforms a linear combination of fine scale
+box functions with an array of averages cJ into a linear
+combination of coarse scale box functions with coefficient
+array c0 and Haar wavelets with arrays of detail coefficients
+dj for each dyadic level j < J. This decomposition transform
+T ∶ cJ → dJ ∶= (c0 , d0 , d1 , … , dJ−1 ) looks schematically as
+follows:
+
+x
+
+1
+ϕj,k = √ (ϕj+1,2k + ϕj+1,2k+1 )
+2
+1
+ψj,k ∶= √ (ϕj+1,2k − ϕj+1,2k+1 )
+2
+1
+ϕj+1,2k = √ (ϕj,k + ψj,k )
+2
+1
+ϕj+1,2k+1 = √ (ϕj,k − ψj,k )
+2
+
+j, j′ , k, k′ ∈ ℤ
+
+(5)
+
+cJ−1
+
+cJ−2
+
+···
+
+c1
+
+c0
+
+dJ−1
+
+dJ−2
+
+···
+
+d1
+
+d0
+
+(8)
+
+In other words, from cJ , we determine cJ−1 , and dJ−1 by
+using (6), and so on. By (7) T is represented by a unitary
+matrix whose inverse is given by its transpose. Therefore the
+transform T−1 ∶ dJ ∶= (c0 , d0 , … , dJ−1 ) → cJ , which takes
+the detail coefficients into the single-scale average coefficients, has a similar structure that can also be read off from
+the relations (6):
+c0
+
+c1
+
+c2
+
+···
+
+cJ−1
+
+d0
+
+d1
+
+d2
+
+···
+
+dJ−1
+
+cJ
+
+(9)
+
+Thus, starting with c0 and the wavelet coefficients
+d0 , … , dJ−1 , we can use (9) to find cJ . Due to the cascadic
+
+1
+
+0
+
+1
+
+0
+
+1
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+structure and the fact that the relations in (6) involve only
+finite filters or masks, the number of operations required by
+both transforms is O(2J ), i.e. stays proportional to the size
+of the arrays cJ .
+In summary, there is a convenient and fast way of
+switching between different representations of a given
+∑
+projection PJ ( f) = k cJ, k ϕj, k , each having its advantages, as
+we shall see in subsequent discussions. From the theoretical
+point of view, since the wavelets allow us to encode the jth
+dyadic level of detail of a function f as
+2j −1
+
+(Pj+1 − Pj )f =
+
+∑
+
+dj,k ( f )ψj,k ,
+
+dj,k ( f ), ∶= ⟨f , ψj,k ⟩
+
+k=0
+
+the telescoping expansion (3) yields
+f = P0 f +
+
+∞
+∑
+
+(Pj − Pj−1 ) f
+
+j=1
+j
+
+=
+
+∞ 2 −1
+∑
+∑
+
+dj,k ( f )ψj,k =∶ d( f )T Ψ
+
+(10)
+
+where the last estimate follows, for example, from Taylor’s
+expansion. Thus, dj, k ( f) is small when f |Sj,k is smooth.
+
+2.2
+
+Biorthogonal wavelets on ℝ
+
+The Haar basis is, of course, not suitable when, for instance,
+higher regularity of the approximation system is required.
+The discovery by I Daubechies (1992), of a family of
+compactly supported orthonormal wavelets in L2 (ℝ) of arbitrary high regularity opened the door to a wide range of
+applications. Of perhaps even more practical relevance was
+the subsequent construction of biorthogonal wavelets put
+forward by Cohen et al. (1992). The biorthogonal approach
+sacrifices L2 -orthogonality in favor of other properties such
+as symmetry of the basis functions and better localization of
+their supports.
+The construction of biorthogonal wavelets starts with a
+̃ that
+dual pair of compactly supported scaling functions ϕ, ϕ,
+is,
+̃ − k)⟩ = 𝛿0,k , k ∈ ℤ
+⟨ϕ, ϕ(⋅
+(13)
+
+j=−1 k=0
+
+The convergence of this expansion in L2 follows from the
+convergence of the orthogonal projections in L2 .
+A wavelet decomposition of a function f ∈ L2 is analogous
+in spirit to the decimal representations of a real number. The
+wavelet coefficients play the role of digits; receiving more
+wavelet coefficients gives us progressively better accuracy
+in representing f. Of course, the classical Fourier transform
+of periodic functions and also Taylor expansions do, in principle, the same. The particular advantages of wavelet representations rely to a large extent on the following facts. First
+of all, the orthonormality of the ψ j, k gives
+||f ||L2 =
+
+(∞
+∑
+j=0
+
+)1∕2
+||(Pj − Pj−1 )f ||2L
+2
+
+= ||d( f )||𝓁2
+
+(11)
+
+That is, there is a tight relation between the function and coefficient norm. Thus perturbing the digits, which will happen in
+every computation, in particular, discarding small digits, will
+change the function norm only by the same small amount.
+Clearly, the convergence of the series implies that the digits
+will eventually have to become arbitrarily small. However,
+which digits become how small can easily be inferred from
+local properties of f. In fact, since the ψ j, k are orthogonal to
+constants – they have first order vanishing moments – one
+has for Sj, k := supp ψ j, k = 2−j [k, k + 1]
+|dj,k ( f )| = inf |⟨ f − c, ψj,k ⟩| ≤ inf ||f − c||L2 (Sj,k )
+c∈ℝ
+
+c∈ℝ
+
+≤ 2 ||f ||L2 (Sj,k )
+−j
+
+′
+
+(12)
+
+that satisfy the two scale relations
+ϕ(x) =
+
+∑
+
+ak ϕ(2x − k),
+
+̃
+ϕ(x)
+=
+
+k∈ℤ
+
+∑
+
+̃
+− k)
+ã k ϕ(2x
+
+(14)
+
+k∈ℤ
+
+with finitely supported masks (ak )k∈ℤ , (̃ak )k∈ℤ ; see (4). Each
+of the functions
+ψ(x) =
+
+∑
+
+(−1)k ã 1−k ϕ(2x − k)
+
+k∈ℤ
+
+̃
+ψ(x)
+=
+
+∑
+
+̃
+− k)
+(−1)k a1−k ϕ(2x
+
+(15)
+
+k∈ℤ
+
+generates by means of shifts and dilates a biorthogonal
+basis for L2 (ℝ). Each f ∈ L2 (ℝ) has the following unique
+expansions:
+f =
+
+∞
+∑
+∑
+
+∞
+∑
+∑
+
+̃ j,k ⟩ℝ ψj,k =
+⟨f , ψ
+
+j=−1 k∈ℤ
+
+̃ j,k
+⟨f , ψj,k ⟩ℝ ψ
+
+(16)
+
+j=−1 k∈ℤ
+
+̃ −1,k ; = ϕ̃ 0,k .
+where we have used the notation, ψ −1, k ; = ϕ0, k , ψ
+̃ l,m ⟩ℝ = 𝛿(j,l),(k,m) .
+One thus has ⟨ψj,k , ψ
+Each of these systems is a Riesz basis, which means1
+||f ||2L (ℝ) ∼
+2
+
+∞
+∑
+∑
+j=−1 k∈ℤ
+
+̃ j,k ⟩| ∼
+|⟨ f , ψ
+2
+
+∞
+∑
+∑
+
+|⟨ f , ψj,k ⟩|2 (17)
+
+j=−1 k∈ℤ
+
+The inequalities (17) ensure a tight relation between the
+function norm and the coefficient norm.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+6
+
+Cohen et al. (1992) construct a family of biorthogonal pairs
+̃ of compact support. Given any desired
+with each of ψ, ψ
+order r of differentiability, one can find a biorthogonal pair
+in this family with ψ having r continuous derivatives. Moreover, one can also require that a suitable linear combination
+̃ − k))k∈ℤ ) will represent
+of (ϕ(⋅ − k))k∈ℤ (respectively (ϕ(⋅
+any given polynomial of order ≤ m, (respectively m).
+̃ The
+biorthogonality relations then imply that the wavelets ψ j, k ,
+̃ j,k (for j ≥ 0) are orthogonal to all polynomials of order m,
+̃
+ψ
+m respectively. An analogous argument to (12) then shows
+̃
+̃ j,k ⟩, ⟨ f , ψj,k ⟩ decay like 2−mj , 2−mj
+that the coefficients ⟨f , ψ
+̃ j,k , ψj,k of
+when f has bounded derivatives on the supports of ψ
+order m, m,
+̃ respectively, in L2 . Thus higher local smoothness
+results in a stronger size reduction of corresponding wavelet
+coefficients.
+The setting of biorthogonal wavelets is particularly
+appealing from a practical point of view since the primal
+generator ϕ can be chosen as any B-spline, and in turn the
+primal wavelet generator ψ is also a spline function with an
+explicit – piecewise polynomial – analytical expression.
+
+dimensional) subspaces Sj of some function space 
+S0 ⊂ S1 ⊂ S2 ⊂ … ,
+
+Wavelets on domains
+
+Biorthogonal wavelets provide a beautiful and conceptually
+simple multiscale decomposition of functions. They offer
+great versatility in the choice of the basis and dual elements
+including compact support, smoothness, and even piecewise polynomial structure. Meanwhile they maintain the
+essential features of orthogonal wavelet decompositions such
+as norm equivalences and cancellation properties. Moreover, in connection with differential equations, the space L2
+often plays only a secondary or artificial role. Therefore,
+dispensing with L2 -orthogonality is, in general, not even a
+quantitative drawback.
+That is the good news. The bad news is that the above
+wavelet constructions are inherently made on ℝ, ℝd , or a
+torus. In numerical applications, the setting is typically on
+a finite domain or manifold Ω. Such domains and manifolds
+do not maintain the dilation and translation structure of the
+full Euclidean space or the torus.2 Fortunately, there are
+constructions of multiscale bases tailored to general domains
+and manifolds. Albeit, these come at some expense of a
+certain level of technicality. In order not to destroy the main
+flow of this chapter, we shall only give an overview of some
+of the ideas used for these constructions. The reader can
+consult Dahmen (1997) and the references quoted there for
+a more detailed description of the construction of multiscale
+bases on (bounded) domains and manifolds.
+The starting point of these constructions is again multiresolution. By this, we mean a hierarchy of (now finite
+
+⋃
+
+Sj = 
+
+j
+
+that are spanned by single-scale bases Sj = span ϕj =∶
+S(Φj ), Φj = {ϕγ ∶ γ ∈ j }. The space  is typically an Lp or
+Sobolev space. It is important that the bases Φj are scalewise
+stable with respect to some discrete norm ||⋅|| in the sense
+that
+‖
+‖∑
+‖
+‖
+‖
+||(||cγ ϕγ || )γ∈j || ∼ ‖
+c γ ϕγ ‖
+(18)
+‖
+‖
+‖γ∈j
+‖
+‖
+with constants that do not depend on the level j. In the case
+where  = Lp or Wps , the discrete norm ||⋅|| is typically the
+𝓁 p norm. For instance, Φj could be a finite element nodal
+basis on a j-fold refinement of some initial mesh for Ω. In
+this example, the indices γ may represent the vertices in the
+mesh. One then looks for decompositions
+Sj+1 = Sj ⊕ Wj ,
+
+2.3
+
+7
+
+Wj = span Ψj ,
+
+Ψj = {ψλ ∶ λ ∈ j }
+
+The multiscale basis
+Ψ ∶=
+
+∞
+⋃
+
+Ψj =∶ {ψλ ∶ λ ∈  } (Ψ−1 ∶= Φ0 )
+
+j=−1
+
+is then a candidate for a wavelet basis. At this point a word
+on notation is in order. The index set has two component
+subsets:  = ϕ ∪ ψ . The index set ϕ has a finite cardinality and labels the basis functions in S0 of ‘scaling function’ type. The true wavelets correspond to the indices in ψ .
+These indices absorb different types of information such as
+the scale j = |𝜆|, the spatial location k(𝜆) or, when dealing
+with a spatial dimension d > 1, the type e(𝜆) of ψ𝜆 . An
+example is ψ𝜆 (x, y) = 2j ψ 1,0 (2 j (x, y) − (k, l)) = 2j∕2 ψ(2j x −
+k)2j∕2 ϕ(2j y − l) where 𝜆 ↔ (j, (k, l), (1, 0)).
+Of course, there is a continuum of possible complements
+Wj and the question arises as to what are ‘good complements’. The previous section already indicates the role of
+biorthogonality in this context. So a typical strategy is to split
+the multiresolution spaces Sj in such a way that there exists
+̃ corresponding to a dual
+a biorthogonal or dual collection Ψ,
+̃
+multiresolution sequence (Sj ), that belongs to the dual  ′ in
+such a way that
+̃ 𝜈 ⟩ = 𝛿𝜆,𝜈 ,
+⟨ψ𝜆 , ψ
+and hence
+f =
+
+∑
+𝜆∈
+
+𝜆, 𝜈 ∈ 
+
+̃ 𝜆 ⟩ψ𝜆
+⟨f , ψ
+
+(19)
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+(a)
+
+(b)
+
+Figure 3. (a) Primal wavelet (b) Dual wavelet.
+
+The classical situation is  =  ′ = L2 (Ω) so that one has
+∑
+̃𝜆
+in this case the alternate representation f = 𝜆∈ ⟨f , ψ𝜆 ⟩ψ
+(Carnicer et al., 1996; Cohen et al., 1992; Dahmen, 1994,
+1996).
+When no global smoothness is required, the concept of
+multiwavelets (Alpert, 1993) offers a convenient way of
+generalizing the Haar basis to higher order accuracy and
+cancellation properties; see, for example, von Petersdorff
+et al. (1997) for an application to second kind integral
+equations.
+We describe now one concrete approach (Canuto et al.,
+1999, 2000; Cohen and Masson, 1997; Dahmen and
+Schneider, 1999a,b) based on domain decomposition that
+works for  = L2 (Ω) and realizes at least global continuity.
+Suppose that
+Ω=
+
+⋃
+̇
+1≤m≤M
+
+𝜅m (◽),
+
+𝜅m ∶ ◽ → Ωm
+
+where each 𝜅 i is a regular mapping from a parameter domain
+such as the unit d-cube, into a subdomain Ωi of Ω. A wavelet
+basis ΨΩ is then constructed along the following lines:
+̃ ℝ on ℝ and
+• Start with biorthogonal wavelet bases Ψℝ , Ψ
+̃ I on
+adapt them to biorthogonal wavelet bases ΨI , Ψ
+I = [0, 1].
+• Use tensor products to obtain bases Ψ◽ on the unit cube
+◽ = [0, 1]d .
+• Use parametric liftings to derive bases ΨΩi = Ψ◽ ∘ 𝜅i−1
+on Ωi = 𝜅 m (◽), which then have to be glued together
+to produce, for example, globally continuous bases
+Ψ = ΨΩ on Ω (Canuto et al., 1999, 2000; Cohen and
+Masson, 1997; Dahmen and Schneider, 1999a). An alternative approach leads to wavelets of arbitrary regularity
+permitted by the regularity of the domain (Dahmen and
+Schneider, 1999b).
+The following Figure 3 has been provided as a courtesy
+by H. Harbrecht (private communication). It displays an
+example of a globally continuous primal and dual wavelet
+
+on a two dimensional patchwise defined manifold in which
+the supports cross the patch boundaries.
+Alternatively, hierarchies of uniform refinements of an
+arbitrary initial triangulation can be used to construct finite
+element based wavelets (Dahmen and Stevenson, 1999;
+Stevenson, 2000).
+All these constructions aim to realize (19). However,
+biorthogonality by itself is not quite sufficient in general to
+guarantee relations like (17). It is shown in Dahmen (1996)
+that if in addition the multiresolution spaces Sj and S̃ j each
+satisfy a (quite general form of a) direct (sometimes referred
+to as a Jackson) estimate which quantifies their approximation properties, and in addition satisfy an inverse (referred
+to as Bernstein) estimate, which quantifies the regularity
+of these spaces, then an L2 (Ω)-norm equivalences of the
+form (17) hold. One actually obtains norm equivalences for
+a whole range of smoothness spaces, (possibly weighted)
+Sobolev spaces, around L2 ; a fact that is actually more important for the intended applications (Dahmen, 1996; Dahmen
+and Stevenson, 1999).
+The above approach, in particular (Dahmen and Stevenson,
+1999), can be viewed as a special realization of the following
+general strategy. To describe this approach, it is now convenient to view a (countable) collection Θ of functions, such as
+a wavelet basis or a basis of scaling functions, as a column
+vector based on some fixed but unspecified ordering of its
+elements. Refinement relations of the form (14) take then the
+form ΦTj = ΦTj+1 Mj,0 where the columns of the matrix Mj,0
+consist of the mask coefficients in each two-scale relation for
+the elements of the scaling functions on level j. For instance,
+in the case of the Haar basis on [0, 1], (4) says that each
+column in Mj,0 has at two successive positions the value 2−1/2
+as the only nonzero entry. This format persists in much wider
+generality and can be used to represent two-scale relations for
+any hierarchy  of nested spaces spanned by scaling function
+bases Sj = span Φj . In the same way, a basis Ψj spanning some
+complement Wj of Sj in Sj+1 , has the form ΨTj = ΦTj+1 M1,j . It
+is easy to see that Mj,1 completes Mj,0 to an invertible operator Mj ∶= (Mj,0 , Mj,1 ) if and only if Sj+1 = Sj ⊕Wj and that
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+8
+
+the complement bases are uniformly scalewise stable in the
+sense of (18) if and only if the condition numbers of the
+Mj with respect to the corresponding norms are uniformly
+bounded (Carnicer et al., 1996). Of course, in the case of
+orthonormal bases one has Gj = MTj .
+One can now define multiscale transformations that
+change, for instance, the representation of an element in SJ
+with respect to ΦJ into the representation with respect to Φ0
+and the complement bases Ψj , j < J, in complete analogy to
+(8) and (9). In fact, the refinement relations imply that
+c j+1 = (M j,0 c j + M j,1 d j )
+
+(20)
+
+The refinement matrix M j,0 can be viewed as a prediction
+operator. When the detail coefficients are zero, it provides
+an exact representation of the data on the next higher level of
+resolution. It is also sometimes called a subdivision operator
+(Arandiga et al., 1998, 1999; Carnicer et al., 1996). It follows
+, taking the detail coeffrom (20) that the transformation T−1
+j
+ficients into the single-scale coefficients c j , uses the matrices
+M j in each cascadic step of (9).
+( )
+=
+Conversely, setting G j ∶= M−1
+j
+
+G j,0
+G j,1
+
+, one has
+
+c j = G j,0 c j+1 and d j = G j,1 c j+1
+
+̌ j,1 K
+M j,1 = M j,0 L + M
+
+with inverse blocks
+̌ j,0 − G
+̌ j,1 (KT )−1 LT ,
+G j,0 = G
+
+(22)
+
+̌ j,1 (KT )−1 (23)
+G j,1 = G
+
+In fact, this follows from the identity
+̌ jG
+̌ j
+̌j=M
+I=M
+
+(
+
+I L
+0 K
+
+)(
+
+)
+I −LK−1 ̌
+G j =∶ M j G j
+0 K−1
+
+The special case K = I is often referred to as Lifting Scheme,
+(Sweldens, 1996, 1998). The parameters in the matrices
+L, K can be used to modify the complement bases. Such
+modifications of stable completions are used for instance in
+the construction of wavelets on an interval (Dahmen et al.,
+1999) and hence in the above-mentioned domain decomposition approach (Canuto et al., 1999, 2000; Cohen and
+Masson, 1997; Dahmen and Schneider, 1999a), as well as
+in the construction of finite element based wavelets through
+coarse grid corrections (Carnicer et al., 1996; Dahmen, 1997;
+Dahmen and Kunoth, 1992; Dahmen and Stevenson, 1999;
+Stevenson, 2000; Vassilevski and Wang, 1997). A further
+important application concerns raising the order of vanishing
+moments: Choose K = I and L such that
+
+(21)
+
+Hence the transformation T j that decomposes c j into details
+d j and coarse scale coefficients c0 has the same cascadic
+structure as (8), now based on the filter matrices G j .
+Furthermore, one can show that the transformations T j
+have uniformly bounded spectral condition numbers independent of J if and only if the corresponding union Ψ of the
+complement bases Ψj and the coarse scale basis Φ0 forms a
+Riesz basis for L2 (Dahmen, 1994; Carnicer et al., 1996).
+While it is often difficult to directly construct a Riesz basis
+for the space of interest, in many cases, it is easy to find for
+̌ j . For instance,
+each level j some initial complement bases Ψ
+when working with a hierarchy of nodal finite element bases,
+complement bases are provided by the hierarchical basis
+consisting of those nodal basis functions at the nodes of
+the next higher level of resolution (Yserentant, 1986). As a
+second step one can then generate from this initial multiscale
+decomposition another one that has certain desirable properties, for instance, a higher order of vanishing moments. The
+important point to be made in this regard is that all of this can
+be done completely on a discrete level. To this end, suppose
+̌ j,1 of the refinement matrix M j,0
+that an initial completion M
+̌ j ) is known. Then all other stable completions have
+(and G
+the form (Carnicer et al., 1996)
+
+9
+
+∫Ω
+
+ΨTj P dx =
+
+∫Ω
+
+ΦTj+1 M j,1 P dx =
+
+̌ T P dx = 0,
++Ψ
+j
+
+∫Ω
+
+ΦTj LP
+
+P ∈ ℙm∗
+
+(24)
+
+The significance of the above formulations lies in the versatility of handling multiscale decompositions entirely on a
+discrete level. This allows one to circumvent (at least to some
+extent) the explicit construction of complicated basis functions (Harten, 1996). However, statements about stability are
+often based on explicit knowledge of the underlying multiscale bases.
+
+2.4
+
+The key features
+
+The ideas put forward in the previous section allow one
+to construct multiscale bases for a variety of domains and
+even closed surfaces. In this section, we collect the main
+properties of these constructions that are valid on a domain
+Ω of spatial dimension d. We shall assume these properties
+in our subsequent applications. These key properties can be
+summarized as follows:
+• Locality (L)
+• Cancellation Properties (CP)
+• Norm Equivalences (NE).
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Locality: (L) means that the elements of Ψ all have compact
+support S𝜆 ∶= supp ψ𝜆 that scales properly, that is,
+diam (S𝜆 ) ∼ 2−|𝜆|
+
+(25)
+
+Locality is crucial for applications on bounded domains and
+for the efficiency of associated multiscale transforms.
+Cancellation properties: (CP) generalizes our earlier observation (12). It means that integrating a wavelet against a
+locally smooth function acts like differencing. Assume for
+example that the wavelets are normalized in L2 , that is
+||ψ𝜆 ||L2 ∼ 1. Cancellation will then mean that
+−|𝜆|(m+(d∕2)−(d∕p))
+̃
+
+|⟨v, ψ𝜆 ⟩| ≲ 2
+
+|v|Wpm̃ (S𝜆 ) ,
+
+𝜆 ∈ ψ
+
+(26)
+
+where |v|Wpn (G) is the usual nth order seminorm of the corresponding Sobolev space on the domain G. Analogous relã
+tions can of course be formulated for the dual basis Ψ.
+The integer m
+̃ signifies the strength of the cancellation
+properties because it says up to which order the local smoothness of the function is rewarded by the smallness of the
+coefficients (in this case of the dual expansion). Obviously,
+when Ω is a Euclidean domain, (26) implies that the wavelets
+have vanishing polynomial moments of order m,
+̃ that is,
+⟨P, ψ𝜆 ⟩Ω = 0,
+
+P ∈ ℙm̃ ,
+
+𝜆 ∈ ψ
+
+(27)
+
+Conversely, as in (12), the vanishing moments imply that for
+[(1/p) + (1/p′ )] = 1
+|⟨v, ψ𝜆 ⟩| = inf |⟨v − P, ψ𝜆 ⟩|
+P∈ℙm̃
+
+≤ inf ||v − P||Lp (S𝜆 ) ||ψ𝜆 ||Lp′ ,
+P∈ℙm̃
+
+≲ 2−|𝜆|((d∕2)−(d∕p)) inf ||v − P||Lp (S𝜆 )
+P∈ℙm̃
+
+where we have used that
+||ψ𝜆 ||Lp′ ∼ 2|𝜆|((d∕p )−(d∕2)) ∼ 2|𝜆|((d∕2)−(d∕p))
+′
+
+||ψ𝜆 ||L2 ∼ 1
+
+when
+(28)
+
+Now standard estimates on local polynomial approximation
+(DeVore and Sharpley, 1984) tell us that
+inf ||v − P||Lp (G) ≲ (diam G)k |v|Wpk (G)
+
+P∈ℙk
+
+which yields (26). We refer to (26) as the cancellation property of order m
+̃ rather than to (27), since it makes sense for
+domains where ordinary polynomials are not defined.
+
+Norm equivalences: The cancellation properties tell us
+under what circumstances wavelet coefficients are small.
+One expects to have only relatively few significant coefficients when the expanded function is very smooth except
+for singularities on lower dimensional manifolds. This helps
+to recover a function with possibly few coefficients only if
+small perturbations in the coefficients give rise to perturbations of the function that are also small with respect to the
+relevant norm. Recall that for function spaces  with local
+norms, it is usually easy to construct multiscale bases Ψ that
+are uniformly scalewise stable, that is,
+‖∑
+‖
+‖
+‖
+‖
+d𝜆 ψ𝜆 ‖
+‖
+‖ ∼ ||(||d𝜆 ψ𝜆 || )|𝜆|= j ||
+‖|𝜆|= j
+‖
+‖
+‖
+
+(29)
+
+uniformly in j, where ||⋅|| is some appropriate discrete norm.
+In some cases, this stability property can be extended to
+the whole array Ψ over all scales. In the particular case when
+ =  is a Hilbert space, this is expressed by saying that,
+with the normalization ||ψ𝜆 || ∼ 1, the family Ψ is a Riesz
+basis for the whole function space , that is, every element
+v ∈  possesses a unique expansion in terms of Ψ and there
+exist finite positive constants cΨ , CΨ such that
+‖
+‖∑
+‖
+‖
+cΨ ||(v𝜆 )||𝓁2 ≤ ‖ v𝜆 ψ𝜆 ‖ ≤ CΨ ||(v𝜆 )||𝓁2 ,
+‖
+‖
+‖
+‖ 𝜆
+∀v = (v𝜆 ) ∈ 𝓁2
+
+(30)
+
+Thus, while relaxing the requirement of orthonormality, a
+Riesz basis still establishes a strong coupling between the
+continuous world, in which the mathematical model is often
+formulated, and the discrete realm which is more apt to
+computational realizations. Therefore, it should not be a
+surprise that the availability of such bases for function spaces
+may be exploited for numerical methods.
+We shall exploit norm equivalences for the problem class
+(2) where the relevant spaces are Sobolev spaces or tensor
+products of them. Recall that for n ∈ ℕ the space Hn (Ω)
+consists of those elements of L2 (Ω) whose nth order weak
+derivatives are also in L2 (Ω). More generally, for 1 ≤ p ≤ ∞,
+we have
+Wpn (Ω) ∶= {f ∶ 𝜕 𝛼 f ∈ Lp (Ω),
+
+|𝛼| ≤ n}
+
+(31)
+
+and the corresponding (semi-)norms are given by |f |Wpn (Ω) ∶
+∑n
+∑
+p
+p
+p
+= ( |𝛼|=n ||𝜕 𝛼 f ||L (Ω) )1∕p and ||v||W n (Ω) ∶= m=0 |f |W m (Ω) .
+p
+p
+p
+Dealing with traces of functions on boundary manifolds, for
+instance, forces one to consider also noninteger smoothness
+orders t ∈ ℝ. For t > 0, these spaces can be defined either
+by interpolation between spaces of integer order (Bergh and
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+10
+
+Löfström, 1976) or directly through intrinsic norms of the
+form
+||v||Wpt (Ω)
+(
+
+)1∕p
+𝛼 v(x) − 𝜕 𝛼 v(y)|p
+|𝜕
+p
+= ||v||W n (Ω) +
+dx dy
+,
+∫Ω ∫Ω |x − y|d+(t−n)p
+p
+|𝛼|=n
+∑
+
+n ∶= ⌊t⌋
+Moreover, for Lipschitz domains Ω and Γ ⊂ 𝜕Ω, we denote
+t
+by H0,Γ
+(Ω) the closure of those C∞ functions on Ω with
+respect to the Ht -norm that vanish on Γ. We briefly write
+H01 (Ω) when Γ = 𝜕Ω. We refer to Adams (1978) for more
+details on Sobolev spaces.
+In the sequel for t ≥ 0, Ht will denote some closed subspace
+of Ht (Ω) either of the form H0t (Ω) ⊆ H t ⊆ H t (Ω) or with
+finite codimension in Ht (Ω). For t < 0, we define Ht as the
+dual space Ht = (H−t )′ . Starting with a suitable wavelet Riesz
+basis Ψ for  = L2 (Ω), a whole family of realizations of (30)
+can be formulated as follows. There exist positive constants
+γ, γ̃ > 0 (depending on the regularity of the wavelet basis)
+with the following property: For s ∈ (−̃γ, γ), there exist positive constants cs , Cs , such that every v ∈ Hs possesses a
+∑
+unique expansion v = 𝜆∈ v𝜆 2−s|𝜆| ψ𝜆 such that
+‖
+‖∑
+‖
+‖
+−s|𝜆|
+‖ ≤ Cs ||(v𝜆 )𝜆 ||𝓁
+cs ||(v𝜆 )𝜆 ||𝓁2 ≤ ‖
+v
+2
+ψ
+𝜆
+𝜆‖
+‖
+2
+‖ s
+‖𝜆∈
+‖H
+‖
+
+(32)
+
+Thus properly scaled versions of the wavelet basis Ψ
+for L2 are Riesz bases for a whole range of smoothness
+spaces, including of course s = 0 as a special case. This
+range depends on the regularity of the wavelets. In many
+constructions, one has γ = 3/2 corresponding to globally
+continuous wavelets (Canuto et al., 1999, 2000; Cohen and
+Masson, 1997; Dahmen and Schneider, 1999a; Dahmen and
+Stevenson, 1999).
+Establishing (32) works actually the other way around. It
+is usually easier to verify (32) for positive s. This can be
+derived from the validity of Bernstein and Jackson estimates
+for the primal multiresolution sequences only. If one can do
+this, however, for the primal and for the dual multiresolution
+sequences associated with a dual pair of multiscale bases
+̃ (32) follows for the whole range of regularity indices s
+Ψ, Ψ,
+by an interpolation argument (Dahmen, 1996; Dahmen and
+Stevenson, 1999). In particular, this says that the Riesz basis
+property for L2 (Ω) follows from that of scaled versions of
+̃ for positive Sobolev regularity (Cohen, 2000, 2003;
+Ψ, Ψ
+Dahmen, 1997, 2003).
+
+11
+
+Remark 1. We emphasize the case (32) because it implies
+further relations that will be important later for robustness. To describe these, recall our convention of viewing
+a collection Θ of basis functions sometimes as a vector
+whose entries are ordered in a fixed but unspecified way.
+Ordering the wavelet coefficient arrays in a natural way,
+∑
+we can write 𝜆∈ v𝜆 2−s|𝜆| ψ𝜆 =∶ vT d−s Ψ where (dt ∶=
+(2t|𝜆| 𝛿𝜆,𝜈 )𝜆,𝜈 ) and v ∶= (v𝜆 )𝜆∈ . In the problem class (2), one
+often encounters Hilbert (energy) spaces endowed with a
+norm of the type ||v||2 ∶= ϵ⟨∇v, ∇v⟩ + ⟨v, v⟩. The perforϵ
+mance of multilevel preconditioners for such problems often
+depends on ϵ. It will be seen that a remedy for this can be
+based on robust equivalences of the following form that can
+be derived from (32) for s = 0 and s = 1 (Cohen et al., 2001;
+Dahmen, 2001): assume
+that γ > 1 and define the diagonal
+√
+matrix dϵ ∶= ((1 + (ϵ)2|𝜆| )𝛿𝜆,𝜇 )𝜆,𝜇∈ . Then
+−2 −1∕2
+(2(c−2
+||v||𝓁2 ≤ ||vT d−1
+ϵ Ψ||ϵ
+0 + c1 ))
+
+≤ (C02 + C12 )1∕2 ||v||𝓁2
+
+(33)
+
+We wish to conclude this section with the following
+remarks concerning duality; see, for example, Dahmen
+(2003) for more details. As indicated before, the known
+constructions of a wavelet basis Ψ, that satisfy norm
+equivalences of the form (32), involve to some extent the
+̃ Conversely, the
+simultaneous construction of a dual basis Ψ.
+existence of such a dual basis is actually a consequence of
+the Riesz basis property in the following sense. It is not hard
+to show that the validity of (30) implies the existence of a
+̃ ⊂  ′ such that ⟨ψ𝜆 , ψ
+̃ 𝜈 ⟩ = 𝛿𝜆,𝜈 , where ⟨⋅, ⋅⟩ is
+collection Ψ
+the duality pairing that identifies the representation of  ′ .
+̃ is a Riesz basis for  ′ , that is,
+Moreover, Ψ
+̃  ′ ≤ c−1 ||w||𝓁 ,
+CΨ−1 ||w||𝓁2 ≤ ||wT Ψ||
+Ψ
+2
+
+w ∈ 𝓁2
+
+(34)
+
+This will mainly be used in the equivalent form
+CΨ−1 ||⟨Ψ, v⟩||𝓁2 ≤ ||v|| ′ ≤ c−1
+Ψ ||⟨Ψ, v⟩||𝓁2
+
+(35)
+
+where we have abbreviated ⟨Ψ, v⟩ ∶= (⟨ψ𝜆 , v⟩ ∶ 𝜆 ∈  )T .
+In particular, if we want to construct a Riesz basis for L2 ,
+then the dual basis (with respect to the L2 -inner product as a
+dual pairing) must also be a Riesz basis in L2 , in agreement
+with the above remarks concerning (32). This rules out the
+practically convenient so-called hierarchical bases induced
+by interpolatory scaling functions since the dual basis is
+essentially comprised of Dirac distributions. An important
+further example is  = H01 (Ω) for which, according to (32),
+a Riesz basis is obtained by renormalizing the functions ψ 𝜆
+with the weight 2−|𝜆| , which also amounts to redefining Ψ as
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+d−1 Ψ. In this case, (35) offers a convenient way of evaluating
+the H−1 -norm which is useful for least squares formulations
+of second order elliptic problems or their mixed formulations
+(Dahmen et al., 2002). Note that in this particular case, unlike
+the situation in Remark 1, Ψ need not be a Riesz basis for L2 .
+
+2.5
+
+Wavelets and linear operators
+
+So far we have focused on wavelet representations of functions. For the problem class (2), in particular, it will be
+important to deal with wavelet representations of operators.
+In this section, we collect a few important facts concerning
+linear operators that follow from the above features. As a
+simple guiding example consider Poisson’s equation on some
+bounded domain Ω ⊂ ℝd
+− Δu = f
+
+in
+
+Ω,
+
+u=0
+
+Γ ∶= 𝜕Ω
+
+on
+
+(36)
+
+It will be crucial to interpret this equation properly. Multiplying both sides of (36) by smooth test functions that vanish
+on Γ, and integrating by parts, shows that the solution u satisfies
+⟨∇v, ∇u⟩ = ⟨v, f ⟩ for all smooth v
+(37)
+where ⟨v, w⟩ ∶= ∫Ω vw dx. However, this latter form makes
+sense even when u belongs only to the Sobolev space H01 (Ω)
+(recall Section 5) and when the test functions also just belong
+to H01 (Ω). Moreover, the right hand side makes sense whenever f is only a distribution in the dual H−1 (Ω) of H01 (Ω).
+Here ⟨⋅, ⋅⟩ is then understood to be the dual form on H01 (Ω) ×
+H −1 (Ω) induced by the standard L2 -inner product. Thus,
+defining the linear operator  by ⟨∇v, ∇u⟩ = ⟨v, u⟩ for all
+v, u ∈ H01 (Ω), the boundary value problem (36) is equivalent
+to the operator equation
+u = f
+
+(38)
+
+Thus the coefficient array w of v ∈  ′ with respect to the
+̃ is given by
+dual basis Ψ
+w = Av
+
+where A ∶= (⟨ψ𝜆 , Aψ𝜈 ⟩)𝜆,𝜈 ,
+
+(39)
+The above example (36) is a typical application where Ψ
+̃ are biorthogonal Riesz bases in the Sobolev space
+and Ψ
+ = H01 (Ω) and its dual  ′ = H −1 (Ω) respectively.
+A is often referred to as the standard wavelet representation
+of . Note that in conventional discretizations such as finite
+elements and finite differences, the operators can usually
+only be approximated. A basis allows one to capture, at least
+conceptually, all of the full infinite dimensional operator, a
+fact that will later be seen to have important consequences.
+Well-posedness and an equivalent 𝓵 2 -problem: We say
+that an operator equation of the form (38) is well posed if
+(either  maps  onto  ′ or f ∈ range () and) there exist
+positive constants c , C such that
+c ||v|| ≤ ||v|| ′ ≤ C ||v||
+
+for all
+
+The standard wavelet representation: Suppose now that
+as in the Laplace case described above, we have a linear
+operator  ∶  →  ′ and that Ψ is a Riesz-basis for , that
+∑
+is, (30) holds. Then for any v = 𝜆 v𝜆 ψ𝜆 ∈  one has
+v =
+
+∑
+𝜆
+
+=
+
+̃𝜆 =
+⟨ψ𝜆 , v⟩ψ
+
+(
+∑ ∑
+𝜆
+
+𝜈
+
+∑
+𝜆
+
+⟨ψ𝜆 , ψ𝜈 ⟩v𝜈
+
+⟨
+
+)⟩
+
+(
+ψ𝜆 , 
+
+)
+̃𝜆
+ψ
+
+∑
+𝜈
+
+v𝜈 ψ𝜈
+
+̃𝜆
+ψ
+
+v∈
+
+(40)
+
+Here  ′ is the dual of  endowed with the norm
+⟨v, w⟩
+v∈ ||v||
+
+||w|| ′ ∶= sup
+
+(41)
+
+and ⟨⋅, ⋅⟩ is a dual form on  ×  ′ (which is induced as
+before by the standard inner product in some pivot L2 space).
+Clearly (40) means that for any data f in the dual  ′ – the
+range of  – there exists a unique solution u, which depends
+continuously on the data f. Thus well-posedness refers to
+continuity with respect to a specific topology given by
+the energy space . It is not hard to show that in the
+case of Poisson’s problem (36), (40) is a consequence of
+H1 – ellipticity
+⟨∇v, ∇v⟩ ≥ c||v||2H 1 (Ω) ∶= ||v||2L (Ω) + ||∇v||2L (Ω) ,
+2
+
+where, roughly speaking,  is in this case the Laplacian
+(with incorporated homogeneous boundary conditions),
+taking H01 (Ω) into its dual H−1 (Ω).
+
+v = (v𝜈 )𝜈
+
+|⟨∇v, ∇w⟩| ≤ C||v||H 1 (Ω) ||w||H 1 (Ω)
+
+2
+
+(42)
+
+which in turn follows from Poincaré’s inequality. While
+in this special case the right space  = H01 (Ω) is easily
+recognized, the identification of a suitable  such that (40)
+holds is sometimes a nontrivial task, an issue that will be
+taken up again later.
+An important observation is that, once the mapping
+property (40) has been established, the Riesz basis property
+(30) for the energy space allows one to transform the original
+problem into an equivalent one which is now well-posed
+in the Euclidean metric. This is of particular importance
+in parameter dependent cases such as the Hilbert space ϵ
+considered in the previous section.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+12
+
+Theorem 1. Suppose that  ∶  →  ′ satisfies (40) and
+that Ψ is a Riesz basis for , that is (30) holds. Let A
+denote the standard representation of  with respect to Ψ.
+∑
+Then (38) is equivalent to Au = f, where u = 𝜆∈ u𝜆 ψ𝜆 ,
+f = (⟨ψ𝜆 , f ⟩)𝜆∈ . Moreover, A is boundedly invertible on 𝓁2 ,
+that is,
+c2Ψ c ||v||𝓁2 ≤ ||Av||𝓁2 ≤ CΨ2 C ||v||𝓁2 ,
+Proof. By (30), one has for any v =
+
+∑
+
+for all
+
+v ∈ 𝓁2
+(43)
+
+𝜆 v𝜆 ψ𝜆
+
+−1
+−2 −1
+≤ c−2
+Ψ c ||(⟨ψ𝜆 , v⟩)𝜆∈ ||𝓁2 = cΨ c ||Av||𝓁2
+
+where we have used (34). The reverse estimate follows
+analogously.
+◽
+
+3 EVOLUTION PROBLEMS –
+COMPRESSION OF FLOW FIELDS
+We shall now address the problem class (1) of evolution
+equations. In many relevant instances, the evolution of the
+quantity u(x, t) expresses a conservation law in the sense that
+for any test volume V in the domain Ω of interest,
+(44)
+
+where f(u) is the flux function and n denotes the outward
+normal on the boundary 𝜕V. When the solution is sufficiently
+smooth, (44) leads to a first order system of partial differential equations of the form
+𝜕t u + divx f (u) = 0
+
+(45)
+
+which is said to be hyperbolic when the Jacobian matrix
+Df (x) has for all x real eigenvalues with a full basis of
+eigenvectors. Hyperbolic systems of conservation laws are
+used to model phenomena as diverse as traffic, information,
+and fluid flows. Perhaps the most well-known example is the
+system of Euler equations which model compressible fluid
+flow in terms of balance equations for mass, momentum, and
+energy. Such systems have to be complemented by suitable
+initial/boundary conditions. For simplicity, we shall assume
+pure initial data u0 (x) = u(x, 0) with compact support.
+Numerical methods for solving (44) are typically based on
+evolving cell averages ūC (t) := (∫ C u(x, t)dx)/|C|, where C
+runs over a partition  of the domain Ω into disjoint cells.
+In fact, the balance relation (44) also reads
+ū C (t + Δt) = ū C (t) +
+
+Δt
+B (t),
+|C| C
+
+1
+Δt ∫t
+
+t+Δt
+
+∫𝜕C
+
+f (u) ⋅ n dx dt
+
+(46)
+
+A finite volume scheme will mimic this time evolution
+by replacing the exact flux balance BC (t) by a numerical
+approximation computed from the current approximation of
+the exact cell average. More precisely, given a time step
+Δt, the scheme computes approximate values unC ≈ uC (nΔt)
+according to
+un+1
+= uC (t) +
+C
+
+−1 −1
+||v||𝓁2 ≤ c−1
+Ψ ||v|| ≤ cΨ c ||v|| ′
+
+d
+u dx +
+f (u) ⋅ n ds = 0
+∫𝜕V
+dt ∫V
+
+BC (t) ∶=
+
+13
+
+Δt ∑ n
+f ′
+|C| C′ ∩C≠∅ C,C
+
+(47)
+
+n
+where fC,C
+′ is the numerical flux across the common
+boundary of C and an adjacent cell C′ for the time interval
+[nΔt, (n + 1)Δt]. This numerical flux typically depends
+on the values unC and unC′ , and possibly on other neighboring values. We shall always assume that the scheme is
+n
+n
+conservative, that is, fC,C
+′ = −fC ′ ,C . The initialization of
+the scheme uses the exact (or approximately computed)
+averages u0C ∶= (∫C u0 (x) dx)∕|C| of the initial data u0 .
+Denoting the array of cell averages by un = (unC )C∈ , the
+finite volume scheme is thus summarized by a one step
+relation
+un+1 = Eun
+(48)
+
+where E is a nonlinear discrete evolution operator. The
+computationally expensive part of this numerical method is
+n
+the evaluation of the numerical fluxes fC,C
+′ , which is typically based on the (approximate) solution of local Riemann
+problems. An a priori error analysis of these classical numerical methods is only available to a limited extent. It refers to
+scalar problems, not to systems, and is rigorously founded
+only for uniform meshes. The proven error estimates are of
+low approximation orders like h1/2 where h is the mesh size,
+that is, the maximal diameter of the cells.
+It is well-known that the solutions of hyperbolic conservation laws exhibit a highly nonhomogeneous structure.
+Discontinuities in the solution can develop after finite time
+even for arbitrarily smooth initial data. So the solution
+exhibits regions of high regularity separated by regions of
+discontinuities (shocks). Capturing the singular effects in the
+solution by using classical discretizations based on uniform
+(or even quasi-uniform) partitions into cells would require
+a very fine resolution near the singularities and thus lead to
+enormous problem sizes. We see that the nature of the solution begs for the use of adaptive methods which would give
+finer resolution in the regions of shock discontinuities and
+maintain coarser resolution otherwise. The usual numerical
+approach is to generate such partitions adaptively. The difficulties in such an approach are to determine these regions and
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+properly perform the time evolution on these inhomogeneous
+discretizations.
+The analytic structure of solutions to (45) also points to
+possible advantages in using multiscale decompositions of
+the solution u in a numerical procedure. Because of the
+cancellation property (26), the coefficients of u would be
+small in those regions where the solution is smooth and
+would have significant size only near shocks. Thus, a multiscale decomposition would be excellent at identifying the
+regions of discontinuities by examining the size of the coefficients, and providing economical representations of the
+approximate solution at time nΔt by an adapted set of wavelet
+coefficients (d𝜆n )𝜆∈Λn . The approximate solution would therefore be given by
+∑
+d𝜆n ψ𝜆
+(49)
+uΛn =
+𝜆∈Λn
+
+where the set Λn is allowed to vary with n. The main difficulty
+in this approach is the method of performing the evolution
+step strictly in terms of the wavelet coefficients. In other
+words, given Λn and the coefficients (d𝜆n )𝜆∈Λn , how would
+we evolve on these data to obtain a good approximation
+at the next time step? This has led to the introduction of
+dynamically adaptive schemes in Maday et al. (1991) in
+which the derivation of (Λn+1 , uΛn+1 ) from (Λn , uΛn ) typically
+goes in three basic steps:
+(i)
+
+(ii)
+
+(iii)
+
+̃ n+1 with Λn ⊂ Λ
+̃ n+1 is
+Refinement: a larger set Λ
+derived from an a posteriori analysis of the computed
+coefficients d𝜆n , 𝜆 ∈ Λn .
+Evolution: a first numerical solution uΛ̃ n+1 =
+∑
+n+1
+ψ𝜆 is computed from un and the data of
+̃ n+1 d𝜆
+𝜆∈Λ
+the problem.
+Coarsening: the smallest coefficients of ũ n+1 are
+thresholded, resulting in the numerical solution
+∑
+uΛn+1 = 𝜆∈Λn+1 d𝜆n+1 ψ𝜆 supported on the smaller set
+̃ n+1 .
+Λn+1 ⊂ Λ
+
+A few words are in order concerning the initialization of the
+scheme: ideally, we can obtain an adaptive expansion uΛ0 of
+the initial value data u0 into a linear combination of wavelets
+by a thresholding procedure on its global expansion, that is,
+∑
+d𝜆0 ψ𝜆 , Λ0 ∶= {𝜆 s.t. ||d𝜆0 ψ𝜆 || ≥ 𝜂}
+(50)
+uΛ0 =
+𝜆∈Λ0
+
+where  is some prescribed norm in which we target
+to measure the error, 𝜂 a prescribed threshold and d𝜆0 ∶=
+̃ 𝜆 ⟩ are the wavelet coefficients of u0 . In practice, we
+⟨u0 , ψ
+cannot compute all the values of these coefficients, and one
+thus needs a more reasonable access to a compressed representation. This is typically done through some a priori analysis of the initial value u0 . In particular, if u0 is provided by
+an analytic expression, or if we have some information on the
+
+local size of its derivatives, estimates on the decay of wavelet
+coefficients, such as (26), can be used to avoid the computation of most details which are below threshold. With such a
+strategy, we expect to obtain Λ0 and (u0𝜆 )𝜆∈Λ0 with a memory
+and computational cost which is proportional to #(Λ0 ).
+Then, assuming that at time nΔt, the approximate solution
+uΛn has the form (49) for some set Λn of coefficients, the
+problem is thus both to select a correct set of indices Λn+1
+and to compute the new coefficients d𝜆n+1 for 𝜆 ∈ Λn+1 . As we
+have already explained, this is done by (i) refining Λn into an
+̃ n+1 which is well fitted to describing the
+intermediate set Λ
+solution at time (n + 1)Δt, (ii) computing uΛ̃ n+1 supported by
+̃ n+1 and (iii) deriving (uΛn+1 , Λn+1 ) from uΛ̃ n+1 by a threshΛ
+̃ n+1
+olding process. The selection of the intermediate set Λ
+should thus take into account the effect of the evolution operator  on the sparse expansion (49), integrated between nΔt
+and (n + 1)Δt. Once a procedure for the refinement of Λn
+̃ n+1 has been prescribed, several strategies are availinto Λ
+able for computing uΛ̃ n+1 from uΛn , such as Petrov–Galerkin
+methods in Maday et al. (1991) or collocation methods in
+Bertoluzza (1997). All these strategies are based on the
+̃ n+1
+̃ 𝜆 ⟩ for 𝜆 ∈ Λ
+computation of the inner products ⟨(uΛn ), ψ
+up to some precision. In the case where the evolution operator
+ is linear, this amounts to a matrix–vector product, and one
+can make use of the sparse multiplication algorithm which
+will be discussed in Section 6. However, in many cases of
+interest, the evolution operator  is nonlinear, making this
+computation more difficult and costly. Generally speaking,
+the discretization of nonlinear operators is a less simple
+task in the wavelet coefficient domain than in the physical
+domain.
+In the following, we shall present a systematic approach
+which allows us to solve this problem, by a suitable combination of the representations of the numerical solution by its
+wavelet coefficients and its physical values such as cell averages. This approach was first advocated by Harten (1993,
+1995). The idea of Harten is to use multiscale decompositions where they do well – namely, in finding the discontinuities in the solution at a given time, and to use classical
+finite volume solvers, based on cell averages for the evolution step according to (47) and (51), since the properties of
+these solvers are well understood. To accomplish this, we
+need to build cell averages into our multiscale structure. This
+is easily accomplished (as is detailed below) by using multiscale bases that use characteristic functions of cells as the
+dual scaling functions. This means that at any given time
+step, one can view the numerical solution through one of
+two microscopes. The one is the decomposition as a sum of
+characteristic functions of cells (on the finest level of decomposition); the other is the multiscale decomposition. The
+first is good for the evolution; the second is good for identifying shocks and regions of smoothness. As described in
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+14
+
+Section 2.3, there are fast methods for transforming between
+the two sets of coefficients (scaling coefficients and multiscale coefficients).
+Let us first amplify on our claim that cell averages lend
+themselves naturally to multiresolution techniques based on
+multilevel bases as described in Section 2.3. In fact, given
+a hierarchy of nested meshes and corresponding partitions
+( j ) j≥0 of the flow domain, the cell averages uC correspond
+directly to inner products ⟨u, 𝜒C ⟩∕|C| which suggests that
+the L1 -normalized functions 𝜒 C /|C| for C ∈  j play the role
+of the dual scaling functions ϕ̃ j,k . In complete analogy to
+(4), the indicator functions 𝜒 C /|C| satisfy two-scale relations. The prediction operators have then the form (20)
+based on the refinement matrices M j,0 . Similarly to (4)
+one can construct Haar-like orthogonal bases ψ 𝜆 . Here, as
+we have described in Section 2.3, one has a choice in the
+construction of the complement bases. We shall see that
+there is an advantage in having more vanishing moments
+in the dual basis than is provided by the classical Haar
+decomposition. Since Haar type bases have only first order
+vanishing moments, recall (12), one cannot expect a significant data compression. Therefore, one can use (22), (23)
+(with K = I) to raise the order of vanishing moments of the
+̃ 𝜆 as explained in (24) at the end of Section
+dual wavelets ψ
+2.3 (Dahmen et al., 2001; Müller, 2003). This amounts to
+changing the primal multiresolution spaces and in turn the
+primal wavelets ψ 𝜆 while the dual scaling functions remain
+defined as 𝜒 C /|C|.
+Given any array v j = (vC )C∈ j of cell averages on the partition  j , we can transform this vector into the multiscale
+format d j ∶= (v0 , d0 , … , d j−1 ), where the arrays d j encode
+detailed information needed to update the coarse cell averages in v j to v j+1 on the next level of resolution. Thus the d
+vectors correspond to the multiscale coefficients. It is important to note that in generating the multiscale coefficients, we
+do not need explicit information on the multiscale basis functions. The transformation T j that maps a cell average vector
+v j on to its multiscale decomposition d j , can be executed
+in an entirely discrete way as in the cascade algorithm of
+Section 2.3 (Arandiga et al., 1998, 1999; Carnicer et al.,
+1996; Sweldens, 1996, 1998). To go the other way, from
+multiscale coefficients to the scaling coefficients, we again
+use the cascade structure. Recall that scaling coefficients
+v j+1 , for a resolution level j + 1, are obtained from the scaling
+coefficients v j at the coarser level in a two step process. The
+first is to predict v j+1 by some rule (the lifting rule) and
+the second is to correct for the deviation in the prediction
+from the actual values. The deviation of the true coefficients
+v j+1 from the predicted coefficients is given by the detail
+d j+1 .
+
+15
+
+Our adaptive numerical scheme will be designed as a
+combination of a reference finite volume scheme which operates at the finest resolution level J according to
+un+1
+= E j unj
+j
+
+(51)
+
+that relate the
+and of the transformations T j and T−1
+j
+cell-average vector unj and its multiscale coefficients
+(d𝜆n )|𝜆|≤ j−1 . In an adaptive context, we want to encode
+only a small relevant portion of this vector corresponding to
+the adaptive set Λn . Ideally, this set would correspond to the
+indices 𝜆 such that
+||d𝜆n ψ𝜆 || > 𝜂
+
+(52)
+
+where || ⋅ || is the norm in which we plan to measure the
+error and 𝜂 is some prescribed threshold. In practice, we
+precisely want to avoid the encoding of unj and of the full
+multiscale vector, and therefore we cannot invoke a thresholding procedure applied to the reference numerical solution.
+Therefore, we shall develop an adaptive strategy that iteratively computes some 𝜂-significant sets Λn and multiscale
+coefficients (d𝜆n )𝜆∈Λn which might differ from those obtained
+by thresholding unj . One of our goals is to keep track of
+the error between unj and the adaptive solution vnj which is
+defined as the reconstruction on the finest partition  j from
+the details (d𝜆n )𝜆∈Λn .
+At this stage, a key observation is that a restricted multiscale vector (d𝜆 )𝜆∈Λ exactly encodes the cell averages on
+an adaptive partition (Λ) which includes cells of different
+resolution levels j = 0, … , J as illustrated in Figure 4,
+provided that the set Λ has a graded tree structure. Such a
+tree structure ensures that all the detail coefficients which
+are necessary to reconstruct the exact average on a cell C ∈
+(Λ) are contained in Λ. Note that a graded tree structure is
+not guaranteed on an adaptive set Λ produced by a thresholding procedure, yet it can be ensured by a suitable enlargement of Λ. In addition, it can be seen that the graded tree
+structure induces a grading property on the partition (Λ)
+which essentially means that two adjacent cells differ at most
+by one resolution level. The concepts of tree structure and
+grading will also serve in Section 6 in the context of nonlinear
+variational problems. Another key observation is that the
+cost of the transformation TΛ which maps the cell averages
+(uC )C∈(Λ) onto the restricted multiscale vector (d𝜆 )𝜆∈Λ is of
+the order #(Λ) and similarly for the inverse transformation
+. A detailed description of such techniques and the design
+T−1
+Λ
+of appropriate data structures can be found in Müller (2003).
+Based on this observation, we can propose the following
+adaptive scheme which follows the same principles as the
+dynamically adaptive scheme introduced in Maday et al.
+(1991):
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+(a)
+
+(b)
+
+Figure 4. (a) Adaptive mesh (b) Tree.
+
+(1)
+
+Initial values Apply the multiscale transform T j to
+the initial cell averages u0j to obtain the array of detail
+or wavelet coefficients (d𝜆0 )|𝜆|≤ j (including the cell averages on the coarsest level) for the time level n = 0.
+Choose a threshold parameter 𝜂 > 0 and set Λ0 to be
+the smallest graded tree containing those 𝜆 such that
+||d𝜆0 ψ𝜆 || > 𝜂.
+(2) Predicting the significant indices on the next time
+level Given the 𝜂-significant tree Λn for the time
+̃ n+1 that
+level n and the details (d𝜆n )𝜆∈Λn , predict a set Λ
+should contain the 𝜂-significant graded tree for time
+level n + 1. We extend the detail vector by setting
+̃ n+1 ∖Λn and we derive the cell averd𝜆n = 0 for 𝜆 ∈ Λ
+n
+ages (vC )C∈(Λ̃ n+1 ) by applying the adaptive multiscale
+transform T−1
+̃ n+1 .
+Λ
+(3) Time evolution step Compute the evolved cell averages (vn+1
+)C∈(Λ̃ n+1 ) at time n + 1, by some discrete
+C
+evolution operator to be specified later. Of course it
+is important that this evolution can be done at less
+cost than would be necessary to evolve the uncompressed data.
+(4) Reverse transform and thresholding Apply the localized transform TΛ̃ n+1 to (vn+1
+)C∈(Λ̃ n+1 ) which yields an
+C
+array of detail coefficients (d𝜆n+1 )𝜆∈Λ̃ n+1 . Set Λn+1 to be
+the smallest graded tree containing those 𝜆 such that
+||d𝜆n+1 ψ𝜆 || > 𝜂. Set n + 1 to n and go to (2).
+Any concrete realization of this scheme has to address the
+following issues.
+Choice of the norm || ⋅ || and of the threshold parameter 𝜂;
+̃ n+1 ;
+(2) Strategy for predicting the set Λ
+(3) Specification of the evolution operator.
+
+Regarding (1), since the norm || ⋅ || will typically measure
+the deviation between the reference and adaptive solution unj
+and vnj , a relevant choice for this norm should be such that
+we already have at our disposal an error estimate between
+the reference solution unj and the exact solution at time nΔt
+in the same norm. As we shall see further, it will also be
+important that the reference scheme is stable with respect to
+such a norm. In the context of conservation laws, this limits
+us to the choice  = L1 . For a discrete vector u j indexed by
+the finest partition  j , we define ||u j ||L1 as the L1 norm of the
+corresponding piecewise constant function on  j , that is,
+||u j ||L1 ∶=
+
+∑
+
+|C| |uC |
+
+(53)
+
+C∈ j
+
+Assuming that the ψ 𝜆 are normalized in L1 , it follows
+from the triangle inequality that the error e𝜂 produced by
+discarding those multiscale coefficients of u j satisfying
+||d𝜆 ψ𝜆 ||L1 ≤ 𝜂 is bounded by
+e𝜂 ≤
+
+∑
+||d𝜆 ψ𝜆 ||L1 ≤𝜂
+
+𝜂 = 𝜂 #{𝜆 ∶ ||d𝜆 ψ𝜆 ||L1 ≤ 𝜂}
+
+(54)
+
+Since the above sum is limited to |𝜆| ≤ J − 1, we can derive
+the estimate
+e𝜂 ≤ #( j )𝜂 ≲ 2dJ 𝜂
+(55)
+where d is the spatial dimension of the problem. It follows
+that a prescribed thresholding error 𝛿 can be obtained by
+using a threshold of the order
+𝜂 ∼ 2−dJ 𝛿
+
+(56)
+
+(1)
+
+Since the dual scaling functions and wavelets are normalized
+in L1 , the primal scaling functions and wavelets are normalized in L∞ so that ||ψ𝜆 ||L1 ∼ 2−d|𝜆| . Therefore, the above
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+16
+
+strategy corresponds to applying to the coefficients d𝜆 a level
+dependent threshold 𝜂 |𝜆| with
+𝜂 j ∼ 2d( j− j) 𝛿
+
+(57)
+
+Note however that the estimate (55) is somehow pessimistic
+since some thresholded coefficients d𝜆 could actually be
+much smaller than 𝜂 |𝜆| .
+Concerning (2), an ideal prediction should take into
+account the action of the reference scheme E j on the adaptive solution in the sense that the detail coefficients of E j vnj
+̃ n+1 are guaranteed to be below
+which are not contained in Λ
+̃ n+1 was proposed
+the threshold. A strategy for constructing Λ
+by Harten, based on a heuristic argument concerning the
+finite propagation speed of information in hyperbolic prob̃ n+1 is formed as the union of certain fixed
+lems. Basically, Λ
+neighborhoods (on the same or at most one higher scale) of
+the elements in Λn . Recently, at least for scalar problems, a
+rigorous analysis has been presented in Cohen et al. (2002a)
+̃ n+1 that are guaranteed to fulfill
+which gives rise to sets Λ
+the above prescription. In this case, the neighborhoods are
+allowed to depend in a more precise way on the size of the
+elements in Λn . In practical experiments, Harten’s simpler
+choice seems to have worked so far well enough though.
+Turning to (3), several strategies are available for evolving
+the cell averages (vnC )C∈(Λ̃ n+1 ) into (vn+1
+)C∈(Λ̃ n+1 ) . The first
+C
+one consists in computing the effect on these averages of the
+exact application of the reference scheme E j to the adaptive
+solution vnj reconstructed on the fine grid. A key observation is that since we are only interested in the averages of
+̃ n+1 ), the numerical fluxes
+E j vnj on the adaptive partition (Λ
+which need to be computed are only those between the adjacent fine cells such that their interface lies on the edge of a
+cell of the adaptive partition. In the original concept proposed
+by Harten, this idea was exploited in order to obtain CPU
+savings on the number of flux evaluation, with the solution
+encoded in its nonadaptive form vnj . In Cohen et al. (2003), it
+was shown that the computation of the needed fluxes can be
+performed from the adaptive data (vn+1
+)C∈(Λ̃ n+1 ) without the
+C
+need of performing the reconstruction of the entire vnj . This
+information can indeed be acquired by local reconstruction.
+However, in several space dimensions, the resulting computational complexity, although still lower than that for the fully
+refined partitions, is suboptimal. A second, more economical
+strategy is to employ the finite volume stencil of the uniform
+partition but for the currently local level of resolution. This
+makes use of the local quasi-uniformity of the mesh which
+can be made locally uniform by subdividing neighboring
+cells of lower generation. The gradedness of the partitions
+ensures that the subdivisions need only have depth one. In
+numerical experiments, this strategy turns out to work well
+when using higher order finite volume schemes in connection
+
+17
+
+with corresponding higher order multiscale decompositions,
+here corresponding to the higher order vanishing moments
+(Müller, 2003).
+One of the good features of the adaptive approach that
+we have described is the possibility to monitor the error
+between the reference and adaptive numerical solution by a
+proper tuning of the threshold parameter. Here, we consider
+the evolution strategy that amounts to computing exactly
+̃ n+1 ). It
+the averages of E j vnj on the adaptive partition (Λ
+follows that we can write
+− vn+1
+||L1 = ||E j unj − E j vnj ||L1 + pn + tn
+||un+1
+j
+j
+where
+pn ∶=
+
+∑
+̃ n+1
+𝜆∉Λ
+
+and
+tn ∶=
+
+||d𝜆 (E j vnj )ψ𝜆 ||L1
+
+∑
+̃ n+1 ∖Λn+1
+𝜆∈Λ
+
+||d𝜆 (E j vnj )ψ𝜆 ||L1
+
+(58)
+
+(59)
+
+(60)
+
+respectively denote the errors resulting from the restriction to
+̃ n+1 and to the set Λn+1 obtained by threshthe predicted set Λ
+olding. According to our previous remarks, these errors can
+be controlled by some prescribed 𝛿 provided that we use the
+level dependent threshold 𝜂 j ∼ 2d(j−J) 𝛿. Assuming in addition
+that the reference scheme is L1 -stable in the sense that for all
+u j and v j ,
+||E j u j − E j v j ||L1 ≤ (1 + CΔt)||u j − v j ||L1
+
+(61)
+
+we thus obtain
+− vn+1
+||L1 ≤ ||E j unj − E j vnj ||L1 + 2𝛿
+||un+1
+j
+j
+
+(62)
+
+which yields the estimate at time T = nΔt
+||unj − vnj ||L1 ≤ C(T)n𝛿
+
+(63)
+
+Therefore, if the reference numerical scheme is known to
+provide accuracy ϵ = ϵ j on level J, it is natural to choose
+𝛿 such that n𝛿 ∼ ϵ. In many practical instances, however,
+this estimate turns out to be too pessimistic in the sense that
+thresholding and refinement errors do not really accumulate
+with time, so that 𝛿 and the threshold 𝜂 can be chosen larger
+than the value prescribed by this crude analysis. A sharper
+analysis of the error between the adaptive and reference
+solution is still not available.
+An adaptive solver based on the above concepts has been
+developed and implemented by Müller. It also incorporates
+implicit time discretizations. A detailed account can be found
+in Müller (2003). The recently developed new flow solver
+QUADFLOW for hyperbolic conservation laws and for the
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+(a)
+
+(b)
+
+Figure 5. (a) Pressure distribution (b) Adaptive mesh.
+
+Navier Stokes equations for compressible flows is based
+on these adaptive multiresolution techniques, on a finite
+volume discretization that can cope with hanging nodes and
+on a mesh generator based on block partitions. Each block
+corresponds to a B-spline based parametric mapping that
+allows a flexible mesh refinement through point evaluations
+of the B-spline representation. An outline of the scheme
+and extensive numerical tests can be found in Bramkamp
+et al. (2003) and Ballmann et al. (2000). The numerical
+examples provided by Müller and Bramkamp should give
+an impression of the performance of such techniques. The
+first example in Figure 5 shows the results for an Euler
+computation concerning a flow at Mach 0.95 at an angle
+of attack 𝛼 = 0 around a bench mark NACA00012 profile.
+Here the main objective is to test the resolution of shock
+interactions even at a large distance from the airfoil. The
+mesh has approximately 5 × 104 cells as opposed to an
+estimated number of 7 × 107 cells needed by a uniformly
+refined mesh for a comparable target accuracy. A close up of
+Figure 5(b) is displayed in Figure 6.
+Figure 7 shows a series of adaptive refinements again
+for an Euler computation for a flow around a BAC
+3-11/RES/30/21-Profile at M = 0.85 and an angle of
+attack 𝛼 = 0∘ . This test illustrates the reliable detection
+even of small shocks here in the lower region of the nose.
+Further detailed numerical studies for instationary problems
+such as moving wings, shock-bubble interactions, analogous
+studies for viscous flows and boundary layer resolution can
+
+Figure 6. Adaptive mesh – close up.
+
+1024 cells, Lmax = 1
+
+7405 cells, Lmax = 4
+
+2 8288 cells, Lmax = 9
+
+Figure 7. Adaptive mesh refinement.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+18
+
+be found in Bramkamp et al. (2003), Ballmann et al. (2000),
+and Müller (2003).
+
+3.1
+
+19
+
+primarily in finding sparse and efficient approximations of
+potential operators. We shall describe this in the following
+simple setting.
+
+Concluding remarks
+
+The above framework is an example where multiscale bases
+for realistic geometries are conveniently realized. In spite of
+the promising numerical results, it should be stressed though
+that many principal questions remain open, due to a number
+of obstructions. First, the current understanding of error
+analysis for hyperbolic problems is much less developed than
+for elliptic problems, partly due to the nature of the relevant
+function spaces. On one hand, there are only poor a priori
+estimates that could serve as a bench mark. The central point
+of view is a perturbation analysis. The overall attainable
+accuracy is fixed by the a priori choice of a highest level J of
+spatial resolution. All subsequent attempts aim at preserving
+the accuracy offered by a uniformly refined discretization
+with that resolution at possibly low cost. Thus whatever
+information is missed by the reference scheme cannot be
+recovered by the above adaptive solver.
+On the other hand, the multiscale techniques did not unfold
+their full potential; one makes use of the cancellation properties of wavelet bases but not of the norm equivalences
+between wavelet coefficients and functions. Thus the primary
+focus here is on the compression of the conserved variables,
+that is, on the sparse approximation of functions based on
+cancellation properties. This does so far not provide any
+estimates that relate the achieved accuracy ϵ to the size of
+the 𝜂-significant trees. This question will be addressed later,
+again in a different context, where stronger basis properties
+allow one to exploit not only the sparse approximation of
+functions but also that of the involved operators.
+
+4 BOUNDARY INTEGRAL EQUATIONS –
+MATRIX COMPRESSION
+A variety of problems in elasticity, fluid flow or electromagnetism lead to a formulation in terms of boundary integral equations falling into the category (2). In principle,
+this is a feasible approach when the Green’s function of
+the underlying (linear) partial differential equation is known
+explicitly. This is a particularly tempting option when the
+original formulation via a PDE refers to an exterior and hence
+unbounded domain since the corresponding boundary integral formulation lives on a compact manifold of lower spatial
+dimension. Wavelet concepts have had a significant impact
+on this problem area (Dahmen et al., 2002; Dahmen et al.,
+1994; Harbrecht, 2001; Lage and Schwab, 1998; Lage, 1996;
+von Petersdorff and Schwab, 1996, 1997; Schneider, 1998),
+
+4.1
+
+Classical boundary integral equations
+
+Let Ω− be again a bounded domain in ℝd (d ∈ {2, 3}) and
+consider Laplace’s equation
+(Ω = Ω−
+
+− Δw = 0, on Ω,
+
+Ω+ ∶= ℝ3 ∖Ω− ) (64)
+
+or
+
+subject to the boundary conditions
+w= f
+
+on Γ ∶= 𝜕Ω−
+
+(w(x) → 0,
+
+|x| → ∞
+
+when
+
+Ω = Ω+ )
+
+(65)
+
+Of course, the unbounded domain Ω+ poses an additional
+difficulty in the case of such an exterior boundary value
+problem. A well-known strategy is to transform (64), (65)
+into a boundary integral equation that lives only on the
+manifold Γ = 𝜕Ω. There are several ways to do that. They
+all involve the fundamental solution (x, y) = 1∕(4𝜋|x − y|)
+of the Laplace operator which gives rise to the single layer
+potential operator
+(u)(x) = (u)(x) ∶=
+
+∫Γ
+
+(x, y)u(y) dΓy ,
+
+x∈Γ
+
+(66)
+
+One can then show that the solution u of the first kind integral
+equation
+u = f on Γ
+(67)
+provides the solution w of (64) through the representation
+formula
+w(x) =
+
+∫Γ
+
+(x, y)u(y) dΓy ,
+
+x∈Ω
+
+(68)
+
+An alternative way uses the double layer potential
+(v)(x) ∶=
+
+𝜕
+(x, y)v(y) dΓy
+∫Γ 𝜕ny
+T
+
+=
+
+1 ny (x − y)
+v(y) dΓy ,
+∫Γ 4𝜋 |x − y|3
+
+x∈Γ
+
+(69)
+
+where ny is the outward normal to Γ at y ∈ Γ. Now the
+solution of the second kind integral equation
+u ∶=
+
+(
+
+)
+1
+± u= f
+2
+
+(Ω = Ω± )
+
+(70)
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+gives the solution to (64) through
+w(x) =
+
+∫Γ
+
+the following classical estimate (Dahmen et al., 1994; von
+Petersdorff and Schwab, 1996, 1997).
+
+(x, y)u(y) dΓy
+
+(71)
+
+One way of reformulating (64) with Neuman boundary
+conditions 𝜕w/𝜕n = g on Γ, where ∫Γ g(x) dΓx = 0, is
+offered by the so-called hypersingular operator (v)(x) ∶=
+−(𝜕∕𝜕nx )∫Γ (𝜕∕𝜕ny )(x, y) dΓy . Now the solution of
+u = u = g
+
+on Γ
+
+(72)
+
+leads to the solution of the Neuman problem for Laplace’s
+equation through the representation formula (71), where the
+constraint ∫Γ u(x) dΓx = 0 is imposed in the case of an interior
+problem to ensure uniqueness.
+
+4.2
+
+Quasi-sparsity of wavelet representations
+
+We have encountered so far two classes of operators. The
+first case such as (36) concerns differential operators that are
+local in the sense that ⟨ψ𝜆 , ψ𝜈 ⟩ = 0 whenever S𝜆 ∩ S𝜈 = ∅.
+Note that the wavelet representation A is not sparse in the
+classical sense since basis functions from different levels
+may overlap. In fact, it is easy to see that the number of
+entries in a principal section of A of size N contains O(N
+log N) entries. However, we shall see that many of these
+entries are so small in modulus that they can be neglected in
+a matrix–vector multiplication without perturbing the result
+too much. The point of focus in this section is that this even
+holds true for the second class of global operators, which
+are roughly speaking inverses of differential operators such
+as the above boundary integral operators. They all share the
+property that they (or at least their global part) are of the form
+(u)(x) =
+
+∫Γ
+
+K(x, y)u(y) dΓy
+
+(73)
+
+where for a given domain or manifold Γ the kernel K(x, y) is
+smooth except on the diagonal x = y and satisfies the decay
+conditions.
+|
+| 𝛼 𝛽
+|𝜕x 𝜕y K(x, y)| ≲ dist(x, y)−(d+2t+|𝛼|+|𝛽|)
+|
+|
+
+(74)
+
+By (39), the entries of A are in this case given by
+A𝜆,𝜈 = ⟨K, ψ𝜆 ⊗ ψ𝜈 ⟩Γ×Γ =
+
+∫ Γ ∫Γ
+
+× ψ𝜆 (x)ψ𝜈 (y) dΓx dΓy
+
+K(x, y)
+(75)
+
+Although none of the entries A𝜆,𝜈 will generally be zero,
+many of them are very small in modulus as specified by
+
+Theorem 2. Suppose that the kernel K is of the above
+form and that d−s Ψ is a Riesz-basis for Hs for −̃γ < s < γ
+(see (32)) and has cancellation properties (see (26)) of order
+m.
+̃ Moreover, assume that  given by (73) has order 2t and
+satisfies for some r > 0
+||v||H −t+a ≲ ||v||H t+a ,
+
+v ∈ H t+a , 0 ≤ |a| ≤ r
+
+(76)
+
+Then, for any 𝜎 > 0 such that 0 < 𝜎 ≤ min {r, d∕2 + m
+̃ +
+t}, t + 𝜎 < γ, and t − 𝜎 > −̃γ, one has
+2−(|𝜈|+|𝜆|)t |⟨ψ𝜆 , ψ𝜈 ⟩| ≲
+
+2−||𝜆|−|𝜈||𝜎
+̃
+(1 + 2min(|𝜆|,|𝜈|) dist(S𝜆 , S𝜈 ))d+2m+2t
+(77)
+
+Thus the entries of the wavelet representation of operators of the above type exhibit a polynomial spatial decay,
+depending on the order of cancellation properties, and an
+exponential scalewise decay, depending on the regularity of
+the wavelets.
+For a proof of such estimates, one distinguishes two cases.
+When dist(S𝜆 , S𝜈 ) ≲ 2−min(|𝜆|,|𝜈|) one can use the continuity
+properties (76) in combination with the norm equivalences
+(32) to show that
+|⟨ψ𝜆 , ψ𝜈 ⟩| ≤ 2t(|𝜆|+|𝜈|) 2𝜎(|𝜈|−|𝜆|)
+
+(78)
+
+(see Dahlke et al., 1997 for more details).
+On the other hand, when dist(S𝜆 , S𝜈 ) ≳ 2−min(|𝜆|,|𝜈|) , the
+wavelets are integrated against smooth parts of the kernel
+K. One can then exploit the cancellation properties for both
+wavelets to obtain the bound
+|⟨ψ𝜆 , ψ𝜈 ⟩| ≲
+
+̃
+2−(|𝜆|+|𝜈|)(d∕2+m)
+d+2
+m+2t
+(dist(S𝜆 , S𝜈 )) ̃
+
+(79)
+
+(see e.g. Dahmen et al., 1994; Dahmen and Stevenson, 1999;
+von Petersdorff and Schwab, 1996; and von Petersdorff and
+Schwab, 1997 for more details). The decay estimate (77)
+follows then from (78) and (79).
+However, the above argument for the case of overlapping
+supports is rather crude. Instead one can use the so-called
+second compression due to Schneider (1998). In fact, when
+|𝜆| ≫ |𝜈| and when S𝜆 does not intersect the singular support
+of ψ 𝜈 then ψ𝜈 is smooth on the support of ψ𝜆 and one can
+again use the cancellation property of ψ𝜆 . Denoting by S𝜈′ the
+singular support of (the lower level wavelet) ψ 𝜈 , this leads to
+|⟨ψ𝜆 , ψ𝜈 ⟩| ≲
+
+̃
+2|𝜆|∕2 2−|𝜈|(m+d∕2)
+′
+dist(S𝜈 , S𝜆 )2t+m̃
+
+(80)
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+20
+
+Estimates of the type (77), (78), and (80) provide the basis
+of matrix compression strategies that aim at replacing the
+wavelet representation of a operator by a sparsified perturbation that can be used to expedite the numerical solution of
+corresponding linear systems.
+
+4.3
+
+Weak formulations and Galerkin schemes
+
+As in the case of Poisson’s equation (36) we are dealing again
+with an operator equation
+u = f
+
+(81)
+
+this time of the type (66), (70), or (72). A classical approach
+to solving such an equation numerically is to return again
+to a proper weak formulation on which to base a Galerkin
+discretization. As before, the key is to identify first a suitable
+(Hilbert) space  such that the variational formulation
+a(v, u) ∶= ⟨v, u⟩ = ⟨v, f ⟩
+
+for all
+
+v∈
+
+(82)
+
+is well-posed in the sense of (40). In terms of the operator ,
+this can be rephrased by saying that  is boundedly invertible
+as a mapping from  onto  ′ , which will often be referred
+to as mapping property.
+All the above examples can be shown to fall into this framework (Kress, 1989). The single layer potential is symmetric
+positive definite on the Sobolev space  ∶= H −1∕2 (Γ) whose
+dual is  ′ = H 1∕2 (Γ), that is,
+a(v, v) = ⟨v, v⟩ ≳ ||v||H −1∕2 (Γ)
+
+for all
+
+v∈H
+
+−1∕2
+
+a(v, uS ) = ⟨v, f ⟩
+
+for all
+
+v∈S
+
+Such a scheme is called (-)stable (for a family  of
+increasing spaces S ∈ ) if (40) holds on the discrete level,
+uniformly in S ∈ . In other words, denoting by PS any
+-bounded projector onto S, we need to ensure that (40)
+holds with  replaced by P′S PS , uniformly in S ∈ , where
+P′ S is the adjoint of PS . This is trivially the case for any
+subspace S ⊂  when  is symmetric positive definite. In
+the coercive case, one can show that Galerkin discretizations
+are stable for families  of trial spaces that satisfy certain
+approximation and regularity properties formulated in terms
+of direct and inverse estimates, whenever the level of resolution is fine enough (Dahmen et al., 1994).
+Once this homework has been done, what remains is
+choosing a basis for S by which (84) is turned into a linear
+system of equations. The unknowns are the coefficients of uS
+with respect to the chosen basis.
+The obvious advantage of the boundary integral approach
+is the reduction of the spatial dimension and that one has to
+discretize in all cases only on bounded domains. On the other
+hand, one faces several obstructions:
+(i)
+
+(ii)
+
+(Γ)
+(83)
+
+which is easily seen to imply (40).
+The double layer potential is known to be compact when Γ
+is a C2 manifold in which case the kernel is weakly singular.
+In general, the appropriate energy space is  = L2 (Γ) =  ′ .
+Despite the lack of symmetry, one can show that the bilinear
+form a(⋅, ⋅) is coercive and that (40) holds with  = L2 (Γ).
+The hypersingular operator , in turn, is strongly singular
+with energy space  = H 1∕2 (Γ) (i.e.  ′ = H −1∕2 (Γ)),
+respectively  = H 1∕2 (Γ)∕ℝ in the case of an interior
+problem. Again, since it is then symmetric positive definite
+and (40) follows.
+According to the shifts caused by these operators in the
+Sobolev scale,  ∶ H t (Γ) → H −t (Γ), the single layer potential, double layer potential and hypersingular operator have
+order 2t = − 1, 0, 1, respectively.
+The (conforming) Galerkin method (for any operator
+equation (64)) consists now in choosing a finite dimensional
+space S ⊂  and determining uS ∈ S such that
+(84)
+
+21
+
+Whenever the order of the operator is different from
+zero (e.g. for  = ), the problem of growing condition numbers arises because the operator treats high
+frequency components differently from slowly varying
+ones. In general, if an operator has order 2t, the spectral condition numbers of the stiffness matrices grow
+like h−2|t| , where h reflects the spatial resolution (e.g.
+the mesh size) of the underlying discretization.
+Discretizations lead in general to densely populated
+matrices. This severely limits the number of degrees
+of freedom when using direct solvers. But iterative
+techniques are also problematic, due to the fact that the
+cost of each matrix/vector multiplication increases with
+the square of the problem size.
+
+One possible strategy to overcome these obstructions will
+be outlined next.
+
+4.4
+
+Wavelet–Galerkin methods
+
+We adhere to the above setting and consider the operator
+equation (81), where  has the form (73), (74) and satisfies (40) for  = H t (Γ). Suppose now that we have a wavelet
+basis Ψ which is a Riesz basis for H t (Γ), constructed along
+the lines from Section 2.3, with the corresponding multiresolution sequence of spaces Sj spanned by all wavelets ψ𝜆 ,
+|𝜆| < j, of level less than j. We point out next how the use
+of the spaces Sj as trial spaces in Galerkin discretizations
+can help to cope with the above obstructions. To this end,
+let A j ∶= (⟨ψ𝜆 , ψ𝜈 ⟩)|𝜆|,|𝜈|< j denote the stiffness matrix of 
+with respect to the (finite) wavelet basis of the trial space Sj .
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Thus (84) takes the form
+A j u j = f j,
+
+The Ã j have still uniformly bounded condition
+numbers when the level j of resolution grows.
+(ii) The solutions ũ j of the perturbed systems Ã j ũ j = f j
+have still the same order of accuracy as the solutions
+u j of the unperturbed systems (85), uniformly in j.
+(iii) Find efficient ways of computing the nonzero entries
+of Ã j .
+(i)
+
+f j ∶= (⟨ψ𝜆 , f ⟩)|𝜆|< j
+
+(85)
+
+The first observation concerns obstruction (i) above
+(Dahmen and Kunoth, 1992, Dahmen et al., 1994).
+Remark 2. If the Galerkin discretizations are Ht -stable for
+ = {S j } j∈ℕ0 , then the spectral condition numbers of A j are
+uniformly bounded.
+In fact, when the bilinear form a(⋅, ⋅), defined in (82), is
+symmetric and Ht -elliptic, so that A is symmetric positive
+definite, the spectrum of A j is contained in the convex hull
+of the spectrum of A, so that the assertion follows immediately from Theorem 1. Since under this assumption Galerkin
+discretizations are always stable for any choice of subspaces,
+this is a special case of the above claim. In the general case,
+the argument is similar to that in the proof of Theorem 1. In
+fact, Galerkin stability means that ||A−1
+j ||𝓁2→𝓁2 ≲ 1, which
+ensures the existence of a constant c̄ such that c̄ ||v j ||𝓁2 ≤
+||A j v j ||𝓁2 for any vj ∈ Sj with coefficient vector v j . Moreover, by (43),
+||A j v j ||𝓁2 = ||(⟨ψ𝜆 , v j ⟩)|𝜆|< j ||𝓁2
+≤ ||Av j ||𝓁2 ≤ CΨ2 C ||v j ||𝓁2
+which confirms the claim.
+This observation applies to all our above examples of
+boundary integral operators. In fact,  and  are elliptic and
+the coercivity in the case (70) of the double layer potential
+ensures that (for j ≥ j0 large enough) the Galerkin discretizations are also stable in this case (Dahmen et al., 1994).
+Thus, a proper choice of wavelet bases for the respective
+energy space deals with obstruction (i) not only for the
+second kind integral equations with zero order operators
+but also essentially for all classical potential operators. This
+is, for instance, important in the context of transmission
+problems.
+Of course, the preconditioning can be exploited in the
+context of iterative solvers for (85) only if the cost of a
+matrix/vector multiplication can be significantly reduced
+below the square of the problem size. First, note that, due
+to the presence of discretization errors, it is not necessary to
+compute a matrix/vector multiplication exactly but it would
+suffice to approximate it within an accuracy tolerance that
+depends on the current discretization error provided by Sj .
+Thus, one faces the following central
+Task Replace as many entries of A j as possible by zero so as
+to obtain a perturbed matrix Ã j with the following properties
+for all the above operator types:
+
+These issues have been addressed in a number of investigations (Dahmen et al., 1994, 2002; von Petersdorff and
+Schwab, 1996, 1997; von Petersdorff et al., 1997; Harbrecht,
+2001; Schneider, 1998). We shall briefly outline the current
+state of the art as reflected by Harbrecht (2001) and Dahmen
+et al. (2002). The key is a suitable, level-dependent thresholding strategy based on the a priori estimates (79) and
+(80). It requires a sufficiently high order of cancellation
+properties, namely m
+̃ > m − 2t where m is the approximation order provided by the multiresolution spaces Sj . Thus,
+whenever  has nonpositive order (such as the single and
+double layer potential operator), one must have m
+̃ > m,
+ruling out orthonormal wavelets (in L2 ). Given that Ψ meets
+this requirement, and considering a fixed highest level J of
+resolution, fix parameters a, a′ > 1 and m′ ∈ (m, m
+̃ + 2t)
+and define the cut-off parameters (Dahmen et al., 2002;
+Harbrecht, 2001; Schneider, 1998)
+}
+{ −min{l, j} (2 j(m′ −t)−( j+l)(m′ +m))∕(2(
+̃
+m+t))
+̃
+2
+,2
+}
+{
+′
+′
+̃ m+2t)
+̃
+c′l, j ∶= a′ max 2−max{l, j} , 2(2 j(m −t)−( j+l)m −max{ j,l}m)∕(
+(86)
+cl, j ∶= a max
+
+Then the a priori compression of A j is given by
+(Ã j )𝜆,𝜈
+⎧
+⎪0, dist(S𝜆 , S𝜈 ) > c|𝜆|,|𝜈| and |𝜆|, |𝜈| ≥ j0 ,
+⎪0, dist(S𝜆 , S𝜈 ) ≲ 2−min{|𝜆|,|𝜈|} and
+⎪
+dist(S𝜆′ , S𝜈 ) > c′|𝜆|,|𝜈| if |𝜈| > |𝜆| ≥ j0 − 1,
+∶= ⎨
+⎪
+dist(S𝜆 , S𝜈′ ) > c′|𝜆|,|𝜈| if |𝜆| > |𝜈| ≥ j0 − 1,
+⎪
+⎪(A j )𝜆,𝜈 , otherwise
+⎩
+(87)
+The first line is the classical ‘first compression’ based on
+(79) when the wavelets have disjoint supports with a distance
+at least the diameter of the larger support. The number of
+nonzero entries that remain after this compression is of the
+order NJ log NJ where N j ∶= dim S j ∼ 2(d−1) j when d − 1
+is the dimension of Γ. The second line reflects the ‘second
+compression’ due to Schneider, which discards entries for
+wavelets with overlapping support (Schneider, 1998). More
+importantly, this affects also those entries involving the
+scaling functions on the coarsest level j0 . It has a significant
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+22
+
+effect when, due to a complicated geometry, the coarsest
+level already involves a relatively large number of basis functions. Asymptotically, it removes the log factor in the count
+of the nonzero entries of Ã j .
+A sophisticated perturbation analysis, whose main ingredients are the a priori estimates (79), (80) based on the
+cancellation properties of Ψ, the norm equivalences (30), and
+suitable versions of the Schur lemma, yields the following
+result (Dahmen et al., 2002, Harbrecht, 2001).
+Theorem 3. The compressed matrices Ã j , given by (87),
+have uniformly bounded condition numbers. The number
+of nonzero entries in Ã j is of the order NJ , uniformly in
+J. Moreover, the solution ũ j exhibits optimal discretization
+error estimates in the energy norm
+||u − ũ j ||H t (Γ) ≲ 2 j(t−m) ||u||H m (Γ) ,
+
+j→∞
+
+(88)
+
+This result says that the above compression strategy is
+asymptotically optimal. In comparison with earlier versions,
+the removal of log-factors even offers a strictly linear
+complexity. Note that for operators of negative order, the
+relatively high computational efforts for Galerkin discretizations, due to the double integrals, pay off through the high
+order, m + |t|.
+The remaining crucial question concerns the complexity of
+computing the compressed matrices Ã j . A detailed analysis
+of this issue can be found in Harbrecht (2001); see also
+Dahmen et al. (2002). The main facts can be summarized
+as follows:
+Of course, the entries of Ã j cannot be computed exactly but
+one has to resort to quadrature. The following nice observation from Harbrecht (2001) tells us how much computational
+effort can be spent on the entry (A j )𝜆,𝜈 so as to keep the
+overall complexity of computing an approximation to Ã j
+proportional to the system size NJ .
+Theorem 4. The complexity of approximately computing
+the nonzero entries of Ã j is O(NJ ), provided that for some
+𝛼 > 0 at most O(( j − (|𝜆| + |𝜈|)∕2)𝛼 ) operations are spent
+on the computation of a nonzero coefficient (Ã j )𝜆,𝜈 .
+Next, in analogy to the compression estimates, one can ask
+which further perturbation is allowed for the approximate
+calculation of the entries of Ã j so as to retain the above
+optimal convergence rates (Harbrecht, 2001; Dahmen et al.,
+2002).
+Theorem 5. If the quadrature error for (Ã j )𝜆,𝜈 is bounded
+by
+{
+}
+′
+𝛿 min 2−((d−1)||𝜆|−|𝜈||)∕2 , 2−(d−1)( j−(|𝜆|+|𝜈|)∕2)(m −t)∕(m+t)
+′
+
+× 22Jt 2−2m ( j−(|𝜆|+|𝜈|)∕2)
+
+23
+
+for some fixed 𝛿 < 1, then the (perturbed) Galerkin scheme
+is stable and converges with optimal order (88)
+The main result now is that the accuracy bounds in
+Theorem 5 can be met by a sophisticated adapted quadrature
+strategy whose computational complexity remains also in the
+operations budget given by Theorem 4. Thus, in summary,
+one obtains a fully discrete scheme that exhibits asymptotically optimal computational complexity that remains
+proportional to the problem size. This is illustrated below by
+some numerical examples.
+Remark 3. Another approach to matrix compression, first
+pointed out in Beylkin et al. (1991), uses the so-called
+nonstandard form of the operator S ∶= P′S PS , which
+involves a telescoping expansion for S but is not a representation of S in the strict sense. It consists of blocks
+whose entries involve only basis functions (wavelets and
+scaling functions) of the same level, which may simplify
+their computation in comparison to the standard form. On the
+other hand, the nonstandard form does not support preconditioning when dealing with operators of order different from
+zero and is therefore restricted to problems of the type (70).
+Due to the presence of scaling function coefficients, it also
+does not allow us to combine matrix compression together
+with function compression. We shall point out later that this
+is indeed supported by the standard form.
+
+4.5
+
+Numerical tests
+
+The following example has been provided by Harbrecht. An
+interior Dirichlet problem for the Laplacian is solved by
+the indirect approach. We use both, the Fredholm integral
+equation of the first kind based on the single layer operator
+and the Fredholm integral equation of the second kind based
+on the double layer potential operator. Both approaches yield
+a density u, from which one derives the solution in the
+domain via potential evaluation, that is, by applying the
+single layer operator and double layer operator, respectively,
+to the density; see (68), (71).
+The domain Ω under consideration is the gearwheel shown
+in Figure 8. It has 15 teeth and is represented using 180
+patches. As Dirichlet data, we choose the restriction of the
+harmonic function
+U(x) =
+
+(a, x)
+,
+||x||3
+
+a = (1, 2, 4)
+
+to Γ. Then, U is the unique solution of the Dirichlet problem.
+We discretize the given boundary integral equation by piecewise constant wavelets with three vanishing moments.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Figure 8. The surface mesh and the evaluation points xi of the potential.
+
+Table 1. Numerical Results with Respect to the Double Layer
+Operator.
+NJ
+
+||U − UJ ||∞
+
+1
+720
+2
+2880
+3 11 520
+4 46 080
+5 184 320
+
+4.8e − 1
+2.7e − 1 (1.8)
+7.6e − 2 (3.6)
+2.4e − 2 (3.1)
+6.0e − 3 (4.1)
+
+J
+
+CPU-time A Priori A Posteriori
+(%)
+(%)
+1
+10
+107
+839
+4490
+
+27
+8.7
+3.4
+1.0
+0.2
+
+7.9
+2.3
+0.6
+0.2
+0.0
+
+In order to measure the error produced by the method,
+we calculate the approximate solution U j = u j at several
+points xi inside the domain, plotted in Figure 8. The last
+column in the tables below reflects the effect of an a
+posteriori compression applied to the computed entries of
+the stiffness matrix. The discrete potentials are denoted by
+U ∶= [U(xi )],
+
+U j ∶= [(u j )(xi )]
+
+where  stands for the single or double layer operator.
+We list in Tables 1 and 2 the results produced by the wavelet
+Galerkin scheme. For the double-layer approach, the optimal
+order of convergence of the discrete potential is quadratic
+with respect to l∞ -norm over all points xi . For the single-layer
+approach, this order is cubic. But one should mention that
+one cannot expect the full orders of convergence, due to the
+reentrant edges resulting from the teeth of the gearwheel.
+
+4.6
+
+Concluding remarks
+
+The above results show how to realize, for any (a priori
+fixed) level J of resolution, a numerical scheme that solves a
+boundary integral equation with discretization error accuracy
+in linear time. As for the quantitative performance, the above
+examples indicate that accuracy is not degraded at all by the
+compression and quadrature errors. Moreover, the robustness
+with respect to the underlying geometry is surprisingly high.
+
+Table 2. Numerical Results with Respect to the Single Layer
+Operator.
+NJ
+
+||U − UJ ||∞
+
+1
+720
+2
+2880
+3 11 520
+4 46 080
+5 184 320
+
+4.9e − 1
+5.7e − 2 (8.6)
+1.2e − 2 (4.5)
+2.8e − 3 (4.5)
+1.0e − 3 (2.9)
+
+J
+
+CPU-time A Priori A Posteriori
+(%)
+(%)
+1
+12
+116
+1067
+6414
+
+28
+10
+4.2
+1.3
+0.4
+
+21
+7.4
+2.0
+0.5
+0.1
+
+The experiences gained in Harbrecht (2001) show that the
+number of basis functions on the coarsest level may go up to
+the square root of the overall problem size without spoiling
+the complexity significantly. Due to the built-in preconditioning, the actual iterative solution of the linear systems is
+still by far dominated by the efforts for computing Ã j .
+The concept is strictly based on a perturbation of the
+operator but makes no use of adaptivity with respect to the
+discretization. First tests in this direction have been made in
+Harbrecht (2002). However, this is somewhat incompatible
+with the basic structure where all computations are tuned
+to an a priori fixed highest level J of spatial resolution.
+Finite subsets of the wavelet basis serve to formulate a
+Galerkin discretization in the same way as classical settings
+so that no direct use is made of the full wavelet transformed
+representation of the boundary integral equation.
+Thus, incorporating adaptivity may require an alternative
+to the entrywise computation of Ã j , which we shall comment
+on later.
+There are other ways of accelerating the calculation
+of matrix/vector products in the above context such as
+panel clustering (Hackbusch and Nowak, 1989), multipole
+expansions (Greengard and Rokhlin, 1987), or hierarchical
+matrices (Hackbusch, 1999). These concepts offer an even
+better robustness with respect to the geometry since they
+exploit the smoothness of the integral kernel in ℝd and not
+of its trace on the manifold. However, these approaches
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+24
+
+25
+
+do not allow one to build in preconditioning in such a
+straightforward way as above and adaptivity is even harder
+to incorporate. A combination of the different concepts has
+recently been proposed in Schmidlin et al. (2002), combining
+the advantages of clustering and wavelet techniques.
+
+finite dimensional problem may not always share this property.
+In contrast, we propose here a somewhat different
+paradigm that tries to exploit the well-posedness of the
+underlying continuous problem to the best possible extent
+along the following line:
+
+5 A NEW ADAPTIVE PARADIGM
+
+(I) Establish well-posedness of the underlying variational
+problem;
+(II) transform this problem into an equivalent infinite
+dimensional one which is now well-posed in 𝓁 2 ;
+(III) devise a convergent iteration for the infinite dimensional 𝓁 2 -problem;
+(IV) only at that stage, realize this iteration approximately
+with the aid of an adaptive application of the involved
+(linear or nonlinear) operators.
+
+So far, we have sketched essentially two different directions where the key features of wavelets listed in Section
+2.4 played an essential role. In the context of boundary integral equations, it was established that corresponding operators possess well-conditioned sparse wavelet representations.
+When dealing with hyperbolic conservation laws, the typical
+piecewise smooth nature of solutions permits the compression of the flow field based on suitable thresholding strategies
+applied to multiscale representations of approximate solutions. In both cases, an arbitrary but fixed level of resolution
+was considered and wavelet concepts were used to precondition or accelerate the numerical processing of the resulting
+fixed finite dimensional problem.
+We shall now turn to recent developments that deviate
+from this line and aim at combining in a certain sense both
+effects, namely the sparse representation of functions and the
+sparse representation of (linear and nonlinear) operators. The
+subsequent developments are based on the results in Cohen
+et al. (2001, 2002a, 2003a,b), and Dahlke et al. (2002).
+
+5.1
+
+Road map
+
+Recall that the classical approach is to utilize a variational
+formulation of a differential or integral equation mainly as
+a starting point for the formulation of (Petrov–) Galerkin
+scheme, which gives rise to a finite dimensional system
+of linear or nonlinear equations. The finite dimensional
+problem has then to be solved in an efficient way. As we
+have seen before, one then faces several obstructions such
+as ill-conditioning or the instability of the discretizations,
+for instance, due to the wrong choice of trial spaces. For
+instance, in the case of the double layer potential operator,
+stability of the Galerkin scheme is only guaranteed for sufficiently good spatial resolution, that is, sufficient closeness
+to the infinite dimensional problem. As we shall see below,
+more severe stability problems are encountered when dealing
+with noncoercive problems such as saddle point problems.
+In this case, the trial spaces for the different solution components have to satisfy certain compatibility conditions known
+as the Ladyšhenskaja-Babuška-Brezzi (LBB) condition. In
+brief, although the underlying infinite dimensional problem
+may be well-posed in the sense of (40), the corresponding
+
+5.2
+
+The scope of problems – (I)
+
+We describe first the scope of problems we have in mind. We
+begin with a general format which will then be exemplified
+by several examples.
+For a given (possibly nonlinear) operator  , the equation
+ (u) = f
+
+(89)
+
+is always understood in a weak sense, namely to find u in
+some normed space  such that for given data f
+⟨v,  (u)⟩ = ⟨v, f ⟩,
+
+∀v ∈ 
+
+(90)
+
+This makes sense for any f ∈  ′ , the dual of  (recall
+(41)) and when  takes  onto its dual  ′ . In principle,
+the conservation laws fit into this framework as well. They
+will be, however, excluded from major parts of the following
+discussion, since we will assume from now on that  is a
+Hilbert space.
+The operator  is often given in a strong form so that the
+first task is to identify the right space  for which (90) is
+well-posed. We have already seen what this means when
+ is linear; see (40). The classical Dirichlet problem with
+ = H01 (Ω) and the single layer potential equation (67) with
+ = H −1∕2 (Γ) are examples. When dealing with nonlinear
+problems, one may have to be content with locally unique
+solutions and it is natural to require that corresponding local
+linearizations are used to define well-posedness. Thus we
+assume that the Frechét–derivative D (v) of  at v, defined
+by
+1
+⟨z, D (v)w⟩ = lim ⟨z,  (v + tw) −  (v)⟩,
+t→0 t
+
+∀z ∈ 
+(91)
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+exists for every v in a neighborhood  of a solution u of
+(90) as a mapping from  onto  ′ . In analogy to (40),
+well-posedness now means that there exist for every v ∈ 
+positive finite constants c ,v , C ,v such that
+c ,v ||w|| ≤ ||D (v)w|| ′ ≤ C ,v ||w|| ,
+
+∀w ∈  (92)
+
+A well-posed weak formulation of this problem with respect
+to the above  is
+⟨
+(
+)
+⟩
+1
+ − ′ 𝜎, v
+⟨A∇u, ∇v⟩Ω0 + u −
+= ⟨f , v⟩Ω0 ,
+2
+Γ1
+1
+(Ω0 ),
+v ∈ H0,Γ
+D
+)
+⟩
+⟨(
+1
+ −  u, 𝛿
++ ⟨𝜎, 𝛿⟩Γ1 = 0,
+2
+Γ1
+
+𝛿 ∈ H −1∕2 (Γ1 )
+
+We have already seen several examples in Sections 2.5
+and 4.1 which, however, are all coercive. We shall, therefore, briefly review several further examples as models
+for different problem types. They also indicate that, as an
+additional practical obstruction, the topology for which the
+problem is well-posed involves norms that are usually difficult to deal with computationally. Most of the examples are
+actually linear but they may as well play the role of a (local)
+linearization.
+
+where , ,  are the double, single layer potential, and
+hypersingular operator (Dahmen et al., 2002).
+Note that, as an additional obstruction, the occurrence
+and evaluation of difficult norms like || ⋅ ||H 1∕2 (Γ) , || ⋅ ||H −1∕2 (Γ) ,
+|| ⋅ ||H −1 (Ω) arises (see Boundary Element Methods: Foundation and Error Analysis, Coupling of Boundary
+Element Methods and Finite Element Methods).
+
+5.2.1
+
+5.2.2
+
+Transmission problem
+
+The following example is interesting because it involves both
+local and global operators (Costabel and Stephan, 1990)
+−∇ ⋅ (A∇u) = f
+
+in Ω0 ,
+
+−Δu = 0
+
+in Ω1 ,
+
+Saddle point problems
+
+All the above examples involve coercive bilinear forms. An
+important class of problems which are no longer coercive are
+saddle point problems. A classical example is
+The Stokes system The simplest model for viscous incompressible fluid flow is the Stokes system
+
+u|Γ0 = 0
+1
+(Ω0 ) × H −1∕2 (Γ1 )
+ ∶= H0,Γ
+
+−𝜈Δu + ∇p = f
+
+in Ω
+
+div u = 0
+
+in Ω
+
+D
+
+u|Γ = 0
+
+(93)
+
+where u and p are velocity and pressure respectively (Brezzi
+and Fortin, 1991; Girault and Raviart, 1986). The relevant
+function spaces are
+
+Γ1
+
+X ∶= (H01 (Ω))d , M = L2,0 (Ω)
+}
+{
+∶= q ∈ L2 (Ω) ∶ q = 0
+∫Ω
+
+Γ0
+
+Ω0
+
+(94)
+
+In fact, one can show that the range of the divergence operator
+is L2,0 (Ω). The weak formulation of (93) is
+Ω1
+
+𝜈⟨∇v, ∇u⟩L2 (Ω) + ⟨div v, p⟩L2 (Ω) = ⟨f , v⟩,
+Both boundary value problems are coupled by the interface
+conditions:
+u− = u+ ,
+
+(𝜕n )u− = (𝜕n)u+
+
+⟨div u, q⟩L2 (Ω) = 0,
+
+v ∈ (H01 (Ω))d
+
+q ∈ L2,0 (Ω)
+
+(95)
+
+that is, one seeks a solution (u, p) in the energy space
+ = X × M = (H01 (Ω))d × L2,0 (Ω), for which the mapping
+property (92) can be shown to hold.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+26
+
+First order systems One is often more interested in derivatives of the solution of an elliptic boundary value problem
+which leads to mixed formulations. Introducing the fluxes
+𝜃 ∶= −a∇u, (36) can be written as a system of first order
+equations whose weak formulation reads
+⟨𝜃, 𝜂⟩ + ⟨𝜂, a∇u⟩ = 0,
+
+∀𝜂 ∈ (L2 (Ω))d ,
+
+− ⟨𝜃, ∇v⟩ = ⟨ f , v⟩,
+
+1
+∀v ∈ H0,Γ
+(Ω)
+D
+
+|b(q, v)| ≲ ||v||X ||q||M
+
+(97)
+
+Given f1 ∈ X′ , f2 ∈ M′ , find (u, p) ∈ X × M =∶  such that
+one has for all (v, q) ∈ 
+{
+
+a(u, v) + b(p, v) = ⟨v, f1 ⟩,
+b(q, u) = ⟨q, f2 ⟩
+
+(98)
+
+Note that when a(⋅, ⋅) is positive definite symmetric, the
+solution component u minimizes the quadratic functional
+j(w) ∶= (1∕2)a(w, w) − ⟨ f1 , w⟩ subject to the constraint
+b(u, q) = ⟨q, f2 ⟩, for all q ∈ M, which corresponds to
+(
+inf sup
+
+v∈X q∈M
+
+)
+
+1
+a(v, v) + b(v, q) − ⟨ f1 , v⟩ − ⟨q, f2 ⟩
+2
+
+This accounts for the term saddle point problem (even under
+more general assumptions on a(⋅, ⋅)).
+In order to write (98) as an operator equation, define the
+operators A, B by
+a(v, w) =∶ ⟨v, Aw⟩,
+
+v, w ∈ X,
+
+b(v, p) =∶ ⟨Bv, q⟩,
+
+p, q ∈ M
+
+ker B ∶= {v ∈ X ∶ b(v, q) = 0,
+
+a(v, v) ∼ ||v||2X ,
+
+(96)
+
+The general format The above examples are special cases
+of the following general problem class. A detailed treatment
+can be found in Brezzi and Fortin (1991) and Girault and
+Raviart (1986). Suppose X, M are Hilbert spaces and that a(⋅,
+⋅), b(⋅, ⋅) are bilinear forms on X × X, X × M respectively,
+which are continuous
+
+⟨(v, q),  (u, p)⟩ ∶=
+
+As for the mapping property (92), a simple (sufficient) condition reads as follows (Brezzi and Fortin, 1991; Girault and
+Raviart, 1986). If a(⋅, ⋅) is elliptic on
+∀q ∈ M}
+
+that is,
+
+One now looks for a solution (𝜃, u) ∈  ∶= (L2 (Ω))d ×
+1
+(Ω). For a detailed discussion in the finite element
+H0,Γ
+D
+context, see, for example, Bramble et al. (1997). It turns out
+that in this case that the Galerkin discretization inherits the
+stability from the original second order problem.
+
+|a(v, w)| ≲ ||v||X ||w||X ,
+
+27
+
+v ∈ ker B
+
+(100)
+
+and if b(⋅, ⋅) satisfies the inf-sup condition
+b(v, q)
+>β
+q∈M v∈X ||v||X ||q||M
+inf sup
+
+(101)
+
+for some positive β, then (97) is well posed in the sense of
+(92). Condition (101) means that B is surjective (and thus has
+closed range). Condition (100) is actually too strong. It can
+be replaced by requiring bijectivity of A on ker B (Brezzi and
+Fortin, 1991).
+Aside from leading to large ill-conditioned systems the
+additional obstructions are the indefiniteness of this type
+of problem and that the well-posedness of the infinite
+dimensional problem is not automatically inherited by
+Galerkin discretizations, say. In fact, the trial spaces in X
+and M have to be compatible in the sense that they satisfy
+the inf-sup condition (101) uniformly with respect to the
+resolution of the chosen discretizations. This is called the
+Ladyšhenskaya-Babuška-Brezzi condition (LBB) and may,
+depending on the problem, be a delicate task (see Mixed
+Finite Element Methods).
+
+5.2.3
+
+A nonlinear model problem
+
+A wide range of phenomena involve the interaction of a
+(linear) diffusion with a nonlinear reaction or advection part.
+We therefore close the list of examples with the simple
+class of semilinear elliptic boundary value problems. On one
+hand, it permits a rather complete analysis. On the other
+hand, it still exhibits essential features that are relevant for
+a wider scope of nonlinear problems. In this section, we
+follow Cohen et al. (2003a) and suppose that a(⋅, ⋅) is a
+continuous bilinear form on a Hilbert space  endowed
+with the norm || ⋅ || , which is -elliptic, that is, there exist
+positive constants c, C such that
+c||v||2 ≤ a(v, v),
+
+a(v, w) ≤ C||v|| ||w|| , ∀v, w ∈ 
+(102)
+The simplest example is
+
+so that (98) becomes
+(
+ (u, p) ∶=
+
+A B′
+B 0
+
+)( ) ( )
+u
+f
+= 1 =∶ f
+p
+f2
+
+a(v, u) ∶= ⟨∇v, ∇u⟩ + 𝜅⟨v, u⟩,
+(99)
+
+𝜅 ≥ 0,
+
+⟨v, w⟩ =
+
+vw
+∫Ω
+(103)
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+and  = H01 (Ω) endowed with the norm ||v||2 ∶=
+||∇v||2L (Ω) + 𝜅||v||2L (Ω) .
+2
+2
+Suppose that  ∶ ℝ → ℝ is a function with the following
+property:
+
+where we have used Poincaré’s inequality in the last step.
+Hence we obtain
+(1 + c(Ω)2 )−1 ||w|| ≤ ||D (v)w|| ′ ≲ (1 + ||v||2 )||w|| ,
+w∈
+
+P1 the mapping v → (v) takes  into its dual  ′ and is
+stable in the sense that
+||(u) − (v)|| ′ ≤ C(max {||u|| , ||v|| })||u − v|| ,
+u, v ∈ 
+
+(104)
+
+where s → C(s) is a nondecreasing function of s.
+The problem: Given f ∈  ′ find u ∈  such that
+⟨v,  (u)⟩ ∶= a(v, u) + ⟨v, (u)⟩ = ⟨v, f ⟩,
+
+v∈
+(105)
+is of the form (90) with  (u) = u + (u). Note that with
+the bilinear form from (103), (105) may also arise through an
+implicit time discretization of a nonlinear parabolic equation.
+The unique solvability of (105) is easily ensured when  is
+in addition assumed to be monotone, that is, (x − y)((x) −
+(y)) ≥ 0 for x, y ∈ ℝ. In this case,  (u) = f is the Euler
+equation of a convex minimization problem (Cohen et al.,
+2003a).
+A simple example is
+⟨v,  (u)⟩ =
+
+∫Ω
+
+∀
+
+∇vT ∇u + vu3 dx,  = H01 (Ω),
+
+ ′ = H −1 (Ω)
+
+(106)
+
+That (at least for d ≤ 3)  = H01 (Ω) is indeed the right choice
+can be seen as follows. The fact that H1 (Ω) is continuously
+embedded in L4 (Ω) for d = 1, 2, 3, readily implies that
+(v) ∈ H −1 (Ω) for v ∈ H01 (Ω). Moreover, ⟨z,  (v + tw) −
+ (v)⟩ = t⟨∇z, ∇w⟩ + ⟨z, t3 v2 w + t2 3vw2 + t3 w3 ⟩ so that
+⟨z, D (v)w⟩ = ⟨∇z, ∇w⟩ + 3⟨z, v2 w⟩ and hence
+D (v)w = −Δw + 3v2 w
+
+(107)
+
+Therefore, again by the embedding H s → Lp if
+(1/2) < (s/d) + (1/p), that is, ||v||L4 ≲ ||v|| for d < 4
+with  = H01 (Ω), we see that
+⟨∇z, ∇w⟩ + 3⟨z, v2 w⟩
+||D (v)w|| ′ = sup
+||z||
+z∈
+≲ ||w|| + ||v||2 ||w||
+
+(108)
+
+which is (92).
+The scope of problems is actually not limited at all to
+the variational formulation of integral or partial differential
+equations but covers, for instance, also optimal control problems with PFEs as constraints (Dahmen and Kunoth, 2002;
+Kunoth, 2001).
+
+5.3
+
+Transformation into a well-posed
+𝓵 2 -problem – (II)
+
+Suppose that (90) is well-posed with respect to the energy
+space . In all previous examples,  was a (closed subspace
+of a) Sobolev or a product of such spaces. As indicated in
+Section 2, it is known how to construct wavelet bases for such
+spaces. In the following, we will therefore assume that Ψ is
+a Riesz basis for .
+The transformation of (90) into wavelet coordinates is
+analogous to the linear case (see Theorem 1 in Section
+2.5). In fact, testing in (90) with v = ψ𝜆 for all 𝜆 ∈  ,
+defines through F(v) ∶= (⟨ψ𝜆 ,  (v)⟩)𝜆∈ a sequence valued
+nonlinear mapping F, which depends on the array v ∈ 𝓁2
+∑
+via the wavelet expansion v = 𝜆∈ v𝜆 ψ𝜆 . Similarly,
+the Jacobian of F at v acting on w ∈ 𝓁2 is defined by
+DF(v)w = (⟨ψ𝜆 , D (v)w⟩)𝜆∈ . Finally, setting as before
+f ∶= (⟨ψ𝜆 , f ⟩)𝜆∈ , the following fact can be derived by the
+same arguments as in Theorem 1.
+Theorem 6. Assume that (92) and (30) hold. Then the
+variational problem (90) is equivalent to F(u) = f where u =
+∑
+when the latter problem is well posed
+𝜆∈ u𝜆 ψ𝜆 . Moreover,
+∑
+in 𝓁2 , that is, for v = 𝜆∈ v𝜆 ψ𝜆 in some neighborhood 
+of the locally unique solution u of (90)
+−1
+2
+c−2
+Ψ c ,v ||w||𝓁2 ≤ ||DF(v)w||𝓁2 ≤ CΨ C ,v ||w||𝓁2 ,
+
+w ∈ 𝓁2
+(109)
+
+As for the special case (105), note that the monotonicity
+of  implies the monotonicity of G(⋅), defined by G(v) ∶=
+(⟨ψ𝜆 , (v)⟩)𝜆∈ and hence the positive semidefiniteness of
+DG(v); see Cohen et al. (2003a) for details.
+
+On the other hand,
+⟨∇w, ∇w⟩ + 3⟨w, v2 w⟩ ||∇w||L2
+||D (v)w|| ′ ≥
+≥
+||w||
+||w||
+2
+
+≥ (1 + c(Ω)2 )−1 ||w||
+
+5.4
+
+An iteration for the infinite dimensional
+problem – (III)
+
+Once the problem attains a well-conditioned form in 𝓁2 ,
+it makes sense to devise an iterative scheme for the full
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+28
+
+infinite dimensional problem F(u) = f that converges with
+a guaranteed error-reduction rate. These iterations will take
+the form
+un+1 = un − Cn (F(un ) − f),
+
+n = 0, 1, 2, …
+
+29
+
+and noting that
+(
+R(v) = F(v) − F(u) =
+
+(110)
+
+1
+
+∫0
+
+)
+DF(u + s(v − u)) ds (v − u)
+(115)
+
+one can derive from (109) that the iteration
+where the (infinite) matrix Cn is possibly stage dependent. It
+can be viewed as a fixed point iteration based on the trivial
+identity u = u − C(F(u) − f). We shall indicate several ways
+of choosing Cn , depending on the nature of the underlying
+variational problem (90).
+Gradient iterations: In the above case of elliptic semilinear problems, the transformed problem still identifies the
+unique minimum of a convex functional. Thus, it makes
+sense to consider gradient iterations, that is, Cn = 𝛼I
+un+1 = un − 𝛼(F(un ) − f),
+
+n = 0, 1, 2, …
+
+(111)
+
+In fact, one can estimate a suitable positive damping parameter 𝛼 > 0 from the constants in (30), (92), and (104) (Cohen
+et al., 2003a for details), so that (111) converges for u0 say
+with a fixed reduction rate ρ < 1,
+||un+1 − u||𝓁2 ≤ ρ||un − u||𝓁2 ,
+
+n ∈ ℕ0
+
+(112)
+
+For instance, in the linear case  ≡ 0, one can take any
+𝛼 < 2∕(CΨ2 C ) (see (43)) and verify that ρ = max {1 −
+𝛼c2Ψ c , |1 − 𝛼CΨ2 C |} works.
+Least squares iteration: Of course, when dealing with
+indefinite Jacobians, the above scheme will in general no
+longer work. However, the well-posedness in 𝓁2 offers, in
+principle, always a remedy which we explain first in the
+linear case u = f , where this may stand for any of the
+well-posed problems discussed in Section 5.2. Since then
+(109) reduces to (43), one can again find a positive 𝛼 so that
+Cn = 𝛼AT leads to an iteration
+un+1 = un − 𝛼AT (Aun − f),
+
+n = 0, 1, 2, …
+
+(113)
+
+that satisfies (112) with some fixed ρ < 1. Clearly, this is
+simply a gradient iteration for the least squares formulation AT A = AT f in the wavelet coordinate domain; see also
+Dahmen et al. (2002) for connections with least squares finite
+element methods.
+This is interesting because it suggests an analog also in
+the general nonlinear case even when DF(v) is indefinite but
+(92) (or equivalently (109)) holds. In fact, the role of AT is
+played by DF(un )T . Setting
+R(v) ∶= F(v) − f
+
+(114)
+
+un+1 = un − 𝛼DF(un )T R(un )
+
+(116)
+
+can be made to satisfy (112) for a suitable positive damping
+factor 𝛼, depending on the constants in (109) and a sufficiently good initial guess u0 (which is always needed in
+the case of only locally unique solutions). Moreover, when
+being sufficiently close to the solution, Cn = 𝛼DF(un )T can
+be frozen to C = 𝛼DF(u0 )T so as to still realize a strict error
+reduction (112); see Cohen et al. (2003a) for details.
+Uzawa iteration: Of course, in the above least squares
+iterations (113) and (116) the damping factor 𝛼 may have to
+be chosen rather small, which entails a poor error-reduction
+rate ρ. Whenever  or the linearization DF(v) corresponds
+to a saddle point operator (98) or (99), the squaring of the
+condition number caused by the least squares formulation
+can be avoided with the aid of an Uzawa iteration (Dahlke
+et al., 2002; Dahmen et al., 2002). We indicate this only
+for the linear case. Instead of working directly with the
+wavelet representation F(u, p) = f, one can first eliminate the
+solution component u, the velocity in the case of the Stokes
+problem, on the infinite dimensional operator level. Recall
+from (99) that F takes the form
+(
+F(u, p) =
+
+A BT
+B 𝟎
+
+)
+= f ∶=
+
+( )
+f1
+,
+f2
+
+f1 ∶= (⟨ψX,𝜆 , f1 ⟩)𝜆∈X ,
+
+f2 ∶= (⟨ψM,𝜆 , f2 ⟩)𝜆∈M (117)
+
+where for given Riesz bases ΨX , ΨM of the component
+spaces of  = X × M, A ∶= a(ΨX , ΨX ), B ∶= b(ΨM , ΨX ) are
+the wavelet representations of the operators A, B in (99),
+respectively. Recall also that A need only be invertible on the
+kernel of B. To eliminate u, one may first have to modify the
+system as explained in Dahlke et al. (2002) so as to make
+the modification of A an automorphism on all of 𝓁2 (X ).
+Without loss of generality we may therefore assume that this
+is already the case and that A satisfies (43). Then from the
+first system Au + BT p = f1 , we conclude that u = A−1 f1 −
+A−1 BT p which, by the second equation in (117), gives Bu =
+BA−1 f1 − BA−1 BT p = f2 . Hence (117) is equivalent to the
+Schur complement problem
+Sp = BA−1 f1 − f2 ,
+
+S ∶= BA−1 BT
+
+(118)
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Once (118) has been solved, the eliminated component can
+be recovered from (the elliptic problem)
+Au = f1 − BT p
+
+(119)
+
+From the well-posedness of (117) on 𝓁 2 one easily derives
+that S is also boundedly invertible on 𝓁2 (M ). So one can
+find a positive 𝛼 such that the gradient iteration pn+1 =
+pn − 𝛼(Spn − (BA−1 f1 − f2 )) satisfies (112) for some ρ < 1.
+(Actually, the residual may have to be modified again when,
+as in the case of the Stokes problem, the Lagrange multiplier
+space M is a subspace of finite codimension in a larger space
+for which a wavelet Riesz basis is given. For simplicity, we
+suppress this issue here and refer to Dahlke et al. (2002)
+for details. The problem is that the Schur complement is
+generally not easily accessible, due to the presence of the
+factor A−1 . However, note that Spn − (BA−1 f1 − f2 ) = f2 −
+Bun whenever un is the solution of the elliptic problem Aun =
+f1 − BT pn . The gradient iteration for the Schur complement
+problem then takes the form
+
+a priori, fixed, finite dimensional space but try to realize the
+required accuracy at the expense of possibly few degrees of
+freedom. The whole task can then be split into two steps:
+(a) Assuming that, in each case at hand, a computational
+scheme is available that allows us to approximate the
+residuals within each desired target accuracy, determine
+first for which dynamic tolerances the iteration will
+converge in the sense that for any given target accuracy
+ϵ, the perturbed iteration outputs a finitely supported
+vector u(ϵ) such that ||u − u(ϵ)||𝓁2 ≤ ϵ. Thus on the
+numerical side, all approximations will take place in the
+Euclidean metric. Note however that because of (30),
+this implies that
+‖
+‖
+∑
+‖
+‖
+‖
+‖u −
+(u(ϵ))
+ψ
+𝜆 𝜆 ‖ ≤ CΨ ϵ
+‖
+‖
+‖
+𝜆∈supp
+u(ϵ)
+‖
+‖
+
+Thus, the iteration is again of the form we want, but each step
+requires as an input the solution of a subproblem.
+
+Once this has been clarified, one has to come up with
+concrete realizations of the residual approximations
+appearing in the idealized iteration. It is clear from the
+above examples that the crucial task is to approximate
+with possibly few terms the sequence F(un ) in 𝓁2 .
+Moreover, we will have to make precise what we mean
+by ‘possibly few terms’, that is, we have to analyze the
+computational complexity of the numerical schemes.
+
+Newton iteration: Finally, the choice Cn ∶= (DF(un ))−1 in
+(110) gives rise to the Newton scheme
+
+We shall address first (a) under the assumption that we are
+given a numerical scheme
+
+pn+1 = pn − 𝛼(f2 − Bun ),
+
+where
+
+Aun = f1 − BT pn ,
+
+n = 0, 1, 2, …
+
+(120)
+
+un+1 = un + wn ,
+
+DF(un )wn = f − F(un ) = −R(un )
+(121)
+where each step requires the solution of a linear subproblem.
+While all previous examples have convergence order one, the
+Newton scheme, in principle, offers even better convergence
+behavior. We shall address this issue later in more detail.
+
+5.5
+
+Perturbed iteration schemes – (IV)
+
+We have indicated several ways of forming an (idealized)
+iteration scheme on the full infinite dimensional transformed
+system F(u) = f. We have made essential use of the fact that
+the transformed system is well posed in 𝓁 2 in the sense of
+(109). Recall that this hinges on the mapping property (92)
+induced by the original continuous problem and the availability of a Riesz basis Ψ for the corresponding energy space
+, (30). The final step is to realize the idealized iteration
+numerically. We shall do so not by choosing some fixed finite
+dimensional space on which the problem is projected, as was
+done in previous sections, but rather by approximating at
+each step the true residual rn ∶= Cn (F(un ) − f) = Cn R(un )
+within a suitable dynamically updated accuracy tolerance.
+Again we wish to avoid choosing for this approximation any
+
+(b)
+
+(122)
+
+RES [η, C, F, f, v] → rη : WHICH FOR ANY POSITIVE TOLERANCE η AND ANY FINITELY SUPPORTED INPUT v OUTPUTS A
+FINITELY SUPPORTED VECTOR rη SATISFYING
+
+||CR(v) − rη ||𝓁2 ≤ η
+
+(123)
+
+The second ingredient is a routine
+COARSE [η, w] → wη : WHICH FOR ANY POSITIVE TOLERANCE η AND ANY FINITELY SUPPORTED INPUT VECTOR w
+PRODUCES A FINITELY SUPPORTED OUTPUT wη WITH POSSIBLY
+FEW ENTRIES (SUBJECT TO CONSTRAINTS THAT WILL BE SPECIFIED LATER) SUCH THAT
+
+||w − wη ||𝓁2 ≤ η
+
+(124)
+
+This routine will be essential later to control the complexity
+of the overall perturbed iteration scheme.
+Next we need some initialization, that is, an initial guess
+0 and an error bound
+u
+||u − u0 ||𝓁2 ≤ ϵ0
+
+(125)
+
+In general, such an estimate depends on the problem at hand.
+In the case of semi-linear elliptic problems, such a bound is,
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+30
+
+for instance, ϵ0 = c−2
+c−1 (||G(𝟎)||𝓁2 + ||f||𝓁2 ) for u0 = 0; see
+Ψ 
+Cohen et al. (2003a) for details.
+As a final prerequisite, one can find, again as a consequence
+of (109), for each of the above iteration schemes, (110) a
+constant β such that
+||u − v||𝓁2 ≤ β||CR(v)||𝓁2
+
+(126)
+
+holds in a neighborhood of the solution u. The perturbed
+iteration scheme may now be formulated as follows.
+
+̄
+so that in particular ||u − u(ϵ)||
+𝓁2 ≤ ϵ. By (30), this means
+‖
+‖
+∑
+‖
+‖
+‖u −
+ū (ϵ)𝜆 ψ𝜆 ‖
+‖ ≤ CΨ ϵ
+‖
+‖
+‖
+𝜆∈Λ(ϵ)
+‖
+‖
+
+rk = RES[ηk , C, F, f, vk ],
+(II.2) IF
+β(ηk + ||rk ||𝓁2 ) ≤
+
+vk+1 = vk − rk
+
+ϵj
+2(1 + 2C∗ )
+
+(127)
+
+̃ ∶= vk AND GO TO (III). ELSE SET k + 1 → k
+SET v
+AND GO TO (II.1).
+(III) COARSE [(2C∗ ϵ j )∕(2(1 + 2C∗ )), ṽ ] → ū j+1 , ϵ j+1 =
+ϵ j ∕2, j + 1 → j, GO TO (II)
+
+The constant C* depends on the particular realization of
+the routine COARSE and will be specified later.
+Note that step (II) is just an approximation of the updates
+in (110). This applies until the stopping criterion (127) is
+met. This is a posteriori information based on the numerical
+residual. The fact that there is actually a uniform bound K for
+the number of updates in step (II), independent of the data and
+the target accuracy, until (127) is satisfied and a coarsening
+step (III) is carried out, relies on (126) and the underlying
+well-posedness (109). The parameter ρ̄ is actually allowed
+here to be smaller than the true error- reduction rate ρ in (112)
+for which only a poor or a possibly too pessimistic estimate
+may be available.
+One can show by fairly straightforward perturbation arguments that the choice of accuracy tolerances in SOLVE
+implies convergence (Cohen et al., 2003a).
+Proposition 1.
+SOLVE satisfy
+
+The iterates ū j produced by the scheme
+j
+
+||u − u ||𝓁2 ≤ ϵ j
+
+(128)
+
+(129)
+
+where CΨ is the constant from (30) and Λ(ϵ) ∶= supp u(ϵ).
+
+6
+
+̄
+SOLVE [ϵ, C, R, u0 ] → u(ϵ)
+(I) CHOOSE SOME ρ̄ ∈ (0, 1). SET ū 0 = u0 , THE CORRESPONDING INITIAL BOUND ϵ0 ACCORDING TO THE
+ABOVE INITIALIZATION, AND j = 0;
+̄
+∶= ū j ; ELSE SET v0 ∶
+(II) IF ϵ j ≤ ϵ STOP AND OUTPUT u(ϵ)
+j
+= ū AND k = 0
+(II.1) SET ηk ∶= ρ̄ k ϵ j AND COMPUTE
+
+31
+
+CONSTRUCTION OF RESIDUAL
+APPROXIMATIONS AND
+COMPLEXITY ANALYSIS
+
+It remains to construct concrete realizations of the routines
+RES and COARSE. It turns out that the development of such
+routines is closely intertwined with their complexity analysis. Since the conceptual tools are probably unfamiliar in
+the context of numerical simulation, we highlight some of
+them in the next section.
+
+6.1
+
+Best N-term approximation
+
+A lower bound for the computational complexity of SOLVE
+is, of course, the growth of the supports of outputs in step
+(II.1), which determines how the overall number of degrees
+of freedom grows until the target accuracy is reached. Therefore, a lower bound for the computational complexity of
+SOLVE is given by the number of terms needed to recover
+the true solution u in 𝓁2 within accuracy ϵ. This is the issue
+of best N-term approximation in 𝓁2 . Thus the question arises
+whether, or under which circumstances, SOLVE can actually
+attain this lower bound, at least asymptotically. Since best
+N-term approximation limits what can be achieved at best, we
+briefly review some relevant features concerning best N-term
+approximation.
+There are two intimately connected ways of looking at an
+error analysis for N-term approximation. In the first, we can
+specify the target accuracy ϵ and ask what is the smallest
+number N(ϵ) of terms needed to recover a given object? The
+second view is to assume we are given a budget N of terms
+and ask what accuracy ϵ(N) can be achieved with the best
+selection of N terms? The process of selecting such N terms
+is obviously nonlinear. This can be formalized by defining
+the following error of approximation:
+𝜎N,𝓁2 (v) ∶=
+
+inf
+
+#supp w≤N
+
+||v − w||𝓁2
+
+(130)
+
+Obviously, 𝜎N,𝓁2 (v) is attained by w = vN comprised of the
+N largest terms of v in modulus. Note that this is not necessarily unique since several terms may have equal modulus.
+Analogously one can define 𝜎N, (v) by looking for the best
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+approximation of v in  by a linear combination of at most
+N wavelets. One easily infers from (30) that
+cΨ 𝜎N,𝓁2 (v) ≤ 𝜎N, (v) ≤ CΨ 𝜎N,𝓁2 (v)
+
+Embedding
+in X
+
+Cs spaces
+
+(131)
+
+Best N-term approximations in the Euclidean metric yield
+therefore near- best N-term approximations in . Hence, an
+element in  can be approximated well with relatively few
+terms if and only if this is true for its coefficient array in 𝓁2 .
+We shall proceed with identifying classes of sequences in
+𝓁2 for which ϵ(N) decays like N−s , since these are the rates
+that can be expected from approximations based on spatial
+refinements (h-methods). To this end, consider the classes
+
+O(N−t/d)
+Linear
+
+s+t
+
+s
+
+ () ∶= {v ∈  ∶ 𝜎N, (v) ≲ N }
+
+No embedding
+in X
+
+O(N−t/d)
+Nonlinear
+
+X : measurement of the error
+(s derivatives in Lp)
+
+1/p
+s
+
+(Slope d)
+
+1/q = 1/p + t/d
+
+Lp spaces
+
+−s
+
+s (𝓁2 ) ∶= {v ∈ 𝓁2 ∶ 𝜎N,𝓁2 (v) ≲ N −s }
+
+(132)
+
+Figure 9. Topography of smoothness spaces.
+
+These are normed linear spaces endowed with the norms
+||v||s () ∶= sup N s 𝜎N, (v)
+N∈ℕ
+
+||v||s (𝓁2 ) ∶= sup N s 𝜎N,𝓁2 (v)
+N∈ℕ
+
+Thus to achieve a target accuracy ϵ, the order of N(ϵ) ∼ ϵ−1∕s
+terms are needed for v ∈ s () or v ∈ s (𝓁2 ). Hence the
+larger s > 0 the less terms suffice.
+Which property makes a function v or its coefficient
+sequence v sparse in the above sense is best explained when
+ is a Sobolev space  = H s over some domain in ℝd . One
+can then show that for any positive 𝛿 (cf. DeVore, 1998;
+Bergh and Löfström, 1976; Cohen, 2000)
+𝓁q ⊂ s (𝓁2 ) ⊂ 𝓁q+𝛿 ,
+
+B𝛼+sd
+(Lq ) ⊂ s (H 𝛼 )
+q
+
+⊂ B𝛼+sd−𝛿
+(Lq ),
+q
+
+1
+1
+=s+
+q
+2
+
+(133)
+
+Here, 𝓁 q consists of the q-summable sequences, while B𝛼q (Lq )
+denotes a Besov space consisting roughly of functions with
+smoothness 𝛼 measured in Lq (see DeVore, 1998; DeVore
+and Lorentz, 1993; Bergh and Löfström, 1976; Cohen,
+2003; Barinka et al., 2001, 2003; Berger and Oliger, 1984
+for precise definitions). For a certain smoothness range,
+depending on the regularity of the wavelet basis these spaces
+can also be characterized through wavelet bases. In fact, for
+0 < q ≤ ∞ one has
+q
+
+q
+
+||v||B𝛼 (L ) ∼ ||v||L +
+q
+
+q
+
+q
+
+∑
+𝜆∈
+
+̃ 𝜆 ⟩ψ𝜆 ||L
+2𝛼q|𝜆| ||⟨v, ψ
+q
+
+q
+
+(134)
+
+which, due to the equivalence H s = Bs2 (L2 ), covers (32) as a
+special case (Cohen, 2000, 2003; DeVore, 1998). It is important to note here that the smaller the q, the weaker is the
+smoothness measure. By the Sobolev embedding theorem,
+
+the value of q given by (133) gives the weakest possible
+measure so that smoothness of order sd + 𝛼 in Lq guarantees Sobolev regularity of order 𝛼 corresponding to the
+anchor space  = H 𝛼 (a Sobolev space of order 𝛼 or a closed
+subspace defined, for example, by homogeneous boundary
+conditions). This is illustrated in Figure 9 below. Each point
+in the (1/q, s)-plane corresponds to a smoothness space (actually to a class of smoothness spaces) describing smoothness s measured in Lq . In our case, we have X = H𝛼 and
+p = 2. The spaces located left of the line with slope d
+emanating from X are embedded in X. The spaces of smoothness 𝛼 + sd on the vertical line above X are essentially
+those whose elements can be approximated with accuracy
+O(N−s ) by approximants from quasi-uniform meshes, that
+is, with equidistributed degrees of freedom. In the present
+terms, this means just keeping all wavelets up to some scale
+J, say (or equivalently working with uniform meshes), so that
+N ∼ 2Jd would require the function v to belong to Bt+sd
+∞ (L2 ),
+which is very close to the Sobolev space Ht+sd . The spaces
+on the critical embedding line, however, are characterized
+by nonlinear approximation like best N-term approximation.
+Thus, while the spaces obtained when moving to the right,
+away from the vertical line on the same smoothness level,
+grow and admit increasingly stronger singularities. This loss
+of regularity can be compensated by judiciously placing the
+degrees of freedom so as to retain the same convergence rates
+in terms of degrees of freedom N. Since Ht+sd is a much
+smaller space than Bt+sd
+q (Lq ) this indicates the possible gain
+offered by nonlinear approximation schemes like best N-term
+approximation over simpler schemes based on a priori fixed
+discretizations.
+Of course, it remains to see whether this potential can be
+exploited by adaptive schemes.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+32
+
+Tree structures: The above notion of best N-term approximation puts no constraints on the distribution of significant coefficients. In the context of conservation laws, it was
+important that the significant coefficients were arranged in
+tree-like structures which correspond to local mesh refinements. Thus interrelating the selection of wavelets with
+locally refined meshes is one reason for imposing some
+sort of constraint on the distribution of wavelet coefficients.
+Another reason arises when approximating the quantities
+F(v) when v is some finitely supported vector. Intuitively,
+one might expect that the nonlinearity in F makes the effect
+of a term v𝜆 with large |𝜆| cascade down to lower levels in
+a neighborhood of the support S𝜆 , which also gives rise to
+tree-like structures.
+Let us first explain what we mean by a tree structure
+associated to the set of wavelet indices. In the simplest case
+of a one dimensional basis ψ 𝜆 = ψ j, k = 2j/2 ψ(2j ⋅ − k),
+this structure is obvious: each index (j, k) has two children
+(j + 1, 2k) and (j + 1, 2k + 1). A similar tree structure can
+be associated to all available constructions of wavelet bases
+on a multidimensional domain: to each index 𝜆, one can be
+assign m(𝜆) ≥ 2 children μ such that |μ| = |𝜆| + 1, where
+m(𝜆) might vary from one index to another but is uniformly
+bounded by some fixed K. We shall use the notation μ ≺ 𝜆
+(μ ⪯ 𝜆) in order to express that μ is a descendent of 𝜆 (or
+equals 𝜆) in the tree. We also have the property
+μ ≺ 𝜆 ⇒ Sμ ⊂ S𝜆
+
+(135)
+
+where we recall that S𝜆 ∶= supp ψ𝜆 . A set  ⊂  is called a
+tree if 𝜆 ∈  implies μ ∈  whenever 𝜆 ≺ μ.
+If the tree  ⊂  is finite, we define the set  = ( ) of
+outer leaves as the set of those indices outside the tree whose
+parent belongs to the tree
+ ∶= {𝜆 ∈  ∶ 𝜆 ∉  , 𝜆 ≺ μ ⇒ μ ∈  }
+
+(136)
+
+The set ( ) plays the role of a (locally refined) mesh. In
+fact, one readily confirms that
+||v − v| ||2𝓁 =
+2
+
+∑
+𝜆∉
+
+|v𝜆 |2 =
+
+∑
+
+∑
+
+𝜆∈( ) 𝜈∶𝜈⪯𝜆
+
+|v𝜆 |2
+
+(137)
+
+(which is the case for all constructions considered in Section
+2). Then, by (30)
+‖
+‖
+‖∑
+‖∑
+‖
+‖
+‖
+‖
+‖
+‖
+‖
+‖
+v
+ψ
+∼
+||v||
+∼
+v
+𝜃
+𝜆 𝜆‖
+𝓁2
+𝜆 𝜆‖
+‖
+‖
+‖
+‖
+‖𝜆∈
+‖𝜆∈
+‖
+‖L2
+‖
+‖
+so that
+
+‖
+‖∑
+‖
+‖
+∑
+‖
+‖
+‖
+‖
+‖
+v𝜆 ψ𝜆 ‖ ∼ ‖
+v𝜆 𝜃𝜆 ‖
+‖v −
+‖
+‖
+‖
+‖
+‖ ‖
+‖
+𝜆∈
+‖ L2
+‖𝜆∉
+
+‖∑
+‖2
+‖2
+‖
+∑
+‖
+‖
+‖
+‖
+‖
+v𝜆 𝜃𝜆 ‖
+=‖
+v𝜈 𝜃𝜈 ‖
+‖
+‖
+‖
+‖
+‖𝜆∉
+‖
+‖
+‖
+‖
+‖L2 (Sμ ) ‖|𝜈|≥|μ|∶S𝜈 ∩Sμ ≠∅
+‖L2 (Sμ )
+∑
+∑
+≲
+v2𝜈 ≲
+|𝜈|≥|μ|∶S𝜈 ∩Sμ ≠∅
+
+𝜆∈( ),S𝜆 ∩Sμ ≠∅
+
+ṽ 𝜆 ∶=
+
+𝜈∶S𝜈 ⊂S𝜆
+
+|v𝜈 |
+
+2
+
+ṽ 2𝜆
+(140)
+
+It has been shown in Cohen et al. (2003b) that any tree 
+can be expanded to a tree ̃ such that #(̃ ) ≲ #( ) but for
+any μ ∈ (̃ ) only for a uniformly bounded finite number of
+𝜆 ∈ (̃ ) one has S𝜆 ∩ Sμ ≠ ∅. Hence a finite number of the
+terms ṽ 𝜆 bound the local error on Sμ .
+A natural idea for constructing ‘good’ meshes – or equivalently ‘good trees’ identifying spans of wavelets – is to equilibrate these local errors. However, it turns out that this will
+not necessarily minimize the error ||v − v| ||𝓁2 over all trees
+of a fixed cardinality N = #( ) (Cohen et al., 2003b). To
+formalize this, we define an error for N-term tree approximation that is the exact tree analog of the best (unconstrained)
+N-term approximation defined in (130).
+tree
+𝜎N,𝓁
+(v) ∶= min {||v − w||𝓁2 ∶
+2
+
+ ∶= supp w is a tree and # ≤ N}
+
+(141)
+
+Any minimizing tree will be denoted by N (v). We define
+now in analogy to (131) the sequence space
+2
+
+∑
+
+(139)
+
+Note that the right hand side can be localized. In fact, for
+μ ∈ ( )
+
+tree
+stree (𝓁2 ) ∶= {v ∈ 𝓁2 ∶ 𝜎N,𝓁
+(v) ≲ N −s }
+
+which suggests considering the quantities
+
+33
+
+(142)
+
+endowed with the quasi-norm
+(138)
+
+These quantities measure in some sense a local error associated with the spatial location of ψ𝜆 . To see this, suppose
+that the wavelets have the form ψ𝜆 = 𝜔𝜆 𝜃𝜆 where 𝜔𝜆 are
+some positive weights (see (33)) and Θ is a Riesz basis for L2
+
+tree
+||v||stree (𝓁2 ) ∶= sup N s 𝜎N,𝓁
+(v)
+n∈ℕ
+
+2
+
+(143)
+
+Analogously, we can define the counterpart stree () in .
+As in (131) the error of tree approximation of v ∈ stree (𝓁2 )
+decays like the error of the corresponding tree approximations to v in .
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+In spite of the conceptual similarity, there is an important
+difference between best tree and best unconstrained N-term
+approximation. At least for any finitely supported v, the latter
+one is easily determined by (quasi-) sorting by size thresholding. Determining the best tree however, is much harder.
+However, since one obtains a near-best approximation in the
+energy norm anyway, we can be content with near-best tree
+approximation in 𝓁2 as well. More precisely, given a fixed
+constant C* ≥ 1, a tree  (η, v) is called an (η, C*)-near
+best tree for v if ||v − v| (η,v) ||𝓁2 ≤ η and whenever any other
+tree  satisfies ||v − v| ||𝓁2 ≤ η∕C∗ one has #( (η, v)) ≤
+C∗ #( ). It is remarkable that, according to Binev and DeVore
+(2004), such near-best trees can be constructed in linear time.
+This can be achieved with the aid of modified thresholding
+strategies working in the present setting with the quantities ṽ 2𝜆
+(138) as local error functionals. We shall invoke this method
+to construct near-best trees.
+Since the selections of terms are constrained by the
+imposed tree structure, one always has
+𝜎#η (v),𝓁2 (v) ≤ ||v − v|η (v) ||𝓁2
+
+(144)
+
+However, for a wide class of functions in , one actually does not lose too much with regard to an optimal
+work/accuracy rate. To explain this, we consider again the
+above scenario  = H t . The following fact has been shown
+in Cohen et al. (2003b).
+s
+Remark 4. For  = H t one has Bt+sd
+q (Lq ) → tree ()
+−1 < s + 1/2.
+whenever q
+
+Thus, as soon as the smoothness space is strictly left of
+the Sobolev embedding line, its elements have errors of
+tree approximations that decay like (#N (v))−s ; see Figure 9.
+Moreover, this rate is known to be sharp, that is,
+inf N s 𝜎N,H t (v) ≳ 1
+
+sup
+
+||v||Bt+sd (L ) =1 N
+q
+
+(145)
+
+q
+
+which means that on the class Bt+sd
+q (Lq ), under the above
+restriction of q, tree approximations give the same asymptotic error decay as best N-term approximations. The smaller
+the discrepancy 𝛿 := s + (1/2) − (1/q) > 0, the larger
+the space Bt+sd
+q (Lq ) admitting stronger singularities. In fact,
+when sup {s ∶ u ∈ H t+sd } is strictly smaller than sup {s ∶
+u ∈ Bt+sd
+q (Lq )} the asymptotic work/accuracy rate achieved
+by meshes corresponding to the trees N (⋅) is strictly better
+than that for uniform mesh refinements. This is known to
+be the case, for instance, for solutions u of elliptic boundary
+value problems on Lipschitz domains when 𝛿 is sufficiently
+small (Dahlke and DeVore, 1997; Dahlke, 1999).
+Thus, the question that guides the subsequent discussion
+can be formulated as follows: Can one devise the routines
+
+RES and COARSE in such a way that the computational work
+and storage needed to produce the output u(ϵ) of SOLVE,
+stays proportional to ϵ−1∕s , uniformly in ϵ, whenever the
+unknown solution u belongs to stree (), or even to s ()?
+
+6.2
+
+Realization of residual approximations
+
+We shall always assume that we have full access to the
+given data f. Depending on some target accuracy, one should
+therefore think of f as a finite array that approximates some
+‘ideal’ data accurately enough. Moreover, these data are
+(quasi-)ordered by their modulus. Such a quasi-ordering,
+based on binary binning can be realized in linear time
+(Barinka, 2004). In particular, this allows us to obtain coarser
+approximations fη , satisfying ||f − fη ||𝓁2 ≤ η with the aid
+of the simplest version of the routine COARSE, realized by
+adding |f𝜆 |2 in the direction of increasing size until the
+sum exceeds η2 ; see Cohen et al. (2001) for details. As a
+central task, one further has to approximate the sequence
+F(v) for any given finitely supported input v that we shall
+now describe.
+Linear operators: It will be instructive to consider first the
+linear case F(v) = Av when A is the wavelet representation
+of the underlying operator. We shall describe an algorithm
+for the fast computation of Av. So far, the only property of
+A that we have used is the norm equivalence (30). Now the
+cancellation properties (26) come into play. We have seen in
+Section 4.2 that they imply the quasi-sparsity of a wide class
+of linear operators. The relevant notion can be formulated
+as follows (Cohen et al., 2001). A matrix C is said to be
+s*-compressible – C ∈ s∗ – if for any 0 < s < s* and every
+j ∈ ℕ there exists a matrix C j with the following properties:
+∑
+For some summable sequence, (𝛼 j )∞
+( j 𝛼 j < ∞) C j is
+j=1
+obtained by replacing all but the order of 𝛼 j 2j entries per
+row and column in C by zero and satisfies
+||C − C j || ≤ C𝛼 j 2−js ,
+
+j∈ℕ
+
+(146)
+
+Specifically, wavelet representations of differential and also
+the singular integral operators from Sections 4.2 and 4.1 fall
+into this category for values of s*, that depend, in particular,
+on the regularity of the wavelets (Cohen et al., 2001; Dahlke
+et al., 2002, Stevenson, 2003).
+In order to describe the essence of an approximate application scheme for compressible matrices, we abbreviate for
+any finitely supported v the best 2j -term approximations by
+v[ j] ∶= v2 j (v[−1] ≡ 𝟎) and define
+w j ∶= A j v[0] + A j−1 (v[1] − v[0] ) + … + A0 (v[ j] − v[ j−1] )
+(147)
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+34
+
+as an approximation to Av. Obviously this scheme is adaptive in that it exploits directly information on v. In fact, if
+A ∈ s∗ , then the triangle inequality together with the above
+compression estimates yield for any fixed s < s*
+||Av − w j ||𝓁2
+
+𝜎2 j ,𝓁 (v)
+
+≲ 𝜎2 j−l−1 ,𝓁 (v)
+
+2
+
+2
+
+One can now exploit the a posteriori information offered by
+the quantities 𝜎2 j−l−1 ,𝓁2 (v) to choose the smallest j for which
+the right hand side of (148) is smaller than a given target
+accuracy η and set wη ∶= w j . Since the sum is finite for each
+finitely supported input v such a j does indeed exist. This
+leads to a concrete multiplication scheme (see Cohen et al.,
+2001; Barinka et al., 2001 for a detailed description, analysis
+and implementation), which we summarize as follows:
+APPLY [η, A, v] → wη : DETERMINES FOR ANY FINITELY
+v A FINITELY SUPPORTED OUTPUT wη
+
+SUPPORTED INPUT
+SUCH THAT
+
+||Av − wη ||𝓁2 ≤ η
+
+(149)
+
+Depending on the compressibility range s* this scheme can
+be shown to exhibit the same work/accuracy rate as the best
+(unconstrained) N-term approximation in 𝓁2 as stated by the
+following result (Cohen et al., 2001).
+Theorem 7. Suppose that A ∈ s∗ and that for some
+0 < s < s*, v ∈ s (𝓁2 ). Then, Av is also in s (𝓁2 ). Moreover, for any finitely supported v the output wη = APPLY[η,
+C, v] satisfies:
+(i) ||wη ||s (𝓁2 ) ≲ ||v||s (𝓁2 ) ;
+1∕s
+(ii) #supp wη ≲ ||v||s (𝓁 ) η−1∕s , #flops ≲ #supp v +
+1∕s
+
+Given any η > 0 and an (η, C*)-near best tree  (η, v) of v,
+find a possibly small tree η such that for some constant C
+ ∗ (Cη, F(v)) ⊆ η
+
+(150)
+
+where  ∗ (Cη, F(v)) is a smallest tree realizing accuracy Cη.
+
+j
+∑
+≤ c (||v − v[ j] ||𝓁2 +
+𝛼l 2−ls ||v[ j−l] − v[ j−l−1] ||𝓁2 ) (148)
+⏟⏞⏞⏞⏞⏟⏞⏞⏞⏞⏟ l=0
+⏟⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏟⏞⏞⏞⏞⏞⏞⏞⏞⏞⏞⏟
+
+||v||s (𝓁 ) η−1∕s ,
+
+35
+
+2
+
+Thus, we are asking for quantitative estimates concerning
+the effect of a nonlinearity on contributions with different
+length scales, a question of central importance in several
+areas of applications such as turbulence analysis. Using trees
+now already anticipates the need for taking the (quasi-local)
+effect of higher frequency on lower ones into account.
+Of course, tight estimates of that sort must incorporate
+some knowledge about the character of the nonlinearity.
+Nonlinearities of at most power growth have been studied
+recently in Cohen et al. (2003b) and we briefly review some
+of the main findings. For instance, when the operator involves
+a local composition operator G as in (105) ‘power growth’
+means that for some p > 0 |(n) (x)| ≲ (1 + |x|)(p−n)+ . In fact,
+one can show that for  = H t (on some domain of spatial
+dimension d) one has  ∶  →  ′ provided that
+p < p∗ ∶=
+
+d
+d
+d + 2t
+when t < , p > 0 when t ≥ (151)
+d − 2t
+2
+2
+
+(Cohen et al., 2003b). The analysis in Cohen et al. (2003b)
+covers a much wider class of nonlinear operators including
+those that depend on several components involving also
+derivatives of the arguments G(D𝛼1 v1 , … , D𝛼l vl ). For
+instance, the convective term in the Navier Stokes equations
+is covered. In order to convey the main ideas while keeping
+the exposition as simple as possible, we confine the subsequent discussion to the above special situation. Using the
+locality of the nonlinearity, the cancellation properties of
+the wavelets as well as certain norm equivalences for Besov
+spaces in terms of weighted sequence norms for the wavelet
+coefficients, one can derive estimates of the form
+
+2
+
+where the constants in these estimates depend only on s when
+s is small.
+
+|F(v)𝜆 | ≲ sup |vμ |2−γ(|𝜆|−|μ|)
+
+The above work count is based on the tacit assumption that
+the entries of A can be computed with sufficient accuracy on
+average at unit cost. This can be verified for constant coefficient differential operators and spline wavelets. In general,
+the justification of such an assumption is less clear. We shall
+return to this point later.
+
+where for  = H t a typical value for γ is γ = t + m
+̃ +
+d∕2. It measures in some sense the compressibility of the
+nonlinear map.
+How to predict good trees for F(v) from those for v for the
+above-mentioned type of nonlinearities can be sketched as
+follows (cf. Cohen et al., 2003b). For a given target accuracy
+ϵ, j = 0, 1, … and a given v, we consider the near-best trees
+
+The nonlinear case – prediction of significant coefficients:
+In this case, the point of view changes somewhat. The question to be addressed first is the following:
+
+(
+
+(152)
+
+Sμ ∩S𝜆 ≠∅
+
+ j ∶= 
+
+2 jϵ
+,v
+1+ j
+
+)
+(153)
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+and the corresponding expanded trees ̃j mentioned before.
+By construction, these trees are nested in the sense that ̃j ⊂
+̃j−1 . We shall use the difference sets
+Δ j ∶= ̃j ∖̃j+1
+
+(154)
+
+in order to build a tree, which will be adapted to w = F(v).
+They represent the ‘energy’ in v reflecting the next higher
+level of accuracy. Now we introduce the parameter
+𝛼 ∶=
+
+2
+>0
+2γ − d
+
+(155)
+
+where γ is the constant in (152) and for each μ ∈ Δj , we define
+the influence set
+Λϵ,μ ∶= {𝜆 ∶ S𝜆 ∩ Sμ ≠ ∅ and |𝜆| ≤ |μ| + 𝛼 j}
+
+(156)
+
+Thus the amount 𝛼j by which the level |μ| is exceeded in Λϵ,μ
+depends on the ‘strength’ of vμ expressed by the fact that
+μ ∈ Δj . We then define ϵ as the union of these influence
+sets
+ϵ ∶= ϕ ∪ (∪μ∈̃ Λϵ,μ )
+(157)
+0
+
+The main result can then be stated as follows (Cohen et al.,
+2003b).
+Theorem 8. Given any v and ϵ defined by (157), we have
+the error estimate
+||F(v) − F(v)|ϵ ||𝓁2 ≲ ϵ
+
+(158)
+
+Moreover, if v ∈ stree (𝓁2 ) with 0 < s < [(2γ − d)/2d], then
+we have the estimate
+1∕s
+
+#(ϵ ) ≲ ||v||s (𝓁 ) ϵ−1∕s + #(ϕ )
+tree
+
+(159)
+
+2
+
+We therefore have F(v) ∈ stree (𝓁2 ) and
+||F(v)||stree (𝓁2 ) ≲ 1 + ||v||stree (𝓁2 )
+
+(160)
+
+The constants in these above inequalities depend only on
+||v||, the space dimension d, and the parameter s.
+This result provides the basis for the following evaluation
+scheme.
+EVAL
+
+[ϵ, F, v] → w(ϵ) PRODUCES FOR ANY FINITELY
+
+SUPPORTED VECTOR v A FINITELY SUPPORTED VECTOR w(ϵ)
+SUCH THAT
+STEPS:
+
+||w(ϵ) − F(v)||𝓁2 ≤ ϵ USING THE FOLLOWING
+
+(1)
+
+INVOKE THE ALGORITHM IN BINEV AND DEVORE 2004)
+TO COMPUTE THE TREES
+
+ j ∶=  (
+
+2 jϵ
+, v)
+C0 (j + 1)
+
+(161)
+
+WHERE C0 = C0 (||v||) IS THE CONSTANT INVOLVED IN
+
+(158), FOR j = 0, … , J, AND STOP FOR THE SMALLEST
+J SUCH THAT  j IS EMPTY (WE ALWAYS HAVE j ≲
+log2 (||v||∕ϵ)).
+(2) DERIVE THE EXPANDED TREES ̃j , THE LAYERS Δj AND
+THE OUTCOME TREE ϵ ACCORDING TO (157).
+(3) COMPUTE F(v)|ϵ (APPROXIMATELY WITHIN ACCURACY ϵ).
+Clearly any finitely supported v belongs to stree (𝓁2 ) for
+every s > 0. Moreover, the trees  j will be empty for j ≥ J and
+some j ∈ ℕ. Thus the scheme terminates after finitely many
+steps. We postpone some comments on step (3) to Section
+6.4. The following theorem summarizes the properties of
+Algorithm EVAL.
+Theorem 9.
+Given the inputs ϵ > 0, a nonlinear function  (such that F satisfies assumptions of the type
+mentioned before), and a finitely supported vector v,
+then the output tree ϵ has the following properties:
+One has ||F(v) − F(v)|ϵ ||𝓁2 ≤ ϵ. Furthermore, for any
+0 < s < [(2γ − d)/2d] (see Theorem 9), one has
+1∕s
+
+#(ϵ ) ≤ C||v||s ϵ−1∕s + #(ϕ ) =∶ Nϵ
+
+(162)
+
+with C a constant depending only on the constants appearing
+in Theorem 9. Moreover, the number of computations needed
+to find ϵ is bounded by C(Nϵ + # (v)), where Nϵ is the right
+hand side of (162) and  (v) is the smallest tree containing
+supp v.
+Finally, we need a particular coarsening strategy that
+respects tree structures.
+̄ η DETERMINES FOR A FIXED CONSTANT
+COARSE [η, w] → w
+C* ≥ 1, ANY FINITELY SUPPORTED INPUT w, AND ANY TOLERANCE η > 0 AN (η, C*)-NEAR BEST TREE  (η, w) AND SETS
+̄ η ∶= w| (η,w) .
+w
+The realization of COARSE is based on the results in Binev
+and DeVore (2004), which ensure linear complexity. This
+version of COARSE can also be used in the linear case. As
+such, it can be used to show that Theorem 8 remains valid for
+compressible matrices when the spaces s (𝓁2 ) are replaced
+by stree (𝓁2 ) (Cohen et al., 2003a).
+The above results allow one to show that the scheme RES,
+in all the above examples satisfies the following:
+Whenever the exact solution u of (90) belongs to stree ()
+for some s < s*, then one has for any finitely supported
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+36
+
+input v and any tolerance η > 0 that the output rη ∶=
+RES[η, C, F, f, v] satisfies
+)
+(
+1∕s
+1∕s
+#supp rη ≤ Cη−1∕s ||v||s (𝓁 ) + ||u||s (𝓁 ) + 1
+tree 2
+tree 2
+(
+)
+||rη ||stree (𝓁2 ) ≤ C ||v||stree (𝓁2 ) + ||u||stree (𝓁2 ) + 1 (163)
+where (in addition to the dependence given in the previous
+theorems) C depends only on s when s → s∗ . Moreover, the
+number of operations needed to compute wη stays proportional to #supp rη .
+One can show that the number of perturbed updates in step
+(II) of SOLVE executed before branching off into a coarsening
+step (III), remains uniformly bounded independent of the
+data and of the target accuracy ϵ. Therefore, the s*-sparsity
+of the routine RES ensures that the stree (𝓁2 )-norms of the
+approximations vk remain bounded in each update block (II).
+The coarsening step is applied exactly in order to prevent the
+constants in these estimates from building up over several
+subsequent update blocks (II). This is the consequence of the
+following Coarsening Lemma (Cohen et al., 2003a).
+Proposition 2. If v ∈ stree (𝓁2 ) and ||v − w||𝓁2 ≤ η with
+̄ η ∶= COARSE [2C∗ η, w] satisfies
+#supp w < ∞. Then w
+1∕s
+
+#supp wη ≲ ||v||s (𝓁 ) η−1∕s ,
+tree
+
+2
+
+||v − wη ||𝓁2 ≤ (1 + C∗ )η
+
+and
+||wη ||stree (𝓁2 ) ≲ ||v||stree (𝓁2 )
+where C* is the constant from the near-best tree construction
+scheme in Binev and DeVore (2004).
+One can then use the above building blocks to show that
+SOLVE is optimal in the following sense (Cohen et al.,
+2003a).
+∑
+Theorem 10.
+If the exact solution u = 𝜆∈ u𝜆 ψ𝜆
+belongs to stree (), for any s < s*(F, Ψ) , then, for any target
+accuracy ϵ > 0, the approximations u(ϵ) produced by SOLVE
+satisfy
+||
+||
+∑
+||
+||
+ū (ϵ)𝜆 ψ𝜆 || ≤ CΨ ϵ
+||u −
+||
+||
+𝜆
+||
+||H
+and
+#supp u(ϵ), comp. work ≲ ϵ−1∕s
+The above results cover the examples from Section 5.2,
+in particular, the mixed formulations. Note that there is no
+restriction on the choice of wavelet bases for the different
+solution components such as velocity and pressure in the
+Stokes problem. In contrast, in the classical approach, a
+
+37
+
+compatible choice verifying the LBB condition is essential.
+In the adaptive context such constraints become void. In
+addition to these qualitative asymptotic results, the experiments in Dahlke et al. (2002) and Dahmen et al. (2002)
+show that also quantitatively the performance of the adaptive
+scheme stays the same even when wavelet bases for velocity
+and pressure are used that, in connection with an a priori
+choice of finite dimensional trial spaces, would violate the
+LBB condition.
+
+6.3
+
+The Newton scheme
+
+The scheme SOLVE is based on an ideal iteration of order
+one. The choice Cn ∶= (DF(un ))−1 offers in principle a better
+convergence behavior of the outer iteration. In fact, for problems of the type (105) one can show that the Newton iteration
+(121) converges quadratically for a sufficiently good initial
+guess u0 . On the other hand, it is not clear what the cost of
+each linear subproblem
+DF(un )wn = −(F(un ) − f)
+
+(164)
+
+will amount to. A detailed analysis is given in Cohen et al.
+(2003) where it is shown that the perturbed Newton iteration
+still retains a quadratic convergence while preserving an
+overall asymptotically optimal complexity in the sense of
+Theorem 12. It is perhaps worth stressing the following two
+points. The well-posedness (109) ensures that the problem
+(164) is well-conditioned, which suggests employing SOLVE
+for its approximate solution. Nevertheless, this raises two
+questions. First, the scheme APPLY needed to realize the
+residual approximation in SOLVE would require assembling
+in some sense the matrix DF(un ) in each update step with
+sufficient accuracy, which could be prohibitively expensive.
+However, the result of the application of DF(un ) to a vector w
+can be interpreted as the array of dual wavelet coefficients of
+a nonlinear composition with two wavelet expansions, since
+DF(un )w = (⟨ψ𝜆 , DF(un )w⟩)𝜆∈ =∶ (⟨ψ𝜆 , Q(un , w)⟩)𝜆∈
+=∶ Q(un , w)
+The approximation of Q(un , w) can be realized again with
+the aid of the scheme EVAL without assembling the Jacobian,
+which in this sense leads to a matrix free Newton scheme.
+In fact, in Cohen et al. (2003) EVAL is described for functions of several components. Further remarks on the related
+computational issues will be given in Section 6.4.
+Secondly, the complexity analysis is not completely
+straightforward because one cannot directly infer from the
+sparseness of u to the sparseness of the Newton systems
+(164). However, one can show that these systems may be
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+viewed as perturbations of another system whose solution is
+sparse whenever u is sparse. This, however, limits the target
+accuracy for (164). Nevertheless, one can show that this still
+suffices to ensure second order convergence of the outer
+iteration (121) (Cohen et al., 2003a).
+
+6.4
+
+Computational issues
+
+The above complexity analysis works under the assumption
+that in the linear case the entries of A are computable at unit
+cost in order to invoke APPLY. Likewise in the nonlinear
+case, the entries of F(v) in the predicted sets ϵ have to be
+computed. Under fairly general assumptions, both tasks can
+be handled by the following strategy. By definition, one has
+ (v) =
+
+∑
+𝜆∈
+
+̃𝜆 =
+⟨ψ𝜆 ,  (v)⟩ψ
+
+∑
+𝜆∈
+
+̃𝜆
+(F(v))𝜆 ψ
+
+̃ is the dual basis for Ψ and hence a Riesz basis for
+where Ψ
+′
+ . The idea is now to use an efficient recovery scheme, as
+described in Dahmen et al. (2000) and Barinka et al. (2003),
+that produces for a given target accuracy ϵ an approximation
+∑
+̃ 𝜆 ∈  ′ to  (v) such that || (v) − g|| ′ ≤ ϵ
+g = 𝜆∈Λϵ g𝜆 ψ
+at a computational cost that stays proportional to the size
+of the prediction set ϵ from EVAL. The norm equivalence
+now guarantees that the corresponding coefficient arrays
+exhibit essentially the same accuracy ||F(v) − g||𝓁2 ≤ c−1
+ϵ.
+Ψ
+The important point is that individual coefficients are never
+computed but, solely based on the knowledge of the prediction set ϵ , quadrature is always used to generate on the function side an approximation to the whole object  (v) by local
+quasi-interpolant techniques to be able to keep the computational work proportional to the number of current degrees
+of freedom. This strategy justifies the above assumptions in a
+wide range of cases (see Barinka, 2004; Dahmen et al., 2000;
+Barinka et al., 2003 for details).
+
+6.5
+
+Concluding remarks
+
+The primary goal of this section was to bring out the essential mechanisms and the potential of wavelet-based multiscale techniques and to understand under which circumstances optimal complexity can be achieved. A crucial role
+was played by the mapping properties of the underlying
+variational problem in conjunction with the availability of
+a wavelet Riesz basis for the corresponding energy space.
+This also revealed where the principal difficulties may arise.
+Depending on the nature of , or when dealing with complex
+geometries the construction of a good basis, Ψ may be very
+difficult or even impossible. Poor constants in (30) would
+spoil the quantitative performance of SOLVE significantly.
+
+Likewise poor constants in (92) would have the same effect.
+In fact, these constants may be parameter dependent and
+further work in this direction is under progress. But at least,
+the analysis reveals what one should be looking for in each
+concrete case which might certainly require much more additional work. More information on first computational studies
+for elliptic and indefinite problems can be found in Barinka
+et al. (2001), Dahlke et al. (2002), and Dahmen et al. (2002).
+The quantitative improvement of evaluation schemes like
+EVAL in conjunction with the strategies in Barinka (2004),
+Dahmen et al. (2000), and Barinka et al. (2003) certainly
+plays an important role. But already the pure prediction result
+in Theorem 9 at least gives rigorous bounds on the effect
+of certain nonlinearities concerning the interaction of fine
+and coarse scales – a problem that is at the heart of many
+multiscale phenomena in technology and science.
+Finally, the difficulties of finding stable pairs of trial functions in many mixed formulations may help one to appreciate the principal merits of techniques that inherit the
+stability properties of the original problem. In this context,
+the above multiscale techniques incorporate a natural stabilization effect.
+
+ACKNOWLEDGMENTS
+We are very indebted to Frank Bramkamp, Helmut
+Harbrecht, Siegfried Müller and Reinhold Schneider
+for providing us with illustrations and numerical results
+concerning the material discussed in this chapter.
+
+NOTES
+1.
+
+2.
+
+Throughout this chapter, we sometimes write A ≲ B to
+indicate the existence of a constant c such that A ≤ cB
+independent of any parameters on which A and B may
+depend. Moreover A ∼ B means that A ≲ B and B ≲ A.
+There is at least one strategy for maintaining the
+Euclidean structure by employing fictitious domain
+techniques; appending, for instance, essential boundary
+conditions by Lagrange multipliers (Dahmen and
+Kunoth, 2001; Kunoth, 1995).
+
+REFERENCES
+Adams RA. Sobolev Spaces. Academic Press: New York, 1978.
+Alpert B. A class of bases in for sparse representation of integral operators. SIAM Journal on Mathematical Analysis 1993; 24:246–262.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+38
+
+39
+
+Arandiga F, Donat R and Harten A. Multiresolution based on
+weighted averages of the hat function I: linear reconstruction techniques. SIAM Journal on Numerical Analysis 1998; 36:160–203.
+
+Cohen A. Wavelet Methods in Numerical Analysis, in the Handbook
+of Numerical Analysis, vol. VII, Ciarlet P-G et Lions J-L (eds).
+Elsevier: Amsterdam, 2000.
+
+Arandiga F, Donat R and Harten A. Multiresolution based on
+weighted averages of the hat function II: nonlinear reconstruction techniques. SIAM Journal on Scientific Computing 1999;
+20:1053–1093.
+
+Cohen A. Numerical Analysis of Wavelet Methods, Studies in Mathematics and its Applications, vol. 32. Elsevier: Amsterdam, 2003.
+
+Ballmann J, Bramkamp F and Müller S. Development of a flow solver
+employing local adaptation based on multiscale analysis based on
+B-spline grids, In Proceedings of the 8th Annual Conference of the
+CFD Society of Canada, Montreal, 11–13 June 2000.
+Bramkamp F, Gottschlich-Müller B, Hesse M, et al. H-adaptive
+multiscale schemes for the compressible Navier–Stokes
+equations – polyhedral discretization, data compression and
+mesh generation, notes on numerical fluid mechanics. In Flow
+Modulation and Fluid-Structure-Interaction at Airplane Wings,
+Ballmann J (ed.). Springer-Verlag: 2003; 125–204.
+
+Cohen A, Daubechies I and Feauveau J-C. Biorthogonal bases
+of compactly supported wavelets. Communications on Pure and
+Applied Mathematics 1992; 45:485–560.
+Cohen A, Dahmen W and DeVore R. Adaptive wavelet methods for
+elliptic operator equations – convergence rates. Mathematics of
+Computation 2001; 70:27–75.
+Cohen A, Dahmen W and DeVore R. Adaptive wavelet methods
+II – beyond the elliptic case. Foundations of Comp. Math. 2002;
+2(3):203–245.
+Cohen A, Kaber S-M, Müller S and Postel M. Fully adaptive multiresolution finite volume schemes for conservation laws. Mathematics
+of Computation 2003; 72:183–225.
+
+Barinka A, Barsch T, Charton P, et al. Adaptive wavelet schemes
+for elliptic problems – implementation and numerical experiments.
+SIAM Journal on Scientific Computing 2001; 23(3):910–939.
+
+Cohen A, Dahmen W and DeVore R. Adaptive Wavelet Schemes
+for Nonlinear Variational Problems. SIAM Journal on Numerical
+Analysis 2003a; 5(41):1785–1823.
+
+Barinka A, Dahlke S and Dahmen W. Adaptive application of
+operators in standard representation, Adv. Comp. Math. Preprint,
+RWTH-Aachen, Oct. 2003.
+
+Cohen A, Dahmen W and DeVore R. Sparse Evaluation of Compositions of Functions Using multiscale Expansions. SIAM Journal on
+Mathematical Analysis 2003b; 35:279–303.
+
+Barinka A. Fast Evaluation Tools for Adaptive Wavelet Schemes.
+PhD thesis, RWTH, Aachen, 2004.
+
+Cohen A and Masson R. Wavelet adaptive methods for second order
+elliptic problems, boundary conditions and domain decomposition.
+Numerische Mathematik 1997; 8:21–47.
+
+Barinka A, Dahmen W and Schneider R. An Algorithm for the
+Evaluation of Nonlinear Functionals of Wavelet Expansions, 2004.
+Berger M and Oliger J. Adaptive mesh refinement for hyperbolic
+partial differential equations. Journal of Computational Physics
+1984; 53:484–512.
+Bergh J and Löfström J. Interpolation Spaces, An Introduction.
+Springer: Berlin, 1976.
+Bertoluzza S. An adaptive collocation method based on interpolating
+wavelets. In Multiscale Wavelet Methods for PDE’s, Dahmen W,
+Kurdila AJ and Oswald P (eds). Academic Press: New York, 1997;
+109–135.
+
+Costabel M and Stephan EP. Coupling of finite and boundary element
+methods for an elastoplastic interface problem. SIAM Journal on
+Numerical Analysis 1990; 27:1212–1226.
+Dahlke S. Besov regularity for elliptic boundary value problems on
+polygonal domains. Applied Mathematics Letters 1999; 12:31–36.
+Dahlke S, Dahmen W, Hochmuth R and Schneider R. Stable multiscale bases and local error estimation for elliptic problems. Applied
+Numerical Mathematics 1997; 8:21–47.
+Dahlke S and DeVore R. Besov regularity for elliptic boundary value
+problems. Comm. Partial Differential Equations 1997; 22:1–16.
+
+Beylkin G, Coifman RR and Rokhlin V. Fast wavelet transforms
+and numerical algorithms I. Communications on Pure and Applied
+Mathematics 1991; 44:141–183.
+
+Dahlke S, Dahmen W and Urban K. Adaptive wavelet methods
+for saddle point problems – convergence rates. SIAM Journal on
+Numerical Analysis 2002; 40(4):1230–1262.
+
+Binev P and DeVore R. Fast Computation in Adaptive Tree Approximation. University of South Carolina. Numerische Mathematik,
+2004; 97:193–217.
+
+Dahmen W. Some remarks on multiscale transformations, stability
+and biorthogonality. In Wavelets, Images and Surface Fitting,
+Laurent PJ, Le Méhauté A and Schumaker LL (eds). AK Peters:
+Wellesley, 1994; 157–188.
+
+Bramble JH, Lazarov RD and Pasciak JE. A least-squares approach
+based on a discrete minus one inner product for first order systems.
+Mathematics of Computation 1997; 66:935–955.
+
+Dahmen W. Stability of multiscale transformations. Journal of
+Fourier Analysis and Applications 1996; 2:341–361.
+
+Brezzi F and Fortin M. Mixed and Hybrid Finite Element Methods.
+Springer: Berlin, Heidelberg, New York, 1991.
+
+Dahmen W. Wavelet and multiscale methods for operator equations.
+Acta Numerica, 1997; 6:55–228.
+
+Canuto A, Tabacco A and Urban K. The wavelet element method, part
+I: construction and analysis. Applied and Computational Harmonic
+Analysis 1999; 6:1–52.
+
+Dahmen W. Wavelet methods for PDEs – Some recent developments. Journal of Computational and Applied Mathematics 2001;
+128:133–185.
+
+Canuto A, Tabacco A and Urban K. The wavelet element method, part
+II: realization and additional features. Applied and Computational
+Harmonic Analysis 2000; 8:123–165.
+
+Dahmen W. Multiscale and Wavelet Methods for Operator
+Equations, C.I.M.E. Lecture Notes. Springer-Verlag: Heidelberg
+1825: 2003.
+
+Carnicer JM, Dahmen W and Peña JM. Local decomposition of
+refinable spaces. Applied and Computational Harmonic Analysis
+1996; 3:127–153.
+
+Dahmen W, Gottschlich-Müller B and Müller S. Multiresolution
+schemes for conservation laws. Numerische Mathematik 2001;
+88:399–443.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+Dahmen W and Kunoth A. Multilevel preconditioning. Numerische
+Mathematik 1992; 63:315–344.
+Dahmen W and Kunoth A. Appending boundary conditions by
+Lagrange multipliers: analysis of the LBB condition. Numerische
+Mathematik 2001; 88:9–42.
+Dahmen W and Kunoth A. Adaptive Wavelet Methods for LinearQuadratic Elliptic Control Problems: Convergence Rates. IGPM
+Report # 224, RWTH: Aachen, December 2002.
+Dahmen W and Schneider R. Composite wavelet bases for operator
+equations. Mathematics of Computation 1999b; 68:1533–1567.
+Dahmen W and Schneider R. Wavelets on manifolds I: construction
+and domain decomposition. SIAM Journal on Mathematical Analysis 1999; 31:184–230.
+Dahmen W and Stevenson R. Element-by-element construction of
+wavelets – stability and moment conditions. SIAM Journal on
+Numerical Analysis 1999; 37:319–325.
+Dahmen W, Harbrecht H and Schneider R. Compression Techniques
+for Boundary Integral Equations – Optimal Complexity Estimates.
+IGPM Report # 218, RWTH: Aachen, June 2002.
+Dahmen W, Prößdorf S and Schneider R. Multiscale methods for
+pseudo-differential equations on smooth manifolds. In Proceedings of the International Conference on Wavelets: Theory, Algorithms, and Applications, Chui CK, Montefusco L and Puccio L
+(eds). Academic Press, 1994; 385–424.
+Dahmen W, Kunoth A and Urban K. Biorthogonal spline-wavelets
+on the interval – stability and moment conditions. Applied and
+Computational Harmonic Analysis 1999; 6:132–196.
+Dahmen W, Schneider R and Xu Y. Nonlinear functions of
+wavelet expansions – adaptive reconstruction and fast evaluation.
+Numerische Mathematik 2000; 86:49–101.
+Dahmen W, Urban K and Vorloeper J. Adaptive wavelet
+methods – basic concepts and applications. In Wavelet Analysis – Twenty Years Developments, Ding-Xuan Zhou (ed.). World
+Scientific: New Jersey, London, Singapore, Hongkong, 2002;
+39–80.
+Dahmen W, Kunoth A and Schneider R. Wavelet least squares
+methods for boundary value problems. SIAM Journal on Numerical Analysis 2002; 39(6):1985–2013.
+Daubechies I. Ten Lectures on Wavelets, CBMS-NSF Regional
+Conference Series in Applied Math. 61, SIAM, Philadelphia, 1992.
+DeVore R. Nonlinear approximation. Acta Numerica, 1998;
+7:51–150.
+DeVore R and Lorentz GG. Constructive Approximation,
+Grundlehren vol. 303. Springer-Verlag: Berlin, 1993.
+De Vore R and Popov V. Interpolation of Besov spaces. Trans. Am.
+Math. Soc. 1988; 305:397–414.
+DeVore R and Sharpley R. Maximal functions measuring smoothness. Memoirs of the American Mathematical Society 1984;
+47:1–115.
+DeVore R, Jawerth B and Popov V. Compression of wavelet decompositions. American Journal of Mathematics 1992; 114:737–785.
+Girault V and Raviart P-A. Finite Element Methods for Navier–Stokes
+Equations. Springer: Berlin Heidelberg New York, 1986.
+Greengard L and Rokhlin V. A fast algorithm for particle simulation.
+Journal of Computational Physics 1987; 73:325–348.
+Hackbusch W. A sparse matrix arithmetic based on -matrices. Part
+I: Introduction to -matrices. Computing 1999; 64:89–108.
+
+Hackbusch W and Nowak ZP. On the fast matrix multiplication in
+the boundary element method by panel clustering. Numerische
+Mathematik 1989; 54:463–491.
+Harbrecht H. Wavelet Galerkin Schemes for the Boundary Element
+Method in Three Dimensions. PhD thesis, Technische Universität
+Chemnitz, Chemnitz 2001.
+Harten A. Discrete multiresolution and generalized wavelets. J. Appl.
+Num. Math. 1993; 12:153–193.
+Harten A. Multiresolution algorithms for the numerical solution
+of hyperbolic conservation laws. Communications on Pure and
+Applied Mathematics 1995; 48:1305–1342.
+Harten A. Multiresolution representation of data II: generalized framework. SIAM Journal on Numerical Analysis 1996;
+33:1205–1256.
+Lage C. Concept oriented design of numerical software. Boundary
+Elements: Implementation and Analysis of Advanced Algorithms;
+Proceedings of the 12th GAMM-Seminar, Kiel, 19–21 January,
+1996; Vieweg Notes Numer. Fluid Mech. 1996; 54:159–170.
+Lage C and Schwab C. Wavelet Galerkin algorithms for boundary
+integral equations. SIAM Journal on Scientific Computing 1998;
+20:2195–2222.
+Kress R. Linear Integral Equations. Springer-Verlag: Berlin, Heidelberg, 1989.
+Kunoth A. Multilevel preconditioning – appending boundary conditions by Lagrange multipliers. Advances in Computational Mathematics 1995; 4:145–170.
+Kunoth A. Wavelet methods – elliptic boundary value problems and
+control problems. In Advances in Numerical Mathematics, Bock
+HG, Hackbusch W, Luskin M and Hackbusch W (eds). Teubner:
+Stuttgart-Leipzig-Wiesbaden, 2001.
+Maday Y, Perrier V and Ravel JC. Adaptativité dynamique sur
+bases d’ondelettes pour l’approximation d’équations aaux dérivées
+partielles. CR Acad Sci Paris, Série 1991; I:405–410.
+Müller S. Adaptive Multiscale Schemes for Conservation Laws,
+Lecture Notes in Computational Science and Engineering, vol. 27.
+Springer-Verlag: Berlin, Heidelberg, 2003.
+von Petersdorff T and Schwab C. Wavelet approximation for first
+kind integral equations on polygons. Numerische Mathematik
+1996; 74:479–519.
+von Petersdorff T and Schwab C. Fully discrete multiscale Galerkin
+BEM. In Multiscale Wavelet Methods for PDEs, Dahmen W,
+Kurdila A and Oswald P (eds). Academic Press: San Diego, 1997;
+287–346.
+von Petersdorff T, Schneider R and Schwab C. Multiwavelets for
+second kind integral equations. SIAM Journal on Numerical Analysis 1997; 34:2212–2227.
+Schmidlin G, Lage C and Schwab C. Rapid Solution of First Kind
+Boundary Integral Equations in R3 . Research Report No. 2002–07,
+Seminar für Angewandte Mathematik, ETH Zürich.
+Schneider R. Multiskalen- und Wavelet-Matrixkompression:
+Analysisbasierte Methoden zur Lösung großer vollbesetzter
+Gleichungssysteme. B.G. Teubner: Stuttgart, 1998.
+Stevenson R. Locally Supported, Piecewise Polynomial Biorthogonal Wavelets on Non-Uniform Meshes. Technical Report 1157,
+University of Utrecht: Utrecht, 2000, to appear in Constructive
+Approximation.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+40
+
+Stevenson R. On the Compressibility of Operators in Wavelet Coordinates. Technical Report 1249, University of Utrecht: Utrecht, 2003,
+to appear in SIAM J. Math. Anal.
+Sweldens W. The lifting scheme: a custom-design construction
+of biorthogonal wavelets. Applied and Computational Harmonic
+Analysis 1996; 3:186–200.
+Sweldens W. The lifting scheme: a construction of second generation wavelets. SIAM Journal on Mathematical Analysis 1998;
+29:511–546.
+
+41
+
+Triebel H. Interpolation Theory, Function Spaces, and Differential
+Operators. North Holland: Amsterdam, 1978.
+Vassilevski PS and Wang J. Stabilizing the hierarchical basis by
+approximate wavelets, I: Theory. Numerical Linear Algebra with
+Applications 1997; 4:103–126.
+Yserentant H. On the multilevel splitting of finite element spaces.
+Numerische Mathematik 1986; 49:379–412.
+
+10.1002/9781119176817.ecm2011m, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2011m by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Adaptive Wavelet Techniques in Numerical Simulation
+
+

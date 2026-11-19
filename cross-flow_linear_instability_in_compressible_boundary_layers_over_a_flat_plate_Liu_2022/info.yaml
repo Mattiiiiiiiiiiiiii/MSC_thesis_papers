@@ -1,0 +1,403 @@
+abstract: <jats:p>The linear instability of compressible boundary layers over a flat
+  plate in the presence of parameterized crossflow has been investigated by means
+  of linear stability theory. A family of boundary layer with crossflow is obtained
+  as the base flow from the compressible Falkner–Skan–Cooke (FSC) flow model. Two
+  factors, that is, the local swept angle and the pressure-gradient parameter, are
+  designed to create the crossflow with different directions and magnitudes, which
+  further results in the variation of the cross-flow instability. Modal properties
+  related to the cross-flow instability are emphasized. The association between the
+  cross-flow mode and the Mack's mode is clarified by extending the base flow from
+  two dimension to three dimension. The cross-flow instability is discovered to be
+  integrated with the slow-mode instability, that is, the instability related to the
+  Tollmien–Schlichting (T–S) mode or the first mode, and it can hardly be distinguished
+  as an individual mode in most cases. The effects of Mach number, pressure gradient,
+  local sweep, and wall temperature are studied. The behaviors of the cross-flow instability
+  under such effects resemble those of the slow-mode instability in the two-dimensional
+  boundary layers. It is found that the unstable modes in the three-dimensional boundary
+  layers are mainly affected by the streamwise pressure gradient and the crossflow
+  per se. Specifically, the first mode is much more sensitive to the crossflow than
+  the second mode. As a result, more marked variations are commonly observed for the
+  first mode in the boundary layers with crossflow.</jats:p>
+author: Liu, Zhiyong
+author_list:
+- affiliation: []
+  family: Liu
+  given: Zhiyong
+citations:
+- article-title: Secondary instability of crossflow vortices and swept-wing boundary-layer
+    transition
+  doi: 10.1017/S0022112099006291
+  first-page: '85'
+  journal-title: J. Fluid Mech.
+  volume: '399'
+  year: '1999'
+- article-title: Experimental and theoretical study of swept-wing boundary-layer instabilities.
+    Unsteady crossflow instability
+  doi: 10.1063/1.5094609
+  first-page: '064101'
+  issue: '6'
+  journal-title: Phys. Fluids
+  volume: '31'
+  year: '2019'
+- article-title: Transition in an infinite swept-wing boundary layer subject to surface
+    roughness and free-stream turbulence
+  doi: 10.1017/jfm.2021.962
+  first-page: A24
+  journal-title: J. Fluid Mech.
+  volume: '931'
+  year: '2022'
+- article-title: Wind tunnel experiments relating to supersonic and hypersonic boundary-layer
+    transition
+  doi: 10.2514/3.49694
+  first-page: '290'
+  issue: '3'
+  journal-title: AIAA J.
+  volume: '13'
+  year: '1975'
+- article-title: High-frequency instabilities of stationary crossflow vortices in
+    a hypersonic boundary layer
+  doi: 10.1103/PhysRevFluids.1.053603
+  first-page: '053603'
+  journal-title: Phys. Rev. Fluids
+  volume: '1'
+  year: '2016'
+- article-title: Controlled stationary/travelling cross-flow mode interaction in a
+    Mach 6.0 boundary layer
+  doi: 10.1017/jfm.2020.15
+  first-page: A30
+  journal-title: J. Fluid Mech.
+  volume: '887'
+  year: '2020'
+- article-title: Cross-flow-type breakdown induced by distributed roughness in the
+    boundary layer of a hypersonic capsule configuration
+  doi: 10.1017/jfm.2018.706
+  first-page: '470'
+  journal-title: J. Fluid Mech.
+  volume: '856'
+  year: '2018'
+- article-title: Design and transition characteristics of a standard model for hypersonic
+    boundary layer transition research
+  doi: 10.1007/s10409-021-01136-5
+  first-page: '1637'
+  issue: '11'
+  journal-title: Acta Mech. Sin.
+  volume: '37'
+  year: '2021'
+- article-title: Progress in flight tests of hypersonic boundary layer transition
+  doi: 10.1007/s10409-021-01153-4
+  first-page: '1589'
+  issue: '11'
+  journal-title: Acta Mech. Sin.
+  volume: '37'
+  year: '2021'
+- article-title: Stability and transition of three-dimensional boundary layers
+  doi: 10.1146/annurev.fluid.35.101101.161045
+  first-page: '413'
+  journal-title: Annu. Rev. Fluid Mech.
+  volume: '35'
+  year: '2003'
+- article-title: Identification of traveling crossflow waves under real hypersonic
+    flight conditions
+  doi: 10.1063/5.0046954
+  first-page: '044110'
+  journal-title: Phys. Fluids
+  volume: '33'
+  year: '2021'
+- article-title: The boundary layer of a class of infinite yawed cylinders
+  doi: 10.1017/S0305004100026220
+  first-page: '645'
+  journal-title: Math. Proc. Cambridge Philos. Soc.
+  volume: '46'
+  year: '1950'
+- unstructured: L. M. Mack, “Boundary-layer linear stability theory,” AGARD Report
+    No. 709 (1984).
+- article-title: Measurements and stability calculations of the disturbance growth
+    in an unstable three-dimensional boundary layer
+  doi: 10.1063/1.858176
+  first-page: '2371'
+  issue: '10'
+  journal-title: Phys. Fluids A
+  volume: '3'
+  year: '1991'
+- article-title: Mechanisms and passive control of crossflow-vortex-induced transition
+    in a three-dimensional boundary layer
+  doi: 10.1017/S0022112001007418
+  first-page: '49'
+  journal-title: J. Fluid Mech.
+  volume: '456'
+  year: '2002'
+- article-title: Transition mechanisms induced by travelling crossflow vortices in
+    a three-dimensional boundary layer
+  doi: 10.1017/S0022112003003884
+  first-page: '67'
+  journal-title: J. Fluid Mech.
+  volume: '483'
+  year: '2003'
+- article-title: Simulation of crossflow instability on a supersonic highly swept
+    wing
+  doi: 10.1016/S0045-7930(98)00056-5
+  first-page: '33'
+  journal-title: Comput. Fluids
+  volume: '29'
+  year: '2000'
+- article-title: Three-dimensional boundary-layer transition on a swept wing at Mach
+    3.5
+  doi: 10.2514/3.12944
+  first-page: '2032'
+  issue: '11'
+  journal-title: AIAA J.
+  volume: '33'
+  year: '1995'
+- article-title: Receptivity and stability of supersonic swept flows
+  doi: 10.2514/1.J051064
+  first-page: '1476'
+  issue: '7'
+  journal-title: AIAA J.
+  volume: '50'
+  year: '2012'
+- article-title: Crossflow instability in a hypersonic boundary layer
+  doi: 10.1017/jfm.2016.643
+  first-page: '224'
+  journal-title: J. Fluid Mech.
+  volume: '808'
+  year: '2016'
+- article-title: Secondary instability analysis of crossflow on a hypersonic yawed
+    straight circular cone
+  doi: 10.1017/jfm.2016.793
+  first-page: '370'
+  journal-title: J. Fluid Mech.
+  volume: '812'
+  year: '2017'
+- article-title: Linear modal instabilities of hypersonic flow over an elliptic cone
+  doi: 10.1017/jfm.2016.536
+  first-page: '442'
+  journal-title: J. Fluid Mech.
+  volume: '804'
+  year: '2016'
+- article-title: Influence of compressibility on three-dimensional boundary layer
+    stability
+  first-page: '76'
+  issue: '136'
+  journal-title: Trans. Jpn. Soc. Aeronaut. Space Sci.
+  volume: '42'
+  year: '1999'
+- article-title: Spatial optimal growth in three-dimensional compressible boundary
+    layers
+  doi: 10.1017/jfm.2012.235
+  first-page: '251'
+  journal-title: J. Fluid Mech.
+  volume: '704'
+  year: '2012'
+- article-title: Role of freestream slow acoustic waves in a hypersonic three-dimensional
+    boundary layer
+  doi: 10.2514/1.J056492
+  first-page: '3570'
+  issue: '9'
+  journal-title: AIAA J.
+  volume: '56'
+  year: '2018'
+- article-title: Receptivity of a supersonic boundary layer over a flat plate. Part
+    3. Effects of different types of free-stream disturbances
+  doi: 10.1017/S0022112005003836
+  first-page: '63'
+  journal-title: J. Fluid Mech.
+  volume: '532'
+  year: '2005'
+- article-title: Nonlinear interaction between two second-mode disturbances with the
+    same frequency in a hypersonic boundary layer over a swept blunt plate
+  doi: 10.1063/5.0046403
+  first-page: '044102'
+  journal-title: Phys. Fluids
+  volume: '33'
+  year: '2021'
+- article-title: Receptivity mechanisms in three-dimensional boundary-layer flows
+  doi: 10.1017/S0022112008004345
+  first-page: '209'
+  journal-title: J. Fluid Mech.
+  volume: '618'
+  year: '2009'
+- article-title: Secondary instability of cross-flow vortices in Falkner–Skan–Cooke
+    boundary layers
+  doi: 10.1017/S0022112098001931
+  first-page: '339'
+  journal-title: J. Fluid Mech.
+  volume: '368'
+  year: '1998'
+- article-title: The secondary instabilities of stationary cross-flow vortices in
+    a Mach 6 swept wing flow
+  doi: 10.1017/jfm.2019.397
+  first-page: '914'
+  journal-title: J. Fluid Mech.
+  volume: '873'
+  year: '2019'
+- article-title: Secondary instabilities of hypersonic stationary crossflow waves
+  doi: 10.2514/1.J056028
+  first-page: '182'
+  issue: '1'
+  journal-title: AIAA J.
+  volume: '56'
+  year: '2018'
+- article-title: Secondary crossflow instability through global analysis of measured
+    base flows
+  doi: 10.1017/jfm.2018.253
+  first-page: '605'
+  journal-title: J. Fluid Mech.
+  volume: '846'
+  year: '2018'
+- article-title: Control of stationary cross-flow modes in a Mach 3.5 boundary layer
+    using patterned passive and active roughness
+  doi: 10.1017/jfm.2012.579
+  first-page: '5'
+  journal-title: J. Fluid Mech.
+  volume: '718'
+  year: '2013'
+- article-title: Stability and sensitivity of a cross-flow dominated Falkner–Skan–Cooke
+    boundary layer with discrete surface roughness
+  doi: 10.1017/jfm.2017.466
+  first-page: '830'
+  journal-title: J. Fluid Mech.
+  volume: '826'
+  year: '2017'
+- article-title: Control of stationary cross-flow modes in a Mach 6 boundary layer
+    using patterned roughness
+  doi: 10.1017/jfm.2018.636
+  first-page: '822'
+  journal-title: J. Fluid Mech.
+  volume: '856'
+  year: '2018'
+- article-title: Stability analysis and transition prediction of streamwise vortices
+    over a yawed cone at Mach 6
+  doi: 10.1063/5.0031057
+  first-page: '124110'
+  journal-title: Phys. Fluids
+  volume: '32'
+  year: '2020'
+- article-title: Stationary cross-flow breakdown in a high-speed swept-wing boundary
+    layer
+  doi: 10.1063/5.0039901
+  first-page: 024108
+  journal-title: Phys. Fluids
+  volume: '33'
+  year: '2021'
+- article-title: Comparison of amplitude method of roughness-induced swept-wing transition
+    prediction with experiment
+  doi: 10.1063/5.0057853
+  first-page: 094105
+  journal-title: Phys. Fluids
+  volume: '33'
+  year: '2021'
+- article-title: Direct simulation of hypersonic crossflow instability on an elliptic
+    cone
+  doi: 10.2514/1.J055130
+  first-page: '1769'
+  issue: '6'
+  journal-title: AIAA J.
+  volume: '55'
+  year: '2017'
+- article-title: Stability assessment on sinusoidal roughness elements for crossflow-transition
+    control
+  doi: 10.1063/5.0041442
+  first-page: '034112'
+  journal-title: Phys. Fluids
+  volume: '33'
+  year: '2021'
+- article-title: Secondary instability of crossflow vortices
+  doi: 10.1017/S002211200400268X
+  first-page: '275'
+  journal-title: J. Fluid Mech.
+  volume: '525'
+  year: '2005'
+- article-title: Experimental study of hypersonic crossflow instability over a swept
+    flat plate by flow visualization
+  doi: 10.1007/s10409-021-01109-8
+  first-page: '1395'
+  issue: '9'
+  journal-title: Acta Mech. Sin.
+  volume: '37'
+  year: '2021'
+- article-title: 'Crossflow disturbances in three-dimensional boundary layers: Nonlinear
+    development, wave interaction and secondary instability'
+  doi: 10.1017/S0022112094001242
+  first-page: '1'
+  journal-title: J. Fluid Mech.
+  volume: '268'
+  year: '1994'
+- article-title: Simple cases of the streamline-curvature instability in three-dimensional
+    boundary layers
+  doi: 10.1017/S0022112096000699
+  first-page: '129'
+  journal-title: J. Fluid Mech.
+  volume: '317'
+  year: '1996'
+- article-title: Compressible Falkner–Skan–Cooke boundary layer on a flat plate
+  doi: 10.1063/5.0075233
+  first-page: '126109'
+  journal-title: Phys. Fluids
+  volume: '33'
+  year: '2021'
+- edition: 2nd ed
+  volume-title: Hypersonic and High-Temperature Gas Dynamics
+  year: '2006'
+- article-title: Numerical methods for hypersonic boundary layer stability
+  doi: 10.1016/0021-9991(90)90106-B
+  first-page: '376'
+  journal-title: J. Comput. Phys.
+  volume: '86'
+  year: '1990'
+- article-title: 'High-speed boundary-layer instability: Old terminology and a new
+    framework'
+  doi: 10.2514/1.J050835
+  first-page: '1647'
+  issue: '8'
+  journal-title: AIAA J.
+  volume: '49'
+  year: '2011'
+- article-title: Inviscid instability of a skewed compressible mixing layer
+  doi: 10.1017/S0022112093001247
+  first-page: '441'
+  journal-title: J. Fluid Mech.
+  volume: '249'
+  year: '1993'
+- article-title: Receptivity of a supersonic boundary layer over a flat plate. Part
+    1. Wave structures and interactions
+  doi: 10.1017/S0022112003004786
+  first-page: '31'
+  journal-title: J. Fluid Mech.
+  volume: '488'
+  year: '2003'
+- article-title: Effect of pressure gradient on the stability of compressible boundary
+    layers
+  doi: 10.2514/3.11206
+  first-page: '2204'
+  issue: '9'
+  journal-title: AIAA J.
+  volume: '30'
+  year: '1992'
+- article-title: Transition and stability of high-speed boundary layers
+  doi: 10.1146/annurev-fluid-122109-160750
+  first-page: '79'
+  journal-title: Annu. Rev. Fluid Mech.
+  volume: '43'
+  year: '2011'
+- article-title: Linear and nonlinear stability of the Blasius boundary layer
+  doi: 10.1017/S0022112092002453
+  first-page: '441'
+  journal-title: J. Fluid Mech.
+  volume: '242'
+  year: '1992'
+doc_url: https://pubs.aip.org/aip/pof/article-pdf/doi/10.1063/5.0110311/16578949/094110_1_online.pdf
+doi: 10.1063/5.0110311
+files:
+- cross-flow_linear_instability_in_compressible_boundary_layers_over_a_flat_plate_Liu_2022.pdf
+issue: '9'
+journal: Physics of Fluids
+language: en
+month: 9
+pages: 094110
+papis_id: 8271966c6b9622bd8149ef5dd95240e1
+publisher: AIP Publishing
+title: Cross-flow linear instability in compressible boundary layers over a flat plate
+type: article
+url: https://doi.org/10.1063/5.0110311
+volume: '34'
+year: 2022

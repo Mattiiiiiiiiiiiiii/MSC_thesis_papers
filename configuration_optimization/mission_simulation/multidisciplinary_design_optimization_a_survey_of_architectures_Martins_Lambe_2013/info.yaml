@@ -1,0 +1,297 @@
+author: Martins, Joaquim R. R. A. and Lambe, Andrew B.
+author_list:
+- affiliation:
+  - name: University of Michigan, Ann Arbor, Michigan 48109
+  family: Martins
+  given: Joaquim R. R. A.
+- affiliation:
+  - name: University of Toronto, Toronto, Ontario M3H 5T6, Canada
+  family: Lambe
+  given: Andrew B.
+citations:
+- unstructured: SchmitL. A.ThorntonW. A. “Synthesis of an Airfoil at Supersonic Mach
+    Number,” NASA CR-144, Jan. 1965.
+- doi: 10.2514/3.7859
+- unstructured: 'SchmitL. A.Jr. “Structural Synthesis: Precursor and Catalyst, Recent
+    Experiences in Multidisciplinary Analysis and Optimization,” NASA CP-2337, 1984.'
+- unstructured: HaftkaR. T. “Automated Procedure for Design of Wing Structures to
+    Satisfy Strength and Flutter Requirements,” NASA Langley Research Center TN-D-7264,
+    Hampton, VA, 1973.
+- doi: 10.2514/3.60545
+- author: Haftka R. T.
+  first-page: '1106'
+  issn: https://id.crossref.org/issn/0001-1452
+  issn-type: print
+  issue: '8'
+  journal-title: AIAA Journal
+  volume: '14'
+  year: '1977'
+- unstructured: HaftkaR. T.ShoreC. P. “Approximate Methods for Combined Thermal/Structural
+    Design,” NASA TP-1428, June 1979.
+- doi: 10.2514/3.57350
+- doi: 10.2514/3.45525
+- doi: 10.2514/3.45670
+- doi: 10.2514/3.45980
+- doi: 10.2514/3.45972
+- doi: 10.2514/2.2419
+- doi: 10.2514/1.44727
+- doi: 10.2514/1.41833
+- unstructured: ManningV. M. “Large-Scale Design of Supersonic Aircraft via Collaborative
+    Optimization,” Ph.D. Thesis, Stanford Univ., Stanford, CA, 1999.
+- doi: 10.2514/1.13017
+- doi: 10.1017/S000192400000659X
+- doi: 10.1146/annurev-fluid-120710-101133
+- doi: 10.1007/s001580050151
+- doi: 10.1016/j.autcon.2004.11.004
+- doi: 10.1016/j.aei.2008.06.008
+- doi: 10.1007/s11044-005-4310-0
+- doi: 10.1243/095440905X33279
+- doi: 10.1117/12.680682
+- doi: 10.1115/1.1543978
+- doi: 10.1504/IJHVS.2004.005456
+- author: Peri D.
+  doi: 10.5957/jsr.2003.47.1.1
+  first-page: '1'
+  issn: https://id.crossref.org/issn/0022-4502
+  issn-type: print
+  issue: '1'
+  journal-title: Journal of Ship Research
+  volume: '47'
+  year: '2003'
+- doi: 10.1016/j.finel.2006.07.005
+- doi: 10.1007/s00773-005-0197-y
+- doi: 10.1016/j.compstruct.2009.07.024
+- doi: 10.2514/1.58
+- doi: 10.4050/JAHS.54.012007
+- doi: 10.1016/S0167-6105(98)00191-3
+- doi: 10.1002/we.61
+- doi: 10.2514/6.2008-6025
+- doi: 10.2514/2.3237
+- doi: 10.2514/1.40649
+- doi: 10.2514/6.2013-1599
+- doi: 10.3166/remn.17.103-126
+- unstructured: NocedalJ.WrightS. J., Numerical Optimization, 2nd ed., Springer–Verlag,
+    New York, 2006, p. 321.
+- doi: 10.1115/1.2826362
+- doi: 10.1080/03052159808941369
+- doi: 10.1007/978-1-4615-5563-6
+- doi: 10.1007/s11081-006-6836-2
+- doi: 10.1007/s00158-008-0286-8
+- doi: 10.1137/1.9780898718768
+- doi: 10.1016/0045-7949(87)90223-9
+- doi: 10.2514/2.248
+- doi: 10.2514/2.1889
+- doi: 10.1115/1.4001346
+- doi: 10.2514/6.2008-5841
+- doi: 10.1007/s00158-009-0381-5
+- doi: 10.1115/1.1582501
+- doi: 10.2514/2.2025
+- doi: 10.1115/1.1830046
+- doi: 10.1137/0804044
+- doi: 10.2514/2.1646
+- doi: 10.2514/6.2004-4307
+- doi: 10.2514/6.2004-4308
+- doi: 10.1177/1063293X9600400405
+- doi: 10.1023/B:OPTE.0000048534.58121.93
+- doi: 10.1007/BF01197554
+- doi: 10.2514/2.1126
+- doi: 10.2514/6.1996-714
+- doi: 10.2514/2.937
+- doi: 10.1002/nme.1380
+- doi: 10.1007/s11081-006-6835-3
+- author: Braun R. D.
+  first-page: '98'
+  volume-title: 'Multidisciplinary Design Optimization: State-of-the-Art'
+  year: '1997'
+- author: Kroo I. M.
+  first-page: '22'
+  volume-title: 'Multidisciplinary Design Optimization: State-of-the-Art'
+  year: '1997'
+- doi: 10.2514/2.847
+- doi: 10.1007/s00158-007-0200-9
+- doi: 10.1007/BF01759919
+- doi: 10.2514/3.13015
+- unstructured: 'AlexandrovN.HussainiM. Y. (eds.), Multidisciplinary Design Optimization:
+    State-of-the-Art, Society for Industrial and Applied Mathematics, Philadelphia,
+    1997, pp. 22–44.'
+- author: Alexandrov N. M.
+  first-page: '79'
+  volume-title: 'Multidisciplinary Design Optimization: State-of-the-Art'
+  year: '1997'
+- author: Balling R. J.
+  first-page: '90'
+  volume-title: 'Multidisciplinary Design Optimization: State-of-the-Art'
+  year: '1997'
+- doi: 10.2514/2.3156
+- doi: 10.2514/1.26989
+- doi: 10.1115/1.4004465
+- doi: 10.1007/s00158-008-0347-z
+- doi: 10.1007/s00158-012-0763-y
+- doi: 10.1109/TEM.1981.6448589
+- doi: 10.1109/17.946528
+- doi: 10.2514/3.9043
+- doi: 10.2514/3.60867
+- doi: 10.1007/978-3-642-55508-4
+- doi: 10.1137/S003614459631241X
+- doi: 10.1145/838250.838251
+- doi: 10.2514/3.48671
+- doi: 10.1007/BF01061285
+- doi: 10.2514/2.1961
+- doi: 10.1016/j.cma.2005.02.002
+- doi: 10.2514/1.29123
+- doi: 10.1023/B:OPTE.0000048536.47956.62
+- doi: 10.1016/j.cma.2004.09.013
+- doi: 10.2514/1.44033
+- doi: 10.2514/1.J052184
+- doi: 10.1007/BF01743538
+- doi: 10.2514/6.2010-9308
+- doi: 10.2514/3.8829
+- doi: 10.1137/S0036144504446096
+- doi: 10.1137/1.9781611971453
+- doi: 10.2514/3.10366
+- author: Kenway G. K. W.
+  journal-title: AIAA Journal
+  year: '2013'
+- author: Kenway G. K. W.
+  journal-title: Journal of Aircraft
+  year: '2013'
+- doi: 10.2514/6.2008-5956
+- author: Martins J. R. R. A.
+  journal-title: AIAA Journal
+- unstructured: LasdonL. S., Optimization Theory for Large Systems, Macmillan, New
+    York, 1970, pp. 104–143, Chap. 2.
+- doi: 10.1007/s10107-002-0304-3
+- doi: 10.1287/opre.8.1.101
+- doi: 10.1007/BF01386316
+- doi: 10.1115/1.2826697
+- doi: 10.1023/A:1008673321406
+- doi: 10.1007/s00158-010-0512-z
+- unstructured: 'BertsekasD. P.TsitsiklisJ. N., Parallel and Distributed Computation:
+    Numerical Methods, Athena Scientific, Belmont, MA, 1997, pp. 88–104.'
+- doi: 10.2514/6.2002-5504
+- doi: 10.2514/6.2006-7114
+- doi: 10.1007/s11081-008-9046-2
+- author: De Wit A. J.
+  volume-title: 51st AIAA/ASME/ASCE/AHS/ASC Structures, Structural Dynamics, and Materials
+    Conference
+  year: '2010'
+- doi: 10.2514/6.2010-2757
+- unstructured: 'Sobieszczanski–SobieskiJ. “Optimization by Decomposition: A Step
+    from Hierarchic to Non- Hierarchic Systems,” NASA Langley Research Center TR-CP-3031,
+    Hampton, VA, Sept. 1988.'
+- doi: 10.1080/03052159208941227
+- doi: 10.1007/BF01299452
+- doi: 10.2514/3.11967
+- doi: 10.2514/3.11938
+- doi: 10.2514/6.2006-6907
+- doi: 10.2514/1.19972
+- doi: 10.2514/1.36853
+- doi: 10.2514/6.2006-6907
+- doi: 10.1007/BF01195988
+- doi: 10.2514/6.2004-4537
+- doi: 10.1007/s00158-007-0150-2
+- doi: 10.1007/s11081-009-9082-6
+- doi: 10.2514/6.2007-1895
+- unstructured: 'BraunR. D. “Collaborative Optimization: An Architecture for Large-Scale
+    Distributed Design,” Ph.D. Thesis, Stanford Univ., Stanford, CA, 1996.'
+- doi: 10.2514/6.1996-4017
+- doi: 10.2514/6.2000-4720
+- doi: 10.2514/1.9098
+- doi: 10.1137/1.9781611971316.ch4
+- doi: 10.2514/1.16577
+- unstructured: PerezR. E. “A Multidisciplinary Optimization Framework for Flight
+    Dynamics and Control Integration in Aircraft Design,” Ph.D. Thesis, Univ. of Toronto,
+    Toronto, 2007.
+- unstructured: MarriageC. “Automatic Implementation of Multidisciplinary Design Optimization
+    Architectures Using πMDO,” M.S. Thesis, Univ. of Toronto, Toronto, 2008.
+- doi: 10.1007/s00158-007-0127-1
+- doi: 10.2514/1.14254
+- doi: 10.2514/2.3825
+- doi: 10.2514/1.22263
+- doi: 10.2514/6.2006-6950
+- doi: 10.1007/s00158-004-0481-1
+- doi: 10.1115/1.1432991
+- doi: 10.1115/1.2205869
+- doi: 10.1007/s00500-007-0268-6
+- unstructured: RothB. D. “Aircraft Family Design Using Enhanced Collaborative Optimization,”
+    Ph.D. Thesis, Stanford Univ., Stanford, CA, 2008.
+- unstructured: KodiyalamS. “Evaluation of Methods for Multidisciplinary Design Optimization
+    (MDO), Phase I,” NASA CR-1998-208716, Sept. 1998.
+- unstructured: KodiyalamS.YuanC. “Evaluation of Methods for Multidisciplinary Design
+    Optimization (MDO), Part 2,” NASA CR-2000-210313, Nov. 2000.
+- doi: 10.1137/1.9780898719857
+- doi: 10.2514/6.2004-4545
+- doi: 10.1007/s00158-005-0565-6
+- doi: 10.2514/6.2004-4465
+- doi: 10.1146/annurev.fl.25.010193.002543
+- doi: 10.2514/1.27953
+- unstructured: KimH. M. “Target Cascading in Optimal System Design,” Ph.D. Thesis,
+    Univ. of Michigan, Ann Arbor, MI, 2001.
+- doi: 10.1002/nme.2158
+- doi: 10.2514/1.15326
+- doi: 10.1007/s00158-005-0579-0
+- unstructured: BertsekasD. P., Constrained Optimization and Lagrange Multiplier Methods,
+    Athena Scientific, Belmont, MA, 1996, pp. 104–125.
+- doi: 10.1115/1.2838334
+- doi: 10.1287/moor.20.3.634
+- doi: 10.1115/1.4001001
+- doi: 10.1002/0471787779
+- doi: 10.1002/nme.1620361510
+- doi: 10.1115/1.4001001
+- doi: 10.1007/s00158-002-0240-0
+- doi: 10.1504/IJVD.2002.002010
+- doi: 10.1115/1.1586308
+- doi: 10.1504/IJHVS.2004.005454
+- doi: 10.1080/00423110500385907
+- doi: 10.1115/1.3179762
+- doi: 10.2514/6.2006-1325
+- doi: 10.1115/1.2943296
+- doi: 10.1016/j.ijpe.2008.04.008
+- doi: 10.1111/j.0737-6782.2005.00102.x
+- doi: 10.1007/s00170-005-0064-3
+- doi: 10.1007/s00158-004-0467-z
+- doi: 10.1115/1.2168470
+- doi: 10.1115/1.2205870
+- doi: 10.1007/s00158-008-0244-5
+- unstructured: DeMiguelA.V. “Two Decomposition Algorithms for Nonconvex Optimization
+    Problems with Global Variables,” Ph.D. Thesis, Stanford Univ., Stanford, CA, 2001.
+- doi: 10.1007/s00158-006-0077-z
+- doi: 10.1243/095440705X34928
+- doi: 10.1007/s00158-004-0393-0
+- doi: 10.2514/1.11478
+- doi: 10.2514/6.2008-5847
+- doi: 10.1007/BF00350530
+- doi: 10.1023/A:1016094522761
+- doi: 10.1007/s001580050083
+- doi: 10.1115/1.2747632
+- doi: 10.1145/1555386.1555389
+- doi: 10.2514/6.2010-9101
+- doi: 10.2514/6.2006-7083
+- doi: 10.1504/IJVD.2001.001904
+- author: Kodiyalam S.
+  first-page: '434'
+  issue: '3'
+  journal-title: Journal of Aerospace Sciences and Technologies
+  volume: '61'
+  year: '2009'
+- doi: 10.1007/s00158-009-0422-0
+- doi: 10.1007/s00158-009-0371-7
+- doi: 10.2514/6.1996-4028
+doc_url: http://arc.aiaa.org/doi/pdf/10.2514/1.J051895
+doi: 10.2514/1.j051895
+files:
+- multidisciplinary_design_optimization_a_survey_of_architectures_Martins_Lambe_2013.pdf
+issue: '9'
+journal: AIAA Journal
+language: en
+month: 9
+pages: 2049--2075
+papis_id: c7ee0943a19d1469846164579233e4fd
+publisher: American Institute of Aeronautics and Astronautics (AIAA)
+tags:
+- needs-review
+title: 'Multidisciplinary Design Optimization: A Survey of Architectures'
+type: article
+url: https://doi.org/10.2514/1.j051895
+volume: '51'
+year: 2013

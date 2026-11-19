@@ -1,0 +1,3171 @@
+Linear Algebraic Solvers and Eigenvalue Analysis
+Henk A. van der Vorst1 and Cornelis Vuik2
+1
+
+Utrecht University, Utrecht, The Netherlands
+
+2 Delft University of Technology, Delft, The Netherlands
+
+1 Introduction
+2 Mathematical Preliminaries
+3 Direct Methods for Linear Systems
+4 Preconditioning
+5 Incomplete LU Factorizations
+6 Methods for the Complete Eigenproblem
+7 Iterative Methods for the Eigenproblem
+Notes
+References
+
+1
+2
+3
+11
+13
+18
+23
+26
+26
+
+1 INTRODUCTION
+In this chapter, an overview of the most widely used numerical methods for the solution of linear systems of equations
+and for eigenproblems is presented.
+For linear systems Ax = b, with A, a real square nonsingular n × n matrix, direct solution methods and iterative
+methods are discussed. The direct methods are variations
+on Gaussian elimination. The iterative methods are the
+so-called Krylov projection-type methods, and they include
+popular methods such as conjugate gradients, MINRES,
+Bi-conjugate gradients (Bi-CG), QMR (quasi-minimal
+residual), Bi-CGSTAB, and GMRES (generalized minimal
+residual).
+Iterative methods are often used in combination with
+the so-called preconditioning operators (easily invertible
+Encyclopedia of Computational Mechanics Second Edition,
+Edited by Erwin Stein, René de Borst and Thomas J.R. Hughes.
+© 2017 John Wiley & Sons, Ltd.
+DOI: 10.1002/9781119176817.ecm2016
+
+approximations for the operator of the system to be solved).
+We will give a brief overview of the various preconditioners
+that exist.
+For eigenproblems of the type Ax = 𝜆x, the QR method,
+which is often considered to be a direct method because of its
+very fast convergence, is discussed. Strictly speaking, there
+are no direct methods for the eigenproblem; all methods are
+necessarily iterative. The QR method is expensive for larger
+values of n, and for these larger values, a number of iterative
+methods, including the Lanczos method, Arnoldi’s method,
+and the Jacobi–Davidson method, are presented.
+For a general background on linear algebra for numerical
+applications, see Golub and Van Loan (2013) and Stewart
+(1998). Modern iterative methods for linear systems are
+discussed in van der Vorst (2003) and Saad (2003). A
+basic introduction with simple software is presented in
+Barrett et al. (1994). A complete overview of algorithms for
+eigenproblems, including pointers to software, is given in
+Bai et al. (2000) and Saad (2011). Implementation aspects
+for high-performance computers are discussed in detail in
+Dongarra et al. (1998).
+Some useful state-of-the-art papers have appeared; we
+mention papers on the history of iterative methods by Golub
+and van der Vorst (2000) and Saad and van der Vorst (2000).
+An overview on parallelizable aspects of sparse matrix techniques is presented in Duff and van der Vorst (1999). A
+state-of-the-art overview for preconditioners is presented in
+Benzi (2002).
+The purpose of this chapter is to make the reader familiar
+with the ideas and the usage of iterative methods. We expect
+that guided with sufficient knowledge about the background
+of iterative methods, one will be able to make a proper
+choice for a particular class of problems. It will also provide
+guidance on how to tune these methods, in particular, for the
+selection or construction of effective preconditioners.
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+2
+
+MATHEMATICAL PRELIMINARIES
+
+In this section, some basic notions and notations on linear
+systems and eigenproblems have been collected.
+
+The inverse of a nonsingular matrix A is denoted as A−1 .
+Particularly useful is the condition number of a square
+nonsingular matrix A defined as
+𝜅2 (A) = ||A||2 ||A−1 ||2
+
+2.1
+
+Matrices and vectors
+
+We will be concerned with linear systems Ax = b, where A
+is usually an n × n matrix:
+A ∈ ℝn×n
+
+Theorem 1. (Golub and Van Loan, 2013, Theorem 2.7.2)
+Suppose
+
+The elements of A will be denoted as ai,j . The vectors x =
+(x1 , x2 , … , xn )T and b belong to the linear space ℝn . Sometimes we will admit complex matrices A ∈ ℂn×n and vectors
+x, b ∈ ℂn , but that will be explicitly mentioned.
+Over the space ℝn , we will use the Euclidean inner product
+between two vectors x and y:
+xT y =
+
+n
+∑
+
+The condition number is used to characterize the sensitivity
+of the solution x of Ax = b with respect to perturbations
+in b and A. For perturbed systems, we have the following
+theorem.
+
+xi yi
+
+i=1
+
+Ax = b, A ∈ ℝn×n , 0 ≠ b ∈ ℝn
+
+(3)
+
+(A + ΔA)y = b + Δb, ΔA ∈ ℝn×n , Δb ∈ ℝn
+
+(4)
+
+with ||ΔA||2 ≤ 𝜖||A||2 and ||Δb||2 ≤ 𝜖||b||2 .
+If 𝜖𝜅2 (A) ≡ r < 1, then A + ΔA is nonsingular and
+||y − x||2
+𝜖
+𝜅 (A)
+≤
+||x||2
+1−r 2
+
+and for v, w ∈ ℂn , we use the standard complex inner product
+∑
+n
+
+vH w =
+
+v̄ i wi
+
+i=1
+
+These inner products lead to the 2-norm or Euclidean length
+of a vector
+√
+||x||2 = xT x for x ∈ ℝn
+(1)
+√
+(2)
+||v||2 = vH v for v ∈ ℂn
+With these norms, we can associate a 2-norm for matrices:
+for A ∈ ℝn×n , its associated 2-norm ||A||2 is defined as
+||A||2 =
+
+sup
+
+y∈ℝn ,y≠0
+
+||Ay||2
+||y||2
+
+and in the complex case, similarly, using the complex inner
+product. This matrix norm gives the maximal length multiplication effect of A on a vector (where the length is defined
+by the given norm).
+The associated matrix norms are convenient because they
+can be used to bound products. For A ∈ ℝn×k , B ∈ ℝk×m , we
+have that
+||AB||2 ≤ ||A||2 ||B||2
+In particular,
+||Ax||2 ≤ ||A||2 ||x||2
+
+With the superscript T , we denote the transpose of a
+matrix (or vector): for A ∈ ℝn×k , the matrix B = AT ∈ ℝk×n
+is defined by
+bi,j = aj,i
+If E ∈ ℂn×k , then the superscript H is used to denote its
+complex conjugate F = EH , defined as
+fi,j = ē j,i
+Sometimes, the superscript T is used for complex matrices
+in order to denote the transpose of a complex matrix.
+The matrix A is symmetric if A = AT , and B ∈ ℂn×n is
+Hermitian if B = BH . Hermitian matrices have the attractive property that their spectrum is real. In particular,
+Hermitian (or symmetric real) matrices that are positivedefinite are attractive because they can be solved rather
+easily by proper iterative methods (the CG method).
+A Hermitian matrix A ∈ ℂn×n is positive-definite if
+H Ax > 0 for all 0 ≠ x ∈ ℂn . A positive-definite Hermitian
+x
+matrix has only positive real eigenvalues.
+We will encounter some special matrix forms, in particular
+tridiagonal matrices and (upper) Hessenberg matrices. The
+matrix T = (ti,j ) ∈ ℝn×m will be called tridiagonal, if all
+elements for which |i − j| > 1 are zero. It is called upper
+Hessenberg if all elements for which i > j + 1 are zero. In
+the context of Krylov subspaces, these matrices are often
+(k + 1) × k and they will then be denoted as Tk+1,k .
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+2
+
+2.2
+
+Eigenvalues and eigenvectors
+
+For purposes of analysis, it is often helpful or instructive
+to transform a given matrix to an easier form, for instance,
+diagonal or upper triangular form.
+The easiest situation is the symmetric case: for a real
+symmetric matrix, there exists an orthogonal matrix Q ∈
+ℝn×n , so that QT AQ = D, where D ∈ ℝn×n is a diagonal
+matrix. The diagonal elements of D are the eigenvalues of A,
+and the columns of Q are the corresponding eigenvectors of
+A. Note that the eigenvalues and eigenvectors of A are all real.
+If A ∈ ℂn×n is Hermitian (A = AH ), then there exist Q ∈
+n×n
+ℂ and a diagonal matrix D ∈ ℝn×n , so that QH Q = I and
+QH AQ = D. This means that the eigenvalues of a Hermitian
+matrix are all real, but its eigenvectors may be complex.
+Unsymmetric matrices do not, in general, have an
+orthonormal set of eigenvectors and may not have a complete
+set of eigenvectors, but they can be transformed unitarily to
+Schur form:
+Q∗ AQ = R
+in which R is upper triangular.
+If the matrix A is complex, then the matrices Q and R may
+be complex as well. However, they may be complex even
+when A is real unsymmetric. It may then be advantageous to
+work in real arithmetic. This can be realized because of the
+existence of the real Schur decomposition. If A ∈ ℝn×n , then
+it can be transformed with an orthonormal Q ∈ ℝn×n as
+QT AQ = R̃
+with
+
+⎡ R̃ 1,1 R̃ 1,2 ⋅⋅⋅ R̃ 1,k ⎤
+⎢ 0 R̃ ⋅⋅⋅ R̃ ⎥
+2,2
+2,k ⎥
+∈ ℝn×n
+R̃ = ⎢
+⎢ ⋮ ⋮ ⋱ ⋮ ⎥
+⎥
+⎢
+⎣ 0 0 ⋅⋅⋅ R̃ k,k ⎦
+
+Each R̃ i,i is either 1 × 1 or a 2 × 2 (real) matrix having
+complex conjugate eigenvalues. For a proof of this, see
+Golub and Van Loan (2013, Chapter 7.4.1). This form of R̃
+is referred to as an upper quasi-triangular matrix.
+If all eigenvalues are distinct, then there exists a nonsingular matrix X (in general not orthogonal) that transforms A
+to diagonal form:
+X −1 AX = D
+A general matrix can be transformed to Jordan form with a
+nonsingular X:
+X −1 AX = diag(J1 , J2 , … , Jk )
+
+where
+
+3
+
+⎡ 𝜆i 1 0 ⋅⋅⋅ 0 ⎤
+⎢
+⎥
+⋮⎥
+⎢ 0 𝜆i ⋱
+⎥
+⋱ ⋱ ⋱
+Ji = ⎢
+⎢
+⎥
+⋱ ⋱ 1⎥
+⎢⋮
+⎢
+⎥
+0 𝜆i ⎦
+⎣ 0 ⋅⋅⋅
+
+If there is a Ji with dimension greater than 1, then the matrix
+A is defective. In this case, A does not have a complete
+set of independent eigenvectors. In numerical computations,
+one may argue that small perturbations lead to different
+eigenvalues, and hence that it will be unlikely that A has a true
+Jordan form in actual computation. However, if A is close to
+a matrix with a nontrivial Jordan block, then this is reflected
+by a (severely) ill-conditioned eigenvector matrix X.
+We will also encounter eigenvalues that are called Ritz
+values. For simplicity, we will introduce them here for
+the real case. The subspace methods that are collected in
+this chapter are based on the approach to identify good
+solutions from certain low-dimensional subspaces  k ⊂ ℝn ,
+where k ≪ n denotes the dimension of the subspace. If Vk ∈
+ℝn×k denotes an orthogonal basis of  k , then the operator
+Hk = VkT AVk ∈ ℝk×k represents the projection of A onto Vk .
+Assume that the eigenvalues and eigenvectors of Hk are
+represented as
+= 𝜃j(k) s(k)
+Hk s(k)
+j
+j
+Then 𝜃j(k) is called a Ritz value of A with respect to  k
+and Vk s(k)
+is its corresponding Ritz vector. For a thorough
+j
+discussion of Ritz values and Ritz vectors, see, for instance,
+Parlett (1980), Stewart (2001), and van der Vorst (2002).
+For some methods, we will see that Harmonic Ritz values
+play a role. Let Wk denote an orthogonal basis for the
+subspace A k , then the Harmonic Ritz values of A with
+respect to that subspace are the inverses of the eigenvalues
+of the projection Zk of A−1 :
+Zk = WkT A−1 Wk
+
+3
+
+DIRECT METHODS FOR LINEAR
+SYSTEMS
+
+We will first consider the case that we have to solve
+Ax = b
+with A a square n × n matrix. The standard approaches are
+based upon Gaussian elimination. This works as follows.
+Assuming that a1,1 ≠ 0, one can subtract multiples of the
+first row of A of the other rows, so that the coefficients ai,1
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+for i > 1 become zero. Of course, the same multiples of b1
+have to be subtracted from the corresponding bi . This process
+can be repeated for the remaining (n − 1) × (n − 1) submatrix, in order to eliminate the coefficients for x2 in the second
+column. After completion of the process, the remaining
+matrix has zeros below the diagonal and the linear system can
+now easily be solved. For a dense linear system, this way of
+computing the solution x requires roughly (2∕3)n3 arithmetic
+operations.
+In order to make the process numerically stable, the rows
+of A are permuted so that the largest element (in absolute
+value) in the first column appears in the first position. This
+process is known as partial pivoting and it is repeated for the
+submatrices.
+The process of Gaussian elimination is equivalent with the
+decomposition of A as
+A = LU
+with L a lower triangular matrix and U an upper triangular
+matrix and this is what is done in modern software. After the
+decomposition, one has to solve LUx = b and this is done in
+two steps:
+1. First solve y from Ly = b.
+2. Then x is obtained from solving Ux = y.
+The computational costs for one single linear system are
+exactly the same as for Gaussian elimination, and partial
+pivoting is included without noticeable costs. The permutations associated with the pivoting process are represented by
+an index array and this index array is used for rearranging b,
+before the solving of Ly = b.
+If one has a number of linear systems with the same matrix
+A, but with different right-hand sides, then one can use the LU
+decomposition for all these right-hand sides. The solution for
+each new right-hand side then takes only (n2 ) operations,
+which is much cheaper than repeating the Gaussian elimination procedure afresh for each right-hand side.
+This process of LU decomposition, with partial pivoting,
+is the recommended strategy for the solution of dense linear
+systems. Reliable software for this process is available from
+software libraries including NAG and LAPACK (Anderson
+et al., 1992) and the process is used in Matlab. It is relatively
+cheap to compute a good guess for the condition number of
+A, and this shows how sensitive the linear systems may be
+for perturbations to the elements of A and b (Theorem 1). It
+should be noted that checking whether the computed solution
+x̂ satisfies
+||b − Âx||2
+≤𝜖
+||b||2
+
+for some small 𝜖 does not provide much information on the
+validity of x̂ without further information on A. If A is close
+to a singular matrix, then small changes in the input data
+(or even rounding errors) may lead to large errors in the
+computed solution. The condition number of A is a measure
+of how close A is to a singular matrix (cf. Theorem 1).
+The computation of the factors L and U, with partial
+pivoting, is in general rather stable (small perturbations to
+A lead to acceptable perturbations in L and U). If this is a
+point of concern (visible through a relatively large residual
+b − Âx) then the effects of these perturbed L and U can be
+largely removed with iterative refinement. The idea of iterative refinement is to compute r = b − Âx and to solve Az = r,
+using the available factors L and U. The computed solution
+ẑ is used to correct the approximated solution to x̂ + ẑ . The
+procedure can be repeated if necessary. Iterative refinement
+is most effective if r is computed in higher precision. Apart
+from this, the process is relatively cheap because it requires
+only n2 operations (compared to the (n3 ) operations for the
+LU factorization). For further details, we refer to Golub and
+Van Loan (2013).
+For increasing n, the above sketched direct solution method
+becomes increasingly expensive ((n3 ) arithmetic operations) and for that reason all sorts of alternative algorithms
+have been developed to help reduce the costs for special
+classes of systems.
+An important subclass is the class of symmetric positivedefinite matrices (Section 2.1). A symmetric positive-definite
+matrix A can be decomposed as
+A = LLT
+and this is known as the Cholesky decomposition of A. The
+Cholesky decomposition can be computed in about half the
+time as an LU decomposition and pivoting is not necessary.
+It also requires half the amount of computer storage, since
+only half of A and only L need to be stored (L may even
+overwrite A if A is not necessary for other purposes). It may
+be good to note that the numerical stability of Cholesky’s
+process does not automatically lead to accurate solutions x.
+This depends, again, on the condition number of the given
+matrix. The stability of the Cholesky process means that the
+computed factor L is relatively insensitive to perturbations
+of A.
+There is an obvious way to transform Ax = b into a system
+with a symmetric positive-definite matrix:
+AT Ax = AT b
+but this should be almost always avoided. It is not efficient
+because the construction of B = AT A requires 2n3 arithmetic
+operations for a dense n × n matrix. Moreover, the condition
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+4
+
+number of the matrix B is the square of the condition number
+of A, which makes the solution x much more sensitive to
+perturbations.
+Another important class of matrices that occur in practical
+problems involves the matrices with many zero entries, the
+so-called sparse matrices. Depending on how the nonzero
+elements of A are distributed over the matrix, large savings
+can be achieved by taking account of the sparsity patterns.
+The easiest case is when the nonzero elements are in a
+(narrow) band around the diagonal of A. The LU factorization, even with partial pivoting, preserves much of this band
+structure, and software is available for these systems; see, for
+instance, LAPACK (Anderson et al., 1992).
+If the nonzero entries are not located in a narrow band
+along the diagonal, then it may be more problematic to
+take advantage of the given nonzero pattern (also called the
+sparsity pattern). It is often possible to permute rows and
+or columns of A during the LU factorization process so that
+the factors L and U also remain satisfactorily sparse. It is
+not easy to code these algorithms, but software for the direct
+decomposition of sparse matrices is available (for instance
+in NAG).
+For matrices with a very special sparsity pattern or where
+the elements satisfy special properties, for instance, constant
+diagonals as in Toeplitz matrices, special algorithms have
+been derived, for instance, Fast Poisson solvers and Toeplitz
+solvers. For an introduction and further references, see Golub
+and Van Loan (2013).
+If the matrix A is nonsquare, that is, m × n, or singular,
+then the Gaussian elimination procedures cannot be used.
+Instead, one may use QR factorizations, or even better (but
+more expensive), the singular value decomposition (SVD).
+For details on this, see Golub and Van Loan (2013) or
+the manuals of software libraries. The QR decomposition
+algorithm and the SVD are also available in Matlab.
+The alternative for direct solvers, if any of the previously mentioned methods does not lead to the solution
+with reasonable computer resources (CPU time and storage),
+may be an iterative way of solution. Iterative methods are
+usually considered for the solution of very large sparse
+linear systems. Unfortunately, there is not one given iterative procedure that solves a linear system with a general
+sparse matrix, similar to the LU algorithm for dense linear
+systems. Iterative methods come in a great variety, and it
+requires much insight and tuning to adapt them for classes
+of special problems. Therefore, we will pay more attention to these methods. This is necessary because many of
+the sparse problems, related to finite element, finite volume,
+discontinuous Galerkin or finite difference discretizations of
+mechanical problems, cannot be solved fast enough by direct
+methods.
+
+3.1
+
+5
+
+Iterative solution methods
+
+The idea behind iterative methods is to replace the given
+system by some nearby system that can be more easily
+solved; that is, instead of Ax = b, we solve the simpler system
+Kx0 = b and take x0 as an approximation for x. Obviously, we
+want the correction z that satisfies
+A(x0 + z) = b
+This leads to a new linear system
+Az = b − Ax0
+Again, we solve this system by a nearby system, and most
+often one takes K again:
+Kz0 = b − Ax0
+This leads to the new approximation x1 = x0 + z0 . The
+correction procedure can now be repeated for x1 , and so on,
+which gives us an iterative method.
+For the basic or Richardson iteration, introduced above, it
+follows that
+xk+1 = xk + zk
+= xk + K −1 (b − Axk )
+= xk + K −1 rk
+
+(5)
+
+with rk = b − Axk . We use K −1 only for notational purposes;
+we (almost) never compute inverses of matrices explicitly.
+When we speak of K −1 b, we mean the vector b̃ that is solved
+from K b̃ = b. The matrix K is called the preconditioner. In
+order to simplify our formulas, we will take K = I and apply
+the presented iteration schemes to the preconditioned system
+K −1 Ax = K −1 b if we have a better preconditioner available.
+From now on, we will also assume that x0 = 0 to simplify
+future formulas. This does not mean a loss of generality,
+because the situation x0 ≠ 0 can be transformed with a simple
+shift to the system
+Ay = b − Ax0 = b̄
+
+(6)
+
+for which obviously y0 = 0.
+For the simple Richardson iteration, it is easily shown that
+xk ∈ span{r0 , Ar0 , … , Ak−1 r0 }
+≡ K k (A; r0 )
+
+(7)
+(8)
+
+The k-dimensional space spanned by a given vector v, and
+increasing powers of A applied to v, up to the (k − 1)th power,
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+is called the k-dimensional Krylov subspace, generated with
+A and v, denoted by K k (A; v).
+Apparently, the Richardson iteration, as it proceeds,
+delivers elements of Krylov subspaces of increasing dimension. It turns out that, at the expense of relatively little
+additional work compared to the Richardson method, we
+can identify much better approximations for the solution
+from the Krylov subspaces. This has led to the class of
+Krylov subspace methods that contain very effective iterative methods: conjugate gradients, GMRES, Bi-CGSTAB,
+and many more. Although older methods, such as SOR,
+can still be useful in certain circumstances, it is now generally accepted that the Krylov solvers, in combination with
+appropriate preconditioners, are the methods of choice for
+many sparse systems. For this reason, we restrict ourselves
+to a discussion of this class of methods. These methods
+are also very attractive because of their relation to iterative
+solvers for the eigenproblem. This means that in practice
+one can obtain, with relatively little extra costs, relevant
+information about the spectrum of A. This may guide the
+design of preconditioners, but it can also be used for safer
+stopping criteria and for sensitivity analysis (estimates for
+the condition number).
+
+3.2
+
+The Krylov subspace approach
+
+Methods that attempt to generate better approximations from
+the Krylov subspace are often referred to as Krylov subspace
+methods. Because optimality usually refers to some sort of
+projection, they are also called Krylov projection methods.
+The Krylov subspace methods, for identifying suitable xk ∈
+k (A; r0 ), can be distinguished in four different classes (we
+will still assume that x0 = 0):
+The Ritz–Galerkin approach: Construct the xk for which
+the residual is orthogonal to the current subspace: b −
+Axk ⊥k (A; r0 ).
+2. The minimum norm residual approach: Identify the xk
+for which the Euclidean norm ||b − Axk ||2 is minimal
+over k (A; r0 ).
+3. The Petrov–Galerkin approach: Find an xk so that the
+residual b − Axk is orthogonal to some other suitable
+k-dimensional subspace.
+4. The minimum norm error approach: Determine xk in
+AT k (AT ; r0 ) for which the Euclidean norm ||xk − x||2
+is minimal.
+
+1.
+
+The Ritz–Galerkin approach leads to well-known methods
+such as conjugate gradients, the Lanczos method, the full
+orthogonalization method (FOM), and generalized conjugate
+gradients (GENCG). The minimum norm residual approach
+leads to methods such as GMRES and MINRES. The main
+
+disadvantage of these two approaches is that, for most
+unsymmetric systems, they lead to long and therefore expensive recurrence relations for the approximate solutions. This
+can be relieved by selecting other subspaces for the orthogonality condition (the Galerkin condition). If we select the
+k-dimensional subspace in the third approach as k (AT ; s0 ),
+then we obtain the Bi-CG and QMR methods, and these
+methods indeed work with short recurrences. The fourth
+approach is not so obvious, but for A = AT , it leads to the
+SYMMLQ method of Paige and Saunders (1975).
+Hybrids of these approaches have been proposed, such
+as CGS, Bi-CGSTAB, Bi-CGSTAB(𝓁), TFQMR, FGMRES,
+GMRESR, and IDR(s) (induced dimension reduction).
+The choice of a method is a delicate problem. If the matrix
+A is symmetric positive-definite, then the choice is easy:
+conjugate gradients. For other types of matrices, the situation is very diffuse. GMRES, proposed in 1986 by Saad
+and Schultz (1986), is the most robust method, but in terms
+of work per iteration step, it is also relatively expensive.
+Bi-CG, which was suggested by Fletcher (1976), is a relatively inexpensive alternative. The main disadvantage of
+Bi-CG is that it involves per iteration an operation with A
+and one with AT . Bi-CGSTAB, proposed by van der Vorst
+(1992), is an efficient combination of Bi-CG and repeated
+one-step GMRES, avoiding operations with AT . Bi-CGSTAB
+requires about as many operations per iteration as Bi-CG.
+The recently developed IDR(s) method (Sonneveld and Van
+Gijzen, 2008) can be a good alternative for the Bi-CGSTAB
+method. Important ingredients to make a good choice are the
+required number of iterations and the ratio of the computational costs for a matrix (preconditioning) vector product
+and a vector update. If the ratio is low and the number
+of iterations is large Bi-CGSTAB can be a good choice. If
+the ratio is large and the number of iterations is small full
+GMRES is the best method and in between hybrid methods
+(GMRESR, IDR(s)) are the optimal choice. A more thorough discussion on Krylov methods is given in van der
+Vorst (2003). Other useful sources of information on iterative Krylov subspace methods include Axelsson (1994),
+Brezinski (1997), Bruaset (1995), Fischer (1996), Greenbaum (1997), Hackbusch (1994), Meurant (1999), and Saad
+(2003).
+
+3.3
+
+The Krylov subspace
+
+In order to identify the approximations corresponding to the
+four different approaches, we need a suitable basis for the
+Krylov subspace.
+Arnoldi (1951) proposed to compute an orthogonal basis as
+follows. Start with v1 ≡ r0 ∕||r0 ||2 . Then compute Av1 , make
+it orthogonal to v1 , and normalize the result, which gives v2 .
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+6
+
+this is done automatically in all algorithms that will be
+presented.
+
+v1 = r0 / ||r0||2 ;
+for j = 1, ..., m − 1
+t = Avj ;
+for i = 1, ..., j
+hi,j = vTi t ;
+t = t − hi,j vi ;
+end;
+hj+1,j = ||t||2 ;
+vj+1 = t/hj+1,j;
+end
+
+3.4
+
+The Ritz–Galerkin approach
+
+The Ritz–Galerkin conditions imply that rk ⊥k (A; r0 ), and
+this is equivalent to
+
+Figure 1. Arnoldi’s method with modified Gram–Schmidt orthogonalization.
+
+The general procedure is as follows: assuming we already
+have an orthonormal basis v1 , … , vj for K j (A; r0 ), this basis
+is expanded by computing t = Avj and by orthonormalizing
+this vector t with respect to v1 , … , vj .
+This leads to an algorithm for the creation of an
+orthonormal basis for m (A; r0 ), as in Figure 1. The
+orthogonalization can be conveniently expressed in matrix
+terms. Let Vj denote the matrix with columns v1 up to vj ;
+then it follows that
+AVm−1 = Vm Hm,m−1
+
+7
+
+(9)
+
+The m × (m − 1) matrix Hm,m−1 is upper Hessenberg, and its
+elements hi,j are defined by the Arnoldi algorithm.
+From a computational point of view, this construction is
+composed of three basic elements: a matrix–vector product
+with A, inner products, and vector updates. We see that
+this orthogonalization becomes increasingly expensive for
+increasing dimension of the subspace, since the computation
+of each hi,j requires an inner product and a vector update.
+Note that if A is symmetric, then so is Hm−1,m−1 =
+T
+AVm−1 , so that in this situation Hm−1,m−1 is tridiagonal.
+Vm−1
+This means that in the orthogonalization process, each new
+vector has to be orthogonalized with respect to the previous
+two vectors only, since all other inner products vanish. The
+resulting three-term recurrence relation for the basis vectors
+of Km (A; r0 ) is known as the Lanczos method (Lanczos,
+1950) and some very elegant methods are derived from
+it. In this symmetric case, the orthogonalization process
+involves constant arithmetical costs per iteration step: one
+matrix–vector product, two inner products, and two vector
+updates.
+We have discussed the construction of an orthonormal
+basis for the Krylov subspace because this also plays an
+important role for iterative eigenvalue solvers. Furthermore,
+the construction defines some matrices that play a role
+in the description of the iterative solvers. In practice, the
+user will never be concerned with the construction, because
+
+VkT (b − Axk ) = 0
+Since b = r0 = ||r0 ||2 v1 , it follows that VkT b = ||r0 ||2 e1 with
+e1 the first canonical unit vector in ℝk . With xk = Vk y we
+obtain
+VkT AVk y = ||r0 ||2 e1
+This system can be interpreted as the system Ax = b
+projected onto the subspace k (A; r0 ).
+Obviously, we have to construct the k × k matrix VkT AVk ,
+but this is immediately available from the orthogonalization
+process:
+VkT AVk = Hk,k
+so that the xk for which rk ⊥k (A; r0 ) can be easily computed
+by first solving Hk,k y = ||r0 ||2 e1 , and then forming xk = Vk y.
+This algorithm is known as FOM or GENCG (Saad and
+Schultz, 1986).
+When A is symmetric, then Hk,k reduces to a tridiagonal matrix Tk,k , and the resulting method is known as the
+Lanczos method (Lanczos, 1952). When A is in addition
+positive-definite, then we obtain, at least formally, the conjugate gradient method. In commonly used implementations
+of this method, one implicitly forms an LU factorization for
+Tk,k , without generating Tk,k itself, and this leads to very
+elegant short recurrences for the xj and the corresponding
+rj ; see the algorithm presented in Figure 2. This algorithm
+includes preconditioning with an operator K, which should
+be a fixed approximation for A throughout the entire iteration
+process.
+The positive definiteness is necessary to guarantee the
+existence of the LU factorization, but it also guarantees that
+||xk − x||A is minimal [1] over all possible xk from the Krylov
+subspace of dimension k.
+
+3.5
+
+The minimum norm residual approach
+
+We look for an xk ∈ K k (A; r0 ), that is, xk = Vk y, for which
+||b − Axk ||2 is minimal. This norm can be rewritten, with
+𝜌 ≡ ||r0 ||2 , as
+||b − Axk ||2 = ||b − AVk y||2 = ||𝜌Vk+1 e1 − Vk+1 Hk+1,k y||2
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+x0 is an initial guess, r0 = b − Ax0
+for i = 1, 2, ....
+Solve Kwi−1 = ri−1
+ρi−1 = r Hi−1 wi−1
+if i = 1
+pi = wi−1
+else
+βi−1 = ρi−1 /ρi−2
+pi = wi−1 + βi−1pi−1
+endif
+qi = Api
+αi = ρi−1/pHi qi
+xi = xi−1 + αipi
+ri = ri−1 − αiqi
+if xi accurate enough then quit
+end
+
+Figure 2. Conjugate gradients with preconditioning K.
+
+using the Krylov relation (9). Now we exploit the fact that
+Vk+1 is an orthonormal transformation with respect to the
+Krylov subspace K k+1 (A; r0 ):
+
+r = b − Ax0, for a given initial guess x0
+x = x0
+for j = 1, 2, ....
+∧
+β = ||r||2, v1 = r / β, b = βe1
+for i = 1, 2, ..., m
+w = Avi
+for k = 1, ..., i
+hk,i = vkTw, w = w − hk,ivk
+hi+1,i = ||w||2, vi+1 = w / hi+1,i
+r1,i = h1,i
+for k = 2, ..., i
+γ = ck−1rk−1,i + sk−1hk,i
+rk,i = −sk−1rk−1,i + ck−1hk,
+rk−1,i = γ
+δ = r 2i,i + h 2i +1,i , ci = ri,i / δ, si = hi +1,i / δ
+ri,i = ci ri,i + si hi+1,i
+∧
+∧ ∧
+∧
+bi +1 = −si bi , bi = ci bi
+∧
+ρ = |bi +1| (= ||b − Ax( j −1)m +i ||2 )
+if ρ is small enough then
+(nr = i, goto SOL)
+∧
+nr = m, ynr = bnr / rnr,nr
+SOL: for k = nr − 1, ..., 1
+∧
+nr
+yk = (bk − Σi = k+1 rk ,i yi ) /rk ,k
+x = x + Σ i=1 yi vi , if ρ small enough quit
+r = b − Ax
+nr
+
+||b − Axk ||2 = ||𝜌e1 − Hk+1,k y||2
+and this final norm can simply be minimized by solving the
+minimum norm least squares problem for the (k + 1) × k
+matrix Hk+1,k and right-hand side ||r0 ||2 e1 . The least squares
+problem is solved by constructing a QR factorization of
+Hk+1,k , and because of the upper Hessenberg structure that
+can conveniently be done with Givens transformations
+(Golub and Van Loan, 2013).
+The GMRES method is based upon this approach. In
+order to avoid excessive storage requirements and computational costs for the orthogonalization, GMRES is usually
+restarted after each cycle of m iteration steps. This algorithm
+is referred to as GMRES(m); the not-restarted version is often
+called “full” GMRES. There is no simple rule to determine
+a suitable value for m; the speed of convergence over cycles
+of GMRES(m) may drastically vary for nearby values of m
+(Embree, 2003). It may be the case that GMRES(m + 1) is
+much more expensive than GMRES(m), even in terms of
+numbers of iterations.
+We present in Figure 3 the modified Gram–Schmidt version
+of GMRES(m) for the solution of the linear system Ax =
+b. The application to preconditioned systems, for instance,
+K −1 Ax = K −1 b, is straightforward.
+For an excellent overview of GMRES and related variants,
+such as FGMRES, see Saad (2003).
+
+3.6
+
+GMRESR
+
+There exist also variants of GMRES that allow for variable preconditioning. This is particularly convenient in
+
+Figure 3. Unpreconditioned GMRES(m).
+
+x0 is an initial guess; r0 = b − Ax0 ;
+for i = 0, 1, 2, 3, ....
+Let z(m) be the approximate solution of Az = ri
+obtained after m steps of an iterative method.
+c = Az(m) (often available from the iterative method)
+for k = 0, ..., i − 1
+α = (ck, c)
+c = c − αck
+z(m) = z(m) − αuk
+end
+ci = c/||c||2; ui = z(m)/||c||2
+xi +1 = xi + (ci, ri)ui
+ri +1 = ri − (ci, ri)ci
+if xi +1 is accurate enough then quit
+end
+
+Figure 4. The GMRESR algorithm.
+
+combination with domain decomposition methods, if the
+problem per domain is solved by an iterative solver itself.
+The two most well-known variants are FGMRES (Saad,
+1993) and GMRESR (van der Vorst and Vuik, 1994).
+Because GMRESR is, in the author’s view, the most robust
+of the two, it has been presented here. The GMRESR
+algorithm can be described by the computational scheme in
+Figure 4.
+A sufficient condition to avoid breakdown (when ||c||2 =
+0) is that the norm of the residual at the end of an inner
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+8
+
+iteration is smaller than the right-hand residual: ||Az(m) −
+ri ||2 < ||ri ||2 . This can easily be controlled during the inner
+iteration process. If stagnation occurs, that is, no progress
+at all is made in the inner iteration, then van der Vorst
+and Vuik (1994) suggest doing one (or more) steps of the
+LSQR method, which guarantees a reduction (although this
+reduction is often only small).
+When memory space is a limiting factor or when the
+computational costs per iteration become too high, we can
+simply truncate the algorithm (instead of restarting as in
+GMRES(m)). If we wish only to retain the last m vectors ci
+and ui , the truncation is effected by replacing the for k loop
+in Figure 4 by
+for k = max(0, i − m), … , i − 1
+and of course, we have to adapt the remaining part of the
+algorithm so that only the last m vectors are kept in memory.
+Other truncation options are possible. The minalfa truncation
+strategy determines which direction has the smallest angle
+with the new direction. This direction is then discarded and
+the new vector is added (Vuik, 1993).
+For a full discussion on GMRESR, see van der Vorst
+(2003).
+
+3.7
+
+The Petrov–Galerkin approach
+
+For unsymmetric systems, we cannot, in general, reduce the
+matrix A to a tridiagonal system in a lower dimensional
+subspace by orthogonal projections. The reason is that we
+cannot create an orthogonal basis for the Krylov subspace
+by a three-term recurrence relation (Faber and Manteuffel,
+1984). We can, however, obtain a suitable nonorthogonal
+basis with a three-term recurrence, by requiring that this basis
+is orthogonal with respect to some other basis.
+For this other basis, we select a convenient basis for the
+Krylov subspace generated with AT and starting vector w1 .
+It can be shown that a basis v1 , … , vi for i (A; v1 ) can be
+created with a three-term recurrence relation, so that the vj
+are orthogonal with respect to the wk , for k ≠ j. The wi are
+generated with the same recurrence relation as for the vj , but
+with A replaced by AT .
+In matrix notation, this leads to WiT AVi = Di Ti,i , and also
+that ViT AT Wi = Di Ti,i , with Di = WiT Vi a diagonal matrix and
+Ti,i a tridiagonal matrix. These bi-orthogonal sets of vectors
+form the basis for methods such as Bi-CG and QMR.
+Bi-CG is not as robust as CG. It may happen, for instance,
+that wTi vi = 0 and then the method breaks down. Bi-CG is
+based on an LU decomposition of Ti,i , but since Ti,i is not
+necessarily positive-definite or so, a flawless LU decomposition in bidiagonal L and U may not exist, which gives another
+
+9
+
+breakdown of the method. Fortunately, these circumstances
+do not occur frequently, but one has to be aware of them and
+carry out the required checks. There exist techniques to repair
+these breakdowns, but they require complicated coding. It
+may be convenient just to restart when a breakdown occurs,
+giving up some of the efficiency of the method and, of course,
+with a chance that breakdown occurs again. For a full treatment of Bi-CG, see van der Vorst (2003).
+
+3.8
+
+Bi-CGSTAB
+
+Sonneveld showed that the two operations with A and AT per
+iteration of Bi-CG can be replaced by two operations with A
+and with the effect that i iterations with Bi-CG are applied
+twice: once with the starting residual r0 and then again with
+the same iteration constants on ri . Surprisingly, this can be
+done for virtually the same computational costs as for Bi-CG,
+but the result is a method that often converges about twice as
+fast as Bi-CG. This method is known as CGS (Sonneveld,
+1989).
+Sonneveld’s principle was further perfected in van der
+Vorst (1992) for the construction of Bi-CGSTAB in which the
+Bi-CG operations with AT are replaced by operations with A
+and they are used to carry out GMRES(1) reductions on top
+of each Bi-CG iteration.
+The preconditioned Bi-CGSTAB algorithm for solving the
+linear system Ax = b, with preconditioning K, reads as in
+Figure 5.
+The matrix K in this scheme represents the preconditioning
+matrix and the way of preconditioning (van der Vorst, 1992).
+The above scheme, in fact, carries out the Bi-CGSTAB
+procedure for the explicitly postconditioned linear system
+AK −1 y = b
+but the vectors yi and the residual have been backtransformed to the vectors xi and ri corresponding to
+the original system Ax = b.
+The computational costs for Bi-CGSTAB are, per iteration,
+about the same as for Bi-CG. However, because of the additional GMRES(1) steps after each Bi-CG step, Bi-CGSTAB
+converges often considerably faster. Of course, Bi-CGSTAB
+may suffer from the same breakdown problems as Bi-CG. In
+an actual code, we should test for such situations and take
+appropriate measures, for example, restart with a different r̃
+(= w1 ) or switch to another method (e.g., GMRES).
+The method has been further generalized to
+Bi-CGSTAB(𝓁), which generates iterates that can be interpreted as the product of Bi-CG and repeated GMRES(𝓁).
+For more details, see van der Vorst (2003). Software for this
+method is available from NAG.
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+x0 is an initial guess, r0 = b − Ax0
+Choose ~
+r, for example, ~
+r = r0
+for i = 1, 2, ....
+~
+T
+ρi−1 = r ri−1
+if ρi−1 = 0 method fails
+if i = 1
+pi = ri−1
+else
+βi−1 = (ρi−1 /ρi−2) (αi−1 / ωi−1)
+pi = ri−1 + βi−1 (pi−1 − ωi−1 vi−1)
+end if
+Solve p^^from Kp = pi
+vi = Ap^
+~
+α i = ρ i −1 / r Tvi
+s = ri−1 − αivi
+if ||s|| small enough then
+^ quit
+xi = xi−1 + αip,
+Solve s^ from Ks^ = s
+t = As^
+
+ωi = tT s / t Tt
+xi = xi−1 + αip^ + ωis^
+if xi is accurate enough then quit
+ri = s − ωit
+for continuation it is necessary that ωi ≠ 0
+end
+
+Required: A ∈ ℂN × N; x, b ∈ ℂN; P ∈ ℂN × s; TOL ∈(0,1);
+Ensure: xn such that ||b – Ax|| ≤ TOL · ||b||;
+{Initialization}
+Calculate r = b — Ax;
+gi = ui = 0 ∈ ℂN ,i = 1, . . . , s; M = I ∈ ℂs × s; ω = 1;
+{Loop over gi spaces, for j = 0, 1, 2, 3, . . .}
+While ||r|| > TOL do
+f = PH r, (ϕ1, . . . , ϕs)T = f;
+for k = 1 to s do
+Solve c form Mc = f, (γ1, . . ., γs)T = c;
+υ = r – Σ si= k γigi;
+{Preconditioning operation}
+υ = B−1 υ;
+υk = ωυ + Σ is= k γiui;
+gk = Auk;
+for i = 1 to k – 1 do
+H
+α = pi gk ;
+μi,i
+gk = gk – αgi;
+uk = uk – αui;
+end for
+
+H
+
+μi,k = pi gk, Mi,k = ui,k, i = k . . . s;
+β = ϕk ;
+μk,k
+r = r – βgk;
+x = x + βuk;
+if k + 1 ≤ s then
+ϕi = 0, i = 1, . . . k;
+ϕi = ϕi – βμi,k, i = k + 1, . . . , s;
+f = (ϕ1, . . . , ϕs)T;
+end if
+end for
+
+{Entering gj+1}
+{Preconditioning}
+υ = B−1 r;
+t = Aυ;
+{Calculation of ω using “maintaining the convergence” strategy}
+ω = t Hr/t Ht; ρ = (tHr)/(|| t || || r ||);
+if |ρ| < k then
+ω = ωk / |ρ| ;
+end if
+
+r = r – ωt;
+x = x + ωυ;
+end while
+
+Figure 5. The Bi-CGSTAB algorithm with preconditioning. The IDR(s) algorithm with preconditioning.
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+10
+
+3.9
+
+IDR(s)
+
+In 1980, Sonneveld proposed the iterative IDR method for
+solving linear systems (Wesseling and Sonneveld, 1980).
+The IDR method generates residuals that are forced to
+be in subspaces j of decreasing dimension. These nested
+subspaces are related by j = (I − 𝜔j A)( ∩ j−1 ), where 
+is a fixed proper subspace of ℂN , and the 𝜔j s are non-zero
+scalars.
+Recently, it was recognized that this IDR approach is quite
+general and can be used as a framework for deriving iterative methods. This observation has led to the development
+of IDR(s) (Sonneveld and Van Gijzen, 2008). IDR(s) has
+attracted considerable attention, for example, see Gutknecht
+(2010).
+Although the working principle of IDR(s) differs from that
+of Bi-CGSTAB, it turns out that both methods are mathematically closely related. Specifically, IDR(1) is mathematically equivalent with Bi-CGSTAB, and IDR(s) with s > 1
+is closely related (but not mathematically equivalent) to the
+Bi-CGSTAB generalization ML(k)BiCGSTAB of Yeung and
+Chan (1999). For s = 1, IDR(s) is mathematically equivalent to the ubiquitous Bi-CGSTAB algorithm. For important
+types of problems and for relatively small values of s > 1,
+the IDR(s) algorithms outperform the Bi-CGSTAB method.
+The preconditioned IDR(s) algorithm is given in Figure 5.
+
+4 PRECONDITIONING
+4.1
+
+Introduction
+
+As we have seen in our discussions on the various Krylov
+subspace methods, they are not robust in the sense that they
+can be guaranteed to lead to acceptable approximate solutions within modest computing time and storage (modest
+with respect to alternative solution methods). For some
+methods (for instance, full GMRES), it is obvious that they
+lead, in exact arithmetic to the exact solution in maximal n
+iterations, but that may not be very practical. Other methods
+are restricted to specific classes of problems (CG, MINRES)
+or occasionally suffer from such nasty side-effects as stagnation or breakdown (Bi-CG, Bi-CGSTAB). Such poor convergence depends in a very complicated way on spectral properties (eigenvalue distribution, field of values, condition of
+the eigensystem, etc.) and this information is not available in
+practical situations.
+The trick is then to try to find some nearby operator K such
+that K −1 A has better (but still unknown) spectral properties.
+This is based on the observation that for K = A, we would
+have the ideal system K −1 Ax = Ix = K −1 b and all subspace
+methods would deliver the true solution in one single step.
+
+11
+
+The hope is that for K in some sense close to A, a properly
+selected Krylov method applied to, for instance, K −1 Ax =
+K −1 b, would need only a few iterations to yield a good
+enough approximation for the solution of the given system
+Ax = b. An operator that is used with this purpose is called a
+preconditioner for the matrix A.
+The general problem of finding an efficient preconditioner
+is to identify a linear operator K (the preconditioner) with the
+properties that [2]
+1. K is a good approximation to A in some sense,
+2. the cost of the construction of K is not prohibitive, and
+3. the system Ky = z is much easier to solve than the original system.
+There is a great freedom in the definition and construction
+of preconditioners for Krylov subspace methods. Note that in
+all the Krylov methods, one never needs to know individual
+elements of A, and one never has to modify parts of the given
+matrix. It is always sufficient to have a rule (subroutine) that
+generates, for given input vector y, the output vector z that can
+mathematically be described as z = Ay. This so-called matrix
+free property of Krylov methods can be very important in
+industrial applications, especially if the memory requirements of the standard method are too severe. This also holds
+for the nearby operator: it does not have to be an explicitly
+given matrix. However, one should realize that the operator
+(or subroutine) that generates the approximation for A can
+be mathematically represented as a matrix. It is then important to verify that application of the operator (or subroutine,
+or possibly even a complete code) on different inputs leads
+to outputs that have the same mathematical relation, with
+the same (possibly explicitly unknown) matrix K. For some
+methods, in particular Flexible GMRES and GMRESR, it is
+permitted that the operator K is different for different input
+vectors (variable preconditioning). This plays an important
+role in the solution of nonlinear systems, if the Jacobian of
+the system is approximated by a Frechet derivative, and it
+is also attractive in some domain decomposition approaches
+(in particular, if the solution per domain itself is obtained by
+some iterative method again).
+The following aspect is also important. One never (except
+for some trivial situations) forms the matrix K −1 A explicitly. In many cases, this would lead to a dense matrix and
+that would destroy all efficiency that could be obtained for
+the often sparse A. Even for dense matrix A, it might be
+too expensive to form the preconditioned matrix explicitly.
+Instead, for each required application of K −1 A to some vector
+y, we first compute the result w of the operator A applied to y
+and then we determine the result z of the operator K −1 applied
+to w. This is often done by solving z from Kz = w, but there
+are also approaches by which approximations M for A−1 are
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+constructed (e.g., sparse approximate inverses) and then one
+applies, of course, the operator M to w in order to obtain z.
+Only very special and simple to invert preconditioners such
+as diagonal matrices can be applied explicitly to A. This can
+be done before and in addition to the construction of another
+preconditioning.
+Remember always that whatever preconditioner we
+construct, the goal is to reduce CPU time (or memory
+storage) for the computation of the desired approximated
+solution.
+There are different ways of implementing preconditioning;
+for the same preconditioner, these different implementations
+lead to the same eigenvalues for the preconditioned matrices.
+However, the convergence behavior is also dependent on the
+eigenvectors or, more specifically, on the components of the
+starting residual in eigenvector directions. Since the different
+implementations can have quite different eigenvectors, we
+may expect that their convergence behavior can be quite
+different. Three different implementations are as follows:
+1.
+
+Left-preconditioning: Apply the iterative method to
+K −1 Ax = K −1 b. We note that symmetry of A and K
+does not imply symmetry of K −1 A. However, if K is
+symmetric positive-definite, then [x, y] ≡ (x, Ky) defines
+a proper inner product. It is easy to verify that K −1 A is
+symmetric with respect to the new inner product [,], so
+that we can use methods such as MINRES, SYMMLQ,
+and CG (when A is positive-definite as well) in this case.
+Popular formulations of preconditioned CG are based
+on this observation.
+If we are using a minimal norm residual method
+(GMRES or MINRES), we should note that with
+left-preconditioning, we are minimizing the preconditioned residual K −1 (b − Axk ), which may be quite
+different from the residual b − Axk . This could have
+consequences for stopping criteria that are based on the
+norm of the residual.
+2. Right-preconditioning: Apply the iterative method to
+AK −1 y = b, with x = K −1 y. This form of preconditioning also does not lead to a symmetric product when
+A and K are symmetric. With right-preconditioning,
+we have to be careful with stopping criteria that are
+based upon the error: ||y − yk ||2 may be much smaller
+than the error-norm ||x − xk ||2 (equal to ||K −1 (y − yk )||2 )
+that we are interested in. Right-preconditioning has the
+advantage that it only affects the operator and not the
+right-hand side. This may be an attractive property in
+the design of software for specific applications.
+3. Two-sided preconditioning: For a preconditioner K
+with K = K1 K2 , the iterative method can be applied
+to K1−1 AK2−1 z = K1−1 b, with x = K2−1 z. This form of
+preconditioning may be used for preconditioners that
+
+come in factored form. This can be seen as a compromise between left- and right-preconditioning. This
+form may be useful for obtaining a (near) symmetric
+operator for situations where K cannot be used for
+the definition of an inner product (as described under
+left-preconditioning).
+Note that with all these forms of preconditioning, either
+explicit or implicit (through a redefinition of the inner
+product), we are generating a Krylov subspace for the
+preconditioned operator. This implies that the reduced matrix
+Hk,k (cf. (9)) gives information about the preconditioned
+matrix; in particular, the Ritz values approximate eigenvalues
+of the preconditioned matrix. The generated Krylov subspace
+cannot be used in order to obtain information as well for the
+unpreconditioned matrix.
+The choice of K varies from purely “black box” algebraic
+techniques, which can be applied to general matrices, to
+“problem-dependent” preconditioners that exploit special
+features of a particular problem class. Examples of the
+last class are discretized partial differential equations
+(PDEs), where the preconditioner is constructed as the
+discretization of a nearby (easier to solve) PDE. Although
+problem-dependent preconditioners can be very powerful,
+there is still a practical need for efficient preconditioning
+techniques for large classes of problems.
+There are only very few specialized cases where it is known
+a priori how to construct a good preconditioner and there are
+few proofs of convergence, except in very idealized cases.
+For a general system, however, the following approach may
+help to build up one’s insight into what is happening. For
+a representative linear system, one starts with unpreconditioned GMRES(m), with m as high as possible. In one cycle
+of GMRES(m), the method explicitly constructs an upper
+Hessenberg matrix of order m, denoted by Hm,m . This matrix
+is reduced to upper triangular form, but before this takes
+place, one should compute the eigenvalues of Hm,m , called
+the Ritz values. These Ritz values usually give a fairly good
+impression of the most relevant parts of the spectrum of A.
+Then one does the same with the preconditioned system and
+inspects the effect on the spectrum. If there is no specific
+trend of improvement in the behavior of the Ritz values [3]
+when we try to improve the preconditioner, then obviously
+we have to look for another class of preconditioner. If there
+is a positive effect on the Ritz values, then this may give us
+some insight into how much more the preconditioner has to
+be improved in order to be effective. At all times, we have
+to keep in mind the rough analysis that we made in this
+chapter and check whether the construction of the preconditioner and its costs per iteration are still inexpensive enough
+to be amortized by an appropriate reduction in the number of
+iterations.
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+12
+
+In this section, some of the more popular preconditioning techniques are described and references and pointers
+for other techniques are given. The reader is referred to
+Axelsson (1994), Chan and van der Vorst (1997), Saad
+(2003), Meurant (1999), and van der Vorst (2003) for more
+complete overviews of (classes of) preconditioners. Benzi
+(2002) for a very readable introduction to various concepts
+of preconditioning and for many references to specialized
+literature. A recent overview of the preconditioning literature
+can be found in Wathen (2015).
+
+5 INCOMPLETE LU FACTORIZATIONS
+Originally, preconditioners were based on direct solution
+methods in which part of the computation is skipped. This
+leads to the notion of incomplete LU (ILU) factorization
+Meijerink and van der Vorst (1977). We will now discuss
+these incomplete factorizations in more detail.
+Standard Gaussian elimination is equivalent to factoring
+the matrix A as A = LU, where L is lower triangular and U
+is upper triangular. In actual computations, these factors are
+explicitly constructed. The main problem in sparse matrix
+computations is that the factors of A are often a good deal
+less sparse than A, which makes solving expensive. The
+basic idea in the point ILU preconditioner is to modify
+Gaussian elimination to allow fill-ins at only a restricted set
+of positions in the LU factors.
+The following theorem collects results for the situation in
+which we determine a priori the positions of the elements
+that we wish to ignore during the Gaussian elimination
+process. Note that this is not a serious restriction because we
+may also neglect elements during the process according to
+certain criteria and this defines the positions implicitly. The
+indices of the elements to be ignored are collected in a set :
+S ⊂ Sn ≡ {(i, j)|i ≠ j, 1 ≤ i ≤ n, 1 ≤ j ≤ n}
+
+(10)
+
+We can now formulate the theorem that guarantees the existence of incomplete decompositions for the M-matrix A (cf.
+Meijerink and van der Vorst, 1977, Theorem 2.3).
+Theorem 2. Let A = (ai,j ) be an n × n M-matrix [4], then
+there exists for every S ⊂ Sn , a lower triangular matrix L̃ =
+̃ = (ui,j ), and
+(𝓁i,j ), with 𝓁i,i = 1, an upper triangular matrix U
+a matrix N = (ni,j ) with
+• 𝓁i,j = 0, ui,j = 0, if (i, j) ∈ S
+̃ −N
+• ni,j = 0 if (i, j) ∉ S, such that the splitting A = L̃ U
+leads to a convergent iteration (5).
+̃ are uniquely defined by S.
+The factors L̃ and U
+
+13
+
+ILU for an n × n matrix A (cf. Axelsson, 1994):
+for k = 1, 2, ..., n − 1
+d1/ak,k
+for i = k + 1, k + 2, ..., n
+if (i, k) ∈ S
+e = dai,k; ai,k = e
+for j = k + 1, ..., n
+if (i, j) ∈ S and (k, j) ∈ S
+ai,j = ai,j − eak, j
+end if
+end j
+end if
+end i
+end k
+
+Figure 6. ILU for a general matrix A.
+
+One can make, of course, variations on these incomplete
+̃ as a
+splittings, for instance, by isolating the diagonal of U
+separate factor. When A is symmetric and positive-definite,
+then it is obvious to select S so that it defines a symmetric
+sparsity pattern and then one can rewrite the factorization so
+̃ are equal. This is known as an
+that the diagonals of L̃ and U
+incomplete Cholesky decomposition.
+A commonly used strategy is to define S by
+S = {(i, j)|ai,j ≠ 0}
+
+(11)
+
+That is, the only nonzeros allowed in the LU factors are those
+for which the corresponding entries in A are nonzero. It is
+easy to show that the elements ki,j of K match those of A on
+the set S:
+ki,j = ai,j if (i, j) ∈ S
+(12)
+Even though the condition (12) is sufficient (for certain
+classes of matrices) to determine the nonzero entries of L and
+U directly, it is more natural and simpler to compute these
+entries on the basis of a simple modification of the Gaussian
+elimination algorithm (Figure 6). The main difference from
+the usual Gaussian elimination algorithm is in the innermost
+j-loop, where an update to ai,j is computed only if it is allowed
+by the constraint set S.
+After the completion of the algorithm, the incomplete LU
+factors are stored in the corresponding lower and upper
+triangular parts of the array A. It can be shown that the
+computed LU factors satisfy (12).
+̃ define the precondiThe incomplete factors L̃ and U
+−1 . In the context of an iterative solver,
+̃
+̃
+tioner K = (LU)
+this means that we have to evaluate expressions such as
+̃ −1 y for any given vector y. This is done in two
+z = (L̃ U)
+̃ = y and then
+steps: first obtain w from the solution of Lw
+̃ = w. Straightforward implementation of
+compute z from Uz
+these processes leads to recursions, for which vector and
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+parallel computers are not ideally suited. This sort of observation has led to reformulations of the preconditioner, for
+example, with reordering techniques or with blocking techniques. It has also led to different types of preconditioners,
+including diagonal scaling, polynomial preconditioning, and
+truncated Neumann series. These approaches may be useful
+in certain circumstances, but they tend to increase the computational complexity because they often lead to more iteration
+steps.
+A well-known variant on ILU is the so-called modified
+incomplete LU (MILU) factorization (Dupont et al., 1968;
+Gustafsson, 1978). For this variant, the condition (12) is
+replaced by
+n
+∑
+j=1
+
+ki,j =
+
+n
+∑
+
+ai,j + ch2
+
+for i = 1, 2, … , n
+
+(13)
+
+j=1
+
+The term ch2 is for grid-oriented problems with mesh-size
+h. Although in many applications this term is skipped (i.e.,
+one often takes c = 0), this may lead to ineffective preconditioning (van der Vorst, 1989) or even breakdown of the
+preconditioner (Eijkhout, 1992). In our context, the row
+sum requirement in (13) amounts to an additional correction to the diagonal entries compared to those computed in
+Figure 6. The correction leads to the observation that Kz ≈ Az
+for almost constant z (in fact, this was the motivation for
+the construction of these preconditioners). This results in
+very fast convergence for problems in which the solution is
+locally smooth. However, quite the opposite may be observed
+for problems in which the solution is far from smooth. For
+such problems, MILU may lead to much slower convergence
+than ILU.
+The incomplete factorizations have been generalized with
+blocks of A instead of single elements. The inverses of
+diagonal blocks in these incomplete block factorizations
+are themselves again approximated, for instance, by their
+diagonal only or by the tridiagonal part (for details on
+this, see Axelsson, 1994; Meurant, 1999). In the author’s
+experience, block incomplete decompositions can be quite
+effective for linear systems associated with two-dimensional
+PDEs, discretized over rectangular grids. However, for
+three-dimensional problems, they appeared to be less
+effective.
+
+5.1
+
+Reordering the unknowns
+
+A standard trick for exploiting parallelism is to select all
+unknowns that have no direct relationship with each other
+and to number them first. For the 5-point finite difference discretization over rectangular grids, this approach
+is known as a red–black ordering. For elliptic PDEs, this
+
+leads to parallel preconditioners. The performance of the
+preconditioning step is as high as the performance of the
+matrix-vector product. However, changing the order of
+the unknowns leads, in general, to a different preconditioner. Duff and Meurant (1989) report on experiments that
+show that most reordering schemes (e.g., the red–black
+ordering) lead to a considerable increase in iteration steps
+(and hence in computing time) compared to the standard
+lexicographical ordering. For the red–black ordering, associated with the discretized Poisson equation, it can be shown
+that the condition number of the preconditioned system
+is only about one-quarter that of the unpreconditioned
+system for ILU, MILU, and SSOR, with no asymptotic
+improvement as the gridsize h tends to zero (Kuo and Chan,
+1990).
+One way to obtain a better balance between parallelism
+and fast convergence is to use more colors (Doi, 1991). In
+principle, since there is not necessarily any independence
+between different colors, using more colors decreases the
+parallelism but increases the global dependence and hence
+the convergence. In Doi and Hoshi (1992) up to 75 colors
+are used for a 762 grid on the NEC SX-3/14, resulting
+in a 2 Gflop s−1 performance, which is much better than
+for the wavefront ordering. With this large number of
+colors, the speed of convergence for the preconditioned
+process is virtually the same as with a lexicographical
+ordering (Doi, 1991). For problems with discontinuous
+coefficients reordering can lead to a worse convergence
+behavior.
+The concept of multicoloring has been generalized to
+unstructured problems by Jones and Plassmann (1994). They
+propose effective heuristics for the identification of large
+independent subblocks of a given matrix. For problems large
+enough to get sufficient parallelism in these subblocks, their
+approach leads to impressive speedups compared to the
+natural ordering on a single processor. For an overview of
+multicoloring, see Lukarski and Neytcheva (2014).
+Another approach, suggested by Meurant (1984), exploits
+the idea of the two-sided (or twisted) Gaussian elimination
+procedure for tridiagonal matrices. This is generalized for
+the incomplete factorization. van der Vorst (1987) has shown
+how this procedure can be done in a nested way. For 3D
+finite difference problems, twisting can be used for each
+dimension that gives an increase in parallelism by a factor
+of two per dimension. This leads, without further computational overhead, to incomplete decompositions, as well as
+triangular solves, that can be done in eight parallel parts
+(two in each dimension). For a discussion of these techniques, see Dongarra et al. (1998). This parallel ordering
+technique is sometimes referred to as “vdv” ordering (Duff
+and Meurant, 1989) or “Van der Vorst” ordering (Benzi,
+2002).
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+14
+
+A more sophisticated approach that combines ideas
+from twisting, domain decomposition with overlap, and
+reordering, was proposed by Magolu monga Made and van
+der Vorst (2001a,b, 2002). We will explain this idea for
+the special situation of a discretized second-order elliptic
+PDE over a rectangular domain. The discretization has
+been carried out with the standard 5-point central difference
+stencil, which, over a rectangular grid with lexicographical
+ordering, leads to the familiar block matrix with five nonzero
+diagonals.
+The first step is to split the domain in blocks, as in domain
+decomposition methods, and to order the unknowns lexicographically per block. This has been indicated, for the case
+of eight horizontal blocks, in Figure 7. Per block, we start
+counting from one side (the bottom layer); the points on the
+last line (the top layer) are ordered after all subdomains, as
+is indicated in Figure 8. For instance, the lines 1, 2, 3, and
+26, all belong to the block stored with processor 0 , but
+in the matrix interpretation, the first three lines are ordered
+first and line 26 appears in the matrix only after all other
+“interior” lines. This means that the matrix has the following
+nonzero structure (we give only a relevant part of the matrix).
+Note that we have already introduced another element in our
+ordering, namely, the idea of twisting: the lines of the subdomains are ordered from bottom to top and from top to bottom
+in Figure 7.
+Now imagine what happens if we carry out an incomplete
+LU factorization with zero fill. This would create level-1
+fill in the error matrix. Note that, in particular, we would
+introduce fill in the subblock of the matrix that connects
+line 26 with line 5, and note also that we would not have
+seen this level-1 fill, if we would have selected all points
+lexicographically.
+This means that if we want the block ordering to be at
+least as effective as the standard ordering, we have to remove
+this additional fill. This can be interpreted as permitting
+level-1 fill in a small overlap, and this is the reason for
+the name pseudo-overlap for this way of ordering. How to
+generalize this idea for more arbitrary matrices is obvious:
+one compares the new ordering with the standard given
+one and one includes the possibly additional level-1 fill in
+the preconditioner. The idea can also be easily applied to
+preconditioners with a higher level fill.
+In Magolu monga Made and van der Vorst (2001a,b), it is
+suggested that the pseudo-overlap be increased and higher
+levels of fill that are introduced by the new block-wise
+ordering also be included. For high dimensional problems
+and relatively low numbers of processors, this leads to
+an almost negligible overhead. It is shown by analysis in
+Magolu monga Made and van der Vorst (2002) and by experiments mentioned in Magolu monga Made and van der Vorst
+(2001a,b) that the block ordering with pseudo-overlap may
+
+y
+13
+14
+15
+16
+17
+18
+
+Bottom layer’s gridpoints
+Top layer’s gridpoints
+7
+
+30
+
+6
+
+31
+19
+20
+21
+
+5
+
+32
+
+22
+23
+24
+25
+
+4
+33
+29
+
+12
+11
+10
+9
+8
+7
+6
+5
+4
+
+15
+
+3
+
+28
+
+2
+
+27
+
+1
+
+26
+
+0
+
+3
+2
+1
+
+x
+
+Figure 7. Decomposition of the grid into stripes, and assignment of subdomains to processors for p = 8. Arrows indicate
+the progressing direction of the line numbering per subdomain.
+Numbers along the y-axis give an example of global (line) ordering,
+which satisfies all the required conditions. Within each horizontal
+line, gridpoints are ordered lexicographically.
+
+1
+
+2
+
+3
+
+4
+
+26
+
+Figure 8. The structure of the reordered matrix.
+
+lead to parallelizable incomplete decompositions that are
+almost perfectly
+scalable if the number of processors p is
+√
+less than n, where n denotes the order of the given linear
+system (the reported experiments include experiments for 16
+processors, for n ≈ 260 000).
+
+5.2
+
+Variants of ILU preconditioners
+
+Many variants on the idea of incomplete or modified incomplete decomposition have been proposed in the literature.
+These variants are designed to reduce the total computational work, to improve the performance on vector or
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+parallel computers, or to handle special problems. One could,
+for instance, think of incomplete variants of the various
+LU-decomposition algorithms discussed in Golub and Van
+Loan (2013, Chapter 4.4).
+We will describe some of the more popular variants and
+give references to where more details can be found for other
+variants.
+A natural approach is to allow more fill-in in the LU factor
+(i.e., larger set S). Several possibilities have been proposed.
+The most obvious variant is to allow more fill-ins in specific
+locations in the LU factors, for example, allowing more
+̃ matrices (i.e., larger stencils)
+nonzero bands in the L̃ and U
+(Axelsson and Barker, 1984; Gustafsson, 1978; Meijerink
+and van der Vorst, 1981). The most common location-based
+criterion is to allow a set number of levels of fill-in, where
+original entries have level zero, original zeros have level ∞,
+and a fill-in in position (i, j) has level determined by
+Levelij =
+
+min
+
+1≤k≤min(i,j)
+
+{Levelik + Levelkj + 1}
+
+In the case of simple discretizations of PDEs, this gives a
+simple pattern for incomplete factorizations with different
+levels of fill-in. For example, if the matrix is from a 5-point
+discretization of the Laplacian in two dimensions, level 1
+fill-in will give the original pattern plus a diagonal inside
+the outermost band (for instance, see Meijerink and van der
+Vorst, 1981).
+The other main criterion for deciding which entries to omit
+is to replace the drop-by-position strategy by a drop-by-size
+one; that is, a fill-in entry is discarded if its absolute value is
+below a certain threshold value. This drop-tolerance strategy
+was first proposed by Munksgaard (1980). For the regular
+problems just mentioned, it is interesting that the level fill-in
+and drop strategies give a somewhat similar incomplete
+factorization because the numerical value of successive fill-in
+levels decreases markedly, reflecting the characteristic decay
+in the entries in the factors of the LU decomposition of
+A. For general problems, however, the two strategies can
+be significantly different. Since it is usually not known a
+priori how many entries will be above a selected threshold,
+the dropping strategy is normally combined with restricting
+the number of fill-ins allowed in each column (Saad, 1994).
+When using a threshold criterion, it is possible to change it
+dynamically during the factorization to attempt to achieve
+a target density of the factors (Axelsson and Munksgaard,
+1983; Munksgaard, 1980). Saad (2003) gives a very good
+overview of these techniques. In practice, a good choice of
+the dropping tolerance can be very sensitive. If the tolerance is large, the convergence behavior is bad, whereas if
+the tolerance is small the fill-in can be huge such that the
+amount of work per iteration and the memory requirements
+are too high.
+
+Although the notation is not yet fully standardized, the
+nomenclature commonly adopted for incomplete factorizations is ILU(k), when k levels of fill-in are allowed,
+and ILUT(𝛼, f ) for the threshold criterion when entries of
+modulus less than 𝛼 are dropped and the maximum number
+of fill-ins allowed in any column is f . There are many
+variations on these strategies and the criteria are sometimes
+combined. In some cases, constraining the row sums of the
+incomplete factorization to match those of the matrix, as in
+MILU, can help (Gustafsson, 1978), but as we noted earlier,
+successful application of this technique is restricted to cases
+in which the solution of the (preconditioned) system is rather
+smooth.
+Shifts can be introduced to prevent breakdown of the
+incomplete factorization process. As we have seen, incomplete decompositions exist for general M-matrices. It
+is well known that they may not exist if the matrix is
+positive-definite, but does not have the M-matrix property.
+(Manteuffel, 1980) considered incomplete Cholesky factorizations of diagonally shifted matrices. He proved that if A
+is symmetric positive-definite, then there exists a constant
+𝛼 > 0, such that the incomplete Cholesky factorization of
+A + 𝛼I exists. Since we make an incomplete factorization
+for A + 𝛼I, instead of A, it is not necessarily the case that
+this factorization is also efficient as a preconditioner; the
+only purpose of the shift is to avoid breakdown of the
+decomposition process. Whether there exist suitable values
+for 𝛼 such that the preconditioner exists and is efficient is a
+matter of trial and error.
+Another point of concern is that for non-M-matrices the
+incomplete factors of A may be very ill conditioned. For
+instance, it has been demonstrated in van der Vorst (1981)
+that if A comes from a 5-point finite difference discretization
+of Δu + 𝛽(ux + uy ) = f , then for sufficiently large 𝛽, the
+incomplete LU factors may be very ill conditioned even
+though A has a very modest condition number. Remedies
+̃ have been
+for reducing the condition numbers of L̃ and U
+discussed in Elman (1989) and van der Vorst (1981).
+
+5.3
+
+Hybrid techniques
+
+In the classical incomplete decompositions, one ignores
+fill-in right from the start of the decomposition process.
+However, it might be a good idea to delay this until the matrix
+becomes too dense. This leads to a hybrid combination of
+direct and iterative techniques. One of such approaches has
+been described in Bomhof and van der Vorst (2000); we will
+describe it here in some detail.
+We first permute the given matrix of the linear system
+Ax = b to a doubly bordered block diagonal form:
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+16
+
+0
+A0m ⎤
+⎡ A00 0 · · ·
+⎢
+⎥
+⋮
+A1m ⎥
+⎢ 0 A11 ⋱
+0
+⋮ ⎥
+Ã = PT AP = ⎢ ⋮ ⋱ ⋱
+⎢
+⎥
+⎢ 0 · · · 0 Am−1m−1 ⋮ ⎥
+⎢
+⎥
+···
+Amm ⎦
+⎣ Am0 Am1 · · ·
+
+(14)
+
+Of course, the parallelism in the eventual method depends
+on the value of m, and some problems lend themselves more
+to this than others. Many circuit-simulation problems can be
+rewritten in an effective way, as a circuit is often composed
+of components that are only locally coupled to others.
+We permute the right-hand side b as well to b̃ = PT b, which
+leads to the system
+̃ x = b̃
+Ã
+(15)
+with x = Px.
+The parts of b̃ and x̃ that correspond to the block ordering
+will be denoted by b̃ i and x̃ i . The first step in the (parallelizable) algorithm will be to eliminate the unknown parts
+x̃ 0 , … , x̃ m−1 , which is done by the algorithm in Figure 9.
+Note that S in Figure 9 denotes the Schur complement after
+the elimination of the blocks 0, 1, … , m − 1. In many relevant situations, direct solution of the reduced system Sxm =
+ym requires the dominating part of the total computational
+costs, and this is where we bring in the iterative component
+of the algorithm.
+The next step is to construct a preconditioner for the
+reduced system. This is based on discarding small elements
+in S. The elements larger than some threshold value define
+the preconditioner C:
+{
+cij =
+
+sij
+
+if |sij | > t|sii | or |sij | > t|sjj |
+
+0
+
+elsewhere
+
+Parallel_for i = 0, 1, ..., m − 1
+Decompose Aii : Aii = Lii Uii
+Lmi = Ami Uii−1
+Uim = Lii−1Aim
+~
+yi = Lii−1 bi
+Si = Lmi Uim
+zi = Lmi yi
+end
+m −1
+S = Amm − Σ i = 0 Si
+~
+m −1
+ym = bm − Σi = 0 zi
+Solve Sxm = ym
+Parallel_for i = 0, 1, ..., m − 1
+xi = Uii−1 (yi − Uimxm)
+end
+
+Figure 9. Parallel elimination.
+
+(16)
+
+17
+
+with a parameter 0 ≤ t < 1. In the experiments reported in
+Bomhof and van der Vorst (2000), the value t = 0.02 turned
+out to be satisfactory, but this may need some experimentation for specific problems.
+When we take C as the preconditioner, then we have to
+solve systems such as Cv = w, and this requires decomposition of C. In order to prevent too much fill-in, reordering of
+C with a minimum degree ordering is suggested. The system
+Sxm = ym is then solved with, for instance, GMRES with
+preconditioner C. For the examples described in Bomhof
+and van der Vorst (2000), it turns out that the convergence
+of GMRES was not very sensitive to the choice of t. The
+preconditioned iterative solution approach for the reduced
+system also offers opportunities for parallelism, although
+in Bomhof and van der Vorst (2000) it is shown that even
+in serial mode, the iterative solution (too sufficiently high
+precision) is often more efficient than direct solution of the
+reduced system.
+In Bomhof and van der Vorst (2000), heuristics are
+described for the decision on when the switch from direct
+to iterative should take place. These heuristics are based on
+mild assumptions on the speed of convergence of GMRES.
+The paper also reports on a number of experiments for
+linear systems, not only from circuit simulation but also
+for some matrix problems taken from Matrix Market
+[5]. These experiments indicate that attractive savings
+in computational costs can be achieved, even in serial
+computation mode.
+
+5.4
+
+Element-by-element preconditioners
+
+In finite element problems, it is not always possible or
+sensible to assemble the entire matrix, and it is as easy to
+form products of the matrix with vectors as when it is held
+in assembled form. Furthermore, it is easy to distribute such
+matrix multiplications to exploit parallelism. Hence, preconditioners are required that can be constructed at the element
+level. Hughes et al. (1983) were the first to propose such
+element-by-element preconditioners.
+A parallel variant is suggested in Gustafsson and Lindskog
+(1986). For symmetric positive-definite A, they decompose
+each element matrix Ae as Ae = Le LeT , and construct the
+preconditioner as K = LLT , with
+L=
+
+ne
+∑
+
+Le
+
+e=1
+
+In this approach, nonadjacent elements can be treated
+in parallel. An overview and discussion of parallel
+element-by-element preconditioners is given in van
+Gijzen (1994). To our knowledge, the effectiveness of
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+element-by-element preconditioners is limited, in the sense
+that it does not often give a substantial improvement of
+the CPU time. A better preconditioner is obtained when a
+number of elements are clustered to super elements. The
+resulting method is closely related to domain decomposition methods, which are considered in the next
+section.
+
+5.5
+
+Preconditioning by blocks or domains
+
+Other preconditioners that use direct methods are those
+where the direct method, or an incomplete version of it, is
+used to solve a subproblem of the original problem. This
+can be done in domain decomposition, where problems on
+subdomains can be solved by a direct method, but the interaction between the subproblems is handled by an iterative
+technique.
+Domain decomposition methods were motivated by
+parallel computing, but it now appears that the approach
+can also be used with success for the construction of
+global preconditioners. This is usually done for linear
+systems that arise from the discretization of a PDE. The
+idea is to split the given domain into subdomains, and
+to compute an approximation for the solution on each
+subdomain. If all connections between subdomains are
+ignored, this then leads to a Block Jacobi preconditioner.
+Chan and Goovaerts (1990) showed that the domain
+decomposition approach can actually lead to improved
+convergence rates, at least when the number of subdomains is not too large. This is because of the well-known
+divide-and-conquer effect when applied to methods with
+superlinear complexity such as ILU: it is more efficient to
+apply such methods to smaller problems and piece the global
+solution together.
+In order to make the preconditioner more successful,
+one has to couple the domains, that is, one has to find
+proper boundary conditions along the interior boundaries
+of the subdomains. From a linear algebra point of view,
+this amounts to adapting the diagonal blocks in order to
+compensate for the neglected off-diagonal blocks. This is
+only successful if the matrix comes from a PDE problem
+and if certain smoothness conditions on the solution are
+assumed. If, for instance, the solution were constant, then
+one could remove the off-diagonal block entries, adding
+them to the diagonal block entries without changing the
+solution. Likewise, if the solution is assumed to be fairly
+smooth along a domain interface, one might expect this technique of diagonal block correction to be effective. Domain
+decomposition is used in an iterative manner and usually the
+interior boundary conditions (in matrix language: the corrections to diagonal blocks) are based upon information from
+
+the approximate solutions on the neighboring subdomains
+that are available from a previous iteration step.
+
+5.6
+
+Preconditioning by deflation
+
+In many applications the preconditioners given in the
+previous sections lead to good convergence. However, in a
+number of important problems the preconditioners do not
+lead to efficient solution methods. Examples are porous
+media flow and mechanical problems, where different materials (rubber and steel) are connected. From an analysis
+of the problems, it appears that a small number of “bad”
+eigenvalues destroy the convergence. An idea is to remove
+the influence of these bad eigenvector components by deflation (or second level preconditioner). In such a method the
+bad eigenvectors are computed or approximated by sparse
+approximations. Then the linear system is projected on a
+linear subspace that does not contain these eigenvectors. On
+this subspace the “standard” preconditioner can be reused.
+This combination then leads to robust and fast solvers where
+a good stopping criterion is available. For porous media
+applications the method is described in Vuik et al. (1999)
+and for mechanical problems in Jönsthövel et al. (2012).
+Generalizations to general matrices is given in Frank and
+Vuik (2001), whereas a comparison of deflation, multigrid
+and domain decomposition is given in Tang et al. (2010).
+
+6
+
+METHODS FOR THE COMPLETE
+EIGENPROBLEM
+
+6.1
+
+Introduction
+
+Unlike the situation for linear systems solving, there are no
+truly direct methods for the solution of the eigenproblem,
+in the sense that, in general, one cannot compute the eigenvalues (or eigenvectors) exactly in a finite number of floating
+point operations. The iterative methods come in two different
+classes, one in which the matrix is driven to diagonal form,
+or Schur form, by rotations, and one in which this is accomplished by detecting invariant subspaces. This second class
+of methods is explicitly based on the Power Method. The
+QR method is the most prominent member of this class; it
+converges so fast that the complete eigensystem of a matrix
+can be computed in a modest (but matrix dependent) factor
+times n3 floating point operations. This is somewhat similar
+to the situation for the direct methods for solving dense linear
+systems. The QR method is, for this reason, often referred
+to as a direct method, in order to distinguish it from the
+essentially iterative subspace projection techniques. These
+iterative subspace projection techniques attempt to detect
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+18
+
+partial eigeninformation in much less than (n3 ) work. They
+will be described in the forthcoming sections.
+Because the Power Method is important as a driving mechanism, although in hidden form, in the fast “direct” methods
+as well as in the subspace projection methods, we will discuss
+it in some more detail. The reader should keep in mind,
+however, that the Power Method is seldom competitive as
+a stand-alone method; we need it here for a better understanding of the more superior techniques to come.
+The Power Method is based on the observation that if we
+multiply a given vector v by the matrix A, then each eigenvector component in v is multiplied by the corresponding
+eigenvalue of A.
+Assume that A is real symmetric, then it has real eigenvalues and a complete set of orthonormal eigenvectors
+Axk = 𝜆k xk ,
+
+||xk ||2 = 1 (k = 1, 2, … , n)
+
+It is not hard to see why the Rayleigh quotients converge
+to the dominant eigenvalue. We first write wj in terms of the
+eigenvectors of A:
+wj =
+
+∑
+
+j−1
+
+𝛾 i 𝜆i x i
+
+i≥1
+
+{
+
+j−1
+= 𝜆1
+
+𝛾 1 x1 +
+
+Now, suppose we are given a vector v1 , which can be
+∑
+expressed in terms of the eigenvectors as v1 = i 𝛾i xi , and we
+assume that 𝛾1 ≠ 0 (that means that v1 has a nonzero component in the direction of the eigenvector corresponding to 𝜆1 ).
+Given this v1 , we compute Av1 , A(Av1 ), · · ·, and it follows
+for the Rayleigh quotient of these vectors that
+lim
+
+j→∞
+
+wTj Awj
+wTj wj
+
+= 𝜆1
+
+where wj ≡ Aj−1 v1 .
+The Power Method can be represented by the template
+given in Figure 10. The sequence 𝜃 (i) converges, under
+the above assumptions, to the dominant (in absolute value)
+eigenvalue A. The scaling of the iteration vectors is necessary
+in order to prevent overflow or underflow. This scaling can be
+done a little bit cheaper by taking the maximum element of
+the vector instead of the norm. In that case, the maximum
+element of vi converges to the largest (in absolute value)
+eigenvalue of A.
+
+v = v1/ ||v1||2
+for i = 1, 2, .... until convergence
+vi+1 = Av
+θ(i) = vT vi +1
+v = vi +1/ ||vi +1||2
+end
+
+Figure 10. The Power Method for symmetric A.
+
+∑
+
+(
+𝛾i
+
+i≥2
+
+𝜆i
+𝜆1
+
+)j−1 }
+xi
+
+(17)
+
+Hence,
+wTj Awj
+wTj wj
+
+𝛾12 +
+= 𝜆1
+𝛾12 +
+∑
+i≥1
+
+We further assume that the largest eigenvalue in modulus is
+single and that
+|𝜆1 | > |𝜆2 | ≥ · · ·
+
+19
+
+= 𝜆1 ∑
+
+i≥1
+
+∑
+i≥2
+
+∑
+i≥2
+
+𝛾i2
+𝛾i2
+
+( )2j−1
+𝜆i
+𝜆1
+
+( )2j−2
+𝜆i
+𝜆1
+
+(18)
+
+𝛾i2 P2j−1 (𝜆i )
+𝛾i2 P2j−2 (𝜆i )
+
+(19)
+
+with Pi (t) ≡ (t∕𝜆1 )i .
+For unsymmetric matrices, the situation is slightly
+more complicated, since A does not necessarily have an
+orthonormal set of eigenvectors. Let A = XJX −1 denote
+the reduction to Jordan form, then Aj v = XJ j X −1 v. If the
+largest eigenvalue, in modulus, is real and simple, then
+we see that this value will dominate, and by similar arguments as above, we see convergence in the direction of
+the corresponding column of X. If the largest eigenvalue is
+complex, and if A is real, then there is a conjugate eigenpair. If there is only one eigenpair of the same maximal
+modulus, then the vector Aj v will ultimately have an oscillatory behavior and it can be shown (Wilkinson, 1965,
+p. 579) that a combination of two successive vectors in
+the sequence Aj v will converge to a subspace spanned by
+the two conjugate eigenvectors. The two eigenvectors can
+then be recovered by a least-squares solution approach. For
+matrices with elementary divisors, one can also show that
+the Power Method will converge, although very slowly,
+to the eigenvector associated with the eigenvalue of the
+divisor.
+The Power Method, as a “stand-alone method”, received
+quite some attention until the early 1970s as the only means
+to extract eigenvalue information from large matrices. Early
+attempts to exploit the information hidden in a successive
+number of iterands, as, for instance, by Aitken acceleration,
+were only partially successful. In particular, the method of
+Lanczos (1950), which exploited all iterands of the Power
+Method, was a suspect for a long time, mainly because of
+its not-well-understood behavior in nonexact arithmetic. We
+will come back to this later.
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+If systems with the shifted matrix, such as
+(A − 𝜎I)x = b
+can be solved efficiently, then it is very profitable to use
+the Power Method with shifts. If one has a good guess 𝜎 for
+the eigenvalue that one is interested in, then one can apply the
+Power Method with (A − 𝜎I)−1 . Note that it is not necessary
+to compute this inverted matrix explicitly. In the computation
+of the next vector vj+1 = (A − 𝜎I)−1 vj , the vector vj+1 can be
+solved from
+(A − 𝜎I)vj+1 = vj
+Assume that the largest eigenvalue (in absolute value) is 𝜆1 ,
+and the second largest is 𝜆2 , and that 𝜎 is close to 𝜆1 . The
+speed of convergence now depends on the ratio
+|𝜆1 − 𝜎|
+|𝜆2 − 𝜎|
+and this ratio may be a good deal smaller than |𝜆2 |∕|𝜆1 |. Even
+when the solution of a shifted linear system is significantly
+more expensive than a matrix–vector multiplication with A,
+the much faster convergence may easily pay off for these
+additional costs.
+We may update the shift as better approximations become
+available during the iteration process; that is, when we apply
+the algorithm in Figure 10 with (A − 𝜎)−1 at step i, then
+𝜃 (i) is an approximation for 1∕(𝜆1 − 𝜎). This means that the
+approximation for 𝜆1 becomes 𝜎 + (1∕𝜃 (i) ) and we can use
+this value as the shift for iteration i + 1. This technique is
+known as Rayleigh Quotient iteration. Its convergence is
+ultimately cubic for symmetric matrices and quadratic for
+unsymmetric systems.
+
+6.2
+
+The QR method
+
+We have already seen that for complex conjugate pairs, it
+is necessary to work with three successive vectors in the
+Power iteration. This suggests that it may be a good idea
+to start with a block of vectors right from the start. So, let
+us assume that we start with a set of independent vectors
+Uk(0) = [u1 , u2 , … , uk ] and that we carry out the Power
+Method with Uk(0) , which leads to the computation of
+Uk(i) = AUk(i−1)
+per iteration. If we do this in a straightforward manner,
+then this will lead to unsatisfactory results because each
+of the columns of Uk(0) is effectively used as a starting
+vector for a single-vector Power Method, and all these
+single-vector processes will tend to converge toward the
+
+dominant eigenvector(s). This will make the columns of Uk(i)
+highly dependent in the course of the iteration. It is therefore
+a better idea to try to maintain better numerical independence
+between these columns and the most common technique for
+this is to make them orthonormal after each multiplication
+with A. This leads to the algorithm in Figure 11.
+The columns of Uk(i) converge to a basis of an invariant
+subspace of dimension k under the assumption that the
+largest k (in absolute value) eigenvalues (counted according
+to multiplicity) are separated from the remainder of the spectrum. This can easily be seen from the same arguments as for
+the Power Method. If the eigenvalues are real, and the matrix
+is real, then the eigenvalues appear along the diagonal of R.
+For complex eigenvalues, the situation is slightly different;
+we will come back to this later.
+In order to simplify the derivation of the QR method, we
+will first assume that A has real eigenvalues, which helps in
+avoiding complex arithmetic in the computation of the Schur
+forms.
+We can apply the orthogonal iteration method with a
+full set of starting vectors, say U (0) = I, in order to try to
+reduce A to some convenient form. The matrix U (i) in the
+orthogonal subspace iteration converges to the matrix of
+H
+Schur vectors, and the matrix U (i) AU (i) converges to Schur
+form. After one step of the algorithm, AU (0) = A = U (1) R(1) ,
+H
+we can compute A1 = U (1) AU (1) , which is a similarity transform of the matrix A, and, hopefully, already a little bit more
+in the direction of Schur form than A itself. Therefore, it
+might be a better idea to continue the algorithm with A1 .
+Let us define Q1 = U (1) . The matrix A1 can be computed as
+(1)
+A1 = QH
+1 AQ1 = R Q1
+
+which simply reverses the factors of A0 ≡ A.
+The next step in the orthogonal iteration method is to
+compute AQ1 and factor this as U (2) R(2) , but since A =
+Q1 R(1) , we see that
+AQ1 = Q1 R(1) Q1
+
+start with orthonormal Uk(1)
+for i = 1, ..., until convergence
+Vk = AUk(i )
+orthonormalize the columns of Vk:
+Vk = QkRk
+(i+1)
+Uk
+= Qk
+end
+
+Figure 11. The Orthogonal Iteration Method.
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+20
+
+If we now factor R(1) Q1 as
+R(1) Q1 = Q2 R(2)
+
+(20)
+
+AQ1 = U (2) R(2)
+
+(21)
+
+then we see that
+
+with U (2) = Q1 Q2 . Obviously, Q2 gives the orthogonal transformation that corrects Q1 to U (2) . From equation (21), we
+see that
+R
+
+(1)
+
+(2)
+Q1 = A1 = QH
+1 AQ1 = Q2 R
+
+and hence the correction factor Q2 would have also been
+obtained if we had continued the iteration with A1 . This is
+a very nice observation because this correction factor drives
+the matrix A1 again further to Schur form, and we can repeat
+this in an iterative manner.
+The nice consequence of working with the transformed
+matrices Ai is that we can compute the correction matrix Qi+1
+from the matrix product of the reverted factors Qi and R(i)
+from the previous iteration, as we see from (20). This leads
+to the famous QR iteration.
+The matrix Ai converges to Schur form, and the product
+Q1 Q2 · · · Qi of the correction matrices converges to the
+matrix of Schur vectors corresponding to A (remember that
+we are still assuming that all eigenvalues are real, in order
+to avoid complex arithmetic. We could have dropped this
+assumption, but then we should have used complex arithmetic; this can be avoided, however).
+We can also apply the QR iteration with shifts, and this
+has very important consequences. Suppose we apply in one
+particular step of the algorithm a shift 𝜎 close to an eigenvalue 𝜆j ; that is, we do a QR factorization for Ai−1 − 𝜎I. If
+𝜎 is close enough to an eigenvalue 𝜆j , then this implies that
+the matrix Ai−1 − 𝜎I, which is similar to A − 𝜎I, is almost
+singular. This means that the matrix R(i) must be close to
+singular (since Qi is orthogonal). If we do the QR factorization with pivoting, in order to get the smallest diagonal
+element at the bottom position, then this means that one of the
+columns of Qi must be close to the smallest singular vector
+of Ai−1 − 𝜎I, or better that that column is almost an eigenvector of Ai−1 , and consequently, 𝜎 is almost an eigenvalue,
+and that is what we are looking for.
+Pivoting is usually not necessary. If a subdiagonal entry
+of Ai is very small, then the eigenvalue computation can
+proceed for the two separate subblocks of Ai . If it is not small,
+then apparently the first n − 1 columns of Ai are independent
+(recall that Ai is of upper Hessenberg form) so that (near)
+dependence must show up through a small diagonal entry at
+the bottom position in R(i) .
+The speed of convergence with which the smallest diagonal
+entry of R(i) i goes to zero, for increasing i, is proportional to
+
+21
+
+start with A0 = A
+for i = 1, ..., until convergence
+factor Ai −1 − σiI = QiR(i )
+compute Ai = R(i )Qi + σiI
+end
+
+Figure 12. The QR method with shifts 𝜎i .
+
+|𝜆j+1 − 𝜎|∕|𝜆j − 𝜎|, if 𝜆j is the eigenvalue closest to the shift
+and 𝜆j+1 denotes the eigenvalue that is second closest. This
+is precisely the speed of convergence for the shift-and-invert
+Power Method and the surprising result is that we get the
+speed of shift and invert without inverting anything. A real
+shift can be easily incorporated in the QR algorithm. If we
+apply a shift in the ith iteration, then we have to QR-factor
+Ai−1 − 𝜎I, as
+Ai−1 − 𝜎I ⇒ Qi R(i)
+and, because of the orthogonality of Qi , it follows that
+(i)
+QH
+i (Ai−1 − 𝜎I)Qi = R Qi
+
+However, in the next step, we want to continue with Ai
+(and possibly apply another shift), but that matrix is easily
+computed, since
+(i)
+Ai = QH
+i Ai−1 Qi = R Qi + 𝜎I
+
+This leads to the QR iteration with shifts, as given in
+Figure 12.
+We have ignored some important aspects. One of these
+is that we have assumed that the real matrix, to which we
+applied the QR method, had real eigenvalues. This was
+necessary for the convergence of the matrix Ai−1 (which is
+similar to A) to Schur form. For more general situations, that
+is, when the real matrix has conjugate pairs of eigenvalues
+(and eigenvectors), it can be shown that in real arithmetic the
+matrix converges to generalized real Schur form.
+Recall that a matrix is in generalized real Schur form
+if it is block upper triangular and if the diagonal blocks
+are either 2 × 2 or one dimensional. The 2 × 2 blocks
+along the diagonal of the generalized Schur form represent
+the complex conjugate eigenpairs of A (and the corresponding eigenvectors can be computed by combining the
+corresponding columns of the accumulated transformation
+matrices Qi ).
+This leaves the question of how to apply complex shifts,
+since that would lead to complex arithmetic. It can be shown
+that by combining two successive steps in the QR algorithm, a pair of complex conjugate shifts can be used, without
+explicit complex arithmetic. A pair of such shifts is meaningful because complex eigenvalues of a real matrix always
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+appear in conjugate pairs. If we want to accelerate convergence for one complex eigenpair, then clearly we also have
+to treat the conjugate member of this pair.
+An important aspect of the QR algorithm is the computational complexity. If we apply it in the explained form,
+then it is quite expensive because we have to work with
+dense matrices in each iteration. Also, we have, for instance,
+to compute dense QR factorizations. These costs can be
+significantly reduced by first bringing the given matrix A,
+by orthogonal transformations, to upper Hessenberg form:
+H = QH AQ. Note that this is equivalent to the symmetric
+tridiagonal form if A is symmetric. The transformation to
+these forms can be done by Householder reflections or by
+Givens rotations (the Householder reflections are generally
+preferred since they are cheaper).
+Another important observation is that the matrix Qi can
+be easily computed for the shifted matrix, which leads to an
+implicit shift strategy.
+For a detailed coverage of the QR method, see Golub and
+Van Loan (2013), Demmel (1997), and Watkins (1991, 1993,
+2000).
+The costs for the QR method, for computing all eigenvalues and eigenvectors, of a real unsymmetric matrix,
+are in the order of n3 arithmetic operations. A crude and
+conservative upper estimate is 25n3 flops, including the
+initial reduction of A to upper Hessenberg form. This
+reduces to about 10n3 if only the eigenvalues are desired.
+In that case it is not necessary to accumulate the Qi s. In
+the symmetric case, the costs are reduced by roughly a
+factor of 2. These costs make the method only feasible
+for matrices on the order of a few thousands at most. For
+larger matrices, the method is used in combination with
+a technique that first reduces the large matrices to much
+smaller matrices (while attempting to preserve the main
+characteristics of the large matrix, in particular, the wanted
+eigenpairs).
+Resuming: The QR method for eigenvalues and eigenvectors of a dense matrix is so effective because of the following
+ingredients:
+1.
+2.
+
+3.
+4.
+
+Orthogonalization of the iterated columns in the basic
+orthogonal simultaneous iteration.
+Accumulation of the orthogonal transformations, and
+their use as similarity transformations (this leads to the
+QR–RQ step).
+The effect of shifts and their efficient implementation.
+The initial reduction of A to upper Hessenberg (tridiagonal) form.
+
+The QR method has been implemented in the major
+subroutine libraries, in particular, in LAPACK, ScaLAPACK, IMSL, NAG, and MATLAB.
+
+6.3
+
+Generalized problems: the QZ method
+
+The generalized eigenproblem
+Ax = 𝜆Bx
+
+(22)
+
+with A, B ∈ ℂn×n , can be reduced to several canonical forms.
+Let us suppose that B is nonsingular, then we can define
+y = Bx, so that the eigenproblem (22) reduces to the standard
+eigenproblem
+(23)
+AB−1 y = 𝜆y
+However, working with AB−1 may be very unattractive,
+in particular when B is near singular. Also, the matrix
+AB−1 may be very nonnormal or (close to) defective. This
+makes the resulting eigenproblem highly sensitive to perturbations. Finally, with this approach, we cannot solve important classes of problems for which B is singular.
+Moler and Stewart (1973) proved the interesting result that
+both A and B can be reduced to Schur form, albeit with two
+different unitary matrices Q and Z:
+AZ = QRA , BZ = QRB
+with RA and RB upper triangular matrices. This leads to the
+so-called QZ method.
+For a detailed description of the implementation of the QZ
+algorithm, see Moler and Stewart (1973) or Golub and Van
+Loan (2013, Chapter 7.7).
+The total costs of the QZ algorithm, for the computation
+of the eigenvalues only, are about 30n3 flops. If one wants
+the eigenvectors as well, then the final Q and Z need to
+be evaluated (for the eigenvalues only, the products of all
+intermediate orthogonal transformations are not explicitly
+necessary), which takes another 16n3 for Q and about 20n3
+for Z (Golub and Van Loan, 2013, Chapter 7.7.7).
+The (generalized) Schur form RA − 𝜆RB reveals the eigen
+structure of the original eigenproblem A − 𝜆B. The pairs of
+diagonal elements of RA and RB define the eigenvalues 𝜆.
+Here, we have to be careful; it is tempting to take the ratios
+of these diagonal elements, and, in view of the foregoing
+presentation, this is certainly correct. However, it sometimes
+hides sensitivity issues. Stewart (1978) has pointed at the
+asymmetry in the usual presentation of the generalized eigenproblem with respect to the role of A and B. Instead of the
+form Ax − 𝜆Bx = 0, we might also have considered 𝜇Ax −
+Bx = 0, which is equivalent for 𝜇 = 𝜆−1 . If, for instance, B
+is singular, then the second form leads to the conclusion
+that there is an eigenvalue 𝜇 = 0, which is equivalent to
+concluding that the first form has an eigenvalue 𝜆 = ∞. The
+important observation is that, in this case, in rounding arithB
+in RB , so
+metic, there will be a tiny diagonal element ri,i
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+22
+
+A B
+that the corresponding ratio ri,i
+∕ri,i leads to a very inaccurate
+eigenvalue approximation for 𝜆, whereas the inverse leads to
+an accurate approximation for an eigenvalue 𝜇.
+The standard presentation for the generalized eigenproblem is quite appropriate for the type of problems that
+arise, for instance, in mechanical engineering, where A
+represents the stiffness matrix, with information of the
+differential operator, and B represents the mass matrix,
+which is largely determined by the chosen basis functions.
+For a well-chosen set of basis functions, the mass matrix
+is usually well conditioned and then it is quite natural to
+consider the eigenvalue problem from the point of view of A.
+
+7 ITERATIVE METHODS FOR THE
+EIGENPROBLEM
+7.1
+
+The Arnoldi method
+
+With the Power method (Section 6.1), we have generated the
+spanning vectors of a Krylov subspace
+}
+{
+m (A; v1 ) ≡ span v1 , Av1 , … , Am−1 v1
+However, note that the Power method exploits only the
+two most recently computed vectors for the computation of
+an approximating eigenvalue. The methods of Lanczos and
+Arnoldi exploit the whole Krylov subspace, and this leads
+not only to better approximations for the largest eigenvalue
+but also for many other eigenvalues.
+From the definition of a Krylov subspace, it is clear that
+m (𝛼A + 𝛽I; v1 ) = m (A; v1 )
+
+for
+
+𝛼≠0
+
+(24)
+
+This says that the Krylov subspace is spanned by the same
+basis if A is scaled and/or shifted. The implication is that
+Krylov subspace methods for the spectrum of the matrix A
+are invariant under translations for A.
+Krylov subspaces play a central role in iterative methods
+for eigenvalue computations. In order to identify better
+solutions in the Krylov subspace, we need a suitable basis
+for this subspace, one that can be extended inductively for
+subspaces of increasing dimension. The obvious basis v1 ,
+Av1 , … , Am−1 v1 for K m (A; v1 ) is not very attractive from
+a numerical point of view, since the vectors Aj v1 point
+more and more in the direction of the dominant eigenvector for increasing j (the power method!), and hence
+the basis vectors become dependent in finite precision
+arithmetic.
+Lanczos (1950) proposes to generate an orthogonal
+basis v1 , v2 , … , vm for the Krylov subspace of dimension m, and shows that this could be done in a very
+
+23
+
+economic way for symmetric A. Arnoldi (1951) describes
+a procedure for the computation of an orthonormal basis
+for unsymmetric matrices, and we have seen this procedure in Figure 1. The Lanczos algorithm follows as a
+special case.
+The orthogonalization in Figure 1 leads to relations
+between the vj that can be formulated in a compact algebraic
+form. Let Vj denote the matrix with columns v1 up to vj ,
+Vj ≡ [v1 |v2 | · · · |vj ], then it follows that
+AVm−1 = Vm Hm,m−1
+
+(25)
+
+The m × (m − 1) matrix Hm,m−1 is upper Hessenberg, and
+its elements hi,j are defined by the Arnoldi orthogonalization algorithm. We will refer to this matrix Hm,m−1 as the
+reduced matrix A, or, more precisely, the matrix A reduced
+to the current Krylov subspace. From a computational point
+of view, this construction is composed from three basic
+elements: a matrix–vector product with A, inner products,
+and updates. We see that this orthogonalization becomes
+increasingly expensive for increasing dimension of the
+subspace, since the computation of each hi,j requires an
+inner product and a vector update.
+
+7.2
+
+The Ritz values and Ritz vectors
+
+The eigenvalues of the leading m × m part Hm,m of the matrix
+Hm+1,m are called the Ritz values of A with respect to the
+Krylov subspace of dimension m. We will see later, in our
+discussions on the Lanczos and Arnoldi methods, how they
+can be related to eigenvalues of A. If s is an eigenvector of
+Hm,m , then y = Vm s is called a Ritz vector of A. Also, these
+Ritz vectors can be related to eigenvectors of A.
+All this is not so surprising because of the relation with
+the Krylov subspace and the vectors generated in the Power
+method. It seems obvious that we can base our expectations
+of the convergence of the Ritz values on our knowledge
+of convergence for the Power method, something like, the
+largest Ritz value will converge faster to the largest eigenvalue of A than the Rayleigh quotient in the Power method.
+But this kind of attitude is not very helpful for deeper insight.
+There is a very essential difference between Krylov subspace
+methods and the Power method and that is that the Krylov
+subspace is invariant for scaling of A and for shifting of
+A, that is, A and 𝛼A + 𝛽I generate exactly the same Krylov
+subspace. The reduced matrix Hm,m is simply scaled and
+̃ m,m = 𝛼Hm,m + 𝛽Im , associshifted to the reduced matrix H
+̃
+ated with A = 𝛼A + 𝛽I. With Im , we denote the m × m identity matrix.
+This implies that for the Krylov subspace method, the
+notion of largest (in absolute value) eigenvalue loses its
+special meaning as opposed to the Power method. Since
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+the Krylov methods are shift invariant, the position of the
+origin in the spectrum is not relevant, and we rather make
+the distinction between exterior and interior eigenvalues.
+The Krylov methods have no special preference for eigenvalues that are at about the same distance from the center
+of the spectrum, provided that these eigenvalues are about
+equally well separated from the others. In particular, when
+the real spectrum of a symmetric real matrix is symmetrically distributed with respect to (𝜆1 + 𝜆n )∕2, 𝜆1 being the
+largest eigenvalue of A and 𝜆n the smallest one, then, for a
+starting vector that also has a symmetric weight distribution
+with respect to the corresponding eigenvectors, the convergence of the smallest Ritz value toward 𝜆n will be equally
+fast (or slow) as the convergence of the largest Ritz value
+to 𝜆1 .
+For complex spectra, one has to consider the smallest circle
+that encloses all eigenvalues. With proper assumptions about
+the starting vector, one may expect that the eigenvalues close
+to this circle will be approximated fastest and that the more
+interior eigenvalues will be approximated later in the Krylov
+process (i.e., for larger values of m). For more general starting
+vectors, this describes more or less the generic case, but with
+special starting vectors, one can force convergence toward
+favored parts of the spectrum.
+The Arnoldi method forms the basis for the ARPACK software, described in Lehoucq et al. (1998). For more information on the method and for references, we refer to Bai et al.
+(2000).
+
+7.3
+
+Figure 13. The Lanczos algorithm.
+
+updates. In exact arithmetic, this process must terminate
+after at most n steps, since then the n orthonormal vectors
+for the Krylov subspace span the whole space. In fact, the
+process terminates after k steps if the starting vector has
+components only in the directions of eigenvectors corresponding to k different eigenvalues. In the case of finite
+termination, we have reduced the matrix A to triangular
+form with respect to an invariant subspace, and, in fact, the
+Lanczos’ algorithm was initially viewed as a finite reduction
+algorithm for A.
+For more information on the Lanczos method, we refer to
+Bai et al. (2000), which also gives pointers to software. The
+implementation of the Lanczos method is not trivial because
+of the effects of finite precision arithmetic that may lead to
+multiple copies of detected eigenpairs.
+
+7.4
+
+The Lanczos method
+
+Note that if A is symmetric, then so is
+∗
+AVm−1
+Hm−1,m−1 = Vm−1
+
+so that in this situation Hm−1,m−1 is tridiagonal:
+AVm−1 = Vm Tm,m−1
+
+v is a convenient starting vector
+v1 = v/ || v ||2, v0 = 0, β0 = 0,
+for j = 1, 2, . . ., m − 1
+t = Avj − βj −1vj − 1
+αj = vj∗t
+t = t − αj vj
+βj = || t ||2
+vj + 1 = t / βj
+end
+
+(26)
+
+The matrix Tm,m−1 is an m × (m − 1) tridiagonal matrix, its
+leading (m − 1) × (m − 1) part is symmetric.
+This means that in the orthogonalization process, each new
+vector has to be orthogonalized with respect to the previous
+two vectors only, since all other inner products vanish. The
+resulting three-term recurrence relation for the basis vectors
+of m (A; v1 ) is the kernel of the Lanczos method and some
+very elegant methods are derived from it. A template for
+the Lanczos method is given in the algorithm shown in
+Figure 13.
+In the symmetric case, the orthogonalization process
+involves constant arithmetical costs per iteration step: one
+matrix–vector product, two inner products, and two vector
+
+The two-sided Lanczos method: Bi-Lanczos
+
+If the matrix A is Hermitian, then we can, at modest
+computational costs per iteration step, generate an
+orthonormal basis for the Krylov subspace m (A; v1 ). It
+suffices to put each newly generated vector Avj orthogonal to the two previous basis vectors vj and vj−1 only.
+This leads to a reduced matrix that is symmetric tridiagonal. A theoretical result by Faber and Manteuffel (1984)
+shows that this is not possible for general unsymmetric
+matrices.
+There exists a generalization of the Lanczos method
+for unsymmetric matrices. This method is known as the
+two-sided Lanczos method or the Bi-Lanczos method. There
+are several ways to derive this method; we follow the one in
+Wilkinson (1965, Chapter 6.36).
+For ease of notation, we will restrict ourselves to the real
+case. For an unsymmetric matrix A ∈ ℝn×n , we will try
+to obtain a suitable nonorthogonal basis with a three-term
+recurrence, by requiring that this basis is orthogonal with
+respect to some other basis.
+We start from two Arnoldi-like recursions for the basis
+vectors of two Krylov subspaces, one with A:K m (A; v1 ) and
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+24
+
+the other with AT : K m (AT ; w1 ). This leads to
+hj+1,j vj+1 = Avj −
+
+j
+∑
+
+hi,j vi
+
+i=1
+T
+
+gj+1,j wj+1 = A wj −
+
+j
+∑
+
+gi,j wi
+
+i=1
+
+and we require that vj+1 is orthogonal to all previous wi and
+that wj+1 is orthogonal to all previous vi . Clearly, this defines,
+apart from the constants hj+1,j and gj+1,j , the vectors vj+1 and
+wj+1 , once the previous vectors are given. Then we have that
+AVj = Vj+1 Hj+1,j
+
+and
+
+AT Wj = Wj+1 Gj+1,j
+
+Since each new vj+1 is only orthogonal with respect to the
+wi , for i < j, and likewise for wj+1 with respect to the vi , it
+follows that
+WjT Vj = Lj,j
+
+and
+
+VjT Wj = Kj,j
+
+where Lj,j and Kj,j are lower triangular. Clearly,
+T
+= Lj,j
+Kj,j
+
+25
+
+Select a normalized pair v1, w1 (for instance, w1 = v1)
+such that wT1 v1 = δ1 ≠ 0
+β0 = 0, w0 = v0 = 0
+for i = 1, 2, ....
+p = Avi − βi −1vi −1
+αi = wTi p/δi
+p = p − αi vi
+γi +1 = || p||2
+vi +1 = p/γi +1
+wi +1 = (ATwi − βi −1wi −1− αi wi)/γi +1
+δi +1 = wTi +1vi +1
+βi = γi +1δi +1/δi
+end;
+
+Figure 14. The two-sided Lanczos algorithm.
+
+in general not a Krylov subspace. The idea to work with
+non-Krylov subspaces was promoted in Davidson (1975).
+This leads to an approximate eigenpair, just as in the Arnoldi
+method. The main difference is the way in which the
+subspace is expanded. This is done by following an idea
+that was originally proposed by Jacobi (1846). Suppose that
+we have a normalized eigenvector approximation ui with
+corresponding eigenvalue approximation 𝜃i , then the idea is
+to try to compute the correction t, so that
+
+so that both matrices are diagonal. Let us denote this matrix
+as D. Then, we have that
+
+A(ui + t) = 𝜆(ui + t)
+
+WjT AVj = DHj,j
+
+for t ⊥ui and 𝜆 close to 𝜃i . It can be shown that t satisfies the
+so-called correction equation
+
+and also
+VjT AT Wm = DGj,j
+This shows that Hj,j and Gj,j must be tridiagonal. The sets {vj }
+and {wj } are called biorthogonal.
+In Figure 14, we show schematically an algorithm for the
+two-sided Lanczos method, suitable for execution with an
+unsymmetric matrix A.
+In this algorithm, the vectors vi are normalized: ||vi ||2 = 1,
+which defines automatically the scaling factors for the wi .
+We have tacitly assumed that the inner products wTj vj ≠ 0,
+since the value 0 would lead to an unsolicited breakdown of
+the method if vj and wj are not equal to zero. If vi is equal to
+zero, then we have an invariant subspace, and, in that case,
+the eigenvalues of Ti,i are eigenvalues of A.
+For more information on this method and for pointers to
+software, we refer to Bai et al. (2000).
+
+7.5
+
+The Jacobi–Davidson method
+
+The Jacobi–Davidson method is based on the projection
+of the given eigenproblem Ax = 𝜆x on a subspace that is
+
+(I − ui uTi )(A − 𝜃i I)(I − ui uTi )t = −(Aui − 𝜃i ui )
+This leads to the so-called Jacobi–Davidson method,
+proposed by Sleijpen and van der Vorst (1996).
+The basic form of this algorithm is given in Figure 15. In
+each iteration of this algorithm, an approximated eigenpair
+(𝜃, u) for the eigenpair of the matrix A, corresponding to the
+largest eigenvalue (in absolute value) of A, is computed. The
+iteration process is terminated as soon as the norm of the
+residual Au − 𝜃u is below a given threshold 𝜖.
+To apply this algorithm, we need to specify a starting vector
+v0 , and a tolerance 𝜖. On completion, an approximation
+for the largest eigenvalue (in absolute value) 𝜆 = 𝜆max (A)
+and its corresponding eigenvector x = xmax is delivered. The
+̃ x̃ ) satisfies ||Ãx − 𝜆̃
+̃x|| ≤ 𝜖.
+computed eigenpair (𝜆,
+The method is particularly attractive, that is fast
+converging, if one is able to solve the correction equation
+in some approximation at relatively low costs. For exact
+solution, one is rewarded with cubic convergence, but
+that may come at the price of an expensive solution of
+the correction equation. In practical applications, it is not
+necessary to solve this equation exactly. Effective solution
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Start with t = v0, starting guess
+for m = 1, ...
+for i = 1, .., m − 1
+t = t − (vi∗t)vi
+A = Av
+vm= t /|| t ||2, vm
+m
+for i = 1, ... , m − 1
+∗ A
+Mi,m = vi vm
+∗ vA
+Mm,i = vm
+i
+∗ vA
+Mm,m = vm
+m
+Compute the largest eigenpair Ms = θs
+of the m by m matrix M, (||s||2 = 1)
+u = Vs with V = [v1, ..., vm]
+uA = VAs with VA = [v1A, ..., vmA]
+r = uA − θu
+~
+~ λ = θ,
+if (||r||2 ≤ ∈),
+x = u, then STOP.
+Solve (approximately) a t ⊥ u from
+(I − uu∗) (A − θI) (I − uu∗) t = −r
+
+Figure 15. Jacobi–Davidson algorithm for 𝜆max (A).
+
+requires the availability of a good preconditioner for the
+matrix A − 𝜃i I. For more details on this, and for the efficient inclusion of the preconditioner, we refer to Bai et al.
+(2000).
+
+NOTES
+The A-norm is defined by ||y||2A ≡ (y, y)A ≡ (y, Ay).
+The presentation in this chapter has partial overlap with
+Dongarra et al. (1998).
+3. Ideally, the eigenvalues of K −1 A should cluster around 1.
+4. The nonsingular matrix A is called an M-matrix if all its
+off-diagonal elements are nonpositive and if all elements
+of A−1 are nonnegative.
+5. Collection of test matrices is available at ftp://ftp.cise.ufl
+.edu/cis/tech-reports/tr98/tr98-016.ps.
+1.
+2.
+
+REFERENCES
+Anderson E, Bai Z, Bischof C, Demmel J, Dongarra J, DuCroz J,
+Greenbaum A, Hammarling S, McKenney A, Ostrouchov S and
+Sorensen D. LAPACK User’s Guide. SIAM: Philadelphia, PA,
+1992.
+Arnoldi WE. The principle of minimized iteration in the solution of
+the matrix eigenproblem. Q. Appl. Math. 1951; 9:17–29.
+Axelsson O. Iterative Solution Methods. Cambridge University Press:
+Cambridge, 1994.
+Axelsson O and Barker VA. Finite Element Solution of Boundary
+Value Problems. Theory and Computation. Academic Press: New
+York, 1984.
+
+Axelsson O and Munksgaard N. Analysis of incomplete factorizations with fixed storage allocation. In Preconditioning
+Methods – Theory and Applications, Evans D (ed.). Gordon &
+Breach: New York, 1983; 265–293.
+Bai Z, Demmel J, Dongarra J, Ruhe A and van der Vorst H. Templates
+for the Solution of Algebraic Eigenvalue Problems: A Practical
+Guide. SIAM: Philadelphia, PA, 2000.
+Barrett R, Berry M, Chan T, Demmel J, Donato J, Dongarra J,
+Eijkhout V, Pozo R, Romine C and van der Vorst H. Templates
+for the Solution of Linear Systems: Building Blocks for Iterative
+Methods. SIAM: Philadelphia, PA, 1994.
+Benzi M. Preconditioning techniques for large linear systems: a
+survey. J. Comput. Phys. 2002; 182:418–477.
+Bomhof CW and van der Vorst HA. A parallel linear system solver for
+circuit-simulation problems. Numer. Linear Algebra Appl. 2000;
+7:649–665.
+Brezinski C. Projection Methods for Systems of Equations. North
+Holland: Amsterdam, 1997.
+Bruaset AM. A Survey of Preconditioned Iterative Methods.
+Longman Scientific & Technical: Harlow, 1995.
+Chan TF and Goovaerts D. A note on the efficiency of domain
+decomposed incomplete factorizations. SIAM J. Sci. Stat. Comput.
+1990; 11:794–803.
+Chan TF and van der Vorst HA. Approximate and incomplete factorizations. In Parallel Numerical Algorithms, ICASE/LaRC Interdisciplinary Series in Science and Engineering, Keyes DE, Sameh A
+and Venkatakrishnan V (eds). Kluwer: Dordrecht, 1997; 167–202.
+Davidson ER. The iterative calculation of a few of the lowest eigenvalues and corresponding eigenvectors of large real symmetric
+matrices. J. Comput. Phys. 1975; 17:87–94.
+Demmel JW. Applied Numerical Linear Algebra. SIAM: Philadelphia, PA, 1997.
+Doi S. On parallelism and convergence of incomplete LU factorizations. Appl. Numer. Math. 1991; 7:417–436.
+Doi S and Hoshi A. Large numbered multicolor MILU preconditioning on SX-3/14. Int. J. Comput. Math. 1992; 44:143–152.
+Dongarra JJ, Duff IS, Sorensen DC and van der Vorst HA. Numerical Linear Algebra for High-Performance Computers. SIAM:
+Philadelphia, PA, 1998.
+Duff IS and Meurant GA. The effect of ordering on preconditioned
+conjugate gradient. BIT 1989; 29:635–657.
+Duff IS and van der Vorst HA. Developments and trends in the parallel
+solution of linear systems. Parallel Comput. 1999; 25:1931–1970.
+Dupont T, Kendall RP and Rachford HH Jr. An approximate
+factorization procedure for solving self-adjoint elliptic difference
+equations. SIAM J. Numer. Anal. 1968; 5(3):559–573.
+Eijkhout V. Beware of unperturbed modified incomplete point factorizations. In Iterative Methods in Linear Algebra, Beauwens R and
+de Groen P (eds). North Holland: Amsterdam, 1992; 583–591;
+IMACS International Symposium, Brussels, 2–4 April 1991.
+Elman HC. Relaxed and stabilized incomplete factorizations for
+non-self-adjoint linear systems. BIT 1989; 29:890–915.
+Embree M. The tortoise and the hare restart GMRES. SIAM Rev.
+2003; 45:259–266.
+Faber V and Manteuffel TA. Necessary and sufficient conditions for
+the existence of a conjugate gradient method. SIAM J. Numer. Anal.
+1984; 21(2):352–362.
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+26
+
+Fischer B. Polynomial Based Iteration Methods for Symmetric Linear
+Systems, Advances in Numerical Mathematics. John Wiley & Sons,
+Ltd and Teubner: Chichester, Stuttgart, 1996.
+Fletcher R. Conjugate Gradient Methods for Indefinite
+Systems, Lecture Notes Math., vol. 506, Springer-Verlag:
+Berlin-Heidelberg, New York, 1976; 73–89.
+Frank J. and Vuik C. On the construction of deflation-based preconditioners. SIAM J. Sci. Comput. 2001; 23(2):442–462.
+Golub GH and van der Vorst HA. Numerical progress in eigenvalue
+computation in the 20th century. J. Comput. Appl. Math. 2000;
+123(1–2):35–65.
+Golub GH and Van Loan CF. Matrix Computations. The Johns
+Hopkins University Press: Baltimore, MD, 2013.
+Greenbaum A. Iterative Methods for Solving Linear Systems. SIAM:
+Philadelphia, PA, 1997.
+Gustafsson I. A class of first order factorization methods. BIT 1978;
+18:142–156.
+Gustafsson I and Lindskog G. A preconditioning technique based on
+element matrix factorizations. J. Comput. Methods Appl. Mech.
+Eng. 1986; 55:201–220.
+Gutknecht MH. IDR Explained. Electron. Trans. Numer. Anal. 2010;
+36:126–148.
+Hackbusch W. Iterative Solution of Large Sparse Systems of
+Equations. Springer-Verlag: Berlin, 1994.
+Hughes TJR, Levit I and Winget J. An element-by-element solution algorithm for problems of structural and solid mechanics. J.
+Comput. Methods Appl. Mech. Eng. 1983; 36:241–254.
+Jacobi CGJ. Ueber ein leichtes Verfahren, die in der Theorie der Säcularstörungen vorkommenden Gleichungen numerisch aufzulösen.
+J. Reine Angew. Math. 1846; 30:51–94.
+Jones MT and Plassmann PE. The efficient parallel iterative solution
+of large sparse linear systems. In Graph Theory and Sparse Matrix
+Computations, IMA vol. 56, George A, Gilbert JR and Liu JWH
+(eds). Springer-Verlag: Berlin, 1994; 229–245.
+Jönsthövel TB, van Gijzen MB, MacLachlan S, Vuik C and Scarpas
+A. Comparison of the deflated preconditioned conjugate gradient
+method and algebraic multigrid for composite materials. Comput.
+Mech. 2012; 50:321–333.
+Kuo JCC and Chan TF. Two-color Fourier analysis of iterative algorithms for elliptic problems with red/black ordering. SIAM J. Sci.
+Stat. Comput. 1990; 11:767–793.
+Lanczos C. An iteration method for the solution of the eigenvalue
+problem of linear differential and integral operators. J. Res. Natl.
+Bur. Stand. 1950; 45:225–280.
+Lanczos C. Solution of systems of linear equations by minimized
+iterations. J. Res. Natl. Bur. Stand. 1952; 49:33–53.
+Lehoucq RB, Sorensen DC and Yang C. ARPACK User’s Guide.
+SIAM: Philadelphia, PA, 1998.
+Lukarski D and Neytcheva M. On the impact of the heterogeneous
+multi- and many-core platforms on iterative solution methods and
+preconditioning techniques. In High-Performance Computing on
+Complex Environments, Jeannot E and Zilinskas J (eds). John
+Wiley & Sons, Ltd: London, 2014; 13–33.
+Magolu monga Made M and van der Vorst HA. A generalized domain
+decomposition paradigm for parallel incomplete LU factorization
+preconditionings. Future Gen. Comput. Syst. 2001a; 17:925–932.
+
+27
+
+Magolu monga Made M and van der Vorst HA. Parallel incomplete factorizations with pseudo-overlapped subdomains. Parallel
+Comput. 2001b; 27:989–1008.
+Magolu monga Made M and van der Vorst HA. Spectral analysis
+of parallel incomplete factorizations with implicit pseudo-overlap.
+Numer. Linear Algebra Appl. 2002; 9:45–64.
+Manteuffel TA. An incomplete factorization technique for positive
+definite linear systems. Math. Comput. 1980; 31:473–497.
+Meijerink JA and van der Vorst HA. An iterative solution method
+for linear systems of which the coefficient matrix is a symmetric
+M-matrix. Math. Comput. 1977; 31:148–162.
+Meijerink JA and van der Vorst HA. Guidelines for the usage of
+incomplete decompositions in solving sets of linear equations
+as they occur in practical problems. J. Comput. Phys. 1981;
+44:134–155.
+Meurant G. Numerical Experiments for the Preconditioned Conjugate Gradient Method on the CRAY X-MP/2. Technical Report
+LBL-18023, University of California: Berkeley, CA, 1984.
+Meurant G. Computer Solution of Large Linear Systems. North
+Holland: Amsterdam, 1999.
+Moler CB and Stewart GW. An algorithm for generalized matrix
+eigenvalue problems. SIAM J. Numer. Anal. 1973; 10:241–256.
+Munksgaard N. Solving sparse symmetric sets of linear equations
+by preconditioned conjugate gradient method. ACM Trans. Math.
+Softw. 1980; 6:206–219.
+Paige CC and Saunders MA. Solution of sparse indefinite systems of
+linear equations. SIAM J. Numer. Anal. 1975; 12:617–629.
+Parlett BN. The Symmetric Eigenvalue Problem. Prentice Hall: Englewood Cliffs, NJ, 1980.
+Saad Y. A flexible inner-outer preconditioned GMRES algorithm.
+SIAM J. Sci. Comput. 1993; 14:461–469.
+Saad Y. ILUT: a dual threshold incomplete LU factorization. Numer.
+Linear Algebra Appl. 1994; 1:387–402.
+Saad Y. Iterative Methods for Sparse Linear Systems (2nd edn).
+SIAM: Philadelphia, PA, 2003.
+Saad Y. Numerical Methods for Large Eigenvalue Problems (2nd
+edn). SIAM: Philadelphia, PA, 2011.
+Saad Y and Schultz MH. GMRES: a generalized minimal residual
+algorithm for solving nonsymmetric linear systems. SIAM J. Sci.
+Stat. Comput. 1986; 7:856–869.
+Saad Y and van der Vorst HA. Iterative solution of linear systems in
+the 20th century. J. Comput. Appl. Math. 2000; 123(1–2):1–33.
+Sleijpen GLG and van der Vorst HA. A Jacobi-Davidson iteration
+method for linear eigenvalue problems. SIAM J. Matrix Anal. Appl.
+1996; 17:401–425.
+Sonneveld P. CGS: a fast Lanczos-type solver for nonsymmetric
+linear systems. SIAM J. Sci. Stat. Comput. 1989; 10:36–52.
+Sonneveld P and Van Gijzen MB. IDR(s): a family of simple and fast
+algorithms for solving large nonsymmetric linear systems. SIAM J.
+Sci. Comput. 2008; 31:1035–1062.
+Stewart GW. Perturbation theory for the definite generalized eigenvalue problem. In Recent Advances in Numerical Analysis, de
+Boor C and Golub GH (eds). Academic Press: New York, 1978;
+193–206.
+Stewart GW. Matrix Algorithms, Vol. I: Basic Decompositions,
+SIAM: Philadelphia, PA, 1998.
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Linear Algebraic Solvers and Eigenvalue Analysis
+
+Stewart GW. Matrix Algorithms, Vol. II: Eigensystems, SIAM:
+Philadelphia, PA, 2001.
+Tang J, MacLachlan SP, Nabben R and Vuik C. A comparison of
+two-level preconditioners based on multigrid and deflation. SIAM.
+J. Matrix Anal. Appl. 2010; 31(4):1715–1739.
+van der Vorst HA. Iterative solution methods for certain sparse linear
+systems with a non-symmetric matrix arising from PDE-problems.
+J. Comput. Phys. 1981; 44:1–19.
+van der Vorst HA. Large tridiagonal and block tridiagonal linear
+systems on vector and parallel computers. Parallel Comput. 1987;
+5:45–54.
+van der Vorst HA. High performance preconditioning. SIAM J. Sci.
+Stat. Comput. 1989; 10:1174–1185.
+van der Vorst HA. Bi-CGSTAB: a fast and smoothly converging
+variant of Bi-CG for the solution of non-symmetric linear systems.
+SIAM J. Sci. Stat. Comput. 1992; 13:631–644.
+van der Vorst HA. Computational methods for large eigenvalue problems. In Handbook of Numerical Analysis, vol. VIII, Ciarlet PG
+and Lions JL (eds). North Holland: Amsterdam, 2002; 3–179.
+van der Vorst HA. Iterative Krylov Methods for Large Linear Systems.
+Cambridge University Press: Cambridge, 2003.
+van der Vorst HA and Vuik C. GMRESR: a family of nested GMRES
+methods. Numer. Linear Algebra Appl. 1994; 1:369–386.
+
+van Gijzen MB. Iterative Solution Methods for Linear Equations
+in Finite Element Computations. PhD thesis, Delft University of
+Technology, Delft, 1994.
+Vuik C. Further experiences with GMRESR. Supercomputer 1993;
+55:13–27.
+Vuik C, Segal A and Meijerink JA. An efficient preconditioned CG
+method for the solution of a class of layered problems with extreme
+contrasts in the coefficients. J. Comput. Phys. 1999; 152:385–403.
+Wathen AJ. Preconditioning. Acta Numer. 2015; 24:329–376.
+Watkins DS. Fundamentals of Matrix Computations. John Wiley &
+Sons, Inc.: New York, 1991.
+Watkins DS. Some perspectives on the eigenvalue problem. SIAM
+Rev. 1993; 35:430–471.
+Watkins DS. QR-like algorithms for eigenvalue problems. J. Comput.
+Appl. Math. 2000; 123:67–83.
+Wesseling P and Sonneveld P. Numerical Experiments with a Multiple
+Grid- and a Preconditioned Lanczos Type Method, Lecture Notes
+in Mathematics, vol. 771. Springer-Verlag: Berlin, 1980; 543–562.
+Wilkinson JH. The Algebraic Eigenvalue Problem. Clarendon Press:
+Oxford, 1965.
+Yeung M-C and Chan TF. ML(k)BiCGSTAB: A BiCGSTAB Variant
+Based on Multiple Lanczos Starting Vectors. SIAM J. Sci. Comput.
+1999; 21(4):1263–1290.
+
+10.1002/9781119176817.ecm2016, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/9781119176817.ecm2016 by Technical University Delft, Wiley Online Library on [13/11/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+28
+
+

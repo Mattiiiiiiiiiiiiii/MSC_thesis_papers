@@ -1,0 +1,11975 @@
+,.. . .
+,--,,,,
+.
+
+.“
+
+‘1?
+#!-j’”.
+.
+.
+
+4
+.-.
+;
+
+NATIONAL ADVISORY COMMITTEE
+
+FOR AERONAUTICS
+TECHNICAL
+
+2
+-J
+
+“
+
+MEMORANDUM
+No. 1217
+
+a)
+
+LECTURE
+
+SER3ES
+
+*EDUNDARY
+
+IAYER
+
+PART
+
+I - LAMINAR
+
+FLOWS
+
+THEORYa
+.
+
+By H. sChliChting
+I
+
+Translation of CVortragsreihe” W.S. 1941/42, Luftfahrtforschungsanstalt Hermmn
+Goring, Braunschweig
+
+.
+
+.-—
+
+——. _
+
+_
+
+HACA TM No. 1217
+
+TABLE
+
+OF
+
+-ODUCTIOH=O==OO=O*
+
+CONTENTS
+
+:0=-
+
+*==*
+
+Chapter I.
+
+VISCOSITY
+
+Chapter II.
+
+POISEUIJJX FLOWTBROUGHAPIPE
+
+Chapter III
+
+. . . . . . ...*
+
+DO=
+
+. . . . . . . ...9...3.
+. . . . .
+
+EQUATIONS OFMOTION OFTBXVTSCOUSKGUID
+
+●
+
+● 0==1
+
+C=OO=
+
+●
+
+. . . . . . . 4
+
+. . . . . . . . 8
+
+8
+. ...**
+. . ...=
+.*.=*
+a. State of Stress .*..*.
+b. State of Deformation. . . . . . . . . . . . . .
+. . . . . .l-Jc. Navie-tokes Formulation for the Stress Tensor . . . . . . . 15
+●
+
+●
+
+Chapter m.
+
+(XNER&L PROPEE’IIESOF NAT’ll!R+TCKESEQUITIONS
+
+Chapter T.
+
+REYNom3’M.w
+
+Chapter VT.
+
+EXACT SOLUTIONS OF THENA~=OKES
+
+oFs~ITY.
+
+●
+
+●
+
+●
+
+●
+
+●
+
+●
+
+●
+
+●
+
+●
+
+EQUATIONS
+
+. . . . . :8
+●
+
+●
+
+●
+
+●
+
+. .25
+
+. . . . . 28
+
+a. Pipe Flow, SteadyandStar_b@
+. . . . . . . . . . ...=
+..29
+b. Plsme Surface, A Surface Suddenly Set ti Motion and an
+Oscillating Surface. . . . . . . . . . . . . . . . . . . .31
+c. Plane Stagnation-PointFlow
+. . . . . . . . . . . . . . ...34
+Channel . . . . . . . . . . . . . . . 39
+d. Convergent andDiver&nt
+Chapter m.
+
+=SLOWMCIPION
+
+Chapter VIII.
+
+PRANDTLIS BOUNDARY IAYER EQUATIONS
+
+Chapter lx.
+
+-
+
+(SIOKXS,0=3ZN) . . . . . ..0..0.40
+. . . . . . . ...44
+
+SOLUTIONS OF THE BOUNDARY IAYER EQUATIONS FOR THE
+PLAI?EPROBLEM . . . . . . . . ● . . . ..**
+**9”51
+
+a. The Flat Plate in Lm8ituMti
+F1OW . . . . . . . . . . ...51
+b. The Boundary Layer on the Cylinder (Symmetrical Case) . . . . 61
+c. Wake behind the Flat Plate in Iangitudinal Flow . . . . . . . 66
+d. The Plane Jet.
+~~.
+.=
+0= CO S= OCOO.
+OCC
+● 00 *73
+. . . . . 79
+e. The Boundary Layer for the Potential Flow U = ul~
+●
+
+Chapter x.
+
+9
+;.
+
+APPROXIW!TE SOLUIION OF THE BOUNDARY IAY3!RBY MIMNS OF THE
+METHOD, PIANE
+MOMENTUM TBEOREM. (~-POHLENJSEN
+PROBLEM) . . . . . . . . . . . ..=.
+.S-.
+.=”
+=83
+
+a. The Flat Plate ti Longitudinal Flow . . . . . . . . . . . ... 83
+b. The MomentUm Theorem for the Bom~rY
+Layer with press~e
+Drop (Plane Problem) . . . . ● . . . . . . . . . . ...090
+c. Calculation of the Boundary LsJ’erAccording to the Method
+of Karmar+Pohlhausen+Iolstein . . . . . . . . . . . . . . . 93
+d. Exauples . . .. o.....
+. ..=.
+.==sooo*oo
+● 1O3
+iii
+
+._
+
+NACA TM No. 1217
+
+Chapter XI.
+
+PREVENTION OF SEPARATION
+
+●
+
+.
+
+.
+
+.
+
+●
+
+..0..
+
+.
+
+.
+
+.
+
+.
+
+●
+
+104
+
+a. Estimation of the Admissible Rressure Gradient . . . . . .
+b. Various Technical Arrangements for Avoiding Separation . .
+c. Theory of the Boundary Layer with Suction . . . . . . . . .
+
+105
+109
+110
+
+●
+
+.
+
+114
+
+✎
+
+.
+
+114
+
+Chapter XII.
+
+APPENDIXTOPARTI
+
+. . . . . . .
+
+●
+
+. . . . . . .
+
+a. Examples of the Boundary Layer Calculation According to
+the Yohlhausen-Holstein Method . . . . . . . . . . .
+
+4
+
+●
+
+NATICJNALADVISORY COMMTl?PIZE
+FOR AERONAUTICS
+
+IXECTURESERIES ?FMXJNDARYLAYER TBIU2RY”
+..
+
+Part I - Laminar Flows*
+By H. Schlichting
+First lecture (Dec. 1, 1941)
+
+INTRODmION
+Gentlemen: ~ the lecture series starting today I went to give
+you a survey of a field of aerodynamics which has for a number of years
+been attracting an ever growing interest. The subject is the theory of
+flows with friction, and, within that field, particularly the theory of
+friction layers, or boundary layers.
+
+*
+
+.
+
+As you bow, a great many considerations of aerodynamics are based
+on the so-called ideal fluid, that is, the tiictionless incompressible
+fluid. By neglect of compressibility end friction the extensive math+
+matical theory of the ideeJ fluid (potential theory) has been made
+possible.
+Actual liquids and gases satisfy the condlthn of incompressibility
+rather well if the velocities are not extremely high or, more accurately,
+if they are small in comparism with sonic velocity. For air, for
+instance, the change in volume due to compressibility amounts to about
+1 percent for a velocity of 60 meters per second.
+The hypothesis of absence of friction is not satisfied by any
+actual fltid; however, it is true that most technically important fluids,
+for tistsnce air and water, have a very mall friction coefficient and
+therefore behave in many cases almost like the ideal frictlonless fluid.
+Many flow phenomena, in particular most cases of lift, canbe treated
+satisfactorily, – that is, the calculations are in good agreement with
+the test results, - under the assumption of frictionless fluid. However,
+the calculations with frictionless flow show a very serious deficiency;
+nsmely, the fact, Mown as d’Alenibert’sparadox, that in frictionless
+flow each body has zero drag whereas in actual flow each body experiences
+a drag of greater or smaller magnitude. For a 10I’IS
+the the theory has
+been unable to bridge this gap between the theory of fiictionless flow
+and the experimental findings about actual flow. The cause of this
+fundamental discrepancy is the viscosity which is neglected in the theory
+*“vortr~reihe ‘$Grenzschichttheorie
+.’ Teil A: Laminere Strdmungen.”
+Zentrale f$r wisscmschaftliches Berichtswesen der Luftfahrtforshung des
+Generslluftzeugmeisters (ZWB) Berli-ershof,
+pp. 1–153. Given in the
+Winter Semester 1941/42 at the Luftfahrtforschu@anstalt Eermamn G6ring,
+Braunschweig. The original langusge version of this report is divided into
+two main parts, Teil A and TeilB, which have been translated as separate
+NACA Technicel Memorandums, Nos. 1217 and1218, designated pert I end prt 11,
+respectively.
+
+2
+
+,.NACATM No. 1217
+
+of the ideal fluid; however, in spite of its extraordinary smallness it
+is decisive for the course of the flow phenomenon. As a matter of fact
+the problem of drsg can not be treated at all without taking the viscosity
+Into account.
+Although this fact had been known for a long time, no proper approach
+to the theoretical treatment of the drag problem could be found until the
+beginning of the present century. The main reason was that unsurmountable
+mathematical difficulties stood in the ww of theoretical treatment of the
+flow phenomena of the viscous fluid. It is Professor ~andtlss great merit
+to have shown a way to numerical treatment of viscosity, particularly of
+the technically important flows under consideration and thereby to have
+opened up new vistas on many important perceptions about the drag problem
+and related questions. Prandtl was able to show that in the case of most
+of the technically important flows one may treat the flow, as a whole, as
+frictionless end utilize the simplifications for the calculation thus made
+possible, but that in the immediate neighborhood of the solid walls one
+always had to take the friction into consideration. Thus Prandtl subdivides,
+for the purpose of calculation, the flow surrounding a body into two
+domains: a layer subJect to friction in the neighborhood of the body, and a
+frictlonless region outside of thfs layer. The theory of this so+xdled
+“Praudtlts friction or boundary layer” has proved to be very fruitful in
+modern flow theory; the present lecture will center around it.
+At this point I want to indicate a few applications of the boundarylayer theory. A first important application is the calculation of the
+frictional surface drag of bodies imersed In a flow, for instance, the
+drag of a flat plate in longitudinal flow, the frictional dreg of a ship,
+a wing profile, and an airplane fuselage. A special property of the
+boundary layer is the fact that under certain circumstances reverse flow
+occurs in the inmediate proximity of the surface. Then, in connection
+with this reverse flow, a separation of the boundary layer takes place,
+together with a more or less strong formation of vortices in the flow
+behind the body. Thus a considerable change in pressure distribution,
+compsred with frlctionless flow, results, which gives rise to the form
+drag of the body immersed in the flow: The boundary-layer theory therefore
+offers an approach to the calculation of this form drag. Separation occurs
+not only in the flow around a body but also in the flow through a divergent
+tunnel.
+Thus flow phenomena in a diffuser, as, for instance, in the bucket
+grid of a turbine, may be included in boundary-layer theory. Furthermme,
+the phenomena connected with the Him-m
+liftr,.of
+a ~nfh where flow
+separation is concerned, can be understood only with the tid of bou.ndarylayer theory. The problems of heat transfer also can be explained mly
+by boundary-layer theory.
+As will be shown in detail later, one must distinguish between the
+two states of boundary-layer flow - laminar snd turbulent; their flow laws
+are very different. Accordingly, the lecture will be divided into three
+main parts: 1. Laminar flows, 2. Turbulent flows, 3. Laminar-turbulent
+transition. Although the boundary layer will be our main consideration,
+it will still be necessary as preparation to discuss to some extent the
+
+“4L
+-..
+“Ln
+
+d
+
+r
+
+●
+
+● ✌
+
+NACA TM No. 1217
+
+3
+
+general theory of the viscous fluid. This will be done in the first
+chapter.
+CHAPTER I. VISCOSITY
+
+Every fluid offers a resistance to a form variation taking place in
+finite time interval, which is of different mgnitude according to the
+type of fluid. It is, for instance, very large for syrup or oil, but
+only small for the technically importmt fluids (water, air).
+The concept of viscosity can be best made clear by means of a test
+according to figure 1:
+Let fluidbe between two parallel plates lying at a distance h
+from each other. Let the lower plate be fixed, while the upper plate is
+moved with the velocity ~
+uniformly and parallel to the lower one.
+For moving the upper plate a tangential force P must be expended which
+is
+
+9
+(1.1)
+
+.
+
+according to experiment, where F is the sxea of the upper plate and v
+is a constant of proportionality. (~d effects are not included). The
+quantity w is called the viscosity coefficient or the dynamic viscosity.
+Since the phenomenon in question is a parallel gliding, the transverse
+velocity component in the y-direction, denoted by v, equals zero. The
+fluid adheres to the ~per and lower surface, respectively, a linear
+velocity distribution between the plates is set up, the magnitude of
+which depends solely
+
+u=%.
+Since for y = O: u = o, for y=h:
+If one designates P@,
+the tangential force per unit area, as the frictional sheering stress T,
+there follows:
+
+&
+
+T =
+%
+
+kg/m2
+
+(1.2)
+
+4
+
+NACA TM ~00 1217
+
+The dimensions of v axe accordingly kg sec/m2. A flow as represented
+in figure 1, where no transverse velocity occurs and the shearing stress
+at all points of the flow is therefore given by equation .(1.2),is called
+simple shear flow. In the special case described, the shearing stress 1s
+everywhere of equal magnitude, and equal to that at the surface. Besides
+the dynamic viscosity v the concept,of kinematic viscosity v is
+required, which for the density
+
+p
+
+.Ekg sec2fi
+1 is defined as
+
+‘v = JA m2/s
+P [1
+
+For 200 C,
+
+V
+
+is, for instance, for water:
+
+v.
+
+. ~ 01 ~ ~o-6 m2,s
+
+.
+
+for air:
+
+v = 14.9 Xlo 4m2/s~
+
+$10Am2/s
+
+if the air pressure has the standard value
+CHAPI’ERII.
+
+p. = 760 mm hg.
+
+POISEUILLE FLOWTHRO~HAE12E
+
+The elementary empirical friction law of the simple shear flow
+derived alove permits the immediate determination of the flow and the
+resistance in a smooth pipe of circular cross section and of constant
+diameter, d = 2r. At a very large distsmce from the beginning of the
+pipe one cuts off a piece of pipe of length 2 (fig. 2) and examines
+the cylinder of diameter 2y, the axis of which is identical with the
+pipe axis. According to what has been said so far, the velocity probably
+will be again a function of y. A pressure difference PI - P2 is
+required for forcing the fluid through the cylinder. Accordhg to
+practical experience, the static pressure across every cross section may
+be regarded as constant. The flow is assauwto be steady and not
+dependent on the distance from tke begiming of the pipe. Equilibrium
+
+b
+
+*
+
+NACA TM No. 1217
+
+R
+
+L
+
+must then exist between the pressure end the frictional shearing stress
+which attempts to retsrd the motion. Thus for the cy~nder of radius y
+the following equation is valid: pressure force difference acting at
+the cross sections = frictional force acting along the cylinder wall, or
+
+(q -++=
+
+(2.1)
+
+2JWZT
+.
+
+or
+
+(2.la)
+
+Since flow parallel to the sxis is to be e~ected,
+previous paragraph,
+
+T = - MQ
+~
+
+one takes from the
+
+(the minus sign indicates that the
+
+s-
+
+velocity diminishes with increasing distance from the axis; thus du/dy
+is negative, the shesring stresses under consideration, however, are
+positive), and, after separation of the variables, du becomes:
+.
+
+du=-
+
+P1 -P,~
+,%f
+pz
+
+(2.2)
+
+and, on integration:
+
+PI -P,
+u(y) =—
+1.11
+
+~?-.
+4
+()
+
+From the fact that for y = r the velocity is supposed tobe
+u(y) = O
+follows that the constant of integration C has to be C = r2/4C Thus:
+
+P1 - P, r2 – y2)
+u(y) = —
+(
+4~2
+
+(2.3)
+
+6
+
+NACA TM NO. 1217
+
+This equaticm (2.3) iS Poiseuillets law for pipe flow. It states that
+the velocity u(y) is distributed parabolically over the pipe cross
+section. The apex of the parabola lies on,the pipe exis; here the
+velocity is greatest.,nemely:
+
+%lax=
+
+PI
+~;zp2r2
+
+(2.4)
+
+()
+
+(2.3a)
+
+.
+Therewith one may write (2.3):
+
+“(J-)=%8X+
+
+By Poiseuille~s law (equation (2.3)) the drag of the developed laminar
+flow (which is proportional to pl -p2)
+is directly proportional to
+the first power of the velocity.
+This statement Is chemcteristlc of all kinds of laminax flow
+whsreas, as will be seen later, the drag in turbulent flow is almost
+proportional to the second power of the velocity.
+The flow volume for the present case remains to be given. With
+
+.
+
+dl?
+●
+
+designating en area element, Q
+velocity paraboloid, therefore
+
+is
+
+Q =
+
+u(y)
+
+d
+
+F = volume of the
+
+/
+
+(2.5)
+
+This flow law is often used for determination of the viscosity, by
+measuring the quantity flowing subjected to a pressure gradient (usually
+produced by gravity in a vertical.capillary tube). Of course, the
+starting losses must be taken into consideration which due to the mixing
+zone (vortex formation) at the pipe end ere not recovered to their full
+extent,
+A drag coefficient L will now be defined. Since turbulent flows
+are more important than Iaminsr ones snd since the &a& in turbulent
+flow increases about as the square of the velocity, X will also be
+refsrred to U2.
+For flow problems, let A thus be defined as: ratio of the pressure
+drop along a te& secti& of a specified characteristic length to the dynamic
+
+0
+
+“
+
+NACA TM No. 1217
+
+fi=n=Q
+m=
+acros,sthe cross section). Then:
+
+pressure
+
+q = g#/2,
+
+with
+
+the mean velocity
+
+k.tiA
+&$
+
+(average taken
+
+(2.6)
+‘:
+
+with d = characteristic length, thus, for the present case, the pipe
+diameter, and with k = dimensionless quantity. For the present developed
+laminar pipe flow, according to equation (2.5)
+dp
+.=—
+&
+
+%-p2=&
+2
+
+*4
+
+Thus :
+2d —=—
+8@
+k =—
+pE2 ltr4
+
+●
+
+2d8j.L
+Q
+—=—
+16*
+~mz Yt#fi” pn(iy
+
+= @&de
+iid
+
+*
+
+or
+64
+L =—
+Re
+
+(2.7)
+
+with the dimensionless quantity Re = #
+
+signifying the Reynolds nuniber
+
+of the circular pipe. Since the pressure drop which is only linearily
+dependent on the velocity was referred to fi2, then, for laminar flow:
+)&e
+
+f(fi) therefore results
+A logarithmic plot of J.= f(Re) orb=
+u
+in a–straight line inclined 45° toward the Re-axis (compare fig. 82 Part IL~.
+
+0
+
+After this short analysis of the one-dimensional case of viscous
+fluid we will now consider the three+limensional case.
+
+8
+
+NACA TM NO. 1.217
+
+CKKPTER III. EQUATIONS OF MOTION OF THE lJTSCOUSFLUID
+a. State of Stress
+
+For this purpose one must know first of’all the general state of
+stress in a moving viscous fluid and must then connect this state of
+stress with the state of deformation. For the deformation of solid
+bodies the resistance to the deformation is put proportional to the
+magnitude of the deformation (assuming the validity of Hooke~s law).
+For flowing fluids, on the other hand, the resistance to deformation
+‘#illdepend on the deformation velocity, that is, on the variation of
+velocity in the neighborhood of the point under consideration. (Solid
+bodies: displacement gradient = displacement per second. Fluid:
+velocity gradient).
+One starts from the basic law of mechanics according to which:
+mass x acceleration = sum of the acting, or result~t force. For the
+mass-per-unit volume, that is, the density p, one may write the law
+.
+
+(391)
+
+Dw=
+Dt
+
+substantial acceleration
+
+K=
+
+mass forces
+
+R=
+
+surface forces, composed of pressure forces normal to the
+surface and frictional forces in the direction of the
+surface
+
+F=
+
+negligible extraneous forces
+
+Ih order to formulate the surface forces, one imagines a small rectangular
+element of volume W = & dy &z cut out of the flow (fig. 3) the left
+front corner of which lies at the point (x, y, z). The element is to be
+very small so that only the lineer variations of a Taylor development
+need to be taken into consideration; on its surfaces dy dz act the ,
+resultant stresses (veotore):
+??2
+lx or lx+ & dx, respectively
+
+“
+
+(3o2)
+a
+
+* T~o@out
+the text, underscored letters are used in plaCe Of
+corresponding German script letters used in the original text.
+
+NACA TM No. 1217
+
+9
+
+(The index x signifies that the stress tensor acts on a surface element
+normal to the x-direction).
+Analogous terms result for the surfaces dz dx normal to the
+y-axis and dx dy normal to the ~is,
+if x in equation (3.2) is
+replaced everywhere by y or z, respectively. horn this there results
+as components of the resultant force:
+a=
+Force on the surface element normal to the x-Urection:
+—dxdydz
+ax
+
+Force on the surface element nor~l
+
+to the y+rection:
+
+Force on the surface element normal to the z+irection:
+
+.
+
+The total resultant surface force
+state of stress is therefore:
+
+.
+
+~ =—%x+
+ax
+
+~
+
+aEy
+—dydzdx
+ay
+ap
+~dzdxdy
+az
+
+per unit volume causedby
+
+h
+=z+—
+ay
+
+the
+
+a2z
+(3.3)
+az
+
+are vectors which can be further decomposed into
+and p
+P
+-Y
+components. Ih this decomposition the components normal to every surface
+element, that is, the normal stresses, are designated by u (indicating
+by the index the direction of this normal stmess); the other components
+(tangential stresses) ace denoted by T (with double iqdex: the first
+indicates to which axis the surface element is perpendicular, the second,
+the azial direction of the stress T). With these synibolsthere is:
+
+gx>
+
++kTxz
+P =irJx+$r
+-x
+XY
+[
+
+1
+(394)
+
+[
+
++ jT
++kcr!
+P = iT
+Zy
+Zx
+-z
+‘1
+J
+
+This state of stress represents a tensor with nine vector components,
+which can be characterized by the stress matrix (stress tensor):
+
+10
+
+NACA TM No. 1217
+
+T
+Xz
+
+(
+
+‘w
+
+%
+
+‘yz
+
+‘Zx
+
+‘ZY
+
+‘z)
+
+(3*5)
+
+1% cem readily be shown that those of the six tangential stresses
+which have the same indices, although in interchanged sequence, must be
+equal. This follows for a homogeneous state of stress from the equilibrium
+of the small cube dx @ dz with respect to rotatim:
+Since T=
+
+dy dx
+
+is the force attempting to rotate the cube counter-
+
+clcmlswiseabout the =iss
+(seen from above in fig. 3), with the lever
+arm h,
+and since, correspantingly, the force -T~ dx &
+attempts to
+rotate the cube clockwise about the z-axis, with the lever arm dy the
+balsnce of moments requires:
+.
+
+‘osthusTw”Tw”
+
+T#Yd---Tw&dz@
+
+Correspondingly, because of freedom from rotation about the x-is
+T
+=T
+end because of freedom from rotation about the y-axis
+yz
+zy~
+T=Tthe nine components of the stress tensor are reduced to six
+Zx
+Xz’
+and the stress matrix (equation (3.5)) is converted into the stress
+matrix symmetrical with respect to the principal diagonal:
+
+ax
+
+‘w
+
+T
+Xz
+
+‘v
+
+%
+
+‘yz
+
+‘Xz
+
+‘yz
+
+Cz
+)
+
+(
+
+(stress matrix)
+
+(3.6)
+
+For the frictional force one obtains accordiw to equation (3.3) by
+insertion of the components from equation (3.~) and by reduction to the
+six remaining terms according to equation (3.6):
+
+.
+
+n
+
+u
+
+= x<omponent
+
++ y<omponent
+~Tyz
+
+(3.7)
+
+&z
+
+‘T+:
+
+)
+
++ z-component.
+For the case of the frictionless
+
+(ideal) fluid all shearing
+
+stresses disappear
+
+.
+
+*
+
+‘W= TYZ= T==
+
+o
+
+(3.8)
+
+and only the normal stresses remain, which in this case are all equal.
+Since the normal stresses from within toward the outside are denoted as
+positive, the normal stresses equal the negative fluid pressure:
+u
+x=
+
+‘Y==z
+
+(3.9)
+
+=-’
+
+The static pressure equals the negative arithmetic mean of the normal
+stresses:
+
+-P=*(
+
+u=+ay+cz
+)
+
+b. State of Deformation
+The state of stress treated so far is, alone, not very useful.
+!l!herefore,we
+will now consider the state of dsfomation
+(that is the
+field of velocity variations) and then set up the relations between
+state of stress and stabe of defamation.
+
+NACA TM NO. 1217
+
+12
+
+Let the velocity EA
+
+with fie ~owonent~
+
+directions of the axes exist at the point
+‘e
+‘A> yA9 ‘A-
+
+~A,
+
+VA,
+
+WA
+
+~
+
+the
+
+A- the coor~nates of which
+–-.
+-..
+
+If one limits oneself to the points x, y, z in the immediate
+neighborhood of A with the velooity E = iu + Jv + ~,
+and if one
+limits oneself - as also in setting up the state of defo~tion - to
+linear terms only, one obtains for the deformation the relative change
+in position between the points X, Y, z ~d
+xAs YAJ
+per unit
+‘A
+time, that is, the difference of the velocities at the points x, y, z
+snd X
+A’ ‘A’ ‘A:
+
++
+
+v-v
+
+w
+
+A= (x - x.)
+
+(El
+
+(y - ‘A)($)A
+‘-~ - ‘A) (~)
+
+= ‘u
+A
+1
+
+‘(y-yA)($)A+
+
+~-zA)(~)=’v
+
+_wA=(_A)(?El + (y - ‘A) ($)A + ~ - ‘.) ($~
+
+= ‘w
+
+d.y.idu+jap+~dw.
+distortim of the fluid region in the
+neighborhood of the point A.
+Omitting the index A
+
+I
+
+(3.~)
+
+.
+
+.
+
+one obtains therefore:
+
+(S.1.la)
+
+.
+
+Thus the velocity variation (and hence, on integration, the velocity
+itself) in the neighborhood of the point A is Mown if the nine
+partial derivatives of the velocity components with respect to the space
+coordinates axe known. Corresponding to the stress matrix, one nwy form
+a deformation matrix:
+
+,
+
+.“.
+
+NACA TM No. 1217
+
+(3.12)
+
+The friction forces of the viscous fluid sre given by a relation (which
+will have to be determined) between these two matrices. First, the
+deformation matrix is to be somewhat clarified.
+1. Case of pure elongation.
+One assumes
+
+U-us=
+
+a(x-xA),
+
+with
+
+a =&=
+
+constant. Let all
+
+other terms of the matrix disappear; the matrix will then appear as
+follows:
+
+()
+a
+
+00
+
+000
+
+000
+
+Then the velocity vaxiation is simply du = a dx, and u = ax.
+All points of the y-is
+remain at rest, the points to the right and
+left of it are elongated or compressed, according to whether a > 0
+or a<O
+(fig. 5). The equation u=ax
+therefore represents an
+elongation or expansion parallel to the x-exis. Corresponding relations
+apply for the other terms of the principal diagonal of the matrix.
+2. Case of pure translation
+All terms disappesr; the matrix then reads:
+
+()
+000
+
+000*
+
+000
+
+14
+
+NACA TM NO. 1217
+
+In this case, which, as a matter of fact, should have been mentioned
+first, u – Ua = O, du = O; u = constant. The velocity component
+parallel to the x+xis
+
+43
+
+is uniform (correspondingly for the other axes).
+..
+
+3. Case of emgular deformation.
+One assumes u —u a = e(y -ya),
+
+with
+
+e = g
+
+= constant. All
+
+other terms equal zero, and the matrix reads:
+
+( )
+o
+
+e
+
+0
+
+00
+
+0
+
+00
+
+o
+
+and U = ey; that is, all points of the x-sxis retain their
+eti
+position; all points of the y-axis shift to the right (left), when e > 0
+(e < O); for e > 0 the y-axis is rotated clockwise%y the single G
+(because of the linearity). The y+xis is simultaneously elongated. The
+phenomenon in question is therefore a shearing (fig. 6), with tsn 6 = e.
+au =
+
+Correspondingly there results for
+
+M=
+
+H
+f
+
+O
+
+v -va
+
+= f (x -xA)
+
+md
+
+.
+
+.
+
+0
+
+000
+
+C?.v=fdx;
+
+V=rx
+
+Ml points of the y-is
+retain their position; the points of the x-axis
+are rotated by the angle 8; tan 8 = f (fig.7). Terms outside of the
+principal diagond of the matrix result therefore in a deformation of
+the right angle with axis+longation (shearing). The rfght angle between
+and f>o
+deformedby
+is, therefore, for e>O
+the x– and yaes
+G+b
+
+_av+&l=q
+ax
+
+ay
+
+.
+
+= Deformation about the z-axis
+=
+
+4.
+
+15
+
+*
+
+Correspondtigly:
+
+7==%+
+
+auaw — = deformation about the y-axis
+ax
+
+= ~+
+7
+Y’
+ay
+
+~
+
+= deformation about the x-is
+
+a’
+
+(The deformation angles are herein regarded as small so that the tangent
+may be replaced by the argument).
+c. Navier=tokes Formulation for t&e Stress Tensor
+
+m
+
+One now proceeds to relate the stress matrix (equation (3.6)) with
+the deformation matrix (equation (3.12)). The former is symmetrical with
+respect to the principal diagonal, but not the latter. However, one
+obtains a symmetrical deformation matrix by adding to equation (3.12)
+Furthermore, one first splits
+its reflection in the principal Magonal.
+off the.pressure p (contribution of the ideal fluid) from the stress
+mtrix and sets the remaining stress matrix, accorddng to Stokes,
+proportional to the deformation ~trix made symmetrical:
+
+.
+
+‘m
+
+‘=
+
+‘XY %
+
+‘y’
+
+‘x
+
+poo
+
+=-
+
+I
+lo p
+
+o
+
+I
+‘x’
+
+‘yz
+
+‘z
+
+Oop
+
+aua$zik
+az
+
+az
+
+az
+
+From equation (3.13) each stress component qy be given immediately by
+coordinating the homologous parts of the matrices to each other. For
+instance:
+
+‘x
+
+=-p+2~—=
+
+au
+ax
+
+static pressure.+ pressure due to
+velocity varitition,or:
+
+16
+
+NACA TM No.
+
+ux=-
+
+au
+
+‘+2U=” %=- p+211~;b
+
+crz=-p+2pig
+
+@J+
+
+=T=
+‘w
+
+1217
+
+Yx
+
+(
+
+T
+Xz ‘Tzx=vaz
+
+ik+
+(
+
+Thus for one-dimensional flow
+[
+
+Furthermore, there follows from equation (3.13):
+
+.
+
+.
+
+or
+~
+
+3
+
+(
+
+Gx+cr+u
+
+Yz
+
+) =-p
+
+(3.14)
+
+because
+
+for the incompressible flows free of sources and sinks under consideration.* Thus for the viscous incompressible flow, as for the ideal fluid
+the pressure equals the arithmetic mean of the normal stresses.
+With these results the components of the friction force may be
+expressed acconding to equatfon (3.7) as follows:
+
+●
+
+.
+
+itself as normal StreSSj SiIICeit Cm
+* The compressibility ~ifests
+be interpreted as a pressure disturb~ce, for ~st~ce
+due to ~~iation
+In density, which attempts to spread in all directions - considered
+infinitesimally.
+
+T
+
+NACA TM No. 1217
+
+or, since
+
+17
+
+divy=o,
+
+R
+
+Y
+
+.-*+@v
+b
+k+pAw
+az
+
+Rz=-
+
+.
+
+(3.15)
+
+J
+.
+
+in which Au = —a%+3G+&
+~2
+~2
+
+az2
+
+If one finally designates the mass forces by K = p(iX + jY + IsZ), and
+assumes the decomposition of the substaatial derivative into a local
+and convective part as -known from Euler ~s equation, one obtains for the
+components of the equation.of nmtion of the non-stationary, incompressible,
+and viscous fluid from ,equation(3.1):
+
+P
+
+(
+
+P
+
+av
+—+u
+( at
+
+av
+—+v
+h
+
+P
+
+aw
+%+u~
+(
+
+&+v&+w&=pz
+&
+
+h+ub+vh+wh
+at
+zk
+
+)
+
+.@
+
+b
+-—+@u
+ax
+
+ay
+
+az
+
+av
+—+w
+ay
+
+av=py
+—
+az )
+
+ap+@v
+ay
+
+az )
+
+&+tiw
+az
+
+(3.16)
+
+1
+
+In addition, the continuity equation
+(3.17)
+
+18
+
+NACA TM No. 1217
+
+is used. Written in vector form, the Navie~tokes
+and the equation of continuity read
+~_K
+Dt
+
+-
+
+differential.equation
+
+-$gradp+V&
+
+*
+
+(3.18)
+
+(3.19)
+
+Due to the friction terms, therefore, terms of the second order enter
+the differential equation.
+Boundary conditions are attached to these equations. If all friction
+terms on the right side are cancelled, thht is V = O, the differential.
+equations become equations of the first order and ~boundary
+condition
+is sufficient, namely the boundary condition of the potential flow:
+‘n = O on the bounding walls.
+This means that the normal component vn of the velocity at the
+bounding surface must Usappesr on the surface itself whereas the fluid
+still can glide parallel to the boundary (tmgential velocity Vt
+parallel to the surface # O).
+For viscous flow where the differential equation is of the second
+order, two boundary conditions are required, nsmely:
+
+Trn = O
+
+and
+
+vt = O
+
+(condition of no slip)
+
+(3.20)
+
+that is, “thefluid must in addition adhere to the surface.
+Secondlecture-(Dee. 8, 1941)
+
+CHAXTER Iv.
+
+GENI?RALPROl?ERTIESOF NA~-SIOKl?IS EQUATIONS
+
+The~e Naviefitokes differentialequations represent together with
+the equatia of continuity a system of four equations for the four
+unknown quantities u, v, w, p. On the left side of the NavieMtokes
+differential equations exe the inertia terms, on the right side the mass
+forces, the pressure forces, and the friction.forces.
+Since Stokest formulation is, of course, at first.purely arbitrary,
+it is not a priori certain whether the Navie~tokes
+differential
+equations describe the motion of a fluid correctly. They therefore
+require verification, which is possible only by way of experimentation.
+
+b
+--
+
+NACA TM No. 1217
+
+19
+
+Unfortunately, due to unsurmountable mathematical difficulties, a
+general solution of the differential equation is not yet lmown, that is,
+a solution where inertia and friction terms In the entire flow region
+me of the same order of magnitude. However.,known special solutions
+(for instance, the pipe flow with predominant viscosi%y or cases with
+lsrge inertia effect) agree so well with the experimental findings,
+that the general validity of Navietitokes differential equation hardly
+seems questionable,
+The plane problem:
+By far the greatest part of the application of Navi~tokes
+differential equations concern “plane” cases, that is, the cases where
+no fluid flows in one direction. The velooi%y vector” x is then given
+by
+
+~=
+
+.
+
+iu (x, y, t) + jv (x, y, t)
+
+since w s O. The equation system (eqmtio~
+transformed Into the 3 equations
+
+(4.1)
+
+(3.16) and (3.17)) thep is
+
+s
+
+(
+
+&+uav
+
+p
+
+at
+
+ZE+V
+
+$)
+
+b
+
+=P~--+v
+&
+
+with the three unlmown factors u, v, p
+of the mass force ~ per unit volume).
+
+&+&
+&2
+()
+
+(X and
+
+Y
+
+&2
+
+(4.2)
+
+are the components
+
+After various minor treasformations the equation system~
+be
+written as a single equation. To this end one introduces the rotational
+vector rot ~ which for the plane case has only ~
+component not
+equalling zero:
+
+(463)
+
+20
+
+NACA TM NO. 1217
+
+Furthermore, the mass force in equation (4.2) is put equal to zero.
+This is permissible in all cases where the fluid is homogeneous and no
+free surfaces exe present. liIorder to introduce Uz into equation (4.2),
+the first equation of (4.2) is differentiated with respect to y, and
+the second with respect to x; then the first is subtracted from the
+—.
+second and one obtains:
+
+●
+
+d
+
+(4.4)
+
+.
+
+With this transformation the pressure terms have been eliminated.
+Equation (4.!5)may now, With lA/P‘V,
+be written:
+.
+
+Ix!J
+— =VM
+Dt
+with
+
+(vorticity trsnsport equation)
+
+(4.6)
+
+m = U.)zbeing denoted as the vorticity.
+
+This equation signifies: The convective (substantial) variation
+of the vortex strength equals the dissipation of mrticity by
+frlctiono
+Equation (4.6) forms with the equation of continuity a system of
+two equations with tvo unlmowns, namely u and v, the derivatives of
+which define O.
+By introducing a flow function $(x,y}
+one may finally introduce
+function represents
+The
+flow
+a single equation with the unlmown ~.
+the integral of the equation of continuity. One sets:
+
+b
+~=~
+
+That is, therefore, the
+equation of continuity
+is identically
+satisfied by $.
+
+ay
+v =-— N
+ax
+1
+
+(4.7)
+
+.
+
+NACA TM No. 1217
+
+21
+
+Moreover,
+
+(4.8)
+
+That is: The La@acien of the flow function is exactly minus two times
+as large as the vorticity (angular velocity).
+With this result
+-.
+equation (4.5) becomes, i&er- divisionby
+P:
+
+( *+U
+or expressed only in k
+
+&+v&
+
+~
+
+A+ =VM~
+)
+
+(4.9)
+
+with equation (4.7):
+
+&&+g
+
+(4.10)
+
+.
+
+This one equation with the unknown ~
+equation, but written in terms of +.
+
+is the vorticity transport
+
+The inertia terms are again on the left, the viscosity terms on the
+right side: Equation (4.10) is a differential equation of the fourth
+order for the flow function. Again, its general solution is extremely
+difficult because of the non-linearity. For very slow (creeping) motions
+the friction terms very strongly predominate. Then one may set:
+M*=O
+
+(4.11)
+
+This simplification is permissible only because the differential equation
+remains of the fourth order, so that no boundary condition is lost.
+However, being linear, this equation is at least solvable. It ap~ears
+also in the theory of elasticity where it is designated as the bipotential
+equation. There exists a solution of equation (4.11) by Stokes for
+moving droplets~which was extended by Cunningham to very small drop
+dlsmeters (comparable to the mean free path of the molecules).
+Herewith we shall conclude the more general considerations end turn
+to the boundary layer problem proper, limiting ourselves to fluids of
+very small vi8cosi”ty V.
+A few preparatory considerations will lead up to the boundary l~er
+problem. One tight conceive the notion of simply eliminating all the
+tiiction terms of the Navier~tokes~ differential equation in the case of
+small viscosity. However, this would be fundamentally wrong as will be
+proved bel’ow.
+
+22
+
+.-NACATM
+
+An equation which is completely analogous to equatim
+in the theory of heat transfer:
+
+NOD 323-7
+
+(4.5) occurs
+
+.
+
+(4.12)
+
+where the velocity canponents are retafned khereas the rotation u
+replaces the temperature O, the density p the specific heat Cp
+per unit volume, end the viscosity v the thermal conductivity k.
+the left of equaticm (4.12) stands the temperature change due to
+convection, on the right the change due to heat transfer.
+
+On
+
+The temperature distribution around a heated body immersed in a
+flow with the free stream velocity U. (for instance fig. 8) is
+determinedly the differential equation (4.12). One perceives intuitively
+that for small U. the temperature increase starting from the body
+extends ‘towardthe front and all sides far into the fIow (solid contour)
+whereas for lsrge ~
+this influence is mainly limited to a thin layer
+and a narrow wake (dashed contour).
+The malogy of equations (4.12) and (4.5) indicates that the
+friction-rotation distribution In question must be sWIW:
+For -11
+free stream velocity the rotatim is noticeable at large distance from
+the body, whereas for large U. the rotation is limited to the imne~ate
+neighborhood of the body.
+
+.
+
+Thus for rapid motions, that is, large Reynolds numbers (compare
+next section), one expects the following solution of Navie*okes’
+differential“equations:
+1. In the region outside of a thin boundary layer cc= O,
+potential-flow
+2. Tnside this thin boundary layer 0+0,
+Therefore, one must not set u = O
+for small viscosity.
+
+that is,
+
+thus no potential flow.
+
+in this boundary layer, even
+
+It Is true that the potential flow is also a solution of NavierStokes? differential equations, but it does not satisfy the boundary
+layer condition vt = O.
+
+.
+
+Proof : The potential flow may be derived fram potential @{x,Y,z)
+as:
+
+.
+
+(4.13)
+
+23
+
+NACA TM No. 1217
+
+However, if Al = O, then also grad A@ = A grad@ = O, that is, Ay = O
+for potential flow. According to equation (3.18) this fact signifies
+that-in the Navie~tokes
+differential equations the friction terms
+vanish identically, end hence that the potential flow actually satisfies
+the NavieHtokes
+differential equations. However, it satisfies only
+the one.boundary condition Vn = O.
+Thus, for the limiting case of small tiseosity, one obtains useful
+solutions for the limiting process v -O
+not by cencelling the
+friction terms in the differential equation, since this reduces its
+order (the differential equation of the fourth order for the flow
+function would turn into an equation of the second order; the Navie~
+Stokes differential equations would change from the second to the first
+order), so that one can satisfy only correspondingly fewer boundary
+conditions.
+must not be performed in the
+Thus the limiting process V~O
+differential equation itself, but only in its solution.
+This can be clearly demonstrated on an example (referred to for
+comparison by Prsndtl) of the solution of an ordtnary differential
+equation. Consider the damped oscillation of a mass point. The
+differential equation
+.
+
+~dZX+kCh+cx=o
+dt
+dt2
+
+(4.14)-.
+
+applies in which m represents the oscillating mass, k the damping
+constent and c the spring constant. (x = elongation, t = time).
+Let for instance the two initial conditions be:
+.
+
+●
+
+t = o;
+
+X=o;
+
+dx/dt = 1
+
+~ analogy to the case in question one considers here the limiting
+case of a very small mass m, since then the term of the hfghest order
+tends toward zero. If one would simply put m = O, one would treat
+nothing but the differential equation
+-—
+k=+cx=O
+at
+
+which by.assuming the solution to be of the form
+whence k= -@
+transformed Into kk+c=O,
+solution reads:
+
+(4.15)
+
+●
+
+x = A e~t is
+That is, the
+
+NACA TM NO. 3.217
+
+24
+- Gt
+x =Aek
+
+(4.16)
+
+However, the two initial.conditions X = O and dx/dt = 1 at the
+timet=o
+cannot be satisfied with this solution. But if one treats
+the complete differential equation (4.14) in the same manner there results:
+
+‘
+
+..
+
+m2+ix+c=o
+and hence:
+–k&k
+‘1,2 =
+
+r
+
+l-—
+
+4cm
+k2
+
+2m
+
+or the sqme
+root might be developed into a series and (since now the
+limiting process mjO
+is to be perfozmed) broken off after the
+second term:
+
+Thus
+
+Al
+
+corresponds to the previous solution of the first order
+
+differential equation, where, however, ha
+small m,
+
+L2X
+
++fi;
+
+had been lost. For very
+
+therewith the general solution becomes, by
+
+conibinationof the particular solutf.ms,
+
+(4.17)
+Since for .t = O, x
+thus:
+b =-~,
+
+is also supposed to equal zero, there follows:
+
+x=%(++)
+
+(4.18)
+
+This equation is plotted schematically in figure-$). The first term of
+equation (4.18), which alone cannot satisfy the boundsry conditions
+
+.
+
+NACA TM No. 1217
+
+●
+
+✎✎
+
+25
+
+starts from the value Al at the time t = O and decreases exponentially. The second term is important only for mall
+t+alues
+and
+plays no role for large t. It is very rapidly variable end assures
+that the total solution (solid line) satisfies the boundary conditions.
+The slowly variable solution (in Xl) corresponds to the potential flow,
+the second, rapidly variable particular solution (in X2] indicates, as
+it were, the narrow region of the boundary layer; the smaller m,
+narrower this region.
+
+the
+
+Herewith we shall caaclude the general remarks and turn to the law
+of similarity.
+CHAPTER v.
+
+REYNOLDS? LAW of StMIIXRm
+
+So fsr no general methods for the soluticm of the NavieHtokes
+differential equations are known. Solutions that are valid for all
+values of the viscosity are so far known only for a very few special
+cases (for instance, Poiseuille~s pipe flow). Meanwhile the problem
+of flow in a viscous fluid has been tackled by starting from the limits,
+that is, one has treated on the one hand flows of very great viscosity,
+on the other hand flows of very small viscosity, since one obtains in
+this manner oertain mathematical simplifications. However, sterting
+from these limlting cases one cannot possibly interpolate for fluws of
+average viscosity.
+The theoretical treatment of the limiting cases of very great and
+very small viscosity is mathematically still very Ufficult.
+Thus
+research on viscous fluidb -S undertaken largely from the experimental
+differential equations offer very useful indiside. The Navie=okes
+cations, which permit a considerable reduction of the volume of experilaws of
+mental investigation. The rules in question ere the s~alled
+similarity.
+The problem is: Under what conditions exe the forms of flows of
+any liquids or gases around geometrically similarly shaped bodies themselves geometrically similar? Such flows are called mechanically similar.
+Consider for instance the flows of two different flulds of different
+velocities srouniltwo spheres of different size (fig. 10). Under what
+conditions are the flows geometrically SMIU
+to each other? Obviously
+this is the case when at points of similar position in the two flow
+pattezms the forces acting on volume elements at these points have the
+same ratio. Depending.on what kinds of forces ~e ~ effect, v~ious
+laws of similarity will result from this requirement.
+Most important for this investigaticm is the case where all forces
+except the inertia and friction forces exe negligible. Furthermore, no
+free surfaces me to le present, so that the effect of gravity is
+compensated by the hydrostatic pressure. = this case the flow around
+
+26
+
+NACA TM NO. 1217
+
+the two spheres is geometrically similar when the inertia end friction
+forces have the ssme ratio at every point.
+The expressions for the inertia and viscosity forces acting on the
+volume element will nowbe derived: there is as friction force per
+unit
+
+volume
+
+&
+pu—.
+&
+
+~=
+
+w
+
+&
+
+.
+
+.
+.-
+
+whereas the inertia force yer unit volume is
+ay2’
+
+The ratio
+pu— au
+ax
+=—
+,2
+frictfcm force
+Ou
+inertia force
+
+(5.1)
+
+w—
+
+aY2
+must, therefore, be the same at all points of the flow. One now inquires
+as to the variation of these forces with variation in the quantities
+characteristic of the phenomenon: free stream velocity V, diemeter d,
+density p, sad viscosity V. For variation of V and d the individual quantities in equation (5.1) at similarly located points vary
+as follows:
+
+Therewith equation (5.1) becomes:
+inertia force =
+friction force
+
+~g
+7
+‘d
+
+===
+P
+
+nF
+
+= Re
+
+(5.2)
+
+The law of mechanical similarity is therefore: The flows eround
+geometrically similar bodies similarly located and alined with respect
+to the flow have, for equal p V d/~, geometrically sitilar stream
+lines as”well. If the flows in question are, for instance, two flows
+of the same fluid of equal temperature and density (V and p equal) around
+%WO spheres,one of which has a diameter twice that of the other, the flows
+are geometrically similar provided that the free stream velocity for the
+larger sphere has half the magnitude of that for the smaller sphere.
+
+.
+
+NACA TM NO. 1217
+
+.
+
+27
+
+The quantity p V d/~ is,as a quotient of two forces, a dimensionless nuniber. This fact is immediately recognized by su%stitutti for
+the quantities their dimensions:
+
+..
+p~
+
+m..];V[-J&];d
+
+i3ec2
+
+‘l;
+@=@sec2m
+~4
+M
+
+“[!1
+
+~2
+=mkgsec=l
+
+This law of similarity was discovered by Osbozme Reynolds in his
+studies of fluid flows in a pipe. The dimensionless qusntity is called
+after him:
+,
+p~ d/p =Vd/V=Re
+
+r
+
+= Reynolds: nuniber
+
+The introduction of this dimensionless quentity helped greatly in
+advancing the development of modern hydrodynamics.
+Connection between Similarity and
+Dimensional Considerations
+As is known, all physical laws can be expressed in a form free of
+the units of measure. Thus the similarity consideration ~
+be.replaced
+by a dimensional analysis. The following quantities appeering
+in the Navier~tokes differential equations are essen%l
+for–the stream
+line pattern: ~, d, p, y. The question is whether there is a conibination
+
+which is a Reynolds nunber and therefore has the dimension 1.
+amounts to determining a, f3,7, 5 in such a manner that
+@dppy~O=KOLOTO=l
+
+b
+
+This
+
+(5*3)
+
+with K, L, T representing the symbols for force, length,and time,
+respectively. Without limiting the-generality a may be set equal to
+unity (a = 1) since sny power of a dimensionless qu=tity is sti~ a
+pure nuniber. With a = 1 there results from equation “(5.3)
+
+28
+
+NACA TM No. 1217
+
+(5.4)
+
+●
+
+.“
+
+✎
+
+on the left and right sides one
+
+By equating the exponents of L, T, K
+obtains the three equations:
+K:
+
+‘
+
+7+5=0
+
+L:
+
+l+j3
+
+~7-2~=0
+
+(5*5)
+1
+
+T:
+
+2++
+
+5=1
+
+J
+
+The solution gives:
+p=l;
+
+7 = 1;
+
+5.-1
+
+(5.6)
+.
+
+Accordingly the only possible dimensionless conibinationof
+is the quotient
+
+V, d, p, u
+.
+
+(5.7)
+
+This dimensional enalysis lacks the pictorial quality of the similarity
+consideration; however, it offers the advantage of applicability even
+when knowledge of’the exact equation of motion is still mitssing,if
+there is only known what physical quantities determine the phenomenon.
+CUE’TER VI.
+
+EXACT SCKUTIONS OF TEE NA~-SI!OKXS
+
+EQUATIONS
+
+In general, the problem of finding exact solutions of the NavierStokes differential equations encounters insurmountable difficulties
+particularly because of the non-linearity of these equations which
+prohibits application of the principle of superposition. Nevertheless
+one can give exact solutions for a few special cases, mostly, when the
+second power terms venish automatically. A few of these exact solutions
+will be treated here.
+One investigates first layer flows in genere.l,,thatis, flows
+where only one velocity component exists which, moreover, is not
+dependent on the analagous ~osition coordinate, whereas the two other
+velocity components vanish identically; thus for instance:
+
+Pages 29 – 36 are missing from this document.
+
+37
+
+NACA TM NO. 1217
+
+* .
+
+(6.27a)
+
+the differential equation for
+
+-.
+
+(p(g) with
+
+g =
+
+$y
+
+reads:
+
+[
+
+cpf”+cpq)”=@2+l=o
+
+(6.28)
+
+with the boundary conditions
+
+g=o:
+
+q)=cpt =()
+
+‘5 = m:
+
+Q*=l
+
+The solution found by series development can be found in the thesis of
+Hiemenz (reference 10), compare table 1*. The velocity component
+parallel to the surface is
+
+(6.29)
+
+It is indicated in figure 16. The curve CP~(E) ticreases linearly at
+~ =0
+and approaches-one asymptotically. ‘For-about g = 2.6, q)?~ 0.99;
+thus within about one percent of the final value. If one again designates
+the corresponding distance from the surface y = 5 as the boundary layer
+thicbess (friction layer Wiclmess), then
+
+(6.30)
+
+Thus in this flow, as in the fozmer ones,
+
+.
+
+It is also remarkable that the dimensionless velocity distribution
+according to equation (6.!29) and the boundary layer thfmkness according
+to equation (6.30.)are independent of x, thus do not vary along the wall,
+
++$Thetables appear in appendix, chapter XII.
+
+NACA TM No. 1217
+
+38
+
+For later applications the chsracteristios important for the friction
+layer, displacement thickness 8* and momentum thiclaiessd, axe
+introduced here; they are defihed by
+
+~*
+
+.
+
+r
+
+4
+
+..
+
+(U-u)dy
+
+(6.31)
+
+U(TJ- u) dy
+
+(6.32)
+
+y=o
+w
+
+u2i =
+[ =0
+
+The displacement thickness gives the deflection of the streamlines of
+the potential flow from the surface by the friction layer; the momentum
+thickness is a measure of the momentum loss in the friction layer. By
+insertion of equaticm (6.29) in (6.31) end (6.32) and calculation.of the
+definite integral one finds
+(6.33)
+
+(6.34)
+
+and hence
+
+(6.35)
+
+The quantity 5* is inticated in figure 16. For comparison with a
+later approximate solution one also notes the numerical value of the
+5*2 ~.
+dU
+dimensionless quantity ~
+
+One finds from equations (6.17) and (6.33)
+
+8* 2 d~
+
+——=
+v
+b
+
+0.4202
+
+(6.36)
+
+The exact solution of the liavier+3tokesdifferential equations found
+here gives, therefore,”for large Reynolds nunibersa fii.ctionlayer
+thickness’decreasing with
+
+i
+
+~
+
+and a transverse pressure gradient
+
+-.
+
+NA(!ATM No. 1217
+
+,
+
+decreasing with pa~a.
+to be discussed later.
+
+s
+
+:J-
+
+39
+
+Both confirm the boundary l~er
+
+assumption@
+
+d. Convergent end Divergent Channel
+A further class of exact solutions of the Navie~okes
+differential
+equations exists for the convergarb and divergent channel with plane walls
+(fig. 17), as given by G. Hand (reference 11).
+Without entering into the details of the rather complicated calculations the character of the solutions will be briefly sketched:
+The velocity distributions for convergent channels, plotted against
+distance along the surface for various fncluded angles a and for various
+Re+mibers appear as inticated in figure 18. At the tunnel center the
+velocity is almost cmsbsd,
+and at the surfaces it suddenly declines to zero.
+
+m
+
+9
+
+.
+
+h the case of divergent tunnels one obtains greatly differing
+forms for the velocity profiles, depending on the included emgle and
+the Re+mnber.
+Here all velooity profiles have two inflection points.
+For small Re-n@ers
+and small included angles the velocity is positive
+wer the entire cross section (solid curve in fig. 19); for lager angles
+and larger Re+umibers, on the other hand.,the velocity profiles have
+reverse flow at the surface (dashed curve in fig. 19). The reverse flow
+is the initial phase of a vortex formation and therefore of the separation
+of the flow from the surface. Generally, the separati= does not occur
+_trfcaUy
+cmboth surfaces; the flow separates from one side and
+adheres to the other surface (fig. 20).
+These examples also confirm the theory that exact solutions have the same
+character as approximate solutions of boundary layer theory; in particular,
+they confirm that for the convergent channel a very thin layer with considerable friction effect is present near the surface (here also the
+calculation sho~s that the layer thickness - ~) end that for the
+divergent channel reverse flow and separation occur.
+
+.
+
+We here conclude the chapter on the exact solution~ of the NavierStokes differential equations and turn to the approximate solutions.
+By exact solutions have been tmderstood those where in the Navie-ekes
+differential equations all terms are taken into consideration that, in
+the various cases, axe not identically zero. By approximate solutions
+of the I?ayie=tokes differential equations will be understood, in
+contrast, solutions where terms of small magnitude are neglected in the
+differential equations themselves. However, by no means are all the
+friction terms to be neglected simultaneously, since this would represent
+the case of potential flow.
++@Therotationally-symmetrical stagnation-point flow has been
+calculated by Homann (reference 17). Instead of equation {6.28) one
+obtains the differential equation q?” + 2q@’ — P*2 + 1 = O.
+
+NACA TM No. 3-217
+
+40
+
+CHAPTER VII.
+
+VERY SLOW MOTION (SCOHN3, OSEIX?)
+
+The exact’solutions of the Navi~okes
+differential equations
+discussed in the previous chapter are of a very special kind. Most of
+them dealt with flows along a plane surface, where the stream lines
+sre rectilinear. Most flows existing in practice, as for instance flows
+around arbitrary bodies, cannot be calculated exactly from the Navie~
+Stokes differential equations, but must be treated by approximate methods.
+Two kihds of such approximations are possible:
+1. For predominant viscosity, completely neglecting the inertia terms
+Re< 1).
+suggests itself (very small R~tiber;
+2. For very small.viscosity and therefore predominant inertia one
+takes the viscosity into consideration only in a very thin
+layer in the neighborhood of the solid wall.;for the rest,
+the flow is reg~ded as frictionless. Here the R~uMber
+is
+very large (Prandtl*s boundary layer theory).
+The first limiting case wi~ very small Re-anudberwill be discussed
+in this chapter. A small Re-nuniberi
+ndicates small velocities, small
+body dimensions, end large viscosity. Since the inertia terms depend
+on the square of the velocity whereas the friction terms are linear,
+all inertia terms in the Navie~okes
+differential equations sxe, for
+very small R~unibers, negligible. It is to be e~ected that an
+approximation will thereby be obtained for very slow (creeping) nmtion,
+as for instance the falling of a minute fog particle*) or the slow
+motion of a bob in a very viscid oil.
+Neglecting all inertia terms on9 obtains from the Navie~tokes
+differential equations (3.16) the following:
+
+(7.1)
+
+&_l+av+*=o
+ax &
+az
+
+.
+
+(7.2)
+.
+
+*For a sphere falling in air (V = 14 X 104 m2/see) for instance:
+for d+lmm;
+V= 1.40 cm/see,
+Re = vd/V=l,
+
+41
+
+HACA TM NO. 1217
+
+The same boundary conditions apply to this system of equations as apply
+to the complete NavieMtokes
+differential equations, namely vanishing
+of the normal component
+Vn = O
+and the tangential component
+Vt=o
+at the bounding surfaces.
+The neglect of all inertia terms in Navie~tokes
+di~ferential.
+equations does not represent as serious ti inaccuracy as the neglect of
+all friction terms when transforming the Ne,vie~tokes
+differential
+equations into Euler’s differential equations of the frictionless flow.
+That is, by neglecting the inertia terms, the order of the differential
+equations is not lowered so that in the simplified differential equations
+the ssmaboundsry conditions as in the Navie-ekes
+complete differential
+equations can still be satisfied.
+Furthermore one obtains from the equations (7.1), taking into
+account the continuity, by differentiating the first with respect to x,
+the second with respect to y, the third with respect to z, the following
+equation for the pressure p
+
+(7.3)
+
+8
+
+that is, for creeping motions the pressure function p(x, y, z)
+potential function.
+
+js a
+
+The details of the calculation will not be discussed more .th~roughly,
+particularly since the creeping motion is technically not very tiportant.
+However, at least Stokes~ famous solution for.the sphere will ‘bediscussed
+briefly (fig. 21). The &s& of a sphere for creeping motion consists of
+the contributions of the pressure drag (form dreg) and the stiface friction dreg. The latter is obtained by integration of the wall shearing
+stress over the entire sphere surface. Stokes performed the integration
+of the equation systems (7.1) and (7.2) for a sphere in a uniform
+flow of velocity Uo. There results, according to Stokes, for the entire
+drag of the sphere of radius R:
+w =Wh+WR=6YqmJo
+
+(7.4)
+
+The drag is, therefore, proportional to the first power of the velocity.
+w~ch, in the
+If one introduces for the sphere a dreg coefficient ~
+customery manner, is referred to the frontal area and the dynamic pressure
+of the free stream velocity
+
+NACA TMNoo
+
+42
+
+CWJ(R 2 g U02
+
+W=
+
+1217
+
+(7.5)
+
+m
+
+there results for the drag coefficient according to Stokes? formula:
+
+%
+
+24
+= —*
+Re’
+
+~e _ ‘~
+v
+
+._
+
+(7.6)
+
+“
+
+One can state immediately that the stream line pattern of this
+creeping motion must be the same ahead of and behind the sphere since
+for reversal of the initial flow (sign reversal of the velocity
+components) the equation system (equation (7.1)) goes over into itself.
+The stremline pattern for the viscous sphere flow, as it presents
+itself to an observer who is at rest relative to the flow at infinity,
+is shown in figure 22. The fluid particles are pushed aside ly the
+sphere in front and come together again behind it.
+As ShOWl by a comparison of Stokes~ &rag formula equation (7.6)
+with test results (reference 33), this formula is valid only for the
+region Re < 1.
+
+#
+
+Correction by Oseen
+In Oseen’s later improvement of Stokesi solution for the sphere
+the inertia terms in the dtfferentlal equations are pertly taken into
+consideration. Oseen formulates the velocity components. u, v, w:
+u=
+
+Uo+ut;
+
+v=v~;
+
+W=wt
+
+(7.7)
+
+where U!, v!, W* may be considered as disturbance velocities which in
+general are small compared with the free stream velocity Uo. This
+asszmqkion is not actually correct for the immediate proximity of the
+sphere surface. With the formulation (equation (7.7)) the inertia terms
+in equation (3.16) are divided into two groups, for instance:
+&t
+U. —,
+ax
+
+U.
+
+&ri
+r“””
+
+sndut~,u~~,...
+ax
+ax
+
+The second group of second order, as compared with the fest group, is
+neglected. Therewith one then obtains from the Navie-.okqs
+eq~ations
+of motion (3.16) the following equations of motion, which me tsken as
+-a basis by Oseen.
+
+*
+
+43
+
+P Uo $+$=
+
+tivt
+
+&t
+,&=
+puo —
+ax
+az
+
+@w,
+
+(7.8)
+
+Tn addlticm, one uses the continuity equation:
+&t
+
+&*
+
++&=o
+(7.9)
+
+K
+
+‘Y
+
+az
+
+and the same boundary conditions as in the Navier+tokes differential
+equations. One calls the contributions of the convective terms in these
+the
+equations that were taken into consideration, for instance U. ~,
+semi~uadratic terms. These differential.equations of Oseen an~ Stokest
+differential equaticms exe both-linear. The streamline pattern, as it
+results for this sphere flow according to Oseen, is given in gigure 23.
+Here again the obsemer Is at rest relative to the fluid at large distance
+from the sphere. Thus the sphere is dragged past the observer with the
+velocity Uo. The stresm line pattern ahead of and behind the sphere are
+now not the same, as was the case in Stokesl solution. Ahead of the
+sphere exists almost the seinedisplacement flow as in Stokes~ pattern;
+behind the sphere, however, the stream lines are closer together, that is
+the velocity is greater here them in Stokesf case. A wake is present
+behind the sphere similar to that from test results for large Reynolds
+numbers.
+For the sphere drag calculatedly Stokes there results with the
+drag coefficient Cw introduced in equation (7.5) the formula:
+
+(7.10)
+
+.
+
+.
+
+The test results (reference 33) show that Oseen*s formula Is fairly
+accurate up to about Re = 5.
+With these brief remerks we conclude the limiting case of small
+Reynolds nunibersand turn to the case which is of foremost interest in
+practice: the case of very large Reynolds number.
+
+NACA TM NO. 2.217
+
+44
+
+CHAPTER VIII . PRANDTLtS BCXINIMRYLAYER EQUATIONS
+The other extreme case of very small viscosity or of very lsrge
+Reynolds” number will now be treated. In this case the inertia effects
+are predominant within the main body of the fluid whereas the viscosity
+effects there are almost negligible.
+A signiflcaritadvance in the treatment of motion of fluids for
+large Reynolds numbers, that is, in general, of fluids of very small
+viscosity, was attained by L. Prandtl in 1904 (reference 7). Prandtl
+demonstrated in what way viscosity is essential for large Reynolds
+nwibers and how one can simplify the Navier-Stokes differential equations
+in order to obtain at least approximate solutions.
+Let us consider the motion of fluid of very small viscosity, for
+instance of air or water surrounding a cylindrical streamline body
+(fig. 24). Up to very near the surface the velocities are of the order
+of magnitude of the free stream velocity Uo. The stream line pattern
+as well as the velocity distribution egree to a large extent with those
+of the frictionless fluid (potential flow). More thorough investigations
+show, however, that the fluid by no means glides along the surface (as
+in potential flow) but adheres to it. The transition from zero velocity
+at the surface to the fully developed velocity as it exists at some’
+distance from the body, is effected in a very thin layer. Thus one must
+distinguish between two regions which, it is true, cannot be rigorously
+sepsxated:
+1. A thin layer in the immediate proximity of the body where the
+is very large
+velocity gradient normal to the surface $
+(boundery layer). Here the viscosity V, though very small,
+plays an essential role inasmuch as the frictional shearing
+aw
+csn assume considerable values.
+stress 7 = I.I
+—
+.
+an
+the remaining region outside of this layer velocity gradients
+of such megnitude do not occur, so that there the effect of
+viscosity becomes insignificant. Here frictionless potential
+flow prevails.
+In general-one may say that the boundmy layer is thinner, the
+smaller the viscosity or, more generally, the larger the Re-number. It
+was shown before on the basis of exact solutions of the Navie-ekes
+differential equations that the boundary layer thickness is
+
+6+/7The approximations to the NavieMtokes
+differential equations to be made
+below are more valid the thinner the boundmy lwer.
+Thus the solutions
+of the bounky
+layer equations have an asymptotic character for infinitely
+increasing Reynolds nuribers.
+
+‘9
+
+45
+
+NACA TM No. J217
+
+*
+
+‘?
+
+.
+
+Let us now make the simplifications of the Navie=okes
+differential
+equations for the boundary layer. To this end the order of magnitude of
+the seperate terms of the Havie-ekes
+differential equations must be
+estimated. One considers the flow around a cylindrical body according
+to figure 24. Gne imagines the liavie~okes
+differential equations
+written non-dimensionally, by referring all velocities to the free stream
+velocity U. and the lengths to a body length 2. The pressure will be
+made &~nsionless
+with p U02, the time with I/Uo. Furthermore
+Re=~
+represents the Reynolds number. Accordingly, the Navier~tokes
+v
+differential “equationsbecome – otitting the mass forces according to
+equation (4.2), by writing the seam letters for the dimensionless quantities
+
+(8.1)
+
+The estimation gives: Longitudinal velcmity u is of the order of
+Therefrom
+magnitude 1. Dimensionless boundsry layer thiclmess 8/z<d.
+follows:
+
+whereas the derivatives with respect to
+_itude,
+thus
+
+x
+
+ere of normal order of
+a
+
+.
+.
+
+NACA TM NO. 1217
+
+46
+
+n
+
+From the continuity equation follows therefore:
+
+..–,.
+
+The transverse velocity v in the boundary layer is therefore, to the
+first order, small in comparison with the longitudinal velocity. Further
+there follows:
+
+Thus there result for the single terms of Navier-Stokes differential
+equations the orders of magnitude noted in equation (8.1): On the right
+side in the ffrst equation
+
+&<<&
+h2 ay2
+so that }t can be neglected
+One now obtains within the boundary l~er friction terms which are
+is of the
+of the same order of magnitude as the inertia terms, if 1~
+order of ma+ydtude 52, or, if the dimensional quantities are again
+written,
+(8.2)
+
+-
+
+the second equation of motion all terms then are of the order of
+.
+*
+In the
+msgrdtude 5, inoludlng the transverse pressure gradient —.
+aY
+boundary layer, as Iong as it is thin, the dependence of the-pressure
+may therefore be neglected. Thus approximately the same pressure
+onY
+prevails within the boundary layer as at its edge, that is, the pressure
+of the potential Tlow. The pressure within the boundary layer Is therefore,
+as it were~impressed by the potential flow.
+Th~ second equation of motion is therewith exhausted and does not
+have to be considered further. Using again the dimensional quantities
+
+4
+
+>
+
+NACA TM No. 1217
+
+47
+
+one now makes the Na.vie-ekes
+simplified form:
+
+differential equations assume the following
+
+(8.3)
+= “o
+
+Boundsry conditions: y = O: u = v = o
+u
+Y =Ce:u=
+The pressure in the boundary layer, which is dependent only on x,
+determined from the potentiaL flow u (x, *), assumed to be lmown
+according to Bernotii’s equation.
+p+
+
+:J2=PO+:TJ02
+
+is
+
+fob stationary flow
+)
+} (8.4)
+
+or
+_lap=uau+~
+p ax
+h
+
+at
+
+for nonstationary flow
+J
+
+With the potential flow known, the equation system (8.3) represents
+a system of two equations with the two unlmowns u and v.
+Numerical example: ~ order to help clarify the concepts a numerical
+example is given for the thicbess of the boundsry layer. The problem is:
+What is the boundary layer thickness, for instance, in the case of the
+plate in longitudinal flow at the distance 2 = 100 centimeters from the
+leading edge? Let the velocity be ~ = 30 meters per second and the
+4 meters squsre per second;
+kinematic viscosity for air V = 0.14 X 10
+then the Reynolds nuniberis R = T.JO$=2.1
+
+X106
+
+and ~=
+
+1.45 X 103.
+
+A numerical factor is still missing in the formula (8.2) for the boundary
+layer thickness. For the plate in longitudinal flow it is, as later
+calculations will show, five, provided one understands by the boundary
+thickness 5 that distance from the swface where the velocity has the
+value 0.99~.
+,Thus a calculation by the formula
+
+NACA TM NO. 1217
+
+48
+
+results for the present case in a boundery layer thickness 5 = 3.45 mm.
+It shouldbe added that the Reynolds nuniberis already so large that the
+boundsry layer at the end of the plate would be turbulent. The t~snsition
+from lsminar to turbulent lles further upstream, and at this point the
+boundary layer thickness would then be somewhat snd.ler than the value
+determined above.
+
+4
+
+.A
+
+Fourth lecture on December 22, 1942
+Physical Summary and Conclusions
+The physical content of the considerations so fsr can be summed UP
+in the following sentences:
+1. In a very thin layer on the body, the boundary layer, the
+velocity passes from the value zero at the surface to the
+value which the potential flow would have in the neighborhood
+of the surface.
+2. The pressure in the boundary layer is practically independent
+of the coordinate normal to the surface and equals the
+pressure of the potential flow along the surface.
+3. lh the boundary layer the only friction force to be taken into
+au
+consideration is the shearing stress T = B —.
+ay
+4. (without proof) The cwature
+of the surface maybe neglected
+in the boundary layer as long as the radius of curvature is
+large compared with the boundary l&yer thickness (Boltz,
+Thesis, (reference 9)).
+5. All these considerations are valid only as long as no separation
+of the flow from the surface occurs.
+Without integration of the boundary layer equations one can draw from
+these sentences important physical conclusims as to the flow pattern:
+fi particular separation occurs if a transport of boundary layer material
+into the interior of the fluid takes place. If a reg~n with pressure
+increase exists along the body contour, the retarded fluid in the boundary
+layer is in general, because of its small kinetic energy, not able to
+penetrate too far into the)region of higher pressure. It then withdraws
+laterally from the region of higher pressure, separating from the body,
+and is deflected into the interior (fig. 25). As the point of separation
+one defines the lzoundsrybetween forward flow and reverse flow of the
+layer nearest the surface, thus
+.
+.
+
+●
+
+NACA TM No
+
+●
+
+49
+
+1217
+
+. O*
+
+point of separation:
+()
+$
+
+(8.5)
+
+Y=o
+
+Detenuining when aud where separation occurs requires for each case the
+integration of the boundary layer equations.
+One can readily understand that for the velocity profile u(y) at
+the separation point and for all velocity profiles in the decelerating
+an inflection point- must be present. From equation (8.3)
+““w (2 >0)
+namely, for the surface y = O there follows immediately the relation
+(8.6)
+
+*
+
+●
+
+The curvature of the velocity profile at the surface therefore exchsnges
+signs with the pressure gradient. Thus for flow with pressure decrease
+a+
+accelerated flow -~ <O ,
+—
+<0
+is valid and therefore
+dx
+(
+)() &2 surface
+also —
+:> <O
+in the entire boundary layer (fig. 26). For the region
+of the pressure increase decelerating flow, 9>0
+&
+(
+
+&
+>0.
+)( &2 )
+surface
+
+However, since in any case at lsrger distances &om
+&
+
+<O,
+
+the surface
+
+there mukt exist, for decelerating flow, within the boundsry
+
+3y2
+layer a point where
+
+a2u
+—=
+O (inflection point) (fig. 27). For
+ay2
+decelerating potential flow the boundary layer profile has, therefore,
+an inflection point. Since the separation profile with vanishing surface
+tangent must necessarily have an inflection yoint, it follows that
+separation can occur only when the potential flow is decelerating
+(2
+
+‘0)”
+
+* The velocity profile at the point of separation therefore starts
+.
+with a vanishing tangent (fig. 25). Velocity profiles behind the point
+of separation have reverse flow in the neighborhood of the surface (fig. 25).
+* The presence of an inflection point is significant for the
+stability of the velocity profile (transition from laminsr to turbulent,
+compere chapter XXI Part II.)
+
+NACA TM NO. 1217
+
+w
+
+If separation ie present, the potential flow can no longer envelop
+the body closely everywhere. Thus the pressure distribution sometimes
+deviates considerably from that given by the potential theory. h such
+cases the pressure vsriation impressed on.the-boundary layer-can in
+most cases be determined only empirically, because the frictionless outer
+flow itself depends on the complicated phenomena connected with the
+separation.
+
+*
+
+.+
+
+Thus the boundary layer theory explains also the fact that In
+addition to the frictional dreg a pure pressure dre& called “form drag,”
+appears.
+In regard to later calculations the following explanation shall be
+given: If equation (8,3) is differentiated with respect
+to y, there
+—
+results for stationary flow
+
+u
+
+a2u
+hay
+
+avau
+——
+ay b
+
++
+
+=.— lfi+
+p a.xay
+
+v—a%
+
+b
+Due to —=0
+and to the boundary conditions u = v = O
+h
+from equation (8.7) for the surface Y = O the relation
+
+()&.
+
+(8.7)
+
+aY3
+
+one obtains
+
+(8.8)
+
+which Is valid for all stationary boundary layer profiles (pressure
+increase and pressure decrease).
+.
+
+As a result of the integration of the boundary layer equation one
+obtains the velocity distribution and the separation point and can there
+from calculate the particularly interesting surface friction drag in the
+results from the integration of
+following manner. The l%iction drag ~
+the surface sheering stress over the surface of the body. For the plane
+case one obtains, with the synibolsaccording to figure 28, for the friction
+drag
+
+r
+‘R
+
+=m
+
+.
+
+To COS Q,ds
+I
+
+●
+
+L1S=o
+
+(8.9)
+
+MACA TM No. 3217
+
+51
+
+The integration has to be extended over both sides of the surface from
+the stagnation yoint to the separation point (s = 1~), b signifies the
+he~ght of the cylindrical body.
+
+Because
+
+cos q dS = &
+
+ad
+
+To . ~
+
+&
+()
+b.
+
+one obtains for the friction drag
+
+(8.10)
+
+This integration also has to be extended along both sides of the body.
+For calculation of the friction drag one needs, therefore, the velocity
+gradient at the surface. The latter can only be obtainedby integration
+of the boundsry-layer differential equations. If the separation point
+appears ahead of the trailing edge, the formula has to be applied only
+up to the separation point or, sometimes, up to the point of lamin~~
+turbulent transition which is located furth4r upstream. Behind this
+tremsition point exists turbulent surface friction drag. Ih order to
+obtain the total drag, the form dr~ has to be added to this friction
+drag; however, the form drag cannot be obtained from the boundary layer
+calculation in a simple menner.
+CHKPIER IX.
+
+EXACT SOLUTIONS OF THEBOUNDARYIAYIR
+
+EQUATIONS FOR THE PLANX PRCIBIiEM
+a. The Flat Plate in Longitudinal Flow
+One of the simplest examples for the application of the boundery
+layer equations (8.3) is the flow along a flat plate. Let the plate
+begin at x = O, extend parallel to the x+ixis, and be infinitely
+long (fig. 2g). Let the stationery flow of the free stream velocity U.
+be treated. The calculations for it were made by H. Blasius (reference 8)
+in his G6ttingen thesis. Ih this case the velocity of the potential flow
+is constant, thus dp/dx+ O. The boundary layer equations (8.3) become
+therefore
+
+(9.1)
+
+NACA TM No. 1.217
+
+with the boundary conditions
+
+Y=o:
+
+u=~=o
+(g.la)
+
+Y =Oo:u
+
+= U.
+
+Since the entire system has no characteristic length, the assumption
+suggests itself that the velocity profiles at various distances x sre
+affine to each other, so that one may write u~o = 9 (Y/b). Let therein
+b = 5(x) represent a measure of the boundary layer thiclmess, increasing
+with the length of run. One srrives at an estimate of the boundary layer
+thiclmess in the following manner:
+According to the former exact solutions of Navie~okes
+equations
+(chapter VI), for instance for the non-stationary problem of the surface
+suddenly set in motion,
+
+with t denoting the time since the beginning of the motion. Applied
+to the present stationary problem one may substitute for the time t the
+time required by a fluid particle to travel from the leadi~ edge of the
+and one has, therefore, for
+plate to the point x. This tires t = ~
+o
+the present case
+(9.2)
+
+Thus it is useful to introduce for tie dist~ce from the s~face
+Y the
+or according to equation (9.2)
+new dimensionless coordinate q =y/5
+
+(993)
+
+For further calculations one observes that
+*
+
+The continuity equation is again integrated by introduction of the stream
+function $; for the latter one assumes
+
+.
+
+NACA TM No. 1217
+
+53
+
+*
+
+&
+
+‘F=wq)
+
+-
+
+(9.4)
+
+Accordingly f(~) is a dimensionless stream function; for the velocity
+‘componentsone obtains from equation (9.4)
+
+(995)
+
+(9.6)
+
+Furthermore one obtafns
+
+..4.zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+1 ‘o
+au -—
+—=—
+,f”; $ = u. z,*;
+ax 2X
+Vx
+v.
+,
+
+a
+= ~
+f,f~
+ay2
+“x
+
+(9.7)
+
+By insertion of these values in equation (9.1) there results
+U2
+–-&~frf”
+
+~2
++*
+
+(Tjft-f)f“ sv~ft”
+
+or, after simplifying, the following differential equation for the stream
+function f(q)
+fflf+zfl~l=()
+
+(9.8)
+
+Becauss of equation (9.la) and of equations (9.5) ‘and (9.6) the boundary
+conditions are
+
+7
+
+=
+
+0:
+
+f=f’=o;
+
+n=m:
+
+ft=l
+
+(9.9)
+
+For the present case therefore, there results from the two partial
+differential equations (9.1), by the similarity transformation (equation
+(9.3)), ~ or~narY non-line~ ~ffer~ti~
+equation of the third order.
+
+..
+
+NACA TM No. 1217
+
+%
+
+The three boundary conditions according to equation (9.9) are sufficient
+for a unique determination of the function f(q) from this equation
+A particular solution of the differential equation (9.8) is the
+solution
+f=
+
+4
+.
+u
+
+q + constant
+
+This solution corresponds to the potential flow; we shall revert to it
+presently.
+The general solution of the differential equation (9.8) cannot be
+given in closed form. Therefore one must calculate it either by numerical
+methods or by series developments. Blasius obtained the solution by a
+power series development near q = O and an asymptotic development
+neex 7 =Cv, whfch are combined at em appropriate point. Since the
+method of calculation is characteristic of the solution of the boundary
+layer differential equations it will be described in more detail. The
+power series around q = O is formulated in the form
+
+.4
+
+Because of the boundary conditions for
+
+7 = O
+
+one has immediately
+
+=0
+
+By insertion of the equaticms (9.10) into the differential equation (9.8)
+one obtains
+
+2A3+qq+g(A22 + 2%) +$(4%
+
+5+%-)+”
+
+”””0
+
+In order to make the equation (9.10) represent a solution .ofthe differential equation it is required that in the last equation all coefficients
+of the single powers of q vanish. First, one has immediately Aq = ~ = O*
+and further
+~his also follows at once from equations (8.6)”=d (8.8).
+-
+
+–.
+
+NACA TM NO. 1217
+
+=-$%%
+=+23
+
+%
+.
+
+.
+
+.
+
+.
+
+Thus only the coefficients A2, ~, Ag. *.*
+are different from zero.
+The coefficient A2 remains at first undetezmhed since’the third boundary
+qondition for ~ = m was not yet satisfied. The remaining coefficients
+A8, \l. . . cen all be expressed in terms of A
+One therefore
+2“
+‘5’
+sets up, with ~ = as a series for f(?) which progresses by powers
+of q~, in the following form:
+co
+
+f=
+
+n+l
+Cna
+(3n+2)?
+
+Z( T
+– &
+2
+
+(9.11)
+
+n=o
+
+The results for the first coefficients are:
+
+co = 1;
+C3
+
+cl = 1;
+
+C!2= 11;
+
+= 375; C4 = 27897; C5 = 3 817137
+
+The asymptotic development near
+
+n = w is formulated in the form
+
+f = ‘1 +f2
+
++...
+
+(9.12)
+
+where the higher approximations are to.be small in comparison with the
+lower approximations, for instance f2<< fl. The first asymptotic
+approximation to correspond to the potential flow is, as was mentioned
+above,
+.
+
+‘1=~-~
+●
+
+(9.13)
+
+For this approximation fl” . 0, and one obtains therefore by replacing
+the quantity ff” in the differential.equation (9.8) by P1f2” the
+following equation for the second asymptotic approximation:
+
+NACA TM No. 1217
+
+56
+
+0)?
+—.
+
+or
+
+If one substitutes for the integration constant C = -$2/4 + log 7,
+(7 is thus a new integration constant) one obtains
+●
+
+fn =ye
+2
+
+-~(w3)2
+
+and after integration
+
+(9.14)
+
+Because
+
+f~ (m) = 1
+
+~d
+
+f$ (w) = O,
+
+the solution ft = f; + f;
+satisfies the third boundary condition ft (w) = 10 Another integration
+of equation (9.14) gives as second asymptotic solution for f = fl + f2
+
+(9.15)
+
+This solution still contains two integration constants P and 7
+corresponding to the fact that only one of the three boundary conditions
+was satisfied. The asymptotic solution can, in the same manner, be
+T@ differential
+improved still farther by equating f =f1+f2+f3.
+equation for
+
+‘3
+
+was sol~ed by Blasius; a more detailed discussion is
+
+unnecessary.
+These two solu{ions, the power series neer q = O according to
+equat,ion(9.11) and the asymptotic solution.neer q =aI according to
+equation (9.15] now have to be fioinedtogether and the three integration
+
+NACA TM NO. 1217
+
+57
+
+*
+
+constants a, J3end 7
+in the following way:
+
+b
+
+serviceable, f, f? and f“ from the power series and the asymptotic
+eolu~ion are brought to agreement. Beca&e of the differ&tial
+equation (9.8) the higher derivatives will then automatically agree.
+IM this manner one obtains three equations for the three unlmown
+integration constants. The numerical calculation gives
+a=
+
+have thereby to he determined. This is effected
+At a point T = VI, where both solutions are
+
+0.332;
+
+~ = 1.73;
+
+7 = 0.231
+
+A table for f, f:, f“ taken from a treatise by L. Howurth (reference 18)
+is given in table.2*. The velocity distribution in the boundary layer
+u/U. = fs(q) according to equation (9.5) is represented in figure 30.
+~ comparison with the stagnation point profile-(fig. 16) it is striking
+that the velocity profile of the plate flow near the surface has a very
+slight curvature. At the surface itself it has an inflection point, that
+a2u
+o.
+is,for
+y=o:
+—=
+&2
+.
+The transverse component of the velocity in the boundery layer
+given by equation (9.6) is plotted in fi~”e 31. It is noteworthy that
+outside of the friction layer, for ~~a
+“
+
+v=
+
+v. = 0.865u0
+
+—.
+
+‘3
+r x
+
+The fact that on the outer edge of the boundary layer the transverse
+component V+o
+is caused by the deflection of the potential flow from
+the %ody due to the boundary layer thickness increasing downstre~
+For
+very large distances from the wall (far in the potential flow) the
+boundary layer solution does not go over exactly into the undistrubed
+potential flow u = U.;
+-- ‘v = O. This has to be tolerated as a (very
+slight) deficiency of the boundary layer solution.
+For the present case a separation of the boundary layer does not
+exist qlnce the pressure gradient equals zero.
+
+Friction Drag
+*
+
+E&om the solution given above the smface friction drag of the
+plate in longitudinal flow is to be calculated. According to equation (8.9)
+the friction drag for one side of the plate is
+
+.
+
+* See appendix~chapter XII.
+
+—
+
+—
+
+-—
+
+NACA TM No. 1217
+2
+
+w=
+
+2
+
+{L
+‘o
+
+1
+
+(9.16)
+
+y=o
+
+X=o
+
+with % denoting the width,
+equations (9.7) and (9.11)
+
+()$(YZ
+
+ax = q.1
+=0
+
+the length of the plate.
+
+According to
+
+(??)O
+=‘& f”’O)
+=~dl%
+Therewith the local surface shearing stress is
+
+(9.17)
+
+The friction drag according to equation (9.16) is therewith
+
+and therefore the drag of the plate wetted on both sides is
+
+(9.18)
+
+)
+If one introduces in the customary manner a dimensionless Meg
+by the equation
+
+‘%=
+
+N
+
+(F=2b
+
+coefficient
+
+2 = wetted area)
+
+F ~Uo2
+
+one obtains “forthe drag coefficient the formula
+
+(9.19)
+
+59
+
+NACA TM No. 1217
+
+b
+
+Displacement Thickness of the Boundary Layer
+
+%
+8
+
+By the development of the %oundsry layer on the plate, which
+increases downstream with ~,
+the poten~fal flow is deflected outward
+from the surface by an amount 5*, which is called the displacement
+thiclmess of the boundary layer. Tt cen he easily calculated from the
+velocity distributim in the boundary layer, as follows: Let yl denote
+a point outside the boundary layer; then according to the definition
+for 8*
+Yl
+Udy = Uo yl -8*
+)
+(
+f
+IJ
+y=o
+or
+
+“t
+
+8’=y=o -~F
+\
+
+(9.20)
+
+According to equation (9.5)
+
+[(1
+=
+
+-~p
+
+=~[’
+
+.~;”
+
+Since the point
+
+~ = 71
+
+=
+
+~ -f@%
+
+v~ – %J
+
+]
+
+lies outside of the boundary layer, one can put
+
+for f(~) the first approximation of the asymptotic solution according
+to equation (9.13), thus
+*
+
+f(lll)
+
+Thus one finds fw
+
+= ql– P=?-Q -1.73
+
+the displacement thickness of the boundery layer
+
+NACA TM No. 1217
+
+60
+
+The distance from the surface y = 8* is also shown in figure 30. Thus
+the stream lines of the potential flow are, because of the friction
+effect, deflected outward by this amount.
+The actual boundary layer thickness 5 cannot be given accurately
+since the friction effect in the boundary layer thic?mess decreases
+asymptotically toward the outside. The component of velocity parallel
+to the surface u
+is asymptotically converted into the velocity U.
+of the potential fl,ow(the function f:(q) aswptotically approaches the
+value 1). If one wants to define the boundary layer thiclmess as the
+point where the velocity u = O.gg U. (full value), one obtains for it
+according to table 2, q = 5.0. Therewith one has for the thus defined
+boundary layer thickness
+.
+
+The thus defined boundary layer thickness equals about-three timss the
+displacement thiclme.ssof the boundary layer.
+Let here also be introduced the value for the momentum thickness d,
+needed later. This latter is a measure for the momentum loss due to
+friction in the boundary layer ana is, as indicateilbei?orein equation (6.32),
+defined by the equation
+
+r
+
+a
+
+8=J <(+-jay
+
+,
+
+y=o
+The calculation results, because of equation (9.5), in
+m
+
+-9=
+
+ft(l-f:)dq~=
+
+0.664 @
+
+(9.21b)
+
+f
+
+d~=o
+
+Finally the form parameter becomes theretith
+
+.
+
+61
+
+NACA TM NO. 1217
+
+(9.21c)
+
+Experimental investigations of the laminar boundary layer on the flat
+plate were performed byB. G. van der Hegge Zynen (reference 19) and
+M. Hsnsen (reference 20). b all essential points the theoretical results
+were well confirmed. The measurements showed that the laminar boundary
+layer exists to about the Reynolds number (U. x/v)
+= 3.5 to 5 x105,
+crit
+if x denotes the length of run of the boundary layer. For lager
+Reynolds nuniberstransition to the turbulent state of flow takes place.
+Fifth lecture on January 5, 19k2.
+b. The Boundary Layer on the Cylinder (symmetrical case)
+The integration method of Bla@ius given in the previous section
+was used by Hiemenz (thesis G5ttingen 193d.)for calculating the boundary
+layer on the circulsr cylinder. The same method was later further extended
+by Howarth (reference 15) to the general case of a cylindrical body of
+arbitrary cross section. This method will.be briefly presented for the
+symmetrical case. One considers (fig. 32) a cylindrical body with
+symmetrical cross section in a flow’approaching in the direction of the
+symmetry axis with the velocity Uo. Let x be the arc length along
+the contour, measured from the front stagnation point, y the vertical
+distance from the surface. Let the potential flow U(x) be given by
+point (x = O),
+its power series development in x. At the s~atiori
+u(x) = o, and for the symmetrical case only the odd terms of the power
+series are different from zero. Therefore:
+
+u(x) = %x
+
+The coefficients U1,
+
+~,
+
+5
++ U3X3 + Ux. +...
+5
+
+(9.22)
+
+. . . depend solely on the shape of the
+
+body and are therefore quantities tiown from the potential flow.
+The stationary boundary layer equations accordhg to equati~ (8.3)
+ere also valid for this case with a curved surface and therefore read:
+au
+‘S+
+
+au
+p%=
+
+u dU
+z+vg
+
+a2u
+\
+(9.23)
+
+●
+
+62
+
+..
+HACATM
+
+From eqwtion
+
+No. 121.7
+
+(9.22) one obtains for the pressure term:
+●
+
+( , 2+;.]
+
+TJ!g =u1~x+4x3+6u ~
+[
+
++
+
+(9.24)
+
+u’
+
+The continuity equation is again integrated by the stream function:
+.=*.
+*
+
+.=_2.?K
+ax
+
+h’
+
+(9.25)
+
+It is now necessary to find a suitable formulation for the veloclty
+distribution U(X, y), V(X, y) and therewith for the stream
+function V(x, y). In analogy to equation (9.22) a power series in x
+suggests itself for U(X, y) as well, with coefficients, however= which
+are dependent on y. It is important to find a form where the coefficients (or functions) dependent on y have a universal character, that
+is, need not be calculated anew for each shape of body, but may be calculated once for all. Howarth (reference 15) succeeded in finding such a
+formulation.
+For the distance frcm the surface one introduces the dimensionless
+variable:
+
+n =Y~
+
+‘1
+r
+
+*(9.26)
+
+‘“
+
+The expression (9.24) for the pressure term suggests that the following
+equation be selected for W
+
++=;
+r{
+
+[
+
+’32
+
+ulxfl(~) + 4u3x3f3(q) + 6x5 U5g5(~) + —
+
+This yields:
+
+h5(~)
+
+‘1
+
+(, = differentiation with respect to
+
+U = ~xf~
+
++...
+1}
+
+(9.27)
+
+q):
+
++ 4u3x3f~ + 6X5
+
+(9.28)
+-
+
+I“,g$+$+l+:oo
+
++&@e ob~ins
+
+thfs eq~tion
+
+from that of’Blasius ~ccordi~
+
+equation (9.3) by substituting for U.
+equation (9.22).
+
+to
+
+the first term of the series
+
+.
+
+63
+
+NACA TM No. 1217
+
+uf~+12ux2f?
+2=1133
+
+au
+—=—
+ay
+
++30x4
+
+[1
+
+IZ2
+ug’+~ht
+55
+%5
+
++..
+
+F
+‘h
+
++
+
+v
+
+f-
+
+●
+
+.
+
+●
+
+●
+
+(9*29)
+
+1
+●
+
+(9.30)
+
+After insertion of the expressions (9.24) and (9.28) to (9.32) into the
+first equation (9.23) one obtains by comparison of the coefficients a
+system of ordinary differential equations for the unknown functions f~>
+
+terms with
+
+gives the differential equation
+
+Ux
+1
+
+f2 -ff”=l+f;”
+1
+11
+kftft
+13 -3f;f3
+
+–
+
+6u1~x5
+
+6f~g; _5f;g5
+
+_flg;
+
+= I + g;”
+
+6U3%5
+
+fjf?ht –5f”h
+
+–flh~
+
+=;+
+
+●
+
+f f“ = 1 + f;~?
+1 3
+(9.33)
+
+15
+
+15
+
+h~”–8(f~2-f3f~)
+
+Formulation of the flow function according to equation (9.27) has
+thus accomplished the elidnation of the coefficients depending on.body
+
+64
+
+NACA TM No. 1217
+
+shape (ul, U3,
+fl, f3,
+
+●
+
+●
+
+●
+
+s .) from the differential equations-fd!rthe functions
+
+. which thus now have a universal character.
+
+The boundary conditions.for the functions
+
+‘1’ ‘3> “ “ “ ‘O1lOw
+
+from
+.
+
+Y =0:
+
+,
+
+U=T=O
+
+by comparison of equation (9.28) with equation (9.22); they are
+7 = 0:
+
+V
+
+=“:
+
+fl=f;=o;
+
+f?=l;
+1
+
+‘3
+
+fI=~;
+3
+
+=ft=o;
+3
+
+=gt=()
+‘5
+5
+= h? =0; , . .
+‘5
+5
+
+g?=~;
+5
+
+h?=o;
+5
+
+(9*34)
+.
+
+co.
+
+A
+
+T~e differential equations (9.33) are all of the third order, and
+equation (9.34) gives three boundary conditions for each. The differential equation for f (~) is non-linear and is identical with the differential.equation (6.2i ) obtained in chapter VI for the stagnation point
+flow:
+as follows by comparison of equation (6.26a)
+V=ES
+‘1 ‘v;
+with equation (6.26). All the remaining differential equations in
+equation (9.33) are linear, with the coefficients determined by the
+functions of the preceding approximations.
+The solutions of the differential equations (9.33) are best obtained ..
+by numerical integration. The functions fl and f3 were already
+calculated by Hiemenz (reference 10). Howarth (reference 15) improved
+the tables for f3 and recently Nils l&5ssling (reference 16) calculated
+as W811. The f~ which is identical with cp~ according to
+and h
+5
+‘5
+equation (6.28) was tieady given in figure 16. The fiction” f~ can be
+t from figure 34. The .
+seen from figure 33, the functions gt and
+5
+%
+.numerical values are compiled in table 3.
+
+‘
+
+●
+
+Concerning the applicability of this calculation method it must be
+mentioned that for slender body shapes the series for U(x) andu(x,y)
+converge poorly. The reason is, that for these body shapes U(X)
+has
+a very steep ascent in the neighborhood of the stagnation point (fig. 35),
+while showing a rather flat curve further on. Such a function cannot be
+developed readily fn$o a Taylor series. For such body shapes maqy more of
+the functions of the differential-eqution system (9.33) would be required
+
+.
+✎✍
+
+65
+
+NACA TM No. 1217
+
+*
+
+‘k
+
+have been calculated so far. For blunt bodies, as for instance the
+circ~
+cylinder, the convergence Is considerably better so that one
+proceeds rather far with this calculation although not always up to the
+point of separation.
+than
+
+Howarth (reference 15) also performed the corresponding calculation
+for the unsyqetrical case where the even coefficients elso appear in
+the power series for U(x). This is the case for a symmetrical body
+at an angle of attack and quite generally for any unsymmetrical be@.
+ll%ssling (reference 16) made the application to the rotationally
+smtrical
+case.
+Circular Cylinder
+The boundary layer on the circular cylinder will be treated as an
+example for the application of this method. Whereas ILLemenz(reference 10)
+took a pressure distribution measured by him as the basis for this case,
+we shall here calculate with the potentisl-theoretical pressure distribution.
+The velocity distribution of the potential flow reads, witQ the symbols
+according to figure 36,
+u(x) =2uosinqk2uosin:
+
+(9.35)
+
+The power series development gives:
+u(x) =2U
+
+h
+
+. .
+
+o~-*(:)’+*($+.
+{
+
+(9.36)
+}
+
+comparison with equation (9.22):
+U.
+U1 =23
+
+u3=-
+
+23;
+3! $
+
+u
+
+_ 2 ‘o.
+5
+5? ~5’
+
+●
+
+✎
+
+✎
+
+(g.%a)
+
+Therewith follows from equation (9.26):
+(9*37)
+
+It follows that for the velocity distribution from equation (9.28)
+
+NACA TM NO. 1217
+
+66
+1 U(x,y) =Zf?
+.—
+2
+UOR1
+
+4 z3ft+~=
+3? ()
+R
+35:R5 (7(
+
+6g~+20h~
+5.)
+
+-+.*.
+
+(9.38)
+
+One further ce3culates the position of.the separation pOint xA which
+$
+is, according to equation (8.5) determined by
+= O. Therewith
+()
+y=o
+results from equation (9.36):
+‘A
+. f;(o) ~–~f”(o)
+33 3
+
+‘A
+~
+()
+
+3“
++...
+
+=0
+
+4-
+
+*
+
+(9.3%)
+
+.
+
+With the numerical values
+
+f:(o) = 1.23264; f~(o) = 0.7246
+
+one finds:
+
+(9*39)
+.
+
+Hiemenz (reference 10) based his calculation on his experimental
+pressure distrilnztion;he calculated the separation point to be at
+= 82°, whereas his measurements gave q = 81°. This result 1s
+A
+‘A
+considerably different from that obtained with the potential-theoretical
+pressure Mstrlbution. The reason is that for a body as blunt as the
+circular cylinder the experimental and the potential-theoretical pressure
+distribution in the neighborhood of the separation point differ greatly.
+The method described here of calculating the boundary layer by a
+power-series development starting from me stagnation yoint has found
+but little acceptance because of the extensive calculation required.
+It is, however, indispensable for fundamental considerations, since there
+exist no other exact solutlons of the differential.equations of the
+boundary layer for the flow about a body.
+Thus approximation methods came into use-for the practical performance of boundary layer calculations; they till be discussed in the
+following chapter. It is true that their accuracy is sometimes considerably lower than that of the previously dfscussed exact solutions.
+c. Wake behind the Flat Plate in Longitudinal Flow
+The application of the boundary layer equations is not absolutely
+also bg applied if
+limited to the presence of solid walls; They w
+there is present within the flow a layer in which the friction effect is
+Vhis result varies somewhat if in the series developmerlt
+equatim (9.38a)3 one tales tither terms into consideration- However,
+for this purpose one would have to calculate at least up to the term X7.
+
+.
+
+NACA TM NO. 1217
+
+9
+Ii
+
+67
+
+predominant. This is the case for instance when within the flow two
+layers of different velocities ad~oin, as for instance in the wake region
+behind a body or at the outflow from en opening. In this and the following
+chapter we shall treat two examples of such flows which we shall later
+encounter again in the discussion of turbulent flows.
+The wake flow behind the flat plate in longi-tudinalflow is chosen
+as the first exsmple (fig. 37). At the trailing edge of the plate the
+two boundsry layer profiles grow together and forma “wake profile” the
+width of which increases with distance while the velocit~ decrement at
+its center decreases. The size of the “wake” is directly connected with
+the drag of the body. Otherwise, however, the form of the velocity
+distribution in the wake at a large distsnce from the body is not dependent
+on the shape of the body, whereas the velocity distribution very close
+behind the body haturally depends on the boundary layer of the body and
+on any existing separation.
+
+.
+
+I&om the velocity distribution measured in the wake one may calculate the drag by means of the momentum theorem in the following msnner.
+The momentum theorem states: The variation of the momentum with time
+( = mom&tum flow through a control area fixed in space) equals the
+sum of tie resultant forces. By resultant forces one has to understand:
+1. Pressure forces on the control area, 2. Extraneous forces, which sre
+transferred from solid bodies to the flowing fluid’,for instance the
+shesring stress at the surface which gives the friction drag. For the
+present case the control axea AAIBB1 is placed as indicated in figure 38.
+Let the boundary AIB1 which is parallel to the plate be so far distant
+from it that it lies everywhere in the undisturbed velocity Uo. l?hrthe~
+more, the resr cross section BBl is to lie so far behind the plate that
+the static pressure there has the same undisturbed value as in front of
+the plate. Then the pressure is constant on the entire control area, so
+‘chatthe pressure forces tie no contribution. n c~ctiating tie
+momentum flow through this control area one has to consider that, due to
+continuity, fluid must flow out through the boundsry ~B1s
+nmely the
+difference between the lager quantity flowing through the cross
+section AAl and the smaller quantity flowing through the cross
+section BBlo The cross section AB does not make a contribution to the
+x-momentum, since for reasons of symnetry the transverse velocity on it
+equals zero. The momentum balance is given in the table below, with
+entering momentums counted as positive, outgoing ones qs negative.
+●
+
+63
+
+NACA TM NO. =17
+
+Cross section
+
+3 sec]
+[.7s
+
+Momentum flow in x-direction
+= volume xdensityxvelocity
+
+AB
+
+o
+
+0
+
+h
+‘%
+
+,
+
+.
+
+.
+
+i?
+
+h
+
+buody
+
+pb
+
+[
+
+Uo%y
+1
+h
+
+B B1
+
+–b
+
+Udy
+
+-pb
+
+U2@
+/o
+
+1
+h
+AIB1
+
+--b
+
+h
+(U. -U)dy
+
+-pb
+
+(Uo-u)dy
+/0
+
+Io
+
+E =
+Control sxea
+
+U
+
+.
+
+z MasB
+=0
+
+z
+
+Momentum Flow
+=W
+
+The total momentum loss of the flow for the present case,equals the
+drag W of,one side of the plate. Thus one obtains
+
+U(uo-u)dy=ll
+
+W=b
+fo
+
+$
+
+P
+
+U(uo-u)dy
+
+—
+
+(9.40)
+
+IIo
+
+The integration therein may be extended from y = O to _m, instead of
+from y = O to h, since for y> h the integrand in equation (9.40) ‘vanishes. For the drag of the plate wetted on both @de_s one obtains
+therefore:
+
+..
+
+“- ““ -
+
+.
+
+NAtiATM No. ~17
+
+63
+
+Zw=bp
+
+I
+
+Q-u)
+
+dy
+
+(9.41)
+
+b equations (9.40) and (9.41) the integrals are to be extended over the
+wake as indicated at a distance behind the plate where the static pressure
+has its undisturbed value. However, one may naturally apply equations “
+(9.40) ~d (9●
+41) also to the bOU~
+layer on the plate at a certain
+point x; then they give the drag of the part of the plate from the
+leading edge to this.point. The definite integrals in equations (9.40)
+and (9.41) represent physically the momentum loss due to the friction
+effect. As mentioned before, it is customary to introduce for this
+integral also the momentum loss thickness O by the following equation
+(compare equation (6.32)).
+
+u(uo-uj~
+
+uo2i3 =
+
+(9.42)
+
+I
+.
+
+.
+
+Therewith the formula for the drag w
+with equation (9.40):
+
+w =b
+
+also be written, by comparison
+
+pUo28
+
+(9.43)
+
+The velocity ~stribution fn the wake, particularly at large
+distance x behind the plate in longitudinal flow (fig. 37) is to be
+calculated next. This calculation must be performed in two steps:
+1. By a development “from the front”, that is, by a calculation which
+follows the further development of the Blasiu-oundary
+l~er profile
+present at the trailing edge of the plate. 2. By a development “tiom
+the rea” that is, by an asymptotic cal~ulation for the wake, under the
+assumption that the difference velocity ‘
+Ul(x, y) = U. -u(x,
+.
+
+y)
+
+(9.44)
+
+is small.
+The first ~alculation was perfomedby
+S. Goldstein (reference 21)
+and is very troublesome; the second was indicated by Tollmien (reference 3)
+and yields rather simple laws, in particular also an exact solution of the
+differential boundary layer equation. Since such exact solutions are
+
+.
+
+7’0
+
+NACA TM No. 1217
+
+comparatively rare and since, moreover, the asymptotic law for the Wake
+applies not only for the flat plate in longitudinal flow but for any
+arbitrary body shape, this asymptotic so%ution will be treated here
+somewhat more thoroughly. The wake velocity Ul(x, y) introduced b
+equation (9.44) is assumed to be so small in comparison th the free
+are negligible
+stresm velocity U. that the second-power terms {~/Uo)%
+
+a
+
+d
+
+relative to 1. Moreover, the pressure term dp/ti in the boundary l~er
+equation,is to be set equal to zero for the first asymptotic approximation.
+~-erewith the differential boundary layer equaticm (8.5) beoo~~, for the
+present case:
+
+(9.45)
+
+With the boundary cmiitions:
+
+Y
+
+Y
+
+= o:
+
+aul
+
+—=0
+
+&
+
+(9.45a)
+
+= m: ‘1 =O(u=uo)
+
+For the solution of the differential equation (9.45) one introduces as
+before in the plate flow according to Blasius? equation (9.3) the new
+variable
+(g.k6)
+
+Further, one uses for
+
+ul
+
+the equation:
+
+‘1 = ‘O c (~jidd
+
+(9*47)
+
+The distance x
+
+from the trailing edge of the plate 1s thus made
+1
+for
+dimensionless by @ividing by the plate length. The power -~
+
+.
+x
+
+is given by the fact that the momentum integral.which, according to
+must be independent of x. With
+equation (9.41),gives the plate dmg
+the second-power terms neglected the drag of the plate Wetted on both
+sides is, according to equation (9.41):
+
+.
+
+71
+
+NACA TM No. I-217
++m
+
+!m=bpuo
+
+(9.48)
+
+y%Y
+/ Y&m
+
+One finds further:
++W
+
+-—1
+2
+
++a
+~(x,y)dy
+
+= U. c
+
+/
+d-en
+
+()
+?
+
++m
+%(ll)dq=Uc;
+o
+
+f
+~[
+I@-.
+
+g(~)dq
+rf o
+
+(9*49)
+
+LI-C4
+
+and therewith:
+
+*2W .bpuo2c
+
+d
+
++a
+
+~#
+o
+
+%(T) d~
+
+(9.50)
+
+d--
+
+The calculation of the single terms in equation (9.45) gives:
+
+(9.51)
+}
+
++=uo
+c($)
+By insertio~~to
+
+equation (9.45) one obtains after division by
+
+CU02 (x/2) 2X–1
+the following differential equation for the velocity
+distribution g(q):
+
+g~+$~gf+
+.
+
+1
+@3=o
+
+(9.52)
+
+NAOA TM No. 1217
+
+72
+.
+with the boundary conditions:
+n = 0:
+
+e’=o;
+
+n=~:
+
+g=o
+8
+
+A single integration gives:
+gl+~~g=K=O
+
+where, becau~e of the boundary condition at q = O; the integration
+constant K must be zero. Repeated integration gives the solution:
+2
+-+
+
+g=e
+
+(9*53)
+
+where a multiplicative integration constant may be put equal to one
+without limiting the generfiity since the velocity ‘Ustribution U1
+still contains, according to equation (9.47)5 the ~tiplicative
+free
+constant C. This ccnstant C is determined from the consideration
+that the plate drag obtained from the momentum loss (equation (9.50))
+must be the sam6 as the frictional drag of the plate. First,
++a
+
++m
+
+●
+
+_f
+4
+
+f
+
+J
+
+g(q) dq = I
+
+e
+
+dq =2p
+
+J
+
+-w
+
+.
+
+-a
+
+and therewith frouequation
+
+(9.50):
+
+2W=
+
+pb U02
+●
+
+●
+
+On the other hand, the friction drag of the plate wetted on both sides
+was according to tie solution of Blasius (equation (9.18))
+2W=
+
+1.328 PUO
+
+2
+
+VI
+~
+r o
+
+.
+
+.
+
+Therefrom follows
+
+2C~;-= 1.328
+
+and
+
+73
+
+NACATM NO. 1217
+
+c
+
+_ 0.664
+
+(9.54)
+
+r n0
+Thus the final solution for the wake velocity for the flat plate in
+longitudinal flow becomes:
+
+-.
+
+IL.
+
+(9=55)
+
+The velocity distribution of this asymptotic law is represented in
+figure 39. It is noteworthy that the function for the velocity distribution
+is identical with Gaussi error function. = keeping tith the hypothesis
+the law according to equation (9.55) is valid only for large distances
+behind the plate, according to the calculations by Tollmien (reference 3)
+for x ~ 31.
+The development of the wake from the front, performed by Gcldstein
+is mlidonly
+for comparatively small x/Z. However, for intermediate
+Xjl both solutions can be joined to sorb extent, so that one then obtains
+the velocity distribution in the entire wake. Such a figure is given by
+Tollmien (reference 3).
+Sixth Lecture on Januery 12, 1942.
+d.
+
+The Plane Jet
+
+A further example of a flow without bounding wall to which the
+boundary layer theory is applicable is the outflow of a jet froIua hole.
+The problem to be treated is the plane stationery one where the jet goes
+out from a long narrow slot and mixes with the surrounding fluid at rest.
+This is one of the rare cases where the differential boundary layer
+equations may be integrated exactly. The calculations were perfommdby
+E. Schlichting (reference 22) and W. Bickley (reference 30) and will be
+discussed a little mre thoroughly.
+
+.
+
+Due t: the friction effect the jet entrains a part of the fluid at
+rest and sweeps It along. There results a streoline pattern like the
+one drawn in figure 40. Let the x-direction coincide with the jet axis
+and the origin lie in the slot. It then immediately %ecomes clear that
+the width of the set increases with the distance x and the mid-velocity
+decreases with the distance X. For the calculation the slot is assumed
+to be infinitely narrow. In order to make the volume of flow, together
+with its momentum,.finite, the velocity in the slot is then infinitely
+large. Again, a? in the previous example concerning the wake flow, the
+pressure term dp/dx my be neglected since the pressure varies only
+very little in the x-direction. The smallness of the pressure term can
+
+ITACATM NO. 1217
+
+74
+
+●
+
+also be shown subsequently from the finished solution. Thus the differential boundary layer equations for the present case read, according
+— to
+equation (8.3)-:
+,
+
+1
+}
+
+(9.56)
+
+,
+
+with the boundary conditions:
+Y =0:
+
+V=o;
+
+Y =Co:u=
+
+o
+
+%=0
+
+(9.56a)
+
+Since the pressure is constant, the entire momentum flow in the xdirection for control area fixed in space (compare figure 40) must be
+inde~endent of the distance from the hole x. If one chooses the lateral
+boundaries of the control area at so large a distance from the axis that
+there u = O, then
++m
+
+U%y
+
+J=P
+
+= constant
+
+(9.57)
+
+f
+
+It is to be noted for the integration of the equation of motion
+equation (9.56) that for this problem, as before for the plate in longitudinal flow; no special length-dimension exists. Thus affinity of the
+velocity profiles U(X, y) is suggested, that is: with b signifying
+a suitable width of the jet, the velocity profiles are only functions
+Accordingly one uses the following expression for t,hestream
+of y~.
+function ~:
+
+$=
+
+’pf(:)
+
+‘Xpf(a
+
+(9958)
+
+~
+
+NACATM
+
+b
+
+No. 1217
+
+75
+
+The two - at first unknown - exponents p
+the conditions that
+
+end
+
+q
+
+are detemined from
+
+the momentum flow for the x+rectim
+is independent of
+according to equation (9.57), end that
+the acceleration terms, for instance u
+
+h
+-,
+
+ax
+
+x
+
+and.the inertia
+
+term in eqution (9.56) are of the same order of magnitude
+e.tld
+hence must be of the sdegree in X.
+This yields the two equations
+
+2P-Q=O
+(9*59)
+a
+
+-2q=1=p-3~
+1
+
+It follows:that
+
+.
+
+p = l/3;
+
+9
+
+q= 2/3
+
+(9.60)
+
+Therewith the final equations, after addition of suitable constant factors,
+read as follows:
+
+(9.61)
+
+* = #/2
+
+Therefra
+
+xlls
+
+f(q)
+
+(9.62)
+
+one obtains, with
+
+the following expressions for the velocity components”snd their derivatives:
+
+76
+
+NACA TM No. 1217
+
+u=
+
+4
+
+v=
+
+(f+f’
+
+(9.63)
+
+)
+}
+)
+
+&=
+ax
+
+4/3
+
+a2u
+
+.
+
+“
+
+; (2~f”-f‘)
+
+-x
+
++/3
+
+$ftw
+
+‘2=X
+By substitution into the differential equation (9.56) there results,
+1 -5/3
+after csncelling the factor
+the following differential equation
+Tx
+‘
+for the flow function f(~):
+ftp + ff’n+ ftw = o
+
+(g.64)
+
+with the boundary conditims:
+
+(9.64a)
+
+As for Blasiust plate flow here also au ordinary differential equation (9.64)
+was obtained from the two partial differential equations (9.56) by means of
+the similarity transformation equation (9.61).
+Here also, as inmost
+boundary-layer problems, the Mfferential. equation is non-linesr end of
+the third order.
+The integration of this differential equation (9.64) is attained in
+a surprisingly simple manner. First, one obtains by a single integraticm
+fft + flt= constant = o
+
+(9.65)
+
+.
+
+.
+
+NACA TM NO. ~7
+
+77
+
+The constant of integration therein is zero because of the boundary
+condition f“(o) = O. The secmd order differential equatim now obtained
+could be integrated once more if a factor 2 were present in the first
+term. This factor can be obtainedby perfoming the following further
+sitilerity trani3forgu3tion:
+One puts:
+
+(9.66)
+
+~=a~
+f=
+
+2a
+
+(9.67)
+
+F(g)
+
+a is a free constant which is determined later. With the equations (9.66)
+and (9.67) one obtains from equation (9.65), the prime now signifying
+differentiation with respect to ~,
+
+(9.68)
+
+F~+2FF~=0
+
+with the boundary conditions:
+~ = 0:
+
+F=O;
+
+This differential equation can nowbe
+
+~==:
+
+(9.68a)
+
+F’=0
+
+integrated again and yields
+
+F~+F2=K
+
+The constant of integration K is obtained from the boundary conditions,
+equation (9.6*), as K = 1, if one stipulates FS(0) =1,
+whlchis
+possible without limiting the generality because a is still present as
+a free constant in F. One now has for F the first order non-linear
+differential equation
+.
+
+F~+F2=l
+
+(9.69)
+
+which is a Riccati differential equation. The integration yields
+
+.
+
+=
+E.—
+
+dF=
+1 – F2
+
+Llog==l+F
+2
+1
+
+/
+
+and therewith for the inverse function
+
+arc tad
+
+F
+
+78
+
+NACA TM No. i217
+-2E
+F=tezih~=
+
+l-e
+1+*
+
+-2E
+
+(9.70)
+
+~
+1tm2 E. If one inserts the solution found into
+‘the-r*’
+z ‘
+equation (9.63), one obtains for the velocity distribution
+
+(9.71)
+
+The velocity distribution over the width of the jet calculated frdm this
+equation is represented in figure 41. The free constant a remains to
+be detemined. This canbe done from the condition (equation (9.57))
+according to which the momentum flow in the x+iirection is independent
+of x. IYom equation (9.71) and (9.57) one obtains
+v
+(9.72)
+
+Jo
+
+=v
+
+Let the momentum J for the ~et be a prescribed constant which is, for
+instance, directly relate~ to the excess pressure under which the jet
+flows from the slot. Then a becomes, according to equation (9.72),
+
+a=
+
+()
+
+l/3
+
+0“8255 +
+W
+
+(9.73)
+
+and therewith the velocity distribution
+1/3
+u = 0.4543 ~J2
+
+l-ta%
+(
+
+)
+
+()
+v = 0.5503 ;:)1”
+
+E = 0.2752 ~
+()Pv
+$,
+
+~,
+
+1/3 y
+V3
+x
+
+(1-td2E)-tdE}
+
+(9.74) ,
+
+w
+
+79
+
+NACA TM No. ~3-7
+
+The value of the lzrsnsversecomponent of the velocity at the edge of the
+jet (y = =) also is noteworthy. From equation (9.74) one finds for
+this lateral inflow velocity
+
+i
+
+%
+
+(9*75)
+
+One can further calcu@te the flow volune for a layer of unit height
++m
+Q=P
+u dy. One finds
+L
+!$.=3.3019
+
+1/3
+
+()
+y
+
+(9.76)
+
+T!hefldw volume increases downstremn, since fluid at rest is carried
+along from the side.
+
+.
+
+The solution indicated here naturally has a singular point at
+x= o, since a infinitely narrow slot with infinitely large exit
+velocity was assumed. Actually for a nerrow slot of finite width one
+has inmmdiately behind the slot opening a velocity distribution that is
+rectangular across the Jet cross section but which at some distance is
+transformed into the bell+haped distribution found here with width
+– l/3
+b - ~~3
+and mid-velocity - x
+.
+Finally it should be mentioned that the corresponding rotationally–
+symmetrical problem where the jet goes out from a very small circular
+hole also can be solved in closed form. (compare H. Schlichting
+(reference 22)). ~ this case the width of the jet is proportional to x
+end the midvelocity proportional to X-l.
+
+e.
+
+.
+
+The Boundary Layer for the Potential Flow
+
+U = Ulxm.
+
+Another class of exact solutims of the boundary layer equations
+will be discussed briefly which includes the plate in longitudinal flow
+and the stagnation point flow as special cases. Falkner and Skan
+(reference 37) have shown that, just as for Blasius’ plate flow, the
+boundary layer differential equations ~or the potential flow
+
+u(x) =Ux~
+
+-—
+
+m
+
+(9.77)
+
+IUCA TM No. 1217
+
+Em
+
+can be reduced by a similarity transformation to an ordinary differential.
+equation (u = constant, m>o
+accelerated, m< O retarded flow). For
+b is the stagnation point of the flow. For m = O one
+m> O.x=
+obtai&
+U = U1 = Uo, therefore the plate flow; m = 1 gives U = UIX~
+therefore the stagnation point,flow according to equation (6.17).
+The differential equations of the boun@ry
+
+layer read
+
+—
+
+&+av_o
+ax
+
+by
+
+Ug
+
+=mu
+
+The pressure term becomes
+2U+1
+12
+
+i?
+
+x
+
+As a new Independent variable one introduces
+
+(9978)
+
+and the continuity equation is integrated by introduction of a stream
+function for which one uses the equation:
+
+(9*79)
+
+$=~~&%
+
+One has
+
+m-l
+.
+
+snd one obtains
+
+.
+
+81
+(9.80)
+
+au
+—=ulxml
+&
+
+v=
+-r
+
+{
+
+mq’+~~cp”
+2
+
++~x~
+
+=q+’-lg
+2
+[
+
+}
+
+2
+
+Cpt
+1
+
+(9.81)
+
+After insertion into the first equation of motion and division by
+. .l~-l
+
+one obtains, whm
+
+al
+m+l
+
+—B
+
+=
+
+the following differential equation for
+
+(9.82)
+
+cp(~):
+
+9*” = - qrp”+ p (@2 -al)
+
+(9.83)
+
+Boundery conditions:
+!5= 0:
+The cliff
+erential equation (9.83) was solved for different values by
+~tree
+(reference 38). The result is given in figure kla. The
+corresponding values of f3 and m are given in the following table.
+
+‘
+
+NACA TM No. 222.7
+
+82
+
+m.
+
+B
+
+-0,0654
+
+-0.14
+
+0
+
+0
+
+0.111
+
+0.2
+
+0.333
+
+0.5
+
+1
+
+1
+
+u
+
+.
+
+1.6
+
+4
+-
+
+For accelerated flow (m> O, B 7 O) one o%tains velocity profiles
+without inflection points, for retarded I?1OW (m< O, f3< O) velocity
+pdofiles with inflection points. Separation occurs for
+$ =_
+
+0.199,tha% i4m=-O.@l
+
+4.091
+, thus
+Separation takes place for the potential flow U(x) = u-x
+for very weak retardation. Compare chapter XI a, where%lmost the same
+result is obtained from an approximation calculation.
+~.
+Speoial cases:
+1. Stagnation point flow:
+
+—
+
+It is obtained for
+;“P=l
+
+x q(~). . These are the seineexpressions as
+l-%w=mm=l
+‘
+for the s&ation
+point flow, equation (6.26a) and (6.27a), SJ.so(6.19)
+and (6.26b).
+The differential equation (9.83) abo is transformed into
+the equation of the stagnation point flow (equation (6.28)).
+
+Then
+
+~ =
+
+2. Plate in longitudinal flow:
+Itl=
+
+o;
+
+This case is obtained for
+.
+
+fl=o
+
+8“
+
+.
+
+83
+
+NACA TM NO. 3217
+
+variable according to equation (9.3). ~thermore,
+$=’~~
+for ~
+q“(~)=@
+
+q(~);
+
+thus
+
+T=*
+
+~
+
+compared with the expression
+
+for the plate flow equation (9.4). Because of
+f“(~), snd
+
+Q’”(L)=
+
+is for this case transformed into
+with equation (9.8).
+
+becomes
+
+~=~,
+
+2f~n(~), ths different%
+
+d?
+equation (9.83)
+
+2f~” (7) +ff’’(~) =0.
+
+This is identical
+
+CHAFKR X. APPROXIMATE SOLUTION OF THE BOUNDARY LAYER EQUATION
+BY MEANS OF THE MOMENTUM THEOIZIZM
+
+(JrARMAN+o~
+a.
+
+METE@,
+
+PLANEPR(XUJIM)
+
+The Flat Plate in Longitudinal Flow
+
+The examples of exact solutions of the boundary layer equation
+discussed in the previous chapter give sufficient proof of the rather
+considerable mathematical difficulties in solving the differential
+equation. Yet the exemples treated were selected as simple as possible.
+Th some other cases the mathematical calculations me still more difficult
+- than in those-examples. Particularly the problem of flow about a body
+of arbitrarily prescribed shape cannot, in general, be solved by exact
+solution of the differential equations of the boundary layer. Just this
+problem, however, is of special practical importance, for instance for
+the calculation of the boundery layers on airplane wings.
+
+.
+
+There exists therefore a tendency to apply at least approximate
+methods, even if their accuracy is sometimes not quite satisfactory,
+for cases where the exact solution cannot be ol)talnedwith a reasonable
+expenditure of calculation time. Such simpler approximate ~olutions can
+be attained if one does not attempt to satisfy the differential boundary
+layer equation for every psrticle of fluid. Instead one selects a
+plausible expression for the velocity distribution in the boundary layer
+snd satisfies merely the momentum equation which is obtained by integration from the equation of motion. A method on this baqis for the
+plane prob+em of flow about sn ~bitrary body was worked out by von Karman
+and Pohlhausen.(references 23 and 24). We shall try out this method-in
+this chapter at first on the siqler case of the flat plate in longitudinal flow, where no press~ne variations exist. For this special case
+the momentum theorem yields the statement that the momentum loss of the
+flow through a control area fixed in space according to figure 42 equals
+the friction drag W(x) of the plate from the leading edge (x = O) to
+
+84
+
+NACA TM No. 3217
+
+the point x. Application of the momentum theorem for this case was
+discussed in detail in chapter IX; for the dr~ of the plate wetted on
+one side according to equation (9.40) It had resulted in the formula:
+
+#
+
+m
+&
+
+w(x) =llp
+
+U(uo-u)dy
+
+/
+
+(10.1)
+
+Jy=o
+On the other hand the friction drag can also be expressed as the integral
+of the surface shearing stress, namely:
+x
+
+W(X)
+
+I
+
+=b
+
+To
+
+(X)
+
+(10.2)
+
+ik
+
+IJx.o
+
+In fomning the integral (equation (10.1)) it is to be noted that the
+integrand outside of the boundary lqyer, where u = Uo, does not make
+‘a contribution. By comparison of equations (10.1) and (10.2) It follows
+that:
+,
+m
+
+T=
+
+o
+
+P&
+
+U(uo-u)dy
+
+(10.3)
+
+f
+
+IJy=o
+If one introduces mxreover the momentum loss thickness, as defined in
+equation (9.42), equation (10.3) csn also be written in the form:
+
+(10.4)
+,.
+
+This is the momentum theorem of the boundary layer for the special case
+of the flat plate in longitudinal flow. Physically It states that the
+surface shearing stress equals the momentum loss in the friction layer,
+since in the present case the pressure gradient makes no contribution.
+The next chapter will acquaint
+us with the extension of-equation (10.4)
+to include the more general case of a boundary layer with pressure
+difference.
+
+“
+
+.
+
+Equations (10.4) and (10.3), respectively, will nowbe used for
+a~roximate calculation of the friction layer on the flat plate in
+longitudinal flow. A comparison of the results of this approximate
+
+85
+
+NACA TM NO. 1217
+
+calculation with the exact solution accor~
+to chapter ma will give
+information about the usefulness of the approximation method. For the
+approximate
+e calcul.atlonone selects a suitable expression for the
+velocity distribution in the boundary l~er in the form:
+u =Uof
+
+;
+()
+
+= U. f(~)
+
+(10.5)
+
+= 5(X)
+
+(10.6)
+
+with
+
+5 represents the boundary layer thickness, undetermined at first. For
+the flat plate it may, moreover, be assumed again that the velocity
+profiles at various distances from the leading edge of the plate are
+affine to each other. This assumption is contained in equation (10.5).
+if f(q) there stands for a function which no longer contains any free
+paramete~s. Furthermore, f(q) must, for large values q, assume the
+constant value 1.
+w
+
+The velocity distribution being given by equation (10.5), the
+momentum integral in equation (10.3) may be evaluated. It yields:
+n
+
+‘..r
+
+1
+f(l-f)dq
+
+26
+
+U(uo-u)dy=uo
+f
+
+(10.7)
+
+f
+
+J7=0
+
+Jo
+
+The definite integral In equation (10.7) cenbe calculated immediately
+,
+ifa definite formulation is given for f(~). Thus one puts
+,
+
+1
+f(l-f)
+
+a=
+
+dq
+
+(10.8)
+
+f
+
+lh)=o
+
+Hence
+m
+
+.
+
+U02 37=
+
+u(Uo-u)dy=a5U02
+
+(10.9)
+
+\ y=o
+.
+
+or:”
+-9=ab
+
+(10.10)
+
+86
+
+‘IWICAm
+
+IRirthermore,the displacement thiclmess of the boundery l~er
+according to equation (9.20):
+.
+
+HO. ~7
+5*
+
+becomes,
+
+b
+
+1
+~*=~
+
+(1-
+
+fq
+
+f)an.
+
+(10.108)
+
+s
+
+\o
+
+on the other bend, the shearing stress To
+To
+—=
+P
+
+If
+
+()
+
+vu
+.Qft(o).
+6
+
+Vh
+
+h
+
+at the surface is:
+Vu.
+p—
+5
+
+(10.11)
+
+y=o
+
+one introduces the further simplification
+P = f~(o)
+
+(10.12)
+
+.
+
+By introduction of these expressicms into the momentum equation (10.4)
+—
+there results:
+.
+(10.13)
+or
+
+,
+
+(10.14)
+
+,
+
+Theintegrati on with the initial value
+first result of the calculation:
+
+5 = O
+
+for
+
+x = O
+
+yields, as
+
+(lo.1~)
+
+.
+
+Hence the sheering stress becomes, according to equation (lO.I-l):
+
+(10.16)
+
+87
+
+NACA TM No. I-217
+
+and furthdrmre
+I
+
+and hence, finald.y,the total drag of the plate wetted on both sides
+according to equation (10.2):
+21’T=2b @
+
+w
+
+.-
+
+~~
+
+(10.17)
+
+A comparison of the results for boundary layer thiclmess, surface shearing
+stress, and total drag, which were thus found, with the corresponding
+formulas for the exact solution according to equation (9. . .) shows tkt
+the approximate calculation according to the momentum theorem reproduces
+the characteristics of the formulas with perfect correctness in sJJ cases,
+that is, the dependence of the boundary layer quantities on the length
+of run x, the free stream velocity Uo, aniithe viscosity coefficient V. The nuaibers a, ~, unknown at first, can be determined only
+after msking special assumptions for the velocity distribution, that is,
+explicitly prescribing the function f(q) in equation (10.5).
+Numerical examples
+“The usefulness of the method of approximation will be investigated
+by a few numerical examples. The accura~y of the results will depend to
+a great extent on a suitable choice of the expression for the velocity
+distribution according to equation (10.5). At any rate the function f(~)
+q.
+must equal zero for q = O smd have the constant value 1 for l=ge
+As first example we select the very rough assumption that the velocity
+distribution in the boundary layer is represented by a linear function
+according to figure 43a. Thus :
+
+Hence the results for the nunibers a, P
+ad (10.12) me:
+.
+
+according to equation (10.8)
+
+88
+
+_NACA TM NO. ~17
+
+.
+
+The formulas (10.15), (10.16) and (10.17) can now be evaluated -immediately.
+One obtains the results:
+(10.20)
+
+(lo.z!l)
+
+(10.22)
+
+2W=~b~’=li155-b~=
+
+A velocity distribution in the form of a cubic parabola according to
+f@ure 43b is selected as second numerical example in Me following msmner:
+
+(10.23)
+
+4
+
+.
+
+that is, the boundary layer profile joins the velocity of the potential
+flow with a continuous tangent. The calculation of the numerical factors
+according to equations (10.8) and (10.12) gives:
+a=
+
+.
+
+%
+2
+
+9;
+
+$=;
+
+(10.24)
+
+and hence for the characteristic parameters of the boundary layer:
+
+(lo.25EL)
+—
+To
+
+=
+
+U.
+0.323 @T. ~y
+i
+
+(lo.25b)
+
+*
+
+~.
+
+NACA TM No. 1217
+
+m
+
+=
+
+1.29 b
+
+F
+
+(lo.25c)
+
+VpUo Z
+
+,
+The exact value for the drag is, according to eq~tion
+
+(9.18),
+
+2w= 1.328b F U. WP2. The,simple assumption of a linear velocity distribution therefore gives a drag too emall by thirteen percent, the culic
+velocity distribution a drag too sumll by three percent.
+The calculation of the displacement-thicknesses of the boundary
+layers according to equation (10.10a) results, for the lineu velocity
+distribution, in
+in
+
+8*=~5.
+
+1 5,
+6* = ~
+
+smd for the cubic velocity distribution
+
+This givqs, because of equations (10.15) and (10.25a):
+
+S*
+
+= 1.732
+
+(Iinesx velocity &istribution)
+
+T-U:
+
+(10.26)
+5* =1.740
+
+The ~eement
+
++~
+r o
+
+(cubic velocity distribution)
+
+with the exact value
+
+equation (9.21)
+accidental..
+
+S* = 1.728
+
+*
+according to
+r o
+is mmprisingly good; this is, howevers more or less
+
+The essential characteristics of the boundary layer according to
+the approximate calculation described above are once more compiled with
+the exact solution in the table below.
+Characteristics of the Boundary Layer on the Flat Plate;
+Comparison of Approximate Calculation tiExact
+nnd
+
+of calculation 5*R
+
+Linear approximation 1.732
+(fig. 43a)
+
+Solution
+
+dg
+
+y
+
+0.578
+
+3.00
+
+0.289
+
+1 155
+
+g~
+
+cw&)l/2
+
+●
+
+●
+
+.
+
+Cubic approximation
+(fig. 43b”)
+
+1.740
+
+0.645” 2.70
+
+0.323
+
+1.2g
+
+lkact solution
+(Blasius)
+
+l.-@g
+
+0.664
+
+2.61
+
+0.332
+
+1.328
+
+90
+
+NACA TM NO, 1217
+
+As one can see from this table, the agreement, particularly of the cubic
+approximation and the exact solution, is rather good.
+On the whole, the
+results of this calc~ation with the aid of the momentum theorem maY be
+regexded as very satisfactory, especially in view of the simplicity; as
+compared to the exact calculation.
+
+8
+
+6
+
+Seventh Lecture (Janusry 19, 19~2)
+b.
+
+The Momentum Theorem for the Boundary Layer
+with Pressure Drop (Plane Problem)
+
+Last time the boundary l~er on the flat plate in longitudinal flow
+was calculated by means of the momentum theorem. Today the general.case
+of the boundary l~er with a pressure difference”in the flow direction
+will be treated. One considers the flow along a curved surface, and
+measures the coordinate x as arc length along the surface; let y be
+the perpendicular distance from the surface, U(x) the given potential
+flow (fig. 44). The fundamental equation may be obtained by a momentum
+consideration as in chapter lXc; now, however, the pressure difference
+has to be taken into consideration. The same result is obtained by
+integratim of the equation of motion of the boundary layer with respect
+to y from y = O (surface) to y = h, the layer y = h lying
+everywhere outside of the friction layer (fig. h.h).
+The differential equatims of the boundary layer for the steady
+case read, according to equation (8.3),
+au
+au
+U—+v—=———+
+
+ax
+
+1 ap
+
+p ax
+
+b
+
+a%
+v—
+3Y2
+(10.27)
+
+&+&=o
+axay
+
+1
+
+u=v=O;
+with the boundary conditions: y=O:
+integration from Y = O to h gives:
+h
+ld
+-—
+II
+y=o
+
+U=UO
+
+The
+
+h
+v&y=–h=’+V&
+
+u2m+
+
+2dx
+
+y=m:
+
+h
+
+pax
+
+ay o
+[r
+
+(10.28)
+
+o
+e
+
+Ih the first term the differentiaticm with respect to x and the integration with respect to y may be interchanged, since the upper limit h
+is independent of x. On the left side the second term is transformed by
+integration by perts:
+,
+
+.
+
+NACA TM No. ~7
+
+—-
+
+‘h
+
+representing the transverse velooity outside of the boundary layer.
+
+h
+By continuity, —a-v=
+-ZE
+ay
+
+‘a
+h
+
+&Y
+
+11=-
+
+(10.29)
+
+/0
+
+and hence:
+
+fisertion in equation (10.28) gives, because of:
+
+(10.30)
+.
+
+the relation:
+
+(10.31)
+
+This is the so-called K~
+(reference 23).
+.
+
+.
+
+integral+ondition, first given by v.zK~~
+
+For the pressure term one now introduces the potential velocity U(x);
+furthermore, equation (10.31) is”to be transformed so that the displacement
+thiclmess 5* end the momentum thiclmess ~ appear in it as defined by
+equation (6.31) and (6.32), namely:
+
+92
+
+NACA TM NO. 3.217
+
+(10.32)
+
+h
+u2d =
+.
+
+U(u-u)dy
+/
+
+Accordhg
+
+(10.33)
+
+0
+
+to Bernoulli?s equation:
+
+which can also be written:
+*
+
+(10.34)
+.
+
+By substitution of equation (10.34) into equation (10.31) there results:
+h
+‘O
+
+—=—
+
+d
+
+(T3-u2)”dpJ:
+
+(U-u)dy
+
+P~
+/0
+
+/0
+
+and-after differentiation of the eecond term:
+,
+h
+‘O
+
+—=—
+
+d
+
+h
+
+(U-u)
+
+udy+:
+
+(u-u)@
+
+Pm
+/0
+
+[
+
+(10.35)
+
+93
+
+NACA TM No. 1217
+
+.
+
+9
+
+The displacement thiclmess and the momentum thickness can now be introduced
+-.
+directly end one obtains:
+
+9
+or
+
+23!224
+R
+
+(10.36)
+
+Tlxlsis the form of the momentum equation for the boun~y
+layer with
+pressure drop that will be used as a basis for further considerations.
+Since in it ?0 is quite generally the surface shearing stress,
+equation (JO.36) must apply in the same way to turbulent flow, too. We
+shall come back to that later. For the special case of vanishing pressure
+drop
+
+&
+
+s o,
+
+equation (10.36) is transformed into equation (10.4) found
+
+before for the flat plate in longitudinal flow.
+
+.
+
+The further calculation of the boundary layer on the basis of
+equation (10.36) is performed for the laminar case according to the method
+of Pohlhausen (reference 24) and for the turbulent case according to the
+method of Gruschwitz (reference 34) (chapter 2PiZII).
+c.
+
+Calculation of the Boundary Layer According to the
+Method of KkrmaM?ohlhausewEolsteti
+
+For further calculation it is of importance to find a suitable
+expression for the velocity distribution in the boundsry layer U(X, y).
+According to our understanding of the exact solutions of the differential
+equations of the boundary layer this expression must at least satisfy
+the conditions that for y = O: u = O, and for y =CO: u = U. Furthermore the derivative b~
+must vanish for large y. Moreover, velocity
+profiles with and without inflection points must he possible, as they
+occur in the pressure decrease and pres~ure increase region, respectively.
+Finally, a profile with ()au
+= O must be possible in order to have a
+E
+\uJ /y=o
+separation point result from the approximate calculation.
+.
+
+One chooses for the velocity distribution an expression of the form
+u (x, Y) = uf(y/~p)~
+~d sets, according to Pohlhausms ‘
+
+94
+
+NACA TM NO. I-217
+
+for
+
+f(Y~p)
+
+a polynomial of the fourth order, hence:
+
+(10.37)
+
+*<
+<1
+-n”
+“ 8P(x) stands for the boundary layer
+thickness, the dependence of which on x has yet to be calculated. The
+boundary layer thiclmess of the approximate calculati~. 8P is here
+valid for
+
+<<
+
+O - y – 8P:
+
+provided with the index P ( = Pohlhausen) in order to avoid confusion
+with the boundary layer thicbess
+8’ used before. Whereas for the
+exact solutions the velocity in the boundary layer asyiii-ptotically
+approaches the velocity of the potential flow, (u~U
+for ysm);
+the value u = U is to be attained in the approximation at a finite
+distance from the surface y = ~,
+for reasons of cal.ctiation. This
+modification of the actual relation is physically insignificant.
+For the determination of the free constants a, b, c, d in
+equation (10.37) the following boundary conditions are prescribed, all
+of which follow from the ~fferential equation of the Boundary layer
+(equation (8.3)) :
+
+Y =bp:
+
+U=u;
+
+$=O;
+
+fi=o
+aY2
+
+(10.38)
+Y = o:
+
+U=o;
+
+a%
+v—=
+
+b’
+
+-u+
+ax
+
+)
+
+J
+
+Since the condition of no slip u = O for y = O is automatically
+satisfied.by expression (10.37), the four free constants a, b, c, d
+sre sufficient to satisfy the remaining four conditions. The last
+of the five conditions follows immediately from the exact–differential
+equation of the boundary layer if one puts y = O and takes the
+boundary conditions into consideration. This condition is particularly
+importent since it determines the curvature of the velocity profiles
+neer the surface and assures that boundery layer profiles do not acquire
+an inflection point in the region of pressure decrease and do acquire
+one in the region of pressure increase, as required by the exact solution
+according to chapter VTTI. From equation (10.38) follows for the
+coefficients a, b, -c, d the equation system:
+
+95
+
+NACA TM MO. 1217
+
+a+
+
+b+c+d=l
+
+a+2b+3c+
+
+kd=”O
+
+(10.39)
+
+2b+6c+12d=o
+
+.
+
+1
+
+J
+
+*=_uu*
+
+%2
+From the last equation follows m~ately:
+
+(10.40)
+
+if one introduces the simplification:
+L=—
+
+5P2 Q
+
+(10.41)
+
+Vax
+
+The dimensionless quantity 1. plays the role of a form parsmeter of the
+velocity profiles as will become clear wesentlr.
+For the remaining
+coefficie~ts one obtains from equation ~10.39):”
+a=
+
+2+~;
+
+6
+
+c=
+
+-2+$;
+
+ii=l
+
+‘6
+
+L
+
+(10.40b)
+
+Hence the expression-for the velocity distribution, which satisfies all
+boundary conditions according to equation (10.37), reads:
+u
+-=
+u
+.
+
+(10.42)
+
+:=
+in which
+
+(10.43)
+
+“
+
+96
+
+NACATM
+
+NO. 1217
+
+Dueto~=
+Y/8p(x) the boundary layer thickness 52(x) IS here the
+only unknown. If that is calculated, the parameter k fbllows immediately
+from equation (10.41). ~om equation (10.42) one understands that t$e
+velocity profiles form with the form parameter k(x) a one-parameter
+family, The functions F(q) and G(?) indicated in figure 45 and
+table 4 have a universal chti”acter,that is, they do not-depend on the
+special body shape. The velocity profiles for various values of h are
+plotted in figure 46. The profile with k = O is obtained for dU/dx~ O,
+that isj for the boundary layer without pressgre
+adient (flat plate in
+longitudinal flow). The separatism profile tith Yk/~~
+= O, that is,
+a= O, has according to equation (10.40b) the paremeter X = -12.
+The
+profile at the stagnation point has,ras will be shown below, x . 7.052.
+For h >12
+there result values of ufi >1
+in the boundary layer, which
+physically does not mske sense. These values therefore have to be excluded.
+Since behind the separation point the boundary layer calculation loses its
+validity anyway, the form parameter A is limited to the regian
+
+The unknown boundary layer thickness an(x)
+
+u
+
+k
+
+remains to be
+
+calculated. For this tQe nmmentum equation (~o.36), so far not utilized, is
+at our disposal. Before performing this computation, a few preparatory
+calculations ewe required, namely the determination of the boundary layer
+characteristics, displacement thiclmess 5*, momentum loss thickness d,
+and surface shearing stress To on the basis of the approximatlonexpression equation (10.42): One obtains from equations (10.32) end
+(10.42):
+
+LJq=o
+.
+The calculation of the definite integrals, with the values of
+G(TI) according to.equation (10.43), gives:
+
+F(v)
+
+and
+
+.
+
+(10.45)
+
+‘-
+
+97
+
+NACA TM NO. 3217
+
+..4
+
+QI.
+
+315
+
+5P
+
+k’
+
+L__
+
+945
+
+(10.46)
+
+9072
+
+Further, there results for the surface shearing stress from
+
+To =
+
+&
+4)ay o
+
+according to equations (10.42) and (10.43)
+T
+
+o —=—
+%
+T u
+
+12+X
+
+6
+
+(10.47)
+
+Now the momentum equation (10.36) is to be used for calculation of
+5P(x). After multiplication by fl/vU it acquires the dimensionless form:
+u“
+
++
+
+(
+
+*
+
+(10.48)
+
+The boundary layer thickness 8P does not even appear in this equation;
+is a rather
+however, this is not particularly astonishing, since %
+arbitrary quantity of our approximate calculation and therefore without
+special @ysical significance. The physically important quantities,
+lose t~c~ess
+O, appe~
+displacement thiclmess 5* and ~~nt~
+Hence
+it
+suggests
+itself
+to
+first
+instead In equation (10.48).
+calculate o frorathe momentum equation (1.o.48)end then to pass on
+to 8~ by means of equation (10.46). For this purpose one introduces
+according to Holstein and Bohlen (reference 25) aside from the first form
+parameter X according to equaticm (10.41) a second form parameter R,
+formed analogously with the momentum thiclmess $:
+
+~=dut
+
+(10.49)
+
+v
+Then one sets:
+z=
+*
+
+z
+v
+
+(10.50)
+
+Then
+
+(10.51)
+
+.-
+
+98
+
+NACA TM No. 1217
+
+Between the second form psrameter tc end the first form parameter L
+exists, according to equations (10.40) and (10.41) the universal relation:
+
+(
+
+-u—___
+
+#
+
+*
+
+K .zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+(10.52)
+L
+
+315
+
+9;5
+
+9072}
+
+Furthermore, for simplification, one substitutes:
+
+L-L
+(10.53)
+315
+
+To
+
+--=
+vu
+
+~
+
+()(
+
+To~~
+———
+~u6p
+
+=— 12+X
+6
+
+945
+
+9072
+
+~,_&__
+315
+943
+
+.
+
+X2 = f2(lc)
+
+(10.54)
+
+9072 )
+w
+
+By introduction of ~ and Z acoording to equations (10.49) and (10.50)
+and by substituting mom equation (10.53) and (10.54) one now obtains
+ldz
+from the momentum equation (10.48), because of d08/v = ~=
+
+lUM+
+2&
+
+[
+
+.
+
+(10.55)
+
+2+fl(K)K-f2(@=o
+1
+
+Finally, one sets as further simplification
+
+or written in detail:
+F(R) = ax-~
+(315
+
+~
+
+_&
+2 -gk+
+9072 ){
+
+2
+
+&+&
+(
+
+)
+
+L
+
++&
+
+(10.57)
+
+A3
+}
+
+w
+and thus obtains the following differential equation for the momentum
+thickness
+
+c...’
+
+(10.58)
+.
+
+99
+
+NACA TM No. 1217
+
+This is a non–linear differential equation of the first order
+for z = d2/v. The fact that the function F(tc) is rather complicated
+does not constitute any appreciable drawback, since F(tc) is universal,
+that 1s, independent of the shape of the body, and hence may be tabulated
+once and for all. The fynctions F(K), fl(~)~ f2(~) as also ~ = tc(k)
+according to equation (10.52) axe gimm in table”5.
+As to the solution of equation (10.58) the following remains to be
+said: The calculation has to start at the stagnation point x = O. There
+and the initial slope ~
+U=o;
+wouldbe infinite if F(R) were not
+also equal to zero at the stagnation ~oint. The function F(tc) actually
+has a zero which yields a physicall~ significant initial value. This
+zero of F(K) is given when the second bracket In equation (10.57)
+disappears. One finds:
+F(K) = O for K = K. = O.O~O;
+
+●
+
+*
+
+-
+
+A = ho
+
+=
+
+7.052
+
+(10.59)
+
+The value X = 7.052 therefore gives the value of the first form
+parsmeter at the stagnation point. Then the initial slope of the integral
+curve at the stagnation point now has the indeterminate value ~. The
+latter may, however, be cticulated and hence finally yields the initial.
+value and the initial slope of the integral curve as:
+
+()
+
+dz
+Go
+
+= ~.0652
+
+(10.60)
+
+u:
+
+—
+U:2
+I
+
+The index o denotes the values at the stagnation point. With these
+inltlal values one succeeds easily in performing the integration of
+equation (10.~), for instance, accor~
+to the isocline method. A
+calculation example is given in the appendix, figure 47, and talle 6.
+The calculation is to be carried up to the separation point X = -12:
+K = – 0.1567. Quantities entering the calculation that are given by the
+potential flow axe the velocity U(x) and its first derivative with
+respect to the arc length dU/dx.* (Only at the stagnation point Is
+d%/dz2also
+required for the initial slope of the integration curve.)
+* In Pohlhausen’s treatment (reference 24) a Ufferentia12equation is
+obtained instead of equation (10.58), for the quantity z = ~p /vs formea
+analogously to Z. Pohlhausenss differential equation also contains
+d2U/dx2 which often can be obtainad from the given potential flow only
+by a double graphica3 differentiation. The representation of Holstein
+which completely avoids the qutity
+d%/dx2
+therefore means an
+essential improvement of the mewed.
+
+●
+
+100
+
+NAC!ATM No. 1217
+
+The values of the form parameters for the three special cases:
+stagnation ~oint, velocity maximum (IP = O) (pressure gradient equals
+zero), and separatim point are compiled in the table below.
+—,
+Case
+
+A
+
+K
+
+Stagnation point
+
+7.052
+
+0 0770
+
+Velocity maximum
+
+o
+
+0
+
+Separation point
+
+-12
+
+4.1567
+
+●
+
+The entire process of calculation takes the following course:
+1. The integration of equation (10.58) yields Z(x), R(X) and
+according to equation (10.50), also d(x); furthermore it yields the
+.,.–
+posluon .Qf the separation point.
+2. First form parameter h(x)
+
+fiomequation
+
+(10.52)
+
+3- Displacement thiclmess 5*
+
+from equation (10.55)
+
+.
+
+4. Surface shearing stress ‘rO from equation (10.54)
+59 Boundary layer thickness 8P(X)
+6. Velocity distribution UN
+
+from equation (10.45)
+
+from equation (10.42)
+
+Flat Plate in Longitudinal flow
+The special case of the flat plate in longitudinal flow which was
+treated in chapter Xa with a different form for the approximation can
+also be obtained very simply from the present calculation. U = U ;
+end according to equation (10.58):
+u? != o, and hence IC=X=O,
+
+WL=Q!%E
+
+az
+—=
+ax
+
+With the initial value
+32
+
+d = O
+
+U.
+
+U.
+
+for
+
+= 0.4698~
+
+x = O
+or
+
+there results
+
+d = 0.685
+
+o
+
+.
+
+r
+
+~“
+0
+
+-
+
+.
+
+(10.61)
+
+101
+
+NACA TM No. 1.217
+
+whereas the exact value according to Blasiust calculation, equation (9.21h),
+iad=
+o.664~’”.
+Furthermore, it follows that the displacement
+thic?mess is with 5*A = fl(0) = 2.54
+
+(10.62) -
+
+The shearing stress becomes, from”equation (10.54) with
+
+f2(0) = 0.235;
+
+_
+
+(10.63)
+To iS To = o.332 I.LUoVUo/VX accordi% to
+the exact value
+equation (9.17). The agreement with the exact values is rather satisfactory.
+Iiifigure 50b the velocity distribution obtained by the approximate calculation also is compared with te exact calculation in the plot u/U against
+y/6*. This agreement also is rather good.
+
+while
+
+Stagnation Point Profile
+A Silllilsl’
+COmp~iSQIl can be perfomned for the stagnation point
+profile the exact solution of which was given in chapter VI. For this
+case x. ho = 7.052, R = Ko = 0.0770. For the approximate calculation
+the mome~tum thiclmess is:
+
+(10.64)
+whereas accordipg to the exact calculation equation (6.34) it is
+il@7i7=0.292.
+The displacement thickness is, f?r the approximate
+calculation;
+5*
+
+*
+
+E=
+v v
+
+fl(~o) ~=
+
+0“641
+
+(10.65)
+
+whereas according to the e~act calculation, equation (6.33)3 it iS
+
+5*y@~
+
+. 0.648.
+
+Finally, according to the approximate calculation the
+shearing stress is:
+
+r
+
+‘-
+
+102
+
+NACA TM No. 3.217
+
+!&L& .1.19
+.
+
+—
+compared with To
+Im
+the agreement ~th
+
+r
+
+4
+
+(10.66)
+
+-.
+
+v
+— = @’(0) = 1.2+
+by the exact calculation. Thus
+u’
+the exact values Is here also satisfactory.
+
+“
+
+is ccmrp~ed
+The velocity distribution of the approximate talc.ti,ation
+with the exact calcizlationin figure 50-a in the plot u/U against y/5*.
+Here also the agreement is good.
+.
+
+The following table contains a compilation of the comparisons just
+given, between the characteristics 5*, O, T.
+“ from exact and from
+approximate calculation.
+—
+
+Blasius Profile
+
+Stagnation yoint profile
+II
+
+5*
+
+E @ ~~~ : 1’*($
+($ ~;~ :
+uos~x
+
+t
+Pohlhausen
+Approximation
+
+1.7’5
+
+0.685
+
+0.343
+
+2.55
+
+0.641.0.278
+
+Exact solution 1.73
+
+0.664
+
+0.332
+
+2.61~ 0.648 0.292
+
+1.19
+
+2.31
+
+1.234 2.23.
+
+Of course, it can not yet be concluded from this good agreement of
+the approximate with the exact solution that similsr good agreement would
+exist for all the boundary layer profiles along the body. Accurate
+comparisons are not easily performsd since very few exact solutions
+reaching from the stagnation point to the separation point exist. However,
+one may conclude from occasionally made comparisons that in the region of
+pressure decrease the agreement is mostly rather good; in the region of
+pressure increase, particularly near the separation point, some deviation
+might OCCUI’.
+Since no other serviceable methods for loundery layer calculation
+have so far become ho~the
+Pohlhausen method is for the present to he
+regarded as the best. The time required for a boundery layer calculation
+for one side of the body Immersed in a given potential flow amounts to
+about three hours~
+The calculation described here for the plane flow was applied by
+Tomotika (reference 26) to the rotationally-yummtrlcal case.
+
+“i
+
+103
+
+NACA ‘TMNo. ~1’i’
+d. Examples
+
+A few examples of boundary layer calculations will be given, all
+of which were perfomed according to *he approximation method described
+in the previous section.
+The first example, tekeh from”a treatise of H. Schlichting and
+A. Ulrich (reference 35) concerns a series of elliptical cylinders in a
+flow psrallel to the major axis. The axis ratios are al/bl = 1
+(circulsr cylinder), 2, 4, 8, w (flat plate). The velocity distrllutions
+of the potential flow are given in figure 51. For slender cylinders they
+are characterized by the fact that the ~elocity has a very flat maximum
+and decreases steeply toward the front and rear. The result of the
+boundary lqyer calculation is illustrated in figure 52. Figure 52-a
+shows the dimensionless displacement ‘thicknessas a function of the arc
+length. It is noteworthy that for ell elliptic cylinders the boundary
+layer on the front half is smaller than for the flat plate; this is
+caused by the pressure decrease. The laminar-separation point for the
+circular.cylinder lies at S[t = 0.604 (q = 109.50). With increasing
+fineness ratio it shifts further toward the reerJ it is also plotted in
+figure ~1. Figure 524 shows the variation of the form parsmeter X and
+figure 52-c the variation of the surface shearing stress. For every
+elliptic cylinder the latter has a maximum,the position of which shifts
+frontward with increasing fineness ratio. The variation of the shearing
+stress for the cylinder of axis ratio eight shows only an insignificant
+difference from the one for the flat plate in longitudinal flow. Figure 53
+gives a survey of the variation of the boundary layer on the body and the
+velocity profiles at various points along the surface. Corresponding
+calculations for the rotationally-symetrical case (that is, for ellipsoids
+of revolution with flow parallel to the axis) have been performed by
+Pretsch (reference 27).
+The second example (reference 35) gives the boundary layer on a
+s-trical
+Joukowski profile of fifteen percent thickness for lift
+coefficients in the region of ca = O to 1. Figure 54 gives the velocity
+distribution according to the potential theory for the lift coefficients
+0.50, 0.7~,and 1.0. For the symmetrical approach flow
+Cfi= o, 0.25,
+.
+(Ca = O) the velocity mximnm lies rather far toward the front at
+
+&
+
+s/t = 0.141. With growing lift coefficient the velocity maximum increases
+on the suction side and decreases on the pressure side. Simultaneously
+the maximum shifts farther forward on the sucticm side and farther rearward
+on the pressure side. The magnitude of the velocity maximum and Its
+position are of prim!my importance for the development of the boundary
+layer and in particular for the yosition of the separation point. The
+results of the bouhdary layer calculation are plotted separately for the
+suction and pressure sides in fi
+e 55. Figure 55-a @ves the
+variation of the displacement thYchess, figure 5=
+the form
+psrsmeter Xl,snd figure 5=
+the surface shearing stress. The position
+of the laminar separation point is plotted in figure 54. Figure 56 gives
+
+104
+
+NACA TM NO. 1217
+
+a survey of the mariatlon of the boundsry layer along the surface and of
+the velocity distribution in “theboundary layer for Ca = 0, figure 57
+for Ca = 1.
+Finally, the third example gives a survey-of the influence of the
+most important profile prameters of a wing profile on the lamhar
+boundery layer. K. Busemann (reference 36) performed the boundary layer
+calculation for a family of Joukowsky profiles of relative thickness
+d/t = O to 0.25 end relative cemiber f/t = O to 0.08 for ca- values
+from O to 1. Figure 58 shbws the family of Joukowsky profiles. Of the
+very voluminous results, only the position of the separation point shall
+be shown here. Figure 59 shows the position of the separation point on
+the suction side as a function of thickness, camber, and lift coefficient;
+figure 60 shows the same result for the pressure side.
+Herewith the discussion of the approximation method for calculation
+of the laminer boundaxy layer will be concluded.
+.
+
+Eighth Lecture (January 26, 1942)
+
+CHAPTER XI. ERETENTION OF SEPAMTION
+For practical flow problems the flow with pressure increase
+(retarded flow) plays an important role. It is always desirable that
+no se-oerationof the flow from the wall occur; because of the resulting
+large 10ssss in energy. The wi~ presents a good example. A pressure
+Increase exists on the suction side towemi the bailing edge (fig. 61).
+If separation occurs, the wing will have an undesirably large drag end
+small lift. Another example is the flow in an expanding passage
+(diffuser) which transforms kinetic energy into pressure energy (as for
+instance in the wind tumnel or in the bucket grid of a turbine).
+Calculations will presently show that the ability of a Un@mr
+flow
+to overcome a pressure increase without separation is exceedingly small.
+Thus the pressure increases present in practical flows would, for l~ar
+flow, ahnost always lead to separation. The-reason th@, nevertheless,
+in many cases of practical flows considerable pressure increases me
+surmounted without separation is that the flow is turbulent. As we shall
+see more clearly later, the ability to overc~
+a Yresswe increase ~t~
+out separation is very much greater for turbulent than for laminer flow.
+Since, ~reover, the pressure increase always gives rise to an early
+transition from laminar to turbulent*, one has to deal almost exclusively
+with turbulent flow in practical flows with pressure increase.
+Nevertheless it is useful to clarify the fundamental relations
+regarding prevention of separation for laminqr flow, pa@icularly because
+its phenome~ lend themselves more readily to n~ricdl_treatment than
+those of the turbulent flow.
+*Detjaflsare given in chapter XXI
+
+“Transition from Laminar to Turbulen&”
+
+*
+
+.
+
+105
+
+NACA TM NO. 1217
+●
+
+V;ious possibilities exist for prevention of separation. The
+simplest way is to make the pressure increase so small that se~aration
+is avoided. A numerical estimation in the next section will give
+information about this possibility. Another”possibility consists in
+artificially influencing the bom,dary layer, for Instsnce by blowing
+or suction of fluid, or else ly application of an auxiliary wing that
+provides acceleration at the critical points of the boundary layer.
+Some details will be given in the following sections of this chapter.
+
+.
+
+.
+
+a.
+
+Estimation of the Admissible Pressure Gradient
+
+We are going to mike, following Prandtl (reference 2), a ge=rally
+valid estimation of the pressure increases in a laminsr boundary layer
+that are possible without the occurrence of separation. We take as the
+basis the K4rmdn-Pohlhausen approximate calculation according to
+Chapter X and make the assumption that under the effect of the pressure
+gradient given by the potential flow the boundary layer has developed
+till nesr the separation point (Point O in fig. 62). From here on
+the pressure distribution is to be such that the form of the velocity
+profile does not change further downstream, that is, the fomn parameter
+x is to remain constant. Since the value corresponding to”the separation
+point is L = -12, this constant h–value shall be chosen at L = -10*.
+A definite value of the second form parameter (according to table 5)
+corresponds to this choice:
+1.= -lo;
+
+It =-0.1369;
+
+F(E) = 1.523
+
+(11.1)
+
+For the prevention of separation the following relation between the
+DOtSntifi-flOW velocity ‘U(X) and the ~mentti thic~ess
+fl(x) res~ts
+~ccorting to equations-(10~50) snd (10.51):
+
+.
+
+32
+
+0.1369 ‘
+
+—=
+v
+
+z==
+
+dz
+—=
+dx
+
+o.1369-—u“
+Ut2
+
+(11.2)
+
+or
+
+(11.3)
+
+or
+.
+
+dz
+—=
+‘ax
+
+o.1329~=o.1369
+Ut
+
+u
+
+(11.4)
+
+if one puts for simplification
+*At any rate, this k-value must be negative, since othefise
+in question is not retarded.
+
+the flow
+
+.
+
+106
+
+NACATM
+
+NO. 1217
+
+●
+
+*
+
+~w
+a =—
+2
+u?
+
+(=.5)
+
+On the other hand, the momentum equation according to
+equation (10.58) holds for the further development of the boundsry layer
+for x> O:
+~fg_
+
+F(R) =F(+.1369)
+
+=1.523
+
+.
+
+.
+
+(sL.6)
+
+The numerical value must be substituted for F(k), if the form parameters
+are to remain constant at the values given by equation (11.1). ~om
+equations (11.6) and (11.4) follows therewith, for the constancy of the
+form parameter X = -10, the conditional equation
+(
+
+0.1369 ~
+u?
+
+= 1.523
+
+,..
+
+or
+m’
+a =—=11.13zll
+
+u? 2
+
+For a > 11 the boundary l~er can still bear the pressure increase;
+for a < 11 separation occurs; for u = 11 the boundary layer always
+remains with A = -10, on the verge of separation. Qualitatively, the
+following can be immediately said about the distribution of the potentialflow velocity U(x) which gives no separation. Because of equation (J-I-.7)
+a necessary condition for avoiding separation in retarded flow is:
+
+that is~ a negative~elocfty madfent
+U’ ~st exfstj the mmftude
+of
+which decreases in the flow direction. If, therefore; the curve U(x)
+in figure 63 is curvdd downward behind the maximum (u”< O), separation
+occurs in every case; if it is curved upw~d
+(@’ > O)s sep~atfon SO~times does not-occm.
+The limiting case ‘U” = O for Ui < 0 always
+l~ads to separation. The m?fi cient ccmiition for avoiding separation
+is m/U~2
+>11.
+
+9
+
+107
+
+NACA TM NO. 1217
+
+One now proceeds t~ calculate what potential flow and what boundary
+layer thickness veriation correspond to u = +11. Xi-onequation (1.1.7)
+follows:
+
+and after integratim:
+
+log U1 =lllogu
+
+- 10g Cl
+
+or
+
+Ut
+
+_=_fJ ?
+
+1
+
+#
+
+with
+
+C;
+
+as integration constant. Repeated integration gives:
+
+$U
+
+For
+
+X = 0,
+
+U(x)
+
+slmllbe
+
+-10
+
+(u.8)
+
+=c~x+c2
+1
+
+U(x) = Uo,
+
+thus
+
+.
+
+c2=~
+
+1 Uo-lo
+
+(11.9)
+
+10
+
+(11.lo)
+
+Furthermore, one puts
+c~ Uo
+
+= c1
+
+-and obtains from equation (11.8) for the potential flow
+U.
+u=
+
+●
+
+(11.11)
+
+(1+ 10 clx)O”l
+Thereby is found the desired velocity distribution that just avoids
+can be determined from the bounddy layer
+separation. The constant C
+thiclmess 50 at the initial point x = O:
+L .*
+
+= -lo
+
+108
+
+NACA TM No. X217
+
+According to equation (11.11)
+
+c1 Uo
+
+ut=_
+
+(1 + 10 Clx’)
+
+1.1
+s
+
+and thence
+
+r
+
+5 = ~(l+loclx)
+
+0.55
+
+10
+
+lllrom5 = 50
+
+for
+
+x = O
+
+follows
+
+c1
+
+.2Q2L
+
+(11.12)
+
+U0502
+and thus, as the final solution for the potential flow and the boundary
+layer thickness veriation,
+
+(11.13)
+
+(11.14)
+
+The permissible retardation (velocity decrease) i.stherefore comparable
+to 1 P %
+and is thus very small. The velocity is thus very close to
+the constant velocity-of the flat plate in longitudinal flow. For the
+present case the growth of the boundary layer thickness ?3 must therefore
+1/2
+be somewhat.larger than for the flat plate, where 5- x
+. Here
+
+~ ~ XO*55;
+
+thus the ~crease is only slightly larger.
+
+The flow in a divergent channel with plane walls (two-dimensional
+problem) wilJ-be treated as another example. In figure 6h let x be
+the radial distance from the origin O. The walls start at x = a, where
+the entrerme velocity of the potential flow equals Uo. The potential
+flow is
+*compare Chapter IX e where it was found, as exact SOlutlOn Of the
+differential equation of the boundary layer, that in retarded flow
+a.ogl
+separation occurs when U(x) = ul x
+
+●
+
+d
+
+log
+
+u(x) =Uo
+
+;
+
+1
+
+(11.15)
+
+u“ =ETJOS
+X3
+
+Thus U~ < 0 and ~>
+O for all x so that the necessary condition
+equation (11.7a) for avoiding separation is satisfied.. However, calculation of the dimensionless number u according to equation (11.5) gives
+
+a =2
+
+(11.16)
+
+The sufficient condition for avoiting seperatim, u> 11 according to
+equation (11.7) is therefore violated. For the divergent channel with
+plane walls separation therefore occurs for any included sngle. This
+example shows especiaUy clearly the low ability of the laminar flow to
+overcome a pressure increase without separation. According to a calculation of Pohlhausen (reference 24) the separation point lies at (x/a)A = 1.21s
+snd thus is independent of the included @e
+a.
+b.
+
+Various Technical Arrangements for Avoiding Separation
+
+It is a favorable circumstance for technical applications that for
+higher Re~olds nmibers the boundary layer does not remain laminar but
+becomes turbulent. The turbulence consists of an irregular mixing motion.
+By this mixing motion momentum is continuously transported into the layers
+near the wall, and the psrticles retarded at the wall sre carried out into
+the free stream and thus r~ccelerated.
+Because of this mechenism the turbulent flow is able to withstand,
+without sep=ation, considerably lrlgherpressure increases than the
+laminar flow; thus the pressure increases existing in techhical flows
+are made possible.
+.
+
+A few technical possibilities for avoiding separation wiU
+discussed.
+
+be
+
+1. Blowing. For a wing profile the separation of the boundary
+layer for lsrge angles of attack (i’lg.65) can be prevent,edby blowing
+air in the flow direction from R slot directed toward the rear. The
+velocity for the layer near the surfece is thus increased by the energy
+
+110
+
+NACA TM No. 1217
+
+\
+
+supplied and the demger of sepwation is therefore eliminated. It is
+true that in the practical execution not much is gained, lecause of the
+large ~et energy required for any considerable improvement of the flow.
+~ order to make the energy output small, the width of the jet must be
+kept small. But then the jet, soon after Its exit, breaks up into
+vortices.
+2. Another possibility of avoiding separation is the arrangement
+of a slotted Waccording to figure 66. The effect dep~ds on the
+boundary layer formed on the slot AB being carried away into the free
+stream, before it separates, by the flow through the slot. A new
+boundary layer develops at C which 1s, however, at first very thin
+and reaches D without separation.
+The same principle is used for the Townand r(fig. 67).
+
+andNACA cowling
+
+3. Suction. A further possibility for the prevention of separation
+ts suction.
+For the wing, for instance, the retarded boundary-layer
+material is.sucked off into the interior of the wing through one or
+several slots (fig. 68). The point of suction lies slightly ahead of
+or behind the separation point so that no reversal of the flow can occur.
+A new boundary layer which at first is very thin develops behtid the
+suction point and permits the pressure to increase further. Zn this
+manner one csn overcome considerably larger pressure increases end
+attain higher values of maximum lift for the wing. Many differ~t suction
+arrsngementsfor increasing maxfmum lift have been investigated by
+O. Schrenk (reference 28). Values for Caq
+of 3 to 4 were ob~~ed.
+
+c.
+
+.
+
+i
+
+Theory of the Boundary Layer with Suction
+..
+
+Suction is a very effective means for influencing the $riction
+layer on a body immersed in a flow and particularly for avoiding
+separation. This was pointed out for the first time ir-L904 by L. Prandtl
+in his fundamental work on the boundaiy layer.
+Another possibility of applicati~ of suction,
+rec@nized only
+Here the boundary layer
+recently, is to keep ths friction lay~r laminv.
+is, by suction, kept so thin that tr~sition to the turbulent state of
+flow 5s avoided. The surface friction dreg is thereby reduced. Experimental
+investigations of this effect were cqried out by Ackeret (reference 39).
+
+.
+
+The laminar friction layer with auction can also be subjected to a
+numerical treatment which will be briefly discussed. The following
+assumptions are made.for the calculation:
+-.
+
+●
+
+.
+
+NACA TM No. X217
+
+&
+
+1. The suction is introduced into the calculation through the
+assumption that the norml velocity at the wall Vo(x) is
+different from zero. The wall is therefore assumed to be
+permeable. A continuous distribution of the suction velocity
+To(x) serves the purpose of numerical tieabnent best.
+
+-t
+
+2. The suction quantities are so small that only the parts in the
+imnediate neighborhood of the wall sre sucked from the
+boundary layer. This leads to a very small ratio of suction
+velocity vo(x) to free stream velocity Uo: %/%
+= 0.001
+to 0.01.
+
+3. The n~lip
+
+condition at the wall u = O is”retained with
+sucticm~ likewise the expression for the wall sheering stress
+
+-()
+au
+
+To=v—
+
+ay
+
+o
+
+The equations of motion for the boupdary l~er
+read
+au
+—=
+ay
+
+u au
+~+v——
+
+with suction therefore
+
+a2u
+b2
+
+(1.1.17)
+
+22+*”=0
+ax
+
+ay
+
+with the boundary coalitions
+Y =Ou=ov=
+
+Vo(x)
+
+(u.18)
+Y =m
+
+u =U
+}
+
+v. < 0
+
+signifies suction; V. > 0
+
+#
+
+blowing.
+
+.
+
+As in chapter X b the momentk theorem is again applied to the
+boundary layer with suction. The momentum equation for the boundary layer
+with suction is obtained in exactly the same msmner as in chapter X b
+(compere fig. 44) provided one takes into consideration, in addition,
+that the normal velocity at the wall is different from zero. In chapter
+X b the momentum equation was derived by integration of the equation of
+
+NACA TM No. 1217
+motion for the x-direction over y between the limits y = O and
+e=ctiythe
+s-ecalcdaY =’m (compare equation (lo.28)~ tiei~ines
+tion performed for the boundary layer with suction: then the expre~sioi
+for the normal.velocity at the distance from the wall y = h is
+different, compared with the calculation in chapter X b. The normal
+velocity now becomes
+
+(11.lg)
+
+The remaining calculation is exactly the same as in chapter X b and
+finally yields as the momentum equation for the boundary layer with
+suction.
+2=
+P
+
+(11.20)
+
+T3M+(2$+5*)ug-vou
+&
+
+The newly added term -v U (compered with equation (10.36)) gives the
+loss of momentum due to ?he suction at the wall.
+We shall now treat the special case of the flat plate with suction
+in longitudinal.flow (fig. 69) (reference @).
+The free-stream velocity
+is Uo. Equation (11.20) then becomes
+
+U.
+
+2 ~—vou=~=v
+dfl
+‘o
+
+h
+—
+()by ~=o
+
+(11.21)
+
+if one takes the law for the leminar wall shearing stress Into consideration. Furthermore, the assun@ion is made that the suction velocity
+(or blowing velocity) -v. along the plate is constant. In this case
+one can obtain from the momentum equation (11.21), by the following
+simple calculation, em estimate of the variation of the momentum thickness along the plate. One puts
+(11.22)
+
+$? O signifying a dimensionless fo~ parameter of the velocity profile.
+It may be assumed, to a first approximation, that p varies only little
+
+113
+
+NACA TM No. 1217
+
+-.
+
+with the length of run
+
+x; accordingly, P
+Then’equation (11.21) mq be written
+
+will be considered conqtant.
+
+(11.23)
+
+with the initial contition ~ = O
+obtains d79/dx= O for
+
+19m=$v~
+
+for
+
+x = 00
+
+For suction
+
+(suction)
+
+(v. < O)
+
+one
+
+(11.24)
+
+(that is, therefore, the momentum thickness reaches, after a certain
+approach length, a constant asymptotic value gimn%y
+equatim (11.24)).
+Simultaneously, displacement thickness, velocity distrilnztion,and all
+other boundary layer coefficients also become asymptotically independent
+of x.
+‘
+
+.
+
+For blowing (To >0)
+the value dd/dx is, according to equation
+(11.23),larger than zero along the entire plate; that is, fl(x) increases
+with the length of run x without limit so that for lerge values of x,
+one can neglect in equation (lJ.23) the first term on the right side as
+compared with the second. One obtains therefore, as asymptotic law,
+19m= T‘oX
+o
+
+(blowing)
+
+(n.25)
+
+On the whole, one obtains the remarkable result that for the flat plate
+in longitudinal flow with constant suction or blowing velocity, the
+boundery layer thickness for suction becomes constant after a certain
+approach length, whereas for blowing, it increases proportionally to the
+length of run x. In between lies the case of the impermeable wall
+where the boundary lager thickness increases with ~.
+
+.
+
+For the case of the-laminar boundary layer with the asymptotically
+constant boundary layer thicbess it is also possible to give hmedlately
+en exact solution of the differential equations of the boundary layer in
+a surprisingly simple form. h this case ~~O, hence ~so,according to equation (11.17), b/ay s O and therefore
+
+v(x,y) = To = constant
+
+(11.26)
+
+IL4
+
+NACA TM NO. 1217
+
+Hence there follows from equation (11.17)
+
+(11.27)
+
+and from it the solution which satisfies the boundary conditions
+equation
+
+(11.18)
+
+.
+
+r
+
+Toy
+
+I
+u(y)=Uo
+
+\
+
+v
+
+M
+l-e
+
+(11.28)
+
+.
+from this equation results the displacement thiclmess of the asymptotic
+boundsry layer
+5*
+
+m
+
+.— v
+-v
+
+(11.29)
+0
+
+the momentum thiclmess
+
+(11.30)
+8*
+
+m
+
+and the form -parameter —=2.
+By comparing equation (11.2g) with
+19W
+equation (11.24) one finds the factor 13= 1. The velocity distribution
+of the asymptotic boundary layer profile according to equation (11.28)
+is plotted in figure 70 together with the 31asius solution for the
+impermeable
+
+wall.
+
+Herewith the considerations of boundary layer with suction will
+be concluded.
+CHAFTIRXII. APPENTHXTOPART
+a. Examples
+
+I
+
+‘
+
+of the Boundary Layer Calculation
+
+According to the Pohlhausen-HolBtein Method
+
+For the integration of the differential squation (10.58) it is
+best to use the isocline method. It is expedient to calculate with
+dimensionless quantities. The wc length s is made dimensionless by
+
+l?ACATM NO. 1217
+
+115
+
+dividing by a characteristic length of the body inmersed in the flow. _
+for ‘instance,for the whg, by the wing chord ‘t. The variable Z = “+2P
+U.
+is made dimensionless bytitiplyingb~
+—.
+Thus one puts:
+t
+
+o“21J
+
+Z*
+
+o =— ~2u~
+=—
+tv
+Vt
+
+()
+
+(12.1)
+*=S
+
+T
+1
+
+Hence the differential equation reads:
+(12.2)
+
+The calculated exsmple cmcerns a symmetrical wing profile (J 015) in
+symmetrical approach flow (ca = O). The prescribed potential-flow
+velocity and.its first derivative with respect to the src length is
+given in t~ble 6. The initial +alues for the integration are calculated,
+according to equation (10.60), to be, for the present case:
+ZO* = 0.00 149
+
+since at the stagnation point a%/ds2 = o. The auxilisry function F(~)
+required for the Integration is given in figure 47- and table 5. The
+c~ctiatiqn according to the isocline method is shown h figure 48. Here
+the curve tc= -0.1567 which gives the separation point can be calculated
+according to the relation:
+
+The intersection of the integral curve with this curve gives the separation point. As a result of the integraticm one obtains at first the varia–
+tion of the momentum thickness. By means of the function 5*/~ = f(~)
+~~
+
+d
+‘o = f2(K)
+——
+U1.1
+
+given in table 5 one can also calculate the displacement
+
+11.6
+
+NACA TM NO. 1217
+
+thickness and the sheering stress. The result of the calculation is
+compiled in table 6 and given in figure 49. Moreover, the velocity
+distribution in tlieboundary layer canbe seen from figure 56.
+
+Translated by Mary L. Mahler
+National Advisory Committee
+for Aeronautics
+
+“
+
+.
+
+117
+
+NACA TM No. 1217
+BIBLIOGRAPHY*
+Part A. - Laminar Flows
+1. Textbooks and llnc~clonedias:
+1. Prandtl-Tietjens: 13ydrc-und Aercmechanik. Bd. I and II.
+1929 and 1931.
+2. l?randtl,L.: The Mechenics of Viscous Fluids.
+Aerodymudc Theory, Bd. III, 1935.
+
+W
+
+Berlin~
+
+F. W. Durand,
+
+3. Toll.mien,W.: Laminare Grenzechichten. Handbuch der Ezperimentalphysik,
+Bd. IV, Teil I, Leipzig, 1931.
+4. Goldstein, S.: Modern Developments in Fluit Dynamics.
+0xford,1938.
+
+VOIS. 1~
+
+U@
+
+5. Mfiler,’W.: Einf%hrung in die Theorie der z“~en Flfissigkeitem
+Liepzig,1932.
+6. Lamb, H.:
+
+Lehrbuch der Hydrodynamic. Teubner, Leipzig,1907.
+
+2. Articles:
+
+7. Prandtl, L.:
+
+Ueler Flfissigkeitsbewegungbei sehr kleiner Reibung.
+Verhandlung III. Intern. Math. Kongress, Eeidelber~190k, represented
+in “Pier Abhdnlg. zur E@rodynamik”, (%ttingen, 1927
+
+mittkleiner Reibung.
+8. Blasius, H.: Grenzschichten in l?llissigkeiten
+.
+zs. Math. u. Phys. Bd. 56, p~ 1 (1908).
+
+9. Boltze, E.:
+
+Grenzschichten an Rotationsk6tiern in Fl@igkeitenmlt
+kleiner Rei’bung. Diss. @ttingen 1908.
+
+10. Hiemenz, K.: Die Grenzschicht an einem in den gleichfb?nni.gen
+Fl~ssigkeitsstrom eingetauchten geraden fieiszylinder. (Diss.
+G6ttingen, 1911). Di.ngl.Polytechn. JoUrn. Bd..326, p. 321, lgll.
+11. Hamel, G.,: Spiralf6tige Bewegungen ~6her Fl~ssigkeiten. Ja.hresber.
+Mathem. Vereinigung 1916, p. 34.
+.
+
+12. Szymsnski: Quelques solutions exactes des ~quations -de lthydrodynamique
+du flulde visqueu clansle cas d~un tube”cylindrique”. Journ. de
+math. pures et ap’pliqu6es. Relhe 9, Bd..11, 1932, p. 67. See also:
+Intern. Congr. of Mechanics Stockholm, 1930.
+
+.
+
+* On the whole, only the more recent publications, since about)1932,
+are given here. The older literature can be found for instance, in
+prandtl~s contribution to Durand: Aerod_c
+Theory, vol. III.
+
+‘
+
+IJ8
+
+NACATMNo. 1217
+
+13. Schlichting, H.: Berechnung ebener periodischer Grenzschichtstr6mungen.
+—
+
+.
+
+Physik. Zeitschrift, 1932, p. 327.
+
+14. Schlichtfng, H.: Laminsre Kanaleinlaufstr?bmng. Zs. f. angew. Math. u.
+Mech. Bd. 14, p. 368, 3..934.
+
+●
+
+15. Howarth, L.: On the Calculation of Steady Flow in the Boundary Layer
+Near the Surface of a Cylinder in a Stream. ARC Rep. 1632, 1935.
+
+16. ~&lSli~,
+
+Verdunstung, W=meii%ergang und Geschwin~ik:
+digkeitsverteilungbef zwefdimensionalqr und rotationss-trischer
+laminsrer Grenzschichtsti6mung. Lunds. Univ. Arsslw. N. F. Avd. 2,
+Bd. 35, Nr. 4, 1940.
+
+17. Homann, T.: ‘DerEinfluss grosser 2%higkeit bei der str~mung um den
+~linder und um die Kugel. Zs. f. angew. Math. u. Mech. Bd. 16,
+p. 153 (1936).
+18. HowUth, L.: On the Solution of the Laminar Boundary Layer Equations.
+WOC. ROY. SOC. Lend. ANO. 919, VO1.164, 1938, P. 547.
+19. v. d. Hegge-Zynen: Thesis Delft 1924, Burgers Proc. I. Intern.
+Congress appl. Mech. Delft 1924.
+20. Hansen, M.: Die G-eschwindigkeitsverteilungin der Grenzschicht sm
+einer eingetauchten Platte. Zs. f. angew. Math. u. Mech. Bd. 8,
+P. 185, 1928.
+21. Goldstein, S.: Concerning Some Solutions of the Boyndary Layer Equations
+in H@?odynamics. ~OC. Phil. SoC. Vol. 26, I, 1936.
+22. SchI-ichtin.g,
+H.: Leminare Strahlausbreitung. 2s. f. emgew. Math. u.
+Mech. Ed. 13, p. 260 (1933).
+23. V. =,
+The: Laminare und turbulence Refbung.
+u. Mech. Bd. 1, p..235, 1921.
+
+Zs. f. angew. Math.
+
+24. Pohlhausen, K.: Zur n“~erungsweisen Integration der Differentialgleichungerider laminaren Reibungsschicht. Zs. f. angew. Math. u.
+Mech. Bd. 1, p. 252, lga.
+25. Holstei*Bohlen: Einvereimfachtes Verfahren zur Berechnung
+lsminsrer Reibungssdhlchten, die dam Nkrungsansatz von K.
+(Not yet published.)
+Pohlhausen gen*en.
+.
+
+26. Tomotika, S.: The laminar boundary Layer on the Surface of a Sphere
+in a kiform stream. ARC Rep. 1678, 1936.
+27. Pretsch, J.: Die laminare Reibungsschicht an elliptischen Zylindern
+und Rotationsellipsoiden bei symnetrischer Umstr6mung.
+Luftfah?”tforsch~ Bdc .18,PC 397J 1941o
+
+NAC!ATM No. X217
+
+28. Schrenk, O.:
+p. 160
+~.
+
+llg
+Versuche tit Absaugefl@eln.
+
+Luftfahrtforschung 1935,
+
+Schlichting, H.: Die Grenzschicht’mit Absaugung und Ausblasen.
+Luftfahrtforschung Bd. 19, p. 179, 1942.
+
+30. Bickley, W.: The Plane Jet. Phil. Msg., ser. 7,’vo1 23, NO. 156, p. 727>
+Apr. 1937.
+31. Prandtl, L.:
+1931/32.
+
+Anschauliche und nutzliche Mathematik. Vc&lesung W. S.
+
+32. Ekhil.ler,L.: Forschungsarheiten auf dem Gebiet des Ingenieurwesens.
+Heft 248, 1922.
+33. Results of the Aerodynamics Test Institute at Gottingen. Aero@mamischen
+Versuchsanstslt zuC%ttingen. 2. Lieferung, p. 29.
+34. Gruschwitz: TurImlente Reibungsschicht in ebener Str~mang bei
+Druckabfall und Druckanstieg. I@.-Arch. Bd. 2 (1931).
+35. Schlichting, H., and Ulrich, A.: Zur Berechnung des Umschlages
+Lamislsx- turbtient. (not yet published).
+36. Bus~,
+K.: Die laminare Reilmngsschicht em Joukowsky-Profilen.
+(not yet published).
+
+37. Fal&ner, V. M ., Sndskan, s. w.:
+
+Some Approximate Solutions of the
+Boundsry Lsyer Equations. R. & M. NO. 1314, British A.R.C.,
+1930.
+
+38. Hartree, D. R .: On en Equation Occurring in Falkner end Skants
+Approximate treatment of the Equations of the Boundsry Layer.
+Csabridge Phil. Sot., Bd. 33 (1937).
+39. Ackeret, J., Pfenninger, W., Has, M.: Verhinderung des Turbulentwerdens
+einer Reibungsschicht durch Absaugung. Naturw. 19413 p. 622.
+
+.
+
+120
+
+_NACA TM No. X217
+TABLE I. - THE FUNCTION q
+
+OF TEE PLANE 91MGNATIONPOINT
+
+FLOW (ACCORDINGTO lIDIWENZ(REFERENCE 10)); TO FIGURE 16
+
+‘E
+o
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+1*1
+1.2
+1.3
+1.4
+1.5
+1.6
+1.7
+1.8
+1.9
+2.0
+2.1
+2.2
+2.3
+2.4
+2.5
+2.6
+2.7
+2.8
+;::
+::;
+3*3
+3.4
+;:2
+3*7
+3.8
+::;
+:::
+4.3
+
+w
+
+P
+
+o
+0.0060
+0.0233
+0.0510
+0.0881
+0.1336
+0 1867
+0.2466
+0.3124
+0.3835
+0.4s2
+0.5389
+0.6220
+0.7081
+0.7966
+0.8873
+0.9798
+1.0738
+1.1688
+1.2650
+1.3619
+1.4596
+1.5577
+1.6563
+1.7552
+1.8543
+1.9537
+2.f)~33
+2.1529
+2.2528
+2.352.4523
+2.5522
+2.6521
+2,7521
+2.8520
+2.9520
+3.0519
+3.1518
+3.2518
+3.3518
+3.4518
+3.5518
+3.6518
+●
+
+o
+0.1183
+0.2266
+0.3252
+0.4144
+0.4946
+0.5662
+0.6298
+0.6859
+0.7350
+0.7778
+0.8149
+0.8467
+0.8739
+0.8968
+0.9161
+0.9324
+0.9457
+0 ● 9569
+0.9659
+0.9732
+0.9792
+0.9841
+0.9876
+0.9905
+0.9928
+0.9946
+0*9960
+0.9971
+0.9979
+0.9985
+0.9988
+0.9992
+0.9994
+0.9996
+0.9997
+0.9998
+0.9999
+0.9999
+0.9999
+1.Oooo
+1,0000
+1.0000
+1 0000
+●
+
+I.23264
+1.1328
+1.0345
+0.9386
+0.8463
+0.7583
+0.6751
+o*5973
+0.5251
+0.4586
+0.3980
+0.3431
+0.2937
+0.2498
+0.2109
+0.1769
+0.1473
+0.1218
+0.0999
+0,0814
+0.0658
+0.0528
+0.0420
+0.0332
+0.0260
+0.0202
+0.0156
+0.0119
+0.0091
+0.0068
+0.0052
+0.0036.
+0.0027
+0.0023
+0.0019
+0.0014
+0.0010
+0.0008
+0.0004
+0.0003
+0.0002
+0.0001
+0.0001
+0
+
+NACA ‘l!ki
+No. 3217
+TABLE II. -TBEFONCTION
+*
+
+f OF TBEBOUNDARY IAYEROK THE FLAT PLATE
+
+IN LONGTI’UDIWAL
+FLOW (ACOORDR?GTO BIASIUS (REFEREKCE8)); TO
+
+mGuRE30 q=
+
+o
+
+.
+
+.
+
+4:0
+4.2
+:::
+4.8
+5.0
+5.2
+5.4
+5.6
+7.8
+6.0
+6.2
+6.4
+6.6
+6.8
+7.0
+7.2
+7.4
+7.6
+7.8
+8.0
+:::
+8.6
+8.8
+
+.pl
+
+*I1
+
+0.06641
+0.13277
+0.19894
+0.264TL
+0.32979
+0.39378
+0.45627
+0.51676
+0.57477
+0.62977
+0.68132
+0.72899
+0.77246
+0. 8u52
+0.84605
+0.87609
+0.90177
+0.92333
+0.gkl12
+0.95~2
+0.96696
+0.97587
+0.98269
+0.98779
+0.99155
+0.99425
+0.99616
+0.99748
+0.99838
+0.99898
+0.99937
+0.99961
+0.99977
+0.99987
+0.99992
+0.99996
+0.99998
+0.99999
+1.00000
+1.00000
+1.00000
+1.00000
+1.oOooo
+1.00000
+
+0.33206
+0.33199
+0.33147
+0.33008
+0.32739
+0.32301
+0.31659
+0.30787
+0.29917
+0.28293
+0.26675
+0.24835
+0.22809
+0.20646
+0.18401
+0.16136
+0.13913
+0.11788
+o.098@
+o. 0%13
+0.06424
+0.05052
+0.03897
+0.02948
+0. 0Z187
+0.01591
+0.01134
+0.00793
+0.00543
+0.00365
+0.00240
+0.00155
+0.00098
+0.00061
+0.00037
+0.00022
+0.00013
+0.00007
+0.00004
+0.00002
+0.00001
+0.000o1
+0
+0
+0
+
+f
+
+7
+
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+1.6
+1.8
+2.0
+2.2
+2.4
+2.6
+2.8
+3.0
+3.2
+3.4
+;.;
+
+%. k . f’l(q)
+r Vx‘ U.
+
+Lo&4
+0.02656
+0.05974
+0. 106IJ
+0.16557
+0.23795
+0.32298
+0.k2032
+0.52952
+0. 6m3
+0.78120
+0.92230
+1.07252
+1.23099
+1.39682
+1.56911
+1.74696
+1.92954
+2.11605
+2.30576
+Q.49806
+2.69238
+2.88826
+3 08534
+3.28329
+3. 189
+3. % k
+3.88031
+4.07990
+4.27964
+4.47948
+4.67938
+4.87931
+5.07928
+5.27926
+~.k7923
+y. 67924
+5.87924
+6.07923
+6.27923
+6.47923
+6.67923
+6.87923
+7.07923
+
+0
+
+●
+
+1
+
+122
+
+NACA TM No. 1217
+
+MD
+h OF TEE B4XINDKSYL&ES
+TABLE
+III . -THE FUNOJ!IOI’JS
+f,g
+5
+35
+oNTEEoYmmER(SYIMWRIOAL
+CAER) AOO03DILVG
+TO EOh’ARTE
+CE 15)AND~&~G
+(~
+(~
+c’Ei6).~=y
+~
+ff=
+
+n
+o
+0.1
+
+0.2
+0.3
+0.4
+
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+1.1
+1.2
+
+1.3
+
+1.4
+
+1.5
+1.6
+1.7
+1.8
+1.9
+2.0
+2.1
+2.2
+2.3
+2.4
+2.5
+2.6
+2.7
+2.8
+2.9
+3.0
+3.1
+3.2
+3.3
+3.4
+3.5
+3.6
+:.;
+.
+i::
+4.1
+$:!
+.
+
+o
+
+0.0035
+0.0132
+0.0282
+0.0476
+o.o’7@
+0.0962
+0.1240
+0.1534
+0.1838
+0.2149
+0.2462
+0.2776
+0.3088
+0.3397
+0.3702
+0.4002
+0.4297
+0.4587
+0.4871
+0.5151
+0.5426
+0.5698
+0.5966
+0.6230
+0.6492
+0.6752
+0.7010
+0.7266
+0.7520
+0.7774
+0.8027
+0.8279
+0.8531
+0.8782
+0.9033
+o.928k
+o.953k
+0.9785
+1.0035
+
+1.0285
+1.0535
+1.0785
+1.1035
+1.1285
+
+f.:
+o
+0.0675
+
+o.1~1
+0.1734
+o.21.2g
+0.2MA
+0.2688
+0.2869
+0.2997
+0.3080
+0.3125
+0.3tio
+0.3132
+0.3107
+0.3070
+0.3025
+0.2947
+0.!+12s
+0.2871
+0.2822
+0.277s
+0.2TSS
+o.0.2(%2
+0.2632
+0.26U7
+0.2586
+0.2568
+0.2554
+0.2542
+0.2533
+o.~~
+0.2519
+0.2515
+o.~~
+0.2508
+0.2506
+o.~ok
+0.2~s
+0.2502
+o.!@2
+o.*O1
+o.2jol
+o.~
+0.2500
+
+gt
+
+9
+
+f“
+
+0.7244
+o.62k9
+0.5286
+0.4375
+0.3539
+0.2780
+0.211.2
+0.1530
+0.1037
+0.0626
+0.0292
+0.0028
+4.0173
+4.0320
+4.042Q
+-o*0482
+-0.0513
+-0.0518
+4.0506
+-0.0480
+4.0444
+-0.0402
+-0.0358
+-0.0314
+-0.0271
+a. 0230
+-0.0194
+-0.0160
+-0.0131
+-0.0105
+-0.0085
+-0.0067
+-0.0052
+-0.0041
+-0.0032
+-0.0024
+-0.0019
+-0.0014
+-0.00IJ.
+4*0008
+-0.CKJ06
+-0.IX)04
+-0.0003
+-o*c002
+-0.0001
+
+o
+0.2
+
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+1.6
+1.8
+2.0
+2.2
+2.4
+2.6
+2.8
+3.0
+3.2
+:::
+3.8
+4.0
+:::
+
+.. ..—‘5
+0
+0.o114
+0.0405
+0.0806
+0. i264
+0.1742
+0.2218
+0.2676
+0.3112
+0.3526
+0.3918
+0.4293
+0.4655
+0.5007
+0.5352
+:.%&
+0:6365
+0.6700
+0.7034
+0.7368
+0. ~ol
+o. &35
+
+h=
+o
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+
+1.4
+
+1.6
+1.8
+2.0
+2.2
+2.4
+2.6
+2.8
+3.0
+;::
+3.6
+3.8
+4.0
+:::
+
+o
+
+0.0017
+0.0045
+0.0057
+0.0039
+-0.001.2
+-0.0090
+-0.0185
+-0.0286
+4.0384
+-O.04’j’2
+-0.0546
+-0.0604
+
+-0.CW9
+-0.0691
+4.0703
+
+-0.0717
+4.0726
+-0.0732
+4.0735
+-0.0737
++3.0738
+-0.0738
+
+5
+
+0
+0 .1 0 7 2
+
+0.1ti8
+o.2184
+0.2367
+0.23s9
+0.2342
+0.2239
+
+0.2123
+o.2Q12
+0.1916
+
+0.1839
+0.1781
+0.1740
+0.173.2
+0.144
+0.1682
+0.1676
+0.1672
+0.1669
+0.1668
+0.1667
+0.1667
+
+ht
+5
+0
+0.o141
+0.o1.17
+4.0010
+-0. ca76
+4.0330
+-0.0441
+-0.0498
+-0.0503
+-0.0468
+4.0406
+-0.0331
+-0.0257
+-o. ol@
+-o.o133
+4.o@
+-0.0058
+aoo36
+4.oo21
+-0.0012
+4.0006
+-0.0(X)3
+-0.0001
+
+‘;
+0.6348
+0.4402
+0.2717
+0.1403
+0.0483
+4.0105
+-0.0431
+4.0567
+-o.oy30
+-0.0522
+-0.0432
+-0.0335
+-0.0245
+-0.0171
+-0.0114
+-0.0072
+-o. m43
+-0.0026
+-0.0015
+-O. CU)1O
+-0.0004
+4.0001
+-0.0001
+
+h“
+5
+o.U92
+0.0249
+a.0436
+-0.0783
+-0.0933
+4.C@o
+-0.0423
+-0.0149
++0.0098
+0.0256
+0.0351
+0.0380
+0.0361
+0.0312
+0.0249
+0.01.87
+o.m32
+0.CG99
+0.0057
+0.0036
+0.0022
+0.0012
+0.0007
+*
+
+123
+
+!cABlaIv. - THE FUNCTIONS
+DISTRIBWI~
+(~
+
+F(Y/~ ) ~d
+
+IN THE BOUND~Y
+
+G(Y/~ ) F~
+
+LAYER ACCORDING TO PO_~
+
+CE 24) AND HOWARTH (REF=CE
+
+o
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0,9
+1.0
+
+T=
+
+15)
+
+F
+
+G
+
+o
+0.1981
+0.3856
+0.5541
+0.6976
+0.8125
+0.8976
+0.9541
+0.9856
+0.9981
+1
+
+o
+0. 012J-5
+0.01725
+:. ol~5
+
+q
+
+0:0104
+0.0064
+0.00315
+0.00105
+0.00015
+0
+
+~OC~
+
+324
+
+NACA TM No. 1217
+
+TAME V. - AIEI~
+
+FONOI?IONS
+BCIRTHE BOuNTMRY IMER
+
+AOOORDItlG
+TO EOLSEEDT (RET&m m
+
+CALCULATION
+
+25)
+
+h
+
+K
+
+F(R)
+
+fl(K) = ~
+
+15
+14
+13
+M
+u
+10
+9
+8
+7.8
+7.6
+;::
+
+0.0885
+0. C920
+U&w
+o.og48
+0.0941
+o.og20
+0.0882
+0.0831
+0.0820
+0.0807
+0. 07gk
+0.0780
+
+-0.0657
+-0.0814
+-o. C913
+4.cg46
+-o. QxLl
+-o. @06
+-0.0608
+-0.0332
+4.0271
+4.0203
+4.0132
+-0.0051
+
+2.279
+2.262
+2.s3
+2.250
+2.253
+2.260
+2.273
+2.289
+2.w3
+2.297
+2.301
+2.305
+
+Q TA
+f2(K) = UN
+0.345
+0.351
+0.354
+0.356
+o.35k
+0.351
+0.346
+0.340
+0.338
+0.337
+0.335
+0.333
+
+7.@2
+
+0.0770
+
+t)
+
+2.308
+
+0.332
+
+7
+6.9
+6.8
+6.7
+6.6
+6.5
+6.4
+
+1
+
+0.0767
+0.0760
+0.0752
+0.0744
+0.0737
+0.0729
+0.0721
+0.0713
+0.0706
+0.0697
+0.W9
+o.o~
+0.0497
+0.0385
+0.0264
+0.0135
+
+b.oosl
+0 .00s1
+0.0102
+0.0144
+0. 0M6
+0.0230
+0.0274
+0.0319
+0.0365
+G.0412
+0.0459
+0.0978
+0.1579
+0.2255
+o.3om
+0.3820
+
+2.309
+2.312
+2.314
+2.316
+2.W3
+2.321
+2.323
+2.326
+2.328
+2.331
+2.333
+2. 36~
+2.392
+2.427
+2.466
+2.508
+
+0.331
+0.330
+0.330
+0.329
+0.328
+0.327
+0.326
+0.3-25
+0.324
+0.322
+0.321
+0.310
+0.29’7
+0.283
+0.268
+0.252
+
+0
+
+0
+
+0.4698
+
+2.554
+
+0.235
+
+-1
+-2
+3
+-5
+-6
+-7
+-8
++
+-lo
+-11
+
+-0.01.40
+-0.0284
+-0.0429
+4.0575
+-0.0720
+-0. 0%2
+-o. oggg
+-0. U.30
+-o.1255
+a. 1369
+4.1474
+
+0.5633
+0.6616
+0.7640
+0.8698
+0.9780
+1.0853
+1.1981
+1.3078
+L4173
+1.5231
+1.6251
+
+2.604
+2.658
+2.716
+2.779
+2.&7
+2.921
+2.999
+3.08k
+3.177
+3.276
+3.383
+
+0.2J.7
+O.lgg
+0.179
+0.160
+0.140
+0.119
+0.100
+0.079
+0. OH
+0.039
+0.019
+
+-12
+
+-0.1567
+
+1.7237
+
+3*mf3
+
+o
+
+-13
+-14
+-15
+
+4.1648
+-0.1715
+-0.1767
+
+1.8159
+1.9020
+1.98!a
+
+3.627
+3.765
+3.920
+
+4.019
+. -0.037
+-0.054
+
+-2
+
+2:2
+6.1
+6
+5
+4
+3
+
+.
+
+~~
+
+“:
+
+-
+
+TABLE VI. - EXAMPLE
+TO HOISCEIN
+
+JL
+
+(d%
+m
+
+U.
+
+o
+177.5 :.o@g 0.231
+175
+0.0099 0.445
+1.T2.5 0.0148 0.632
+170
+0.0197 0.782
+165
+0.0308 0.993
+160
+0.0443 L1l.1
+19
+0.0787 1.233
+140
+0.123 1.Z?70
+136
+0.145 l.q’l
+130
+0.178 1.267
+120
+0.241 L245
+Ilo
+0.313 La.2
+100
+0.390 1.178
+0.473 1.136
+~ $.3 0.483 1..130
+1.095
+O.*
+70
+0.648 L053
+60
+0.733 1.o14
+008J.2 0.997
+z
+0*945
+O*W
+30
+0.944 0.917
+20
+0.990 m99
+10
+1.o18 0.889
+1.025 0.8/?6
+5
+0
+0.884
+1.0%
+
+IKIR !lTOl
+BOUBDARY
+
+(REKEWilOE ~).
+~ d%
+——
+UO M
+
+51.7
+49.0
+@.2
+2:;5
+12.70
+6.16
+1.573
+0.0
+-0.2U9
+-0.387
+-Q.468
+-0.485
+4.4a7
+-0.487
+-0.487
+-0.474
+-0.458
+-0.442
+-0.420
+-0.416
+4.4J.4
+-0.409
+-0.409
+-0A@
+
+IAXER
+
+CALCULATION
+
+(PROFILE
+
+J 015;
+
+C*
+
+k
+
+t
+
+19%r
+K
+
+o. O?qo
+0.0745
+0.0708
+0.0662
+0.0631
+0.0513
+0.0389
+o.020g
+0.0057
+0
+JJ.olol
+4).0317
+a .(%16
+.o.1o24
+4.1510
+-0.1567
+
+C*.
+
+—
+
+Vt”
+!
+
+MWIRDm
+=
+
+o)
+
+8*
+r
+
+Uot
+
+7.Q52
+0.00149
+0.00192
+6.70
+6.24
+0.00168
+0. CXX!03 5.64
+-0.7.32
+0.00404
+4.15
+3.03
+0.00632
+1.57
+0.01325
+0.41
+0.026’7
+0.0340
+:.Tl
+0.0485
+O.oml
+0.1315
+2::
+-7.I.8
+0*2U
+-IJ..37
+0.310
+-12
+0.324
+
+T
+
+0.089
+0.0895
+0.0957
+o.m57
+0.LL9
+0.152
+0.193
+0.287
+0.410
+0.460
+0.564
+0.765
+l.mj
+1.383
+1.910
+l.$)go
+
+a-.
+
+—.
+
+N02
+
+r
+
+Uot
+
+o
+3.90
+7*O5
+8.95
+9.74
+7*3J
+5:57
+3.81
+3.43
+2.58
+1.69
+1.05
+0.49
+0.049
+0
+
+v
+
+u26
+
+NACATM NO. 1217
+
+~
+U.
+//////////////// ////7P
+
+~---i
+
+//’///////////////////
+
+Figure
+
+l.-
+
+Simple shear flow.
+
+I
+
+-----
+
+--
+
+—--
+
+-----
+
+Figure 2.- IIagen-Poiseuille’
+
+s pipe flow.
+
+z
+\
+
+Figure
+
+.
+
+.
+
+3.-
+
+The general stiess
+
+tensor.
+
+X27
+
+I’?ACA!Clf No. 3217
+
+T’yj(
+t /’0]
+
+●
+
+-rxy .dy
+,dx
+--ryx
+
+Figure
+
+shearing stress
+
+(to fig. 3).
+
+Y
+
+k
+
+.
+
+Figure
+
+5.-
+
+The deformation
+
+of a pure elongation.
+
+Figure6.- Pure angular deformation
+
+(e > O).
+
+128
+
+I?ACATM No. ~17
+
+Figure 7.-
+
+Figure 8.-
+
+Pure
+
+angular
+
+deformation
+
+(f ->
+
+0)0
+
+Analogy between heat boundary layer and flow boundary layer.
+
+x
+
+k
+Rf- . ,
+
+t
+Figure 9.- !I’ypes of solutions of the Navier-Stokes
+
+differential
+
+equations.
+
+X29
+
+NACA TM No. ~1~
+
+s
+
+*
+
+8
+
+FYgu.re 10. -
+
+Reynolds’
+
+law of similari&.
+
+.
+
+Figure 11. -
+
+Laminar pipe flow.
+
+NACA TM No. 3.217
+
+130
+
+*
+
+y/r
+
+k
+
+Loi
+.8
+
+.6
+
+.+
+
+.2
+
+u
+
+0(
+
+-.2
+
+-.4
+
+-.6
+
+-.8
+.
+
+-/9G
+t
+
+x
+Figure 12. -
+
+Velocity profiles
+
+of the starting pipe flow
+
+()
+
+Vt
+
+T =~
+
+.
+
+NACA‘I’MNo. X217
+
+131
+
+.
+
+Figure 13. ,
+
+Velocity distribution
+
+on an oscillating
+
+surface.
+
+132
+
+NACA TM NO. =17
+
+.
+
+I
+///////////////
+u
+IHgure 14. -
+
+Velocity distribution
+
+Figure 15. -
+
+/ 777-+
+o
+on a surface set suddenly in motion.
+
+The plane stagnation point flow.
+
+b
+
+133
+
+NAOA TM NO. 1217
+
+u
+—U
+
+I
+o-q5(o
+
+Figure
+
+16. -
+
+The velocity
+
+profile
+
+of tie plane stagnation
+
+point flow.
+
+Convergent
+flow
+
+Divergent
+flow
+
+Figure
+
+17. -
+
+The convergent
+
+and divergent channel.
+
++=3
+w
+
+u..
+
+o
+
+Figure 18. -
+
+Velocity distribution
+
+in the convergent
+
+channel.
+
+NACA TM NO
+
+134
+
+————.
+
+9 -u
+0
+
+Reverse
+Figure 19. -
+
+.—.
+
+——
+
+.——
+
+flow
+
+Velocity distribution
+
+—.—
+
+.—.
+
+—.~
+
+in the divergent channel.
+
+.—
+
+Figure 20.- Separation in the divergent channel.
+
+Id
+
+Figure 21. -
+
+Viscous flow around a sphere.
+
+●
+
+~17
+
+HACA TM NO. 1217
+
+.—.
+-
+
+135
+
+—
+
+Figure 22. -
+
+pattern of the viscous
+(according to Stokes).
+
+Streamline
+
+flow around a sphere
+
+.
+
+Figure
+
+23. -
+
+Streamline
+
+pattern of tie viscous flow around a sphere
+
+(a~cording to Oseen).
+
+u
+
+u
+U*
+
+Figure
+
+24. -
+
+Concern@
+Prandtl’s boundary-layer
+layer thickness 5 magnified.)
+
+equation.
+
+(Boundary-
+
+—.
+
+NACA TM No. ].2l'i
+
+@
+
+y-----
+
+t
+
+©
+
+y
+
+t~rJ_,X
+
+flil
+
+>0;
+
+I~;i
+
+= OJ
+
+H:i
+
+<0;
+
+Figure 25.... Separation of the boundary layer. (A =point
+of separation.)
+
+I?ACAl%!NO. ~17
+
+137
+
+Y
+
+Y
+
+Figure 26. -
+
+Veloci&
+
+distribution
+
+in the boundary layer for pressure
+
+decrease
+
+(*<
+
+0).
+Y
+
+Y
+
+Y
+
+A
+—-.—.
+
+Figure
+
+27. -
+
+Velocity distribution
+increase
+
+in the boundary layer for pressure
+(*>
+
+0).
+
+x
+
+Figure 28. -
+
+Concerning
+
+the calculation
+
+of the friction
+
+drag.
+
+_NACA TM No. l2J. 7
+
+•
+
+.
+
+6
+
+-x
+
+Figure 29. - The boundary layer on the flat :ylate in longitudinal flow.
+
+1,0
+
+U-1r'l]
+Yo
+.
+
+l'~S
+
+o*~
+
+I
+
+T
+I
+I
+
+I
+
+)1)(
+
+~
+
+/"
+
+,/
+o
+
+I V
+
+/
+
+v---
+
+!--
+
+Vi
+
+1
+
+i
+
+1I
+!
+2
+
+4-
+
+S
+
+6
+
+~ 1J-Y Y~f
+
+- - - - t...
+
+Figure 30.- Velocity distribution u(x,y) in the boundary layer on the
+flat plate (according to Blasius).
+
+I?ACATM NO. 1217
+
+Figure 31. -
+
+139
+
+The transverse
+
+velocity v(x,y)
+the flat plate.
+
+in the boundary layer on
+
+●
+
+x
+Figure
+
+32. -
+
+The boundary layer on a cylindrical
+
+cross
+
+section
+
+(symmetrical
+
+case).
+
+body of arbitrary
+
+NACATM Noo 1217
+
+●
+
+L
+
+—
+
+-1-
+
+o-
+
+33. -
+
+The function
+
+f3’
+
+of We Veloci&
+
+distribution
+
+in the
+
+boundary layer.
+
+-
+
+Figure
+
+2,0
+
+to
+
+0
+
+34. -
+
+The functions
+
+g5’
+
+and h5’
+
+in the boundary layer.
+
+of the
+
+2/5
+
+30
+
+.
+
+NACATM NO. 1217
+
+141
+
+Circular
+
+b
+
+cylinder
+
+*“
+
+Arc length
+Figure 35. -
+
+Veloci&
+
+distribution
+
+of t he
+
+x
+potential
+
+flow for a wing profile.
+
+.
+
+--=&=&
+Figure
+
+36. -
+
+Concerning the calculation of the friction
+. circular cylinder.
+
+layer on the
+
+Y
+
+.-..-C-Q-RA%
+..
+
+L-
+
+—1-+b
+
+—
+—.
+
+-j=f--p.y.+
+
+Figure 37. -
+
+Wake flow behind the flat plate in longitudinal flow.
+
+-.
+
+142
+
+R,
+
+u
+
+#7n777ii@’777i7/*’
+
+.
+
+.
+
+.
+
+.
+
+.
+
+.fi.
+
+4 u!
+
+I
+I U(x, y)
+
+Y
+
+~r
+
+“
+
+44/
+1/
+
+B
+
+ti[~[
+
+-+-x
+,
+I
+/
+
+Figure 38. -
+
+Concerning application of the momentum theorem for the
+flat
+
+-3
+
+-2
+
+plate in longitudinalflow.
+
+-f
+
+o
+
+7
+
+3
+, ~=;
+
+Figure 39. -
+
+”
+
+EIJ...///f..
+){
+T“
+h
+
+/7
+
+.4..
+
+4
+x
+F
+
+Asymptotic veloci~ distribution in the wake behind the
+flat plate in longitudinal flow.
+
+NACATM No. 1217
+
+143
+
+A
+.
+
+1-–-–/–-–/
+
+.
+
+–.–-–-J
+
+Figure 40.- Streamline pattern and velocity
+
+Ii
+
+distribution
+
+z
+u
+q’
+
+/
+
+\
+
+I
+Figure
+
+41. -
+
+The
+
+profile
+
+of the plane jet.
+
+of the plane jet.
+
+.-
+
+-.
+
+.
+
+I
+
+I
+
+-
+
+2
+Figure
+
+41(a).- Boundsry+yer
+
+profiles
+
+I
+
+I
+
+5=&r’g Y
+3
+
+4
+
+for the potentialflow U(x) = Ulxm.
+
+i45
+
+NACA TM NO. 3_217
+
+/
+
++._-+
+
+Figure 42.- Application
+
+I
+
+-
+
+of the momentum theorem for the flat plate in
+longitudinal flow.
+
+oQ
+
+L!
+
+— uo—
+--— — —
+
+o
+—.-
+
+6
+
+Figure 43. -
+
+Velocity distribution in the boundary layer on the flat plate
+in longitudinal flow.
+
+(a)
+
+Linear approximation.
+
+(b)
+
+Cubic approximation
+
+Figure 44.- Application
+
+for the veloci~
+
+profile.
+
+of the momentum theorem to the boundary layer
+with pressure gradient.
+
+NACATM NO. 1217
+
+0~
+
+Figure
+
+45. -
+
+veloci&
+
+Y/6p
+
+The universal functions F(y/@
+and G(Y/5 ~) for fie
+distribution in the boundary layer according to Pohlhausen.
+
+7~~
+‘//”!
+
+A
+
+,~ .tagna~cmpoint
+.,”
+
+Separation
+
+0,4
+
+Figure
+
+46. -
+
+The one -parameter
+
+family of velocity profiles
+to Pohlhausen.
+
+according
+
+.
+
+NACA TM No. 1217
+
+.
+
+Awdlkry functions ofthelxmndarylayercalculation
+according
+toHolstein
+(cf.
+table5);x and F(~) against R .
+
+Figure 47(a). -
+
+147
+
+NACA TM No= 3-=7
+
+148
+
+\
+
+/ ‘1
+
+“4?9”
+‘U%5-
+
+A
+
+I
+I
+I
+I
+I
+I
+I
+1
+I
+I
+I
+I
+I
+I
+!
+I
+
+f
+\
+
+.
+
+/‘
+
+I
+
+I
+I
+I
+I
+I
+1
+I
+
+A
+
+I
+
+k
+-25
+
+I
+1
+I
+1
+I
+I
+I
+
+*
+
+$
+47(b)
+.- Auxiliary
+functions
+fortheboundarylayercalculation
+according
+toHolstein
+(cf.
+table5);fI(~) and f2(K) et
+~.
+
+Figure
+
+149
+
+RACA TM No. U17
+
+o
+
+~—
+
+s
+t
+
+Figure 48. - Integrationof the differential equation of the boundarylayer
+according ta Pohlhausen andHolstein (profile J 015; ca = O).
+
+1217
+
+A
+
+.
+
+.——
+
+—-
+
+-
+
+u?____--
+
+__
+
+I
+——_
+
+.
+
+VI
+
+/
+
+k
+I
+
+I
+
+I
+
+-.
+
+.
+t
+#
+
+L!
+
+-l?5
+I
+
+I
+I
+
+- to
+
+1
+
+__._-k52
+
+L——-
+
+1- ———
+
+—
+
+Jou.kowsky profile
+Figure
+
+49. -
+
+according
+
+-L ———
+
+—
+
+d/t=
+
+0.15
+
+Result of the boundary-layer calculation
+to figure 48 (profile J 015; Ca =-O).
+
+J — ___
+
+j
+
+Y-1
+
+for the example
+
+NACA TM Noo 1217
+
+~
+
+7y7
+
+~
+
+Q8
+
+I
+
+151
+
+—
+
+a4
+
+----
+
+Exact solution
+
+—
+
+Approximation;
+
+7
+a)
+
+2
+
+3
+~
+
+Stagnation point profile
+
+A=%05.z
+
+Y/J*
+
+U=uq)c
+u
+
+—
+
+10
+
+‘o 08
+
+7
+/
+
+t
+04
+
+----
+
+Exact solution
+
+—
+
+Approximation; A =O
+
+‘
+
+1
+I
+
+b)
+
+Plate profile
+
+2
+
+&
+
+d
+
+~
+
+Y/&*
+
+u-U.
+
+Figure 50.- Comparison of the approximate calculation
+Pohlhausen with the exact solution.
+
+according
+
+—.NACATM No.
+
+3.217
+
+~
+
+7, 2s
+
+#i
+
+1
+
+8!
+
+to
+118-
+
+u
+I
+
+o
+
+M
+
+i18
+
+@
+
+Figure 51. - Potential-theoretical
+velocity distribution on the elliptic
+cylinders with axis ratio al /bl = 1, 2, 4, 8 for flow parallel to the
+major axis (A = laminar separation point),t’ = half the circumference.
+
+153
+
+NACATM NO. 121.7
+
+4
+
+Circularcylinder
+I
+I
+I
+
+@
+
+I
+
+Separation
+pointaccordingtoP4
+
+o
+c
+
+I
+
+4
+
+.Circularcylinder
+_—
+
+o
+—-s/tt
+Figure52.- Resultoftheboundary-layer
+calculation
+for theelliptic
+cylinders
+ofaxisratioal/bl= 1,2,4,B.
+
++-*O?.,
++78%
+
+L
+
+d
+
+. eti. ir. mera. e
+
+Inflection
+point
+
+VW=
+
+A-m
+
+of the ellipse
+
+AS$*
+
+IIzyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+II
+
+f4 2
+
+zyxwvutsrqponmlkjihgfedcbaZYXWVUTSRQPONMLKJIHGFEDCBA
+-am
+
+-wa5
+-2 0 ’
+
+4 n”
+
+i)
+
+3
+
+sol
+
+::
+
+L
+
+1
+
+Separationpoint
+
+s
+u.
+
+Friction layercalculatedaccordingtoPohLhausen PA, ZAMM
+
+lg21
+
+layeron the elliptic
+Figure 53.- Potentielflow and landnsr friction
+cylinderof axleratio al/bl = q.
+
+fold
+
+NACATM NO. J217
+
+i
+
+Figure 54. -
+
+155
+
+I
+
+I
+
+1
+
+,
+
+<
+
+Potential-theoretical
+velocity distribution for the Joukowsky
+profile J 015 for Ca = O; 0.25; 0.50; 1.0.
+
+156
+
+NACATMIVO. X217
+
+O
+
+Suctionside
+
+&
+
+I
+
+I
+
+I
+
+Pressure side
+I
+
+d
+
+I
+
+L------t
+
+2 —
+s“
+
+; .—. —-—-—-—
+
+-—.
+/
+
+U.t
+
+TT r
+
+I
+
+?
+1
+
+./ ‘
+
+/
+
+/
+
+1 i ,...””””””.
+tI #
+. .,’
+//, ,1.,.”“
+
+2
+
+/
+
+/
+
+“/
+
+/‘
+
+1--
+
+..””
+0;.
+
+.
+—
+
+S/”
+
+0
+0-
+
+04
+
+Q8
+
+8
+
+-8
+-12
+
+o
+
+al
+
+G?2
+
+173
+
+04
+
+05
+
+Figure 55. - Result of the boundary-layer calculation for the Joukowsky
+I
+profile J 015 (t’ = half the profile perimeter).
+
+@
+
+-—
+@*
+@~------------—-—m
+5–-it
+BEli!
+E
+,.
+
+A~w
+
+914
+
+0
+
+-2 2 0
+
+qff=wie?
+
+-8 6
+
+M432
+
+~“. f7a
+
+eaw
+
+#m
+
+4W
+1S5
+
+laaw ~
+m’
+---------a
+
+w:
+I
+
+m
+
+@!4
+
+(9
+
+@
+
+S
+
+4
+
+-----------
+
+Zu
+
+w
+
+2
+
+-—-------
+
+f
+
+&Jw
+
+------
+
+0
+
+ml?
+
+0
+
+as
+
+R
+
+I
+
+0Eiil?iil!
+
+a
+
+u
+
+Separation
+
+‘b-
+
+0
+
+Potentialflow
+
+$ .4 1 5
+
++’=
+
+W27
+
+w?-
+
+w
+
+Inflection
+point
+
+t’-Half circumference of
+
+the proffle
+m
+,
+1
+UJ=
+
+F@re
+
+56.-
+
+Poktlal flowand laminar frictionlayer for the Joukowsky
+proffleJ 015 at ca = O.
+
+*JTne boundary-layer
+thickness
+1s
+
+~~
+
+foldincreased
+
+I
+
+---I
+P.
+I
+
+Suction
+k-w
+% yluJ2
+
+w
+Q
+fan
+
+side
+
+----7
+
+-w
+ii%
+
+0&37
+ms
+
+f72#5
+
+IJ0432
+160
+
+46
+iz
+
+N
+In
+a
+
+w?
+
+N
+
+8
+
+4
+... -.— ..- ...-
+
+H
+
+0
+
+0
+
+ME -
+
+Ilwl=OtlOn
+
+point
+
+5
+
+P* ossnr*
+
+sib:
+
+no Sapa?stlan
+
+&“+t
+Figure 57.-
+
+Potentia3
+
+flow and laminar
+profle
+J 015 at
+
+20
+
+friction
+ca = 1.
+
+,,
+
+layer
+
+for the Joukowsky
+
+*
+
+,
+
+~:t-
+
+--
+
+[if
+
+~
+
+U,
+
+!2t
+0
+
+§
+
+...~cr
+
+Pressure side
+
+-~
+
+v
+L
+
+Jj#J
+4.13
+a120
+220
+
+l~.
+
+~:'.
+
+226
+
+o
+
+Q235
+240
+
+IUf2
+264
+
+Figure 57. - Concluded.
+
+-3,75
+ll63f
+290
+
+-8,51
+0,861
+
+320
+
+6
+
+/
+
+II
+
+1I
+
+/
+
+... f'WIi
+
+V
+
+8
+
+V
+
+~
+
+L-
+
+l
+
+v
+
+1
+
+.
+
+JoukowsKY profile
+w
+
+000
+
+005
+
+—-—— ————
+
+805
+
+‘&=====
+
+445
+
+M5
+
+c.---”
+
+-
+
+c—
+
+~’
+
+e’
+
+(==”
+
+,.
+
+Figure
+
+58.-
+
+Joukowskyprofiles; thiclmess d/t = O to 0.25;
+f/t = o to O.m.
+
+csmber
+
+,.
+
+I
+
+‘ ,{
+
+Em
+
+,//!
+
+/
+
+/
+
+,-’
+
+!l
+
+--
+
+/
+
+/
+
+/
+
+r
+
+/
+
+/
+
+/
+I
+
+A-
+
+I
+
+~1
+
+‘
+I
+
+u?
+44
+4M
+
+Figure 59.- Position of the laminar separation point for the Joukows~ik
+profilesof figure 58; suction side.
+
+,
+
+Ca=O
+
+qt ,
+ur
+
+....
+
+-
+
+I
+
+tL
+
+.-./'
+
+/
+
+~,
+
+....
+
+~>
+Ca=O,6
+
+-
+
+,'- ~
+
+Fit D
+
+...ft. /' ,
+
+/,'
+
+rVI--
+
+11'.....- I-- 1-1
+
+V
+
+",
+
+--
+
+....
+
+f-"
+
+,~
+
+I
+
+,,-
+
+,,-
+
+--V", V
+
+--\:--.,
+
+- -..
+
+~,
+
+\
+
+!\
+
+". .....
+
+[ " r"-_
+
+-
+
+-1-._- f-'"
+
+V
+
+v
+
+-=-
+
+~
+
+qt
+
+--
+
+L---::
+
+~
+
+---- ~
+~
+
+V- r
+
+.....
+~
+
+l-- r-
+
+4J
+
+wr
+
+r----~
+41~
+
+~
+
+......
+
+[r
+
+I
+
+I
+
+~
+
+,,'I"
+
+.-:;-
+
+r---.. III
+
+"-
+
+V
+t--
+
+~
+
+~
+
+I-"""
+
+-'~
+
+/"" V
+
+---'
+
+~
+
+/
+
+f-" laS__ :-- [1'_
+
+I-
+
+. . V V V /"" I-- .......' ,- V
+~ ....
+V V- I--
+
+I
+
+I
+
+~
+
+, / ....
+/
+
+1"""--
+
+~"
+
+V
+
+V ~
+
+/ /1'
+I ,.
+
+'L
+
+---/'
+~
+
+......
+
+~
+I.---'
+
+l--"
+
+1/1
+
+~17
+
+" r'\s.
+
+~
+
+U
+
+dlt
+
+~
+
+Figure 60.- Position of the laminar separation point for the Joukowsky
+profiles of figure 58; pressure side.
+
+"
+
+...
+
+..
+
+•
+
+163
+
+NACA TM NO. 1217
+
+s
+
+Danger of separation
+
+i
+
+!
+
+Pressure
+
+P
+t
+
+Figure 61. -
+
+Pressure
+
+distribution
+
+~+o
+
+-5
+
+and separation
+
+on a wing.
+
+“.-
+
+Figure 62. -
+
+Boundary layer with laminar sep~ation
+
+avoided.
+
+u~o: A-o
+t
+
++ometirnes
+
+Figure
+
+63. -
+
+no separation
+
+Potential flow with separatioru U’ e O; U“ <
+U’ e O; U“ > 0.
+
+sometimes without separation
+
+O;
+
+164
+
+-NACATM No. 1217
+
+0
+Figure 64.- Divergent channel.
+
+Figure
+
+65. -
+
+Prevention
+
+of separation on wing by blowing.
+
+-
+
+Figure 66.- Prevention
+
+Figure
+
+67. -
+
+of separation by a slotted wing.
+
+NACA cowling for prevention of separation.
+
+#’
+
+TECH LIBRARY KAFE, NM
+
+_
+
+.lllllllllllp[~~pj~lnlll
+—‘-==
+
+NACATM No. 1217
+
+PREFACE
+1 gave the lecture series “Boundary-Lqer
+Theoryw in the winter
+semester
+lgQlfi2
+for the metiers of my Jhstitute
+snd for a considerable
+number
+of collaborators
+from the Hermenn G6ring kstitute
+for Atiation
+Research. The series embraced a total of siiteen tw+hour lectures.
+
+b
+
+.
+
+The aim of the lecture series was to give,a survey of the more
+recent results of the theory of viscous fluids as far as they are of
+importance for actual applications. Naturally the theory of the boundary
+of frictional l~er takes up the greatest part. Jn view of the great
+volume of material, a cou@ete treatment was out of the question.
+However, .I took pains to make concepts everwhere stend out clearly.
+Moreover, several important typical examples were treated in detail.
+Dr. H. Hdmemann (LFA, Tnstitute for Motor Research) went to
+considerable trouble in order to uerfect = elaboratim of this lecture
+series which I examimed and sup~l~mented in a few placds. Miss lllldegard
+~mz participated in the illustration. To both I owe my most sincere
+thanks for this collaboration.
+Schlichting
+
+Aerodynamisches-Ihstiitut
+der Technischen Hochschule, Braunschweig
+October 1942.
+
+i
+
+N-Am TM
+
+lb
+
+. 1217
+‘k..
+
+‘1-.-%
+1
+
+Prevention
+
+of separation
+
+on wing by suction.
+
+L/.
+
+Id
+
+Y
+
+i$=comt.
+69. -
+
+Figure
+
+Flat plate in longitudinal flow with suction.
+
+7
+
+.~/
+,/
+
+_
+
+With suction
+
+I
+
+‘---
+
+Without suction ~
+
+4,0
+
+Figure
+
+70. -
+
+Asymptotic
+
+flow with suction
+
+(1)
+
+velocity
+
+profile
+
+5* = ~ /-vo
+
+,
+
+~)
+
+on flat plate in longitudinal
+~ x = 1.73
+
+●
+
+

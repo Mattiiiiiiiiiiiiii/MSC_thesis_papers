@@ -1,0 +1,168 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>This chapter
+  gives an overview of the most widely used numerical methods for the solution of
+  linear systems of equations and for eigenproblems, including direct methods and
+  iterative methods. Iterative methods are often used in combination with the so‐called
+  preconditioning operators. We will give a brief overview of the various preconditioners
+  that exist. For eigenproblems of the type , the QR method is discussed. The QR method
+  is expensive for larger values of , and for these larger values, a number of iterative
+  methods, including the Lanczos method, Arnoldi's method, and the Jacobi–Davidson
+  method are shown.</jats:p>"
+author: van der Vorst, Henk A. and Vuik, Cornelis
+author_list:
+- affiliation: []
+  family: van der Vorst
+  given: Henk A.
+- affiliation: []
+  family: Vuik
+  given: Cornelis
+citations:
+- doi: 10.2172/5604546
+- doi: 10.1090/qam/42792
+- doi: 10.1017/CBO9780511624100
+- author: Axelsson O
+  volume-title: Finite Element Solution of Boundary Value Problems. Theory and Computation
+  year: '1984'
+- author: Axelsson O
+  first-page: '265'
+  volume-title: Preconditioning Methods – Theory and Applications
+  year: '1983'
+- doi: 10.1137/1.9780898719581
+- doi: 10.1137/1.9781611971538
+- doi: 10.1006/jcph.2002.7176
+- doi: 10.1002/1099-1506(200010/12)7:7/8<649::AID-NLA217>3.0.CO;2-W
+- author: Brezinski C.
+  volume-title: Projection Methods for Systems of Equations
+  year: '1997'
+- author: Bruaset AM.
+  volume-title: A Survey of Preconditioned Iterative Methods
+  year: '1995'
+- doi: 10.1137/0911046
+- doi: 10.1007/978-94-011-5412-3_6
+- doi: 10.1016/0021-9991(75)90065-0
+- doi: 10.1137/1.9781611971446
+- doi: 10.1016/0168-9274(91)90011-N
+- doi: 10.1080/00207169208804100
+- doi: 10.1137/1.9780898719611
+- doi: 10.1007/BF01932738
+- doi: 10.1016/S0167-8191(99)00077-0
+- doi: 10.1137/0705045
+- author: Eijkhout V.
+  first-page: '583'
+  volume-title: Iterative Methods in Linear Algebra
+  year: '1992'
+- doi: 10.1007/BF01932751
+- doi: 10.1137/S003614450139961
+- doi: 10.1137/0721026
+- doi: 10.1007/978-3-663-11108-5
+- doi: 10.1007/BFb0080116
+- doi: 10.1137/S1064827500373231
+- doi: 10.1016/S0377-0427(00)00413-1
+- doi: 10.56021/9781421407944
+- doi: 10.1137/1.9781611970937
+- doi: 10.1007/BF01931691
+- doi: 10.1016/0045-7825(86)90053-8
+- article-title: IDR Explained
+  author: Gutknecht MH.
+  first-page: '126'
+  journal-title: Electron. Trans. Numer. Anal.
+  volume: '36'
+  year: '2010'
+- doi: 10.1007/978-1-4612-4288-8
+- doi: 10.1016/0045-7825(83)90115-9
+- doi: 10.1515/crll.1846.30.51
+- author: Jones MT
+  first-page: '229'
+  volume-title: Graph Theory and Sparse Matrix Computations
+  year: '1994'
+- doi: 10.1007/s00466-011-0661-y
+- doi: 10.1137/0911045
+- doi: 10.6028/jres.045.026
+- doi: 10.6028/jres.049.006
+- doi: 10.1137/1.9780898719628
+- author: Lukarski D
+  first-page: '13'
+  volume-title: High‐Performance Computing on Complex Environments
+  year: '2014'
+- doi: 10.1016/S0167-739X(01)00034-6
+- doi: 10.1016/S0167-8191(01)00082-5
+- doi: 10.1002/nla.247
+- article-title: An incomplete factorization technique for positive definite linear
+    systems
+  author: Manteuffel TA.
+  doi: 10.1090/S0025-5718-1980-0559197-0
+  first-page: '473'
+  journal-title: Math. Comput.
+  volume: '31'
+  year: '1980'
+- doi: 10.2307/2005786
+- doi: 10.1016/0021-9991(81)90041-3
+- unstructured: MeurantG.Numerical Experiments for the Preconditioned Conjugate Gradient
+    Method on the CRAY X‐MP/2. Technical Report LBL‐18023 University of California:Berkeley
+    CA 1984.
+- author: Meurant G.
+  volume-title: Computer Solution of Large Linear Systems
+  year: '1999'
+- doi: 10.1137/0710024
+- doi: 10.1145/355887.355893
+- doi: 10.1137/0712047
+- author: Parlett BN.
+  volume-title: The Symmetric Eigenvalue Problem
+  year: '1980'
+- doi: 10.1137/0914028
+- doi: 10.1002/nla.1680010405
+- doi: 10.1137/1.9780898718003
+- doi: 10.1137/1.9781611970739
+- doi: 10.1137/0907058
+- doi: 10.1016/S0377-0427(00)00412-X
+- doi: 10.1137/S0895479894270427
+- doi: 10.1137/0910004
+- doi: 10.1137/070685804
+- doi: 10.1016/B978-0-12-208360-0.50015-2
+- doi: 10.1137/1.9781611971408
+- doi: 10.1137/1.9780898718058
+- doi: 10.1137/08072084X
+- doi: 10.1016/0021-9991(81)90034-6
+- doi: 10.1016/0167-8191(87)90005-6
+- doi: 10.1137/0910071
+- doi: 10.1137/0913035
+- author: Vorst HA.
+  first-page: '3'
+  volume-title: Handbook of Numerical Analysis
+  year: '2002'
+- doi: 10.1017/CBO9780511615115
+- doi: 10.1002/nla.1680010404
+- unstructured: van GijzenMB.Iterative Solution Methods for Linear Equations in Finite
+    Element Computations. PhD thesis Delft University of Technology Delft 1994.
+- article-title: Further experiences with GMRESR
+  author: Vuik C.
+  first-page: '13'
+  journal-title: Supercomputer
+  volume: '55'
+  year: '1993'
+- doi: 10.1006/jcph.1999.6255
+- doi: 10.1017/S0962492915000021
+- author: Watkins DS.
+  volume-title: Fundamentals of Matrix Computations
+  year: '1991'
+- doi: 10.1137/1035090
+- doi: 10.1016/S0377-0427(00)00402-7
+- doi: 10.1007/BFb0086930
+- author: Wilkinson JH.
+  volume-title: The Algebraic Eigenvalue Problem
+  year: '1965'
+- doi: 10.1137/S1064827597321581
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781119176817.ecm2016
+doi: 10.1002/9781119176817.ecm2016
+files:
+- linear_algebraic_solvers_and_eigenvalue_analysis_van_der_Vorst_Vuik_2017.pdf
+isbn: '9781119176817'
+journal: Encyclopedia of Computational Mechanics Second Edition
+language: en
+month: 12
+pages: 1--28
+papis_id: 883210a691601c8e19f56a69c9954248
+publisher: Wiley
+title: Linear Algebraic Solvers and Eigenvalue Analysis
+type: misc
+url: https://doi.org/10.1002/9781119176817.ecm2016
+year: 2017

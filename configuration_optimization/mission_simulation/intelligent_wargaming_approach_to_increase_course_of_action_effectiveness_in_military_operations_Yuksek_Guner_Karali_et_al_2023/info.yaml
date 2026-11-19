@@ -1,0 +1,122 @@
+author: Candan, Batu and Guner, Guney and Yuksek, Burak and Karali, Hasan and Inalhan,
+  Gokhan
+author_list:
+- family: Yuksek
+  given: Burak
+- family: Guner
+  given: Guney
+- family: Karali
+  given: Hasan
+- family: Candan
+  given: Batu
+- family: Inalhan
+  given: Gokhan
+booktitle: AIAA SCITECH 2023 Forum
+citations:
+- doi: 10.1002/9780470974636.ch2
+- author: Hung C. P.
+  first-page: '04'
+  journal-title: Tech. Rep.
+  volume: '1166431'
+  year: '2022'
+- doi: 10.1117/12.2585785
+- author: The Development
+  volume-title: Wargaming Handbook
+  year: '2015'
+- author: How
+  volume-title: CALL
+  year: '2020'
+- author: Cianciolo A. T.
+  first-page: '03'
+  journal-title: Tech. Rep.
+  volume: '1178'
+  year: '2006'
+- author: United States Army, and Army, U
+  volume-title: Independently Published
+  year: '2015'
+- author: Hershkovitz S.
+  issue: '2'
+  journal-title: Naval War College Review
+  volume: '72'
+  year: '2019'
+- doi: 10.7249/TL291
+- doi: 10.1109/ACCESS.2022.3152768
+- doi: 10.1007/s12524-018-0823-x
+- doi: 10.3390/w13162211
+- author: Li X.
+  volume-title: IntechOpen
+  year: '2018'
+- doi: 10.3390/electronics9040687
+- doi: 10.1109/ACCESS.2021.3063263
+- doi: 10.1177/00202940211002235
+- doi: 10.1007/s11042-017-4956-7
+- doi: 10.1109/TASE.2018.2866395
+- doi: 10.1007/s40747-020-00252-2
+- author: Wang S.
+  first-page: '1'
+  journal-title: IEEE Access
+  year: '2022'
+- doi: 10.2514/6.2008-6839
+- doi: 10.1109/ACCESS.2021.3138857
+- doi: 10.1109/ACC.2010.5530496
+- doi: 10.2514/6.2011-1441
+  unstructured: Johnson, L., Ponda, S., Choi, H.L., and How, J., Asynchronous Decentralized
+    Task Allocation for Dynamic Environments, https://doi.org/10.2514/6.2011-1441,
+    URL https://arc.aiaa.org/doi/abs/10.2514/6.2011-1441.
+- doi: 10.1007/s12559-014-9265-0
+- doi: 10.1109/ICUAS.2019.8797928
+- doi: 10.1109/TRO.2009.2022423
+- author: Matoui F.
+  volume: '13'
+  volume-title: 'Contribution to the Path Planning of a Multi-Robot System: Centralized
+    Architecture'
+- doi: 10.3389/fpsyg.2022.850628
+- doi: 10.3390/aerospace3010001
+- doi: 10.1109/JPROC.2011.2174104
+- author: Vinyals O.
+  first-page: '1'
+  journal-title: Nature
+  year: '2019'
+- author: Goodman J.
+  first-page: 08922
+  journal-title: CoRR
+  volume: '2009'
+  year: '2020'
+- author: Bergmann R.
+  first-page: '07'
+  journal-title: Tech. Rep. WS-
+  volume: '98'
+  year: '1998'
+- author: Kerbusch P.
+  volume-title: Roles of AI and Simulation for Military Decision Making
+  year: '2018'
+- author: Davis P. K.
+  first-page: '1'
+  journal-title: The Journal of Defense Modeling and Simulation
+  year: '2022'
+- doi: 10.1117/12.2560494
+- doi: 10.1109/CoG47356.2020.9231609
+- doi: 10.1109/ICCC54389.2021.9674397
+- doi: 10.1177/15485129221097103
+- doi: 10.1177/15485129221083278
+- author: Marine Corps Operations MCDP 1-0
+  volume-title: Independently published
+  year: '2018'
+- author: Whitten A.
+  volume-title: Decentralized Planning for Autonomous Agents Cooperating in Complex
+    Missions
+  year: '2010'
+doc_url: https://arc.aiaa.org/doi/pdf/10.2514/6.2023-2531
+doi: 10.2514/6.2023-2531
+files:
+- intelligent_wargaming_approach_to_increase_course_of_action_effectiveness_in_military_operations_Yuksek_Guner_Karali_et_al_2023.pdf
+journal: AIAA SCITECH 2023 Forum
+month: 1
+papis_id: d44296b108954654ec832ef776e9272e
+publisher: American Institute of Aeronautics and Astronautics
+title: Intelligent Wargaming Approach to Increase Course of Action Effectiveness in
+  Military Operations
+type: inproceedings
+url: https://doi.org/10.2514/6.2023-2531
+venue: National Harbor, MD & Online
+year: 2023

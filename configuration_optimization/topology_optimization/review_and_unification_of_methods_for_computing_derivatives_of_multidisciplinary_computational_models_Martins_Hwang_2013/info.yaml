@@ -1,0 +1,165 @@
+author: Martins, Joaquim R. R. A. and Hwang, John T.
+author_list:
+- affiliation:
+  - name: Department of Aerospace Engineering, University of Michigan, Ann Arbor,
+      Michigan 48109
+  family: Martins
+  given: Joaquim R. R. A.
+- affiliation:
+  - name: Department of Aerospace Engineering, University of Michigan, Ann Arbor,
+      Michigan 48109
+  family: Hwang
+  given: John T.
+citations:
+- author: Saltelli A.
+  volume-title: 'Global Sensitivity Analysis: The Primer'
+  year: '2008'
+- doi: 10.2514/3.8172
+- doi: 10.1006/jcph.1996.0252
+- doi: 10.2514/3.46632
+- unstructured: HaugE. J.ChoiK. K.KomkovV., Design Sensitivity Analysis of Structural
+    Systems, Vol. 177, Mathematics in Science and Engineering, Academic Press, London,
+    U.K., 1986, pp. 1–49.
+- doi: 10.1016/j.cma.2005.02.002
+- doi: 10.1016/j.cma.2004.09.013
+- doi: 10.2514/1.34810
+- doi: 10.1137/S106482750241565X
+- doi: 10.1137/S106482750241565X
+- doi: 10.2514/6.2010-9308
+- author: Kenway G. K. W.
+  issn: https://id.crossref.org/issn/0001-1452
+  issn-type: print
+  journal-title: AIAA Journal
+- unstructured: BalayS.BuschelmanK.EijkhoutV.GroppW. D.KaushikD.KnepleyM. G.McInnesL.
+    C.SmithB. F.ZhangH. “PETSc Users Manual,” Argonne National Lab. TR-ANL-95/11,
+    Rev. 3.3, 2012.
+- doi: 10.1145/1089014.1089021
+- doi: 10.2514/6.2001-922
+- doi: 10.1007/BF01742705
+- doi: 10.1080/03052150902926827
+- doi: 10.1007/s00158-011-0638-7
+- doi: 10.1007/s00158-012-0780-x
+- doi: 10.1016/j.cma.2012.04.007
+- doi: 10.2514/1.11478
+- author: Kenway G. K. W.
+  issn: https://id.crossref.org/issn/0021-8669
+  issn-type: print
+  journal-title: Journal of Aircraft
+- doi: 10.2514/1.J051658
+- doi: 10.2514/1.J051147
+- doi: 10.2514/1.J051895
+- doi: 10.2514/3.48671
+- doi: 10.1016/j.compfluid.2009.09.013
+- doi: 10.2514/3.45973
+- doi: 10.2514/3.10366
+- doi: 10.2514/3.10458
+- doi: 10.1137/S1052623499350013
+- doi: 10.1007/s00158-011-0666-3
+- doi: 10.1145/838250.838251
+- doi: 10.1137/0704019
+- doi: 10.1137/S003614459631241X
+- doi: 10.2514/2.1270
+- doi: 10.2514/2.3131
+- doi: 10.1023/B:OPTE.0000048536.47956.62
+- doi: 10.4208/jcm.1110-m11si12
+- unstructured: SturdzaP. “An Aerodynamic Design Method for Supersonic Natural Laminar
+    Flow Aircraft,” Ph.D. Dissertation, Dept. of Aeronautics and Astronautics, Stanford
+    Univ., Stanford, CA, 2004.
+- author: Blackwell B. F.
+  first-page: '443'
+  volume-title: Handbook of Numerical Heat Transfer
+  year: '2009'
+- doi: 10.1198/tast.2009.0013
+- doi: 10.1007/s11075-009-9323-y
+- doi: 10.1016/j.compchemeng.2006.03.004
+- doi: 10.2514/6.2005-5944
+- doi: 10.5194/tc-7-263-2013
+- doi: 10.1145/2168773.2168774
+- doi: 10.1007/978-3-642-30023-3_15
+- doi: 10.1007/s00158-012-0763-y
+- author: Griewank A.
+  volume-title: Evaluating Derivatives
+  year: '2000'
+- doi: 10.1137/1.9781611972078
+- author: Juedes D.
+  first-page: '315'
+  volume-title: 'Automatic Differentiation of Algorithms: Theory, Implementation,
+    and Application'
+  year: '1991'
+- unstructured: PryceJ. D.ReidJ. K. “AD01, a Fortran 90 Code for Automatic Differentiation,”
+    Rutherford Appleton Lab. Rept. RAL-TR-1998-057, Chilton, England, U.K. 1998.
+- doi: 10.1002/(SICI)1097-024X(199712)27:12<1427::AID-SPE138>3.0.CO;2-Q
+- doi: 10.2172/834715
+  unstructured: 'UtkeJ. “OpenAD: Algorithm Implementation User Guide,” Argonne National
+    Lab. TM-274, Argonne, IL, April 2004.'
+- unstructured: HascoëtL.PascualV. “TAPENADE 2.1 User’s Guide,” institut national
+    de recherche en informatique et en automatique (INRIA) TR-300, Villers-lès-Nancy,
+    France, 2004.
+- doi: 10.1145/229473.229474
+- unstructured: BendtsenC.StauningO. “FADBAD, a Flexible C++ Package for Automatic
+    Differentiation—Using the Forward and Backward Methods,” Technical Univ. of Denmark
+    TR-IMM-REP-1996-17, Lyngby, Denmark, 1996.
+- doi: 10.1016/j.cpc.2005.01.011
+- unstructured: CarleA.FaganM. “ADIFOR 3.0 Overview,” Rice Univ. TR-CAAM-TR-00-02,
+    2000.
+- unstructured: 'UtkeJ.NaumannU.LyonsA. “OpenAD/F: User Manual,” Argonne National
+    Lab. TR, Dec. 2012.'
+- author: Pascual V.
+  first-page: '1'
+  series-title: Lecture Notes in Computational Science and Engineering
+  volume-title: 'Automatic Differentiation: Applications, Theory, and Tools'
+  year: '2005'
+- author: Shiriaev D.
+  first-page: '375'
+  volume-title: 'Computational Differentiation: Techniques, Applications, and Tools'
+  year: '1996'
+- doi: 10.1016/S0010-4655(97)00107-0
+- author: Bartholomew-Biggs M.
+  volume-title: OPFAD—A Users Guide to the OPtima Forward Automatic Differentiation
+    Tool
+  year: '1995'
+- author: Brown S.
+  volume-title: OPRAD—A Users Guide to the OPtima Reverse Automatic Differentiation
+    Tool
+  year: '1995'
+- doi: 10.1002/pamm.200310013
+- doi: 10.1007/BF01061285
+- doi: 10.1175/1520-0493(1997)125<3373:FDOAOA>2.0.CO;2
+- doi: 10.1007/s001620050060
+- doi: 10.1016/S0045-7930(98)00041-3
+- doi: 10.1023/A:1011430410075
+- doi: 10.2514/6.2012-5480
+- doi: 10.2514/6.2000-667
+- doi: 10.2514/1.21744
+- doi: 10.1007/s11081-008-9068-9
+- doi: 10.1017/S0022112074002023
+- doi: 10.2514/1.10415
+- doi: 10.2514/1.23569
+- doi: 10.2514/1.29924
+- doi: 10.1137/080727890
+- doi: 10.1007/s11081-008-9035-5
+- doi: 10.2514/6.1989-844
+- doi: 10.2514/2.1227
+- doi: 10.2514/1.41491
+- author: Johnson E. H.
+  volume-title: MSC 1997 Aerospace Users’ Conference
+  year: '1997'
+- doi: 10.1007/s00158-006-0061-7
+- doi: 10.2514/6.2008-5956
+doc_url: http://arc.aiaa.org/doi/pdf/10.2514/1.J052184
+doi: 10.2514/1.j052184
+files:
+- review_and_unification_of_methods_for_computing_derivatives_of_multidisciplinary_computational_models_Martins_Hwang_2013.pdf
+issue: '11'
+journal: AIAA Journal
+language: en
+month: 11
+pages: 2582--2599
+papis_id: f036cfdd059452bcdb622d45f4959287
+publisher: American Institute of Aeronautics and Astronautics (AIAA)
+title: Review and Unification of Methods for Computing Derivatives of Multidisciplinary
+  Computational Models
+type: article
+url: https://doi.org/10.2514/1.j052184
+volume: '51'
+year: 2013

@@ -1,0 +1,2974 @@
+Using Blade Element Momentum Methods with
+Gradient-Based Design Optimization
+Andrew Ning (ORCID)
+
+Abstract Blade element momentum methods are widely
+used for initial aerodynamic analysis of propellers and
+wind turbines. A wide variety of correction methods
+exist, but common to all variations, a pair of residuals are converged to ensure compatibility between the
+two theories. This paper shows how to rearrange the sequence of calculations reducing to a single residual. This
+yields the significant advantage that convergence can
+be guaranteed and to machine precision. Both of these
+considerations are particularly important for gradientbased optimization where a wide variety of atypical
+inputs may be explored, and where tight convergence
+is necessary for accurate derivative computation. On a
+moderate-sized example optimization problem we show
+over an order of magnitude increase in optimization
+speed, with no changes to the physics. This is done by
+using the single residual form, providing numerically
+exact gradients using algorithmic differentiation with
+an adjoint, and by leveraging sparsity in the Jacobian
+using graph coloring techniques. Finally, we demonstrate a revised formulation for cases when no inflow
+exists in one of the directions (e.g., a hovering rotor
+or a parked rotor). These new residuals allow for robust convergence in optimization applications, avoiding
+the occasional numerical difficulties that exist with the
+standard formulation.
+Keywords BEM · blade · gradients · Jacobian
+1 Introduction
+Blade element momentum (BEM) theory is a common
+methodology for initial aerodynamic analysis and deA. Ning
+EB 360, Brigham Young University, UT, 84604
+Tel.: 801-422-1815
+E-mail: aning@byu.edu
+
+sign of rotors, especially for propellers and wind turbines. The basic theory is well known and described in
+many textbooks [21, 47, 27, 9]. The method is of lower
+fidelity than mesh-based computational fluid dynamics, similar in fidelity to vortex lattice methods used
+for fixed wings [34], and is widely used for initial design and for pedagogical purposes. Numerous extensions have been added to the basic theory making it
+remarkably useful for industrial applications including
+hub/tip losses [60, 75, 73, 66, 6], turbulent wake region
+models [22, 74, 8, 9, 59, 61], wake expansion and swirl corrections [44, 15, 30], skewed inflow corrections [22, 11,
+16, 45, 57, 56, 55, 69, 9], and on the airfoil side, rotational
+corrections [68, 13, 17, 18, 43, 4], high angle of attack extrapolations [72, 50], dynamic stall models to extend the
+method to unsteady loading situations [71, 41, 40, 54, 26,
+39], etc. The importance and relative impact of these
+corrections has been demonstrated in propeller [48] and
+wind turbine applications [65].
+Beyond analysis, there has been increased interest
+in using BEM for optimization application. Some of
+the difficulty lies in reliably solving the BEM equations. A variety of papers have demonstrated some of
+the convergence issues with the BEM equations and
+some ways to detect or improve the convergence, for
+example through relaxation methods [49, 46, 70]. Additionally, the efficiency of propeller/turbine optimization
+with the BEM equations has improved, often with multiple disciplines such as structures, dynamics, fatigue,
+and acoustics. Many studies have used gradient-free
+methods like genetic algorithms [58, 31, 64], genetic algorithms combined with topology optimization [2], and
+particle swarm methods [10], as well as sequential [28],
+hybrid [25, 5], and multilevel methods [38]. The difficulties of providing accurate gradients has been discussed
+[38], with many gradient-based approaches using finite
+differencing [15, 38, 51]. To allow for accurate gradients
+
+2
+
+Andrew Ning
+
+the complex step approach has been used [37]. More
+recently, OpenMDAO [24] has enabled approaches to
+more easily provide system-level gradients by breaking
+a program into smaller components for which analytic
+gradients can be supplied. The methodology from an
+early version of this paper was implemented in OpenMDAO for this purpose [32],1 and that implementation
+has enabled several propeller optimization studies at
+NASA [33, 29].
+Two main challenges with performing optimization
+using the BEM equations are addressed in this paper.
+First, as highlighted above, solving the residual equations is not always reliable. Fixed point iteration, Newton’s method, and its variants are susceptible to various well known convergence difficulties, or if multiple
+solutions exist, the solver may jump between solutions
+as the design is varied. While such scenarios are rare in
+analysis, they are more common during an optimization
+as the exploratory nature of the algorithms creates intermediate designs with sometimes extreme or ill-suited
+combinations of design parameters. For gradient-free
+optimization, occasional convergence failures or jumps
+in the solution space are not problematic, but for gradientbased methods these issues can cause the optimizer to
+terminate prematurely or produce gradients that are
+wildly inaccurate. As optimization problems increase in
+dimensionality, gradient-based methods become more
+desirable, prompting a greater need to allow for robust
+convergence and exact derivatives.
+For a basic BEM implementation, the author developed a reformulated approach that reduces the solution
+process to a single residual and is provably convergent
+[52]. This prior derivation only accommodated certain
+correction methods. The present papers builds on this
+idea in a more general manner. The methodology no
+longer depends on preselected brackets, which allows
+for the use of any BEM formulation or extension (e.g.,
+tip-loss, turbulent wake), as long as the computation
+of the induction factors can be decoupled, as is typical. Furthermore, we consider all possible inflow angles,
+large axial inductions, turbines or propellers, and cases
+with zero inflow from one of the directions (e.g., a hovering rotor, or a parked rotor). For the latter case a new
+formulation is derived that permits robust convergence
+and derivatives even for cases with exactly zero inflow,
+and the new residuals are shown to fill a singularity in
+the standard equations, unifying the solution space.
+The second challenge addressed in this paper is providing accurate gradients, which can be difficult or is
+sometimes thought to be unnecessary for these lowerfidelity approaches. The tight convergence of the method1
+
+The resulting OpenBEMT code has since been folded
+back into the CCBlade repository to consolidate efforts.
+
+ology discussed in this paper makes it easier to provide
+accurate gradients. We use a dual-number based algorithmic differentiation approach, which is straightforward to apply. We also show the impact of combining
+AD with analytic sensitivity methods around the solver,
+and demonstrate how leveraging sparsity in the Jacobian can greatly speed up the computational of derivatives in common BEM optimization scenarios. The significance of these considerations is demonstrated with
+an example optimization application.
+The next two sections describe the theory. The fundamental BEM theory is well understood and available
+from many sources. We do generalize some aspects of
+the theory to allow wider exploration and discuss some
+details helpful for optimization. However, if the reader
+already has basic familiarity with the methodology and
+is mainly interested in the results, these two sections
+can safely be skipped. The details are relevant to those
+interested in implementation and for educational purposes.
+Following the theory sections we discuss different
+ways to converge the residuals and highlight an efficient solution process that is guaranteed to converge.
+Next, we discuss derivative computation and explore
+how leveraging sparsity is often beneficial when computing derivatives for optimization problems involving
+BEM theory. These pieces are put together in an optimization example demonstrating the benefits afforded
+by the considerations discussed in this paper. Finally,
+the sometimes numerically problematic cases where one
+of the inflow velocities is zero (e.g., hover or a parked
+rotor) are explored with comparisons to experimental
+data and a demonstration of the improved robustness.
+
+2 Theory: Standard Operation
+Blade element momentum theory is derived in many
+sources. We do not repeat all of those details, but rather
+focus on generalizing inputs, and noting some details
+that are important so that the output is smooth and
+amenable to gradient-based optimization. Through most
+of the document we will use the conventions for propellers, but the same equations are equally applicable
+to wind turbines as will be highlighted throughout.
+
+2.1 Linear Momentum Balance
+The methodology applies a mass and momentum balance to a streamtube passing through the rotor disk.
+Rather than using one streamtube for the entire rotor disk, it uses multiple infinitesimally thin annulus
+streamtubes, passing through a specific radial location
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+
+of the rotor (Fig. 1a). We denote the axial direction as
+x, positive in the designed direction of flight (or upwind
+facing direction of a wind turbine). The inflow velocity
+from the perspective of the propeller is in the opposite
+direction, which we call Vx rather than V∞ as the inflow
+velocity will in general vary between radial stations because of wind, blade motion, etc. A positive thrust is in
+the +x direction, and a positive torque is about the +x
+axis. The positive y direction is a tangential direction
+in the designed rotation direction. The inflow opposes
+this direction and is called Vy . For a simple inflow condition Vy = Ωr, but again we allow for general inflow
+including reversals. By the right hand rule the positive z
+direction is nominally from hub to tip of the blade. For
+blades with coning and sweep we would need to distinguish between the rotor and local coordinate systems,
+using for example the conventions in [53].
+
+y
+
+(a) The blue annulus streamtube is used as our control
+volume in the mass and momentum balances. The coordinate system is also shown.
+
+Vx + u
+
+Vd = Vx + u
+
+
+u
+= Vx 1 +
+Vx
+
+(1)
+
+= Vx (1 + a)
+
+CT = 4a(1 + a)
+
+Vx
+
+Vx
+
+wing showing that the downwash at the wing is half of
+the downwash in the farfield.
+With this relationship we relate the velocities upstream, at the disk, and downstream in terms of an
+unknown induced velocity u (Fig. 1b). The induced velocity is in the opposite direction of the force. So for a
+propeller the induced velocity is downstream, whereas
+for a turbine the induced velocity subtracts from the
+axial velocity.
+By convention, one typically nondimensionalizes u
+as follows, where Vd is the velocity at the rotor disk:
+
+The quantity a is called the axial induction factor.
+The mass and momentum balance yields the following expression for the thrust coefficient on the rotor,
+which is positive in the +x direction.
+
+z
+
+x
+
+3
+
+Vx + 2u
+
+(b) Depiction of the induced velocity at the rotor disk
+and in the farfield.
+
+Fig. 1: Streamtube for mass and momentum balances.
+Use of a mass and momentum balance, combined
+with either an inviscid energy balance or Bernoulli’s
+equations applied separately before and after the rotor
+disk, yields the result that the velocity at the disk is
+halfway between the upstream and downstream velocity. The same relationship can be derived for a lifting
+
+(2)
+
+The coefficient was normalized by the dynamic pressure
+of the axial inflow (qx = 12 ρVx2 ) and the annular cross
+sectional area at the disk (Ad = 2πrdr). This is not
+a standard nondimensionalization in the propeller or
+rotorcraft communities, but is the convention used in
+the wind energy community and is used in this case
+just for convenience as it produces a simpler output. It
+doesn’t matter what normalization is used for this force
+coefficient as it will cancel out when equating to blade
+element theory. For a turbine, the axial induction factor
+will be negative, and thus will produce drag. While it
+actually is a drag force, it is still commonly called thrust
+in the wind energy community by convention.
+Hub and Tip Losses: The basic momentum theory ignores the hub and tip vortices that affect the induced
+velocity. Various correct methods exist, and any can be
+used. In this paper we use the simple analytical expression developed by Prandtl [21]:
+
+
+B Rtip − r
+ftip =
+2 r| sin φ|
+2
+Ftip = arccos(exp(−ftip ))
+π 
+
+B
+r − Rhub
+(3)
+fhub =
+2 Rhub | sin φ|
+2
+Fhub = arccos(exp(−fhub ))
+π
+F = Ftip Fhub
+
+4
+
+Andrew Ning
+
+The angle φ is the inflow angle shown later in Fig. 5.
+We have added the absolute values around sin φ because
+our generalizations permit both positive and negative
+inflow angles and the loss functions must always be positive (between 0 and 1). This hub/tip-loss factor is applied directly to the thrust and torque.
+CT = 4a(1 + a)F
+
+(4)
+
+Large Induction Factors: The velocity in the wake from
+the momentum balance is Vw = Vx (1 + 2a). For a turbine, a could drop below -0.5, and from that equation
+the wake velocities would be predicted to reverse direction (this consideration isn’t important for propeller
+analysis). This reversal is non-physical, as the real flow
+entrains momentum in the wake through turbulence.
+Empirical data is needed to determine the behavior as
+a approaches -0.5 and beyond. Notional behavior of the
+thrust coefficient with large (negative) induction factors
+is seen in Fig. 2.
+
+propeller
+brake
+
+Other Wind Directions: The above derivation is independent of the tangential, or in-plane velocities. If the
+axial wind direction is reversed (Vx < 0), then the typical direction and thus sign for thrust and u change as
+well. A flow reversal may happen locally over parts of
+a propeller, and for a wind turbine can occur across
+the entire rotor. In this case the equations would predict positive thrust to the right, but that is a negative
+thrust in our coordinate system. Thus, we need to multiply the thrust equation by sign(Vx ).
+
+CT = sign(Vx )
+
+−1.0
+−1.5
+
+−0.5
+a
+
+a ≥ −0.4
+
++ (4F − 40/9) a −1 < a < −0.4
+
+− 8/9
+−4a(1 + a)F
+
+a ≤ −1
+
+(7)
+
+The latter two cases are generally not needed for propellers, and the thrust is positive in the +x direction.
+
+empirical
+(turb. wake)
+−1.0
+
+
+
+4a(1 + a)F
+
+
+
+2
+
+
+ (4F − 50/9) a
+
+
+
+
+
+
+
+
+momentum
+(turbine)
+
+−0.5
+
+−2.0
+
+(6)
+
+For this case the rotor behaves like a propeller (requiring power input) but with a large negative pitch so that
+the thrust is reversed allowing the rotor to act like an
+aerodynamic brake.
+
+momentum
+(propeller)
+
+0.0
+CT
+
+CT = −4a(1 + a)F
+
+Summary:
+
+1.0
+0.5
+
+The current expression Eq. 4 predicts thrust for induction factors less than -1. However, repeating the momentum balance shows that the force changes signs, in
+other words it still acts as a drag device.
+
+0.0
+
+0.5
+
+Fig. 2: Thrust coefficient as a function of axial induction
+factor.
+Various extension methods exist for the turbulent
+wake region. A common simple method is the quadratic
+fit from Glauert [22]. However, the Glauert correction
+does not maintain continuity when the tip/hub loss corrections are included. Instead, we use a small modification of Glauert’s method developed by Buhl (but written in propeller coordinates)[8]:
+
+
+
+
+40
+8
+50
+2
+a + 4F −
+a−
+CT = 4F −
+9
+9
+9
+(5)
+for − 1 ≤ a ≤ −0.4
+Additional considerations may be needed for induction factors less than −1, the propeller brake region.
+
+2.2 Angular Momentum Balance
+Similar to the linear momentum case where an induced
+velocity is produced in opposition to the force on the
+rotor, a swirl velocity is induced in the opposite direction of the torque on the rotor. The rotational velocity
+change occurs much more rapidly. Conservation of momentum yields the same result as the linear case, where
+the induced swirl velocity at the disk is halfway between
+its upstream and downstream values. The induced rotational velocity is 0 upwind of the rotor, v in the plane
+of the rotor, and 2v downstream of the rotor. The tangential induction factor is defined as a0 = v/Vy , where
+v is the induced velocity in the y direction and Vy is
+the inflow in the y direction.
+An angular momentum balance across a given control volume can be expressed as:
+Z 
+
+X
+~ ṁ =
+~r × V
+~r × F~
+(8)
+S
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+
+We use a disk-shaped control volume that surrounds
+the rotor disk, and assume no axial component of velocity exists on the sides of the control volume. We are
+then interested in only the inflow and outflow velocity vectors into the control volume. Figure 3 uses an
+ground-centered inertial control volume, rather than a
+blade-centric control volume to show the velocity triangles. This type of reference frame and orientation is
+more commonly used in turbomachinery analysis, and
+is convenient for this particular analysis. In this figure, vw is the y-component of external wind. The axial
+component is somewhat larger than Vx a as this end of
+the control volume is past the disk, however its exact
+magnitude is irrelevant as it does not contribute a net
+moment regardless of its value.
+
+plane of rotation
+
+x
+y
+
+Vy 2a0
+Vx
+
+Vx
+
+vw
+
+Vx a
+
+vw
+
+Fig. 3: Velocity vectors for angular momentum balance.
+Applying conservation of angular momentum yields
+(where we define positive torque on the rotor as positive
+in the +x direction):
+(rvw )(−ṁ) + r(vw − Vy 2a0 )ṁ = −Q
+rVy 2a0 ṁ = Q
+
+(10)
+
+Thus:
+Q = 2rVy a0 ρVx (1 + a)Ad
+
+(11)
+
+As we did for thrust, we normalize to form the torque
+coefficient.
+Q
+CQ = 1 2
+ρV
+x Ad r
+2
+Vy
+= 4a0 (1 + a)
+Vx
+
+The expression is equally applicable to turbines. For a
+propeller both a0 and a are negative. This reverses the
+direction of the torque (power is extracted rather than
+required as an input).
+Hub/Tip Losses: The torque correction is the same approach as is used for thrust, where the hub/tip loss
+factor F is multiplied against the torque.
+Other Wind Directions: If the direction of Vx reverses,
+then nothing in the above derivation changes. We note
+that only component of velocity that matters is the induced velocity: Vy 2a0 . If Vx reverses, then the induced
+velocity Vy 2a0 switches to the other side of the airfoil,
+but still points in the same direction. Because the di~ term rerection of the velocity is the same, the ~r × V
+tains the same sign, and the mass flow is still on the
+“out” side of the control volume and also retains the
+same sign. However, because Vx appears in our formula,
+and has switched signs itself (along with u), we need
+to flip the sign so that the overall sign for Q remains
+unchanged. This can be accomplished by taking the absolute value of Vx .
+Changes in Vy don’t matter per se, as long as the
+sign for a0 doesn’t change. A change in sign for a0 is
+taken care of automatically as it appears in the equation, so no additional change is needed.
+Summary:
+CQ = 4a0 (1 + a)
+
+Vy
+F
+|Vx |
+
+(14)
+
+The positive direction of torque for this derivation is in
+the +x direction.
+
+(9)
+
+Notice, that the external wind component cancels out,
+assuming a relatively small disk, but apparent wind
+from blade motion would still be included in Vy . Using the results from the previous section:
+ṁ = ρVd Ad = ρVx (1 + a)Ad
+
+5
+
+(12)
+(13)
+
+2.3 Blade Element Theory
+Consider the airfoil section shown in Fig. 4 with the
+positive directions for twist (θ) defined as is conventional. We consider a general inflow of Vx and Vy . For
+an ideal condition Vx = V∞ , and Vy = Ωr, but because
+of wind, geometry, and blade motion we allow for any
+general velocity vectors.
+We assume that the airfoil is generating positive lift,
+but the solution will dictate the correct sign. For positive lift, the direction of circulation Γ is into the page,
+and from the Kutta-Joukowski theorem:
+~ × Γ~
+F~ 0 = ρV
+
+(15)
+
+We can compute the resulting forces from the Vx and
+Vy components of velocity. The resulting induced velocities oppose these forces. For example, Vx creates a
+
+6
+
+Andrew Ning
+x
+y
+✓
+
+Vx
+plane of rotation
+
+Vy
+
+Fig. 4: Definition for positive twist and coordinate system for the blade element theory.
+force to the right, and thus an induced velocity to the
+left opposing that of Vy . Conversely, Vy creates a force
+upward, and thus an induced velocity downward adding
+to Vx . As discussed previously, we normalize these induced velocities as follows: a = u/Vx and a0 = v/Vy ,
+where u and v are the x- and y-components of induced
+velocity respectively. The resulting total inflow velocity
+vector W , positive direction for the inflow angle φ, and
+angle of attack α are shown in Fig. 5.
+x
+y
+↵
+
+✓ W
+
+Vy (1
+
+Vx (1 + a)
+a0 )
+
+plane of rotation
+
+Fig. 5: Additional nomenclature used in blade element
+theory.
+From the definition of the angles we can relate the
+angle of attack, twist, and inflow angle:
+α=θ−φ
+
+(16)
+
+From the angle of attack we compute the sectional lift
+and drag coefficient. The lift and drag coefficients may
+be functions of the Reynolds number and Mach number. Because we do not know a and a0 we usually approximate the Reynolds number using the local velocity
+without induction included:
+q
+W0 = Vx2 + Vy2
+(17)
+ρW0 c
+Re =
+µ
+
+The impact of this approximation is almost always negligible. Inclusion of a and a0 usually has only a small
+effect on the Reynolds number, and typically only order
+of magnitude changes in Reynolds number are important. Additionally, airfoil data is rarely precise enough
+that a minor change in Reynolds number would be significant. Mach number does not operate on such a large
+scale, but is typically only considered with an approximate correction using the Prandtl-Glauert rule. Still, if
+exactness in Reynolds or Mach number is needed, this
+can be achieved with one or two extra iterations [52].
+We can now compute the lift and drag coefficients using any appropriate method (e.g., table look-up, a panel
+method, 2D RANS, etc.). We denote these functions as
+fL and fD .
+cl = fL (α, Re, M )
+cd = fD (α, Re, M )
+
+(18)
+
+Note that the Mach number corrections are typically
+computed at each iteration rather than precomputed
+in the spline.
+For 2D data, whether from simulation or wind tunnel measurements, it is essential to apply rotational corrections and extrapolate the data to high angles of attack. As referenced in the introduction, various methods exist for these corrections/extensions. In this paper we use the basic rotational corrections from Du
+and Selig for lift [17] and from Eggers for drag [18].
+Extrapolation to high angles of attack uses Viterna’s
+method [72]. Dynamic implementations should account
+for unsteady aerodynamic airfoil behavior, and so the
+lift and drag coefficients may require additional inputs.
+It is important that these functions are continuously
+differentiable for use in gradient-based optimization. In
+our case we fit the underlying data with Akima splines
+[1] to ensure smooth output. Neglecting smoothness in
+the airfoil data is a common source of convergence difficulty when using gradient-based optimization.
+Using the Kutta-Joukowski theorem again, the directions for the lift and drag coefficients, cl and cd are
+as shown in Fig. 6. We need to resolve these forces into
+the normal and tangential directions, which by convention, corresponds to our positive x and negative y axes
+respectively.
+cn = cl cos φ − cd sin φ
+ct = cl sin φ + cd cos φ
+
+(19)
+
+The total thrust and torque for this blade section,
+multiplied by the number of blades B is:
+T = BN 0 dr
+1
+T = Bcn ρW 2 cdr
+2
+
+(20)
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+
+Other Wind Directions: Nothing in this derivation changes
+for other inflow directions, as long as we keep the definitions consistent (i.e., positive direction for φ, α, etc.).
+
+x
+
+cl
+φ
+
+7
+
+y
+
+W
+φ
+φ
+
+plane of rotation
+
+cd
+
+Fig. 6: Directions for the lift and drag forces for positive
+circulation.
+
+Q = BrT 0 dr
+1
+Q = Brct ρW 2 cdr
+2
+
+(21)
+
+where W must be the full velocity:
+q
+2
+2
+W = [Vx (1 + a)] + [Vy (1 − a0 )]
+
+(22)
+
+For normalization of thrust and torque coefficients
+we use the same dynamic pressure and reference area
+as used in the momentum balances. Furthermore, we
+define the local solidity as:
+σ0 =
+
+Bc
+2πr
+
+Turbines: Everything in the above derivation will continue to work in turbine operation. As the twist decreases, and/or as the inflow velocity vector tilts away
+from the plane of rotation, eventually the angle of attack becomes negative as shown in the figure. The rotor switches from propeller to turbine operation once
+the angle of attack becomes negative enough that the
+lift coefficient changes direction, or in other words that
+the direction of circulation flips sign. This scenario is
+depicted in Fig. 7a, where we have changed both the
+twist and the inflow angle.
+Everything in the above derivation continues to work
+correctly, the lift changes signs, as do the inductions (at
+the solution at least). While this section would operate
+as a turbine, if the airfoil is cambered it will be an inefficient turbine as the airfoil is not designed for these
+negative angles of attack. Instead, we would want to
+design it with the airfoil flipped over (i.e., reverse the
+camber) as shown in Fig. 7b. Then the “negative angle
+of attack“ is positive from the perspective of the airfoil.
+In the wind energy community we would visualize this
+with the entire figure flipped over the plane of rotation
+so that the airfoil looked right-side up.
+
+(23)
+x
+
+Performing the normalization results in:
+T
+qx Ad
+ 2
+W
+= cn σ 0
+Vx
+
+Q
+q x Ad r
+ 2
+W
+= ct σ 0
+Vx
+
+CT =
+
+W
+↵
+
+CQ =
+
+(24)
+
+Vx (1 + a)
+sin φ
+
+plane of rotation
+
+(25)
+
+x
+Vx (1 + a)
+
+W
+↵
+
+0
+
+Vy (1 − a )
+W =
+cos φ
+
+(26)
+
+It will be convenient later to use the first substitution in the thrust definition, and one of each in the
+torque definition:
+
+2
+1+a
+0
+CT = cn σ
+(27)
+sin φ
+C Q = ct σ 0
+
+a0 )
+
+(a) As we decrease twist the section switches from propeller operation to turbine operation.
+
+or
+
+
+
+y
+
+✓
+Vy (1
+
+Ultimately, we want to relate this expression in terms
+of the induced velocities. Using Fig. 5, we see that
+W =
+
+Vx (1 + a)
+
+0
+
+1−a
+cos φ
+
+
+
+1+a
+sin φ
+
+
+
+Vy
+Vx
+
+
+(28)
+
+y
+
+✓
+Vy (1
+
+a0 )
+
+plane of rotation
+
+(b) For a turbine we would flip the camber so that the
+airfoil would perform as designed, with a positive angle
+of attack.
+
+Fig. 7: Turbine operation requires no changes in the
+methodology, but a good turbine design would flip the
+camber direction.
+
+8
+
+Andrew Ning
+
+Allowing for this camber switch is the only input
+needed to change a propeller BEM to a turbine BEM
+(or vice-versa). This change is contained to the airfoil
+function only, which is generally a preprocessing step:
+fL = −cl (−α, Re, M )
+
+fD = cd (−α, Re, M )
+
+(29)
+
+Again, for a symmetric airfoil this change would be irrelevant.
+For turbines another change might be included just
+for convenience, and that is flipping the sign on most all
+of the outputs. The angle of attack, induced velocities,
+and forces, are all consistent with the defined coordinate system, but would be considered to have the opposite sign in conventional turbine notation. Using typical wind turbine notation the following outputs would
+change sign:
+a, a0 , u, v, cn , ct , N 0 , T 0 , α, cl
+
+(30)
+
+whereas the following would not change (φ is defined the
+same between the two, and the remaining quantities are
+always positive):
+φ, cd , W, F
+
+(31)
+
+2.4 Blade Element Momentum
+We can now combine the results from momentum theory and blade element theory. We first equate the linear
+momentum equations (thrust), and next the angular
+momentum equations (torque). The next section will
+discuss the residual equation which determines whether
+or not we have consistency between the momentum and
+blade element theories.
+2.4.1 Axial Inflow
+We equate the thrust from momentum theory and blade
+element theory. The thrust from blade element theory
+is always the same, but the momentum thrust changes
+depending on the sign of Vx and a (Eq. 7). There are
+multiple cases that must be considered depending on
+the sign of Vx and the magnitude of a.
+– Vx > 0 and a ≥ −0.4 or Vx < 0 and a ≤ −1
+These two cases yield the same result for momentum theory Eq. 7, which we equate to that of blade
+element theory Eq. 27:
+
+2
+1+a
+0
+4a(1 + a)F = cn σ
+sin φ
+(32)
+0 (1 + a)
+4aF = cn σ
+sin2 φ
+
+We now define a new nondimensional quantity for
+convenience:
+κ=
+
+cn σ 0
+4F sin2 φ
+
+(33)
+
+Making this substitution, we can derive a simple
+expression for a:
+a=
+
+κ
+1−κ
+
+(34)
+
+The criteria for this equation was expressed in terms
+of Vx and a. However, a criteria in terms of a is not
+convenient, because that is the quantity we are solving for. Instead, we will express the criteria in terms
+of κ, which can be computed beforehand. Additionally, rather than using Vx to distinguish the cases,
+we will transform the criteria in terms of φ. This
+will allow for consolidation of the various cases.
+First, from inspection of Fig. 5 we see that if Vx > 0
+and a ≥ −0.4 we must have φ > 0. Or, if Vx < 0
+and a ≤ −1 we will also have φ > 0. For the first
+case, this equation only applies if a ≥ −0.4 or in
+other words:
+κ
+≥ −0.4
+1−κ
+κ ≥ −0.4(1 − κ), (assuming 1 − κ > 0
+or in other words κ < 1)
+
+(35)
+
+0.6κ ≥ −0.4
+2
+κ≥−
+3
+Thus, this first cases applies if −2/3 ≤ κ < 1.
+The second cases applies if a ≤ −1:
+a ≤ −1
+κ
+≤ −1
+1−κ
+κ ≥ −1 + κ, (assuming 1 − κ < 0,
+or in other words κ > 1)
+
+0 ≥ −1, always true, assuming above condition
+(36)
+
+Thus, the second cases requires κ > 1.
+Combining the two cases we see that the derived
+expression for a is valid for κ ≥ −2/3 except for the
+point κ = 1. We will see later what the κ = 1 case
+corresponds to.
+– Vx < 0 and a ≥ −0.4 or Vx > 0 and a ≤ −1
+This scenario is identical to the previous, except for
+a negative sign in front of the momentum term. In
+short, we use the same equation and ranges from the
+previous case if we replace κ with −κ. From Fig. 5
+we can see that these cases correspond to φ < 0.
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+
+Algorithm 1 Solve for the axial induced velocity.
+
+– Vx > 0 and −1 < a < −0.4
+
+
+
+
+
+2
+50
+40
+8
+1+a
+2
+0
+4F −
+a + 4F −
+a − = cn σ
+9
+9
+9
+sin φ
+(37)
+This yields a quadratic formula that can be solved
+for a. After simplification it yields (noting that only
+the positive sign in the quadratic formula is physically possible):
+√
+γ1 + γ2
+a=
+γ3
+
+(38)
+
+where
+10
+γ1 = F (2κ − 1) +
+9
+
+4
+γ2 = F F − 2κ −
+3
+25
+γ3 = 2F (1 − κ) −
+9
+
+(39)
+
+1
+a −−−→ √ − 1
+2 γ2
+
+if φ < 0 then
+κ = −κ
+end if
+if κ ≥ −2/3 then
+a = κ/(1 − κ) . if κ = 1 return any nonzero residual.
+else
+√
+a = (γ1 + γ2 )/γ3
+. if γ3 = 0 use Eq. 40.
+end if
+
+2.4.2 Tangential Inflow
+We now equate the torque from blade element theory (Eq. 28) with the torque from momentum theory
+(Eq. 14). There are two cases. First, Vx > 0:
+
+
+
+1 + a Vy
+1 − a0
+Vy
+0
+ct σ
+= 4F a0 (1 + a)
+cos φ
+sin φ Vx
+Vx
+
+
+(41)
+1 − a0
+0
+0
+ct σ
+= 4F a
+cos φ sin φ
+Similar to the axial induction derivation, we define a
+new nondimensional quantity for convenience:
+
+If the denominator in Eq. 38 is exactly zero (i.e.,
+γ3 = 0), then the numerator is also exactly zero.
+However, the expression can still be evaluated using
+L’Hôpital’s rule and can be shown to be equal to
+γ3 →0
+
+9
+
+κ0 =
+
+From Fig. 5 we see that φ > 0 for our conditions on
+Vx and a. This expression will always yield a > −1
+so the limit we are concerned with is a < −0.4.
+We can show that this occurs for κ < −2/3, which
+should make sense as this region was designed to
+connect at the border of the momentum region.
+– Vx < 0 and −1 < a < −0.4
+The final case is identical to the previous, except
+for the negative sign in the thrust from momentum
+theory. Again, we can reuse the previous result, but
+replace κ with −κ and the limit on φ changes to
+φ < 0.
+These cases can be consolidated with the logic shown
+in Alg. 1. Recall the existence of a invalid range at κ = 1
+for φ > 0 and at κ = −1 for φ < 0. We will see in
+Sec. 3 that the |κ| = 1 case is only physically consistent
+if Vx = 0. For nonzero inflow, we know that κ cannot
+equal 1 so if any intermediate iterations produces κ = 1
+we can simply return a nonzero residual and continue
+iterating.
+
+(42)
+
+With that substitution we can solve for a0 as
+a0 =
+
+(40)
+
+ct σ 0
+4F sin φ cos φ
+
+κ0
+1 + κ0
+
+(43)
+
+Note that this is defined everywhere except when κ0 =
+−1 (we will see in Sec. 3 that this case is only physically
+consistent if Vy = 0).
+For Vx < 0 we can use the same solution by negating
+the value for κ0 . These two cases can be combined into
+the algorithm shown in Alg. 2.
+Algorithm 2 Solve for the tangential induced velocity.
+if Vx < 0 then
+κ0 = −κ0
+end if
+a0 = κ0 /(1 + κ0 ) . if κ0 = −1 return any nonzero residual.
+
+2.5 Loads
+The solution of the residual equations is discussed in the
+following section, but once the residuals are solved, the
+distributed loads (force per unit length) can be computed. It is important to use the full induction for this
+
+10
+
+Andrew Ning
+
+calculation.
+q
+W = Vx (1 + a)2 + Vy (1 − a0 )2
+
+1
+ρW 2
+2
+N 0 = cn qc
+q=
+
+T
+
+N 0 cos Φdr
+
+(45)
+
+0
+
+the torque is given by
+Z R
+Qi = B
+
+T 0 r cos Φdr
+
+2u
+
+u
+
+(44)
+
+If we define the local precone angle as Φ then the
+thrust can be found through integration as:
+Z R
+
+2u
+
+u
+
+T 0 = ct qc
+
+Ti = B
+
+T
+
+(46)
+
+Fig. 8: Two possibilities for the direction of thrust and
+induced velocity for a rotating blade with no inflow
+(e.g., hover).
+Because the thrust and induced velocity must be in opposite directions, by Newton’s third law, two scenarios
+are possible as shown in Fig. 8.
+Using the standard BEM derivation, but in dimensional terms, the thrust is given by:
+
+0
+
+These integrals actually give the instantaneous thrust
+and torque, at a particular azimuthal angle, and for
+one blade. If significant azimuthal variation exists, we
+should azimuthally average:
+Z 2π
+1
+Ti dθ
+T =
+2π 0
+(47)
+Z 2π
+1
+Qi dθ
+Q=
+2π 0
+Usually, this averaging is only relevant for wind turbines
+because of their large size, and even in that case integration is typically fairly coarse (e.g., 4 or 8 azimuthal
+positions). Power is then given by
+P = QΩ
+
+(48)
+
+3 Theory: No Inflow Velocity in One Direction
+Sometimes it is desired to explore cases where one of the
+inflow velocities is zero (i.e., either Vx = 0 or Vy = 0).
+Example applications include a hovering propeller for
+the former, and extreme loads on a parked wind turbine
+for the latter. Induction factors a = u/Vx or a0 = v/Vy
+are no longer defined, and one cannot just introduce
+zero into the BEM equations, at least not without some
+algebraic manipulations.
+
+3.1 Linear Momentum
+Consider the case when Vx = 0. With no axial inflow
+there will be no tangential induction, but there will be
+an axially induced velocity. As noted, we cannot use
+the induction factor and so use the induced velocity u.
+
+T = −4πrρu2 F dr
+
+(49)
+
+This is the standard momentum contribution used in
+BEM implementations for helicopters. For more generality, we should consider the sign of the velocity. We
+define the positive convention for u, as consistent with
+our positive convention for a. In other words, a positive
+u is in the −x direction (opposite the positive direction
+for thrust). Thus, our equation for thrust becomes:
+T = sign(u)4πrρu2 F dr
+
+(50)
+
+If Vy = 0, then there is no axially induced velocity
+(a = 0), and Vx passes through unchanged. Momentum theory predicts no thrust. There is still (negative)
+thrust, from the drag on the blades, but this arises from
+blade element theory and is treated later.
+
+3.2 Angular Momentum Balance
+If Vx = 0, then there is no induced velocity in the tangential direction (v = 0). In that case, no torque is predicted from momentum theory, but some torque will be
+generated from blade element theory as will be treated
+later.
+If Vy = 0, then there is no induced velocity in the
+axial direction (u = 0). There is induced velocity in the
+tangential direction, but we cannot use the normalization for a0 = v/Vy because Vy = 0. Instead, we refer to
+the total induced velocity in the plane of the rotor as
+v. The resulting torque from Eqs. 9 and 10 is:
+−rvw ṁ + r(vw − 2v)ṁ = −Q
+2rv ṁ = Q
+
+Q = 2rvρVx Ad
+
+(51)
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+
+We can normalize, because Vx 6= 0, but it will be convenient to keep this expression in the unnormalized form.
+We do, however, need to add the hub/tip loss factor
+The sign of v is consistent with the sign of Q automatically. However, as discussed in Sec. 2.2, we must
+take the absolute value of Vx to account for reversals in
+inflow direction.
+Q = 4πr2 ρv|Vx |F dr
+
+11
+x
+Vx
+
+W
+
+y
+
+θ
+φ
+v
+
+v
+
+plane of rotation
+
+(52)
+
+3.3 Blade Element
+As mentioned, if Vx = 0 then a0 = 0. Also, a is undefined, because of the normalization by Vx and so we
+must refer to the total axial induced velocity u. There
+are two possible directions for u (Fig. 9). From the figure we also see that we can define W as:
+u
+Vy
+W =
+=
+(53)
+sin φ
+cos φ
+x
+y
+θ W
+
+Fig. 10: Two possible directions for the induced tangential velocity v. The black v is positive according to our
+sign convention, and the blue v is negative.
+
+3.4 Blade Element Momentum
+We now put the pieces together for the two different
+cases separately.
+3.4.1 Hover
+
+u
+φ
+Vy
+
+plane of rotation
+u
+
+Fig. 9: Two possible directions for the induced axial
+velocity u. The black u is positive according to our sign
+convention, and the blue u is negative.
+The direction of u and cn must be opposite. Thus,
+for the case of u > 0 (remember a positive u is in
+the negative x-direction using our convention), then cn
+must be positive, and φ > 0. The opposite is true for
+the case with u < 0: cn < 0 and φ < 0. We can determine these signs a priori, unlike the more general case,
+because the velocity is strictly determined by u, and
+the tangential velocity has no induction.
+If Vy = 0 then a = 0. Also, a0 is undefined, because
+of the normalization by Vy and so we must refer to
+the total tangential induced velocity v. There are two
+possibilities for v shown in black and blue in Fig. 10.
+We know that ct and v must be in opposite directions
+(which is the same sign in this convention). From Fig. 10
+we see that:
+Vx
+−v
+W =
+=
+(54)
+sin φ
+cos φ
+
+If Vx = 0, equating thrust from the momentum and
+blade element theories yields for u > 0:
+1
+4πrρu2 F dr = Bcn ρW 2 cdr
+2
+4u2 F = σ 0 cn W 2
+
+(55)
+
+The value for W is shown in Eq. 53 for Vx = 0. Let’s
+first use the first option: W = u/ sin φ. Substituting
+into the above expression and simplifying yields:
+κ=1
+
+(56)
+
+Conversely, if u < 0 the methodology yields.
+κ = −1
+
+(57)
+
+We note that the first case with u > 0 implies that
+φ > 0 (see velocity triangle in Fig. 9) and results in the
+expression κ = 1. This case fills in our singularity noted
+in Alg. 1 and the discussion proceeding that algorithm.
+In other words, the case φ > 0, κ = 1, only exists for
+Vx = 0. Similarly, the derivation for u < 0 corresponds
+to φ < 0 with the result that κ = −1, which fills in
+the other singularity. Thus, the previous formulation
+(Vx 6= 0, Vy 6= 0) should ignore the case κ = 1 as it
+won’t satisfy the residual equation. Any nonzero residual could be returned. We deal with this case explicitly
+in this section with a different formulation.
+While, the substitution W = u/ sin φ led to the insight of filling in our singularity, it doesn’t help us solve
+
+12
+
+Andrew Ning
+
+the equation. Instead we will use one of each substitution from Eq. 53. Note that we can also use the second
+substitution twice. That formulation requires a little
+more logic to solve correctly as it involves a square root
+for which the sign must be protected. Either way one
+should get the same solution once the residual is converged. To simplify the logic we use one substitution
+from each. For u > 0:
+
+
+Vy
+u
+4u2 F = σ 0 cn
+cos φ sin φ
+(58)
+σ 0 cn
+u=
+Vy
+4F sin φ cos φ
+The physics of this case is only consistent with cn > 0,
+u > 0, φ > 0 and additionally Vy and cos φ must have
+the same sign. All of this is handled automatically by
+the residual.
+Conversely if u < 0 then the sign on the momentum
+portion of thrust switches and we have:
+
+
+u
+Vy
+−4u2 F = σ 0 cn
+cos φ sin φ
+(59)
+σ 0 cn
+u=−
+Vy
+4F sin φ cos φ
+This solution is consistent as long as cn < 0 and φ < 0.
+We can combine these two cases based on the sign of φ:
+u = sign(φ)κVy tan φ
+
+The residual equation must be algebraically simplified using Vx = 0 and v = 0. Alternatively, we could use
+the new velocity triangle in Fig. 9. Either way leads to
+the equation:
+(62)
+
+While we could leave it in this form, it is numerically
+beneficial to simplify further as some terms will cancel.
+After some simplification using the formula for u above
+we find:
+sign(φ) − κ = 0
+
+Vy
+
+θ
+
+quadrant order
+
++
++
+-
+
++
++
+-
+
+I, II
+II, I
+III, IV
+IV, III
+
+u > 0, and vice-versa for a negative twist. The order of
+quadrants is defined in Tab. 1.
+Once we solve this 1D equation for φ, we can compute the torque distribution purely from blade element
+theory as momentum theory does not predict any torque
+for the case Vx = 0. We can use either expression for
+W in Eq. 53.
+3.4.2 Parked Rotor
+If Vy = 0 we equate momentum theory with blade element theory giving:
+1
+4πF r2 vρ|Vx |dr = Brct ρW 2 cdr
+2
+4F v|Vx | = σ 0 ct W 2
+
+4F v|Vx | = −σ 0 ct
+
+Vx v
+sin φ cos φ
+
+(65)
+
+This expression simplifies to κ0 = −1 for Vx > 0 and
+to κ0 = 1 for Vx < 0. Like the axial inflow case, these
+scenarios fill in the singularity shown in Alg. 2. As in the
+axial inflow case, we simply return a nonzero residual if
+that case occurs for Vx , Vy 6= 0, and we handle the case
+Vy = 0 explicitly below.
+Like before, the simplifications yielding κ0 = −1 are
+insightful, but don’t lead to a solution process. We can
+instead use either substitution for W . After simplification both lead to the same residual function. In the
+following we will use W = Vx / sin φ. This yields the
+following:
+
+(63)
+
+We see that there is only a solution when φ and cn have
+the same sign, as is consistent with the physics.
+The relevant quadrants can be determined from the
+sign of Vy , although typically only Vy > 0 is of interest
+for hover. Because a0 = 0, just knowing the sign of Vy
+immediately eliminates two of the four quadrants. The
+sign of u is not known, but knowing the sign of the twist
+gives us a good idea of what the sign of u will be. For
+a positive twist, the most likely scenario is cn > 0 thus
+
+(64)
+
+If we use one of each substitution for W = Vx / sin φ and
+W = −v/ cos φ from Eq. 54 in the above expression we
+have:
+
+(60)
+(61)
+
+sin φ cos φ
+−
+=0
+u(φ)
+Vy
+
+Table 1: Vx = 0, θ includes pitch
+
+v=
+
+κ0 |Vx |
+tan φ
+
+(66)
+
+We see that v follows the sign of ct , which is consistent
+with the physics.
+After simplification the residual becomes:
+sign(Vx ) + κ0 = 0
+
+(67)
+
+The quadrant search order is defined in Tab. 2, and the
+methods of this section are summarized in Alg. 3.
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+
+Table 2: Vy = 0, θ includes pitch
+Vx
+
+|θ|
+
++
++
+-
+
+< π/2
+< π/2
+> π/2
+> π/2
+
+quadrant order
+I, III
+II, IV
+III, I
+IV, II
+
+Algorithm 3 Solve the residual equation for the no
+wind cases.
+if Vx = 0 then
+u = sign(φ)κVy tan φ
+v=0
+R = sign(φ) − κ
+else if Vy = 0 then
+u=0
+v = κ0 |Vx |/ tan φ
+R = sign(Vx ) + κ0
+else
+Use the normal procedure for computing induction.
+end ifp
+W = (Vx + u)2 + (Vy − v)2
+. Could use dimensional
+form to consolidate velocity calculation for all cases.
+
+easy to implement. The inflow for an airfoil section, using propeller conventions, is shown in Fig. 5. As shown
+in our previous work, the residuals can be solved much
+more effectively by realizing that we can define the velocity vectors equivalently by considering the two unknowns to be W and φ rather than a and a0 [52]. This
+choice results in a big simplification because W only
+appears in the Reynolds and Mach numbers, and as
+discussed in Sec. 2 we can almost always safely neglect
+the induction factors in these calculation (or if we really want to include them this can be done easily in
+an extra iteration). In other words, we can reduce our
+unknown variables to one: φ. This reduction has the
+massive advantage that one-dimensional root finding
+problems are much easier to solve, and unlike multidimensional root finding algorithms, we can guarantee
+convergence as long as we can find a suitable bracket.
+The required changes to the above form are minimal. As discussed, we conventionally consider a and a0
+as inputs. The next step is to compute the inflow angle
+from the induction factors using the relationship seen
+in Fig. 5:
+tan φ =
+
+4 Solution Approach
+While the core BEM theory is fairly standard, a wide
+variety of implementations exist because of the various corrections and extensions discussed in the introduction. In common to all of these, a set of residual
+equations must be converged, ensuring compatibility
+between momentum theory and blade element theory.
+The induction factors at the current iteration are in
+general not consistent as they depend on the angle of
+attack, which in turn depends on the induction factors
+themselves. Thus, an iterative, or root-finding method
+is necessary.
+Traditionally, the residuals are solved by considering
+the induction factors a and a0 as the unknown variables,
+and from those inputs, we compute updated predictions
+for a and a0 :
+ak+1 , a0k+1 = f (ak , a0k )
+
+(68)
+
+where k is the iteration index. At the end of each iteration we can then form two residuals:
+0
+
+R1 (a, a ) = ak+1 − ak = 0
+R2 (a, a0 ) = a0k+1 − a0k = 0
+
+(69)
+
+This form lends itself well to fixed point iteration, or to
+a multidimensional root finding algorithm.
+If the selected BEM models fit this form then an
+alternative exists that is much more robust and just as
+
+13
+
+Vx (1 + a)
+Vy (1 − a0 )
+
+(70)
+
+However, for the one equation method we take φ in directly as an input and thus bypass this step. The rest
+of the methodology proceeds in exactly the same way
+as the traditional one. Just like the traditional method
+we compute updated values for a and a0 except that
+they are now functions of φ rather than prior guess for
+a and a0 : (a(φ), a0 (φ)). The only other change needed
+is to define a new residual function. This is done by using the expression, Eq. 70, that has not yet been used
+in this reordered formulation. This equation can be arranged many different ways to form a residual function,
+but not all will lead to a reliably convergent method.
+Singularities in the residual function are unavoidable,
+but it is convenient to have the quantities (1 + a) and
+(1 − a0 ) in the denominator so that singularities occur
+at the predefined locations: φ = 0, ±π [52]. These locations are particularly convenient because they also separate regions where the physics change. We rearrange
+the equation into the residual form below:
+R(φ) =
+
+sin φ
+Vx
+cos φ
+−
+=0
+1 + a(φ) Vy (1 − a0 (φ))
+
+(71)
+
+This small change provides a significant simplification, but the benefits are not realized if an appropriate
+solver is not used. Bracketing methods are slow, and
+quadratic interpolation methods can have similar convergence problems to the two dimensional approach.
+Hybrid methods combine bracketing with quadratic or
+
+14
+
+Andrew Ning
+
+cubic interpolation to provide guaranteed convergence
+with typically superlinear convergence. Brent’s method
+is perhaps the most well-known of these algorithms and
+is what is used in this paper. The concept was proposed by Dekker [14], which was soon after made significantly more efficient by Brent [7]. In turn, more recent methods have proposed small improvements over
+Brent’s method like using cubic interpolation instead of
+quadratic [3].
+The remaining consideration is to determine a bracket.
+In prior work, we showed that for a typical implementation with standard inflow (Vx > 0 and Vy > 0) the
+brackets can be determined a priori [52]. However, for
+more general inflow conditions and/or use of other correction functions, the brackets may need to be established numerically. All that is needed to establish a
+bracket, [φL , φU ], is to find two points between which
+the residual function changes sign (i.e., R(φL )R(φU ) <
+0). Fortunately, from the signs of Vx and Vy , we can
+determine where a bracket is most likely to be found.
+Figure 11 divides the φ range into four quadrants. We
+search quadrants in the order shown in Tab. 3. It would
+be very rare that the solution would not occur in the
+first quadrant listed, but for completeness we list all
+possibilities in the order of likelihood. Within each quadrant, we still need to establish a bracket around a root.
+Generally there is not more than one solution in a given
+quadrant. However, the numerical possibility of multiple solutions exists and so we search for the solution
+closest to φ = 0, as that is the most physically likely.
+The method we use subdivides the quadrant into nint
+intervals, where nint is a user-defined parameter. Starting at the lower bound, we march forward towards the
+upper bound looking for a change in sign. Finding a
+bracket is straightforward, and once a bracket is determined the convergence is guaranteed. In practice, we
+have found this approach to always converge, and to
+machine precision, across a wide range of possible inputs.
+Quadrant
+
+φ range
+
+I
+II
+III
+IV
+
+[, π/2]
+[−π/2, −]
+[π/2, π − ]
+[−π + , −π/2]
+
+I
+
+III
+
+II
+
+IV
+
+Fig. 11: Quadrants where a potential solution may exist. The use of  (a small number like 10−6 ) is to avoid
+the singularities at φ = 0 and φ = π.
+In this paper we also explore using the traditional
+two-dimensional residuals. This form could be solved
+
+Table 3: Quadrant search order based on the location
+where a solution is most likely to be found.
+Vx
+
+Vy
+
+quadrant order
+
++
++
+-
+
++
++
+-
+
+I, II, III, IV
+II, I, IV, III
+III, IV, I, II
+IV, III, II, I
+
+with fixed point iteration, but convergence is not always
+reliable. Newton’s method is another common choice
+but it also suffers from relatively high failure rates during an optimization. In this study we use the trustregion method in NLsolve.jl2 . For the problems tested
+in this paper, this method was found to be the fastest of
+the methods in the NLsolve package, and was found to
+be more consistently reliable than the solvers in Python’s
+scipy.optimize.root. To further speed up the 2D approach, we compute the Jacobian of the residuals using
+algorithmic differentiation. We scaled the second residual by an order of magnitude, the one associated with
+a0 , as that improved overall convergence (this trust region method actually performs auto scaling, but scaling helped the other methods that we compared against
+and makes the contour plots easier to visualize).
+Even still, the methodology is prone to occasional
+failures. There are many reasons why the equations
+could fail, a rather benign, but frequently occurring case
+is discussed below. During a wind turbine optimization
+a failure point was noted and saved for further inspection. The induction factors a and a0 were varied near the
+failure point to visualize the solution space. A contour
+plot was created using the norm of the two residuals in
+Fig. 12a. The point identified by the 2D solver is denoted by the red x. While at first glance it may appear
+to be a solution, this is not a minimization problem,
+but rather a root finding problem and the local valley
+does not actually contain a root. Because the function
+increases in every direction, the root finding method
+terminates and cannot improve.
+In contrast, the 1D solution method can correctly
+identify the root (shown by the black dot) in the same
+figure. Across a wide range of optimizations the 1D solution method never failed. We can view these two solutions on the 1D solution space as well as shown in
+Fig. 12b. The reason this behavior occurs is that this is
+a section near the hub of the blade and it is operating
+near stall. It is common for large wind turbines to have
+sections near the hub operating near stall. Because of
+the nature of the lift coefficient near stall there is a
+reversal in the lift coefficient and subsequently in the
+2
+
+https://github.com/JuliaNLSolvers/NLsolve.jl
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+
+kR(a, a0 )k × 103
+60.0
+
+−0.013
+
+52.5
+
+a0
+
+−0.014
+
+45.0
+
+−0.015
+
+37.5
+
+−0.016
+
+30.0
+
+−0.017
+
+22.5
+
+−0.018
+
+15.0
+
+−0.019
+
+7.5
+
+−0.020
+−0.50
+
+−0.45
+
+−0.40
+a
+
+−0.35
+
+−0.30
+
+lution where this section has a negative induction and
+produces some thrust (a section that locally behaves
+like a propeller even though the rotor as a whole behaves like a turbine). In Fig. 13b the 2D solution does
+not appear as it is way off the plot.
+
+kR(a, a0 )k
+
+1.0
+
+9.6
+8.4
+
+0.8
+
+7.2
+
+0.0
+
+0.6
+
+(a) Solution space for the two-dimensional residual form.
+The red x found by the 2D algorithm is not actually a
+root (just a minimum).
+
+6.0
+
+a0
+
+−0.012
+
+15
+
+4.8
+
+0.4
+
+3.6
+0.2
+
+2.4
+1.2
+
+0.0
+10.0
+7.5
+
+−1.00
+
+1D solution
+2D solution
+
+−0.50
+a
+
+−0.25
+
+0.00
+
+0.25
+
+0.0
+
+(a) Solution space for the two-dimensional residual form.
+The red x from the 2D algorithm is clearly not a solution.
+
+5.0
+2.5
+0.0
+
+0.5
+
+−2.5
+−5.0
+
+0.4
+
+−7.5
+
+0.3
+
+−10.0
+0.00
+
+0.05
+
+0.10
+
+0.15
+φ
+
+0.20
+
+0.25
+
+0.30
+
+(b) Solution space for the one-dimensional residual form.
+
+R(φ)
+
+R(φ) × 103
+
+−0.75
+
+1D solution
+2D solution
+
+0.2
+0.1
+0.0
+
+Fig. 12: Contrast between the correct solution found
+by the 1D algorithm, and a non-solution where the 2D
+algorithm is forced to terminate.
+
+residual. A bracketing method (such as Brent’s method
+used in the 1D solution algorithm) has no problem navigating a nonmonotonic function and correctly identifies
+the solution, but the 2D approach has no such guarantees and can easily get stuck in a point that does not
+satisfy the governing equations.
+In this case the error is relatively insignificant, but
+much more significant errors can easily occur. In another scenario if we take the starting reference wind
+turbine (discussed in Sect. 6), and add just five degrees
+of pitch, multiple convergence failures occur across the
+blade. One such scenario is depicted in Fig. 13. The
+diagonal ridge in Fig. 13a represents the separation between solutions with positive and negative circulation
+from the blade element formulation and the 2D algorithm gets stuck at very erroneous induction factors. In
+contrast, the 1D method easily identifies the correct so-
+
+−0.1
+−0.2
+0.0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+φ
+
+1.0
+
+1.2
+
+1.4
+
+(b) Solution space for the one-dimensional residual form.
+
+Fig. 13: A more catastrophic failure when searching the
+2D space.
+
+Of course better starting points can lead to better
+convergence in the 2D space, but for the 2D case it
+is not always easy to know what the starting values
+should be beforehand. In the last case, for example, it
+would have been expected to have negative induction
+factors as the rotor was a wind turbine and most of the
+rotor was acting as a turbine. Alternatively, stochastic
+approach can be helpful in avoiding this type of premature convergence, but these methods are much less efficient computationally, especially in the cases discussed
+in this paper where we are interested in tight tolerances
+to produce accurate derivatives. In contrast, the 1D so-
+
+16
+
+Andrew Ning
+
+lution only requires brackets that are easily identifiable
+and yield guaranteed convergence.
+It should be mentioned that there are some model
+choices that may not lend themselves to this form and
+thus cannot be reformulated into the one-dimensional
+form. For example, one skewed inflow models does not
+allow for decoupled calculation of a and a0 [53]. It is not
+problematic if the expressions for a and a0 are implicit,
+but they do need to be separable. In these less common
+scenarios, we must stick with the two-dimensional version and form residuals on the forces that are always
+separable as the methods are distinct:
+R1 (a, a0 ) = CT momentum − CT blade element = 0
+
+R2 (a, a0 ) = CQ momentum − CQ blade element = 0
+
+(72)
+
+5 Derivative Computation
+Accurate derivative computational is important for utilizing BEM theory in optimization applications. Finite
+differences are common, but are inaccurate and scale
+inefficiently. Gradient-free optimization approaches are
+straightforward to apply but scale even more inefficiently. As blade design is just one aspect of a wider
+multidisciplinary problem, and there is increased interest in optimizing propellers across trajectories with
+many variables, it is desirable to allow for efficient scaling with increasing design variables.
+The main complication to computing derivatives in
+BEM theory is the need to solve a residual equation
+internally (Eq. 71). This residual is applied at each
+radial section on the blade independently and also in
+time independently. The phrase “in time” could apply
+to a quasi-static simulation (e.g., a flight maneuver), or
+could denote multiple operating conditions that aren’t
+necessarily correlated in time per se but rather through
+some other operating variable like wind speed (e.g., a
+wind turbine power curve).
+In this paper we use algorithmic differentiation (AD)
+to compute derivatives. Because there is an internal
+solver, we can either propagate dual numbers through
+solvers, or use an analytic approach around the solver
+(i.e., direct or adjoint). Using AD through a solver is
+simpler but less efficient. Also, when using AD through
+a solver one generally must use a tighter tolerance as
+the dual values converge slower than the primal values, fortunately the 1D algorithm allows for convergence to machine precision. We explore both procedures in this paper. The formulation for using AD with
+an analytic approach around the implicit equations requires a bit more effort, but does provide a speed advantage for some of the cases. We tested two different AD
+approaches, a forward mode and a reverse mode AD
+
+method, using the ForwardDiff.jl [63] and ReverseDiff.jl3 packages respectively.
+One key insight into computing gradients efficiently
+is to take advantage of sparsity that often exists in the
+Jacobians of these problems. As an example, consider a
+case using all the geometric inputs to the BEM solver
+and the two main outputs: thrust and torque. The inputs used include:
+x = [r1 , r2 , . . . , rm , c1 , c2 , . . . , cm , θ1 , θ2 , . . . , θm ,
+Rhub , Rtip , Φ, ρ, V∞ , Ω, θp ]
+
+(73)
+
+where m represents the number of radial stations along
+the blade, and the variables are radial stations, chord
+lengths, twist angles, hub and tip radii, precone angle, density, airspeed, rotation speed, and the pitch angle. For this sample problem there were 11 radial stations and so the Jacobian was of size 2 x 40 and was
+fully dense. Even though the loads at radial station i
+only depend on the geometry at station i (ri , ci , θi ),
+the thrust and torque are integral quantities and thus
+there is no sparsity to take advantage of. One would
+expect reverse mode AD to be advantageous in this situation as the number of outputs is much smaller than
+the inputs, however, the cost of constructing the computational graph took more time than just using the
+forward mode. In either case, the Jacobian is small, so
+the differences are not that significant.
+The more interesting case occurs as we consider multiple inflow conditions. A common evaluation scenario
+requires using the BEM for the same geometry but with
+different operating points. For example, flight conditions across an aircraft’s trajectory, or operating points
+in a wind turbine’s power curve. For these scenarios the
+inputs are as follows:
+x = [r1 , r2 , . . . , rm , c1 , c2 , . . . , cm , θ1 , θ2 , . . . , θm ,
+Rhub , Rtip , Φ, ρ, V∞1 , V∞2 , . . . , V∞n ,
+
+(74)
+
+Ω1 , Ω2 , . . . , Ωn , θp 1 , θp 2 , . . . , θp n ]
+where n represents the number of inflow conditions. In
+this case there are 2n outputs corresponding to the
+thrust and torque at all n inflow conditions. For 100
+inflow conditions the Jacobian is of size 200 x 337. However, this time there is significant sparsity. The thrust at
+inflow condition j only depends only inflow conditions
+j (V∞j , Ωj , θp j ). Thus, the structure of the Jacobian
+looks like that shown in Fig. 14a. For simplicity only
+one geometric variable (c) and one inflow variable (V )
+is illustrated. The structure is simply repeated with the
+additional variables. This is an advantageous structure
+as graph coloring theory [19] allows us to collapse the
+Jacobian structure into the sparse representation shown
+in Fig. 14b
+3
+
+https://github.com/JuliaDiff/ReverseDiff.jl
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+c1
+
+c2
+
+…
+
+cm V1 V2
+
+…
+
+17
+
+Vn
+
+T1
+T2
+
+AD
+AD w/ coloring
+
+4
+Jacobian time (s)
+
+⋮
+Tn
+Q1
+Q2
+
+3
+
+2
+
+⋮
+
+1
+
+Qn
+
+0
+
+(a) Jacobian sparsity pattern considering the
+geometric variable c and the inflow variable
+V.
+c1
+
+c2
+
+…
+
+0
+
+50
+
+100
+150
+# inflow conditions
+
+200
+
+250
+
+(a) Forward mode AD compared to forward mode AD
+with graph coloring.
+
+cm V1− n
+
+T1
+T2
+
+FD w/ coloring
+
+0.8
+
+AD w/ coloring
+
+Tn
+Q1
+Q2
+⋮
+
+Jacobian time (s)
+
+⋮
+0.6
+
+0.4
+
+0.2
+
+Qn
+
+(b) Compressed form of the
+Jacobian.
+
+Fig. 14: An illustration of the sparsity pattern for many
+BEM problems and how we can leverage graph coloring.
+Thus, for our example Jacobian of size 200 x 337
+we would only need to evaluate 40 forward passes, the
+same as our original problem that had only one inflow condition. We use the package SparseDiffTools.jl4
+to compute the coloring vector and compute the Jacobian using forward mode AD, taking advantage of
+the graph coloring. To illustrate the benefit of this approach we compare the time to construct the Jacobian
+using forward mode AD, versus the time to construct
+the Jacobian using forward mode AD and graph coloring, for problems with increasing numbers of inflow
+conditions for m ∈ [1, 2, 4, 8, 16, 32, 64, 128, 256]. The
+timing is computing using BenchmarkTools.jl5 , which
+runs multiple samples in order to produce consistent
+performance predictions. All Jacobians and intermediate vectors are cached so that computations are done
+in place to reduce memory usage. The results of the
+comparison are shown in Fig. 15a.
+4
+5
+
+https://github.com/JuliaDiff/SparseDiffTools.jl
+https://github.com/JuliaCI/BenchmarkTools.jl
+
+0.0
+0
+
+50
+
+100
+150
+# inflow conditions
+
+200
+
+250
+
+(b) Finite differencing with graph coloring as compared
+to AD with graph coloring.
+
+Fig. 15: The time required to compute the Jacobian as
+a function of the number of inflow conditions.
+
+For a small number of inflow conditions there is no
+advantage to using graph coloring, the timings are essentially identical. After 16 inflow conditions and beyond, for this problem, it is advantageous to use the
+graph coloring approach. For large number of inflow
+conditions the time savings exceeds an order of magnitude. This is a tremendous speed advantage that requires only a very small change in the way the Jacobian
+is computed.
+While we emphasize AD, the same trends are realized with finite differencing. Finite differencing can
+leverage the graph coloring techniques in exactly the
+same way. Both require the same number of forward
+operations, although algorithmic differentiation has the
+additional flexibility that it could be used in reverse
+mode. Figure 15b shows a comparison using the sparse
+formulation for both AD and forward finite differencing
+
+18
+
+Andrew Ning
+
+with the package FiniteDiff.jl6 . AD provides about a 4
+times speed advantage (about the same factor if both
+use dense methods). The real advantage of AD isn’t
+the speed but the accuracy. In this case finite differencing only achieves about 7 digits of accuracy out of 15,
+whereas the derivatives of AD are exact within machine
+precision.
+
+6 Optimization
+As a demonstration of these considerations we perform
+a wind turbine blade optimization comparing different
+strategies. The goal of the optimization is not to design a blade, indeed blade optimization is not particularly meaningful unless other multidisciplinary considerations are also included (e.g., structures, acoustics).
+The goal is to illustrate the impact of the considerations discussed in this paper and the types of challenges
+encountered in blade optimization with blade element
+momentum theory.
+The baseline design is the NREL 5-MW reference
+turbine [36], which has 17 radial stations. The optimization objective is to maximize the annual energy production by changing the blade chord distribution, twist
+distribution, tip-speed ratio in Region 2 of the power
+curve, and the pitch at 80 wind speeds from the cut-in
+wind speed to the cut-out wind speed. The annual energy production is computed assuming a Rayleigh distribution with a mean wind speed of 6 m/s. To reduce
+the dimensionality, chord and twist are specified only
+at a small number of radial locations and Akima splines
+are used to generate continuous distributions along the
+blades. Chord is specified at five radial stations: (0%,
+25%, 50%, 75%, and 100%) and twist is specified at
+four: (11.1%, 40%, 70%, and 100% along the blade).
+The twist specification starts at 11.1% along the blade
+because inboard of that radius the blade uses cylindrical
+sections where the twist is meaningless. Eighty points
+is generally more than sufficient to resolve the power
+curve, but is a small number for a trajectory optimization, and so this is representative of a medium sized
+problem (90 design variables).
+The first set of constraints are that the power at
+each wind speed must stay below rated power, which is
+essentially a constraint on maximum torque and is primarily met by feathering the blades (increasing pitch).
+The second set of constraints is that the thrust at each
+wind speed must stay below a specified level. The level
+(600 kN) is chosen to be below the 5-MW reference turbine so that the constraint will be active. The chord at
+the root is constrained to not decrease below its initial
+6
+
+https://github.com/JuliaDiff/FiniteDiff.jl
+
+value (3.542 m) in order to facilitate connection to the
+hub. A maximum rotation speed of 12 RPM is specified, but this can be imposed in the analysis without
+requiring additional constraints. The turbine rotates at
+the tip-speed ratio specified by the optimization, until
+it reaches the maximum allowed speed, after which it
+remains at that max speed through the remainder of
+the power curve. As a surrogate for a structural stress
+constraint, the flapwise loads are constrained near rated
+speed where the loads are highest. Again, the constraint
+is imposed at a level (6,500 N/m) below that of the
+baseline design so that the constraint will likely be active. Finally, a constraint is added to force the pitch to
+increase throughout the power curve, which should happen anyway. This is not a strictly necessary constraint
+but helps with the numerical behavior. Sometimes there
+is a low and a high pitch solution that can satisfy the
+power constraint, and because each pitch variable is
+independent the solution could contain large jumps in
+pitch in nearby speeds. Such large changes wouldn’t be
+desirable for a controller. Alternatively, pitch could be
+nested with a root solver in the analysis, but was easier
+to impose in the optimization for this case. The problem
+is specified as follows:
+maximize
+
+annual energy production
+
+by varying
+
+chordi for i = 1 . . . 5
+twisti for i = 1 . . . 4
+tip-speed ratio
+pitchi for i = 1 . . . 80
+
+subject to
+
+poweri ≤ 5 MW for i = 1 . . . 80
+
+thrusti ≤ 600 kN for i = 1 . . . 80
+
+flapwise loadsj ≤ 6500 N/m for j = 1 . . . 17
+pitchi+1 > pitchi for i = 1 . . . 79
+
+(75)
+where the 80 (and 79) corresponds to the wind speeds,
+and 17 corresponds to the number of radial locations.
+The problem has 90 design variables and 256 constraints.
+The objective and all constraints were normalized so
+that their order of magnitude was approximately unity.
+Five different strategies were used to optimize the
+problem. All five methods used in-place operations for
+populating the Jacobian so that new arrays were not
+allocated at each iteration.
+1. The traditional two-residual formulation was used.
+All of the physics calculations were exactly the same
+in all cases, only the solver was changed as discussed
+in Sect. 4. Total derivatives were obtained through
+finite differencing.
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+
+2. The remaining methods used the one-dimensional
+residual, with Brent’s method, but differ in the way
+derivatives are obtained. This second case used the
+same finite differencing procedure as the previous
+case.
+3. Total derivatives were obtained using forward mode
+algorithmic differentiation with the dual numbers
+propagated through the solver.
+4. Total derivatives were obtained using an implicit analytic method (there is no distinction between direct/adjoint as the residual is 1-dimensional) where
+forward mode algorithmic differentiation provides
+the partial derivatives of the residual.
+5. Total derivatives were obtained using forward mode
+algorithmic differentiation with graph coloring. The
+sparsity pattern for this problem is very similar to
+Fig. 14a, but with one important difference. The annual energy production is affected by every variable
+and so there is one row that is completely dense.
+Thus, if all derivatives were computed together, the
+sparse formulation would not be reducible in either
+a forward or reverse mode. There would still be some
+benefit as the sparse formulation requires less storage and less multiplications inside the optimizer, but
+the benefit was negligible for the sizes of problems
+tested. To address this issue, we compute the derivatives of all constraints using the sparse formulation,
+but the objective gradient (annual energy production) is computed separately. Generally, this could
+be computed efficiently using reverse mode AD as
+there is only one output and many inputs. However, in this case the AEP is just a weighted sum of
+powers, for which we already have derivatives, and
+so the objective derivative was most efficiently provided analytically. More generally bi-directional coloring schemes can be used for these problems that
+have dense rows and dense columns [12]. Gray et
+al. have demonstrated the effectiveness of this approach in computing total derivatives across large
+multidisciplinary problems [23].
+
+19
+
+Table 4: Comparison between time to solve optimization problem between the five different approaches.
+Method
+Traditional with FD
+One Residual with FD
+One Residual with AD through solver
+One Residual with AD/analytic
+One Residual with Sparse AD
+
+Time (s)
+112
+67
+24
+12
+5
+
+during the optimization process. Fortunately, the optimization process was robust and so it still reliably converged to the optimum. Perhaps the main benefit to
+switching to the one equation model is increased convergence robustness, and tighter tolerances. The twoequation residual cannot in general be converged to
+tight tolerances at every iteration, which makes it harder
+to proceed to the subsequent cases using algorithmic
+differentiation throughout the full analysis.
+Switching from finite differencing to numerically exact derivatives improved the convergence speed by an
+additional factor of three. Note that the AD used is
+a forward mode so the advantage in time savings is
+not because of scaling differences between the number
+of inputs and outputs (both scale with the number of
+inputs), but because of efficiencies in computing derivatives with AD, and efficiencies in the optimization made
+possible by more accurate derivatives. Furthermore, using AD only for the partials, and then solving for total
+derivatives with an implicit analytic approach increased
+convergence by another factor of two.
+Finally, switching to sparse derivatives allowed for
+an additional 2.5 times speed up, allowing the optimization to be solved in a surprisingly quick 5 seconds. Note
+that for the sparse case there was no real difference between using AD through the solver, or using AD with
+an adjoint. The derivative computation was no longer
+a bottleneck either way. All together, the final method
+was over 22 times faster than the first method, and the
+only changes were in the solver used for converting the
+We used SNOPT [20], a well-known sequential quadratic residuals and the methods used to compute the derivatives. Across the last four cases, the speed up was about
+programming algorithm, as the optimizer with default
+13 times and the only change was in how the Jacobian
+options. The timing as reported by SNOPT is summawas computed.
+rized in Tab. 4. The solution for each case was compared
+and was identical within the tolerances.
+These timings will of course vary from problem to
+Switching from the traditional residual formulation
+problem, and even for the same problem the optimizato the one-equation formulation reduced computation
+tion path may vary leading to timing differences that
+by about 40%. That isn’t too surprising as solving the
+should be averaged across many optimizations. The purone dimensional residuals typically requires about half
+pose of this analysis is not to dissect specific numbers,
+the number of iterations as solving the two dimensional
+but rather to illustrate that small changes in how the
+residuals. A major difference was the number of conresiduals are converged and in how derivatives are obvergence failures. The one-residual method never failed,
+tained can have a large impact on optimization perforbut the traditional two-residual method failed frequently mance. This type of performance benefit is enabled by
+
+20
+
+Andrew Ning
+
+enabling differentiability upfront during the derivation
+and implementation of the methodology.
+
+7 No Inflow in One Direction
+As discussed in Sec. 3, no inflow in one direction occurs in applications of interest like a hovering rotor, or
+a parked rotor. While using exactly zero does not work
+with the blade element momentum equations, one can
+use a small number for the velocities (e.g., Vx = 10−4 ).
+However, it remains to be seen whether that leads to
+numerically accurate values as Vx → 0 (not to mention
+the consideration of whether or not not the assumptions of blade element momentum theory are even applicable at these extremes). Sec. 3 contains rederivation
+of the methodology so that zero inflow can be handled
+robustly.
+
+Of note the BEM compares quite favorably to experimental data, at least for these integral quantities, and
+avoids some of the spurious jumps shown in the cited
+study (although the BEM was not the focus of that
+paper). The study also provides wake velocities, which
+are compared in Fig. 17, also in the same style as those
+shown in the original study. Here we see that agreement is reasonable except at the tip where the simple
+tip loss function forces these velocities to zero. The wake
+from a rotor in hover plays a significant role in affecting
+the blade loading, particularly near the tip. The BEM
+assumption of streamtubes are less justifiable in these
+recirculating regions. Better tip corrections, or tip corrections tuned for hover scenarios could be used to offer
+improved loading and wake distributions, but is not the
+focus of this work.
+CQ /σ
+0.025
+
+7.1 Validation
+
+0.020
+
+Before comparing these rederived equations against the
+general formula with small (but nonzero) inflow velocities, we explore a few validation cases. We compare
+this formulation against experimental data for a hovering rotor with an untwisted blade [62]. The study used
+a Reynolds number correction based on results from a
+previous study by Lim et al. [42]. We apply the same
+correction for the lower Reynolds number of these tests,
+namely an increase in drag coefficient of 0.014 for the
+NACA 0012.
+Rather than use the standard Prandtl tip correction
+we use the method discussed by Johnson [35] for rotorcraft applications. The methodology simply assumes
+that sections near the tip produce no lift, and only produce drag. Because there is no lift for those few sections
+near the tip, there is no induction, the residual equation is bypassed, and the torque is computed directly
+from blade element theory. This tip loss is only applied
+at sections for which [67]:
+
+experimental
+0.015
+
+BEM
+
+0.010
+
+0.005
+
+0.000
+0.00
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+CT /σ
+
+0.10
+
+0.12
+
+0.14
+
+(a) Thrust coefficient versus torque coefficient.
+figure of merit
+0.7
+
+BEM
+
+0.6
+experimental
+
+0.5
+0.4
+0.3
+0.2
+
+r
+2 c(ssr/Rtip =0.7)
+≥1−
+Rtip
+3
+Rtip
+
+(76)
+
+For the rotor studied in this section this corresponds to
+r/Rtip ≥ 0.94. Using the standard tip correction produces essentially the same results except at the high
+power end of the curve where the thrust loads are somewhat overpredicted.
+Figure 16 compares the thrust coefficient and torque
+coefficients normalized by solidity, and the figure of
+merit, which is a measure of hover efficiency. These
+plots are the same as those in the original study [62].
+
+0.1
+0.0
+0.00
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+CT /σ
+
+0.10
+
+0.12
+
+0.14
+
+(b) Thrust coefficient versus figure of merit (efficiency).
+
+Fig. 16: Comparison of integrated loads between BEM
+and experimental data for a rotor in hover.
+
+Our main interest is understanding the differences
+between the original BEM and the reformulation dis-
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+
+21
+
+timization, particularly with gradient-based methods,
+the smooth and reliable convergence of this reformulation may be needed.
+
+u/(ΩR)
+−0.04
+−0.02
+0.00
+
+CQ /σ
+
+BEM
+
+0.02
+
+experimental
+
+0.04
+
+reformulated
+
+0.025
+
+original
+
+0.020
+
+0.06
+
+0.015
+
+0.08
+0.010
+
+0.10
+0.0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+r/R
+
+(a) Pitch set such that CT = 0.0013.
+
+0.005
+
+0.000
+0
+
+5
+
+10
+pitch (deg)
+
+15
+
+20
+
+u/(ΩR)
+
+Fig. 18: Comparison between the original BEM formulation with small inflow velocity Vx = 10−4 versus the
+reformulated version that allows for Vx = 0 and leads
+to improved numerical convergence.
+
+−0.04
+−0.02
+0.00
+0.02
+experimental
+
+0.04
+0.06
+
+BEM
+
+0.08
+0.10
+0.0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+r/R
+
+(b) Pitch set such that CT = 0.0076.
+
+Fig. 17: Comparison of normalized axial induced velocities along radius between BEM and experimental data
+for a rotor in hover.
+
+cussed in this section that allow for Vx to be exactly
+zero. For the original case we specified the inflow velocity as a small nonzero value: Vx = 10−4 . Figure 18
+shows the torque coefficient as a function of pitch angle,
+for the two cases. This is the same data as in the previous figures, only shown as a function of pitch rather
+than thrust coefficient to more easily see the differences.
+We see that the original formulation follows the same
+trend, but occasionally jumps to another solution because of the poor numerical formulation (this is true regardless which tip correction method is used). Because
+Vx is very small, but nonzero, the axial induction factor is very large. Additionally, as the pitch goes to zero,
+the torque erroneously jumps to zero for this untwisted
+blade. In contrast the reformulated version maintains
+smooth and consistent convergence across the range of
+pitch angles. For pure analysis, using the original version with a small Vx may be sufficient, but for use in op-
+
+For optimizations in hover, or rotors with brakes
+preventing rotation, the same considerations for converging the residual and computing derivatives from
+the previous sections would apply. The revised formulation derived in this section is recommended, rather than
+using the standard formulation with negligibly small
+inflow velocities, to avoid the convergence challenges
+highlighted in this section. However, as also highlighted
+in this section, the assumptions of BEM theory may be
+less defensible in hover than they are for forward flight,
+and the accuracy of the results, especially near the tip,
+may be less than satisfactory without additional correction models specific to these applications.
+
+8 Conclusion
+Blade element methods (BEM) are widely used for initial aerodynamic analysis of wind turbine and propeller
+blades. As optimization problems become increasingly
+complex, especially with large numbers of design variables, weaknesses in the way the BEM equations are
+typically solved and the way derivatives are obtained
+become more limiting. In particular, the standard formulation requires the coupled solution of a pair of residual equations, often with fixed point iteration, Newton’s
+method, or other more sophisticated multidimensional
+root solvers. Such methods work very well for analysis, but are prone to occasional convergence difficulties,
+particularly during an optimization. The exploratory
+nature of optimization sometimes creates input combinations with solutions far from typical starting points
+
+22
+
+in the root solver. Thus, occasional convergence failures
+are produced with solutions diverging, or solutions terminating in a local valley that does not contain a root.
+The latter case can often occur for blade sections operating near stall, because of the reversal in the lift
+coefficient, as shown in this paper.
+There exists a wide range of proposed correction
+models to improve the accuracy of the physics models, but common to them all a pair of residual equations must be solved ensuring compatibility between
+the blade element and the momentum formulations.
+As shown in this paper, by rearranging the sequence
+of computations the pair of residuals can be recast as
+a single residual that is only a function of the inflow
+angle. This reformulation provides a significant benefit because there are one-dimensional root finders with
+guaranteed convergence, and they are not susceptible
+to premature termination on nonmonotonic functions
+like the stall case mentioned earlier. Furthermore, onedimensional root solvers can be converged reliably to
+machine precision, facilitating computing of more accurate gradients, especially when using algorithmic differentiation (AD).
+Algorithmic differentiation was applied to the BEM
+formulation. Using a dual number approach for AD required only minimal changes to the code while allowing for exact derivatives (approximately doubling the
+number of significant digits as compared to finite differrencing). Additionally, the time to solve optimization problems is greatly reduced, both because of faster
+gradient calculations and the improved accuracy of the
+derivatives allow for more efficient optimization convergence. Furthermore, many BEM optimization problems
+exhibit significant sparsity in the Jacobians. For example, trajectory optimization problems with propellers,
+or power curve evaluations for turbines, involve computing performance at multiple independent conditions.
+Using graph coloring, the Jacobians can be computed
+much faster than for standard dense formulations. For
+even moderate sized problems, the speed up in derivative computational time can exceed an order of magnitude. An example optimization was shown highlighting
+more than an order of magnitude increase in optimization speed with no changes in the physics, only changes
+in the way the residuals are converged and how the
+derivatives are computed.
+Finally, for cases with zero inflow in one direction,
+like a hovering rotor or a parked rotor, new residuals
+were derived. The standard formulation is undefined exactly at zero. While small nonzero inputs can be used,
+especially for analysis, the formulation is more prone
+to erroneous jumps in the outputs that are problematic
+for optimization. New residuals were derived that con-
+
+Andrew Ning
+
+verge reliably, and show a nice theoretical fit with the
+standard equations filling in existing singularities. Although this formulation allows for clear improvements
+in optimization usage, the physics of hovering rotors using blade element momentum theory may be less accurate without additional corrections. The recirculation of
+tip vortices stretches the streamtube assumptions and
+leads to higher errors in the tip regions of the blades.
+The scope of this paper focused on optimization aspects (solvers and derivatives), rather than the physics,
+but future work in improving BEM implementations
+for hover would be useful. A particular need for these
+conditions exist with emerging propeller-driven eVTOL
+aircraft that move through a range of conditions transitioning from hover to forward flight.
+Acknowledgements This research was partially supported
+by the Department of Energy (DOE) Advanced Research
+Projects Agency-Energy (ARPA-E) Program award
+DE-AR0001186 entitled “Computationally Efficient Control
+Co-Design Optimization Framework with Mixed-Fidelity Fluid
+and Structure Analysis.”
+
+Replication of Results
+A full implementation of the methodology in the Julia
+programming language, with documentation, is available in an open source repository called CCBlade (https:
+//github.com/byuflowlab/CCBlade.jl). The scripts used
+to generate the results and figures from the paper are
+available in separate repository (https://github.com/byuflowlab/
+ning2020-bem).
+Conflict of Interest
+The author states that there is no conflict of interest.
+References
+1. Akima, H.: A new method of interpolation and smooth
+curve fitting based on local procedures. Journal of
+the ACM (JACM) 17(4), 589–602 (1970).
+DOI
+10.1145/321607.321609. URL http://dx.doi.org/10.
+1145/321607.321609
+2. Albanesi, A.E., Peralta, I., Bre, F., Storti, B.A.,
+Fachinotti, V.D.: An optimization method based on the
+evolutionary and topology approaches to reduce the mass
+of composite wind turbine blades. Structural and Multidisciplinary Optimization 62(2), 619–643 (2020). DOI
+10.1007/s00158-020-02518-2. URL http://dx.doi.org/
+10.1007/s00158-020-02518-2
+3. Alefeld, G.E., Potra, F.A., Shi, Y.: Algorithm 748: Enclosing zeros of continuous functions. ACM Transactions on Mathematical Software (TOMS) 21(3), 327–
+344 (1995). DOI 10.1145/210089.210111. URL http:
+//dx.doi.org/10.1145/210089.210111
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+4. Bak, C., Johansen, J., Andersen, P.: Three-dimensional
+corrections of airfoil characteristics based on pressure distributions. In: European Wind Energy Conference & Exhibition. Athens, Greece (2006)
+5. Bohorquez, F., Pines, D., Samuel, P.D.: Small rotor design optimization using blade element momentum theory and hover tests. Journal of Aircraft 47(1), 268–283
+(2010). DOI 10.2514/1.45301. URL http://dx.doi.org/
+10.2514/1.45301
+6. Branlard, E., Gaunaa, M.: Development of new tip-loss
+corrections based on vortex theory and vortex methods. Journal of Physics: Conference Series 555, 012012
+(2014). DOI 10.1088/1742-6596/555/1/012012. URL
+http://dx.doi.org/10.1088/1742-6596/555/1/012012
+7. Brent, R.P.: An algorithm with guaranteed convergence
+for finding a zero of a function. The Computer Journal
+14(4), 422–425 (1971). DOI 10.1093/comjnl/14.4.422
+8. Buhl Jr., M.L.: A new empirical relationship between
+thrust coefficient and induction factor for the turbulent
+windmill state. Tech. Rep. NREL/TP-500-36834, National Renewable Energy Laboratory (2005)
+9. Burton, T., Jenkins, N., Sharpe, D., Bossanyi, E.: Wind
+Energy Handbook, 2nd edn. Wiley, United Kingdom
+(2011)
+10. Chen, J., Wang, Q., Shen, W.Z., Pang, X., Li, S., Guo,
+X.: Structural optimization study of composite wind turbine blade. Materials & Design 46, 247–255 (2013).
+DOI 10.1016/j.matdes.2012.10.036. URL http://dx.
+doi.org/10.1016/j.matdes.2012.10.036
+11. Coleman, R.P., Feingold, A.M., Stempin, C.W.: Evaluation of the induced-velocity field of an idealized helicoptor
+rotor. Tech. Rep. ARR L5E10, NACA (1945)
+12. Coleman, T.F., Verma, A.: The efficient computation of
+sparse jacobian matrices using automatic differentiation.
+SIAM Journal on Scientific Computing 19(4), 1210–1233
+(1998). DOI 10.1137/s1064827595295349. URL http:
+//dx.doi.org/10.1137/s1064827595295349
+13. Corrigan, J.J., Schillings, J.J.: Empirical model for stall
+delay due to rotation. In: American Helicopter Society Aeromechanics Specialists Conference. San Francisco,
+CA (1994)
+14. Dekker, T.J.: Finding a zero by means of successive linear
+interpolation. Constructive aspects of the fundamental
+theorem of algebra pp. 37–51 (1969)
+15. Døssing, M., Madsen, H.A., Bak, C.: Aerodynamic optimization of wind turbine rotors using a blade element momentum method with corrections for wake rotation and
+expansion. Wind Energy 15(4), 563–574 (2011). DOI 10.
+1002/we.487. URL http://dx.doi.org/10.1002/we.487
+16. Drees, J.M.: A theory of airflow through rotors and its
+application to some helicopter problems. Journal of the
+helicopter association of great britain 3(2), 79–104 (1949)
+17. Du, Z., Selig, M.: A 3-D stall-delay model for horizontal axis wind turbine performance prediction. In: 1998
+ASME Wind Energy Symposium, AIAA-1998-21 (1998)
+18. Eggers Jr, A.J., Chaney, K., Digumarthi, R.: An assessment of approximate modeling of aerodynamic loads
+on the uae rotor. In: 41st Aerospace Sciences Meeting
+and Exhibit, AIAA-2003-0868 (2003). DOI 10.2514/6.
+2003-868
+19. Gebremedhin, A.H., Manne, F., Pothen, A.: What color
+is your jacobian? graph coloring for computing derivatives. SIAM Review 47(4), 629–705 (2005). DOI
+10.1137/s0036144504444711. URL http://dx.doi.org/
+10.1137/s0036144504444711
+20. Gill, P.E., Murray, W., Saunders, M.a.: SNOPT: An SQP
+algorithm for large-scale constrained optimization. SIAM
+review 47(1), 99–131 (2005)
+
+23
+
+21. Glauert, H.: Airplane propellers. In: Aerodynamic Theory, pp. 169–360. Springer (1935)
+22. Glauert, H., Committee, A.R.: A General Theory of the
+Autogyro. HM Stationery Office (1926)
+23. Gray, J.S., Hearn, T.A., Naylor, B.A.: Using graph coloring to compute total derivatives more efficiently in openmdao. AIAA Aviation 2019 Forum (2019). DOI 10.
+2514/6.2019-3108. URL http://dx.doi.org/10.2514/6.
+2019-3108
+24. Gray, J.S., Hwang, J.T., Martins, J.R.R.A., Moore, K.T.,
+Naylor, B.A.: Openmdao: an open-source framework
+for multidisciplinary design, analysis, and optimization.
+Structural and Multidisciplinary Optimization 59(4),
+1075–1104 (2019). DOI 10.1007/s00158-019-02211-z.
+URL http://dx.doi.org/10.1007/s00158-019-02211-z
+25. Gur, O., Rosen, A.: Optimization of propeller based
+propulsion system. Journal of Aircraft 46(1), 95–106
+(2009). DOI 10.2514/1.36055. URL http://dx.doi.org/
+10.2514/1.36055
+26. Hansen, M., Gaunaa, M., Madsen, H.: A beddoes–
+leishman type dynamic stall model in state-space and
+indicial formulations. Risø-R-1354, Risø National Laboratory (2004)
+27. Hansen, M.O.L.: Aerodynamics of Wind Turbines, 2nd
+edn. Earthscan, United Kingdom (2008)
+28. He, C.J., Peters, D.A.: Optimization of rotor blades for
+combined structural, dynamic, and aerodynamic properties. Structural Optimization 5(1-2), 37–44 (1992). DOI
+10.1007/bf01744694. URL http://dx.doi.org/10.1007/
+bf01744694
+29. Hendricks, E.S., Falck, R.D., Gray, J.S., AretskinHariton, E., Ingraham, D., Chapman, J.W., Schnulo,
+S.L., Chin, J., Jasa, J.P., Bergeson, J.D.: Multidisciplinary optimization of a turboelectric tiltwing urban air
+mobility aircraft. AIAA Aviation 2019 Forum (2019).
+DOI 10.2514/6.2019-3551. URL http://dx.doi.org/10.
+2514/6.2019-3551
+30. Hjort, S.: Non-empirical bem corrections relating to angular and axial momentum conservation. Energies 12(2),
+320 (2019). DOI 10.3390/en12020320. URL http://dx.
+doi.org/10.3390/en12020320
+31. Hwang, B., Lee, S., Lee, S.: Optimization of a counterrotating wind turbine using the blade element and momentum theory. Journal of Renewable and Sustainable
+Energy 5(5), 052013 (2013). DOI 10.1063/1.4826940.
+URL http://dx.doi.org/10.1063/1.4826940
+32. Hwang, J.T., Ning, A.: Large-scale multidisciplinary optimization of an electric aircraft for on-demand mobility. In: AIAA Structures, Structural Dynamics, and
+Materials Conference. Kissimmee, FL (2018). DOI
+10.2514/6.2018-1384
+33. Ingraham, D., Gray, J.S., Lopes, L.V.: Gradient-based
+propeller optimization with acoustic constraints. AIAA
+Scitech 2019 Forum (2019). DOI 10.2514/6.2019-1219.
+URL http://dx.doi.org/10.2514/6.2019-1219
+34. Jasa, J.P., Hwang, J.T., Martins, J.R.R.A.: Open-source
+coupled aerostructural optimization using python. Structural and Multidisciplinary Optimization 57(4), 1815–
+1827 (2018). DOI 10.1007/s00158-018-1912-8. URL
+http://dx.doi.org/10.1007/s00158-018-1912-8
+35. Johnson, W.: Helicopter Theory. Courier Corporation
+(2012)
+36. Jonkman, J., Butterfield, S., Musial, W., Scott, G.: Definition of a 5-MW reference wind turbine for offshore system development. NREL/TP-500-38060, National Renewable Energy Laboratory, Golden, CO (2009)
+
+24
+37. Kenway, G., Martins, J.: Aerostructural shape optimization of wind turbine blades considering site-specific
+winds. In: 12th AIAA/ISSMO Multidisciplinary Analysis and Optimization Conference (2008). DOI 10.2514/6.
+2008-6025
+38. Kwon, H.I., Yi, S., Choi, S., Kim, K.: Design of efficient
+propellers using variable-fidelity aerodynamic analysis
+and multilevel optimization. Journal of Propulsion and
+Power 31(4), 1057–1072 (2015). DOI 10.2514/1.b35097.
+URL http://dx.doi.org/10.2514/1.b35097
+39. Larsen, J., Nielsen, S., Krenk, S.: Dynamic stall model
+for wind turbine airfoils.
+Journal of Fluids and
+Structures 23(7), 959–982 (2007).
+DOI 10.1016/j.
+jfluidstructs.2007.02.005. URL http://dx.doi.org/10.
+1016/j.jfluidstructs.2007.02.005
+40. Leishman, J.G.: Validation of approximate indicial aerodynamic functions for two-dimensional subsonic flow.
+Journal of Aircraft 25(10), 914–922 (1988). DOI 10.2514/
+3.45680. URL http://dx.doi.org/10.2514/3.45680
+41. Leishman, J.G., Beddoes, T.S.: A semi-empirical model
+for dynamic stall. Journal of the American Helicopter
+Society 34(3), 3–17 (1989). DOI 10.4050/jahs.34.3. URL
+http://dx.doi.org/10.4050/jahs.34.3
+42. Lim, J.W., McAlister, K.W., Johnson, W.: Hover performance correlation for full-scale and model-scale coaxial
+rotors. Journal of the American Helicopter Society 54(3),
+32005–3200514 (2009).
+DOI 10.4050/jahs.54.032005.
+URL http://dx.doi.org/10.4050/jahs.54.032005
+43. Lindenburg, C.: Modeling of rotational augmentation
+based on engineering considerations and measurements.
+In: European Wind Energy Conference. London (2004)
+44. Madsen, H.A., Bak, C., Døssing, M., Mikkelsen, R., Øye,
+S.: Validation and modification of the blade element momentum theory based on comparisons with actuator disc
+simulations. Wind Energy 13(4), 373–389 (2010). DOI
+10.1002/we.359. URL http://dx.doi.org/10.1002/we.
+359
+45. Mangler, K.W., Squire, H.B.: The induced velocity field
+of a rotor. ARC R&M 2642 (1950)
+46. Maniaci, D.C.: An investigation of WT Pref convergence
+issues. In: AIAA Aerospace Sciences Meeting, AIAA
+2011-150 (2011)
+47. Manwell, J.F., Mcgowan, J.G., Rogers, A.L.: Wind Energy Explained, 2nd edn. Wiley, United Kingdom (2009)
+48. McCrink, M.H., Gregory, J.W.: Blade element momentum modeling of low-reynolds electric propulsion systems. Journal of Aircraft 54(1), 163–176 (2017). DOI
+10.2514/1.c033622. URL http://dx.doi.org/10.2514/
+1.c033622
+49. McWilliam, M., Crawford, C.: The behavior of fixed point
+iteration and Newton-Raphson methods in solving the
+blade element momentum equations. Wind Engineering
+35(1), 17–32 (2011). DOI 10.1260/0309-524X.35.1.17
+50. Montgomerie, B.: Methods for root effects, tip effects and
+extending the angle of attack range to ±180 ◦ , with application to aerodynamics for blades on wind turbines and
+propellers. FOI-R–1305–SE, Swedish Defence Research
+Agency, Stockholm (2004)
+51. Moore, K., Ning, A.: Takeoff and performance tradeoffs
+of retrofit distributed electric propulsion for urban transport. Journal of Aircraft 56(5), 1880–1892 (2019). DOI
+10.2514/1.C035321
+52. Ning, A.: A simple solution method for the blade element momentum equations with guaranteed convergence.
+Wind Energy 17(9), 1327–1345 (2014). DOI 10.1002/we.
+1636. URL http://dx.doi.org/10.1002/we.1636
+
+Andrew Ning
+53. Ning, A., Hayman, G., Damiani, R., Jonkman, J.: Development and validation of a new blade element momentum skewed-wake model within AeroDyn. In: 33rd
+ASME Wind Energy Symposium. Kissimmee, FL (2015).
+DOI 10.2514/6.2015-0215
+54. Øye, S.: Dynamic stall simulated as time lag of separation. In: IEA symposium on the aerodynamics of wind
+turbines (1990)
+55. Øye, S.: Induced velocities for rotors in yaw. In: Proceedings of the Sixth IEA Symposium. ECN, Petten, Holland
+(1992)
+56. Peters, D.A., Boyd, D.D., He, C.J.: Finite-state inducedflow model for rotors in hover and forward flight. Journal
+of the American Helicopter Society 34(4), 5 (1989). DOI
+10.4050/jahs.34.5. URL http://dx.doi.org/10.4050/
+jahs.34.5
+57. Pitt, D.M., Peters, D.a.: Theoretical prediction of
+dynamic-inflow derivatives. Vertica 5(1), 21–34 (1981)
+58. Polat, O., Tuncer, I.H.: Aerodynamic shape optimization
+of wind turbine blades using a parallel genetic algorithm.
+Procedia Engineering 61, 28–31 (2013). DOI 10.1016/j.
+proeng.2013.07.088. URL http://dx.doi.org/10.1016/
+j.proeng.2013.07.088
+59. Ponta, F.L., Otero, A.D., Lago, L.I., Rajan, A.: Effects of rotor deformation in wind-turbine performance:
+The dynamic rotor deformation blade element momentum model (drd–bem). Renewable Energy 92, 157–
+170 (2016). DOI 10.1016/j.renene.2016.01.098. URL
+http://dx.doi.org/10.1016/j.renene.2016.01.098
+60. Prandtl, L., Betz, A.: Vier abhandlungen zur hydrodynamik und aerodynamik. In: Göttinger Nachr (1927)
+61. Rajan, A., Ponta, F.: A novel correlation model for horizontal axis wind turbines operating at high-interference
+flow regimes. Energies 12(6), 1148 (2019). DOI 10.
+3390/en12061148. URL http://dx.doi.org/10.3390/
+en12061148
+62. Ramasamy, M., Gold, N.P., Bhagwat, M.J.: Rotor hover
+performance and flowfield measurements with untwisted
+and highly-twisted blades. In: European Rotorcraft Forum. Paris, France (2010)
+63. Revels, J., Lubin, M., Papamarkou, T.: Forward-Mode
+Automatic Differentiation in Julia. ArXiv e-prints (2016)
+64. Rodrigues, S.a.S., Marta, A.C.: On addressing noise constraints in the design of wind turbine blades. Structural and Multidisciplinary Optimization 50(3), 489–503
+(2014). DOI 10.1007/s00158-014-1072-4. URL http:
+//dx.doi.org/10.1007/s00158-014-1072-4
+65. Schmitz, S.: Aerodynamics of Wind Turbines: A Physical
+Basis for Analysis and Design. John Wiley & Sons (2019)
+66. Shen, W.Z., Mikkelsen, R., Sørensen, J.N., Bak, C.: Tip
+loss corrections for wind turbine computations. Wind
+Energy 8(4), 457–475 (2005). DOI 10.1002/we.153. URL
+http://dx.doi.org/10.1002/we.153
+67. Sissingh, G.: Contribution to the aerodynamics of
+rotating-wing aircraft. NACA-TM-921, NACA (1939)
+68. Snel, H., Houwink, R., Bosschers, J.: Sectional prediction of lift coefficients on rotating wind turbine blades
+in stall. ECN-C-93-052, Netherlands Energy Research
+Foundation (ECN), Petten, Netherlands (1994)
+69. Snel, H., Schepers, J., Nederland, S.E.C.: Joint investigation of dynamic inflow effects and implementation of an
+engineering method. Tech. Rep. ECN-C–94-107, Netherlands Energy Research Foundation (1995)
+70. Sun, Z., Shen, W.Z., Chen, J., Zhu, W.J.: Improved
+fixed point iterative method for blade element momentum computations. Wind Energy 20(9), 1585–1600
+
+Using Blade Element Momentum Methods with Gradient-Based Design Optimization
+(2017). DOI 10.1002/we.2110. URL http://dx.doi.org/
+10.1002/we.2110
+71. Tran, C.T., Petot, D.: Semi-empirical model for the dynamic stall of airfoils in view of the application t o the
+calculation of responses of a helicopter blade in forward
+flight. Vertica 5(1), 35–53 (1981)
+72. Viterna, L.A., Janetzke, D.C.: Theoretical and experimental power from large horizontal-axis wind turbines.
+Tech. Rep. DOE/NASA/20320-4, National Aeronautics
+and Space Administration, Lewis Research Center (1982)
+73. de Vries, O.: Fluid dynamic aspects of wind energy
+conversion. Agard report ag-243, Advisory Group for
+Aerospace Research and Development (1979)
+74. Wilson, R.: Wind turbine technology: Fundamental concepts of wind turbine engineering. chap. Aerodynamic
+behavior of wind turbines. ASME (1994)
+75. Wilson, R., Lissaman, P.: Applied aerodynamics of wind
+power machines. Tech. rep., Oregon State University
+(1974)
+
+25
+
+

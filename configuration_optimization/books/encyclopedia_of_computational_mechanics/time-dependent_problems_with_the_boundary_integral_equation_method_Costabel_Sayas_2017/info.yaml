@@ -1,0 +1,273 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>Time‐dependent
+  problems that are modeled by initial‐boundary value problems for parabolic or hyperbolic
+  partial differential equations can be treated with the boundary integral equation
+  (BIE) method. The ideal situation is when the right‐hand side in the partial differential
+  equation and the initial conditions vanish, the data are given only on the boundary
+  of the domain, the equation is linear with constant coefficients, and the domain
+  does not depend on time. In this situation, the transformation of the problem to
+  a BIE follows the same well‐known lines as for the case of stationary or time‐harmonic
+  problems modeled by elliptic boundary value problems. The same main advantages of
+  the reduction to the boundary prevail: reduction of the dimension by one, and reduction
+  of an unbounded exterior domain to a bounded boundary.</jats:p>\n                  <jats:p>There
+  are, however, specific difficulties due to the additional time dimension. Apart
+  from the practical problems of increased complexity related to the higher dimension,
+  there can appear new stability problems. In the stationary case, one often has unconditional
+  stability for reasonable approximation methods, and this stability is closely related
+  to variational formulations based on the ellipticity of the underlying boundary
+  value problem. In the time‐dependent case, instabilities have been observed in practice,
+  but due to the absence of ellipticity, the stability analysis is more difficult
+  and fewer theoretical results are available.</jats:p>\n                  <jats:p>In
+  this chapter, the mathematical principles governing the construction of BIE methods
+  for time‐dependent problems are presented. We describe some of the main numerical
+  algorithms that are used in practice and have been analyzed in the mathematical
+  literature.</jats:p>"
+author: Costabel, Martin and Sayas, Francisco‐Javier
+author_list:
+- affiliation: []
+  family: Costabel
+  given: Martin
+- affiliation: []
+  family: Sayas
+  given: Francisco‐Javier
+citations:
+- doi: 10.1287/ijoc.7.1.36
+- doi: 10.1016/j.jcp.2011.03.062
+- doi: 10.1002/cpa.3160470605
+- doi: 10.1016/j.enganabound.2012.06.003
+- doi: 10.1007/s00466-012-0796-5
+- doi: 10.1002/nme.4602
+- doi: 10.1016/j.cam.2010.02.011
+- author: Aliabadi MH
+  volume-title: The Boundary Element Method
+  year: '2002'
+- doi: 10.1109/TAP.2009.2024464
+- doi: 10.1016/0168-874X(85)90029-0
+- doi: 10.1007/978-3-322-91212-1
+- doi: 10.1007/978-3-0348-5075-9
+- article-title: Coercivity of the single layer heat potential
+  author: Arnold DN
+  first-page: '100'
+  journal-title: J. Comput. Math.
+  volume: '7'
+  year: '1989'
+- doi: 10.1007/PL00005468
+- author: Bachelot A
+  first-page: '151'
+  volume-title: Mathematical and Numerical Aspects of Wave Propagation (Mandelieu‐La
+    Napoule, 1995)
+  year: '1995'
+- doi: 10.1137/14099173X
+- doi: 10.1007/s00211-012-0503-7
+- doi: 10.1002/mma.1670080139
+- doi: 10.1137/090775981
+- doi: 10.1093/imanum/drt032
+- doi: 10.1016/j.cam.2011.03.015
+- doi: 10.1016/j.jcp.2014.08.049
+- doi: 10.1007/s10543-014-0498-9
+- doi: 10.1093/imanum/dru017
+- doi: 10.1007/s10543-011-0311-y
+- doi: 10.1007/s00211-011-0378-z
+- doi: 10.1007/s00211-014-0650-0
+- doi: 10.1016/j.cma.2012.07.007
+- doi: 10.1137/070690754
+- doi: 10.1007/978-3-642-25670-7_5
+- unstructured: BecacheE.Résolution par une méthode d'équations intégrales d'un problème
+    de diffraction d'ondes élastiques transitoires par une fissure. Thèse de doctorat
+    Université Paris VI 1991.
+- doi: 10.1002/nme.1620360606
+- doi: 10.1051/m2an/1994280201411
+- doi: 10.1109/TAP.2012.2226553
+- doi: 10.1002/(SICI)1097-0207(19991030)46:6<871::AID-NME698>3.0.CO;2-6
+- doi: 10.1007/978-3-642-48860-3
+- doi: 10.2307/2374513
+- article-title: A note on boundary value problems for the heat equation in Lipschitz
+    cylinders
+  author: Brown RM
+  doi: 10.1090/S0002-9939-1993-1156466-1
+  first-page: '585'
+  issue: '2'
+  journal-title: Proc. Am. Math. Soc.
+  volume: '119'
+  year: '1993'
+- doi: 10.1007/978-3-642-55483-4_2
+- doi: 10.1007/s10543-014-0500-6
+- doi: 10.1216/jiea/1181075987
+- doi: 10.1002/mma.1111
+- doi: 10.1137/110833555
+- doi: 10.4208/cicp.121209.111010s
+- doi: 10.1002/mma.1670160304
+- doi: 10.1002/mma.1670160305
+- article-title: On the solution by the Galerkin method of boundary equations in problems
+    of nonstationary diffraction of elastic waves by three‐dimensional cracks
+  author: Chudinovich IY
+  first-page: '1648'
+  issue: '9'
+  journal-title: Differentsial′ nye Uravneniya
+  volume: '29'
+  year: '1993'
+- doi: 10.1002/(SICI)1099-1476(19970325)20:5<425::AID-MMA817>3.0.CO;2-V
+- doi: 10.1023/A:1010699925521
+- doi: 10.1109/TAP.2009.2024460
+- doi: 10.1137/0519043
+- doi: 10.1007/BF01210400
+- doi: 10.1002/(SICI)1099-1476(19970125)20:2<133::AID-MMA841>3.0.CO;2-Y
+- doi: 10.1016/B978-0-12-239040-1.50028-4
+- doi: 10.1007/s002110050004
+- doi: 10.1007/BF01301465
+- doi: 10.1007/s002110200405
+- doi: 10.1016/0022-247X(68)90177-7
+- doi: 10.1016/0022-247X(68)90171-6
+- doi: 10.1090/conm/107/1066469
+- unstructured: DäschleC.Eine Raum‐Zeit‐Variationsformulierung zur Bestimmung der
+    Potentiale für das elektromagnetische Streuproblem im Außenraum. Dissertation
+    Universität Freiburg 1992.
+- doi: 10.1137/0731046
+- doi: 10.1016/S0168-9274(97)00107-4
+- doi: 10.1016/S0168-9274(96)00069-4
+- doi: 10.1137/S0036142901395321
+- doi: 10.1137/120881907
+- doi: 10.1216/JIE-2014-26-3-369
+- doi: 10.1016/0021-9991(79)90025-1
+- doi: 10.1016/j.camwa.2013.11.005
+- doi: 10.1016/j.camwa.2015.01.016
+- doi: 10.1216/JIE-2013-25-2-253
+- doi: 10.3934/dcds.2016.36.4367
+- doi: 10.1016/j.wavemoti.2013.06.001
+- doi: 10.1093/imanum/drr008
+- doi: 10.1093/imanum/drs040
+- doi: 10.1023/A:1018923925800
+- doi: 10.1016/j.enganabound.2013.11.006
+- doi: 10.1007/978-3-662-05136-8
+- doi: 10.1016/S0045-7825(99)00032-8
+- doi: 10.1006/acha.2000.0310
+- doi: 10.1002/cpa.3160430802
+- doi: 10.1007/978-3-540-47533-0_5
+- doi: 10.1093/imanum/drm044
+- doi: 10.1007/BF03167856
+- article-title: On boundary integral equations associated to scattering problems
+    of transient waves
+  author: Ha‐Duong T
+  first-page: '261'
+  issue: '2'
+  journal-title: Z. Angew. Math. Mech.
+  volume: '76'
+  year: '1996'
+- doi: 10.1007/978-3-642-55483-4_8
+- article-title: On the spline collocation method for the single‐layer heat operator
+    equation
+  author: Hamina M
+  doi: 10.1090/S0025-5718-1994-1208222-2
+  first-page: '41'
+  issue: '2'
+  journal-title: Math. Comput.
+  volume: '62'
+  year: '1994'
+- author: Hassell M
+  first-page: '71'
+  volume-title: Numerical Simulation in Physics and Engineering, Lecture Notes of
+    the XVI ‘Jacques‐Louis Lions’ Spanish‐French School, SEMA SIMAI Springer Series,
+    vol. 9
+  year: '2016'
+- doi: 10.1007/978-3-642-51027-4_9
+- doi: 10.1002/mma.1670160203
+- article-title: Time‐dependent fluid‐structure interaction
+  author: Hsiao GC
+  journal-title: Math. Methods Appl. Sci.
+- doi: 10.1109/TAP.2002.801375
+- doi: 10.1016/j.enganabound.2014.08.001
+- doi: 10.1016/0020-7683(94)00308-J
+- doi: 10.1007/978-3-642-97146-4
+- author: Kupradze VD
+  series-title: North‐Holland Series in Applied Mathematics and Mechanics
+  volume-title: Three‐Dimensional Problems of the Mathematical Theory of Elasticity
+    and Thermoelasticity
+  year: '1979'
+- unstructured: LalienaA.Theoretical and Algorithmic Aspects of the Convolution Quadrature
+    Method Applied to Scattering of Acoustic Waves (Spanish). PhD thesis Universidad
+    de Zaragoza 2011.
+- doi: 10.1007/s00211-009-0220-z
+- doi: 10.1016/j.enganabound.2013.08.002
+- doi: 10.1007/BF01398686
+- doi: 10.1007/s002110050033
+- doi: 10.1090/S0025-5718-1993-1153166-7
+- doi: 10.1007/BF01385870
+- unstructured: MansurWJ.A Time‐Stepping Technique to Solve Wave Propagation Problems
+    Using the Boundary Element Method. PhD thesis University of Southampton 1983.
+- doi: 10.1007/s00707-012-0637-9
+- doi: 10.1016/j.jcp.2013.10.029
+- doi: 10.1006/jcph.1998.5908
+- author: Michielssen E
+  first-page: '24'
+  volume-title: Mathematical and Numerical Aspects of Wave Propagation (Santiago de
+    Compostela, 2000)
+  year: '2000'
+- doi: 10.1016/j.amc.2015.02.082
+- doi: 10.1016/0307-904X(83)90003-3
+- doi: 10.1051/m2an/197307R301051
+- author: Partridge PW
+  volume-title: International Series on Computational Engineering
+  year: '1992'
+- doi: 10.1002/(SICI)1098-2426(199609)12:5<585::AID-NUM4>3.0.CO;2-G
+- doi: 10.1002/(SICI)1097-0207(19970130)40:2<319::AID-NME67>3.0.CO;2-I
+- author: Pogorzelski W
+  volume-title: Integral Equations and their Applications
+  year: '1966'
+- author: Powell MJD
+  doi: 10.1093/oso/9780198534396.003.0003
+  first-page: '105'
+  volume-title: Advances in Numerical Analysis, (Lancaster, 1990)
+  year: '1992'
+- unstructured: PrayA BegheinY NairN CoolsK BağciHandShankerB.A Stable Higher Order
+    Space‐Time Galerkin Scheme for Time Domain Integral Equations 2014 http://arxiv.org/abs/1401.2435.
+- unstructured: PujolsA.Equations intégrales espace‐temps pour le système de Maxwell – application
+    au calcul de la surface équivalente Radar. Thèse de doctorat Université Bordeaux
+    I 1991.
+- doi: 10.1090/mcom3053
+- doi: 10.1016/j.enganabound.2013.01.001
+- unstructured: RübergT.Non‐conforming Coupling of Finite and Boundary Element Methods
+    in Time Domain. PhD thesis Graz University of Technology 2007.
+- doi: 10.1016/j.cma.2008.08.013
+- doi: 10.1002/(SICI)1099-1476(19990510)22:7<619::AID-MMA59>3.0.CO;2-E
+- doi: 10.1007/s00211-012-0483-7
+- unstructured: SayahT.Méthodes de potentiels retardés pour les milieux hétérogènes
+    et l'approximation des couches minces par conditions d'impédance généralisées
+    en électromagnétisme. Thèse de doctorat Ecole Polytechnique 1998.
+- doi: 10.1007/s00211-012-0506-4
+- doi: 10.1007/978-3-319-26645-9
+- doi: 10.1002/(SICI)1099-0887(199911)15:11<799::AID-CNM294>3.0.CO;2-F
+- doi: 10.1016/S0955-7997(01)00022-4
+- doi: 10.1007/978-3-540-44575-3
+- doi: 10.1023/A:1004258205435
+- doi: 10.1007/s004660050265
+- doi: 10.1007/978-3-642-25670-7_6
+- author: Telles JCF
+  first-page: '1'
+  volume-title: Advances in Boundary Element Techniques IV
+  year: '2003'
+- unstructured: TerrasseI.Résolution mathématique et numérique des équations de Maxwell
+    instationnaires par une méthode de potentiels retardés. Thèse de doctorat 1993
+    Ecole Polytechnique.
+- doi: 10.1109/TAP.2013.2262016
+- doi: 10.1109/TAP.2012.2227655
+- unstructured: VeitA.Numerical Methods for Time‐Domain Boundary Integral Equations.
+    PhD thesis Universität Zürich 2012.
+- doi: 10.1109/TAP.2008.926753
+- author: Wang CY
+  first-page: '215'
+  volume-title: Advances in Boundary Element Techniques IV
+  year: '2003'
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781119176817.ecm2022
+doi: 10.1002/9781119176817.ecm2022
+files:
+- time-dependent_problems_with_the_boundary_integral_equation_method_Costabel_Sayas_2017.pdf
+isbn: '9781119176817'
+journal: Encyclopedia of Computational Mechanics Second Edition
+language: en
+month: 12
+pages: 1--24
+papis_id: b577f70b227ecf4da8af76c5874fe1e6
+publisher: Wiley
+title: Time‐Dependent Problems with the Boundary Integral Equation Method
+type: misc
+url: https://doi.org/10.1002/9781119176817.ecm2022
+year: 2017

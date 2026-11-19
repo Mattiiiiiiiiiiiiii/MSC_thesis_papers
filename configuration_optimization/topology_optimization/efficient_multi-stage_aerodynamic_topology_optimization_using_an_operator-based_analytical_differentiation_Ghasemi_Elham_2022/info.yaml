@@ -1,0 +1,388 @@
+abstract: "<jats:title>Abstract</jats:title><jats:p>A high-performance density-based
+  topology optimization tool is presented for laminar flows with focus on 2D and 3D
+  aerodynamic problems via OpenFOAM software. Density-based methods are generally
+  robust in terms of initial design, making them suitable for designing purposes.
+  However, these methods require relatively fine resolutions for external flow problems
+  to accurately capture the solid-fluid interfaces on Cartesian meshes, which makes
+  them computationally very expensive, particularly for 3D problems. To address such
+  high computational costs, two techniques are developed here. Firstly, an operator-based
+  analytical differentiation (OAD) is proposed, which efficiently computes the exact
+  partial derivatives of the flow solver (simpleFOAM). OAD also facilitates a convenient
+  development process by minimizing hand-coding and utilizing the chain-rule technique,
+  in contrast to full hand-differentiation, which is very complex and prone to implementation
+  errors. Secondly, a multi-stage design process is proposed to further reduce the
+  computational costs. In this technique, instead of using a fixed refined mesh, the
+  optimization processes are initiated with a coarse mesh, and the converged solutions
+  are projected to a locally refined mesh (as an initial guess) for a secondary optimization
+  stage, which can be repeated to obtain a sufficient accuracy. A set of 2D and 3D
+  laminar aerodynamic problems were studied, which promisingly confirmed the utility
+  of the present approach, which can be adopted as a starting point for developing
+  a design tool for large-scale aerodynamic engineering applications. In addition,
+  the 3D problems indicated that less than <jats:inline-formula><jats:alternatives><jats:tex-math>$$3\\%$$</jats:tex-math><mml:math
+  xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                  <mml:mrow>\n
+  \                   <mml:mn>3</mml:mn>\n                    <mml:mo>%</mml:mo>\n
+  \                 </mml:mrow>\n                </mml:math></jats:alternatives></jats:inline-formula>
+  of total optimization CPU-time is devoted to OAD, and multi-staging up to <jats:inline-formula><jats:alternatives><jats:tex-math>$$45\\%$$</jats:tex-math><mml:math
+  xmlns:mml=\"http://www.w3.org/1998/Math/MathML\">\n                  <mml:mrow>\n
+  \                   <mml:mn>45</mml:mn>\n                    <mml:mo>%</mml:mo>\n
+  \                 </mml:mrow>\n                </mml:math></jats:alternatives></jats:inline-formula>
+  has reduced the overall costs.</jats:p>"
+author: Ghasemi, Ali and Elham, Ali
+author_list:
+- affiliation: []
+  family: Ghasemi
+  given: Ali
+- affiliation: []
+  family: Elham
+  given: Ali
+citations:
+- author: J Alexandersen
+  doi: 10.3390/fluids5010029
+  first-page: '29'
+  issue: '1'
+  journal-title: Fluids
+  unstructured: Alexandersen J, Andreasen CS (2020) A review of topology optimisation
+    for fluid-based problems. Fluids 5(1):29
+  volume: '5'
+  year: '2020'
+- unstructured: Balay S, Abhyankar S, Adams MF, Benson S, Brown J, Brune P, Buschelman
+    K, Constantinescu EM, Dalcin L, Dener A, Eijkhout V, Gropp WD, Hapla V, Isaac
+    T, Jolivet P, Karpeev D, Kaushik D, Knepley MG, Kong F, Kruger S, May DA, McInnes
+    LC, Mills RT, Mitchell L, Munson T, Roman JE, Rupp K, Sanan P, Sarich J, Smith
+    BF, Zampini S, Zhang H, Zhang H, Zhang J (2021) PETSc Web page. https://petsc.org/,
+- author: JL Barrera
+  doi: 10.1007/s00158-019-02480-8
+  first-page: '1319'
+  issue: '4'
+  journal-title: Struct Multidisc Optim
+  unstructured: Barrera JL, Geiss MJ, Maute K (2020) Hole seeding in level set topology
+    optimization via density fields. Struct Multidisc Optim 61(4):1319–1343
+  volume: '61'
+  year: '2020'
+- author: MP Bendsøe
+  doi: 10.1016/0045-7825(88)90086-2
+  first-page: '197'
+  issue: '2'
+  journal-title: Comput Methods Appl Mech Eng
+  unstructured: Bendsøe MP, Kikuchi N (1988) Generating optimal topologies in structural
+    design using a homogenization method. Comput Methods Appl Mech Eng 71(2):197–224
+  volume: '71'
+  year: '1988'
+- author: T Borrvall
+  doi: 10.1002/fld.426
+  first-page: '77'
+  issue: '1'
+  journal-title: Int J Numer Methods Fluids
+  unstructured: Borrvall T, Petersson J (2003) Topology optimization of fluids in
+    stokes flow. Int J Numer Methods Fluids 41(1):77–107
+  volume: '41'
+  year: '2003'
+- unstructured: Brezillon J, Dwight R (2005) Discrete adjoint of the navier-stokes
+    equations for aerodynamic shape optimization. Evolutionary and Deterministic Methods
+    for Design (EUROGEN)
+- author: G Carbou
+  first-page: '1453'
+  issue: '12'
+  journal-title: Adv Differ Equ
+  unstructured: Carbou G, Fabrie P (2003) Boundary layer for a penalization method
+    for viscous incompressible flow. Adv Differ Equ 8(12):1453–1480
+  volume: '8'
+  year: '2003'
+- doi: 10.1007/978-3-642-36062-6_32
+  unstructured: 'Carnarius A, Thiele F, Özkaya E, Nemili A, Gauger NR (2011) Optimal
+    control of unsteady flows using a discrete and a continuous adjoint approach.
+    In: IFIP conference on system modeling and optimization, Springer, pp 318–327'
+- unstructured: 'Dede EM (2009) Multiphysics topology optimization of heat transfer
+    and fluid flow systems. In: Proceedings of the COMSOL Users Conference'
+- author: CB Dilgen
+  doi: 10.1016/j.cma.2017.11.029
+  first-page: '363'
+  journal-title: Comput Methods Appl Mech Eng
+  unstructured: Dilgen CB, Dilgen SB, Fuhrman DR, Sigmund O, Lazarov BS (2018) Topology
+    optimization of turbulent flows. Comput Methods Appl Mech Eng 331:363–393
+  volume: '331'
+  year: '2018'
+- author: RP Dwight
+  doi: 10.2514/1.21744
+  first-page: '3022'
+  issue: '12'
+  journal-title: AIAA J
+  unstructured: Dwight RP, Brezillon J (2006) Effect of approximations of the discrete
+    adjoint on gradient-based optimization. AIAA J 44(12):3022–3031
+  volume: '44'
+  year: '2006'
+- author: TD Economon
+  doi: 10.2514/1.J053813
+  first-page: '828'
+  issue: '3'
+  journal-title: Aiaa J
+  unstructured: 'Economon TD, Palacios F, Copeland SR, Lukaczyk TW, Alonso JJ (2016)
+    Su2: an open-source suite for multiphysics simulation and design. Aiaa J 54(3):828–846'
+  volume: '54'
+  year: '2016'
+- author: A Elham
+  doi: 10.1007/s00158-020-02799-7
+  journal-title: Struct Multidisc Optim
+  unstructured: Elham A, van Tooren MJ (2021) Discrete adjoint aerodynamic shape optimization
+    using symbolic analysis with openfemflow. Struct Multidisc Optim. https://doi.org/10.1007/s00158-020-02799-7
+  year: '2021'
+- author: A Evgrafov
+  doi: 10.1051/m2an/2011012
+  first-page: '1059'
+  issue: '6'
+  journal-title: ESAIM
+  unstructured: Evgrafov A, Gregersen MM, Sørensen MP (2011) Convergence of cell based
+    finite volume discretizations for problems of control in the conduction coefficients.
+    ESAIM 45(6):1059–1080
+  volume: '45'
+  year: '2011'
+- author: F Feppon
+  doi: 10.1016/j.jcp.2020.109574
+  first-page: '109574'
+  journal-title: J Comput Phys
+  unstructured: Feppon F, Allaire G, Dapogny C, Jolivet P (2020) Topology optimization
+    of thermal fluid-structure systems using body-fitted meshes and parallel computing.
+    J Comput Phys 417:109574
+  volume: '417'
+  year: '2020'
+- author: H Garcke
+  doi: 10.1007/s10444-018-9586-8
+  first-page: '1345'
+  issue: '5'
+  journal-title: Adv Comput Math
+  unstructured: Garcke H, Hinze M, Kahle C, Lam KF (2018) A phase field approach to
+    shape optimization in navier-stokes flow with integral state constraints. Adv
+    Comput Math 44(5):1345–1383
+  volume: '44'
+  year: '2018'
+- author: A Ghasemi
+  doi: 10.1007/s00158-021-02964-6
+  first-page: '2075'
+  issue: '4'
+  journal-title: Struct Multidisc Optim
+  unstructured: Ghasemi A, Elham A (2021) Multi-objective topology optimization of
+    pin-fin heat exchangers using spectral and finite-element methods. Struct Multidisc
+    Optim 64(4):2075–2095
+  volume: '64'
+  year: '2021'
+- doi: 10.1137/1.9780898717761
+  unstructured: 'Griewank A, Walther A (2008) Evaluating derivatives: principles and
+    techniques of algorithmic differentiation. SIAM'
+- author: P He
+  doi: 10.2514/1.J058853
+  first-page: '1304'
+  issue: '3'
+  journal-title: AIAA J
+  unstructured: 'He P, Mader CA, Martins JR, Maki KJ (2020) Dafoam: an open-source
+    adjoint framework for multidisciplinary design optimization with openfoam. AIAA
+    J 58(3):1304–1319'
+  volume: '58'
+  year: '2020'
+- author: EW Hester
+  doi: 10.1016/j.jcp.2020.110043
+  first-page: '110043'
+  journal-title: J Computat Phys
+  unstructured: Hester EW, Vasil GM, Burns KJ (2021) Improving accuracy of volume
+    penalised fluid-solid interactions. J Computat Phys 430:110043
+  volume: '430'
+  year: '2021'
+- author: N Jenkins
+  doi: 10.1007/s00158-015-1229-9
+  first-page: '179'
+  issue: '1'
+  journal-title: Struct Multidisc Optim
+  unstructured: Jenkins N, Maute K (2015) Level set topology optimization of stationary
+    fluid-structure interaction problems. Struct Multidisc Optim 52(1):179–195
+  volume: '52'
+  year: '2015'
+- author: GK Kenway
+  doi: 10.1016/j.paerosci.2019.05.002
+  first-page: '100542'
+  journal-title: Progress Aerospace Sci
+  unstructured: Kenway GK, Mader CA, He P, Martins JR (2019) Effective adjoint approaches
+    for computational fluid dynamics. Progress Aerospace Sci 110:100542
+  volume: '110'
+  year: '2019'
+- author: T Kondoh
+  doi: 10.1007/s00158-011-0730-z
+  first-page: '693'
+  issue: '5'
+  journal-title: Struct Multidisc Optim
+  unstructured: Kondoh T, Matsumori T, Kawamoto A (2012) Drag minimization and lift
+    maximization in laminar flows via topology optimization employing simple objective
+    function expressions based on body force integration. Struct Multidisc Optim 45(5):693–701
+  volume: '45'
+  year: '2012'
+- author: S Kreissl
+  doi: 10.1002/nme.3151
+  first-page: '1229'
+  issue: '13'
+  journal-title: Int J Numer Methods Eng
+  unstructured: Kreissl S, Pingen G, Maute K (2011) Topology optimization for unsteady
+    flow. Int J Numer Methods Eng 87(13):1229–1253
+  volume: '87'
+  year: '2011'
+- author: C Lundgaard
+  doi: 10.1007/s00158-018-1940-4
+  first-page: '969'
+  issue: '3'
+  journal-title: Struct Multidisc Optim
+  unstructured: Lundgaard C, Alexandersen J, Zhou M, Andreasen CS, Sigmund O (2018)
+    Revisiting density-based topology optimization for fluid-structure-interaction
+    problems. Struct Multidisc Optim 58(3):969–995
+  volume: '58'
+  year: '2018'
+- author: G Marck
+  doi: 10.1080/10407790.2013.772001
+  first-page: '508'
+  issue: '6'
+  journal-title: Numer Heat Transf Part B
+  unstructured: 'Marck G, Nemer M, Harion JL (2013) Topology optimization of heat
+    and mass transfer problems: laminar flow. Numer Heat Transf Part B 63(6):508–539'
+  volume: '63'
+  year: '2013'
+- doi: 10.1007/978-3-319-16874-6
+  unstructured: Moukalled F, Mangani L, Darwish M et al (2016) The finite volume method
+    in computational fluid dynamics, vol 113. Springer, Berlin
+- doi: 10.2514/6.2000-667
+  unstructured: 'Nadarajah S, Jameson A (2000) A comparison of the continuous and
+    discrete adjoint approach to automatic aerodynamic optimization. In: 38th Aerospace
+    sciences meeting and exhibit, p 667'
+- author: EJ Nielsen
+  doi: 10.2514/2.640
+  first-page: '1411'
+  issue: '11'
+  journal-title: AIAA J
+  unstructured: Nielsen EJ, Anderson WK (1999) Aerodynamic design optimization on
+    unstructured meshes using the navier-stokes equations. AIAA J 37(11):1411–1419
+  volume: '37'
+  year: '1999'
+- author: SA Nørgaard
+  doi: 10.1007/s00158-017-1708-2
+  first-page: '1135'
+  issue: '5'
+  journal-title: Struct Multidisc Optim
+  unstructured: Nørgaard SA, Sagebaum M, Gauger NR, Lazarov BS (2017) Applications
+    of automatic differentiation in topology optimization. Struct Multidisc Optim
+    56(5):1135–1146
+  volume: '56'
+  year: '2017'
+- doi: 10.1016/B978-0-08-030937-8.50013-1
+  unstructured: 'Patankar SV, Spalding DB (1983) A calculation procedure for heat,
+    mass and momentum transfer in three-dimensional parabolic flows. In: Numerical
+    prediction of flow, heat transfer, turbulence and combustion. Elsevier, pp 54–73'
+- author: JE Peter
+  doi: 10.1016/j.compfluid.2009.09.013
+  first-page: '373'
+  issue: '3'
+  journal-title: Comput Fluids
+  unstructured: 'Peter JE, Dwight RP (2010) Numerical sensitivity analysis for aerodynamic
+    optimization: a survey of approaches. Comput Fluids 39(3):373–391'
+  volume: '39'
+  year: '2010'
+- author: G Pingen
+  doi: 10.1007/s00158-007-0105-7
+  first-page: '507'
+  issue: '6'
+  journal-title: Struct Multidisc Optim
+  unstructured: Pingen G, Evgrafov A, Maute K (2007) Topology optimization of flow
+    domains using the lattice boltzmann method. Struct Multidisc Optim 34(6):507–524
+  volume: '34'
+  year: '2007'
+- author: TN Pornsin-Sirirak
+  doi: 10.1016/S0924-4247(00)00527-6
+  first-page: '95'
+  issue: 1–2
+  journal-title: Sens Actuators A
+  unstructured: Pornsin-Sirirak TN, Tai Y, Nassef H, Ho C (2001) Titanium-alloy mems
+    wing technology for a micro aerial vehicle application. Sens Actuators A 89(1–2):95–103
+  volume: '89'
+  year: '2001'
+- author: C Rhie
+  doi: 10.2514/3.8284
+  first-page: '1525'
+  issue: '11'
+  journal-title: AIAA J
+  unstructured: Rhie C, Chow WL (1983) Numerical study of the turbulent flow past
+    an airfoil with trailing edge separation. AIAA J 21(11):1525–1532
+  volume: '21'
+  year: '1983'
+- author: C Sanderson
+  doi: 10.21105/joss.00026
+  first-page: '26'
+  issue: '2'
+  journal-title: J Open Source Softw
+  unstructured: 'Sanderson C, Curtin R (2016) Armadillo: a template-based c++ library
+    for linear algebra. J Open Source Softw 1(2):26'
+  volume: '1'
+  year: '2016'
+- doi: 10.1007/978-3-319-96418-8_50
+  unstructured: 'Sanderson C, Curtin R (2018) A user-friendly hybrid sparse matrix
+    class in c++. In: International congress on mathematical software. Springer, pp
+    422–430'
+- unstructured: 'Svanberg K (1995) A globally convergent version of mma without linesearch.
+    In: Proceedings of the first world congress of structural and multidisciplinary
+    optimization, Goslar, Germany vol 28, pp 9–16'
+- author: CH Villanueva
+  doi: 10.1016/j.cma.2017.03.007
+  first-page: '444'
+  journal-title: Comput Methods Appl Mech Eng
+  unstructured: Villanueva CH, Maute K (2017) Cutfem topology optimization of 3d laminar
+    incompressible flow problems. Comput Methods Appl Mech Eng 320:444–473
+  volume: '320'
+  year: '2017'
+- author: GH Yoon
+  doi: 10.1002/nme.2777
+  first-page: '591'
+  issue: '5'
+  journal-title: Int J Numer Methods Eng
+  unstructured: Yoon GH (2010) Topology optimization for stationary fluid-structure
+    interaction problems using a new monolithic formulation. Int J Numer Methods Eng
+    82(5):591–616
+  volume: '82'
+  year: '2010'
+- author: GH Yoon
+  doi: 10.1016/j.cma.2016.01.014
+  first-page: '288'
+  journal-title: Comput Methods Appl Mech Eng
+  unstructured: Yoon GH (2016) Topology optimization for turbulent flow with spalart-allmaras
+    model. Comput Methods Appl Mech Eng 303:288–311
+  volume: '303'
+  year: '2016'
+- author: M Yu
+  doi: 10.1007/s00158-020-02731-z
+  first-page: '3347'
+  issue: '6'
+  journal-title: Struct Multidisc Optim
+  unstructured: Yu M, Ruan S, Gu J, Ren M, Li Z, Wang X, Shen C (2020) Three-dimensional
+    topology optimization of thermal-fluid-structural problems for cooling system
+    design. Struct Multidisc Optim 62(6):3347–3366
+  volume: '62'
+  year: '2020'
+- author: M Zhou
+  doi: 10.1002/fld.4667
+  first-page: '296'
+  issue: '6'
+  journal-title: Int J Numer Methods Fluids
+  unstructured: Zhou M, Lian H, Sigmund O, Aage N (2018) Shape morphing and topology
+    optimization of fluid channels by explicit boundary tracking. Int J Numer Methods
+    Fluids 88(6):296–313
+  volume: '88'
+  year: '2018'
+doc_url: https://link.springer.com/content/pdf/10.1007/s00158-022-03208-x.pdf
+doi: 10.1007/s00158-022-03208-x
+files:
+- efficient_multi-stage_aerodynamic_topology_optimization_using_an_operator-based_analytical_differentiation_Ghasemi_Elham_2022.pdf
+issue: '4'
+journal: Structural and Multidisciplinary Optimization
+language: en
+month: 4
+pages: '130'
+papis_id: 8142a04185287fcea54d7c43ab270b95
+publisher: Springer Science and Business Media LLC
+title: Efficient multi-stage aerodynamic topology optimization using an operator-based
+  analytical differentiation
+type: article
+url: https://doi.org/10.1007/s00158-022-03208-x
+volume: '65'
+year: 2022

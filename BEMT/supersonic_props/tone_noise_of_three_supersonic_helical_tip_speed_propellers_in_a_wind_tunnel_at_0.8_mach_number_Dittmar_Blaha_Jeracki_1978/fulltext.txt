@@ -1,0 +1,829 @@
+NASA Technical Memorandum 79046
+
+TONE NOISE OF THREE SUPERSONIC
+HELICAL TIP SPEED PROPELLERS IN A
+WIND TUNNEL AT 0.8 MACH NUMBER
+
+James H. Dittmar, Bernard J. Blaha,
+and Robert J. Jeracki
+Lewis Research Center
+Cleveland, Ohio
+
+}
+t
+
+I
+
+December 1978
+
+SUMMARY
+
+H
+
+Three supersonic helical tip speed propellers were tested in the NASA
+8- by 6-Foot Wind Tunnel at a tunnel Mach number of 0.8. Noise data were
+obtained by six wall-mounted pressure transducers while the propellers were
+operating at a simulated cruise condition. Data were also taken with one of the
+propellers at a feather condition. This wind tunnel does not have acoustic
+damping material on any of its walls and is therefore not an ideal location for
+taking noise data. However it was felt that information obtained about the noise
+differences among the three propellers would be useable.
+The three propellers incorporated different plan forms and different
+amounts of sweep and were therefore expected to yield different noise levels .
+The straight bladed propeller which did not incorporate sweep was the noisiest
+of the three propellers . The propeller which incorporated 30° of sweep at the
+blade tip for aerodynamic purposes, was slightly quieter than the straight bladed
+propeller. The quietest of the three propellers, which was designed to reduce
+noise, incorporated 45° of tip sweep. This propeller was significantly quieter
+.
+.
+,•
+.
+than the straight bladed propeller and illustrated the merit of acoustic sweep in
+propeller design.
+-INTRODUCTION
+
+One of the possible propulsive systems for a future energy efficient airplane is a high tip speed turboprop. When the turboprop airplane is at cruise,
+the combination of the airplane forward speed and the propeller rotational speed
+results in supersonic helical velocities over the outer portions of the propeller
+blades. As a result of these supersonic blade sections and their associated
+shock waves these propellers may create a cabin noise environment problem
+for the airplane at cruise.
+To obtain a preliminary indication of the. noise from, this type of propeller,
+three 0.622 meter (24.5 in.) diameter propellers were tested in the NASA Lewis
+8- by 6-Foot Wind Tunnel. These propellers were already being tested for aerodynamic information and the noise information was gathered as an addendum to
+the aerodynamic testing. The 8 by 6 wind tunnel does not have acoustic damping
+material on any of its walls and is therefore not an ideal location for taking noise
+data. There was concern that reflections from the tunnel walls might result in
+extraneous noise reaching any location in the tunnel that could create errors in
+the absolute noise levels measured there. Also the tunnel background noise may
+mask some of the propeller noise. However, there are indications that the direct
+
+radiation for the propeller harmonics is sufficiently higher than the reflected
+noise levels in the tunnel that meaningful data may be obtained. The three propellers that were tested incorporated different plan forms and different amounts
+of sweep and were therefore expected to give different noise levels. Although
+the absolute noise levels measured in the tunnel may be subject to question because of the reflections it was thought that useful information would be obtained
+about the noise differences among the propellers.
+APPARATUS AND PROCEDURE
+Propellers
+Three eight-bladed propellers designed for supersonic helical velocity at
+the blade tips were tested in the 8 by 6 wind tunnel to obtain noise data. The.
+propellers were 0.622 meter (24.5 in.) in diameter and a photograph of the
+three individual blades is shown in figure 1. The three blades have been designated SR-2, SR-1M, and SR-3. The SR-2 blade is similar to a conventional
+straight,propeller blade. The main distinguishing feature of this blade over a
+conventional blade is its long chord and relatively low thickness to chord ratio
+of 2 percent at the tip. The SR-1M blade has some sweep built into the outboard
+sections in an attempt to improve the blade aerodynamic performance. This
+amounted to a maximum of about 30° of sweep at the tip. The SR-3 propeller
+blade is an attempt to incorporate sweep as a noise control measure. The SR-3
+blade has about 45° of sweep at the tip and a significantly different hub to tip
+distribution of sweep than does SR-1M. Further design details of the three propellers can be found in references 1 to 3 and a comparative listing of the propellers is found in table I.
+Installation and Tests
+The acoustic tests were performed in the Lewis 8- by 6-Foot Wind Tunnel. ,
+• A plan of this tunnel is shown in figure 2(a) and a picture of the SR-3 propeller
+in the test section is shown in figure 2(b). Six pressure transducers were installed in plugs placed in the tunnel bleed holes visible in figure 2(b). The location of these transducers were limited by the location of the available bleed holes.
+Four transducers were installed in the top wall and two were installed in the side
+wall. A sketch showing the location of the six transducers is found in figure 3.
+The tests reported herein were all conducted with a tunnel through flow Mach
+number of 0.8. The three propellers were all tested to simulate a 10.7-kilometer
+(35 000-ft) altitude cruise condition with a tip Mach number of 0.821 (800 ft/sec
+
+tip speed) and a helical tip Mach number of 1,147. The blade setting angles
+•
+o
+(•
+were set to simulate the cruise condition power coefficient, C = P/pN D , of
+1.7 and an advance ratio, J = V/ND, of 3.06. Where P is the propulsive
+power, p is the density,. N is the rotational speed (revolutions/time), D is the
+propeller diameter, and V, in this case, is the wind tunnel axial velocity. The
+conditions were made as similar as possible for the three propellers and aerodynamic tests indicated that all of the propellers operated close to their design
+points. In addition the SR-3 propeller was operated at a feather condition (propeller almost stationary with a tunnel of Mach number of 0.8). This last point
+was an attempt to evaluate the tunnel background noise with the propeller installed. A listing of the reported test points is found in table II.
+RESULTS AND DISCUSSION
+Three propellers were acoustically tested in the 8 by 6 wind tunnel at the
+Lewis Research Center. Narrow band data from 0 to 10 000 hertz, with a bandwidth of approximately 26 hertz, were taken at the six transducer positions.
+The data are found in figures 4 to 7. Figure 4 is for SR-2, figure 5 is for SR-1M,
+figure 6 is for SR-3, all at a helical tip Mach number of 1.147 while figure 7 is
+for SR-3 at a feather condition. In each of these figures part (a) is for transducer 1, (b) is for transducer 2, etc. As can be observed in these figures the
+largest tone noise levels on the top wall are obtained at the No. 3 transducer
+position. This therefore is the position where most of the comparisons will be
+made. In these figures some of the characteristics of the data are worth noting.
+For all three propellers the harmonics of the blade passage tone are significantly
+lower than the blade passage tone. This is in contrast to static data taken previously on some straight blade propellers (ref. 4). This difference may be the result of forward velocity or, possibly, it may be that the propellers tested in reference 4 were operating off design.
+Two possible areas of concern exist about the quality of the noise data in this
+tunnel. These are the tunnel wall reflections and the tunnel background noise and
+their effect on the data. Although it is not possible to prove that the tunnel noise
+data are free of reflection caused errors, some indications exist that the problem
+is not as severe as first expected. Since the tunnel walls were not acoustically
+treated, it was possible that the reflections in this tunnel might produce a reverberent level which is too high to obtain useful data. Two factors indicate that
+this was not the case. By observing the four top wall mounted transducers a significant directivity of the blade passage tone is observed in the axial direction.
+For example, in figure 4 a 16-dB difference exists between the blade passage
+
+tone at the third and first transducer positions. In the other direction, normal
+to the tunnel axis, a reduction with distance can also be observed. Again referring to figure 4 a reduction of almost 10 dB in the blade passage tone can be
+observed between the "close" side wall transducer No. 5 and the "far" top wall
+transducer No. 2, both located at 90° to the propeller. This falloff of the noise
+with distance away from, the tip, and the ability to observe a directivity of the
+noise indicate that the tunnel reflections do not everywhere dominate direct incident noise signals. This gives an indication that information concerning the
+noise differences among propellers will be meaningful. The strength of the reflections in the tunnel may be affected by the tunnel bleed holes (see fig. 2(b))
+acting as acoustic absorbers to improve the tunnel acoustic properties. Another
+possibility is that the large flow velocity and thus large convective effect in this
+tunnel does not allow the buildup of a high reverberant level.
+The other problem that might exist with the data occurs because the tunnel
+drive compressor is so close to the test section that its noise level might be
+louder than the propeller. The noise of this compressor was measured previously in reference 5 with nothing in the test section. During the present investigation a baseline noise signature was taken with the tunnel operating at a
+Mach number of 0.8 and the SR-3 propeller installed at feather. These data
+are compared with the SR-3 propeller at cruise in figure 8 (comparisons of figs.
+6 and 7). Here figure 8(a) is for the first pressure .transducer, and 8(b) is for
+the transducer No. 3 position where most of the comparisons will be made. As
+can be seen in figure 8(a) the SR-3 propeller blade passage tone is visible at
+transducer 1, because it occurs at a different frequency than the compressor
+tone. However, the propeller tone is lower than the compressor noise level.
+The overtones at this position are not visible and may be low enough in strength
+to be masked by the tunnel noise. At the No. 3 position (fig. 8(b)) where mo?t of
+the comparisons will be made, all of the tones are visible above the background
+level. By further comparing figures 6 and 7, it is possible to determine that
+the propeller blade passage tone is visible at all of the transducer positions and
+harmonics are visible at those positions downstream of transducer 1. However,
+not all of the harmonics are visible at every position. It should also be noted
+that the broadband noise between the tones is controlled primarily by the tunnel
+background at all positions and therefore the propeller broadband noise will not
+be available from this testing.
+Of most interest in this testing are the relative tone levels among the three
+propellers. As mentioned before, the largest noise levels on the top wall were
+at the No. 3 transducer position so this is chosen for the comparison point.
+Figure 9 is a composite plot of the transducer narrow-band spectra for this
+
+No. 3 transducer. Figure 9 (a) shows SR-2 and SR-1M at cruise on the same
+plot while SR-2 and SR-3 are shown together in figure 9(b). As can be observed
+from figure 9(a) SR-1M is slightly less noisy, 1 to 2 dB, than SR-2 at the blade
+passage tone and is lower at most of the harmonics with 4 x BPF being the exception. This noise reduction between SR-2 and SR-1M may be a result of the aerodynamic sweep incorporated in SR-1M. It can be observed from figure 9(b) that
+SR-3 is slightly more than 5 dB quieter than SR-2 at the blade passage tone.
+Since SR-3 incorporated sweep tailored to yield an acoustic reduction, the 5-dB
+reduction indicates merit for this acoustic technique. Again reductions in the
+harmonics were present with 4 x BPF being an exception.
+The general trends of these tone reductions occurred at other angles also.
+Figure 10 is a plot of the blade passage tone for the four positions on the top
+wall. The noise levels measured by transducers 5 and 6, which are on a closer
+wall are not presented on this figure because it is not presently clear how the
+values should be translated to this more distant wall. This stems from both an
+uncertainty in the attenuation with distance correction in this partially-reverberant
+tunnel and an uncertainty in the proper distance to use. Figure 10 shows the same
+general trend as figure 9 with SR-1M being slightly quieter arid SR-3 being significantly quieter than SR-2. In this figure it is seen that the propellers tend to be
+closest in noise level near the front (position 1) and tend to have their largest
+differences to the rear (position 4). The difference between SR-2 and SR-3
+ranges from about 2 dB at position 1 to over 7 dB at position 4.
+CONCLUDING REMARKS
+Three supersonic helical tip speed propellers were acoustically tested in
+the NASA Lewis 8- by 6-Foot Wind Tunnel. Because of possible reflections
+from the walls of this tunnel the absolute noise numbers that were measured may
+be in error; however, these tests appear to have yielded useful information about
+the relative noise of the three propellers. Data are presented with the three propellers operating at a simulated cruise condition, with a tunnel Mach number of
+0.8, a rotational tip Mach number of 0.821 and therefore a helical tip Mach number of 1.147 . These data indicate that the straight bladed propeller, SR-2, was
+the noisiest. The SR-1M propeller which incorporated some aerodynamic sweep
+was marginally quieter than SR-2. The third propeller, SR-3, which.had. sweep
+distribution tailored for noise reduction purposes, showed the lowest noise level.
+This reduction in blade passage frequency noise of SR-3 from the levels of SR-2
+ranged from 2 to 7 dB at the measuring points on the top wall of the wind tunnel.
+
+The peak BPF noise level on this wall was reduced over 5 dB. This noise
+reduction with SR-3 indicates merit to the' acoustic sweep technique.
+REFERENCES
+I
+
+1. Mikkelson, D. C.; et al.: Design and Performance of Energy Efficient
+Propellers for Mach 0.8 Cruise. NASA TM X-73612, 1977.
+2. Dugan, J. F.; Miller, B. A.; and Sagerser, D. A.: Status of Advanced
+Turboprop Technology. CTOL Transport Technology, 1978. NASA
+CP-2036, Pt. 1, 1978, pp. 139-166.
+3. Hanson, D. B.: Near Field Noise of High Tip Speed Propellers in Forward
+Flight. AIAA Paper 76-565, July 1976.
+4. Hubbard, Harvey H.; and Lassiter, Leslie W.: Sound From a Two-Blade
+Propeller at Supersonic Tip Speeds. NACA Rept. 1079, 1952.
+5. Karabinus, Raymond J.j and Sanders, Bobby W.: Measurements of Fluctuating Pressures in 8- by 6-Foot Supersonic Wind Tunnel for Mach Number Range of 0.56 to 2.07. NASA TM X-2009, 1970.
+
+TABLE I. - COMPARISON OF PROPELLERS
+
+SR-2
+
+Tip speed,
+m/sec (ft/sec)
+
+244 (800)
+
+244 (800)
+
+301 (37.5)
+
+301(37.5)
+
+8
+
+8
+30
+79
+62.2 (24.5)
+
+O
+
+Power loading, P/D ,
+kW/m2 (shp/ft2)
+Number of blades
+Tip sweep angle, deg
+Design efficiency, %
+Diameter, D, cm (in.)
+
+0
+
+77
+62.2 (24.5)
+
+TABLE n. - PROPELLER TEST POINTS
+
+Propeller Tunnel
+Mach
+number
+
+Propeller
+rotational
+Mach
+number
+
+Blade setting
+angle,
+deg
+
+SR-2
+
+0.8
+
+0.821
+
+59
+
+SR-lM
+
+0.8
+
+0.821
+
+60
+
+SR-3
+
+0.8
+
+0.821
+
+61.3
+
+0.8
+
+0
+
+Feather
+86.4
+
+8
+45
+81
+62.2 (24.5)
+
+Dryer
+building
+
+Equipment
+drive building
+Tunnel
+/
+compressor-*
+
+Balance ,
+chamber J
+
+^- 8x6 test section
+
+(a) Plan view of 8x6 wind tunnel.
+
+SR-2
+
+SR-1M
+
+SR-3
+C-78-2127
+
+Figure 1. - Propeller blades.
+
+78-1063
+(b) Propeller SR-3 in tunnel.
+Figure 2.
+
+Propeller
+plane-\
+Centerlineof
+top wall• Centerlineof
+side wall
+
+2.44m
+(8 ft)
+
+Transducer positions, cm/in.
+
+4
+5
+6
+3
+Positions
+1
+2
+105.4
+41.5
+104.4
+41.1
+-0.15 -0.06
+Z
+-27.7 -10.9 0.953 0.375 45.2| 17.8
+2.54
+1.0 10.2
+7.62 1 3.0 31.5 12.4
+A
+4.0
+6. 35 [ 2. 5
+1. 78 | 0. 7
+B
+Nominal
+130°
+90°
+77°
+110°
+139°
+angle
+' 90°
+
+e
+
+Figure 3. - Pressure transducer positions.
+
+1000
+
+2000
+
+3000
+
+4000
+
+5000
+
+6000
+
+7000
+
+8000
+
+Frequency, Hz
+(c) Transducer position 3.
+Figure 4. - Sound pressure level for the SR-2propeller at cruise.
+
+9000
+
+10000
+
+1000
+
+2000
+
+3000
+
+4000
+
+5000
+6000
+Frequency, Hz
+(f) Transducer position 6.
+Figure 4. - Concluded.
+
+7000
+
+8000
+
+9000
+
+10000
+
+1000
+
+2000
+
+3000
+
+4000
+
+5000
+Frequency, Hz
+
+6000
+
+7000
+
+8000
+
+(c) Transducer position 3.
+Figure 5. - Sound pressure level for the SR-1M propeller at cruise.
+
+9000
+
+.10000
+
+150
+
+110
+
+130
+
+120
+
+110
+(d) Transducer position 4.
+
+(e) Transducer position 5.
+
+150
+
+140
+
+130
+
+120
+
+110
+
+1000
+
+2000
+
+3000
+
+. 4000 .-. 5000
+6000
+. Frequency, Hz
+If) Transducer position 6.
+Figure 5. - Concluded.
+
+7000
+
+8000
+
+9000
+
+10000
+
+(a) Transducer position 1.
+
+2 140
+
+in
+
+o
+
+I 130
+CO
+•a
+
+"a>
+
+•2CD 120
+13
+ISI
+
+1/1
+a>
+
+•S" no
+(b) Transducer position 2.
+
+o
+
+2000
+
+3000
+
+4000
+
+5000
+6000
+Frequency. Hz
+(c) Transducer position 3.
+
+7000
+
+8000
+
+Figure 6. - Sound pressure level for the SR-3 propeller at cruise.
+
+9000
+
+10000.
+
+1000
+
+2000
+
+3000
+
+4000
+
+5000
+6000
+Frequency, Hz
+(d) Transducer position 6.
+Figure 6. - Concluded.
+
+7000
+
+8000
+
+9000
+
+10000
+
+(a) Transducer position 1.
+
+140
+
+1 130
+
+~ 120
+
+110
+(b) Transducer position 2.
+
+140
+
+130
+
+120
+
+HO1
+
+1000
+
+2000
+
+3000 ,
+
+4000
+
+5000
+
+6000
+
+7000
+
+8000
+
+Frequency, Hz
+
+. . (c) Transducer position 3.
+Figure 7. - Sound pressure level for the SR-3 propeller at feather.
+
+9000
+
+10000
+
+1401—
+
+1000
+
+2000
+
+3000
+
+4000
+
+5000
+6000
+Frequency, Hz
+
+(f) Transducer position 6.
+Figure 7. - Concluded.
+
+7000
+
+8000
+
+9000
+
+10000
+
+150 r—
+
+140
+
+rTunnel
+,' compressor
+
+Cruise
+Feather
+
+130
+
+120
+
+CO
+
+110
+
+J
+
+150 i—
+
+(a) Transducer position 1.
+
+1101
+
+1000
+
+3000
+
+4000
+
+5000
+6000
+Frequency, Hz
+
+7000
+
+(bl Transducer position 3.
+Figure 8. - Comparison of SR-3 propeller at cruise and feather.
+
+8000
+
+9000
+
+10000
+
+SR-2
+
+1000
+
+2000
+
+3000
+
+«00
+
+5000
+6000
+Frequency, Hz
+
+7000
+
+(b) SR-2, SR-3 comparison.
+Figure 9. - Comparison of propellers at transducer position 3.
+
+8000
+
+9000
+
+10000
+
+150
+
+=
+
+140
+
+O
+D
+A
+
+130
+g.-
+
+SR-2
+SR-1M
+SR-3
+
+120
+2 ,
+3
+Transducer position
+Upstream |>
+
+1
+
+Downstream
+
+i
+0
+i
+1
+H
+Distance in axial direction in propeller diameters, Z/0
+on top wall which is 1J diameters from the tip
+Figure 10. - Sideline blade passage tone comparisons.
+
+1. Report No.
+
+2. Government Accession No.
+
+3. Recipient's Catalog No.
+
+NASA TM- 79046
+4. Title and Subtitle
+
+5. Report Date
+
+TONE NOISE OF THREE SUPERSONIC HELICAL TIP SPEED
+PROPELLERS IN A WIND TUNNEL AT 0. 8 MACH NUMBER
+
+6. Performing Organization Code
+8. Performing Organization Report No.
+
+7. Author(s)
+
+James H. Dittmar, Bernard J. Blaha, and Robert J. Jeracki
+
+E-9854
+10. Work Unit No.
+
+9. Performing Organization Name and Address
+
+National Aeronautics and Space Administration
+Lewis Research Center
+Cleveland, Ohio 44135
+
+11. Contract or Grant No.
+
+13. Type of Report and Period Covered
+
+12. Sponsoring Agency Name and Address
+
+Technical Memorandum
+
+National Aeronautics and Space Administration
+Washington, D.C. 20546
+
+14. Sponsoring Agency Code
+
+15. Supplementary Notes
+
+16. Abstract
+
+Three supersonic helical tip speed propellers were tested in the NASA Lewis 8- by 6-Foot Wind
+Tunnel. Noise data were obtained while these propellers were operating at a simulated cruise
+condition. The walls of this tunnel were not acoustically treated and therefore this was not an
+ideal location for taking noise data, but it was thought that the differences in noise among the
+three propellers would be meaningful. The straight bladed propeller which did not incorporate
+sweep was the noisiest with the aerodynamically swept propeller only slightly quieter. However,
+the acoustically swept propeller was significantly quieter than the straight propeller, thereby
+indicating the merit of this design technique.
+
+17. Key Words (Suggested by Author(s) )
+
+Propeller noise
+Noise
+Supersonic tip speed
+
+18. Distribution Statement
+
+Unclassified - unlimited
+STAR Category 71
+
+19. Security Classif. (of this report)
+
+20. Security Classif. (of this page)
+
+Unclassified
+
+Unclassified
+
+21. No. of Pages
+
+" Foi sale by the National Technical Information Service. Springfield. Virginia 22161
+
+22. Price"
+
+NATIONAL AERONAUTICS AND SPACE ADMINISTRATION
+WASHINGTON. D.C.
+
+2O546
+
+OFFICIAL BUSINESS
+PENALTY
+
+FOR PRIVATE USE S3OO
+
+SPECIAL FOURTHBOOK
+
+POSTAGE AND FEES PAID
+NATIONAL AERONAUTICS AND
+SPACE ADMINISTRATION
+451
+
+If
+
+UmJeliverable (Section 158
+postni Manual) Do Not Return
+
+

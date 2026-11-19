@@ -1,0 +1,1719 @@
+191
+
+The law of the wake in the turbulent boundary layer
+By DONALD COLES
+Guggenheim Aeronautical Laboratory, California Institute of Technology, Pasadena
+
+(Received 14 January 1956)
+
+SUMMARY
+After an extensive survey of mean-velocity profile measurements
+in various two-dimensional incompressible turbulent boundarylayer flows, it is proposed to represent the profile by a linear
+combination of two universal functions. One is the well-known
+law of the wall. The other, called the law of the wake, is
+characterized by the profile at a point of separation or reattachment.
+These functions are considered to be established empirically, by
+a study of the mean-velocity profile, without reference to any
+hypothetical mechanism of turbulence. Using the resulting
+complete analytic representation for the mean-velocity field,
+the shearing-stress field for several flows is computed from the
+boundary-layer equations and compared with experimental data.
+The development of a turbulent boundary layer is ultimately
+interpreted in terms of an equivalent wake profile, which supposedly
+represents the large-eddy structure and is a consequence of the
+constraint provided by inertia. This equivalent wake profile is
+modified by the presence of a wall, at which a further constraint is
+provided by viscosity. The wall constraint, although it penetrates
+the entire boundary layer, is manifested chiefly in the sublayer flow
+and in the logarithmic profile near the wall.
+Finally, it is suggested that yawed or three-dimensional flows
+may be usefully represented by the same two universal functions,
+considered as vector rather than scalar quantities. If the wall
+component is defined to be in the direction of the surface shearing
+stress, then the wake component, at least in the few cases studied,
+is found to be very nearly parallel to the gradient of the pressure.
+
+A. The law of the wall
+
+I. COMPENDIUM
+
+Consider a turbulent shear flow which is steady and two-dimensional
+on the average. Let u(x,y ) and v(x, y ) be the mean velocities in the direction
+of increasing rectangular coordinates x and y respectively. Suppose that
+) a smooth impermeable wall at
+the flow exerts a shearing stress T ~ ( x on
+rest at y = 0. For a fluid of constant density, define a friction velocity
+by
+pu: = TU,.
+(1)
+
+192
+
+Donald Coles
+
+Experience with turbulent shear flow has shown that, under these conditions
+the mean-velocity profile in a considerable region near the surface is
+described by a relationship called the ' law of the wall ' :
+
+(2)
+The earliest formulation of the law of the wall was based on ob'servations
+of pipe flow. The current view, however, is one first suggested by Ludwieg
+& Tillmann (1949); the relationship (2) is taken for practical purposes as
+a unique and universal similarity law for every turbulent flow past a smooth
+surface.
+
+/
+
+30
+I
+
+I
+10
+
+I
+
+100
+
+1000
+
+l0,OOO
+
+100,000
+
+Y 'Jr
+Y
+
+Figure 1. The law of the wall.
+
+For the special case of steady two-dimensional mean flow of an incompressible fluid, the form of the universal law is well established. I n
+particular, for values of yuJv greater than about 50, equation (2) takes the
+form
+
+in which K and c are constants to be determined experimentally. On the
+other hand, the predominance of laminar shear very near the wall requires
+u/ur to approach yu,/v as y approaches zero. To illustrate the presence of
+linear and logarithmic regions in the mean-velocity profile, experimental
+data from several sources are collected in figure 1. A brief discussion of
+these data will be found in Part I1 of the present paper.
+
+The law of the wake in the turbulent boundary layer
+
+193
+
+B. The defect law and the equilibrium boundary layer
+The description just given of the mean velocity profile in a turbulent
+shear flow may be summarized in the formula
+
+where the function h is arbitrary except that it is negligibly small in some
+finite region near the wall-say for y / 6 less than about 0.1, where 6 is the
+thickness of the shear flow.
+For certain special cases frequently encountered (e.g. uniform pipe and
+channel flow and the boundary layer on a flat plate in a uniform stream),
+equation (4) is found experimentally to have the special form
+
+where II is a parameter which is independent of x and y. Profile similarity
+in terms of the argument y / 6 is usually expressed by a relationship known
+as the velocity-defect law, or more properly the momentum-defect law.
+Outside the sublayer, it is an immediate consequence of the logarithmic
+variation off in equation (5) that
+
+with u = u1 at y = 6 .
+Quite recently these contributions to the experimental definition of
+turbulent shear flows have been brilliantly extended by F. Clauser (1954),
+who generalized the idea of a defect law by showing experimentally the
+existence bf boundary-layer flows for which the similarity laws (5) and (6)
+remain valid although the pressure gradient is positive.
+Finally; the existence of a logarithmic region in the mean-velocity
+profile has been shown by Millikan (1938) to follow directly, without
+reference to any hypothetical mechanism .of turbulent mixing, from the
+assumption of the simultaneous validity of the law of the wall in the form
+(2) and the defect law in the form (6).
+
+C. The law ofthe wake
+The relationships so far cited, especially the law of the wall, form the
+hard core of empirical knowledge of flow in turbulent boundary layers.
+Once they are accepted, it is natural to look for further inspiration in the
+inverse of Millikan's problem. That is, given a universal law of. the wall
+which is logarithmic outside the sublayer, what other asiumptions about
+the motion are necessary in order to establish a defect law? The most
+obvious answer is that the mean-velocity profile must have the form 01
+equation (5). The purpose of the present paper, however, is to suggest
+a less superficial answer, one which has several immediately useful consequences and which at the same time appears to approach somewhat
+closer to the central problem of turbulence itselfL.
+F.M.
+
+N
+
+194
+
+Donald Coles
+
+The essential element in this work is a study of the function h(x,y)
+in the general mean-velocity formula (4). An extensive survey of experimental data at large Reynolds numbers, reported in Parts I1 and 111, leads
+to the crucial conclusion that this function can be reduced directly to a
+second universal similarity law. Specifically, equation (4)may be written
+in the form
+where ll is a profile parameter, as in equation ( 5 ) , but the function w(y/S)
+is now supposedly common to all two-dimensional turbulent boundary-layer
+flows.
+LlEPMbNN
+6 LbUFER
+
+Figure 2. The law of the wake.
+
+The introduction of a second universal function in the mean-velocity
+profile will be referred to as the wake hypothesis, and the function w(y/S)
+in equation(7) will be referred to as the ‘law of the wake’. Some experimental
+data which support the wake hypothesis are collected in figure 2. The
+measurements in question are included in the survey already mentioned,
+and the development leading to equation (7) and to figure 2 wiil be found in
+Part 111.
+I n preparing figure 2 the wake function w(y/S) in (7) has been subjected
+to the normalizing conditions w(0) = 0, w( 1) = 2 and
+
+(9,’s) dw = 1. The
+
+parameter ll is then found to be related to the local friction coefficient
+C, = ~ u : / u by
+;
+2n
+(8)
+u.
+
+The law of the wake in the turbulent boundary layer
+to the displacement thickness 6" by
+
+and to the momentum thickness 0 by
+
+>a=
+
+- -6 e - e
+2(
+
+where a and
+
+u2
+
+6
+
+1+ a n
+
++ pnz,
+
+are constants of order unity.
+
+D. The equations of mean motion
+
+T o the extent that the similarity laws of the preceding sections are
+empirical, and not based on clear physical principles, these laws cannot
+be extended with confidence to conditions outside the range of observation.
+At the same time, these similarity laws go well beyond the usual limits of
+dimensional analysis.
+I n the first place, the thickness 6 and the parameter II are uniquely
+defined by equations (8) and (9), as is easily confirmed by eliminating either
+of these parameters between the equations in question. I n the second place,
+the mean-velocity field, including the flow in the sublayer, is determined
+whenever the kinematic viscosity v and three of the four parameters ul, u,,
+6 and ll are known. But a complete analytic description of the mean-velocity
+field implies a complete knowledge (at least within the boundary-layer
+approximation) of the streamline pattern, of the shearing-stress field, and
+of the local rate of transfer of energy from the mean flow to the turbulent
+secondary flow. Some typical calculations based on the formula (7) are
+presented in Part IV.
+
+E. Physical interpretation
+It is instructive to examine the nature of the wake component in
+equation (7) by letting u, approach zero (i.e. T~ -+ 0) after expressing II
+in terms of 6, 6*, ul and u, with the aid of equation (9). The result is
+U = &u(
+,
+u1
+
+);
+
+which does not involve either K or v. It follows, since w(y/S)is by hypothesis
+a universal function, that the flow at a point of separation or reattachment
+is locally a pure wake flow.
+This observation suggests a simple physical interpretation for the law
+of the wall and the law of the wake, as illustrated in figure 3. The figure
+shows the profile u ( y ) for various values of x in a hfpothetical boundary
+layer, which is proceeding from separation to separation through a region
+of attached flow. The dashed lines in the figure denote the wake-like
+structure represented in equation (7) by the function w(y/6). The associated
+velocity defect u l - u is given by IIu,(2- w ) / K ,and the intercept at y = 0
+of the equivalent wake profile therefore differs from the velocity in the
+external stream by an amount ~ H u , / K .
+NZ
+
+196
+
+Donald Coles
+
+According to this interpretation, the law of the wake is to be viewed
+as a manifestation of a large-scale mixing process similar to flow in a wake,
+in that it is constrained primarily by inertia rather than by viscosity. When
+the flow is bounded by a wall, however, it is ultimately necessary to satisfy
+the boundary conditions of vanishing velocity and Newtonian friction at
+the surface. These conditions impose a further viscous constraint on the
+flow whose effect is to modify the mean-velocity distribution as shown by
+the solid lines in figure 3. Near the wall, where the wake mean velocity
+is nearly constant, the constraint provided by viscosity can be observed
+in the sublayer flow and in the similarity relationship known as the law of
+the wall.
+
+Figure 3 . Mean-velocity field in a hypothetkal boundary layer, including tk.e
+equivalent wake.
+
+11. THELAW OF THE WALL
+A. Historical development
+1. Evolution before 1949. The early development of the law of the
+wall, in the hands of Prandtl, von KArmAn and others, included a simple
+dimensional argument which has not lost its usefulness. Suppose that
+the mean-velocity profile in a turbulent shear flow is found to be adequately
+represented by a relationship +(u,y,6, T ~p,,p) = 0, in an obvious notation,
+and that this relationship is found in some region to be independent of the
+characteristic length 6. It follows from the principles of dimensional
+analysis, without any explicit assumptions about the nature of the turbulence,
+that in this region equation (2) must be valid.
+Before the development of the mixing analogy, the function in equation (2)
+was sometimes taken as a power law, for lack of a better representation.
+The sublayer, that is, the region where viscous stress is predominant, was
+treated separately by means of the plausible assumption of a linear velocity
+profile very near the wall. In this approximation
+aupy = u/y =
+= TwlCL
+= glv,
+and therefore u/u7= yuJv.
+
++
+
+The law of the wake in the turbulent boundary layer
+
+197
+
+By 1930 the present general formulation of the law of the wall had
+been achieved, in the sense that no distinction was made in equation (2)
+between the sublayer and the fully turbulent flow. Nikuradse (1930), at
+the suggestion of Prandtl, expressed the law of the wall in the present form
+during an analysis of some measurements in pipe flow. Equation (2)
+also appears in articles by Tollmien and by Schiller in Volume I V of
+Handbuch der Experimentalphysik.
+At about the same time, the mixing analogy of Prandtl (1926) and the
+similarity hypothesis of von Khrmin (1932) had provided an equation
+&(x,y)/2y = U , ( X ) / K Y for the mean velocity in the fully turbulent region,
+with the integral u/u, = ( 1 / ~In) [y/yo(x)]+constant. It is clear, however,
+that the choice of v/u7 for the unspecified characteristic length yo(.) is not
+properly a part of the mixing analogy, but rather a part of the dimensional
+argument already mentioned.
+2. Recent developments. Until quite recently, the three most important
+elements in the development of the law of the wall have been, first, the
+dimensional argument leading to equation (2) ; second, the stipulation that
+the function f is linear at the wall; and third, the recognition that, for
+whatever reason, the function f is very nearly logarithmic in a certain region
+outside the sublayer.
+A fourth important element was added when Ludwieg & Tillmann
+(1949) found experimentally, using an ingenious heat-transfer technique
+for the indirect measurement of surface shearing stress, that for flow in
+a turbulent boundary layer the function f in equation (2) is apparently
+independent of pressure gradient. This result lies at the heart df the present
+study, virtually every part of which depends directly or indirectly on the
+hypothesis that the law of the wall is a unique and universal relationship
+for flow past a smooth surface.
+As several writers in the field have pointed out, equation (2) is an implicit
+equation for u, (hence for T,) when p , p, and u(y) are given. The law of
+the wall thus provides a means for accurate determination of the elusive
+wall shearing stress, once the function f in (2) has been established by a
+survey of experimental data on flows for which T, is accurately known.
+
+3 . Experimental data. Nikuradse’s classical pipe measurements (1930)
+confirmed the prediction of a logarithmic region in the mean-velocity profile.
+The lowest curve in figure 1 shows the data.obtained, including a small
+correction for wall interference, in sixteen surveys at various Reynolds
+numbers of the region between the pipe wall and a value of y / S of about
+0.15, where 6 is the pipe radius. Nikuradse did not obtain data on the
+sublayer, but inferred the validity of the general law of the wall from the
+argument already given in favour of the limiting form u/u, = yu,/v at
+y = 0. This omission was partly repaired by Reichardt’s measurements
+(1940) of mean velocity in the sublayer of a channel flow, and more completely
+repaired by the work of Laufer (1953) and Klebanoff (1954) on pipe flow
+and boundary-layer flow respectively.
+
+198
+
+Donald Coles
+
+The latter measurements, shown in figure 1, include data on the sublayer
+obtained in each instance with a hot-wire anemometer. For Laufer’s
+experiments on pipe flow, the wall shearing stress has blen derived from
+the observed axial pressure gradient. For KlebanofF‘s experiments on
+boundary layers, the wall shearing stress has been derived from the rate of
+momentum loss observed in other experiments with the same model
+(Klebanoff & Diehl 1951 ; see also Coles 1954). For Reichardt’s experiments on channel flow, the wall shearing stress was not measured
+independently, as Reichardt’s object was to interpolate experimentally
+in the region of the mean-velocity profile not studied by Nikuradse.
+Finally, some measurements by Sheppard (1947) in a natural wind
+near the ground offer a striking example of a turbulent shear flow for which
+it would seem that no Reynolds number can be explicitly defined. However,
+difficulty in visualizing either an origin of coordinates or a second boundary
+does not prevent the presentation of these data in terms of the law of the wall.
+Sheppard observed the surface shearing stress directly, using the floatingelement technique, together with the mean velocity at several points up
+to a height of two metres. The result of the measurements is given in
+figure 1. The agreement with wind-tunnel data is surprisingly good when
+it is considered that Sheppard’s measurements were made over a concrete
+surface, and that the vertical temperature gradient may have differed
+significantly from the adiabatic lapse rate associated with neutral stability.
+
+4. Numerical evaluation. Two empirical constants, K and c, appear
+in equation (3). Throughout the present study, the numerical values
+given to these constants are
+K = 0.40,
+c = 5.1.
+A great variety of other values, especially for K , can be found in the
+experimental literature. However, in practically all cases where equation (3)
+is explicitly taken as a definition, K is found to lie between 0.39 and 0.41.
+Values outside this range are usually the result of operations or assumptions
+which change the definition of K and c. In any event, it is clear in figure 1
+that the data outside the sbblayer are well represented by equation (3)
+when K and c are given the values already mentioned.
+Within the sublayer, on the other hand, large fluctuations in velocity
+and cramped quarters for experimentation usually combine to make
+measurements of mean velocity somewhat uncertain. The available
+data in figure 1, therefore, should not be said to establish conclusively the
+uniqueness of the law of the wall in the sublayer, although these data have
+been used elsewhere (Coles 1955) in forming a tentative estimate of the
+functionf(yu,/v) and related functions.
+
+B. Test of the wall law
+1. Momentum balance. Except for a few applications of the floating-
+
+element technique in flows at constant pressure, values of surface stress in
+
+The law of the wake in the turbulent boundary layer
+
+199
+
+turbulent boundary layers have usually been obtained indirectly from the
+observed pressure gradient and rate of momentum loss, using the momentumintegral equation of von KBrm6n (1921). For two-dimensional incompressible steady mean flow in a boundary layer, this equation is
+
+where T ~ ( xis) the wall shearing stress, u l ( x ) is the velocity of the free stream
+outside the boundary layer, and 6*(x) and O(x) are the displacement and
+momentum thicknesses, defined respectively by
+
+and
+
+Experience in applying equation (1 1) to flows with positive pressure
+gradient has usually been that the values obtained for T, appear to increase
+rapidly when separation is imminent, contrary to the behaviour which
+is intuitively expected. In fact, the experiments of Ludwieg & Tillmann
+(1949) were originally designed not to study the law of the wall, but rather
+to investigate the validity of the momentum-integral equation (1 1) by
+providing an independent estimate for r W .
+It is therefore instructive to compare, for various experimental studies
+of flow in turbulent boundary layers, the values of wall shearing stress
+obtained from equation (11) with those inferred from the law of the wall.
+In order to avoid differentiation of measured quantities, equation (1 1)
+may be integrated with respect to x between two stations xoand x. Replacing
+T~ by pu2, the result of the integration can be expressed by the two equations
+
+and
+
+where uo = ul(xo) and Oo = 6(xo).
+The dimensionless function @(x) may be evaluated experimentally
+from equation (14) if 6*, 6, and u1 are known as functions of x. Quite
+independently, the same function @(x) may be evaluated from equation (15)
+if the friction velocity u, is obtained by fitting the velocity profile to the
+hypothetical law of the wall. Agreement between the slopes of the two
+functions @(x) shows that the flow in question is not inconsistent with the
+logarithmic law of the wall displayed in figure 1.
+
+2. Presentation of data. The discussion will be limited to data obtained
+at reasonably large Reynolds numbers in experiments at reasonably large
+
+200
+
+Donald Coles
+
+scale." The experimental point of departure is flow at constant pressure,
+for which some mean-velocity measurements of Wieghardt (1943) for a
+free-stream velocity of 33 m/sec are shown in figure 4. Here and in the
+fifteen following figures, the mean-velocity profiles shown are typical of
+the measurements, although some of the profile data have occasionally
+been omitted for reasons of economy in the graphical presenfation.
+
+Figure 4. Data of Wieghardt (1943) for constant stream velocity; stationsin metres.
+
+All of the profiles, whether shown in the figures or not, have first been
+inbividually fitted to the logarithmic region of the law of the wall, i.e. to the
+formula u/u, = 5.75 log,, (yu,/v)+ 5.10, and the resulting values of u,/u,
+have then been smoothed where necessary. I n the fitting operation it
+has generally been assumed that the measurements for values of yuJv less
+than about 200 may be unreliable as a result of large fluctuations in velocity,
+wall interference, poor probe sensitivity at small mean velocities, probe
+position error, or uncertainty in the static pressure. For consistency,
+therefore, the contribution of the sublayer and of the logarithmic region
+to 6* and 0 have been computed for the function f of figure 1, i.e. for the
+solid lines in figures 4 to 19, rather than for the actual measurements.
+"This survey of experimental data includes certain material which has not
+previously been reported in detail in the literature. For their courtesy in providing
+this material I am indebted to F. Clauser of the Johns Hopkins University, Baltimore;
+Smith J. DeFrance of the NACA Ames Aeronautical Laboratory, Moffett Field;
+W. Tillmann of the Max-Planck-Institut fur Stromungsforschung, Gottingen ;
+K. Wieghardt of the Institut fur Schiffbau, Hamburg; and A. Kuethe of the
+University of Michigan, Ann Arbor. I am also indebted to F. Goddard of the Jet
+Propulsion Laboratory, Pasadena, for making available the services of the JPL
+computing section.
+
+20 1
+
+The law of the wake in the turbulent boundary layer
+
+Each of figures 4 to 19 includes a sketch showing both the geometry
+of the experiment and the physical extent 6(x) of the shear flow. Finally,
+each of the figures includes a comparison of the two functions a(.) of
+equations (14) and (15), represented by open points and by a solid line
+respectively.
+
+TUDBULENCE
+
+10
+
+40
+
+1000
+
+GRID
+
+,o,om
+
+lO0,OW
+
+Figure 5. Data of Wieghardt (1944) with turbulence grid; stations in metres.
+
+I"I
+-
+
+Figure 6. Data of Ludwieg and Tillmann (1949) for falling pressure; stations in
+metres.
+
+3. Unseparated jlows. Wieghardt's measurements (1943) of boundarylayer growth for a uniform external stream have already been presented in
+figure 4. Wieghardt (1944) also investigated the effect of increasing the
+
+202
+
+Donald Coles
+
+tunnel turbulence level by means of a coarse screen, obtaining the meanvelocity profiles shown in figure 5. Using the same channel and instrumentation, Ludwieg & Tillmann (1949) observed a turbulent boundarylayer flow in a region of a negative pressure gradient, with the result shown
+in figure 6. These particular profile measurements, and those of figures 13
+and 14 below, are the ones originally cited by Ludwieg & Tillmann in
+their cogent paper on the law of the wall.
+
+w.
+-
+
+Figure 7. Data of Bauer (1951) for 20" slope; stations in feet.
+
+Figure 8. Data of Bauer (1951)Ifor 40" slope; stations in feet.
+
+Figure 9. Data of Bauer (1951) for 60" slope; stations in feet.
+
+The law of the wake in the turbulent boundary layer
+
+203
+
+Some measurements of flow near the lower boundary of a stream
+accelerating under the force of gravity at essentially constant pressure
+have been reported by Bauer (1951). The fluid is water traversing the
+face of a model spillway; data for flow over a smooth plane surface at
+angles of 20", 40", and 60" to the horizontal are reproduced in figures 7, 8,
+and 9. In each case the body force per unit volume pg sin B is independent
+of x and y and so plays the same role as a constant pressure force per unit
+volume dpldx.
+
+I
+
+10
+
+000
+
+Figure 10. Data of Schubauer and Klebanoff (1950); stations in feet.
+
+4. Flows approaching separation. Extensive measurements in a flow
+approaching separation have been made by Schubauer & Klebanoff (1950)
+on a large airfoil at the National Bureau of Standards. Typical meanvelocity profiles are shown in figure 10. Upstream of the 7 ft. station,
+the surface shearing stress and free-stream dynamic pressure both increase
+
+204
+
+Donald Coles
+
+in the direction of flow. Between x = 7ft. and x = 17-5ft. the stress a t
+the wall and the pressure are nearly constant. The region of rising pressure
+begins at about x = 18 ft., and separation occurs at about x = 25.7 ft.
+
+YU.
+
+Figure 11. Data of Newman (1951); airfoil chord 50 inches
+
+53
+
+40
+
+-
+
+2
+
+-
+
+1
+
+30
+
+20
+
+10
+
+Figure 12. Data of Kehl
+
+The law of the wake in the turbulent.boundary layer
+
+205
+
+A similar study of a boundary layer near separation is available in some
+work of Newman (1951) for which the mean-velocity data are presented in
+figure 11. Because Newman measured the static-pressure variation within
+the boundary layer, and also made a plausible correction to his observed
+mean-velocity profiles for instrumental errors caused by turbulence, these
+data are among the most accurate and detailed which are available. Newman,
+
+001
+
+Figure 13. Data of Ludwieg and Tillmann (1949) for moderately rising pressure;
+stations in metres.
+
+9".
+
+Figure 14. Data of Ludwieg and Tillmann (1949) for strongly rising pressure;
+stations in metres.
+
+206
+
+Donald Coles
+
+like Schubauer & Klebanoff, also measured turbulence intensities and
+turbulent shearing stress within the shear flow.
+Boundary-layer flow in diffusers of constant width and rectangular
+section has been studied by Kehl (1943), by Ludwieg & Tillmann (1949),
+and by Clauser (1954), with the results shown in figures 12 to 16. I n none
+of these five experiments did separation actually occur, and in the last two
+it was deliberately prevented.
+
+\
+300
+
+Figure 15. Data of Clauser (1954) for moderately rising pressure; stations in inches.
+
+Figure 16. Data of Clauser (1954) for strongly rising pressure; stations in inches.
+
+5. Flows following reattachment. Turbulent boundary-layer flow
+following reattachment downstream of a separation bubble has been
+investigated by McCullough & Gault (1949). Data for the upper surface
+of an NACA 64A006 airfoil section at an angle of attack of 5" are reproduced
+in figure 17.
+
+The law of the wake in the turbulent boundary layer
+
+20i
+
+Reattachment of separated flow downstream of a tripping device or
+spoiler, in flow with nominally constant pressure, is illustrated in figures 18
+and 19with some measurements of Klebanoff & Diehl(l951) and of Tillmann
+(1945). I n the experiment of Klebanoff & Diehl transition occurred at
+the spoiler, which was a 114411. diameter rod at the 4 ft. station of the plate.
+
+VU.
+
+Figure 17. Data of McCullough and Gault (1949) for 5" angle of attack;
+airfoil chord 5 feet.
+I
+
+Figure 18. Data of Klebanoff and Diehl (1951) for 1/4-inch rod; stations in fiet.
+
+208
+
+Donald Coles
+
+In the experiment of Tillmann the boundary layer was turbulent well
+upstream of the spoiler, which was a rectangular ledge 1.2 crn square at the
+2.02 m station. In both cases it may be noted that the flow far downstream
+has apparently not recovered from the effects of the enforced separation,
+as the mean-velocity profiles do not resemble the profiles for flow at constant
+pressure shown in figure 4.
+
+Y"r
+-
+
+Figure 19. Data of Tillmann (1945) for 12 mm ledge; stations in metres.
+
+6. Evaluation. The data cited in the previous section obviously do
+not provide a test of the hypothetical law of the wall alone, but provide a
+joint test of the law of the wall together with the turbulent boundary-layer
+approximation and the assumption of two-dimensional mean flow.
+These data confirm that the momentum-integral equation (11) cannot
+be relied upon to give accurate values of surface shearing stress in the
+neighbourhood of separation, for the reason that the left side of (1 1) is then
+equal to a small difference between two large quantities on the right.
+~
+be encountered, either as a result
+Consequently, large errors in T , may
+of inconspicuous departures from two-dimensional mean flow or as a result
+of the omission from the boundary-layer approximation of certain terms
+involving the Reynolds normal stresses and the pressure variation normal
+to the wall.
+Both Ludwieg & Tillmann( 1949), using a surface heat-transfer technique,
+and Schubauer & Klebanoff(1950), using extrapolated values of the measured
+
+The law of the wake in the turbulent boundary layer
+
+209
+
+turbulent stress, have found experimentally that the surface shearing stress
+decreases monotonically toward zero on approaching a point of separation.
+Consequently, whether or not the hypothesis of a universal similarity law
+is correct for the flows in question, it is certain from the evidence, for example,
+of figures 10,13 and 14 that the momentum-integral equation in the form (11)
+is seriously in error.
+Besides the work of Ludwieg & Tillmann, perhaps the most convincing
+evidence for a universal law of the wall is simply that a distinct logarithmic
+region occurs in each of several hundred mean-velocity profiles examined
+here, with very few exceptions; a definite estimate for the wall shearing
+stress is readily obtained, and this estimate is entirely plausible.
+At the same time, it is known (Coles 1955) that a necessary and sufficient
+condition for a universal law of the wall, given the boundary conditions of
+vanishing velocity and Newtonian friction at the surface, is that the ratio
+u/u, is constant on streamlines of the mean flow. The edge of the sublayer,
+as usually defined, is therefore a mean streamline. This result must
+surely be considered in any search for a fundamental order and unity in the
+description of turbulent shear flows,
+It should also be noted that the concept of a universal similarity law
+has recently been reinforced by work of Preston (1954), using an experimental
+technique which depends on the general validity of equation (2) in essentially
+the same way that the use of a Stanton tube depends on the existence of
+a linear profile very near the wall.
+I n view of these remarks, the hypothesis of a universal law of the wall
+will be accepted for the purposes of the present paper. In fact, it will
+eventually be suggested that the similarity laws of this and the next section
+may be concepts sufficientlypowerful to allow a quantitative treatment not
+only of flows approaching or recovering from separation, but also of yawed
+flows and flows which are actually separated from the adjacent wall.
+
+111. THELAW OF THE WAKE
+A. The defect law
+1. Historical development. A special form of the defect law (6) was
+proposed by Darcy nearly a hundred years ago, and again by Stanton in
+1911, to describe the mean-velocity profile in turbulent pipe flow. The
+defect law in the general form (6) was formulated independently by von
+KBrmAn (1932), who derived an approximate friction law involving two
+empirical constants for the turbulent boundary layer with constant pressure,
+According to experimental evidence from many sources, the defect function
+F(JI,y/i3) in a given flow is insensitive to roughness at the wall, provided
+that the origin for the normal coordinate y is properly chosen. On the
+other hand, it appears from a comparison of figures 4 and 5 that there is a
+small dependence of the defect law on the turbulence level in the external
+stream.
+One well known and useful property of the defect law is that it avoids
+the awkward problem of defining the thickness 6 for a boundary layer.
+F.M.
+
+0
+
+210
+
+Donald Coles
+
+For, if the displacement thickness 6+ is computed from equation (12) for
+the profile (6), neglecting the departure of the flow in the sublayer from
+the logarithmic law,* there is obtained
+6U,
+
+= jlF(IT,
+
+$)d ( $ )
+
+= C(IT),
+
+so that 6 is proportional to G+u,/u,. This implicit notation for the parameter
+IT will eventually be replaced by an explicit formula.
+
+2. The equilibrium boundary layer. The concept of a defect law has
+recently been generalized by F. Clauser (1954), who constructed experimentally two boundary-layer flows with positive pressure gradient, such that
+equations (5) and (6) remained valid. The flows in question have already
+been described in figures 15 and 16. Clauser used the term ‘equilibrium
+flow’ to denote a flow with a defect law, that is, in the present notation,
+a flow for which the parameter ll is constant.
+Examination of figures 7, 8 and 9 suggests that the three spillway flows
+studied by Bauer may be equilibrium flows in the sense of Clauser’s definition.
+So, at least approximately, is the flow with falling pressure studied by
+Ludwieg & Tillmann and reported in figure 6.
+
+0
+
+I
+0
+
+u ,- u
+UT
+
+20
+
+30
+
+Figure 20. The defect law.
+
+A comparison of the velocity-defect function F for three equilibrium
+flows can be found in figure 18 of Clauser’s paper, and is repeated here
+in figure 20. This figure, unfortunately, sheds little light on the way in
+which the argument y/S and the parameter IT are involved in the function
+F(IT,y/S) of equation (6), and therefore does not immediately suggest
+any useful generalization of the defect law to non-equilibrium flows.
+
+* This remark implies that, for example, J f d z is written fz- j.2df, and df is
+replaced by ~ Z / K Zas if the functionf were logarithmic everywhere.
+
+The law of the wake in the turbulent boundary layer
+
+21 1
+
+3 . The logarithmic region. At this point a further important
+consequence of the defect law in equilibrium flow should be mentioned.
+I n the first instance, the mixing analogy of Prandtl or von Khrmhn implies
+a logarithmic variation of the function f(yu,/u) in flows for which T does
+not depend on y . However, if the law of the wall is universally valid,
+then the velocity distribution u(y) can be expressed indeppdently of the
+shear distribution T ( Y ); thus the argument based on the mixing analogy
+in favour of a logarithmic mean-velocity distribution is seriously weakened.
+It is therefore instructive to consider another argument, first proposed
+by Millikan (1938) and based on the wall and defect laws, which also leads
+to a logarithmic function f in equation (2). From the law of the wall,
+u/u, = f(yu,/v), it follows that
+
+From the defect law, (ul - u)/u, = F(II,y/S),the corresponding expression
+is
+where the constant parameter II has been suppressed for an equilibrium
+flow. Now suppose that there is a finite region in which the wall and
+defect laws are simultaneously valid. In this region, the last two equations
+require that
+
+say. Obviously, K ( X , Y ) is fixed when either of the two variables yu,/v
+or y/S is specified. But these variables are formally independent of each
+other, since their ratio Su,/u may be chosen arbitrarily. It follows that K
+must be a constant. Furthermore, on integrating the expression for
+over the region in question, it is found that
+
+f(?)
+
+= ;InT
+1 YU 7
+
++ const.,
+
+in agreement with equation ( 3 ) .
+
+B. The wake hypothesis
+1. The wake function. The defect law (6) has at least a limited physical
+
+interpretation, in that the loss of momentum is expressed independently
+of the viscosity. This property, being consistent with the idea of a turbulent
+rather than a viscous transport process, can reasonably be assumed, as in
+Millikan’s argument, to apply everywhere outside the sublayer.
+Furthermore, the observed sensitivity of the momentum defect to external
+turbulence level and the observed insensitivity to wall roughness are not
+surprising.
+On the other hand, the various mean-velocity profiles so far studied
+are quite systematic in coordinates (u/uT,yuT/u)which involve the viscosity
+0 2
+
+212
+
+Donald Coles
+
+of the fluid. I n fact, once the universal law of the wall is accepted, it is
+difficult to escape the conviction that an arbitrarily chosen profile is completely determined when the free-stream point (ul/u,, Su,/v) is specified.
+T o illustrate this remark, figure 21 shows several mean-velocity profiles
+selected from various boundary-layer flows described earlier. * These
+profiles have essentially the same defect law (that is to say, the same value
+of the parameter II) in spite of wide variations in environment.
+50
+
+40
+
+ur
+
+/
+
+30
+
+U
+
+20
+
+10
+
+0
+
+1
+
+10
+
+100
+
+Y Ur
+-
+
+1000
+
+10.000
+
+100.000
+
+Figure 21. Two-parameter similarity in the mean-velocity profile.
+
+Taking these properties together, it is something of an anticlimax to
+discover that the puzzle of the defect law is apparently a simple one. The
+key lies not in a study of the defect function F of equation (6), but in a
+study of the original function g(rI,y/6) of equation ( 5 ) , which gives the
+departure of the mean-velocity profile from the logarithmic law of the wall.
+For the three equilibrium flows of figure 20, this departure is shown in
+figure 2, using a linear scale for yu7/6*ul. There is a striking resemblance
+between the three curves, including a common anti-symmetry about a
+midpoint. But this resemblance is obviously not confined to equilibrium
+flows if, as has just been suggested in figure 21, an arbitrary profile in nonequilibrium flow coincides in the coordinate system (u/u,, yuo/v) with a
+profile from some member of the one-parameter family of equilibrium flows.
+
+* Reading from left to right, the profiles are taken from figure 18 (Klebanoff &
+Diehl 1951, station 4.25), figure 16 (Clauser 1954, Series 2, station 108), figure 11
+(Newman 1951, stations D and C), figure 16 (Clauser 1954, Series 2, station 230),
+and figure 14 (Ludwieg & Tillmann 1949, Channel VI b, stations 3.73 and 3.53).
+
+The law of the wake in the turbulent boundary layer
+
+21 3
+
+In view of these remarks and especially in view of figure 2, the meanvelocity profile may tentatively be written in the form already presented as
+equation (7),
+where the function w(y/6), for reasons which will become .apparent, will
+be called the law of the wake. If II does not depend on x, then both
+g(II,y/6)in equation (5) and IIw(y/S) i n equation (7) are functions of y/S
+only. This is the property assigned to equilibrium flows by Clauser.
+The present formulation of the mean-velocity profile is, however, more
+general than equation (5), in the sense that the law of the wake, although
+it occurs as a restricted form of ( 5 ) which is itself a special form of equation
+(4), is here assumed to apply for non-equilibrium flows.
+2. Normalizing conditions. In order to test the hypothesis of a universal
+wake function in equation (7), it is necessary first to define the thickness 6
+and to specify some normalizing factor for w. T o this end, the displacement
+thickness 6* may be computed from the definition, equation (12), for the
+particular profile given by (7). Neglecting the departure of the flow in the
+sublayer from the logarithmic wall law, we obtain
+1 ' II
+y dw
+21
+6" =,(a;
+3
+
++
+
+--lo ),
+w1
+
+where w1 is tentatively defined as the maximum value of w. It is therefore
+convenient to take as a first normalizing condition
+
+1; $
+
+dw = 1.
+
+A second normalizing condition is suggested by the nearly anti-symmetric
+form of the curves in figure 2. The maximum value of w will occur very
+nearly at y/S = 1, provided that
+w1 = w( 1) = 2.
+
+(17)
+Now w(y/S) is by hypothesis a universal function, ,so that the boundarylayer thickness 6 is uniquely defined in terms of 6" by the integral condition
+(16) and the maximum condition (17). That is, the two relationships
+(8) and (9), together with the identity
+
+(--)/(%),
+
+(s")(2)= S*Ul
+
+6 UT
+are sufficient to determine all five of the dimensionless parameters ul/u,,
+S*/S, 8u,/v, 8*ul/v, and II (or 6*ul/6u,) when any two are given. For
+example, if the two known quantities are ul/uT and 6*u,/v, as is supposedly
+the case for the data cited in Part I1 of this study, then equations (8) and (9)
+lead to a simple transcendental equation for II ;
+
+214
+
+Donald Coles
+
+3. ProJile at separation. Equation (7) as originally written is not in
+a convenient form for use near a point'of separation or reattachment.
+However, on multiplication by UJU, and the elimination of n by means of
+(9), equation (7) leads to
+
+If u7 is put equal to zero in this expression, the result is evidently
+Moreover, certain numerical values can be assigned in advance to the ratios
+8*/8, f3/8 and S*/O at separation or reattachment. For example, the definition
+of 8 adopted here takes account of the nearly anti-symmetric variation of w
+by requiring that S*jS = 8 at separation. A corollary, anticipating
+numerical values of the next section, is f3/8 = 0.12 (approximately). On
+the other hand, the prediction 8*/0 = 4-2 (approximately) at separation
+or reattachment is a result which is relatively free of preconceptions about
+the form of the wake function w . It should also be noted that this prediction
+is based on examination of the mean-velocity profile in flows which need
+not be close to separation,
+Table 1. The wake function w(5) and related functions. .
+
+t:
+
+jW
+0t : d W
+
+____
+
+0
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30
+0.35
+0 -40
+0.45
+0.50
+0.55
+0 *60
+0.65
+0 *70
+0.75
+0.80
+0-85
+0.90
+0.95
+1-00
+
+0
+0.004
+0.029
+0.084
+0.168
+0.272
+0.396
+0.535
+0.685
+0-838
+0.994
+1.152
+1.307
+1.458
+1.600
+1.729
+1.840
+1.926
+1-980
+1.999
+2.000
+
+0
+0
+0.002
+0.009
+0.024
+0.047
+0.082
+0.127
+0.183
+0.248
+0.322
+0.405
+0.495
+0.589
+0.685
+0.778
+0.863
+0.935
+0.981
+0.999
+1 -000
+
+1+o.oooII
+1+0.002rI
+1+O.O22rI
+1+O.O62II
+1+0.119II
+1+0.190II
+1+0.272rI
+1 +0.363II
+1 t-0.458l-I
+1 +0-552II
+1+0.645II
+1+0.737II
+1+0.824II
+1 +0.906rI
+1+0.978II
+1 1.037II
+1 1.079II
+1 1.1OOII
+1 1.090n
+1 1.051n
+1 1 .oooII
+
++
++
++
++
++
++
+
+1+ O ~ O O O r If 0 ~ 0 0 0 ~ ~
+1+O.O27II +O*OOOr12
+
++
+
+1 0.1 54II +0*008112
+1 +0.360II +0.044112
+1 +0.614II+ 0.127112
+1 +0.88011+0.257112
+1+1.14311$-0.426112
+1+1.38OII+0*61OIII8
+1+1.56111+0.765112
+1+1.64011+0.8231T2
+
++
+
+1 1.600II +0.761112
+
+4. Test of the hypothesis. For obvious reasons, the existence and form
+of the hypothetical wake function w(y/8) are most readily investigated in
+flows with a large wake component. Figure 2 shows the function in question,
+
+215
+
+The law of the wake in the turbulent boundary layer
+
+subject to the normalizing conditions (16) and (17), for several mean-velocity
+profiles taken from the present survey. The difference in apparent scatter
+between the non-equilibrium and equilibrium data is the result of applying
+the normalizing conditions to individual profiles in the first case, but to
+the average of several profiles in the second. For unseparated flows at
+least, the wake hypothesis appears to be a useful concept, and a tentative
+determination of the wake function w ( y / 6 )is therefore tabulated in table 1
+and plotted in figures 2 and 21.
+VERTICAL SCALE = S
+HORIZONTAL SCALE
+5
+
+MEAN VELOCITY
+
+tz5
+
+18.5
+
+19.5
+
+20.5
+
+21.5
+
+22.5
+
+23.5
+
+24.5
+
+25.77
+
+Figure 22. The separating flow of Schubauer and Klebanoff (1950) (measured values
+of shearing stress have been reduced by 31 percent).
+
+The two-component profile, equation (7), can be made to represent
+quite well the data of Schubauer & Klebanoff, as shown in figure 22;
+of Newman, as shown in figure 23; of Kehl; of Clauser; of Ludwieg &
+Tillmann; of McCullough & Gault at 5" angle of attack, as shown in
+figure 24; and of Tillmann for reattaching flow, as shown in figure 25.
+The solid lines in these figures are computed from equation (7), using values
+for ul, u,, 6, and II which vary smoothly with x. Occasionally it has been
+found desirable to make slight revisions in the original values for the profile
+parameters obtained from consideration of the law of the wall alone.
+A few exceptions to the law of the wake can be found among the numerous
+profiles presented here. For example, it is impossible to find satisfactory
+values for the parameters ul,u,, 6, and IT in the general formula (7) such
+that the profile at the left in figure 21 can be represented within the apparent
+
+216
+
+Donald Coles
+VERTICAL SCALE
+5
+HORIZONTAL SCALE = T
+
+MEAN VELOCITY
+
+B
+
+C
+
+F
+
+E
+
+0
+
+G
+
+Figure 23. The separating flow of Newman (1951).
+VERTICAL SCALE
+
+HORIZONTAL SCALE
+
+I
+
+3
+I
+
+MEAN VELOCIT
+
+0.1
+
+0.3
+
+0.2
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+I
+
+Figure 24. The reattaching flow of McCullough and Gault (1949).
+VERTICAL SCALE
+HORIZONTAL SCALE
+
+lo
+I
+
+5286
+
+Figure 25. The reattaching flow of Tillmann (1945).
+
+The law of the wake in the turbulent boundary Layer
+
+217
+
+experimental accuracy. This profile, however, was obtained about two
+boundary-layer thicknesses downstream of reattachment, in a region where
+the real accuracy of the profile measurements is unknown.
+Finally, it may be remarked that Wieghardt's experiments in figure 5
+indicate that there is a definite change in the shape as well as the amplitude
+of the wake component in flow at constant pressure when the free-stream
+turbulence level is increased. The term ' universal function ' applied to
+the law of the wake therefore implies that the external turbulence level
+is low, much as the same term applied to the law of the wall implies negligible
+surface roughness.
+IV. DISCUSSION
+A, The equations of mean motion
+1. The turbulent shearing stress. In the past an important aim of
+phenomenological theories of turbulent shear flow has usually been to
+develop a priori some relationship connecting shearing stress and mean
+velocity, by analogy with the relationship 7 = pau/ay for laminar flow.
+It is now generally accepted that such a relationship probably does not
+exist in any practical sense. However, the same purpose is ultimately
+served by the equations of mean motion, which provide a valid relationship
+between shearing stress and mean velocity. I n this respect the present
+analytic representation (7) of the mean-velocity profile may be exploited
+immediately.
+The continuity equation may first be satisfied by introducing a stream
+function $ ( x , y ) such that u = at,b/ay and v = - a $ / a x ; $ is then constant
+on streamlines of the mean flow. But, if the departure of the profile in
+the sublayer from the logarithmic law of the wall is neglected, equation ( 7 )
+requires that
+
+A formula for the normal component of velocity may be obtained from
+v = - a$/ax, using equation (19) for $(x, y ) , or directly from the continuity
+equation au/ax+av/ay = 0, using equation ( 7 ) for u(x,y). In either case
+it is found that
+V
+y du, y u , w d n
+1 d(IISu,)
+-=
+-dw.
+(20)
+U
+U, dx
+K
+u dx KU dx
+This expression is an exact consequence of equation (7), in the sublayer
+as elsewhere. Its application in the calculation of the shearing-stress
+profile is most easily shown by putting - av/ay for au/ax in the boundarylayer momentum equation
+du,
+'u
+au
+T = ~ ~ - y p u , - +p.J
+(u?
+dx
+0
+thereby obtaining
+7
+= I - - -yu,du, -- vIuu2
+u3 dx
+d(:).
+7,
+
++
+
+'i
+
+lo2
+
+Jaw$
+
+218
+
+Donald Coles
+
+2. Flow at .constant pressure. For flow at constant pressure, i.e. for II
+and u1 constant, the expression (21) will be evaluated explicitly for the profile
+given by equation (7). Making the usual approximation in the sublayer,
+the result can be written in the form
+
+where w1 and w2 are auxiliary functions which depend on an argument
+5 = y/6 and a parameter II ; that is,
+
+where w(5) is the wake function. The quantities wl(II, 5) and wz(II, 5)
+are tabulated together with w in table 1.
+Finally, the derivative du,/dx in equation (22) may be disposed of by
+putting y = 6 to obtain*
+K2 = - S du
+~[(K~)'Q1-2(K~)n,+2n,]
+u , dx
+with
+Ql(rI) = w l p , 1) = 1+ II
+and
+Q2(II) = w z ( I I , 1) = 1 + 1.600II +0.761112.
+Klebanoff ( 1954) has recently measured the turbulent shearing-stress
+distribution in a boundary layer with constant pressure such that
+S"U,/V = 9,700,
+6" = 0.400in.
+The experimental mean-velocity profile for this flow has already been
+shown in figure 1. However, in order to make the present calculation
+independent of Klebanoff's measurements, it is convenient to estimate
+the parameter II from the data of Wieghardt in figure 4. Using either
+equation ( 7 ) and the observed maximum excursion from the logarithmic
+law, or equation. (18) and the experimental values for ul/u, and S*ul/v,
+it is found that II is very nearly 0.55 for flow at constant pressure. Then,
+from equations (9) and (8), with S"ul/v = 9,700 and Il = 0.55,
+SUJV = 2,500, ul/u, = 27.4, S*lS = 0.142.
+Furthermore, with 6" = 0*400in.,6 = 2.83 in.
+The profile u/u, computed as a function of yuJv = (6u7/u)(y/6)from
+equation (7)is plotted in figure 1. The excellent agreement with Klebanoff's
+
+* This expression, like equation (37) of a previous paper (Coles 1954), is a special
+form of the momentum-integral equation (ll), and may be used to compute a length
+Reynolds number. The present definition of the thickness 6, however, requires
+the numerical constants + ( 1 ) = 7-90, C, = 4.05, and C z = 29.0 of the cited paper to
+c 7.85, QJK = 3.88, and
+be replaced (anticipating the value IT = 0.55) by c+~II/K
+2fi,/K2 = 26.4.
+
+The law of the wake in the turbulent boundary layer
+
+219
+
+measurements is to be expected in view of the efforts made at the National
+Bureau of Standards to insure that the flow in question would be typical
+of the fully-developed boundary layer.
+q ( T / T ~ ) ( ~ ~ : / U=
+? ) -2u"/u2 computed from equation
+The profile ~ / =
+(22) is plotted against y/S in figure 26, together with measured data using
+the present estimate for 6 of 2.83 in. Finally, to establish the extent of the
+region of intermittent turbulence in terms of the coordinate y/S occurring
+in the law of the wake, figure 26 also shows Klebanoff's measurements of
+the intermittency factor y, defined as the fraction of the time that the flow
+is turbulent. The mean position of the turbulent boundary, i.e. the point
+y = &, is found to be at y/S = 0.825, with a standard deviation of 0.148
+about the mean.
+
+.003
+
+-2
+
+n
+
+v
+
+0
+
+0.5
+
+6
+
+1.0
+
+Figure 26. Shearing-stress profile in the flow of Klebanoff (1954).
+
+3. Plow approaching separation. Schubauer & Klebanoff (1950) and
+Newman (1951) have recently carried out hot-wire measurements of turbulent
+shearing-stress in flows approaching separation. The representation of
+the mean-velocity field by the general profile equation (7) has already been
+illustrated in figures 22 and 23 for the flows in question.. The corresponding
+shearing stress profiles, computed with the aid of equations (20) and (21),
+are shown in the same figures together with the profiles determined
+reported by
+experimentally. As noted in the figure, the values of
+Schubauer & Klebanoff have been reduced by 31yoin view of the excessively
+large values obtained for T, when T(Y) is extrapolated t o y = 0. It is likely
+that the hot-wire data are in fact too high, most probably as a result of overcompensation.
+Unfortunately, these calculations of shearing stress can be attempted
+only for regions in which the mean-velocity field is in reasonable agreement
+with the momentum-integral condition expressed by equation (11).
+Elsewhere in the flow it is found to be possible to satisfy only one of the two
+boundary conditions 7 = 0 at y = 6 or T = put at y = 0, u, being derived
+from a fit to the law of the wall. The alternative calculations are sh'own in
+figures 22 and 23 by the dashed lines. Because equation (21) is precisely
+
+220
+
+Donald Coles
+
+equivalent to equation (ll), the values obtained for T , on putting r = 0
+at y = S are obviously the same as the values implied by the slope of the
+function @(x) which is defined by equation (14) and is denoted by the open
+points in figures 10 and 11 for the data of Schubauer & Klebanoff and
+of Newman respectively. The discrepancies encountered in r ,appear
+to be too large to be caused entirely by the neglect in equation (21) of the
+Reynolds normal stresses and the pressure variation ap/i3y, although this
+question is still open.
+Another explanation for the failure of the two-dimensional momentumintegral equation (1 1) has been suggested on experimental grounds by
+several writers. The displacement of fluid in a boundary layer is assumed
+to be described by the streamline slope v / u ) obtained by integrating the
+continuity equation &/ax + &jay = 0. This displacement will certainly
+be affected by lateral convergence or divergence of the general flow, although
+the presence of three-dimensional effects would not necessarily be revealed
+by a study of the mean-velocity profile u(y.) measured at various lateral
+stations.
+If r w is known but the values taken for vju are even slightly in error,
+the right-hand side of equation (21) will not vanish at the outer edge of the
+boundary layer. Conversely, large errors in r w may be encountered
+on putting T = 0 at y = 6. At one station in each of figures 22 and 23, the
+quantities
+are plotted separately in order to illustrate the extreme sensitivity of their
+to small variations in v / u or in du,/dx. Finally, as a tentative
+sum
+correction for three-dimensional flow the streamline slopes vju have been
+multiplied by suitable constant factors close to unity in order to satisfy
+both boundary conditions on T . The corrected shearing stress profiles
+are shown by the solid lines in figures 22 and 23.
+B. Physical interpetation
+1. Two-dimensional $ow. In this paper the term 'wake function'
+has consistently been used to denote the function w(y/S) in equation (7).
+The reason for this choice of terminology can be found in some measurements by Liepmann & Laufer (1947) of a plane half-wake or half-jet;
+that is, in the wedge-shaped region of turbulent mixing between a uniform
+flow and a fluid at rest.
+The dimensionless mean-velocity profiles for the fully developed
+half-wake were originally reported by Liepmann & Laufer to satisfy a
+similarity law corresponding to a linear growth of the shear flow. These
+same profiles, after a further translation and change of scale for the
+coordinates," are compared in figure 2 with the wake function w for flow
+
+* The present variable 5 = y/6 is related to the original variable uy/x in figure 13
+of Liepmann & Laufer's 'paper by the expression 5 = 0.505+0*331uy/x. When
+L 0, uy/x = -1.52; and when 5 = 1, uy/x = 1.50. Then uS/x = 3.02, and i t
+follows that, if u = 12, Six = 0.252 rads or 14.4".
+
+-
+
+The law of the wake in the turbulent boundary layer
+
+221
+
+in a boundary layer. The residual velocity near y/S = 0 in the figure is
+the normal component of velocity associated with fluid entrainment, and
+agrees in magnitude with the value v/ul = 0.03 implied at y/S = 0 by the
+equations of mean motion for the half-wake.
+Although the motion represented by the upper curve in figure 2 is
+bounded on the low-velocity side by fluid at rest, rather than by a solid wall,
+there can be little doubt that the similarity between the various experimental
+curves in the figure is more than accidental, and that substantially the same
+physical phenomenon is involved. The interpretation of the wake
+component in a boundary layer as a large-scale mixing process has already
+been mentioned in Part I in connection with figure 3.
+It goes without saying that if the streamwise mean-velocity distribution
+in a turbulent boundary layer can in fact be expressed as a linear combination
+of wall and wake components, as in equation (7), then so can the normal
+mean-velocity component ZI, the mean stream function #, and the displacement thickness a*, all of which are obtained from u(x,y ) by linear operations.
+This is not so, however, for the flow inclination v/u, the momentum thickness
+9,or the shearing stress T ; and it is most emphatically not so for the turbulent
+fluctuations, except in so far as the wake and wall components might be
+expected to contribute more strongly to the small and large wave number
+regions of the spectrum respectively. On the other hand, a foundation
+has been laid in the present paper for the comparison, at corresponding
+points in various free and bound shear layers, of measurements of‘intermittency factor as well as of spectra and intensity of various fluctuating
+quantities.
+Finally, in the event that the parameter IT is constant in a turbulent
+boundary layer, a’certainbalance is implied between the constraints imposed
+by inertia and by viscosity, and between the large-scale and small-scale
+mixing processes. This balance is precisely measured in equation (9)
+by the magnitude of the parameter IT or alternatively of the combination
+6*u,/Su,. From the point of view adopted in these paragraphs, therefore,
+Clauser’s choice of the term ‘equilibrium flow’ to describe the situation
+when II is constant may well be regarded as inspired.
+It should be noted that Lees & Crocco (1952) have recently attempted
+a qualitative analysis of turbulent shear flows in which they visualize a
+continuous spectrum of mixing processes hhving both wake-like and
+boundary-layer-like properties. The concept of two flow components,
+one depending on friction and the other on the cumulative effect of pressure
+gradient, has also been independently advanced by Ross & Robertson
+(195 1)and by Rotta (1950), both of whom used a term linear in y to represent
+what is called here the wake function w(y/S). These authors did not give
+any interpretation for either of the mean-velocity functions, and were
+therefore able to recommend their formulation of the problem only as
+a useful engineering approach, although Rotta obtained relationships
+which anticipate the present work. As a matter of historical interest, it
+should also be noted that a much earlier attempt by Millikan (1938) to
+
+222
+
+Donald Coles
+
+examine the function denoted by h(x,y) in equation (4)was unsuccessful
+because the experimental data studied were not sufficiently precise. These
+efforts have certainly contributed, if not to the specific concept called the
+law of the wake, at least to the atmosphere in which this concept was evolved.
+
+2. Yawed $ow. The present interpretation of the wake and wall
+components in a turbulent boundary layer, as manifestations of the
+constraints provided by inertia and viscosity respectively, is not necessarily
+restricted to two-dimensional flows, provided the two flow components
+are viewed as vector rather than scalar functions of position. Specifically,
+suppose that the general profile equation (7) is rewritten in the form
+where
+
+q = 9f+9W,
+
+and
+
+q w = "K. w ( $ ) .
+I n these expressions, f(yq,/v) and w(y/8) are to be identified with the
+scalar functions previously described for two-dimensional flow, and q,
+is defined as the magnitude of a friction velocity vector q , taken parallel
+to the surface shearing stress r , i.e.
+W
+
+= Pq7 qT*
+
+Furthermore, both q , and Il are assumed to depend on two space coordinates,
+say x and z. Then, if qf and q, are not parallel vectors, the parameter
+Il(x,z) should presumably be interpreted as a linear operator having the
+properties of a square matrix, i.e. as a tensor. It also follows that the
+generalized vector friction law is
+
+("9
+
+qI=qTf 7 + y
+
+2nqT*
+This notation is highly tentative, and may have to be revised after more
+data on yawed flows become available. In particular, the present definition
+for q, is not perfectly consistent with the streamline hypothesis (Coles 1955)
+if r ,is an arbitrary continuous function of two coordinates on the surface.
+However, the notation does allow the interpretation already proposed,
+that the flow near the surface where the wake component is small should
+have the same direction and sense as the surface shearing stress. Thus
+the concept of a constraint provided by friction is a vector concept.
+Given a mean-velocity profile in yawed flow, the vector nature of the
+wall and wake components can be tested in five steps. First, the direction
+of the mean flow near the surface, which is also by assumption the direction
+of the shearing-stress vector 7 , and of the wall component q,, is noted.
+Second, the component of mean velocity in this direction is plotted in
+coordinates (4.qJqF, yq7/v)appropriate to the law of the wall ; a fit to the
+function f then yields a value for 4,. Third, the thickness 6 is estimated
+
+The law of the wake in the turbulent boundary layer
+
+223
+
+Figure 27. Vector resolution of the yawed flow of Kuethe, McKee, & Curry (1949).
+
+224
+
+Donald Coles
+
+from this same plot, for example as twice the value of y for which the profile
+reaches half of its maximum excursion from the law of the wall. Fourth,
+the ' wall ' vector qf, = q,f(sq,/u) is computed and subtracted from the
+free-stream vector q, to obtain the 'wake ' vector q , = 2IIqJic. Finally,
+the profile is resolved in oblique coordinates determined by the direction
+of the wall and wake vectors.
+An examination of the experimental data of Gruschwitz (1935) in
+a curved channel suggests that serious errors were introduced in the meanvelocity measurements near the surface by the use of a periscope probe.
+In particular, the profiles in the straight portion of the channel differ from
+the concensus of data obtained by other investigators under similar
+conditions. Fortunately, the hot-wire measurements of Kuethe, McKee &
+Curry (1949) on a swept airfoil, although carried out at relatively small
+Reynolds number, involve large angles of yaw within the boundary layer
+and therefore provide a useful test for the concept of vector similarity.
+I n treating these data, incidentally, it has been assumed that the indication
+in some of the profiles of a sudden change in flow direction within the
+sublayer is fictitious.
+The airfoil of Kuethe, McKee & Curry was of elliptical planform,
+of 18 in. chord and 96.5 in. span, with the major axis swept back at an angle
+of 25". Four profiles obtained near the trailing edge of the airfoil at an angle
+of attack of 14" are plotted in figure 27 in terms of spanwise and chordwise
+components of mean velocity; in terms of streamwise and crossflow
+components ; and finally in terms of wall and wake components.
+The data in figure 27 can be fairly well represented by the characteristic
+wall and wake functions defined previously for unyawed flows, and it is
+difficult to say whether or not there is any systematic discrepancy. A more
+stimulating result, which may be coincidental or may illustrate an important
+intiinsic property of strongly wake-like yawed flows, is that the direction
+of the wake component is found in each case to be nearly the same as the
+direction of the gradient of the pressure field over the airfoil surface. That
+is, the final resolution is for practical purposes along the directions defined
+by the two vectors T, and -gradp, so that (gradp) x ( I I T ~vanishes
+)
+everywhere. The inference that the constraint provided by inertia is also a
+vector constraint is potentially useful in investigating the nature of the
+tensor parameter II when more suitable data become available from
+experiments carried out at larger Reynolds numbers in flow on a larger scale.
+REFERENCES
+BAUER,
+W. 1951 The development of the turbulent boundary layer on steep slopes,
+Thesis: State Univ. of Iowa; abridged in Proc. Amer. SOC.Cio. Engrs.,
+Separate no. 281, 1953.
+CLAUSER,
+F. 1954 Turbulent boundary layers in adverse pressure gradients, J. Aero.
+Sci. 21, 91-108.
+COLES,
+D. 1954 The problem of the turbulent boundary layer, 2. angew. Muth.
+Phys. 5, 181-203.
+
+The law of the wake in the turbulent boundary layer
+
+22s
+
+COLES,D. 1955 The law of the wall in turbulent shear flow, 50 Jahre Crenzschichtforschung (Ed. H. Gortler & W. Tollmien), pp. 153-163. Braunschweig:
+F. Vieweg und Sohn.
+GRUSCHWITZ,
+E. 1935 Turbulente Reibungsschichten mit Sekundkrstromung,
+Ing.-Arch. 6, 355-365.
+K A R M ~T.
+, v. 1921 Uber laminare und turbulente Reibung, Z. angew. Math.
+Mech. 1, 233-252; translated as On laminar and turbulent friction, Nut, Adv.
+Comm. Aero., Wash., Tech. Mem. no. 1092, 1946.
+KLRMAN, T. v. 1932 Theorie des Reibungswiderstandes, Hydromechanische
+Probleme des Schagsantriebs, Hamburg.
+KEHL, A. 1943 Untersuchungen uber konvergente und divergente turbulente
+Reibungsschichten, Ing.-Arch. 13, 293-329 ; translated as Investigations on
+convergent and divergent turbulent boundary layers, British Ministry of
+Supply R.T.P. no. 2035, 1946.
+KLEBANOFF,
+P. & DIEHL, 2. 1951 Some features of artificially thickened fully
+developed turbulent boundary layers with zero pressure gradient, Nut. Adv.
+Comm. Aero., Wash., Tech. Note no. 2475.
+KLEBANOFF,
+P. 1954 Characteristics of turbulence in a boundary layer with zero
+pressure gradient, Nut. Adv. Comm. Aero., Wash., Tech. Note no. 3178.
+KUETHE,
+A., MCKEE,P. & CURRY,W. 1949 Measurements in the boundary layer
+of a yawed wing, Nut. Adv. Comm. Aero., Wash., Tech. Note no. 1946.
+LAUFER,
+J. 1953 The structure of turbulence in fully developed pipe flow, Nut. Adz!.
+Comm. Aero., Wash., Tech. Note no. 2954.
+LEES,
+L. & CROCCO,
+L. 1952 A mixing theory for the interaction between dissipative
+flows and nearly isentropic streams, J. Aero. Sci. 19, 649-676.
+LIEPMANN,
+H. & LAUFER,
+J. 1947 Investigations of free turbulent mixing, Nut. Adv.
+Contm. Aero., Wash., Tech. Note no. 1257.
+EL~DWIEG,
+H. & TILLMANN,
+W. 1949 Untersuchungen uber die Wandschubspannung
+in turbulenten Reibungsschichten, Ing.-Arch. 17, 288-299 ; translated ns
+Investigations of the wall shearing stress in turbulent boundary layers,
+Nut. Adv. Comm. Aero., Wash., Tech. Mem. no. 1285, 1950.
+MCCULLOUGH,
+G. & GAULT,D. 1949 Boundary-layer and stalling characteristics of
+the N.A.C.A. 64A006 airfoil section, Nut. Adv. Comm. Aero., Wash., Tech:
+Note no. 1923.
+MILLIKAN,
+C. 1938 A critical discussion of turbulent flows in channels and circular
+tubes, Proc. 5th Int. Cong. Appl. Mech., Cambridge, 386-392.
+NEWMAN,
+B. 1951 Some contributions to the study of the turbulent boundary layer
+near separation, Aust. Dept. Supply, Rep. no. ACA-53.
+NIKURADSE,
+J. 1930 Widerstandsgesetz und Geschwindigkeitsverteilung von
+turbulenten Wasserstromung in glatten und rauhen Rohren, Proc. 3rd Int.
+Cong. Appl. Mech., Stockholm, 239-248.
+PRANDTL,
+L. 1926 Uber die ausgebildete Turbulenz, Proc. 2nd Int. Cong. Appl.
+Mech., Zurich, 62-74; translated as Turbulent flow, Nut. Adv. Comm. Aero.,
+Wash., Tech. Mem. no. 435, 1927.
+PRESTON,
+J. 1954 The determination of turbulent skin friction by means of pitot
+tubes, J. R. Aero. So>. 58, 109-121.
+REJCHARDT,
+H. 1940 Die Warmeubertragung in turbulenten Reibungsschichten,
+2. angew. Math. Mech. 20, 297-328; translated as Heat transfer through
+turbulent friction layers, Nut. Adv. Comm. Aero., Wash., Tech. Mem. no. 1047,
+1943.
+F.M.
+
+P
+
+226
+
+Donald Coles
+
+ROSS,D. & ROBERTSON,
+J. ’ 1951 A superposition analysis of the turbulent boundary
+layer in an adverse pressure gradient, J . Appl. Mech. 18, 95-100.
+ROTTA,J. 1950 uber die Theorie der turbulenten Grenzschichten, Mitt. MaxPlanck-Inst., Gottingen, No. 1 ; translated as On the theory of the turbulent
+boundary layer, Nat. Adv. Comm. Aero., Wash., Tech. Mem. no. 1344, 1953.
+SCHUBAUER,
+G. & KLEBANOFF,
+P. 1950 Investigation of separation of the turbulent
+boundary layer, Nat. Adv. Comm. Aero., Wush., Tech. Note no, 2133.
+SHEPPARD,
+P. 1947 The aerodynamic drag of the earth’s surface and the value of
+von KQrmBn’s constant in the lower atmosphere, Proc. Roy. SOC.A, 188,
+208-222,
+TILLIMANN,
+W. 1945 Untersuchungen uber Besonderheiten bei turbulenten
+Reibungsschichten an Platten, Z.W.B., K.W.I., Gottingen, U. €5 M. 6627;
+translated as Investigations of some particularities of turbulent boundary
+layers on plates British R. €5 T. MAP-VG-34, 1946.
+WIEGHARDT,
+K. 1943 uber die Wandschubspannung in turbulenten Reibungsschichten bei verhderlichem Aussendruck, Z. W.B., K.W.I., Gottingen,
+U . & M . 6603. See also Wieghardt, K . & Tillmann, W., Zur turbulenten
+Reibungsschicht bei Druckanstieg, Z.W.B., K.W.I., Gottingen, U. €9 M .
+6617, 1944; translated us On the turbulent friction layer for rising pressure,
+Nat. Adv. Comm. Aero., Wash., Tech. Mem. no.’1314, 1951.
+WIEGHARDT,
+K. 1944 Zum Reibungswiderstand rauher Platten, 2.W.B., K . W.I.,
+Gottingen, U. @ M . 6612.
+
+

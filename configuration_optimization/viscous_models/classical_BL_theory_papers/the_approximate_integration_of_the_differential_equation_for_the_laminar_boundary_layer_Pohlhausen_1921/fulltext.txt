@@ -1,0 +1,2845 @@
+25,,, ,
+
+* 'n: *
+
+'5:
+■.'H
+
+... .
+MU
+
+An English trantlation by ftoland C. Anderson of
+
+Worn*
+^ ^THE APPROXIMATE INTEGRATION OF THE
+
+4;
+
+'
+
+«If« ^9
+
+DIPFERENTIAL EQUATION FOR THE
+
+^Df\
+
+LAMINAR BOUNDARY LAYER
+by
+KAU POHLHAUSEN
+
+With the financial assistance of the
+OmCI OP NAVAL RESEARCH
+under Contract Nonr-580(14)
+Reproduction for governmental purposes is permitted
+
+Edited by
+Richard L. Fearn and Knox Millsaps
+Drawings by
+Karl P. Rhodes and Roland C. Anderson
+
+D D C
+
+loT'
+
+Department of Aerospace Engineering
+University of Florida
+Gainesville, Florida
+August 1965
+
+Ämffln dCT
+
+01
+
+JAW 2 7 1967
+
+1
+
+An English translation by Roland C. Anderson of
+
+THE APPROXIMATE INTEGRATION OF THE
+DIFFERENTIAL EQUATION FOR THE
+LAMINAR BOUNDARY LAYER
+
+by
+KARL POHLHAUSEN
+
+With the financial assistance of the
+OFFICE OF NAVAL RESEARCH
+under Contract Nonr-580(14)
+Reproduction for governmental purposes is permitted
+
+Edited by
+Richard L. Fearn and Knox Millsaps
+Drawings by
+Karl P. Rhodes and Roland C. Anderson
+
+Department of Aerospace Engineering
+University of Florida
+Gainesville, Florida
+August 1965
+
+HublUhed by the College of Engine
+
+g
+
+University of Florida
+Gainesville, Florida
+PRINTED IN THE UNITED STATES OF AMERICA
+ii
+
+EDITOR'S PREFACE
+One of the more frequently quoted papers in fluid dynamics is the
+article by Karl Pohlhausen, "Zur näherungsweisen Integration der
+Differentialgleichungen der laminaren Grenzschicht," which appeared
+on pages 252-268 of Volume I of the Zeitschrift für angewandte
+Mathematik und Mechanik. Consequently, it seems appropriate to
+make an English translation of the original German paper widely
+available.
+While the approximate integration technique which the article
+outlines has been superseded in large measure by substantial improvements, the kernel of all useful methods is given in the original
+paper; in fact, while preparing a catalogue of integral equations, I
+was astounded to record the number of variations on Pohlhausen's
+method that have been proposed. Moreover, many other important
+results of permanent value to fluid dynamics are presented, e.g., a
+mathematical derivation of Kärmün's momentum equation from the
+boundary layer equation and the mathematical description in finite
+closed form of the steady two dimensional laminar flow in a converging channel according to boundary layer theory.
+So much for the rawon d'etre, the translation is the work of
+Roland C. Anderson and represents a scholarly effort that was submitted to the Graduate School of the University of
+irida in lieu
+of an examination on a reading knowledge of German
+U is one requirement for a doctorate in aerospace engineering. Richard L.
+Fearn has checked the entire paper in minute detail and has made
+numerous minor corrections. I hope that he caught all of the errors;
+if not, please let me know. The drawings are the expert works of
+Karl P. Rhodes and Roland C. Anderson.
+Finally, an appropriate acknowledgment for the gracious financial
+and psychological support of the Office of Naval Research under Contract Nonr-580(14) is a debt that I now discharge with sincere g atitude and great pleasure.
+Knox Millsaps
+Gainesville, Florida
+15 August 65
+
+iii
+
+To
+LEILA BRAM, DOROTHY GILFORD, BERTRAM LEVY AND
+THOMAS SAATY
+of the
+Office of Naval Rasaarch
+who have supported sympathetically and effectively
+the research program in integral equations
+at the
+University of Florida
+
+THE APPROXIMATE INTEGRATION OF THE
+DIFFERENTIAL EQUATION FOR THE
+LAMINAR BOUNDARY LAYER
+by
+Karl Pohlhausen
+The extraordinary mathematical difficulties which occur in the
+integration of the differential equations for fluid motion, especially
+with the added complications due to viscosity, and which are due to
+the essential nonlinear character of the equations has caused a dichotomy between "Hydrodynamics" and "Hydraulics" in the development of the theory of fluid flow.1 On one hand, researchers neglected
+viscous effects in order to obtain simple equations and achieved rigor
+with substantial discrepancies between the calculated and observed
+flows. On the other hand, a technology which was necessitated by a
+consideration of the actual behavior of a fluid developed into hydraulics which was a separate science of fluid motion. In hydraulics, the
+exact equations were replaced by empirical assumptions and intuitive
+considerations whose results agree essentially with reality.
+In recent times, researchers have tried to bring hydrodynamics
+and hydraulics into agreement by including viscosity in the mathematical theory and by looking deeper into hydraulics. The first
+general beginnings which included frictional considerations were
+made by Stokes.2 He was able to calculate the resistance of a sphere
+moving in a fluid with very larg. viscosity. The assumption behind
+this solution was that the motioi. will essentially be determined by
+viscous effects, thus either the viscosity is very large or the product
+of the body dimension and the velocity is small. A systematic
+simplification lor the flow of a fluid of small viscosity, given first by
+•See l'h. Forchheimer, Hydraulik, Leipzig. 1914. p. 70.
+»G. Stoke», On the effect of the internal friction of fluid» on the motion of
+pemliilum», Pior. Camh. Phil. Soc. 9. 1851 ^Vrifn. Papers, i. p. I).
+
+aa
+
+Prandtl,3 led to the theory of the "boundary layer" which was examined in detail and applied to selected examples by his students
+Blasius,4 Boltze5 and Hiemenz."
+An approximate method of integration for the differential equation
+of the boundary layer will be developed in the following, and its
+usefulness will be shown by examples.
+LDerivation of the Differential Equation for the Boundary Layer.
+Prandtl considered the motion of a fluid about a fixed body submersed in a stream or, cquivalently, about a body moving at a constant velocity in a still fluid. He arrived at the differential equation
+for the boundary layer by assuming the coefficient of viscosity to be
+very small. At a large distance from the body the friction will have
+no influence; consequently, the motion far from the body will be
+potential flow. Only in a very thin layer near the body, "the boundary
+layer," will there be any deviation from potential flow, and this
+deviation is caused by the fluid clinging to the wall. If one denotes
+the thickness of the boundary layer by 6, the order of magnitude of
+each term in the exact differential equations may be estimated. As
+Blasius has rigorously shown, the neglect of terms of small order
+of magnitude led to the Prandtl boundary layer equations.
+We intend to obtain the same differential equation here in another way, i.e., by asymptotic expansion.7
+We start with the Navier-Stokes equations which describe the
+flow of a fluid with friction, and limit ourselves to steady flow in a
+plane. First of all, we shall carry out the calculation for the flow
+
+»L. Prandtl, Verband, des III. Intern. Math. Kongres, 1904 (Heidelberg), Leipzig 1905, p. 484. An English translation is available as NACA Technical Memorandum. No. 452, 1928.
+«H. Blasius, Dissertation Göttingen. 1907. Zeitschr. für Math. u. Phys., 56, 1908.
+p. 1. An English translation is available as NACA Technical Memorandum, No.
+1256, 1950.
+BE. Boltze, Dissertation Göttingen, 1908.
+«K. Hiemenz, Dissertation Göttingen, 1911. Dinglers Polyt. Journal, 326, 1911.
+p. 321.
+'The derivation is universal in agreement with that in the preceding work by
+von Kdrmdn which is available in English as NACA Technical Memorandum, No.
+1092, 1946; on these grounds repetition is perhaps not inappropriate.
+
+along a wall at y = 0. The equations are well known to be
+3u
+
+3u
+
+u
+
+1- v
+3x
+
+3p
+
+p
+I
+
+3x
+dp
+
+p
+
+3y
+
+3y
+
+3v
+
+3v
+
+u
+
+1
+=
+
+l-v
+
+=
+
+3x
+
+3y
+3u
+
+d\
+
+3x
+
+3y
+
+h vAu
+
+\-vAv
+
+(1)
+
+n
+
+Moreover, if the fluid must be absorbed on the wall of the body,
+it must be true also that u = 0 and v = 0 at y = 0.
+The continuity equation may be integrated by the introduction of
+the stream function in such a way that
+u=
+
+and v =
+3y
+
+3x
+
+and we obtain then from the first two equations in (!)
+ty
+
+3 (A*)
+
+3*
+
+3(A^)
+
+3y
+
+d\
+
+3x
+
+3y
+
+= vAAiJ»
+
+(2)
+
+We introduce dimensionless values by dividing all lengths by a
+characteristic length of the geometry, a, and the velocities by a characteristic velocity, ü (e.g., the undisturbed velocity of the fluid at
+infinity), and we write
+^ = aü f (x',y')
+where
+
+x' = x/a and y' = y/a
+
+From this, we change (2) into the form
+aü \ 2
+
+(^)
+
+p af 3 (A^')
+
+3^ 3 (Af)"
+
+aQ
+
+[_ 3y'
+
+3x'
+
+a«
+
+3x'
+
+3y' J
+
+■ pAAifr'
+
+or with R = aO/v (Reynolds number)
+
+3f 3(Af)
+
+3f 3(Af)
+
+1
+=
+
+3y'
+
+3x'
+
+3x'
+
+3y'
+
+AAi^
+
+(3)
+
+R
+
+With the restriction of large Reynolds numbers we require the solu3
+
+tion to be in the form
+f = f(x',y') + R',F(x'.z)
+z = y'R"
+where ß and a are, for the present, undetermined exponents, f (x', y')
+must represent the potential solution which, of course, is a rigorous
+solution of (2); thus,
+Af(x'.y') = 0
+We now consider
+a»F
+AF =
+
+OX'*
+
+3»?
+1
+
+dy'i
+
+a^F
+=
+
+2<r
+
+hR
+
+dx'2
+
+32F
+zt*
+
+Under the assumption that R is very large and a is positive,
+S'F/ax'2 can be neglected. Likewise in
+g^F
+3*F
+34F
+ia
+4
+AAF =
+1- 2K
+1- R " 4
+3x'4
+3x'23z2
+3z
+only the last of the three terms on the right are retained. If these
+expressions are inserted into (3), we get
+3f
+
+33F
+
+Rfl + 2«'
+
+3f
+
+3;'F
+
+z
+
+3x'
+
+3z3
+
+y'
+
+R./3 + 2«'
+
+|_
+
+3y'
+
+3z23x'
+
+r 3F
+
+3:,F
+
+3F
+
+33F "1
+
+3z
+
+3x'3z2
+
+3x'
+
+3z:,
+
+R2fl + 3
+
+— H» + *a-\
+
+I
+
+34F
+
+(4)
+
+3z4
+
+With increasing R, the right and left sides of this equation must go
+uniformly to infinity; thus, the restrictions on ß and a are
+ß + 2a=2ß + ia=ß +4,r - 1
+From this, it is determined that
+„=%
+
+and
+
+ß = —Vt
+
+If we expand f (x',y') in a Taylor series in y',
+f(x',y') = fo + fI(x')y' + ...
+where f(l is a constant, then the wall of the body must be a streamline.
+
+and the differential equation (4) becomes
+
+Bx'az2
+
+3z
+/
+
+3F \ 3« (F + f.z)
+
+\ '
+
+3z /
+
+3x'3z2
+
+3F
+
+a3? ■
+
+3«F
+
+3x'
+
+3z3.
+
+az4
+
+/ af,
+
+d¥
+3F \ 3' (F + f.z)
+
+\ 3x'
+
+3x' /
+
+3z3
+
+3^ (F + f.z)
+3z4
+
+as one can easily prove by differentiation. Letting (F -f- f,z) equal
+G, we obtain
+3G
+
+3SG
+
+3G
+
+3'*G
+
+34G
+
+3z
+
+3x'3z2
+
+3x'
+
+3z3
+
+dz*
+
+(5)
+
+Thus, in terms of the function G, the solution now reads
+f = f (x'.y') + (G - flz)R-v2
+where the boundary conditions for G are
+1) for z=:0:G = 0
+2) for z = 0 : 3G/3z = 0
+3) for z = x : 3G/3z = f,
+
+We have, in fact, obtained a second approximation for the flow
+of a fluid under the assumption of large Reynolds numbers, since in
+the vicinity of the wall i/»' = GR-'/2, then on the wall f(x', y') behaves like ^y' or f,/ R-,/2, and the no slip condition is satisfied at
+y = 0. At infinity, G behaves like ^z; therefore, G — f,z = 0 leaving
+only )/»' = f(x',y'), i.e., the potential solution. If we integrate (5)
+with respect to z, then
+3G
+3z
+
+32G
+3x'3z
+
+3G
+3x'
+
+S'G
+
+3'G
+
+= __ + ^(x')
+2
+,
+
+3z
+
+3z••
+
+We substitute again for x' and z the values x and y respectively and
+write
+3G
+3G
+3y
+
+3x
+
+Hence, we obtain
+du
+
+u
+
+v
+
+|-
+
+dx
+
+32u
+
+3u
+3y
+
+= *(") + »'
+
+ay2
+
+and
+3u
+
+3v
+
+3x
+
+3y
+
+=0
+The function <^(x) is determined from the initial conditions,
+u = 0 and v = 0 for y = 0; therefore,
+
+„
+
+/ 32u \
+
+)
+
+=-^(x)
+
+\ ay2 /y = o
+
+or, when p represents the pressure distribution along the wall, then
+we have from the equation of motion in the x direction
+(Z*ii \
+
+)
+
+ay2 /y = o
+
+=
+
+1
+
+3p
+
+p
+
+ax
+
+= -«Mx)
+
+If this value is substituted for </)(x), we obtain the differential
+equation of the boundary layer which was given by Prandtl in 1904.
+3u
+3x
+
++ v
+
+3u
+
+=
+
+3y
+
+1
+
+3p
+
+p
+
+3x
+
++V
+
+32u
+3y2
+
+(6)
+
+This equation is distinguished from the first equation in (I) by
+the omission of the term v 32u/3xi!. One can, of course, ir mediately
+understand the underlying assumption that the ratio of u to x must
+be vanishingly small compared to division by y; in addition it will
+be found that, in (1), the pressure gradient 3p/3x is now a function
+of x alone. It can be proved that this equation is not changed when
+a coordinate system is introduced at a point on a smooth curved
+wall such that the coordinate distances are measured normal to the
+wall and along the wall; of course, it is assumed that the curvature
+is not too large." We shall always use this coordinate system in the
+future, letting the origin coincide with the stagnation point.
+The thickness of the boundary layer, S, follows from the consideration that it is proportional to a specified value of i|» or that / is
+»See Hiemeiu, Dissertation, p. 3.
+
+of the order of magnitude of unity; hence,
+
+In addition we note that the Navier-Stokes equations are elliptic
+while the Prandtl boundary layer equation is parabolic. From the
+physical point of view, the Prandtl equation is obtained by neglecting
+the small effects within the boundary layer due to a change in volume
+and due to the frictional retardation in the x direction. It is clear
+that such a profound change in the differential equation alters the
+calculated streamlines from the actually observed ones, and it is an
+additional problem to determine to what extent the flows which have
+been calculated by boundary layer theory will agree with real flows.
+The important phenomenon of separation of the flow from a surface which often happens when fluid flows around a body can be
+explained with the help of boundary layer theory. When the thickness of the boundary layer is small compared to the size of the body,
+the pressure gradient across a cross-section of the boundary layer is
+shown to be nearly constant. The velocity distribution in the boundary layer decreases from its value in the potential flow to zero at the
+wall. If there is a pressure rise along the body, then a fluid element
+within the boundary layer near the wall will come to rest sooner than
+one located in the potential flow. The conditions occurring in the
+neighborhood of the separation point will be qualitatively described
+by Figure 1. At the separation point itself, one has the following
+condition
+3u
+a2«/»
+_=0
+at y = 0
+3y
+3y2
+From this, the position of the separation point tan be calculated.
+The boundary layer separates from the wall at this point and moves
+at a definite small angle into the main stream above.
+2.
+
+Derivation of the Kdrmdn Integral Condition.
+
+For the plane, steady state problem the differential equation of
+the boundary layer is
+du
+
+3u
+
+a2u
+
+1
+
+dp
+
+9x
+
+3y
+
+^y2
+
+p
+
+3
+
+In addition, the continuity condition is
+du
+3x
+
++
+
+Sv
+Sy
+
+=0
+
+x
+
+We define a function q (x,y) such that
+u = U - q (x.y)
+(see Fig. 2) where U =: f, is the velocity outside the boundary layer
+which is given by the potential flow. This potential flow is derived
+from the combination of the Eulerian equation and the experimentally determined pressure gradient. It is
+1
+
+dp
+
+dU
+U
+
+p
+
+dx
+
+= UÜ'
+dx
+
+Upon introduction of this function, Equation (6) becomes
+(dU
+dU
+(U - q) '
+dx
+
+3q \
+
+3q
+
+d'q
+
+dU
+
+3x /
+
+3y
+
+3y2
+
+dx
+
+or
+3q
+
+dU
+
+-q
+
+U
+3x
+
+dx
+
++q
+
+aq
+
+aq
+
+3x
+
+3y
+
+— — V
+
+ay2
+
+We integrate with respect to y and obtain
+oo
+
+«
+
+so
+
+oo
+
+du I fqdy - U
+
+^d I rqdy -|
+
+^ I r q2dy — I rv
+
+^dy = — v
+
+dx J
+
+dx J
+
+dx ^
+
+3y
+
+2
+
+•/
+
+The upper limit may be written as oo provided the function q
+goes asymptotically to U. We can assume that, at some distance from
+the wall, the thickness of the boundary layer, q does not vary appreciably from zero. It is enough then for the integral to extend
+from zero to 8.
+After using the continuity equation and after integrating by pans,
+we can write
+X
+
+00
+
+J3q
+x.
+r>
+3v
+V
+dy = [vq] - I q
+dy
+3v
+3v
+0
+J
+3y
+3y
+0
+
+oo
+= [vq]
+
+du
++
+
+0
+
+dx
+
+/»
+
+d
+/■•
+qdy-——
+J
+dx «^
+
+qdy
+2
+
+3q -|x
+
+3y J()
+
+However, [vq]
+
+vanishes at both the upper and lower limits, and we
+0
+
+have left
+ü
+d
+s*
+r
+-2
+{ qdy — U
+I qdy H
+dx J
+dx J
+0
+0
+
+tiu
+
+d
+
+X
+
+r
+I q2dy =: - v
+dx «^
+0
+
+21 x
+3y
+
+0
+
+The boundary conditions which the function q (x,y) must satisfy
+are
+1. u = 0 i.e., q= U at y = 0
+2. u = U i.e., q = 0 at y = x
+3. also, the boundary layer equation must be applicable at the
+surface of the body. Since both u and v are zero at y = 0, it follows
+that
+
+(—)
+=iI
+\ 3y3 /y = o
+
+32(U-q)
+3y
+
+2
+
+dU
+IJ.
+y = 0
+
+dx
+
+Every solution of the boundary layer equation must obviously
+fulfill the integral condition (7). If we now make a simple approximation for the dependence of q on y, e.g., a power series, the coefficients will be only functions of x. An approximation to the solution
+is obtained if one determines all but one of the coefficients
+according to the boundary conditions. The integral condition then
+gives an ordinary differential equation for the determination of
+the remaining coefficient and thereby fixes the dependence of the
+velocity profiles on x.
+Although the original equation for the boundary layer is a partial
+differential equation, we now only have to solve an ordinary differential equation because of the integral condition. It is not difficult
+to refine the approximation further by satisfying the integral condition separately for several subregions (e.g., from 0 to 6/2 and from
+8/2 to 8), and therefore, instead of determining one remaining coefficient, by determining two. Also, there is the possibility of obtaining
+further integral conditions in the following way: one could multiply
+both sides of Eq. (7) by y, y2, ya,
+y". one after the other,
+and could integrate from zero to infinity, and then perhaps the
+
+(7)
+
+function could be determined in analogy with the Stiehjes method
+(i.e., by its moments).*
+However, the following calculations show that the fulfillment ol
+the simple integral condition preserves the physical meaning of
+boundary layer theory and determines the velocity distribution with
+sufficient accuracy for practical purposes. The particular example of
+the flow around a cylinder shows that our method is a far better
+method of calculation than a previous method due to Hiemenz
+(Taylor expansion in x and the solution of a series of ordinary
+differential equations for the determination of the coefficients of the
+series) since after the solution of a single differential equation one
+obtains values which are comparable in accuracy to those obtained by
+the solution of four or five differential equations when the other
+method is used.
+It is shown in the earlier work, by von Kdrmjin" that the integral
+condition may be derived on the basis of physical considerations.
+3. TheFloxu Along a Flat Plate.
+First, we will use our approximate method for the integration
+of the differential equation of the boundary layer for the case of a
+flat plate when the plate is parallel to the streamlines of the uniform
+stream. The velocity, U, outside the boundary layer is thus a constant, and the differential equations (6) read
+du
+
+32u
+
+3u
+-f- v
+
+9x
+
+du
+
+= v
+
+and
+3y'J
+
+3y
+
+3v
+1
+
+=: 0
+
+3x
+
+3y
+
+The integral condition (7) simplifies to
+
+-U
+
+8
+
+d
+
+r
+
+dx
+
+J
+
+qdy +
+
+8
+
+^
+
+f
+
+dx
+
+*s
+
+P
+
+S(
+
+I
+
+^Y
+
+q*dy =-P\
+
+i ~1^
+|
+
+—[0
+
+'Editor's Note: I'ohlhausen's suggestion has been partially exploited by L. G.
+Loitsianskli, S'ACA Technical Memorandum. No. 1293, 1951, who used the zero
+(the Kiirniiin monicimim equation), the first, and the second order moments integral
+equations. The complete Stieitjcs method remains to lie done.
+"This volume, page 233 to 2.'2. An Knglish translation is available as SACA
+Technical Memorandum. No. 1()92, 1946.
+
+10
+
+The boundary conditions are u = 0 at y = 0 and u = U = const,
+at y = oo for the differential equation and q = U at y = 0 and
+q =: 0 at y = «for the integral condition. In addition
+
+(-)
+\ ay* / y ^ o
+
+=
+
+As Blasius showed in his dissertation, the example of the flat
+plate permits the reduction of the partial differential equation with
+the help of a similarity transformation to an ordinary differential
+equation of the third order. Blasius integrated the continuity
+equation by use of the stream function, i|», where
+u—
+
+and
+
+v=
+
+dy
+
+3x
+
+and introduced two new variables ^ and { in such a way that
+
+Thence,
+u = %U{'
+
+and
+
+1
+v =r —
+2 \ px
+
+where the primes indicate differentiation with respect to f. If these
+values are substituted into the boundary layer equations, we obtain
+
+C" + «" = o
+The numerical integration of this equation has been worked out
+by C. Töpfer by use of the Kutta method.'"
+For the shear stress on the plate, Blasius obtained
+3u
+= 0.332
+
+T, = ^
+
+Sy
+
+(47
+
+We now proceed to give also a solution for the Hal plate using
+the approximate method based on the integral condition. We ex-
+
+KiDescribed by C. Runge, Xeitsrhroft für Math, und Phys., 1912, p. S97. The
+development of the function £ and its derivative is also given by K. Pohlhausen,
+Z.AM.M.. I. 1921, p. 119, Fig. I.
+
+II
+
+pand q in a power series in y.
+u = U - q = a (x)y -f b (x)y!! + c (x)y■, ^
+1. The series is terminated after the first term, thus
+q = U - a (x)y
+For the upper limit of integration we insert 8. We also replace the
+boundary layer profile by a curve. The boundary condition is
+u = U for y = S; thence, U = a8
+We have to make the following calculations:
+6
+
+ö
+
+y2 "18
+U8
+n
+i =
+, I q-ily = U2
+28 _[()
+2
+J
+0
+8
+U8'
+d
+^
+U28'
+•»
+Uö
+u
+s> 2
+r
+I qdy =
+.
+1 q dy =
+J
+•/
+2
+dx ^
+»^
+3
+0
+0
+
+Jp
+qdv = U y
+0
+d
+tl
+dx
+tlx
+
+ya
+
+f -|8
+
+U-8
+
+8
+
+2
+
+3
+
+38 J()
+Sq
+
+and
+
+U
+=
+
+3y
+
+Therefore, the integral condition may be written*
+U28'
+
+U28'
+1
+
+U
+
+6j/
+
+= —v
+
+or 88' =
+8
+
+II
+
+Consequently,
+
+-^)
+For the shear stress wc then obtain
+,. = 0.289 (_j
+2. Next, we obtain a better value by approximating the velocity
+distribution with a parabola and by requiring that 9q 'dy equals zero
+at y = 8. Ol course, we must relax the condition at the wall that
+a-'u 'By2 = 0. Thus q=U — u = U — ay — by2; therefore, a and b
+
+•Kclitor'» Note: The value of
+
+r 91
+
+of the (liscontimiiiy in 3c|/3y at y = 8-
+
+12
+
+18
+
+i must he taken to be —178 because
+
+.M."t 'UMiipiii..1]wn)wii|iiiafpniMiiamBjBwmniWWP»»»')'»mmt-mtmmvr.zrmmmmfvm/im'eir'v'rrmi'A***1 "■" ■" »•'
+
+are equal to 2U/8 and — U/82 respectively.
+necessary integrals
+JU8
+qdy =
+
+?»■•.■ v--' ■ ■ ■
+
+We again form the
+
+U^S
+•>
+I q2tly =
+
+and
+
+()
+and it follows from these that
+il
+
+8
+JU8'
+
+qdy =
+
+tl
+
+,
+
+3
+
+dx
+
+dx
+
+/»
+
+I q:idy =
+J
+
+11^8'
+5
+
+o
+and
+
+aq
+
+2U
+
+L 3y Jo
+
+8
+
+With the helj) of the integral condition one obtains
+1
+
+I
+
+3
+
+5
+
+2vV
+
+"t
+
+UW
+
+8
+
+I 30|/x X'-and 8 = (
+)
+\ U /
+
+and for the shear stress
+= 0 365
+
+-
+
+(—)
+
+The first approximation yiekls a value about 13 per cent too small
+while the second approximation gives a value about (j.5 per cent too
+large.
+3. To satisfy both conditions (no discontinuity in the velocity distribution and the boundary condition for a'^q/ay-' at the wall), at least
+three terms must be retained in u. We let
+u = ay -f by'-' -|- cy'1
+The functions a, b and c are determined from the boundary
+conditions:
+I.
+
+u = U
+
+for
+
+y = 8 gives U = a8 + b8:! -f 18'
+
+3u
+2.
+
+= 0 for y = 8 gives 0 = a -f 2b8 -f 3c83y
+/ 32u \
+(
+)
+
+\ ay /y = "
+
+I'll'
+=
+
+v
+13
+
+= 0 and, si nee L" - 0. b = 0.
+
+' * • v ■*•» ■ ■
+
+We obtain then the equations for the unknown functions, a and
+c, in the form:
+U = a8 + c8s and 0 = 3 + ic82
+From these it follows that
+SU
+
+U
+
+28
+
+283
+
+and q = U
+
+a=
+
+1 -
+
+28
+
+The integrals become
+J3U8
+
+33U2S
+
+/•
+
+qdy = —J q^ =
+
+140
+
+and
+3U
+3y
+
+28
+
+0
+
+The resulting differential equation for 6 is
+3
+
+33
+
+3v
+
+140
+
+28
+
+U8'
+Therefore,
+/ 280i>x \^
+
+8
+
+=(^r)
+
+464
+
+/
+
+vx
+
+\%
+
+= ( —)
+
+The friction factor for this approximation is 0.323, i.e., a value
+which is about 3 per cent too small.
+4. Since the function q goes to zero like exp (—xy2) according to the
+exact boundary layer theory, one can expect that a still better approximation could be given if a smooth connection to u = U is made at
+y = 8. As a fourth and last approximation we take four unknown
+functions, a, b, c and d, so that
+u = ay -(- by2 + cy'1 -f dy4
+and impose the following additional conditions:
+32u
+I. for y = 0
+
+:
+
+UU'
+
+=
+2
+
+= 0
+
+3y
+2. for y = .
+
+u = U
+14
+
+^V'WfWWS»
+
+ii<RH«nMMM> ^»"l^'l'■'■1M'3'S?*
+
+3. for y = 8
+
+:
+
+3u/3y = 0
+
+and 4. for y = 8
+
+:
+
+32u/3y2 = 0
+
+From these we see that the equations for the determination of the
+functions are
+a + 2b8 + 3cS2 4- 4d8:, = 0
+a8 4- bS2 + eg' -f d84 = U
+b=0
+and
+2b + 6c8 + 12d82 = 0
+The solution is
+a = 2U/8. b = 0, c = - 2U/8:, and d = U/84
+so that
+q= U — u = U
+
+y
+
+1 -2
+
+8
+
+2
+
+h
+
+y3
+
+y4
+
+e»
+
+84
+
+and
+8
+
+°
+I
+J
+
+3
+
+qdy =
+n
+
+23 2
+r
+U 8 and
+U8. I q2dy =
+10
+J
+126
+
+Sq -16
+—_ I :=2U/8
+3y
+
+10
+
+The integral condition yields
+630i;
+
+8' =
+37U8
+and from this
+(SHj/x X'i
+
+=5 5
+
+/
+
+vx
+
+V*
+
+^r) " ( —)
+In this case the friction factor is 0.343. This value is about 3
+per cent too large so that this approximation has about the same
+accuracy as the preceding one. The additional calculations required
+by the fourth approximation have been retained since the smooth
+connection of the velocity distribution to the external flow at y = 8
+15
+
+lends confidence and since the velocity distribution will retain its
+physically sensible form, i.e., values larger than U will be avoided.
+The values of the friction factors which have been given by the
+various approximations are given in Figure 3. In order to obtain a
+picture of the development of the boundary layer profiles, the corresponding profiles are determined for U = I, x = 1 and j/ = 1.
+(Compare Fig. 4.)
+Approxi mation
+y
+0
+i
+2
+3
+4
+5
+
+I
+
+II
+
+III
+
+IV
+
+Exact
+Solution
+
+0
+0.289
+0.578
+0.867
+1.000
+1.000
+
+0
+0.332
+0.597
+0.796
+0.927
+0.991
+
+0
+0.318
+0.606
+0.834
+0.972
+0.990
+
+0
+0.334
+0.619
+0.828
+0.948
+0.995
+
+0
+0.329
+0.629
+0.846
+0.955
+0.990
+
+Finally, let the "displacement thickness" be S*, i.e., the quantity
+indicating the outward displacement of the streamlines of the potential flow. It is defined by
+
+— 1 q^'y
+u ^
+0
+For the various approximations, one obtains
+Approximation
+
+i^r
+
+I
+
+II
+
+III
+
+IV
+
+Exact
+Solution
+
+1.73
+
+1.83
+
+1.74
+
+1.75
+
+1.72
+
+4. The Flow Around a Body with a Given Pressure Distribution.
+The original idea of the Prandtl boundary layer theory was
+that Eq. (6), together with the continuity equation—in combination
+with the theory of potential How of an ideal fluid—sufficed to determine the velocity distribution in the boundary layer. Thus the
+third dependent variable, p, which appears in both equations, must
+be eliminated in such a way that one fixes the value of the pressure
+16
+
+gradient, dp/dx, by the potential solution along the boundary line;
+moreover, the value LJ, in the boundary condition, must also be found
+from the potential solution. It was in this way that our example was
+treated in Section 3 with dp/dx = 0 and U = const. However, the
+previously mentioned investigations of Blasius, Boltze, and Hiemenz
+ha"e shown that no satisfactory agreement with observations can be
+found. Hence, following a suggestion by Prandtl, Hiemenz has developed another method: he experimentally determined the pressure
+distribution along the boundary and introduced this and the calculated distribution of U into the differential equation and the boundary conditions. We will treat the case of a pressure distribution given
+by experiment. In this general case, we must take into account that
+separation occurred as it is described in Figure 1. Thus it is useless
+to represent the function u, which must describe the velocity in the
+boundary layer, by a polynomial of the first or second order in y
+since the first algebraic function that can show an inflection point is
+one of the third order. To obtain a better approximation, we will
+also include the term y4 and will write
+u = ay -f by2 -j- cy" + dy4
+where u = U — q as before. The thickness of the boundary layer is
+again 8. The boundary conditions are
+1. for y = S
+
+:
+
+3u/3y = 0
+
+2. for y = 8
+
+:
+
+u= U
+
+3. for y = 0
+
+:
+
+and 4. for y = 8
+
+:
+
+a2u
+
+UU'
+
+Sy2
+a^u/ay2 = 0
+
+where the fourth condition is chosen arbitrarily as we did in the
+case of the flat plate.
+
+The four unknown functions, a, b, c, and d, are now determined
+with the aid of these conditions. From condition 3., it follows immediately that the function b can be determined only by the given
+pressure distribution and is
+UU'
+2i/
+
+17
+
+The remaining conditions furnish equations for a, c, and d,
+and they are
+a +2b8 + 3c82 + 4d83 = 0
+a8 + b81! -f c83 + d84 = U
+and
+2b + 6c8 + 12d82 = 0
+From these, the pertinent values are found to be
+U
+a^
+
+UU'
+(12+ X)
+
+b=
+
+UX
+=
+
+68
+
+282
+
+2v
+
+-U (4 - X)
+
+U
+
+c=
+
+and
+
+d=
+
+(6 — X)
+
+664
+
+28'
+where X is the dimensionless number U'82/»'.
+
+As a help in the formulation of the integral condition, we now
+calculate
+r
+
+)
+J
+
+U8
+qdy =
+
+(36-X)
+120
+
+JU28
+
+/
+
+q^y = — Me
+252
+
+X3 \
+
+II
+
+\
+
+6
+
+I
+
+A
+
+36 /
+
+0
+and form
+
+u
+«Ix
+
+8
+
+U8' !r
+I (|<I> =
+12
+^40
+
+U'8- "[3
+-f
+U'8
+10
+v
+
+r
+
+8'
+
+[(U')2 + UU"]
+
+120J;
+
+aiu'
+
+(1
+
+r
+
+dx
+
+•/
+
+q»dy =
+
+o
+
+11
+151?
+
+U 8' r
+126
+118'
+
+i_
+
+23
+
+11
+
+U'S-
+
+4
+
+v
+
+[2 (U')J + UU"] -f
+
+v
+
++
+
+(U')-84 -]
+
+5
+
+v2
+
+72
+
+UU'8'
+4536v
+
+2
+
+18
+
+-|-
+
+J
+
+-r(U')2-(-uu"]
+
+23
+63
+
+UU'8
+
+.-' '-rw-^i^^tt'-^Ttfw.'-i"- ■ :. ■-.■■
+
+If we put these expressions into the integral condition (7) and
+if we simplify the resulting expression, we obtain the following
+differential equation:
+8^
+
+116
+
+-2,-f
+d8
+
+U'S-
+
+U'8,;
+. [79 (U')- + 8UU"] -
+
+756()i/
+
+315
+
+dx
+
+4536I/2
+
+37
+
+V'6-
+
+5
+
+(U')-84
+
+315
+
+315J/
+
+9072
+
+p-
+
+.[(U7 + UU"]
+
+or, when we again introduce \ and replace 8V»' by /.
+
+dz
+
+r
+r
+UU"
+0.8 i -9072 4- 1670.4\ - ! 47.4 + 4.8
+(U')«.
+
+dx
+
+U (-213.12+ 5.76X+\-)
+
+UU"
+XJ
+
+The solution of this nonlinear ordinary differential equation ol
+the first order gives us the variation of the thickness of the boundary
+layer as a function of the curvature of the body.
+We first note that the boundary layer has a definite finite thickness at the stagnation point of the body; thus, the differential equation
+has a singular point at x = 0 and 8 = 8„ where 8„ is a real positive
+root of the cubic equation
+-9072 + 1670.4X -
+
+47.4 _|_4.8
+
+UU""]
+I \-
+
+UU"
+1 -4-
+
+X' = o
+
+To determine the thickness of the boundary layer, we have to select
+the integral curve which passes through the singular point. The
+tangent of the boundary layer profile must be perpendicular to the
+wall at the point of separation; hence, it follows that
+a-
+
+U
+
+(X+12)=0
+
+or
+
+X^-I2
+
+68
+We will now employ the universally valid differential equation,
+which we previously derived, to the example of the flow around a
+circular cylinder which is placed in a uniform stream. The pressure
+distribution for this example was experimentally determined by
+Hieinen/. By measuring the pressure distribution, his experiment,
+which was performed in water with a cylinder of 97.5 mm in diameter
+19
+
+and a flow velocity in the undisturbed fluid of 19 cm/sec, gave
+U = 7.151x — 0.04497x' _ O.OOOSSOOx5
+where the ire length, x, was nuvsured in cm. We form U' and U"
+(see Fig. 5) and assume the density of the water to be I and the
+viscosity to be 0.01.
+First we calculate the thickness of the boundary layer at the
+stagnation point as the root of the cubic equation; this calculation
+f^ives
+X,1 =
+
+U'8,r
+
+= 7.052
+
+or
+
+8,, = 0.09931 cm.
+
+The solution of the differential equation can be obtained either
+by graphical means or by the following method: substitute a series
+expansion for the solution, which is horizontal at the singular point,
+x = 0 and 8'-' v = h^/v, and then extrapolate this curve using some
+method of calculation. We elect to solve the differential equation
+graphically by use of the Method of the Isoclines. Accordingly, let
+(1/
+dx
+
+P (x,z)
+=X=
+
+Q(x.z)
+
+and calculate the values of ^ «s a function of x for the values
+/ = S2 v = 0, I, 2, 3, 4, and 5. These values are obviously infinite
+along th».' abscissae for which the denominator vanishes. This is the
+case for X, = 12 and \., — _l7.7fi. Using the curves, / — const., we
+now construct the direction field for the differential equation. We
+draw in the coordinate system x, 8- >, the curves ^ = const., and
+in this way we obtain Figure (». A more detailed discussion of the
+differential equation reveals that the singular point, x = 0 and
+8- v = 8,,-»', is a saddle point." Thus only two isoclines—the one
+with a horizontal tangent is sought—pass through this point. If we
+take an arbitrary point in the plane ; id attempt to construct from
+this point the integral curves by use of the isoclines, then the curves
+return to either plus or minus infinity because of the above-mentioned
+singular point. In this way, we obtain a rigorous criterion for the
+desired integral curve \y.' sing through the singular point. The arc
+length to the separation point we find as the abscissa of the inter"See, CR., Horn, ('•ncölinlirhr Oillerrtiliiilnleirlmunrn lifliehiurr Ordnung,
+Leip/ig, 190S, p. 3S.1.
+20
+
+■ ■ ^."..».^-.^r-i .f^--■-#•-?,■$-!
+
+section of the integral curve and the curve X — —12. This gives
+\u = 6.94 cm.
+Hiemen/ in his dissertation has made an attempt to solve the
+differential equation of the boundary layer for the case of the cylinder
+in an entirely different way. With the aid of the stream function, ty.
+one can write
+3^
+Sy
+
+a2»/»
+3x3y
+
+dif/
+3x
+
+d-ij/
+Sy-'
+
+dp
+dx
+
+d if/
++ /*■
+
+3y:'
+
+He expanded the pressure gradient dp dx into a power series in x,
+and let the stream function be
+^ = I^X + f.X» + |//:,X'
+thus describing the solution in the form of a Taylor series about the
+origin. The partial differential equation can then be reduced to an
+infinite series of ordinary differential equations. From this system,
+he solved the first three without testing the convergence and maintained that i/» is determined sufficiently close and that iji-, i/f,,, etc., do
+not exert a substantial influence. He obtained a value of 6.977 for
+the separation point which is approximately the value derived above
+and which agrees very well with experiment.
+As a result of graphical manipulation the approximate method
+has a great advantage in giving better insight into the development
+of the boundary layer. We recognize immediately from Figure 8,
+which is explained below, that it is impossible to describe correctlv
+the development of the integral curve from the stagnation |K)lnt to
+separation point with three terms of a Taylor series. Also, the geometrical location of the separation point—the curve X — —12—results in an isocline with a very large slope so that considerable change
+in the structure of the integral curve brings a relatively small displacement in the position of the separation point. Hiemen/ thought
+that this loss of sensitivity in the position of the separation jjoini was
+a test of boundary layer theory.
+However, the difference between our approximate solution and the
+one of Hiemem was very considerable when one calculated the profile of the boundary layer for some value of x. The solution of Hiemenz altered the thickness of the boundary layer only very little; it
+amounted to about 1 mm.
+The boundary layer of the approximation agreed at the stagnation point with the one of Hiemenz. On the other hand, at the
+21
+
+separation point 82/p = 384, the thickness S = 196 mm. thus
+doubled in size.
+In Figure 7, the displacement, 8*, is given, both according to
+Hiemenz and according to the above solution. It is defined as
+
+0
+
+0
+
+If we substitute the >alue U — ay —by- — cy11 — dy4 tor q then
+we obtain, after the evaluation of the integral with the help of the
+dimentionless parameter \ = V8'J/v,
+t
+
+V U' /
+
+\ 10
+
+120 /
+
+The following table gives the calculated values as a function of the
+arc length of the cylinder.
+
+0
+i
+F^T! 086 0.990
+8 mm 0.993 0.995
+8»mmi 0.239 0.241
+x-tni
+
+2
+3
+4
+1.02 1.08 Tfl
+1.01 1.04 1.10
+0.246 0.258 0.279
+
+5
+5.5
+6
+6.5
+6.75 6.94
+1.44 1.62 1.92 2.48 2.94 ^STsT
+1.20 1.27 1.39 1.57 1.71 1.96
+0.320 0.354 0.414 0.520 0.614 0.784
+
+We suspect that our solution offers a better approximation to the
+actual development of the boundary layer. In order to show the
+difference dearly, the development of the velocity in the boundary
+layer was calculated in Figure 8 for y = 0.374 mm (in the case of
+Hitmen/, H = 1). In addition, the individual terms of Hiemenz'
+series development have been shown. This shows that Hiemenz" solution probably converges to our approximate solution, that the
+number of calculated terms i//,, is quite insufficient and that the least
+one should do is calculate «|!rT and ifi.,. It appears therefore that in
+this case a series expansion about the stagnation point is unsuccessful since the variation in the velocity profiles first became noticeable
+at large values of x where the Taylor series converges slowly.
+5. The Flow Between Non-Parallel Walls (Diguser).
+An additional example of the integration of the boundary layer
+equation is the How in a diffuser.
+We treat the simplified case of two straight and nonparallel walls
+22
+
+~!-i-X,:.
+
+.,,,.»,, -,,».,,,.„,„,:„,,„„
+
+BC and DE (Fig. 9). We extend the straight segments to the intersection at 0, and let the distance OB be unity. OC is the x coordinate in our system. At the point 0, we assume now a source whose
+strength is 27rA. It is then obvious that the radial velocity distribution is
+U = A/x
+This value is now put into the universally valid differential equation
+(8). We obtain the value 2 for UU"/(U')-; thus the differential
+equation becomes
+dz
+
+0.8 [—9072 + 1670.4X-57\- -SX']
+
+dx
+
+(A/x)[-2I3.12 + 5.76\ + X^]
+
+where
+d/
+X = /U' = - Az/x-
+
+and
+
+x
+=
+
+(2X + X'x)
+
+dx
+
+A
+
+If these values are inserted into the differential equation, we get
+x
+
+dX
+
+—0.2V — 17.04X- + 455.04X — 3628.8
+
+2
+
+dx
+
+-213.12 + 5.76X+ X-
+
+and by separation of variables
+2
+
+_213.I2 + 5.76X + X;-'
+
+dx
+
+18144 - 2275.2X + 85.2X- -f X3
+
+dX
+
+Separating the rational function on the right hand side into
+partial fractions and integrating, we note that two of the terms arc
+zero and that X is given by
+2
+
+107.85 + X
+Inx = 0.7581 In
+
+X- — 22.65X + 168.2
+f- 0.1210 In
+
+107.85
+f
+-0.0664 \ arc tan
+[
+
+168.2
+
+2X - 22.65
+12.65
+
+]
+1- arc tan 1.790 I
+J
+
+If we take the condition for separation to be X = —12, then
+23
+
+we have
+2
+
+lnx0 = 0.7581 In 0.8887 + 0.1210 In 3.471
+
+5
+— 0.0664 [arc tan 1.790 - arc tan 3.688]
+or x0 = 1.214 for the separation point.
+We have thus obtained the remarkable result that even lor linear
+tlittusers with an arbitrarily small opening angle, the boundary layer
+theory always gives a separation point; the latter corresponding to a
+cross-section widening of 1.214:1, i.e., about 21-22 per cent. However,
+this result is not physically realistic since the actual pressure distribution deviates from the one based on the present analysis in the
+neighborhood of the separation point: in particular, the primary
+flow is mostly turbulent.
+One must give an entirely difterent treatment lor the convergent
+channel. We plare a sink at the point 0 whose strength will be denoted again a?
+v. For this case, the radial velocity distribution is,
+r = — A/x, and the differential equation is now
+x
+
+dX
+
+X' + 12.98X- - 400.6X + 1649
+
+4.4
+
+dx "~
+
+213.12-5.76X-X-
+
+The integration proceeds again by the method of separation of
+variables
+dx
+4.4
+
+213.12-5.76X-X=
+
+x
+
+X11 + I2.98X- — 400.6X + 1649
+
+dX
+
+and yields
+.4 lux = 0.2473 In (X - 10.34) - 0.9115 In (X - 5.530) - 0.33631n (X + 28.85) + C
+As anticipated, this How gives no separation point.
+The rigorous integration of the Navier-Stokes equations has been
+accomplished by others for the previous example of the sink with
+infinitely long walls, thus a comparison should be made between
+their solution and the approximate solution.*
+•Kilitor'» SttU-. Die siiggc-slccl (oniparison was made by K. MilUips anil K,
+I'ohlhaiisin. Jour. Aero. Sri.. Vol. 2(1. p. 191. IftVi.
+
+24
+
+We pul the stream function in the form
+i|« =: i|/(t)
+
+where
+
+t =. y x
+
+and obtain
+3i|/
+
+1/1'
+
+Si//
+
+yt//
+
+ay
+
+x
+
+3x
+
+x-
+
+x:i
+
+3x
+
+x-
+
+3y
+
+x-
+
+x3
+
+3y-
+
+The pressure gradient, dp/dx, is calculated as
+I
+
+dp
+
+p
+
+dx
+
+A-
+
+- mr =
+
+X''1
+
+If wc substitute these values into the boundary layer equation, we
+get an ordinary differential of the third order
+- WY = -A» + injj'"
+Letting i/>' equal {,
+
+-C = -A-' + ^C"
+or
+-% J1 = -A-f 4- H i/ ({')- + B
+The integration constant B is determined by the condition thai
+J — —\ for J' = 0: it then follows that
+2
+
+£:'
+
+v
+:
+
+B =
+
+s
+
+A < and
+
+({') =
+
+3
+
+2
+
+/
+
+3v
+
+/
+
+V-'
+
+\
+
+f- A^ +
+3
+
+s
+
+'" (i + A) (2A ~ 0
+
+( ^T )
+
+\ x
+
+'iA1
+
+2
+
+>/
+
+(£+A)(2A-C),/!
+
+We now make the substitution (j = 2(2A — {)' 25
+
+3
+
+or
+
+dq
+
+(2A - C),/1!
+
+and then obtain
+2A-{
+
+The integration constant a is determined from the condition,
+{ = 0 for y = 0,
+2 — Stanh^a = 0, tanh
+so that
+
+- (4-r
+
+{ = 2A — 3A tanh2
+
+1.146 +
+
+or
+
+a = 1.146
+
+(4)'^:
+
+The velocity profiles for the exact solution, for A = \, v = I.
+x = 1, and for the approximate solution are shown in Figure 10.
+The root which is used for the approximate solution is 10.34.
+
+26
+
+■"'''•'•"""«'""• ««n?y»..m.,.
+
+s
+"5
+c
+
+2
+
+be
+
+x
+c
+
+27
+
+xFigure 2.—The Velocity Deficiency Function.
+
+2«
+
+(i
+
+IT
+ii
+
+-ILexact solu
+
+4 approximation
+Figure 3.—Friction Factors for a Flat Plate.
+
+29
+
+i
+
+!
+
+n
+
+«I
+
+£
+!
+
+■a
+0
+
+1-I
+
+'X
+3
+
+\
+•0
+
+\
+\
+
+\
+^
+o
+"■>'
+
+•
+o
+
+•
+ö
+
+*
+ci
+
+«I
+«a
+
+30
+
+3S
+
+■
+
+y
+/
+\
+
+/
+
+24
+
+/
+
+SO
+
+/
+
+ie
+
+/
+/
+
+ii
+
+/
+r
+
+h
+/ /
+
+u'
+
+—-
+
+3
+
+S
+
+"
+
+•*^_
+
+""
+
+4
+
+IF*
+
+N
+
+«
+
+7
+
+-^-H-
+
+Ns
+
+-4
+
+a
+
+\
+
+-a
+-is
+
+Figmc 5.—Velocity ot Flow Outside the Boundary Layer on a Circular Cylinder.
+Experimental Data by K. Hiemenz.
+
+31
+
+32
+
+S3
+
+'yJj.iir'y*
+
+Figure 8.—
+
+>) within the Boundary Layer on a Circular Cylinder at u Fixed
+Distanre from the Cylindrical Surface.
+
+31
+
+c
+
+be
+S
+
+2
+
+I
+
+35
+
+*
+
+^
+
+to
+
+5
+
+8
+
+1 '
+
+s
+
+i
+
+1
+
+*1
+
+1 1
+
+l\
+
+—•
+
+;l\
+
+II
+
+.l\
+
+c
+
+■a
+
+\\
+\\
+
+%
+
+Sf -
+
+%
+
+A
+vA
+
+\ k.
+
+«M
+
+\
+
+I
+d
+
+V
+\
+
+a
+
+V
+\
+
+§
+
+S
+
+5
+36
+
+r
+
+li
+
+Security Ciassificntion
+DOCUMENT CONTROL DATA
+
+K^U
+
+iv^i- 'hf nvnrtti ffpcrt fa c la$al***'11
+fSocu./ly cliflllcallon of l/ll«, tody of «tn(r«c( and Indtxlnt mnnolnllon (mi«( t» on».
+2«' flCPORT »ECUHI TV C LAfirirtf A riON
+l omnlNATIN O ACTIUITV (Corporal» author)
+
+Unclassified
+
+University of Florida
+
+2h cnouf
+
+3 nrpQRT TITLE
+
+The Approximate Integration of the Differential. Equation
+for the Laminar Boundary Layer
+-,
+
+DESCRIPTIVE NOTES (Type of repof» and fncfuafve dafaa>
+
+Technical Report
+S AUTHORfSJ ftaaf nomo. f/rsf nama. inlliitl)
+
+Pohlhausen, Karl; translated by Anderson, Roland C; . ') ! od
+by Fearn, Richard L. and Millsaps, Knox.
+7^. TOTAL NO. OF PAGF.ri
+
+6 DEPO RT DATE
+
+March 1966
+On. CONTRACT OR GRANT NO.
+
+i lh. NO. OK UK *
+
+36
+9a. ORIGINATOR'S REPOHT NUVOCRfS)
+
+Nonr 580 (14)
+b. PROJttCT NO.
+
+9b. OTHER RFPORT N O^S; (A ny other numbert thmt mmy b* mtittintd
+fftfa report)
+
+10. A VA I LABILITY/LIMITATION NOTICES
+
+Releasable without limitations on dissemination
+11. »UPPUEMENTARY NOTES
+
+12. SPONSORING MILITARY ACTIVITY
+
+Mathematics Branch
+Office of Naval Research
+Washington. P. C. 20360
+13. ABSTRACT
+
+One of the more frequently quoted papers in fluid dynamics
+is the article by Karl Pohlhausen, "Zur naherungsweisen Integration der Differentialgleichungen der laminaren Grenzschicht,"
+which appeared on pages 252-268 of Volume I of the Zeitschrift
+fur angewandte Mathematik und Mechanik. Consequently, it seems
+appropriate to make an English translation of the original
+German paper widely available.
+While the approximate integration technique which the article outlines has been superseded in large measure by substantial
+improvements, the kernel of all useful methods is given in the
+original paper. Moreover, many other important results of
+permanent value to fluid dynamics are presented, e.g., a mathematical derivation of Karman's momentum equation from the
+boundary layer equation and the mathematical description in
+finite closed form of the steady two dimensional laminar flow
+in a converging channel according to boundary layer theory.
+
+DD /Ä 1473
+
+Unclassified
+Security Classification
+
+I-
+
+_i
+
+Security CUssificalion
+u;. K M
+KEY WORDS
+
+BOLT.
+
+WT
+
+Hydrodynamics
+Fluid Mechanics
+Boundary Layer Theory
+
+INSTRUCTIONS
+Imposed by security rlasslficntion, using standard statements
+such ss:
+(1) "Qualified requcslers may obtain copies of this
+report from DDC-,P
+(2) "Foreign announcement and dissemination of thla
+report by DDC Is not authorized."
+(3) "U. S. Government agencies may obtsin copies of
+this r«tporl directly from DDC. Other qualified DDC
+users shall request through
+
+1. ORIGINATING ACTIVITY: Enter the name and addr»«
+o( the contractor, tubconlractor, grantee, Department of Defenaa activity or other organization (corporal» author) iaaulng
+the report,
+2a. REPORT SECUMTY CLASSIFICATION: Enter the overall aecurlty claaaiflcatlon of the report. Indicate whether
+"Reatrlcted Data" la included. Marking la to be In accordance with appropriate aecurity regulallona.
+26. GROUP: Automatic downgrading la apaciflcd in OoD Directive 5200.10 and Armed Forcea Induatrial Manual. Enter
+the group number. Alao, when applicable, ahow that optional
+markings have been uaed for Group 3 and Group 4 as authorised.
+3. REPORT TITLE: Enter the complete report title In all
+capital lettera. Titles In all cases should be unclassified.
+If a meaningful title cannot be selected without classification, show title classification in all capitals in parenthesis
+immedlataly tallowing the title.
+4. DESCRIPTIVE NOTES: If appropriate, enter the type of
+report, e.g.. Interim, progress, summary, annual, or final.
+Give the Inclusive dates when a apecific reporting period la
+covered.
+5. AUTHOR{S): Enter the name(s) of authors) as shown on
+or in the report. Entei last name, first name, middle Initial,
+If military, ahow rank and branch of service. The name of
+the principal .uthor is an absolute minimum requirement.
+6. REPORT DATE: Enter the dste of the report as day,
+month, year, or month, year. If more than one dale appeara
+on the report, use date of publication.
+7a. TOTAL NUMBER OF PAGES: The total page count
+should follow normal pagination procedures, i.e., enter the
+number of pages containing information.
+7b. NUMBER OF REFERENCES: Enter the total number of
+references cited in the report.
+Ba. CONTRACT OR GRANT NUMBER: If appropriate, enter
+the applicable number of the contract or grant under which
+the report was written.
+Sb, 8c, ti id. PROJECT NUMBER: Enter the appropriate
+military department Identification, such as project number,
+•ubproject number, system numbers, task number, etc
+' . ORIGINATOR'S REPORT NUMBER(S): Enter the offlclal report number by which the document will be Identified
+and controlled by the originating activity. This number must
+be unique to this report.
+90. OTHER REPORT NUMBERS): If the report has been
+assigned sny other report numbers (either by (he originator
+or by (he sponsor), slso enter this number(s),
+10. AVAILABILITY/LIMITATION NOTICES: Enter any linv
+Itaiions on further dtsseminstion of the report, other then those
+OPO »•••S»1
+
+(4)
+
+"U. S. military agencies msy obtain coplea of this
+report directly from DDC Other qualified uaers
+shall request through
+
+(5)
+
+"All distribution of this report Is controlled. Qualified DDC users shall request through
+
+If the report hes been furnished tc the Office of Technical
+Services, Department of Commerce, for sale to the public. Indicate this fact and enter the price, if known.
+11. SUPPLEMENTARY NOTES: Use for additional explanatory notes.
+12. SPONSORING MILITARY ACTIVITY: Enter the name of
+the departmental project office or laboratory sponsoring (pay
+tng tor) the research and development. Include address.
+13. ABSTRACT: Enter an abstract giving s brief and factual
+summsry of the document Indicstive of the report, even though
+it msy also appear elsewhere in the body of the technical report. If additional apace ia required, a continuation sheet shall
+be attached.
+It is highly desirable thst the sbstrsct of claaaified reports
+be unclassified. Each paragraph of the abatract shall end with
+an indication of the military security claaaiflcatlon of fie information in the paragraph, represented aa (TS), (S), (C), or (V)
+There is no limltstion en the length of the abstract. However, the suggeated length is from ISO to 23S word*.
+14. KEY WORDS: Key words are technically meaningful terms
+or short phrase« that characterixe a report and may be uaed aa
+index entrlea for cataloging the report. Key words must be
+selected so that no security clsssificatlon ia required. Identifiers, such ss equipment model designstion, trade name, military
+project code name, geographic location, may be uaed aa key
+words but will bo followed by sn indication of technical context. The assignment of links, rules, and welghta ia optional.
+
+Unclassified
+Security Classification
+
+

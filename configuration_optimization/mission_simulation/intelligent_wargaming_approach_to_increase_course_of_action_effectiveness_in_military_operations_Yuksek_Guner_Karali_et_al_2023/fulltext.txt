@@ -1,0 +1,661 @@
+AIAA SciTech Forum
+23-27 January 2023, National Harbor, MD & Online
+AIAA SCITECH 2023 Forum
+
+10.2514/6.2023-2531
+
+Intelligent Wargaming Approach to Increase Course of Action
+Effectiveness in Military Operations
+Burak Yuksek∗ , Guney Guner † , Hasan Karali‡ , Batu Candan §
+Cranfield University, United Kingdom, MK43 0AL
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+Gokhan Inalhan¶
+Cranfield University, United Kingdom, MK43 0AL
+In this study, an intelligent wargaming approach is proposed to evaluate the effectiveness of
+a military operation plan in terms of operational success and survivability of the assets. The
+proposed application is developed based on classical military decision making and planning
+(MDMP) workflow for ease of implementation into the real-world applications. Contributions
+of this study are threefold; a) developing an intelligent wargaming approach to accelerate the
+course of action (COA) analysis step in the MDMP which leads creating more candidate COAs
+for a military operation, b) generating effective tactics against the opposite forces to increase
+operational success, and c) developing an efficient, visual wargame-based MDMP framework
+for future systems that require a small team of operators to supervise a network of automated
+agents. Several example engagement scenarios are performed to evaluate the system capabilities
+and results are given. Moreover, fleet composition issue for automated agents is investigated
+and the fleet composer algorithm with hyperparameter tuning architecture is proposed.
+
+I. Introduction
+ith increase in the use of unmanned vehicles for complex tasks including intelligence, surveillance and
+reconnaissance operations, recent applications tend to shift towards the cooperation among a heterogeneous
+fleet of unmanned vehicles for executing these operations with high mission success rates [1]. Cooperation between
+heterogeneous agents for completing the complex tasks bring the need for multi-domain operational capability where
+artificial intelligence (AI) assisted war-game strategies play important role [2]. Specific goals such as using AI to
+discover tactics, which might improve the operational benefits via existing military capabilities, or might suggest
+effective concepts of use for new military capabilities are under consideration. AI decision-making have recently focused
+on open games, where all game states are visible to all players, or closed games, where restricted flexibility to wargaming
+exist. However, modeling decision-making strategies at both tactical and strategic levels requires novel algorithms that
+can operate within dynamic environments with changing rules, uncertainties, individual biases and randomness [3].
+Wargaming is an important part of the MDMP, which is the armies’ doctrinal approach to create operation plans, to
+predict counter-actions of the opposite forces and to evaluate the effectiveness of the proposed operation plan, since it
+offers a safe and vicarious reflection of some of the situational and decision-making dynamics associated with armed
+conflict. Although, there is no single definition for the term ‘war-gaming’, the commonly accepted one dated back
+to the beginning of 19𝑡 ℎ century, which defines it as a simulation of a military operation, by whatever means, using
+specific rules, data, methods and procedures [4]. Therefore, it is important to give a clear statement about wargaming
+before to proceed with the definition and importance of MDMP. The MDMP starts with the receipt of a mission from
+higher headquarters. Then, mission analysis is performed by utilizing intelligence from other sources. In the next
+step, it processes commander’s intents, operational requirements and available resources to develop course of actions
+(COAs) which include task organization plans. After development of the COA, COA analysis, which is focused on
+action, reaction, counteraction, and the adjudication process, is performed through wargaming to refine the COAs and
+potential decision points.
+
+W
+
+∗ Postdoctoral Research Fellow, School of Aerospace, Transport and Manufacturing, burak.yuksek@cranfield.ac.uk, AIAA Professional Member.
+† Research Assistant, School of Aerospace, Transport and Manufacturing, guney.guner@cranfield.ac.uk
+
+‡ PhD Student, School of Aerospace, Transport and Manufacturing, hasan.karali@cranfield.ac.uk, AIAA Member
+§ PhD Student, School of Aerospace, Transport and Manufacturing, batu.candan@cranfield.ac.uk, AIAA Student Member
+
+¶ BAE Systems Chair, Professor of Autonomous Systems and Artificial Intelligence, School of Aerospace, Transport and Manufacturing,
+inalhan@cranfield.ac.uk, AIAA Associate Fellow.
+
+1
+Copyright © 2023 by Burak Yuksek, Guney Guner, Hasan Karali, Batu Candan, Gokhan Inalhan, Cranfield University.
+Published by the American Institute of Aeronautics and Astronautics, Inc., with permission.
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+Fig. 1
+
+Summary of military decision making process. (Reproduced from [7])
+
+Within the MDMP, COA analysis is often referred to as wargaming which links COA development to COA
+comparison and approval [5]. In the comparison step, each of the COAs is evaluated according to defined criterion such
+as simplicity, maneuvering, fires, civil control and mass which are given weights within a decision matrix for assessment.
+Moreover, selected COA from the comparison step is to have minimum risk, maximum security and flexibility. Then,
+COA approval process is completed according to the results from COA comparison and, in the last step, orders are
+produced and shared with the related units [6]. From the general point of view, overall MDMP process is given in Figure
+1.
+In this study, it is proposed to develop intelligence, surveillance, and reconnaissance (ISR) and suppression of
+enemy air defense (SEAD) operation plans that are supported by upper AI and assistive, decentralized decision-making
+strategies within a war-game to evaluate generated COAs in terms of probability of success, survivability of the assets
+and operational efficiency. This process is developed on the classical MDMP scheme for ease of implementation into the
+real-world applications and it is able to provide fast evaluation and objective comparison of the COAs before or during
+the operation. The process begins with receiving the mission analysis results from the second step of the MDMP. In the
+COA development step, initial task assignment process is performed by utilizing the CBBA algorithm which is able to
+solve assignment problems with decentralized communication structure, heterogeneous fleet and online replanning
+requirement. After creating several operation plans (i.e. COAs), they are fed into the wargaming process to evaluate their
+effectiveness. After that, these COAs are compared with each other in terms of success probability, survivability and
+cost and the most effective one is sent for approval step. General overview of the focused framework is given in Figure 2.
+Contributions of this study are three folds; a) developing an intelligent wargaming approach to accelerate the course
+of action analysis step in the MDMP which leads creating more candidate COAs for a military operation, b) generating
+effective tactics against the opposite forces to increase operational success and c) developing an efficient, visual and
+robust war-game based MDMP framework for future systems that require a small team of operators to supervise a
+network of automated agents. Remaining of this study is structured as follows; In Section II, related studies from the
+literature are to be investigated. Section III defines the problem statement and Section IV gives the required background
+to approach the solution against the problem. In Section V, the methodology followed during the creation of this work is
+to be given and Section VI demonstrates the results of the simulation studies. Finally, Section VII is to conclude the
+article.
+
+2
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+Fig. 2
+
+Framework for COA generation.
+
+II. Related Works
+Wargame simulations are used as decision making tools in different fields from business to military [8], from conflict
+scenarios to surveillance or crisis drills, search and rescue missions in the military perspective [9]. In Filho et al. [10],
+the position of UAVs in a beyond visual range combat has optimized using the war game approach. The effectiveness of
+tactical formation of a friendly swarm team was investigated considering enemy uncertainties in a war game. Chen et al.
+[11] proposed an emergency rescue wargame model based the decision trees in a urban flooding situation. In the model,
+while the enemy task is limited to road water accumulation, the friendly team consists of emergency vehicles trying to
+prevent this flooding. Su et al. proposed geographic information system (GIS) based flood wargame assistance platform
+in order to prevent from flooding in Taiwan [12]. A different approach to the use of wargame-based strategies is crisis
+drills which Song et al. stated that the wargaming is an efficient way for crisis drill with low cost and in a convenient
+manner [13].
+An effective wargaming strategy depends on the accurate and optimal distribution/allocation of the assets to
+subordinate commanders for accomplishing their missions [7]. Numerous methods have been developed for enabling
+the agents to distribute the tasks amongst themselves from task list of a known operation. Main idea of these approaches
+is not only increasing the mission effectiveness, but also decreasing the operational costs and risks. Centralized task
+allocation, which requires communication link between agents and a central server, generates an allocation plan for
+the entire fleet. Since the centralized systems are able to reduce the burden of processing requirements on the ground,
+they are effective for making the agents smaller and cheaper to build. Moreover, it has been investigated that using
+the heuristic methods such as genetic algorithms [14–16] and particle swarm optimization methods [17–19] in the
+centralized task allocation systems provides better performance in terms of computational time [20]. On the other
+hand, due to the structure of the centralized task allocation, a persistent communication should be maintained between
+the agents and the operation base to provide cooperation which requires sending/receiving operational updates. This
+requirement about the communication system directly affects the fleet capability and robustness of the fleets.
+In the contrast of the centralized applications, performance and robustness of the fleet could be improved by utilizing
+decentralized methods in which agent-to-agent communication is required to obtain consensus on a given task set.
+This type of communication topology increases robustness of the fleet in the presence agent loss, communication loss
+and real-time updates on the task list, i.e. adding and removing tasks [21]. In this manner, decentralized planning
+methods that eliminate the need for a central base have been investigated in the literature. Most of these methods
+assume perfect communication with infinite bandwidth for ensuring that agents have the same situational awareness
+before the planning. However, this can be easily violated in real world scenarios including search and rescue missions
+where the agents have limited range of communication or communication channel with limited bandwidth [22]. In
+the presence of inconsistencies in situational awareness, decentralized task allocation algorithms can be augmented
+by utilizing consensus-based algorithms such as Consensus-Based Bundle Algorithm (CBBA) in order to converge
+on a consistent solution [23–25]. There are not only consensus algorithms which can be integrated into decentralized
+frameworks but also Partially Observable Markov Decision Process (POMDP) based approaches exist in the literature
+[26]. Although consensus algorithms guarantee convergence on information, i.e. reaching to a consensus, this may take
+a significant amount of time and often requires transmitting large amounts of data which might result in high latency
+in low-bandwidth environments and increment in the processing time to find an optimal task assignment solution for
+the unmanned fleet [27]. There are also several reports about an intermediate hierarchical architecture, i.e. an hybrid
+architecture, between the centralized and the decentralized architectures which is used for to benefit from the advantages
+of two methods [28].
+3
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+Even though numerous attempts try to address the task allocation problem for unmanned heterogeneous fleets, and all
+of the previously mentioned studies examined the ability of underlying automation (in the form of planning and control
+algorithms) to allocate a network of heterogeneous unmanned vehicles (UxVs), there is a crucial need for integrating
+an enhanced/upper AI-generated guidance and assistive decision-making support into the MDMP which generates
+the COAs [29]. Several preliminary attempts such as the Defense Advanced Research Projects Agency’s (DARPA)
+Broad Agency Announcement (BAA) for the Collaborative Operations in a Denied Environment (CODE) Program and
+BAA for Distributed Battlespace Management (DBM) are proposed to improve human–automation collaboration and
+decisions to assist battle managers and pilots via executing a series of automated and autonomous actions [30]. However,
+such frameworks with different task allocation methods might be brittle and unable to respond to sudden events. Such
+systems can be mitigated by human operators who are bringing their knowledge-based reasoning and experience [31].
+Therefore, it is obvious that both task planner, and operator framework within a platform should be carefully
+constructed. One of the most important platforms for modelling and analyzing such a framework is wargames, which are
+used to execute decisions on future force assets, military capabilities, and to prepare for numerous operations. Wargames
+are able to be executed in numerous different ways, ranging from seminar war-games, through manual board games to
+complex computer-assisted war-games [32], where the computer judges the consequences of engagements [33].
+Intelligent wargames have been questioned whether they are valuable for facilitating the military decision making
+since the preliminary studies about the topic [34]. Roles of these systems during the decision making process have
+been also discussed under four main disciplines, which are sensing, situational-awareness, plan generation and learning
+[35, 36]. After those discussions, progress in AI discipline and with the developing technology, it was reported that the
+application of artificial intelligence to the armies’ MDMP has great potential to support the command center ability to
+plan for battlespaces that are becoming both hyper-competitive and more complex so that Schwartz et al. approached
+to the problem with genetic algorithms (GAs) within assistive AI architecture [37]. Boron et al. approached to the
+integration of AI-based wargaming to the decision making process, and they used reinforcement learning (RL) within the
+different combat scenarios for assessing the performance of their algorithms [38]. Xin et al. considered the uncertainties
+that are usually neglected in previous studies, so that they proposed a solution titled as hybrid-intelligence multi-branch
+wargaming which accounts uncertainties via fusion of RL-based AI methods and human intelligence [39]. Recently,
+Tarraf et al. proposed a wargaming framework where the rules and engagement statistics used in a commercial tabletop
+wargame to enable remotely operated and fully autonomous combat agents and agents with AI/ML-enabled situational
+awareness [40]. Goecks et al. discuss the past and current efforts on how games and simulators, together with the AI
+algorithms, have been adapted to simulate certain aspects of military missions and how they might impact the future
+battlefield. Moreover, they investigate how advances in virtual reality (VR) and visual augmentation (VA) systems
+provide new frontiers in human interfaces with gaming platforms and their military [41].
+
+III. Problem Statement
+Even though numerous attempts try to address the task allocation problem for unmanned heterogeneous fleets, and all
+of the previously mentioned studies examined the ability of underlying automation (in the form of planning and control
+algorithms) to allocate a network of heterogeneous unmanned vehicles (UxVs), there is a crucial need for integrating
+an enhanced/upper AI-generated guidance and assistive decision-making support into the MDMP which generates
+the COAs [29]. Several preliminary attempts such as the Defense Advanced Research Projects Agency’s (DARPA)
+Broad Agency Announcement (BAA) for the Collaborative Operations in a Denied Environment (CODE) Program and
+BAA for Distributed Battlespace Management (DBM) are proposed to improve human–automation collaboration and
+decisions to assist battle managers and pilots via executing a series of automated and autonomous actions [30]. However,
+such frameworks with different task allocation methods might be brittle and unable to respond to sudden events. Such
+systems can be mitigated by human operators who are bringing their knowledge-based reasoning and experience [31].
+Therefore, it is obvious that both task planner, and operator framework within a platform should be carefully
+constructed. One of the most important platforms for modelling and analyzing such a framework is wargames, which are
+used to execute decisions on future force assets, military capabilities, and to prepare for numerous operations. Wargames
+are able to be executed in numerous different ways, ranging from seminar wargames, through manual board games to
+complex computer-assisted war-games [32], where the computer judges the consequences of engagements [33].
+
+4
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+Fig. 3
+
+Inner cycle of CBBA for each agent
+
+IV. Background
+After defining the problem, mission requirements, assumptions and evaluation criterias in the Step-2 of the
+MDMP, it is important to assign blue team military units to suitable red team tasks. This is accomplished by utilising
+consensus-based bundle algorithm (CBBA) [27] which supports decentralised, heterogeneous fleets and dynamic
+environments. In this section, details of the CBBA algorithm is given and described.
+A. Consensus-Based Bundle Algorithm (CBBA)
+CBBA is a decentralised market-based protocol that provides provably good approximate solutions for multi-agent
+multi-task allocation problems over networks of heterogeneous agents and addresses the task allocation to coordinate a
+heterogeneous fleet of the autonomous vehicles via using the decentralised communication approach [27]. This type of
+communication topology eliminates the need for a central base, and it increases robustness of the fleet in the presence of
+agent loss, communication loss and real-time updates on the task list, i.e., adding and removing tasks. CBBA is made
+up of iterations that alternate between two phases: the first phase, a bundle construction phase in which each vehicle
+generates an ordered bundle of jobs greedily, and the second phase, a consensus phase in which conflicting assignments
+are found and resolved by local communication among neighbouring agents. Figure 3 demonstrates the inner cycle of
+CBBA, the chosen task allocation planner as follows.
+1. Phase 1: The Bundle Construction
+An agent internally builds up a single bundle containing all the tasks it plans to complete and updates it as the
+assignment process progresses during the first phase. Each agent continually adds to its bundle until it is incapable of
+adding any other tasks. Two lists of tasks are carried by the agents: the bundle 𝑏 𝑖 and a path 𝑝 𝑖 . The bundle contains all
+tasks that an agent is going to complete and is grouped in the order tasks were added, and the path, but it contains an
+ordered sequence of tasks that agent 𝑖 is going to execute.
+(
+0,
+if 𝑗 ∈ 𝑏 𝑖
+𝑐 𝑖 𝑗 [𝑏 𝑖 ] =
+(1)
+𝑝𝑖 𝜃𝑛 [ 𝑗 ]
+𝑝𝑖
+𝑚𝑎𝑥 𝑛≤ | 𝑝𝑖 | 𝑅𝑖
+− 𝑅𝑖 , otherwise
+where || denotes the cardinality of the list, and ℎ 𝑛 denotes the operation that inserts the second list right after the
+𝑛th element of the final list. A new task is inserted into the current path at all possible locations to find the highest
+increase in reward. Each agent carries five vectors: a winning bid list 𝑦 𝑖 , a winning agent list 𝑧𝑖 , an agent update time 𝑠𝑖 ,
+a bundle 𝑏 𝑖 and the corresponding path 𝑝 𝑖 . The winning agent list 𝑧𝑖 stores the agent currently assigned to each task
+such that when 𝑧 𝑖 𝑗 = 𝑘 agent 𝑖 believes that agent 𝑘 is assigned to task 𝑗. An agent needs to know not only if it is outbid
+on a task it selects but who is assigned to each task as well; this enables better assignments based on more sophisticated
+conflict resolution rules.
+2. Phase 2: Conflict Resolution
+In CBBA, the agents make bids on tasks based on their currently assigned task set. If an agent is outbid on a task,
+then the score values for all the following tasks are no longer valid. Therefore, when an agent is outbid, it must release
+5
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+Fig. 4
+
+General view of the simulation environment.
+
+all the tasks added after the outbid task. When agent 𝑖 receives a message from another agent, 𝑘, 𝑧𝑖 and 𝑠𝑖 are used to
+determine which agent’s information is the most up-to-date for each task. There are three possible actions agent 𝑖 can
+take on task 𝑗 according to the communication table proposed by Choi et. al [27]. Using this lookup table, an agent
+determines whether it should update, reset or leave the bid. Agents compare their knowledge on task 𝑗 between the
+receiver 𝑖 and the sender 𝑘 along with when each agent last received communication from the agent they believe is
+assigned to task 𝑗. Agents alternate between the two phases until they converge on a conflict-free solution.
+• Update:
+
+𝑦 𝑖 𝑗 = 𝑦 𝑘 𝑗 , 𝑧𝑖 𝑗 = 𝑧 𝑘 𝑗
+
+(2)
+
+• Reset:
+
+𝑦 𝑖 𝑗 = 0, 𝑧𝑖 𝑗 = ∅
+
+(3)
+
+• Leave:
+
+𝑦 𝑖 𝑗 = 𝑦 𝑖 𝑗 , 𝑧𝑖 𝑗 = 𝑧𝑖 𝑗
+
+(4)
+
+V. Methodology
+A. Simulation Environment
+In order to create the modular architecture which would be supportable, extensible and easily modifiable, it is
+decided to split intelligent mission planner into the four sub-groups. Engine module includes the main engine script
+which contains the critical methods such as task allocation, pathfinding, strategy, engagement, and some other important
+methods to step forward during the simulation. Task allocation method inside the Engine script uses the Consensus-Based
+Bundling Algorithm (CBBA) which is also within the Engine module. Environment module includes a World object
+inside the script which is giving the boundaries for the simulation environment and also the grid representation of this
+environment with the task, terrain, enemy presence costs attached. Models contain necessary information about the
+agents and tasks used during the simulations. In order to create heterogeneous agents, UAV, UGV, USV and close
+air-defense (CAD) agent objects are individually created, and Team object is created for setting the enemy team and
+following the moves done by the teams. View module is responsible for the representation of the results in a visual
+perspective. Summary of the modular architecture of intelligent mission planner is given in Figure 4.
+B. Lethality Heatmap Generation
+In the simulation environment, lethality heatmaps are generated on air, ground and sea layers to model the firepower
+of the opposite forces in a given area. These heatmaps are generated based on kernel density estimation (KDE) algorithm
+which is used to estimate danger level (i.e. effectiveness level of an opposite force unit) of a given point on the map with
+respect to the opposite force location. In this study, it is assumed that the lethality distribution of the military units
+
+6
+
+according to the range is modeled as Quartic or Epanechnikov functions as given in Eq. 5.
+2
+15 
+1 − 𝑑 2 for |𝑑| ≤ 1
+16
+
+3
+𝑃2 (𝑑) = 1 − 𝑑 2 for |𝑑| ≤ 1
+4
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+𝑃1 (𝑑) =
+
+(5a)
+(5b)
+
+where 𝑑 is distance between the military unit and specified point on the map (i.e. center of the related hexagon). For
+the lethality calculation at 𝑑 = 0, the maximum value of the distributions is scaled by 1. Example heatmap generation
+results for air, ground and sea layers are given in Figure 5. Here, lethality heatmap of the red team units are given for a)
+ground layer, b) Naval layer, and c) Air layer. On the ground layer, both UAV, UGV, USV and CAD units are effective
+threats against the blue forces in given letality areas. On the naval layer, USV is the main threat but UAV, UGV and
+CAD are also effective. On the air layer, in first look, there seems no threat for blue team because the UAV, UGV and
+USV of the red team are not effective against the air force of the blue team. However, if CAD asset presence exists in the
+area, it would be crucial threat against the blue and results would be fatal.
+
+Fig. 5
+
+Fig. 6
+
+Lethality heatmaps of the red team forces on a) ground, b) naval and c) air layers.
+
+Example Case: Lethality heatmap of the red team forces on the ground layer.
+
+Another example from the simulation environment is given in Figure 6. For ease of visualization, no CAD units are
+inserted into the environment. Here, lethality heatmap of the UAV, UGV and USV are given for the ground layer. In this
+7
+
+case, it is shown that the lethality of the UAV and UGV are relatively high when compared to the USV on the ground
+layer on which the USV has a limited range and effectiveness. This is directly modeled by utilising the effectiveness
+table of the military units given in Table 1. This table gives information about damage effectiveness of each type of
+assets to different layers.
+Table 1
+
+Damage effectiveness table for each type of assets.
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+Land
+Air
+Sea
+
+UGV
+0.5
+0.05
+0.25
+
+UAV
+1
+0.05
+0.5
+
+USV
+0.25
+0.05
+0.5
+
+CAD
+0.25
+1
+0.25
+
+C. Combat Model
+Combat modeling abstracts and simplifies the combat entities, their behaviors, activities, and interrelations to answer
+defense-related research questions. There is no general model that answers all questions, and even if such a model could
+be constructed it would become more complex than the reality, as it not only includes real systems but also imagined
+ones. Combat models can be either stochastic or deterministic. Intuitively, a stochastic model assumes uncertain or
+probabilistic inputs regarding a situation and makes an indefinite prediction of the results. A deterministic model states
+exactly what will happen, as if there were no uncertainty. More formally, a stochastic model requires the terminology of
+the theory of probability for its description, whereas a deterministic model does not.
+𝐹 = 𝐻 𝑃 · 𝐿 · 𝑃 𝐻 · 𝑃 𝐷 · 𝑃𝑇 · 𝑃 𝑊 · 𝐸 𝐿
+
+(6)
+
+where 𝐹, 𝐻 𝑃 , 𝐿, 𝑃 𝐻 , 𝑃 𝐷 , 𝑃𝑇 , 𝑃𝑊 , 𝐸 𝐿 are total firepower, firepower health, lethality, hit probability, detection probability,
+targeting system reliability, weapon reliability and layer effectiveness, respectively. Here, it is also important to model
+damage matrix of the military units which defines their effectiveness against the enemy forces in an engagement. In
+simulation environments, a damage matrix is assumed as given in Table 1. By using these definitions, survivability of
+each asset is modeled as given in Eq. 7 and 8.
+𝐹𝑘 = 𝐹𝑘−1 − 𝐹𝑜𝑘
+
+(7)
+
+𝑀𝑘 = 𝑀𝑘−1 − 𝐹𝑜𝑘
+
+(8)
+
+where 𝐹𝑘 , 𝑀𝑘 are firepower and mobility of the related team at time 𝑘. 𝐹𝑜𝑘 is firepower of the opposite force at time 𝑘.
+D. Evaluation Metrics and Combat Assessment
+Effective assessment incorporates both quantitative (observation-based) and qualitative (opinion-based) indicators.
+Human judgement is integral to assessment. A key aspect of any assessment is the degree to which it relies on human
+judgement and the degree to which it relies on direct observation and mathematical rigour. Rigour offsets the inevitable
+bias, while human judgement focuses rigour and processes on intangibles that are often key to success. Verbal definitions
+are straightforward to state, but in order to educate the overall system in a intelligent manner, it is crucial to represent
+these sentences into the mathematical indicators. The transition from verbal to mathematical definition of the metrics is
+an open-ended procedure, and it can be manually selected in a way that captures optimal decisions [42].
+In order to asses the mobility and firepower capabilities of the red and blue teams, several combat assessment metrics
+are developed as given in Eq. 9 and 10.
+Í
+𝐹𝑥𝑡
+¯
+𝐹𝑥 =
+(9)
+𝑛 𝑥𝑡
+Í
+𝑀 𝑥𝑡
+𝑀¯ 𝑥 =
+(10)
+𝑛 𝑥𝑡
+where subscript 𝑥 ∈ {𝑏, 𝑟} denotes for blue and red teams, 𝑡 ∈ {𝑎𝑖𝑟, 𝑔𝑟𝑜𝑢𝑛𝑑, 𝑠𝑒𝑎} defines the level of assets, 𝐹, 𝑀 are
+firepower and mobility of the military units after engagement,¯shows mean value, 𝑛 is total number of alive assets after
+the engagement.
+8
+
+E. Fleet Composition
+Composition of the adequate fleet is closely related with the scoring function of CBBA given as following.
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+𝐽 𝑗 (𝑎 𝑗 , 𝑡 𝑗 ) = 𝑒 −𝜆.𝑡 𝑗 𝑅 𝑗 (𝑎 𝑗 )
+
+(11)
+
+This function gives the score an agent receives from task 𝑗 when it arrives at the task at time 𝑡 𝑗 . Score is composed
+of two parts that the first is the nominal reward for the task, 𝑅 𝑗 (𝑎 𝑗 ) which is a function of 𝑎 𝑗 , the index of the agent
+assigned to task 𝑗, and the second is the discount function, which is a function of the arrival time for task 𝑗, 𝑡 𝑗 . 𝜆 is a
+discount factor that accounts for the decrease in target value with time. This factor is included in the objective function
+to better represent the real-world problems in which the value of visiting a target decreases proportional to the time in
+which it is visited [43].
+Since the discount factor is changing the effect of arrival time for tasks, it needs to be tuned according to the size of
+the world. Therefore, following architecture, visually seen on Figure 7 is to be proposed to overcome to choose the
+optimal discount factor and the fleet configuration.
+
+Fig. 7
+
+Architecture of the fleet composer with 𝜆 search algorithm
+
+VI. Simulation Studies
+In simulation studies, asset types of the fleet are assumed to be heterogeneous and include unmanned aerial vehicles
+(UAVs), unmanned ground vehicles (UGVs) and unmanned surface vessels (USVs). As an unmanned aerial vehicle, a
+system with medium-high altitude long endurance capability, which is required for ISR missions, is modeled. For the
+unmanned ground vehicle, the performance of an average armored personnel carrier vehicle is modeled. It is assumed
+that this vehicle has the ability to move in any terrain. On the other hand, unmanned surfaces vessels for use in coastal
+areas are modeled similar to the lightweight high-performance rigid-hull inflatable boat (RHIB). The performance
+parameters of these agents are given in Table 2. Since the fuel and fuel consumption data of the vehicles in the task
+assignment algorithm are of primary importance in the distribution of tasks, these parameters are especially included in
+the table.
+Table 2
+
+Performance parameters of agents.
+
+Parameters
+
+UAV
+
+UGV
+
+USV
+
+Cruise Speed (mph)
+Range (miles)
+Fuel Capacity (lb)
+Fuel mass flow rate (lb/s)
+
+194
+1150
+4000
+0.079
+
+60
+300
+13200
+0.367
+
+45
+230
+175
+0.01
+
+9
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+A. Results
+Following results are obtained from initial simulation studies. In this scenario, proposed methodology is tested with
+different number of unmanned agents and tasks within 20𝑥20 grid-world environment where the heatmap is implemented.
+The scenario contains both the terrain and enemy presence effects where the main goal for the unmanned agents is to
+execute their tasks while avoiding from enemy presence areas introduced within the heatmap. In the first scenario, the
+blue team is initiated with 2 UAVs, and the red team, enemy includes one UGV and two UAVs within different regions
+of the grid-world. The result of the first scenario can be seen on Figure 8.
+
+Fig. 8
+
+The first scenario results
+
+Clearly visible from the Figure 8, blue forces lost in the first scenario even with the optimal choice of 𝜆. Since the
+remaining enemy presence consists aerial threat, the fleet configuration is updated in a way that to increase the number
+of UAV assets. Therefore, the second scenario is executed with 3 UAVs in the blue team and 2 UAVs, 1 UGV in enemy
+red team as previous scenario. The result visual can be seen on Figure 9.
+
+Fig. 9
+
+The second scenario results
+
+As can be seen, in this scenario, the blue team is won the repeated scenario with its extra reinforcement.
+
+VII. Conclusion
+COA analysis is one of the fundamental steps of the MDMP workflow which is used to produce operation plans in
+military domain. Due to the operational risks and time constraints, it is important to evaluate the generated COAs with
+high accuracy in a limited time. In this study, an intelligent wargaming approach is proposed to accelerate the COA
+analysis in the MDMP. Simulation environment includes grid-world representation of the operation area, performance
+models of military units and combat model. Operational risks on the air, ground and sea levels are modelled as heat
+maps in the grid-world environment to represent the criticality level of the related location on the map. Moreover, in
+future studies, it is aimed to add uncertainty within battlefield that is related with the concept of fog-of-war, uncertainty
+in situational awareness faced by every component of wargame. Consistent and reliable communication between assets
+within the battlefield while completing the missions is another important aspect of this study, and it is also to be
+investigated as a future study. Evaluation of the COAs is performed based on combat assessment metrics. Current
+studies are focused on implementation of attack and defense tactics for military units to be selected and executed by the
+RL agent. Then, training of the RL agent will be completed by utilising the proximal policy optimization algorithm.
+After that, a comprehensive evaluation process will be performed to validate the effectiveness of the overall system.
+
+10
+
+References
+[1] Tsourdos, A., White, B., and Shanmugavel, M., Cooperative Path Planning of Unmanned Aerial Vehicles, Vol. 32, Wiley,
+Hoboken, NJ, United States, 2010. https://doi.org/10.1002/9780470974636.
+[2] Hung, C. P., Hare, J. Z., Rinderspacher, B. C., Kase, S. E., Su, S. M., Peregrim, W., Tkachenko, O., Krayzman, T., Raglin,
+A. J., and Richardson, J. T., “ Final Report of DEVCOM ARL Directors Future Ventures (FY21): Novel AI Decision Aids for
+Decision Dynamics, Deception, and Game Theory (Summary Technical Report, Oct 2020-Sep 2021),” Tech. Rep. 1166431, 04
+2022. URL https://apps.dtic.mil/sti/pdfs/AD1166431.pdf.
+[3] Hare, J. Z., Rinderspacher, B. C., Kase, S. E., Su, S., and Hung, C. P., “Battlespace: using AI to understand friendly vs. hostile
+decision dynamics in MDO,” Artificial Intelligence and Machine Learning for Multi-Domain Operations Applications III,
+Vol. 11746, edited by T. Pham and L. Solomon, International Society for Optics and Photonics, SPIE, 2021, pp. 268 – 277.
+https://doi.org/10.1117/12.2585785, URL https://doi.org/10.1117/12.2585785.
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+[4] The Development, Concepts and Doctrine Centre, Wargaming Handbook, United Kingdom Ministry of Defence, 2015.
+[5] How to master wargaming: commander and staff guide to improving course of action analysis, CALL, Center for Army Lessons
+Learned, 2020. URL https://books.google.com.tr/books?id=gnRdzgEACAAJ.
+[6] Cianciolo, A. T., Sanders, W. R., and Black, B. A., “Wargaming Effectiveness: Its Conceptualization and Assessment,” Tech.
+Rep. 1178, 03 2006.
+[7] United States Army, and Army, U., MDMP Lessons and Best Practices Handbook, Independently Published, 2015.
+[8] Hershkovitz, S., “Wargame Business: Wargames in Military and Corporate Settings,” Naval War College Review, Vol. 72,
+No. 2, 2019. URL https://digital-commons.usnwc.edu/nwc-review/vol72/iss2/6.
+[9] Alkire, B., Lingel, S., and Hanser, L. M., A Wargame Method for Assessing Risk and Resilience of Military Command-and-Control
+Organizations, RAND Corporation, Santa Monica, CA, 2018. https://doi.org/10.7249/TL291.
+[10] De Lima Filho, G. M., Kuroswiski, A. R., Medeiros, F. L. L., Voskuĳl, M., Monsuur, H., and Passaro, A., “Optimization
+of Unmanned Air Vehicle Tactical Formation in War Games,” IEEE Access, Vol. 10, 2022, pp. 21727–21741. https:
+//doi.org/10.1109/ACCESS.2022.3152768.
+[11] Chen, P., Zhang, J., and Sun, Y., “Research on emergency rescue of urban flood disaster based on wargame simulation,” Journal
+of the Indian Society of Remote Sensing, Vol. 46, No. 10, 2018, pp. 1677–1687.
+[12] Su, W.-R., Lin, Y.-J., Huang, C.-H., Yang, C.-H., and Tsai, Y.-F., “3D GIS Platform for Flood Wargame: A Case Study of New
+Taipei City, Taiwan,” Water, Vol. 13, No. 16, 2021. https://doi.org/10.3390/w13162211, URL https://www.mdpi.com/20734441/13/16/2211.
+[13] Li, X., and Song, Q., “Wargaming-Based Crisis Drills,” Crisis Management, edited by K. Holla, M. Titko, and J. Ristvej,
+IntechOpen, Rĳeka, 2018, Chap. 12. https://doi.org/10.5772/intechopen.74628, URL https://doi.org/10.5772/intechopen.74628.
+[14] Ye, F., Chen, J., Tian, Y., and Jiang, T., “Cooperative Task Assignment of a Heterogeneous Multi-UAV System Using an
+Adaptive Genetic Algorithm,” Electronics, Vol. 9, No. 4, 2020. https://doi.org/10.3390/electronics9040687.
+[15] Zhao, Y., Zhou, D., Piao, H., Yang, Z., Hou, R., Kong, W., and Pan, Q., “Cooperative Multiple Task Assignment Problem With
+Target Precedence Constraints Using a Waitable Path Coordination and Modified Genetic Algorithm,” IEEE Access, Vol. 9,
+2021, pp. 39392–39410. https://doi.org/10.1109/access.2021.3063263.
+[16] Han, S., Fan, C., Li, X., Luo, X., and Liu, Z., “A modified genetic algorithm for task assignment of heterogeneous unmanned aerial
+vehicle system,” Measurement and Control, Vol. 54, No. 5-6, 2021, pp. 994–1014. https://doi.org/10.1177/00202940211002235.
+[17] Huang, H., and Zhuo, T., “Multi-model cooperative task assignment and path planning of multiple UCAV formation,” Multimedia
+Tools and Applications, Vol. 78, No. 1, 2017, pp. 415–436. https://doi.org/10.1007/s11042-017-4956-7.
+[18] Geng, N., Meng, Q., Gong, D., and Chung, P. W. H., “How Good are Distributed Allocation Algorithms for Solving Urban
+Search and Rescue Problems? A Comparative Study With Centralized Algorithms,” IEEE Transactions on Automation Science
+and Engineering, Vol. 16, No. 1, 2019, pp. 478–485. https://doi.org/10.1109/TASE.2018.2866395.
+[19] Geng, N., Chen, Z., Nguyen, Q. A., and Gong, D., “Particle swarm optimization algorithm for the optimization of
+rescue task allocation with uncertain time constraints,” Complex & Intelligent Systems, Vol. 7, No. 2, 2021, pp. 873–890.
+https://doi.org/10.1007/s40747-020-00252-2.
+
+11
+
+[20] Wang, S., Liu, Y., Qiu, Y., Zhang, Q., Huo, F., Huangfu, Y., Yang, C., and Zhou, J., “Cooperative Task Allocation for Multirobot
+Systems Based on Multi-objective Ant Colony System,” IEEE Access, 2022, pp. 1–1. https://doi.org/10.1109/ACCESS.2022.
+3165198.
+[21] Brunet, L., Choi, H.-L., and How, J., “Consensus-Based Auction Approaches for Decentralized Task Assignment,” AIAA
+Guidance, Navigation and Control Conference and Exhibit, 2008. https://doi.org/10.2514/6.2008-6839.
+[22] Raja, S., Habibi, G., and How, J. P., “Communication-Aware Consensus-Based Decentralized Task Allocation in Communication
+Constrained Environments,” IEEE Access, Vol. 10, 2022, pp. 19753–19767. https://doi.org/10.1109/ACCESS.2021.3138857.
+[23] Choi, H.-L., Whitten, A. K., and How, J. P., “Decentralized task allocation for heterogeneous teams with cooperation constraints,”
+Proceedings of the 2010 American Control Conference, 2010, pp. 3057–3062. https://doi.org/10.1109/ACC.2010.5530496.
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+[24] Johnson, L., Ponda, S., Choi, H.-L., and How, J., Asynchronous Decentralized Task Allocation for Dynamic Environments, ????
+https://doi.org/10.2514/6.2011-1441, URL https://arc.aiaa.org/doi/abs/10.2514/6.2011-1441.
+[25] Hunt, S., Meng, Q., Hinde, C., and Huang, T., “A Consensus-Based Grouping Algorithm for Multi-agent Cooperative Task
+Allocation with Complex Requirements,” Cognitive computation, Vol. 6, 2014, pp. 338–350. https://doi.org/10.1007/s12559014-9265-0.
+[26] Floriano, B., Borges, G. A., and Ferreira, H., “Planning for Decentralized Formation Flight of UAV fleets in Uncertain
+Environments with Dec-POMDP,” 2019 International Conference on Unmanned Aircraft Systems (ICUAS), 2019, pp. 563–568.
+https://doi.org/10.1109/ICUAS.2019.8797928.
+[27] Choi, H.-L., Brunet, L., and How, J. P., “Consensus-Based Decentralized Auctions for Robust Task Allocation,” IEEE
+Transactions on Robotics, Vol. 25, No. 4, 2009, pp. 912–926. https://doi.org/10.1109/TRO.2009.2022423.
+[28] Matoui, F., Boussaid, B., Metoui, B., and Abdelkrim, M. N., “Contribution to the Path Planning of a Multi-Robot System:
+Centralized Architecture,” Vol. 13, No. 1, 2020. https://doi.org/10.1007/s11370-019-00302-w.
+[29] Kase, S. E., Hung, C. P., Krayzman, T., Hare, J. Z., Rinderspacher, B. C., and Su, S. M., “The Future of Collaborative
+Human-Artificial Intelligence Decision-Making for Mission Planning,” Frontiers in Psychology, Vol. 13, 2022. https:
+//doi.org/10.3389/fpsyg.2022.850628.
+[30] Eaton, C. M., Chong, E. K. P., and Maciejewski, A. A., “Multiple-Scenario Unmanned Aerial System Control: A Systems
+Engineering Approach and Review of Existing Control Methods,” Aerospace, Vol. 3, No. 1, 2016. https://doi.org/10.3390/
+aerospace3010001, URL https://www.mdpi.com/2226-4310/3/1/1.
+[31] Cummings, M. L., How, J. P., Whitten, A., and Toupet, O., “The Impact of Human–Automation Collaboration in Decentralized
+Multiple Unmanned Vehicle Control,” Proceedings of the IEEE, Vol. 100, No. 3, 2012, pp. 660–671. https://doi.org/10.1109/
+JPROC.2011.2174104.
+[32] Vinyals, O., Babuschkin, I., Czarnecki, W. M., Mathieu, M., Dudzik, A., Chung, J., Choi, D. H., Powell, R., Ewalds, T., Georgiev,
+P., Oh, J., Horgan, D., Kroiss, M., Danihelka, I., Huang, A., Sifre, L., Cai, T., Agapiou, J. P., Jaderberg, M., Vezhnevets, A. S.,
+Leblond, R., Pohlen, T., Dalibard, V., Budden, D., Sulsky, Y., Molloy, J., Paine, T. L., Gulcehre, C., Wang, Z., Pfaff, T., Wu, Y.,
+Ring, R., Yogatama, D., Wünsch, D., McKinney, K., Smith, O., Schaul, T., Lillicrap, T. P., Kavukcuoglu, K., Hassabis, D.,
+Apps, C., and Silver, D., “Grandmaster level in StarCraft II using multi-agent reinforcement learning,” Nature, 2019, pp. 1–5.
+[33] Goodman, J., Risi, S., and Lucas, S., “AI and Wargaming,” CoRR, Vol. abs/2009.08922, 2020. URL https://arxiv.org/abs/2009.
+08922.
+[34] Bergmann, R., and Kott, A., “Integrating Planning, Scheduling and Execution in Dynamic and Uncertain Environments,” Tech.
+Rep. WS-98-02, 07 1998.
+[35] Kerbusch, P., “Roles of AI and Simulation for Military Decision Making,” 2018.
+[36] Davis, P. K., and Bracken, P., “Artificial intelligence for wargaming and modeling,” The Journal of Defense Modeling and
+Simulation, 2022, pp. 1–16. https://doi.org/10.1177/15485129211073126.
+[37] Schwartz, P. J., O’Neill, D. V., Bentz, M. E., Brown, A., Doyle, B. S., Liepa, O. C., Lawrence, R., and Hull, R. D., “AI-enabled
+wargaming in the military decision making process,” Artificial Intelligence and Machine Learning for Multi-Domain Operations
+Applications II, Vol. 11413, edited by T. Pham, L. Solomon, and K. Rainey, International Society for Optics and Photonics,
+SPIE, 2020, pp. 118 – 134. https://doi.org/10.1117/12.2560494, URL https://doi.org/10.1117/12.2560494.
+
+12
+
+[38] Boron, J., and Darken, C., “Developing Combat Behavior through Reinforcement Learning in Wargames and Simulations,”
+2020 IEEE Conference on Games (CoG), 2020, pp. 728–731. https://doi.org/10.1109/CoG47356.2020.9231609.
+[39] Xin, J., Xinnian, W., Fang, Z., and Ran, D., “Uncertainty Based Hybrid-intelligence Multi-branch Wargaming,” 2021 7th
+International Conference on Computer and Communications (ICCC), 2021, pp. 1664–1669. https://doi.org/10.1109/ICCC54389.
+2021.9674397.
+[40] Tarraf, D. C., Gilmore, J. M., Barnett, D. S., Boston, S., Frelinger, D. R., Gonzales, D., Hou, A. C., and Whitehead, P., “An
+experiment in tactical wargaming with platforms enabled by artificial intelligence,” The Journal of Defense Modeling and
+Simulation, 2022, p. 15485129221097103. https://doi.org/10.1177/15485129221097103.
+
+Downloaded by Technische Universiteit Delft on September 4, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2023-2531
+
+[41] Goecks, V. G., Waytowich, N., Asher, D. E., Park, S. J., Mittrick, M., Richardson, J., Vindiola, M., Logie, A., Dennison,
+M., Trout, T., Narayanan, P., and Kott, A., “On games and simulators as a platform for development of artificial intelligence
+for command and control,” The Journal of Defense Modeling and Simulation, 2022, p. 15485129221083278. https:
+//doi.org/10.1177/15485129221083278.
+[42] Marine Corps Operations MCDP 1-0, Independently published, 2018.
+[43] Whitten, A., “Decentralized Planning for Autonomous Agents Cooperating in Complex Missions,” , 2010.
+
+13
+
+

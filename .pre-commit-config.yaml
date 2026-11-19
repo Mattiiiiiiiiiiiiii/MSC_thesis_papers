@@ -1,0 +1,96 @@
+# Adapted from the python-template config (hooks scoped to tools/paperlib) plus the library hook.
+default_stages: [pre-commit]
+
+repos:
+  - repo: local
+    hooks:
+      - id: validate-commit-message
+        name: commit message starting with "build|config|docs|feat|fix|perf|refactor|style|test"
+        language: pygrep
+        entry: '^(build|config|docs|feat|fix|perf|refactor|style|test)!?(\([a-zA-Z0-9_-]+\))?: .*$'
+        args:
+          - --multiline
+          - --negate
+        stages:
+          - commit-msg
+
+  - repo: local
+    hooks:
+      - id: paper
+        name: paper library (names, fulltext.txt, references.bib)
+        language: system
+        entry: paper hook
+        require_serial: true
+        files: (\.pdf|/info\.yaml)$
+        exclude: ^(confluence_pages|configuration_optimization/viscous_models/mit_mark_drela_course|automatic_differentiation/mit_course)/
+
+  - repo: local
+    hooks:
+      - id: write-license-header
+        name: write license header
+        files: ^tools/paperlib/.*\.py$
+        language: system
+        entry: |
+          bash -c '
+          for file in $0 $@; do
+            file=$(echo "$file" | xargs)
+            if [ ! -f "$file" ] || [ ! -s "$file" ]; then
+              continue
+            fi
+            if grep -q "^# Copyright (c) [0-9]\{4\} Harmattan AI\.*$" "$file"; then
+              continue
+            fi
+            first_line=$(grep -n -m 1 -v "^#" "$file" | cut -d: -f1)
+            sed -i "${first_line}i# Copyright (c) $(date +%Y) Harmattan AI." "$file"
+            echo "Added license header to $file"
+          done
+          '
+
+  - repo: 'https://github.com/pre-commit/pre-commit-hooks'
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+        args:
+          - --maxkb=2000
+        exclude: /fulltext\.txt$
+      - id: check-executables-have-shebangs
+        files: ^tools/
+      - id: check-shebang-scripts-are-executable
+        files: ^tools/
+      - id: check-yaml
+      - id: end-of-file-fixer
+        files: ^(tools/|\.pre-commit-config\.yaml$|\.papis\.config$|\.gitattributes$)
+      - id: trailing-whitespace
+        files: ^(tools/|\.pre-commit-config\.yaml$|\.papis\.config$|\.gitattributes$)
+      - id: check-symlinks
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.6
+    hooks:
+      - id: ruff-check
+        files: ^tools/paperlib/
+        args:
+          - --fix
+          - --config=tools/paperlib/pyproject.toml
+      - id: ruff-format
+        files: ^tools/paperlib/
+        args:
+          - --config=tools/paperlib/pyproject.toml
+
+  - repo: 'https://github.com/pre-commit/mirrors-mypy'
+    rev: v1.18.2
+    hooks:
+      - id: mypy
+        files: ^tools/paperlib/src/
+        additional_dependencies: [types-PyYAML]
+        args:
+          - --config-file=tools/paperlib/pyproject.toml
+
+  - repo: https://github.com/python-poetry/poetry
+    rev: 2.2.1
+    hooks:
+      - id: poetry-check
+        files: ^tools/paperlib/pyproject\.toml$
+        args:
+          - -C
+          - tools/paperlib

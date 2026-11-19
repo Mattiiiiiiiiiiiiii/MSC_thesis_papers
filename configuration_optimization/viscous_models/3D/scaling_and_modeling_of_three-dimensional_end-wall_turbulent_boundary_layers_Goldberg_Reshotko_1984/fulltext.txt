@@ -1,0 +1,13814 @@
+ontracto
+eport
+i
+
+l
+°.7_
+
+L
+
+Scaling and Modeling of
+Three-Dimensional,
+End-Wall,
+Turbulent
+Boundary Layers
+
+Uriel C. Goldberg
+
+GRANT
+JUNE
+
+and Eli Reshotko
+
+NAG3-270
+
+1984
+
+_piiil
+
+,,, •
+
+!-IA_,',FT
+el 1, -q'_l_,!l,_(
+
+_ o_-_.
+
+-_-.
+
+_. 4..
+
+_
+
+. ,.
+
+NASA Contractor
+
+Report 3792
+
+Scaling and Modeling of
+Three-Dimensional,
+End-Wall,
+Turbulent Boundary Layers
+
+Uriel C. Goldberg
+
+and Eli Reshotko
+
+Case Western Reserve University
+Cleveland, Ohio
+
+Prepared for
+Lewis Research Center
+under Grant NAG3-270
+
+N/LSA
+National Aeronautics
+and Space Administration
+Scientific and Technical
+InformationBranch
+1984
+
+TABLE OF CONTENTS
+Page
+
+LIST OF SYMBOLS
+
+v
+
+CHAPTER I - INTRODUCTION
+
+1
+
+CHAPTER II - ASYMPTOTIC ANALYSIS
+
+5
+
+2. 1. The Pressure-Driven Case
+2.2.
+The Case of Juncture Flow
+2.2.1.
+Scaling and normalized equations
+2.2.2.
+Asymptotic treatment
+CHAPTER III - PROFILE RELATIONS
+DRIVEN BOUNDARY LAYERS
+3. 1.
+3.2.
+3.3.
+3.4.
+3.5.
+
+5
+9
+10
+12
+
+FOR PRESSURE20
+
+General Discussion
+Law-of-the-Wall
+Law-of-the-Wake
+Comparison with experimental data
+Comparison with Johnston's triangular
+
+model
+
+20
+22
+23
+28
+29
+
+CHAPTER IV - CONCLUSIONS
+
+31
+
+REFERENCES
+
+51
+
+APPENDICES
+A.
+
+Preliminary Form of the Equations of M_)tion in the
+Various Layers, to Orders 1, € and _-
+
+53
+
+B.
+
+Matching Procedure
+
+49
+
+C.
+
+Final Form
+Matching-
+
+ol the Equations of Motion
+and Boundary- Conditions
+
+D.
+
+Determination
+
+of the 3D Logarithmic Overlap
+
+E.
+
+Details Pertaining
+
+and
+
+67
+73
+
+to Profile Relations
+
+El. Determination of the Wake Parameter,
+E2. Determination of the Function 7 ('r/)
+E3. Procedure to Determine "r/1
+
+iil
+
+Their
+
+77
+II
+
+77
+78
+81
+
+F.
+
+Detailed
+F].
+F2.
+
+G.
+
+Analysis
+
+of a Juncture
+
+Flow
+
+Preliminary Form of Juncture
+Matching Procedure
+
+Effects of Rotation
+
+83
+Equations
+
+83
+101
+117
+
+iv
+
+LIST OF SYMBOLS
+A
+
+Parameter
+model
+
+A' =2K-l]'[
+
+Variable
+
+used in the Law-of-the-
+
+Wake
+
+B -_5.0
+
+Constant
+gion
+
+used In the logarithmic
+
+overlap
+
+Cf
+
+Skin friction
+
+= 2-rw/P/J2=
+
+used
+
+In
+
+Johnston's
+
+triangular
+
+re-
+
+coefficient
+
+el
+
+Unit vectors
+
+F
+
+Defect function used In the Law-of-the-Wake
+
+I.L
+
+Length scale (=XO)
+
+n
+
+Exponent in power law growth
+
+P
+
+Pressure
+
+Q
+
+Outer variable
+
+q
+
+Middle-layer
+
+(stands
+variable
+
+for UI.P.Ti/)
+(stands
+
+for u i ,P,ti/).
+
+inner variable
+
+(stands
+
+for ui,P._ij)
+
+R
+
+Perpendicular
+of rotation
+
+distance
+
+of particle
+
+R
+o
+
+Perpendicular
+to blade hub
+
+distance
+
+from axis of rotation
+
+Re/ = Uei/V
+
+Reynolds number
+
+based on I
+
+Re 0 = /JeS/V
+
+Reynolds number
+
+based on 8
+
+V
+
+from axis
+
+Reo_, = L/eOZ/v
+
+Reynolds number based on 0 =
+
+7"/i =- u;_lu
+
+Reynolds stress
+
+2
+
+U
+
+Resultant velocity.
+Also streamwlse
+(clear from context).
+
+Ux
+
+Streamwlse velocity component
+
+Up
+
+U at apex in Johnston's triangle
+
+U .V
+Y
+
+Normal
+endwall
+
+Uz.W
+
+Crossflow
+endwall
+
+u
+
+velocity perturbation scale
+
+uT =
+
+[Tw/. p ]1/2
+
+velocity
+
+velocity
+
+component
+
+relative
+
+to
+
+component
+
+relative
+
+to
+
+velocity
+
+Friction velocity
+
+u "t" = tJ/u r
+
+Law-of-the-Wall
+
+velocity
+
+X
+
+Streamwise coordinate
+
+Y
+
+Normal coordinate relative to endwall
+
+Z
+
+Crosswise
+
+y=Y/€
+
+normal coordinate in middle layer of endwall
+
+Y=Y/_
+
+Normal coordinate in Inner layer of endwall
+
+y.=Yu T /v
+
+Law-of-the-Wall
+to endwall
+
+z. ,_
+
+Normal coordinates
+in blade
+Inner layers, respectively
+
+coordinate
+
+relative
+
+normal
+
+to
+
+endwall
+
+coordinate
+
+middle
+
+Gro_k L__..t_9_r_s_
+a..8
+
+Parameters
+
+vl
+
+appearing
+
+In Eq.
+
+relative
+
+(10)
+
+and
+
+.Be
+
+External flow direction relative to
+direction at upstream position
+
+•y
+
+Angle appearing
+Uz vs Ux
+
+'Ym
+
+Value of */ at outer edge of defect
+layer
+
+f'='Y/"/m
+
+Wake variable
+
+0. Z_
+
+Boundary layer thickness
+
+0
+
+Displacement thickness
+
+), = [P_./Cf] 1/2
+,:_-.41
+
+yon Karman constant
+
+_=Ur/U e
+
+Normal length scale of defect layer
+
+_=€-lRe71
+
+Normal length scale of inner layer
+
+in polar plot of
+
+o == I/(I-2n)
+p
+v
+
+Density
+Kinematic viscosity
+
+_/=Y/0
+€
+
+Normalized normal coordinate
+Angle between U and Ux in polar
+Uz vs Ux
+Parameter
+
+7
+
+in Juncture flow equations
+
+Shear stress
+=- Xre f/).w &
+
+][
+
+Wake parameter
+
+N
+
+Angular velocity of rotation
+
+.Suoerscript.s
+"
+
+Indicates a dimensional quantity
+
+"
+
+Indicates an Inner
+
+vii
+
+layer variable
+
+plot of
+
+"
+
+Indicates
+
+a vector quantity
+
+.Subscripts
+0
+
+Indicates a quantity evaluated at the point
+where the wall- and wake- velocity vectors
+are In the same direction
+
+]
+
+Indicates a quantity evaluated at the point of
+switching from the logarithmic overlap to the
+wake
+
+m
+
+Indicates
+
+maximum value
+
+x
+
+Indicates
+
+an X-wise
+
+z
+
+Indicates
+
+a Z-wise
+
+w
+
+Indicates
+
+a quantity evaluated
+
+e
+
+Indicates a
+freestream
+
+oo
+
+Indicates
+upstream
+
+a
+quantity
+position
+
+b
+
+Indicates
+
+a quantity evaluated
+
+at the blade
+
+c
+
+Indicates
+
+a quantity evaluated
+
+at the corner
+
+ref
+
+Indicates a reference
+
+2D
+
+Indicates
+
+viii
+
+quantity
+quantity
+
+quantity
+
+evaluated
+
+at
+
+the
+
+local
+
+evaluated
+
+at
+
+the
+
+quantity
+
+two-climensional
+
+at the endwall
+
+flow
+
+CHAPTER I
+
+INTRODUCTION
+Three-dimensional
+external
+wings
+
+and internal
+and
+
+flows.
+
+boundary
+
+compressor
+
+blades
+
+turbulent
+
+boundary
+
+layers
+
+occur
+
+Examples are boundary
+
+layers
+
+on
+
+or turbine
+
+turbomachinery
+
+blades.
+
+Ing of such flows is very Important
+
+Gaining
+
+in- both
+
+layers on swept
+
+endwalls
+physical
+
+for both analysis
+
+between
+
+understand-
+
+and design pur-
+
+poses.
+The
+
+present
+
+layers,
+
+pointing
+
+ing
+
+model
+
+a
+
+work
+
+treats
+
+turbomachinery
+
+endwall
+
+boundary
+
+out some basic physics of such flows and suggestwhich
+
+attempts
+
+to
+
+describe
+
+parts
+
+of
+
+the
+
+flow-field
+
+analytically.
+Figure
+indicating
+part
+
+the
+
+the
+
+of the
+
+which
+
+1 shows
+
+regions treated
+
+endwall
+
+dimensional
+
+flows
+
+character.
+
+where
+
+the
+
+the
+
+which
+
+crosswise
+
+Region
+
+this
+
+Induced
+
+Interaction
+
+of the two boundary
+juncture
+
+work.
+
+II is the
+of
+
+by interference
+layers
+
+region
+
+of
+
+by the
+
+between
+
+the
+
+flow
+
+the
+
+flow
+
+effects
+
+due
+
+Is
+
+I is the
+
+blades
+
+gradient
+
+blade/endwall
+
+on each
+
+flow-field,
+
+Region
+
+pressure
+
+part
+
+three-dimensionallty
+
+flows
+
+is another
+
+a turbomachinery
+
+Is not Influenced
+
+give
+
+secondary
+
+There
+
+of
+
+by the present
+
+flow which
+
+is pressure-driven,
+
+secondary
+
+glen,
+
+a schematic
+
+and
+
+creating
+its
+
+three-
+
+juncture
+
+re-
+
+created
+
+by
+
+to the
+
+mutual
+
+side of the juncture.
+
+Region
+
+I and the
+
+suction
+
+side
+
+of the
+
+The
+
+cross-hatched
+
+plane
+
+depicts
+
+which the present
+
+analysis
+
+is done.
+
+Region
+
+I
+
+Is treated
+
+much
+
+more
+
+Region
+
+II.
+
+Coles
+
+was
+
+apparently
+
+than
+
+possibility
+vector
+sum
+
+other
+
+blade,
+
+of treating
+
+form.
+of
+
+two
+
+which
+
+[1]
+
+the
+
+direction
+
+approach
+
+to him.
+
+would
+
+gradient.
+(or
+
+turbulent
+
+boundary
+
+(or
+
+streamwise)
+
+component
+
+and
+
+He
+
+was thus
+
+known triangular
+
+freestream.
+
+away from
+
+region
+
+corresponds
+
+wake-sublayer,
+
+relationships
+
+adjacent
+
+[2]
+
+crosswise)
+
+suggested
+
+component
+
+as a function
+
+of data
+
+to the
+
+to
+the
+
+of a
+
+of the main
+
+additional
+
+to describe
+
+model
+
+to
+
+of
+the
+
+spite
+
+the
+
+to the wall and the
+is
+
+successful
+
+of the triangle
+
+vicinity
+
+in
+
+Johnston
+
+parallel
+
+parameters.
+proposition
+
+of
+
+of others,
+
+the vertex
+
+in the
+
+shear
+
+and those
+
+His
+
+quately
+
+of the surface
+
+on his own experiments
+
+two explicit
+
+model
+
+stat-
+
+of the velocity
+
+suggested
+
+the
+
+examination
+
+by the
+
+he tentatively
+
+nearly
+
+certain
+
+in
+
+the form
+
+Based
+
+region
+
+of
+
+layers
+
+component,
+
+be very
+
+layer
+
+the
+
+to describe
+
+hodograph.
+
+the
+
+a wake
+
+is in the direction
+
+secondary
+
+led through
+
+to suggest
+
+available
+
+component
+
+the
+
+first
+
+in
+
+literature
+
+and
+
+data
+
+pressure
+
+the
+
+in the
+
+component
+
+wall
+
+three-dimensional
+
+one for
+
+extensively
+
+clarity.
+
+station
+
+is described
+
+a
+
+of the
+
+streamwise
+
+profile
+
+vectors:
+
+wake
+
+"1 for
+
+velocity
+
+entire
+
+of treating
+
+his well
+
+typical
+
+Fig.
+
+boundary
+
+the
+
+the
+
+from
+
+turbulent
+
+whereby
+
+ed that if the wall component
+then
+
+a
+
+three-dimensional
+
+Based on the experimental
+
+stress,
+
+is omitted
+
+the
+
+but falls
+
+vertex.
+
+transitional
+of its
+
+relative
+
+triangular
+
+other
+
+he
+
+model:
+
+for
+
+that near
+
+enough
+
+In the
+
+regions
+
+to match
+
+the
+
+data
+
+ade-
+
+later,
+
+this
+
+As will
+
+be
+
+shown
+
+region
+
+from
+
+the
+
+success,
+
+wall-
+
+Johnston's
+
+to
+
+the
+
+model
+
+suffers from being a product of data-correlation
+
+without the benefit
+
+of a supporting analysis.
+The main phenomenon in juncture flows is the corner vortex
+[3-6],
+
+which is composed of two sources:
+
+the "horseshoe" vortex,
+
+created by the wrapping of the oncoming vortlcity around the blades,
+and the "passage" vortex, which rolls up from the skewed boundary
+layer-Induced crossflow.
+
+The blade leading edge region is predom-
+
+Inantly Inviscld and rotational.
+the
+
+existence
+
+Shabaka's
+
+the
+
+endwall,
+
+Indicate
+
+"boundary jet"
+
+outflow
+
+of a Reynolds stress-induced
+
+from the juncture over the endwall.
+since
+
+[5] experiments
+
+eddy viscosity scales
+a single
+
+It Is Important to realize that,
+
+are
+
+different
+
+for
+
+eddy viscosity model cannot
+
+the
+
+blade and
+
+work for
+
+juncture
+
+flows.
+In order
+dimensional,
+
+to gain further
+
+Insight Into the
+
+endwall turbulent boundary layers,
+
+more analysis would be helpful.
+
+physics of three-
+
+it became clear that
+
+To this end,
+
+Mellor's
+
+[7] two-
+
+dimensional asymptotic analysis for large Reynolds number turbulent
+boundary
+
+layers
+
+has been
+
+extended
+
+to three
+
+dimensions
+
+In the
+
+present work.
+
+The results of this analysis provide the scaling of
+
+three-dimensional
+
+boundary layers of both Juncture - and pressure--
+
+driven -
+
+Including
+
+types,
+
+rotational effects.
+
+The
+
+analysis of the
+
+former type Includes both symmetric and asymmetric cases.
+
+The
+
+analysis of the latter type leads to the proposition of a composite
+three-dlrnenslonal
+
+Law-of-the-Wall
+
+and Law-of-the-Wake
+
+Izing a vector approach In the wake sub-layer.
+
+model,
+
+util-
+
+This model Is com-
+
+pared
+
+with van
+
+data
+
+and
+
+ment.
+
+Mueller's
+
+It should
+
+particular
+The
+
+den Berg
+[10]
+
+and
+
+Elsenaar's
+
+forced
+
+turning
+
+be mentioned
+
+presented
+
+equations
+
+of motion
+
+found
+
+It
+
+short
+
+predicting
+
+blades
+
+infinite
+
+flow data
+
+that Johnston's
+
+swept-wing
+
+with
+
+triangle
+
+good
+
+flow
+
+agree-
+
+emerges
+
+as a
+
+limit of this model.
+analysis
+
+comes
+
+[8]
+
+of
+
+of a turbomachinery
+
+here
+
+does not
+
+for the various
+forces
+
+component.
+
+and
+
+include
+
+sub-regions,
+moments
+
+solutions
+
+of the
+
+and therefore
+acting
+
+on
+
+the
+
+CHAPTER II
+
+ASYMPTOTIC ANALYSIS
+
+II. I.
+
+The Pressure-Driven
+A typical
+
+shown in Fig.
+tures,
+
+skewed boundary
+2.
+
+Case (Region
+layer and
+
+For incompressible,
+
+I)
+
+basic nomenclature
+
+are
+
+steady flow,
+
+with no curva-
+
+the mean part of a turbulent flow is described
+
+by the follow-
+
+ing equations:
+Mass conservation:
+aUi/aX i =0
+
+( 1)
+
+Momentum:
+
+Ui [aUi/_X/]
+
+= - ap/axl+
+
+where
+
+UI:U'/U,
+
+e"
+
+P=f_/pU2e " Ti,=
+
+- u;u_//u*2
+
+xi=_i/l"_=u/ Oe._=a=v/(0el_=R:_
+In the above equations,
+with u
+€2_
+R-1
+el.
+
+€2 is the scale for the Reynolds stresses.
+
+being an as of yet undetermined perturbation velocity scale.
+
+Is the scale for the viscous stresses,
+Thus _ Is the
+
+which Is also given by
+
+relative magnitude of viscous-
+
+to Reynolds-
+
+stresses.
+In addition, the following boundary conditions are required:
+Ui (X. 0,Z)=0
+and, assuming a uniform external flow.
+
+(for a fixed (X,Z)
+Next,
+
+location )
+
+an asymptotic analysis is carried out (following Mellor
+
+[7]) for the above equations, using the following expansions:
+A. Outer Expansion
+
+Q=QI .cQ2 ._2Q3"i'" " "
+Ti/=O (This
+
+assumes no free-stream
+
+turbulence)
+
+6
+
+where Q stands for the three velocity components and pressure:
+Q=(Ux(X,Y.Z),Uy,U
+B.
+
+z,
+
+P) (11
+
+Middle Expansion
+
+y=Y/E
+2
+Ux = Uxl
+
+(X,y,Z)
+
+.
+
+CUx2 .
+
+E Ux3 .
+
+...
+
+2
+Uz = Uzl _ CUz2 .
+
+P = p]
+
+.
+
+Ti/ =tll
+
+I .
+
+C.
+
+€ Uz3 .
+
+.."
+
+cp2 + €2p3 -I- ---
+
+ct21/ .
+
+€2t31/ .
+
+...
+
+Inner Expansion
+
+2
+
+3
+
+{DNOTE:
+In the-'pre-sent_"analysls
+an expression of the form
+U(X,Y,Z)
+should be Interpreted as U(Y) at a given (X,Z) location.
+
+U Z = Uzl
+^
+
+^
+P = P]
+
+T,
+
+"1" IEg
+
+"1" E 2^
+Uz3
+
++
+
+"'"
+
+"t" €_ 2 "1"€ 2,,
+p3 + ...
+
+4- €_'2
+
+-f _2_'3
+
+.
+
+-..
+
+These expansions are substituted into Eqs.
+
+(1)
+
+and
+
+(2)
+
+and the
+
+analysis proceeds in the manner of matched asymptotic expansions,
+the details of which are described In Appendices A,
+
+B and C.
+
+It
+
+should be noted that this analysis assumes that both _ and _ are
+much smaller than unity.
+
+The features of the resulting equations in
+
+the three regions are summarized in Table 1 to the first three orders.
+
+The main features of the flow, as indicated in the table,
+
+the following:
+
+are
+
+the outer layer is invlscid; the middle layer is Influ-
+
+enced by Reynolds stresses to orders 2 and 3, where the 2nd order
+equations are of the boundary layer type while the 3rd order ones
+are Ilo averaged
+Inated
+
+Navior 8tokes equations;
+
+by constant
+
+total shear
+
+(viscous-
+
+the inner layer is domplus
+
+Reynolds-stresses)
+
+across it, with no pressure gradient or inertia effects through order
+3.
+
+The Important Information for the subsequent analysis is con-
+
+tained in the 1st order outer region equations and in the 2nd order
+middle-
+
+and Inner-
+
+region equations.
+
+As a result of the asymptotic analysis and the matching procedure,
+
+the following conclusions emerge:
+1.
+
+The flow possesses a 3-layer structure;
+
+2.
+
+The
+
+Inner and middle
+
+layers
+
+have a common
+
+loga-
+
+rithmic overlap;
+3.
+
+The Inner layer Is exponentially thin compared to the
+
+middle layer: _ = O
+4.
+
+The
+
+pressure
+
+as € -. 0;
+gradient
+
+does not Influence
+
+the
+
+Inner
+
+layer,
+
+hence the wall shear stress is the only driving force
+
+there.
+
+It Is reasonable to assume that the shear field main-
+
+tains its two-dimensionality within this sub-layer.
+flow is two-dimensional
+vectors are co-planar
+5.
+
+Thus the
+
+In the Inner layer and the velocity
+
+in the Tw-dlrectlon.
+
+Since the outer flow Is In the freestream direction,
+
+the turning from the 7w - direction to the /'Je -
+
+all
+
+direction
+
+must take place in the middle layer.
+While the first three conclusions apply also to two-dimensional
+boundary layerss,
+
+the last two are special to the three-dimensional
+
+case.
+
+See Appendix G for the effects of rotation on the equations of
+motion In the pressure-driven
+
+11.2.
+
+case.
+
+The Case of Juncture Flow _Region I1_
+
+9
+
+Figure
+juncture.
+blade
+
+3
+
+describes
+
+the
+
+An
+
+oncoming
+
+endwall
+
+situated
+
+normal
+
+phenomena:
+
+around
+
+the
+
+blade,
+
+thereby
+
+nation
+
+line
+
+at the
+
+blade
+
+the vorticlty
+
+skewing
+
+which
+
+vortex';
+
+this
+
+the
+
+create
+
+the
+
+corner
+
+Ishing
+
+its
+
+strength
+
+leading
+
+edge;
+
+upstream
+
+of
+
+separation
+
+patterns•
+
+vortex which
+for
+
+quite
+
+creating
+
+a
+
+oncoming
+
+develops
+
+over
+
+it.
+
+This
+
+b.I.
+
+wraps
+
+the
+
+stag-
+
+creates
+
+into
+
+vortex
+
+a
+
+so-called
+
+augment
+
+each
+
+of an
+
+"passage
+other
+
+and
+
+stretches
+
+downstream
+
+without
+
+dimin-
+
+distance
+
+downstream
+
+of
+
+blade
+
+the oncoming
+
+hits
+
+the
+
+blade,
+
+a
+
+resulting
+
+in a corner
+
+is Investigated
+
+in this section.
+
+11.2.1.
+
+Scaling
+
+and normalized
+
+three-dimensional
+
+or a node.
+
+over the endwall,
+
+which
+
+boundary
+
+one which
+(or
+
+layer
+
+has been
+
+Juncture)
+
+flow
+
+equations
+
+in the Juncture are
+
+normalized
+
+p = IS/p 02
+e"
+
+-'-' .2
+= -ul ui/urii
+
+]0
+
+the
+
+flow may separate
+
+possible
+
+with the
+
+•
+
+gradient
+
+and the formation
+
+Interacts
+
+Ui = 01/0 e
+
+vortex;
+a pressure
+
+b.I.
+
+The flow variables
+
+a
+
+by the oncoming
+
+of several
+
+flow
+
+with
+
+rise to
+
+such as a saddle-point
+
+the
+
+In a
+
+gives
+
+up
+
+is blunt,
+one
+
+field
+
+interaction
+
+b.I.
+
+rolls
+
+flow
+
+interacts
+
+a "horseshoe"
+
+edge
+
+"horseshoe"
+
+As
+
+developing
+
+later
+
+If the latter
+it,
+
+carried
+
+creating
+
+layer
+
+This
+
+of the oncoming
+
+crossflow,
+
+of the
+
+boundary
+
+leading
+
+endwall
+
+and
+
+features
+
+to the endwall.
+
+several
+
+that Induces
+
+main
+
+Tii
+
+as follows:
+
+where
+
+(x.Y.Z)
+The
+
+is a locally cartesian
+
+scaling
+
+of
+
+Y
+
+and
+
+analysis
+
+of the three-dimensional
+
+region
+
+(Region
+
+Appendix
+
+D).
+
+variables,
+
+pear
+
+in them
+
+(see
+
+of motion
+
+it can
+
+for the juncture
+
+av
+
+_ aw
+
+a--_+ '_+'_t <: a--2=
+
+u -_+
+au
+
+boundary
+
+F1)
+
+layer
+
+these
+
+are
+
+the
+
+(See
+
+written
+
+in terms
+
+require
+
+law for
+
+(Appendix
+
+of
+
+2.1.
+
+and k b O/(XwA)
+
+power
+
+be shown
+
+results
+
+outside the Juncture
+
+in Section
+
+of motion
+
+and
+
+(1/n)th
+
+on
+
+F1)
+
+of
+
+--- _ ap-
+
+additional
+
+turbulent
+
+also
+
+flat
+
+conplate
+
+that the equations
+
+flow become
+
+o
+
+_ v-_au + _ w _au = -- --ax
+aP + _x [ _-]
+
+2
++ _w Txx]
+
+-I-,_
+
+the
+
+Xref/(XwA)--P,
+
+Appendix
+the
+
+based
+
+is
+
+the equations
+
+By using
+
+system.
+
+is performed
+
+the factors
+
+flow as a model,
+
+au
+
+which
+
+When
+
+these
+
+sideration,
+
+I).
+
+Z
+
+coordinate
+
+2^
+
+au
+
+EWC W _'X
+
+-I.
+
+_[,++,,+u,,
+_+ +,,,_] +<:
+.+___+
+az 1':°,,,
+--,,,+°,.,
++,+
+_ +°,,,
++,"=]
+
++v
+
+.
+_-_ ,,,,_,_
+2 ^ av
++v+w a'-'_
+°v:- P"_V
+°,++[
+
+u ._ + _.v _-_.
++ ,_ T,x] +
+
+(a,
+
+"11
+
+[OwOw
+-_,Ow
+_]
+
+ow _ v _ ,
+.2o
+
+. _ _y
+
+.€
+
+2
+CwTz]
+
+_.Ow
+_*_, Tz,]
+
+o,v_¢ ap
+a'-Z+
+
+u -_-.
+
++_
+
+_
+
+w _- =
+
+2^ow
+
+_
+
+ewCw
+
+.
+
+2^
+8W *_20 °w_z]
+2
+[',,,',,,
+"
+
+2^ -_r._-1 EWEw
+
+=20 2
+CwTzz ]
+
+where,
+
+in analogy with the treatment of Region I.
+
+2^
+
+/0
+
+CwCw "= v/(Ue
+
+XwA) ' Cw='UTw
+
+e
+
+and the additional notation is
+1-2n
+¢ -
+
+(_b/Cw)
+
+The boundary
+
+conditions
+
+U =V=W
+
+II. 2, 2.
+
+.o
+
+=-- 1/(]-2n)._,
+
+=--Xre f/(XwA)
+
+are:
+
+[Y=0 O.
+
+=0@
+
+ZY >0
+>0
+
+Asymptotic treatment
+Two Independent parameters
+
+and ¢ (the 3rd parameter.
+pendix B).
+juncture.
+
+_w'
+
+appear in Eqn.
+
+(3).
+
+namely
+
+Is related to €w as shown in Ap-
+
+While €w Is a small parameter
+
+everywhere along the
+
+¢ increases from 0 at the blade leading edge to O(1)
+
+the trailing edge,
+
+w
+
+at
+
+and may thus be viewed as a measure of both
+
+streamwise location and extent of asymmetry.
+
+12
+
+For the purpose of
+
+asymptotic analysis of Eqn.
+a basic perturbation
+
+(3),
+
+a new parameter,
+
+€C. is used as
+
+paramoter,
+
+to be determined
+
+(along
+
+from matching conditions (Appendix F2).
+expansions In terms of ew and (,
+ture coordinates
+
+Yc
+
+and Z c
+
+in such a manner that the juncture
+(3)
+
+nates as well as w.r.t.
+
+and Wc
+
+itself is symmetric or not.
+
+In order to avoid double
+
+it is intended to stretch the junc-
+
+equations derived from Eqn.
+Vc
+
+with _c )
+
+are symmetric w.r.t,
+
+these coordi-
+
+regardless of whether the flow
+
+Such a coordinate transformation leaves
+
+€ c as the only perturbation parameter,
+
+enabling single expansions as
+
+for the Region I treatment.
+
+The details of the coordinate stretchlngs
+
+are given In Appendix F],
+
+resulting In the following expansions, valid
+
+for an arbitrary (non-zero)
+
+_:
+
+Middle region
+
+U = u]
+
+2
+-t. CcU2 + CcU'o -I...
+
+V = _c Iv1
+
++' _cV2
+
+"1"€2v3
+
+•
+
+"1" "'"
+
+]
+
+2
+
+w = %[w1 * %w2 . %w3 + ""]
+P = p]
+
+2
+-!. Ccp2 t" Ccp3 -I" .."
+
+]3
+
+[
+
++
+
+till
+
+2
+Cct3ii
+
+_ct211
+
+]
+
+. .
+•.
+
+=
+
+, Oiz
+
+[o.,,z
+(1. I=z
+
+Inner region
+
+= Y/([CC_C).
+
+_ = ¢ Z/(_,Cc_
+
+c)
+
+2J,
+
+Ti i =
+
+[_c/Cw]2[1
+
+.
+
+[¢-2a_
+
+1]01z]
+
+"
+
+[_,,,
+•Oo_,,
+•_,,•...]
+As shown in Appendix
+
+Iim € c = _w"
+
+Iimcc
+
+F2.
+
+= Cb'
+
+Iim_ c = _w"
+
+These
+
+expansions
+
+are Inserted
+
+tions
+
+are
+
+out
+
+inner
+
+regions,
+
+sorted
+
+to
+
+as shown
+
+orders
+
+into Eqn.
+1.
+
+in Appendix
+
+14
+
+€c
+F].
+
+Iim _c = _b
+
+(3)
+
+and the resulting
+
+and
+
+Cc
+2 for
+
+the
+
+It is Important
+
+middle
+
+equaand
+
+to realize
+
+that the
+blade-
+
+Reynolds stresses
+
+scale
+
+differently
+
+boundary layers (Regions I),
+
+Thus,
+
+T
+
+.
+
+=
+wii
+
+with related
+
+expansion
+
+.
+tl il
+
+Cwt211
+
+for the inner
+
+layer.
+
+!
+
+.
+
+and similarly
+
+for the Inner
+
+layer.
+
+nolds
+
+contributions
+
+from
+
+and this is taken
+of T
+
+into account
+
+as demonstrated
+
+endwall-
+
+and
+
+in the endwall b.l.:
+"'"
+
+In the blade
+
+b. I. :
+
+!
+
+Tbi / = tll/
+
+stress
+
+In the
+
+_bt2//
+
+.
+
+...
+
+The Juncture region
+both boundary
+
+by the series
+
+layers
+
+expansion
+
+contains
+
+Rey-
+
+adjacent
+
+to it,
+
+representation
+
+below:
+
+cii
+
+IIm T
+
+=
+
+IIm T
+
+=
+
+f tlii
+
+.
+
+cwt2ii
+
+.
+
+"''"
+
+/ .
+
+_bt2ii
+
+.
+
+''',
+
+yc-==
+
+cii
+
+[tli
+
+Thus.
+
+the
+
+factors
+
+Ti/
+
+on endwall
+
+region
+
+Reynolds
+
+(;+20
+
+i
+
+# z
+
+i
+
+compensate
+
+= z
+
+for
+
+the two different
+
+and blade,
+
+enabling
+
+smooth
+
+matching
+
+stresses
+
+with those
+
+on
+
+two
+
+layers.
+
+]5
+
+the
+
+scales
+
+for
+
+of the Juncture
+
+Region
+
+I boundary
+
+The
+
+equations of Tnotion are derived
+
+Appendix F2
+match
+
+the
+
+corner.
+
+Includes
+corner
+
+a detailed
+
+region
+
+with
+
+In Appendix F1,
+
+description
+the
+
+boundary
+
+Since the equations are symmetric,
+
+the matching to half of the corner,
+
+of the
+layers
+
+while
+
+procedure
+
+to
+
+outside
+
+the
+
+it suffices to perform
+
+say the sector between the Z-
+
+axis and the bisector of the right angle between this and the Y-axis.
+The resulting matching lines are Indicated in Fig. 4 by the numbers
+1,
+
+2 and 3.
+
+Important results from the
+
+matching procedure
+
+are
+
+given In Appendix F2 and summarized below:
+1.
+
+The pressure In the corner region is Imposed by the
+
+external flow; the gradients of the external pressure normal
+to the solid boundaries vanish along the corner.
+2.
+
+The
+
+overlap
+
+streamwlse
+
+velocity
+
+between the
+
+corner
+
+has
+
+a
+
+common
+
+middle region
+
+logarithmic
+
+and the
+
+inner
+
+layers on both endwall and blade.
+3.
+The streamwise velocity component In the inner region
+vanishes to O(1).
+The final version of the equations of motion is given in Table
+2.
+
+These equations Indicate the following main features of turbulent
+
+corner flows:
+1.
+The pressure field in the corner region is Imposed by
+the outer flow.
+2.
+
+In the middle region,
+
+the flow is inviscid and without
+
+Reynolds stresses to O(1),
+
+and is described by an Euler-
+
+type equation for the
+
+streamwlse
+
+16
+
+momentum.
+
+This same
+
+momentum equation becomes of a parabollzed Navler-Stokes
+type with Reynolds stresses only, to 0(_).
+
+The O(€ 2) flow
+
+is described
+
+equation
+
+by a Re-averaged
+
+N-S-type
+
+for the
+
+streamwise momentum and by parabollzed N-S equations for
+the two crosswise momenta.
+
+Again,
+
+these equations tn-
+
+The inner region is characterized
+
+by the fact that the
+
+cludo Reynolds stresses only.
+3.
+
+crosswise derivatives of the total shear (viscous + Reynolds
+stresses)
+
+on each wall are equal in magnitude and opposite
+
+In sign.
+
+Also. the O(_ 2) flow Includes pressure gradients
+
+normal
+
+to both walls,
+
+which are
+
+Reynolds stress gradients.
+
+balanced
+
+by crosswise
+
+There are no Inertia effects in
+
+the inner region through O (€ 2) at least.
+It is noted that,
+
+unlike the Region I equations,
+
+those of Re-
+
+gion II cannot be solved starting at the lowest order and continuing
+to higher orders based on previous solutions.
+
+Rather,
+
+one has to
+
+use symultaneously equations belonging to different orders,
+enough non-trivial
+Specifically,
+
+In
+
+to have
+
+equations for the number of unknowns ['15,16].
+
+the
+
+middle
+
+region
+
+momentum equations of 0(_ m)
+
+the
+
+continuity
+
+and
+
+streamwise
+
+have to be coupled with the two
+
+crossflow momentum equations of O(€ m+2)
+
+to solve for the O(€ m)
+
+velocity components and O(_ m+2)
+
+In the Inner region the
+
+pressure;
+
+continuity and streamwlse mometum equations of O(€ m)
+
+]7
+
+must be
+
+solved symultaneously with the
+o(cm'l'2_ 2)
+
+crosswise
+
+momentum
+
+to get a complete flow picture.
+
+slderably more terms of the asymptotic series
+Region II than in Region I,
+
+equations of
+
+This means that conmust be retained in
+
+especially in the inner region.
+
+Note
+
+also that a "composite profile" does not exist for the Juncture flow,
+since the outer,
+
+middle and inner regions do not share common
+
+surfaces and thus do not have common asymptotes (see Fig. 4).
+Finally,
+
+the extent of the juncture region for an arbitrary 0/A
+
+ratio is of interest.
+
+This is determined by letting the coordinates of
+
+the various subreglons be of the order of their scales.
+
+Thus
+
+,o-o,,,
+_,_-o,,°o,
+__:oE.:
+.o,,j
+=o[.o.o.u..l
+_o=o,,,--.,,=0[_Oo;o]_
+_=o[_
+w
+1%_ceA] = o _._c_rw
+
+l
+
+•o=o,_,_z =0[Oo_1i =o[o;'OoO_,_
+l =0t Tb o
+
+=o,,, -.z =o[oo;o=,_]
+-._=o[,;'Oo;oO=,_]
+= 0
+
+U'rb
+
+Figure 4 shows the
+
+various sub-regions
+
+18
+
+for a Juncture flow with
+
+nonzero but otherwise arbitrary O/A ratio.
+cussed earlier in this Chapter,
+
+The corner vortex, dis-
+
+is situated in the juncture middle re-
+
+gion.
+For rotational effects on the equations of motion in the juncture,
+
+consult Appendix G.
+
+]9
+
+CHAPTER III
+
+PROFILE RELATIONS FOR PRESSURE-DRIVEN
+
+III. f .
+
+General
+Based on the
+
+general
+
+forms for the
+
+Discussion
+results
+
+of the
+
+pressure-driven
+
+Law-of-the-Wall
+
+following:
+Law-of-the-Wall
+
+U
+
+=
+
+where
+
+y
+
+=7-
+
+1)
+
+u
+
+T
+
+=
+
+Law-of-the-Wake
+
+[_._._]_- o
+
+BOUNDARY LAYERS
+
+u [,_.iJ
+
+where
+
+20
+
+3D analysis,
+
+and Law-of-the-Wake
+
+the
+
+are the
+
+Matching
+
+these
+
+two laws yields the
+
+logarithmic
+
+overlap
+
+(see
+
+then
+
+relationships
+
+Appendix
+
+D):
+
+_,-1,°.. A'..-.o
+u
+
+"
+
+Iny "1" .B,
+
+y
+
+-_=
+
+where
+
+K=
+- .41,B
+which
+
+_- 5.0,A'
+
+are Coles"
+
+= 2K
+
+-I
+
+I"[
+
+parameters.
+
+R
+
+If u
+and
+
+u.
+
+variables
+
+on
+
+Is now chosen
+
+as u
+
+the
+
+and
+
+the
+
+2nd
+
+become
+
+(see
+
+Appendix
+
+of the
+
+composite
+
+one
+
+hand
+
+on the other,
+
+1"
+
+the
+
+order
+
+middle-
+
+between
+and
+
+F
+
+Inner-
+
+D):
+
+112
+
+[o,
+
+F = -
+
+x2
+
+Z2
+
+71 = Y
+1/2
+
+. =
+
+*a_2
+
+.
+
+This
+
+the
+
+construction
+
+enables
+
+lowing the general
+
+composite}
+profile
+
+=;
+profile,
+
+fol-
+
+scheme
+
+=
+
+(outer
+
+asymptote) + ( middle
+asymptote) +(Inner
+
+velocity
+
+profile)-
+
+profile) profile)
+
+21
+
+(common
+(common
+
+outer-middle
+middle-inner
+
+Written
+form
+
+out
+
+(see
+
+explicitly,
+
+the
+
+Appendices
+
+composite
+
+profile,
+
+to
+
+order
+
+€.
+
+has
+
+the
+
+C and O):
+
+I. zl
+1
+UzI
+Uxl
+
+1
+
+[ Zl
+
+(X,O,Z)
+
++
+
+(X.O.Z) + _ 7/_-_ I_i
+
+(X.71,Z)
+
+- € [-sln*/
+
+F(X,71.Z)
+
+- [
+
+L
+
+Lsln$ w J
+where
+
+z
+
+. _=tan
+
+and 1, is the angle between
+
+_ and /_e"
+
+use this profile in actual calculations,
+
+It Is necessary to provide ex-
+
+plicit models for the Wall- and Wake-Laws.
+
+III. 2.
+
+LAW-OF-THE
+
+WALL
+
+22
+
+In order to be able to
+
+Based
+
+on the
+
+Wall-Law
+
+results
+
+Is written
+
+of
+
+the
+
+asymptotic
+
+analysis,
+
+the
+
+In the form:
+
+u* = t[ y.]'_ = _w
+
+c4_
+
+with components
+
+ux.
+
+= u "l" cOSCw,
+
+u;
+
+= u "1" sine w.
+
+For f Mu_;ker's
+
+E12! explicit
+
+f(Y.)
+
+tan-1
+
+:
+
+5"424
+
+expression
+
+{ 2y. 8"15}16.7
+-
+
+y't- -t- 10.6]
+
+9"6
+
++ Ioglo
+
+2
+[y'l'2-8.15y.
+
+III. 3.
+
+is chosen:
+
+.
+
+-3.52
+
+861
+
+LAW-OF-THE-WAKE
+
+In vlev_ of the conclusions
+
+from the asymptotic
+
+the wake function
+
+In the form:
+
+U
+
+=
+
+-
+
+eu
+
+Is defined
+
+U
+
+7"
+
+with streamwlse component
+
+23
+
+analysis,
+
+0
+F = Fcos'y
+x
+
+=
+
+e
+
+-0
+u
+
+x
+T
+
+and crossflow
+
+component
+
+F
+
+= -z
+
+0
+= -
+
+z
+
+Fsln_
+
+See Fig.
+The
+Musker's
+
+where
+
+T
+
+5 for basic
+
+two-dimensional
+[]2]
+
+u
+
+nomenclature.
+
+defect
+
+function
+
+may
+
+be
+
+expressed
+
+by
+
+formula
+
+the Wake
+
+Parameter.
+
+_.
+
+Is determinable
+
+from ]
+
+(see
+
+Appendix
+
+El).
+
+2_-
+
+In
+
+K Re
+
+J_
+
++ K B-]_ x
+
+= 0
+
+0x
+with
+8
+
+"Io
+and
+1/2
+
+[cos_w
+]1/2
+There
+
+is not
+
+Possibilities
+
+an
+
+unique
+
+for F2D
+
+generalization
+
+include:
+
+24
+
+of F2D
+
+to three
+
+dimensions.
+
+1.
+
+e - U
+
+/
+
+The
+
+first
+
+tion:
+
+the second
+
+simplest
+
+F
+
+=
+
+possibility
+
+uT;
+
+was
+
+rejected
+
+is difficult
+
+since
+
+it led to poor data
+
+to test or use;
+
+and is the one used henceforth.
+
+the third
+
+-
+
+correla-
+
+possibilty
+
+is the
+
+Thus
+
+F2D
+cos"/
+
+(6)
+
+The geometry of Fig. 5 provides the Wake-Law formulation:
+
+1 j2]
+1'2
+€=tan -1
+
+(7)
+
+[ _x-l.___
+sin._...Z_
+]
+[1X-]F Fcosl_
+
+or, equivalently.
+
+tsn'y =
+
+F cos"/
+X
+
+-I } tan€
+
+(8)
+
+In order to complete the formulation of the Law-of-the-Wake.
+It Is necessary to determine the function '),(7/)
+
+Figure 6 shows a
+
+plot of experimental values of r =--_._.Z_,
+'Ym where "Yrn Is the maximum
+value of "y.
+
+The data are from Refs. 8 and 10
+
+25
+
+It Is observed that
+
+the
+
+lower
+
+that these
+This
+
+portion
+
+of the
+
+Individual
+
+suggests
+
+that
+
+one of which
+
+eters
+
+peculiar
+
+to
+
+could
+
+of 7/ only.
+
+mulation
+
+described
+
+Appendix
+
+E2.
+
+of
+
+d'Y =
+
+-Xcos2'y
+F_2D tan')'
+
+[ U
+
+where
+
+U Is given by Eq.
+
+= _0 •
+
+7/ = 7/0
+
+where
+dix E2.
+
+and Figs.
+
+- JZ- = l-,
+_/m
+
+layer.
+
+station,
+
+details
+
+curve further
+
+up.
+
+overlap
+
+the
+
+are
+
+region.
+
+J d7/ J
+
+and F2D
+
+physical
+
+while
+
+of which
+
+[).COS2,y
+
+(7)
+
+and
+
+one arrives
+
+] dF2o 1
+
+by Eq.
+
+of two
+param-
+
+other
+
+is a
+
+at the for-
+
+worked
+
+out
+
+in
+
+"y is determined
+
+(9)
+
+(5).
+
+Is
+
+(9a)
+
+7/0 is the point where
+
+In the defect
+
+r
+
+_
+F2D
+
+stations
+
+by a combination
+
+-I
+
+[
+
+_-
+
+Into a single
+
+this direction,
+
+the
+
+different
+
+of 7/ and of some
+
+logarithmic
+
+from the solution
+
+for
+
+be describable
+
+Pursuing
+
+In the
+
+condition
+
+merge
+
+measurement
+
+below,
+
+The initial
+
+different
+
+Is a function
+
+each
+
+function
+
+Is
+
+branches
+r
+
+parts,
+
+plot
+
+the Wake-Law
+
+crosses
+
+_w
+
+(see
+
+Appen-
+
+7 and 8),
+"y Is chosen
+
+In the form
+
+[1-7/1=
+
+as shown In Appendix
+
+(lO)
+
+E2.
+
+where
+
+26
+
+IP;] I [, 11
+a=
+
+B=
+
+,loo,
+
+]a
+
+with subscripts 1 denoting the point of switching from the portion of
+the curve described by Eq.
+(see Appendix E2).
+
+(9)
+
+to the one described by Eq.
+
+(10),
+
+The dimensionless distance 771 is a function of
+
+Reynolds number and pressure gradient.
+
+A typical value Is 0,035.
+
+Figure 8 depicts the relation of 7/1 to "_0' and Appendix E3 outlines
+the procedure to determine "_1"
+At the upper edge of the defect layer 'y attains Its maximum
+2
+value, "Ym" which Is calculable from
+
+where Be is the local freestream direction relative to the direction at
+the
+
+upstream
+
+position.
+
+Eqn.
+
+shearless version of the
+streamlines.
+shearless
+
+boundary-layers
+
+can
+
+Is a
+
+boundary-layer
+
+This approach
+analysis
+
+(1])
+
+yield
+
+Is based
+valid
+
+result of Integrating
+
+a
+
+equations along main-flow
+on the
+
+results
+
+In
+
+assumption that a
+the
+
+outer
+
+part
+
+of
+
+which are well developed before being perturbed by
+
+a main-flow turning.
+
+Under such circumstances crossflows develop
+
+mainly as a result of the reorientation of vorticlty In the layer, while
+frictional effects are felt only near the wall.
+
+The determination
+
+'Ym thus requires knowledge of the external flow field only.
+
+27
+
+of
+
+Figure 9
+
+depicts a typical comparison between the above model for "/ and experimental data.
+It should be noted that the entire analysis described above did
+not Involve the actual solution of the equations of motion.
+fore,
+
+There-
+
+four parameters are required as Input in order to enable cal-
+
+culations.
+
+These are:
+1.
+
+Cf
+
+2.
+
+Cw
+
+3.
+
+Re0
+
+4.
+
+/9e
+
+In addition,
+
+the
+
+external flow field.
+
+determination
+
+of 'Xm
+
+requires
+
+knowledge of
+
+the
+
+In a real situation these would be unknowns,
+
+and the equations of motion would have to be solved, subject to a
+prescribed pressure distribution and initial velocity profile.
+
+However,
+
+regardless of the method of solution, the above model could then be
+Incorporated Into the solution scheme,
+
+since it does not Introduce
+
+any additional unknowns of Its own.
+
+III. 4.
+
+Comparison with Experimental
+The data of Refs.
+
+8 and
+
+Data
+
+10 have been used to check the
+
+validity of the proposed models for the Wall-
+
+and Wake-Laws.
+
+Both
+
+sources of data use flow geometries which lead to a build-up of adverse pressure gradient with eventual three-dimensional
+
+separation.
+
+The measurement stations chosen for comparison between theory and
+
+28
+
+data were all fully attached.
+and three from Ref.
+
+Results of two stations from
+
+Ref.
+
+8
+
+10 are reported here: In station C4 of Ref.
+
+10
+
+an 8% crossflow Is present;
+
+In station D5 the crossflow Is about
+
+12% and in station F7 it reaches about 25% of the streamwise flow
+component.
+
+In station 7 of Ref.
+
+in station 8 it reaches 27%.
+
+8 the crossflow is about 22% and
+
+Figures 10A through 10E show com-
+
+parisons between the present model and the data of the representative measurement stations.
+
+The figures Include comparisons for both
+
+the hodograph and the resultant velocity profile (In terms of magnitude and direction).
+
+The agreement
+
+Is good for all stations.
+
+In
+
+particular,
+
+it Is noted that the model is able to predict the smooth
+
+transition
+
+from
+
+the
+
+wall-
+
+to the
+
+wake-region.
+
+between the model and the data of Ref.
+
+The
+
+discrepancy
+
+10 Involving the magnitude
+
+of the velocity (most pronounced in station F7)
+
+may be due to the
+
+fact that the experiment of Mueller has a curvature effect,
+
+which Is
+
+not accounted for In the model.
+
+III. 5.
+
+Comparison
+Johnston
+
+[2]
+
+with Johnston's
+
+assumed
+
+the
+
+Triangular
+
+following
+
+model
+
+Model
+for
+
+the
+
+Uz-U x
+
+hodograph:
+
+U
+
+= [ UxtanCw" Ux<Up
+J
+
+In contrast,
+
+Ux
+
+_U
+
+_
+
+the present model assumes no geometric
+
+29
+
+relationship.
+
+Rather,
+
+the hodograph results on the basis of the fundamental as-
+
+sumption that the wake function Is a vector quantity.
+
+In comparing
+
+the two models,
+
+It Is observed that the first leg of Johnston's trian-
+
+gle corresponds
+
+to the Wall-Law
+
+of the present model,
+
+while the
+
+second leg corresponds to a special
+
+limit of the present model's
+
+Wake-Law,
+
+tan1,m.
+
+namely,
+
+F = "1 with A =
+
+However, this Is an
+
+Inadequate choice since It falls to correctly describe either the transition from the wall- to the wake-region
+
+or the magnitude and loca-
+
+tion of the maximum crossflow (see Fig.
+
+7).
+
+These shortcomings
+
+are apparent from Johnston's own polar plots (see
+other basic difference
+
+Ref.
+
+2).
+
+The
+
+between the two models stems from the fact
+
+that whereas Johnston regards the vertex of his triangle as the edge
+of the wall sublayer,
+
+the present model locates this point at T/0.
+
+corresponding to 1,0 (see Fig.
+
+7).
+
+30
+
+CHAPTER
+
+IV
+
+CONCLUSIONS
+An
+
+asymptotic
+
+analysis
+
+has
+
+dimensional,
+
+endwall
+
+turbulent
+
+boundary
+
+layers.
+
+This analysis
+
+indi-
+
+cates
+
+as
+
+the
+
+two-dimensional
+
+case,
+
+the
+
+multi-
+
+that,
+
+In
+
+structured,
+
+possessing
+
+fect)
+
+and an outer layer,
+
+layer;
+
+an
+
+Inner
+
+been
+
+(or
+
+carried
+
+wall)
+
+layer;
+
+out
+
+for
+
+flow
+
+Is
+
+a middle
+
+and the pressure
+
+three-
+
+(or
+
+In the b.I.
+
+de-
+
+is im-
+
+posed by the outer flow.
+In the blade/endwall
+by parabolized
+
+juncture,
+
+Navler-Stokes
+
+equations
+
+streamwlse
+
+momentum
+
+of
+
+equation.
+
+Rotational
+
+effects
+
+to 0(1),
+
+Coriolis
+
+0(€)
+
+momentum
+
+defect
+
+region.
+
+terms
+
+0(_ 2)
+
+which
+
+appear
+
+to 0(E 2)
+
+components.
+
+is describable
+
+through
+
+0(€ 2)
+
+except for the
+
+is a
+
+Re-averaged
+
+in the form
+and
+
+there
+
+of centrifugal
+
+terms
+
+is no Influence
+
+on the
+
+Viscous stresses
+
+are absent
+
+on each wall being equal in magnitude
+
+and op-
+
+posite
+
+no Inertia
+
+celerations
+
+effects,
+
+except
+
+for
+
+centrifugal
+
+ac-
+
+in the case of a rotor.
+
+It Is also found
+logarithmic
+
+is characterized
+
+from the
+
+total shear gradients
+and
+
+region
+
+N-S-type
+
+crosswise
+
+sign,
+
+Inner
+
+region
+
+by the
+
+in
+
+The
+
+the defect
+
+overlap
+
+that
+
+between
+
+layers on both endwall
+
+the
+
+streamwise
+
+the corner
+
+and blade.
+
+31
+
+velocity
+
+middle region
+
+has a common
+and the
+
+Inner
+
+The same equations which describe the non-symmetrical Juncture flow also describe the symmetrical
+
+case,
+
+but the coordinates
+
+and Reynolds stresses scale differently In the two cases.
+In the pressure-driven
+side the juncture,
+
+the
+
+part of the endwall boundary layer out-
+
+Inner layer Is dominated
+
+by constant total
+
+shear across It.
+
+Inertia and pressure gradients having no significant
+
+Influence there.
+
+The middle layer is driven by both pressure gra-
+
+dients and Reynolds stresses,
+
+and may be described by boundary
+
+layer-type
+
+and
+
+equations
+
+to 0(€)
+
+0(€2).
+
+These two sub-layers
+
+region.
+
+The
+
+outer
+
+layer
+
+Is
+
+Re-averaged
+
+N-S
+
+equations to
+
+share a common logarithmic overlap
+Invlscld
+
+and
+
+generally
+
+rotational,
+
+describable by the Euler equations.
+The results of the analysis indicate that the wall sub-layer
+two-dimensional,
+
+flowing in the local wall shear direction,
+
+the turning from this to the freestream
+
+Is
+
+and all
+
+direction takes place in the
+
+defect sub-layer.
+Based on the results of the analysis for the pressure-driven
+part of the
+
+b.l.,
+
+counterpart
+
+of
+
+the
+
+a model Is proposed for the three-dimensional
+Law-of-the-Wall
+
+and
+
+agrees quite well with experimental data.
+
+32
+
+Law-of-the-Wake,
+
+which
+
+BLADE SURFACE
+BOUN
+DARY
+.CORNER
+LAYER",
+
+UNSTEADY
+FLOVV UNIFORM
+/
+-,ZTIP
+
+SHOCK
+RFACE
+
+VELOCITY-,
+
+SECONDARY
+!
+
+L_
+
+•
+•_LA DE
+WAKES
+
+FIG.
+
+I
+
+HUB
+CORNER
+VORTEX
+
+SCHEMATIC
+TREATED
+
+_-ENDWALL
+ROTATION
+BOUNDARY
+LAYER
+
+OF FLOW-FIELD,
+
+BY PRESENT
+
+SHOWING
+
+ANALYSIS
+
+REGIONS
+
+CROS',
+FLDW
+PROFILE
+
+STREAMWlSE
+ROFILE
+= X_U_
+
+~
+Z,Uz
+
+RESULTANT
+PROFILE
+
+FIG. 2 SKEWED BOUNDARY
+
+34
+
+LAYER
+
+AND BASIC
+
+LIMITING
+STREAMLINE
+
+TERMINOLOGY
+
+\
+ENDWALL
+
+!
+_
+
+ii
+
+PASSAGE
+"Horse
+
+Shoe"
+
+VO_,TE)_
+
+_
+
+Vortex Core
+(FKoH ONCOHlN_
+VORTICITy
+IvRAF- AROUN,_)
+
+FIG. 3 SCHEMATIC
+
+OF THE FLOW
+
+35
+
+(from skewing of
+bour,dary layer
+profile)
+
+IN A JUNCTURE
+
+6
+
+BLADE
+
+_'v
+I
+
+MIDDLE
+
+"tx"._
+
+LAYER
+
+OUTER
+
+i
+
+-_
+
+_..I"INNER
+"_:
+REGION
+
+__L ........
+_..........
+"_"_'_b _-"
+
+FLOW
+
+t_____
+....
+I
+
+i
+
+>-1
+
+51
+z'
+
+_.,,,.A-_®
+
+JUNCTURE
+MIDDLE
+REGION
+
+,,,
+
+END'WALL
+(Z) MIDDLE
+i
+A
+, LAYERi
+I
+
+l_
+----
+
+ENDWALL
+
+INNER
+
+LAYER
+
+'
+
+I/
+
+_ 7.
+
+"'L-OETA,L
+
+L_
+
+%
+
+FIG. 4 ASYMPTOTIC
+SUB-REGIONSIN A TURBULENT
+JUNCTUREFLOW
+
+36
+
+Uv.
+
+u_
+
+FIG.
+
+5 HODOGRAPH
+
+WITH
+
+VECTOR
+
+37
+
+TRIANGLE
+
+AND BASIC 'TERMINOLOGY
+
+•5
+
+"o
+
+b
+_
+<
+FI__
+
++
+*
+o
+
+47
+C4
+
+"
+
+F7
+
+v.d.BerS
+*
+
+Muei I _r
+
+..
+_.
+•
+
+•
+
+_
+
+.
+
+.
+
+._+
+
+@.@'4.0.
+i jl'.,i
+"q" O+ •
+
+O. 0
+"'+" , _ .,_e
+0.0
+
+"
+
+04._ ...o.. •
+1.0
+
+GAMA= _
+
+FIG, 6 TYPICAL
+
+EXPERIMENTAL
+
+DATA OF _
+
+38
+
+VS._ FROM REFS.8
+
+AND
+
+iO
+
+Uz
+
+JOHNSTON
+TRIANGLE
+
+FIG. 7 HODOGRAPH WITH JOHNSTON'S TRIANGLE SUPERIMPOSED.
+ALSO INDICATES THE GEOMETRICAL SIGNIFICANCE OF
+
+39
+
+LN Y+
+
+FIG_
+
+SCHEMATIC
+
+OF A VELOCITY
+
+PLOT,
+
+40
+
+SHOWING
+
+THE RELATION
+
+OF _i
+
+TO_o
+
+STATION-
+
+v.d.
+
+Bet"9 No. 8
+MODEL
+
+* data
+
+.5
+
+<
+bLd
+
+0.0
+0.0
+
+"
+
+" ","
+
+*_J
+1.0
+
+GAMA
+
+FIG. 9 COMPARISON BETWEEN THE MODEL FOR r _ (_) AND EXPERIMENTAL DATA
+OF REF.8 , STATION No. 8.
+( THE FIVE LOWEST POINTS BELONG
+TO THE WALL SUB-LAYER)
+
+41
+
+STATION:
+.
+
+Muellem
++
+
+o
+
+No. C4
+
+doto
+
+MODEL
+
+1.0
+
+.1
+¢/€w
+-I-
+
+U
+
+FIG. I0 COMPARISON
+
+BETWEEN
+
+MODEL
+
+AND EXPERIMENTAL
+
+DATA OF SELECTED
+
+MEASUREMENT
+STATIONS FROM REFS.8' ANDIO.
+(SHOWN ARE RESULTANT
+VELOGITY IN MAGNITUDE AND DIRECTION, AND THE VELOCITY HODOGRAPH)
+
+STATION:
+*
+
+Hueller
++
+
+•
+
+No. D5
+
+doto
+
+MODEL
+4-
+
+1.0
+
+_1"
+
+R,/_
+W
+
+.2
+
+u
+
+_-
+
+Uz
+
+ILl
+
+.
++
+
+0.0
+
+#
+
+.: _'.- - .
+
+.....
+
+0.0
+
+0.0 /- ........
+1.0
+
+0.0
+
+U." PHI/PHI w
+
+1.0
+Ux
+
+B
+
+STATION: Mueller No.F7
+
+*
+
++
+
+data
+
+MODEL
+.3
+
+<:
+
+IW
+
+O. 0 HI+r---f~..,.--==rlC!:.~~-..--";::::==?!lio..+
+1.0
+0.0
+
+o. 0
+
++--,----.,.--r---r----r-~_r____.r__..,...___=_
+
+0.0
+
+u. PHI/PHI w
+
+c
+
+1.0
+
+STATION:
+*
+
+v.d. Ber 9 No. 7
++
+
+---
+
+•
+
+dato
+
+MODEL
+
+_w
+
+Uz
+
+0.0
+.
+0.0
+
+.,_"
+.--_'_"•
+
+_
+
+U, PHI/PHI
+
+,
+
+.
+
+, 7
+1.0
+
+0.0
+..........
+0.0
+
+W
+
+1.0
+Ux
+
+D
+
+v.d.8erg No.8
+
+STATION:
+
+*
+
++
+
+0
+
+data
+
+MODEL
+
+*
+
+1. 0 +
+f21/f2Iw
+
+.3
+
+U
+
+<
+
+f-
+
+L1J
+
+o. 0
+
+O. 0 .f--r---r-r----r--r---~_r-....__..,._-_r_~
+
+.............oc:rIt~-r-_r----.r__~_._.......:1p
+1.0
+U. PHI/PHl w
+
+~_._
+
+0.0
+
+0.0
+
+E
+
+1.0
+
+1.0<
+
+FIG. II DETERMINATION
+OF _
+
+47
+
+Table I - Momentum
+2
+€, and €.
+OUTER
+REGION
+0
+
+Euler
+tions
+
+equa-
+
+equation
+
+in the three
+
+MIDDLE
+REGION
+Pl =
+
+sub-layers,
+
+INNER
+REGION
+P] =P1 IX, O,Z)
+
+P_ (X,O,Z)
+
+i D
+R
+1
+
+stresses)
+(No Reynolds
+
+tions
+Euller
+
+equa-
+
+x
+Yl
+Zl
+=01 =_
+_
+=_
+
+o
+
+u2=uj,2=Uz2=O
+p2=o
+
+2=o
+
+R
+
+P2 =0
+
+Constant
+total
+shear
+across
+sub-layer
+
+BoundaryLayer
+equations.
+Reynolds
+stresses only
+
+D
+€
+
+O
+
+Euler
+tlons
+
+equa-
+
+Re-averaged
+Navler-Stokes
+equations
+for
+Xand
+Zmomenta
+Reynolds
+stresses only
+A
+
+R
+
+p =
+
+O2
+
+j_3 (X.O,Z)
+
++
+
+coV_stant total
+shear
+across
+sub-layer
+
+48
+
+to orders
+
+1,
+
+Table 2:
+Juncture equations for an arbitrary (non-zero)
+8/A raUo.
+(See text for definitions of coordinates).
+
+Mlddle reglon
+
+Inner
+
+region
+
+0(I)
+au 1
+
+av I
+
+aw 1
+
+a"-_. -_ . a--_=o
+aUl
+a---_+ vl
+
+ul
+
+aul
+a'-'-y +
+
+^
+
+^
+
+a_
+
+a_1
+
+a?
+
+a_
+
+^
+Pl
+
+= P1 (x o. o)
+"
+
+au I
+wI _
+=
+dP I
+dx
+
+(x.O.O)
+
+O(€)
+
+au2
+ax
+
+av 2
+.
+
+ay
+
+aw2
+.
+
+az
+
+au 2
+a
+_
+-i- _
+
+aw 2
+-I- _
+= 0
+
+o=a
+
+. _1
+
+ax
+
+(ulu21+ h a--7
++
+au 1
+
+at 1
+=
+
+yx +
+
+ay
+
+au 2
+
+au I
+
+a_
+
+a_
+
+at 1
+
+.
+
+zx
+az
+
+P2 =-" 0
+
+49
+
+tay
+
+8=
+.
+az I. az
+
+p 2 -=0
+
+a_,
+
+yx
+
+i'1
+zx
+
+Middle Region
+
+Inner RecjIon
+
+0 ( €2)
+au3
+
+au3
+
+aw3
+
+^
+
+a_-. _'y . a-;-= o
+
+au3 a;3 a;3
+--'1---+--=
+ax a_: a;
+
+0
+
+_; (ulua)+ "2-_-.
+
+o=-_
+
++
+
+au3
+
+au2
+
+vl a-7+'2 -_7+
+az
+
+. v3 a-'_". wl a-T+
+au2
+
+au I
+
+w2-_z . w3 _
+
+t az
+
+yx
+
+2z_
+
+o =
+
+=
+
+- a--;..
++
+
+___
+
+%=
+. ahxx. % yx.__
+ax
+
++r2
+
+ay tay
+
++._.__+
+
+a;
+
+ay
+
+az
+
+av I
+
+av I
+
+av I
+
+aP3
+
+p/ .
+
+aF
+
+z,,,
+
+a;
+
+o =
+
+ul a-;-. vl a--7
++ % a-3"
+=
+
+a_'I
+
+- a--'F
++ ay
+aw I
+
+zy
+
+a+.
+
+aw I
+
+_Ia-T. _Ia_ . %
+aP3 +
+az
+
+_ __
+
+a;
+
+aw 1
+
+a--+-=
+
+atI
+at1
+yz .
+zz
+ay
+az
+
+50
+
+.
+
+a;
+
+.
+
+zz
+
+a;
+
+REFERENCES
+
+1.
+
+Coles,
+Layer',
+
+D.E.,
+"The Law of the Wake in the Turbulent
+JFM vol. .1, pt. 2, 1956, pp. 19"1-226.
+
+2.
+
+Johnston, J.P.,
+"On the Three-Dimensional
+Layer Generated
+by Secondary
+Flow',
+J.
+"1960, pp. 233-248.
+
+3.
+
+"Aerodynamics Design of
+36, "1965, pp. 385-4"10.
+
+4.
+
+Salvage, J.W.,
+"A Review of the Current Concept of Cascade
+Secondary Flow Effects', von Karman Institute for Fluid Dynamics. TN 95, 3/"1974.
+
+5.
+
+Shabaka, I.M.M.A.,
+"Turbulent Flow in a Simulated Wing-Body
+Junction", Ph.D. Thesis, Aeronautics Department,
+Imperial College, London "1979.
+
+6.
+
+McMahon,
+H.,
+Hubbartt,
+J.,
+and Kubendan,
+L.,
+"Measurements of Mean Velocities and Reynolds Stresses in a Juncture
+Flow',
+in Theoretical Aerodynamics Contractor/Grantee
+Review,
+NASA-Langley Research Center, September "1981, pp. 98-119.
+
+7.
+
+Mellor, G.L.,
+"The Large Reynolds Number, Asymptotic Theory
+of Turbulent Boundary Layers',
+Int. J. Eng. Sci.,
+vol. 10,
+"1972, pp. 85"1-873.
+
+8.
+
+Berg, B. van den
+No. 72092 U.
+
+9.
+
+Berg,
+B. van den,
+Elsenaar,
+A.,
+Lindhout,
+J.P.F.,
+and
+Wesseling,
+P.,
+"Measurements
+in an Incompressible
+ThreeDimensional
+Turbulent
+Boundary Layer,
+under Infinite SweptWing Conditions,
+and Comparison with Theory',,JFM
+vol. 70,
+pt. "1, "1975, pp. "127-'i48.
+
+.10.
+
+Mueller,
+U.R.,
+"Mean Velocities and Reynolds Stresses Measured In a Three-Dimensional
+Boundary Layer',
+In proc. Viscous
+and Interacting Flow Field Effects, 5th U.S.
+Air Force and the
+Federal Republic of Germany Data Exchange Agreement MeetIng, AFFDL Tech. Rap.
+No. 80-3088,
+p. 359, .1980.
+
+and
+
+Axial-Flow
+
+Elsenaar,
+
+5.1
+
+Turbulent Boundary
+Basic Eng.,
+March
+
+Compressors',
+
+A.,
+
+Boundary
+
+NASA
+
+.1972 NLR Tech.
+
+SP-
+
+Rap.
+
+11.
+
+Mueller, U.R.,
+"Measurement of the Reynolds Stresses and the
+Mean flow Field in a Three-Dimensional Pressure-Driven Boundary Layer', JFM vol. 119, pp. 121-153, 1982.
+
+12.
+
+Musker, A.J.,
+"Explicit Expression for the Smooth Wall Velocity
+Distribution In a Turbulent Boundary Layer', AIAA Journal, vol.
+17, June 1979.
+
+13.
+
+Dowell, M., and Jarratt, P., "The 'Pegasus' Method for Computing the Root of an Equation', BIT vol. 12. 1972, pp. 503508.
+
+14.
+
+Mager,
+A.,
+"Generalization of Boundary-Layer
+MomentumIntegral Equations to Three-Dimensional Flows Including those of
+Rotating System'. NACA Rep, 1067, 1952,
+
+15.
+
+Rubln, S.G.,
+"Incompressible Flow Along a Corner'.
+pt. I, September 1966, pp. 97-110.
+
+16.
+
+Rubin, S.G.,
+
+private communication.
+
+52
+
+JFM 26,
+
+Appendix A:
+
+Preliminary
+
+form of the equations
+
+of motion in the
+2
+
+various layers to orders
+After substituting
+into Eqns.
+
+(1)
+
+and (2)
+
+following equations
+1.
+
+the asymptotic
+and collecting
+
+1,
+
+_ and €
+
+expansions
+
+for the three layers
+
+terms of the same order,
+
+the
+
+are obtained:
+
+Outer layer
+
+0(1)
+
+au I
+
+aV 1
+
+aw 1
+
+a---_. -_-- • a-T:O
+T
+
+[u1_ _vl _ _-'1az
+
+.
+
+.
+
+T
+
+- iooot
+_ox
+°a_.oz [P1
+]
+
+_A1,
+
+0(E)
+
+au 2
+av 2
+ax ._Y-'.
+
+aw2
+a---z
+-=°
+T
+
+53
+
+T
+
+°
+-{a°°![
+'ax'
+
+aY"
+
+[
+
+]=
+
+T
+
+az
+
+(A2)
+
+P2]
+
+O( € 2)
+
+au 3
+
+a v3
+
+aw 3
+
+a--;- + _?-, a--%-= o
+T
+
+°
+
+I
+
+t
+T
+
+o
+
+[
+
+]
+T
+
+[,.,_
+_°+v,_ +,,,__aI
+1 ,.,,.v,.+, t=
+T
+
+- I°°°t
+",,x-,,,,.+,_
+[,'_]
+2.
+
+Middle layer
+
+0(1)
+
+au I
+
+av 1
+
+aw 1
+
+a---m£
+*-_F+ a--_=
+o
+
+54
+
+<,,_,
+
+au 1
+
+au 1
+
+au 1
+
+ap 1
+
+ul a-'_". vl a--F. wl a-"_= - a-'-_"
+0
+
+awI
+
+ul _.vl
+
+=
+
+aP 1
+ay
+
+awI
+
+awI
+
+apI
+
+-_-.wl
+
+_=
+
+az
+
+(A4)
+
+0(_)
+au2
+
+av2
+
+a---_.-_--,
+a
+
+aw2
+
+a---_=o
+au2
+
+aul
+
+au2
+
+aul
+
+[ul u2] _ "1_ . "2_ . "1 "_-. "2 -_- =
+
+0
+
+aw2
+
+-
+
+aw1
+
+"
+
+aP2
+ay
+
+aw2
+
+at 1
+aP2 "!yz
+az
+8y
+
+(A5)
+
+O( €2)
+
+au3
+
+av3
+
+aw I
+
+aw3
+
+a-;+'_7. a-T"
+=o
+
+55
+
+a
+
+6u2
+
+6u3
+
+au2
+
+aul
+
+au3
+
+[ulu3) +u2 a--;+vl _ +"2_ +"3_ + w1-_+
+6u2
+au1
+w2 a-"z + w3 a--z- =
+
+aP3 . atlxx
+
+- a-'__
+av I
+
+avI
+
+ul_
+
+. vl_
+
+at2 yx . 8tlx z
+
++ ay
+
+av 1
+
++ "I _
+
+az
+
+ap3
+
+= - a_ + ay
+
+8w 3
+8w2
+awl
+aw3
+aw2
+Ul 8x'-- + u2 _
++ u3 _
++ Vl 8"-y-+ v2 _
++
+awl
+
+aw2
+
+a
+
+"3a_._ [_i'_3
+] +"2_ =
+at 1zz
+
+8P3
+atlxz
+- a'-'Z'+_
++ _t2yz
+ay . _ az
+3.
+
+Inner layer
+
+0(1)
+
+aOI a;I a;I
+a'-;
+"+--_+
+ay
+
+0
+
+a'_=o
+
+a2G]
+
+---
+
+56
+
+(A6)
+
+A
+
+apl
+
+aF
+a2G1
+0 = _
+
+(A7)
+
+0(_)
+A
+
+_,
+
+A
+
+au2
+ax
+
+av2
+^
+
+aw2
+az
+
+ay
+
+O= 8-a_
+
+^
+
+-Iay J
+
+a_2
+a_
+
+o = a_
+
+yz
+
+ay J
+
+0(_ 2)
+
+a,;3 _'1"
+a_ _a;s = 0
+
+_'1"
+
+A
+
+ax
+
+O=
+
+aA
+ay
+
+ay
+
+aZ
+
+,,
+
++
+
+t2xy
+
+a_3.
+ay J
+1
+
+57
+
+a
+
+0=-;
+.. [ 2
+ay
+
+aW.. 1
+
+yz
+
+3
++..
+
+CA9)
+
+ay
+
+58
+
+Appendix B:
+1.
+
+Formal
+
+U(x,Y•Z)
+
+U(x,Y,Z)
+
++
+
+...
+
+matching
+
+procedure
+
+of outer and middle layers
+
+is expanded
+
+= U.i
+
+Matching
+
+by a Taylor series
+
+aU]
+= € y--_-
+
+(x, 0,Z)
+
+around Y = 0:
+
+(x•0,Z)
+
+aU 2
++ €2 y _
+(x,0•Z)
+
++ _ U 2 (x•0,Z)
+
+2 y2 a2Ul
++ €
+2 6y2
+
++ ...
+
+(x•0,Z)
+
++
+
+2
+€
+
+U 3 (x.0•Z)
+
++ ...
+
+=
+2
+
+= u 1 (x•y,Z)
+
++ € u2
+
+(x,y•Z)
+
++ _
+
+u3 (x•y•Z)
+
++ ...;
+
+y-,
+
+=0
+
+Thus
+
+ul
+
+(x•y•Z)'U
+
+l(x•0,z):
+
+au 1
+_
+(x•o,z)
+
+u2 (x,y•z)'y
+
+u3
+
+(x y Z)
+• '
+
+U3
+
+y -, =
+
+. u 2 (x,o•z);
+
+2 62U. I
+" y-_
+(x,O,Z)
+2 ay2
+
+(x,0,Z);
+
+y-,
+
+(B1)
+
+y -. =o
+
+8U 2
+._ y --_(x,O•Z)
+
+.
+
+=o
+
+and similar relationships hold for the crossflow component• w.
+Following the same procedure as above, yields:
+
+59
+
+V l(x.O.Z)
+
+= 0
+
+v2(x.o.z)
+
+=
+
+V3(x.O.Z)
+
+=
+
+y
+
+lira
+
+--_ €o
+
+v2(x.y.Z)
+
+-y
+
+Pl
+
+= P1
+
+(x,y.Z)
+
+t
+
+ni i
+
+_
+
+(x,O,Z)
+
+a2P1
+
+2
+
+ay2
+
+(x,y.Z)
+
+-
+
+y -_aV 1 (x.o.z)
+
+_av 2 (x,O.Z)
+
+(since
+
+aP 1
+y -_- (x.o,z)
+
+. }2
+
+(since
+
+2.
+
+v1
+, (x.y.z)
+
+]
+
+P2 (x,z)
+
+P3
+
+lira
+
+y
+
+Y--_
+(x.0.Z)
+22 a2V
+ay21
+
+(x.Z)
+
+(B2)
+
+aPl/aY
+
+(B3)
+
+}
+
+-
+
+= 0)
+
+. P2 (x,o.z):
+
+(B4)
+
+y -, o_
+
+(B5)
+
+ap 2
+(x,O.Z)
+
+. y _
+
+(x,O,Z)
+
+t-P3
+
+(x.O.Z):
+
+y-_
+
+"0: y --. _o. for n = 1.2.3.---
+
+no freestream
+
+turbulence
+
+was assumed
+
+to exist)
+
+Formal matching of middle and Inner layers
+Again.
+
+variables
+
+V(x.y.Z)
+
+are
+
+expanded
+
+= € v 1 (x, 0,Z)
+
+6O
+
+in Taylor
+
+series
+
+around
+
+av 1
++ _ _; )_ _-_ (x. 0, Z)
+
+y = 0:
+
++ ...
+
++
+
+oo
+
+2
+€
+
+v2 (x,O,Z)
+
++
+
++
+
+2 ^ ^ av2
+€
+€ y _
+
+3 ^
+
+8v3
+
+€ _ >;_
+
+3
+(x,O,Z)
+
++
+
+...
+
++
+
+_
+
+v3
+
+(x,O,Z)
+
++
+
++
+
+:
+
+(x.o.z> + ... =
+
+= _ ;";1 €,,.9. z_*
+
+2^€ v2 (x,)_,
+
+Z)
+
++
+
+€
+
+3-;3
+_
+(x.
+
+,
+
+z)
+
+...
+
+Hence
+
+v]
+
+(x.O.Z)
+
+= v2 (x,0.Z)
+
+v"
+I cx._.z_ _
+
+8v I
+
+= v3 (x,0,Z)
+
+^
+= PI
+
+(x,Z)
+
+.
+
+€ P2
+
+(x,Z)
+
+^
++ € P2
+
+(x,Z)
+
+= 0
+
+(B6)
+
+cx.o.z_._-. =. i= 1.2.3.-..
+2
+
+P = Pl (x,Z)
+
+= ---
+
+t
+
+_
+
++
+
+P3(x,O,Z)
+
+€2
+
+P3
+
+^
+(x,y,Z)
+
+2^ aP3
++ € € _
+
+(x,O,Z)
+
++ ....
+
++ ...
+
+Thus
+
+P'I (x.Z)
+
+= P'I (x.Z)
+
+P2
+
+= P2
+
+(x,Z)
+
+= PI
+
+(x,Z)
+
+(x.O,Z)
+
+(B7)
+
+61
+
+(x,y,Z)
+
+P3
+
+(x,y,Z)
+
+" t
+
+(x,0,Z)'y
+
+-, oo
+
+and similarly
+
+ni i
+
+(x,0,Z);)_--,
+
+The U and W components
+
+require
+
+U
+
+^ ^ au]
++ € y -_-
+
+(x,y,Z)
+
+= u]
+
+(x,O,Z)
+
+€ u 2 (x,O,Z)
+
+.
+
+€
+
+u3
+
+oa n = 1,2,3,---
+
+nil
+
+.
+
+...
+
+(x,O.Z)
+
+a special
+
+treatment.
+
+(x,O.Z)
+
++ ...
+
+.
+
++
+
++ ...
+
+= u]
+
+(x,y,Z)
+
++ E u2
+
+.
+
+(x,y,Z)
+
+A
+
+u3 (x._.Z)
+
+From Eqn.
+it follows that ;]
+
+. -.-;
+
+(A7)
+
+(B8)
+
+and the boundary condition ;1
+
+(x. 0.Z)
+
+= 0.
+
+must be of the form
+
+;1
+
+--
+
+which
+
+is unbounded
+
+(B8)
+
+cannot
+
+tiated w.r.t,
+
+_-. o=
+
+as y --, =o.
+
+be matched
+y,
+
+Thus
+
+directly.
+
+yielding:
+
+62
+
+the
+
+first order
+
+Therefore
+
+Eqn.
+
+terms
+
+(B8)
+
+in Eqn.
+
+is differen-
+
+au2
+
+,+ I
+
+•!.
+
+f(x,z)
+
+=
+
+.
+
+au]
+a_- (x,o,z)
+
+Since
+
+(x,,y,z)
+
+.
+
+€
+
+2 au3
+--
+
+au2
+-i- € --_-
+
+(x,o,z)
+
+.
+
+^
+a;
+
+_-
+
+the
+
+leading
+
+term
+
+and that in the
+
+middle
+
+expansion
+
+a match
+
+both
+
+vanish
+
+Is that
+
+for the W-component.
+
+u'l
+
+and from
+
+= w^ 1
+
+"
+a;
+
+in the
+
+(x,]_,z)
+
+€
+
+t
+
+....
+
+2 au3
+a_- (x,o,z)
+
+Inner
+
+Identically.
+
+-i- ---
+
+(B9)
+
+is of 0I_
+
+-1 ]
+
+only possibility
+
+for
+
+expansion
+
+is of 0(1),
+
+the
+
+] _..
+
+A similar
+
+argument
+
+holds
+
+Thus
+
+== 0,
+
+the continuity
+
+Eq.
+
+and B.C.
+
+_Y
+
+Wl
+
+(x,0,Z)
+
+with the B.C.
+
+{W}^
+
+_1 = 0 0 y = 0 It also fol-
+
+^
+
+lows
+
+that v 1 _- O.
+
+Also
+
+= 0
+
+and this combined
+
+y =0
+
+= 0 uniquely
+
+determines
+
+u 1 and w 1 at y = 0:
+
+Since
+
+u] } y
+Wl
+
+= 0
+
+_ = yl_,
+
+the
+
+part of Eqn.
+
+(B9)
+
+c°SCw
+sln_
+w
+
+only
+
+at
+
+possibility
+
+is
+
+63
+
+a
+
+given
+
+(x.Z)
+
+location.
+
+for
+
+match
+
+in
+
+a
+
+the
+
+remaining
+
+au.2/a_"- b2/;.
+au2/ay
+b2/Y. au3/av
+aG3/a; "- b3/Y....:
+bs/;....:
+which,
+
+y-O
+,; -, =
+
+after Integrating gives
+
+where
+
+u2
+
+" b2 Iny . C2.
+
+_2
+
+" b2
+
+In;
+
+u3
+
+"f C2.t_3
+
+b 3 Iny + C3, .-..
+
+" b3
+
+In;
+
+y .-. 0
+
+(B10)
+
+--, co
+
+(BI'I)
+
++ (_3,-o-;)_
+
+the b's and C's are functions of x and Z.
+
+Similar expres-
+
+sions hold for the w and t_ components.
+
+This establishes the ex-
+
+Istence
+
+of
+
+the
+
+layers.
+
+Inserting these results Into (B8)
+
+yields
+
+[cb 2 -I- €2b3 .
+
+(x.O.Z)
+
+a
+
+logarithmic
+
+overlap
+
+between
+
+Inner
+
+and
+
+middle
+
+or
+
+•
+whence
+
+It follows
+
+---]ln_-]
+
+• ...
+
+E
+
+= uI
+
++ € [C 2 -
+
+that
+
+-_lnc ^ = 0(1)
+
+--, €
+^ = 0 [e-,/€
+
+] as
+
+€ --, 0
+
+This confirms the assumption that _ = 0(€ n) which allowed a single
+parameter asymptotic expansion approach.
+
+64
+
+3.
+
+Results
+
+from the matching
+
+A.
+
+From the continuity
+
+Eqn.
+
+of (A4):
+
+= -
+
+-I-
+
+dy
+
+v]
+
+and
+
+using
+
+Eq.
+
+y
+
+r,,
+
+[aul
+t'_-
+
+procedure
+
+-_-awl]
+
+_V__y=oO[Eq'(B6)]
+
+(B1).
+
+-,o=
+
+y
+
+[_U1
+
+0o
+
+aWl 1
+
+dy=
+
+- .1"t'-_-x . -_l(x.0.z)
+[au,
+
+aw]l
+
+= - Y L-'_-x . -'_-]
+Also.
+
+from
+
+the cont.
+
+eqn.
+
+c3V
+1
+a--_(x.O.Z)
+Substituting
+
+this
+
+This.
+
+(B12)
+
+(x.O.Z)
+
+= 0
+
+all
+
+together
+
+the
+
+satisfy
+
+B,C.'s
+
+into
+
+Eqn.
+
+(B3)
+
+(x.O.Z)
+yields
+
+with the fact that the 1st order
+at
+
+homogeneous
+
+the solution
+
+of (A1).
+
+awl]
+= - [aU1
+t--_-x . --_-
+
+and
+
+V2
+
+(B12)
+
+(x.O.Z)
+
+to Eqn.
+
+Y--'
+
+oo.
+
+so
+
+that
+
+B.C. 's there
+(A2)
+
+the
+
+2nd
+
+solution
+
+order
+
+equations
+
+as well as at Y = 0,
+
+be the trivial one:
+
+65
+
+outer
+
+satisfies
+
+dictate
+
+must
+that
+
+U2
+
+B.
+
+From
+
+Eqn.
+
+necessarily
+
+(B2)
+
+vanish,
+
+V.I = Yf(x.Y,Z),
+
+part
+
+of Eqn.
+
+= V2 = W2 = P2 -
+
+and
+it
+
+so that
+
+(A1)
+
+with the previous
+
+thus
+
+the
+follows
+
+= 0,
+
+vl
+
+follows from
+
+Eqn.
+
+(BT)
+
+av]
+-_
+
+(x,O,Z)
+
+V]
+
+has
+
+(x,O,Z)
+
+aP 1
+that -_(x,O,Z)
+Eq.
+
+(B5)
+
+P2 =- 0
+It then
+
+that
+that
+
+r°,°x
+t
+I.a/az
+
+dictates
+
+result P2
+
+fact
+
+0
+
+that
+
+66
+
+yields
+
+= o.
+
+= 0.
+
+does
+the
+
+not
+form
+
+The g-mom.
+
+Combined
+
+Appendix C:
+
+Final form of the equations of motion and their
+matching-
+
+1.
+
+and boundary-
+
+conditions
+
+Outer layer
+
+0(1)
+
+au 1
+
+av 1
+
+ax *-_-*
+
+aw 1
+
+a---2
+-=°
+T
+
+°
+f
+- [°°°t
+_x.
+[P1]
+
+t
+
+T
+
+aY'
+
+az
+
+0{€)
+
+U2 = V2 = W2 = P2 --- 0
+0(€ 2)
+
+au 3
+
+av 3
+
+ax .'-_'-.
+
+aw 3
+
+a--_
+--=°
+T
+
+t_,_x+
+vl_+wl_j{_3.
+v3.
+o3}+
+a
+
+T
+a
+
+67
+
+T
+
+ax" aY" az
+2.
+
+Middle layer
+
+o(1)
+
+8v 1
+
+au I
+
+8w 1
+
+a_- • -_7 . a--_-= o
+au1
+
+ul _._1
+
+au 1
+
+a'-7.%
+
+au1
+
+a'-_=
+
+ap 1
+
+ax
+
+8P 1
+O=----ay
+
+awI
+
+awI
+
+ul a--;-+ vl _
+
+aw1
+
+ap 1
+
++ *'I a-_-=
+
+az
+
+O(€)
+8u2
+
+av2
+
+aw2
+
+a-;-, -_-y, a--_-= o
+a
+
+au2
+
+aUl
+
+au2
+
+auI
+
+at1
+
+_; [ul "2] * vl ay. v2_7 _ wl az * "2 -_- = ay
+aw2
+
+awl
+
+aw2
+
+awl
+
+6tl
+
+ay
+O(€21
+au3
+
+av3
+
+aw3
+
+a---_. --_-y+ a---£=o
+
+68
+
+(3
+
+au2
+
+au3
+
+au2
+
+aul
+
+aP3
+
+aul
+
+au3
+
+_x {ulu3
+] +u2_-_. "1 a--'7
++"2_ +_3_ . +1-_- .
+at I
+au 2
+
+w2 aT + w3 _=
+
+-
+
+avI
+
+avI
+
+avI
+
+aw3
+
+aw2
+
+awI
+
+at 2
+xx
+
+a--'_-+_
+
+ap 3
+
+aw3
+
+.
+at]
+
+at I
+xy .
+
+ay
+
+yy
+
+aw2
+
+ul a--_
+-. u2-_-* u3_;-x+ "I a-T* "2_*
+aw2
+
+at I
+aP3 ,,aZ
+3.
+
+xz .
+ax
+
+at 2
+
+at I
+
+yz .
+ay
+
+zz
+az
+
+Inner layer
+
+0(1)
+
+^ = '?1= _;1=
+U1
+_ o
+'°1 = PI(x'0"Z)
+a
+
+Olc)
+
+a;
+2 a;2 a;2
+
+--+--+--=
+
+ax
+
+^
+ay
+
+aZ
+
+0
+
+69
+
+xz
+
+a'-"-_
+
+awI
+
+v3-_7 .
+
+0 =-_
+ay
+
++
+xy
+
+ay j
+
+^
+
+a
+
+o=.._
+
++_
+ay
+
+tlyz
+
+ay j
+
+0( _2)
+^
+
+^
+
+^
+
+8u 3
+av 3
+_-i-_+_=
+^
+ax
+ay
+
+aw 3
+
+0 =_
+
+.m
+ay
+
+xy
+
+ay J
+
+ay
+
+0=_
+
+4.
+
+Outer-
+
+a^
+
+ay
+
+tlyy
+
+^
+t2
+
+middle
+
++
+
+yz
+
+ay J
+
+matching
+
+conditions
+
+u](x,y,Z)
+
+" U](x,O,Z);y
+
+u2(x.y,z)
+
+au 1
+y _(x,0,z);
+
+u3(x'Y'Z)
+with
+
+0
+
+az
+
+similar
+
+-
+
+y ...,oo
+
+. y2 a2U 1
+__
+2 ay2 (x,O,Z)
+
+relationships
+
+for
+
+oo
+
+w.
+
+7O
+
+.t U3(x,O,Z)
+
+; y .., =o
+
+V l(x,O.Z)
+
+= 0
+
+- vl(x'Y'Z)
+
+v2(x
+
+Pl
+
+18UI
+aWl 1
+- y .-, o_
+Y L'-'_- + -_-J (x. O,Z)
+
+y.Z)
+
+" V3(x.O.Z)
+
+(x.Z)
+
+= PI (X'O'Z)
+
+•
+
+2 a2V1
++ y-2 6y2
+
+(x.O.Z):
+
+aP 1
+0 =-_-_- (x.O,Z)
+
+2 aye
+t
+(x.F.Z)
+ni I
+5.
+
+" O'y -* _o, for n = 1.2.3.---
+
+Middle - Inner matching conditions
+vI
+
+(x.O.Z)
+
+= v2 (x.O.Z)
+
+= v3 (x.O.Z)
+
+a[ul}
+
+0 =_--_
+
+v1
+
+Wl
+
+(x,O,Z)
+
+av2
+
+_2cx.F.z;"F_ c_.o.z;:_ -=
+
+71
+
+= 0
+
+y "-, oo
+
+^
+
+/_1
+
+(x,Z)
+
+8v 3
+
+= P]
+
+.
+
+:
+
+(x.O,Z)
+
+A
+
+$3 cx.y.z
+
+" p3 cx.o.z>
+
+£
+nil
+
+(x.y.Z)
+
+" t
+
+u2
+
+" b 2 In y -I- C2,
+
+U2
+
+b 2 Irl ;
+
+with similar
+
+relationships
+
+B.C.'s:
+
+(x.O.Z);)_
+
+--, oo n = 1.2.3.---
+
+nil
+
+u^n
+
+(x,O,Z)
+
+-I- C2"
+
+u3
+
+" b 3 In y -I- C3;
+
+y --, 0
+
+u3
+
+" b3
+
+In ;
+
+-I- (_3;
+
+"_ -' =o
+
+^
+= wn
+
+(x , O,Z)
+
+= O.
+
+for w and w.
+= _n (x,O,Z)
+
+eeg
+
+72
+
+n = 2,3.
+
+Appendix D:
+
+Determination
+
+In vector form,
+
+U = _ (y.)
+
+U
+
+(D l)"
+
+(DI)
+
+7
+
+Law -of -the -Wake:
+
+Eqn.
+
+overlap
+
+we have
+
+Law -of -the -Wall:
+
+From
+
+of the 3D logarithmic
+
+e - LI /u r
+
+= _(7/)
+
+(D2)
+
+-.
+2
+dtJ
+u-r dT
+-=
+dY
+u dy.
+
+(D3)
+
+-.D
+
+and from Eqn.
+
+Multiplying
+
+Eqns.
+
+y
+
+--=
+dyt
+
+(03)
+
+dF
+
+U'r dF
+0 dT/
+
+Y/u r
+
+and equating,
+
+=_
+
+f (71)
+
+Eqn.
+
+vector.
+(D5)
+
+(D4)
+
+yields
+
+(DS)
+
+d ll
+
+(_ Is a constant
+Rewriting
+
+dO
+d_ =
+
+and (04)by
+
+77
+
+f (yt)
+
+where
+
+(D2):
+
+in component
+
+73
+
+form,
+
+F Ldy "1" •dy "1"
+z;z
+
+-,7I.d 77 ;x .-_ z^
+ez
+
+Thus
+
+Y.
+
+"I1 -_
+dF
+
+df x
+dY+
+
+= Cx --, fFIX = Cx in Y. "t A'
+= - Cx In 7/ -t Bx
+x
+
++df z
+dF z
+z
+. Bz
+y -= - 7/ --_ = C z -_
+t
+fFfz z = = - CCzlnIn y+
+dY"1"
+7/ . A z
+
+comparing these results with Eqns. (B]O)
+
+U.x = fx
+
+Fx
+with similar
+
+= -
+
+the
+
+Cx = b2"
+
+A
+
+u2"
+
+expressions
+
+tates the scale
+Since
+
+= u2"
+
+I
+
+x
+
+and (B]])
+
+Bx = C2'
+
+= -
+
+C2"
+
+(DT)
+
+yields
+
+Y+ = ]_
+
+(D8)
+
+_ = y
+
+for the z-components.
+
+of the outer
+
+(D6)
+
+Note that 71 = y dic-
+
+flow as I = XS.
+
+Law-of-the-Wall
+
+Is 2D
+
+(In
+
+Tw-directlon),
+
+It follows
+
+that
+
+u+
+
+- K- 1In y.
+
+whence
+
+74
+
++ B:
+
+y-I- .-, 0o
+
+(D9)
+
+• cos cos
+wl wl
+COS_
+
+w
+
+sine w
+
+comparing
+
+._
+
+j B:
+
+y
+
+this with Eqn.
+
+-, oo
+
+(D8)
+
+and Its z-
+
+=
+
+counterpart,
+
+one gets
+
+K
+
+°2 =f°x c°°_w
+l _,
+d2
+
+CZ
+
+sine w J
+
+2
+
+ex
+
+c°SCw
+
+Bz
+
+sine w
+
+[02
+
+Eqns. (D6)
+
+=
+
+B
+
+and (OT) then Imply that
+!
+
+F COS')' -= Fx
+
+-
+
+K-1
+
+COSCw In 7/ -t- A x
+
+;7/ -, 0
+
+!
+
+_ Fsln_/
+
+=, Fz
+
+If one now assumes
+
+.
+
+_ -1
+
+sin¢ w In 7/ + A z
+
+that
+
+fA' . °°°_w
+l oos_w
+1
+AX
+z
+
+= A
+
+sln¢ w j
+
+then it follows from Eqn.
+
+(D]O)
+
+=
+
+sine w j
+
+that
+
+75
+
+2 -_
+
+(D10)
+
+which
+the
+
+establishes,
+
+3D case.
+
+analysis,
+
+Eqns.
+
+together
+
+This
+
+with
+
+(D9),
+
+was also established
+
+(B]O),
+
+(B]])
+
+and their
+
+76
+
+the
+
+logarithmic
+
+by the
+crosswise
+
+matched
+
+overlap
+
+for
+
+asymptotic
+
+counterparts.
+
+Appendix E:
+E'I:
+
+Details Pertaining
+
+Determination
+
+Since F2D
+
+to Profile Relations
+
+of the Wake Parameter,
+
+Is the defect function
+
+of the skewed boundary layer,
+
+ff
+
+of the streamwlse
+
+the following log.
+
+friction
+
+component
+law applies
+
+to it:
+
+KXx = In [Re_)/Xx]-_
+
+KB -I-213
+
+(El-l)
+
+where
+
+kx = X/ [cos€ w )"1/2
+By using Coles'
+
+['1) formulation
+
+to his normalizing
+
+conditions,
+
+KkxRe
+
+Combining
+
+0
+
+of the
+
+2D Law-of-the-Wake,
+
+a further relationship
+
+subject
+
+involving 13 is
+
+,/Re 0 = 1 . 13
+
+(El-2)
+
+X
+
+Eqns.
+
+(El-I)
+
+and
+
+(El-2)
+
+then yields the equation
+
+in the form
+
+2H-
+
+In KRe
+1 + 13
+, -I-K
+5
+
+(B
+
+-
+
+kx)
+
+= 0
+
+X
+
+from which 1"[is determinable,
+
+using a root finder algorithm
+
+77
+
+[]3].
+
+for 17
+
+E2:
+
+Determination
+
+of the funcUon l_('r/)
+
+From the Law-of-the-Wall.
+
+Eq.
+
+(4).
+
+one gets
+
+(7).
+
+one gets
+
+2
+d____U
+= UT df
+dY
+u dy-P
+From the Law-of-the-Wake.
+
+Eq.
+
+2
+dO
+dY
+
+uT IF dF
+OU
+"_ -)"
+
+- F
+
+Multiplying both expressions by u'----and equating,
+T
+
+d'y
+cos, Jd0--_"1
+" F sin, _-]=K
+
+y+ d__f_f
+dy'l" = _U [IF_
+
+Since
+
+the L.H.S.
+
+(these
+
+are
+
+Is a function
+
+independent
+
+analysis),
+
+both are equal
+
+the L. H. _.
+
+yields
+
+f
+
+= K-1
+
+of yt
+
+variables
+
+yields
+
+(E2-])
+
+-1
+
+only and the R.H.S.
+
+of T/ only
+
+in
+
+asymptotic
+
+the
+
+context
+
+to the same constant.
+
+K-1
+
+of
+
+Integration
+
+of
+
+Iny + d-B
+
+which is the logarithmic overlap expressed In terms o.f wall variables.
+Substituting Eq. (6)
+
+U
+
+Xcos2F
+
+Into the R.H.S.
+
+J dT/
+
+of Eq. (E2-1)
+
+Xcos2,F dR
+
+from which
+
+78
+
+= K
+
+yields
+
+_,_,_o_*_,u ['% __
+__o
+[
+1
+_''%1
+d'r/
+F_2Otan3, _
+tXoos2./
+J"d_-- J
+where U is given by Eq.
+
+(Z)
+
+and F2D
+
+condition required for the solution of Eq.
+
+<_,
+
+by Eq.
+(9)
+
+(5).
+
+The
+
+is determined
+
+Initial
+as fol-
+
+lows: according to the asymptotic analysis the hodograph (Fig.
+
+7)
+
+starts deviating from the Cw- direction at the point In the logarithmic
+overlap where the wall-
+
+and wake-velocity vectors are In the same
+
+direction.
+
+This point is designated as "_o'
+
+From Fig.
+
+7.
+
+U
+
+.
+
+X
+
+=
+
+[cos€ w .
+
+jslnCw]
+_'_-_
+
+combining this with Eqs. (6)
+
+tan¢(_/)
+
+and u+ and F2D
+
+€(7/)
+
+yields
+
+sinew
+
+=
+
+in the logarithmic overlap.
+
+(E2-2)
+
+and (8)
+
+(E2-2)
+
+Here
+
+are given by Eqs.
+
+(4)
+
+and (5)
+
+respectively.
+
+Eq.
+
+is solved iteratively for 7/o which is the largest 7/ for which
+= Cw"
+
+€ = Cw"
+
+I_o Is then found
+
+This
+
+determines
+
+the
+
+from Eq.
+required
+
+79
+
+(8)
+
+with 7/ = 7/o and
+
+Initial conditions
+
+for
+
+Eq.
+
+(9),
+
+the
+
+region,
+
+solution
+
+which
+At the
+
+To
+
+provides
+
+is the
+
+lower portion
+
+upper
+
+portion
+
+the
+
+formulation
+
+complete
+
+curve-fit
+
+which
+
+the 'y('r/)
+
+curve.
+
+F -
+
+of which
+
+smoothly
+
+lp('r/)
+
+in the
+
+of the _(7/)
+
+of the defect
+of
+
+_/,
+
+connects
+
+the
+
+To this end one
+
+is
+lower
+
+defines
+
+overlap
+
+curve.
+
+layer,
+
+It
+
+logarithmic
+
+1, = I,m
+
+[Eq.
+
+necessary
+and
+
+to
+
+upper
+
+(11)].
+
+devise
+
+a
+
+portions
+
+of
+
+the function
+
+!=,
+I,m
+
+(10)
+
+The following requirements are necessary to be met by this function:
+1)
+
+F(1)
+
+= 1
+
+2)
+
+dF
+_'_" > 0
+IIm
+dr"
+--=0
+// -, 1 dT/
+
+3)
+
+d2F
+dR
+
+IIm d2F
+_=
+_/-* 1
+2
+dT/
+
+5)
+
+(zero
+
+curvature
+
+These
+The
+
+latter
+
+two
+
+described
+
+velocity
+
+profile
+
+Fig.
+
+as "r/ -, 1).
+
+requirements
+
+curve
+
+(see
+
+0
+
+are
+
+parameters
+by
+
+met
+
+are
+
+provided
+
+that
+
+a > 2 and
+
+,8 > 0.
+
+determined
+
+by
+
+matching
+
+to
+
+the
+
+a matching
+
+point,
+
+where
+
+the
+
+the
+
+wake
+
+Eq.
+
+(9)
+
+at
+
+switches
+
+from
+
+the
+
+8):
+
+8O
+
+logarithmic
+
+"//1"
+
+overlap
+
+to
+
+F
+
+'Ym
+-ld_,
+
+dF
+f
+
+F =
+
+where
+
+e7/=7/1
+
+8 7/ = 7/1
+
+yl
+
+1_(7/) Is the function
+
+Is Its value at 7/ = 7/1 .
+
+at the logarithmic
+
+overlap
+
+region,
+
+and "Yl
+
+From this one gets:
+
+1-7/11 _dF ] 7/--7/1
+aZ = 1_]..,
+and
+
+1-F 1
+
+.8=
+
+[1-7/1 ]a
+7/1 Is generally
+experimental
+
+data,
+
+for an outline
+
+7/1
+for which
+this
+
+work,
+
+correct
+
+a function
+
+of Re 0 and pressure
+
+a typical
+
+See Appendix
+
+procedure
+
+7/1"
+
+E3:
+
+Procedure
+
+Is a function
+
+of both
+
+a model
+
+does
+
+not seem
+
+7/1
+
+found
+
+by
+
+value
+
+produces
+
+unity at the correct
+
+to determine
+
+to Determine
+Re
+
+an
+
+number
+
+Iteratlve
+of F (7/)
+
+E3
+
+7/1
+
+and
+
+pressure
+
+gradient,
+
+to exist at the present
+
+a branch
+
+value
+
+Based on
+
+value for It Is 0.035.
+
+of an Iteratlve
+
+Is
+
+gradient.
+
+procedure
+
+such
+
+where
+
+I" first
+
+of 7/ for the
+
+particular
+
+case
+
+of
+
+the
+
+guess,
+
+time.
+
+In
+
+that
+
+the
+
+becomes
+
+under
+
+InvestlI
+
+gation.
+
+In the
+
+produces
+
+a branch
+
+lower
+
+than
+
+the
+
+example
+such
+
+correct
+
+Fig.
+
+that
+
+value
+
+11,
+
+first
+
+labelled
+
+F first
+
+becomes
+
+1 at an
+
+for
+
+particular
+
+case
+
+this
+
+81
+
+7/1.
+
+7/ which
+
+(which
+
+Is
+
+would
+
+typically be taken from an actual experiment).
+
+The next guess.
+
+I I
+
+7/1
+
+leads
+
+to a branch
+
+In which
+
+r
+
+first attains
+
+unity at an 7/ which
+I
+
+is higher
+tually
+
+than
+
+produces
+
+the
+
+true
+
+value.
+
+the correct
+
+Iterating
+
+branch,
+
+line.
+
+82
+
+between
+
+shown
+
+in the
+
+! |
+
+7/1 and 7/1
+figure
+
+even-
+
+as a solid
+
+Appendix F:
+F]:
+Introducing
+into the
+
+Detailed
+
+Preliminary
+the
+
+Analysis of a Juncture
+
+form of juncture
+
+normalized
+
+3D Navier-Stokes
+
+variables
+
+equations,
+
+of
+
+equations
+Section
+
+the juncture
+
+become
+
+kwA Xref
+
+au . Xref av .
+ax
+XWA aY
+
+aW
+
+= o
+
+XbO Xw& az
+
+w
+
+au
+
+Xref
+
+au
+
+XwA Xref
+
+_ _x._-j._v __-_
+a _w__
+_ _ au.
+
+_w
+U
+
+Xre f
+.
+
+(2}Ui
+
+aP
+
+_ _-_ = ax_
+
+axL_re
+t Oe×wZ_
+ax
+-
+
+au
+
+a
+
+v
+
+au
+
+XwA aY Oekw A aY .
+
+= LIi/O e.
+
+x = x'/Xre f,
+
+P = 15/pO
+
+Y = Y/(XwA).
+
+Tw
+
+.
+
+. Tii
+
+= - ui
+
+Z = Z/(Xb
+
+83
+
+8)
+
+Flow
+
+2.2.1.
+
+region
+
+(2}
+
+equations
+
+XwA Xref
+
+c_ [XwA
+
+v
+
+aU
+
+Xb0 XwA 0Z [X--_ 0eXw A az +
+
+av
+
+Xref
+
+av
+
+u _ __
+
+XwA Xref Wav
+
+v _ _ xbo _A
+
+a_=
+
+Xref aP 4"
+kwA aY
+
+a
+
+XwA
+
+I
+
+Ox [Xref
+
+Xref
+
+v
+
+av
+
+i[J'u
+
+a
+
+v
+
+kwA aY
+
+Iu"l'1
+I. Oe J Txy
+
+OeXw A ax +
+
+av
+
+Oe"XwA c3Y .
+
+0"rw
+e
+
+Tyy
+
+m
+
+XwA Xref
+
+a
+
+[XwA
+
+XbO XwA aZ
+
+[kb6
+
+"rw
+
+0e
+
+-i-
+
+v
+
+av
+
+0ekw A az -t-
+
+Tzy
+
+84
+
++
+
+.
+
+aw
+
+m
+
+Xref
+
+aw
+
+XwA Xref
+
+aW
+
+XwA Xref aP +
+Xb6 XwA aZ
+
+i
+
+a
+
+Xw..__.&v
+
+aY i._ef
+
+CleXw/l ax
+
+Tw
+
+'_ef
+
+f]2
+
+aW +
+
+Tx z
+
+a
+
+t-
+
+v
+
+XwA 8Y
+
+!. I w
+
+aw
+
+OeXw A aY .
+
+UTw 2
+
+L "rwJ
+
+1
+
+XWA Xref
+
+a
+
+kbO XwA az
+
+•
+
+[XwA
+
+v
+
+['_b 80eXw
+
+aw
+A az +
+
+Tzz.
+
+l _'w
+with the notation
+
+85
+
+U
+
+Tw
+Ew =- _
+
+oe
+
+2^
+, _W_W ='
+
+v
+
+Xb0
+
+Xre f
+
+, _. "=
+
+F, =-
+
+Oew/1
+
+U
+
+"rb
+
+€b
+
+UTW
+
+EW
+
+these equations become Eqns.
+
+(3)
+
+of Section 2.2.1.
+
+Before treating these equations by an asymptotic analysis, It Is
+of Interest to relate ¢ to the parameters
+Both 0 and A Increase
+0/A
+
+" 0,
+
+scaling,
+
+€W and €b.
+
+with x.
+
+At the blade leading edge,
+
+while at the trailing edge 6//1
+the (1/n)th
+
+" 3.
+
+For the purpose of
+
+power law growth for turbulent flat plate flow is
+n-1
+
+used,
+
+according to which 0 "x
+
+n
+
+Thus,
+
+for any streamwlse lo-
+
+cation along the blade,
+
+n-1
+
+This relation may be expressed In terms of X's,
+relationship from the (l/n)th
+
+Cf
+
+power law, namely
+
+= K Re x-1/n
+
+(K-
+
+Thus
+
+86
+
+a constant)
+
+using another
+
+n-]
+O
+-_=
+
+[ (x-,=] 1
+x - XL, E. ]
+
+=
+
+and hence
+"l-2n
+
+2n-1
+
+Thus _ is a measure
+corner-flow
+
+asymmetry.
+
+(3)
+
+to Eqns.
+
+(1)
+
+case
+
+corresponds
+
+work,
+
+both this and
+
+large
+
+portions of
+
+of the streamwise
+
+The case 8/A
+
+and
+
+(2),
+
+to the
+the
+
+development
+
+= ] formally reduces Eqns.
+Xref
+X--'-_ = 1.
+
+since then also _-
+
+symmetric
+
+corner
+
+asymmetrical
+
+turbomachinery
+
+of the
+
+flow.
+
+situtation,
+
+blade/endwall
+
+In
+
+the
+
+This
+present
+
+which occurs
+
+juncture
+
+flows,
+
+in
+are
+
+Investigated.
+The
+o/Z_ ratio
+
+analysis
+
+Is carried
+
+(or
+
+so that the leading edge region is excluded from
+
+_),
+
+out for an arbitrary,
+
+the present discussion.
+
+8"/
+
+but non-zero,
+
+The following generalized expansions are defined:
+Middle region
+Y
+
+Z
+
+y=¢.z=t
+
+U = f
+
+[
+
+(x,y,z)
+
++ CcU2 .
+
+ccu 3 + ...
+
+_
+
+]
+
+V = g
+
+[
+
+v1 (x,y,z)
+
++ CcV2 .
+
+€oy 3 + ...
+
+2
+
+]
+
+[
+
+.
+
+_aw2
+
+.
+
+.Ccp
+
+2 .
+
+2
+Cop3 .
+
+uI
+
+W = h wI
+
+P = P]
+
+(x,y,z)
+
+(x.y.z)
+
+_
+
+CcW3 .
+
+...
+
+]
+
+...
+
+_c
+=
+Tii
+
+(x,y,z)
+_w
+
++ q 8iz
+
+tli i
+
+Y
+
+^
+
++
+Oct211
+
+Inner region
+
+)_
+
+.
+
+Z
+
+u- _[;___o;__;_. ..]
+v_-_[fl _Oo_
+_o_ _...]
+
+88
+
+2
++ ...
+Oct311
+
+^
+
+^
+
+P = Pl
+
+2 ^
+
+-I Ccp2 -I. _cP3 + ''.
+
++Ozp
+Here the parameters f.
+functions
+
+of
+
+€c and _c
+
+Cc" _c"
+are
+
+Juncture,
+
+to
+
+€.
+
+and _
+
+€.
+
+create
+
+_
+
+small
+
+be
+
+g,
+
+_.
+
+g.
+
+/_. q are In general
+
+Cw' _w" ( and _
+
+or
+
+of
+
+h.
+
+perturbation
+
+determined
+are
+
+parameters
+
+later
+
+stretching
+
+q.
+
+from
+
+functions
+
+of
+
+€c.
+
+Inserted
+
+into Eqns.
+
+or not.
+
+parameters
+
+_c'
+
+Cw"
+(3).
+
+These
+
+_w"
+
+some
+
+of
+
+appropriate
+
+matching
+
+the
+
+conditions;
+
+and
+
+purpose
+
+Is to
+
+of whether the flow
+
+stretching parameters
+
+(; and _.
+
+them;
+to
+
+whose
+
+symmetric Juncture equations regardless
+
+Itself Is symmetric
+
+Middle
+
+]
+
+The above
+
+are
+
+also
+
+expansions
+
+are
+
+yielding:
+
+region
+
+a
+
+f _x (ul .'" ") . _ g"_
+€ ay (vl . "")
+
+. "_h-'a
+_ _. az (wI . ...)
+
+a
+f2
+
+(u I + ...)_._
+
+(u 1 + ...)+
+
+_ fg (v 1 + ...)
+
+a
+_fh_l,(wl
+
++ "'')a"_z
+
+. a'_
+
+_w_w_x
+
+(ul
+
+(ul
+
+.
+
++ "'')
+
+a
+= - a-x (Pl
+
+"'')
+
++ Cc
+
+89
+
+.
+
++ "'"
+
+= o
+
+a cu1.---_.
+"_
+
+"'')
+
++
+
+.
+
+Cw_w_-_ (u I + ...)
+
++_
+fg(u
+
+I
+
+_x
+
+(Vl
+
+JgD_(w
+I + ...)
+¢_
+
+-_y
+
+.
+
++ ...
+
+.
+
+L_,,,o,,.
+_ ,,,.,+...>+Oo
+% + II
+
+I- ---)
+
+.-_
+
+. €c
+
+-I- -..)
+
+-I- _
+
+a
+_ (vI + ...)
+
+$
+
+(V 1 + --
+
+ay (vl
+
+-i- ,-.)
+
+J_ a
+= _ _ ay (Pl
+
+-l- -..)
+
++
+
+_w_w _'_ (v1 . ...)
+
++ €c
+
+. ...
+
+.
+
+ewew-_
+
+. ec
+
+-I- ---
+
+-I-
+
+_z
+
+(v I + "'')
+
+ewCw_z (vl . "'')
+
++ ec
+
++ "'"
+
+a
+fh(ul.l....)
+
+-_
+
+(Wl.l....)+_
+
+¢I (w, +'.--)
+J-_
+
+a
+. _x
+
+2^
+CwCw
+
+e gh
+€, (Vl+...)
+
+_a (wl + "'") =-
+
+2
+(Wl + "" ") + _2o Cw
+
+90
+
+_a (wl .---).
+_-_(Pl
+(-_ea
+
+ec
+
++ q
+
++ "'") .
+
+.
+
++
+
+a
+
+2,,
+
+€ a-'y
+
+a
+
+2
+
+CwCw-_ (wl . "" ") . ¢20 _w
+
+.
+
+a
+
+Cw_w
+2 ^ _a (wl
+
++ ...)
+
+[I 2l ]
+_c
+
+. q
+
++ €.2o €w
+2
+
+"
+
+[I 2l ]
+Cc
+
+. q
+
+•
+
+[izz_
+]]
+Imposing
+
+symmetry
+
+In Y and
+
+Z and
+
+equations results In the following relations:
+2
+
+q=[o_]
+c0-2o
+_lj
+f
+
+=1,
+
+g = h = €c
+
+€ = ¢'e"= _€c
+and
+
+91
+
+In V and
+
+W on these
+
+_" =
+
+EWEw
+2"
+I£C(_C
+
+Inner region
+
+t _
+
+"'" ")"_ _"
+
+ay
+
+(Vl+'" ")+
+
+--
+
++-- -) =o
+
+_;,], az
+
+AA
+
+a
+
+(t_l
+
+..
+
+#
+
+¢_
+
+. _x
+
+(w 1 + ...)_
+
+ewew-_x
+
+ay
+
+Ee
+
+yx t- ---
+
+az
+
+^"
+fg
+
+"
+(U 1+''')
+
+t¢_
+
+1
+
++ "")
+
+Cw_ w _
+
+_ay
+
+(j
+
+az
+
+ay
+
+. ...)
+
+=
+
+. ec
+
+(u 1 + -..)
+
+a (_
+
+ax
+
+xx
+
+1
+
+. ---)
+
+t- ...
+
++
+
+.
+
++
+
+.
+
+ewew'_
+
+az
+
+a
+_ €_'1+---)+_
+
+(_1 . "'" ) + cc
+
+,,2
+_ (_1 t"'--)
+#
+
+92
+
+zx
+
+--_ (_1+'"
+ay
+
+") +
+
+¢I
+
+(Wl
+
+.
+
++ "'')-
+
+Cw_w
+
+,_a;
+
+az
+
+(Vl . "'') = -
+
+--(Pl
+
+. "'') .
+
+_ ay
+
+(vI + ...) + €c
+
+xy
+
++ ...
+
+.
+
+a_
+
+°:I+_,+
++...j)+
+++-_I+-'++-°+
+++°+,+
+__
+
+--
+
+az
+
+az
+
+(v I + •..)
+
++
+
+AA
+
+^ +''')+( _
+f'/_
+(O1+''') _a (Wl
+
+a^ (Wl +'" ")+
+(_I+'" ") -ay
+
+¢I_
+
+<'+I+'" ._a
+<,_..,
++..._ =- _¢I, aaz <&+..._
++
+az
+1
+
+a
+
+f
+
+/_ 2,,
+
+a
+
+.,
+
++¢20
+
+.-_I- _ CwCw -_ (w I +--.)
+
+2
+€w
+
+93
+
+Ii2)+j
+Cc
+
+.,
+
+.q
+
+•
+
+R 2,,
+
+.....
+
+a (_'1 +
+
+") + ¢20 CwO
+2
+
+[[;:]_
+2][_z•]
+^
+
+,, CwCw m
+
+(w 1 + ...)
+
+Imposing symmetry again,
+
+(_ = q.
+
+_ = 1.
+
++ _20
+
+one obtains
+
+I_ = /_ = Ce_ c,
+
+With the scales thus determined,
+
+_ = (_
+
+region
+
+a
+_-_ [w 1 .
+
+€c w2 .
+
+---J
+
+a
+
+= o
+
+[u
+
+.
+
+t ° u2 + ...
+
+94
+
+= _eC_C
+
+the equations are rewritten
+
+as follows:
+Middle
+
+2
+
+a
+
+[ul__ou2.---]=
+
+ax 1
+
+°1
+-I-'_
+
+"11
+
+ec'_y
+
+U1 -I" ec
+
+yx
+
+._z ;'__ ["1* %u2* ""] ' _
+2
+
+yx
+
+* _c_2* "'"
+
+a
+
+_o[[o,.oou_
++...]_ 1,,.oo,_
++...]. [,,.Oo,_+.-].
+a
+(Vl
+
++ccv
+
+2 •
+
+.-.)
+
++
+a
+
+a
+
+4,'
+
+a
+
+=- -o_[,',•oo,'_
+_'""]_-_
+ox[°o°_
+_;['_•°o'_
+_"""]
+3
+EC
+
++ ...
+
+-I- ._-_ EcE c
+
+.
+
+(v 1 -I- •--)
+
+-I-E c
+
+95
+
+-!. -*-
+
+-!-
+
+I2"o
+cccc
+
+_z
+
+(v]
+
+.
+
+.... )
+
+2f +-'-11
+
+e €c
+
+t]zy
+
+2
+.o[[U,
++...] a(+., +..., +,v,+..., _a ,., +..., +
+(w I + ...) _o (w I + ...) ] =
+- _
+
+Pl +Ecp2
+
+._cp3
+
+.''"
+
+. -_x
+
++ -.-)
+
++ _c
+
+CC_C _x
+
+(Wl
+
+-I- .--)
+
+"t-
+
++](+
+. _y
+
+EcE c
+
+(w
+
+i
+
+. _z cccc
+Inner
+
++ "'"
+
+.
+
+"1
+
+region
+
+a
+
+A
+
+_x[_ ++oU+
++... ] +-+ [;, +Oo;+
++... ] +
+
+o[+, +o+
+
+]
+
+_c (_'1 . "'')_'_ a (ul^
+
++ "'').
+
+^
+aZ
+
++
+
++ "'"
+
+2
+
+= 0
+
+(w I
+
+(vl
+^
+
+. -..)
+" . -..) _aze;<'_1
+J=
+
+96
+
+. ..-)_a
+
+A
+
+ay
+
+(G1 . "'')
+
++
+
+- _c_x
+a (Pl+'" ") +aax[ %%Tx
+2^2 a (_1."')
+
+.
+
+A
+
+ay
+
+c
+
+yx
+
+az
+
+zx
+
+[°o°o}_
+[;,+...}_a (v,
++...,+,;,+...)&
+(,,+...,+
+^
+[
+^
+ay ^
+(w I
+
+^ + .--)_ 6z_ (;1 . .--) ] =
+a [ 4,,3
+
+a
+
+^
+
+ay
+
+€ € _ (_1 -i- ...)
+a_[°
+c a;
+
+.
+
+€c
+
+97
+
+.
+
+...
+
+.
+
+--i Cc_ c
+az
+8z
+
+zy
+
+,, 2 (u I....)
+[ CcCc
+] [^
+
+a'_ (w I+*.*)+
+
+€;1...°)
+
+a ^
+
+__ (
+ay
+
+a^;1 .°..).
+
+€;1 . ...)aaz €;1 . "")] =
+[
+a. 4^3a (.1^ . ...) .
+
+2"
+az
+
+3^
+
+EC EC
+
+tl
+
+XZ
+
+.
+
+.•.
+
+-._ Cc Cc --(
+ay
+ay
+
+az
+
+f
+
+-i- ...)
+
+CcCc m
+az
+
+.
+
++ €c
+
+.....
+
+.
+
+...
+
+t.
+
+zz
+
+Sorting the above equations according to orders of magnitude
+
+results in the following equations:
+Middle
+
+region
+
+0(1)
+au I
+
+avI
+
+awl
+
+a--;
++ -+-;
++ T=
+
+o
+
+98
+
+au I
+
+au 1
+
+au I
+
+ap 1
+
+a---_"
+. Vl
+
+a'--y". wl
+
+a'--;"=
+
+ax
+
+Ul
+
+aPI
+ay
+
+0
+
+=
+
+aPI
+az
+
+0 (_o)
+
+au2
+
+av2
+
+ax+_7+
+a
+
+aw2
+
+a--;-=o
+
+au2
+<ulu2> . v1 -_-.
+at I
+
+aP2 .
+
+au2
+w1 -_-.
+
+au3
+
+au2
+
+aul
+w2 -_-=
+
+at 1
+
+yx .
+
+ax
+
+aul
+v2 _-+
+
+ay
+
+0
+
+=
+
+ap2
+ay
+
+0
+
+----
+
+ap2
+az
+
+zx
+
+az
+
+0 ( E2)
+au3
+
+av3
+
+ax+-+7+
+a
+
+aw3
+
+az =o
+au2
+
+_x culus_+ u2-_- + ;I W" + _'2_
+
+g9
+
+aul
+
++ "3 _
+
++
+
+au 3
+
+ap3
+
+-ax
+
+au 2
+
+6u 1
+
+Wl a--_-+ w2 -_
+
+. w3 _
+
+at1xx
+
+zx
+
+at2
+
+at 2
+
+=
+
+. a---Ft a--_F+ a'---_at I
+
+at I
+
+avl
+
+Ul _
+
+avl
+
++ "I _
+
+avl
+
+aP3
+
+yy .
+
++ _I -_z = - a--F+ ay
+at I
+
+awl
+
+awl
+
+awl
+
+Ul ax . _I _
+
+aP3
+
+zy
+
+az
+
+at I
+
+y'z .
+
++ _I az = - a'--Z
++ ay
+
+zz
+a---_-
+
+Inner region
+0(I)
+
+a_?
+I a¢I a;l
+
+--'t'--+--=
+
+0
+
+0 =
+
+a2_1+ a2,_1
+
+a?
+A
+
+ap 1
+
+0
+
+=
+
+0
+
+= --
+
+a;
+a&1
+a;
+
+O((_c)
+
+'lO0
+
+(F1)
+
+a,+
+2 "!"--a?
+2 t" --a,+
+2= 0
+
+--
+
+ax a; a_
+
+ayt ay
+
+,_'
+
+a_2
+
+a;
+0
+
+a&2
+
+= --
+
+A
+
+az
+
+--+--+--=0
+
+a_
+
+a;
+
+ay tay
+
+a;
+
+yx
+
+az
+
+0 = -_
+
+. ------_
+. --------_
+
+a;
+
+0 =__e..___.
+A
+az
+
+1:2:
+
+Matching
+
+procedure
+
+101
+
+a;
+
+A
+
+ay
+
+a++
+zz
+az
+A
+
+The following relationships
+nates
+
+and those
+
+of the
+
+endwall
+
+exist between the Juncture coordl-
+
+and blade:
+
+Yc='_c=xw&_.%=_.%xwA_. %
+
+Z =Zc_=_
+Z
+=_ XbOEbebZb=
+c
+_c _ _ XbaC c _
+Xb0_ c
+
+Eb _b ^
+€
+Zb
+c
+
+)_wAGw_Jw
+
+Yc
+
+=
+
+z=
+The
+between
+
+first
+
+XwA/__c
+XwbZ w
+
+pair
+
+GW_w ^
+= _
+YW
+
+_"_c
+
+Zw
+
+of relations
+
+indicates
+
+that
+
+for
+
+smooth
+
+matching
+
+the Juncture and the blade,
+
+,irayc=
+
+y-,co
+
+A
+
+A
+
+.'. € c -, _
+
+€b (blade
+
+matching)
+
+(F2-A)
+
+Iim zc = GbZb
+z-'O
+
+The second pair Indicates the requirement
+ing between juncture and endwall:
+
+102
+
+for smooth match-
+
+=
+
+y-*O
+
+Z
+lira
+
+z
+
+Z "_o
+
+C
+
+w
+
+Iim
+_
+c
+
+matching)
+
+(F2-B)
+
+(_W
+
+Xre f
+_ =' _
+and from
+),w A
+
+Since
+
+Z
+
+=
+
+Ew
+_,T (endwall
+
+.'. co -*
+
+_ = 1 -'
+
+Z
+
+Iim
+c
+
+Eqns.
+
+(F2)
+
+It follows that
+
+c o = €w
+
+(F3)
+Iim
+YC "_
+
+_ = _ -,
+
+IIm
+YC
+
+€c = €b
+
+In a similar manner
+A
+
+IIm
+_C ""0°
+Eqns.
+
+A
+
+_c = €w.
+
+_C = Eb
+
+Iim
+A
+YC -.ao
+
+(F3)
+
+are
+
+in
+
+agreement
+
+have
+
+the
+
+with
+
+the
+
+previously
+
+obtained
+
+2^
+F-w_w
+_ =
+2^
+ECEC
+
+result
+
+Thus
+smooth
+
+t o and _c
+
+matching
+
+with Regions
+
+correct
+
+limiting
+
+I on both endwall
+
+values
+
+to guarantee
+
+and blade.
+
+Hence,
+
+^
+
+one
+
+may define
+
+definitions
+
+of € w.
+
+€c and € c In a similar
+_w"
+
+Cb and
+
+_b"
+
+manner
+
+namely
+
+103
+
+to the corresponding
+
+u
+
+T
+C
+
+EC
+
+where
+
+uTc
+
+and
+
+Ac
+
+-
+
+are,
+
+__
+
+o
+
+^
+
+=
+
+€c
+
+-
+
+respectively,
+
+1)
+UT
+
+c
+
+AC
+
+friction
+
+velocity and
+
+length
+
+scale characteristic of the juncture region.
+Since the equations of motion derived earlier are symmetric,
+
+It
+
+suffices to perform the matching procedure for one half of the Juncture region.
+
+The matching will be done with the endwall,
+
+along the
+
+following limiting lines:
+1.
+
+Juncture middle region and endwall middle layer:
+
+2.
+
+Juncture Inner region and endwall Inner layer;
+
+3.
+
+Juncture middle region and endwall Inner layer.
+
+These lines are denoted by the numerals "1, 2 and 3 in Fig.
+4.
+
+A
+
+matching,
+
+completely
+
+analogous
+
+procedure
+
+applies
+
+for
+
+the
+
+blade-
+
+denoted by the numerals 4, 5 and 6 In the figure.
+
+In the following,
+both juncture-
+
+the subscript w is dropped from €w.
+
+and endwall-
+
+bation parameter,
+
+since
+
+expansions are using this same pertur-
+
+as demonstrated earlier
+
+[Eqns.
+
+(F4)].
+
+The ex-
+
+pansions for the endwall layers Incorporate the results found earlier
+for the case of pressure-driven
+
+boundary layer (see Appendix C).
+
+Y
+
+t
+I
+
+,
+
+C
+
+w
+Z
+
+104
+
+Uw = Uwl
+
+(x,Y,Zw)+CUw2"l'_2Uw3+...
+
+au
+
+2 a2u
+
+wl
+cz c ....
+aZ w
+
+(x,y.O)
+
++
+
+€2 Zc
+2
+
+= Uw]
+
+(x.y,O)-'r
+
+w1
+aZ 2
+(x , y, O) + . . . + (ZUw2 (x , y, O) +
+W
+
+aU
+
+2
+
+€
+
+w2
+
+z
+
+waZ_ (x.y.O)+...+E
+
+2 Uw3 (x.y.O)+...
+
+" ucl
+
+2
+CUc2 (x.y.z).€
+u
+cI
+
+(x,y.z)
+
+Uc 2
+
+(x , y , zc)
+
+Uc3 (x.y.z)+...:
+u
+
+c
+
+(x,y,O);
+
+c3Zw
+" ZC auwl
+
+2 a2Uwl
+
+. z _.
+Uc3 (x .y , z )
+"_ az2
+w
+u
+
+w3
+
+(x.y.O);
+
+z
+c
+
+w1
+
+(x.y.O)
+
+.-. o=
+
++Uw2
+
+(x,y.O)+z
+
+z .., o=
+c
+
+105
+
+zc .-. =
+
+(x,y.O);
+
+aUw2
+
+zC .-, oo
+
+_
+(x.y,O)+
+c azw
+
+(x.y.uz )+
+
+2
+Vw = cvwl
+
+.€
+
+.
+
+E2Vw2....
+
+vcl
+
+(x,y,z
+
+2
+
+Vw2.
+
+c)
+
+....
+
+CVwl
+
+(x,y,O)+€
+
+" eva1
+
+(x,y,z
+
+c).E2vc2
+
+" Vw]
+
+(x,y,0):
+
+zc
+
+avwl
+zc
+
+aZ w
+
+(x,y,O)+...
+
+(x,y,z
+
+c)...
+
+o: zc
+
+..* oo
+
+-* oo
+
+aVwl
+
+_2 (x'Y'z°)
+
+% aZwcx'Y'°).v'2: z° " =
+
+Zw-.O
+Ww = Wwl .CWw2.C2Ww3.''"
+Differentiate
+
+w. r.t.
+
+Z
+
+w
+
+a2Ww]
+(x,y,O)
+
+aww2
++ € _
+az w
+
+_w
+
+-
+
+%
+_
+
+EWcl ._2Wc2.''';
+
+Cl
+
+[Zc
+
+:
+
+awwl •
+az w
+
+-
+
+f_zc
+
+c2z 2 83wwl
+
+aZ2w
+
+(x,y,O).
+
+_2Ww2
+
+(x,y,o)+_2z
+c
+
+_
+
+az:
+
+(x,y,O)
+
+2 8Ww3
+
+(x,y,o)+....€
+
+az 2
+
+f
+
+.I-
+
+(x,y,o)+...
+
+az w
+
+W
+
+_3W
+c2
+
+eee
+
+C3Wc3
+
+(xy , z)._--_-_=cx_. z_).l,_
+2_azc (x.y,o)....z
+
+106
+
+c -, =
+
+aWcI
+azc
+
+(x,y,z
+
+c
+
+aWw1
+" _
+(x,y,O);
+az w
+
+)
+
+awc2
+
+cx.y.z
+
+"
+
+a2Wwl
+w
+
+z az2
+
+aWc3
+az c
+
+(x,y,z
+
+aww3
+az w
+
+.
+
+c)
+
+(x.y,o):
+
+(x
+
+z2 a3Wwl
+c
+2
+az 8
+w
+
+z .., oo
+c
+
+,_aWw
+y.O)+-__(x,y,O):
+
+.
+
+w
+
+zc
+
+-
+
+00
+
+a2Ww2
+(x,y,o)+z
+
+c
+
+az 2
+w
+
+(x y o).
+• •
+
+z -, =
+c
+
+aP 1
+PW = P'I
+
+(x,O,O)
+
+2
+2 ZC a2P1
+€
+
+2
+
+.
+
+eZ 2
+
+W
+
+€
+
++ EZC _W
+
+(x,O.O)
+
+0,0)..--
+
+.
+
+(x
+
++
+
+"
+
+(x,y,O)
+
+4-...
+
+(x).
+
+Pw 8
+
+Pc ]
+
+(x)+
+CPc2
+
+2
+
+pc3 (x.y.z)+..-:
+
+pc 1 (x,y,z)
+
+= P1
+
+zc -, =
+
+(x,O.O)
+
+(F4)
+
+107
+
+(x.Y.Zc)
+
+Pc2
+
+- Z0
+
+_
+
+w (XoO.O):
+
+Zc
+
+"
+
+"_
+
+(F5)
+
+zc2 a2P1
+Pc3 (x.y.z
+
+c)
+
+" 2
+
+az 2
+w
+
+(x.O.O)+Pw3
+
+(x.y.O):
+
+atw
+
+Zc -, o=
+
+2 a2t
+Iii
+
+Twi i = twi i (x.y. O) + czc
+
+aZ"_- (x.y.
+
+2 z
+
+Wlil
+
+2
+
+c3Z2
+W
+
+O) + _
+
+(x. y. O) +
+
+atw
+2
+i- ...
+
++_t w
+21i
+
+(x,y,O)-I-€
+
+211
+zc
+
+az w
+
+(x,y.o).....
+
+2
+e
+
+tw
+(x.y,O)
+31i
+
+2
+E to
+
+. ...
+
+" t
+
+(x,Y.Zc)+_t
+c 1ii
+
+(x,y,z c) 4--.-:
+
+c
+
+(x,Y,Zc)+
+2ii
+
+zc -. ao
+
+3//
+
+tclii
+
+(x.y.z c)
+
+"twlli
+
+(x.y.O):
+
+zc -, =
+
+at
+.
+
+_2.,i (x._.z)
+
+Wlii
+
+z
+
+az, (x.v.o)+tw2
+° (x.y.o): z -. =
+
+2 62t
+
+.z
+tc31/ (x.y.
+
+zc)
+
+2
+
+W]l/
+aZ2w
+
+atw
+
+(x.y.o),_
+
+a---£2ii (x •y.O)+t w
+w
+
+108
+
+31/
+
+(x.y,O);
+
+zc .-, =o
+
+2.
+uw = CGw2(x,,_,o)+o(;)t_
+
+-;
+
+Uw3 (x,_,o)....
+A
+
+^
+-t- CUc2
+
+^._c)
+(x . y
+
+,, _
+
+^
+
+_c
+
+Uc2
+
+(x,y.
+
+u^
+
+(x. _ ,z^ )
+c
+
+c3
+
+2,,
+(x.y.z
++ € Uc3
+
+.
+
+uc] (x.y. c)
+
+)
+
+P,
+
+c).-'';
+
+o,_;)+
+c]
+
+" " c
+
+A
+
+zc -' oo
+
+"
+
+O; z
+
+^
+
+Uw2
+
+" u^
+
+(F6)
+
+--.co
+
+(x,
+
+);
+
+.0):
+
+(x, _ .0);
+w3
+
+^
+
+zc
+
+z^ -. oo
+c
+
+v = 2;;.2 cx._.o_.oc_2_3_3 cx._.o_+...
+^^
+" EEVcl
+
+e •
+
+(X. _ "z^c) +_ 2.',,
+_Vc 2
+
+^
+(x " y " z C )+
+
+_c-.=
+
+• #
+
+109
+
+3 ^^
+CVc3
+
+(x "
+
+_ ^
+.z C )+
+
+_C1 (x.Y.Zc)
+
+" O" ZC " 0o
+
+(F7)
+
+_2 cx.:. _ " ;_2cx.:.o_._ _=
+A
+
+w = € ;"2 <x.;.z _+ 2 ;_"3 cx.;.z _+...
+
+Differentiate
+
+w. r.t.
+
+Z :
+w
+
+ww2a
+^
+€ _
+(x.y.o)+occ).
+az w
+
+a_,
+c1
+
+2
+
+a_w3
+az w
+
+a_,
+c2
+
+_x.:._+_€,.F._.
+
+110
+
+(x._.o)+
+
+..
+
+azc
+
+a_.c
+
+aZw
+
+a ^
+
+a ^
+
+Wc3
+^ (x._._ c)
+
+•
+
+Ww3
+"
+
+•
+
+Pw = P'I (x O.O)+O(_)'l'_2pw3
+
+(x _.0);
+
+•
+
+_c " =
+
+€..;. o>+-..- i;oi €.>+
+
+_c 2 (x) .
+
+-l.€
+
+2,,
+_ ^
+_'c
+pc 3 (x , , zc ) -I.. . . ;
+-,oo
+
+,Oc.I
+
+(X,)_._.C)
+
+= P1
+
+(x.O.O)
+
+111
+
+(F9)
+
+A
+
+Pc2
+
+;_3
+
+= 0
+
+(x,
+
+(F10)
+
+.z
+
+; ^c
+
+)
+
+"
+
+(x,
+
+_w3 ;
+
+,0);
+
+A
+
+T
+wii
+
+=t
+
+z
+
+"c
+
+.., oo
+
+A
+
+cx.;.o)+0c_)+€% Cx.v.o) + .-. +
+w1ii
+
+2i i
+
+A
+
+A
+
+A
+
+. "'" "1_1, o,.;.%>+%%cx.;.z>.
+31i
+
+ii
+
+t
+c2ii
+
+W'li I
+
+€,x.;._,- _
+
+cx.;.o):_ _=
+
+w211
+
+112
+
+Uc
+
+= Ucl
+
+(x'Y'Zc)'.CUc2
+
+(x.Y.Zc)'l'C2Uc3
+
+•^ Z
+" _ Uw2^(x y, w)+E 2 _w3 (x._.Zw)....:
+Differentiate
+
+w. r.t.
+
+(x.Y.Zc).'''
+
+f y'O
+_)_..=
+
+y:
+
+aUc. I
+
+aUc 2
+
+auc 3
+
+a--;-(x._.z),.+ a--F(x.y.z),l._2-a_ (,._.z_)....
++a^
+
+. __
+^
+
+Uw2
+aUw3
+^
+(x._.Z w) . € - ^ (x._.Z w) .
+ay
+ay
+
+2 --a'_w4(x.;.z.)
+In analogy
+
+with thd discussion
+
+aUcl
+-ay
+
+(x,O.z
+
+c
+
+-I----
+
+:
+
+_iy'0
+
+In Appendix
+
+B.
+
+) = 0
+
+aUc2. €,2(x.Zc) , au% . %(x. zc> , ---;
+ay
+
+y
+
+ay
+
+y
+
+I13
+
+y -'0
+
+aA
+
+aUw2
+
+€2(x .z w)
+
+Uw3
+
+¢3(X.Zw )
+
+aF
+
+F
+
+ax
+
+?
+
+Uci " ¢i(x.z c)
+
+In Y+_i
+
+(x'zc)"
+
+i = 2.3. o-o:
+
+y--,O /
+
+"Uw/ " €/(x.Z w)
+
+^
+In y+_/
+
+(X.Zw).
+
+i = 2.3.-.-:
+
+^ J
+y.-_
+
+or
+
+V
+
+= cvcl
+
+(x.y.z)+C2Vc2
+
+Differentiate w. r.t.
+
+. € 2*,,
+CVw2 (x._.Z w )+
+
+(x.y.z)+...
+
+3,, ^
+^
+t. _ € Vw3 (x . y . Zw ) -I.. . . :
+
+f y'*O
+L_ ..,o=
+
+y:
+
+arc 1
+
+aVc2
+
+a_w
+
+€-_;-(xv
+• . z_+_2 _(x._,.z_+...
+
+" €2 _(x.F.Zw_+
+a;2
+
+^
+
+t
+
+€ 3 _avw3 (x.y.Z
+
+w)+ ....
+
+f )'''°
+
+av
+
+cI
+(x,O.z ) = 0
+ay
+c
+
+arc 2
+
+a_w2
+
+a--"F
+(x.oz ) -_a; (x.;.zw): ; .=
+
+ll4
+
+(FII)
+
+Wc = € we1 (x,y.z c)._2wc2
+
+.
+
+(x.y.z c)+...
+
+" e Ww2"(x._,Z w).
+
+y'O
+2 ,;% (_.;.z,) ,--- ; f";-=
+
+Wci (x.O.zc) " Ww/.l (x._.Zw):
+
+_ -. =. i = ].2....
+
+2
+PC = P1
+
+(x,O.O).CPc2
+
+(x)._
+
+pc 3 (x.y.z
+
+plcx ozw)+c2_%(x ; zw).
+
+c)+...
+
+.:
+
+[y'-.O
+
+_;=
+
+pc 2 = 0
+
+(F12)
+
+p% (x.o.z_)-;% (x,;oz,,): ;
+
+T
+= t
+Cil
+c]ii
+
+- twlii
+
+(x,Y.Zc)+€
+
+tc
+
+=
+
+(x.Y.Zc)+C2tc
+211
+
+(x.Y.Zc)+''"
+311
+
+(_.;. z.,) +_ ;.,21
+i (x;z.),_2_ 311(_;z),---
+
+115
+
+-.O
+_;_=
+
+o,.o._ -r,,
+ni i
+
+cx.f.z,_:_-. =. . =_.2....
+
+nil
+
+Important results from matching procedure:
+1.
+
+From
+
+Eqns.
+
+(F1).
+
+(F6)
+
+and
+
+the one
+
+equivalent
+
+(F6)
+
+for Yc "" o= plus the boundary conditions uc]
+
+to
+
+= 0 @
+
+J;
+_=o
+g
+
+l_,c=0
+
+it follows that _
+homogeneous
+Minimum
+
+Is described
+
+c1
+
+by Laplaee's equation with
+
+boundary conditions.
+
+Theoren.
+
+u
+
+By the
+
+Maximum and
+
+-= O.
+c1
+
+2.
+given
+
+From
+by
+
+Moreover•
+and (F12)],
+3.
+
+Eqns.
+the
+
+external
+
+since
+
+and
+
+(F9) •
+
+pressure
+
+both pc 2
+
+both Pc 1
+
+evaluated
+
+at
+
+and Pc1
+the
+
+Pc2 vanish [ Eqns.
+
+and
+
+a re
+
+corner.
+
+(Fie)
+
+the above conclusion carries through order _.
+
+By Eqns.
+
+the corner.
+
+(F4)
+
+(F5)
+
+and
+
+(F12),
+
+From symmetry,
+
+8P1/aZ w vanishes along
+
+6P1/SY b also vanishes along
+
+the corner.
+4.
+
+From Eqns. (F11)
+
+and their equivalents on the blade,
+
+the streamwlse velocity has a common
+
+logarithmic
+
+overlap
+
+between the corner middle region and the Inner layers on
+both endwall and blade.
+
+116
+
+Appendix G.
+
+If the
+tor.
+
+(x.Y.Z)
+
+coordinate
+
+rotating at a constant
+
+inertia terms of the N-S
+accelerations
+
+system
+
+angular
+
+equation
+
+Effects of Rotation
+
+is rigidly attached
+
+velocity D around
+
+the x-axis,
+
+will Include centrifugal
+
+and will assume the following form [14]:
+
+ax
+
+a_
+
+ai
+
+a'_
+
+117
+
+to a rothe
+
+and Coriolis
+
+0 a.____
+. a a.__._,
+_ a.__
+. 2n _ - n2 fi a__Ra._
+
+a'_
+
+az"
+
+After the usual normalization,
+
+e [U _-x•
+au
+au
+_-_
+v-_.
+
+aE
+
+these become
+
+au
+w-_-]
+-
+
+x_'
+
+R a._R
+ax
+
+02
+e
+_-_
+
+[U -_x
+av + V -_-_
+av + W _-i
+av ] - 2 n Oe W -
+
+[n_0] 2 Ra_._
+R
+),,_
+
+aY
+
+02
+e
+
+[U -_--+
+aw
+
+V --_-+
+aw
+
+W _-]
+aw
+
+, 2 N 0e V -
+
+[nfi0]2 R a__R.
+R
+XA
+
+az
+
+Multiplying through by X0/U e,
+
+as done
+
+before for the non-
+
+rotating case. yields:
+2
+
+au + v'_+
+au
+U -_x
+
+w au
+az
+
+In fio l
+L--_e
+
+R aR
+a-_
+2
+
+av
+
+u _,
+
+av
+
+a._v.v_
+2 nx.._AA
+w -
+
+v _-_. w az
+
+,.,'"e
+
+118
+
+nR°
+
+R a.._.RR
+
+ay
+
+2
+
+aw aw aw
+
+"I __01
+aR
+
+u-_x ,v_7,w_+2--v-
+
+[Gej R a-_
+
+Ue
+
+In turbomachlnery components,
+
+f'U_o
+-= 0(I)
+
+6e
+Also.
+
+/_}A
+
+and hence F/o scales with the outer.
+= O(XA)
+
+Invlscld scale:
+
+-.nk__A= O(1)
+
+o
+
+Oe
+
+With these non-dimensional parameters thus established,it Is
+now possibleto determine the effectof rotationon the varioussublayers and sub-regions
+
+found earlier,
+
+This Is done by the usual
+
+2
+sorting out of terms In each sub-region to orders 1, € and € .
+The following momentum equations are thus found for the case
+of
+
+a
+
+rotor,
+
+rotating
+
+at
+
+constant
+
+angular
+
+velocity
+
+about
+
+coordinate:
+1.
+
+Outer flow
+aU
+av
+BR
+u ._--+
+v ,_.+
+w au
+a"Z- R a";
+"=
+
+aP
+
+ax.
+
+aV
+aV
+aV
+2 W - R BR
+U -_-_-x
+. V _--_. W a-za_ =
+
+ll9
+
+aP
+ay
+
+the
+
+x-
+
+aW
+aw
+aw
+u -_x + v _
++ w -_
+
+2.
+
+.
+
+2 V -
+
+aR
+R a-z" =
+
+aP
+az
+
+Middle layer (Region I):
+
+O(1)
+
+u]
+
+aul
+aul
+aul
+a_ . Vl a--y. Wl az
+
+R
+
+__aR= _ __
+ax
+aPlax
+
+R a._.RR
+= aPl
+
+ay
+
+Ul
+
+awl
+a--_-. vl
+
+awl
+a--y-+ w]
+
+aWl
+az
+
+ay
+
+__aR= _ __
+R aZ
+aPlaz
+
+o(_)
+
+a (UlU2)
+ax
+
+.
+
+aP2 iax
+
+aw 2
+
+Ul
+
+au 2
+
+vl
+
+.
+
+v2
+
+au I
+
++ Wl
+
+au 2
+__
+.
+
+az
+
+w2
+
+au._!%=
+
+az
+
+at1
+yx
+ay
+
+aw 1
+
+a_ . u2 _
+
+aw 2
+
+_ v] _
+
+O(_ 2)
+
+120
+
+aw]
+
+. v2 _
+
+a
+
+. _
+
+(wlw2) + 2 v1 =
+
+au2
+a (ulu3)
+
++ u2
+
+au2
+
+au3
++ vl
+
+au2
+. v2
+
+au1
++ v3
+
+au3
+. Wl
+
+au 1
+
+w2 a--_. w3 a--z=
+
+ap3 tax
+
+at 1
+at2
+at 1
+xx .
+yx .
+ax
+ay
+az
+
+av 1
+
+av 1
+
+av1
+
+Ul _.Vl
+
+_.
+
+Wl az
+
+2w2 =-
+
+aw I
+
+aw3
+
+aw3
+
+aw2
+
+ap 3
+
+at1
+
+a_-+ _/ay
+aw2
+
+aw1
+
+u1 a--7+u2-_x +%_-x +v_ -_-y+v2-_-_ +v3_-_ +
+aw2
+a
+w2 a--_-._
+(wlw 3) .
+at]
+2 v2
+3.
+
+at2
+
+ap3
+xz . a--_y
+=- a'--2-+-_z.
+
+Inner layer (Region I):
+
+0(I)
+
+0
+
+----
+
+a2G]
+
+A
+
+R aft = aPl
+
+aF aF
+
+12]
+
+at]
+zz
+a--_-
+
++
+
+0
+
+a2_1
+
+= --
+
+a?
+|
+
+O(_)
+
+0=-_
+
++
+ay
+
+yx
+
+ay j
+
+a&,,
+a_
+O=-_a
+ay
+
+^
++__
+tly z
+13_-2_
+ay I
+
+ay
+
+ay j
+
+O (2)
+
+ay
+
+0=-_
+ay
+
+4.
+
+Middle region
+
+++,,
+]
+yy
+
+^
+t"
+t2y z
+a_v3
+ay ]J
+
+(Region
+
+II)
+
+O(1)
+
+122
+
+aul
+
+aul
+
+ul _
+
+aul
+
+. vl a-_. Wl az
+
+aR
+
+aPl
+
+R a--_
+=-
+
+a-T
+
+R aFi' = aPl
+ay
+ay
+
+R aR = aPl
+az
+az
+O(€)
+a
+
+(ulu2) + vl
+ap2
+
+au2
+aul
+au2
+aul
+a--'7+ v2 -_- . wl _ . w2 a--i"=
+
+at 1
+
+at 1
+zx
+
+- a-_'+ a-_y .
+0
+
+=
+
+ap 2
+ay
+
+0
+
+=
+
+ap 2
+8z
+
+a--'-Z
+
+0 (2)
+a
+
+au2
+
+au3
+
+au]
+
+ap3
+
+au2
+
+<ui%>+ u2 "_ + vl a-"7+ "2 _
+au2
+
+*'2-_z *'s"_'=-'_-x
+av]
+uI _
+
+avI
+-I- v1 _
+
+at1
+
+xx
+
+.
+
+a--Z"- 2 W1 =
+
+123
+
+at2
+
+au3
+
++ % az +
+
+at 2
+
+a; + a--_ *_
+
+av1
+-t- w1
+
+aul
+
++ v3 _
+
+zx
+
+aP3 +
+ay
+
+at.
+I
+yy .
+ay
+
+atI
+zy
+az
+
+aw I
+
+ul
+
+aP3
+
+- az .
+5.
+
+aw I
+
+a--_-+ vl _
+
+aw.I
+
+. wl _
+
++ 2 vI =
+
+at 1
+at 1
+yz .
+zz
+
+a>,
+
+a-"-Z
+
+Inner region (Region II)
+
+0(I)
+
+0 =
+
+a2+;ia2_i
++
+
+a?
+R aR = aPl
+ay
+ay
+
+R a_.RR
+= a"1"
+a_, a+?
+0(_)
+
+0=_
+
+*
+
+.--
+
+o: a,;+,,a;
+o = a,_,,,,a£
+0 ( €2)
+
+124
+
+0
+
+=--
+
++
+
+a^ t ay
+ay
+
+a+_3
+
+O=
+
+4"--
+
+_2yx
+
+at'l
+.____.
+
+a_"I
+
+a&+++',
+
+0 =___.,.__Y_._.m.
+
+From these equations,
+
+4"
+
+"
+
+az L az
+
+zy
+
+zz
+
+the following effects of rotation are ob-
+
+served:
+1.
+
+In the outer flow,
+
+there
+
+Is a centrifugal term
+
+In the
+
+streamwlse component of momentum and both Coriolls and
+centrifugal terms In the crosswise and normal components.
+2.
+
+In the middle layer of Region I, there are centrifugal
+
+terms to O(1)
+
+In all three
+
+Coriolls terms In the normalorders € and €2.
+
+momentum
+
+components,
+
+and
+
+and crosswise- components to
+
+The streamwlse momentum component Is
+
+not affected by rotation to these orders.
+3.
+
+The
+
+Inner layer of Region I Is unaffected by rotation
+
+except for the O(1)
+
+normal momentum, where the pressure
+
+gradient Is balanced by a centrifugal acceleration.
+4.
+terms
+
+In the middle region of Region II, there are centrifugal
+In all three
+
+momentum
+
+particular,
+
+crosswise pressure
+
+centrifugal
+
+accelerations.
+
+125
+
+components to O(1).
+
+In
+
+gradients
+
+by
+
+There
+
+are
+
+balanced
+
+are no rotational effects
+
+on the O(z)
+
+equations,
+
+while Coriolis terms
+
+reappear
+
+In
+
+the two crosswise momentum components of 0 (€2).
+5.
+
+The only effect of rotation on the Inner region of Re-
+
+gion II is in the 0(1)
+
+crosswise momentum
+
+where pressure gradients and centrifugal
+ance each other.
+
+126
+
+components,
+
+accelerations
+
+bal-
+
+1. Report No.
+
+2. Government Accession No.
+
+3. Recipient's Catalog _'_,:.
+
+NASACR-3792
+4. Title and Subtitle
+
+5. Report Date
+
+Scaling and Modeling of Three-Dimensional,
+Turbulent Boundary Layers
+
+End-Wall,
+
+June 1984
+6. Performing Organization Code
+
+7. Author(s)
+
+Uriel
+
+8. Performing Organization Report No.
+
+C. Goldberg and Eli
+
+Reshotko
+
+None
+10. Work Unit NO.
+
+9. Performing Organization Name and Address
+
+Case Western Reserve University
+Dept. of Mechanical and Aerospace Engineering
+
+11. Contract orGrant
+No.
+
+Cleveland,
+
+13.Type
+ofReport
+andPeriod
+Covered
+Contractor Report
+
+Ohio
+
+NAG3-270
+
+44106
+
+12. Sponsoring Agency Name and Address
+
+National Aeronautics and Space Administration
+Washington, D.C. 20546
+
+14.Sponsoring
+AgencyCode
+505-31-0A
+
+(E-2024)
+
+15. Supplementaw Notes
+
+Final report.
+Project Manager, Peter M. Sockol, Fluid Mechanics and Instrumentation Division,
+NASALewis Research Center, Cleveland, Ohio 44135. This report
+was submitted by Uriel C. Goldberg as a dissertation
+in partial
+fulfillment
+of the
+requirements for the degree Doctor of Philosophy to Case Western Reserve University, Cleveland, Ohio.
+16. Abstract
+
+The method of matched asymptotic expansions is employed to identify
+the various
+sub-regions in three-dimensional,
+turbomachinery end-wall turbulent
+boundary
+layers, and to determine the proper scaling of these regions.
+The two parts of
+the b.l. investigated
+are the 3D pressure-driven
+part over the endwall, and the
+3D part located at the blade/end-wall
+juncture.
+Based on the results of the
+analysis for the pressure-driven
+part, models are proposed for the 3D Law-of-theWall and Law-of-the-Wake.
+Comparisons between these models and the data of
+van den Berg and Elsenaar and of Mueller show good agreement between models and
+experiments.
+
+17. Key Words (Suggest_
+
+by Author/s))
+
+18. Distribution Statement
+
+Boundary layers
+Turbulence
+Turbomachinery
+
+Unclassified
+- unlimited
+STARCategory 34
+
+19. Security Cl_slf. (of this report)
+
+Uncl ass i fi ed
+
+20. Security Cluslf.
+
+(of this page)
+
+Uncl assi fi ed
+
+21. No. of pages
+
+134
+
+22. Pdce"
+
+A07
+
+"For sale by the NationalTechnical InformationService, Springfield,Virginia 22161
+NASA-Langley,
+
+1984
+
+National Aeronauticsand
+
+THIRD-CLASS
+
+BULK
+
+RATE
+
+Postage and Fees Paid
+
+Space Administration
+
+National Aeronautics and !
+Space Administration
+
+Washington, D.C.
+
+NASA451
+
+._1
+
+20546
+Official Business
+Penalty for Private Use, $300
+
+_A
+
+POSTMASTER:
+
+If Undeliverable (Section 158
+Postal Manual) Do Not Return
+
+!
+
+

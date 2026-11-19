@@ -1,0 +1,187 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>This chapter
+  highlights recent developments concerning adaptive wavelet methods for time dependent
+  and stationary problems. The first problem class focuses on hyperbolic conservation
+  laws in which wavelet concepts exploit sparse representations of the conserved variables.
+  Regarding the second problem class, we begin with matrix compression in the context
+  of boundary integral equations in which the key issue is now to obtain sparse representations
+  of (global) operators like singular integral operators in wavelet coordinates. In
+  the remainder of the chapter, a new fully adaptive algorithmic paradigm along with
+  some analysis concepts are outlined, which, in particular, work for nonlinear problems
+  and where the sparsity of both, functions and operators, is exploited.</jats:p>"
+author: Cohen, Albert and Dahmen, Wolfgang and DeVore, Ronald
+author_list:
+- affiliation: []
+  family: Cohen
+  given: Albert
+- affiliation: []
+  family: Dahmen
+  given: Wolfgang
+- affiliation: []
+  family: DeVore
+  given: Ronald
+citations:
+- author: Adams RA
+  volume-title: Sobolev Spaces
+  year: '1978'
+- doi: 10.1137/0524016
+- doi: 10.1137/S0036142996308770
+- doi: 10.1137/S1064827596308822
+- unstructured: BallmannJ BramkampFandMüllerS.Development of a flow solver employing
+    local adaptation based on multiscale analysis based on B‐spline grids InProceedings
+    of the 8th Annual Conference of the CFD Society of Canada Montreal 11–13June2000.
+- doi: 10.1007/978-3-540-44866-2_7
+- doi: 10.1137/S1064827599365501
+- unstructured: BarinkaA DahlkeSandDahmenW.Adaptive application of operators in standard
+    representation Adv. Comp. Math. Preprint RWTH‐Aachen Oct.2003.
+- unstructured: BarinkaA.Fast Evaluation Tools for Adaptive Wavelet Schemes. PhD thesis
+    RWTH Aachen 2004.
+- unstructured: BarinkaA DahmenWandSchneiderR.An Algorithm for the Evaluation of Nonlinear
+    Functionals of Wavelet Expansions 2004.
+- doi: 10.1016/0021-9991(84)90073-1
+- doi: 10.1007/978-3-642-66451-9
+- doi: 10.1016/S1874-608X(97)80005-2
+- doi: 10.1002/cpa.3160440202
+- doi: 10.1007/s00211-003-0493-6
+- doi: 10.1090/S0025-5718-97-00848-X
+- doi: 10.1007/978-1-4612-3172-1
+- doi: 10.1006/acha.1997.0242
+- doi: 10.1006/acha.2000.0282
+- doi: 10.1006/acha.1996.0012
+- author: Cohen A
+  volume-title: Wavelet Methods in Numerical Analysis, in the Handbook of Numerical
+    Analysis
+  year: '2000'
+- author: Cohen A
+  volume-title: Numerical Analysis of Wavelet Methods, Studies in Mathematics and
+    its Applications
+  year: '2003'
+- doi: 10.1002/cpa.3160450502
+- doi: 10.1090/S0025-5718-00-01252-7
+- doi: 10.1007/s102080010027
+- doi: 10.1090/S0025-5718-01-01391-6
+- doi: 10.1137/S0036142902412269
+- doi: 10.1137/S0036141002412070
+- article-title: Wavelet adaptive methods for second order elliptic problems, boundary
+    conditions and domain decomposition
+  author: Cohen A
+  first-page: '21'
+  journal-title: Numerische Mathematik
+  volume: '8'
+  year: '1997'
+- doi: 10.1137/0727070
+- doi: 10.1016/S0893-9659(99)00075-0
+- doi: 10.1016/S0168-9274(96)00060-8
+- doi: 10.1080/03605309708821252
+- doi: 10.1137/S003614290139233X
+- author: Dahmen W
+  first-page: '157'
+  volume-title: Wavelets, Images and Surface Fitting
+  year: '1994'
+- article-title: Stability of multiscale transformations
+  author: Dahmen W
+  first-page: '341'
+  journal-title: Journal of Fourier Analysis and Applications
+  volume: '2'
+  year: '1996'
+- doi: 10.1017/S0962492900002713
+- doi: 10.1016/S0377-0427(00)00511-2
+- author: Dahmen W
+  volume-title: Multiscale and Wavelet Methods for Operator Equations, C.I.M.E. Lecture
+    Notes
+  year: '2003'
+- doi: 10.1007/s211-001-8009-3
+- doi: 10.1007/BF01385864
+- doi: 10.1007/PL00005442
+- unstructured: 'DahmenWandKunothA.Adaptive Wavelet Methods for Linear‐Quadratic Elliptic
+    Control Problems: Convergence Rates. IGPM Report# 224 RWTH: Aachen December2002.'
+- doi: 10.1090/S0025-5718-99-01092-3
+- doi: 10.1137/S0036141098333451
+- doi: 10.1137/S0036142997330949
+- unstructured: 'DahmenW HarbrechtHandSchneiderR.Compression Techniques for Boundary
+    Integral Equations – Optimal Complexity Estimates. IGPM Report# 218 RWTH: Aachen
+    June2002.'
+- author: Dahmen W
+  first-page: '385'
+  volume-title: 'Proceedings of the International Conference on Wavelets: Theory,
+    Algorithms, and Applications'
+  year: '1994'
+- doi: 10.1006/acha.1998.0247
+- doi: 10.1007/PL00005403
+- doi: 10.1142/9789812776679_0004
+- doi: 10.1137/S0036142999361852
+- doi: 10.1137/1.9781611970104
+- doi: 10.1017/S0962492900002816
+- doi: 10.1007/978-3-662-02888-9
+- article-title: Interpolation of Besov spaces
+  author: Vore R
+  doi: 10.1090/S0002-9947-1988-0920166-3
+  first-page: '397'
+  journal-title: Trans. Am. Math. Soc.
+  volume: '305'
+  year: '1988'
+- doi: 10.1090/memo/0293
+- doi: 10.2307/2374796
+- doi: 10.1007/978-3-642-61623-5
+- doi: 10.1016/0021-9991(87)90140-9
+- doi: 10.1007/s006070050015
+- doi: 10.1007/BF01396324
+- unstructured: HarbrechtH.Wavelet Galerkin Schemes for the Boundary Element Method
+    in Three Dimensions. PhD thesis Technische Universität Chemnitz Chemnitz2001.
+- doi: 10.1016/0168-9274(93)90117-A
+- doi: 10.1002/cpa.3160481201
+- doi: 10.1137/0733060
+- unstructured: 'LageC.Concept oriented design of numerical software.Boundary Elements:
+    Implementation and Analysis of Advanced Algorithms; Proceedings of the 12th GAMM‐Seminar
+    Kiel 19–21 January 1996;'
+- first-page: '159'
+  journal-title: Numer. Fluid Mech.
+  volume: '54'
+  year: '1996'
+- doi: 10.1137/S1064827597329989
+- doi: 10.1007/978-3-642-97146-4
+- doi: 10.1007/BF02123477
+- author: Kunoth A
+  volume-title: Advances in Numerical Mathematics
+  year: '2001'
+- article-title: Adaptativité dynamique sur bases d'ondelettes pour l'approximation
+    d'équations aaux dérivées partielles
+  author: Maday Y
+  first-page: '405'
+  journal-title: CR Acad Sci Paris, Série
+  year: '1991'
+- doi: 10.1007/978-3-642-18164-1
+- doi: 10.1007/s002110050226
+- doi: 10.1016/S1874-608X(97)80009-X
+- doi: 10.1137/S0036142994272957
+- unstructured: SchmidlinG LageCandSchwabC.Rapid Solution of First Kind Boundary Integral
+    Equations in R3. Research Report No.2002–07 Seminar für Angewandte Mathematik
+    ETH Zürich.
+- doi: 10.1007/978-3-663-10851-1
+- unstructured: 'StevensonR.Locally Supported Piecewise Polynomial Biorthogonal Wavelets
+    on Non‐Uniform Meshes. Technical Report1157 University of Utrecht: Utrecht 2000
+    to appear in Constructive Approximation.'
+- unstructured: 'StevensonR.On the Compressibility of Operators in Wavelet Coordinates.
+    Technical Report1249 University of Utrecht: Utrecht 2003 to appear in SIAM J.
+    Math. Anal.'
+- doi: 10.1006/acha.1996.0015
+- doi: 10.1137/S0036141095289051
+- author: Triebel H
+  volume-title: Interpolation Theory, Function Spaces, and Differential Operators
+  year: '1978'
+- doi: 10.1002/(SICI)1099-1506(199703/04)4:2<103::AID-NLA101>3.0.CO;2-J
+- doi: 10.1007/BF01389538
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781119176817.ecm2011m
+doi: 10.1002/9781119176817.ecm2011m
+files:
+- adaptive_wavelet_techniques_in_numerical_simulation_Cohen_Dahmen_DeVore_2017.pdf
+isbn: '9781119176817'
+journal: Encyclopedia of Computational Mechanics Second Edition
+language: en
+month: 12
+pages: 1--41
+papis_id: f220e39f0e389376967bf271d1852c94
+publisher: Wiley
+title: Adaptive Wavelet Techniques in Numerical Simulation
+type: misc
+url: https://doi.org/10.1002/9781119176817.ecm2011m
+year: 2017

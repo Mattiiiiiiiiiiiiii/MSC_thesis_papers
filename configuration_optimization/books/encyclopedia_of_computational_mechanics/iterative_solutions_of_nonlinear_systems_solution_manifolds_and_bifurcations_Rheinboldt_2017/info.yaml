@@ -1,0 +1,169 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>An overview
+  of the basic theory of iterative methods for solving systems of nonlinear equations
+  is presented. The emphasis is on considering the methods as discrete‐time, dynamical
+  systems, where examples of the complicated process flows call for adaptive controls.
+  Overviews of existence theories, condition numbers, convergence orders, and basic
+  convergence results are given. Principal members of the class of linearization methods
+  are surveyed, including Newton's method and related forms, as well as some Broyden
+  and inexact Newton methods. Then, equations arising in parameterized problems are
+  considered and an introduction to the computational analysis of their solution manifolds
+  and the related bifurcation problems is given. In the case of one‐dimensional manifolds,
+  this includes a discussion of some continuation methods.</jats:p>"
+author: Rheinboldt, Werner C.
+author_list:
+- affiliation: []
+  family: Rheinboldt
+  given: Werner C.
+citations:
+- doi: 10.1007/978-1-4612-1029-0
+- author: Allgower EL
+  first-page: '3'
+  volume-title: Handbook of Numerical Analysis
+  year: '1997'
+- doi: 10.1016/S0377-0427(00)00427-1
+- doi: 10.1137/1.9780898719154
+- author: Barnsley M
+  volume-title: Fractals Everywhere
+  year: '1988'
+- doi: 10.1016/S0020-7683(99)00078-5
+- author: Berger MS
+  volume-title: Nonlinearity and Functional Analysis
+  year: '1977'
+- doi: 10.1007/BF01389453
+- author: Brezinski C
+  volume-title: Projection Methods for Systems of Equations
+  year: '1997'
+- article-title: A class of methods for solving nonlinear simlutaneous nonlinear systems
+  author: Broyden CG
+  doi: 10.1090/S0025-5718-1965-0198670-6
+  first-page: '577'
+  journal-title: Math. Comput.
+  volume: '19'
+  year: '1965'
+- article-title: Quasi–Newton methods and their application to function minimization
+  author: Broyden CG
+  doi: 10.1090/S0025-5718-1967-0224273-2
+  first-page: '368'
+  journal-title: Math. Comput.
+  volume: '21'
+  year: '1967'
+- doi: 10.1007/BF01385712
+- doi: 10.1145/357456.357460
+- doi: 10.1016/S1570-8659(97)80004-X
+- doi: 10.1007/978-1-4613-8159-4
+- doi: 10.1137/0720013
+- doi: 10.1137/0727026
+- doi: 10.1016/0377-0427(89)90150-7
+- doi: 10.1137/0719025
+- doi: 10.1137/0718066
+- doi: 10.1137/1.9781611971200
+- doi: 10.1137/0718067
+- author: Deuflhard P
+  volume-title: Newton Methods for Nonlinear Problems, Affine Invariance and Adaptive
+    Algorithms
+  year: '2004'
+- doi: 10.1007/978-0-387-21582-2
+- doi: 10.1137/0716001
+- doi: 10.1007/978-3-642-58734-4_4
+- doi: 10.1137/0804022
+- doi: 10.1002/nme.1620170505
+- doi: 10.1137/0724042
+- doi: 10.1002/9781118723203
+- author: Golub GH
+  volume-title: Matrix Computations
+  year: '1989'
+- doi: 10.1007/978-1-4612-5034-0
+- doi: 10.1007/978-1-4612-4574-2
+- doi: 10.1137/1.9780898719543
+- author: Griewank A
+  volume-title: 'Evaluating Derivatives: Principles and Techniques of Algorithmic
+    Differentiation'
+  year: '2000'
+- doi: 10.1145/210232.210242
+- doi: 10.1145/198429.198437
+- doi: 10.1137/S1064827595287109
+- doi: 10.1007/978-1-4612-4426-4
+- author: Heitzinger W
+  volume-title: Praxis nichtlinearer Gleichungen
+  year: '1985'
+- doi: 10.1142/S0218127402004498
+- doi: 10.1007/BF01608556
+- author: Householder AS
+  volume-title: The Numerical Treatment of a Single Nonlinear Equation
+  year: '1970'
+- author: Ioannou PA
+  volume-title: Stable and Robust Adaptive Control
+  year: '1996'
+- doi: 10.1137/0520004
+- article-title: Mémoire sur l'iteration des fonctions rationnelles
+  author: Julia G
+  first-page: '47'
+  journal-title: J. de Math. Pures et Appliq.
+  volume: '8'
+  year: '1918'
+- article-title: Functional analysis and applied mathematics
+  author: Kantorovich L
+  first-page: '89'
+  journal-title: Uspehi Mat. Nauk
+  volume: '3'
+  year: '1948'
+- doi: 10.1137/1.9781611970944
+- author: Kuehnel W
+  volume-title: Differential Geometry
+  year: '2006'
+- doi: 10.1007/978-1-4757-2421-9
+- author: Mandelbrot B
+  volume-title: The Fractal Geometry of Nature
+  year: '1982'
+- doi: 10.1090/S0002-9904-1978-14549-2
+- doi: 10.1007/BF02241698
+- doi: 10.1137/0717048
+- doi: 10.1007/b98874
+- doi: 10.1007/978-1-4684-0231-5
+- author: Ortega JM
+  volume-title: Classics in Applied Mathematics
+  year: '1970'
+- author: Ostrowski AM
+  volume-title: Solution of Equations and Systems of Equations
+  year: '1960'
+- doi: 10.1007/978-3-642-61717-1
+- doi: 10.1515/crll.1929.161.41
+- doi: 10.1007/BF01386437
+- doi: 10.1137/1.9780898719536
+- doi: 10.1007/978-3-0348-7241-6_27
+- doi: 10.1007/BF01395883
+- doi: 10.1137/0730015
+- doi: 10.1016/S0898-1221(96)00204-0
+- doi: 10.1137/1.9781611970012
+- author: Sastry S
+  volume-title: 'Adaptive Control: Stability, Convergence and Robustness'
+  year: '1989'
+- author: Snyman J
+  volume-title: Practical Mathematical Optimization
+  year: '2005'
+- doi: 10.1023/A:1021160023092
+- doi: 10.1016/j.cam.2005.03.008
+- doi: 10.1115/1.3256318
+- article-title: Analytic extensions of differentiable functions defined in closed
+    sets
+  author: Whitney H
+  doi: 10.1090/S0002-9947-1934-1501735-3
+  first-page: '63'
+  journal-title: Trans. Am. Math. Soc.
+  volume: '36'
+  year: '1934'
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/9781119176817.ecm2020
+doi: 10.1002/9781119176817.ecm2020
+files:
+- iterative_solutions_of_nonlinear_systems_solution_manifolds_and_bifurcations_Rheinboldt_2017.pdf
+isbn: '9781119176817'
+journal: Encyclopedia of Computational Mechanics Second Edition
+language: en
+month: 12
+pages: 1--27
+papis_id: e06e7497f3cf82f19d30dcfe398611f9
+publisher: Wiley
+title: Iterative Solutions of Nonlinear Systems, Solution Manifolds, and Bifurcations
+type: misc
+url: https://doi.org/10.1002/9781119176817.ecm2020
+year: 2017

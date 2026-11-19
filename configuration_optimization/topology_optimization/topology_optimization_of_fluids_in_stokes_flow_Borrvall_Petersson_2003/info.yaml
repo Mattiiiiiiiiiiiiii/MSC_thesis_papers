@@ -1,0 +1,76 @@
+abstract: "<jats:title>Abstract</jats:title>\n                  <jats:p>We consider
+  topology optimization of fluids in Stokes flow. The design objective is to minimize
+  a power function, which for the absence of body fluid forces is the dissipated power
+  in the fluid, subject to a fluid volume constraint. A generalized Stokes problem
+  is derived that is used as a base for introducing the design parameterization. Mathematical
+  proofs of existence of optimal solutions and convergence of discretized solutions
+  are given and it is concluded that no regularization of the optimization problem
+  is needed. The discretized state problem is a mixed finite element problem that
+  is solved by a preconditioned conjugate gradient method and the design optimization
+  problem is solved using sequential separable and convex programming. Several numerical
+  examples are presented that illustrate this new methodology and the results are
+  compared to results obtained in the context of shape optimization of fluids. Copyright
+  © 2003 John Wiley &amp; Sons, Ltd.</jats:p>"
+author: Borrvall, Thomas and Petersson, Joakim
+author_list:
+- affiliation: []
+  family: Borrvall
+  given: Thomas
+- affiliation: []
+  family: Petersson
+  given: Joakim
+citations:
+- unstructured: EnokssonO.Shape optimization in compressible inviscid flow. Licentiate
+    thesis LiU‐TEK‐LIC‐2000:31 Department of Mathematics Linköpings Universitet 2000.
+- doi: 10.1002/fld.1650210202
+- doi: 10.1017/S002211207300145X
+- doi: 10.1017/S0022112074002023
+- doi: 10.1017/S0022112075003436
+- doi: 10.1017/S0022112092003458
+- doi: 10.1007/978-3-662-03115-5
+- doi: 10.1115/1.1388075
+- unstructured: KarlssonM KlarbringA PeterssonJ TorstenfeltB.Topology optimization
+    of flow networks. In preparation.
+- doi: 10.1007/s004190050248
+- doi: 10.1002/fld.1650080802
+- article-title: 'Finite element methods for the numerical simulation of incompressible
+    viscous flow: Introduction to the control of the Navier–Stokes equations'
+  author: Glowinski R
+  first-page: '219'
+  journal-title: Lectures in Applied Mathematics
+  volume: '28'
+  year: '1991'
+- author: Sanchez‐Palencia E
+  volume-title: Non‐Homogeneous Media and Vibration Theory
+  year: '1980'
+- author: Gurtin ME
+  volume-title: An Introduction to Continuum Mechanics
+  year: '1981'
+- doi: 10.1007/978-3-642-61623-5
+- doi: 10.1051/m2an/197408R201291
+- doi: 10.1007/978-3-662-12613-4
+- author: Ekeland I
+  volume-title: Convex Analysis and Variational Problems
+  year: '1976'
+- doi: 10.1016/S0168-2024(08)70178-4
+- doi: 10.1137/S0036142996313968
+- doi: 10.1002/nme.1620240207
+- author: Clarke FH
+  volume-title: Optimization and Nonsmooth Analysis
+  year: '1983'
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/fld.426
+doi: 10.1002/fld.426
+files:
+- topology_optimization_of_fluids_in_stokes_flow_Borrvall_Petersson_2003.pdf
+issue: '1'
+journal: International Journal for Numerical Methods in Fluids
+language: en
+month: 1
+pages: 77--107
+papis_id: e225c0eefea0662b457fb5732dfa2021
+publisher: Wiley
+title: Topology optimization of fluids in Stokes flow
+type: article
+url: https://doi.org/10.1002/fld.426
+volume: '41'
+year: 2003

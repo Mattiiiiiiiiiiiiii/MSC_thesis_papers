@@ -1,0 +1,1724 @@
+fluids
+Review
+
+A Review of Topology Optimisation for
+Fluid-Based Problems
+Joe Alexandersen 1, *
+1
+2
+
+*
+
+and Casper Schousboe Andreasen 2
+
+Department of Technology and Innovation, University of Southern Denmark, 5230 Odense, Denmark
+Department of Mechanical Engineering, Technical University of Denmark, 2800 Kgs. Lyngby, Denmark;
+csan@mek.dtu.dk
+Correspondence: joal@iti.sdu.dk
+
+Received: 7 February 2020; Accepted: 27 February 2020; Published: 4 March 2020
+
+
+
+
+Abstract: This review paper provides an overview of the literature for topology optimisation of
+fluid-based problems, starting with the seminal works on the subject and ending with a snapshot
+of the state of the art of this rapidly developing field. “Fluid-based problems” are defined as
+problems where at least one governing equation for fluid flow is solved and the fluid–solid interface
+is optimised. In addition to fluid flow, any number of additional physics can be solved, such as
+species transport, heat transfer and mechanics. The review covers 186 papers from 2003 up to and
+including January 2020, which are sorted into five main groups: pure fluid flow; species transport;
+conjugate heat transfer; fluid–structure interaction; microstructure and porous media. Each paper is
+very briefly introduced in chronological order of publication. A quantititive analysis is presented
+with statistics covering the development of the field and presenting the distribution over subgroups.
+Recommendations for focus areas of future research are made based on the extensive literature review,
+the quantitative analysis, as well as the authors’ personal experience and opinions. Since the vast
+majority of papers treat steady-state laminar pure fluid flow, with no recent major advancements,
+it is recommended that future research focuses on more complex problems, e.g., transient and
+turbulent flow.
+Keywords: topology optimisation; review paper; fluid flow; multiphysics; species transport;
+conjugate heat transfer; fluid–structure interaction; porous media
+
+1. Introduction
+The topology optimisation method originates from the field of solid mechanics, where it emerged
+from sizing and shape optimisation by the end of the 1980s. The seminal paper on topology
+optimisation is often quoted as being the homogenisation method by Bendsøe and Kikuchi [1].
+Topology optimisation is posed as a material distribution technique that answers the question “where
+should material be placed?” or alternatively “where should the holes be?”. As a structural optimisation
+method, it distinguishes itself from the more classical disciplines of sizing and shape optimisation,
+by the fact that there does not need to be an initial structure defined a priori. Having stated that, we
+define topology optimisation slightly wider in this context, as we include optimisation approaches
+in which the topology is allowed to or can change during the optimisation process. The review
+papers by Sigmund and Maute [2] and Deaton and Grandhi [3] give a general overview of topology
+optimisation methods and applications. Today, topology optimisation for solid mechanics is a mature
+technology that is widely available in all major finite element analysis (FEA) packages and even in
+many computer aided design (CAD) packages. The technology is utilised at the component design
+level in the automotive and aerospace industries.
+
+Fluids 2020, 5, 29; doi:10.3390/fluids5010029
+
+www.mdpi.com/journal/fluids
+
+Fluids 2020, 5, 29
+
+2 of 32
+
+The ideas of the original methodology are extendable to all physics, where the governing equations
+can be described by a set of partial differential equations (PDEs). It has therefore in the post-2000
+decades seen widespread application to a range of different physics, such as acoustics, photonics,
+electromagnetism, heat conduction, fluid flow, etc. [3].
+When applied to fluid problems, the question should be rephrased from “where should the holes
+be?” to “where should the fluid flow?”. The optimisation problem basically becomes a question of
+where to enforce relevant boundary conditions for the flow problem. This review paper is a survey of
+published papers containing topology optimisation of fluid flow problems and related fluid-based
+problems. It is the first to cover the entire history, from its very beginning to the current state of the
+art. There are two previous review papers dealing with two different subsets under the umbrella of
+fluid-based problems, namely microfluidics [4] and thermofluidics [5].
+1.1. Definitions for Inclusion
+In the following, the scope and limitations of the review and the applied definition for fluid-based
+problems are elaborated upon.
+1.1.1. Governing Equations
+The solved problems must include fluid flow, meaning that at least one governing equation for
+fluid flow must be solved, such as:
+•
+•
+•
+•
+•
+
+Darcy, Forchheimer and Brinkman flow
+Stokes and Navier–Stokes flow
+Homogenised fluid equations
+Kinetic gas theory, Lattice Boltzmann and similar methods based on distributions
+Particle methods
+
+Therefore, papers treating only hydrostatic fluid loading (Laplace equation for pressure) and acoustics
+(Helmholtz equation for sound pressure) are omitted. In addition to this, for fluid–structure interaction
+problems, where only the structural part is optimised (so-called "dry optimisation”) has also been
+left out.
+In addition to the governing equations for fluid flow, any number of additional physics can
+be solved. The additional physics can be uncoupled, loosely coupled (one-way) or fully coupled
+(two-way), as long as a fluid problem is included in the optimisation formulation in the form of the
+objective functional or constraints. Examples are:
+•
+•
+•
+•
+
+Species transport, e.g., microfluidic mixers,
+Reaction kinetics, e.g., ion transport in flow batteries,
+Temperature, e.g., heat exchangers,
+Structural mechanics, e.g., fluid–structure interaction.
+
+1.1.2. Literature Search
+In order to collect relevant literature for this review, a literature search was performed using
+Google Scholar based on the keyword combinations of “topology optimization” with the following:
+•
+•
+•
+•
+•
+•
+
+fluid flow
+conjugate heat transfer
+convection
+fluid structure interaction
+microstructure
+homogenization
+
+Fluids 2020, 5, 29
+
+3 of 32
+
+In addition to the above, reverse tracking was used of citations of the seminal papers in the area, as
+well as relevant references in the papers from the search. Only journal publications have been included,
+except when important contributions have been made in available conference proceedings.
+1.1.3. Optimisation Methodology
+A broad and open definition of topology optimisation is used herein. The presented methodologies
+must be capable of handling topological changes in three dimensions. That is, the methods should in a
+three-dimensional version be capable of handling large design changes and topological changes by
+creating, removing and merging holes. This can be difficult for some representations, especially in two
+dimensions, where auxiliary information such as topological derivatives is necessary for the creation
+of holes/structure. Pure shape optimisation, where only small modifications of the fluid–solid or
+fluid–void interface is possible, is not included in this review.
+However, there might not be much need for changes in topology for most two-dimensional
+fluid flow problems. Due to the nature of fluid flow and the obvious objective of minimising power
+dissipation (or pressure drop), there is a desire to minimise the number of flow channels, i.e., only a
+single flow path is needed and the interface shape is modified. The need for topology optimisation
+does arise when other objectives, such as flow uniformity or diodicity, are considered and when the
+fluid flow is coupled to additional physics, such as e.g., heat transport.
+The design representation used for topology optimisation of fluid-based problems is in general
+similar to those applied within the area of solid mechanics [2,6]. Figure 1 shows the three general
+options for representing the design. The first representation is an explicit boundary representation
+based on a body-fitted mesh adopting to the nominal geometry shown in red. If the design is changed,
+boundary nodes must be moved and the mesh must be updated or the domain must be entirely
+re-meshed if large changes are applied. The second representation is that of the density-based methods,
+which also includes level set methods where a smooth Heaviside projection is applied together with
+interpolation of material properties (so-called Ersatz material methods). The flow is penalised in
+the solid (black) domain, typically by modelling it as a porous material with very low permeability.
+The third representation is that of surface-capturing level set methods, where surface-capturing
+discretisation methods, e.g., the extended finite element method (X-FEM), where the cut elements
+are integrated using a special scheme and the interface boundary conditions are imposed, e.g., using
+stabilised Lagrange multipliers or a stabilised Nitsche’s method.
+
+(a)
+
+(b)
+
+(c)
+
+Figure 1. Fluid nozzle illustrating the basic differences among design representations in topology
+optimisation: (a) explicit boundary representation (body fitted mesh); (b) density/ersatz material based
+representation; (c) level set based X-FEM/cutFEM representation.
+
+The explicit boundary methods represent the physics well, but moving nodes and adaption of
+the mesh are non-smooth operations and this might pose difficulties in advancing the design for the
+optimiser. Furthermore, regularisation of the interface is necessary and, in case of full re-meshing,
+it might be difficult to assure high quality elements, while limiting the computational time.
+
+Fluids 2020, 5, 29
+
+4 of 32
+
+The density-based methods are strong regarding the ability to change topology and change
+the design dramatically, due to the design sensitivities being distributed over a large part of the
+domain. The cost of introducing the design is relatively low, as only an extra term needs to be
+integrated, with no special interface treatment being necessary. However, there are problems such
+as choosing proper interpolation schemes for material properties and, in the case of fluids, a large
+enough penalisation of the flow in solid regions. The velocity and pressure fields are present in the
+entire domain, both solid and fluid regions, which may cause spurious flows and leaking pressure
+fields, if not penalised sufficiently.
+For the surface-capturing methods, the well defined and crisp interface makes it easy to introduce
+interface couplings between different physics, e.g., for fluid–structure interaction problems. As for
+any level set method, due to the nature of the method, the design sensitivities are located only at
+the interface. This means that design changes can only propagate from the interface and no new
+holes appear automatically. This is often relieved by using an initial design with many holes or by
+introduction of a hole nucleation scheme, e.g., using topological derivatives.
+The above methods will not be described in detail, but the readers are referred to the descriptions
+in the individual papers of the review and the general overview in the review papers by Sigmund and
+Maute [2] and van Dijk et al. [6].
+1.2. Layout of Paper
+The included papers are divided into different subsets based on the number and complexity of
+the physics involved. The layout of this paper is accordingly divided into sections.
+The literature review is presented in Section 2. Section 2.1 covers pure fluid flow problems divided
+into steady laminar flow (Section 2.1.1), unsteady flow (Section 2.1.2), turbulent flow (Section 2.1.3)
+and non-Newtonian fluids (Section 2.1.4). Section 2.2 considers species transport problems. Section 2.3
+deals with conjugate heat transfer problems, where the thermal field is modelled in both solid and fluid
+domains, divided according to the type of cooling into forced convection (Section 2.3.1) and natural
+convection (Section 2.3.2). Section 2.5 considers both material microstructures (Section 2.5.1), where
+effective material parameters are optimised, and porous media (Section 2.5.2), where homogenised
+properties are used to optimise a macroscale material distribution. Section 2.4 covers fluid–structure
+interaction (FSI) problems with the fluid flow loading a mechanical structure.
+After the literature review, Section 3 performs a quantitative analysis of the included papers and
+Section 4 presents recommendations for future focus areas for research within topology optimisation
+of fluid-based problems. Finally, Section 5 briefly concludes the review paper.
+2. Literature Review
+In the following, the papers are grouped based on their most advanced example, if the work
+covers both simple and extended applications. Furthermore, the papers are presented in chronological
+order based on the date that the papers were available online, as this gives a better representation of the
+order than official date of the final issue, since that may well trail the online publication significantly
+and differently from paper to paper.
+2.1. Fluid Flow
+This section covers the majority of the papers included in the review paper, namely pure fluid
+flow problems. The section is divided into subsections covering steady laminar flow, unsteady flow,
+turbulent flow, microstructure and porous media.
+2.1.1. Steady Laminar Flow
+Borrvall and Petersson [7] published the seminal work on fluid topology optimisation in 2003.
+They presented an in-depth mathematical basis for topology optimisation of Stokes flow. The design
+parametrisation is based on lubrication theory, leveraging the frictional resistance between parallel
+
+Fluids 2020, 5, 29
+
+5 of 32
+
+plates. Solid domains are approximated by areas with vanishing channel height. By designing
+the spatially-varying channel height, it is possible to achieve fluid topologies that dictate where
+flow channels minimising the dissipated energy are placed. This parametrisation was extended to
+Navier–Stokes flow by Gersborg-Hansen et al. [8] in 2005. Both sets of authors note the similarity of
+the obtained equations with that of a Brinkman-type model of Darcy’s law for flow through a porous
+medium. Here, solid domains are approximated by areas with a very low permeability. When treating
+two-dimensional problems of a finite depth, it makes sense to use the lubrication theory approach,
+since this ensures the out-of-plane viscous resistance due to finite channel width being taken into
+account in the fluid parts of the domain. However, for three-dimensional problems, the lubrication
+theory approach loses its physical meaning, whereas the porous media approach carries over without
+any issues.
+Evgrafov [9] investigated the limits of porous materials in the topology optimisation of Stokes
+flow using mathematical analysis, complementing the analysis presented originally by Borrvall and
+Petersson [7]. Olesen et al. [10] presented a high-level programming-language implementation of
+topology optimisation for steady-state Navier–Stokes flow using the fictitious porous media approach.
+Guest and Prévost [11] took a different approach to the previous work and modelled the solid
+region as areas with Darcy flow of low permeability surrounded by areas of Stokes flow using
+an interpolated Darcy–Stokes finite element. Evgrafov [12] investigated the theoretical foundation and
+practical stability of the penalised Navier–Stokes equations going to the limit of infinite impermeability,
+showing that the problem is ill-posed for increasing impermeability of solid regions and that slight
+compressibility and filters can ensure solutions. Wiker et al. [13] treated problems with separate
+regions of Stokes and Darcy flow, similar to Guest and Prévost [11], but with a finite impermeability in
+order to simulate actual flow in porous media for a mass flow distribution problem. Pingen et al. [14]
+used the Lattice Boltzmann method (LBM) as an approximation of Navier–Stokes flow. Their work
+included the first three-dimensional result on a very coarse discretisation. Aage et al. [15] were the
+first to treat truly three-dimensional problems using shared-memory parallelisation, allowing them
+to optimise large scale Stokes flow problems. Bruns [16] highlighted the similarity of the previous
+approaches to that of a penalty formulation of imposing no-flow boundary conditions. Specifically,
+a volumetric penalty term is used to impose no-flow inside solid regions. This interpretation has
+become widespread through the years, as the physical relevance of the design parametrisation has
+lost interest and the strictly numerical view has gained popularity. Duan et al. [17–19] presented
+the first application of a variational level set method to fluid topology optimisation, producing
+similar designs to those previously obtained using density-based methods. Evgrafov et al. [20]
+performed a theoretical investigation into the use of kinetic theory to approximate Navier–Stokes
+for fluid topology optimisation. Othmer [21] derived a continuous adjoint formulation for both
+topology and shape optimisation of Navier–Stokes flow for implementation into the finite volume
+solver OpenFOAM. Although results for turbulent flow are presented, the approach is herein not
+considered “fully turbulent” due to the assumption of “frozen turbulence” (not taking the turbulence
+variables into account in the sensitivity analysis). Pingen et al. [22] discuss efficient methods for
+computation of the design sensitivities for LBM based methods and apply topology optimisation to
+a Tesla-type valve design problem. Zhou and Li [23] presented a variational level set method for
+Navier–Stokes flow excluding elements outside of the fluid region in order to increase accuracy of
+the no-slip boundary condition, but increasing book-keeping through updating the fluid mesh every
+design iteration. Pingen et al. [24] formulated a parametric level set approach using LBM to model
+the fluid flow. In contrast to the previous variational level set methods, gradient-based mathematical
+programming is used to update the level set function rather than using the traditional Hamilton–Jacobi
+equation. Similarly to Zhou and Li [23], Challis and Guest [25] proposed a variational level set method
+where only discrete fluid areas occur. This removes the need for interpolation schemes, and, by
+discarding the degrees-of-freedom in the solid, they are able to solve large three-dimensional problems
+at a reduced cost. Kreissl et al. [26] presented a generalised shape optimisation approach using an
+
+Fluids 2020, 5, 29
+
+6 of 32
+
+explicit level set formulation, where the nodal values of the level set are explicitly varied using a
+mathematical programming approach in contrast to variational [17–19,23,25] and parametric [24] level
+set formulations. Furthermore, they use a geometric boundary representation that enforces no-slip
+conditions along the fluid–solid interface using the LBM. Liu et al. [27] optimised fluid distributors with
+multiple flow rate equality constraints. Okkels et al. [28] elaborated on the lubrication theory approach
+to design the height profile of the inlet of a bio-reactor minimising the pressure drop while maintaining
+a uniform flow through the reactor. While most of the previous works treated energy dissipation or
+pressure drop, Kondoh et al. [29] presented a density-based topology optimisation formulation for drag
+minimisation and lift maximisation of bodies using body force integration. Building on their previous
+work, Kreissl and Maute [30] developed an explicit level set method accurately capturing the boundary
+using the extended finite element method (X-FEM). Deng et al. [31] presented a density-based method
+for both steady and unsteady flows driven by gravitational, centrifugal and Coriolis body forces.
+Deng et al. [32] also proposed an implicit variational level set method for steady Navier–Stokes flow
+with body forces.
+The work by Aage and Lazarov [33] is not focused on fluids, but rather presents a parallel
+framework for large-scale three-dimensional topology optimisation. However, they use a Stokes
+flow driven manifold distributor as an application using 3.35 million DOFs for the fluid problem.
+Evgrafov [34] presented a state space Newton’s method for minimum dissipated energy of Stokes flow,
+which outperforms the traditional first order nested approaches significantly for specific problems.
+Romero and Silva [35] applied a density-based approach to the design of rotating laminar rotors by
+including the centrifugal and Coriolis forces. Yaji et al. [36] formulated a level set based topology
+optimisation of steady flow using the LBM and a continuous adjoint sensitivity analysis based on
+the Boltzmann equation. Liu et al. [37] presented a density-based method based on the LBM using a
+discrete adjoint sensitivity analysis posed in the moment space. Yonekura and Kanno [38] suggested
+to use transient information for steady state optimisation using the LBM by modifying the design
+during a single transient solve. Liu et al. [39] proposed a re-initialisation method for level set based
+optimisation using a regular mesh for the level set equation and an adaptive mesh for the fluid analysis.
+Duan et al. [40] presented an adaptive mesh method for density-based optimisation using an optimality
+criteria (OC) algorithm. Extending his previous work, Evgrafov [41] presented a Chebyshev method
+for topology optimisation of Stokes flow achieving locally cubic convergence for specific problems.
+Garcke and Hecht [42] performed an in-depth mathematical analysis of a phase field approach to
+topology optimisation of Stokes flow. Lin et al. [43] applied a density-based approach to the design
+of fixed-geometry fluid diodes, manufacturing the designs and verifying their performance using an
+experimental setup. Building on their previous formulation and analysis, Garcke et al. [44] provided
+numerical results for Stokes flow using their phase field approach and adaptive mesh refinement.
+Duan et al. [45] presented an Ersatz material based implicit level set method showing clear connections
+to density-based methods through the material distribution. Sá et al. [46] applied the concept of
+topological derivatives to fluid flow channel design.
+Yoshimura et al. [47] proposed a gradient-free approach using a genetic algorithm to update
+a very coarse design using a Kriging surrogate model coupled to an immersed method known
+as the Building-Cube Method. Pereira et al. [48] applied a density-based approach to Stokes flow
+using polygonal elements and supplying a freely available code for fluid topology optimisation.
+Duan et al. [49] presented an adaptive mesh method to an Ersatz-material level set based approach
+for Navier–Stokes flow. Kubo et al. [50] used a variational Ersatz-material level set method to design
+manifolds for flow uniformity in microchannel reactors. Jang and Lee [51] maximise the acoustic
+transmission loss in a chamber muffler with a constraint on the reverse-flow power dissipation
+modelled using the Navier–Stokes equations. Koch et al. [52] proposed a method for automatic
+conversion from two-dimensional Ersatz-based level set topology optimisation to NURBS-based shape
+optimisation. Sato et al. [53] applied density-based topology optimisation to the design of no-moving
+parts fluid valves using a Pareto front exploration method. Sá et al. [54] further extended the work
+
+Fluids 2020, 5, 29
+
+7 of 32
+
+in [46] to rotating domains. Yonekura and Kanno [55] extended their previous approach for updating
+the design during the computation of an unsteady flow field to a level set based method. Dai et al. [56]
+presented a piecewise constant Ersatz-material level set method, which essentially reduces it to a
+density-based method. Shen et al. [57] formulated a three-phase interpolation model in Darcy–Stokes
+flow for optimising fluid devices with Stokes flow, Darcy flow and solid domains. Deng et al. [58] used
+an Ersatz-material level set method to optimise two-phase flow, using with a phase field approach
+for the fluid–fluid interface. Garcke et al. [59] extended their phase field approach to Navier–Stokes
+flow, presenting both in-depth mathematical analysis and optimisation results for minimum drag and
+maximum lift problems. Alonso et al. [60] used a density-based approach to design laminar rotating
+swirl flow devices using a rotating axisymmetric model.
+Jensen [61] proposed to use anisotropic mesh adaptation for density-based optimisation of Stokes
+flow, demonstrating that this allows for efficiently resolving the physical length scale related to very
+high Brinkman penalisation terms. Sá et al. [62] applied density-based optimisation to the design
+of a small scale rotary pump considering both energy dissipation and vorticity with experimental
+verification of the design performance. Zhou et al. [63] presented an integrated shape morphing and
+topology optimisation approach based on a mesh handling methodology called a deformable simplicial
+complex (DSC). Shin et al. [64] used a 2D axisymmetric model at moderate Reynolds numbers to
+optimise a vortex-type fluid diode that is postprocessed and verified by simulation under actual
+flow conditions and turbulence. Yonekura and Kanno [65] proposed a heuristic approximation of
+the Hessian matrix for fast density-based optimisation using the LBM. Behrou et al. [66] presented
+a methodology for adaptive explicit no-slip boundary conditions with a density-based method for
+laminar flow problems with mass flow constraints, adaptively removing elements in the solid regions.
+Alonso et al. [67] applied density-based optimisation to the design of Tesla-type centrifugal pumps
+without blades. Lim et al. [68] applied a density-based method to the design of vortex-type passive
+fluidic diode valves for nuclear applications. Sato et al. [69] presented a topology optimisation method
+for rarefied gas flow problems covering both gas and solid domains using the LBM. Gaymann et al. [70]
+applied a density-based method to the design of fluidic diode valves in both two- and three-dimensions
+at medium-to-high Reynolds numbers. Gaymann and Montomoli [71] applied deep neural networks
+and Monte Carlo Tree search to an absurdly coarse design grid.
+2.1.2. Unsteady Flow
+All of the previous works consider steady-state flow problems. However, not all fluid flows
+develop a steady state and there are situations where the unsteady motion can be exploited by the
+design. This could either be due to transients in an onset flow or due to vortex shedding from an
+obstacle. It should be noted that some discretisation methods, e.g., lattice Boltzmann methods, are of a
+transient nature; however, the papers are categorised based on the use of a time-dependent objective
+functional and sensitivity analysis. Thus, if only the final state solution is used to update the design,
+it is considered steady state and not included in this section.
+Kreissl et al. [72] presented the first work treating density-based topology optimisation for
+unsteady flow, using a discrete transient adjoint formulation and applied to the design of a diffuser and
+an oscillating flow manifold. They highlighted some difficulties encountered using a standard density
+approach combined with a stabilised finite element formulation. A few months later, Deng et al. [73]
+also presented density-based topology optimisation for unsteady flow, but using a continuous transient
+adjoint formulation. They optimised a wide arrangement of problems including oscillating manifold
+flows. Deng et al. [31] extended their work to both steady and unsteady flows driven by gravitational,
+centrifugal and Coriolis body forces. Abdelwahed and Hassine [74] introduced analysis and application
+of the topological gradient method for non-stationary fluid flows. Nørgaard et al. [75] presented
+topology optimisation of what can be considered the first truly unsteady flow problems, considering
+oscillating flow over multiple periods for both obstacle reconstruction and design of an oscillating
+pump using the LBM. Villanueva and Maute [76] formulated a CutFEM discretised explicit level set
+
+Fluids 2020, 5, 29
+
+8 of 32
+
+method to the design of two- and three-dimensional flow for both steady-state and fully transient
+problems. Although the use of a surface-capturing scheme, they show that there is still a penaltyand mesh-dependent mass loss through the interface. Chen et al. [77] presented a local-in-time
+approximate discrete adjoint sensitivity analysis for unsteady flow using the LBM. They approximate
+the true time-dependent adjoint equations by splitting the time series into subintervals, rather than
+the full time series forward and then the full time series backwards. This significantly reduces
+the storage requirement but introduces an approximation error. Nørgaard et al. [78] discussed
+applications of automatic differentiation for topology optimisation, demonstrating their approach on
+an unsteady oscillating pressure pump. This was obtained using LBM and the design seems to rely
+on the slightly compressible behaviour of the fluid model. Sasaki et al. [79] presented fluid topology
+optimisation using a particle method for the first time. Specifically, they use the transient moving
+particle semi-implicit (MPS) method allowing them to treat free surface fluid flows without explicit
+surface tracking.
+2.1.3. Turbulent Flow
+All of the above fluid flow papers assume laminar fluid flow, whereas turbulent flow has only been
+treated in a few publications. Turbulence is inherently time-dependent, but current works on topology
+optimisation of turbulent flow restrict themselves to the steady-state time-averaged approximation of
+turbulence, namely the Reynolds-Averaged Navier–Stokes (RANS) equations.
+In the work by Othmer [21], turbulence is in the model, but the influence on the design sensitivities
+is neglected. Kontoleontos et al. [80] presented the first work on topology optimisation of turbulent flow,
+including the Spalart–Allmaras turbulence model in their continuous adjoint sensitivity analysis. For a
+shape optimisation example, they showed that the typical “frozen turbulence” assumption produces
+sensitivities of the incorrect sign in some cases. Yoon [81] presented a discrete adjoint approach to
+density-based optimisation of turbulent flow problems using the Spalart–Allmaras turbulence model
+and a modified wall equation. However, the meshes used are much too coarse to capture turbulence
+properly. Dilgen et al. [82] demonstrated the application of automatic differentiation for obtaining
+exact sensitivities for density-based topology optimisation of large scale two- and three-dimensional
+turbulent flow problems, using the one-equation Spalart–Allmaras model and the two-equation k-ω
+model. As Kontoleontos et al. [80] did for shape optimisation, they demonstrated that the “frozen
+turbulence” assumption gives inexact sensitivities for topology optimisation, even with the incorrect
+sign for some cases. Yoon [83] used a k − e model, analogous to the model applied [82], to design 2D
+flow components minimising turbulent energy i.e., minimising noise.
+2.1.4. Non-Newtonian Fluids
+In the preceding works, the fluids are all assumed to be Newtonian. However, treating more
+sophisticated fluids, including e.g., long polymer chains or blood cells, calls for implementation
+of non-Newtonian fluids, which have nonlinear behaviour of the viscosity. There are a wide
+variety of models that can be applied and a few have been implemented for use in a topology
+optimisation context.
+Pingen and Maute [84] applied topology optimisation to non-Newtonian flows for the first
+time, using a density-based LBM formulation and a Carreau–Yasuda model for shear-thinning fluids.
+Ejlebjerg Jensen et al. [85] optimised viscoelastic rectifiers using a non-Newtonian fluid model based
+on dumbbells in a Newtonian solvent, which introduced a memory in the fluid. Jensen et al. [86]
+considered the bi-stability behaviour for a crossing between two viscoelastic fluids. Hyun et al. [87]
+suggested a density-based formulation for minimising wall shear stress by considering shear thinning
+non-Newtonian effects. Zhang and Liu [88] applied a level set based approach to minimise flow shear
+stress in arterial bypass graft designs, where the blood flow is modelled using a steady non-Newtonian
+modified Cross model. Zhang et al. [89] used an explicit boundary-tracking level set method with
+remeshing to optimise micropumps for non-Newtonian power-law fluids. Romero and Silva [90]
+
+Fluids 2020, 5, 29
+
+9 of 32
+
+extended their previous work [35] to cover non-Newtonian fluids and compare it to the Newtonian case.
+Dong and Liu [91] proposed a bi-objective formulation for the design of asymmetrical fixed-geometry
+microvalves for non-Newtonian flow.
+2.2. Species Transport
+In this section, the included papers are focused on a transport of matter or species due to the
+presence of a fluid. The transported matter does not necessarily need to be modelled itself, as long as
+the objective of the optimisation is related to the transport.
+Okkels and Bruus [92] coupled a convection–reaction–diffusion equation to the fluid flow to
+model catalytic reactions, distributing the porous catalytic support to maximise the mean reaction rate
+of the microreactor. Andreasen et al. [93] used a convection–diffusion equation to model and optimise
+microfluidic mixers, in which well-known design elements such as herring-bones and slanted grooves
+appeared automatically. Gregersen et al. [94] applied topology optimisation to an electrokinetic model
+in order to maximise the net induced electroosmotic flow rate. Schäpper et al. [95] used more advanced
+reaction-kinetics using multiple convection-diffusion type equations to optimise microbioreactors.
+Kim and Sun [96] optimised the gas distribution channels in automotive fuel cells. Makhija et al. [97]
+optimised a passive micromixer using a porosity model for LBM. Deng et al. [98] used a physical
+model similar to [93] but omits the pressure constraint and use a quasi-Newton approach optimised
+three-dimensional and extruded two-dimensional microfluidic mixers. Makhija and Maute [99]
+introduced an explicit level set optimisation methodology using an X-FEM-based hydrodynamic
+Boltzmann model including transport. The ability to eliminate the spurious diffusion in void areas,
+especially dubious when modeling species concentration, is highlighted. Oh et al. [100] used the
+Navier–Stokes and a convection-diffusion equation to model and optimise the osmotic permeate flux
+over a membrane wall. Chen and Li [101] optimised micromixers under the assumption that reverse
+flow structures [8] inserted in a microchannel increases the mixing. Hyun et al. [102] designed repeating
+units for sorting particles using principles in deterministic lateral displacement. Andreasen [103] used
+a density-based framework to design dosing units of a secondary fluid utilising the inertia of the
+driving fluid. Yaji et al. [104] presented an optimisation of vanadium redox flow batteries by including
+a reaction term depending on the local flow speed and concentration level in a two-dimensional
+setting. Guo et al. [105] presented a methodology to model and optimise pure convection-dominated
+transport using a Lagrangian mapping method. Only the Navier–Stokes equations are approximated
+by FEM, while the Lagrangian transport is modelled cross-section-wise. Behrou et al. [106] presented a
+density-based approach for the design of proton exchange membrane fuel cells using a depth-averaged
+two-dimensional approximation of reactive porous media flow. Chen et al. [107] extended their
+previous work [104] to three-dimensional problems. Dugast et al. [108] used a level set method and
+the LBM to maximise the reaction in a square reactor and investigated the problem for a range of
+flow situations.
+2.3. Conjugate Heat Transfer
+Conjugate heat transfer is when the coupled heat transfer between a solid and the surrounding
+fluid is considered, with the temperature field of both of interest. Thus, in order to model conjugate
+heat transfer, it is necessary to build the thermal transport on top of the fluid flow model. Conjugate
+heat transfer is generally divided into groups based on the heat transfer mechanism in the fluid.
+Figure 2 shows the three main heat transfer mechanisms: forced convection, where the flow is
+actively driven by a pump, fan or pressure-gradient; natural convection, where the flow happens
+passively from the natural density variations due to temperature differences; and diffusion where heat
+is transferred through a stagnant fluid through diffusion. Only the first two are considered in this
+review, since they include fluid motion modelled through fluid flow equations.
+
+Fluids 2020, 5, 29
+
+(a) Forced convection
+
+10 of 32
+
+(b) Natural convection
+
+(c) Diffusion
+
+Figure 2. Illustration of a metallic block subjected to different heat transfer mechanism in the
+surrounding fluid. (a) shows forced convection with a cold flow entering at the left-hand side;
+(b,c) show natural convection and pure diffusion, respectively, due to cold upper and side walls.
+Reproduced with permission from Alexandersen et al. [109].
+
+2.3.1. Forced Convection
+Dede [110] and Yoon [111] presented the first works on topology optimisation of forced convection
+at almost the same time. Dede [110] used the commercial finite element analysis (FEA) software
+COMSOL to optimise both conduction and conjugate heat transfer problems. Yoon [111] presented
+a two-dimensional formulation, treating heat sink problems, as well as flow focusing in order to
+cool specific points. Thereafter, Dede [112] applied topology optimisation to design multipass
+branching microchannel heat sinks for electronics cooling. McConnell and Pingen [113] presented a
+two-layer pseudo-3D topology optimisation formulation based on the lattice Boltzmann method (LBM).
+Kontoleontos et al. [80] presented a continuous adjoint formulation for fluid heat transfer using the
+Spalart–Allmaras turbulence model and the impermeability directly as the design variable. However,
+the presented examples are not true conjugate heat transfer problems, since the solid temperature is
+predefined and enforced through a penalty approach, rather than modelling the solid temperature
+alongside the fluid temperature. Matsumori et al. [114] presented topology optimisation for forced
+convection heat sinks under constant input power. They interpolated the heat source to only be active
+in the solid and investigated both temperature-independent and -dependent sources. Marck et al. [115]
+investigated a multiobjective optimisation problem considering both fluid and thermal objectives
+using a finite volume-based discrete adjoint approach. Koga et al. [116] presented the development
+of an active cooling heat sink device using topology optimisation, which was manufactured and
+experimentally tested. However, they used a two-dimensional Stokes flow model to optimise for a
+three-dimensional turbulent application. In 2015, Yaji et al. [117] published three-dimensional results
+for forced liquid-cooled heat sinks using an Ersatz-material level set approach. Next, Yaji et al. [118]
+presented a topology optimisation method using the Lattice Boltzmann Method (LBM) incorporating a
+special sensitivity analysis based on the discrete velocity Boltzmann equation. Łaniewski Wołłk and
+Rokicki [119] treated large three-dimensional problems using a discrete adjoint formulation for the
+LBM implemented for multi-GPU architectures. Qian and Dede [120] introduced a constraint on the
+tangential thermal gradient around discrete heat sources with the goal of reducing thermal stress due
+to non-uniform expansion. Yoshimura et al. [47] proposed a gradient-free approach using a genetic
+algorithm and a Kriging surrogate model coupled to an immersed method known as the Building-Cube
+Method. Haertel and Nellis [121] developed a plane two-dimensional fully-developed flow model for
+topology optimisation of air-cooled heat sinks. Pietropaoli et al. [122] used the impermeability as the
+design variable to optimise internal channels.
+In 2018, Zhao et al. [123] used a Darcy flow model for topology optimisation of cooling channels.
+Qian et al. [124] optimised active cooling flow channels for cooling an active phased array antenna with
+
+Fluids 2020, 5, 29
+
+11 of 32
+
+many discrete heat sources. Sato et al. [125] used an adaptive weighting scheme for the multiobjective
+topology optimisation of active heat sinks. Yaji et al. [126] applied a local-in-time approximate
+transient adjoint method for topology optimisation of large scale problems with oscillating inlet flow.
+Haertel et al. [127] presented a pseudo-3D model for extruded forced convection heat sinks, actually
+considering the chip temperature by coupling a thermofluid design layer to a conductive base plate
+layer. Almost simultaneously, Zeng et al. [128] published a similar two-layer model for an air-cooled
+mini-channel heat sink, where the connection between the layers is tuned using full three-dimensional
+simulations of a reference heat sink design. Furthermore, Zeng et al. [128] manufactured and
+experimentally validated the performance of their optimised designs. Dilgen et al. [129] presented
+the first full conjugate heat transfer model for density-based topology optimisation of turbulent
+systems. In contrast to Kontoleontos et al. [80], the temperature field of the solid is modelled,
+thus rendering it true conjugate heat transfer. Furthermore, Dilgen et al. [129] treat large-scale
+three-dimensional problems comparing their thermal performance to equivalent two-dimensional
+designs. Ramalingom et al. [130] proposed a sigmoid interpolation function for mixed convection
+problems. Dugast et al. [131] applied a level set based approach in combination with the LBM to
+a variety of thermal control problems. Santhanakrishnan et al. [132] performed a comparison of
+density-based and Ersats-material level set topology optimisation for three-dimensional heat sink
+design using the commerical FEA software COMSOL. However, the designs, both density and level
+set based, show clear signs of being unconverged with unphysical designs and, thus, the study must
+be rendered inconclusive. Sun et al. [133] used density-based topology optimisation to generate
+guiding channels for an enhanced air-side heat transfer geometry in fin and tube heat exchangers.
+Lv and Liu [134] applied a density-based method to the design of a bifurcation micro-channel heat
+sink, comparing them to reference designs.
+In 2019, Pietropaoli et al. [135] extended their previous work to three-dimensional internal
+coolant systems. Makhija and Beran [136] presented a concurrent optimisation method using a
+shape parametrisation for the external shape and a density-based parametrisation for the internal
+geometry. Subramaniam et al. [137] investigated the inherent competition between heat transfer
+and pressure drop. Yu et al. [138] applied a geometry projection method called moving morphable
+components (MMC) to the design of two-dimensional problems allowing for explicit feature size
+contol. Zhang and Gao [139] presented a density-based approach for optimising non-Newtonian
+fluid based thermal devices. Kobayashi et al. [140] used topology optimisation to design extruded
+winglets for fin-and-tube heat exchangers. Zeng and Lee [141] extended their previous work to
+the design of liquid-cooled microchannel heat sinks with in-depth numerical and experimental
+investigations. Jahan et al. [142] designed conformal cooling channels for plastic injection molds
+using a two-dimensional simplification. Yan et al. [143] developed a two-layer plane model based on
+analytical derivations and assumptions of the out-of-plane distribution for optimising microchannel
+heat sinks. Tawk et al. [144] proposed a density-based approach for optimising heat exchangers with
+two seperate fluids and a solid. Lundgaard et al. [145] presented a density-based methodology for
+distributing sand and rocks in thermal energy storage systems modelled by a transient Darcy’s law
+coupled to heat transfer. Li et al. [146] applied a multi-objective density-based method to the design
+of liquid-cooled heat sinks, presented both extensive numerical and experimental comparisons to
+reference designs. Dong and Liu [147] applied topology optimisation to air-cooled microchannel heat
+sinks with discrete heat sources. Yaji et al. [148] suggested a multifidelity approximation framework
+to optimise turbulent heat transfer problems using a low-fidelity laminar flow model as the driver.
+Hu et al. [149] applied a density-based approach to optimisation of a microchannel heatsink with an
+in-depth comparison to a reference design with straight channels.
+2.3.2. Natural Convection
+Alexandersen et al. [109] presented the first work on topology optimisation of natural convection
+problems, using a density-based approach for optimising both heat sinks and buoyancy-driven
+
+Fluids 2020, 5, 29
+
+12 of 32
+
+micropumps. On the contrary, Coffin and Maute [150] used an explicit level set method combined with
+the extended finite element method (X-FEM) for both steady-state and transient natural convection
+cooling problems. Alexandersen et al. [151] extended their initial paper to large-scale three-dimensional
+heat sink problems using a parallel framework allowing for the optimisation of problems with up
+to 330 million DOFs. Pizzolato et al. [152] applied topology optimisation to the design of fins in
+shell-and-tube latent heat thermal energy storage, including the temperature-dependent latent heat
+coupled with natural convection using a time-dependent formulation. Alexandersen et al. [153] applied
+their previously developed framework to optimise the design of passive coolers for light-emitting
+diode (LED) lamps showing superior performance compared to reference lattice and pin fin
+designs. Ramalingom et al. [130] proposed a sigmoid interpolation function for mixed convection
+problems. Lazarov et al. [154] performed an experimental validation of the optimised designs from
+Alexandersen et al. [153] using additive manufacturing in aluminium, showing good agreement with
+numerical results and highlighting the superiority of topology-optimised designs. Lei et al. [155]
+continued this work and used investment casting to experimentally investigate a larger array of heat
+sink designs comparing them to optimised pin fin designs. Saglietti et al. [156] presented topology
+optimisation of heat sinks in a square differentially heated cavity using a spectral element method.
+In order to reduce the computational cost, Asmussen et al. [157] suggested an approximate flow
+model to that originally presented by Alexandersen et al. [109], by neglecting intertia and viscous
+boundary layers. Pizzolato et al. [158] extended their previous work to maximise the performance of
+multi-tube latent heat thermal energy storage systems, investigating many different working conditions.
+Ramalingom et al. [159] applied their previous method to multi-objective optimisation of mixed and
+natural convection in a asymmetrically-heated vertical channel. Pollini et al. [160] extended the work of
+Asmussen et al. [157] to large-scale three-dimensional problems, producing results comparable to those
+of Alexandersen et al. [151] with a computational time reduction of 80–95% in terms of core-hours.
+2.4. Fluid–Structure Interaction
+In this section, the advances within topology optimisation of fluid–structure interaction (FSI)
+problems are discussed.
+Figure 3 shows the types of design modifications possible for FSI problems. Dry optimisation only
+changes the internal structure, keeping the solid–fluid interface constant. Wet optimisation modifies
+the solid–fluid interface and topology. Since this review paper is focused on the optimisation of the
+fluid flow, only works where the wet surface and topology is allowed to change significantly are
+included (wet and wet+dry). A whole range of works describe the topology optimisation of structural
+parts subjected to fluid loads, where the deformation of the structure may or may not be taken into
+account when computing the fluid induced loads. However, because they do not modify the wet
+surface and topology, they are not considered herein.
+
+Figure 3. Description of different degrees of design modification for fluid–structure interaction
+(FSI) problems.
+
+Fluids 2020, 5, 29
+
+13 of 32
+
+Yoon [161] can be considered the seminal paper on topology optimisation for FSI. A unified
+density-based formulation of the elastic Navier–Cauchy equations assuming small strains and
+the incompressible Navier–Stokes equation is obtained by converting the interface condition to a
+volumetric integral representation, previously used for acoustic–structure interaction [162]. The fluid
+stress in the interaction is slightly simplified and a pressure filter function determines where the fluid
+pressure applies. The fluid problem is solved in the deformed mesh and a full coupling is modelled;
+however, the obtained deformations of the solid domain are extremely small and the two-way coupling
+is not really active. Another approach was taken by Kreissl et al. [163], where micro-fluidic devices
+are optimised subject to external mechanical actuation. A one-way coupling from structure to fluid is
+used to deform the fluid domain. The backward fluid-structural coupling is assumed negligible and
+hence ignored. Yoon [164] extends the previous work [161] to cover electro-fluid-thermal-compliant
+actuators, including two additional physical fields, electric and thermal, in the coupling. Planar
+multiphysics MEMS devices are optimised with electrical and thermal response being computed in the
+reference mesh. Subsequently, Yoon extended the framework to minimise the structural mass subject
+to stress constraints [165], and also applied the framework to the optimisation of a compliant flapper
+valve [166].
+Jenkins and Maute [167] presented a coupled level set based framework utilising X-FEM and
+deformed meshes, demonstrating generalised shape optimisation of a bio-prosthetic heart valve and
+topology optimisation of the wall example of Yoon [161]. Munk et al. [168] present a simplified model
+for designing baffle plates, with a one-way pressure coupling omitting fluid shear stress. The fluid is
+modelled with LBM and the loads are mapped to the structural model in the reference configuration.
+The Bi-directional Evolutionary Structural Optimisation (BESO) method is used in a soft-kill version,
+but the sensitivities of changing the fluid flow are neglected. Similarly, Picelli et al. [169] also neglect
+the sensitivities of changing the fluid flow when updating the wet surface when applying a hard-kill
+BESO method to design various FSI problems.
+Yoon [170] presented an extension of previous work [165], where a material failure criteria is
+applied to design the material distribution. Lundgaard et al. [171] revisited the unified density-based
+formulation of Yoon [161], however, solving the fluid in the reference mesh under the assumption of
+small deformations. Multiple objective functions and design problems are reviewed and thorough
+discussions of current limitations, artefacts and future extensions for density-based topology
+optimisation of FSI problems are given. Munk et al. [172] compared the previous formulation [168] to
+level set and density-based methods for the case of minimising the compliance of a fluid-loaded baffle
+plate. Subsequently, Munk et al. [173] ported the work to graphics processing unit (GPU) architecture
+in order to reduce the high computational time for the LBM model. Feppon et al. [174] used a
+level set-based framework to explicitly track and advance the interface using the Hamilton-Jacobi
+equation. The meshes are iteratively updated based on the convected level set by local operations,
+with the physics being weakly coupled, modeled in referenced configuration and solved using a
+staggered procedure.
+2.5. Microstructure and Porous Media
+In relation to the origin of topology optimisation, namely the homogenisation approach, there are
+a range of studies that consider the optimisation of material microstructures. Typically a unit-cell, or
+representative volume element (RVE), is subjected to periodic boundary conditions and the effective
+parameters are obtained by imposing a set of volumetric loads. This approach can be utilised in an
+inverse manner to optimise the material design and the corresponding effective parameters. For solids,
+this is related to the effective stiffness tensor, while for fluids this is naturally related to the permeability.
+For fluid–structure interaction in a porous medium, a pressure coupling term can also be obtained
+by homogenisation.
+
+Fluids 2020, 5, 29
+
+14 of 32
+
+2.5.1. Material Microstructures
+Guest and Prévost [175] maximised the permeability of a porous material microstructures using a
+Darcy–Stokes interpolation [11] subject to isotropic symmetry constraints. The work is extended in
+Guest and Prévost [176] to optimise microstructures for combined maximum stiffness and permeability.
+Bones and tissue contain porous materials and Hollister and Lin [177] optimised tissue engineering
+scaffolds using a hybrid stiffness and permeability optimisation routine. Xu and Cheng [178]
+proposed a multiscale optimisation problem, where the macroscopic elastic compliance is minimised
+subject to a flow constraint ensuring a permeable microstructure. Physically related to this,
+Andreasen and Sigmund [179] optimised the microstructure of a poroelastic material for maximum
+poroelastic coupling during pressurisation subject to permeability constraints. Chen et al. [180]
+studied the optimisation of bio-scaffolds using homogenisation for tissue regeneration including
+permeability considerations. Chen et al. [181] extended the work to consider shear induced wall
+erosion. Goncalves Coelho et al. [182] introduced permeability constraints in an extensive multiscale
+optimisation framework for the multiscale topology optimisation of trabecular bone. For most
+material properties, certain bounds apply in property space and Challis et al. [183] investigated
+the cross-property bounds between stiffness and permeability by exploiting the Pareto-front using a
+level-set based approach [25].
+2.5.2. Porous Media
+In this subsection, works where the final design is supposed to be a porous structure i.e.,
+intermediate design variables, are reviewed. This can be in terms of multiscale problems obtained
+e.g., by two-scale asymptotic expansion. A different take on FSI problems was presented by
+Andreasen and Sigmund [184] for optimisation of material design for poroelastic actuators and
+in Andreasen and Sigmund [185] for impact energy absorption in porous structures. Furthermore,
+in the context of macroscale problems, Youssef et al. [186] optimised a porous scaffold with macroscale
+flow channels to control the internal shear stress in a bioreactor. Ha et al. [187] used the Darcy–Stokes
+interpolation method [175] to maximise the permeability of three-dimensional woven materials.
+A multimaterial approach is taken by Wein et al. [188], where a highly nonlinear saturated porous
+model with multiple materials is applied to design diapers that quickly transports fluid away from
+the surface to capture it in the interior. Takezawa et al. [189] used a Brinkman–Forchheimer macro
+model to optimise material microstructures for minimum flow resistance considering the trade-off
+between permeability and form-drag. Lurie et al. [190] optimised the distribution of the wick
+(porous media used to transport condensate to the evaporator due to capillary effects) in a heat
+pipe. Takezawa et al. [191] applied a multiscale method to the thermofluid problem of metal printed
+lattice design. Effective parameters for permeability, form drag and conductivity are obtained for
+a generic orthogonal truss microstructure and used in a macroscopic material distribution method
+based on the Brinkman–Forchheimer and a convection–diffusion equation. Takezawa et al. [192] later
+extended this to the fluid-thermo-elastic problem of metal printed heat sinks.
+3. Quantitative Analysis
+In this section, a quantitative study of the referenced papers is carried out. In some cases,
+the method details might be unclear or not mentioned, excluding the paper from the statistics.
+3.1. Total Publications
+Figure 4 shows the number of papers published per year and the total accumulated number of
+publications over time since the inaugural paper by Borrvall and Petersson [7] in 2003. The year of
+publication is here taken as the year of the final journal issue.
+
+Fluids 2020, 5, 29
+
+15 of 32
+
+Figure 4. Number of papers published per year and total accumulated publications over time.
+
+From 2003 to 2015, a slow increase in the number of papers per year is observed, reaching an
+average of 10 per year for the period 2012–2015. In 2016 and 2017, the number of papers per year
+almost doubled to 18 and 16, respectively, bringing the total number of publications to 100 after 2016.
+In 2018 and 2019, the number of papers per year again almost doubled to 31 and 36, respectively.
+The total number of papers by the end of 2019 reached 182. This approximate doubling behaviour
+shows itself as an exponential-like increase in the number of total papers. In 2020, covering only
+the month of January, there have been five publications so far. This amounts to a total of 186 papers
+covered by this review.
+3.2. Design Representations
+As discussed in Section 1, several different design representations exist for topology optimisation.
+The papers are grouped into three groups: “density” covering interpolation and homogenisation
+approaches; “level set” covering Ersatz-material, adapted (here refering to adapted meshes and/or
+ignoring the solid elements in computations.) and surface-capturing level set approaches; “other”
+covering anything else, e.g., BESO.
+Figure 5 shows how the included papers are distributed among the two main design
+representations, density-based approaches and level set approaches. Firstly, the use of density-based
+approaches vastly outnumbers any other methods with 144 papers or 77%. This reflects the general
+tendency within the topology optimisation community to prefer density-based methods [2,3]. Secondly,
+the approaches relying on an implicit level set description of the geometry are also numerous at
+31 papers or 17%. Of these 31 papers, 11 use an Ersatz-material, 11 use an adapted approach and
+only nine use a surface-capturing discretisation method. Lastly, the rest of the papers are distributed
+as follows: 5 using BESO [168,169,172,173,177]; 2 using phase field [42,59]; 1 using a discrete surface
+representation [63]; 1 using a geometry-projection method [138]; and 2 utilising the topological
+gradient [46,74].
+3.3. Discretisation Methods
+For discretising the design and physics, a variety of methods are used in the included papers:
+finite element method (FEM); finite volume method (FVM); lattice Boltzmann method (LBM) including
+Boltzmann equation related schemes; particle-based methods (PM).
+
+Fluids 2020, 5, 29
+
+16 of 32
+
+Figure 5. Distribution of papers in overall design representation type.
+
+Figure 6 shows the distribution of papers in these overall methods. It is clear that FEM is the most
+widely used discretisation method with 134 papers or 76%. The next most used method is LBM at
+28 papers [14,20,22,24,26,36–38,44,55,65,69,75,77,78,84,97,108,113,118,119,126,131,163,168,172,173,186]
+or 16%. PM is the least used method with only a single paper [79]. Surprisingly, FVM is the second
+least used method with only 12 papers [21,47,52,80,82,115,129,130,137,144,159,188] or 7%, despite the
+fact that FVM for many years has been the preferred discretisation method for computational fluid
+dynamics. This can probably be explained by several factors: topology optimisation originates from
+solid mechanics where FEM is the preferred method; discrete adjoint approaches are easier using FEM
+than FVM; stabilised FEM has grown to be a mature and accurate method [193,194].
+
+Figure 6. Distribution of papers in overall discretisation method: FEM = finite element methods;
+FVM = finite volume methods; LBM = lattice Boltzmann methods; PM = particle-based methods.
+
+Fluids 2020, 5, 29
+
+17 of 32
+
+3.4. Problem Types
+The main problem types treated in this review is: pure fluid (PF); species transport (ST); conjugate
+heat transfer (CHT); fluid–structure interaction (FSI); microstructure and porous media (MP).
+Figure 7 shows the distribution of the included papers in these problem types. It is clearly seen
+that the largest number of papers deal with purely fluid flow problems, namely 82 papers or 44%.
+The second largest group deals with conjugate heat transfer covering 55 papers or 30%. Species
+transport covers 19 papers or 10%, with FSI covering 15 papers or 8%, and porous media covering 14
+papers or 8%.
+
+Figure 7. Distribution of papers in overall problem type: PF = pure fluid; ST = species transport;
+CHT = conjugate heat transfer; FSI = fluid–structure interaction; MP = microstructure and porous media.
+
+3.5. Flow Types
+In this review, the fluid model type can be boiled down to four categories: steady-state
+laminar flow (SS); transient laminar flow (TR); steady-state turbulent flow (TU); and Non-Newtonian
+fluid (NN).
+Figure 8 shows the distribution of papers for fluid model type, both for (a) all papers and (b)
+papers treating only fluid flow. Analysing all papers, the vast majority use a steady-state laminar
+flow model with 158 papers or 85% as seen in Figure 8a. Only 13 papers or 7% consider a transient
+laminar flow model [72–79,145,150,152,158,188], with a meager six papers or 3% treating turbulent
+flow [21,80–83,129]. In the case of time-dependent problems, this is most likely due to the vast increase
+in computational cost related to simulation of transient flow problems, where all temporal details
+must be resolved sufficiently and all temporal solutions saved in memory (or recomputed) for the
+adjoint solve. Likewise, turbulent flow also carries an increase in computational cost with it, since
+turbulence models with additional degrees-of-freedom are used and fine meshes are needed to resolve
+the turbulent boundary layers.
+All of the above use a Newtonian fluid model, but nine papers or 5% use a Non-Newtonian
+model [84–91,139].
+Looking only at papers treating fluid flow only, Figure 8b shows that the percentage of the more
+complex flow models increases. This indicates that more work has been done on treating transient,
+turbulent and non-Newtonian models for fluid flow only compared to overall for fluid-based problems.
+This makes sense since pure fluid flow is the obvious place to start working with and tackling the large
+computational cost associated with the more complex flow models.
+
+Fluids 2020, 5, 29
+
+18 of 32
+
+(a) All papers
+
+(b) Fluid flow only
+
+Figure 8. Distribution of papers for fluid model type: SS = steady-state laminar flow; TR = transient
+laminar flow; TU = turbulent flow; NN = Non-Newtonian fluid.
+
+3.6. Three-Dimensional Problems
+A paper is classified as treating three-dimensional problems only if at least one example uses
+a three-dimensional model in the optimisation process. Therefore, two-dimensional results that are
+extruded and post-analysed in three dimensions are not included.
+Figure 9 shows the distribution of papers treating two-dimensional and three-dimensional problems.
+
+(a) Percent of all papers
+
+(b) Yearly publication count
+
+Figure 9. Distribution of papers for two-dimensional (2D) and three-dimensional (3D) problems.
+
+Figure 9a shows that a significant share of the included papers contain three-dimensional
+results, namely 31% or 58 out of 186 papers. For the pure fluid flow, there are 15 papers
+for steady laminar flow [14,15,21,23,25,32–34,36,46,55,56,61,66,70], 3 for unsteady flow [74,76,77],
+2 for turbulent flow [80,82] and none for non-Newtonian fluids.
+For species transport,
+there are four papers [93,98,105,107]. For conjugate heat transfer, there are eight in forced
+convection [110,117,119,122,126,129,132,135] and six in natural convection [150,151,153–155,160].
+The fluid–structure interaction category counts four papers [164,168,172,173], but it must be
+noted that, common for all, the three-dimensional design freedom is severely limited, as
+the design domain is restricted in the third dimension. Finally, a very large share of the
+three-dimensional results belong in the category of microstructure and porous media problems
+with 14 papers [175–177,179–184,187–189,191,192]. Since, in material design, it is natural to consider
+
+Fluids 2020, 5, 29
+
+19 of 32
+
+both stiffness and permeability, the need for three-dimensional design freedom is obvious, as
+two-dimensional models would have either the fluid or the solid phase disconnected.
+Figure 9b shows the yearly publication count for two- and three-dimensional problems. It can
+be seen that they follow the same trend, which is reflected in the fact that the percentage of
+three-dimensional papers has been close to constant since 2010 at approximately 30%. In January 2020,
+there has been a single three-dimensional paper [160] out of 5, making it 20% so far.
+4. Recommendations
+Based on the extensive literature review, analysis of the methods used, as well as the authors’
+personal experience and opinions, some recommendations are made to the research community in
+order to help with moving forward.
+4.1. Optimisation Methods
+Ninety-eight percent of the included papers use gradient-based optimisation approaches, covering
+amongst others nonlinear programming algorithms, velocity-based level set updates and discrete
+BESO updates. Most of these use first-order methods, with notable exceptions being the work of
+Evgrafov [34,41] using higher-order schemes. Only three papers use gradient-free optimisation
+approaches, consisting of genetic algorithms [47,186] and neural networks [71]. As pointed out by
+Sigmund et al. [195], gradient-free approaches seldomly make sense for topology optimisation, due to
+the high dimensional problems for increasing design resolutions. This is perfectly illustrated in the
+work of Gaymann and Montomoli [71], where the design resolution is absurdly coarse and useless in
+practise. However, gradient-free approaches can be useful when gradient information is not available,
+like when using a commercial solver as a black-box, or when dealing with discontinuous functions with
+non-well-defined gradients. However, even in the case of black-box solvers, gradients can easily be
+approximated using finite differences at a fraction of the cost of most genetic algorithms. Furthermore,
+gradient-free methods may have advantages for multi-objective problems, although these can also be
+included in gradient-based approaches, e.g., [125].
+However, gradient-free methods should in general be avoided for topology optimisation of
+fluid-based problems, and the recommendations of Sigmund [195] should be followed.
+4.2. Density-Based Approaches
+For density-based approaches, the interpolation of material properties between solid and fluid
+is of utmost importance to ensure final designs without intermediate design variables. Especially
+when moving to multiple physics, with an increasing number of material properties, the complexity of
+choosing the correct form of interpolation increases substantially, see, e.g., [145]. It is often not easy to
+intuitively choose the various interpolation functions to provide a correct relation between the material
+properties for intermediate design field values. Thus, it is necessary to either perform analytical
+derivations (often not possible) or numerical experiments. It is important to investigate the behaviour
+of the chosen objective functional with respect to the design field to ensure the interpolation functions
+provides well-scaled and monotonic behaviour [171,196]. Furthermore, it is extremely important to
+rigorously validate adjoint sensitivities with other methods, such as the complex step method or finite
+difference approximations as discussed by Lundgaard et al. [145].
+Relying on Brinkman penalisation to model an immersed solid geometry in a unified domain
+has its drawbacks. Due to the nature of the penalisation, there will always exist fluid flow inside the
+solid. The penalisation factor must be large enough to ensure this flow is negligible inside the solid
+domain, but small enough to ensure numerical stability of the solution and optimisation algorithms.
+Generally, this is not observed to be an issue in general, except for a few very specific problems, where
+pressure diffusion through the solid domains are problematic [30,66]. However, when the pressure
+field is of direct interest, the Brinkman penalisation must be significantly higher to ensure an accurate
+evaluation [171].
+
+Fluids 2020, 5, 29
+
+20 of 32
+
+For density-based methods and Ersatz-based level set methods on regular meshes, a smooth
+transition region, as ensured by e.g., density filtering, provides proper convergence of the design
+description with mesh refinement. It might not be an advantage to have a fully discrete 0–1 design
+field, since this will lead to staircase-like descriptions of the fluid–solid interface. For coarse meshes,
+this may lead to flow instabilities near the interface and thus a poor description of the boundary layer.
+For finer meshes, this is not as big of an issue.
+4.3. Level Set-Based Approaches
+The level set method is often praised for its accurate description of the geometric interface
+between solid and fluid. However, if this accurate description of the interface is not transferred to the
+simulation model, then nothing is gained. Therefore, in order to exploit the full potential of a level set
+design description, it becomes essential to use surface-capturing schemes, such as e.g., X-FEM [30,150],
+CutFEM [76], or adaptive body-fitted meshes [89,174]. This will allow for increased accuracy of the
+boundary layer, which becomes increasingly important when moving to more complex fluid problems,
+such as turbulent flow discussed in Section 4.7. Therefore, it is recommended that future work using
+the level set design representation should focus on applying surface-capturing schemes with local
+refinement of the boundary layer regions.
+4.4. Steady-State Laminar Incompressible Flow
+A steady-state incompressible laminar flow model is used for the vast majority of the work on
+topology optimisation of fluid-based problems, with 85% of all papers and 74% of fluid flow only
+papers. With 61 papers treating steady-state incompressible fluid flow only, it is proposed that the
+community not spend more time on this, especially for minimum dissipated energy and pressure drop.
+A large range of methods have been applied to these energy-based functionals, with only a minority of
+papers treating more complex objective functionals such as flow distribution and uniformity [33,50],
+diodicity [43,53,64,68,70,91], minimum drag and maximum lift [29,59].
+Future papers treating only steady-state incompressible fluid flow should either present novel
+objective functionals, constraints or applications. This should preferably be in the context of application
+to practical engineering applications, since the treatment of steady-state incompressible laminar flow
+is already rather mature.
+4.5. Benchmarking
+Future papers should build and improve upon the current literature, not reproduce it. During the
+development and testing phases of research, already published examples should absolutely be used as
+benchmarks. However, merely reproducing old examples using a new method does not represent a
+scientific contribution. Future papers proposing new methodologies should show clear improvements
+compared to the old, focusing on the extension of applicability rather than reproducing old examples.
+Therefore, if a new method is not or can not be shown to provide a clear improvement in one or more
+of the following, the work does not warrant publication:
+•
+•
+•
+•
+
+accuracy of the geometric representation
+precision of solution and/or optimality
+algorithmic and/or computational efficiency
+parameter robustness and algorithmic stability
+
+If the above is not shown, then the work should not be submitted by the authors and should be
+rejected by reviewers. Works reinventing the wheel with a new methodology without showing clear
+advantages, only serves to clog up the cogs of scientific progress.
+In extension of the above, when comparing methodologies in order to show a clear improvement,
+it is pertinent to use the exact problem setup of the previously published works. There is a tendency to
+
+Fluids 2020, 5, 29
+
+21 of 32
+
+change dimensions or physical settings slightly from paper to paper, which reduces the weight carried
+by the comparison.
+4.6. Time-Dependent Problems
+Only 13 papers in total treat time-dependent problems [72–79,145,150,152,158,188], eight of which
+are for fluid flow only. Since most realistic flow applications exhibit some form of time-dependent
+behaviour through either time-dependent boundary conditions or flow instabilities, it is strongly
+recommended that more community effort is dedicated to expanding the research on applying
+topology optimisation to time-dependent fluid-based problems. Due to the iterative nature of
+topology optimisation often requiring hundreds or thousands of simulations, the computational
+cost of a single time-dependent simulation becomes a significant bottleneck. The topology
+optimisation of time-dependent problems is therefore seen as the next frontier, requiring research into
+high-performance computing, efficient numerical methods and time integration and storage reduction
+methods. Novel ways to treat transient optimisation problems, such as the work by Chen et al. [77],
+can also aid in this progress. The topology optimisation community should draw inspiration from
+other fields, such as computational science and mathematics, and collaborate with researchers from
+those fields.
+4.7. Turbulent Flow
+Most industrial flow applications are turbulent, rather than laminar. Turbulence is inherently
+time-dependent and this research area goes hand in hand with the above. Current works on
+topology optimisation of turbulent flow only amount to six papers [21,80–83,129] and they all
+consider a steady-state time-averaged approximation of turbulence, namely the Reynolds-Averaged
+Navier–Stokes (RANS) equations. This is a natural starting point and there is certainly still room for
+research to be done at this level of turbulence modelling for topology optimisation.
+Capturing the turbulent boundary layers is a significant challenge in topology optimisation, since
+the solid–fluid interface is not known a priori and, thus, local boundary layer mesh refinement is not
+easily applied. This can potentially be a significant problem for density-based methods with a gradual
+transition from solid to fluid or with a staircase description of the boundary. Surface-capturing level
+set methods can potentially deliver significant benefits to this type of problems, as well as adaptive
+body-conforming meshes [63,174] or local mesh refinement [61]. However, despite the attractive
+properties of accurate boundary identification, to date, only density-based methods for turbulent flow
+have been presented.
+As will be discussed in Section 4.11, the introduction of approximate models as a surrogate for
+full-blown turbulent models may also be a viable way to treat very complex flow problems in the
+context of topology optimisation.
+4.8. Compressible Flow
+To the knowledge of the authors, no works treating fully compressible flows have been published
+as to the date of submission of this review paper. There are a few papers treating slightly compressible
+fluids, but only as an approximation of fully incompressible fluids. For this type of problem, local
+conservation properties may well prove important when introducing a varying design representation
+and, thus, methods such as FVM or Discontinuous Galerkin (DG-)FEM might be necessary to ensure
+conservation of mass.
+4.9. Fluid–Structure Interaction
+The efforts within wet topology optimisation of FSI problems only cover 15 papers [161,163–174],
+and these all remain restricted to small deformations and steady-state. Thus, the solution of the
+problems in the deformed state is either negligible or of minor importance to the optimisation
+procedure, at least if the design objective is minimum compliance. There seems to be a large
+
+Fluids 2020, 5, 29
+
+22 of 32
+
+potential in extending the methodology to transient problems exhibiting large deformations, e.g.,
+in a biomechanical context.
+4.10. Three-Dimensional Problems
+As for time-dependent and turbulent problems, three-dimensionality is present in most
+industrial applications. Therefore, it is important for the community to focus on large scale
+three-dimensional problems. While 31% of papers treat three-dimensional problems, many of
+these suffer from either: being very small in the third dimension [107,122]; having severely
+restricted design freedom in the third dimension [164,168,172,173]; and using very coarse
+discretisations [14,23,46,56,132,150]. Truly three-dimensional problems inherently carry a large
+computational cost with them, and this is discussed in a number of papers, where high performance
+parallel computing [15,25,33,55,76,82,126,129,151,153,160], graphics processing units [119,173] and
+adaptive meshes [61] have been proposed as solutions.
+Future papers treating three-dimensional problems should include a discussion of the
+computational cost involved. Since the research community should be moving towards more
+complicated flow problems including transient and turbulent flows, the concern of computational cost
+becomes even more dominant. Thus, even though simple problems may be treated in future papers,
+the computational cost and limitations of the method must be discussed in the context of tackling large
+scale three-dimensional problems.
+4.11. Simplified Models or Approximations
+Since all of the above problem areas all carry a large computational cost, it is beneficial for the
+community to work on simplified models or approximations to the complex physics.
+4.11.1. 2D Simplification of 3D
+It is very common in the included papers to treat two-dimensional academic problems. However,
+some works directly approximate a three-dimensional plane problem, with a small thickness, using a
+two-dimensional simplification, either stated explicitly [43,64,67,68,106,112,116,134,140,142,143,149]
+or implicitly [50,67,87,102,107]. Out of these, only three papers [106,140,143] include the viscous
+resistance from the friction due to the out-of-plane viscous boundary layers. This is despite the fact that
+a simple expression is given in the original works on the subject [7,8]. If the out-of-plane dimension is
+large, e.g., [152,158], the friction will go to zero. However, for small thicknesses, the friction cannot be
+neglected [143].
+For forced convection cooling of heat sinks, pseudo-3D models have been
+proposed [113,127,128,141,143] consisting of two layers in order to approximate the temperature
+of both the heat source and a cross-section of the heat sink. Furthermore, a cross-sectional model
+for forced convection has also been proposed for flow that is fully-developed in the out-of-plane
+direction [121].
+Common to all of the above dimensional simplifications is that the design is assumed to be
+constant in the out-of-plane direction and physical fields are assumed to vary polynomially in
+the out-of-plane direction. However, as shown by Dilgen et al. [129], the error introduced by this
+assumption can be rather large and, therefore, designs must be validated.
+4.11.2. Simplified Flow Models
+A number of the included papers use a simplified flow model compared to the situation that they
+wish to model. One examples is to use Stokes flow instead of turbulent flow, e.g., [116]; however, this
+is severely limited in capturing the correct physics. One suggestion to approximate the thin boundary
+layers for turbulent flow is by instead using a Darcy flow model [123] with an artificial permeability in
+the fluid region. However, inertia is still not captured. Another recent example uses laminar flow to
+approximate turbulent flow in a multifidelity approximation framework [148]. For natural convection,
+
+Fluids 2020, 5, 29
+
+23 of 32
+
+a potential-like model is derived by reducing the Navier–Stokes equations by assuming the buoyancy
+term to be dominant [157,160].
+Using simplified models to treat complex problems is one way to reduce the computational cost,
+but it is extremely important to validate the design performance for the final design using the real
+model. Neglecting terms and phenomena leads to lower accuracy, but combining the simplified and
+full models in a sequential optimisation approach can reduce the cost significantly, while still retaining
+the accuracy of the full model for some steps of the optimisation. In engineering practise, a low-fidelity
+model is often used in the initial stages to make fast design progress and then a high-fidelity model is
+used to refine the design at the end [148]. However, Pollini et al. [160] recently proposed a sequential
+optimisation approach using the full model initially to point the gradient-based optimiser in the correct
+direction and then refine the design features using an approximate model.
+4.12. Numerical Verification
+For all papers treating the topology optimisation of fluid-based problems, numerical verification
+must be performed for the final design using an independent solver with a body-fitted mesh, sufficient
+mesh resolution and a fully descriptive physical model. This is a bare minimum for all future papers.
+It is especially important for density- or Ersatz-material based approaches, where the boundary
+is not necessarily captured accurately on regular meshes. It is also important if the mesh used for
+optimisation is relatively coarse or where a simplified or reduced model has been used to ensure
+fast computations.
+4.13. Experimental Validation
+In addition to numerical verification, it is strongly suggested that, if at all possible, experimental
+validation is carried out, due to the complex geometries and complex physics encountered after
+fluid-based topology optimisation. One thing is that a simulation tool shows that the optimised
+geometry performs better than a reference design but should preferably be validated experimentally.
+Only 12 papers, or 7%, contain some form of experimental investigation of the topology-optimised
+designs. These cover fixed-geometry fluid diodes [43,68], small scale rotary pumps [62], forced
+convection heat sinks [116,128,141,146], passive coolers for light-emitting diode lamps [154,155], porous
+bioreactors [186], particle separators [102], and conformal cooling channels [142].
+5. Conclusions
+This review paper provides an overview of the development of topology optimisation for fluid
+flow and fluid-based problems. Since the seminal paper by Borrvall and Petersson [7] in 2003,
+186 papers have been published treating a large variety of phenomena and component design,
+ranging from creeping flow in pipes and microfluidic mixers to turbulent flow and heat transfer,
+from steady to time-dependent flows, and from simple academic problems to real-life industrial
+examples. A wide range of topology optimisation methods have been applied to the field, with most
+being classified as density-based methods and significantly less using level set methods. This is
+surprising since the potential strength of level set methods, in combination with surface-capturing
+discretisation schemes, is to provide a better definition of the interface, which can be necessary for
+more complicated fluid problems. On the contrary, the limited ability to create a new topology favours
+the density-based methods.
+Recommendations for future research directions are outlined based on the extensive literature
+review, the quantitative analysis, as well as the authors’ personal experience and opinions.
+The community is encouraged to focus on moving the field to more complicated applications, such as
+transient, turbulent and compressible flows. Generally, previously published examples should serve
+only the purpose of benchmarks for verifying a new method or implementation. However, if the new
+method does not show clear improvements in accuracy and efficiency over the previously published
+
+Fluids 2020, 5, 29
+
+24 of 32
+
+works, it should not be published. It is suggested that published works in the future only present
+improvements and extensions to the previous .
+Author Contributions: The two authors have contributed equally to this work. All authors have read and agreed
+to the published version of the manuscript.
+Funding: The second author was partly funded by the InnoTop project through the Villum Foundation.
+Conflicts of Interest: The authors declare no conflicts of interest.
+
+References
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+
+11.
+12.
+13.
+14.
+15.
+16.
+17.
+18.
+19.
+20.
+21.
+
+Bendsøe, M.P.; Kikuchi, N. Generating optimal topologies in structural design using a homogenization
+method. Comput. Methods Appl. Mech. Eng. 1988, 71, 197–224. [CrossRef]
+Sigmund, O.; Maute, K. Topology optimization approaches: A comparative review. Struct. Multidiscip. Optim.
+2013, 48, 1031–1055. [CrossRef]
+Deaton, J.D.; Grandhi, R.V. A survey of structural and multidisciplinary continuum topology optimization:
+post 2000. Struct. Multidiscip. Optim. 2014, 49, 1–38. [CrossRef]
+Chen, X. Topology optimization of microfluidics—A review. Microchem. J. 2016, 127, 52–61. [CrossRef]
+Dbouk, T. A review about the engineering design of optimal heat transfer systems using topology
+optimization. Appl. Therm. Eng. 2017, 112, 841–854. [CrossRef]
+van Dijk, N.P.; Maute, K.; Langelaar, M.; van Keulen, F. Level-set methods for structural topology
+optimization: A review. Struct. Multidiscip. Optim. 2013, 48, 437–472. [CrossRef]
+Borrvall, T.; Petersson, J. Topology optimization of fluids in Stokes flow. Int. J. Numer. Methods Fluids 2003,
+41, 77–107. [CrossRef]
+Gersborg-Hansen, A.; Sigmund, O.; Haber, R.B. Topology optimization of channel flow problems.
+Struct. Multidiscip. Optim. 2005, 30, 181–192. [CrossRef]
+Evgrafov, A. The Limits of Porous Materials in the Topology Optimization of Stokes Flows. Appl. Math. Optim.
+2005, 52, 263–277. [CrossRef]
+Olesen, L.H.; Okkels, F.; Bruus, H. A high-level programming-language implementation of topology
+optimization applied to steady-state Navier–Stokes flow. Int. J. Numer. Methods Eng. 2006, 65, 975–1001.
+[CrossRef]
+Guest, J.K.; Prévost, J.H. Topology optimization of creeping fluid flows using a Darcy–Stokes finite element.
+Int. J. Numer. Methods Eng. 2006, 66, 461–484. [CrossRef]
+Evgrafov, A. Topology optimization of slightly compressible fluids. ZAMM 2006, 86, 46–62. [CrossRef]
+Wiker, N.; Klarbring, A.; Borrvall, T. Topology optimization of regions of Darcy and Stokes flow. Int. J.
+Numer. Methods Eng. 2007, 69, 1374–1404. [CrossRef]
+Pingen, G.; Evgrafov, A.; Maute, K. Topology optimization of flow domains using the lattice Boltzmann
+method. Struct. Multidiscip. Optim. 2007, 34, 507–524. [CrossRef]
+Aage, N.; Poulsen, T.H.; Gersborg-Hansen, A.; Sigmund, O. Topology optimization of large scale Stokes
+flow problems. Struct. Multidiscip. Optim. 2007, 35, 175–180. [CrossRef]
+Bruns, T.E. Topology optimization by penalty (TOP) method. Comput. Methods Appl. Mech. Eng. 2007,
+196, 4430–4443. [CrossRef]
+Duan, X.B.; Ma, Y.C.; Zhang, R. Shape-topology optimization for Navier–Stokes problem using variational
+level set method. J. Comput. Appl. Math. 2008, 222, 487–499. [CrossRef]
+Duan, X.B.; Ma, Y.C.; Zhang, R. Shape-topology optimization of Stokes flow via variational level set method.
+Appl. Math. Comput. 2008, 202, 200–209. doi:10.1016/j.amc.2008.02.014. [CrossRef]
+Duan, X.; Ma, Y.; Zhang, R. Optimal shape control of fluid flow using variational level set method.
+Phys. Lett. A 2008, 372, 1374–1379. doi:10.1016/j.physleta.2007.09.070. [CrossRef]
+Evgrafov, A.; Pingen, G.; Maute, K. Topology optimization of fluid domains: kinetic theory approach.
+ZAMM 2008, 88, 129–141. [CrossRef]
+Othmer, C. A continuous adjoint formulation for the computation of topological and surface sensitivities of
+ducted flows. Int. J. Numer. Methods Fluids 2008, 58, 861–877. [CrossRef]
+
+Fluids 2020, 5, 29
+
+22.
+
+23.
+24.
+25.
+26.
+27.
+28.
+29.
+
+30.
+31.
+32.
+33.
+34.
+35.
+36.
+
+37.
+
+38.
+
+39.
+40.
+41.
+42.
+43.
+44.
+45.
+
+25 of 32
+
+Pingen, G.; Evgrafov, A.; Maute, K. A parallel Schur complement solver for the solution of the adjoint
+steady-state lattice Boltzmann equations: application to design optimisation. Int. J. Comput. Fluid Dyn. 2008,
+22, 457–464. [CrossRef]
+Zhou, S.; Li, Q. A variational level set method for the topology optimization of steady-state Navier–Stokes
+flow. J. Comput. Phys. 2008, 227, 10178–10195. [CrossRef]
+Pingen, G.; Waidmann, M.; Evgrafov, A.; Maute, K. A parametric level-set approach for topology
+optimization of flow domains. Struct. Multidiscip. Optim. 2010, 41, 117–131. [CrossRef]
+Challis, V.J.; Guest, J.K. Level set topology optimization of fluids in Stokes flow. Int. J. Numer. Methods Eng.
+2009, 79, 1284–1308. [CrossRef]
+Kreissl, S.; Pingen, G.; Maute, K. An explicit level set approach for generalized shape optimization of fluids
+with the lattice Boltzmann method. Int. J. Numer. Methods Fluids 2011, 65, 496–519. [CrossRef]
+Liu, Z.; Gao, Q.; Zhang, P.; Xuan, M.; Wu, Y. Topology optimization of fluid channels with flow rate equality
+constraints. Struct. Multidiscip. Optim. 2011, 44, 31–37. [CrossRef]
+Okkels, F.; Dufva, M.; Bruus, H. Optimal homogenization of perfusion flows in microfluidic bio-reactors:
+A numerical study. PLoS ONE 2011, 6, e14574. [CrossRef]
+Kondoh, T.; Matsumori, T.; Kawamoto, A. Drag minimization and lift maximization in laminar flows via
+topology optimization employing simple objective function expressions based on body force integration.
+Struct. Multidiscip. Optim. 2012, 45, 693–701. [CrossRef]
+Kreissl, S.; Maute, K. Levelset based fluid topology optimization using the extended finite element method.
+Struct. Multidiscip. Optim. 2012, 46, 311–326. [CrossRef]
+Deng, Y.; Liu, Z.; Wu, Y. Topology optimization of steady and unsteady incompressible Navier–Stokes flows
+driven by body forces. Struct. Multidiscip. Optim. 2013, 47, 555–570. [CrossRef]
+Deng, Y.; Liu, Z.; Wu, J.; Wu, Y. Topology optimization of steady Navier–Stokes flow with body force.
+Comput. Methods Appl. Mech. Eng. 2013, 255, 306–321. [CrossRef]
+Aage, N.; Lazarov, B.S. Parallel framework for topology optimization using the method of moving
+asymptotes. Struct. Multidiscip. Optim. 2013, 47, 493–505. [CrossRef]
+Evgrafov, A. State space Newton’s method for topology optimization. Comput. Methods Appl. Mech. Eng.
+2014, 278, 272–290. [CrossRef]
+Romero, J.S.; Silva, E.C.N. A topology optimization approach applied to laminar flow machine rotor design.
+Comput. Methods Appl. Mech. Eng. 2014, 279, 268–300. [CrossRef]
+Yaji, K.; Yamada, T.; Yoshino, M.; Matsumoto, T.; Izui, K.; Nishiwaki, S. Topology optimization using the
+lattice Boltzmann method incorporating level set boundary expressions. J. Comput. Phys. 2014, 274, 158–181.
+[CrossRef]
+Liu, Z.; Liu, G.; Geier, M.; Krafczyk, M.; Chen, T. Discrete adjoint sensitivity analysis for fluid flow topology
+optimization based on the generalized lattice Boltzmann method. Comput. Math. Appl. 2014, 68, 1374–1392.
+[CrossRef]
+Yonekura, K.; Kanno, Y. A flow topology optimization method for steady state flow using transient
+information of flow field solved by lattice Boltzmann method. Struct. Multidiscip. Optim. 2015, 51, 159–172.
+[CrossRef]
+Liu, X.; Zhang, B.; Sun, J. An improved implicit re-initialization method for the level set function applied to
+shape and topology optimization of fluid. J. Comput. Appl. Math. 2015, 281, 207–229. [CrossRef]
+Duan, X.B.; Li, F.F.; Qin, X.Q. Adaptive mesh method for topology optimization of fluid flow. Appl. Math. Lett.
+2015, 44, 40–44. [CrossRef]
+Evgrafov, A. On Chebyshev’s method for topology optimization of Stokes flows. Struct. Multidiscip. Optim.
+2015, 51, 801–811. [CrossRef]
+Garcke, H.; Hecht, C. Shape and Topology Optimization in Stokes Flow with a Phase Field Approach.
+Appl. Math. Optim. 2016, 73, 23–70. [CrossRef]
+Lin, S.; Zhao, L.; Guest, J.K.; Weihs, T.P.; Liu, Z. Topology Optimization of Fixed-Geometry Fluid Diodes.
+J. Mech. Des. 2015, 137, 081402. [CrossRef]
+Garcke, H.; Hecht, C.; Hinze, M.; Kahle, C. Numerical Approximation of Phase Field Based Shape and
+Topology Optimization for Fluids. SIAM J. Sci. Comput. 2015, 37, A1846–A1871. [CrossRef]
+Duan, X.; Qin, X.; Li, F. Topology optimization of Stokes flow using an implicit coupled level set method.
+Appl. Math. Model. 2016, 40, 5431–5441. [CrossRef]
+
+Fluids 2020, 5, 29
+
+46.
+47.
+48.
+
+49.
+50.
+
+51.
+52.
+53.
+54.
+55.
+56.
+57.
+58.
+59.
+60.
+61.
+62.
+63.
+64.
+65.
+66.
+67.
+68.
+69.
+70.
+
+26 of 32
+
+N. Sá, L.F.; R. Amigo, R.C.; Novotny, A.A.; N. Silva, E.C. Topological derivatives applied to fluid flow
+channel design optimization problems. Struct. Multidiscip. Optim. 2016, 54, 249–264. [CrossRef]
+Yoshimura, M.; Shimoyama, K.; Misaka, T.; Obayashi, S. Topology optimization of fluid problems using
+genetic algorithm assisted by the Kriging model. Int. J. Numer. Methods Eng. 2017, 109, 514–532. [CrossRef]
+Pereira, A.; Talischi, C.; Paulino, G.H.; M. Menezes, I.F.; Carvalho, M.S. Fluid flow topology optimization
+in PolyTop: stability and computational implementation. Struct. Multidiscip. Optim. 2016, 54, 1345–1364.
+[CrossRef]
+Duan, X.; Li, F.; Qin, X. Topology optimization of incompressible Navier–Stokes problem by level set based
+adaptive mesh method. Comput. Math. Appl. 2016, 72, 1131–1141. [CrossRef]
+Kubo, S.; Yaji, K.; Yamada, T.; Izui, K.; Nishiwaki, S. A level set-based topology optimization method for
+optimal manifold designs with flow uniformity in plate-type microchannel reactors. Struct. Multidiscip. Optim.
+2017, 55, 1311–1327. [CrossRef]
+Jang, G.W.; Lee, J.W. Topology optimization of internal partitions in a flow-reversing chamber muffler for
+noise reduction. Struct. Multidiscip. Optim. 2016, 55, 2181–2196. [CrossRef]
+Koch, J.R.L.; Papoutsis-Kiachagias, E.M.; Giannakoglou, K.C. Transition from adjoint level set topology to
+shape optimization for 2D fluid mechanics. Comput. Fluids 2017, 150, 123–138. [CrossRef]
+Sato, Y.; Yaji, K.; Izui, K.; Yamada, T.; Nishiwaki, S. Topology optimization of a no-moving-part valve
+incorporating Pareto frontier exploration. Struct. Multidiscip. Optim. 2017, 56, 839–851. [CrossRef]
+Sá, N.L.F.; Novotny, A.A.; Romero, J.S.; N. Silva, E.C. Design optimization of laminar flow machine rotors
+based on the topological derivative concept. Struct. Multidiscip. Optim. 2017, 56, 1013–1026. [CrossRef]
+Yonekura, K.; Kanno, Y. Topology optimization method for interior flow based on transient information of
+the lattice Boltzmann method with a level-set function. Jpn. J. Ind. Appl. Math. 2017, 34, 611–632. [CrossRef]
+Dai, X.; Zhang, C.; Zhang, Y.; Gulliksson, M. Topology optimization of steady Navier–Stokes flow via a
+piecewise constant level set method. Struct. Multidiscip. Optim. 2018, 57, 2193–2203. [CrossRef]
+Shen, C.; Hou, L.; Zhang, E.; Lin, J. Topology optimization of three-phase interpolation models in
+Darcy–Stokes flow. Struct. Multidiscip. Optim. 2018, 57, 1663–1677. [CrossRef]
+Deng, Y.; Liu, Z.; Wu, Y.
+Topology Optimization of Capillary, Two-Phase Flow Problems.
+Commun. Comput. Phys. 2017, 22, 1413–1438. [CrossRef]
+Garcke, H.; Hinze, M.; Kahle, C.; Lam, K.F. A phase field approach to shape optimization in Navier–Stokes
+flow with integral state constraints. Adv. Comput. Math. 2018, 44, 1345–1383. [CrossRef]
+Alonso, D.H.; de Sá, L.F.N.; Saenz, J.S.R.; Silva, E.C.N. Topology optimization applied to the design of 2D
+swirl flow devices. Struct. Multidiscip. Optim. 2018, 58, 2341–2364. [CrossRef]
+Jensen, K.E. Topology optimization of Stokes flow on dynamic meshes using simple optimizers.
+Comput. Fluids 2018, 174, 66–77. [CrossRef]
+Sá, L.F.N.; Romero, J.S.; Horikawa, O.; Silva, E.C.N. Topology optimization applied to the development of
+small scale pump. Struct. Multidiscip. Optim. 2018, 57, 2045–2059. [CrossRef]
+Zhou, M.; Lian, H.; Sigmund, O.; Aage, N. Shape morphing and topology optimization of fluid channels by
+explicit boundary tracking. Int. J. Numer. Methods Fluids 2018, 88, 296–313. [CrossRef]
+Shin, S.; Jeong, J.H.; Lim, D.K.; Kim, E.S. Design of SFR fluidic diode axial port using topology optimization.
+Nucl. Eng. Des. 2018, 338, 63–73. [CrossRef]
+Yonekura, K.; Kanno, Y. A Heuristic Method Using Hessian Matrix for Fast Flow Topology Optimization.
+J. Optim. Theory Appl. 2019, 180, 671–681. [CrossRef]
+Behrou, R.; Ranjan, R.; Guest, J.K. Adaptive topology optimization for incompressible laminar flow problems
+with mass flow constraints. Comput. Methods Appl. Mech. Eng. 2019, 346, 612–641. [CrossRef]
+Alonso, D.H.; de Sá, L.F.N.; Saenz, J.S.R.; Silva, E.C.N. Topology optimization based on a two-dimensional
+swirl flow model of Tesla-type pump devices. Comput. Math. Appl. 2019, 77, 2499–2533. [CrossRef]
+Lim, D.K.; Song, M.S.; Chae, H.; Kim, E.S. Topology optimization on vortex-type passive fluidic diode for
+advanced nuclear reactors. Nucl. Eng. Technol. 2019, 51, 1279–1288. [CrossRef]
+Sato, A.; Yamada, T.; Izui, K.; Nishiwaki, S.; Takata, S. A topology optimization method in rarefied gas flow
+problems using the Boltzmann equation. J. Comput. Phys. 2019, 395, 60–84. [CrossRef]
+Gaymann, A.; Montomoli, F.; Pietropaoli, M. Fluid topology optimization: Bio-inspired valves for aircraft
+engines. Int. J. Heat Fluid Flow 2019, 79, 108455. [CrossRef]
+
+Fluids 2020, 5, 29
+
+71.
+72.
+73.
+74.
+75.
+76.
+77.
+78.
+79.
+80.
+
+81.
+82.
+83.
+84.
+85.
+86.
+87.
+88.
+89.
+90.
+91.
+92.
+93.
+94.
+95.
+96.
+
+27 of 32
+
+Gaymann, A.; Montomoli, F. Deep Neural Network and Monte Carlo Tree Search applied to fluid–structure
+Topology Optimization. Sci. Rep. 2019, 9, 15916. [CrossRef] [PubMed]
+Kreissl, S.; Pingen, G.; Maute, K. Topology optimization for unsteady flow. Int. J. Numer. Methods Eng. 2011,
+87, 1229–1253. [CrossRef]
+Deng, Y.; Liu, Z.; Zhang, P.; Liu, Y.; Wu, Y. Topology optimization of unsteady incompressible Navier–Stokes
+flows. J. Comput. Phys. 2011, 230, 6688–6708. [CrossRef]
+Abdelwahed, M.; Hassine, M. Topology Optimization of Time Dependent Viscous Incompressible Flows.
+Abstr. Appl. Anal. 2014, 2014, 923016. [CrossRef]
+Nørgaard, S.; Sigmund, O.; Lazarov, B. Topology optimization of unsteady flow problems using the lattice
+Boltzmann method. J. Comput. Phys. 2016, 307, 291–307. [CrossRef]
+Villanueva, C.H.; Maute, K. CutFEM topology optimization of 3D laminar incompressible flow problems.
+Comput. Methods Appl. Mech. Eng. 2017, 320, 444–473. [CrossRef]
+Chen, C.; Yaji, K.; Yamada, T.; Izui, K.; Nishiwaki, S. Local-in-time adjoint-based topology optimization of
+unsteady fluid flows using the lattice Boltzmann method. Mech. Eng. J. 2017, 4, 17-00120. [CrossRef]
+Nørgaard, S.A.; Sagebaum, M.; Gauger, N.R.; Lazarov, B.S. Applications of automatic differentiation in
+topology optimization. Struct. Multidiscip. Optim. 2017, 56, 1135–1146. [CrossRef]
+Sasaki, Y.; Sato, Y.; Yamada, T.; Izui, K.; Nishiwaki, S. Topology optimization for fluid flows using the MPS
+method incorporating the level set method. Comput. Fluids 2019, 188, 86–101. [CrossRef]
+Kontoleontos, E.A.; Papoutsis-Kiachagias, E.M.; Zymaris, A.S.; Papadimitriou, D.I.; Giannakoglou, K.C.
+Adjoint-based constrained topology optimization for viscous flows, including heat transfer. Eng. Optim.
+2013, 45, 941–961. [CrossRef]
+Yoon, G.H. Topology optimization for turbulent flow with Spalart–Allmaras model. Comput. Methods Appl.
+Mech. Eng. 2016, 303, 288–311. [CrossRef]
+Dilgen, S.B.; Dilgen, C.B.; Fuhrman, D.R.; Sigmund, O.; Lazarov, B.S. Density based topology optimization
+of turbulent flow heat transfer systems. Struct. Multidiscip. Optim. 2018, 57, 1905–1918. [CrossRef]
+Yoon, G.H. Topology optimization method with finite elements based on the k-e turbulence model.
+Comput. Methods Appl. Mech. Eng. 2020, 361, 112784. [CrossRef]
+Pingen, G.; Maute, K. Optimal design for non-Newtonian flows using a topology optimization approach.
+Comput. Math. Appl. 2010, 59, 2340–2350. [CrossRef]
+Ejlebjerg Jensen, K.; Szabo, P.; Okkels, F. Topology optimization of viscoelastic rectifiers. Appl. Phys. Lett.
+2012, 100, 234102. [CrossRef]
+Jensen, K.E.; Szabo, P.; Okkels, F. Optimization of bistable viscoelastic systems. Struct. Multidiscip. Optim.
+2014, 49, 733–742. [CrossRef]
+Hyun, J.; Wang, S.; Yang, S. Topology optimization of the shear thinning non-Newtonian fluidic systems for
+minimizing wall shear stress. Comput. Math. Appl. 2014, 67, 1154–1170. [CrossRef]
+Zhang, B.; Liu, X. Topology optimization study of arterial bypass configurations using the level set method.
+Struct. Multidiscip. Optim. 2015, 51, 773–798. [CrossRef]
+Zhang, B.; Liu, X.; Sun, J. Topology optimization design of non-Newtonian roller-type viscous micropumps.
+Struct. Multidiscip. Optim. 2016, 53, 409–424. [CrossRef]
+Romero, J.S.; N. Silva, E.C. Non-newtonian laminar flow machine rotor design by using topology
+optimization. Struct. Multidiscip. Optim. 2017, 55, 1711–1732. [CrossRef]
+Dong, X.; Liu, X. Bi-objective topology optimization of asymmetrical fixed-geometry microvalve for
+non-Newtonian flow. Microsyst. Technol. 2019, 25, 2471–2479. [CrossRef]
+Okkels, F.; Bruus, H. Scaling behavior of optimally structured catalytic microfluidic reactors. Phys. Rev. E
+2007, 75, 016301. [CrossRef] [PubMed]
+Andreasen, C.S.; Gersborg, A.R.; Sigmund, O. Topology optimization of microfluidic mixers. Int. J. Numer.
+Methods Fluids 2009, 61, 498–513. [CrossRef]
+Gregersen, M.M.; Okkels, F.; Bazant, M.Z.; Bruus, H. Topology and shape optimization of induced-charge
+electro-osmotic micropumps. New J. Phys. 2009, 11, 075019. [CrossRef]
+Schäpper, D.; Lencastre Fernandes, R.; Lantz, A.E.; Okkels, F.; Bruus, H.; Gernaey, K.V. Topology optimized
+microbioreactors. Biotechnol. Bioeng. 2011, 108, 786–796. [CrossRef] [PubMed]
+Kim, C.; Sun, H. Topology optimization of gas flow channel routes in an automotive fuel cell. Int. J.
+Automot. Technol. 2012, 13, 783–789. [CrossRef]
+
+Fluids 2020, 5, 29
+
+97.
+
+28 of 32
+
+Makhija, D.; Pingen, G.; Yang, R.; Maute, K. Topology optimization of multi-component flows using a
+multi-relaxation time lattice Boltzmann method. Comput. Fluids 2012, 67, 104–114. [CrossRef]
+98. Deng, Y.; Liu, Z.; Zhang, P.; Liu, Y.; Gao, Q.; Wu, Y. A flexible layout design method for passive micromixers.
+Biomed. Microdevices 2012, 14, 929–945. [CrossRef]
+99. Makhija, D.; Maute, K. Level set topology optimization of scalar transport problems. Struct. Multidiscip. Optim.
+2014, 51, 267–285. [CrossRef]
+100. Oh, S.; Wang, S.; Park, M.; Kim, J.H. Novel spacer design using topology optimization in a reverse osmosis
+channel. J. Fluids Eng. Trans. ASME 2014, 136, 021201. [CrossRef]
+101. Chen, X.; Li, T. A novel design for passive misscromixers based on topology optimization method.
+Biomed. Microdevices 2016, 18, 57. [CrossRef]
+102. Hyun, J.c.; Hyun, J.; Wang, S.; Yang, S. Improved pillar shape for deterministic lateral displacement
+separation method to maintain separation efficiency over a long period of time. Sep. Purif. Technol. 2017,
+172, 258–267. [CrossRef]
+103. Andreasen, C.S. Topology optimization of inertia driven dosing units. Struct. Multidiscip. Optim. 2016,
+55, 1301–1309. [CrossRef]
+104. Yaji, K.; Yamasaki, S.; Tsushima, S.; Suzuki, T.; Fujita, K. Topology optimization for the design of flow fields
+in a redox flow battery. Struct. Multidiscip. Optim. 2018, 57, 535–546. [CrossRef]
+105. Guo, Y.; Xu, Y.; Deng, Y.; Liu, Z. Topology Optimization of Passive Micromixers Based on Lagrangian
+Mapping Method. Micromachines 2018, 9, 137. [CrossRef] [PubMed]
+106. Behrou, R.; Pizzolato, A.; Forner-Cuenca, A. Topology optimization as a powerful tool to design advanced
+PEMFCs flow fields. Int. J. Heat Mass Transf. 2019, 135, 72–92. [CrossRef]
+107. Chen, C.H.; Yaji, K.; Yamasaki, S.; Tsushima, S.; Fujita, K. Computational design of flow fields for vanadium
+redox flow batteries via topology optimization. J. Energy Storage 2019, 26, 100990. [CrossRef]
+108. Dugast, F.; Favenne, Y.; Josset, C. Reactive fluid flow topology optimization with the multi-relaxation time
+lattice Boltzmann method and a level-set function. J. Comput. Phys. 2020, 109252. [CrossRef]
+109. Alexandersen, J.; Aage, N.; Andreasen, C.S.; Sigmund, O. Topology optimisation for natural convection
+problems. Int. J. Numer. Methods Fluids 2014, 76, 699–721. [CrossRef]
+110. Dede, E.M. Multiphysics Topology Optimization of Heat Transfer and Fluid Flow Systems. In Proceedings
+of the COMSOL Conference 2009, Boston, MA, USA, 8–10 October 2009.
+111. Yoon, G.H. Topological design of heat dissipating structure with forced convective heat transfer. J. Mech.
+Sci. Technol. 2010, 24, 1225–1233. [CrossRef]
+112. Dede, E.M. Optimization and design of a multipass branching microchannel heat sink for electronics cooling.
+J. Electron. Packag. Trans. ASME 2012, 134, 041001. [CrossRef]
+113. McConnell, C.; Pingen, G. Multi-Layer, Pseudo 3D Thermal Topology Optimization of Heat Sinks.
+In Proceedings of the ASME 2012 International Mechanical Engineering Congress and Exposition, Houston,
+TX, USA, 9–15 November 2012; pp. 2381–2392.
+114. Matsumori, T.; Kondoh, T.; Kawamoto, A.; Nomura, T. Topology optimization for fluid–thermal interaction
+problems under constant input power. Struct. Multidiscip. Optim. 2013, 47, 571–581. [CrossRef]
+115. Marck, G.; Nemer, M.; Harion, J.L. Topology Optimization of Heat and Mass Transfer Problems: Laminar
+Flow. Numer. Heat Transf. Part B Fundam. 2013, 63, 508–539. [CrossRef]
+116. Koga, A.A.; Lopes, E.C.C.; Villa Nova, H.F.; Lima, C.R.d.; Silva, E.C.N. Development of heat sink device by
+using topology optimization. Int. J. Heat Mass Transf. 2013, 64, 759–772. [CrossRef]
+117. Yaji, K.; Yamada, T.; Kubo, S.; Izui, K.; Nishiwaki, S. A topology optimization method for a coupled
+thermal–fluid problem using level set boundary expressions. Int. J. Heat Mass Transf. 2015, 81, 878–888.
+[CrossRef]
+118. Yaji, K.; Yamada, T.; Yoshino, M.; Matsumoto, T.; Izui, K.; Nishiwaki, S. Topology optimization in
+thermal-fluid flow using the lattice Boltzmann method. J. Comput. Phys. 2016, 307, 355–377. [CrossRef]
+119. Łaniewski Wołłk, L.; Rokicki, J. Adjoint Lattice Boltzmann for topology optimization on multi-GPU
+architecture. Comput. Math. Appl. 2016, 71, 833–848. [CrossRef]
+120. Qian, X.; Dede, E.M. Topology optimization of a coupled thermal-fluid system under a tangential thermal
+gradient constraint. Struct. Multidiscip. Optim. 2016, 54, 531–551. [CrossRef]
+121. Haertel, J.H.K.; Nellis, G.F. A fully developed flow thermofluid model for topology optimization of
+3D-printed air-cooled heat exchangers. Appl. Therm. Eng. 2017, 119, 10–24. [CrossRef]
+
+Fluids 2020, 5, 29
+
+29 of 32
+
+122. Pietropaoli, M.; Ahlfeld, R.; Montomoli, F.; Ciani, A.; D’Ercole, M. Design for Additive Manufacturing:
+Internal Channel Optimization. J. Eng. Gas Turbines Power 2017, 139, 102101. [CrossRef]
+123. Zhao, X.; Zhou, M.; Sigmund, O.; Andreasen, C.S. A ‘poor man’s approach” to topology optimization of
+cooling channels based on a Darcy flow model. Int. J. Heat Mass Transf. 2018, 116, 1108–1123. [CrossRef]
+124. Qian, S.; Wang, W.; Ge, C.; Lou, S.; Miao, E.; Tang, B. Topology optimization of fluid flow channel in cold
+plate for active phased array antenna. Struct. Multidiscip. Optim. 2018, 57, 2223–2232. [CrossRef]
+125. Sato, Y.; Yaji, K.; Izui, K.; Yamada, T.; Nishiwaki, S. An Optimum Design Method for a Thermal-Fluid Device
+Incorporating Multiobjective Topology Optimization With an Adaptive Weighting Scheme. J. Mech. Des.
+2018, 140, 31402. [CrossRef]
+126. Yaji, K.; Ogino, M.; Chen, C.; Fujita, K. Large-scale topology optimization incorporating local-in-time
+adjoint-based method for unsteady thermal-fluid problem. Struct. Multidiscip. Optim. 2018, 58, 817–822.
+[CrossRef]
+127. Haertel, J.H.K.; Engelbrecht, K.; Lazarov, B.S.; Sigmund, O. Topology optimization of a pseudo 3D
+thermofluid heat sink model. Int. J. Heat Mass Transf. 2018, 121, 1073–1088. [CrossRef]
+128. Zeng, S.; Kanargi, B.; Lee, P.S. Experimental and numerical investigation of a mini channel forced air heat
+sink designed by topology optimization. Int. J. Heat Mass Transf. 2018, 121, 663–679. [CrossRef]
+129. Dilgen, C.B.; Dilgen, S.B.; Fuhrman, D.R.; Sigmund, O.; Lazarov, B.S. Topology optimization of turbulent
+flows. Comput. Methods Appl. Mech. Eng. 2018, 331, 363–393. [CrossRef]
+130. Ramalingom, D.; Cocquet, P.H.; Bastide, A. A new interpolation technique to deal with fluid-porous media
+interfaces for topology optimization of heat transfer. Comput. Fluids 2018, 168, 144–158. [CrossRef]
+131. Dugast, F.; Favennec, Y.; Josset, C.; Fan, Y.; Luo, L. Topology optimization of thermal fluid flows with an
+adjoint Lattice Boltzmann Method. J. Comput. Phys. 2018, 365, 376–404. [CrossRef]
+132. Santhanakrishnan, M.S.; Tilford, T.; Bailey, C. Performance assessment of density and level-set topology
+optimisation methods for three-dimensional heat sink design. J. Algorithms Comput. Technol. 2018, 12, 273–287.
+[CrossRef]
+133. Sun, C.; Lewpiriyawong, N.; Khoo, K.L.; Zeng, S.; Lee, P.S. Thermal enhancement of fin and tube heat
+exchanger with guiding channels and topology optimisation. Int. J. Heat Mass Transf. 2018, 127, 1001–1013.
+[CrossRef]
+134. Lv, Y.; Liu, S. Topology optimization and heat dissipation performance analysis of a micro-channel heat sink.
+Meccanica 2018, 53, 3693–3708. [CrossRef]
+135. Pietropaoli, M.; Montomoli, F.; Gaymann, A. Three-dimensional fluid topology optimization for heat transfer.
+Struct. Multidiscip. Optim. 2019, 59, 801–812. [CrossRef]
+136. Makhija, D.S.; Beran, P.S. Concurrent shape and topology optimization for steady conjugate heat transfer.
+Struct. Multidiscip. Optim. 2019, 59, 919–940. [CrossRef]
+137. Subramaniam, V.; Dbouk, T.; Harion, J.L. Topology optimization of conjugate heat transfer systems:
+A competition between heat transfer enhancement and pressure drop reduction. Int. J. Heat Fluid Flow 2019,
+75, 165–184. [CrossRef]
+138. Yu, M.; Ruan, S.; Wang, X.; Li, Z.; Shen, C. Topology optimization of thermal–fluid problem using the
+MMC-based approach. Struct. Multidiscip. Optim. 2019, 60, 151–165. [CrossRef]
+139. Zhang, B.; Gao, L. Topology optimization of convective heat transfer problems for non-Newtonian fluids.
+Struct. Multidiscip. Optim. 2019, 60, 1821–1840. [CrossRef]
+140. Kobayashi, H.; Yaji, K.; Yamasaki, S.; Fujita, K. Freeform winglet design of fin-and-tube heat exchangers
+guided by topology optimization. Appl. Therm. Eng. 2019, 161, 114020. [CrossRef]
+141. Zeng, S.; Lee, P.S. Topology optimization of liquid-cooled microchannel heat sinks: An experimental and
+numerical study. Int. J. Heat Mass Transf. 2019, 142, 118401. [CrossRef]
+142. Jahan, S.; Wu, T.; Shin, Y.; Tovar, A.; El-Mounayri, H. Thermo-fluid Topology Optimization and Experimental
+Study of Conformal Cooling Channels for 3D Printed Plastic Injection Molds. Procedia Manuf. 2019,
+34, 631–639. [CrossRef]
+143. Yan, S.; Wang, F.; Hong, J.; Sigmund, O. Topology optimization of microchannel heat sinks using a two-layer
+model. Int. J. Heat Mass Transf. 2019, 143, 118462. [CrossRef]
+144. Tawk, R.; Ghannam, B.; Nemer, M. Topology optimization of heat and mass transfer problems in two
+fluids-one solid domains. Numer. Heat Transf. Part B Fundam. 2019, 76, 130–151. [CrossRef]
+
+Fluids 2020, 5, 29
+
+30 of 32
+
+145. Lundgaard, C.; Engelbrecht, K.; Sigmund, O. A density-based topology optimization methodology for
+thermal energy storage systems. Struct. Multidiscip. Optim. 2019, 60, 2189–2204. [CrossRef]
+146. Li, H.; Ding, X.; Meng, F.; Jing, D.; Xiong, M. Optimal design and thermal modelling for liquid-cooled heat
+sink based on multi-objective topology optimization: An experimental and numerical study. Int. J. Heat
+Mass Transf. 2019, 144, 118638. [CrossRef]
+147. Dong, X.; Liu, X. Multi-objective optimal design of microchannel cooling heat sink using topology
+optimization method. Numeri. Heat Transf. Part A Appl. 2020, 77, 90–104. [CrossRef]
+148. Yaji, K.; Yamasaki, S.; Fujita, K. Multifidelity design guided by topology optimization. Struct. Multidiscip. Optim.
+2019, 61, 1071–1085. [CrossRef]
+149. Hu, D.; Zhang, Z.; Li, Q. Numerical study on flow and heat transfer characteristics of microchannel designed
+using topological optimizations method. Sci. China Technol. Sci. 2020, 63, 105–115. [CrossRef]
+150. Coffin, P.; Maute, K. A level-set method for steady-state and transient natural convection problems.
+Struct. Multidiscip. Optim. 2016, 53, 1047–1067. [CrossRef]
+151. Alexandersen, J.; Sigmund, O.; Aage, N. Large scale three-dimensional topology optimisation of heat sinks
+cooled by natural convection. Int. J. Heat Mass Transf. 2016, 100, 876–891. [CrossRef]
+152. Pizzolato, A.; Sharma, A.; Maute, K.; Sciacovelli, A.; Verda, V. Design of effective fins for fast PCM melting
+and solidification in shell-and-tube latent heat thermal energy storage through topology optimization.
+Appl. Energy 2017, 208, 210–227. [CrossRef]
+153. Alexandersen, J.; Sigmund, O.; Meyer, K.E.; Lazarov, B.S. Design of passive coolers for light-emitting diode
+lamps using topology optimisation. Int. J. Heat Mass Transf. 2018, 122, 138–149. [CrossRef]
+154. Lazarov, B.S.; Sigmund, O.; Meyer, K.E.; Alexandersen, J. Experimental validation of additively manufactured
+optimized shapes for passive cooling. Appl. Energy 2018, 226, 330–339. [CrossRef]
+155. Lei, T.; Alexandersen, J.; Lazarov, B.S.; Wang, F.; Haertel, J.H.K.; De Angelis, S.; Sanna, S.; Sigmund, O.;
+Engelbrecht, K. Investment casting and experimental testing of heat sinks designed by topology optimization.
+Int. J. Heat Mass Transf. 2018, 127, 396–412. [CrossRef]
+156. Saglietti, C.; Schlatter, P.; Wadbro, E.; Berggren, M.; Henningson, D.S. Topology optimization of heat sinks in
+a square differentially heated cavity. Int. J. Heat Fluid Flow 2018, 74, 36–52. [CrossRef]
+157. Asmussen, J.; Alexandersen, J.; Sigmund, O.; Andreasen, C.S. A “poor man’s” approach to topology
+optimization of natural convection problems. Struct. Multidiscip. Optim. 2019, 59, 1105–1124. [CrossRef]
+158. Pizzolato, A.; Sharma, A.; Ge, R.; Maute, K.; Verda, V.; Sciacovelli, A. Maximization of performance
+in multi-tube latent heat storage–Optimization of fins topology, effect of materials selection and flow
+arrangements. Energy 2019, in press.
+159. Ramalingom, D.; Cocquet, P.H.; Maleck, R.; Bastide, A. A multi-objective optimization problem in mixed
+and natural convection for a vertical channel asymmetrically heated. Struct. Multidiscip. Optim. 2019, 60,
+2001–2020. [CrossRef]
+160. Pollini, N.; Sigmund, O.; Andreasen, C.S.; Alexandersen, J. A “poor man’s” approach for high-resolution
+three-dimensional topology design for natural convection problems. Adv. Eng. Softw. 2020, 140, 102736.
+doi:10.1016/j.advengsoft.2019.102736. [CrossRef]
+161. Yoon, G.H. Topology optimization for stationary fluid–structure interaction problems using a new monolithic
+formulation. Int. J. Numer. Methods Eng. 2010, 82, 591–616. [CrossRef]
+162. Yoon, G.H.; Jensen, J.S.; Sigmund, O. Topology optimization of acoustic–structure interaction problems
+using a mixed finite element formulation. Int. J. Numer. Methods Eng. 2007, 70, 1049–1075. [CrossRef]
+163. Kreissl, S.; Pingen, G.; Evgrafov, A.; Maute, K. Topology optimization of flexible micro-fluidic devices.
+Struct. Multidiscip. Optim. 2010, 42, 495–516. [CrossRef]
+164. Yoon, G.H. Topological layout design of electro-fluid-thermal-compliant actuator. Comput. Methods Appl.
+Mech. Eng. 2012, 209–212, 28–44. [CrossRef]
+165. Yoon, G.H. Stress-based topology optimization method for steady-state fluid–structure interaction problems.
+Comput. Methods Appl. Mech. Eng. 2014, 278, 499–523. [CrossRef]
+166. Yoon, G.H. Compliant topology optimization for planar passive flap micro valve. J. Nanosci. Nanotechnol.
+2014, 14, 7585–7591. [CrossRef]
+167. Jenkins, N.; Maute, K. An immersed boundary approach for shape and topology optimization of stationary
+fluid–structure interaction problems. Struct. Multidiscip. Optim. 2016, 54, 1191–1208. [CrossRef]
+
+Fluids 2020, 5, 29
+
+31 of 32
+
+168. Munk, D.J.; Kipouros, T.; Vio, G.A.; Steven, G.P.; Parks, G.T. Topology optimisation of micro fluidic mixers
+considering fluid–structure interactions with a coupled Lattice Boltzmann algorithm. J. Comput. Phys. 2017,
+349, 11–32. [CrossRef]
+169. Picelli, R.; Vicente, W.M.; Pavanello, R. Evolutionary topology optimization for structural compliance
+minimization considering design-dependent FSI loads. Finite Elem. Anal. Des. 2017, 135, 44–55. [CrossRef]
+170. Yoon, G.H. Brittle and ductile failure constraints of stress-based topology optimization method for
+fluid–structure interactions. Comput. Math. Appl. 2017, 74, 398–419. [CrossRef]
+171. Lundgaard, C.; Alexandersen, J.; Zhou, M.; Andreasen, C.S.; Sigmund, O. Revisiting density-based
+topology optimization for fluid–structure interaction problems. Struct. Multidiscip. Optim. 2018, 58, 969–995.
+[CrossRef]
+172. Munk, D.J.; Kipouros, T.; Vio, G.A.; Parks, G.T.; Steven, G.P. On the effect of fluid–structure interactions
+and choice of algorithm in multi-physics topology optimisation. Finite Elem. Anal. Des. 2018, 145, 32–54.
+[CrossRef]
+173. Munk, D.J.; Kipouros, T.; Vio, G.A. Multi-physics bi-directional evolutionary topology optimization on
+GPU-architecture. Eng. Comput. 2018, 35, 1059–1079. [CrossRef]
+174. Feppon, F.; Allaire, G.; Bordeu, F.; Cortial, J.; Dapogny, C. Shape optimization of a coupled thermal
+fluid–structure problem in a level set mesh evolution framework. SeMA J. 2019, 76, 413–458. [CrossRef]
+175. Guest, J.K.; Prévost, J.H. Design of maximum permeability material structures. Comput. Methods Appl.
+Mech. Eng. 2007, 196, 1006–1017. [CrossRef]
+176. Guest, J.K.; Prévost, J.H. Optimizing multifunctional materials: Design of microstructures for maximized
+stiffness and fluid permeability. Int. J. Solids Struct. 2006, 43, 7028–7047. [CrossRef]
+177. Hollister, S.J.; Lin, C.Y. Computational design of tissue engineering scaffolds. Comput. Methods Appl.
+Mech. Eng. 2007, 196, 2991–2998. [CrossRef]
+178. Xu, S.; Cheng, G. Optimum material design of minimum structural compliance under seepage constraint.
+Struct. Multidiscip. Optim. 2010, 41, 575–587. [CrossRef]
+179. Andreasen, C.S.; Sigmund, O. Saturated poroelastic actuators generated by topology optimization.
+Struct. Multidiscip. Optim. 2010, 43, 693–706. [CrossRef]
+180. Chen, Y.; Zhou, S.; Li, Q. Microstructure design of biodegradable scaffold and its effect on tissue regeneration.
+Biomaterials 2011, 32, 5003–5014. [CrossRef]
+181. Chen, Y.; Schellekens, M.; Zhou, S.; Cadman, J.; Li, W.; Appleyard, R.; Li, Q. Design Optimization of Scaffold
+Microstructures Using Wall Shear Stress Criterion Towards Regulated Flow-Induced Erosion. J. Biomech. Eng.
+2011, 133, 081008. [CrossRef]
+182. Gonçalves Coelho, P.; Rui Fernandes, P.; Carriço Rodrigues, H. Multiscale modeling of bone tissue with
+surface and permeability control. J. Biomech. 2011, 44, 321–329. [CrossRef]
+183. Challis, V.J.; Guest, J.K.; Grotowski, J.F.; Roberts, A.P. Computationally generated cross-property bounds
+for stiffness and fluid permeability using topology optimization. Int. J. Solids Struct. 2012, 49, 3397–3408.
+[CrossRef]
+184. Andreasen, C.S.; Sigmund, O. Multiscale modeling and topology optimization of poroelastic actuators.
+Smart Mater. Struct. 2012, 21, 065005. [CrossRef]
+185. Andreasen, C.S.; Sigmund, O. Topology optimization of fluid–structure-interaction problems in poroelasticity.
+Comput. Methods Appl. Mech. Eng. 2013, 258, 55–62. [CrossRef]
+186. Youssef, K.; Mack, J.J.; Iruela-Arispe, M.L.; Bouchard, L.S. Macro-scale topology optimization for controlling
+internal shear stress in a porous scaffold bioreactor. Biotechnol. Bioeng. 2012, 109, 1844–1854. [CrossRef]
+187. Ha, S.H.; Lee, H.Y.; Hemker, K.J.; Guest, J.K. Topology Optimization of Three-Dimensional Woven Materials
+Using a Ground Structure Design Variable Representation. J. Mech. Des. 2019, 141. [CrossRef]
+188. Wein, F.; Chen, N.; Iqbal, N.; Stingl, M.; Avila, M. Topology optimization of unsaturated flows in
+multi-material porous media: Application to a simple diaper model. Commun. Nonlinear Sci. Numer. Simul.
+2019, 78, 104871. [CrossRef]
+189. Takezawa, A.; Zhang, X.; Tanaka, T.; Kitamura, M. Topology optimisation of a porous unit cell in a fluid flow
+considering Forchheimer drag. Int. J. Comput. Fluid Dyn. 2019. [CrossRef]
+190. Lurie, S.A.; Rabinskiy, L.N.; Solyaev, Y.O. Topology optimization of the wick geometry in a flat plate heat
+pipe. Int. J. Heat Mass Transf. 2019, 128, 239–247. [CrossRef]
+
+Fluids 2020, 5, 29
+
+32 of 32
+
+191. Takezawa, A.; Zhang, X.; Kato, M.; Kitamura, M. Method to optimize an additively-manufactured
+functionally-graded lattice structure for effective liquid cooling. Addit. Manuf. 2019, 28, 285–298. [CrossRef]
+192. Takezawa, A.; Zhang, X.; Kitamura, M. Optimization of an additively manufactured functionally graded
+lattice structure with liquid cooling considering structural performances. Int. J. Heat Mass Transf. 2019,
+143, 118564. [CrossRef]
+193. Bazilevs, Y.; Takizawa, K.; Tezduyar, T.E. New directions and challenging computations in fluid dynamics
+modeling with stabilized and multiscale methods. Math. Models Methods Appl. Sci. 2015, 25, 2217–2226.
+[CrossRef]
+194. Bazilevs, Y.; Takizawa, K.; Tezduyar, T.E. Computational analysis methods for complex unsteady flow
+problems. Math. Models Methods Appl. Sci. 2019, 29, 825–838. [CrossRef]
+195. Sigmund, O. On the usefulness of non-gradient approaches in topology optimization. Struct. Multidiscip. Optim.
+2011, 43, 589–596. [CrossRef]
+196. Alexandersen, J. Topology Optimisation for Coupled Convection Problems. Master’s Thesis, Technical
+University of Denmark (DTU), Kongens Lyngby, Denmark, 2013.
+c 2020 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access
+article distributed under the terms and conditions of the Creative Commons Attribution
+(CC BY) license (http://creativecommons.org/licenses/by/4.0/).
+
+

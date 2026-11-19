@@ -1,0 +1,1173 @@
+AIAA JOURNAL
+
+VOL. 25, NO. 10
+
+1347
+
+Viscous-Inviscid Analysis of Transonic and Low
+Reynolds Number Airfoils
+Mark Drela* and Michael B. Gilest
+Massachusetts Institute of Technology, Cambridge, Massachusetts
+A method of accurately calculating transonic and low Reynolds number airfoil flows, implemented in the
+viscous-inviscid design/analysis code ISES, is presented. The Euler equations are discretized on a conservative
+streamline grid and are strongly coupled to a two-equation integral boundary-layer formulation, using the
+displacement thickness concept. A transition prediction formulation of the e9 type is derived and incorporated
+into the viscous formulation. The entire discrete equation set, including the viscous and transition formulations,
+is solved as a fully coupled nonlinear system by a global Newton method. This is a rapid and reliable method for
+dealing with strong viscous-inviscid interactions, which invariably occur in transonic and low Reynolds number
+airfoil flows. The results presented demonstrate the ability of the ISES code to predict transitioning separation
+bubbles and their associated losses. The rapid airfoil performance degradation with decreasing Reynolds number
+is thus accurately predicted. Also presented is a transonic airfoil calculation involving shock-induced separation,
+showing the robustness of the global Newton solution procedure. Good agreement with experiment is obtained,
+further demonstrating the performance of the present integral boundary-layer formulation.
+
+Nomenclature
+CD
+Cf
+CT
+hQ
+H
+H*
+II**
+Hk
+
+= dissipation coefficient, (l/peul)^T(du/dri)dTrj
+= skin-friction coefficient, 2r wall /p e w 2
+= shear stress coefficient, rmax/peul
+= stagnation enthalpy
+= shape parameter, d*/6
+— kinetic energy shape parameter, 0*/6
+= density shape parameter, d**/6
+= kinematic shape parameter, f [ 1 - (u/ue) ] dr/
+
+Me
+n
+Ree
+p
+q
+ue
+ur
+5*
+d**
+£,r/
+B
+0*
+^e
+p
+pe
+r
+
+= boundary-layer edge Mach number
+= transition disturbance amplification variable
+= momentum thickness Reynolds number, peued/^e
+= pressure
+=speed
+= boundary-layer edge velocity
+= wall shear velocity, Vr wall /p
+= displacement thickness, {[ 1 - (pu/peue) ] dy
+= density thickness, \ ( u / u e ) [ \ - ( p / p e ) ] d r j
+=thin shear layer coordinates
+= momentum thickness, j (pu/peue) [ 1 — (u/ue) ] dr]
+= kinetic energy thickness, \(pu/peue) [1 - ( u 2 / u l ) ] d r j
+= boundary-layer edge viscosity
+= density
+= boundary-layer edge density
+= shear stress
+
++l(u/ue)[l-(u/ue)]dii
+
+I. Introduction
+FFECTIVE airfoil design procedures require a fast,
+robust analysis method for on-design and off-design
+performance evaluation. For a given time and cost schedule,
+a fast analysis method obviously permits more detailed optimization than a slower method of comparable accuracy and
+thus results in a better final design.
+
+E
+
+Received July 7, 1986; revision received Dec. 9, 1986. Copyright ©
+American Institute of Aeronautics and Astronautics, Inc., 1987. All
+rights reserved.
+'Assistant Professor, Department of Aeronautics and Astronautics. Member AIAA.
+tAssistant Professor, Department of Aeronautics and Astronautics. Member AIAA.
+
+The various airfoil analysis and/or design algorithms that
+have been developed in the past decade have employed one
+of two distinct approaches: the full Reynolds-averaged
+Navier-Stokes approach and the interacted viscous-inviscid
+zonal approach.
+As a rule, the Navier-Stokes approach is too slow for
+routine design work and has not yet shown any accuracy advantages over the much faster zonal approaches. Typical
+zonal approaches, such as the GBK code of Garabedian,
+Bauer, Korn,1 and the GRUMFOIL code of Melnik, Chow,
+and Mead,2 use a full-potential formulation for the inviscid
+flow and an integral boundary-layer formulation for the
+boundary-layer and wake regions. The viscous and inviscid
+flows are strongly coupled, usually through a wall transpiration boundary condition on the inviscid flow. The interacted
+zonal approaches are reasonably fast and accurate for transonic flows and are generally preferred for transonic airfoil
+analysis.
+The applicability of any interacted viscous-inviscid analysis
+method to low Reynolds number flows (chord Re < 1 million)
+critically depends on the boundary layer and transition
+prediction formulations employed in the method. Accurate
+representation of both laminar and turbulent separated flow
+is a must since transitional separation bubbles and their
+losses must be accurately calculated if accurate drag predictions are to be obtained. The transition prediction algorithm
+must likewise be reliable since it affects the termination point
+of any transitional separation bubble and hence determines
+the bubble's size and associated losses.
+Transitional bubble calculations have previously been
+reported by several workers. Gleyzes, Cousteix, and Bonnet3
+employ an incompressible integral boundary-layer formulation with entrainment closure and couple this to some
+unspecified inviscid (presumably potential) solver for a
+model geometry. Vatsa and Carter4 employ a localized approach to calculate the transitional bubbles near an airfoil
+leading edge. The bubble solution is treated as a perturbation
+on a base solution obtained from the GRUMFOIL code.
+The present airfoil analysis formulation, implemented in the
+transonic airfoil/cascade analysis/design code ISES,5'7 incorporates features aimed at computational economy, minimal
+user intervention, and good prediction accuracy for a wide
+range of Mach and Reynolds numbers. The steady Euler equa-
+
+1348
+
+M. OREL A AND M.B. GILES
+
+tions in integral form are used to represent the inviscid flow,
+and a compressible lag-dissipation integral method is used to
+represent the boundary layers and wakes. The viscous and inviscid flows are fully coupled through the displacement
+thickness. The design capabilities of the ISES code were
+presented earlier in Drela6 and in Giles and Drela7 and are further demonstrated in the companion paper.8 The present
+paper is aimed at describing and demonstrating the viscousinviscid analysis capability of the code, particularly for the
+difficult cases of transonic and low Reynolds number flows.
+A novel feature of the ISES code, and one that makes it particularly suitable for very strongly interacting flows, is the
+solution technique used to solve the coupled viscous-inviscid
+equations. Instead of iterating between the viscous and inviscid solvers via some approximate interaction law, the entire
+nonlinear equation set is solved simultaneously as a fully
+coupled system by a global Newton-Raphson method. This is
+a very stable calculation procedure, even for such difficult
+cases as those with shock-induced separation.
+The simultaneous coupling concept was first described in
+Drela, Giles, and Thompkins.9 Since that time, numerous
+changes have been made to the viscous formulation to improve its performance for transonic airfoil flows and to make
+the method applicable to low Reynolds number flows as well.
+Originally, the laminar boundary-layer portions were represented by Thwaites' method, and the turbulent portions were
+represented by Green's entrainment method. Neither formulation is valid for separated flow. Although Green's method has
+been extended to separated flows by Melnik and Brook,10 it is
+not possible to derive a valid Thwaites' method for separating
+flow since it is a one-equation method. Difficulties were also
+encountered in the transition formulation used at that time,
+due to the fundamentally different character of the Thwaites
+and Green formulations. All the above problems were resolved
+by switching to a two-equation dissipation-type closure for
+both the laminar and turbulent portions, with a lag equation
+added to the turbulent formulation. A free transition prediction method similar to that of Gleyzes, Cousteix, and Bonnet3
+was formulated and incorporated into the global Newton solution scheme.
+The calculations to be presented are entire airfoil drag
+polars at low Reynolds numbers for wide angle of attack
+ranges, and one transonic case with shock-induced separation.
+The polars, surface pressure distributions, and boundary-layer
+parameters are compared with experimental data.
+
+II.
+
+AIAA JOURNAL
+
+specified. The surface pressure is a result of the calculation,
+and no pressure extrapolation to the wall is required. For a
+viscous case, the surface streamline is simply displaced normal to the wall by a distance equal to the local displacement
+thickness.
+On the outermost streamlines of the domain, the pressure
+corresponding to a uniform freestream plus a compressible
+vortex, source, and doublet is specified. This far-field
+singularity expansion is derived in Drela.6 The strength of
+the far-field vortex is determined by the trailing-edge Kutta
+condition as in a potential solver. The source strength is
+determined from the far viscous and shock wakes. The two
+doublet components are determined by minimizing the deviation of the discrete streamlines from the direction of V$,
+with $ denoting the analytic velocity potential of the
+freestream, vortex, source, and doublet combination. The inclusion of the doublet in the far-field expansion greatly
+reduces the sensitivity of the solution to the distance of the
+outer domain boundary as shown in Giles and Drela.8
+At the inlet and outlet faces of the domain, the streamline
+angle corresponding to the flow angle of the freestream,
+vortex, source, and doublet combination is specified at each
+streamline position. The inlet plane also requires the stagnation density to be specified at each streamline.
+
+IV.
+
+Boundary-Layer Formulation
+
+Governing Equations
+
+An important computational requirement that dictates the
+type of viscous formulation employed in the present design/
+analysis method is the capability to represent accurately flows
+with limited separation regions. In order that transition be
+represented in a well-posed and analytically continuous man-
+
+compressible vortex & source
+& doublet
+
+Inviscid Euler Formulation
+
+The inviscid part of the flowfield is described by the steadystate mass, momentum, and energy conservation laws in integral form:
+Fig. 1 Isolated airfoil boundary conditions.
+
+<£>
+
+p(q-n)dl = Q
+
+(1)
+
+(p(q-n)q+pn)dl = (
+
+(2)
+
+J dV
+
+&
+
+J 9V
+
+(3)
+
+where the integration is around a closed curve dV with
+normal n.
+These equations are discretized in conservation form on an
+intrinsic grid, in which one family of grid lines corresponds
+to streamlines. The discrete equations are presented in the
+companion paper.8
+
+III.
+
+Boundary Conditions
+
+The boundary conditions required to close the discrete
+Euler equations are very simple (see Fig. 1). At a solid surface, only the position of the adjacent streamline needs to be
+
+Fig. 2 Jumps at bubble reattachment.
+
+OCTOBER 1987
+
+1349
+
+ANALYSIS OF TRANSONIC LOW REYNOLDS NUMBER AIRFOILS
+
+ner, compatibility between the laminar and turbulent formulations is required. And, of course, computational economy
+(meaning as few additional viscous variables as possible) is very
+important in the context of the global Newton solution
+procedure.
+To meet the above requirements, a two-equation integral
+formulation based on dissipation closure was developed for
+both laminar and turbulent flows. A transition prediction
+formulation based on spatial amplification theory is incorporated into the laminar formulation, and an extra lag equation is included in the turbulent formulation to account for
+lags in the response of the turbulent stresses to changing
+flow conditions. Two-equation dissipation methods have been
+previously used by numerous workers, notably Le Balleur11
+and Whitfield.12 A characteristic of two-equation methods is
+that, if properly formulated, they adequately describe thin
+separated regions. One-equation methods such as Thwakes'
+(given in Cebeci and Bradshaw13) cannot be used to represent
+separated flows since they uniquely tie the shape parameter to
+the local pressure gradient which is, in fact, a nonunique relationship in separating flows.
+The present formulation employs the following standard
+integral momentum and kinetic energy shape parameter
+equations.
+d0
+——
+
+0
+
+(4)
+
+Cf
+'~2~
+
+.01977
+
+(1.4-Hk)2
+
+= -0.067 + 0.022^1-
+
+L
+
+^V,
+
+Hk>lA
+
+-p = 0.207 + 0.00205(4 -Hk)55,
+
+Hk<4
+
+= 0.207-0.003
+
+-, Hk>4
+
+(6)
+
+(12)
+
+An expression for the density thickness shape parameter H* *
+has been derived by Whitfield14 for turbulent flows. Here it is
+used for laminar flows as well. This is justified on the grounds
+that H** has a fairly small effect in transonic flows and is
+neglibile at low subsonic speeds.
+
+Turbulent Closure
+
+The turbulent closure relations in the present formulation are
+derived using the skin-friction and velocity profile formulas of
+Swafford.15
+
+(14)
+
++ 0.0001l[tanh(4-^)-l]
+
+Equation (5) is readily derived by combining the standard integral momentum equation (4) and the kinetic energy thickness
+equation (6) below.
+
+(11)
+
+where
+
+(15)
+u
+ue
+
+UT
+s
+arctan(0.09y+)
+ue 0.09
+
+Closure
+
+To close the integral boundary-layer equations (4) and (5),
+the following functional dependencies are assumed:
+H* = H*(Hk,Me,Ree),
+
+H** = H**(Hk,Me)
+
+(7)
+
+Cf = Cf(Hk,Me,Red),
+
+CD = CD(Hk,Me,Ree)
+
+(8)
+
+(16)
+
+where
+
+Cf
+Here, Hk is the kinematic shape parameter defined with the
+density taken constant across the boundary layer. In effect, the
+correlations in Eqs. (7) and (8) are defined in terms of the
+velocity profile shape only and not the density profile. The
+definition of Hk used here is that derived by Whitfield14 for
+adiabatic flows in air:
+
+s =-
+
+Here, a and b are constants determined implicitly by
+substituting Eq. (16) into the standard momentum and
+displacement thickness definitions.
+Using Eq. (16), the following relationship between //*,
+Hk, and Ree has been derived:
+1.6 \ (H0-Hk)16
+
+2
+
+//-0.290M ,
+Hi, = 1+0.113M2,
+
+(9)
+= 1.505+-
+
+Laminar Closure
+
+Refi
+
+The relations (7) and (8) can be determined if some profile
+family is assumed. For laminar flow, the present formulation
+employs the Falkner-Skan one-parameter profile family to
+derive the following relationships:
+/A __ TT
+
+H* = \. 515 + 0.076
+
+= 1.515 + 0.040
+
+(17)
+
+(18)
+
+where
+
+\ 2
+
+k)
+
+Hk>H0
+
+H<4
+
+Hk>4
+
+Ree<400
+(10)
+
+400
+= 3+-
+
+(19)
+
+1350
+
+AIAA JOURNAL
+
+M. DRELA AND M.B. GILES
+
+The dissipation coefficient CD is expressed as a sum of a
+wall layer and a wake layer contribution.
+(20)
+
+The shear coefficient CT is a measure of the shear stresses in
+the wake layer, and Us is an equivalent normalized wall slip
+velocity defined by the following relation:
+//* /
+Us
+~ 2 V
+
+bubble's size and its associated losses. A typical separation
+bubble has very steep gradients in the edge velocity ue and
+momentum thickness 6 at reattachment resulting in jumps
+Aw e and M over the small extent of the reattachment region
+as indicated in Fig. 2. An equation that relates the jumps is
+readily obtained by integrating the integral momentum equation (4) over this small stream wise distance A£, neglecting the
+skin friction Cf in the process.
+(27)
+
+4 Hk-l\
+3
+H )
+
+(21)
+
+Each of the two terms in the CD definition (20) consists of a
+stress and a velocity scale. The skin-friction coefficient Cf
+depends only on the local boundary layer parameters. This is
+consistent with the notion of a universal wall layer known to
+respond rapidly to the local boundary-layer conditions. The
+shear stress coefficient CT, however, should not depend only
+on the local conditions since the Reynolds stresses in the
+wake layer are known to respond relatively slowly to changing conditions, especially in low Reynolds number flows.
+Following Green et al.,16 this slow response is modeled by
+the following rate equation for CT, which is actually a
+simplified form of the stress-transport equation of Bradshaw
+and Ferriss.17
+(22)
+
+The nominal boundary-layer thicknesss d and the equilibrium
+shear stress coefficient C
+are defined by the following
+relations.
+(23)
+
+0.015
+HlH
+
+This relation clearly shows that a large initial shape
+parameter H at reattachment induces a large relative jump in
+the momentum thickness. Since H increases rapidly downstream in the laminar part of a separation bubble, it is clear
+from relation (27) that the momentum thickness jump will be
+sensitive to the bubble length and hence to the precise location of transition in the bubble. Because airfoil drag is
+directly affected by any momentum thickness jump, a precise
+and reliable method of transition prediction is mandatory for
+quantitative drag predictions of low Reynolds number airfoils with separation bubbles.
+The present method employs a spatial-amplification theory
+based on the Orr-Sommerfeld equation, which is essentially
+the e9 method pioneered by Smith and Gamberoni19 and
+Ingen.20 The e9 method assumes that transition occurs when
+the most unstable Tollmien-Schlichting wave in the boundary
+layer has grown by some factor, usually taken to be
+e 9 ~8100. To calculate this amplification factor, the disturbance growth rates must be related to the local boundarylayer parameters. Using the Falkner-Skan profile family, the
+Orr-Sommerfeld equation has been solved for the spatial
+amplification rates of a range of shape parameters and
+unstable frequencies. As done by Gleyzes et al., 3 the
+envelopes of the integrated rates are approximated by
+straight lines as follows:
+
+(24)
+
+The dissipation coefficient formula (20), the slip velocity
+definition (21), and the equilibrium shear stress definition
+(24) are derived from the well-known G — /3 locus of
+equilibrium boundary layers postulated by Clauser.18 The
+empirical G —13 locus used in the present formulation is
+
+(28)
+
+H =
+
+5.00 4.01
+
+3.50
+
+200
+
+400
+
+2.96
+
+Z80
+
+(25)
+
+G-6.7V1+0.75/3
+
+where
+
+Ht-l
+
+2
+
+6* dw p
+
+The deviation of the turbulent boundary layer or wake from
+the equilibrium locus (25) is governed by the rate equation
+(22), which comes into play mainly in rapidly changing
+flows. In slowly changing flows, CT closely follows C ,
+and the empirical closure relations revert to their equilibrium
+form.
+The governing integral equations (4) and (5) and all the
+turbulent closure relations are valid for free wakes, provided
+the skin-friction coefficient Cf is set to zero. Hence, in the
+present formulation, a turbulent wake is naturally treated as
+two boundary layers with no wall shear. Laminar wakes do
+not occur in aerodynamic flows of interest and are not considered here.
+
+H =
+
+2.60
+
+2.48
+
+600
+
+Rea
+
+800
+
+1000
+
+2.30
+
+2.41
+
+Transition
+
+Accurate transition prediction is crucial in the analysis of
+low Reynolds number airfoils. In particular, the location of
+transition in a separation bubble strongly determines the
+
+2000
+
+4000
+
+6000
+
+^
+
+Re
+
+8000
+
+e
+
+Fig. 3 Orr-Sommerfeld spatial amplification curves.
+
+10000
+
+ANALYSIS OF TRANSONIC LOW REYNOLDS NUMBER AIRFOILS
+
+OCTOBER 1987
+
+Here, h is the logarithm of the maximum amplification
+ratio. The slope dn/dRee and the critical Reynolds number
+Re&Q are expressed by the following empirical formulas:
+
+1351
+
+the integral boundary-layer equations (4) and (5) in a separation bubble.
+Boundary-Layer Equation Discretization
+
+dn
+• = O.Ql([2AHk-3.7+2.5tanh(l.5Hk -4.65)]2 + 0.25) I/2
+dRed
+(29)
+
+3.295
+
+(30)
+
+Figure 3 shows the envelopes defined by the above equations
+together with the actual amplification curves.
+For similar flows, Hk is a constant, and Ree is uniquely
+related to the stream wise coordinate £. Hence, Eq. (28) immediately gives the amplitude ratio n as a function of £.
+Transition is assumed to occur where n = 9. For nonsimilar
+flows, the amplitude ratio is calculated by integrating the
+local amplification rate downstream from the point of instability. Gleyzes et al.3 integrate the rate given by Eq. (29)
+with respect to Ree as follows:
+
+n=
+
+dn
+dRe,
+dRefi
+
+(31)
+
+It turns out that Eq. (31) is not suitable for determining transition in separation bubbles since Ree hardly changes at all in
+the laminar portion of a typical bubble. Hence, Eq. (31) implies that very little amplification will occur in the separation
+bubble, which is clearly wrong. A more realistic approach is
+to integrate the amplification rate in the spatial coordinate £.
+Using some basic properties of the Falkner-Skan profile
+family, the spatial amplification rate with respect to £ is
+determined as follows:
+
+dn
+
+dn dRefi
+dRed
+
+dn
+dRefi
+
+2 \u
+(32)
+
+Using the empirical relations
+6.54//,-14.07
+
+OMJ2
+
+(33)
+
+(34)
+
+Figure 4 shows the primary turbulent boundary-layer variables 6, 6*, Clf in relation to the inviscid grid, with
+subscripts 1 and 2 denoting the /-1th and /th streamwise stations. All other boundary-layer variables can be expressed in
+terms of these primary variables. If the boundary layer is
+laminar between stations i-l and /, then the amplification
+ratio n replaces the shear stress coefficient C'f as the
+primary variable. In the case of the transition interval, where
+transition onset occurs between stations i-l and /, nl and C^
+are the respective primary variables.
+There are three different equations to be discretized: the
+momentum equation (4), the shape parameter equation (5),
+and either the amplification equation (35) or the lag equation
+(22). Two-point central differencing (i.e., the trapezoidal
+rule) is generally used. An exception to this is the shape
+parameter equation (5), which tends to be stiff because of
+the small quantity 6 multiplying the spatial rate dH*/d%. At
+transition, this leads to numerical difficulties at higher
+Reynolds numbers since the resulting rapid analytic change
+in H* cannot be resolved by the available streamwise grid
+spacing. This problem is eliminated by biasing the differencing of the shape parameter equation toward the downstream
+station at higher Reynolds numbers. When the bias is entirely
+on the downstream station, the differencing is equivalent to
+backward Euler.
+Special treatment is necessary in differencing across the
+transition interval. For a stable and reliable solution procedure, it is essential that no discontinuities in the solution
+are admitted as the transition point moves across a grid
+point. In the present formulation, the transition interval is
+treated as two subintervals as shown in Fig. 5.
+By applying the discrete amplification equation to the
+laminar subinterval, the transition onset location £ /r can be
+implicitly defined in terms of the neighboring primary
+variables. The boundary-layer variables at %tr can thus be interpolated from the /th and /—1th stations. The actual
+discrete equations governing the transition interval are
+weighted averages of the laminar and turbulent subintervals.
+Although this formulation precisely defines the transition
+onset location in a continuous manner, it is still necessary to
+define how the turbulence develops afterward. To date, no
+useful empirical laws describing transitional Reynolds
+stresses have been formulated and most likely won't be formulated for some time, given the complexity of the problem.
+The approach adopted here is to set the initial value of Clf
+at %tr to 0.7 times its equilibrium value, as indicated in Fig.
+5. The key to the success of such a simple model is that the
+momentum integral equation (4), which governs the ail-
+
+the amplification rate with respect to £ is expressed as a
+function of Hk and 6:
+dn
+
+dn
+)-^-
+
+(35>
+
+An explicit expression for n then becomes
+(36)
+
+where £ 0 is the point where Ree=Re0Q.
+In the present formulation, Eq. (36) is not used directly.
+Instead, the differential form (35) is discretized and solved as
+part of the global Newton system. Thus, n is treated like
+another boundary-layer variable. This type of treatment is
+essential for a stable and rapid calculation procedure since
+the amplification equation (35) is very strongly coupled to
+
+Fig. 4 Boundary-layer variable locations.
+
+1352
+
+M. DRELA AND M.B. GILES
+
+important momentum thickness jump at reattachment, remains essentially correct, irrespective of the precise reattachment mechanism. In any case, the transition formulation
+described here has given good results for a wide range of
+both low Reynolds number and transonic airfoil flows.
+For the case of forced transition, the same basic transition
+formulation described above is used. The only difference is
+that £ /r , instead of being related to the amplification ratio /?,
+is simply set to its value at the forced transition location.
+
+V.
+
+AIAA JOURNAL
+
+2.0 i
+
+1.5 -
+
+RE - 250000
+RE = 375000
+RE = 500000
+RE = 650000
+
+i.o
+
+Newton Solution Procedure
+
+The Newton solution procedure is an essential part of the
+present design/analysis method. In particular, the simultaneous solution of the discrete inviscid Euler equations,
+together with the discrete boundary-layer equations, hinges
+on the applicability of the Newton method to this nonlinear
+coupled system.
+Conceptually, the Newton solution procedure is extremely
+simple. The system of nonlinear equations to be solved can
+be written as
+
+0.5
+
+0.0
+0.01
+
+0.02
+
+0.03
+
+o.ou
+
+Fig. 7 Calculated (heavy line) and experimental (symbols) drag
+polars for LNV109A airfoil.
+
+(37)
+
+where Q is the vector of variables and F is the vector of
+equations. At some iteration level v, the Newton solution
+procedure is
+dF 1i
+
+LNV109R
+
+-1.5
+
+(38)
+
+7dQ\
+
+CP
+
+MRCH
+RE
+RLFH
+CL
+CD
+CM
+L/0
+
+Exp't
+
+= 0.100
+= 0 . 5 0 0 x 106
+= 7.358
+= 1.2340
+= 0.01395
+= -0.050
+= 88.44
+
+(39)
+
+Because the grids used in the present scheme are regular,
+the linearized Newton system (38) is highly structured and
+has a large, very sparse block-tridiagonal coefficient matrix.
+The vector of unknowns dQ is grouped into 7 siibvectors of
+length 2.7+5 (where 7= number of streamwise stations, and
+/= number of streamlines). Each subvector contains the
+
+turbulent
+interval
+
+Fig. 8 LNV109A calculated and experimental pressure distributions.
+
+LNV109R
+
+i-2
+
+Fig. 5 Transition interval treatment.
+
+Fig. 6
+
+132x32 grid near LNV109A airfoil.
+
+0. 100
+MflCH
+0 . 3 7 5 x 106
+RE
+flLFfl = 3 . 4 5 9
+CL
+= 0.7915
+CD
+= 0.01686
+= -0.0524
+= 46.95
+
+Exp't
+
+4.0
+0.791
+0.0169
+-0.060
+
+Fig. 9 LNV109A calculated and experimental pressure distributions.
+
+ANALYSIS OF TRANSONIC LOW REYNOLDS NUMBER AIRFOILS
+
+OCTOBER 1987
+
+1353
+RflE 2822
+
+2.0 i
+
+MflCH
+
+RE
+flLFfl
+CL
+CD
+CM
+L/D
+
+1.5
+
+0.750
+6.200 x 106
+2.734
+0.7431
+0.02284
+-0.0941
+32.54
+
+Exp't
+
+3.19
+0.743
+0.0242
+-0.106
+
+RE = 250000
+RE = 375000
+RE = 500000
+
+1.0
+
+0.5
+
+0.0
+
+0.01
+
+0 . 0 3 0.04
+
+0.02
+
+CD
+
+Fig. 10 Calculated (heavy line) and experimental (symbols) drag
+polars for LA203A airfoil.
+
+LR203R
+
+Exp't
+
+MfiCH = 0.100
+
+Fig. 13 RAE 2822 calculated and experimental pressure distributions.
+
+4.0
+1.08
+0.0150
+-0.178
+
+2.0
+
+Fig. 11 LA203A calculated and experimental pressure distributions.
+0.0
+
+Fig. 14 RAE 2822 calculated and measured H distributions.
+
+i.o
+
+few Newton iterations are required to achieve convergence.
+In theory, the convergence is quadratic and, in practice, the
+number of iterations required ranges from only 3 for a subsonic, inviscid case, up to 15 for a transonic case with a
+strong shock and boundary-layer coupling.
+
+VI.
+
+Fig. 12 LA203A calculated suction surface 6* and 0 distributions.
+
+unknown inviscid changes dp, dn, and the viscous changes 60,
+66*, bC'f- for one streamwise grid station. At laminar stations, dn replaces dClf. At stations with no boundary layer
+or wake, only dummy viscous variables are present. The inviscid change dn is the grid node movement perpendicular to
+the local streamline direction.
+The Newton system (38) is solved every iteration by a
+direct Gaussian block-elimination method. For the 132x32
+grid sizes used for the calculations presented in this paper,
+this solution method is faster than the best iterative methods
+available. Each Newton iteration requires approximately 4
+min CPU on a micro VAX II minicomputer. Of course, very
+
+Results
+
+The results presented here are aimed at demonstrating the
+accuracy and speed of the ISES code for low Reynolds
+number and transonic airfoil flows. The polars were
+calculated by specifying a sequence of angles of attack in increments of 0.5 deg. Since a good initial guess was available
+for each point from the previous angle of attack, the Newton
+solver required only 2 or 3 iterations to converge each point.
+Clearly, the quadratic convergence property of the Newton
+method gives large CPU savings in such a parameter sweep.
+LNV109A Airfoil
+
+This airfoil was designed by Liebeck to attain a specified
+maximum lift coefficient under the constraint of a maximum
+permissible pitching moment. The airfoil coordinates and experimental data were obtained from Liebeck and
+Camacho.21 Figure 6 shows the 132x32 grid near the airfoil
+used for the calculations.
+
+1354
+
+M. DRELA AND M.B. GILES
+
+2.0
+
+AIAA JOURNAL
+
+and 15 show the calculated and measured boundary-layer
+parameters. The agreement is quite good, given the substantial tunnel interference effects that might be expected for this
+case.
+
+VII. Conclusions
+
+0.0
+
+Fig. 15 RAE 2822 calculated and measured suction surface 5* and 6
+distributions.
+
+Four polars were calculated for chord Reynolds numbers
+of 250,000, 375,000, 500,000, 650,000 and are shown in Fig.
+7. The most important feature to point out is that the rapid
+performance degradation with decreasing Reynolds number
+is accurately predicted. The sharp increase in drag below a
+lift coefficient of about 0.9 in three of the polars is due to
+the pressure side transition point suddenly moving to the
+leading edge. This jump appears to be present in the experimental data as well. For the lowest Reynolds number
+(250,000), only the upper part of the polar is shown since
+massive separation due to the bubble bursting occurred for
+lift coefficients less than about 1.3, and the code failed to
+converge properly as a result. The same massive separation
+was observed in the experiment. Figures 8 and 9 show the
+calculated and experimental pressure distributions for two
+particular Reynolds numbers and angles of attack. The
+separation bubbles are clearly discernable in both the
+calculated and experimental pressure distributions.
+LA203A Airfoil
+
+This is an aft-loaded airfoil designed by Liebeck to contrast with the front-loaded LNV109A. The airfoil coordinates and experimental data were again obtained from
+Liebeck and Camacho.21 The lack of a pitching moment
+constraint allowed milder adverse pressure gradients to be
+imposed at the bubble. As a result, the LA203A airfoil does
+not experience bubble bursting at the lowest Reynolds
+number, as occurred with the LNV109A.
+For the LA203A, three polars were calculated for chord
+Reynolds numbers of 250,000, 375,000, 500,000 and are
+shown in Fig. 10. Again, the rapid performance degradation
+with decreasing Reynolds number is predicted reasonably
+well, given the large amount of noise in the experimental
+data. Figure 11 shows the calculated and experimental
+pressure distributions for a Reynolds number of 250,000.
+The very large separation bubbles are clearly discernable in
+both the calculated and experimental pressure distributions.
+Figure 12 shows the calculated suction surface d* and 6
+distributions for this particular operating point of the
+LA203A. The jump in the momentum thickness 6 at the bubble reattachment point is clearly discernable.
+RAE 2822 Airfoil
+
+The last computational example shown is case 10 of the
+series of transonic tunnel experiments involving the RAE
+2822 airfoil and documented in Cook et al.22 Case 10 corresponds to a Mach number of 0.75 and a lift coefficient of
+0.743 and involves limited shock-induced separation immediately behind the strong suction surface shock wave. The
+separation was reportedly visualized in the experiment using
+the oil-flow technique. A calculation of this case reproduces
+the separation fairly accurately. Figure 13 shows the
+calculated and experimental pressure distributions. Note that
+the drag coefficient is also accurately predicted. Figures 14
+
+This paper has presented a viscous/inviscid analysis
+method suitable for transonic and low Reynolds number airfoils. A two-equation, integral, laminar/turbulent boundarylayer method based on dissipation closure has been summarized. An Orr-Sommerfeld-based transition prediction
+formulation is used and is incorporated into the boundarylayer analysis. The viscous formulation is fully coupled with
+the inviscid flow that is governed by a streamline-based Euler
+formulation. The applicability of the global Newton solution
+procedure to solving the entire coupled nonlinear system of
+equations has been shown.
+The results show that the present analysis method can accurately predict airfoil performance at low Reynolds
+numbers due to the accurate representation of the separation
+bubble losses. Robustness in calculating a strongly interacting transonic case with shock-induced separation has also
+been demonstrated.
+
+Acknowledgments
+This research was supported by Air Force Office of Scientific Research Contract F49620-78-C-0084, supervised by Dr.
+James D. Wilson.
+
+References
+^auer, F., Garabedian, P., Korn, D., and Jameson, A., "Supercritical Wing Sections I, II, III," Lecture Notes in Economics and
+Mathematical Systems, Springer-Verlag, New York, 1972, 1975,
+1977.
+2
+Melnik, R.E., Chow, R. R., and Mead, H. R., "Theory of
+Viscous Transonic Flow Over Airfoils at High Reynolds Number,"
+AIAA Paper 77-680, June 1977.
+3
+
+Gleyzes, C., Cousteix, Jr., and Bonnet, J. L., "Theoretical and
+Experimental Study of Low Reynolds Number Transitional Separation Bubbles," Presented at the Conference on Low Reynolds
+Number Airfoil Aerodynamics, University of Notre Dame, Notre
+Dame, IN, 1985.
+4
+Vatsa, V. N. and Carter, J. E., "Analysis of Airfoil Leading
+Edge-Separation Bubbles," AIAA Journal, Vol. 22, Dec. 1984, pp.
+1697-1704.
+5
+Giles, M. B., "Newton Solution of Steady Two-Dimensional
+Transonic Flow," Massachusetts Institute of Technology, Gas Turbine Laboratory Kept. 186, Oct. 1985.
+6
+Drela, M., "Two-Dimensional Transonic Aerodynamic Design
+and Analysis Using the Euler Equations," Massachusetts Institute of
+Technology, Gas Turbine Laboratory Rept. 187, Feb. 1986.
+7
+Giles, M. B., Drela, M., and Thompson, W. T., "Newton Solution of Direct and Inverse Transonic Euler Equations," AIAA
+Paper 85-1530, July 1985.
+8
+Giles, M. B. and Drela, M., "A Two-Dimensional Transonic
+Aerodynamic Design Method," AIAA Journal, Vol. 25, Sept. 1987,
+pp. 1199-12060.
+9
+Drela, M., Giles, M. B., and Thompkins, W. T., "Newton Solution of Coupled Euler and Boundary Layer Equations," Presented
+at the Third Symposium on Numerical and Physical Aspects of
+Aerodynamic Flows, Long Beach, CA, Jan. 1985.
+10
+Melnik, R. E. and Brook, J. W., "Computation of Viscid/inviscid Interaction on Airfoils with Separated Flow," Presented at
+the Third Symposium on Numerical and Physical Aspects of
+Aerodynamic Flows, Long Beach, CA, Jan. 1985.
+H
+Le Balleur, J. C., "Strong Matching Method for Computing
+Transonic Viscous Flows Including Wakes and Separations on
+Lifting Airfoils," La Recherche Aerospatiale, No. 1981-83, English
+Ed., 1981-83, pp. 21-45.
+12
+Whitfield, D. L., "Analytical Description of the Complete Turbulent Boundary Layer Velocity Profile," AIAA Paper 78-1158,
+1978.
+13
+Cebeci, T. and Bradshaw, P., Momentum Transfer in Boundary
+Layers, McGraw-Hill, New York, 1977.
+
+OCTOBER 1987
+
+ANALYSIS OF TRANSONIC LOW REYNOLDS NUMBER AIRFOILS
+
+14
+Whitfield, D. L., "Integral Solution of Compressible Turbulent
+Boundary Layers Using Improved Velocity Profiles," Arnold Air
+Force Station, AEDC-TR-78-42, 1978.
+15
+Swafford, T. W., "Analytical Approximation of TwoDimensional Separated Turbulent Boundary-Layer Velocity Profiles," AIAA Journal, Vol. 21, June 1983, pp. 923-926.
+16
+Green, J. E., Weeks, D. J. and Brooman, J.W.F., "Prediction
+of Turbulent Boundary Layers and Wakes in Compressible Flow by
+a Lag-Entrainment Method," ARC R&M Rept. No. 3791, HMSO,
+London, England, 1977.
+17
+Bradshaw, P. and Ferriss, D. H., "Calculation of BoundaryLayer Development Using the Turbulent Energy Equation: Compressible Flow on Adiabatic Walls," Journal of Fluid Mechanics,
+Vol. 46, Pt. 1, 1970, pp. 83-110.
+18
+Clauser, F. H., "Turbulent Boundary Layers in Adverse
+Pressure Gradients," Journal of Aeronautical Sciences, Vol. 21,
+
+1355
+
+Feb. 1954, pp. 91-108.
+19
+Smith, A.M.O. and Gamberoni, N., "Transition, Pressure Gradient, and Stability Theory," Douglas Aircraft Co., Rept. ES 26388,
+1956.
+20
+Ingen, J. L. van, "A Suggested Semi-Empirical Method for the
+Calculation of the Boundary Layer Transition Region," Delft
+University of Technology, Dept. of Aerospace Engineering, Rept.
+VTH-74, 1956.
+2I
+Liebeck, R. H. and Camacho, P. P., "Airfoil Design at Low
+Reynolds Number with Constrained Pitching Moment," Presented
+at the Conference on Low Reynolds Number Airfoil Aerodynamics,
+University of Notre Dame, Notre Dame, IN, UNDAS-CP-77B123,
+June 1985.
+22
+Cook, P. H., McDonald, M. A., and Firmin, M.C.P., AGARD
+Working Group 7, "Test Cases for Inviscid Flow Field Methods,"
+AGARD Rept. AR-211, 1985.
+
+From the AIAA Progress in Astronautics and Aeronautics Series.
+LIQUID-METAL FLOWS AND
+MAGNETOHYDRODYNAMICS—v.84
+Edited by H. Branover, Ben-Gurion University of the Negev
+P.S. Lykoudis, Purdue University
+A. Yakhot, Ben-Gurion University of the Negev
+
+Liquid-metal flows influenced by external magnetic fields manifest some very unusual phenomena, highly
+interesting scientifically to those usually concerned with conventional fluid mechanics. As examples, such
+magnetohydrodynamic flows may exhibit M-shaped velocity profiles in uniform straight ducts, strongly
+anisotropic and almost two-dimensional turbulence, many-fold amplified or many-fold reduced wall friction,
+depending on the direction of the magnetic field, and unusual heat-transfer properties, among other
+peculiarities. These phenomena must be considered by the fluid mechanicist concerned with the application of
+liquid-metal flows in partical systems. Among such applications are the generation of electric power in MHD
+systems, the electromagnetic control of liquid-metal cooling systems, and the control of liquid metals during
+the production of the metal castings. The unfortunate dearth of textbook literature in this rapidly developing
+field of fluid dynamics and its applications makes this collection of original papers, drawn from a worldwide
+community of scientists and engineers, especially useful.
+Published in 1983, 454pp., 6x9, illus., $25.00 Mem., $55.00 List
+TO ORDER WRITE: Publications Dept. AIAA, 370 L'Enfant Promenade, S.W., Washington, D.C. 20024-2518
+
+

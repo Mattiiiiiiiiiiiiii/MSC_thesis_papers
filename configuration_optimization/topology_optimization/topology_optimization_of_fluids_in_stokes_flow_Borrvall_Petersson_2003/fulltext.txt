@@ -1,0 +1,1936 @@
+INTERNATIONAL JOURNAL FOR NUMERICAL METHODS IN FLUIDS
+Int. J. Numer. Meth. Fluids 2003; 41:77–107 (DOI: 10.1002/d.426)
+
+Topology optimization of uids in Stokes ow
+Thomas Borrvall∗; † and Joakim Petersson
+Division of Mechanics; Mechanical Engineering Systems; Linkoping University; SE-581 83 Linkoping; Sweden
+
+SUMMARY
+We consider topology optimization of uids in Stokes ow. The design objective is to minimize a power
+function, which for the absence of body uid forces is the dissipated power in the uid, subject to a
+uid volume constraint. A generalized Stokes problem is derived that is used as a base for introducing
+the design parameterization. Mathematical proofs of existence of optimal solutions and convergence of
+discretized solutions are given and it is concluded that no regularization of the optimization problem
+is needed. The discretized state problem is a mixed nite element problem that is solved by a preconditioned conjugate gradient method and the design optimization problem is solved using sequential
+separable and convex programming. Several numerical examples are presented that illustrate this new
+methodology and the results are compared to results obtained in the context of shape optimization of
+uids. Copyright ? 2003 John Wiley & Sons, Ltd.
+
+1. INTRODUCTION
+Shape optimization in uid mechanics is an active research eld since several decades. The
+desired achievements have for instance been to obtain minimum drag wing proles [1–5] and
+minimum pressure drop diusers [6]. When striving for a decreased drag or pressure drop,
+the feasible design modications have concerned adjusting selected parts of the boundary to
+the uid region. In topology optimization the goal is to not only modify boundary shapes but
+also to allow for new boundaries to appear as part of the solution to the optimization problem,
+hence allowing for a change in connectedness of the uid region. This kind of optimization
+is well established within mechanics of solids and structures where the amount of work is
+abundant, see References [7, 8] for an overview. However, to the authors’ knowledge, the
+methodology has not previously been applied to optimal design in uid mechanics.
+
+∗ Correspondence
+
+to: T. Borrvall, Engineering Research Nordic AB, Garnisonen, Brigadgatan 16, SE-581
+31 Linkoping, Sweden.
+
+† E-mail: thomas.borrvall@erab.se
+
+Contract/grant sponsor: National Graduate School in Scientic Computing
+Contract/grant sponsor: National Network in Applied Mathematics
+Contract/grant sponsor: Swedish Research Council
+Contract/grant sponsor: Centre for Industrial Information Technology
+
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Received 1 February 2002
+Accepted 16 August 2002
+
+T. BORRVALL AND J. PETERSSON
+
+In the present work a direction of research is suggested and initiated where these developments are done for continuum uid mechanics. A similar treatment for discrete Poiseuille
+ow networks is given in Reference [9].
+Given a predetermined design domain  with certain boundary conditions, the goal is to
+determine at what places of  there should be uid and where there should be nonuid (i.e.
+solid), in order to minimize a certain power subject to a given amount of uid. We consider
+creeping ows of Newtonian uids, i.e. Stokes ows, and the objective reduces to minimizing
+drag or pressure drop in special cases. This setup should allow for possible new applications
+in design of minimum head loss valves, models in biouid mechanics, and other applications
+in process industries and microuidics.
+In topology optimization in continuum physics the design parameterization often ends up
+with a scaling of some constitutive parameter E while keeping the domain  xed. One
+introduces a design function  which ultimately should be the characteristic function for
+the optimal distribution of the medium in which the ‘physical process’ is taking place. The
+constitutive parameter E is taken to be a function of  in such a way that intermediate
+values of , i.e. values between zero and one, are feasible but somehow penalized. When the
+physical process is represented by linear elasticity, governed by the Cauchy–Navier’s system
+of equations, E() is the Young’s modulus where the parameterization is such that E(0) ≈ 0
+to model a hole and E(1) = E0 to model presence of material with modulus E0 , cf. Reference
+[10]. Almost identically one can parameterize the conductivity in static heat transfer, governed
+by the Poisson’s equation.
+In this work we are using the generalized Stokes partial dierential equation [11] to represent the physical process, i.e. to determine the ow velocity u and pressure p. This equation
+involves the elliptic operator I −  in which  is the viscosity and  can be called inverse
+permeability. When  = 0 one retains Stokes ow with viscosity  and when  = 0 one gets
+the Darcy equation that governs porous media ow with permeability −1 . The scalar  also
+appears when solving a subproblem in the time-dependent Navier–Stokes equations [12].
+The design parameterization is in this paper performed such that the viscosity is kept constant whereas the permeability −1 depends on  in such a way that it is very small at nonuid
+places and very large to recover Stokes ow at uid places. Hence, we are not scaling the
+viscosity but rather introducing a kind of penalty factor  on the velocities u such that (0)
+is very large and (1) is very small. Subsequently we motivate this design parameterization by deriving a plane ow model in Couette ow. Here, a two-dimensional generalized
+Stokes model with () = 2:5=2 is derived starting from a Stokes three-dimensional model
+(with no  present). The parameter  is then half the thickness of the layer in which the
+three-dimensional Stokes ow with constant viscosity  is taking place.
+The analyses are then carried out for a general decreasing, convex and continuously dierentiable design parameterization  → (), and all methodologies are valid in both two and
+three dimensions. We prove existence of optimal designs for such general  → (), and for
+the special case of linear  → () there exist optimal :s that are completely discrete-valued,
+i.e. the problem is ‘fully penalized’. These are quite unexpected results since it is atypical for
+the situation in solids’ topology optimization. For elastic continua the optimal design problem
+typically lacks solutions. This can be understood by considering the fact that the objective
+function, like structural stiness, can be improved on by splitting up solid parts into several
+thinner parts (without changing the volume). To cure this, the problem is regularized by either expanding the set of feasible designs or by restricting it. The latter can be performed
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+78
+
+79
+
+by enforcing a constraint on e.g. the perimeter of the domain, and the former means to allow
+variable microstructure which is handled by using homogenization. The typical goal of minimizing the dissipation power in Stokes ow does not require ner scale for the uid parts:
+Replacing one pipe with a prescribed ow with two pipes of half the width, which together
+deliver the same ow, gives twice as large dissipation power.
+Hence the situation is dierent from the ones in solids. Performing homogenization in
+the linear elasticity equations, one retains the same equations. If one introduces rigid balls
+with diameter  in uids in Stokes ow, however, then the velocity u converges to zero,
+but u =2 converges to u which is part of the solution to the Darcy problem (in which the
+permeability tensor is related in a specic way to the Stokes problem data) [13]. This means,
+rst, that the ow becomes worse, not better, (in the sense of the objective function) as one
+performs the homogenization process, and, secondly, the process converges (after a rescaling
+by 2 ), to a dierent state equation. Concluding, on the one hand, the homogenization process
+is not needed in Stokes ow topology optimization since existence of optimal designs can
+be guaranteed without any regularization, but, on the other hand, this process introduces a
+permeability of porous media which we have included in parallel with the viscosity of Stokes
+ows.
+The rest of the paper is organized as follows. In Section 2, we present the generalized
+Stokes system that is used as a constraint in the design optimization problem. This equation
+is derived from a three-dimensional conventional Stokes system under a certain plane ow
+assumption. The section ends with a thorough treatment of how this state problem is solved
+numerically. A mixed nite element formulation is used and the resulting system of equations
+is solved eciently by a preconditioned conjugate gradient method. Section 3 is devoted to
+the design optimization problem, stated as to minimize a power function subject to a uid volume constraint, including presentations of the continuum as well as nite element discretized
+formulations. Rigorous mathematical proofs of existence of solutions and convergence of the
+nite element schemes are presented. Regarding the numerical solution of this optimization
+problem, we use sequential separable and convex programming, a solution method that is frequently used in the context of topology optimization of solids. In Section 4, several numerical
+examples are presented that illustrate this new methodology. The examples are commented
+upon and when possible, compared to well-known uid shape optimization results. The paper
+ends with some discussion and conclusions in Section 5.
+2. THE STATE PROBLEM
+2.1. Continuum mechanical background
+We give the needed background from continuum mechanics, following mainly [14].
+Consider the ow of an incompressible, Newtonian uid with constant viscosity  in the
+control volume R ⊂ R3 . The constitutive equation expressing the Cauchy stress T in terms of
+pressure p and ow velocity u is then
+ + 2D(u)
+
+T = − pI
+
+(1)
+
+where the rate-of-strain tensor D(u)
+ is given by
+D(u)
+ =
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+1
+(∇u + (∇u)
+ T)
+2
+
+(2)
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+with ∇ denoting the spatial gradient. The equation of motion reads
+
+
+@u
++ (∇u)
+ u = divT + f
+0
+@t
+
+(3)
+
+where 0 , f are the reference density and body force, respectively, and @=@t, div the spatial
+time derivative and divergence, respectively. Together with the incompressibility condition
+div u = 0 the constitutive equation (1) into the equation of motion (3) results in the Navier–
+Stokes equations
+
+
+0
+
+
+@u
++ (∇u)
+ u = div(2D(u))
+ − ∇p + f
+@t
+
+div u = 0
+Using the incompressibility condition and the fact that  is constant, these can be written as
+
+
+@u
+0
++ (∇u)
+ u = u − ∇p + f
+@t
+(4)
+div u = 0
+ u is neglected and the spatial time derivaFor slow and steady ow, the convection term (∇u)
+tive @u=@t
+
+vanishes. The Navier–Stokes equations (4) then reduce to the Stokes equations
+u = ∇p − f
+
+(5)
+
+div u = 0
+
+In general we assume that the velocity u is prescribed to some known function g on @R. By
+integrating the incompressibility condition over R and using the divergence theorem it is easy
+to see that the function g must satisfy the following compatibility condition:
+
+g · n = 0
+(6)
+@R
+
+where n denotes the outward unit normal. Some further continuum mechanical arguments,
+needed for an alternative interpretation of the design objective to be treated, are given in the
+appendix.
+2.2. Variational formulation
+Let C be any velocity function which is zero on the boundary to the control volume, @R.
+Multiplying the rst of (5) by C and integrating over R one obtains the equation of virtual
+power,
+
+
+
+(7)
+f · C
+ ∇u · ∇C − p div C =
+R
+
+R
+
+R
+
+after having used the Green’s theorem. With the dissipation power bilinear form
+
+A(u;
+ C) =  ∇u · ∇C
+R
+
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+80
+
+and the functionals
+
+
+
+
+
+B(C; p)
+ =−
+
+R
+
+81
+
+p div C;
+
+ R=
+f; C
+
+R
+
+f · C
+
+the equation of virtual power (7) can be compactly written as
+R
+A(u;
+ C) + B(C; p)
+ = f; C
+
+(8)
+
+The second of (5) multiplied by any pressure function q and integrated over R is
+B(u;
+ q)
+ =0
+
+(9)
+
+Equations (8) and (9) will appear in the weak formulation (10) of the Stokes problem, which
+can be posed after some function spaces have been introduced; dene
+
+
+
+
+ = L20 (R) = q ∈ L2 (R)  q = 0
+
+R
+
+for pressure functions, and
+V = H01 (R) = {C ∈ H 1 (R) | C = 0 on @R}
+U = {C ∈ H 1 (R) | C = g on @R}
+for velocity functions. Furthermore, we assume that g ∈ H 1=2 (@R) and f ∈ L2 (R). The weak
+form of Stokes problem (5) can be formulated as follows: Find (u;
+ p)
+ ∈ U ×  such that
+R
+ = f; C
+A(u;
+ C) + B(C; p)
+B(u;
+ q)
+ =0
+
+∀C ∈ V
+
+(10)
+
+∀q ∈ 
+
+If R is open, bounded and connected with a Lipschitz continuous boundary @R, the Stokes
+problem (10) is uniquely solvable, see for instance Reference [15].
+2.3. A plane ow model
+Consider a domain R ⊂ R3 that is essentially plane, see Figure 1 for an illustration. That is,
+R is the cartesian product of a bounded domain  ⊂ R2 and a short interval [−; ],
+R = {x = (x1 ; x2 ; x3 ) ∈ R3 | (x1 ; x2 ) ∈ ;
+
+−6x3 6}
+
+To start with we assume that  is a small positive constant and introduce the scalar function
+ : R → R given by
+ 2
+x3
+(x) = (x1 ; x2 ; x3 ) = 1 −
+
+The boundary function g and external body uid force eld f are assumed on the following
+form
+g = g
+f = f
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+(11)
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+Figure 1. Illustration of a plane ow model.
+
+where g ∈ H 1=2 (@) and f ∈ L2 () respectively. For g constant and f = 0, i.e., no body uid
+forces, the velocity solution to the Stokes equations (10) is
+u = g
+The pressure solution can be determined from
+∇p = −
+
+2
+g
+2
+
+meaning that p is an ane function that is independent of x3 . This is in the literature known
+as Couette ow, ow between two parallel surfaces. Knowing the solution in this special case
+and that  is small, we assume that for data as in (11), the solution to Stokes equations (11)
+is contained in the closed subset U  ×   ⊂ U ×  dened by
+U  = {C ∈ U | C = C;
+
+C ∈ U}
+
+  = {q ∈  | q = 4 q;
+
+q∈
+
+5
+
+}
+
+where
+U = {C ∈ H 1 () | C = g on @}
+
+
+
+2
+2
+= L0 () = q ∈ L () |
+q=0
+
+
+The space of test functions corresponding to U  is
+V  = {C ∈ V | C = C;
+
+C ∈ V}
+
+where
+V = H01 () = {C ∈ H 1 () | C = 0 on @}
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+82
+
+83
+
+The solution that we are looking for is given by the solution to (10) with U , V and 
+ p)
+ ∈ U  ×   such that
+substituted for U  , V  and   : Find (u;
+R
+A(u;
+ C) + B(C; p)
+ = f; C
+B(u;
+ q)
+ =0
+
+∀C ∈ V 
+∀q ∈  
+
+Here  is the only component that depends on x3 and straightforward calculation shows that
+this problem is equivalent to: Find (u; p) ∈ U × so that
+a (u; C) + b(C; p) = f ; C ∀C ∈ V
+∀q ∈
+
+b(u; q) = 0
+with
+
+
+
+
+
+()u · C + 
+
+a (u; C) =
+
+(12)
+
+
+
+∇u · ∇C
+
+
+5
+22
+
+b(C; p) = − p div C
+
+
+f ; C =
+f ·C
+() =
+
+(13)
+
+
+
+Problem (12) is a generalized Stokes problem which for instance appears as a subproblem
+when solving the time-dependent Navier–Stokes equations (4), see Reference [12]. The threedimensional solution (u;
+ p)
+ can be retained by multiplying u by  and p by 4=5 as indicated
+in the denitions of U  and   . As for the Stokes equations (10), (12) is uniquely solvable
+if only  is open, bounded and connected with a Lipschitz continuous boundary @.
+Dene the total potential power function J : H 1 () → R by
+J (C) = 12 a (C; C) − f ; C
+
+(14)
+
+and the following closed subset of U :
+Udiv = {C ∈ U | div C = 0}
+Then the velocity that solves (12) can be found by minimizing the total potential power over
+all velocities in Udiv , i.e.
+J (u) = min J (C)
+C∈Udiv
+
+The stationarity condition for this convex minimization problem is exactly (12). To see this,
+relax the constraint div C = 0 and form the Lagrangian
+L (C; q) = J (C) + b(C; q)
+
+and look for a saddle point over all (C; q) ∈ U × . The saddle point (u; p) ∈ U ×
+satises (12).
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+then
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+To summarize, by making suitable assumptions we have reduced a three-dimensional problem (10) to a two-dimensional problem (12). The dissipated power due to out-of-plane shears
+in (10) is in (12) modelled by an absorption term involving the inverse of a permeability
+factor, . A corresponding term involving the permeability tensor appears in Darcy’s law
+when homogenizing the Stokes equations, see Reference [13]. A crucial dierence is that
+(12) includes a classical Stokes term modelling the dissipated power due to in-plane shears
+that is not present in Darcy’s law. This means that we can here retain the two-dimensional
+Stokes equations by putting  = 0 (or  = ∞).
+At this point we allow  to vary in space. The generalized Stokes problem (12) with the
+function  given by the second of (13) governs the ow between two nonplane surfaces
+separated by a distance determined by the function . The interpretation of  above suggests
+that  could be used as a design variable in the context of topology optimization since the
+permeability is increasing in . We will discuss this idea in more detail in Section 3 where
+an optimization problem is presented in which an optimal density of uid is sought for.
+2.4. Finite element discretization
+We now turn our attention to the problem of nding nite element approximations to the
+functions u and p given by the solution to (12) in the previous section. To this end, we
+assume that  is discretized into nite elements with h denoting a characteristic size of the
+largest element. With respect to this mesh, the nite dimensional approximation spaces h ⊂ ,
+Wh ⊂ H 1 () and, as a consequence, Vh = Wh ∩ V are constructed. The exact details on how
+these spaces, as well as how the mesh, are constructed are given later on in this section. Let
+g̃ h ∈ Wh be so that gh = Tr(g̃ h ) is a suitable approximation of the prescribed boundary function
+g. The approximation of U is given by
+Uh = {Ch ∈ Wh | Ch = gh on @}
+The nite element discretized problem that corresponds to problem (12) reads: Find (uh ; ph ) ∈
+Uh × h such that
+a (uh ; Ch ) + b(Ch ; ph ) = f ; Ch  ∀Ch ∈ Vh
+b(uh ; qh ) = 0
+
+∀qh ∈
+
+(15)
+
+h
+
+By putting uh = uh0 + g̃ h , this problem can be rephrased as to: Find (uh0 ; ph ) ∈ Vh ×
+that
+a (uh0 ; Ch ) + b(Ch ; ph ) = f ; Ch  − a (g̃ h ; Ch ) ∀Ch ∈ Vh
+b(uh0 ; qh ) = −b(g̃ h ; qh )
+
+∀qh ∈
+
+h
+
+such
+
+(16)
+
+h
+
+which is a mixed nite element problem that we intend to solve.
+The construction of the space Wh is merely a question of approximation theory, meaning
+that the space Wh should be ‘close’ to H 1 () measured in H 1 ()-norm. The space h
+should not only have good approximation properties, but it cannot be too big as this would
+cause numerical instabilities such as for instance ‘locking’ phenomena and checkerboard-like
+tendencies. To assure numerical stability, the spaces Wh and h should be constructed so that
+b(Ch ; qh )
+¿ qh 0
+Ch 1
+0=Ch ∈Vh
+sup
+
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+∀qh ∈
+
+h
+
+(17)
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+84
+
+85
+
+for some  ¿ 0 independent of h. We have introduced · 1 and · 0 denoting any standard
+norm in H 1 () and L2 (), respectively. Condition (17) is known as the discrete inf-sup
+condition or the Ladyszhenskaya–Babuska–Brezzi (LBB) condition and is a necessity for the
+convergence of (uh ; ph ) to (u; p). Once (17) is established, one has the following standard
+error estimate [16]:
+
+
+uh − u 1 + ph − p 0 6C inf Ch − u 1 + inf qh − p 0
+(18)
+qh ∈
+
+Ch ∈Uh
+
+h
+
+if the boundary velocity is conveniently approximated, or assuming gh = g for convenience.
+well in L2 ()-norm and Uh approximates U well in
+Hence, if the space h approximates
+1
+H ()-norm, convergence is guaranteed.
+In this context, an accurate and stable mixed nite element method is the Hood–Taylor
+method. In this method  is triangulated and the approximation spaces h and Wh are chosen as the continuous functions that are piecewise linear and quadratic, respectively. Here we
+consider a popular variant of this method that is more suitable for the application we have in
+mind. In all our numerical examples,  is a rectangle and hence it is more convenient to use
+rectangular nite elements. Thus the domain is divided into Nx × Ny identical quadrilateral elements, called P-elements. The pressure space h is the space of functions that are continuous
+and piecewise bilinear. To determine the velocity space Wh , each P-element is further divided
+into 2 × 2 elements, resulting in a mesh of 2Nx × 2Ny U -elements. The space Wh consists of
+the continuous functions that are bilinear in each U -element. Apart from using quadrilaterals
+instead of triangles, the dierence between the Hood–Taylor method and the method used
+here is that piecewise quadratic velocity functions are substituted for piecewise (bi-)linear
+velocity functions while at the same time a ner velocity mesh is used to maintain stability.
+The reason for not using piecewise quadratic velocity functions is that the computational eort
+related to such functions is much higher compared to the resolution in the optimal design.
+2.5. Matrix–vector formulations
+Let u be the vector of all nodal velocity values for uh , including those on @. The matrices
+C1 and C2 give the vector of nodal displacement values on @, u1 , and the vector of nodal
+displacements in the interior of , u2 , respectively;
+C1 u = u1 ;
+
+C2 u = u 2
+
+This decomposition is made so that
+u = CT1 u1 + CT2 u2
+
+(19)
+
+the matrix [CT1 ; CT2 ]T is invertible, and C1 CT1 and C2 CT2 are identity matrices (with some
+dimension). The body forces in the interior are represented by the load vector F which is
+work conjugate to u2 , so the (virtual) work by the load (per unit time) is FT u2 = FT C2 u. The
+bilinear form gives a symmetric and positive semidenite stiness matrix K̃ which includes
+also the nodes on @. The matrix B denotes the discretized divergence operator and BT the
+discretized gradient operator, and g is the discretized boundary function gh and g̃ = CT1 g the
+vector version of g̃ h . The discretized version of J then becomes
+J (v) = 12 vT K̃ v − FT C2 v
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+(20)
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+which should be minimized subject to incompressibility and inhomogeneous Dirichlet
+conditions,
+Bv = 0;
+
+C1 v = g
+
+(21)
+
+By using (19) and CT1 v1 = g̃, minimizing (20) subject to constraints (21) can be reduced to
+minimizing
+J˜  (v2 ) = 12 v2T K v2 − (F − C2 K̃ g̃)T v2 + 12 g̃K̃ g̃
+
+(22)
+
+subject to the constraints
+BCT2 v2 = − Bg̃
+
+(23)
+
+Here the matrix K = C2 K̃ CT2 is the stiness matrix including only the nodes in the interior
+of . A vector u2 solves this quadratic program if and only if the Karush–Kuhn–Tucker
+conditions hold, cf. (16),
+K u2 + C2 BT p = F − C2 K̃ g̃
+BCT2 u2 = −Bg̃
+
+(24)
+
+where p is the Lagrange multiplier for constraint (23), i.e. the discretized pressure. Since K
+is positive denite, one can solve for u2 in the rst of (24) and then plug this into the second
+of (24). One obtains the following equation system in pressure only:
+H p = h 
+
+(25)
+
+where
+H = BCT2 K−1 C2 BT ;
+
+h = BCT2 K−1 (F − C2 K̃ g̃) + Bg̃
+
+Having solved for p in (25), u2 can be obtained from the rst of (24), and then u = g̃ + CT2 u2 .
+2.6. Conjugate gradient algorithm in the pressure formulation
+Following Reference [17], the system of equations (25) is solved by a conjugate gradient
+method. As is well-known, the convergence speed of this iterative method depends highly on
+the condition of the system matrix H . For  in all of , this matrix is well-conditioned
+and we experience good convergence. However, for  taking values in the region of interest,
+and more importantly if  is oscillating, the convergence is poor and we conclude that the
+system needs preconditioning. To this end, a diculty is that the system matrix is never formed
+explicitly and hence applying an algebraic preconditioner, such as an incomplete Cholesky
+factorization or an SSOR preconditioner, would be a cumbersome task. A preconditioning
+technique based on properties of the underlying partial dierential equation was introduced by
+Cahouet and Chabard [11] and later slightly generalized by Glowinski [12]. As formulated in
+these two references, the technique is only applicable when  is a positive constant and we
+therefore use the formulation presented in the following.
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+86
+
+87
+
+To start with, we note that the matrices B, BT and K are (formally) discretizations of the
+operators
+B = div
+BT = −∇
+K = I − 
+and thus the system matrix H may be seen as the discretization of the composed operator
+H = − div(I − )−1 ∇
+The preconditioning operator is here denoted M and is dened by
+M−1 q = ’q + q
+
+(26)
+
+where ’q is the solution to the boundary value problem
+
+
+1
+−div
+∇’q = q in 
+
+
+
+@’q
+=0
+@n
+
+on @
+
+(27)
+
+’q = 0
+
+
+With this choice, assuming  constant and that the involved dierential operators commute,
+we have
+H M−1 q = −div(I − )−1 ∇(’q + q)
+
+
+
+1
+−1
+∇
+’q
+= −div(I − ) ∇ I −  div
+
+
+
+
+1
+= −div(I − )−1 I −  div
+∇
+∇’q
+
+
+
+1
+= −div(I − )−1 (I − )
+∇’q
+
+
+
+1
+= −div
+∇’q = q
+
+i.e. a perfect preconditioner. Although these calculations require constant  and periodic boundary conditions, see Reference [11], we have experienced a signicant improvement when applying this preconditioning strategy. For data used in the numerical examples, typically the
+number of iterations required for the algorithm to converge is kept below 20.
+With M denoting the discretized preconditioning operator, the overall solution algorithm
+can be described as follows. Let p0 be arbitrary and calculate r0 = H p0 − h , z0 = M−1 r0 and
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+set d0 = − z0 . Then for k = 0; 1; : : : compute
+k = rk zk =dk H dk
+T
+
+T
+
+pk+1 = pk + k dk
+rk+1 = rk + k H dk
+zk+1 = M−1 rk+1
+k = rk+1 zk+1 =rk zk
+T
+
+T
+
+dk+1 = −zk+1 + k dk
+
+√
+The algorithm is terminated when zT z ¡ 10−5 hT M−T M−1 h .
+We end this section with some comments regarding a practical implementation of this
+k
+algorithm. The matrix vector multiplication d̃ = H dk is performed in the following ve steps:
+k
+k
+k
+(i) s̃k = BT dk , (ii) sk = C2 s̃k , (iii) solve K tk = sk , (iv) t̃ = CT2 tk and nally (v) d̃ = Bt̃ . Steps
+(ii) and (iv) are virtually a problem of cancelling the degrees of freedom corresponding to
+the boundary of  and are hence easily dealt with. Moreover, the matrix B is not globally
+assembled but is stored as a single constant P-element matrix valid for all P-elements (since
+they are all identical). The steps (i) and (v) consist then of transversing all P-elements and
+performing matrix vector multiplications on the P-element level and assembling the results.
+We note that in step (iii), there is no coupling between the x and y degrees of freedom so
+instead we solve the following two smaller systems of equations
+
+K  txk = sxk
+
+(28)
+
+K  tyk = syk
+
+The matrix K  is stored in a banded storage format and is LDLT -factorized only once in the
+beginning the algorithm. The solutions txk and tyk are then obtained by forward and backward
+substitution, operations that are much cheaper than the factorization of the matrix. Since the
+size of K  is only half the size of K and since the factorization is performed only once, this
+part of the algorithm is ecient both concerning memory storage and computations. For the
+preconditioning, two systems of equations need to be solved. These systems correspond to
+the two terms in the denition of the preconditioning operator (26), one used for solving the
+Poisson-like problem (27) and the other for solving an identity problem. Since these problems
+are discretized on the mesh of P-elements, they are cheap to solve compared to solving the
+systems (28) which are discretized on the mesh of U -elements.
+3. THE DESIGN OPTIMIZATION PROBLEM
+We now consider  to be a design variable, or a control function, which aects the (inverted)
+permeability , and we write this (). An example of such a relation is the second of
+(13), where the control function  may be physically interpreted as the distance between two
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+88
+
+89
+
+surfaces encapsulating uid. However, if the model was to be generalized to three dimensions,
+the only physically reasonable values of  would be  = 0, which corresponds to uid present,
+and  = ∞, which corresponds to no uid present. In order to allow for this we therefore
+consider the situation where  is a fairly general interpolation function. We would like  to
+measure the relative amount of uid at each point in , and the idea is to indicate either
+nonpresence of uid by  = 0 or presence of uid when  = 1. Hence, the attempt is that the
+functions  should be approximate characteristic functions of subsets f of  occupied by
+a uid. In practice we cannot allow for  = 0 or ∞ so we say that  = 0 should correspond
+to  =  and  = 1 should correspond to  = . The optimization problem, to be stated
+more precisely later, is to minimize a power function  over all subsets f with measure
+|f | less than or equal to some specied value, i.e. minimize  with a constraint on available
+uid volume.
+3.1. The objective function
+The chosen objective function to minimize in the design problem is going to be the value of
+the total potential power evaluated at the solution u to (12), i.e.
+() = min J() (C) = J() (u())
+C∈Udiv
+
+(29)
+
+where u() is the solution to (12) for  = (). From the denition of J (u) one can immediately conclude that this objective means to minimize the dissipated power 12 a (u; u) in the
+uid plus maximizing the ow velocities at the applied forces f .
+For an alternative interpretation of the meaning of () we form another Lagrangian in the
+minimization of C → J (C) where now the other constraint C = g on @ is relaxed,
+L (C; ) = J (C) − ; C − g @
+
+Here we have written ·; ·@ for the duality pairing between H −1=2 (@) and H 1=2 (@).
+Let Wdiv = {C ∈ H 1 () | div C = 0} and look for a saddle point (u; ) ∈ Wdiv × H −1=2 (@) one
+obtains u = g on @ and
+a (u; C) − f ; C −  ; C@ = 0
+
+∀C ∈ Wdiv
+
+(30)
+
+Choosing C = u in (30) and plugging the resulting expression into (14) one obtains
+J (u) = 12 ( ; g @ − f ; u)
+
+or when writing it as a function of ,
+() = J() (u()) = 12 ( (); g @ − f ; u())
+
+(31)
+
+Hence the design goal is to minimize  (); g @ − f ; u(), which can be described as a
+combination of minimizing the forces on the boundary required to propel the uid to obtain
+the xed velocities g on the boundary, and maximizing ow velocities u at the areas where
+xed forces f are applied.
+Consider the common special case f = 0. Then, again from the original denition of J (u),
+one sees that this objective means to minimize the dissipated power in the uid. This can
+also be described as minimizing the average pressure drop under the additional assumption
+g = gn,
+ see the appendix.
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+3.2. Statement of the optimization problem
+Let the set of admissible controls be
+
+
+
+∞
+H =  ∈ L () 0661 a:e: in ;
+
+
+
+
+6 ||
+
+
+
+with being the prescribed volume fraction, a constant between 0 and 1. Furthermore, let
+ be a decreasing, convex and continuously dierentiable interpolation function.
+ : [0; 1] → [; ]
+We consider the following three optimization problems:
+J() (u)
+min
+(; u)∈H × Udiv
+
+min
+
+()
+
+min
+
+(u)
+
+∈H
+u∈Udiv
+
+where
+
+(32)
+
+is dened by
+(u) = min
+
+∈H
+
+J() (u)
+
+(33)
+
+It can be shown that these three problems are equivalent in the sense that if a pair (∗ ; u∗ )
+is a solution to any one of the problems,‡ it is also a solution to the other two. It follows
+that if one of the problems is well-posed, i.e. the set of solutions is nonempty, then the other
+two are also well-posed. Regarding the question of existence of solutions, we may therefore
+restrict ourselves to examining only one of the three problems.
+Theorem 3.1
+The rst of (32) is well-posed.
+Proof
+∗
+Let {(n ; un )}∞
+n=1 ⊂ H × Udiv be a minimizing sequence of J . Since H is weakly compact,
+∞
+∗
+there is an element  ∈ H and a subsequence, denoted {m }m=1 , so that m → ∗ weakly∗
+in L∞ (). Furthermore, since  is positive and bounded from above and below, the bilinear
+1
+form a in (14) is H 1 ()-elliptic, and it follows that {un }∞
+n=1 ⊂ H () is relatively weakly
+1
+compact. Since Udiv ⊂ H () is weakly closed, there is an element u∗ ∈ Udiv so that, again for
+∗
+1
+a subsequence {um }∞
+m=1 , um → u weakly in H (). Naturally these two subsequences can be
+chosen as a subsequence of the originally minimizing sequence and, in addition, they can be
+chosen so that um → u∗ strongly in L2 () because of the compact inclusion H 1 () ⊂ L2 ().
+We now show that J is lower semicontinuous with respect to this topology.
+We only show lower semicontinuity of the term that depends on , treatment of the other
+terms are classical and can be found in e.g. [18]. We have
+
+
+
+
+(m )um · um − (∗ )u∗ · u∗
+
+
+
+= (m )(um · um − u∗ · u∗ ) + ((m ) − (∗ ))u∗ · u∗
+
+
+
+
+
+
+
+‡ To avoid confusion, (∗ ; u ∗ ) is termed a solution to the second of (32) if (i) u ∗ = u(∗ ) in (29) and if (ii) ∗
+
+solution to the second of (32). An analogous denition is assumed for the third of (32).
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+90
+
+91
+
+where the two terms on the right hand side can be treated individually as follows. The rst
+term tends to zero since
+
+ 
+
+
+ (m )(um · um − u∗ · u∗ ) 6 |(m )(um · um − u∗ · u∗ )|
+
+
+
+
+
+
+6C1
+
+
+
+|um · um − u∗ · u∗ | = C1
+
+
+
+
+
+|(um − u∗ ) · (um + u∗ )|
+
+
+
+6C1 um − u∗ 0 um + u∗ 0 6C2 um − u∗ 0
+
+and um → u∗ in L2 (). Since u∗ · u∗ ¿0 pointwise, the second term can be estimated as follows
+
+
+∗
+∗
+∗
+((m ) − ( ))u · u ¿ (m − ∗ ) (∗ )u∗ · u∗
+
+
+
+
+where we have used that  is convex and continuously dierentiable. Since  is bounded
+from above and below,  (∗ )u∗ · u∗ ∈ L1 () and the right hand side tends to zero because of
+weak ∗ convergence of m to ∗ . This shows that J is lower semicontinuous.
+It now follows that for any (; u) ∈ H × Udiv
+J(∗ ) (u∗ )6 lim inf J(m ) (um )6J() (u)
+m→∞
+
+∗
+
+∗
+
+i.e. ( ; u ) ∈ H × Udiv solves the rst of (32).
+The second and third of (32) are nested formulations of the rst, which is formulated as a
+simultaneous analysis and design problem. The second of (32) is the problem for which the
+objective function is examined in detail in Section 3.1 and that is solved in practice. Now
+
+and, for any u ∈ Udiv ,
+consider the special case of linear interpolation, i.e. () =  + ( − ),
+let (u) ⊂  be a set with |(u)| = || that fulls
+x ∈ (u) ⇒ u(x) · u(x)¿u(y) · u(y);
+
+∀y ∈ \(u)
+
+It is easy to see that such a set exists and that a solution to the inner minimization problem
+in the denition of (33) is given by (u) = (u) , i.e. the characteristic function of the set
+(u). In other words, when the interpolation is linear we can always nd an optimal design
+function ∗ in the set
+
+
+
+
+
+H̃ =  ∈ L∞ () (x) ∈ {0; 1} a:e: in ;
+6 ||
+
+
+Since H̃ ⊂ H, we have proved the following
+Corollary 3.1
+The rst of (32) is well-posed with H substituted for H̃.
+Theorem 3.1 and Corollary 3.1 state indirectly that there is no need for a regularization of
+the optimization problem, even if  is only allowed to take values 0 or 1. This is a rather
+unusual situation in topology optimization of continua and is physically a consequence of how
+power is dissipated in Stokes ow, something that is commented upon throughout Section 4.
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+Figure 2. Quadrilateral nite elements used for the continuous bilinear approximation of velocity and
+pressure and piecewise constant approximation of control.
+
+3.3. Finite element discretization of the optimization problem
+We have supposed that  is partitioned into m = 4Nx × Ny mutually disjoint U -elements i ,
+
+ For each partition, h denotes a characteristic size of the
+such that i ⊂  and mi=1  i = .
+(largest) element and Lh the space of U -elementwise constant functions on . We approximate
+the control function  as U -elementwise constant, which means that the discretized controls
+will be restricted to belong to the set Hh = H ∩ Lh . The picture in Figure 2 shows the resulting
+quadrilateral nite elements used for the approximation of velocity, pressure and control.
+The operator Ph is dened as the U -elementwise constant interpolation
+Ph  =
+
+m
+i=1
+
+where i is the integral mean of  over i , i.e.
+i =
+
+1
+|i |
+
+i  i
+
+
+
+i
+
+It can be veried that Ph maps H onto Hh and that Ph  converges to  in L2 ()-norm for
+any  ∈ H:§
+We pose two very weak assumptions on the discretization of the state problem. Standard
+interpolation estimates, see Reference [19], together with the density of smooth functions give
+that we can assume that the discretized functions are dense in the exact ones:
+(I) ∀(u; p) ∈ U × : lim inf
+
+h→0 Ch ∈Uh
+
+u − Ch 1 = lim inf
+h→0 qh ∈
+
+h
+
+p − qh 0 = 0
+
+Moreover, we pose the following closedness property:
+(II) uh ∈ Uh ;
+
+uh → u weakly in H 1 () ⇒ u ∈ U
+
+which follows immediately if e.g. Uh ⊂ U .
+The FE-discretized optimization problem can, in one of its equivalent forms, be stated as
+min
+
+(h ; uh )∈Hh ×Udiv; h
+
+J(h ) (uh )
+
+(34)
+
+§ The
+
+convergence refers to the sequence obtained when letting h → 0 from above, which is often implicitly
+understood in this text.
+
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+92
+
+93
+
+in which Udiv; h is the set of functions in Uh for which the discretized incompressibility
+condition, second of (15), holds.
+We have the following density and closedness lemmas for the discretization of Udiv :
+Lemma 3.1
+Suppose that (I) and the LBB-condition (17) hold true, and let u be any function in Udiv .
+Then there exist functions uh ∈ Udiv; h such that uh → u strongly in H 1 ().
+Proof
+Let u be any function in Udiv . Project u onto the set Udiv; h to obtain uh . If the projection is
+performed in the sense of the power norm a (·; ·) for any xed , then uh is governed by
+(15) with f ; · = a (u; ·). Similarly we can project u on Udiv to get u itself, so u is governed
+by (12) with f ; · = a (u; ·). Hence, having assumed (17), the error estimate (18) applies.
+Therefore uh − u 1 converges to zero since we have also assumed (I).
+Lemma 3.2
+Suppose that (I) and (II) hold true, and let uh ∈ Udiv; h be functions such that uh → u weakly
+in H 1 (). Then u belongs to Udiv .
+Proof
+By (II), u ∈ U , so it remains to show only b(u; q) = 0 in which q is an arbitrary choice
+from .
+By (I) one can nd qh ∈ h such that qh → q strongly in L2 (). This together with the
+weak convergence of uh ensure
+b(u; q) = lim b(uh ; q) + lim b(uh ; qh − q) = lim b(uh ; qh )
+h→0
+
+h→0
+
+h→0
+
+It holds that b(uh ; qh ) = 0 since uh ∈ Udiv; h , and therefore b(u; q) = 0.
+Now we are in a position to prove convergence of the nite element scheme:
+Theorem 3.2
+Suppose that (I), (II) and the LBB-condition (17) hold true, and let {(∗h ; uh∗ )} be a sequence
+of solutions to (34) as h → 0. Then there exists an element (∗ ; u∗ ) which is feasible in the
+rst of (32), and there is a subsequence, again denoted by {(∗h ; uh∗ )}, such that
+∗h → ∗
+
+weakly∗ in L∞ ()
+
+uh∗ → u∗
+
+weakly in H 1 ()
+
+Moreover, any such limit (∗ ; u∗ ) solves the rst of (32).
+Proof
+Since the functional J(∗h ) (·) is uniformly elliptic and the sets Hh are uniformly bounded with
+respect to h, it follows that the sequence {uh∗ } is bounded in H 1 () and {∗h } is bounded in
+L∞ (). Hence we can extract a subsequence, again denoted {(∗h ; uh∗ )}, such that ∗h converges
+weakly∗ in L∞ () to a limit ∗ and uh∗ converges weakly in H 1 () (and strongly in L2 ())
+to a limit u∗ . By Lemma 3.2, u∗ ∈ Udiv , and since Hh ⊂ H where H is weakly∗ closed,
+∗ ∈ H, and therefore (∗ ; u∗ ) is feasible in the rst of (32).
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+Pick any feasible pair (; u) in the rst of (32). By Lemma 3.1 there exists uh ∈ Udiv; h such
+that uh converges to u strongly in H 1 (). Moreover, (Ph ; uh ) is feasible in (34), so
+J(∗h ) (uh∗ )6J(Ph ) (uh )
+
+(35)
+
+By the arguments on lower semicontinuity in Theorem 3.1, lim inf J(∗h ) (uh∗ ) is bounded
+below by J(∗ ) (u∗ ), and J(Ph ) (uh ) converges to J() (u) by the strong convergence of Ph 
+in L2 () and uh in H 1 (), cf. Reference [20]. Therefore, taking the limit of (35) results in
+J(∗ ) (u∗ )6 lim inf J(∗h ) (uh∗ )6 lim J(Ph ) (uh ) = J() (u)
+h→0
+
+h→0
+
+which means that (∗ ; u∗ ) is optimal in the rst of (32).
+The result establishes the convergence of optimal control functions ∗h , obtained by solving
+the nite element discretized optimization problem, to optimal control functions ∗ in the
+original problem statement. The convergence is only in a weak ∗ sense, so this fact alone
+does not rule out the existence of checkerboard patterns in the elds ∗h . If such patterns
+appear, however, it is clear how to interpret them, namely as a convergence to intermediate
+‘gray’ control values. As the choice of  → () is such that the nal controls will be almost
+completely ‘black-white’, however, checkerboards will not appear. In fact, it follows from
+Corollary 3.2 in [20] that ∗h converges strongly to ∗ in Lp (b )-norm, where b is the
+subset of  where ∗ equals 0 or 1, and p ∈ [1; ∞) is arbitrary.
+3.4. Sequential separable and convex programming
+As a base for a numerical solution procedure, we use the nested problem formulation given
+by the second of (32). In this section we present the discretized version of this problem and
+how it is solved.
+Let  be the vector of U -elementwise constant values of h , and u2 () and p() the vectors
+that solve (24) for this h . Furthermore, we set u() = g̃ + CT2 u2 () and emphasise that K̃
+depends on  by denoting it K̃(), i.e.
+m
+
+K̃() =
+
+i=1
+
+((i )Ki + Ki )
+
+(36)
+
+where Ki and Ki are element matrices arising from the terms in the rst of (13). The discrete
+version of the objective function  given by (29) can now be written as
+() = 12 (u()T (K̃()g̃ − CT2 F) + p()T Bg̃)
+
+(37)
+
+This expression can be veried by expanding the individual terms in the right hand side of
+(37), using the expression for u() above and Equation (24), and comparing this expansion
+with the right hand side of (22) with v2 = u2 (). The reason for not using (22) with v2 = u2 ()
+as an expression for the objective function is that (37) is more convenient when considering
+an implementation. The vectors K̃()g̃ − CT2 F and Bg̃ are (virtually) the right hand sides
+of (24) and are needed for obtaining u() and p() in the rst place. The objective value
+is then simply obtained by performing two scalar products followed by an addition and a
+multiplication.
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+94
+
+95
+
+From a mathematical programming point of view, the discrete version of the second of
+(32) is conveniently written as
+
+min
+()
+
+
+ 
+
+s:t:
+
+
+
+
+
+eT 6 ||
+0661
+
+in which e is the vector containing the U -element areas. This problem is solved by means of
+sequential separable and convex programming. In iteration k and for a design suggestion k ,
+the vectors u(k ) and p(k ) are obtained and the following separable and convex subproblem
+is formed:
+
+qik
+
+
+r k + mi=1
+ min
+
+i − lki
+ 
+(38)
+s:t: eT 6 ||
+
+
+
+
+
+k 66k
+where i are the element values of . The expression for the objective function in (38)
+is known as an MMA-expansion and was introduced by Svanberg [21]. The parameters lki ,
+k and k are parameters that are dynamically updated between iterations according to the
+scheme in [21]. The parameters r k and the qik are then chosen so that function values and rst
+order derivatives are correct in the current iteration point k . For this, a sensitivity analysis is
+required for the objective function. We set () = (h ) and note that the objective function
+is (20) with v = u(), i.e.,
+() = J() (u()) = min J() (v)
+v
+
+(39)
+
+in which the minimization is performed subject to constraints (21). The function
+can
+obviously be written as pointwise maxima of an indexed family of functions, and so we can
+apply theorems on generalized gradients for such functions. In fact, it follows from Theorem
+2.8.6 in Reference [22] that
+@K̃()
+@ () 1
+= u()T
+u()
+@i
+2
+@i
+since the minimizing vector u() in (39) is always unique. Using (36) this becomes
+@ () 1 
+=  (i )u()T Ki u()
+@i
+2
+Whence  (i )60 and u()T Ki u()¿0, it follows that one will improve the objective, or at
+least not worsen it, when one adds uid to any part of . Note that since all U -elements are
+identical, only two representatives of the element matrices need to be stored and the calculation
+of sensitivities as well as assembly of the global stiness matrix are cheap operations. When
+(38) is completely determined, it is (due to separability, convexity and only one constraint)
+solved cheaply using a dual method and the solution is taken as a new design suggestion
+k+1 . This iterative procedure is stopped when the relative dierence between two successive
+objective values is less than 10−5 twice in a row.
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+Figure 3. The interpolation function (40) plotted for q = 0:01, 0.1, 1 and 10.
+
+4. NUMERICAL EXAMPLES
+4.1. Preliminaries
+We begin this section by discussing the choice of interpolation function  → (). Since the
+goal is for  to only take values 0 or 1, the idea is to choose  in such a way that intermediate
+values of  are suppressed. From this point of view, it is interesting to note that the discussion
+leading to Corollary 3.1 indicates that  should be linear in order to end up with a discretevalued solution. However, a linear interpolation function would impose a too severe penalty
+on the design and we would often end up with locally (and non-globally) optimal solutions.
+Therefore we use the following convex and q-parameterized interpolation function:
+
+q () =  + ( − )
+
+1+q
++q
+
+(40)
+
+The parameter q¿0 is a penalty parameter that is used to control the level of ‘gray’ in the
+optimal design. This function is depicted in Figure 3 for four dierent values of q and parameter values that are used in all numerical examples,  = 1,  = 2:5=1002 and  = 2:5=0:012 .
+It is easily deduced that when q is large, the interpolation is close to linear which likely
+would encourage a discrete-valued optimal solution.
+The prole of nonzero prescribed ow velocities on the boundary is always (except for in
+the rugby ball example in Section 4.4) parabolic shaped and the magnitude of the velocity
+can be written g = g(1
+ − (2t=l)2 ), parameterized in t ∈ [−l=2; l=2]. Here l is the length of
+the boundary part where the ow velocity is prescribed and g is the magnitude of the ow
+velocity at the centre of this boundary part. The direction of the ow and the value of the
+parameter l will be found from gures and the value of the parameter g will be given in the
+text.
+In order to obtain a suciently discrete-valued solution, a penalty parameter value of q = 0:1
+is used. Because of nonconvexity, we have on occasion experienced problems with locally
+optimal solutions when solving the problems directly using these parameter values. For some
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+96
+
+97
+
+Figure 4. Design domain for the diuser example. The outlet is centred on the right side of the domain.
+
+of the examples we therefore consider a two-step solution procedure where the problem is
+initially solved with a small penalty value of q = 0:01. The obtained solution is used as
+an initial guess for the problem with a penalty value of q = 0:1. This is done with all other
+parameters unchanged. The main idea is to generate a clever initial guess for the ill-conditioned
+(in terms of convexity) optimization problem by initially solving a well-conditioned one.
+Whether or not this strategy is applied, we have always started from a constant initial guess
+ = , where is the prescribed volume fraction, and the iteration numbers given in the tables
+are the total number of iterations needed to obtain the optimal solution starting from this
+constant design.
+Finally, in the grey scale pictures showing the optimal results, black corresponds to a design
+value of  = 0 and white a value of  = 1.
+4.2. A diuser
+The rst two examples are engineering applications commonly found in the uid mechanics
+literature. Although these examples may be more interesting when considering more complicated uid models, they are here used to give a rst illustration and verication of the
+methodology presented in this paper. The rst example is the diuser that is depicted in
+Figure 4. The prescribed volume fraction is = 0:5 and the maximum ow velocity is g = 1
+at the inlet on the left and g = 3 at the outlet on the right. The problem is solved directly for
+two mesh discretizations, a coarse and a ne mesh, and the solutions are shown in Figure 5.
+Apart from illustrating mesh independence, the solutions can be compared with the ones obtained by Cabuk and Modi [6]. In Reference [6], a similar diuser problem is solved using
+shape optimization in Navier–Stokes equations for low Reynolds numbers. A major dierence
+from here is that the outow condition (actually corresponding to the inow condition on the
+left side of the domain in Figure 4) is of Neumann type, which, together with some other
+dierences, make the solutions look rather dierent from a global perspective. However, when
+comparing the boundary shapes closer to the side where a Dirichlet parabolic ow prole is
+prescribed, they are similar. We believe that the solutions here would be dierent if one
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+Figure 5. Optimal diuser on a coarse and a ne nite element mesh.
+
+Figure 6. Design domain for the pipe bend example.
+
+includes the possibility of combining the parabolic ow prole conditions on the boundary
+with for instance constant ow proles or Neumann boundary conditions.
+4.3. A pipe bend
+We follow up the previous example with a pipe bend shown in Figure 6. Here = 0:08
+and g = 1 for the prescribed inow and outow. The prescribed volume fraction is chosen
+so that the optimal solution has the same volume as a quarter torus of inner radius 0.7 and
+outer radius 0.9 that exactly ts to the inlet and outlet. The solution strategy and other input
+data are the same as for the diuser example and the solutions are shown in Figure 7. As
+can be seen, the optimal solution is a straight pipe connecting the inlet and outlet and not,
+as pipe bends in uid mechanics literature mostly are, torus shaped, which can be explained
+as follows. If a prescribed amount of uid is to be transported in a pipe, the shears in the
+uid are large when the pipe is thin and, conversely, small when the pipe is wide. Since the
+dissipated power in Stokes ow is due to shears only, an optimal ow pipe is preferably short
+and wide. If for instance a ow model that allows for separation of the boundary layer would
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+98
+
+Figure 7. Optimal pipe bend on a coarse and a ne nite element mesh.
+Table I. Computational data for the diuser.
+Number of U -elements
+50 × 50
+100 × 100
+
+Number of iterations
+
+Objective value
+
+29
+33
+
+30.59
+30.46
+
+Table II. Computational data for the pipe bend.
+Number of U -elements
+50 × 50
+100 × 100
+
+Number of iterations
+
+Objective value
+
+64
+85
+
+10.01
+9.76
+
+have been used, the solutions in Figure 7 would be rather poor and a more torus shaped
+solution would probably be more advantageous. Computational data for the diuser and the
+pipe bend can be found in Tables I and II, respectively.
+4.4. A rugby ball
+The design domain for the third numerical example is shown in Figure 8 and is for the
+computations discretized into 100 × 100 U -elements. The prescribed velocity on the boundary
+is constant, directed upwards and of magnitude 1. A small portion of the design domain
+close to the boundary is prescribed uid and the remainder of the domain is subject to the
+optimization. The problem is solved for three values of , and the results are shown in
+Figure 9. It is seen that the optimal shape is insensitive to the prescribed volume fraction
+and reminds of that of a rugby ball. A very similar example has been treated theoretically in
+the context of shape optimization in Stokes ow by Pironneau [3, 4]. There it is for instance
+concluded that the wedge at the front and back of the optimal shape is necessarily of angle 90◦ ,
+which seems to agree reasonably well with the obtained numerical results. From a numerical
+viewpoint, this problem is well-conditioned and little or no precautionary measures need to be
+taken. The solution procedure presented in Section 4.1 is used here and data for this example
+can be found in Table III.
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+99
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+Figure 8. Design domain for the rugby ball example.
+
+Figure 9. Optimal rugby balls for
+
+= 0:8, 0.9 and 0.95.
+
+4.5. A double pipe
+In Figure 10, a parameterized design domain is shown. The maximum velocities at the inlets
+and outlets are dened by g = 1 and the prescribed volume fraction is chosen as = 13 . The
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+100
+
+Table III. Computational data for the rugby ball.
+Volume fraction
+0.8
+0.9
+0.95
+
+Number of iterations
+
+Objective value
+
+47
+33
+29
+
+31.75
+14.07
+8.35
+
+Figure 10. Design domain for the double pipe example.
+
+problem is solved for = 1 and = 1:5, for which the design domain is discretized into
+100 × 100 and 150 × 100 U -elements, respectively. These choices of the width-to-height ratio
+result in two solutions that are topologically dierent and shown in Figure 11. As for the
+pipe bend, the channels that transport the uid should be short and wide and for a suciently
+large , it is advantageous to join the two pipes appearing in the upper solution to form the
+solution below. In short, there is a trade-o between transporting uid the shortest way and to
+transport the uid partly along a wide pipe in the centre of the design domain. Numerically,
+this problem is tricky to solve, and we nd it necessary to use the solution procedure in
+Section 4.1 to avoid a (non-global) local optimum.
+The solution at the top in Figure 11 can ideally be seen as two straight pipes that contain
+Stokes uid. For such a case it is possible to compute the dissipated power analytically,
+a value that is equal to 32. When inspecting Table IV, which contains computational data
+for this example, the reader may note that the objective value for the solution at the top in
+Figure 11 is rather small compared to the analytically obtained dissipation value. Apart from
+the discretization error, there are two reasons to why this value is low. First, one may note
+that there is a layer of grey elements at the boundary of the pipes that allows for a decrease
+in the dissipated power since the ‘eective’ width of the pipes is larger than 16 . If needed,
+this eect is partly cured by choosing a larger q in (40). Secondly, some power is dissipated
+in the nonuid regions because of a not-large-enough choice of .
+ From experiments, we
+conclude that this eect may lead to a reduction in the dissipated power with up to (and
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+101
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+Figure 11. Optimal double pipes for
+
+= 1 and 1.5, respectively.
+
+Table IV. Computational data for the double pipe.
+Length of domain
+1
+1.5
+
+Number of iterations
+
+Objective value
+
+61
+236
+
+25.67
+27.64
+
+perhaps more than) 10%. To see if this has an eect on the optimal design, we reran the two
+examples in Figure 11 with values  = 2:5=10002 and  = 2:5=0:0012 but obtained virtually
+identical results. It is believed that the optimal design is rather insensitive to the choice of 
+even though the dissipated power value may deviate quite a lot from the ‘true’ value.
+4.6. An example with a force term
+We end this section with an example that includes a body uid force term. Figure 12 shows
+the design domain which is discretized into 100 × 100 U -elements. The volume fraction is
+chosen = 0:25 and the prescribed ows on the boundary are of a magnitude dened by g = 1.
+We have solved the problem for three horizontally directed body forces and the solutions are
+shown in Figure 13. For this example we also show the optimal designs including ow
+velocity streamlines. For the solution shown at the top, the force is directed to the left and
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+102
+
+103
+
+Figure 12. Design domain for the example with a force term. The circular patch on which the surface
+force density is dened is centred with respect to the width of the domain.
+
+the optimal solution is a pipe that due to the force is connected to a roundabout in which
+the uid ows in the clockwise direction. For a force of a certain magnitude directed to the
+right, the optimal design is a pipe that is shaped so that the force propels the uid along the
+pipe, a situation that is illustrated by the solution shown in the middle. For this design, the
+incompressibility condition prevents the uid of having a much larger velocity at the middle
+of the pipe than at the inlet and outlet. Consequently, a suciently large force to the right can
+be utilized more appropriately for a design shown at the bottom of the gure. Here the pipe
+is combined with a roundabout in which the uid ows in the counter clockwise direction.
+The streamlines to the right show that the uid velocity is approximately constant along the
+pipe for the design in the middle while it is higher by the applied force for the design at
+the bottom. Finally, we note that to obtain a successful result we had to apply the solution
+procedure presented in Section 4.1. Computational data for this example is found in Table V.
+
+5. DISCUSSION AND CONCLUSIONS
+A methodology for performing topology optimization of uids in Stokes ow is presented
+in this paper. A generalized Stokes problem is derived from a plane ow assumption that
+proves to be suitable for introducing the design parameterization. Physically, the design can
+be seen as to control the permeability of the uid while the viscosity is kept constant. The
+discretized state problem is a mixed nite element problem that is solved in the uid pressure
+by a preconditioned conjugate gradient method. A preconditioner previously used in uid
+mechanics applications is here slightly reformulated to handle ill-conditioning due to design
+oscillations, an approach that signicantly improves the eciency of the solution procedure.
+The optimization problem is formulated as to minimize the total potential power, which for no
+body uid forces present is reduced to minimize the dissipated power in the uid. It is shown
+that the optimization problem is well-posed, even if the design is required to be discretevalued, and hence no regularization is needed. Furthermore, the nite element discretized
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+Figure 13. Optimal results for the example with a force term. The surface force density is −1125, 562.5
+and 1687.5 in the direction of the arrow in Figure 12, respectively.
+
+solutions are shown to converge to the exact ones as the mesh is innitely rened. These
+results indicate that the numerical solutions are not prone to numerical instabilities, such
+as mesh-dependence or checkerboards, something that is also illustrated by the numerical
+examples. The discretized optimization problem is solved by sequential separable and convex
+programming, or more specically, by MMA (the method of moving asymptotes). Several
+numerical examples in two dimensions are presented and compared to well-known results
+obtained in shape optimization of uids.
+Since the use of topology optimization methodologies in uid mechanics seems to be new,
+it is not out of place to speculate about applications. First, constructions, or biological systems,
+involving quite slow ow on a quite small scale imply small Reynolds numbers, so the Stokes
+ow assumption is reasonable. One could therefore try to nd applications in (integrated)
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+104
+
+Table V. Computational data for the example with a force term. The direction of the surface
+force density is the one given in Figure 12.
+Surface force density
+−1125
+562.5
+1687.5
+
+Number of iterations
+
+Objective value
+
+229
+66
+69
+
+2.19
+−1:21
+−22:53
+
+uid circuits where the uid paths measure about, say, less than 1 mm in width, and within
+biomedicine and biouid mechanics. Second, for slow ows of quite viscous uids such as
+oil, the typical length need not be very small for the Reynolds number to be small, so one
+could consider optimal design of uid paths in valves.
+In several of these applications the uid device should be able to handle more than one
+single ow scenario. Therefore the methodology should be extended to cope with multiple
+boundary conditions.¶ In this paper, one should note that the properties of the optimization
+problem is a reason for obtaining nice mathematical results and also aects the numerical
+solution strategy. If an application requires usage of another objective, i.e. other than the total
+potential power, additional or alternative measures may need to be taken for the methodology
+to work satisfactory.
+For some other applications that one can think of it will be necessary to include more
+sophisticated state equations in order to be able to govern realistic ows. One could imagine
+optimal conceptual design of air ow channels in vehicles, such as aircondition design for
+cars, as well as design of submerged bridge pillars for minimum environmental impact on
+watercourse ows. In such cases the Stokes model is insucient, and one could instead try to
+perform optimization with e.g. the Euler equations governing inviscid ows. Then, however,
+it is an open question how to perform the design parameterization. Also, performing topology
+optimization with the Navier–Stokes equations would certainly be very desirable, but very
+dicult due to the careful resolution that is needed close to the unknown boundaries.
+APPENDIX A: INTERPRETATION OF () AS AVERAGE PRESSURE DROP
+We return to the three-dimensional continuum mechanical description initiated in Section 2.1,
+and consider cases when f = 0 and g = gn.
+
+We start by making the following observation. Denoting the surface traction by s(n), on
+@R it holds that
+s(n) · u = − p(
+ g · n) + 2D(u)n
+ · u
+due to s(n) = Tn (Cauchy’s theorem) and the constitutive equation (1). Using (2) this can be
+rewritten as
+s(n) · u = − p(
+ g · n) + (∇u)
+ u · n + (∇u)n
+ · u
+¶ This is analogous to multiple loads in solid mechanics and should not provide any principal complications.
+
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+105
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+T. BORRVALL AND J. PETERSSON
+
+and in particular, when g = gn
+ and neglecting the convection terms,
+s(n) · g ≈ −pg
+
+(A1)
+
+For the three-dimensional case we can identify the multiplier () with the surface traction
+s(n), so by (A1) and (31) one gets that
+
+1
+pg
+() ≈ −
+2 @R
+
+so the objective is to maximize @R pg. Dene @Rin as the part of @R where g¡0
+
+and @Rout
+the part of @R where g¿0,
+
+and then dene the average pressures
+
+
+gp
+gp
+@Rin
+p in = 
+; p out = @Rout
+g
+g
+@Rin
+@Rout
+From the compatibility condition (6) one has
+
+
+−
+g =
+@Rin
+
+g ¿ 0
+
+@Rout
+
+so
+
+
+
+gp 
+gp
+1
+@Rout
+@Rin
+
+pg =
+− 
+g
+2
+g
+g
+@R
+@Rout
+@Rin
+@Rout
+
+1
+= (p in − p out )
+g
+2
+@Rout
+
+1
+() ≈ −
+2
+
+
+
+
+Therefore, since the ow @Rout g through the control volume is given, the design goal in this
+common special case is to
+
+minimize (p in − p out )
+In conclusion, neglecting similar nonlinear terms as when deriving Stokes equations from
+Navier–Stokes equations, and assuming g = gn,
+ f = 0, the chosen design objective (31) means
+to minimize the average pressure drop.
+ACKNOWLEDGEMENTS
+
+This work was nancially supported by the National Graduate School in Scientic Computing (NGSSC)
+and National Network in Applied Mathematics (NTM) up to and including the year 2001. After that
+the support comes from the Swedish Research Council (VR) and the Center for Industrial Information
+Technology (CENIIT).
+The authors wish to express their gratitude to Martin Berggren, Department of Scientic Computing,
+Uppsala University, and FOI, Swedish Defence Research Agency, Stockholm, for his invaluable help on
+the Stokes problem solver. Further, Joakim Wren, Department of Mechanical Engineering, Linkoping
+university, and Matts Karlsson, Department of Biomedical Engineering, Linkoping university, are acknowledged for their suggestions on the numerical examples.
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+106
+
+107
+
+REFERENCES
+1. Enoksson O. Shape optimization in compressible inviscid ow. Licentiate thesis LiU-TEK-LIC-2000:31,
+Department of Mathematics, Linkopings Universitet, 2000.
+2. Kim DW, Kim, M-U. Minimum drag shape in two-dimensional viscous ow. International Journal for
+Numerical Methods in Fluids 1995; 21:93 – 111.
+3. Pironneau O. On optimum proles in Stokes ow. Journal of Fluid Mechanics 1973; 59:117– 128.
+4. Pironneau O. On optimum design in uid mechanics. Journal of Fluid Mechanics 1974; 64:97– 110.
+5. Glowinski R, Pironneau O. On the numerical computation of the minimum-drag prole in laminar ow. Journal
+of Fluid Mechanics 1975; 72:385 – 389.
+6. Cabuk H, Modi V. Optimum plane diusers in laminar ow. Journal of Fluid Mechanics 1992; 237:373 – 393.
+7. Bends e MP. Optimization of Structural Topology, Shape, and Material. Springer-Verlag: Berlin, 1995.
+8. Eschenauer HA, Olho N. Topology optimization of continuum structures: A review. Applied Mechanics Review
+2001; 54:331 – 390.
+9. Karlsson M, Klarbring A, Petersson J, Torstenfelt B. Topology optimization of ow networks. In preparation.
+10. Bends e MP, Sigmund O. Material interpolation schemes in topology optimization. Archives of Applied
+Mechanics 1999; 69:635– 654.
+11. Cahouet J, Chabard JP. Some fast 3D solvers for the generalized Stokes problem. International Journal for
+Numerical Methods in Fluids 1988; 8:269 –295.
+12. Glowinski R. Finite element methods for the numerical simulation of incompressible viscous ow: Introduction
+to the control of the Navier–Stokes equations. Lectures in Applied Mathematics 1991; 28:219 – 301.
+13. Sanchez-Palencia E. Non-Homogeneous Media and Vibration Theory. Springer-Verlag: Berlin, Heidelberg,
+1980.
+14. Gurtin ME. An Introduction to Continuum Mechanics. Academic Press: San Diego, 1981.
+15. Girault V, Raviart P. Finite Element Methods for Navier–Stokes Equations: Theory and Algorithms. SpringerVerlag: Berlin, Heidelberg, 1986.
+16. Brezzi F. On the existence, uniqueness and approximation of saddle point problems arising from Lagrangian
+multipliers. RAIRO Numerical Analysis 1974; 8:129 – 151.
+17. Glowinski R. Numerical Methods for Nonlinear Variational Problems. Springer Verlag: Berlin, 1984.
+18. Ekeland I, Temam R. Convex Analysis and Variational Problems. North-Holland: Amsterdam, 1976.
+19. Ciarlet PG. The Finite Element Method for Elliptic Problems. North-Holland: Amsterdam, 1978.
+20. Petersson J. A nite element analysis of optimal variable thickness sheets. SIAM Journal for Numerical
+Analysis 1999; 36:1759 – 1778.
+21. Svanberg K. The method of moving asymptotes—a new method for structural optimization. International Journal
+for Numerical Methods in Engineering 1987; 24:359 – 373.
+22. Clarke FH. Optimization and Nonsmooth Analysis. John Wiley: New York, 1983.
+
+Copyright ? 2003 John Wiley & Sons, Ltd.
+
+Int. J. Numer. Meth. Fluids 2003; 41:77–107
+
+10970363, 2003, 1, Downloaded from https://onlinelibrary.wiley.com/doi/10.1002/fld.426 by Technical University Delft, Wiley Online Library on [07/09/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+
+TOPOLOGY OPTIMIZATION OF FLUIDS IN STOKES FLOW
+
+

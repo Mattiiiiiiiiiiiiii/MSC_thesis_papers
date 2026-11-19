@@ -1,0 +1,747 @@
+author: Lock, R.C. and Williams, B.R.
+author_list:
+- affiliation: []
+  family: Lock
+  given: R.C.
+- affiliation: []
+  family: Williams
+  given: B.R.
+citations:
+- article-title: Current status of numerical solutions of the Navier-Stokes equations
+  author: MacCormack
+  journal-title: Aiaa Paper 85-0032
+  year: '1985'
+- article-title: The interaction between local effects at the shock and rear separation
+  author: Pearcey
+  journal-title: Agard Cp-35
+  year: '1968'
+- article-title: Calculation of turbulent inviscid flow interactions with large normal
+    pressure gradients
+  author: Mahgoub
+  doi: 10.2514/3.61272
+  first-page: '1025'
+  journal-title: Aiaa. J.
+  volume: '17'
+  year: '1979'
+- article-title: Calculations of viscous transonic flow over aerofoils
+  author: Chen
+  journal-title: Aiaa-82-0997
+  year: '1982'
+- article-title: Viscous-inviscid matching using higher-order shear-layer equations
+  author: Bradshaw
+  series-title: Second Symposium on Numerical and Physical Aspects of Aerodynamic
+    Flows
+  year: '1983'
+- article-title: 'Couplage visqueux-non visqueux: Part 1, Analyse du probleme incluent
+    décollements et ondes de choc'
+  author: Le Balleur
+  series-title: La Recherche Aerospatiale, No 1977-6 Part II, Méthode numerique et
+    applications aux écoulements bidimensionnels transsoniques et supersoniques
+  year: '1977'
+- article-title: A mixing theory for the interaction between dissipative flows and
+    nearly isentropic streams
+  author: Crocco
+  issue: '10'
+  journal-title: J. Aerosp. Sci.
+  volume: '19'
+  year: '1952'
+- article-title: Supersonic separated and reattaching laminar flows
+  author: Lees
+  issue: '10'
+  journal-title: Aiaa J.
+  volume: '2'
+  year: '1964'
+- article-title: Calcul des écoulements a forte interaction visqueuse au moyen de
+    methodes de couplage
+  author: Le Balleur
+  journal-title: Agard Cp291, Paper 1
+  year: '1980'
+- article-title: Computation of three-dimensional viscous flows on transonic wings
+    by boundary layer-inviscid flow interaction
+  author: Lazareff
+  journal-title: La Récherche Aerospatiale 1983–1993
+  year: '1983'
+- article-title: A review of methods for predicting viscous effects on aerofoils and
+    wings at transonic speeds
+  author: Lock
+  journal-title: Agard Cp291, Paper 2
+  year: '1980'
+- article-title: The effect of normal pressure gradients on the boundary-layer momentum
+    integral equation
+  author: Myring
+  journal-title: RAE Tech. Report 68214
+  year: '1968'
+- article-title: Survey of techniques for estimating viscous effects in external aerodynamics
+  author: Lock
+  series-title: Numerical Methods in Aeronautical Fluid Dynamics
+  year: '1981'
+- article-title: 'Aerofoil RAE 2822: pressure distributions and boundary layer and
+    wake measurements'
+  author: Cook
+  journal-title: Agard Ar 138, Paper A6
+  year: '1979'
+- article-title: Strong matching method of computing transonic viscous flows including
+    wakes and separations
+  author: Le Balleur
+  journal-title: La Recherche Aerospatiale, 1981–1993
+  year: '1981'
+- article-title: Numerical viscous-inviscid interaction in steady and unsteady flows
+  author: Le Balleur
+  series-title: Numerical and Physical Aspects of Aerodynamics Flows II
+  year: '1984'
+- article-title: Progres dans le calcul de l'interaction fluide parfait/fluide visqueux
+  author: Le Balleur
+  journal-title: ONERA TP 1973–1981
+  year: '1983'
+- article-title: Numerical flow calculation and viscous-inviscid interaction techniques
+  author: Le Balleur
+  series-title: Viscous Flow Computational Methods
+  year: '1984'
+- article-title: On displacement thickness
+  author: Lighthill
+  doi: 10.1017/S0022112058000525
+  first-page: '383'
+  journal-title: J. Fluid Mech.
+  volume: '4'
+  year: '1958'
+- article-title: Detailed exploration of the compressible viscous flow over 2D aerofoils
+    at high Reynolds numbers
+  author: Firmin
+  series-title: 6th ICAS Conference
+  year: '1968'
+- article-title: Application of viscous-inviscid interaction method to predict transonic
+    separated flows
+  author: Lee
+  series-title: Third Symposium on Numerical and Physical Aspects of Aerodynamic Flows
+  year: '1986'
+- article-title: Viscous-inviscid interaction analysis of transonic turbulent separated
+    flow
+  author: Carter
+  journal-title: Aiaa Paper 81–1241
+  year: '1981'
+- article-title: Analysis of transonic shock-induced separated flow including normal
+    pressure gradient effects
+  author: Carter
+  first-page: '777'
+  issue: '5'
+  journal-title: Aiaa J.
+  volume: '24'
+  year: '1983'
+- article-title: Analysis of strongly interacting flows including separation
+  author: Carter
+  series-title: 9th International Conference on Numerical Methods in Fluid Dynamics
+  year: '1984'
+- article-title: A quasi-simultaneous finite difference approach for strongly interacting
+    flow
+  author: Edwards
+  series-title: Third Symposium on Numerical and Physical Aspects of Aerodynamic Flows
+  year: '1986'
+- article-title: An interactive approach to subsonic flows with separation
+  author: Cebeci
+  series-title: Second Symposium on Numerical and Physical Aspects of Aerodynamic
+    Flows
+  year: '1983'
+- article-title: Airfoils with separation and their resultant wakes
+  author: Cebeci
+  series-title: Third Symposium on Numerical and Physical Aspects of Aerodynamic Flows
+  year: '1986'
+- article-title: A representation of second-order boundary layer effects in the momentum
+    integral equation and in inviscous-inviscid interactions
+  author: East
+  journal-title: RAE Tech. Report 81002
+  year: '1981'
+- article-title: An investigation of the structure of equilibrium turbulent boundary
+    layers
+  author: East
+  journal-title: RAE Tech. Report 79040
+  year: '1979'
+- unstructured: Hastings, R. C. (1986) Private communication.
+- article-title: A semi-inverse version of the viscous Garabedian and Korn method
+    (VGK)
+  author: Ashill
+  journal-title: RAE. Tech. Report 87002
+  year: '1987'
+- article-title: Turbulent interactions on airfoils at transonic speeds—recent developments
+  author: Melnik
+  journal-title: Agard Cp-291, Paper No. 10
+  year: '1981'
+- article-title: An improved viscous/inviscid interaction procedure for transonic
+    flow over airfoils
+  author: Melnik
+  journal-title: Nasa Cr
+  year: '1985'
+- article-title: The computation of viscous/inviscid interaction on airfoils with
+    separated flow
+  author: Melnik
+  series-title: Third Symposium on Numerical and Physical Aspects of Aerodynamic Flows
+  year: '1986'
+- article-title: The calculation of pressure distribution, lift and drag on single
+    aerofoils at subcritical speeds
+  author: Firmin
+  journal-title: RAE Tech. Report 72235
+  year: '1972'
+- article-title: An extension to the method of Garabedian and Korn for the calculation
+    of transonic flow past an aerofoil to include the effects of a boundary layer
+    and wake
+  author: Collyer
+  journal-title: RAE Tech. Report 77104
+  year: '1977'
+- article-title: Prediction of viscous effects in steady transonic flow past an aerofoil
+  author: Collyer
+  first-page: '485'
+  journal-title: Aerosp. Q.
+  volume: '30'
+  year: '1979'
+- article-title: Prediction of the drag of wings at subsonic speeds by viscous/inviscid
+    interaction techniques
+  author: Lock
+  journal-title: Agard-R-723, Paper 10
+  year: '1985'
+- article-title: Matching procedure for viscous-inviscid interactive computations
+  author: Johnston
+  doi: 10.2514/3.61196
+  first-page: '661'
+  journal-title: Aiaa. J.
+  volume: '17'
+  year: '1979'
+- article-title: Computation of transonic viscous-inviscid interaction flow
+  author: Whitfield
+  series-title: Second Symposium on Numerical and Physical Aspects of Aerodynamic
+    Flows
+  year: '1983'
+- article-title: Transonic viscous-inviscid interaction using an Euler method and
+    inverse boundary-layer equations
+  author: Whitfield
+  series-title: Computational Methods in Viscous Flows
+  year: '1984'
+- article-title: Calcul d'écoulements visqueux décollés sur profils d'ailes par une
+    approche de couplage
+  author: Le Balleur
+  journal-title: Agard CP 291, Paper 11
+  year: '1980'
+- article-title: A multi-grid method for the computation of viscid/inviscid interaction
+    on airfoils
+  author: Melnik
+  journal-title: Aiaa Paper 83–0234
+  year: '1983'
+- article-title: The prediction of separated flow using a viscous-inviscid interaction
+    method
+  author: Williams
+  journal-title: Icas Paper 84-2.3.3
+  year: '1984'
+- article-title: Plane subscritical flow past lifting aerofoil
+  author: Sells
+  first-page: '377'
+  volume: '308'
+  year: '1968'
+- article-title: Analysis of transonic aerofoils
+  author: Garabedian
+  doi: 10.1002/cpa.3160240608
+  first-page: '841'
+  journal-title: Commum. Pure Appl. Math.
+  volume: '24'
+  year: '1971'
+- article-title: Theory of viscous transonic flow over airfoils at high Reynolds number
+  author: Melnik
+  journal-title: Aiaa Paper 77-680
+  year: '1977'
+- article-title: The coupling of a shock boundary layer interaction module with a
+    viscous-inviscid computation method
+  author: Stanewsky
+  journal-title: Agard CP-291, Paper 4
+  year: '1981'
+- article-title: The large Reynolds number asymptotic theory of turbulent boundary
+    layers
+  author: Mellor
+  doi: 10.1016/0020-7225(72)90055-9
+  journal-title: Int. J. Engng Sci.
+  volume: '10'
+  year: '1972'
+- article-title: On the coupling of boundary layer and Euler equation solutions
+  author: Murman
+  series-title: Numerical and Physical Aspects of Aerodynamic Flows II
+  year: '1983'
+- article-title: Solutions of the Euler equations for transonic flow past a lifting
+    aerofoil
+  author: Sells
+  journal-title: RAE Tech. Report 80065
+  year: '1980'
+- article-title: Numerical solutions of the Euler equations by finite volume methods
+    using Runge-Kutta time-stepping schemes
+  author: Jameson
+  journal-title: Aiaa Paper 81–1259
+  year: '1981'
+- article-title: Calculation of boundary layer development using the turbulent energy
+    equation
+  author: Bradshaw
+  doi: 10.1017/S0022112067002319
+  first-page: '593'
+  journal-title: J. Fluid Mech.
+  volume: '28'
+  year: '1967'
+- author: Cebeci
+  series-title: Analysis of Turbulent Boundary Layers
+  year: '1974'
+- article-title: Thin layer approximation and algebraic model for separated turbulent
+    flows
+  author: Baldwin
+  journal-title: Aiaa Paper 78-257
+  year: '1978'
+- article-title: Comparison between experiment and prediction for transonic turbulent
+    separated flow
+  author: Johnson
+  doi: 10.2514/3.51130
+  issue: '6'
+  journal-title: Aiaa J.
+  volume: '20'
+  year: '1982'
+- article-title: Prediction of transonic flows
+  author: Horstman
+  doi: 10.2514/3.48539
+  first-page: '1001'
+  issue: '7'
+  journal-title: Aiaa J.
+  volume: '22'
+  year: '1984'
+- article-title: A new turbulence closure model for boundary layer flows with strong
+    adverse pressure gradients and separation
+  author: Johnson
+  journal-title: Aiaa Paper 84-0175
+  year: '1984'
+- article-title: Entrainment in the turbulent boundary layer
+  author: Head
+  journal-title: Arc R&M 3152
+  year: '1958'
+- article-title: Application of Head's entrainment method to the prediction of turbulent
+    boundary layers and wakes in compressible flow
+  author: Green
+  journal-title: RAE Tech. Report 72079
+  year: '1972'
+- article-title: Prediction of turbulent boundary layers and wakes in compressible
+    flow by a lag-entrainment method
+  author: Green
+  journal-title: Arc R&M 3791
+  year: '1973'
+- article-title: Prediction of the development of separated boundary layers by the
+    lag-entrainment method
+  author: East
+  journal-title: RAE Tech. Report 77046
+  year: '1977'
+- article-title: Boundary layer calculations using a three parameter velocity profile
+  author: Cross
+  journal-title: British Aerospace (Brough) Note YAD 3428
+  year: '1980'
+- article-title: Velocity profiles for two-dimensional turbulent separated flows
+  author: Lock
+  series-title: IUTAM Symposium on Boundary Layer Separation
+  year: '1986'
+- article-title: A calculation method for two-dimensional or axisymmetric compressible
+    boundary layer flows
+  author: Johnston
+  journal-title: Aircraft Research Association Report 65
+  year: '1985'
+- article-title: An investigation of a separated equilibrium turbulent boundary layer
+  author: Hastings
+  series-title: Laser Anemometry in Fluid Mechanics
+  year: '1984'
+- article-title: Computation of three-dimensional flows by viscous-inviscid interaction
+    using the ‘MZM’ method
+  author: Lazareff
+  journal-title: Agard CP412, Paper 24
+  year: '1986'
+- article-title: An integral prediction method for three-dimensional compressible
+    turbulent boundary layers
+  author: Smith
+  journal-title: Arc R&M 3739
+  year: '1974'
+- article-title: Calculations with the three-dimensional lag-entrainment method
+  author: Smith
+  series-title: Proc. SSPA-ITC Workshop on Ship Boundary Layers
+  year: '1981'
+- article-title: Direct and inverse integral calculation methods for three-dimensional
+    turbulent boundary layers
+  author: Smith
+  doi: 10.1017/S0001924000020431
+  first-page: '155'
+  journal-title: Aero. J.
+  volume: '88'
+  year: '1984'
+- article-title: Generalisation of the boundary layer momentum integral equations
+    to three-dimensional flows, including those of rotating systems
+  author: Mager
+  journal-title: NACA Report 1067
+  year: '1951'
+- article-title: Viscous-inviscid interactions with a three-dimensional inverse boundary
+    layer code
+  author: Wigton
+  series-title: Second Symposium on Numerical and Physical Respects of Aerodynamic
+    Flows
+  year: '1983'
+- article-title: Coupled Euler/integral boundary layer analysis in transonic flow
+  author: Samant
+  journal-title: Aiaa Paper 83–1806
+  year: '1983'
+- article-title: Transonic turbulent separation on swept wings—a return to the direct
+    formulation
+  author: Wai
+  journal-title: Aiaa Paper 84-065
+  year: '1984'
+- article-title: Computation of turbulent separated flow over wings
+  author: Wai
+  series-title: Third Symposium on Numerical and Physical Aspects of Aerodynamic Flows
+  year: '1986'
+- author: Thwaites
+  series-title: Incompressible Aerodynamics
+  year: '1960'
+- article-title: The integration of the two-dimensional laminar boundary-layer equations
+    past the point of vanishing skin friction
+  author: Catherall
+  doi: 10.1017/S0022112066001150
+  first-page: '163'
+  journal-title: J. Fluid Mech.
+  volume: '26'
+  year: '1966'
+- article-title: A numerical method for the calculation of laminar incompressible
+    boundary-layer with strong viscous-inviscid interaction
+  author: Veldman
+  journal-title: Nlr Tr 79023U
+  year: '1979'
+- article-title: A new approach to inviscid flow/boundary layer matching
+  author: Brune
+  journal-title: Aiaa-74-601
+  year: '1974'
+- article-title: Viscous-inviscid flow interaction methods
+  author: Meauze
+  series-title: Shock boundary layer interaction
+  year: '1984'
+- article-title: Shock-wave boundary layer interactions
+  author: Delery
+  journal-title: Agardograph No 280
+  year: '1986'
+- article-title: A numerical view on strong viscous-inviscid interaction in numerical
+    methods in fluids
+  author: Veldman
+  journal-title: Nlr Mp 83049U
+  year: '1983'
+- article-title: An inviscid-viscous interaction treatment to predict the blade-to-blade
+    performance of axial compressors with leading-edge normal shock waves
+  author: Calvert
+  journal-title: ASME Paper No 82-GT-135
+  year: '1982'
+- article-title: Asymptotic theory of two dimensional trailing edge flows
+  author: Melnik
+  journal-title: Nasa Sp-347
+  year: '1976'
+- article-title: Prediction of turbulent separated boundary layers
+  author: Kuhn
+  journal-title: Aiaa-73-663
+  year: '1973'
+- article-title: A new boundary-layer iteration technique for separated flow
+  author: Carter
+  journal-title: Aiaa-79-1450
+  year: '1979'
+- article-title: The calculation of incompressible boundary layers with strong viscous-inviscid
+    interaction
+  author: Veldman
+  journal-title: Agard-CP-291, Paper 12
+  year: '1980'
+- article-title: Analysis of stalled airfoils by simultaneous perturbations to viscous
+    and inviscid equations
+  author: Gilmer
+  journal-title: Aiaa-81-1239
+  year: '1981'
+- article-title: Newton solution of coupled Euler and boundary layer equations
+  author: Drela
+  series-title: Third Symposium on Numerical and Physical Aspects of Aerodynamic Flows
+  year: '1986'
+- article-title: Simultaneous solution of the boundary layer and freestream with separated
+    flow
+  author: Moses
+  doi: 10.2514/3.60857
+  first-page: '61'
+  journal-title: Aiaa J.
+  volume: '16'
+  year: '1978'
+- article-title: Planar transonic airfoil computations with viscous interactions
+  author: Wai
+  journal-title: Agard-CP-291, Paper 9
+  year: '1980'
+- article-title: Prediction of transitory stall in two-dimensional diffusers
+  author: Ghose
+  year: '1976'
+- article-title: Boundary layer calculation and viscous-inviscid coupling
+  author: Cross
+  journal-title: ICAS Paper 86-2.4.1
+  year: '1986'
+- article-title: Quasi-simultaneous calculations of strongly interacting viscous flow
+  author: Veldman
+  series-title: Third Symposium on Numerical and Physical Aspects of Aerodynamic Flows
+  year: '1986'
+- article-title: Steady and unsteady separated flow computations for transonic airfoils
+  author: Houwink
+  journal-title: Aiaa-84-1618
+  year: '1984'
+- article-title: A semi-implicit and unsteady numerical method of viscous-inviscid
+    interaction for transonic separated flows
+  author: Le Balleur
+  journal-title: La Recherche Aerospatiale No. 1984-1
+  year: '1984'
+- article-title: Airfoils with separation and the resulting wakes
+  author: Cebeci
+  doi: 10.1017/S0022112086002318
+  first-page: '323'
+  journal-title: J. Fluid Mech.
+  volume: '163'
+  year: '1986'
+- article-title: Viscous-inviscid interaction in transonic flow
+  author: Wigton
+  journal-title: Aiaa-81-1003
+  year: '1981'
+- article-title: Solutions for incompressible separated boundary layers including
+    viscous-inviscid interactions
+  author: Carter
+  first-page: '125'
+  series-title: Aerodynamic analyses requiring Advanced Computers
+  year: '1975'
+- article-title: Flying hot-wire study of two-dimensional turbulent separation on
+    a NACA 4412 airfoil at maximum lift
+  author: Wadcock
+  year: '1978'
+- article-title: Studies of the flow field near a NACA 4412 aerofoil at nearly maximum
+    lift
+  author: Hastings
+  doi: 10.1017/S0001924000016079
+  first-page: '29'
+  issue: '901'
+  journal-title: Aero J.
+  volume: '91'
+  year: '1987'
+- article-title: An improved two-dimensional multi-aerofoil program
+  author: Newling
+  journal-title: Hsa-Mae-R-Fdm-0007
+  year: '1977'
+- article-title: The calculation of viscous drag of bodies of revolution
+  author: Granville
+  journal-title: David Taylor Model Basin Report 849
+  year: '1953'
+- article-title: A semi-empirical theory for the growth and bursting of laminar separation
+    bubbles
+  author: Horton
+  journal-title: Arc CP 1073
+  year: '1967'
+- article-title: Low-speed aerodynamic characteristics of a 13% thick airfoil section
+    designed for general aviation applications
+  author: McGhee
+  journal-title: Nasa Tmx 72697
+  year: '1977'
+- article-title: Potential flow analysis of multielement airfoils using conformal
+    mapping
+  author: Halsey
+  doi: 10.2514/3.61308
+  first-page: '1281'
+  journal-title: Aiaa J.
+  volume: '17'
+  year: '1979'
+- article-title: The calculation of separation bubbles in interactive turbulent boundary
+    layers
+  author: Cebeci
+  doi: 10.1017/S0022112083001342
+  first-page: '305'
+  journal-title: J. Fluid Mech.
+  volume: '131'
+  year: '1983'
+- author: Cebeci
+  series-title: Momentum Transfer in Boundary Layer
+  year: '1977'
+- author: Bradshaw
+  series-title: Engineering Calculation Methods for Turbulent Flows
+  year: '1981'
+- article-title: The development and application of a method for calculating the viscous
+    flow about high-lift aerofoils
+  author: Butter
+  journal-title: Agard-CP-291, Paper No. 25
+  year: '1980'
+- article-title: Recent progress on development and understanding of high lift systems
+  author: Butter
+  journal-title: Agard-CP-365, Paper No. 1
+  year: '1984'
+- article-title: Computational aspects and results of low speed viscous flow about
+    multi-component airfoils
+  author: Oskam
+  journal-title: Agard-CP-291, Paper No. 19
+  year: '1980'
+- article-title: Berechung von Profilsystemen bei Unterschallstromung mit mehrfacher
+    Ablosung
+  author: Jacob
+  journal-title: Dfvlr-FB 81–1224
+  year: '1981'
+- article-title: Mathematical model for two-dimensional, multi-component airfoils
+    in viscous flow
+  author: Stevens
+  journal-title: Nasa Cr-1843
+  year: '1971'
+- article-title: The viscous transonic flow over two-element airfoil systems
+  author: Grossman
+  journal-title: Aiaa-77-688
+  year: '1977'
+- article-title: A calculation method for the two-dimensional turbulent flow over
+    a slotted flap
+  author: Irwin
+  journal-title: Arc CP-1267
+  year: '1974'
+- article-title: Disturbances from ventilated tunnel walls in aerofoil testing
+  author: Firmin
+  journal-title: Agard-CP-348 Paper 8
+  year: '1983'
+- article-title: A method for determining wall interference corrections in solid-wall
+    wind tunnels from measurements of static pressures on the walls
+  author: Ashill
+  journal-title: Agard-CP-335, Paper 1
+  year: '1982'
+- article-title: 'Air injection: a method for fixing boundary layer transition and
+    investigating scale effects'
+  author: Ashill
+  journal-title: RAE Tech. Report
+  year: '1986'
+- article-title: Tests of aerofoils of advanced design
+  author: Ashill
+  journal-title: RAE Tech. Report
+  year: '1986'
+- series-title: Proceedings of 1980–1981 AFOSR-HTTM Stanford Conference on Complex
+    Turbulent Flows
+  year: '1981'
+- article-title: Entropy and vorticity corrections for transonic flows
+  author: Hafez
+  journal-title: Aiaa Paper 83–1926
+  year: '1983'
+- article-title: Acceleration of transonic potential flow calculations on arbitrary
+    meshes by the multiple grid method
+  author: Jameson
+  journal-title: Aiaa Paper 79–1458
+  year: '1979'
+- article-title: Calcul d'écoulements transsoniques autour d'ailes
+  author: Chattot
+  first-page: '143'
+  journal-title: La Recherche Aerospatiale, 1978-4
+  year: '1978'
+- article-title: Calculations of turbulent boundary layers with separation and viscous-inviscid
+    interaction
+  author: Whitfield
+  doi: 10.2514/3.60066
+  first-page: '1315'
+  issue: '10'
+  journal-title: Aiaa J.
+  volume: '19'
+  year: '1981'
+- article-title: A modification to the method of Garabedian and Korn
+  author: Lock
+  series-title: Numerical Methods for the Computation of Transonic Flows with Shockwaves
+  year: '1980'
+- article-title: The analogy between streamline curvature and buoyancy in turbulent
+    shear flow
+  author: Bradshaw
+  doi: 10.1017/S0022112069001583
+  first-page: '177'
+  journal-title: J. Fluid Mech.
+  volume: '36'
+  year: '1969'
+- article-title: A ‘Multi-Zonal-Marching’ integral method for 3D boundary layers with
+    viscous-inviscid interactions
+  author: Le Balleur
+  series-title: Proc. 9th ICNMFD
+  volume: '218'
+  year: '1984'
+- article-title: A comparison of experimental results for the transonic flow around
+    the DFVLR-F4 wing
+  author: Redeker
+  journal-title: GARTEUR Report
+  year: '1986'
+- article-title: Transonic flow simulations for complex configurations with surface-fitted
+    grids
+  author: Yu
+  journal-title: Aiaa Paper 81–1258
+  year: '1981'
+- article-title: Developments in the simulation of separated flows using finite difference
+    methods
+  author: Steger
+  series-title: Third Symposium of Numerical and Physical Aspects of Aerodynamic Flows
+  year: '1986'
+- article-title: 'TAIR: a transonic aerofoil analysis computer code'
+  author: Dougherty
+  journal-title: Nasa Tm8 1296
+  year: '1981'
+- article-title: The ‘MACH CONT’ method for calculating the wave drag of aerofoils
+  author: Bocci
+  journal-title: ARA Memo 272
+  year: '1986'
+- article-title: An investigation of transonic turbulent boundary separation generated
+    on an axisymmetric flow model
+  author: Bachalo
+  journal-title: Aiaa Paper 79-1479
+  year: '1979'
+- article-title: Relaxation solutions for inviscid axi-symmetric transonic flow over
+    blunted or pointed bodies
+  author: South
+  first-page: '8'
+  series-title: Aiaa CFD Conference
+  year: '1973'
+- article-title: Implicit algorithm for the conservative transonic full-potential
+    equation using an arbitrary mesh
+  author: Holst
+  doi: 10.2514/3.61274
+  first-page: '1038'
+  issue: '10'
+  journal-title: Aiaa J.
+  volume: '17'
+  year: '1979'
+- article-title: A method for calculating subsonic and transonic flows over wings
+    or wing-fuselage combinations with an allowance for viscous effects
+  author: Arthur
+  journal-title: Aiaa Paper 84-0428
+  year: '1984'
+- article-title: Applications of RAE viscous flow methods near separation boundaries
+    for three dimensional wings in transonic flow
+  author: Firmin
+  journal-title: Agard CP-412, Paper 26
+  year: '1986'
+- article-title: Calculation of transonic flow over wing-body combinations with an
+    allowance for viscous effects
+  author: Firmin
+  journal-title: Agard CP-291, Paper 8
+  year: '1981'
+- article-title: The calculation of transonic flow over three-dimensional wings using
+    the exact potential equations
+  author: Forsey
+  series-title: DGLR Symposium on Transonic Configurations
+  year: '1978'
+- article-title: Numerical Solutions for transonic flows past wing-body combinations
+  author: Albone
+  series-title: IUTAM Symposium Transsonium II
+  year: '1975'
+- article-title: 'Transonic Navier-Stokes wing solution using a zonal approach: Part
+    I, Solution methodology and code validation; Part II, high angle-of-attack simulation'
+  author: Flores
+  journal-title: Agard CP-412, Paper 30
+  year: '1986'
+- article-title: The structure of a separating turbulent boundary layer (Part I)
+  author: Simpson
+  first-page: '305'
+  journal-title: J. Fluid Mech.
+  volume: '157'
+  year: '1985'
+doi: 10.1016/0376-0421(87)90003-0
+files:
+- viscous-inviscid_interactions_in_external_aerodynamics_Lock_Williams_1987.pdf
+issue: '2'
+journal: Progress in Aerospace Sciences
+language: en
+pages: 51--171
+papis_id: 4595edfb8ec08233a00e8892bb698c79
+publisher: Elsevier BV
+tags:
+- needs-review
+title: Viscous-inviscid interactions in external aerodynamics
+type: article
+url: https://doi.org/10.1016/0376-0421(87)90003-0
+volume: '24'
+year: 1987

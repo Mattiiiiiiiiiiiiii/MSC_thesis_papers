@@ -1,0 +1,70 @@
+author: Coder, James G. and Maughmer, Mark D.
+author_list:
+- affiliation:
+  - name: Department of Aerospace Engineering, Pennsylvania State University, University
+      Park, Pennsylvania 16802
+  family: Coder
+  given: James G.
+- affiliation:
+  - name: Department of Aerospace Engineering, Pennsylvania State University, University
+      Park, Pennsylvania 16802
+  family: Maughmer
+  given: Mark D.
+citations:
+- unstructured: SchlichtingH., Boundary-Layer Theory, 7th ed., McGraw–Hill, New York,
+    1979, pp. 158–162.
+- unstructured: SquireH. B.YoungA. D. “The Calculation of the Profile Drag of Aerofoils,”
+    Aeronautical Research Committee, Repts. and Memoranda No. 1838, 1938.
+- unstructured: YoungA. D. “Note on Momentum Methods of Measuring Profile Drags at
+    High Speeds,” Aeronautical Research Council, Repts. and Memoranda No. 1963, 1940.
+- unstructured: ZwaaneveldJ. “Comparison of Various Methods for Calculating Profile
+    Drag from Pressure Measurements in the Near Wake at Subcritical Speeds,” National
+    Aerospace Laboratory, NLR Rept. NLR-MP-73001-U, 1973.
+- unstructured: CookT. A. “Measurements of the Boundary Layer and Wake of Two Aerofoil
+    Sections at High Reynolds Numbers and High-Subsonic Mach Numbers,” Aeronautical
+    Research Council, Repts. and Memoranda No. 3722, 1973.
+- doi: 10.2514/2.2510
+- unstructured: NicholsR.BuningP. “User’s Manual for OVERFLOW 2.2,” NASA Langley Research
+    Center, Hampton, VA, Aug. 2010, http://people.nas.nasa.gov/~pulliam/Overflow/Overflow_Manuals.html
+    [retrieved 4 June 2014].
+- doi: 10.2514/2.2978
+- doi: 10.2514/3.45650
+- doi: 10.2514/6.1989-2048
+- unstructured: SomersD. M., The S824 Airfoil, Airfoils, State College, PA, 1994.
+- unstructured: MaughmerM. D. “Wind-Tunnel Test of the S824 Airfoil,” National Renewable
+    Energy Laboratory Subcontract, Rept. XAM-6-15504-01, Dec. 1999.
+- doi: 10.2172/437670
+  unstructured: SomersD. M. “Design and Experimental Results for the S805 Airfoil,”
+    National Renewable Energy Laboratory Rept. SR-440-6917, Oct. 1988. doi:10.2172/437670
+- unstructured: MedinaR. “Validation of the Pennsylvania State University Low-Speed,
+    Low-Turbulence Wind Tunnel Using Measurements of the S805 Airfoil,” M.S. Thesis,
+    Dept. of Aerospace Engineering, Pennsylvania State Univ., University Park, PA,
+    1994.
+- unstructured: SomersD. M. “Design and Experimental Results for a Natural-Laminar-Flow
+    Airfoil for General Aviation Applications,” NASA TP-1861, 1981.
+- doi: 10.2514/6.1992-439
+- doi: 10.2514/1.J052905
+- unstructured: ChanW. M.RogersS. E.NashS. M.BuningP. G.MeakinR. L.BogerD. A.PandyaS.
+    “Chimera Grid Tools User’s Manual, Version 2.0,” NASA Ames Research Center, July 2007,
+    http://people.nas.nasa.gov/~wchan/cgt/doc/man.html [retrieved 4 June 2014].
+- doi: 10.2514/6.2002-3191
+- doi: 10.2514/6.2006-1148
+- doi: 10.2514/3.12149
+- doi: 10.1016/S1270-9638(03)00029-4
+- doi: 10.2514/1.46737
+doc_url: http://arc.aiaa.org/doi/pdf/10.2514/1.C033021
+doi: 10.2514/1.c033021
+files:
+- numerical_validation_of_the_squire-young_formula_for_profile-drag_prediction_Coder_Maughmer_2015.pdf
+issue: '3'
+journal: Journal of Aircraft
+language: en
+month: 5
+pages: 948--955
+papis_id: 5e8d6f8236a28d2d0f1ab1db00a59e89
+publisher: American Institute of Aeronautics and Astronautics (AIAA)
+title: Numerical Validation of the Squire–Young Formula for Profile-Drag Prediction
+type: article
+url: https://doi.org/10.2514/1.c033021
+volume: '52'
+year: 2015

@@ -1,0 +1,105 @@
+abstract: "<jats:title>ABSTRACT</jats:title>\n                  <jats:p>The blade
+  element momentum (BEM) equations, though conceptually simple, can be challenging
+  to solve reliably and efficiently with high precision. These requirements are particularly
+  important for efficient rotor blade optimization that utilizes gradient‐based algorithms.
+  Many solution approaches exist for numerically converging the axial and tangential
+  induction factors. These methods all generally suffer from a lack of robustness
+  in some regions of the rotor blade design space, or require significantly increased
+  complexity to promote convergence. The approach described here allows for the BEM
+  equations to be parameterized by one variable—the local inflow angle. This reduction
+  is mathematically equivalent, but greatly simplifies the solution approach. Namely,
+  it allows for the use of one‐dimensional root‐finding algorithms for which very
+  robust and efficient algorithms exist. This paper also discusses an appropriate
+  arrangement of the equation and corresponding bounds for the one‐dimensional search—intervals
+  that bracket the solution and over which the function is well behaved. The result
+  is a methodology for solving the BEM equations with guaranteed convergence and at
+  a superlinear rate.Copyright © 2013 John Wiley &amp; Sons, Ltd.</jats:p>"
+author: Ning, S. Andrew
+author_list:
+- affiliation:
+  - name: National Renewable Energy Laboratory  Golden Colorado 80401 USA
+  family: Ning
+  given: S. Andrew
+citations:
+- doi: 10.1002/9781119994367
+- author: Hansen MOL
+  volume-title: Aerodynamics of wind turbines
+  year: '2008'
+- doi: 10.1002/9781119992714
+- doi: 10.1260/0309-524X.35.1.17
+- doi: 10.1080/20464177.2011.11020241
+- doi: 10.2514/6.2011-150
+  unstructured: ManiaciDC.An investigation of WT_Pref convergence issues AIAA Aerospace
+    Sciences Meeting 2011. AIAA 2011‐150.
+- unstructured: 'PlattA.WT Perf: Programming guide for v 3.05.00a‐adp Technical Report
+    National Renewable Energy Laboratory 2012.'
+- unstructured: BuhlML.National Renewable Energy Laboratory 2013. Personal communication.
+- doi: 10.2172/15016819
+  unstructured: BuhlML.A new empirical relationship between thrust coefficient and
+    induction factor for the turbulent windmill state.Technical Report NREL/TP‐500‐36834
+    National Renewable Energy Laboratory 2005.
+- doi: 10.1093/comjnl/14.4.422
+- unstructured: 'RamsayRR HoffmannM GregorekG.Effects of grit roughness and pitch
+    oscillations on the S815 airfoil: airfoil performance report Technical Report
+    The Ohio State University Columbus Ohio 1999.'
+- doi: 10.2172/7315651
+  unstructured: WilsonR LissamanP WalkerS.Aerodynamic performance of wind turbines
+    Technical Report Oregon State University Corvallis OR 1976.
+- unstructured: 'KooijmanH LindenburgC WinkelaarD van derHooftE.DOWEC 6 MW pre‐design:
+    aero‐elastic modeling of the DOWEC 6 MW pre‐design in PHATAS.Technical Report
+    DOWEC 10046_009 Energy Research Center of the Netherlands Petten Netherlands 2003.'
+- unstructured: JonkmanJ ButterfieldS MusialWGS.Definition of a 5‐MW reference wind
+    turbine for offshore system development.Technical Report NREL/TP‐500‐38060 National
+    Renewable Energy Laboratory Golden CO 2009.
+- author: Abbott IH
+  volume-title: 'Theory of Wing Sections: Including a Summary of Airfoil Data'
+  year: '1959'
+- unstructured: BertagnolioF SørensenN JohansenJ FuglsangP.Wind turbine airfoil catalogue.Technical
+    Report Risø‐R‐1280(EN) Risø National Laboratory Roskilde Denmark 2001.
+- unstructured: FuglsangP AntoniouI SørensenN MadsenH.Validation of a wind tunnel
+    testing facility for blade surface pressure measurements.Technical Report Risø‐R‐981(EN)
+    Risø National Laboratory Denmark 1998.
+- unstructured: FuglsangP DahlK AntoniouI.Wind tunnel tests of the Risø‐A1‐18 Risø‐A1‐21
+    and Risø‐A1‐24 airfoils.Technical Report Risø‐R‐1112(EN) Risø National Laboratory
+    Denmark 1999.
+- unstructured: 'RamsayRR HoffmannM GregorekG.Effects of grit roughness and pitch
+    oscillations on the S801 airfoil: airfoil performance report Technical Report
+    The Ohio State University Columbus Ohio 1999.'
+- unstructured: 'RamsayRR HoffmannM GregorekG.Effects of grit roughness and pitch
+    oscillations on the S810 airfoil: airfoil performance report Technical Report
+    The Ohio State University Columbus Ohio 1999.'
+- unstructured: 'RamsayRR GregorekG.Effects of grit roughness and pitch oscillations
+    on the S813 airfoil: airfoil performance report Technical Report The Ohio State
+    University Columbus Ohio 1999.'
+- unstructured: 'RamsayRR JaniszewskaJ GregorekG.Effects of grit roughness and pitch
+    oscillations on the S825 airfoil: airfoil performance report Technical Report
+    The Ohio State University Columbus Ohio 1999.'
+- doi: 10.2514/6.1998-21
+  unstructured: DuZ SeligM.A 3‐D stall‐delay model for horizontal axis wind turbine
+    performance prediction 1998 ASME Wind Energy Symposium 1998.
+- doi: 10.2514/6.2003-868
+  unstructured: EggersJrAJ ChaneyK DigumarthiR.An assessment of approximate modeling
+    of aerodynamic loads on the UAE rotor Aerospace Sciences Meeting and Exhibit 2003Jan.
+- doi: 10.2172/6763041
+  unstructured: ViternaL JanetzkeD.Theoretical and experimental power from large horizontal‐axis
+    wind turbines.NASA TM‐82944 National Aeronautics and Space Administration 1982.
+    Cleveland OH. Lewis Research Center.
+- unstructured: MoriartyPJ HansenAC.AeroDyn theory manual.Technical Report NREL/EL‐500‐36881
+    National Renewable Energy Laboratory 2004.
+doc_url: https://onlinelibrary.wiley.com/doi/pdf/10.1002/we.1636
+doi: 10.1002/we.1636
+files:
+- a_simple_solution_method_for_the_blade_element_momentum_equations_with_guaranteed_convergence_Ning_2014.pdf
+issue: '9'
+journal: Wind Energy
+language: en
+month: 9
+pages: 1327--1345
+papis_id: f794f0549cb5720fd12467597b51780a
+publisher: Wiley
+title: A simple solution method for the blade element momentum equations with guaranteed
+  convergence
+type: article
+url: https://doi.org/10.1002/we.1636
+volume: '17'
+year: 2014

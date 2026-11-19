@@ -1,0 +1,75 @@
+author: Drela, Mark
+author_list:
+- affiliation:
+  - name: Massachusetts Institute of Technology
+  family: Drela
+  given: Mark
+booktitle: 21st AIAA Computational Fluid Dynamics Conference
+citations:
+- doi: 10.2514/3.9789
+- doi: 10.1007/978-3-642-84010-4_1
+- unstructured: 3M.B. Bieterman, R.G. Melvin, F.T. Johnson, J.E. Bussoletti, D.P.
+    Young, W.P. Huffman, C.L. Hilmes, and M. Drela. Boundary layer coupling in a general
+    configuration full potential code. Technical Report BCSTECH-94-032, Boeing, Aug
+    1994.
+- doi: 10.1017/S0022112071000417
+- unstructured: 5J.D. McLean and J.L. Randall. Computer program to calculate three-dimensional
+    boundary layer flows over wings with wall mass transfer. NASA Contractor Report
+    3123, Boeing Company, Seattle, WA, 1979.
+- unstructured: 6D.F. Myring. An integral prediction method for three-dimensional
+    turbulent boundary layers in incompressible flow. Technical Report 32647, Aeronautical
+    Research Council, 1970.
+- doi: 10.1017/S0022112071000624
+- unstructured: 8P.D. Smith. An integral prediction method for three-dimensional compressible
+    turbulent boundary layers. R & M Report 3739, Aeronautical Research Council, HMSO,
+    London,1972.
+- author: Ashill P.R.
+  journal-title: Aeronautical Journal, Feb
+  volume: '43'
+  year: '1985'
+- doi: 10.2514/3.9031
+- unstructured: 11A. van Garrel. Integral boundary layer methods for wind turbine
+    aerodynamics. Technical Report ECN-C-04-004, Netherlands Agency for Energy andthe
+    Environment,Dec 2003.
+- author: Mughal B.
+  volume-title: A calculation method for the three-dimensional boundary-layer equations
+    in integral form. AIAA Paper
+  year: '1993'
+- author: Nishida B.
+  volume-title: June
+  year: '1995'
+- author: Stock H.W.
+  volume-title: Oct
+  year: '1977'
+- unstructured: 15B.H. Mughal. Integral Methods for Three-Dimensional Boundary Layers.
+    PhD thesis,MIT, Feb 1998.
+- author: Le Balleur J.C.
+  first-page: '21'
+  journal-title: La Recherche Aerospatiale
+  volume: '1981'
+  year: '1981'
+- doi: 10.2514/8.2938
+- doi: 10.1016/S0065-2156(08)70370-3
+- unstructured: 19J.E. Green, D.J. Weeks, and J.W.F. Brooman. Prediction of turbulent
+    boundary layers and wakes in compressible flow by a lag-entrainment method. R
+    & M Report 3791, Aeronautical Research Council, HMSO, London,1977.
+- doi: 10.1017/S0022112056000135
+- doi: 10.1017/S002211208100339X
+- doi: 10.1017/S0022112063000318
+- author: Goldstein S.
+  first-page: '1'
+  volume-title: Math.
+  year: '1948'
+doc_url: http://arc.aiaa.org/doi/pdf/10.2514/6.2013-2437
+doi: 10.2514/6.2013-2437
+files:
+- three-dimensional_integral_boundary_layer_formulation_for_general_configurations_Drela_2013.pdf
+journal: 21st AIAA Computational Fluid Dynamics Conference
+month: 6
+papis_id: 1a71c4184e2b7710069b79856b10d10c
+publisher: American Institute of Aeronautics and Astronautics
+title: Three-Dimensional Integral Boundary Layer Formulation for General Configurations
+type: inproceedings
+url: https://doi.org/10.2514/6.2013-2437
+venue: San Diego, CA
+year: 2013

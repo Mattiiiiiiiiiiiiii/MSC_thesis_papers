@@ -1,0 +1,3410 @@
+Article
+
+Influence of the Blunt Trailing-Edge Thickness on the
+Aerodynamic Characteristics of the Very Thick Airfoil
+Zhen Pei, He-Yong Xu * , Lei Deng and Ling-Xiao Li
+National Key Laboratory of Science and Technology on Aerodynamic Design and Research,
+Northwestern Polytechnical University, Xi’an 710072, China
+* Correspondence: xuheyong@nwpu.edu.cn
+
+Abstract: In this paper, the NWT600 airfoil with a thickness ratio of 60% is taken as the research object.
+The aerodynamic performance of the airfoil is analyzed by experiments and numerical simulations.
+The results simulated by various turbulence models used in the 2D steady-state RANS method are
+compared, including the Spalart–Allmaras model, k-ω SST model, k-ε realizable model, and Reynolds
+stress (linear pressure-strain) model. The influence of blunt trailing-edge thickness on aerodynamic
+characteristics is studied by adding thickness symmetrically. The results show that even under the
+low subsonic flow with a Mach number of 0.149, the airflow is prone to severe separation. The
+aerodynamic performance of the airfoil is very different from that of the conventional thin airfoil.
+Although the 2D steady-state RANS models overestimate the pressure on the surface of the airfoil
+in most cases, it is qualitatively acceptable to predict the pressure distribution of the very thick
+airfoil. Numerical results simulated by the Reynolds stress model are in the best agreement with
+the experimental data. It is also found that symmetrically thickening the trailing edge effectively
+improves the maximum lift coefficient and reduces the drag coefficient at a small angle of attack.
+Keywords: very thick airfoil; RANS method; turbulence models; blunt trailing-edge airfoil
+
+1. Introduction
+Citation: Pei, Z.; Xu, H.-Y.; Deng, L.;
+Li, L.-X. Influence of the Blunt
+Trailing-Edge Thickness on the
+Aerodynamic Characteristics of the
+Very Thick Airfoil. Wind 2023, 3,
+439–458. https://doi.org/10.3390/
+wind3040025
+Academic Editor: Firoz Alam
+Received: 9 August 2023
+Revised: 26 September 2023
+Accepted: 3 October 2023
+Published: 9 October 2023
+
+Copyright: © 2023 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+4.0/).
+
+In recent decades, as environmental conditions worsen and global fossil fuel supplies
+diminish, there is growing interest in renewable energy sources such as solar, wind, and
+biomass. Of all the renewable energy options available, wind energy is considered to
+have the greatest potential in terms of generating capacity [1,2]. To lower the cost of wind
+energy, wind turbines have gradually become larger. Wind turbine blades increase in
+length and weight. The blade’s inner part also needs to have greater resistance to bending
+and twisting. Therefore, the thickness of the airfoil used for the inboard section increases
+continuously [3]. How to maximize the aerodynamic performance of the blade while
+meeting the structural requirement has become a new design problem [4], which further
+promotes the development of thick airfoils.
+Flatback airfoils, also known as blunt trailing-edge (BTE) airfoils, as opposed to
+sharp trailing-edge airfoils, have a greater cross-section area and a larger inertia moment,
+which can greatly enhance blade rigidity while efficaciously decreasing blade weight [5].
+Moreover, the BTE airfoil exhibits less sensitivity to surface soiling than sharp trailingedge airfoils [6] and is more convenient for industrial processing with lower technological
+requirements [7]. More and more scholars have demonstrated that adding thickness to the
+BTE can significantly increase the CL (lift coefficient) of the wind turbine airfoils [8–13]. In
+the design of large wind turbine blades, the thick BTE airfoil is increasingly serving as a
+bridge between structural strength and aerodynamic characteristics [14,15].
+For the numerical simulation method of flatback airfoils, it has been demonstrated
+that the load predictions obtained from 2D URANS simulations are acceptable [16,17]. The
+DES method has been proved to be a suitable method; the predicted forces and unsteady
+
+Wind 2023, 3, 439–458. https://doi.org/10.3390/wind3040025
+
+https://www.mdpi.com/journal/wind
+
+Wind 2023, 3
+
+440
+
+characteristics show excellent agreement with the experimental data [16–19]. The LES
+method is also a suitable method to study unsteady characteristics of flatback airfoils [20].
+In practical engineering applications, more attention is paid to the value of the forces
+and whether the forces are increasing or decreasing. Therefore, the load prediction at
+the lowest possible cost has attracted more attention. Based on that, some turbulence
+models used in the RANS method are compared in this paper to figure out whether the 2D
+steady-state RANS method is a suitable way to predict loads with large separation flows
+and find the most suitable turbulence model.
+For the BTE airfoils, a lot of research have been performed. In previous studies,
+Hoerner [21] conducted wind tunnel experiments on some blunt trailing-edge airfoils. He
+found that the CLmax increased significantly while increasing the trailing-edge thickness
+after truncating the Go-490 airfoil with a relative thickness of 20%. In addition, Tanner [8],
+Ramjee [9], Sato [10], Law [11], and Fuglsang [12] all experimentally investigated the
+aerodynamic characteristics of airfoils with relative thicknesses from 6% to 43% at different
+Reynolds numbers and trailing-edge thicknesses. However, in the above studies, the BTE
+is generated by truncating the trailing edge. In this way, the airfoil’s relative thickness is
+changed. Timmer et al. [22] summarized the experimental data of wind turbine airfoils
+developed by Delft University of Technology with a relative thickness from 21% to 30% and
+studied the effects of the trailing-edge wedge, the Gurney flap, and the vortex generators
+on the aerodynamic performance of the DU series of airfoils. These airfoils were designed
+to be the BTE with a very limited relative thickness. In 2006, Baker et al. [13] studied
+the aerodynamic characteristics of the FB-3500 airfoil under different blunt trailing-edge
+thicknesses through experiment and numerical simulation. The BTE airfoil is generated
+by symmetrical thickening, in which the relative thickness of the airfoil remains 35%. The
+results showed that increasing the trailing-edge thickness could improve the aerodynamic
+characteristics of the thick airfoil.
+In recent years, many scholars studied the influence of passive and active flow control devices on the aerodynamic characteristics of BTE airfoils. Scholars at home and
+abroad studied a variety of methods, such as adding Gurney flaps [23], the application of
+vortex generators [23–25], and splitter plates [26,27], as well as active circulation control devices [28]. The results all showed that these flow control devices could effectively improve
+the aerodynamic characteristics of BTE airfoils.
+To increase the power generation of a single wind turbine and lower the cost of power
+generation, wind turbine blades gradually increase in size. The size of wind turbines has
+grown rapidly over the past few decades, from rotor diameters of 17 m in the early years,
+to more than 125 m in modern times [29]. It is expected that the size will keep increasing.
+With this background, the airfoils used in the inboard section are getting thicker and
+thicker. The application of thick airfoils with relative thicknesses of more than 40% has become
+very common. The demand for thicker airfoils also increased significantly. However, in
+existing studies, there are few studies on the numerical simulation for airfoils with thicknessto-chord ratios exceeding 40%, let alone airfoils with relative thicknesses of 60%.
+For the airfoils with relative thicknesses over 40%, it seems that only Zhang Lei’s team
+at the Chinese Academy of Sciences has conducted some research. Through numerical
+simulation and experimental methods, Zhang et al. [25,30,31] has investigated the aerodynamic characteristics of the DU00-W-401 airfoil and CAS-W1-450 airfoil, as well as the
+effects of vortex generators on the aerodynamic performance of the CAS-W2-400 airfoil
+and CAS-W1-450 airfoil. They also investigated the influence of the Reynolds number
+on the CAS-W2-400 airfoil experimentally, and it was found that the “positive” effects
+observed on thin aviation airfoils because of increasing Re are not definitely applicable to
+thick airfoils. Therefore, the theory that is applicable to thin airfoils may not be appropriate
+for thick airfoils. It is necessary to study the effect of the BTE thickness on an airfoil with a
+relative thickness of up to 60%. It aids in the accurate assessment and improvement of the
+aerodynamics of extremely thick airfoils used in wind turbines.
+
+Wind
+2023,
+3, FOR
+PEER
+REVIEW
+Wind
+2023,
+3, FOR
+PEER
+REVIEW
+
+Wind 2023, 3
+
+3
+
+3
+
+with
+a relative
+thickness
+of up
+to 60%.
+It aids
+in the
+accurate
+assessment
+improvement
+with
+a relative
+thickness
+of up
+to 60%.
+It aids
+in the
+accurate
+assessment
+andand
+improvement
+441
+of
+the
+aerodynamics
+of
+extremely
+thick
+airfoils
+used
+in
+wind
+turbines.
+of the aerodynamics of extremely thick airfoils used in wind turbines.
+2. Method
+2. Method
+2.
+Method
+Experimental
+Setup
+2.1.2.1.
+Experimental
+Setup
+2.1. Experimental Setup
+In this
+paper,
+research
+object
+is the
+NWT600
+airfoil,
+which
+is shown
+in Figure
+In this
+paper,
+thethe
+research
+object
+is the
+NWT600
+airfoil,
+which
+is shown
+in Figure
+1. 1.
+In
+this
+paper,
+the
+research
+object
+is
+the
+NWT600
+airfoil,
+which
+is
+shown
+in
+Figure
+1. It
+a very
+thick
+airfoil
+in the
+megawatt
+wind
+turbine
+airfoil
+series
+is designed
+It isItaisvery
+thick
+airfoil
+in the
+megawatt
+wind
+turbine
+airfoil
+series
+andand
+is designed
+for for
+thethe
+is
+a
+very
+thick
+airfoil
+in
+the
+megawatt
+wind
+turbine
+airfoil
+series
+and
+is
+designed
+for
+the
+inner
+sections
+of the
+wind
+turbine
+blade.
+relative
+thickness
+is up
+to 60%
+with
+a BTE
+inner
+sections
+of the
+wind
+turbine
+blade.
+Its Its
+relative
+thickness
+is up
+to 60%
+with
+a BTE
+inner
+sections
+of
+the
+wind
+turbine
+blade.
+Its
+relative
+thickness
+is
+up
+to
+60%
+with
+a
+BTE
+relative
+thickness
+of 2%.
+relative
+thickness
+of 2%.
+relative thickness of 2%.
+
+Figure
+1. The
+profile
+of the
+NWT600
+airfoil.
+Figure
+1. The
+profile
+of the
+NWT600
+airfoil.
+
+measurements
+NWT600
+airfoil
+were
+conducted
+the
+NF-3
+wind
+tunnel
+of
+measurements
+ofthe
+the
+NWT600
+airfoil
+were
+conducted
+in
+the
+NF-3
+wind
+tunnel
+TheThe
+measurements
+of of
+the
+NWT600
+airfoil
+were
+conducted
+ininthe
+NF-3
+wind
+tunnel
+Northwestern
+Polytechnical
+University,
+which
+is
+of
+a
+closed
+blow-down
+type
+with
+three
+of Northwestern
+Polytechnical
+University,
+which
+a closed
+blow-down
+type
+with
+of Northwestern
+Polytechnical
+University,
+which
+is ofisaofclosed
+blow-down
+type
+with
+three
+replaceable
+sections.
+testing
+section
+aa2D
+airfoil
+aadimension
+replaceable
+test
+sections.
+The
+testing
+section
+of2D
+2D
+airfoil
+has
+dimension
+of1.6
+1.6
+replaceable
+testtest
+sections.
+TheThe
+testing
+section
+of aof
+airfoil
+hashas
+a dimension
+of of
+1.6
+mm
+×m3××m3 m
+length
+ofm.
+m.The
+The
+velocity
+theflow
+flow
+varies
+from
+to
+120
+m/s,
+the
+a length
+88 m.
+velocity
+ofofthe
+varies
+from
+1515
+m/s
+to 120
+m/s,
+with
+the
+andand
+a length
+of 8of
+The
+velocity
+of the
+flow
+varies
+from
+15 m/s
+tom/s
+120
+m/s,
+with
+thewith
+tur-turturbulence
+level
+averaging
+0.045%.
+It
+is
+the
+largest
+low-speed
+airfoil
+testing
+section
+in
+Asia.
+bulence
+level
+averaging
+0.045%.
+It
+is
+the
+largest
+low-speed
+airfoil
+testing
+section
+in
+Asia.
+bulence level averaging 0.045%. It is the largest low-speed airfoil testing section in Asia.
+testing
+model
+ismixed
+mixed
+steel–wood
+structure
+with
+span
+length
+1.595
+The
+testing
+model
+aa mixed
+steel–wood
+structure
+with
+a aspan
+length
+ofof1.595
+a
+TheThe
+testing
+model
+is ais
+steel–wood
+structure
+with
+a span
+length
+of 1.595
+m, m,
+a m,
+achord
+chord
+length
+of
+0.6
+m,
+and
+an
+aspect
+ratio
+of
+2.67.
+The
+pressure
+taps
+were
+positioned
+length
+of 0.6
+m, and
+an aspect
+ratio
+of 2.67.
+pressure
+were
+positioned
+along
+chord length
+of 0.6
+m, and
+an aspect
+ratio
+of 2.67.
+TheThe
+pressure
+tapstaps
+were
+positioned
+along
+along
+the model’s
+central
+span-wise
+line.
+By measuring
+the surface
+pressure,
+theforce
+lift force
+model’s
+central
+span-wise
+line.
+measuring
+surface
+pressure,
+thethe
+model’s
+central
+span-wise
+line.
+By By
+measuring
+thethe
+surface
+pressure,
+thethe
+lift lift
+force
+andand
+and
+pitching
+moment
+ofairfoil
+the airfoil
+were
+calculated.
+Figure
+2 displays
+the pressure
+tap
+pitching
+moment
+of the
+were
+calculated.
+Figure
+2 displays
+pressure
+distripitching
+moment
+of the
+airfoil
+were
+calculated.
+Figure
+2 displays
+thethe
+pressure
+taptap
+distridistribution
+and
+geometrical
+profiles.
+bution
+geometrical
+profiles.
+bution
+andand
+geometrical
+profiles.
+
+Figure
+2. The
+distribution
+of pressure
+pressure
+taps
+on the
+the
+NWT600
+airfoil.
+Figure
+2.
+The
+distribution
+of
+on
+NWT600
+airfoil.
+Figure
+2. The
+distribution
+of pressure
+tapstaps
+on the
+NWT600
+airfoil.
+
+wake
+rake
+is positioned
+at 1.2
+chord
+lengths
+from
+trailing
+edge
+of
+model,
+of the
+the
+model,
+TheThe
+wake
+rake
+is positioned
+at 1.2
+chord
+lengths
+from
+thethe
+trailing
+edge
+of the
+model,
+which
+is
+shown
+in
+contains
+9
+static
+pressure
+tubes
+and
+186
+total
+pressure
+tubes.
+Figure
+3.
+It
+contains
+9
+static
+pressure
+tubes
+and
+186
+total
+pressure
+tubes.
+which is shown in Figure 3. It contains 9 static pressure tubes and 186 total pressure tubes.
+In the experiments, both surface static pressure and total wake pressure were measured
+using a 9816-pressure scanning valve with a range of 1 Psi. The acquisition frequency was
+100 Hz, and the acquisition duration was 20 s. Since the NF-3 wind tunnel is a closed
+blow-down wind tunnel, the surface roughness of the model will be affected by the test
+environment. During the test, the wind was stopped 3 times, and the model surface was
+wiped with a clean towel to maintain the cleanliness of the model surface.
+
+Wind
+Wind2023,
+2023,33, FOR PEER REVIEW
+
+4424
+
+Figure 3. Total pressure measuring rake (wake rake).
+
+In the experiments, both surface static pressure and total wake pressure were measured using a 9816-pressure scanning valve with a range of 1 Psi. The acquisition frequency
+was 100 Hz, and the acquisition duration was 20 s. Since the NF-3 wind tunnel is a closed
+blow-down wind tunnel, the surface roughness of the model will be aﬀected by the test
+environment. During the test, the wind was stopped 3 times, and the model surface was
+wiped with a clean towel to maintain the cleanliness of the model surface.
+During
+thepressure
+acquisition
+process,
+the
+signal
+deviation is mainly caused by the change
+Figure
+3. Total
+Total
+pressure
+measuring
+rake
+(wake
+rake).
+Figure
+3.
+measuring
+rake
+(wake
+rake).
+of atmospheric temperature and pressure, as well as by the heating of electronic compoIn the
+experiments,
+both
+surface
+pressure
+and
+wake
+pressure
+measnents. The
+9816-pressure
+scan
+valve
+has
+system
+uncertainty
+of 0.05%
+and
+an
+uncerDuring
+the acquisition
+process,
+theastatic
+signal
+deviation
+is total
+mainly
+caused
+byAoA
+thewere
+change
+of
+uredofusing
+atemperature
+9816-pressure
+scanning
+valve
+with
+range
+1 Psi.
+The
+acquisition
+frequency
+atmospheric
+pressure,
+as well
+the of
+heating
+of electronic
+components.
+tainty
+less than
+3′. Due toand
+the
+large sample
+sizeasaofby
+each
+data
+point
+(collection
+time
+20 s,
+was9816-pressure
+100 frequency
+Hz, and the
+acquisition
+was
+20 s. Since
+the NF-3
+wind
+tunnel
+is a closed
+The
+scan
+valve
+has duration
+a systemsize
+uncertainty
+of 0.05%
+and
+an AoA
+uncertainty
+collection
+100
+Hz, and
+sample
+2000),
+according
+to statistical
+theory,
+theof
+0 . Due
+blow-down
+wind
+tunnel,
+the
+surface
+roughness
+of
+the
+model
+will
+be
+aﬀected
+by
+the
+less
+than
+3
+to
+the
+large
+sample
+size
+of
+each
+data
+point
+(collection
+time
+20
+s,
+collection
+standard deviation range of the average value is 3~5% of a single time. The final uncer-test
+frequency
+100
+Hz, and
+sample
+size
+2000),
+statistical
+theory,
+the
+standard
+environment.
+During
+test,by
+the
+wasaccording
+stopped
+3to
+times,
+and the
+model
+surface
+was
+tainty
+transfer
+results
+arethe
+given
+7 wind
+repeated
+tests,
+which
+fully
+meet
+the
+requirements
+of
+deviation
+range
+of the
+average
+value is the
+3~5%
+of a singleoftime.
+The final
+uncertainty transfer
+wiped
+a clean
+towel
+to maintain
+cleanliness
+the model
+surface.
+the
+airfoilwith
+test.
+results
+are the
+given
+by
+7 repeated
+tests,
+which
+fully
+meet the
+requirements
+of the
+airfoil
+test.
+During
+the
+acquisition
+process,
+the signal
+deviation
+is mainly
+caused
+bygradually
+the change
+During
+service
+of the wind
+turbine,
+the
+surface
+roughness
+of the
+blade
+During
+theistemperature
+service
+wind
+turbine,
+surface
+ofand
+theelectronic
+blade
+gradually
+of atmospheric
+and
+pressure,
+well
+as byroughness
+the defects,
+heating
+of
+compoincreases,
+which
+causedof
+bythe
+material
+erosion,asthe
+manufacturing
+the
+accumulaincreases,
+is caused
+material
+erosion,
+manufacturing
+defects,
+and
+thean
+accumulation
+nents.
+Thewhich
+9816-pressure
+scan
+valve has
+a system
+uncertainty
+ofblade.
+0.05%
+and
+AoA uncertion
+of dust,
+insects,
+and iceby
+adhering
+to
+the
+leading
+edge of the
+These
+pollutants
+of
+dust,
+insects,
+and
+ice
+adhering
+to
+the
+leading
+edge
+of
+the
+blade.
+These
+pollutants
+may
+tainty
+ofthe
+lessaerodynamic
+than 3′. Due performance
+to the large sample
+size of by
+each
+data point
+(collection time
+20 s,
+may
+aﬀect
+of the blades
+promoting
+boundary-layer
+sepaffect
+the
+aerodynamic
+performance
+of
+the
+blades
+by
+promoting
+boundary-layer
+separation
+collection
+frequency 100 Hz, transition
+and sample
+sizeTherefore,
+2000), according
+to statistical
+aration
+or laminar-to-turbulent
+[32].
+it is necessary
+to addtheory,
+a set ofthe
+or
+laminar-to-turbulent
+transition
+[32].
+Therefore,
+iton
+is
+necessary
+to add
+a (fixed
+set The
+of experimental
+standard
+deviation
+range
+of the
+average
+value
+3~5%
+a single
+time.
+final uncerexperimental
+data of the
+airfoil
+with
+zig-zag
+tapesis
+the of
+leading
+edge
+transition)
+of transfer
+theofairfoil
+with zig-zag
+tapes
+the leading
+edge
+(fixed
+transition)
+the data of the
+tainty
+are
+given
+repeated
+tests,
+which
+fully
+meet thetorequirements
+of
+todata
+the data
+the results
+original
+airfoil
+inby
+the7on
+experiment
+(free
+transition).
+original
+airfoil
+in
+the
+experiment
+(free
+transition).
+theAs
+airfoil
+test.
+a standard way of checking the roughness sensitivity of the leading edge, a zigAs
+a standard
+way of
+roughness
+sensitivity
+of the
+edge, gradually
+aof
+zig-zag
+During
+service
+ofchecking
+the
+turbine,
+surface
+of
+thematerial
+blade
+zag tape
+with
+athe
+thickness
+0.35wind
+mmthe
+was
+usedthe
+(shown
+inroughness
+Figure
+4).leading
+The
+the
+tape
+with
+a
+thickness
+of
+0.35
+mm
+was
+used
+(shown
+in
+Figure
+4).
+The
+material
+of
+the
+zig-zag
+increases,
+material
+manufacturing
+andsettled
+the accumulazig-zag
+tape which
+is No. is
+80caused
+emery.by
+The
+width erosion,
+of the tape
+is 3 mm. Thedefects,
+tape was
+at 5%
+tape
+is
+80insects,
+emery.
+Theice
+width
+of the
+is
+3 mm.
+The
+tape
+settled
+at position
+5% chord
+tion on
+of No.
+dust,
+adhering
+totape
+thelower
+leading
+edge
+thewas
+blade.
+These
+pollutants
+chord
+the
+upper
+sideand
+and
+10%
+chord
+on
+the
+side.
+Theof
+thickness
+and
+the
+on
+the
+upper
+side
+and
+10%
+chord
+on
+the
+lower
+side.
+The
+thickness
+and
+the
+position
+the
+aﬀect the
+aerodynamic
+performance
+of the blades
+by promoting
+boundary-layer
+sepof may
+the specific
+tape
+are determined
+by the method
+of Braslow
+[33] to eﬀectively
+forceof
+the
+specific
+tape
+are
+determined
+by
+the
+method
+of
+Braslow
+[33]
+to
+effectively
+force
+the
+inflow
+aration
+or transformed
+laminar-to-turbulent
+transition
+of
+inflow
+to be
+into turbulent
+flow. [32]. Therefore, it is necessary to add a set to
+be
+transformed
+into
+turbulent
+flow.
+experimental data of the airfoil with zig-zag tapes on the leading edge (fixed transition)
+to the data of the original airfoil in the experiment (free transition).
+As a standard way of checking the roughness sensitivity of the leading edge, a zigzag tape with a thickness of 0.35 mm was used (shown in Figure 4). The material of the
+zig-zag tape is No. 80 emery. The width of the tape is 3 mm. The tape was settled at 5%
+chord on the upper side and 10% chord on the lower side. The thickness and the position
+of the specific tape are determined by the method of Braslow [33] to eﬀectively force the
+inflow to be transformed into turbulent flow.
+
+Figure 4. Zig-Zag tape geometry.
+
+For the very thick airfoil, the surface flow is affected by the boundary layer of the
+side wall. Flow separation occurs easily at the end of the model, which affects the twodimensional characteristics of the flow. In the process of the test, a vortex generator was
+installed at the end of the upper surface to control the corner flow separation between the
+model and the side wall and to ensure the two-dimensional characteristics of the flow on
+the wing surface. This method has been confirmed in a previous paper [34].
+
+Wind 2023, 3
+
+23, 3, FOR PEER REVIEW
+
+443
+
+The experiments were conducted with varying Re (2.0 × 106 , 2.5 × 106 , and 3.0 × 106 )
+and under free and fixed transition conditions. The pressure tests are performed at 1◦
+intervals from −15◦ to 25◦ . The test plan is presented in Table 1.
+Table 1. Test plan of NWT600 airfoil in the NF-3 wind tunnel.
+Model
+
+Run No.
+
+Transition
+
+Re
+
+AoA Region
+
+∆AoA
+
+NWT600
+
+1
+2
+3
+4
+5
+6
+
+Fixed
+Fixed
+Fixed
+Free
+Free
+Free
+
+2.0 ×106
+2.5 × 106
+3.0 × 106
+2.0 × 106
+2.5 × 106
+3.0 × 106
+
+−15◦ to 25◦
+−15◦ to 25◦
+−15◦ to 25◦
+−15◦ to 25◦
+−15◦ to 25◦
+−15◦ to 25◦
+
+1◦
+1◦
+1◦
+1◦
+1◦
+1◦
+
+2.2. Numerical Method and Validation
+The numerical simulations are based on the 2D steady-state Reynolds-averaged
+Navier–Stokes (RANS) equations in the CFD solver Fluent. To improve the calculation
+accuracy, the spatial discretization of all the cases is set as the second order upwind. The
+pressure–velocity coupling is based on the SIMPLE method, and the pressure-based solver
+is used in the numerical simulation. The properties of air are set as an ideal gas, and its
+viscosity is solved by the Sutherland model.
+The DU97-W-300 airfoil was developed and tested in a low-speed, low-turbulence
+wind tunnel at the Institute of Aerospace Engineering, University of Delft, The Netherlands,
+and was widely used in wind turbine applications and research [22]. In this paper, the
+DU97-W-300 airfoil is selected to validate the numerical method and to determine the
+appropriate grid density used in this study. The mesh is shown in Figure 5. The grid is
+created with an O-type topology structure. The far-field radius is 50 times the chord length,
+6
+and the far-field center is set on the leading-edge point of the airfoil. The wall is set as the
+non-slip wall. The outer boundary is set as the pressure far-field boundary.
+
+(a) Boundary conditions
+
+(b) Grid and local enlarged view
+
+Figure 5. Schematic diagram of the boundary conditions and the grid.
+Figure 5. Schematic diagram of the boundary conditions and the grid.
+Table 2. Main parameters
+of the
+grids.
+Three
+setsDU97-W-300
+of grids with
+different densities are created, which are Grid A (28,800 cells),
+
+Grid B (80,000Grid
+cells),Aand Grid C (115,200
+Parameters
+Grid B cells). The topological
+Grid C structure of these grids is
+consistent with that in Figure 5b. Detailed parameters of the grids are shown in Table 2—the
+Far-field radius/c
+50
+50
+50
+main parameters of the DU97-W-300 grids.
+Wrap-around points
+240
+400
+480
+Normal layers
+120
+200
+240
+First layer height/m
+1.0 × 10−5
+1.0 × 10−5
+1.0 × 10−5
+Total cells number
+2.88 × 104
+8.00 × 104
+11.52 × 104
+Y plus
+<1.00
+<1.00
+<1.00
+
+The grid independency study is conducted at a typical test condition: AoA (angle of
+
+Wind 2023, 3
+
+444
+
+Table 2. Main parameters of the DU97-W-300 grids.
+Parameters
+
+Grid A
+
+Grid B
+
+Grid C
+
+Far-field radius/c
+Wrap-around points
+Normal layers
+First layer height/m
+Total cells number
+Y plus
+
+50
+240
+120
+1.0 × 10−5
+2.88 × 104
+<1.00
+
+50
+400
+200
+1.0 × 10−5
+8.00 × 104
+<1.00
+
+50
+480
+240
+1.0 × 10−5
+11.52 × 104
+<1.00
+
+The grid independency study is conducted at a typical test condition: AoA (angle of
+attack) = 9.3◦ , Ma = 0.2165, and Re = 3.0 × 106 . The turbulence model used in the simulation
+is the k-ω SST model. The results are shown in Table 3. It can be seen that the simulated
+CL is all higher than the experimental data [22], and with grid numbers increasing, the
+numerical results gradually approach the experimental data. The calculated CD is a little
+higher than the experimental data, which are similar to the simulation results of Gao
+et al. [35] using the S-A model. From Table 3, the results calculated with Grid C are closer to
+the experimental data. The lift coefficient is slightly closer to the experimental results than
+that of Grid B, but at the same time, the number of cells is 44% larger than that of Grid B.
+To maintain the accuracy of the simulation and save calculation resources, the grid density
+in this paper will be same as that of Grid B for the remaining numerical simulations.
+Table 3. Calculated results and experimental data of the DU97-W-300 airfoil.
+
+Total number of
+cells
+CL
+CD
+
+ER REVIEW
+
+Grid A
+
+Grid B
+
+Grid C
+
+CFD [35]
+
+Experiment [22]
+
+2.88 × 104
+
+8.00 × 104
+
+11.52 × 104
+
+-
+
+-
+
+1.3941
+0.0238
+
+1.3903
+0.0234
+
+1.3819
+0.0232
+
+1.3750
+0.0206
+
+1.380
+0.014
+
+To further validate the numerical method, the flow fields of the DU97-W-3007airfoil
+are simulated at the AoAs between −4◦ and 20◦ . Figures 6 and 7 present the numerical
+results of the CL and CD curves and the CP distribution.
+
+(a) CL-AoA
+Figure 6. Curves of liftFigure
+coeﬃcient
+and
+coeﬃcient.
+6. Curves
+of drag
+lift coefficient
+and drag coefficient.
+
+(b) CD-AoA
+
+Wind 2023, 3
+
+(a) CL-AoA
+
+(b) CD-AoA
+
+445
+
+Figure 6. Curves of lift coeﬃcient and drag coeﬃcient.
+
+(a) −1°
+
+(b) 9.3°
+
+(c) 12.4°
+Figure 7. ComparisonFigure
+of CP 7.
+distribution
+experimental
+and simulation
+results. results.
+Comparison between
+of CP distribution
+between data
+experimental
+data and simulation
+For the Cresults
+results
+of the
+S-Ak-ω
+model
+and
+k-ω
+are agreement
+in good agreement
+L , the simulation
+For the CL, the simulation
+of the S-A
+model
+and
+SST
+are
+inSST
+good
+with the experimental data before the stall AoA of about 12.8◦ but overestimate after the
+with the experimental
+data before the stall AoA of about 12.8° but overestimate after the
+stall. When approaching the stall AoA, the simulation results of the Reynolds stress model
+stall. When approaching
+stall AoA,the
+thelift
+simulation
+results
+of the Reynolds
+model
+(RSM)the
+underestimate
+of the airfoil
+and overestimate
+its drag.stress
+However,
+after the
+stall,
+thelift
+simulated
+the Reynolds
+stress model
+agreeHowever,
+well with the
+experimental
+(RSM) underestimate
+the
+of the results
+airfoilofand
+overestimate
+its drag.
+after
+the
+data. Forof
+CDthe
+, theReynolds
+present results
+are model
+all higher
+than the
+experiment
+before the stall but
+stall, the simulated results
+stress
+agree
+well
+with thedata
+experimental
+a little underestimated after the stall. For the CP distribution, the simulation results of the
+S-A model and k-ω SST are in good agreement with the experimental data. Overall, the
+simulation results of the S-A model and k-ω SST agree quite well with the experimental
+data before stall, while the simulation results of the k-ε realizable model and RSM agree
+quite well with the experimental data after stall.
+
+data. For CD, the present results are all higher than the experiment data before the stall
+but a little underestimated after the stall. For the CP distribution, the simulation results of
+the S-A model and k-ω SST are in good agreement with the experimental data. Overall,
+the simulation results of the S-A model and k-ω SST agree quite well with the experimental
+data before stall, while the simulation results of the k-ɛ realizable model and RSM agree
+Wind 2023, 3
+quite well with the experimental data after stall.
+
+446
+
+3. Results and Discussions
+
+3. Results and Discussion
+
+3.1. Analysis of Aerodynamic
+Characteristics
+the NWT600ofAirfoil
+3.1. Analysis
+of AerodynamicofCharacteristics
+the NWT600 Airfoil
+At diﬀerent Reynolds
+numbers,
+Re = 2.0
+× 106, Re = 2.0
+2.5 ×
+× 106, and
+106, Re
+the=C
+L, × 106 , the
+At different
+Reynolds
+numbers,
+Re = Re
+2.5 =×3.0
+106×, and
+3.0
+CLthe
+, CDNWT600
+, CM , and airfoil
+L/D of under
+the NWT600
+airfoil
+free and fixed
+transition
+CD, CM, and L/D of
+the free
+andunder
+fixedthe
+transition
+conditions
+areconditions
+are
+measured
+experimentally,
+as
+shown
+in
+Figure
+8.
+measured experimentally, as shown in Figure 8.
+
+(a) CL-AoA
+
+(b) CD-AoA
+
+(c) CM-AoA
+
+(d) L/D-AoA
+
+Figure 8. Experimental
+data
+of the NWT600
+Figure
+8. Experimental
+dataairfoil.
+of the NWT600 airfoil.
+
+It from
+can bethe
+observed
+fromthe
+theaerodynamic
+data that the aerodynamic
+of the NWT600
+It can be observed
+data that
+performanceperformance
+of the NWT600
+airfoil
+is
+very
+different
+from
+that
+of
+the
+conventional
+thin
+airfoil,
+which
+is
+mainly
+airfoil is very diﬀerent from that of the conventional thin airfoil, which is mainly reflected reflected
+in the following aspects.
+in the following aspects.
+First, for the AoAs between −15◦ and 15◦ , the C of the airfoil decreases when the AoA
+First, for the AoAs between −15° and 15°, the CL of the airfoilLdecreases when the AoA
+increases. A similar phenomena also appears in the numerical results of the FB-3500-0050
+increases. A similar
+phenomena
+appears
+numerical
+results
+the FB-3500-0050
+airfoil
+by Baker etalso
+al. [13]
+and thein
+CLthe
+curve
+of the TR-44
+airfoilofsimulated
+by Standish et al. [36]
+airfoil by Baker etusing
+al. [13]
+theThe
+CL AoA
+curverange
+of the
+airfoilliftsimulated
+Standish
+theand
+MSES.
+of TR-44
+the negative
+gradient isby
+much
+bigger et
+in al.
+this study.
+[36] using the MSES. The
+AoA
+range
+of
+the
+negative
+lift
+gradient
+is
+much
+bigger
+in
+this
+Second, for the conventional thick airfoil, the CL under the fixed transition condition
+is usually lower than that under the free transition condition, while the CD is usually
+study.
+higher [13,36]. However, the case of the NWT600 airfoil is quite different. The CL of the
+NWT600 airfoil under the fixed transition condition is higher than that under the free
+transition condition at most AoAs. The CD under the fixed transition condition is lower
+than that under the free transition condition at a part of the AoAs. For example, for the
+
+is usually lower than that under the free transition condition, while the CD is usually
+higher [13,36]. However, the case of the NWT600 airfoil is quite diﬀerent. The CL of the
+NWT600 airfoil under the fixed transition condition is higher than that under the free
+transition condition at most AoAs. The CD under the fixed transition condition is lower
+Wind 2023, 3 than that under the free transition condition at a part of the AoAs. For example, for the
+447
+experimental data with Re = 2.0 × 106, when AoA is less than −8°, the drag coeﬃcient under
+the fixed transition condition is lower than that under the free transition condition.
+experimental
+with
+Re =
+= 2.0
+2.0 ×
+1066 ,and
+when
+AoA
+is lesswhich
+than −is
+8◦consistent
+, the drag coefficient
+The simulation
+conditiondata
+is set
+at Re
+× 10
+Ma
+= 0.149,
+under
+the
+fixed
+transition
+condition
+is
+lower
+than
+that
+under
+the
+free
+transition condition.
+6
+with the experimental condition at Re = 2.0 × 10 . The setting of the
+numerical simulation
+The simulation condition is set at Re = 2.0 × 106 and Ma = 0.149, which is consistent
+is exactly the same as that in the numerical validation. Many numerical
+simulations of the
+with the experimental condition at Re = 2.0 × 106 . The setting of the numerical simulation
+NWT600 airfoil are
+performed
+based
+on
+various
+turbulence
+models,
+including
+Spalart–
+is exactly the same as that in the numerical validation. Many the
+numerical
+simulations
+Allmaras model, of
+k-ωtheSST
+model,airfoil
+k-ε realizable
+model,
+andon
+Reynolds
+(linear
+pres- including
+NWT600
+are performed
+based
+various stress
+turbulence
+models,
+sure-strain) model,
+the results simulated
+withSST
+these
+turbulence
+models
+are compared.
+theand
+Spalart–Allmaras
+model, k-ω
+model,
+k-ε realizable
+model,
+and Reynolds stress
+(linear
+pressure-strain)
+model,
+the results
+simulated
+with these
+turbulence
+All the simulations
+are considered
+to be
+fully and
+turbulent.
+At the
+same time,
+the reason
+whymodels are
+All the
+are airfoil
+considered
+to be
+fully turbulent.
+At the
+the aerodynamic compared.
+characteristics
+ofsimulations
+the NWT600
+are so
+diﬀerent
+from those
+ofsame
+the time, the
+reason
+why
+the
+aerodynamic
+characteristics
+of
+the
+NWT600
+airfoil
+are
+so
+different
+from
+conventional thin airfoils is explored.
+those
+of
+the
+conventional
+thin
+airfoils
+is
+explored.
+The curves of CL, CD, CM, and L/D are shown in Figure 9. The variation trends of the
+The curves of C , C , C , and L/D are shown in Figure 9. The variation trends of
+aerodynamic force coeﬃcients with LtheDfourM turbulence models agree qualitatively well
+the aerodynamic force coefficients with the four turbulence models agree qualitatively
+with those of the well
+experimental
+thedata,
+numerical
+values
+deviate from
+ex- from the
+with those data,
+of the although
+experimental
+although
+the numerical
+valuesthe
+deviate
+perimental data. experimental
+Among thesedata.
+turbulence
+models,
+the Reynolds
+stress
+(linearstress
+pressureAmong these
+turbulence
+models, the
+Reynolds
+(linear pressurestrain) model gives
+the
+best
+agreement
+with
+the
+experimental
+data,
+and
+diﬀerences
+be- between
+strain) model gives the best agreement with the experimental data, and differences
+tween the results the
+of the
+other
+three
+models
+are small.
+results
+of the
+other
+three models
+are small.
+
+(a) CL-AoA
+
+(b) CD-AoA
+
+(c) CM-AoA
+
+(d) L/D-AoA
+
+Figure 9. Curves ofFigure
+CL, CD9.
+, CCurves
+M, and L/D of the NWT600 airfoil.
+of CL , CD , CM , and L/D of the NWT600 airfoil.
+
+3, FOR PEER REVIEW
+Wind 2023, 3
+
+10
+448
+
+Figure 10 displays the flow fields of the airfoil. It can be seen that even at a low subFigure 10 displays the flow fields of the airfoil. It can be seen that even at a low
+sonic flow with the Ma = 0.149, the airflow separates easily on the surface of the NWT600
+subsonic flow with the Ma = 0.149, the airflow separates easily on the surface of the
+airfoil at all AoAs.
+The separation
+areseparation
+generated
+around
+trailingaround
+edge and
+NWT600
+airfoil at allvortices
+AoAs. The
+vortices
+arethe
+generated
+the trailing edge
+◦ , the separation
+extend to at leastand
+1.3 extend
+times the
+chord
+length.
+When
+the
+AoA
+is
+over
+20°,
+the
+separation
+to at least 1.3 times the chord length. When the AoA is over 20area
+is significantly larger.
+area is significantly larger.
+
+(a) AoA = −15°
+
+(b) AoA = −10°
+
+(c) AoA = 0°
+
+(d) AoA = 10°
+
+(e) AoA = 20°
+
+(f) AoA = 25°
+
+Figure 10. Flow fields
+of the
+NWT600
+diﬀerent
+by k-ω
+SST). by k-ω SST).
+Figure
+10. Flow
+fieldsairfoil
+of thewith
+NWT600
+airfoilAoAs
+with (simulated
+different AoAs
+(simulated
+
+The RANS method, as the name implies, simulates turbulence through time-averaged treatment. The Reynolds stress terms in the equations are solved by modeling the
+time-averaged terms rather than the energy transported through the random turbulence
+
+Wind 2023, 3
+
+449
+
+The RANS method, as the name implies, simulates turbulence through time-averaged
+treatment. The Reynolds stress terms in the equations are solved by modeling the timeaveraged terms rather than the energy transported through the random turbulence fluctuation [37]. Due to the strong separation flow on the airfoil surface, the flow presents
+three-dimensional characteristics, whereas the present numerical simulation is based on the
+two-dimensional RANS method. In the validation of the DU97-W-300 airfoil, simulation
+results of CL after stall also deviate more or less from the experimental data. Therefore, it is
+not surprising that the present numerical results with severe flow separation deviate from
+the experimental data.
+Among the various types of RANS turbulence models available in ANSYS Fluent, the
+Reynolds stress model (RSM) is the most elaborate. The RSM abandons the assumption of
+isotropic eddy viscosity and solves transport equations for the Reynolds stresses in conjunction with an equation for the dissipation rate, thereby closing the RANS equations [38,39].
+Since the RSM accounts for the effects of streamline curvature, swirl, rotation, and rapid
+changes in strain rate in a more rigorous manner, it has the potential to provide more
+precise prediction for intricate flows. Therefore, it is not surprising that the results of RSM
+simulation agree best with the experimental data.
+For the NWT600 airfoil with a very large relative thickness, the change rate of its
+thickness along the chord line direction is very high. The pressure would change rapidly,
+causing a severe adverse pressure gradient and separation phenomenon. Therefore, the
+aerodynamic characteristics are very poor and difficult to predict, which is similar to those
+of the conventional thin airfoil under the stall condition. Because the slope of the trailingedge profile of the airfoil is large, when AoA = 25◦ , the airflow direction is almost parallel to
+the trailing-edge profile of the lower surface and perpendicular to the trailing-edge profile
+of the upper surface. The air can flow over the lower trailing edge without hindrance but
+can hardly attach to the upper trailing edge.
+The larger lift at negative AoAs is mainly due to the higher flow velocity around
+the maximum thickness point, which forms a low-pressure area on the upper surface.
+With AoA increasing, the airflow velocity on the upper surface decreases because of the
+occurrence of separation at the upper trailing edge. The airflow velocity on the lower
+surface increases because of the disappearance of separation at the lower trailing edge,
+resulting in the increase in pressure on the upper surface and the decrease in pressure on
+the lower surface. Therefore, the lift force gradually decreases. When the AoA gets larger
+than 15◦ , the component force of the high pressure around the stagnation point in the lift
+direction becomes larger, so the lift increases with the AoA.
+Figure 11a–f show the CP distribution of the simulation results and the experimental
+data at different AoAs. From the CP distribution curve, it can be observed that although
+there is a difference in values between the force coefficient simulated by the RANS model
+and the experimental data, the variation trend of the pressure distribution curves along
+the airfoil surface at different AoAs is consistent with the experimental data. The reason
+for the value difference of the force coefficient is that the RANS method overestimates the
+pressure of the airfoil surface in most cases, especially in the separation region (i.e., the
+horizontal part of the CP distribution curve). Although the 2D steady-state RANS models
+overestimate the pressure of the airfoil surface in most cases, it is qualitatively acceptable
+to predict the surface pressure distribution of the very thick airfoil. Although there is a
+deviation between the aerodynamic force value predicted by the RANS method and the
+experimental data, it is reasonable for reference.
+It is obvious that the dp/dx is quite large before the separation area. In this region
+of adverse pressure gradient, the fluid elements moving along a streamline have to work
+their way “uphill” against an increasing pressure. The fluid elements will slow down. As a
+result, the fluid element comes to a stop somewhere downstream and reverses its direction,
+causing separation from the surface.
+
+OR PEER Wind
+REVIEW
+2023, 3
+
+12
+
+(a) AoA = −15°
+
+(b) AoA = −10°
+
+(c) AoA = 0°
+
+(d) AoA = 10°
+
+(e) AoA = 20°
+
+(f) AoA = 25°
+
+Figure 11. CP distribution
+at diﬀerent
+AoAs.at different AoAs.
+Figure 11.
+C distribution
+P
+
+It is obvious that the dp/dx is quite large before the separation area. In this region of
+adverse pressure gradient, the fluid elements moving along a streamline have to work
+their way “uphill” against an increasing pressure. The fluid elements will slow down. As
+a result, the fluid element comes to a stop somewhere downstream and reverses its direction, causing separation from the surface.
+Due to the low-pressure area on both the upper and lower surfaces of the airfoil, the
+CP curve of the upper surface intersects that of the lower surface. The pressure force di-
+
+450
+
+Wind 2023, 3
+
+451
+
+Due to the low-pressure area on both the upper and lower surfaces of the airfoil, the CP
+curve of the upper surface intersects that of the lower surface. The pressure force direction
+around the leading edge is opposite to that around the trailing edge. Therefore, the lower
+and upper surfaces of the NWT600 airfoil cannot be simply called the pressure side and
+suction side, respectively.
+At the negative AoAs, the force direction around the leading edge is downward,
+and the force direction around the trailing edge is upward. The moment of the airfoil
+is a negative pitching moment. As the AoA increases to 0◦ , the CP distribution curves
+of the upper and lower airfoil gradually approach each other. The moment gradually
+decreases to about 0. The variation trend of the pressure distribution from AoA = 0◦ to
+AoA = 15◦ is similar to that from AoA = −15◦ to AoA = 0◦ . The moment changes to a
+positive pitching moment and gradually increases. When the AoA is over 15◦ , the positive
+lift force around the leading edge continues to increase, but the negative lift force around
+the trailing edge gradually decreases. With the increasing of AoA, the direction of incoming
+flow is gradually parallel to the trailing edge profile of the lower surface. Therefore, the
+suction force on the lower trailing edge gradually decreases. The positive pitching moment
+of the airfoil decreases gradually.
+3.2. Influence of the BTE Thickness on the Aerodynamic Characteristics of the NWT600 Airfoil
+The BTE modification of the wind turbine airfoils has become a hot topic in the past
+few years. There are several methods to modify an airfoil to a BTE, such as rotating the
+upper and lower curves of the airfoil around the leading-edge point and the trailing-edge
+wedge, which is to add a Gurney flap on the trailing edge and then connect the 90% chord
+position to the edge of the Gurney flap with a smooth curve to form a BTE airfoil and
+adding trailing-edge thickness symmetrically or asymmetrically [20,40].
+Among these methods, the most commonly used method is adding trailing-edge
+thickness symmetrically, which is to add thickness symmetrically on both sides of the mean
+camber line. In this way, the airfoil obtains a BTE, and the important geometric parameters
+such as “nose” geometry, airfoil camber, and maximum thickness do not change. This
+method is adopted in this paper. Set the original coordinate point as (x0 , y0 ), and set the new
+coordinate point on the profile curve after modification as (x, y), which can be expressed
+as follows:
+1
+x = x0 , y = y0 ± δ[( x − xt )/(c − xt )]n
+(1)
+2
+where δ represents the thickness increment at the trailing edge; xt represents the location of
+the maximum thickness; c is the chord length; n is the power exponent. n = 1 corresponds
+to a linear distribution. The larger the n is, the smaller the thickness increment will be at
+the beginning of the thickening process. In this study, n is equal to five. Six airfoils with
+different trailing-edge thicknesses have been obtained. The BTE relative thicknesses of
+these airfoils are shown in Table 4, and the airfoils are shown in Figure 12.
+Table 4. The BTE relative thicknesses of these airfoils.
+Airfoil
+
+NWT600_06
+
+NWT600_10
+
+NWT600_15
+
+NWT600_20
+
+NWT600_30
+
+Relative thickness
+of the trailing edge
+
+6%
+
+10%
+
+15%
+
+20%
+
+30%
+
+Figure 13a–d present the curves of CL , CD , CM , and L/D of the six airfoils. From the
+CL curve, it can be clearly observed that with the trailing-edge thickness increasing, the
+variation trend of the CL curve gradually becomes similar to the trend of the conventional
+thin airfoil, and the AoA range where the slope of the CL curve is negative gets shorter. At
+positive AoAs, CL increases with the BTE thickness. When the BTE thickness is thickened
+to 30% chord length, the phenomenon of CL decreasing with increasing AoA disappears
+completely. For the CD , with the increasing of the BTE thickness, the CD increases at large
+
+Wind 2023, 3
+
+452
+
+Wind 2023, 3, FOR PEER REVIEW
+
+14
+
+AoAs and decreases at small AoAs. The moment coefficient also changes greatly. The
+moment coefficient curve at positive AoAs is continuously shifted downward.
+
+Figure 12. Airfoils with diﬀerent trailing-edge thicknesses.
+
+Figure 13a–d present the curves of CL, CD, CM, and L/D of the six airfoils. From the CL
+curve, it can be clearly observed that with the trailing-edge thickness increasing, the variation trend of the CL curve gradually becomes similar to the trend of the conventional thin
+airfoil, and the AoA range where the slope of the CL curve is negative gets shorter. At
+positive AoAs, CL increases with the BTE thickness. When the BTE thickness is thickened
+to 30% chord length, the phenomenon of CL decreasing with increasing AoA disappears
+completely. For the CD, with the increasing of the BTE thickness, the CD increases at large
+AoAs and decreases at small AoAs. The moment coeﬃcient also changes greatly. The moment coeﬃcientFigure
+curve
+at12.
+positive
+AoAs
+is continuously
+shifted downward.
+12.
+Airfoils
+with
+diﬀerent
+trailing-edge
+thicknesses.
+Figure
+Airfoils
+with
+different
+trailing-edge
+thicknesses.
+Figure 13a–d present the curves of CL, CD, CM, and L/D of the six airfoils. From the CL
+curve, it can be clearly observed that with the trailing-edge thickness increasing, the variation trend of the CL curve gradually becomes similar to the trend of the conventional thin
+airfoil, and the AoA range where the slope of the CL curve is negative gets shorter. At
+positive AoAs, CL increases with the BTE thickness. When the BTE thickness is thickened
+to 30% chord length, the phenomenon of CL decreasing with increasing AoA disappears
+completely. For the CD, with the increasing of the BTE thickness, the CD increases at large
+AoAs and decreases at small AoAs. The moment coeﬃcient also changes greatly. The moment coeﬃcient curve at positive AoAs is continuously shifted downward.
+
+(a) CL-AoA
+
+(b) CD-AoA
+
+(a) CL-AoA
+
+(c) CM-AoA
+
+(b) CD-AoA
+
+(d) L/D-AoA
+
+Figure 13. Force coefficient curves (simulated by the k-ω SST model).
+
+(c) CM-AoA
+
+(d) L/D-AoA
+
+OR PEER REVIEW
+
+15
+
+Figure 13. Force coeﬃcient curves (simulated by the k-ω SST model).
+Wind 2023, 3
+
+453
+
+The simulated results show that by adding the BTE thickness symmetrically, the aerodynamic characteristics of the NWT600 airfoil can be eﬀectively improved. The CLmax of
+of the
+the NWT600 airfoil is The
+0.519,
+and theresults
+corresponding
+is −12 the
+degrees.
+The CLmaxsymmetrically,
+simulated
+show thatAoA
+by adding
+BTE thickness
+the
+NWT600_30 airfoil
+is
+0.802
+at
+25
+degrees.
+The
+maximum
+L/D
+also
+increases
+significantly.
+aerodynamic characteristics of the NWT600 airfoil can be effectively improved. The CLmax
+the NWT600
+airfoil
+is 0.519,
+corresponding
+AoA
+12 degrees.
+The CLmax of the
+The L/Dmax of the of
+NWT600
+airfoil
+is 4.308
+at and
+−10the
+degrees.
+The L/D
+max is
+of−the
+NWT600_30
+NWT600_30
+airfoil
+is
+0.802
+at
+25
+degrees.
+The
+maximum
+L/D
+also
+increases
+significantly.
+airfoil is 9 at 4 degrees.
+The
+L/D
+of
+the
+NWT600
+airfoil
+is
+4.308
+at
+−
+10
+degrees.
+The
+L/D
+of
+the
+NWT600_30
+maxflow fields of the NWT600_30 airfoil at diﬀerent AoAs.
+max
+Figure 14a–f show the
+With
+airfoil
+is
+9
+at
+4
+degrees.
+the thickening of the trailing edge, the change rate of its thickness along the chord line
+Figure 14a–f show the flow fields of the NWT600_30 airfoil at different AoAs. With
+direction is getting smaller. The pressure changes more gently along the airfoil surface.
+the thickening of the trailing edge, the change rate of its thickness along the chord line
+The adverse pressure
+gradient
+becomes
+smaller.
+The flow
+becomes
+easieralong
+to attach
+to the
+direction
+is getting
+smaller.
+The pressure
+changes
+more gently
+the airfoil
+surface. The
+airfoil surface. It seems
+as
+if
+the
+thickened
+part
+of
+the
+BTE
+fills
+the
+separation
+area.
+This
+adverse pressure gradient becomes smaller. The flow becomes easier to attach
+to the airfoil
+makes the aerodynamic
+this verypart
+thick
+airfoil
+those ofarea.
+convensurface.characteristics
+It seems as if theofthickened
+of the
+BTEsimilar
+fills theto
+separation
+This makes the
+tional thin airfoils,aerodynamic
+especially at
+small AoAsof
+between
+and
+4°. At
+AoA to
+= 0°,
+theofseparacharacteristics
+this very−4°
+thick
+airfoil
+similar
+those
+conventional thin
+airfoils, especially
+at surface
+small AoAs
+between
+−4◦ and Except
+4◦ . At AoA
+0◦ , the separation
+tion flow on the NWT600_30
+airfoil
+almost
+disappears.
+for a= vortex
+on the flow on
+the NWT600_30
+airfoil
+surfacethere
+almost
+for avortices
+vortex onbehind
+the lower surface
+lower surface caused
+by the positive
+camber,
+is disappears.
+only a pairExcept
+of reverse
+caused
+by
+the
+positive
+camber,
+there
+is
+only
+a
+pair
+of
+reverse
+vortices
+behind
+the BTE. It should be noted that this vortex mentioned here is not a real vortex in the flowthe BTE. It
+should be noted that this vortex mentioned here is not a real vortex in the flow field, but a
+field, but a time-averaged result. This greatly improves the aerodynamic performance of
+time-averaged result. This greatly improves the aerodynamic performance of the airfoil at
+the airfoil at smallsmall
+AoAs.
+AoAs.
+
+(a) AoA = −15°
+
+(b) AoA = −10°
+
+(c) AoA = 0°
+
+(d) AoA = 10°
+
+Figure 14. Cont.
+
+OR
+PEER
+REVIEW
+Wind
+2023, 3
+3, FOR
+PEER
+REVIEW
+
+1616
+
+(e) AoA = 20°
+(e) AoA = 20°
+
+454
+
+(f) AoA = 25°
+(f) AoA = 25°
+
+Figure 14. Flow fields of the NWT600_30 airfoil (simulated by k-ω SST model).
+Figure 14. Flow fields
+of the
+(simulated
+by k-ω
+SST model).
+Figure
+14.NWT600_30
+Flow fields ofairfoil
+the NWT600_30
+airfoil
+(simulated
+by k-ω SST model).
+
+For the NWT600_30 airfoil, the BTE is much thicker. At a negative AoA, when the air
+the NWT600_30
+airfoil,
+BTE isAt
+much
+thicker. AoA,
+At
+a negative
+AoA,
+For
+the NWT600_30
+airfoil,
+the BTE with
+is
+much
+thicker.
+a negative
+when
+the
+air when the
+flows over
+the upperFor
+surface,
+compared
+thethe
+situation
+of
+the
+NWT600
+airfoil,
+the presair
+flows
+over
+the
+upper
+surface,
+compared
+with
+the
+situation
+of
+the
+NWT600
+flows
+theupper
+uppersurface
+surface,increases
+compared
+with the situation
+of the
+NWT600
+airfoil,
+the pres-airfoil, the
+sureover
+on the
+significantly.
+The upper
+surface
+of the
+NWT600_30
+pressure
+on
+the
+upper
+surface
+increases
+significantly.
+The
+upper
+surface
+of the NWT600_30
+sure
+on the
+upperthe
+surface
+increases
+The upper
+surface
+airfoil
+becomes
+pressure
+surface.significantly.
+Because the lower
+surface
+is stillof
+inthe
+the NWT600_30
+separation
+airfoil becomes the pressure surface. Because the lower surface is still in the separation
+zone,becomes
+its pressure
+little. As
+a result,
+lift atsurface
+negativeisAoAs
+becomes
+lower.
+airfoil
+the changes
+pressurevery
+surface.
+Because
+thethe
+lower
+still in
+the separation
+zone, its pressure changes very little. As a result, the lift at negative AoAs becomes lower.
+Atpressure
+positive AoAs,
+thevery
+situation
+corresponds
+to
+that
+at
+negative
+AoAs.
+Inbecomes
+addition,lower.
+the
+zone, its
+changes
+little.
+As
+a
+result,
+the
+lift
+at
+negative
+AoAs
+At positive AoAs, the situation corresponds to that at negative AoAs. In addition, the
+positive
+camber
+of thethe
+lower
+surface
+profile
+further
+increases
+theincreases
+pressure
+on addition,
+it, resulting
+At positive
+AoAs,
+situation
+corresponds
+toprofile
+that
+atfurther
+negative
+AoAs.
+positive
+camber
+of the
+lower surface
+theInpressure
+on the
+it, resulting in
+in an area
+of high
+pressure.
+The
+lift
+force
+at
+a
+positive
+AoA
+increases
+substantially.
+positive
+camber
+ofanthe
+lower
+surface
+profile
+further
+increases
+the
+pressure
+on
+it,
+resulting
+area of high pressure. The lift force at a positive AoA increases substantially.
+Figure
+15 presents
+theThe
+C
+distribution
+of
+the
+airfoils
+with
+diﬀerent
+BTE
+It thicknesses.
+in an area
+of high
+pressure.
+lift force
+atC
+aPpositive
+AoA
+Figure
+15P presents
+the
+distribution
+ofincreases
+the
+airfoilssubstantially.
+withthicknesses.
+different BTE
+canFigure
+be observed
+increase
+in
+thethe
+trailing-edge
+thickness
+obviously
+changes
+the CP It
+Itthat
+canthe
+be
+that
+increase
+in the
+trailing-edge
+thickness
+obviously
+changes the
+15 presents
+theobserved
+CP distribution
+of the airfoils
+with
+diﬀerent
+BTE
+thicknesses.
+distribution
+of
+the
+airfoil
+at
+all
+AoAs,
+but
+the
+chord
+line
+position
+of
+the
+peak
+pressure
+point
+C
+distribution
+of
+the
+airfoil
+at
+all
+AoAs,
+but
+the
+chord
+line
+position
+of
+the
+peak
+P the increase in the trailing-edge thickness obviously changes the CP pressure
+can be observed that
+and
+the
+variation
+trend
+ofthe
+theAoAs,
+CP distribution
+curve
+not changed.
+cannot
+be
+found that,
+and
+variation
+trend
+the Cline
+distribution
+curve
+are
+changed.
+It can be found
+Pare
+distribution of thepoint
+airfoil
+at
+all
+but
+the of
+chord
+position
+of
+theItpeak
+pressure
+point
+that, as
+the BTE the
+thickness
+increases,
+the pressure
+theside
+leeward
+side
+side where the
+as the BTE thickness
+increases,
+pressure
+of the leeward
+sideof
+(the
+where
+the(the
+sepaand the variation trend of the CP distribution curve are not changed. It can be found that,
+separation
+occurs)The
+haspressure
+a little change.
+The
+increaseside
+on the
+windward
+ration occurs) has
+a little change.
+increase
+onpressure
+the windward
+of the
+airfoil side of the
+as the BTE thickness
+increases,the
+the pressure process
+of the leeward
+sidecause
+(the of
+side
+where the improvement
+sepaairfoil during
+is the
+the significant
+in
+during the thickening
+process isthickening
+the major cause of
+the major
+significant
+improvement
+in the
+ration occurs) hasthe
+a little
+change.
+The
+pressure
+increase
+on
+the
+windward
+side
+of
+the
+airfoil
+aerodynamic
+characteristics.
+It
+further
+verifies
+the
+analysis
+in
+the
+previous
+part.
+aerodynamic characteristics. It further verifies the analysis in the previous part.
+during the thickening process is the major cause of the significant improvement in the
+aerodynamic characteristics. It further verifies the analysis in the previous part.
+
+(a) AoA = −15°
+Figure 15. Cont.
+
+(a) AoA = −15°
+
+(b) AoA = −10°
+
+(b) AoA = −10°
+
+, FOR PEER
+REVIEW
+Wind
+2023, 3
+
+17
+
+(c) AoA = 0°
+
+(d) AoA = 10°
+
+(e) AoA = 20°
+
+(f) AoA = 25°
+
+455
+
+Figure 15. CP distribution
+of C
+airfoils
+with diﬀerent
+BTE
+thicknesses.
+Figure 15.
+distribution
+of airfoils
+with
+different BTE thicknesses.
+P
+
+In general,
+the way of thickening
+symmetrically
+BTE of airfoil
+the NWT600
+In general, the way
+of symmetrically
+the thickening
+BTE of thethe
+NWT600
+could airfoil could
+greatly
+improve
+its
+aerodynamic
+characteristics.
+The
+aerodynamic
+characteristics
+of the
+greatly improve its aerodynamic characteristics. The aerodynamic characteristics of the
+NWT600
+airfoil
+gradually
+become
+similar
+to
+those
+of
+the
+conventional
+thin
+airfoil
+when
+the
+NWT600 airfoil gradually become similar to those of the conventional thin airfoil when
+BTE
+of
+the
+airfoil
+is
+symmetrically
+thickened.
+the BTE of the airfoil is symmetrically thickened.
+
+4. Summary
+
+4. Summary
+In this paper, the aerodynamic characteristics of the NWT600 airfoil with a relative
+
+In this paper,
+the aerodynamic
+ofsimulation
+the NWT600
+airfoil
+a relative
+thickness
+of up to 60%characteristics
+are studied. The
+results
+withwith
+different
+turbulence models
+thickness of up to
+60%
+are
+studied.
+The
+simulation
+results
+with
+diﬀerent
+turbulence
+modare compared. The influence of the BTE thickness on the aerodynamic characteristics
+of the
+els are compared.
+The influence
+the BTE
+thickness
+on the
+characteristics
+NWT600
+airfoil isofstudied.
+The
+conclusions
+are aerodynamic
+as follows.
+of the NWT600 airfoil(1)
+isFor
+studied.
+The thick
+conclusions
+follows. characteristics are very different from
+such very
+airfoils, are
+the as
+aerodynamic
+◦ , the
+(1) For suchthose
+veryofthick
+airfoils, thethin
+aerodynamic
+characteristics
+very
+diﬀerent of the airfoil
+the conventional
+airfoil. Between
+−15◦ and 15are
+lift coefficient
+with thin
+the AoA
+increase.
+For
+theand
+NWT600
+airfoil,
+due to its of
+very
+from those of thedecreases
+conventional
+airfoil.
+Between
+−15°
+15°, the
+lift coeﬃcient
+thelarge relative
+the airflow
+is very
+prone
+to separation
+eventoinits
+a low
+airfoil decreases thickness,
+with the AoA
+increase.
+For the
+NWT600
+airfoil, due
+verysubsonic
+large rel-flow, and the
+separation
+is prone
+quite large.
+The CP distribution
+of the lower
+upper surfaces
+ative thickness, the
+airflowregion
+is very
+to separation
+even in a curves
+low subsonic
+flow,and
+and
+intersect,
+so
+that
+the
+aerodynamic
+forces
+around
+the
+leading
+edge
+and
+trailing
+the separation region is quite large. The CP distribution curves of the lower and upper edge are in
+opposite
+The aerodynamic
+performance
+of the edge
+NWT600
+is very poor.
+surfaces intersect,
+so thatdirections.
+the aerodynamic
+forces around
+the leading
+andairfoil
+trailing
+(2) Although the 2D steady-state RANS models overestimate the pressure of the
+edge are in opposite directions. The aerodynamic performance of the NWT600 airfoil is
+airfoil surface in most cases, it is qualitatively acceptable to predict the surface pressure
+very poor.
+distribution of the very thick airfoil. Although there is a deviation between the aerodynamic
+(2) Although the 2D steady-state RANS models overestimate the pressure of the airforce value predicted by the RANS method and the experimental data, it is reasonable for
+foil surface in most cases, it is qualitatively acceptable to predict the surface pressure distribution of the very thick airfoil. Although there is a deviation between the aerodynamic
+force value predicted by the RANS method and the experimental data, it is reasonable for
+
+Wind 2023, 3
+
+456
+
+reference. In addition, among the S-A model, k-ε realizable model, k-ω SST model, and
+Reynolds stress (linear pressure-strain) model used in this paper, the results simulated with
+the RSM have the best agreement with the experimental data.
+(3) The aerodynamic characteristics of the NWT600 airfoil with different BTE thicknesses are studied. During the process of trailing-edge thickening, it seems as if the
+thickened area of the airfoil fills the separation area, so that the airflow can easily attach
+to the airfoil surface. The CLmax and the L/Dmax of the airfoil are significantly increased.
+The CD is slightly reduced at small AoAs. The aerodynamic characteristics of the airfoil are
+significantly improved.
+Author Contributions: Conceptualization, Z.P. and H.-Y.X.; methodology, H.-Y.X.; software, Z.P.
+and L.-X.L.; validation, Z.P.; formal analysis, Z.P. and H.-Y.X.; investigation, Z.P., H.-Y.X. and
+L.D.; resources, H.-Y.X.; data curation, Z.P. and L.D.; writing—original draft preparation, Z.P.;
+writing—review and editing, Z.P., H.-Y.X., L.D. and L.-X.L.; visualization, Z.P.; supervision, H.-Y.X.;
+project administration, H.-Y.X.; funding acquisition, H.-Y.X. All authors have read and agreed to the
+published version of the manuscript.
+Funding: This work was supported by the National Natural Science Foundation of China (Grant
+No. 11972306) and the 111 Project of China (B17037).
+Institutional Review Board Statement: Not applicable.
+Informed Consent Statement: Not applicable.
+Data Availability Statement: The data are available from the corresponding author on reasonable
+request.
+Acknowledgments: The authors would like to acknowledge the computing services of the High
+Performance Computing Center of Northwestern Polytechnical University.
+Conflicts of Interest: The authors declare no conflict of interest.
+
+Nomenclature
+AoA
+CL
+CLmax
+CD
+CM
+L/D
+CP
+Ma
+Re
+c
+BTE
+RANS
+S-A
+RSM
+
+angle of attack [◦ ]
+lift coefficient [-]
+maximum lift coefficient [-]
+drag coefficient [-]
+moment coefficient [-]
+lift-to-drag ratio [-]
+pressure coefficient [-]
+Mach number [-]
+Reynolds number [-]
+chord length [m]
+blunt trailing edge
+Reynolds-averaged Navier–Stokes
+Spalart–Allmaras model
+Reynolds stress model
+
+References
+1.
+2.
+3.
+4.
+5.
+6.
+
+Yu, H.W.; Duan, J.H.; Du, W.; Xue, S.; Sun, J.H. China’s Energy Storage Industry: Develop Status, Existing Problems and
+Countermeasures. Renew. Sustain. Energy Rev. 2017, 71, 767–784. [CrossRef]
+Zhang, Y.; Xu, Y.J.; Guo, H.; Zhang, X.J.; Guo, C.; Chen, H.S. A Hybrid Energy Storage System with Optimized Operating Strategy
+for Mitigating Wind Power Fluctuations. Renew. Energy 2018, 125, 121–132. [CrossRef]
+Grasso, F. Development of Thick Airfoils for Wind Turbines. J. Aircr. 2013, 50, 975–981. [CrossRef]
+Li, X.X.; Yang, K.; Bai, J.Y.; Xu, J.Z. A New Optimization Approach to Improve the Overall Performance of Thick Wind Turbine
+Airfoils. Energy 2016, 116, 202–213. [CrossRef]
+Griffith, D.T.; Richards, P.W. The SNL100-03 Blade: Design Studies with Flatback Airfoils for the Sandia 100-Meter Blade; SANDIA
+Report No. SAND2014-18129; Sandia National Laboratories: Albuquerque, NM, USA, 2014. [CrossRef]
+Cooperman, A.M.; Melennan, A.W.; Chow, R.; Baker, J.P.; Van Dam, C.P. Aerodynamic Performance of Thick Blunt Trailing Edge
+Airfoils. In Proceedings of the 28th AIAA Applied Aerodynamics Conference, Chicago, IL, USA, 28 June–1 July 2010. [CrossRef]
+
+Wind 2023, 3
+
+7.
+8.
+9.
+10.
+11.
+12.
+13.
+14.
+15.
+16.
+17.
+18.
+19.
+
+20.
+21.
+22.
+23.
+
+24.
+25.
+26.
+27.
+28.
+29.
+30.
+31.
+32.
+
+33.
+34.
+35.
+
+457
+
+Van Dam, C.P.; Kahn, D.L.; Berg, D.E. Trailing Edge Modifications for Flatback Airfoils; SANDIA Report No. SAND2008-1781; Sandia
+National Laboratories: Albuquerque, NM, USA, 2008. [CrossRef]
+Tanner, M. A Method for Reducing the Base Drag of Wings with Blunt Trailing Edge. Aeronaut. Q. 1970, 23, 15–23. [CrossRef]
+Ramjee, V.; Tulapurkara, E.G.; Balabaskaran, V. Experimental and Theoretical Study of Wings with Blunt Trailing Edges. J. Aircr.
+1986, 23, 349–352. [CrossRef]
+Sato, J. Experimental Research on Blunt Trailing-Edge Airfoil Sections at Low Reynolds Numbers. AIAA J. 1995, 33, 2001–2005.
+[CrossRef]
+Law, S.P.; Gregorek, G.M. Wind Tunnel Evaluation of a Truncated NACA 64-621 Airfoil for Wind Turbine Applications; NASA Report
+No. NASA CR-180803; NASA: Washington, DC, USA, 1987. [CrossRef]
+Fuglsang, P.; Antoniou, I.; Dahl, K.S. Wind Tunnel Tests of the FFA-W3-241, FFA-W3-301 and NACA 63-430 Airfoils; Risø National
+Laboratory: Roskilde, Denmark, 1998.
+Baker, J.P.; Mayda, E.A.; Van Dam, C.P. Experimental Analysis of Thick Blunt Trailing-Edge Wind Turbine Airfoils. J. Sol. Energy
+Eng. 2006, 128, 422–431. [CrossRef]
+Chao, D.D.; Van Dam, C.P. Computational Aerodynamic Analysis of a Blunt Trailing-edge Airfoil Modification to the NREL
+Phase VI rotor. Wind Energy 2010, 10, 529–550. [CrossRef]
+Lee, S.G.; Sang, J.P.; Lee, K.S.; Chung, C. Performance Prediction of NREL (National Renewable Energy Laboratory) Phase VI
+Blade Adopting Blunt Trailing Edge Airfoil. Energy 2012, 47, 47–61. [CrossRef]
+Papadakis, G.; Manolesos, M. The flow past a flatback airfoil with flow control devices: Benchmarking numerical simulations
+against wind tunnel data. Wind Energy Sci. 2020, 5, 911–927. [CrossRef]
+Manolesos, M. Papadakis, G, Investigation of the three-dimensional flow past a flatback wind turbine airfoil at high angles of
+attack. Phys. Fluids 2021, 33, 085106. [CrossRef]
+Bangga, G.; Seel, F.; Lutz, T.; Kvhn, T. Aerodynamic and Acoustic Simulations of Thick Flatback Airfoils Employing High Order
+DES Methods. Adv. Theory Simul. 2022, 2022, 2000129. [CrossRef]
+Fuchs, M.; Weihing, P.; Kuehn, T.; Herr, M.; Suryadi, A.; Mockett, C.; Knobbe-Eschen, H.; Kramer, F.; Knacke, T. Two computational
+studies of a flatback airfoil using non-zonal and embedded scale-resolving turbulence modelling approaches. In Proceedings of
+the 28th AIAA/CEAS Aeroacoustics 2022 Conference, Southampton, UK, 14–17 June 2022. [CrossRef]
+Wang, G.F.; Zhang, L.; Shen, W.Z. LES simulation and experimental validation of the unsteady aerodynamics of blunt wind
+turbine airfoils. Energy 2018, 158, 911–923. [CrossRef]
+Hoerner, S.F. Fluid-Dynamic Lift; Hoerner Fluid Dynamic: Bricktown, NJ, USA, 1985.
+Timmer, W.A.; Rooij, V.R. Summary of the Delft University Wind Turbine Dedicated Airfoils. J. Sol. Energy Eng. 2003, 125, 488–496.
+[CrossRef]
+Cene, A.; Grasso, F.; Manolesos, M. Aerodynamic and Aeroacoustic Measurements of the Flow Past a Very Thick Flatback Airfoil
+with Passive Flow Control Devices. In Proceedings of the AIAA SciTech 2022 Forum, San Diego, CA, USA, 3–7 January 2022.
+[CrossRef]
+Baldacchino, B.; Ferreira, C.; Tavernier, D.D.; Timmer, W.A.; Van Bussel, G.J.W. Experimental Parameter Study for Passive Vortex
+Generators on a 30% Thick Airfoil. Wind Energy 2018, 21, 745–765. [CrossRef]
+Zhang, L.; Li, X.X.; Yang, K.; Xue, D.Y. Effects of vortex generators on aerodynamic performance of thick wind turbine airfoils.
+J. Wind Eng. Ind. Aerodyn. 2016, 156, 84–92. [CrossRef]
+Metzinger, C.N.; Chow, R.; Baker, J.P.; Cooperman, A.M.; Van Dam, C.P. Experimental and Computational Investigation of Blunt
+Trailing-Edge Airfoils with Splitter Plates. AIAA J. 2018, 56, 3229–3239. [CrossRef]
+Manolesos, M.; Voutsinas, S.G. Experimental Study of Drag Reduction Devices on a Flatback Airfoil. AIAA J. 2016, 54, 3382–3396.
+[CrossRef]
+Xu, H.Y.; Qiao, C.L.; Yang, H.Q.; Ye, Z.Y. Active Circulation Control on the Blunt Trailing Edge Wind Turbine Airfoil. AIAA J.
+2017, 56, 554–570. [CrossRef]
+Wang, L.; Liu, X.W.; Kolios, A. State of the art in the aeroelasticity of wind turbine blades: Aeroelastic modelling. Renew. Sustain.
+Energy Rev. 2016, 64, 195–210. [CrossRef]
+Zhang, L.; Li, X.X.; Yang, K. Experimental and computational aerodynamic investigations of very thick wind turbine airfoils.
+J. Renew. Sustain. Energy 2016, 8, 013306. [CrossRef]
+Li, X.X.; Yang, K.; Zhang, L.; Bai, J.Y. Experimental study of Reynolds number effects on performance of thick CAS wind turbine
+airfoils. J. Renew. Sustain. Energy 2017, 9, 063309. [CrossRef]
+White, E.B.; Kutz, D.; Freels, J.; Hidore, J.P. Leading-Edge Roughness Effects on 633 -418 Airfoil Performance. In Proceedings of
+the 49th AIAA Aerospace Sciences Meeting including the New Horizons Forum and Aerospace Exposition, Orlando, FL, USA,
+4–7 January 2011. [CrossRef]
+Braslow, A.L.; Knox, E.C. Simplified Method for Determination of Critical Height of Distributed Roughness Particles for Boundary-Layer
+Transition at Mach Numbers from 0 to 5; National Advisory Committee for Aeronautics: Edwards, CA, USA, 1958.
+Wei, B.B.; Gao, Y.W.; Shi, Y.; Li, D.; Hao, L.S. Research on Sidewall interference Control in Airfoil Wind Tunnel Test Based on
+Vortex Generator. Adv. Aeronaut. Sci. Eng. 2021, 12, 38–51. (In Chinese) [CrossRef]
+Gao, L.Y.; Zhang, H.; Liu, Y.Q.; Han, S. Effects of Vortex Generators on a Blunt Trailing-Edge Airfoil for Wind Turbines. Renew.
+Energy 2015, 76, 303–311. [CrossRef]
+
+Wind 2023, 3
+
+36.
+37.
+38.
+39.
+40.
+
+458
+
+Standish, K.J.; Van Dam, C.P. Aerodynamic Analysis of Blunt Trailing Edge Airfoils. J. Sol. Energy Eng. 2003, 125, 479–487.
+[CrossRef]
+Xu, H.Y.; Qiao, C.L.; Yang, H.Q.; Ye, Z.Y. Delayed Detached Eddy Simulation of the Wind Turbine Airfoil S809 for Angles of
+Attack up to 90 Degrees. Energy 2017, 118, 1090–1109. [CrossRef]
+Launder, B.E.; Reece, G.J.; Rodi, W. Progress in the Development of a Reynolds-Stress Turbulence Closure. J. Fluid Mech. 1975, 68,
+537–566. [CrossRef]
+Launder, B.E. Second-Moment Closure: Present. . . and Future? Int. J. Heat Fluid Flow 1989, 10, 282–300. [CrossRef]
+Liu, H.; Wang, Y.; Yan, R.; Xu, P.; Wang, Q. Influence of the Modification of Asymmetric Trailing-edge Thickness on the
+Aerodynamic Performance of a Wind Turbine Airfoil. Renew. Energy 2020, 147, 1623–1631. [CrossRef]
+
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.
+
+

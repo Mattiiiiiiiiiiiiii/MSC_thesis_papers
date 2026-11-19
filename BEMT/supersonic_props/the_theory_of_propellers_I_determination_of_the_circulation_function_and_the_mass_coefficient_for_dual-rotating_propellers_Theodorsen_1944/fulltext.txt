@@ -1,0 +1,4641 @@
+NATIONAL ADVISORY COMMITTEE
+FOR AERONAUTICS
+
+REPORT No. 775
+
+THE THEORY OF PROPELLERS
+I-DETERMINATION OF THE CIRCULATION FUNCTION
+AND THE MASS COEFFICIENT FOR
+DUAL-ROTATING PROPELLERS
+
+By5THEOD ORE TBEODORSEN
+
+JW,s UOCVIlt£NT ON LOAN fROM THE filES OF
+NATIONAL A!)VISO"(Y CUMIIIIITrE ~OR AEftOOAIJTt
+
+l.AAC~y n.'O~I:'l .r~O/,<It; C.tl LASORATOI!V
+~Nr:I.('y m:w, w,"P7.:m, V1RuiNIA
+Rt.!'J .!..J to T~ NIO
+RfQ IEl'f
+
+~·(t PU6l
+
+AS tOu.o , .
+
+NASA FiLE COPY.
+
+,. 0, f:SS
+
+r'()'~ S 00 0 8E ADD
+
+f .,;~ '/ 00"
+\~t""N
+~. ~S, .•.~.
+
+R6SOJ
+
+mt
+
+1944
+
+For saJe b y tbe Supe£intendent or D ocument s, U. S. Governmen t P rin t ing Office. Washington 25, D. C.
+
+•
+
+.. .. .. .. .. .. .. .. .. ..
+
+P rice 15 cents
+
+AERONAUTIC SYMBOLS
+1. FUNDAMENTAL AND DERIVED UNITS
+Metric
+
+English
+
+Symbol
+Unit
+
+Abbreviation
+m
+s
+kg
+
+Abbreviation
+
+Unit
+
+Length _____ _
+Time ________
+Force ________
+
+t
+
+F
+
+meter _______________ ___
+second _________________
+weight of 1 kilogram _____
+
+Power ___ ____
+Speed _______
+
+P
+V
+
+horsepower (metric) _____ ---------- horsepower ___________ hp
+{kilometers per hour ______
+miles per hour ________ mph
+kph
+meters per second _______
+feet per second ________ fps
+mps
+
+l
+
+foot (or mile) __ _______ ft (or mi)
+second (or hour) _______ sec (or hr)
+weight of 1 pound _____ Ib
+
+2. GENERAL SYMBOLS
+
+w
+
+g
+
+m
+I
+
+Weight=mg
+Standard acceleration of gravity=9.80665 m/s2
+or 32.1740 ft/sec 2
+W
+Mass=-g
+Moment of inertia=mP. (Indicate axis of
+radius of gyration k by proper subscript.)
+Coefficient of viscosity
+
+Kinematic viscosity
+Density (mass per unit volume)
+Standard density of dry air, 0.12497 kg-m- t _s 2 at 15° C
+and 760 rum; or 0.0023'78 Ib-ft-4 scc2
+Specific weight of "standard" air, 1.2255 kg/m3 or
+0.07651 lb/cu ft
+p
+
+3. AERODYNAMIC SYMBOLS
+
+S
+G
+b
+c
+A
+
+Area
+Area of wing
+Gap
+Span
+Chord
+
+n
+
+b2
+Aspect ratio, S
+
+Angle of setting of wings (relative to thrust line)
+Angle of stabilizer setting (relative to thrust
+line)
+Resultant moment
+Resultant angular velocity
+
+R
+
+Reynolds number, p Vl where lis alineardimen-
+
+V
+
+True air speed
+
+q
+
+Dynamic pressure, ~p V2
+
+L
+
+Lift, absolute coefficient OL= q~
+
+D
+
+Drag, absolute coefficient OD=:S
+
+S.."
+
+Q
+
+J.L
+
+a
+E
+
+Do
+
+Profile drag, absolute coefficient ODD = ~
+Induced drag, absolute coefficient ODI= ~S
+Parasite drl1g, absolute coefficient ODp= ~S
+
+(J
+
+Cross-wind force, absolute coefficient 0 0 = q~
+
+sion (e.g., for an airfoil of 1.0 ft chord, 100 mph,
+standard pressure at 15° C, the corresponding
+Reynolds number is 935,400; or for an airfoil
+of 1.0 m chord, 100 mps, the corresponding
+Reynolds number is 6,865,000)
+Angle of attl1ck
+Angle of downwash
+Angle of attack, infinite aspect ratio
+Angle of attack, induced
+Angle of attack, absolute (measured from zerolift position)
+- Flight-path angl r
+
+REPORT No. 775
+THE THEORY OF PROPELLERS
+I-DETERMINATION OF THE CIRCULATION FUNCTION
+AND THE MASS COEFFICIENT FOR
+DUAL-ROTATING PROPELLERS
+By THEODORE TH EODORSEN
+Langley Memorial Aeronautical Laboratory
+Langley Field , Va.
+
+7377i3-dj
+
+ational Advisory Committee for Aeronautics
+lIeadquarter , 1500 New lIampshire Avenue NTV. , ~Vash ington 25, D. C.
+
+Oreated by act of Oongress approved :'Iarch 3, 1915, for the sup ervi ion and d irection of the cien tific study
+of the problems of Ri gh t (U. . Oode, title 49 , ec. 24 1) . Its memb er h ip wa incl'ea 1 to ] by ac L approvrd
+1\1arch 2, 1929. The memb er are appointed by the President, and erve a uch wi thou t compensll tion.
+J ERO~IE
+
+C. Hu SAKER, Sc. D., Cambridge , :\Iass .. Chairman
+
+J. BR!(1(: , Ph . D., !'ice Chairman, Di r cto r, National
+Bu reau of 'tandards .
+
+A SREY W. F ITC H, Vi ce Ad m ira l , Unitpd Latcs 1 av ~', D ep uty
+C h ief o f O peration ( Air). ~ avy D ej)a rtment.
+
+CilAltLER G. AnnoT. Sc . D. , l 'ice Chairman, Executive Commit/ee,
+ec retarv, Smithsonian I nstitut ion.
+
+WI LLIAM LTT'I' J_EWOOD, M . E., J ackson H e ights, L ong Ts land, N . Y
+
+L nl.\N
+
+H gNRY H . ARNOLD , Gene ra l, Un ited States Ar my, Comm a ndi ng
+Gene ral, Ar m.v Ai r Fo rcc , \Va r Depa rt m cnt.
+\\' ILl_ lA~l A.
+
+M . BURD I~N,
+Commerce.
+
+pecial Ass istant to the Secretary o f
+
+VANNEVAR BUSH, Sc. D., Di rector, Office of Scientific R esearch
+and Development, \Vashington, D. C .
+'YILLT A~t F. DURAND , Ph. D ., Stan fo rd Un ive l ity , Calif orn ia.
+
+OLlvim P. EC'lIOLS, l\Iajor CC'nC'ral , 1:nited StaLes A rm ~'. Chief
+of :\ ra intenance, Materiel, and Distri bution , Army Ai r Fo rces ,
+\\' ~,r Depar tmen t.
+
+F RANC [S W. R ETCIl EI_DERFER, Sc. D ., C h ief,
+W eat he r B u reau.
+
+n ited
+
+'taLes
+
+L AWRgNCg B . RI CIl ARDSON, Rear Admi ra l , Un ited tates Nav.v,
+Assistant Ch ief, Bu reau o f Ae ronau tic , Navy D e pa rtment.
+EDWARD W AR ER,
+ton, D. C.
+
+c. D. , C iv il Aeronautic
+
+Board , \Va, h ing-
+
+ORVILLE W RlC1R'J' , Sc. D ., D ayton, Ohio .
+THEODORE P . WRT(1)['I' , C. D. , Admini trato r o f C iv il Aeronautic , Depa rtment of Commer ce.
+
+GEO RC1E W . L EW IS, Sc. D. , Direclol' of Aeronautical Research
+J OHN F . VIC'rORY, L L. M., S ecretar~r
+HgNRY J. E. RETD , Sc. D., Eng inee r- in-Charge , L angley Memorial Aeronautical L abo ratory, L angley Field, Va .
+S~!T Tn J . DEFRA • E, B .
+
+., Engineer-in- harge, Ames Aeronautical L abo ratory, Mo ffett F ield , Calif.
+
+EDWARD R . SHARP, LL. B., i\Ianager, Aircraft Eng ine Re ea rch Labo rato ry, C leveland Airpo rt,
+
+leveland, O h io
+
+CARLTON KEMPER, B. S. , Executive Enginee r , AircrafL Engine R esear ch Laboralory, Cleveland Airpor t, Cleveland, Ohio
+
+TECHNICAL COMMITTEES
+AERODY AMICS
+
+OPERA'l'ING P ROBLEMS
+
+POWER PJ_AN'l'S FOR AIRc nAF'L'
+
+:\1ATERIALS H. ESgARCH COORDINATIO '
+
+1\ ln PAFT CONS'I'Rt1C'l'ION
+
+Coordination oj Research N eeds of Military and Civil Aviation
+Prepa1'Cltion oj Research Programs
+Allocation oj Problems
+Prevention oj D1lphcation
+
+L ANG I_EY :\IEMOHIAL AERONAlJ'l'ICAL I ,,\BORA'L'O RY
+LanglC'y Field , Va.
+
+AM ES AERONAUTICAL L ABORATORY
+Mo ffett Fi eld, Calif.
+
+AmCRA F'l' ENGINE RgSgARCn LABORATORY. Cleveland Airpo r t , Cleveland , Oh io
+
+Conduct, under unified conkol, Jor all agencies, oj scientific reseal'ch on the Jundamental problems of flight
+
+OFFICE OF AERO.\IAUTICAL I NTELLIC1ENCE, Wash ington, D . C.
+
+Collerh'on, classification, compilation, and dissemination of scientific and technical information on aeronautics
+II
+
+REPORT No. 775
+THE THEORY OF PROPELLERS
+I- DETERMINATION OF THE CIRCULATION FUNCTION AND THE MASS COEFFICIENT
+FOR DUAL-ROTATING PROPELLERS
+By THEO DORE T HEODOR SEN
+SUMMARY
+
+Valu oj the circulation j unction have been obtained j or dualrotating prop llers.
+umerical value are given jor four-,
+eight-, and twelve-blade dual-rotating propellers and jor advance
+rati os jrom 2 to about 6 . I n add~ti on, the circulati on junction
+has been determined jor sin gle-rotating propel~ers j or the higher
+values oj the advance ratio. The ma coefficient, anoth er quantity oj significance in propell l' theory, ha been introduced.
+This ma s coefficient, which is actually the mean value oj the circulation coefficient, expre es the effective Mea oj the column oj
+the medium acted upon by the propeller i n terms oj the propellerdisk area. Value oj the mas coefficient, whi ch have been
+determin d directly by special measurements and also by integrati on oj the circulati on juncti on , are given jor the jour- ,
+eight- , and twelve-blade dual-rotating prop lll.-rs . The mass coefficient has also been determined j 01' everaZ ca es oj sin glerotating propellers, partly jor the purpo e oj comparing such expe1'imental values with theoretical results in the known range oj
+l ow advance rati os and pa1·tly to extend the re u lts to include a
+range oj high advance ratios . T he effect oj tati onary countervane on the ma coefficient ha also been determi n'e djor I> everal
+cases oj practical interest.
+
+1.0
+
+A • 1/10 " . .
+
+.9
+
+v j--
+
+1/7-" ~
+;---......
+-I
+~
+
+V
+
+1/5""
+
+...... n
+
+/
+
+/
+
+.8
+
+I
+
+.7
+
+I
+
+.5
+
+I I
+
+/
+
+.2
+.1
+
+/
+
+i'- -\
+
+\ \
+I
+
+","\ \\
+\
+
+,
+
+---...:,
+
+~J...--
+
+./'
+
+1/
+
+. -Fro~ Krome';........
+..- (refer en ce 2) ',-
+
+\\ ~
+,\ \
+
+~
+1\ -'i""'-..
+From Goldstein~ l .....
+.\1
+112·L
+
+:..---1 1
+V
+
+.\1 I
+
+(re f erenc e I)
+
+V
+
+1/ /
+
+A
+
+'\
+
+2 1/2 ..
+
+1'-. ~
+
+f-
+
+V/V
+
+_ ( _ f-
+
+~j..- l-
+
+o
+
+"-
+
+I 113
+
+/
+
+II I / 1/
+/ II
+l/
+!/ /' /
+V
+'l
+
+1/1/
+
+I
+
+/'
+
+/
+
+/
+
+1/ 4 .
+
+i'--
+
+,-
+
+/
+
+1/ II
+
+K(:c)
+
+.3
+
+1/
+
+/ I
+
+.6
+
+.4
+
+/'
+
+!j
+
+~
+
+I
+
+- - I-
+
+.I
+
+.2
+
+.3
+
+-'~
+
+.5
+
+.4
+
+.6
+
+~\
+
+1-,- H - i- -
+
+.7
+
+.8
+
+.9
+
+1.0
+
+x
+FIGU RE I.-T be fun ction [((x) for sev ral values of A for two-blade propellers.
+
+INTRODUCTIO
+ClR CULATIO ' FU
+
+CTION [( x)
+
+In 1929 Gold tein (refer encc 1) ucceeded in solving the
+problem of the ideal lift di Lribu Lion of sin o-Ie-ro ta ting propeller . Gold stei n's work j r e tricLrd Lo the ca e of a ligh L
+loading and also, in effec t, Lo a small adva nce r atio.
+umerical val uc o-iven by Goldstein for Lhe op timum circulaLion
+di Lri bu Lion ar e r eproduced in table I and figure 1.
+ome
+ad li tional value calculated oy Kramer (refer ence 2) for
+higher advance ratios ar e given in La ble I and have been
+up erimposed on Lh Gold tein l'csulLs in fi gure 1.
+Jumel'ical
+r ul t by Lock and Yeatman (r ei'el'enc 3) for the foUl'blade propeller are r eproduced in Lable II and figure 2. The
+par ameter A u ed in tables I a nd II i Lhe tanO'en t of Lh e lip
+vor tex angle in the ulLimate wake
+
+1. 0
+
+.9
+
+...-,\ - 1/ 5 "-.
+
+.8
+
+/
+
+II
+
+.6
+K(.x)
+.5
+
+I
+
+I
+
+II
+
+.4
+
+.I
+
+/ r--
+
+/
+
+'I II
+
+V
+
+V
+
+r/ V V
+
+1& ~
+o .I
+
+I---
+
+V
+V
+
+II
+
+.2
+
+r.......
+
+'" "
+"
+
+/
+
+J
+
+I. I
+
+"-
+
+V
+
+III 1/
+II
+
+r-......
+f-...
+
+1/3·..
+
+!j
+1/2, ··,
+
+/
+
+--
+
+V
+
+/
+
+II I
+
+.3
+
+wher e w ithe rearward displa cmenL veloeiLy of the h lieal
+vortex urface at infinity. (A list of the ymb ols u cd
+throughou t Lhe pap er is given in the appendLx. ) The e da La
+have been u ed for comparison wi th 1'e ul L con tain ed ill Lho
+present paper .
+
+/ ' ......
+
+I/t " -. V
+I 1/
+
+.7
+
+.2
+
+V
+
+\ 1\
+\\
+\ \
+
+'"
+
+\
+
+--
+
+1\
+
+V
+
+\
+
+'" .
+,, \
+
+\
+1\
+
+./ ' .. 1/ 1.4
+
+.3
+
+.4
+
+.5
+
+.6
+
+.7
+
+.8
+
+.9
+
+1.0
+
+x
+
+],' roURE 2. - ,£l1e function f( x) for severa l values of A for lour·blado propellers.
+
+1
+
+2
+
+HEPORT NO. 775-NATIONAL ADnSOHY COl\1l\IlTTEE FOR AEH O NAUTICS
+
+TABLE 1
+
+OPTI MUM CIRC J~ ATI01\" DI TlUB TI01\" FOR TIlE
+TWO-BLADE PROPELLER
+Calcula ted b y Goldstein (reference I, p. 450)
+I
+X=TIi
+
+x
+
+1
+
+>.- -=;
+
+x
+
+x
+
+1
+X-5
+
+x
+
+-- ---- -- - - -- -0.020 O. 126 ~. 0~9 0. 126 0. 010
+.040 .245 .057 .245 .0bO
+. or.O .352 . 086 .351 . 120
+.0 () . 445 . IJ.I . 4H . 160
+. 100 .526 . 143 .523 . ~OO
+. 120 .59.3 . 171 .590 .240
+.140
+.200 . 646 .2SO
+. 229 .694 .320
+. lfJO
+. ISO .738 .257 . 732 .3rJO
+.200 . 772 .286 . 766 . 400
+.2,50 .836 .357 . 826 .500
+.280
+.300 '-8?~ . 429 .863 . 600
+.3,50 . 908 .500 .884 . 700
+.3HO
+00
+, 400 .927 .571
+90
+2
+. 4.10 . 9·10 .643
+.960
+. 4SO
+,500 . 950 . 714 .8,58
+57 . il7
+.600 .955
+.9,9 .55 1
+.050
+. 971 .376
+.6hO
+. 700 .9·11
+90
+.SOO
+.900 . 738
+.950
+.ObO
+
+:~~
+
+:900
+
+1
+X- 4
+
+1
+
+x
+
+1
+X=:;-
+
+x
+
+X=J
+
+- - - - - - -- - -
+
+1).050 0. 120 ry. 067 O. III 0. 100
+.240 . 100 ,232 . 133 . 213 . 200
+. 200 .303 .300
+.344 . 150
+.267 .3 79 .400
+. 43 1 .200
+. 333 . 4~0 .500
+.5 11 . 250
+. 400 .4 5 , rJOo
+· ,575 .300
+. 467 .514 . 700
+. 626 .350
+00
+. 669 . 400
+. 533 ,533
+. 70·1 . 450 .654 .600 .5-37 . 900
+· i3 1 .500 .570 .667 . 525
+. 770 . 625 .676 .833 . 427
+.933 .303
+. 77,5 . 750 . 621
+.747 .875 . 486
+.950 .334
+. 671
+· .1 19
+. 351 --
+
+~. 124
+
+:m
+: ~~
+:m
+
+0. 092
+. 175
+.243
+.295
+.329
+. 341
+.331
+. 295
+.220
+
+K (x) =
+prw
+-27r(V+ w)w
+
+where r is th e potential difrerence acro tll h elL" urface at
+a radiu x, p is th e number of blades, an d withe angular
+yelocity of tb propeller. The quantity
+V+w
+w--
+
+:~~
+
+W
+
+P27r
+
+Calculated b y Kra mer (refcrcnc 2, p. 23)
+
+.L
+
+X=.!..
+,I
+
+0. 1
+.2
+
+0.232
+. 41 8
+
+,:\
+
+. ,;48
+
+.4
+. IS
+
+..5
+
+.r.
+
+.7
+.7tl
+
+1
+X-:r
+O. 164
+.303
+. 412
+. 486
+.5 10
+.528
+. 540
+
+.629
+.655
+.671
+.679
+.65·1
+
+.9";';
+
+.95
+. 975
+
+.52
+
+. 4~ 9
+.395
+.329
+
+X=1.0
+
+X=2. 5
+
+0. 0919
+. 1758
+
+0. 02
+.0552
+.0795
+. 0999
+. 10 2
+. lI 55
+. 1239
+. 1:l43
+. 1213
+. 11 56
+. 1061
+.09 19
+.0 17
+.0687
+. 0497
+
+0. 00 191
+. 00974
+. 0141 5
+. 01 (l6
+. 01076
+. 02124
+. 02342
+. 02423
+. 02396
+. 02310
+,02147
+.01 7
+. 01 68
+.0141
+,0103
+
+.297
+.331
+.345
+.33
+
+. 493
+. 4.17
+.4 13
+. :151
+.3 11
+.260
+. 190
+
+.580
+.1
+.9
+
+X- '!"
+2
+
+.2<16
+
+.5 17
+
+.623
+
+the ultimate wak e only, 11 0 kllO\dedge 01 the propeUer beinO"
+nece sary excep t for pmposes of acLual de ign. It hould
+be pointed out that both Lhe diametrl' and th e advance
+angle of th e ulLimate helix are differen t from Lbe value at
+the propeller , the diameter being E'maller and the advance
+rat io la l'ger. JL cnn Le sho"vn that the distl'ilmtion fun ction dep end s on the advance angle only, The' ideal distribution function is therefore identical for light, and h eavy
+lo ading provide 1 hoth r efer to identical h ell."\(" angle in the
+ulLimate wake .
+1n figures 1 anel 2 th e quan t iLy K (x ) i a characteri tic
+fun ction r elated Lo the circu lation r ex) along Lh e blade as
+fo llows:
+
+.3 2.5
+
+.305
+.270
+.2.35
+
+-- ------- -
+
+. 173
+--- - .. _. .
+
+TABLE II
+OPTIMUM CIRCULATION DISTRIBUTION FOR TIlE
+FOUR-BLADE PUOPELLER
+
+I" tbe po ten tial drop for a velocity w through a length
+W
+
+Ji 27r
+
+which is the axial distance between two ucce ive vortex
+w
+sheet . Each heet b a 27r turn corre poneling to a t ime of
+1 econcl and th er e are p eparate sh eet COlTe p nding to p
+blade. Th e quantity K (x ) i thus the non limen ion al
+expre sion for the po tential drop across Lbe uriac of eli continui ty as a fraction of th e available drop in the direction
+of the h elix ax is.
+It should b e noted th at tbe coefficient K (x ) differ from th e
+Goldstein coe ffi cient
+
+Calculated by Lock a nd Yeatma n (refcrence 3)
+
+x
+
+I
+
+X= -,5
+
+x
+
+I
+X= I
+
+I
+
+: ~~~
+
+0. 150
+. 250
+.350
+. 400
+. 450
+.500
+.625
+. 700
+.750
+
+0.299
+.50,5
+.6·19
+.702
+. 744
+
+.875
+
+: ~~
+
+. 950
+
+x
+
+I
+X= 2
+
+. 776
+
+.821
+21
+.806
+
+0.0667
+. 133:1
+.2000
+. 2(i67
+. 3333
+.4 000
+. 4GG7
+.5333
+
+· GOOO
+. 6667
+
+.8333
+.9333
+
+0.066
+. 179
+.297
+. 405
+.497
+.572
+. (i30
+.672
+. 69
+. 706
+. H27
+. 44 5
+
+0. 100
+. 200
+.300
+. 400
+.500
+.600
+. 700
+00
+. 900
+
+0.06·1
+.173
+. 283
+. 377
+.4'19
+.492
+.501
+. 469
+. 370
+
+X= 2...
+1.4
+
+I
+
+------ -
+
+- - - ---0. 1200 0.300
+.506
+.2000
+. 706
+. :3200
+. 4000
+.5000
+.5!iOO . 871
+.6000
+.881
+.7000
+7
+. 7600
+. 872
+.8000
+50
+. 711
+.9000
+.9600
+.503
+
+I
+X- 3
+
+-
+
+-- -
+
+0. 1429
+. 2857
+. 42.86
+. 57 14
+. 7143
+. 7 57
+571
+.92 6
+
+0. 061
+. 159
+. 249
+. 310
+.329
+.3 17
+.2 2
+. 21 3
+
+IL houlcl be empha ized that a distinction ha been m ade
+beLween dimensions and cond ilions of the slip tream at the
+prop 11er and those in lhe ulLimale wake, a di tinclioll lhat
+doe not oeeur in the lreaLment of lightly loaded propellers.
+The present paper is concern ed exclu ively with cone/iLion
+in the ultimate wake; in fact, it ca n b e shown that thrust,
+torqu , and efficiency are all uniquely given a function of
+
+in which th "<'locity w ha s been disregarded ill compari on
+with the advan e yelocity r. Th e coe ffi cient a re identical
+if refer r d Lo the ame helix angle of the ultimate wake,
+MASS COEFFI CI ENT K
+
+A significant oeffLCient, which will be tenne 1 th e ma s
+coefficient K and which may be hown to b e one of the basic
+param LeI' in Lhe propeller theory , i now i.ntroduced. It is
+given here merely by definition
+
+where x is the rad ius and h e integral i Laken from x= o
+to X= 1. B in pe tion it i noted that K is rea lly the m ean
+val ue of the oeffici nt K (x) over 1,11 eli j - area. If
+K (x) =l, t h en K= l , which is the limiting value of K.
+
+'rHEORY OF PROPE LLER .
+
+I-DETER lINATION OF CI RC LATION F
+
+A pby ical interpretation of K i interestin g. It is po sible
+to how that K repr ents tbe cA'ec tive cro - ection of the
+column of Lhe medium " push ed" by th propeller divided
+by Lbe proj ected propeller-wake ar ea. In oth er word , Lhe
+propeller imparts the full interferen e velocity w to a col umn
+of air of eros - ection K per uni Larea of Lhe ultimate propeller
+wak . T he diameter of such a eolulID1 i therefore.J;; for a
+prop ller wake of unit diame ter. Altholl o-h mathematica l
+r efin ements \\'ill not be considered in the present paper, Lhi
+p by ical interpretation hould uffic to indicate the nature
+of th coefficien t and the di' ignation adopted. It will be
+hown her ein that the coefficient K i 'readily 'o btained by
+direcL mea m ements, to be Iescrib ed la t r.
+/.0
+
+~ .8
+1i
+
+H' .6
+~
+
+~~II
+
+S\\-!
+
+o
+
+I
+
+p
+
+I
+
+~OO I
+
+J '::~
+
+I
+
+I I
+
+I
+
+I I
+
+........
+
+I
+
+I
+
+" J'2':to: ""'"
+
+N
+
+n
+Il .C
+
+I I
+
+'~~,~ I~~
+
+'-..:).4
+
+I I
+I
+
+I I
+
+[f%~
+\:~ 't..,
+
+I
+
+"i-..J.
+""'-':::l_-::C_-.
+L:-::L-~"--::'1==::.:"
+-', '.. -:J:~:l:.l-L:
+.. :::::'::::r-:
+"1"1' ;"'F'
+1 I I
+
+I
+
+I I
+
+I
+
+I
+
+.5
+
+1.0
+
+1.5
+
+2.0
+
+c .5
+
+(V~w)/ nD
+
+3.0
+
+3.5
+
+4.0
+
+4.5
+
+5.0
+
+I-'I Gu '''; 3.- " lass c)c fTicicllt K aga in s t 1 ;~;(/ for va rious numbers of blades fo r s ingle,rotating
+prope llers.
+
+Fio'ur 3 ho\\'s curves for variou s values of he ma s
+coeffi cienL K for the ca es for \\'bich K (x ) i known- that is,
+for Lhe single-rotating two- and four-blad e propcllers from
+Lable I and II- as "' ell a for tbe limi ting ca e of an infinite
+n umber of bln.des . Thi laLte r Cil e is readily ob tained by
+in tegrnLion. Wi th
+
+:
+J '2
+'1
+
+K=2 o 1\
+
+2
+
+I
+
+X
+
+2X dx
+
+is o!Jln ill('ri or, <lIter iUlegralion,
+
+The curvc f o t' thi equation i sbown a Lhe upp er limi t line
+in figure 3 . . Value for threo- n.nd ix-bbcle prop ellers, which
+w 1'e calculaLedfrom data by Lock and Yeatman (r eference 3),
+al' al 0 hown in figm e 3. Th curve in figure 3 arc
+us dIaLer for comparison wit h claLa obtained in th e prc en t
+invesLio-aLion.
+ELECTRICAL METHOD AND EQUIPME ' T FOR MEASURI G
+K (x ) A D K
+DESCRIPTlO
+
+It, i well known that the flow of e1 ctric curren ts in a field
+of uniform re is Lance is mathema ti cally identi cal with the
+flow of a perfect fluid. The velocity poLential may be perfectly r eproduced by an cl'ectrical potential, provide I tbe
+boundflry cond iLions arc identical.
+
+NCTION A "D MA
+
+COEFFI CIE "T
+
+3
+
+For th e pre nL problem a dil' ct mea Ul'emen t of th aer odynamic field behind a propeller pre ents in urmountable
+difficulti es; in contradistinction , the electrical method of
+measurement is convenient and accurate and, in addition,
+permits the deLermination of local as well a integrated
+efre ts . The alTano'emen t may in facL, be con i lered a
+p cial calculating machine [or olving the dW'erel1tial equation for o-iven boundary ondition rath l' than a mean for
+obtaining exp erimental olu tion .
+ince the ideal flow (far behind the propeller) i idenLical
+with the flow around a rigid helL'\: movin o- at a con tant
+velocity in the direction of iLs axi , the corre ponding electric
+fi Id i ob tained very simply by inserting an insulat in ' helix
+ul'fac in a conducting liquid and applying a uniform field in
+Lh e direction of the helLx axi. The ve el confining the
+liquid is' a long eyli'ldri al shell, also of insulating material.
+The ve scI i do cd aL bo th end by copper end plaLe that
+arc u cd a elecLrode to apply the lotential. The tesLpecimen helix i place l coaxially wi th the shell. The confining h ell i considerably larger in diameter than Lhe Lest helix.
+Fig ure 4 is a phoLogr aph of the te t etup for the direct
+determination of the ma c efficient K. The cylinder on
+the right constitutes a dummy compen aLing resi tan e.
+Th e electroly te used in these e)..',Periments con, isLed of tap
+wat r from the local water-supply y tem. Th e SOUl'ce of
+current was a 1000-cycle alternating-cmI' nt generator
+producing a rather pur wave form at an available voltage
+of about 100 volt , whi h wa applied to the electrod e. An
+explorino- device con i tino- of a fme gla -in ulaLed pla tinum
+wire with an expo cd tip wa u eel to determine the vol tage
+at any point on the helix mface. Thi pickup device
+formed a part of a poLen Liometer circuit u e 1 in a Wheatton bridge arrangement wi th a ensitive telephone as a
+zero indicator. ' lI1hen voltage reading were taken, no
+CUl'l'ent passed through Lh telephone and the exploration
+wire. This type of m il m emen t is inher ently accunl,Le; the
+errol' in the el ctrical mea urement i estimated as noL more
+than one part in 10,000.
+Figlll'e 5, also a phoLograph, how Lhe equipment u cd in
+the manufactlU'e of the h lix urface. Th e vel'ti al in ulated
+cylinder is an electrically h ated oil tank To the Lop center
+of his tarue i attach eel a simple die 0[' guiding device with a
+spiral slit through wh ich the hea ted pIa tic she t material
+i pulled at a uniform raLe. A fan i used to s upply cooling
+fl ir at a unjform rate. WiL}) ertain precaution an almost
+perfect helix is produced . Two model of sino-Ie helix surface thu obtained a rc shown at the left and center in
+fio-ure 6. A pr liminary type of buil t-up model of laminaLecl
+con tru ction, which wa abandon ed a 1,00 inaccurate
+and exp ensive to build , i bo"'n 011 the right in figure 6.
+In figu re 7(a) are shown example of dual helix urface
+u cd for be main inve tigaLio n. A fom-blade dual-wake
+model i hown on the left and a six-blade dual-wak mod 1
+is hown in the cenLeI'. On the right is a four-blad i11 o-lerotation helix urface ,,·ith four-blad e "guide vanes." In
+figur e 7(b) are other example of high-order multiple dualrota tion wake model .
+ome a(lditional example of singlerotation wake model with o- uide vanes arc shown in fi gure ,
+
+4
+
+REPORT
+
+O. 775-NATIONAL ADVI ORY COM 1:lTTEE FOR AERO
+
+The mrthoCl of building the dual helL'\: model i indicated in
+figure 9. Unit surfaces were cut from righL- and lcfthanded hrlix surfaces and glued together to form a multiple
+cI ual h lix. Fortunately Lhe e complrx built-up dual model
+were needed only for determining the ma coefficient /( and
+did not hav to bc too accuratc in detail.
+For the dual-rotating-propeller field a ignificant property
+i Lo be noted: The field repeats itself not only along thr axis
+but also cireumferentially. A "unit cell" con i ting of Lhe
+hrlix surfacc between two ucce ive line of intersection is
+repre entaLive of the entire helix. It may be seen that the
+boundary condition is taken care of by inserting two in ulating planes containing the axi and the two intersecting line,
+respectively, and by using conducting end plane perpendicular Lo the axis which contain the same two inter cting line.
+The YO el may therefore be given the form of an open V11ape tray with the electrocks at each end. Th e repre entative helix may be obtained simply by stretching a rubber
+membrane from one corner of the tray to the oppo ite corner
+at Lhr other end. The membrane is equipped with tiff
+radial pokes and is rcurely clamped in place. It automatically as ume a spiral hape, the effect of gravity being
+of econdary ortler. The enti re tray is arrancred on a machine
+lathe with the helL'\: flx i along Lbe center line fll1d the exploring needl i attach ed Lo the carriage. This arrangement
+
+A TIC
+
+afford convenient reading of the voltage at any poin on the
+spiral surface. In order to increase accuracy, the trays were
+made of con iderable size, 6 to 10 feet lon g. By ch anging
+the length and the angle of the tray, all value of A and the
+effect of the number of blad s could be inve Ligated.
+In figures 10 an 1 11 are shO\n1 xpcrimental setup for
+measuring th polen tial distribu tion [{(x). The connections
+leadi.ng to the explorin g needle may be seen in figure 11.
+Figure 12, 13, and 14 how the general arrangement for
+determination of th e pot ntinl distribution on dual wake
+model. Figure 12 how a unit cell for very low advance
+ratio.
+ote the V- hap e te t tank and the adju table end
+plate to change the advance ratio.
+ote, al 0, the rubber
+membrane streLched between oppo ite corners. Figme 13
+shows the arrangement for upporting the explorin g needle.
+In figure 14 is finally shown the complete experimental setup
+for dual helix surfaces of very high pitch.
+WA L L. E
+
+O. A
+
+0 TH I CKNESS CORRECTIQ S
+
+The similarity between the electrical test methou and the
+conventional wind-tunnel method may be extended al 0 to
+include certain corrections. Obviously therr i a corrcction
+that eOlTe ponds to the cu to mary wall correction. This
+correction i )"radily ascertained by u e of ve cIs of diO'erent
+
+THEORY OF PROPE LLEH .
+
+I-DETEHMINATION OF CIRCULA'l'ION F
+
+NC'l' ION
+
+A~
+
+D MA
+
+COEFFICIENT
+
+5
+
+6
+
+REPORT
+
+O. 775-NATIO TAL ADYISORY
+
+CO~\[ l\nTTEE
+
+FOR AERONAUTIC
+
+.§
+
+:s
+
+?
+
+0;
+
+:!
+
+'0
+
+.,;
+
+'g
+'C
+
+""'"'" c;g"
+:;;
+" ,..:I
+c.
+
+" ''""
+"""9 ~"
+E
+~
+
+-§,
+
+S
+
+e
+
+;:>
+
+THEORY OF PROPELLER.
+
+I-DETERMINATION OF CIHCr LA'1'IOK FL"XCTIOK A~D MA
+
+COEFFI CIEKT
+
+7
+
+FIGl'RE .-Two·blade s ingle·rot ation helix surfaces with guide ,·anes.
+
+diam tel'S, a procedul'l' t hat cannot bc easily utilized in windtunnel practice. It sbould be notcd flll'ther tha,t thc wall
+coneetion arc obtained wi th grcat a,ccuracy since each rcading by the elecLl'ical method is more preci e than it aCl'odynamic counterpart. By u ing tube diameters about thrce
+time the diameter of the test piml thc 01'1'01' in the rcslll t.
+was reduced to less than X pcrccnt.
+A COlT ction not appearing in acrodynamic practice i thc
+end conection. Thi corre ction occur only with inglcrotating propellers and is thcrefore of minor importance in
+the pre ent investigation.
+uaT-rotating propellcrs pos c
+planes of cons tan t potentia.! pcrpen licular to thcir a.xes, and
+the end therefore cau e no difficulties. By cutting th dual
+helix at a plane of con tant pot ntial and by in erting a
+
+co ndu cting end plate in thc cylind cr thc boundary condition
+atisfied. For inglc hclix surfaces, tests on two len gths
+of the ame helix must be usee! and Lhe difference ob erved.
+This procedure \Va usc 1 to meaS Ul'e the ma cocffici nt
+K.
+To mea lire the potcntial di stribution K.(:c) a long helix
+i required, the mealll'Cment to bc made neal' the middle.
+Another ource of crrol' c)..i t for \\11ich th conedion has
+been referred to a the thickne
+corre ction. Thi errol'
+J' uJt from the fact that thc material of the helix h et must
+have a finite thickn
+This error may be determined by
+11 ing sheets of two or more thicknesses.
+It is readily een
+from theoretical considerations that approximately one-half
+the thicknes of the heet mu t be added to the diam eter in
+order to obtain an equivalent infinitely thin, heet.
+i
+
+RE PORT ?\O. 775-
+
+?\ ATION AL Am'TSOR Y COM:t-IITTE8 FOR AERONAUTIC
+
+It hould be mentioned finally that t here i an crror)"c lilting from inaccuracies in the model vortex shect. Thc crro r
+in K(x) can be minimized by 1I ing mean valu c from a
+large number of l'eading over a cons iderab le portion of t hc
+helix. Fortunately, thcr c i no cO'cet on the ma s coeffic ient
+" since this coefficient i a mcan-value paramcter.
+PROOF THAT TH E MA
+COEFFI CI E T K I THE BLOCK ING EFFECT OF
+THE (I FI ITELY LONG) HELIX SURFACE
+
+The rna
+coefficient K i obtain cl cxpcrimcntally by
+mea uring th c change in ]"c i tancc cau ed by t he helix
+urface when in ertecl in thc cylindrical containc r. On
+in ert in g t he (infinitely long) hclix in the container, tll('
+current between thc end platcs f o i' dccrcased by a definitc
+amount 61, and it can bc provcd that
+
+whcre F is the projected cross ection of t he helix and
+t hc cro
+cction of the cylindrical contai ncr.
+B.v Grc~n's th eorem
+
+IS
+
+If
+
+it folIo\\' that
+
+L et TV be th e Cli tance z along t he h elix axi m asured
+from a reference plane perpendicular to tbe axi ; 'VVV is
+therefore a unit vector in the direction z. Let U be t h e
+potential re ulLing from t h applie I voltage and the local
+grad ient 'V U may he written
+
+or
+
+Fi gure 9.-Steps in lhc consLruction of Lhc morc compliesfed helix surfaccs.
+
+'I' HEORY OF PROPELLE H .
+
+I-
+
+DETERi\IJX ATIO J OF cm
+
+~ LA'rrON
+
+F
+
+NCTION AND i\[AS
+
+COEFFICIENT
+
+P IGU IlE IO.- Setup for measuring th e potentia l distribution [( x) for s illgle-rotation wake mod els.
+
+F' Gt' RE JJ.-
+
+Few p[or m easuring potentia l dis tri bution J( x ) [or single-rola tion wake models, showing d ets il of explorin g de vice.
+
+10
+
+REPORT NO. 775 -NATIONAL ADYI ORY COMMITTEE FOR AEItONA TICS
+
+THEORY OF PROPELLER.
+
+I-DETERMINATIO
+
+OF CIRCULATION FUNCTION
+
+where Uo is the constant voltage lifference between the
+en 1 plates, whi ch are placed at an axial distance L aptU'l,
+and i j tll e local current and io the curren t at infin i ty. If
+the surface integral for th e entir e enc10 ed helix surface A
+flnel the end surface S, r espectively, are taken, th e following:
+relation j obtained
+
+or
+
+COEFFICIEKT
+
+11
+
+J'
+
+U1o AU dAz
+may be written in the form
+
+whe]'e the integral i Lake n over one turn of on heli"'{ for one
+
+J'
+
+J([Uo- Lzi~ )d
+
+U1o AU dA z = ,
+wher
+
+I D MA
+
+.
+
+ide only, a U 1- U2 is the difference po tential b tween th
+two ide of the sheet. Tbe yolta ge drop pel' sheet i
+
+the integral arc to be taken over both side of tbe
+However,
+
+p h lix !OUl'faces and o'~ er hoth end plates.
+
+FI GU IlE 13.-Unit ccll [or "cry low ad vance ratio, showin g arran gement o[ ex plorin g device.
+
+12
+
+REPOR'l'
+
+O. 775-
+
+ATIONAL ADVI ORY COMMITTEE FOR AERONAUTICS
+
+FIGU RE l4.-Uni t cell for bigb pi t ch.
+
+By definition
+
+Thus
+Also,
+
+and therefore
+
+where 10 is the total current between the end plates with a
+uniform gradient ~o in the field.
+EXPERIME TAL DATA
+MASS COEFFICIENT K
+
+Numerical values for the ma s coefficient K , obtained on
+dual-rotation wake modrl , ar ho\\"n in figure 15. This
+chart is probably adequate for all practical purposes, as a
+large range of advance ratio ha been covered. The de ignation used for the propeller comprise till: e digits: The
+fir t digit refers to Lhe number of right-handed blades, Lh e
+middle digit to the number of guide vanes, and the last
+digit to the number of left-handed blade - for in tance,
+
+3- 0- 3 represent a dual-rotating propel1 l' with three righthanded and three left-handed blade. The hiO'he t number
+of blades tested was for a 6- 0- 6 or twelve-blade propeller.
+As a matter of intere t, it i very fOT unate that the method
+and equipment could be tried ou t in all it ramifications on
+the Imown case of the Goldstein curve for a two-blade propeller. Th Gold tein curve i the CUTve in figure 15 marked
+" Theoretical." The te t points, which have b en corrected for wall, thickness, and end effects, are hown. Except
+in a very f w ca e , the te t point lie on the theoretical
+curve for the t\ o-blade propellers. The somewhat Ie er
+consi tency in the case of dual-rotating prop ller i not due
+to inherent test inaccuracy but rather to a nece ary limitation on time and equipment for making the model, performing the te t , and obtaining the COlT etion. The thicknes correction [01' the high advance ra io is consid rable.
+Note that three thicknesse have been u ed for many of the
+te t points . A glance at one of the compo ite models shown
+in figure 7 (b) will uffice to indicate the labor involved in
+producing the model. Each test point in figure 15 repreent a different complete model; ome fifty model thu are
+repre ented by the re ult hown. Thi number \Va necesary in order to include all propeller an 1 all advance ratio
+of intere t at present and in the futUl'e.
+Re ult for ingle-rotaLion \\'ake model with guide vanes
+are hown in figure 16 for t\\-O-, thr e-, and four-blade propeller, respectively.
+uch guide vanes are upposed to
+repre ent stationary vane arranged immediately in front of
+
+T HEORY OF PROP ELLER .
+
+I-
+
+DEl'l'ERMI NATIO r
+
+OF CIR CU LATIO N F
+
+or behind the propeller to traighten the flow. It should be
+noted that the cases hown corre pond to tho e of an ideal
+tbru t di tri bu tion bo th on the propeller and on the guide
+vane. The uppermo t curve in each part of figure 16 is
+reproduced for purposcs of comparison with the correspondi ng dual ca e.
+
+o
+
+CTIO
+
+~
+.9 6
+
+1\\\ 0-.
+\ \\ l',
+.88
+[1\ ~.
+r"
+
+h1\ 1\
+
+.80
+F
+
+CTION K (x,9)
+
+o~
+
+i'
+
+x
+
+The m easm ed po ten tial distribu tion on dual wake
+m del are shown in figure 17 . The e te ts wer e made on
+large- cale unit cell of the type de crib ed earlier. Figure 17
+contains r esults on 2- 0- 2, 4- 0- 4 , and 6- 0- 6 dual-rotating
+propellers, in each case for three advance ratio . The
+poten tial hop is given in nondim n ional form and is
+plo tted ao-ain t th e r adiu. E ach curve r epresents a radial
+line on t he helix. The angular po i tion of the radial line i
+given a a fraction of the cell emiangle mea ured from the
+middle or ymmetry line of the cell.
+Figure 1 show K (x) a the pot en tial differ encc at the
+zero angle or midway between two ucce ive in ter ec tin g
+line. Thc r esults are arranged in order showing th e four- ,
+eigh t-, and twelve-blade dual-ro tating propeller a t thr e
+advance ratios.
+The function K (f)) i hown in figure 1 9 plotted against
+the angle measured from the arne zero r efer ence angle.
+R e ults are shown for th e same three prop eller at the arne
+tluee advance r atios. Curves ar e hown for three' value of
+the r adial di tance
+
+\ \. \
+
+.72
+
+.5 6
+
+1\
+\ 1\
+\ \
+\
+\
+
+.48
+
+II
+
+64
+
+"
+
+I
+
+"" '""'~
+
+\
+
+\.
+
+I\.
+
+\.
+
+\,t
+
+"
+
+\
+\
+
+.64
+
+08
+
+\
+
+.48
+
+I
+
+24
+
+16
+
+.8
+
+32
+
+.40
+
+\
+
+,
+
+.32
+
+\
+
+f\.
+
+,
+
+.24
+
+.~
+
+\. ~ l,\; 2 - 4 - 0
+1\
+
+. 16
+
+D.
+
+'" '"l'>
+
+Theoretica/ '"
+
+.08
+
+"'-.
+
+"-."
+
+"'2-2-0
+
+"
+
+I'--.. !'o- f-..-
+
+"',
+
+r--
+
+234
+
+i'
+
+5
+
+Theoretical
+
+(8) Single'rota ting two·blado propellers.
+
+6
+
+~
+
+""
+
+"'"
+
+f'----
+
+(b)
+
+0
+
+23
+
+4
+
+'-..
+
+Propeller
+
+\
+
+I~ ·· 4 - 8 -0
+
+'"
+
+'"
+
+......... ~
+
+"-." ~-2-0 ~
+
+6
+
+0
+
+2
+
+'"
+
+34
+
+~
+
+~~
+
+-
+
+r-- ------
+
+--- ~ (el
+
+5
+
+~
+
+~ ~ . 4 - 4-0
+
+0..
+
+Theor eticd" '-.....
+
+(V+w)/ nD
+
+5
+
+( V+w)/ n D
+
+(b) Single'rotat in g t hree· blade propeller.
+
+FI Gl:R E 16.-:'vI easured values of mass eoefli eient K aga in st
+
+4-0- 4
+
+\l\
+'\ \ t\; 2-0-2
+1\ 1\ I\: ~
+
+"'-.
+
+I-
+
+I""
+
+R\
+
+"-
+
+'--- 'r----.,
+
+l±
+
+\
+
+1\
+
+\
+
+"-
+
+3-2 -0>-
+
+'- --- --::
+
+(V+w)/ nD
+
+\ . 3-4- 0
+
+64
+
+~
+
+4 - 0-0··
+
+"-
+
+f\.
+
+'P--
+
+(a)
+
+o
+
+i'-..
+
+56
+
+(cor~e~ te1 values)
+
+\
+
+\
+
+'\1\
+\ r\ ~
+
+f\.
+
++
+
+I- ~
+
+o Experimental
+
+\
+
+\
+
+...3 -0-0
+
+1\
+
++
+
+~
+
+-
+
+48
+
+40
+
+\
+
+\
+
+1\ 3 - 0 -3
+
+\
+\
+
+1\
+
+\
+\
+
+\
+
+1\
+
+1\··· 2-0-0 \
+
+~
+
+---.
+
+72
+
+M easured values of mass eoelTIeien t K fOr dual-rota ting propellers with various
+numbers of blades .
+
+\
+\ Propeller
+
+1\
+
+~
+
+f'..-
+
+(V+w)/n D
+
+(c or~ecfed values)
+
+\ Propeller
+
+\ " 2-0-2
+
+b-- ,
+
++
+
+fa-+--
+
+o
+
++
+
+r--......
+
+r-......
+Theoretica l ~ ~ 2-0-0
+
+o IExp er imental points
+
+~
+
+\
+
+1\
+
+.56
+
+r-.......
+
+1\
+
+\
+
+\
+
+(c orrected va lues)
+
+~
+
+0
+
+0
+
+'"
+
+\."
+
+.16
+
+\
+
+\
+
+o Expe/'mental points
+
+........
+
+" --2 - 0-2
+
+.24
+
+""
+
+"""I'-
+
+'q
+
+.72
+
+\
+
+""~
+
+i'-
+
+F IG RE 15.-
+
+\
+
+~
+
+'\ 3-0 - ~'"
+
+1\
+1\
+
+~
+
+",. 4 -0- 4 l---
+
+\
+\
+
+I--
+
+1
+
+6- 0- 6
+
+\.
+
+\
+
+1
+
+l-
+
+Prop e l ler
+
+1\
+
+.32
+
+x=i'~, and ~'
+
+~
+
+\., +
+\(
+
+\
+\
+
+.40
+
+65
+
+60
+
+Th ickness
+ma t erial
+of helix surface, (in .)
++
+Q060 }
+x
+.030 Exp erimen tal
+0
+.020
+[J
+.000 Ex tr apo lated -
+
+"-.0
+
+D1ST RlB UTlO
+
+13
+
+COEFFI CI E TT
+
+Woke p ifch angle, deq
+3 0 3540 45 50
+55
+
+20
+
+10
+
+AN D M AS
+
+(e)
+
+ingl ' rotating fo ur-blade propellers.
+
+If+
+n Dw showing th e effeet of guid e vanes.
+
+6
+
+14
+
+REPOR'l' NO. 7i5-
+
+NAT IO N AL ADYI SORY COMMITTEE F OR AER O AUT-ICS
+
+Angular poslfion f rom symmetry line of cell
+(frodion o f c ell s emionqle)
+
+x-- 0.872
+
+0 - - 0. 000
+
+Anqulor position from symmetry line of cell
+(frodion of cell semiongle)
+
+0--- 0.222
+f r - - -. 664
++ - -.875
+
+.836
+<>--- .660
+
+'V--
+
+1.0
+
+<1-
+
+l-
+
+r- -
+
+.9
+
+I-
+
+t-
+
+~\.) .8
+
+->-..... -
+
+l - l - t---
+
+-
+
+-...:
+
+- . - ~i'--:
+
+r-- t'---
+
+b
+
+~ ~F" t -
+
+~
+
+~
+
+l - I - f-- I--
+
+i"-- r':
+
+f'"
+/
+
+t-l - t--
+
+t--
+
+l-
+
+-
+
+t--
+
+I-
+
+-l-
+
+...... ~
+
+::::: ~I-- i:- """
+-
+
+- P-
+
+~
+I--:::: ?
+
+I-
+
+./
+
+.2
+
+.
+
+~
+
+~
+~~
+:v ;;-
+
+l---- v
+
+l - I---'
+
+if'
+
+~
+
+I I
+
+I
+I
+
+.
+
+--
+
+I
+
+I
+
+I
+
+...... !---"
+. --'-"
+
+I
+
+I
+
+I
+
+I
+
+~
+
+I I
+I
+
+l--<'
+-,.--..
+
+I I
+
+-
+
+1-
+
+"",
+
+I
+
+J
+I
+
+-
+
+--- ---~~
+
+)
+
+.9
+
+/.0
+
+I
+
+I
+
+~
+
+I ~~
+
+I1
+./
+
+I
+
+"' ~
+
+~
+
+I
+
+I
+
+(c)
+
+o
+
+I
+
+.2
+
+,3
+
+l'+w
+
+L--"
+
+I
+
+1--,-.
+
+(a) 2-0-2 unIt ccll ; 1i])- 1.80.
+FI r.U ll E 17.-
+
+'~
+
++
+
+I
+
+---V
+
+V-
+
+1--V- I--< p- ~
+..:;;.'y
++I ~ .......
+
+I I I
+
+I
+
+I
+
+/ r--
+
+V"
+
+I
+
+/--
+
+If
+
+I
+
+I I
+
+:
+
+l~
+
+1-
+
+-.833
+
+- .945
+k..
+
+~.6
+
+~
+
+0--0.667
+1:::.I>-
+
+I
+
+I
+
+~~
+
+~
+
+I I I
+I I
+
+~u. 8
+
+'""- i'-.II;
+
+.,//
+
+-
+
+~
+
+~ ~ f\ ~
+
+.4
+.5 .6
+.7 .8
+Fractional r adius, .x
+
+.3
+
+.9
+
+I-
+
+(a)
+
+o
+
+b
+
+-
+
+I - f...-
+
+--r:::: ~i'-
+
+/.0
+
+~ 1(
+
+I-
+
+I - I-r-
+
+-
+
+G
+
+-
+
+)"3: ~ -
+
++ - 0.333
+0.000
+x- .333
+
+0.320
+.753
+.542
+
+'\10-
+
+r-
+
+.....,A
+
+,4
+.5 .6
+.78
+Fractional radius, .x
+
+1. 0
+
+,3
+
+1'+11'
+(e) 2-0-2 unit cell ; --:nD~ G.
+
+Va ria lion of polcnlia l a long n ra dius fo r va rious a ngula r positions.
+
+Frr.t'Iu: 17.-Conli nucd
+
+Angular poslfion from symmetry line of cell
+(frodion of cell s emionq/e)
+
+1.0
+
+0-- 0. 920
+.8/5
+x-
+
+' V - - 0.601
+
+.9
+
+-I--l-
+
+:::::
+~.8
+
+I-
+
+r=1-;--~ ~ ~
+-
+
+f-
+
+-
+
+j:::", t---o
+
+!.s- i-"
+
+~
+
+',~
+
+/'
+
+;:;.--
+
+l - I - I-
+
+--
+
+I-- Iv
+
+\
+
+I
+
+.3
+
+.4
+.5 .6
+.7 .8
+Frac tional r adius, .x
+
+'+11"
+
+.
+1. 1
+(b) 2-0-2 un ll cc I. 1i7)-3.1 4.
+FI r-OnE l i .-Con tinucc!.
+
+.3
+
+\
+
+1\ 1\
+
+I I
+
+I \
+
+,
+
+I
+
+I
+
+I I I
+
+I
+
+I
+
+I
+
+I
+
+1\,
+
+I
+
+.l iA
+
+1. '\
+
+I
+
+III /
+
+I
+
+I
+
+~
+
+V
+
+y:
+~
+
+o
+
+~
+
+:.--r
+
+/
+/
+
+,/
+
+,2
+
+.3
+
+,4
+5
+.6
+.7 .8
+Fraction al rodtus~ .z
+
+(tI) I-()--l u llil ('('II;
+
+l '+w
+
+n D = 1. 55,
+
+F U';CHE 17.-Conti nued.
+
+1/
+
+/
+~/
+
+.><-1
+
+!d)
+./
+
+~
+
+~' ~j l>-
+
+I
+
+I-
+
+/.0
+
++--,
+
+\~
+
+I
+
+I
+
+l -I -
+
+.2
+
+'i
+
+'\ 1\ r
+.\ i
+
+'" .
+
++
+
+./
+
++,N -'1,
+
+,\,
+
+;1-
+
+l - I--
+
+(b)
+
+0.
+
+-;---;,...
+
+I
+
+-
+
+-l- f--
+
+-0.392
+-,718
+
+1----;·-1. I
+
+~""".
+"'\
+
+I'::: P, r..:n- tJ
+
+I--e:.=~
+
+"'-
+
+~
+
+/
+
+l -I - I - I -
+
+- 1--
+
+=
+
+.3
+
+I-
+
+r'"
+
+x-
+
+fr--
+
+~ l-
+
+I'-::ls<; v....--v
+I-- f ~I--- I--I--~ . -
+
+F
+l - t- -- I -I -
+
+0--- 0.000
+
+/ 0. ~
+
+k::P~ V ::> <: '\
+
+-
+
+:::::
+
+~
+
+0--0. 740
++.332
+
+r-
+
+/~ t-
+
+I-
+
+I - --t--
+
+-
+
+Anqular poslfion f rom symmetry line of cell
+(fraction of cell semionqle)
+
+0--- 0.000.
++ - -.60.5
+
+.L
+
+l,.A
+
+,3
+
+/.0
+
+'l'HEORY OF PROPELLER.
+
+I-DETERl\IIN A'1'101
+
+OF cm
+
+LA'rION FUNCTI OI
+
+Angulor position from symmetry line of cell
+(froction of cell semwnqle)
+
+x-
+
+0.85D
+
+' V - GOOD
+
++ - 0.250
+
+cr-- .486
+
+,
+
+,
+
+/0.
+
+,
+
+I
+
+,..,1.
+
+!
+
+- -.
+I -...,
+
+I
+
+~
+
+~u.8
+
+~
+I
+
+I I i
+
+I
+
+I
+
+I I
+
+I
+
+I
+I
+
+l
+
+(e)
+
+0.
+
+.1
+
+./
+
+.2
+
+I
+
+.3
+
+~
+
+I
+
+IX
+
+I
+
+Y
+
+I
+
+.I
+
+I
+
+I
+I
+
+I
+
+o
+
+.1
+
+.2
+
+.3
+
+(g) &-0-6 unit cell;
+
+I
+
+,
+
+,......, I -
+
+I
+
+-:-
+
+I
+
+I
+
+I
+
+I
+1
+
+I
++
+
+(f)
+
+0.
+
+.1
+
+.2
+
+.3
+
+.7
+
+/
+
+./
+.8
+
+j
+,J~
+.9
+/.0
+
+x
+
+~'tw = 1.55.
+
+I
+
+I
+
+I
+
+I
+
+I
+
+/
+
+/
+
+x
+
+~"-.,~
+~~
+...;..-'\x~
+I
+
+---'7"
+
+.
+
++
+
+. .-+-
+
+(f) 4-0-4 unit cell ;
+
+lI+u'
+--:no
+- r,.34.
+
+FIGURE l7.-Continued.
+
+.9
+
+'V -
+
+-1-1
+
++--0.604
+
+-.3/4
+
+A-
+
+' -..,
+
+1-
+
+-1-
+
+1-
+
+~ .8 - I - -
+
+-
+
+776
+
+I--,
+'"'?--r-- -t-""1I\,r-+-t
+
+r=~k--
+
+.9- ~
+
+~~
+
+~
+
+~ \~
+
+~~~~~~~~~
+
+t-HI-I-r-P~t-~ '"f- \~
+I
+
+--j-l-+-+---+-+-~-~f\~- l -
+
+1=
+
+~
+/~
+
+i.5
+
+~t-I-I-t-+-+---t-+-H~~/\) ,=
+
+c-
+
+~
+
+- - - -+-+-+-I-+--+-t-/-1I / A'_
+
+~
+
+r+-r~-+~-~-r+-t-t-r~-+/7t7~t-+
+1A -
+
+8..4
+
+~ c-
+
+.~.31-1--+---+-+--~
+
+1//
+/)
+v/ _ _ ~ _ _
+
+~
+~.2
+
+~V
+...-::::1;/
+
+P
+
+/.0
+
+o
+
+~v
+
+/
+
+/
+
+:,......-/
+
++--+
+
+(h)
+
+.>"'
+
+.4
+.5
+.6
+.78
+Frocnonolromus, x
+
+x-OOOD
+
+0 - .454
+
+f,6:::=c- ~ _-t-t--t-+--t--t--l-t-t'iS~\IJ:=
+
+I~
+........
+
+~
+
+0-0778
+
+17
+
+~d
+~X
+~
+
+I
+I
+
+'A
+
+I-~
+~
+II ~ v~
+
+~~
+
+---' ~
+
+I
+
+I
+
+I
+
+;I
+
+~y~
+
+I
+
+'I I
+I
+
+~~t
+
+I
+
+t:--
+
+r--L
+
+---~--------:::::::::::::=
+
+J
+I
+
+.I
+
+-f--
+
+1
+
+I I
+
+,;..--
+
+I
+I
+
+i
+
+I
+
+~
+
+1
+
+.:r.--r-
+
+I
+
+I
+
+V
+
+Anqulor position from symmetry line of cell
+(froction of cell semionqle)
+
+~
+
+:---
+
+I
+
+I I
+
+.4
+
+/
+
+/
+
+Fracnonolramu~
+
+1.0.
+
+I
+
+I
+
+b=-
+
+f-::::t
+.5
+.6
+
+(g)1
+
+)
+
+1.0
+
+I
+
+I
+
+/
+
+/
+
+/.0.
+
+I
+
+Y
+
+I I II
+
+I I
+
++--0.776
+0--- -.880
+P'-.934
+
+0..0.0.0.
+
+v - - -.6/8
+
+I
+
+11
+
+I
+
+FIG URE l7.-Continued.
+
+. . 1 - - . .356
+
+.116
+
+~
+
+r-
+
+HE l7.-Continued
+
+0-
+
+I
+
+\-
+
+1
+
+I
+I
+
+Angulor position from symmetry Ime of cell
+(froction of cell semionqle)
+
+I
+
+,
+
+I
+
+l r+ w
+(e) 4-0-4ullItcell; nn=3.11.
+
+.9
+
+\ \
+
+I
+
+1
+
+I
+
+/x/V
+I // A/V
+
+.9
+
+\
+1\ ,\
+
+.
+
+x-
+
+'I,
+
+\.
+
+I
+
+\
+
+V
+
+.4
+.5 .6
+.7 .8
+Froctional radius, .x
+
+0.884
+A - .6eO
+
+......"
+
+,"""'-,
+
+\
+
+/
+
+0-
+
+-
+
+-G892
+
+R
+
+:...- .-J>-
+
+FIr:
+
+x-
+
+I\,
+
+/V/\/
+VY I/+ /\ 6
+;,...--- Y( \J
+~Y
+~........ .........- ~
+I ill
+i.<'" ""':;---- .--< c.-- I
+I
+~
+I
+VI
+
+I
+
+0.000
+
+\,
+
+~/I
+
+I
+
+0-
+
+'x<
+
+""" \/XIK
+
+I
+
+0.86D
+
+~,,~
+
+I I
+~ ""'" I
+
+I
+
+,, ,
+
+=-"
+
+~
+
+I I
+I
+I
+
+1
+1
+
+I ~\
+
+~
+
+I
+
+I
+
+I
+
+I
+
+-.....".
+
+N
+
+Anqulor position from symmetry line of cell
+(fraction of cell semionqle)
+
+.9
+
+~I~
+
+N
+
+~
+
+1
+
+~.(---...;;..
+
+15
+
+COEFFI CIENT
+
+/.0.
+
+-.844
+
+[>-
+
+,
+
+,
+
+~;'"
+
+.9
+
+A-
+
+0--- -.48e
+
+f r - - . 700
+
+AND l\IA
+
+.I
+
+.2
+
+.5
+
+.6
+
+.7
+
+(b) &-0-6 unit cell ;
+
+:'tw
+
+=3.12.
+
+.3
+
+.4
+
+FractIonal rodlus, .x
+
+FIGURE I7.-Continued
+
+.8
+
+.9
+
+!O
+
+16
+
+REPOR'!' 1 O. 7 i 5 - TA'rIONAL ADYI ORY COMMITTEE FOR AERONAUTICS
+I. 0
+
+Angular pOSition from symmetry line of cell
+(fraction of cell semionqle)
+
+1:>- - 0452
+x-
+
+0--0452
+
++--0576
+
+.000
+
+.,.
+
+9
+
+-.843
+
+0-
+
+I
+
+1.0
+
+I
+
+8
+.9
+
+r.- r-
+
+~u.8
+l - I-
+
+r- r- t-r-
+
+t-- P-- ;:: ~ ~
+
+.........
+
+t-- i -
+
+o
+
+/'r\
+
+i::'-- l/
+V~
+
+)V
+
+_,f.--
+
+.3
+
+.4
+
+.5
+
+.6
+
+- ;-.......
+
+I
+
+_I-- .rY
+c...--
+
+/
+.7
+
+.8
+
+.9
+
+.........
+
+I
+
+--
+
+I-
+
+coefficientdJ.'opsrapidlywith theadvance ratio. For
+
+i
+
+~
+
+~
+
+.........
+
+1"--
+
+"'-
+
+\
+
+" r,
+
+\
+r.
+
+al-
+
+.4
+
+:t
+
+w
+
+= 2,
+
+r K(x, e)x dx de
+7rJo Jo
+27r
+
+:t
+
+'--
+
+.5
+
+the value of K is Ie s than 0.5 even for an infinite number of
+blades and is less than 0.2 for the two-blade single-rotating
+propeller.
+For dual-rotating propeller the ma coefficient defined as
+
+A 2- 0- 2 propeller has, in fact, a
+
+larger mass coefficient at
+
+r---
+
+.6
+
+has b een introduced, where K (x) is a nondimen ional distribution function and x i the nondimen ional radiu.
+umerical values of K for the known ca e of ingle-rotating
+propellers are hown in figure 3. It is noted that the ma s
+
+= 2 than the ingle-rotating
+
+propellcr with an infinite number of blades. The 6- 0- 6
+propellcr at the same advance ratio ha a mass coefficient
+K= 0.79 or near unity. (ee fig. 15.)
+The effect of guide vane is of con iderable practical intercst.
+The e vanes are tationary and are arranged either immediately in front of or behind the propeller. The que tion i
+whether uch a stationary y tem in some ca e may b more
+acceptable than a dual arrangemcn t of countelTotating propeller. As an example, con ider'a three-blade single-rotating
+propeller at an advance ratio of 3. (ee fig. 16(b) .)
+The rna coefficient K of the propeller alone i seen to be
+0.142; the 3- 2- 0 prop ller with two guid vanes show a
+valu e of K of 0.23 , and the 3-4-0 propeller with foUl' guide
+va ne shows a valu e of K of 0.2 6. For compari on, the
+
+-r- r- I-
+
+--
+
+.3
+
+\
+
+1\
+
+1\
+~
+
+.......,
+
+1\
+
+f'.o
+
+(V~lJJ)/ nD
+0
+1.55
+x 3//
+
+.I
+
+o
+
+~
+
+'--
+
+K(x)
+
+K:=2l K(x)x dx
+
+)\..1\
+
+I
+
+i-- t--
+
+.7
+
+The concept of a mass coefficient K defined a
+
+w
+
+1'---I
+
+1
+
+.8
+
+DIS CUSSIO
+
+is considerably larger.
+
+i
+
+.\1
+
+r-
+
+1.0
+
+Concluded.
+
+\
+
+, \
+
+~
+
+,
+
+,
+
+o (a)
+
+./
+
++- !--
+
+Frochonolromu~ ~
+
+K=~ (1
+
+.~
+
+,
+
+I
+
+'\
+
+,
+
+I
+
+I
+
+(i) 6-Q-6 unit cell; ~-;;o - 6.41.
+FIGURE 17.-
+
+,
+
+1
+
+.9
+
+.2
+
+""- ."
+
+I
+
+3
+
+.....-r\
+
+0)
+.I
+
+,
+
+1
+
+.....-v 1\ \
+
+<-
+
+-
+
+I
+
+1
+
+.4
+
+~
+
+[\.
+
+'-....,
+I
+
+.5
+
+r---... 7
+
+1/
+
+... v
+I--
+
+"-
+
+t-- po....
+
+6
+K(x1
+
+i'---
+
+i" ~
+
+,
+
+I
+1
+
+t'...
+
+:'-- C"" ~
+
+- --- --- ---
+
+7
+
+r--..
+
+t-- t--
+
+'"
+
+6.00
+
+0
+
+1
+I
+
+r--. t--
+
+--r-. f=:: k-
+
+(V+lJJ)/ nID
+x 1.89
+0
+314 I
+
+1'u
+
+634
+
+0
+
+\1
+
+~
+
+(b)
+
+-.
+
+r-- i-- r--
+
+.9
+
+K",
+....... :'---.
+
+,
+
+~
+
+"'-.
+
+.8
+
+"
+
+\
+
+.7
+;---,
+
+.6
+
+r-'-..
+f'-
+
+I((x)
+
+\
+
+'\
+
+.5
+
+1\
+
+---... i'--.
+
+"" r......
+
+.4
+
+/55
+3./2
+641
+
+0
+
+x
+0
+
+\
+
+'"
+
+(V+w)/ nD
+
+.3
+
+\
+
+\
+1\
+
+\
+
+.1
+
+(c)
+
+o
+
+.1
+
+.2
+
+.3
+
+.4
+
+.5
+
+.6
+
+.7
+
+.8
+
+.9
+
+1.0
+
+;r
+
+(a) 2-6- 2 helix su rface.
+(b) 4-6-4 helL~ surface.
+(c) 6-0-6 belix surface.
+FIOURE I.- Measured values of the potential diiIerence 1( x) on Lbe belLx surface taken
+midway between two successive Jines of intersection. (l-fL radius rubber helix section;
+see figs. 12, 13. and 14.)
+
+THEORY OF PROPELLER.
+
+I-
+
+DETER £IN A'l'ION OF CIRCULATION FU L CTIO r AND M A '
+
+dual-J'o tating propeller shows a val u of K of
+ame advance ratio. If a dual-rotatin g propeller i not u cd, the double guide vane i undoubtedly
+de irable in some ca c . Actually, th in luced 10 s i
+reduced to abou t half as compared with the loss in th e ca 0
+without vanes. The difference in the effect of two or four
+vane is r elatively small.
+0.4 6 at the
+
+(V+w)/ n D
+1.89
+0
+3.14
+0
+6.00
+
+.9
+
+~
+
+.8
+
+x
+
+- ,x = 1/4 ...
+
+x
+x
+
+7 '-1- 1/2 ...
+
+.6 l - I K(e.~
+.5
+
+1
+
+.3 -
+
+I-
+
+x
+
+x
+
+3/~...
+
+- - :;.:::::=
+~
+
+1/4 .
+:--- f-
+
+.4
+
+1
+
+1
+
+~
+
+~ i-!o-l- ro-
+
+3/~
+
+...-f(
+
+W- i--- ;;..-
+
+--
+
+.2 l - I - 1/4, .' .1/2
+. 1 I-- I -
+
+L ANGLEY MEMORI AL AERO NA
+NATIONAL ADVI ORY
+
+3/t
+
+I
+
+I
+
+--- ,.......
+..c-'
+
+,.---'
+
+c.-o-
+
+YMBOLS
+
+v
+
+I
+
+(~
+oI-,x
+= 1/4
+
+l±
+
+I
+
+!- l --r-il'
+1
+
+1/4
+
+.4
+
+w
+
+0
+
+I-
+
+*
+
+D
+
+V+w
+
+I
+~
+
+x
+
+__ i--- ,...l.<o-- ~ I - .--0- 1
+I - 1-:...0-
+
+I/~
+
+-<i'!--o' !--"'
+
+~
+
+1/2
+
+-0-1---'
+
+.3 I -l - 3/4
+
+r.. =-.!. V + w
+7T
+
+r
+
+circulation at radius' r
+circulation f u.Dction for ingle~ro tation
+
+K (x)
+
+I
+
+K (x, O)
+
+0 ---
+
+.1
+
+K
+
+t- t- 3/1 - 1/2
+
+.8
+
+.7
+
+p
+
+(b)
+
+/:-,x -1/4_ 1/2 .
+t:- r -t-"
+f-'LJix I
+.9
+1- - .:., I-:.,.L- r---,I- x-r-
+
+I
+
+x
+
+c
+
+,,-'--r-
+
+I
+
+~- l-
+
+1/ 4 .
+
+I-- I-- x _ I--
+
+- "-
+
+x
+
+I-----
+
+.6
+K(8)
+
+1/2 ·...
+
+f-
+
+3/4--.
+
+f- -<>-
+
+.5
+
+.4
+3.
+
+l - f- I-<
+
+!--
+
+. (V+w)j nD
+0 - - - /.55
+
+x - - 3.12
+
+0 -
+
+-
+
+lll2.
+
+K (X , O)x dx dO)
+
+R
+
+tip radius of vortex heet (~D
+
+o
+F
+
+)
+
+angular coordinate on vor tex sheeL
+projected area of helix (7<R2)
+area of end plate of cylindrical te t Lank
+current through test tank with helix removed
+r eduction in current due to pre ence of helix
+REFERENCES
+
+6.41
+
+•1
+
+'.
+(c)
+
+o
+
+coefficient ( 2.fK (x)x dx
+
+r
+
+I-
+
+I--n. f- ~!.--
+
+l - I - 1/4 ..
+
+ma
+
+ratio of radill of lement to tip radiu of vortex
+heet (r/R )
+radiu of element of vortex h eet
+
+x
+
+x
+
+I-
+
+(27T(~~W)W)
+
+circulation flll1 ction for dual rotation
+number of blade of propeller or separate h eli x
+surface
+
+or ~
+
+x
+
+I
+
+t- I - ~4~
+
+(V ~w)
+
+pitch of wake helix
+
+I - L.c-
+
+(Vt w)/ nD
+/.55
+x- - 3.11
+0 - - - 6.34
+
+1
+1
+
+nD
+
+El
+
+I
+
+o
+
+advance ratio of wake he"lL'<
+
+nD
+
+.6 ~ I - 3/4.
+K(e)
+.5
+l -I -
+
+~x
+
+- -- lit/-
+
+.7 - t-
+
+advan e velocity of propeller
+r earward li placement velocity of h elical vortex
+urface (at infinity)
+rotational peed of propeller, revolution per
+second
+aDo-ular velocity of propeller (27Tn)
+diameter of vortex heet
+
+n
+
+I
+
+3/4-
+
+lYIay 27,1944 .
+
+APPENDIX
+
+w
+
+1/2
+
+n CAL LABORATORY,
+
+OMi\II'l'TEE FOR A ERONA 'l' I C
+
+L ANGLEY FIELD, VA.,
+
+.-,r
+
+1/2 .
+
+I.
+
+.8
+
+17
+
+~ ix-blade
+
+1.0
+
+.9
+
+COEFFI CIE PI'
+
+.2
+.3
+.4
+.5
+.6
+.7
+.8
+.9
+1. 0
+An9ulor poslfton f r om symmefry line of cell,
+
+.1
+
+fraction of c ell semianqle
+(a) T ime function of K (O) for 2-0-2 surface.
+(b) 'l' ime function of K(O) for 4-{)-4 surface.
+(c) 'l'ime function of K (O) for &-{)-6 surface.
+F IGURE Ig.- Measured values of the potential diITercnce at various radii and distances along
+the helix surface.
+
+1. Gold tein, idney : On the Vortex Theo ry of crcw Prope lle rs .
+Proc. Roy. oc. (London), se l'. A, vol. 123, no. 792, April 6,
+1929, pp. 440-465.
+2. };:ramer, K. N .: The Induced Efficiency of Optimum Propcllers
+Having a Finite N umber of Blades. NACA 1'11 TO.
+4,
+1939.
+3. Lock, C. N. H., and Yeatman, D.: Tables fol' U e in an Improved
+Nlethod of Air crew Strip Theor y Calculat ion. R. &; M. No.
+1674, British A. R. C. , 1935.
+U. S. GOVER NM ENT PRINTING OFFICE: 19 47
+
+"" ..... '
+
+......
+
+z
+Positive directions of axes and angles (forces and moments) arc shown by arrows
+Axis
+
+Designation
+
+LongitudinaL ______
+LateraL _____________
+N ormaL _____________
+
+Moment about axis
+Force
+(parallel
+Sym- to axis)
+symbol Designation Symbol
+bol
+
+X
+
+y
+Z
+
+X
+
+y
+Z
+
+Rolling _______
+Pitching ______
+Yawing _______
+
+Absolute coefficients of moment
+L
+M
+N
+0,= qbS
+Om= qcS
+On=qbS
+(rolling)
+(pitching)
+(yawing)
+
+L
+
+M
+
+Angle
+
+Positive
+. direction
+
+Designation
+
+y----+Z
+Z----+X
+
+RolL _______
+Pitch.. _______
+Yaw ________
+
+X----tY
+
+N
+
+Velocities
+Linear
+Sym- (compo- Angular
+bol nent along
+axis)
+
+'"
+if;
+(J
+
+u
+
+p
+q
+r
+
+v
+
+til
+
+Angle of set of control sUTface (relative to neutral
+position), 0_ (Indicate sUTface by proper subscripb.)
+
+4. PROPELLER SYMBOLS
+
+D
+p
+p/D
+V'
+V.
+
+Diameter
+Geometric pitch
+Pitch ratio
+Inflow velocity
+Slipstream velocity
+
+T
+
+Thrust, absolute coefficient OT=
+
+Q
+
+Torque, absolute coefficient OQ=
+
+p
+
+Power, absolute coefficient Op= -;D6
+pn
+
+O.
+
+Speed-power coefficient= ~vs
+~n2
+
+~4
+
+n
+
+Efficiency
+Revolutions per second, rps
+
+~D6
+
+4>
+
+Effective helix allglc=tan-{2~n) ,
+
+pn
+
+1/
+
+pn
+
+5. NUMERICAL RELATIONS
+
+1 hp=76.04 kg-m/s=550 ft-Ib/sec
+1 metric horsepower=0.9863 hp
+1 mph=0.4470 mps
+1 mps=2.2369 mph
+
+1 lb=0.4536 kg
+1 kg=2.2046 lb
+1 mi= 1,609.35 m=5,280 ft
+1 m=3.2S0S ft
+
+

@@ -1,0 +1,191 @@
+abstract: <jats:p>The conventional structural layout optimization method is usually
+  used to solve the layout optimization problem of a single structure, but it is difficult
+  to apply to the layout optimization problem of the modular aircraft structure containing
+  multiple substructures. Therefore, this paper proposes the mean value-based parallel
+  collaborative optimization method (MVPM) for modular aircraft structural layout.
+  This method is a two-stage optimization method based on decomposition. The basic
+  idea of the MVPM is decomposing the layout optimization problem of the modular aircraft
+  structure into a system coordination problem and several independent subsystem optimization
+  problems by introducing coordination variables. The subsystem optimizes each aircraft
+  structure. Under the constraints of the structure itself, the performance of each
+  structure is better, and the shared variables are as close to the coordination variables
+  as possible. The system coordination adjusts the coordination variables according
+  to the optimization results of each subsystem. With constant iteration between the
+  system and subsystems, the shared variables of each subsystem eventually agree with
+  the coordination variables. The numerical test results show that the MVPM has high
+  optimization efficiency and stability.</jats:p>
+author: Xu, Chao and Yao, Weixing and Zhou, Danfa
+author_list:
+- affiliation:
+  - name: Key Laboratory of Fundamental Science for National Defense-Advanced Design
+      Technology of Flight Vehicle, Nanjing University of Aeronautics and Astronautics,
+      Nanjing 210016, China
+  family: Xu
+  given: Chao
+- affiliation:
+  - name: State Key Laboratory of Mechanics and Control of Mechanical Structures,
+      Nanjing University of Aeronautics and Astronautics, Nanjing 210016, China
+  family: Yao
+  given: Weixing
+- affiliation:
+  - name: Shanghai Electro-Mechanical Engineering Institute, Shanghai 201109, China
+  family: Zhou
+  given: Danfa
+citations:
+- doi: 10.1115/DETC99/DTM-8761
+  unstructured: Simpson, T.W. (1998). A Concept Exploration Method for Product Family
+    Design, Georgia Institute of Technology.
+- article-title: Introducing a platform strategy in product development
+  author: Muffatto
+  doi: 10.1016/S0925-5273(98)00173-X
+  first-page: '145'
+  journal-title: Int. J. Prod. Econ.
+  volume: 60–61
+  year: '1999'
+- article-title: Simultaneous optimization of a multiple-aircraft family
+  author: Willcox
+  doi: 10.2514/2.3156
+  first-page: '616'
+  journal-title: J. Aircr.
+  volume: '40'
+  year: '2003'
+- unstructured: Meyer, M.H., and Lehnerd, A.P. (1997). The Power of Product Platforms,
+    Free Press.
+- doi: 10.1007/978-1-4614-7937-6
+  unstructured: Simpson, T.W., Jiao, J., Siddique, Z., and Hölttä-Otto, K. (2014).
+    Advances in Product Family and Product Platform Design, Springer.
+- doi: 10.1007/0-387-29197-0
+  unstructured: Simpson, T.W., Siddique, Z., and Jiao, J.R. (2006). Product Platform
+    and Product Family Design, Springer.
+- article-title: 'Product family design and platform-based product development: A
+    state-of-the-art review'
+  author: Jiao
+  doi: 10.1007/s10845-007-0003-2
+  first-page: '5'
+  journal-title: J. Intell. Manuf.
+  volume: '18'
+  year: '2007'
+- article-title: 'Product platform design and customization: Status and promise'
+  author: Simpson
+  doi: 10.1017/S0890060404040028
+  first-page: '3'
+  journal-title: Ai Edam-Artif. Intell. Eng. Des. Anal. Manuf.
+  volume: '18'
+  year: '2004'
+- article-title: Risk management in product platform development projects
+  author: Uddin
+  doi: 10.1504/IJPD.2018.095921
+  first-page: '441'
+  journal-title: Int. J. Prod. Dev.
+  volume: '22'
+  year: '2018'
+- article-title: Quantitative platform selection in optimal design of product families,
+    with application to automotive engine design
+  author: Fellini
+  doi: 10.1080/09544820500287797
+  first-page: '429'
+  journal-title: J. Eng. Des.
+  volume: '17'
+  year: '2006'
+- unstructured: Ulrich, K.T., and Eppinger, S.D. (2004). Product Design and Development,
+    Tata McGraw-Hill Education.
+- article-title: Sizing, Shape, and Topology Design Optimization of Trusses Using
+    Genetic Algorithm
+  author: Rajan
+  doi: 10.1061/(ASCE)0733-9445(1995)121:10(1480)
+  first-page: '1480'
+  journal-title: J. Struct. Eng.
+  volume: '121'
+  year: '1995'
+- article-title: A mixed method for shape optimization of skeletal structures
+  author: Duan
+  doi: 10.1080/03052158608902536
+  first-page: '183'
+  journal-title: Eng. Optim.
+  volume: '10'
+  year: '1986'
+- article-title: Layout optimization of trusses using improved GA methodologies
+  author: Hasancebi
+  doi: 10.1007/BF01178797
+  first-page: '87'
+  journal-title: Acta Mech.
+  volume: '146'
+  year: '2001'
+- article-title: Shape optimization of trusses
+  author: Saka
+  doi: 10.1061/JSDEAG.0005420
+  first-page: '1155'
+  journal-title: J. Struct. Div.
+  volume: '106'
+  year: '1980'
+- unstructured: Bendsøe, M.P., Ben-Tal, A., and Haftka, R.T. (2009, January 4–9).
+    New displacement-based methods for optimal truss topology design. Proceedings
+    of the 32nd AIAA/ASME/ASCE/AHS/ASC Structures, Structural Dynamics and Materials
+    Conference, Baltimore, MD, USA.
+- doi: 10.1007/978-94-011-1804-0_6
+  unstructured: Sankaranarayanan, S., Haftka, R.T., and Kapania, R.K. (1993). Truss
+    topology optimization with stress and displacement constraints. Topology Design
+    of Structures, Springer.
+- unstructured: 'Sobieszczanski-Sobieski, J. (1982, February 01). A Linear Decomposition
+    Method for Large Optimization Problems. NASA TM: 83248, Available online: https://ntrs.nasa.gov/citations/19820014371.'
+- article-title: A variation-based method for product family design
+  author: Nayak
+  doi: 10.1080/03052150210910
+  first-page: '65'
+  journal-title: Eng. Optim.
+  volume: '34'
+  year: '2002'
+- doi: 10.2514/6.1996-4018
+  unstructured: 'Braun, R., and Kroo, I. (1995). Development and application of the
+    collaborative optimization architecture in a multidisciplinary design environment.
+    Multidisciplinary Design Optimization: State of the Art, SIAM.'
+- unstructured: Dimitri, B. (2016). Nonlinear Programming, Athena Scientific.
+- article-title: An augmented Lagrangian decomposition method for quasi-separable
+    problems in MDO
+  author: Tosserams
+  doi: 10.1007/s00158-006-0077-z
+  first-page: '211'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '34'
+  year: '2007'
+- doi: 10.1115/DETC2000/DAC-14265
+  unstructured: Kim, H.M. (2001). Target Cascading in Optimal System Design, University
+    of Michigan.
+- unstructured: 'Kroo, I., and Roth, B.D. (2008, January 3–6). Enhanced collaborative
+    optimization: A decomposition-based method for multidisciplinary design. Proceedings
+    of the ASME 2008 International Design Engineering Technical Conferences, Brooklyn,
+    NY, USA.'
+- unstructured: Jun, Z. (2016). A Sensitivity-based Coordination Method and the Application
+    to Structural Optimization of Aircraft Families, Nanjing University of Aeronautics
+    and Astronautics.
+- doi: 10.2514/6.2006-1514
+  unstructured: Funk, J.E., Harber, J.R., and Morin, L. (2006, January 9–12). Future
+    military common aircraft development opportunities. Proceedings of the 44th AIAA
+    Aerospace Sciences Meeting and Exhibit, Reno, Nevada.
+- article-title: Comparative studies of metamodeling techniques under multiple modeling
+    criteria
+  author: Jin
+  doi: 10.1007/s00158-001-0160-4
+  first-page: '1'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '23'
+  year: '2001'
+- unstructured: Lai, Y. (2012). Isight Parameter Optimization Theory and Example Detailed
+    Explanation, Beihang University Press.
+doc_url: https://www.mdpi.com/2226-4310/9/10/557/pdf
+doi: 10.3390/aerospace9100557
+files:
+- mean_value-based_parallel_collaborative_optimization_method_for_modular_aircraft_structural_layout_Xu_Yao_Zhou_2022.pdf
+issue: '10'
+journal: Aerospace
+language: en
+month: 9
+pages: '557'
+papis_id: e99887e6a393897732a99e722ad0826b
+publisher: MDPI AG
+title: Mean Value-Based Parallel Collaborative Optimization Method for Modular Aircraft
+  Structural Layout
+type: article
+url: https://doi.org/10.3390/aerospace9100557
+volume: '9'
+year: 2022

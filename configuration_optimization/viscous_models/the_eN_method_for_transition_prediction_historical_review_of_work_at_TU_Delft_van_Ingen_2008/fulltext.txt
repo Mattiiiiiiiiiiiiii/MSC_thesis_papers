@@ -1,0 +1,2072 @@
+AIAA 2008-3830
+
+38th Fluid Dynamics Conference and Exhibit<BR>
+23 - 26 June 2008, Seattle, Washington
+
+The eN method for transition prediction.
+Historical review of work at TU Delft
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+J.L. van Ingen1
+Faculty of Aerospace Engineering, TU Delft, the Netherlands
+
+A historical review of work at TU Delft on the eN method for transition prediction is
+presented. The method is shown to be applicable to boundary layers with pressure gradient,
+suction and separation. Some applications to airfoil design will be discussed. An explanation
+will be given of the reason for the success of this linear theory to “predict” the position of
+transition which itself is a highly non-linear phenomenon. It will also be explained why the
+velocity profile shape factor H is a suitable parameter to characterize stability diagrams for
+flows with and without suction. Finally a new database method will be presented that is
+based on the observation that many stability diagrams show a remarkable similarity when
+properly scaled and shifted. The discussion will be restricted to two-dimensional
+incompressible flow.
+
+Nomenclature
+a
+=wave amplitude
+a0
+=wave amplitude at x = x0
+Cq
+=suction flow coefficient
+c
+=airfoil chord
+c
+=ω/α
+c*
+=c/U
+f
+=non-dimensional boundary layer stream function
+F
+=ωυ/U2
+=ωυ/(U∞)2
+F∞
+H
+=shape factor, δ*/θ
+lT
+=τ0θ/μU
+M
+=(x dU/dx) / U
+mT
+=(∂2u*/∂y*2)0
+n
+=amplification factor for discrete frequencies
+N
+=amplification factor, envelope of all n
+r
+=10log(Reθ) − 10log(Reθ)crit
+=non-equidistant grid of 59 points for 0 ≤ r ≤ 2.5
+rgrid
+rtop
+=r corresponding to Tmaxmax
+Rec =Reynolds number based on chord length
+Reδ* =Reynolds number based on displacement thickness
+Reθ =Reynolds number based on momentum loss thickness
+(Reθ)crit=critical Reynolds number based on momentum loss thickness
+scale =frequency difference expressed in ωθ/U between upper neutral curve and global maximum see Figs. 1-3.
+T
+=amplification of unstable disturbances (Eq. (26)
+Tmax =maximum value of T at specific Reθ
+Tmaxmax =global maximum value of T at specific (Reθ) crit
+Tu
+=Turbulence level [%]
+U
+=boundary layer edge velocity
+U∞
+=free stream velocity
+1
+
+Emeritus Professor, Faculty of Aerospace Engineering, Kluyverweg 1, 2629 HS, Delft, the Netherlands, Associate
+Fellow AIAA.
+1
+American Institute of Aeronautics and Astronautics
+Copyright © 2008 by J.L. van Ingen. Published by the American Institute of Aeronautics and Astronautics, Inc., with permission.
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+U*
+u
+u*
+v
+v0
+x
+x0
+x*
+y
+y*
+
+=U/U∞
+=tangential velocity in boundary layer
+=u/U
+=normal velocity in boundary layer
+= normal velocity at the wall (negative for suction)
+=distance along wall
+=wall coordinate at which a discrete frequency disturbance becomes unstable in the spatial mode
+=x/c
+=distance normal to surface
+=y/θ
+
+Greek symbols
+α
+=αr + iαi
+=spatial growth rate of disturbances
+-αi
+=wave number
+αr
+β
+=Hartree parameter
+δ
+=boundary layer thickness
+δ*
+=boundary layer displacement thickness
+φ
+=amplitude function in Orr-Sommerfeld equation
+θ
+=boundary layer momentum loss thickness
+μ
+=viscosity
+υ
+=kinematic viscosity
+x*
+=non-dimenionalized x-coordinate for Iglisch flow
+ρ
+= (air) density
+=amplification factor (old notation for n and N)
+σa
+τ
+=shear stress
+=wall shear stress
+τ0
+ψ
+=disturbance streamfunction
+ω
+=frequency
+ωscaled ={ωθ/U) − (ωθ/U)axis)}/scale
+Subscripts
+0
+= at wall
+∞
+=free stream
+axis
+=position in ωθ/U or F for ”max”
+c
+=chord
+crit
+=instability point
+max
+=local maximum at specific Reθ
+maxmax=global maximum at rtop
+top
+=position of global maximum
+Superscript
+For typographical reasons we use in the text and in the equations a * to indicate certain non-dimensional quantities.
+The same quantities in the figures may use an overbar.
+
+I
+
+I. Introduction with a personal note
+
+t is more than 50 years ago that in 1956 I published my first version of the e9 (later eN) method for the practical
+prediction of transition of incompressible two-dimensional boundary layers, based on linear stability theory.
+Independently and simultaneously Smith and Gamberoni presented essentially the same method.
+During my study for aeronautical engineer at the Technical University of Delft I had enjoyed lectures on
+boundary layer theory by Burgers and Timman. In these lectures the subject of linear stability theory had aroused
+my interest that led to the idea for the eN method. In the spring of 1955 Timman invited me to join him to attend the
+conference on “Boundary Layer Effects in Aerodynamics” held at the National Physical Laboratory (NPL) at
+Teddington, UK. Here I had the wonderful experience of meeting some of the well-known researchers in the
+2
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+boundary layer community of that time. Especially impressive to me was a private discussion with G.B. Schubauer,
+famous for his experimental proof of the existence of Tollmien-Schlichting instability waves in a flat plate boundary
+layer. To him I could show the preliminary results of my research on what later would become the eN method. His
+appreciation for this idea was of course extremely stimulating for me as a young aeronautical engineer who was
+working on what was going to be his first international publication. In later years I had the pleasure of meeting
+Schubauer again at other conferences and to visit him at the National Bureau of Standards in Washington in 1959.
+Over the last 50 years the eN method has proved its value and has remained a useful tool in engineering
+aerodynamics. Since my first publication, although still referenced in the literature, is not easily accessible anymore,
+and some other, older publications might still be of interest, it was decided to collect on a CD-ROM1 a series of
+these older publications and some new ones2-21 on occasion of the 50th anniversary of eN.
+My first work on eN was published in two reports of the Department of Aeronautical Engineering of Delft
+University in July and September 1956.2, 22 In September 1956 I presented the method at the First European
+Aeronautical Congress at Scheveningen, the Netherlands.23 Before I started my (first ever) presentation before an
+international forum, somebody pointed out to me a very special person in the audience, namely the famous Hermann
+Schlichting. Apparently he appreciated my presentation. Afterwards he told me that A.M.O. Smith24 had given a
+similar presentation (based on Smith and Gamberoni25) at the International Congress for Mechanics at Brussels the
+week before.
+The development of the eN method was the start of a life-long commitment to boundary layer research in which
+the contacts with many colleagues and friends have enriched my life. In 1996 I had the honor to present the Prandtl
+Memorial Lecture in which I gave an overview of our work at Delft under the title: “Looking back at forty years of
+teaching and research in Ludwig Prandtl’s heritage of boundary layer flows.”17, 18
+Different versions of the eN method have been used for airfoil design at the Low Speed Laboratory (LSL) of
+Delft Aerospace, notably by associate professor L.M.M. Boermans. The close co-operation between design oriented
+engineers and students on the one hand and more fundamental boundary layer researchers at LSL on the other hand,
+has proved to be very fruitful over the years. It was shown that the eN method could be applied successfully to twodimensional boundary layers with pressure gradient including separation and suction. At LSL for a long time airfoil
+design has been performed using a computer program that included earlier versions of my eN method.
+At present the group of Professor Boermans employs Drela’s XFOIL program. In this program the envelope
+version of the eN method by Drela has been replaced by our own versions of the method. Recently Boermans started
+work on the design of low-speed airfoils with laminarisation by suction, in first instance to be applied to sailplanes
+and general aviation aircraft. It was realized that the available eN method, although capable of including the effects
+of suction, was in the first place aimed at calculating the amplification of unstable disturbances and predicting
+transition and less on the possible re-laminarisation that occurs for strong suction. Therefore he asked me to develop
+a new version of the method, better suited to design suction distributions. Stimulated by the presently available
+computational facilities, unimaginable 50 years ago, I agreed to take a fresh look at the method
+The new database method is based on a set of stability diagrams that were calculated by Arnal26 for 15
+Hartree/Stewartson solutions of the Falkner-Skan equation. These solutions are for zero suction but it will be shown
+that they may be applied with some confidence to suction boundary layers. The development of this new method
+was mostly done using the student version of MATLAB 5. The CD-ROM includes an extensive report on the new
+method19 with the new database and a collection of MATLAB programs21 that supplement and illustrate the report.
+The discussion in the report and the present paper is restricted to two-dimensional incompressible flow.
+Applications of the new method to the design of suction airfoils using the FORTRAN environment of XFOIL are
+presented in the TU Delft Master Thesis by J. Bongers.20 The thesis is also included on the CD-ROM.
+The present paper will review some highlights of the early development of the method and will describe the new
+method. Important topics to be addressed are:
+• Why has the eN method (based on linear stability theory) been so successful in predicting the position of
+transition that in itself is such a strong non-linear phenomenon?
+• Is it possible to apply stability diagrams for boundary layers without suction to cases with suction?
+• Why is the velocity profile shape parameter H a suitable parameter to characterize stability diagrams?
+• The development of a new database method starting from the observed strong similarity between properly
+shifted and scaled stability diagrams for velocity profiles without an inflexion point.
+• Using this similarity it is easy to derive the stability diagram for the asymptotic suction boundary layer
+from that for the stagnation point.
+
+3
+American Institute of Aeronautics and Astronautics
+
+II. Some useful relations from boundary layer theory
+For easy reference in the sequel of the paper this section will summarize some definitions and results from
+boundary layer theory. For their derivation books like27-29 or the text (chapter 3) of the author’s full report19 should
+be consulted. Here, and also in van Ingen4 the reader can find references to the older literature that may be
+mentioned in this paper but will not always be included in the reference section in order not to make this too
+lengthy.
+Boundary layer equation:
+u ∂u/∂x +v ∂u/∂y=− (1/ρ) dp/dx + ν ∂2u/∂y2
+
+(1)
+
+∂u/∂x +∂v/∂y=0
+
+(2)
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Continuity equation:
+
+Boundary conditions:
+y=0:
+
+u=0
+
+v=v0 (<0 for suction)
+
+y→∞
+
+u→U(x)
+
+(3)
+(4)
+
+In Eq. (1), using the Bernoulli equation we can write:
+− (1/ρ) dp/dx=U dU/dx
+
+(5)
+
+From Eqs. (1-3) it follows that at the wall the curvature of the velocity profile is determined by the pressure
+gradient and normal velocity at the wall (v0 < 0 for suction) via the so called “first compatibility condition”:
+v0(∂u/∂y)0= − (1/ρ) dp/dx + υ (∂2u/∂y2)0= U dU/dx + υ (∂2u/∂y2)0
+
+(6)
+
+Hence for the no suction case, when the pressure decreases in stream wise direction (as on the forward part of an
+airfoil), the velocity profile is convex near the wall. With increasing pressure the profile is concave near the wall. At
+zero pressure gradient the profile is straight near the wall. Suction has the same effect as a “favorable pressure
+gradient” (dp/dx <0). This determines the effect of pressure gradient and suction on stability and hence on transition.
+Convex velocity profiles have a much greater stability than concave profiles and hence tend to delay transition.
+Similar effects are due to heating and cooling at the wall. In air, cooling the wall is stabilizing while in water it is
+destabilizing. The effects of heating and cooling will not be discussed in the present paper.
+If we first differentiate Eq. (1) w.r.t. y and use Eqs. (2 − 3) we find the “second compatibility condition”:
+v0 (∂2u/∂y2)0=υ(∂3u/∂y3)0
+
+(7)
+
+Note that for zero suction or blowing (v0 =0) the third derivative of u w.r.t. y at the wall is zero, independent of
+the pressure gradient.
+Two well-defined thickness parameters of a velocity profile are the displacement thickness δ* and the
+momentum loss thickness θ. Their ratio H=δ*/θ is often used as a “shape parameter” for the velocity profile.
+The wall shear stress follows from:
+τ0=μ (∂u/∂y)0
+
+(8)
+
+lT=τ0θ /μU
+
+(9)
+
+A very often used non-dimensional form is:
+
+The non-dimensional curvature of the velocity profile at the wall will be denoted by:
+
+4
+American Institute of Aeronautics and Astronautics
+
+mT =(∂2u*/∂y*2)0
+
+(10)
+
+The subscript T refers to Thwaites who first introduced lT and mT as parameters to characterize laminar boundary
+layers. The non-dimensional pressure gradient will be denoted by the Pohlhausen parameter:
+K=(θ2/υ) dU/dx
+
+(11)
+
+The first compatibility condition Eq. (6) can now be written as:
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+(v0 θ/υ) lT=K + mT
+
+(12)
+
+From Eq. (12) it can be seen that the curvature at the wall (mT) can be influenced by the pressure gradient and
+suction/blowing. In chapter IX we will introduce the assumption that pressure gradient and suction/blowing are to a
+large extent interchangeable so that stability diagrams calculated for velocity profiles with zero suction but with
+pressure gradient can be applied to the case of suction.
+A simple exact analytical solution of the boundary layer equations (in fact also of the full Navier-Stokes
+equations) is given by the “asymptotic suction boundary layer.” This solution is found for x→ ∞ on a flat plate with
+constant suction velocity v0. The development of this asymptotic solution from x = 0 to ∞ was already given by
+Iglish in 194430 (see also chapter XII). The exact solution of Eqs. (1-4) is easily found to be:
+u/U=1 – exp(v0 y /υ)
+
+(13)
+
+From Eq. (13) follows:
+−v0 δ*/υ=1 − v0 θ / υ=0.5
+
+H=2
+
+(14)
+
+H= 2 means that the velocity profile for the asymptotic suction profile is much more convex and hence much more
+stable than the stagnation point profile without suction. A complete stability diagram for the asymptotic suction
+profile is not known to the author. Therefore we will, in chapter XI “compose” such a diagram through extrapolation
+from the stagnation point diagram.
+For the special form of the function U(x):
+U=u1 xM
+
+(15)
+
+where u1 and M are constants, the set of partial differential equations (1−2) can be reduced to an ordinary
+differential equation. The resulting velocity profiles at all values of x are similar in shape. Instead of M we will often
+use the “Hartree parameter” β:
+β=2 M / (M+1)
+
+(16)
+
+Solutions for attached flow without suction were first calculated by Hartree. Some important cases are β=1
+(H=2.216, stagnation point), β=0 (H=2.591, flat plate), β= − 0.198838 (H=4.029, separation). Velocity profiles with
+backflow at the wall were first computed by Stewartson with H> 4.029. Downstream of separation H can reach
+values as high as 35.
+For the calculation of some non-similar boundary layers the author used a finite difference method that is
+described in section (3.5) of 19
+
+III. Basics of linear stability theory and the eN method
+From the end of the 19th century to about 1940 linear stability theory had been developed by a large number of
+mathematicians and theoretical aerodynamicists. Only through the famous experiments of Schubauer and
+Skramstad31 it was shown that the theory was indeed applicable to real flows. The experiments were done in the
+period 1940-1945, but due to the war conditions the results became only widely known in 1948.
+
+5
+American Institute of Aeronautics and Astronautics
+
+To limit the size of the present paper we will in this section only discuss the basics of linear stability theory as far
+as is needed to explain the idea of the eN method. We will concentrate on the present version of the method. For
+more detailed accounts see Schlichting27, White28, Schmid and Henningson32 , Rosenhead29 or van Ingen4
+The linear stability theory considers a given laminar main flow upon which small disturbances are superimposed.
+The present report will discuss only two-dimensional incompressible flow. To simplify the problem the boundary
+layer is locally approximated by a parallel flow with constant velocity profile (shape and thickness) in downstream
+direction. It is assumed that both the undisturbed and the disturbed flow satisfy the Navier-Stokes equations. The
+disturbance is assumed to be two-dimensional because it can be shown that the onset of instability is determined by
+the two-dimensional disturbances and not by the three-dimensional ones, which of course may also occur. After
+linearization and non-dimensionalising, assuming small disturbances, and introducing a stream function for the
+disturbances by:
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+ψ(y)=φ(y) exp {i(α x − ω t)}
+
+(17)
+
+the following “Orr-Sommerfeld equation” for φ is obtained. (Primes denote differentiation w.r.t. y*=y/θ )
+(u*− c*) (φ′′− α2φ)−(u*)′′ φ=−i/(α Reθ) (φ′′′′− 2α2φ′′ + α4φ)
+
+(18)
+
+Boundary conditions for φ follow from u′and v′=0 at the wall and for y→∞:
+φ(0)=φ′(0)=0
+
+φ(∞)=φ′(∞)=0
+
+(19)
+
+The homogeneous linear equation in the disturbance amplitude function φ of course has the trivial zero solution
+representing the original undisturbed flow. The resulting Eigenvalue problem may under certain circumstances also
+possess non-zero solutions. Note that the velocity profile and its curvature play a prominent role in the equation.
+Since the curvature is influenced by pressure gradient, suction/blowing, heating/cooling at the wall, etc. these
+factors have a strong influence on the solutions of the Orr-Sommerfeld equation and therefore on boundary layer
+stability. Furthermore the Reynolds number and the frequency of the imposed disturbances are found to be very
+important. In the present report we will only discuss the effects of pressure gradient and suction/blowing at the wall.
+Note that the curvature (u*)′′ in Eq. (18) is multiplied by φ and because of the boundary conditions Eq. (19) this
+term disappears near the wall and at the edge of the boundary layer. We will return to this observation later when we
+will discuss in more detail the effect of the curvature term. Note also that the reciprocal value of the Reynolds
+number occurs in the right hand side of the equation as a small coefficient of the highest (4th) derivative of φ. This
+makes numerical solutions of the equation, even in the present computer era, rather cumbersome and computer
+intensive. For infinite Reynolds number the right hand side disappears, lowering the order of the equation to 2.
+Solutions of this ”Rayleigh equation” are interesting for velocity profiles with an inflexion point. These solutions
+have certain consequences for the shape of the stability diagram, to be discussed later.
+In the so-called spatial mode of the stability analysis we take the circular frequency ω to be real and the wave
+number α to be complex. Also φ and ψ are complex but in the present paper we will only need to specify α=αr +i αi
+Introducing α into Eq. (17) leads to:
+ψ(y)=φ(y) exp(− αi x ) exp{i(αr x − ω t)}
+
+(20)
+
+It follows from Eq. (20) that disturbances grow, remain constant or decrease with x for αi < 0, = 0 and > 0
+respectively, meaning that the given flow is unstable, neutral or stable against the given disturbance. Which case
+occurs depends on the shape of the velocity profile, the frequency and the Reynolds number Reθ
+The results of stability calculations are normally presented in a “stability diagram” (see e.g. Figs. 1-3) [12, 13]*
+Below the so-called critical Reynolds number (Reθ)crit the boundary layer is stable to small disturbances of all
+frequencies. At higher Reynolds numbers there is a range of frequencies for which instability occurs. As can be seen
+*
+
+In this historical review many figures and tables were scanned from older publications. For clarity their scales had
+to be kept rather large. Therefore it was impossible to put them in the text in phase with the text. The larger tables
+and all figures therefore were placed in the middle of the paper. Following the figure or table number we include the
+page where it can be found as [nn].The”Navigation Toolbar” of Acrobat Reader 8 or higher allows you in a .pdf file
+to jump to this page and back to the page where you came from.
+6
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+from Eq. (20) the rate of amplification or damping is determined by − αi .From numerical computations it is found
+that the shape of the stability diagram is strongly dependent upon the shape of the velocity profile. For a convex
+profile, such as occurs for a ”favorable” pressure gradient near the leading edge of an airfoil the critical Reynolds
+number is high; type (b). For a concave profile such as occurs for increasing pressure in downstream direction the
+critical Reynolds number is low; type (a). Moreover for type (b) near a stagnation point the rate of amplification is
+orders of magnitude smaller than for type (a) near separation. Figures 1, 2 and 3 [12, 13] show as examples the
+neutral curves according to Arnal and the database representation for β = 1 (stagnation point), β = 0 (flat plate) and
+β = −0.198838 (separation). For β >= 0 we have type (b) diagrams, for β < 0 type (a) diagrams occur. Here the
+effects of the Rayleigh instability become visible for Reθ→ ∞ The effects of suction or blowing are similar to those
+for favorable and adverse pressure gradients respectively. For the flow over an airfoil both the thickness of the
+boundary layer and its velocity profile shape may change in stream wise direction. Therefore, strictly speaking, the
+stability theory as developed for a parallel flow is not applicable. However the local stability can be determined with
+sufficient accuracy from the results of the Orr-Sommerfeld equation for the local profile. For each x-station then a
+cross section through the stability diagram should be computed for the local velocity profile and Reynolds number
+Reθ
+Since even in the present computer era the numerical solution of the Orr-Sommerfeld equation is rather involved,
+it is customary for design computations to use a database of pre-computed results for a series of boundary layer
+velocity profiles. In general the Hartree and Stewartson solutions of the Falkner-Skan equation are used for this
+purpose. The solutions that will be used in this report are for zero suction/blowing. In chapter IX and X we will
+argue that they also may, with some confidence, be applied to suction cases. The x-position where first Reθ ≥
+(Reθ)crit over an airfoil will be denoted by “instability point”, downstream of which for certain frequencies the
+amplitude will start growing. Provided that stability diagrams are available for a sufficient number of stream wise xstations the amplitude a of the disturbance can be computed as a function of x. Using Eq. (20) it follows that the
+ratio of the amplitudes a and a+da at x and x+dx is given by:
+(a+da)/a=exp{− αi (x+dx)}/ exp(− αi x)=exp(− αi dx)
+
+(21)
+
+ln(a+da)− ln(a)=d{ln(a)}=− αi dx
+
+(22)
+
+or:
+
+and after integration:
+x
+
+n=ln(a/a0)= ∫ −α i dx
+
+(23)
+
+x0
+
+where x0 is the station where the disturbance with frequency ω and amplitude a0 first becomes unstable. The quantity
+n=ln(a/a0)
+
+(24)
+
+will be denoted by “amplification factor” while −-αi is the “amplification rate”. Then en gives the “amplification
+ratio”. In applications we will write Eq. (24) as follows:
+xc
+-6
+
+n(x,ω) = (10 U∞ c/ υ)
+
+6
+
+∫ 10 (−αi θ / Reθ )(U / U∞ )d(x / c)
+
+(25)
+
+x0 c
+
+Or, denoting by T:
+T=106 (−αi θ / Reθ)
+
+(26)
+
+xc
+
+n(x,ω) = (10- 6 U∞ c/ υ)
+
+∫ T(U / U∞ )d(x / c)
+
+x0 c
+
+7
+American Institute of Aeronautics and Astronautics
+
+(27)
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+The factors 106 and 10-6 have been introduced for convenience.
+If we calculate n as a function of x for a range of frequencies we get a set of n-curves; the envelope of these
+curves gives the maximum amplification factor N which occurs at any x. Figure 4 [14] shows as an example the nfactor calculation for the flat plate without suction using the new database. From the famous Schubauer and
+Skramstad31 experiment (Fig. 5) [14] it follows that at low turbulence levels a transition region is found that extends
+from Rex = 2.8 x 106 to Rex = 3.9 x 106. From Fig. 4 [14] it follows that at these Reynolds numbers N-factors of N1
+= 8.22 respectively N2 = 10.30 are calculated.
+It should be emphasized that each time when one of the components in the eN method is changed (new boundary
+layer calculation method, improved stability diagrams, new experiments in the same or a different wind tunnel or
+flight tests) the whole method will have to be recalibrated. In this way the present author had obtained in 1956 Nfactors of 7.8 and 10 ; in 1965 (see chapter V) 9.2 and 11.2 and now 8.22 and 10.30 for the beginning and end of the
+transition region for the same Schubauer and Skramstad flat plate experiment.
+
+IV. The first version of the method
+In 1956 both Smith and Van Ingen based their calculations on the temporal stability diagrams which had been
+calculated by Pretsch33-35 for some of the Falkner-Skan velocity profiles. Pretsch used an asymptotic method which
+was only applicable at high Reynolds numbers. Therefore he had been unable to calculate the (very low) critical
+Reynolds number for the Falkner-Skan separation profile. To the present author the Pretsch diagrams were only
+available at the small scale presented in Pretsch33, 34. Smith apparently had already available some larger scale
+diagrams from Pretsch35. Both authors had to do some tedious cross plotting from these charts. It should be noted
+that Pretsch was already aware of the fact that there may be a large distance between the position of the first
+instability and the actual transition position and that the then customary idea that the transition location would be
+somewhere between the positions of instability and laminar separation was not sufficiently precise. He even
+suggested that amplification calculations might give some more insight.
+Since the Pretsch charts had been calculated for the temporal mode, a propagation speed of the disturbances had to
+be selected to calculate the stream wise development. The present author used the phase velocity in his first version
+of the method. Although Smith had realized that the group velocity should be taken, he used for convenience also
+the phase velocity. Later the importance of the group velocity was emphasized by Lighthill36 and especially by
+Gaster37. The rest of the computation of the n-factors for the temporal mode then is very similar to that for the
+spatial mode.
+It was only in the fifties that it was realized that linear stability theory might be used to bridge the sometimes large
+distance between the point of first instability and real transition. Liepmann38 had postulated that at transition the
+maximum eddy shear stress due to the laminar instability would be equal to the maximum laminar shear stress. This
+postulate was the starting point of the discussion by Smith and Gamberoni.25 Apparently Smith soon realized that it
+would be too ambitious to calculate the disturbance amplitude occurring in Liepmann’s equation. Especially it was
+considered to be difficult - if not impossible - to specify the initial disturbances from which to start the amplification
+calculations. In fact up to the present time this remains a very difficult issue. How are disturbances generated inside
+the boundary layer? How are they related to outside disturbances like free stream turbulence, noise and vibration of
+the surface? ("Receptivity"). Both Smith and van Ingen satisfied themselves (and in fact had to be satisfied) with the
+calculation of the “amplification factor” N as defined in the previous chapter.
+Van Ingen started from the Schubauer and Skramstad flat plate experiment. It should be noted from Fig. 5 [14]
+that at turbulence levels Tu less than about 0.1 % the transition region extends over a large distance, corresponding
+to Reynolds numbers U x/ υ from 2.8 x 106 to 3.9 x 106. In addition the present author considered some of his own
+transition experiments on an EC1440 airfoil. Guided by the flat plate experiment and using the Pretsch stability
+diagrams this led to the conclusion that beginning and end of the transition region correspond to amplification ratios
+of e7.8 and e10 respectively. For airfoils the N-vs-x curve is rather steep near transition so that in those cases a
+transition “point” can be defined rather than a transition “region”. In their first version Smith and Gamberoni25
+concluded from a series of experimental results that an N-factor of 9 very well correlated the experiments. Their
+value for N=9 is in fact very close to the mean value of 7.8 and 10 as concluded by van Ingen. It is to be noted that
+under the many cases considered by Smith the Schubauer and Skramstad flat plate experiment did not take a
+prominent place. Since on airfoils the transition region is in most cases only a few percent chord in length it is not
+surprising that Smith, putting much emphasis on his results for airfoils, had concluded to a mean value of N=9.
+If the value N = 9 is assumed to be universally valid, we can “predict” transition for a new case by assuming that
+transition occurs as soon as the calculated N-factor has reached the value of 9. In chapter VI we will discuss a later
+
+8
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+development in which the “critical N-factor at transition” is made to depend on the disturbance environment of the
+wind tunnel or free flight
+The factors 7.8 and 10 did not provide a very precise prediction of the transition region at the higher angles of
+attack of the EC 1440 airfoil. This may have been caused by the fact that the laminar boundary layer was calculated
+by the Pohlhausen method which is known to be inaccurate near laminar separation. Moreover at the higher angles
+of attack transition occurred near or sometimes even downstream of laminar separation. Stability calculations were
+not available for separated flows and hence Pretsch’s charts had to be extrapolated. It should also be realized that
+only later the possible existence of laminar separation bubbles was fully realized. It is in fact remarkable that after
+50 years the calculated critical N-factor has remained nearly the same despite the availability of more accurate
+stability diagrams.
+To emphasize that in 1956 the available numerical results of stability theory were not very consistent, Table 1 [9]
+gives (Reδ*)crit for the Blasius profile as calculated by different authors. Note that the present value from Arnal’s
+tables is 520. Appreciable differences occur due to the use of different analytical/ computational procedures but
+certainly also by using different analytical approximations for the flat plate velocity profile. Especially the curvature
+of these profiles may have been different.
+
+Table 1 (Reδ*) crit for the Blasius profile (as known in 1956)
+Author
+(Reδ*) crit
+
+Timman39
+321
+
+Tollmien40
+420
+
+Lin41
+420
+
+Ulrich42
+575
+
+Schlichting/Ulrich43
+645
+
+Pretsch33-35
+680
+
+V. Extension of the eN method to suction (1965)
+In his Ph.D. thesis, Van Ingen4 demonstrated that the e9 method could also be used for the case of porous suction.
+An extensive series of wind tunnel measurements was done on an airfoil with 1.35 m chord at Rec values up till 6.16
+x 106 The model was provided with 20 individual suction compartments on each surface that could be controlled
+independently, so that the suction distribution could be varied within wide limits. Filtering paper supported on a
+perforated metal screen was used as a suction surface.
+At that time Pretsch’s larger scale stability diagrams were available to the present author. From these diagrams a
+new database containing about 100 numbers was derived.
+In order to be able to analyze the suction experiments a two-parameter integral method for the calculation of the
+laminar boundary layer with suction was developed4.
+Since in 1965 still only the Pretsch charts for flows without suction were available, the database method
+mentioned above had to be made applicable to the suction case. This was done by assuming that all possible stability
+diagrams form a one parameter family with (Reθ)crit as the parameter; The critical Reynolds numbers for the velocity
+profiles used in the two-parameter method were calculated from an approximate formula due to Lin44 (see chapter
+IX for more details).
+Figure 6 [15] gives a comparison of neutral curves for various flows with pressure gradient and/or suction or
+blowing as known in 1965. From this it was concluded that an extension of the applicability of the database to
+suction, (where the effect of suction is replaced by an equivalent effect of the pressure gradient) might be a workable
+proposition.
+Application of the 1965 database to the Schubauer and Skramstad experiment now led to N factors of 9.2 and 11.2
+for beginning and end of the transition region. The results of the new database for the EC1440 airfoil are shown in
+Fig. 7. [15] Some results for the suction experiments are shown in Fig. 8. [16] It should be noted that also in the
+suction case separating laminar boundary layers were encountered for which neither the two-parameter integral
+method nor the Pretsch charts were applicable (therefore some results have been obtained through extrapolation). In
+view of all the simplifications which had to be made, the conclusion at that time was that the e9 method could be
+applied with some confidence to the suction case.
+
+VI. From e9 to eN: the influence of free-stream turbulence on the N-factor
+A fundamental weakness of the e9 method is that it is based on an amplitude ratio rather than on the actual
+disturbance amplitude. That for so long a constant N-factor had been found useful, may have been due to the fact
+that most modern low speed low turbulence wind tunnels had been built according to the same recipe, aiming at a
+turbulence level of just below 0.1 % as had been suggested to be sufficiently low according to the Schubauer and
+Skramstad experiment. From this experiment it was generally concluded that reducing the turbulence level below
+0.1% had no use because "transition would not be influenced by a reduction of Tu below 0.1 %". Since a further
+9
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+reduction of Tu requires a larger contraction ratio and/or more screens (and hence more money) most modern low
+speed wind tunnel designs have aimed at Tu = 0.1%.
+From transition experiments on flat plates at various relatively high turbulence levels as a function of Ux/υ we
+calculated the N-factor needed to predict flat plate transition as a function of Tu with the 1965 database (Fig. 9). [16]
+We concluded that beginning and end of transition for Tu >.1% could be predicted by N-factors Nl and N2
+respectively according to:
+Nl = 2.13− 6.18 10log Tu
+
+(28)
+
+N2 = 5− 6.18 10log Tu
+
+(29)
+
+For values of Tu < 0.1% there is much scatter in the experiments because in this region sound disturbances may
+become the factor controlling transition rather than turbulence. It was shown by Wells45 , Spangler and Wells46 and
+others that transition Reynolds numbers larger than the Schubauer and Skramstadt values could be obtained by
+further reducing the turbulence level and the acoustic disturbances (apparently the acoustic disturbances rather than
+turbulence had caused transition in the Schubauer and Skramstadt experiments for Tu < 0.1%).
+We may also use Eqs. (28-29) for Tu < 0.1%, but then we should define an “effective” value for Tu. As far as the
+author can remember the history behind these equations is as follows. Eq. (28) was derived by the author around
+1975 from a collection of published measurements on transition on flat plates with different free stream turbulence
+levels. These data included some tabular values taken from a paper by Mack (probably Mack47). The N2 curve was
+just made parallel to that for N1 based on the Schubauer and Skramstadt values for Tu > .1 %. Later Mack himself
+has published the following equation:
+N = −8.43 − 2.4 ln(T)
+
+(30)
+
+Note that while our Tu is in % and use 10log, Mack uses T in absolute value and the natural logarithm. But in fact
+Eqs. (28) and (30) are very nearly equal, because they are based on essentially the same data.
+It should be clear that the free stream turbulence level alone is not sufficient to describe the disturbance
+environment. Information about the distribution across the frequency spectrum should also be available and in
+addition to turbulence the acoustic disturbances are important. Of course the most important issue is "receptivity":
+how are the initial disturbances within the boundary layer related to the outside disturbances. Therefore we can only
+use Fig. 9 [16] and the equations for Nl and N2 to specify the “critical N-factor” if an "effective Tu" is known. This
+effective turbulence level can only be determined through a comparison of measured transition positions with
+calculated amplification ratios. In fact it has become customary to define the quality of a wind tunnel by stating its
+"critical N-factor".
+That an (RMS) turbulence level is not enough to determine the critical N-factor was strikingly shown by
+(unpublished) results of additional research at TU Delft. It was tried to do an additional calibration of the eN method
+for separation bubbles by an attempt to shorten the bubble by means of additional turbulence due to a grid. Not
+much happened due to the fact that apparently turbulence was added by the grid in the wrong frequency band.
+
+VII. Extension of the method to laminar separation bubbles
+In 1966 the present author started to be involved in the design of airfoil sections for 2-D incompressible flows.
+The foundation of this work was laid while spending a sabbatical year at the Lockheed Georgia Research
+Laboratory. The then available numerical methods for conformal transformation, laminar and turbulent boundary
+layer calculation and the e9 transition prediction method were used.5, 48 Later in Delft these design methods were
+continuously improved, based on comparisons between calculations and wind tunnel tests. A large number of airfoil
+designs were made and applied in many different sailplanes (especially by Boermans49-52). It was soon realized that
+at the chord Reynolds numbers applicable to sailplanes (and also wind turbines) the occurrence of laminar
+separation bubbles was very important and warranted extensive research.
+The eN method could be extended to separated flows because stability diagrams had been made available by
+Taghavi and Wazzan53 for the Stewartson reversed flow solutions of the Falkner-Skan equation. Moreover improved
+stability calculations for the attached Falkner-Skan velocity profiles had been published by Wazzan, Okamura and
+Smith54 and by Kümmerer55. The present author had supplemented these results with solutions of the Rayleigh
+equation for the inviscid instability of the inflexional Falkner~Skan profiles for attached and reversed flow. Using
+all the above mentioned results for the spatial mode, a new database method was developed. The database consisted
+10
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Table 4. Falkner-Skan solutions for the flat plate with suction
+and blowing.
+
+Table 5 Overview of the Hartree-Stewartson profiles analyzed by Arnal and re-analyzed (*) for the
+critical Reynolds number. For the asymptotic suction profile; according to Hughes and Reid 63
+H=2 and (U δ* /υ ) crit =46270
+
+icase
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+β
+
+1.00
+.50
+.20
+.10
+.05
+.00
+-.05
+-.10
+-.15
+-.185
+-.1988
+-.16
+-.12
+-.08
+-.04
+
+H
+
+2.216
+2.297
+2.411
+2.481
+2.529
+2.591
+2.676
+2.802
+3.023
+3.378
+4.029
+6.752
+10.056
+16.467
+35.944
+
+0.6479
+0.9854
+1.3204
+1.4981
+1.5943
+1.7208
+1.8789
+2.0905
+2.4146
+2.8536
+3.4978
+5.185 .
+6.405
+7.902
+10.385
+
+0.2924
+0.4290
+0.5477
+0.6002
+0.6304
+0.6641
+0.7021
+0.7461
+0.7987
+0.8448
+0.8682
+0.7679
+0.6369
+0.4799
+0.2889
+
+11
+American Institute of Aeronautics and Astronautics
+
+Arnal
+
+Arnal
+
+12510
+7750
+2860
+1390
+872
+520
+315
+198
+126
+89
+67
+46.3
+40.5
+36.5
+33.0
+
+(*)
+12501
+7745
+2857
+1388
+871
+520
+315
+198
+126
+88.4
+66.5
+46.2
+40.2
+36.5
+32.9
+
+Table 6. Data for the 15 Arnal profiles.
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+icase
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+β
+
+H
+
+1.0
+0.5
+0.2
+0.1
+0.05
+0.00
+-0.05
+-0.1
+-0.15
+-0.185
+-0.1988
+-0.16
+-0.12
+-0.08
+-0.04
+
+2.216
+2.297
+2.411
+2.481
+2.529
+2.591
+2.676
+2.802
+3.023
+3.378
+4.029
+6.752
+10.056
+16.467
+35.944
+
+nr
+cross
+sec.
+13
+13
+15
+18
+16
+15
+16
+17
+17
+17
+18
+16
+14
+18
+19
+
+rtop
+
+scale
+(see
+Figs. 1-3)
+
+0.3291
+0.3259
+0.3197
+0.3145
+0.3074
+0.3032
+0.3063
+0.3030
+0.3100
+0.3187
+0.3224
+0.3420
+0.3546
+0.3567
+0.3735
+
+0.003767
+0.004037
+0.005560
+0.007802
+0.010101
+0.014209
+0.020793
+0.030183
+0.043024
+0.055643
+0.062504
+0.055510
+0.042963
+0.030196
+0.016734
+
+Tmaxmax
+
+0.1185
+0.1931
+0.6150
+1.6103
+3.2333
+7.4870
+18.258
+45.867
+119.42
+274.53
+577.37
+1695.9
+2599.2
+3668.9
+5148.2
+
+10
+log
+(Tmaxmax)
+
+-.92628
+-.71422
+-.21112
+0.20691
+0.50965
+0.87431
+1.2614
+1.6615
+2.0771
+2.4386
+2.7615
+3.2294
+3.4148
+3.5645
+3.7117
+
+Figure 1. Neutral curve for β = 1 (stagnation point).
+
+12
+American Institute of Aeronautics and Astronautics
+
+(Re θ)crit
+
+5641.57
+3372.09
+1185.22
+559.62
+344.42
+200.63
+117.78
+70.58
+41.66
+26.17
+16.49
+6.42
+3.99
+2.21
+0.91
+
+10
+log
+(Reθ)crit
+
+3.7514
+3.5279
+3.0738
+2.7479
+2.5371
+2.3024
+2.0711
+1.8487
+1.6198
+1.4179
+1.2174
+0.83523
+0.60191
+0.34552
+-0.037824
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 2. Neutral curve for β = 0 (flat plate).
+
+Figure 3. Neutral curve for β = −0.198838 (separation).
+
+13
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 4. N-factor for flat plate.
+
+Figure 5. Influence of Tu on Reynolds number for transition on a flat plate according to
+Schubauer and Skramstad.
+
+14
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 6. Some neutral curves for suction/blowing and
+pressure gradient.
+
+Figure 7. Calculated amplification factor and measured transition region for the
+EC 1440 airfoil section.
+
+15
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 8. Measured transition region and calculated amplification factor for
+the upper surface of the suction model. α=0, Rec=3.37 106
+
+Figure 9. N-factor for various flat plate experiments.
+
+16
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 10. Length of the laminar part of the separation
+bubble on a Wortmann FX 66-S-196-V1 airfoil.
+
+Figure 11. N-factor for the M-300 tail plane airfoil with
+wavy and smooth upper surface.
+
+17
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 12. U*(x*) for the β =-.14 flow.
+
+Figure 13. H(x*) for the β =-.14 flow.
+
+18
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 14. n-factor vs. frequency for various x-stations for the β =-.14
+flow.
+
+Figure 15. N-factor for the β =-.14 flow.
+19
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 16. n-factor vs. frequency relative to x/c=.330 for the β =-.14 flow.
+
+20
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 17. Reθcrit vs H for several velocity
+profiles and the Wieghardt correlation .
+
+Figure 18. Wieghardt’s correlation, Lin’s results and our database for the attached
+Hartree flows without suction. Arnal’s values are denoted by (ο).
+21
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 19. Velocity profile for equal H comparison of flat plate with suction/blowing
+to Hartree v0 = 0, for H = 2.3999
+
+Figure 20. Shear stress profile for equal H comparison of flat plate with
+suction/blowing to Hartree v0 = 0, for H = 2.3999
+22
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 21. Curvature profile for equal H comparison of flat plate with
+suction/blowing to Hartree v0 = 0, for H = 2.3999
+
+Figure 22. 10log(Reθcrit) according to Lin for flat plate with suction/blowing
+compared to Hartree profile with equal H.
+
+23
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 23. H for U* = sin(x*) with and without suction.
+
+Figure 24. Velocity profile for U* = sin(x*) at x* = 1.92 with suction and
+comparison Hartree profile without suction at equal H = 2.6282
+24
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 25. Shear stress profile for U* = sin(x*) with suction and comparison
+Hartree profile without suction at equal H = 2.6282
+
+Figure 26. Curvature profile for U* = sin(x*) with suction and comparison
+Hartree profile without suction at equal H = 2.6282
+
+25
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 27. (Reδ*) crit for flows with suction,
+blowing, cooling and heating plotted
+against H, from (Wazzan et al., 1981).
+
+Figure 28. (Rex) crit and Rex for N =9 for heated
+(=stabilised) wedge flows in water.(from
+(Wazzan et al., 1981).
+
+26
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 29. Velocity profiles for Hartree, asymptotic suction and
+extrapolation in 10log(H) from icase=1:3 to 10log(2)
+
+Figure 30. Shear profiles for Hartree, asymptotic suction and extrapolation
+in 10log(H) from icase=1:3 to 10log(2)
+
+27
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 31. Curvature profiles for Hartree, asymptotic suction and
+extrapolation in 10log(H) from icase=1:3 to 10log(2)
+
+Figure 32. Classic stability diagram; icase = 1 (β = 1, stagnation point);T* = T/
+Tmaxmax
+
+28
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 33. Classic stability diagram; icase = 6 (β = 0, flat plate); T* = T/Tmaxmax
+
+Figure 34. Classic stability diagram; icase = 11 (β = −0.198838, separation); T*
+= T/ Tmaxmax
+
+29
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 35. Classic stability diagram; icase = 15 (β = −0.04, H = 35.944); T* = T
+/Tmaxmax
+
+Figure 36. Tmax/ Tmaxmax vs r for icase 1-15
+
+30
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 37. Tmax / Tmaxmax vs r* for icase 1-15
+
+Figure 38. 10log(Faxis) as function of r for Arnal data (+) and for the data
+base.
+
+31
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 39. 10log(Faxis) at r = 1/3 vs 10log(Reθ)crit
+
+Figure 40. T vs (ω θ)/U for flat plate.
+
+32
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 41. T / Tmaxmax vs ω* for the flat plate.
+
+Figure 42. T/ Tmaxmax − T*max vs ω* for the flat plate.
+
+33
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 43. N-factor for similar Hartee / Stewartson flows in roadmap.
+
+Figure 44. Schematic roadmap with 9 regions ( ο indicates the Arnal points).
+
+34
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 45. Scaled and shifted stability diagram; icase = 1:6, superimposed
+(Note: The definition of ωscaled should read like stated in Nomenclature).
+
+Figure 46. Stability diagram for icase = 2 derived from icase = 1
+
+35
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 47. Stability diagram for the asymptotic suction profile derived
+from the stagnation point flow.
+
+Figure 48. H vs √x* for the Iglisch boundary layer.
+
+36
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 49. 10log(Reθ) and 10log(Reθ)crit for the Iglisch flow at various cq
+
+Figure 50. Traces for the Iglisch boundary layer in the roadmap for 12
+values of cq
+
+37
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 51. N-factor vs √x* for the Iglisch boundary layer at various values
+of cq red
+
+Figure 52. Iglisch flat plate with constant suction velocity (cq red=.5) for the
+two versions of cross_cut.
+
+38
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Figure 53. N vs Rex = U x /υ for for the Iglisch boundary layer at various
+values of cq red
+of a table of about 300 numbers and was designed using the observation that the stability diagrams show quite some
+similarity when properly scaled. The new method is based on a more extensive use of such similarity features.
+Figure 10 [17] shows an application of the method to laminar separated flow on a Wortmann FX 66-S-196-V1
+airfoil. (Taken from an unpublished TU Delft Master Thesis by J. Gooden). The length of the laminar part of the
+bubble is shown as a function of the chord Reynolds number. The experiments correlate very well with an Nfactor=12.5, even after bursting of the bubble.
+For the special case of airfoils at low Reynolds numbers where no appreciable amplification occurs upstream of
+the separation point a short cut method was developed that rather well reproduces existing empirical correlations for
+separation bubbles. Lack of space does not allow a further discussion in the present paper. Detailed reviews of our
+work on laminar separation bubbles can be found in6-12 and especially in the review paper by van Ingen.14
+It should be realized that the eN method does not automatically lead to useful results. The airfoil designer should
+be aware of its shortcomings and should make a judicious choice of the N-factors to be used. In the past we used at
+Delft the following (Table 2 [39] ) "effective turbulence levels" and N1-factors for beginning of transition in various
+circumstances
+Table 2 Values of N1 previously used at TU
+At TU Delft L.M.M. Boermans is the designer using the various
+Delft for various environments.
+calculation methods described above. He also performed rather
+Tu (%)
+N1
+extensive wind tunnel measurements and evaluated many flight tests.
+NACA LTT .10
+9.75
+A number of examples can be found in the references to his work,
+Delft LTT
+.06
+11.2
+see.10-12, 49-52. Airfoils designed by Boermans are applied in many high
+Gliders
+.014
+15.0
+performance gliders such as the: ASW-24, ASH-25, ASH-26, ASW27, ASW-28, ASG-29, ASH-30, Ventus-2B, DG-800, Antares,
+Concordia, and the motorplanes: Extra 400, Extra 500, Euro-Enair Eaglet. Based on his accumulated experience
+Boermans selects the N-factor for each specific airfoil, if possible depending on available measurements.
+Figure 11, [17] taken from Boermans and Blom49, shows results of computations with the eN method for wavy and
+smooth versions of the same nominal airfoil used in the aluminum horizontal tail plane of the Italian glider M-300. It
+follows that the method is capable of predicting the shift in transition position due to the effect of waviness of the
+contour on the pressure distribution due to the production by extrusion.
+At present Prof. Boermans and his team are engaged in a project to realize laminarisation by suction for the wings
+of gliders and light aircraft. The production of surfaces with tiny suction holes is a main topic that is studied in close
+39
+American Institute of Aeronautics and Astronautics
+
+cooperation with the structures and production technology department at Delft and with the Institut für Flugzeugbau
+of the University of Stuttgart in Germany. Reference 64 provides some preliminary results of this study.
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+VIII. Why has eN been successful?
+The question should be asked why the eN method has enjoyed so much success in the last 50 years. The theory is a
+linear one while it is clear that transition to turbulence itself is a highly non-linear phenomenon. That the method is
+still being used is on the one hand due to the inherent difficulties of transition prediction from first principles. On the
+other hand the method appears to contain enough physics to allow it to "predict" the distance to transition with only
+a short semi-empirical extension. The theory also accounts for the effects of pressure gradient, suction, heating and
+cooling, etc.
+At least for 2D incompressible flow at low turbulence levels, the linear part of the amplification process seems to
+cover a large percentage of the distance between first instability and transition, (estimated by Obremski, Morkovin
+and Landahl56 at 75 to 85%). The same reference gives some background to this idea by quoting some characteristic
+numbers (partly) based on research on transition of flat plate boundary layers by Klebanoff, Tidstrom and Sargent57
+Adding the present author’s own experiences one is tempted to state the following.
+In low speed, low turbulence wind tunnels the overall RMS turbulence level at low speed is certainly less than 0.1
+% of the free stream speed, sometimes even as low as 0.02%. A large part of this is often due to frequencies below
+the “dangerous” Tollmien-Schlichting frequencies. The amplitude of the neutral disturbances, being present inside
+the boundary layer and which somehow (through "receptivity") is related to the external turbulence level, may be of
+the order of 0.001 %. For flat plate boundary layers linear theory is expected to cease to be valid at fluctuation
+amplitudes of 1 to 1.5% of the free stream speed. The first turbulent spots may appear at a fluctuation level of 12%
+to 20%. Converting these numbers into N-factors we find the results shown in Table 3 [40]. It follows that the linear
+part extends to an N-factor of about 7 while the non-linear part only has to cover the range of N values between
+(say) 7 and 10. A semi-empirical extension then should be adequate to "predict" the distance to transition.
+
+Table 3. Relation between fluctuation level and N-factor.
+Fluctuation level (%)
+.001
+1 to 1.5
+12 to 20
+
+N-factor
+0
+6.9 to 7.3
+9.4 to 9.9
+
+Physics
+Initial disturbances at beginning of instability
+Linear theory looses its validity
+First appearance of turbulent spots
+
+An experimental illustration of the preceding statement is provided by some research at TU Delft by Wubben,
+Passchier and van Ingen13. Transition experiments were performed in a small two-dimensional boundary layer
+channel. One wall of the channel consisted of a flat plate; the opposite wall could be curved to induce a pressure
+distribution on the flat plate to represent a constant Hartree β-flow of −0.14. The boundary layer was sucked away at
+the leading edge of the plate, thus creating a stagnation point in the region very near to the leading edge. To avoid
+the infinite boundary layer edge velocity related to the negative value of β the first part was replaced by a nearly
+constant edge velocity. Figure 12 [18] shows the experimental pressure distribution and the theoretical curve that
+was used for the subsequent boundary layer- and amplification calculations. The measured and calculated values of
+the shape factor H are shown in Fig. 13. [18] Transition becomes visible through the reduction of H at about x=.700,
+while transition seems to be completed at x= 1.00. The n-factor as function of the frequency was calculated with the
+new database method for some selected stream wise positions and is shown in Fig. 14. [19] The maximum N-factor
+as function of x follows from Fig. 15 [19].
+Velocity fluctuation spectra were measured with hot wires at the stream wise positions indicated in Fig. 14 [19].
+Amplification factors are difficult to measure directly because the initial amplitudes are too small to be measured
+accurately. Therefore the amplification spectra at different x-values were compared to that at x = 330 mm by
+subtracting the latter from the others. These relative amplification spectra are shown in Fig. 16 [20] together with the
+relative spectra calculated by our new database method and an earlier version (used in 1990). Note that the
+calculated maximum N-factor at x=.330 is 4.1 and that the frequency at which this maximum occurs is shifting to
+lower values with increasing x. Therefore the differences between the maxima of the relative n-factor are not the
+same as the differences in the N-factor.
+Considering the various causes for inaccuracies it is seen that the linear calculations give a good description of the
+amplification until x = 616 mm. Transition sets in at x = about 709 mm (to be concluded from the broadening of the
+spectrum). It follows that our findings are in line with those of Obremski, Morkovin and Landahl.56
+40
+American Institute of Aeronautics and Astronautics
+
+IX. Further thoughts on the choice of a parameter to characterize stability diagrams
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+Because of the relatively large computational effort it is not practical to solve the Orr-Sommerfeld equation “on
+the fly” for all velocity profile at a large series of x-stations on an airfoil at a range of angles of attack and chord
+Reynolds numbers as would be needed for an airfoil design computer program. Therefore it is still customary to use
+pre-computed solutions for a standard series of velocity profiles at a number of Reθ values in a data base method. In
+general, the Hartree and Stewartson solutions of the Falkner-Skan equation without suction/blowing have been used
+for this purpose. The shape factor H is generally used to characterize the shape of the velocity profiles and hence the
+stability diagrams. In the early days of the eN method there was not much choice for the stability diagrams. Although
+a number of neutral curves were available for flows with pressure gradient and suction, the only diagrams including
+amplification rates were those calculated by Pretsch for six Hartree profiles from stagnation point to separation.
+Figure 17 [21] shows the critical Reynolds number for a series of boundary layer flows with and without suction.
+These data are rather well correlated by an approximation due to Wieghardt58:
+(Reθ)crit =exp(26.3 −8 H)
+
+(31)
+
+From Fig. 18 [21] to be further discussed later, it follows that this correlation is only useful for a restricted range
+of H, namely 2.2 ≤ H ≤ 2.7. In 1965 van Ingen4 used Lin’s approximate formula for the critical Reynolds number of
+the velocity profiles that were used in his 2-parameter integral relation method for boundary layers with suction. The
+Pretsch diagram for which the critical Reynolds number was equal to Lin’s value then was applied to the local
+boundary layer profile.
+Lin’s equation gives a reasonable approximation to the critical Reynolds number below H=3. In fact Lin uses
+two formulas, namely:
+− π u′(0) {(u u′′) / (u′)3 }c =0.58
+
+(32)
+
+(Reθ)crit=25 u′(0) / c4
+
+(33)
+
+In these equations u stands for u* and the primes denote differentiation w.r.t. y*; c is the value of u* for which
+equation (32) is satisfied; u′(0) =τ0 θ/μ U
+The first equation determines a characteristic position with velocity c in the boundary layer. Once this value of c
+is known the second equation gives (Reθ)crit From this second equation it follows that the critical Reynolds number
+becomes zero at separation and would be negative for separated flows. This is certainly not in agreement with the
+presently known numerical solutions of the Orr-Sommerfeld equation. Fig. 18 [21] compares the results for the
+Hartree flows according to Lin, Arnal, our data base and Wieghardt’s curve fit. It can be seen that Lin’s
+approximation and Wieghardts curve give reasonable results between H = 2.2 and H = 2.7 but are far off for flows
+approaching separation.
+It has to be concluded that it is not simple to define a suitable parameter to characterize stability diagrams and
+moreover it is not clear whether it is permissible to use a single parameter to describe all possible stability diagrams
+with pressure gradient and suction. In his PhD thesis van Ingen4 made the following observations:
+• The results of different authors for the neutral curve for the flat plate boundary layer showed appreciable
+differences (Table 1 [9] ) due to using different analytical approximations to the Blasius profile and
+different (analytical) methods to solve the Orr-Sommerfeld equation.
+• In addition to the Pretsch complete diagrams for the Hartree profiles a number of neutral curves were
+available for boundary layers with pressure gradient/suction/blowing (Ulrich42, 1944; see Fig. 6 [15]). From
+this figure, taken from van Ingen4, it followed that if such an amount of suction is applied to a flat plate
+boundary layer that the critical Reynolds number becomes equal to that for the stagnation point flow, then
+also the remaining parts of the neutral curves look rather similar. A similar conclusion was valid for such
+an amount of blowing at the stagnation point that the critical Reynolds number for the flat plate was
+obtained. In order to be able to proceed at that time (1965) the following (may be rather bold) assumption
+was made.
+All possible stability diagrams for arbitrary pressure gradients and suction/blowing form a one-parameter family
+with the critical Reynolds number as parameter. This implies that it is assumed that the effects of pressure gradient
+and suction/blowing are interchangeable.
+Extensive use of this assumption has shown that application of the resulting eN method gave good results for
+pressure gradient, suction blowing and even for separation bubbles. In later years very often the shape factor H has
+41
+American Institute of Aeronautics and Astronautics
+
+been used as the parameter characterizing the critical Reynolds number. Also the approximation due to Wieghart
+often has been used. In the present work we also will use H; in the next chapter we will give some more background
+to this choice. Similar work on the interchange ability of pressure gradient and suction has been done by Stock59 and
+Stock and Degenhart60.
+Because it is known that the curvature of the velocity profile has a strong effect on the stability diagram one might
+argue that the relevant parameter should be based on curvature rather than on the velocity profile shape parameter H.
+In chapter II we defined the parameter mT as the non-dimensional curvature at the wall. Therefore mT would present
+itself as a suitable parameter. However, the Hartree profiles cover only a limited range of mT values with a
+maximum at separation. Moreover the non-dimensional wall shear stress as a function of mT is double valued for the
+Hartree-Stewartson profiles between β = 0 and β = −0.1988. Hence there seems not much choice to be left except
+using H. This choice will be substantiated in chapters X.
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+X. Support to choose H from a comparison of Falkner-Skan solutions with and without suction
+To see whether H might be used to characterize the distributions of u(y) and u′′(y) and hence the stability diagram
+we calculated a series of 23 solutions of the Falkner-Skan equation for the flat plate with varying amounts of suction
+and blowing, shown in Table 4 [11]. Note that case nr. 18 represents the flat plate without suction or blowing. The
+amount of suction or blowing is indicated by the value of f(0) which is the value of the stream function at the wall (
+> 0 for suction). The values for f(0) were chosen in such a way that for most cases H was in the range from 2.2162
+to 4.0292; that is the same range as for the no-suction case from stagnation point to separation. It should be realized
+that, at not extremely high Reynolds numbers, the required amount of suction to maintain laminar flow is relatively
+modest so that the resulting values of H might remain at about 2.4.
+To show that for very strong suction the asymptotic suction profile is approached, we added case number 1 with
+f(0) = 10. The resulting value for H (= 2.0153) shows that this boundary layer is already very near to the asymptotic
+suction state (H=2). For comparison also some data for this profile are added to Table 4 [11]. Values in the table that
+are outside the range of the regular no-suction Hartree boundary layers between stagnation point and separation are
+underlined. For each of the not underlines cases in the table a corresponding Hartree profile with pressure gradient
+and no-suction was calculated with the same value of either lT, mT or H as for the profiles in the table. All results can
+be viewed with one of the MATLAB programs presented on the CD-ROM.
+From results not presented here, but easily checked with the computer program, we concluded that making mT equal
+should not be recommended because of the restricted range of mT for the Hartree profiles. Also making lT equal does
+not bring an advantage. We concluded that at the same H the effects of suction/blowing and pressure gradient are
+indeed reasonably well interchangeable. An example of such a comparison at equal H (=2.3999)for case number 13
+is shown in Figs. 19-21 [22, 23]. (Note that u and y have been made non-dimensional with U and θ respectively).
+It is remarkable that also the curvature profile at the same H is rather similar. Differences should be expected
+because of the “compatibility conditions” discussed in chapter II. It is interesting to see however that these
+differences mainly show up near the wall.
+To show the consequences of this interesting result we calculated, for all regular cases in the table (Reθ)crit with
+Lin’s approximate method for the “original” and for the “comparison” profile. Figure 22 [23] shows that the results
+at equal H are rather close despite the differences in curvature. Why this is so follows from Figs. 19-21 [22-23]
+where with a ∧ or a ∨ the position is indicated where the first of Lin’s equations (Eq. 32) is satisfied. In most cases
+this occurs at a height above the region where most of the differences in curvature occur.
+We should also remember that the curvature term in the Orr-Sommerfeld equation Eq. (18) is multiplied by ϕ
+which is very small near the wall (both ϕ and ϕ′ being zero at the wall) and hence the curvature near the wall may
+have less influence than at first sight might be expected. Although it was shown in chapter IX that Lin’s method is
+not always accurate, it gives some support for choosing H as the characteristic parameter.
+It would be interesting to accurately calculate stability diagrams for a set of corresponding cases to see to what
+extent the differences in curvature near the wall have an influence on the stability diagram and compare these results
+to Lin’s. Not being able to perform these calculations at present we decided to stick to the custom of using H as the
+parameter to correlate the critical Reynolds number. The correspondence in u(y) and u′′(y) as discussed above gives
+some confidence. But maybe we should say that we accept this choice for lack of something better, just as in the
+past.
+The possibility to compare arbitrary velocity profiles with the corresponding regular Hartree profile at the same
+value of H has also been introduced into the finite difference program that was mentioned in chapter II. At selected
+x-stations a subroutine is called to find the Hartree profile without suction with the same H as the local profile. It is
+found that also here H presents itself as a suitable parameter. As an example the potential flow pressure distribution
+42
+American Institute of Aeronautics and Astronautics
+
+around a circular cylinder U*(x*) = sin(x*) without and with suction was used. Terrill61 has presented an accurate
+numerical solution for both cases. The constant suction distribution was given by:
+− v0 / (U∞ √Rec)=0.5
+
+(34)
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+The result of our calculation is presented as H(x*) in Fig. 23 [24]. At x* = 1.92 for the suction case H = 2.6282 as
+indicated with an Ο. For this station we also calculated the comparison profile with equal H. Results are shown in
+Figs. 24-26 [24, 25] for u, u′ and u′′ respectively. The critical Reynolds number (Reθ)crit according to Lin for the
+actual profile and the comparison profile is 117.3 and 139.2 respectively; again rather close.
+Figures 27 and 28 [26] taken from Wazzan, Gazley and Smith62 show some results for similar boundary layers
+with suction/blowing and heating. Also here H presents itself as a suitable parameter to characterize (Reδ*)crit ,
+(Rex)crit and Rex for N = 9.
+
+XI. Development of the new data base method
+A. The Arnal data
+
+The new data base was derived from a one parameter series of stability diagrams calculated by Arnal26. Digitized
+scanned versions of the Arnal tables are provided on the CD-ROM1. The velocity profiles used are 15 solutions of
+the Falkner-Skan equation for similar flows (11 Hartree profiles for attached flow and 4 Stewartson for separated
+flow). All profiles are for zero suction. Table 5 [11] lists some data for the Arnal profiles and the asymptotic suction
+profile. The critical Reynolds number for the asymptotic suction profile is taken from Hughes and Reid63. The
+various Arnal cases are indicated by “icase=1:15”. From our renewed analysis of the data in some cases a slightly
+different value for the critical Reynolds number was found as compared to a table given by Arnal.
+In the new database method it will again be assumed that diagrams for the no-suction case may be applied to
+suction boundary layers and that the shape factor H can be used as a single parameter characterizing all possible
+stability diagrams with and without suction.
+With strong suction H may assume values less than the Hartree stagnation point value (2.216); for instance the
+value 2 as for the asymptotic suction profile. The asymptotic suction profile appears to be strongly related to the
+Hartree profiles so that the profile and the related stability diagram can easily be obtained by extrapolation from the
+Hartree family. Figure 29 [27] shows the 6 Hartree profiles for β=1 to β=0 (icase=1:6), from Arnal’s series and the
+asymptotic suction profile. All profiles have been made non-dimensional by U and θ. In addition the asymptotic
+suction profile is shown together with a quadratic extrapolation in 10log(H) from the first 3 Hartree profiles
+(icase=1:3). Figures 30 and 31 [27, 28] show similar results for the shear stress and curvature profiles. It can be
+concluded that the asymptotic suction profile can, with some confidence, be added to the Arnal series of Hartree
+profiles without an inflexion point.
+Section F will show that also the stability diagram for the asymptotic suction profile can be estimated by
+extrapolation from that for the profiles used by Arnal. Hence it is easy to extend the stability data base to H = 2.
+All work on the new method has been performed using the Student Version 5 of MATLAB. All relevant
+MATLAB programs and data files are provided on the CD-ROM1. In the full report on the new method19 these
+MATLAB programs are explained in some detail.
+
+B. First steps in the development of the new database method
+For each velocity profile Arnal presents tables for the cross sections through the stability diagram at 13 to 19
+values of the Reynolds number. This results in a total of 242 cross sections. The number of frequencies per cross
+section may vary. For each cross section a set of values is given for the five parameters: αr δ*, αi δ*, ω δ*/U, cr/U
+and ω υ/U2 For our database we only need αi δ*,and ω δ*/U . Note that F=ω υ/U2 should be equal to {ω δ*/U}/
+Reδ*
+To extract the data for our database we have run the Arnal tables through various programs. First the
+amplification rate −αiθ was converted into the quantity T as introduced in chapter III. The disturbance frequency can
+be non-dimensionalised in two ways; each of which has its own merits as will be shown later. We will be using:
+ω θ/U and F =ωυ/U²
+Diagrams for β=1 (icase=1; stagnation point), β=0 (icase=6; flat plate), β=−.198838 (icase=11; separation
+profile) and for the separated profile with H=35.944 are shown in Figs. 32-35 [29, 30] according to the database and
+Arnal. Note the characteristic difference for profiles without (icase=1and 6) and with inflexion point (icase=11 and
+15). The accuracy of the database is apparently very good. All 15 diagrams can be viewed by running the relevant
+43
+American Institute of Aeronautics and Astronautics
+
+MATLAB program. In order to bring the Arnal data into a form which allows easy and accurate interpolation
+between the various icase and Reθ we try to scale and shift the diagrams in such a way that as much as possible from
+the variation is removed. A first shifting of the diagrams by introducing:
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+r=10log(Reθ) − 10log(Reθ)crit
+
+(35)
+
+was already done in Figs. 32 through 35. [28-30] Points for which T reaches its maximum value Tmax in a certain
+cross section form the “axis”. The absolute maximum of T for the whole diagram is denoted by Tmaxmax and is given
+in Table 6 [12] for all icase. From the table it follows that Tmaxmax varies with several orders of magnitude from
+icase=1 to 15.
+Further T will be scaled with Tmaxmax reducing the maximum value for each diagram to 1. Scaled values of Tmax
+(=Tmax /Tmaxmax) on the axis will be denoted by T*max From Fig. 36 [30] it follows that T*max vs r is a nearly
+universal curve for all 15 cases. If we introduce rtop as the value for r at which T*max reaches is maximum value (1)
+and plot T*max as a function of r*=r/rtop all curves very nearly collapse (Fig.37) [31]. Moreover this universal curve
+is very well approximated by:
+T*max=r* exp(1 − r*)
+
+(36)
+
+The “axis”, as locus of Tmax, is found to be better plotted as 10log(Faxis), where F= ωυ/U2 ; results are shown in
+Fig. 38 [31]. The axes in this format turn out to be nearly straight and rather evenly distributed and hence well suited
+for later extrapolation and interpolation. The kinks in the axes for icase > 6 at higher values of r are due to the
+appearance of Rayleigh instability for velocity profiles with an inflexion point. Because for Rayleigh instability
+ωθ/U for the upper branch of the neutral curve and for the axis become constant the slope of these curves in the
+10
+log(F) format vs r becomes −1. These slopes for cases without inflexion point appear to be near to −√2 ; whether
+this is exact and could be proved is unknown to the author. The coordinates of the “top of the amplification
+mountain” are denoted by rtop and 10log(Ffor top). As an average value for rtop we will sometimes use rtop=1/3.The
+values for 10log(Faxis) at r=1/3 for icase =1:15 are shown in Fig. 39 [32] as function of 10log(Reθ)crit. It is easy to
+extrapolate the 15 values to the value of 10log(Reθ)crit for the asymptotic suction profile (indicated by + in the figure).
+This and other important functions have been approximated by splines in the database.
+In order to further reduce the variation we will scale ωθ/U with the scale as defined in Figs 1-3 [12, 13].
+ω*= {ω θ/U−(ω θ/U)axis} / scale
+
+(37)
+
+All interesting Arnal values are now found in the region -2 ≤ω*≤ 3. Fig 40 [32] shows, as an example, all T for
+all cross sections for the flat plate diagram vs ω*. Figure 41 [33] shows the same results but now in the form
+T/Tmaxmax vs ω* so that all maxima are found at ω*=0. A final shifting is performed by moving the curves in Fig. 41
+[33] in vertical direction so that the local maximum value of the shifted T becomes zero (Fig. 42) [33]. The values of
+T thus obtained are denoted by Tss (ss stands for shifted and scaled) and were splined for all 242 cross sections using
+34 standard break points in the interval −2 ≤ ω*≤ 3
+
+C. The “roadmap”
+
+The coordinates of the 242 cross sections given by Arnal are plotted in Fig. 43 [34] as values of 10log(Reθ)crit vs.
+r. This plot will later be used as a “road map” to trace a developing boundary layer from the stable region (r < 0),
+possibly into the unstable region (r > 0) and sometimes due to sufficient suction back into the stable region (r < 0).
+Inspecting the road map shows that the distribution of the Arnal points is rather irregular and moreover has an upper
+limit at a variable value of r. This makes interpolation in this area rather cumbersome. To ease interpolation and
+possibly extrapolation we introduced a 59 point non-equidistant “r-grid” in the region 0 ≤ r ≤ 2.5. Because variations
+are fast near r = 0 and slow near r =2.5, the density of the r-grid has been chosen accordingly. In all 15 x 59 =885
+points a Tss spline has been defined; either by quadratic Lagrange interpolation within the Arnal region for constant
+icase or by extrapolation to the right from the last Arnal point until r = 2.5. The resulting data base contains 15 × 59
+=885 splines representing 59 cross sections at constant Reθ (the “r-grid”) for each of the 15 basic stability diagrams.
+In total the database contains about 150,000 numbers. In practice the region with extrapolated data will seldom be
+used because it can be expected that transition will occur within the Arnal covered range. To illustrate this the
+roadmap includes curves for constant N-factors of 1 through 15 that were calculated for the Hartree and Stewartson
+44
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+similar flows. Of course the vertical axis r = 0 corresponds to N = 0. Note that for similar boundary layers the
+interpolation of Tss is done along horizontal lines for constant H and hence constant 10log(Reθ)crit. For non-similar
+flows these curves for N are not valid. Imagine a trace in the roadmap approaching the N = 9 curve from the left
+after which such a distribution of suction with x is applied that the N = 9 curve is not crossed. Because still being in
+the unstable region for r > 0 it should be expected that transition may occur to the left of the N = 9 curve.
+For further analysis the roadmap area is divided in 9 regions (Fig 44) [34]. A function “cross_cut” was written
+that within region 5 uses a two-dimensional quadratic Lagrange interpolation in the nearest 9 points in the 15 x 59
+grid to find the Tss spline at arbitrary values of 10log(Reθ)crit and r. Because the spline format in MATLAB allows
+linear operations (like the Lagrange interpolation) on the whole spline at once, cross_cut works very fast. In
+applications we also want to be able to enter the other regions (e.g. for r < 0 to calculate the stabilizing effects of
+strong suction). With strong suction we may also enter the region for H < 2.2, approaching H = 2 for the asymptotic
+suction profile. For regions outside number 5 proper extrapolations have been defined in the cross_cut function.
+Extrapolating from region 5 into region 2 for instance is done using the similarity in the shifted and scaled diagrams
+(to be further discussed in section D).
+Late in the present study it has become clear that the variation of the Tss splines with varying icase but at
+constant r, is rather small. Based on this observation a function “cross_cut_fast” has been developed that is much
+faster than cross_cut but also somewhat less accurate. Its simplification comes from approximating cross sections
+through the stability diagram at constant values of r with parabolic curves that were allowed to be different above
+and below the axis. In fact this function has features of the database that was used by the author in earlier versions.
+We will not describe the details of the new method here; these can be found in the report19 that is included on the
+CD-ROM1.
+
+D. Comparison of stability diagrams according to Arnal and the database
+Once the database has become available it is rather easy to generate the stability diagram for an arbitrary value of
+the shape factor H in all 9 regions of Fig. 44 [34]. How well the database reproduces the Arnal data was already
+shown in Figs. 32-35 [28-30]; the correspondence is seen to be excellent. Complete stability diagrams for arbitrary
+values of H can be calculated by one of the programs on the CD-ROM1. In the program the choice can be made to
+superimpose various shifted and scaled diagrams. It follows that the scaled and shifted diagrams for icase=1 to 6,
+that is from stagnation point to flat plate, are very similar if not identical (Fig. 45) [35].
+
+E. Deriving stability diagrams for icase = 2 - 6 from that for the stagnation point (icase=1)
+
+The 6 scaled and shifted diagrams for 2.216 ≤ H ≤ 2.591 (that is from stagnation point to flat plate boundary
+layer) are so very nearly equal (Fig. 45) [35] that it can reasonably be assumed that the (scaled and shifted) diagram
+for the stagnation point flow is also applicable to the asymptotic suction profile. In fact this is the basis for the
+extrapolation from region 5 into region 2 in the function cross_cut.
+This similarity is used in the report19 to estimate the diagram for icase=2 : 6 from that for icase=1. We only have
+to assume that the scaled and shifted diagrams are identical for 1 ≤ icase ≤ 6 (that is for all Hartree velocity profiles
+without an inflexion point). In addition it is only necessary to know for values of icase from 2 to 6:
+• The value of H
+• 10log(Re θ)crit from the spline vs H.
+• “Scale” and 10log(Ftop) from the relevant splines vs 10log(Reθ)crit
+Fig. 46 [35] shows the results for icase=2. The full curves follow from the extrapolation from icase=1; the symbols
+denote the Arnal data for icase=2. The estimated diagram compares very well with the Arnal values.
+
+F. Composing the diagram for the asymptotic suction profile from that for the stagnation point
+Using the function cross_cut it is easy to obtain diagrams for arbitrary values of H over the full range from H=2
+to H=35.944. A MATLAB program for that is available on the CD-ROM. For H=2 we should obtain the diagram for
+the asymptotic suction profile. A good illustration of the extrapolation from region 5 into region 2 inside the
+function cross_cut is obtained when we derive the asymptotic diagram directly from that for the stagnation point.
+This is very similar to what we did in the previous section for diagrams “on the flat plate side of the stagnation
+point”. First we summarize what we already know or assume about the asymptotic suction profile:
+• H=2
+• 10log(Reθ)crit = 4.3643 from the spline vs 10log(H)
+• 10logTmaxmax, 10log(Faxis) at r-grid= 1/3 and the scale for omega all from splines vs. 10 log(Reθ)crit.
+45
+American Institute of Aeronautics and Astronautics
+
+•
+
+Furthermore we assume that the scaled and shifted diagram for the asymptotic suction profile is identical to
+that for the stagnation point.
+Fig. 47 [36] gives the resulting diagram in the classical form. Also a MATLAB program that generates stability
+data in tables for arbitrary values of H and Reynolds number is available on the CD-ROM.
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+XII. Some applications of the new method
+The full report on the new method19 presents a number of examples of N-factor calculations using the functions
+cross_cut and cross_cut_fast. The necessary boundary layer calculations for some examples have been made by the
+finite difference method of which a brief description is given in chapter 3 of the report19. From the examples it can
+be concluded that the fast version is rather accurate for H values below 2.591 that is for velocity profiles without
+inflexion point. We can expect to be in this H-region when designing suction distributions for laminarisation. The
+MATLAB programs that are available on the CD-ROM can be used to illustrate all these aspects. The user can
+easily change parameters in these examples and add his own cases. All examples have a standardized output where
+the user can follow the calculation step by step on the screen. In the following we will only discuss one specific
+example, namely the flat plate with constant suction velocity (“Iglisch boundary layer”). An exact solution has been
+given by Iglish30 (see also van Ingen4). In this solution a new independent variable x* is introduced by:
+x*=(-v0/U)2 (U x /υ)
+
+(38)
+
+This implies that the” reference length” c is defined by:
+c=U (υ/−v0)2
+
+(39)
+
+In what follows we will use the suction coefficients cq and (cq)red defined by:
+cq=−v0/U
+
+and
+
+(cq)red =104 cq
+
+(40)
+
+If for the reference speed U∞ the constant mainstream velocity U is used it follows that:
+Rec=(cq) −2
+
+(41)
+
+From Iglisch’s solution it is known that at x* = 0 the boundary layer starts as the Blasius flat plate without
+suction and that for x → ∞ the asymptotic suction boundary layer is obtained; hence this is not a similar flow. It also
+is known that near x* = 0 a regular behavior is obtained if √x* is used as independent variable. We used a power
+series development of the stream function in √x* near x*=0 and the finite difference method further downstream.
+It will be seen that interesting values of cq are of the order of 10-4 and hence that the Reynolds number based on c
+is of the order of 108.
+The following figures in this section will present some results for the Iglisch flow. They are nearly self
+explanatory so that only a very brief discussion will be given. Figure 48 [36] shows H vs √x* There is a good
+correspondence with the classical results by Iglisch. It is clear that the boundary layer starts as that for the Blasius
+case and asymptotically approaches the asymptotic suction boundary layer.
+We have calculated the N-factors for 12 values of (cq)red from .4 in steps of .1 until 1.5. Figure 49 [37] shows
+10
+log(Reθ)crit and 10logReθ for all values of cq. Fig. 50 [37] shows the traces in the roadmap. For cqred=1.5 r remains
+< 0 that means that complete stability is reached. That the trace for certain values of cqred crosses the N=9 line may
+not be explained as the occurrence of transition. The N=9 line in the roadmap is only valid for similar flows which is
+not true for the Iglisch flow. To conclude about transition we have to plot the N-factor itself (Fig. 51) [38]. This
+shows that extremely small suction velocities are sufficient for complete stabilization. For just keeping the boundary
+layer laminar the maximum N-factor is allowed to grow until about 9. This reduces the required suction velocity to
+about 1/3 the value for complete stabilization. Since the maximum N-factor is only reached locally a further
+reduction in suction quantity would follow from taking a non-constant suction velocity, adjusted to the stability
+characteristics of the boundary layer (see van Ingen4, chapter 9).
+Figure 52 [38] shows the N-factor as function of √x* for cqred=0.5 using both versions of the function cross_cut.
+A good correspondence is shown.
+
+46
+American Institute of Aeronautics and Astronautics
+
+Finally Fig. 53 [39] shows the N-factor as function of the x-Reynolds number for various values of the suction
+coefficient. Note the extremely high Reynolds numbers that result from Eq. (41) and the very low values of the
+suction coefficient.
+In the older literature it was mentioned that for the Iglisch flow a reduced suction coefficient of 1.18 was
+sufficient to obtain complete stability. We find the higher value 1.5. This appears to be due to the fact that the
+critical Reynolds numbers as used by Ulrich are higher than in our data base.
+Applications to airfoil design of the present method inserted in the FORTRAN 77 environment of XFOIL can be
+consulted in the TU Delft Master thesis of J. Bongers.20
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+XIII Conclusions
+Three main conclusions can be drawn from the present paper.
+• The eN method remains a useful tool for predicting the position of boundary layer transition in twodimensional incompressible flow. This can be attributed to the fact that linear stability theory covers 7585 % of the distance between first instability and transition.
+• The boundary layer velocity profile shape factor H is a suitable parameter to characterize stability
+diagrams for flows with pressure gradient and suction.
+• There is much similarity between properly scaled and shifted stability diagrams. This simplifies the
+development of the eN data base method.
+
+Acknowledgments
+N
+
+I dedicate this “50 years of e history” to my wife Anne for her continuous love and support during her 50 years
+of marriage to me and my work.
+The new database method was derived using a set of linear stability data that were published by Arnal. The
+author is indebted to Dr. Arnal for his permission to include his tables in the present digital form on the CD-ROM.
+The later stages of the development of the new data base method have been done in the same period that the
+author assisted in the tutoring of Mr Jeroen Bongers during his Master Thesis work at the Delft Aerospace Low
+Speed Laboratory in the group of Prof. Boermans. The subject of the thesis was the implementation of the new data
+base method into the FORTRAN environment of the XFOIL program. In addition suction distributions had to be
+designed for the practical application to an ASW-28 standard class sailplane. While transferring the preliminary
+version of the new method into the XFOIL system, its handling and performance were thoroughly scrutinized by
+Jeroen Bongers which resulted in many suggestions for improvement. The great help this has provided to the author
+is gratefully acknowledged. Jeroen graduated from Delft University in August 2006. The author is very pleased that
+both Jeroen Bongers and Prof. Boermans gave permission to include the Master Thesis20 on the CD-ROM1 showing
+the possibilities for practical application of the new method. Jeroen Bongers has also been a great help during the
+preparation of the final text of Reference 19 in LATEX (from which the present paper was derived) and the design
+and realization of the CD-ROM.
+The author is indebted to the Dean of Delft Aerospace Prof. J.M. Hoekstra and the Head of the Aerodynamics
+Group, Prof. P.G. Bakker for providing the funding to realize the CD-ROM.
+
+References
+1
+
+Ingen, J. L. van, “The eN Method for Transition Prediction. Historical Review 1956-2006 of Work at Delft Aerospace Low
+Speed Laboratory; Including a new Version of the Method,” CD-ROM Edition, 2006, CD-ROM Design and Realization by J.
+Bongers, For availability, see www.lr.tudelft.nl/aerodynamics/e-to-the-N.
+2
+Ingen, J. L. van, “A Suggested Semi-empirical Method for the Calculation of the Boundary Layer Transition Region.”
+Report ,VTH-74, 1956, (Also on CD-ROM1)
+3
+Ingen, J. L. van, “A Method of Calculating the Transition Region for Two-dimensional Boundary Layers With Distributed
+Suction,” 6th European Aeronautical Congress Munich, Sept 1-4, 1965, (Also on CD-ROM1)
+4
+Ingen, J. L. van, “Theoretical and Experimental Investigations of Incompressible Laminar Boundary Layers with and
+without Suction.” PhD Thesis Delft, Rept. VTH-124, Delft University of Technology, Dept. of Aerospace Engineering. 1965.
+(Also on CD-ROM1)
+5
+Ingen, J. L. van, “On the Design of Airfoil Sections Utilizing Computer Graphics” De Ingenieur, vol. 43, 24 October 1969,
+pp L 110-118), (Also on CD-ROM1)
+6
+Dobbinga, E. Ingen, J. L. van and J. W. Kooi. “Some Research on Two-dimensional Laminar Separation Bubbles,” AGARD
+CP 102, Lisbon, 1972. (Also on CD-ROM1)
+7
+Ingen, J. L. van, “On the Calculation of Laminar Separation Bubbles in Two-dimensional Incompressible Flow,” AGARD
+CP168 Göttingen, May 1975 (Also on CD-ROM1)
+
+47
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+8
+Ingen, J. L. van, “Transition, Pressure Gradient, Suction, Separation and Stability Theory,” AGARD CP-224, Copenhagen,
+1977, (Also on CD-ROM)
+9
+Ingen, J. L. van, “Transition, Pressure Gradient, Suction, Separation and Stability Theory,” Rand Corporation P-619, 1978,
+(Also on CD-ROM1)
+10
+Ingen, J. L. van, Boermans, L. M. M. and Blom, J. J. H. “Low-Speed Airfoil Section Research at Delft University of
+Technology,” Paper ICAS-80-10.1, München, 1980, (Also on CD-ROM1)
+11
+Ingen, J. L. van, and. Boermans, L.M.M. “Research on Laminar Separation Bubbles at Delft University of Technology in
+Relation to Low Reynolds Number Airfoil Aerodynamics.” Conference on Low Reynolds Number Aerodynamics, Notre Dame,
+Indiana, USA, June 1985. (Also on CD-ROM1)
+12
+Boermans, L. M. M, Donker Duyvis, F. J., Ingen, J. L. van, and Timmer, W. A. “Experimental Aerodynamic
+Characteristics of the Airfoils LA 5055 and DU 86-084/18 at Low Reynolds Numbers.” Conference on Low Reynolds Number
+Aerodynamics, Notre Dame, Indiana, USA, June, 1989. (Also on CD-ROM1)
+13
+Wubben, F. J. M., Passchier, D. M. and J. L. van Ingen. “Experimental Investigation of Tollmien Schlichting Instability and
+Transition in Similar Boundary Layer Flow in an Adverse Pressure Gradient.” In “Laminar-Turbulent Transition,” September
+1989. IUTAM Symposium, Toulouse, (Also on CD-ROM1)
+14
+Ingen, J.L. van, “Research on Laminar Separation Bubbles at Delft University of Technology.” In V.V. Kozlov and A.D.
+Dovgal, editors, “Separated Flows and Jets” 1990. IUTAM Symposium, Novosibirsk. (Also on CD-ROM1)
+15
+Ingen, J.L. van, “Some Introductory Remarks on Transition Prediction Methods Based on Linear Stability Theory.” In
+“Transitional Boundary Layers in Aeronautics”, KNAW, Amsterdam, 1996. (Also on CD-ROM1)
+16
+Ingen, J.L. van, “Boundary Layer Research in Relation to Airfoil Design at the Faculty of Aerospace Engineering of Delft
+University of Technology.” 2nd Int. Symposium on Aeronautical Science and Technology in Indonesia, ISASTI ’96. Jakarta
+1996 (Also on CD-ROM1)
+17
+Ingen, J.L. van, “Looking Back at 40 Years of Teaching and Research in Ludwig Prandtl’s Heritage of Boundary Layer
+Flows.” 39th Ludwig Prandtl Memorial Lecture, Prague, 1996. ZAMM 78 1998 1. 3-20. (Also on CD-ROM1)
+18
+Ingen, J.L. van, “Part of my Forty Years of Teaching and Research in Boundary-Layer Flows: The Laminar Separation
+Bubble.” Seminar on “Boundary Layer Separation in Aircraft Aerodynamics” Dedicated to Prof. J.L. van Ingen on Occasion of
+his Retirement Editors: Henkes, R. A. W. M. and Bakker,P. G. 1997. (Also on CD-ROM1)
+19
+Ingen, J. L. van: “A new eN Database Method for Transition Prediction”. 2006. (On CD-ROM1)
+20
+Bongers, J. “Implementation of a new Transition Prediction Method in XFOIL” Master’s Thesis, Delft University of
+Technology, August 2006, (Also on CD-ROM1)
+21
+Ingen, J. L. van, “A series of Matlab Programs and Data Files Related to the new eN Method”. (On CD-ROM1)
+22
+Ingen, J. L. van, “A Suggested Semi-empirical Method for the Calculation of the Boundary Layer Transition Region.”
+Report VTH-71, 1956 (Extended version of 2 in Dutch).
+23
+Ingen, J.L. van, 1956b - A Suggested Semi-Empirical Method for the Calculation of the Boundary Layer Transition Region.
+Proc. Second European Aeronautical Congress, Scheveningen, pp. 37.1 - 37.16, 1956
+24
+Smith, A. M. O. Transition, Pressure Gradient and Stability Theory. Proc. 9th Int. Con. of Appl. Mech., vol.4, 234–244,
+1956.
+25
+Smith, A. M. O. and Gamberoni, N. “Transition, Pressure Gradient and Stability Theory.” Technical Report ES-26388,
+Douglas Aircraft Company, 1956.
+26
+Arnal, D., “Stability Diagrams for Incompressible Similar Boundary Layer Profiles without and with Backflow” (in
+French), (“Diagrammes de Stabilité des Profils de Couche Limite Auto-Semblables en Ecoulement Bidimensionnel
+Incompressible, sans et avec Courant de Retour”). Technical Report OA Nr. 34/5018, ONERA, 1986.
+27
+Schlichting, H. “Grenzschichttheorie.” G. Braun-Verlag, 1978.
+28
+White, F. M., “Viscous Fluid Flow.” 3rd edition, 2006. McGraw-Hill.
+29
+Rosenhead, L. “Laminar Boundary Layers.” Oxford University Press, 1961
+30
+Iglish, R. “Exact Calculation of the Laminar Boundary Layer on the Flat Plate wuth Homogeneous Suction.” (in German,
+“Exakte Berechnung der Laminaren Grenzschicht an der Längsangeströmten Ebener Platte mit Homogener Absaugung.” Schr.
+Dtsch. Akad. Luftfahrtf. 8B pl-51, 1944. (See also N.A.C.A. T.M. 1205, 1949).
+31
+Schubauer, G. B. and Skramstadt, H. K. “Laminar Boundary Layer Oscillations and Transition on a Flat Plate.” Report
+NACA 909, 1948.
+32
+Schmid, P. J. and Henningson, D. S. “Stability and Transition in Shear Flows.” Applied Mathematical Sciences, 142, 2000.
+Springer.
+33
+Pretsch, J. “The Stability of a two-dimensional Laminar Flow with Favourable and Adverse Pressure Gradient“, (in
+German, “Die Stabilität einer Ebenen Laminarströmung bei Druckgefälle und Druckanstieg.” Jb. Dtsch. Luftfahrtforsch., 1:158–
+175, 1941.
+34
+Pretsch, J. “The Amplification of Unstable Disturbances in a Laminar Friction Layer”, (in German; “Die Anfachung
+instabiler Störungen in einer Laminaren Reibungsschicht.” Ddtsch. Luftfahrtforsch., pp 154–171, 1942
+35
+Pretsch, J. “Computation of the Stability Limit of Boundary Layer Profiles and the Amplification of Disturbances.” (in
+German, “Berechnung der Stabilitätsgrenze von Grenzschichtprofilen und der Anfachung von Störungen.” Göttinger
+Monograph., Part. 3.2, 1945.
+36
+Lighthill, M. J. “Group Velocity.” 1 Inst. Maths Applics., Vol.. 1, pp. 1-28, 1965
+
+48
+American Institute of Aeronautics and Astronautics
+
+Downloaded by Technische Universiteit Delft on September 9, 2026 | http://arc.aiaa.org | DOI: 10.2514/6.2008-3830
+
+37
+Gaster, M. “A Note on the Relation Between Temporally Increasing and Spatially Increasing Disturbances in
+Hydrodynamic Stability.” J. F. M., 1962, Vol. 14, pp. 222-224.
+38
+Liepmann, R. W. “Investigation of Boundary Layer Transition on Concave Walls.” NACA Wartime Rept. ACR-4J28, 1945
+39
+Timman, R., “Stability Diagrams for Laminar Boundary Layer Flow,” NLL Rept. F193, 1956
+40
+Tollmien, W. “On the Origin of Turbulence,”(in German: “Über die Enstehung der Turbulenz.”); 1. Mitteilung Nachr. Ges.
+Wiss. Göttingen, Math. Phys. Klasse, 21-44, 1929 (also NACA TM 609, 1931).
+41
+Lin, C. C. “On the Stability of Two-Dimensional Parallel Flows.” Quart. Appl. Math., Vol. 3, July 1945, Oct. 1945, Jan.
+1946.
+42
+Ulrich, A. “Theoretical Investigations on the Drag Reduction through Laminarisation by Suction,” (in German,
+“Theoretische Untersuchungen über die Widerstandsersparnis durch Laminar-haltung mit Absaugung”). Schr.Dtsch.Akad.
+Luftfahrt, 8B, no. 2, 1944 (also NACA TM 1121).
+43
+Schlichting, H. and Ulrich, A. “On the calculation of Laminar-Turbulent Transition”, (in German, “Zur Berechnung des
+Umschlages laminar-turbulent”). Jahrbuch dDt. Luftfahrtforschung, I, 8. 1942
+44
+Lin, C. C. “The Theory of Hydrodynamic Stability,” Cambridge University Press. 1955
+45
+Wells, C. S., “Effects of Free-Stream Turbulence on Boundary Layer Transition.” AIAA Journal, Vol. 5, no.1, pp. 172174.1967
+46
+Spangler, J. G. and Wells, C. S., ”Effects of Free-Stream Disturbances on Boundary-Layer Transition.” 1968, AIAA
+Journal, Vol. 6, no. 3, pp. 543-545
+47
+Mack, L. M. M. “Aerodynamic Analysis Requiring Advanced Computers.” Paper nr 4. Technical Report SP-347, NASA,
+1975
+48 Ingen, J. L. van, “Advanced Computer Technology in Aerodynamics: A Program for Airfoil Section Design Utilizing
+Computer Graphics.” AGARD Lecture Series 37. “High Reynolds-Number Subsonic Aerodynamics,” 1970, pp. 8.1-8.33.
+49
+Boermans, L. M. M. and Blom, J. J. H. “Low Speed Aerodynamic Characteristics of an 18% Thick Airfoil Section
+Designed for the All-Flying Tail plane of the M-300 Sailplane.” Rept. LR-226, Delft University of Technology, Dept. Aerospace
+Eng. 1976
+50
+Boermans, L. M. M. and Selen, H.J.W. “Design and Tests of Airfoils for Sailplanes with an Application to the ASW-19B.”
+lCAS-Paper 82-5.5.2. 1982
+51
+Boermans, L. M. M. and Waibel, G. “Aerodynamic and Structural Design of the Standard Class Sailplane ASW-24.” lCASpaper 88-2.7.2, 1988
+52
+Boermans, L. M. M. and Garrel, A. van, 1994. “Design and Wind Tunnel Test Results of a Flapped Laminar Flow Airfoil
+for High-Performance Sailplane Applications.” lCAS-94-5.4.3, 1994
+53
+Taghavi, H. and Wazzan, A. R. “Spatial Stability for some Falkner-Skan Profiles with Reversed Flow.” The Physics of
+Fluids, vol. 17 1974
+54
+Wazzan, A. R., Okamura, T. T. and Smith, AM.O. “Spatial and Temporal Stability Charts for the Falkner-Skan Boundary
+Layer Profiles.” Rept. DAC-67086, McDonnelI Douglas.1968
+55
+Kümmerer, H. “Numerical Investigations of the Stability of Two-dimensional Laminar Boundary Layers.” (in German,
+“Numerische Untersuchungen zur Stabilität ebener Laminarer Grenzschichtströmungen”. Ph.D. Thesis, Univ. Stuttgart. 1973
+56
+Obremski, H. J., Morkovin, M. V. Landahl, M. with Contributions from Wazzan, A.R., Okamura, T.T. and Smith, A. M. O.
+“A Portfolio of Stability Characteristics of Incompressible Boundary Layers”. Technical Report AGARDOGRAPH no. 134,
+NATO, 1969.
+57
+Klebanoff, P.S., Tidstrom, K. D. and Sargent, L. M., “The Three dimensional Nature of Boundary Layer Instability”, J.F.M.
+Vol. 12, 1962, p. 1-34
+58
+Wieghardt, K. “On the Calculation of Two-dimensional and Rotation Symmetric Boundary Layers with Continuous
+Suction,” (in German, “Zur Berechnung Ebener und Drehsymmetrischer Grenzschichten mit Kontinuierlicher Absaugung.) Ing.
+Arch., 22:368, 1954.
+59
+Stock, H. W. “On Laminar Boundary Layers with Blowing and Suction.” Z. Flugwiss. Weltraumforsch., 4, 93:100, 1980.
+60
+Stock, H. W. and E. Degenhart. “A Simplified eN Method for Transition Prediction in Twodimensional Incompressible
+Boundary Layers.” Z. Flugwiss. Weltraumforsch. 13,16–30, 1989.
+61
+Terrill, R. M. “Laminar Boundary-Layer Flow Near Separation with and without Suction.” Phil.Trans. A 253, pages 55–
+100, 1960.
+62
+Wazzan, A. R.,Gazley,C. Jr. and Smith, A. M. O. “The H-Rx Method for Predicting Transition.” Rand Paper, P-6581, 1981
+63
+T.H. Hughes and W.H. Reid. “On the Stability of the Asymptotic Suction Boundary Layer Profile.” J. Fluid Mech., 23,
+715–735, 1965.
+64
+Boermans, L.M.M. “Research on Sailplane Aerodynamics at Delft University of Technology. Recent and Present
+Developments”. In Yearbook 2006 on CD-ROM of the Netherlands Society of Aeronautical Engineers (NVvL); Anthony
+Fokkerweg 2, 1059 CM, Amsterdam, NL.
+
+49
+American Institute of Aeronautics and Astronautics
+
+

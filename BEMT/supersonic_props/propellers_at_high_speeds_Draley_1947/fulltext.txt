@@ -1,0 +1,1020 @@
+a
+.-
+
+67
+
+m o m s AT 'EIIGH S P ~ S
+
+.
+
+By Eugene C Draley
+Langley Memorial ~ e r o n a u t i c a l~' a b o r a t b r y
+
+-
+
+4
+
+The f i r s t NACA high forward-speed propeller t e s t s were conducted duriprg'the recent war period. The purpose of these highspeed propeller t e a t s was t o stxdy t h e f a c t o r s a f f e c t i n g the pro,
+p e l l e r performance a t high speede and t o obtain information
+permitting the design of propellers having high peYformnce a t high
+forward speeds. The purpose of t h i s paper is t o present the more
+recent r e s u l t s obtained i n t h i s program. Studies have been made of
+a i r flaw phenmena a t l a w speeds, which a r e therefore not included.
+i n t h i s paper, of same of the basic f a c t o r s which a f f e c t high-epeed
+propeller performance. These s t u d i e s cover research on propeller
+pitch d i s t r i b u t i o n (reference l ) , propeller d e ~ i and
+g performance
+(references 2, 3, and 4), dual-rotatlon propellers (references 5
+and 6), and the f i e l d of flow around a i r i n l e t cowling8 and prop e l l e r epinners (reference 7 ) .
+d
+
+The r e s u l t s of the t e s t s of t h e NACA & - ~ , 0 8 4 3 ~ r o p e l l e ri n the
+Langley &foot high-speed tunnel are presented i n figure 1 which
+shows the s t a t u s of the high-speed research program on propellers.
+I n the upper part of t h i s f i g u r e is a p l o t of meximum efficiency
+against forward p c h number. The desigr? nllmerals represent, i n
+order of presentatton, t h e propeller diameter, the design camber i n
+t e r n of design lift coefficient a t the 0.7 blade-radius s t a t i o n ,
+the thickriess-ratio a t t h e 0.7 blade-radius station, and t h e
+s o l i d i t y per blade. These t e s t r e s u l t s were obtained f o r a bladeangle s e t t i n g of 60'.
+Fpr purposes of cmgarison there a r e
+included i n t h i s f i v e the efficiency c h a r a c t e r i s t i c s of propellers
+currently i n use a t the time the high-speed propeller program was
+i n i t i a t e d . Also included, f o r purposes of canparison, I s t h e
+.
+variation i n i d e a l jet-propulsion efficiency based upon t y p i c a l
+values of the t h r u s t per u n i t area currently used i n J e t engines.
+Comparison~betweenthe previous propeller efficiency and the
+NACA high-speed propeller efficiency indicate0 the gains made i n t&
+early phase of t h e research program. It sliould be noted t h a t the l e v e l s
+, of effiqiency for the PACA propeller a t low speeds i s unusually hiljh,
+well' i n exc'ese 'of 9 percent. 'The r e s u l t e ' i n d i c a t e t h a t propellere with
+r e l a t i v e l y high l e v e l s of efficiency could be designed f o r speede
+a s high a s 500 miles per hour. These high l e v e l s are the r e s u l t
+of ueing optimum NACA l & e r i e s propeller a i r f o i l s with very t h i n
+sections, of eliminating the thick shank sections of propellers,
+and of desigriing the propeller t o operate with i d e a l Betz loadings
+by methods outlined. i n references 8 and 9, Camprison of t h i s
+efficiency with t h e efficiency of t y p i c a l pravious propellers Indic a t e s the gains i n propeller performance thus obtained by improved
+..
+
+--
+
+Preceding page blank
+
+-
+
+"
+
+f
+
+.,
+
+design. The onset of c & p r e a s i ~ i l i t y e f f e c t s was delayed by about
+100 milea per hour i n foryayd,spe.ed.
+The early phase of thie, research program was lybited i n forward
+Mach number t o approximately 0.7 '(approximtelg 3CO miles per hoilr)
+and t h i s l i m i t is indicated by the cross-hatched region i n figure 1.
+..
+
+*
+
+. . - A r i c e i t phase of t h i s 'kirk has .'include$ the bxten&i6n i n the
+
+~ a n g l e y8-f opt higkpe.6.d.turlnel of' .-this study t o higher forward
+speeds i n excess of 90 percent of t h e speed of sound./ The7'part of
+t h e curve t o the r i g h t of tad . crbes-;hstched, region represents .the
+r e s a t s of these t e s t s (reTerence LO) -''J!h pur>ose of t h e t e s t a
+was t o obtain data a t e x t r 6 l . y high forward sgeeds and increased .
+power loadings f o r a study of theCphenomena i n t h i s speed range
+and thus t o define f o r modern, gropeliers t h e miximan eflf iclency
+char&ct&istics and t o obtflin indications. . of possible
+further
+.
+. . . .
+improeaent i n ijropeller perf o m n c e . .. .. ..
+
+.'
+
+.
+
+.
+
+.
+
+. ~ h *t e a t r e s u l t s show that, a t f o k a r d Mach numbere i n the - - order of 70 percent of t h e speed of eounh, very large serious. . .
+adverse e f f e c t s of c a p r e s s i b i l i t y occur so t h a t efficiency l e v e l s
+of the order of 50 percent t o 55 percent are. reached a t forward Mach
+numb;efs of 85 percent of the speed of so'bnd. Tili~s, f o r t h e f i r s t
+t j m ~ ,a. carparison is obtained which. defines the range of. forward ..:
+speedb in which propellers ape' more e f f i c i e n t t w n J e t engi-nes and
+the range of speeds. 'in which j e t engines. a r e more e f f i c i e n t than .
+propellers. It should be noted, however, t h a t t h i s 'comparison-:
+between t h e ' ideal j e t efficiency and t'ne propeUcr efficiency i s
+subject t o changes, a s i l l u s t r a t e d by the f a c t t h a t large -provement,over the previous propeller c h a r a c t e r i s t i c & ,has ~ L r e a d ybeen
+* .
+obtained. . . .
+.
+.
+.
+-., :
+.
+.
+.,.
+. . . . -. . .
+..
+!.
+The aecond part of figure 1 is p l o t of the parer. ooeff i c i e s t
+correspondsng t o the eximwn efficiency curve for' the two-blade.
+Of l n t e r a s t
+. HACA,.propeller sharn in the upper p a r t of the f i g u r e .
+here is the f a c t t h a t the e f f e c t s of compressibility 'on' the power.
+coefficient corresponding t o maximum efficiency does not lead t o
+v e q serious ,and abrupt reductions i n the 'value of this. power coef.:
+.f icient,.which reduction w i l l be sliown later t o occtu. a t lower
+; setting0 of t h e blade angle. A s a matter of f a c t , a t the maximuny
+... . speed shown there is e-tendency' toward m t h e r increas6s' - i n .t h i s ..+:
+power coefficient. Tests made a t higher speeds where maximum e f f iciency .was not obtained i n d i ~ a t e dmoreover t h a t a t these higher
+speeds f u r t h e r rapid increases i n t h e power coefficient can be
+expected.. Predictions based: on low-speed. informti,on of the power
+coe.ff
+ic'lent f o r ,maximum eff ic1,ency for* the h&jk'advance-rdiameter :
+--.
+,
+.
+.,
+. .,. . .
+. . . . . .. . .. . .. . . . . .. . .
+...
+.. . . . . .
+. . . . . .
+.
+.
+.:.'.
+. .
+. . . . . . ......... :
+-,!
+. .
+..
+. .. . .
+.
+.
+~
+
+- -~
+
+.
+
+,
+
+'
+
+, '
+
++.
+
+-
+
+.
+
+i
+
+.
+
+.
+
+..i
+
+...I.....
+
+1
+
+'
+
+'
+
+.
+
+.
+
+.
+
+e .
+
+- .
+
+'P-7,
+
+- .
+
+. r a t i m (approximately 4) associated with blade angles of 60' a r e
+. thue i n d i c a t e d t o underestimate',. t h e hi&-apeed
+value of the power
+.- .
+coefficient.
+. ,, . J . " , r
+'. . .
+I .
+
+.f3
+
+'*
+
+The lower p a r t of ffgure 1 i l l u s t r a t e s o m e .of t h e reasons f o r
+, t h e aforementioned changes, It i s a p l d t of the radial d i s t r i b u t i o n
+of thruet along the blade radi'uB measured by m&ntum s.urve~s. A t
+l a w speeds the d i s t r i b u t i o n of t h r u s t very closely approaches the
+i d e a l loading f o r which the pPopeller was desimed. AB t h e forward
+speed i s increased, however, e f f e c t s of c c q r e s s i b i l i t y lead t o l o s s
+i n thrust, f i r s t a t the t i p , and, with f u r t h e r increase8 i n speed,
+these loseea progressively move toward the r o o t s e c t i ~ nof t h e prcp e l l e r . Thie type of phenomenon has been i l l u s t r a t q d b e f o r e ' a t
+Lower advance-diameter-ratios (referencae 11 and 1 2 ) . As t h i s l o s s
+progressively moves inboard, hwever, another >henomenon begins t o
+occur a t the t i p st these high blade. angles and r e s u l t s ' i n -increased
+t i p l o a d s , , Tqis increaae of laad a t the t i p c o q e n s a t e s f o r t h e
+- : Loss i n ,l&d a t t h e inboard sections. Jndications of thia',epfect .
+--;haPe als,o bee0 found i n f l i g h t [reference 13).
+,
+.
+'
+
+J
+
+.
+
+*..;.,
+
+,
+
+'
+
+The increased load a t t h e t i p sections of the propeller 4s , believed t o be.associated with the second farce-break c h a r a c t e r i s t i c
+sham t.o occur f o r wings and a i r f o i l s i n the transonic-speed radge
+w b r e , i n 'plots of wing l i f t coefficient far constant a w l s & of'
+a t t a c k againat Mach number, there i s an abrupt r i s e i n t h e ' l l, - f_ t - .
+valueg following the well-known l o s s i n lir't c h a r a c t e r i s t i c s
+(ref erepce 14)
+'
+
+.
+
+.
+
+The r e s u l t a n t section Mach number has been c a l c u h t e d f o r a '.
+large number of these measured thruet d i s t r i b u t i o n s f o r the points
+along the-blade r a d i u ~where the l o s s i n t h r u s t between the lowspeed t h r u s t value and the value a t any high speed i s the'maximum.
+The result'ant Mach number f o r a l l cases tends t o s c a t t e r closely
+a r o u n d a value'of the r e s u l t a n t sectionMach number of 0.9.
+,
+.
+t . l S 1
+
+.
+
+-
+
+a
+
+It i s believed that, with such t h r u s t d i s t r i b c t i o n s a s weye
+measured f o r forward Mach numbers of 0.85, the ~farementioned'losses ! K :
+I
+i n efficiency f o r these speeds may include a h-rge component of
+induced l o s s because of' the departure fqom ,the jdeal.loading (as Indi-,
+. . cated by a ompaxieon pf the lar-&pe,eb and ,$he h&h-epeed t h r u s t
+1 .
+distributions). Modification of pi$ch distribution, 'for example, t o
+provide a closer a2proach % t othe' q e a l 'type 'of Laac d i s t r i b u t i o n
+may offer considerable improveni~nt,~ia
+the efficigncl;es shown.
+1
+
+calculations *re f u r t h e r &djcitea that +a la& pr't of the
+induced loeaee which &iy 0 c . c ~qt' tHese h i g h . f o ~ < d sjeeds
+,
+and hf.qh
+advance-diameter r i t ~ o ecan' be' ekpec6ed t o be associated with induced
+
+-
+
+r o t a t i o n a l loaaea. Thus .the use of dual-rotational propellers which
+t h e o r e t i c a l l y a t l e a s t e l j n i m t e the r o t a t i o n a l loseeo a r e indicated
+t o o f f e r improvements i n propeller efficiency.
+The use of &weep t o delay the onaet of c a n r e s s i b i l i t y e f f e c t s
+t o even highor forward spee'8s i s a l s o currently being studied. Preliminary t e s t e with sweep incorporated i n just the t i p section of
+propeller blades has indicated 'that th6.use of sweep w i l l ? e m i t a
+s i g n i f i c a n t delay i n the onset'-of compressibility e f f e c t s (reference 15). More recently the NACA found t h a t there vere propeller
+blades incorporating sweep which bad been b u i l t for f l i g h t t e s t s by
+a rhanufacturer. It appeared t h a t these blade8 would be available
+kooner than Bxlsting NACA designs which are currently being b u i l t .
+Steps were taken t o procure these blades f o r t e s t i n g i n ' t h e
+. Langley 16-foot high-epeed tunnel.
+Figure 2
+' describes the propellers and the t e s t r e s u l t s obtained.
+Two propellers wore teeted, one s t r a i g h t end one with swoep a s indicated by the plan-form l i n e s . The p a r t belaw the 2ropellers is a
+p l o t of the variation of sweep angle along the radius of the swept
+propeller. The r e s u l t s of the t e s t s a r e shown i n the lower p a r t of
+t h i s figure i n t h e form of maxlm~unefficiency plotted agQlnst
+r e s i d t a n t t i p Mach nmber which i s chosen r a t h e r tlmn forward Mach
+number since t h e r e s u l t a n t t i p Mach number iti a moye exact indice. tion of t h e onset of c m p r e s s i b i l i t y e f f e c t s . The differences i n
+maximum efficiency between the s t r a i g h t and swept propellers shown
+a r e within the experimental accuracy of the t e s t e . The r e s u l t s show
+tha* sweep can be incorporated througiiout the blade radius without
+serious adverse e f f e c t s on lo~r-apeedefficiencies. Even a t the
+maximum t i p speed attained, which was a l i m i t a t i o n im2osed by the
+l a r g e r diameter (13 f t ) of t h i s propeller a s cmpared t o the atandard
+s i z e (10 f t ) f o r which the dynamometer e q u i p e n t was designed, them
+were no e s s e n t i a l differences i n the propeller e f f i c i e n c i e s , Presumably, delays i n the onset of crrrapressibility effect6 might be
+indicated a t higher t i p Mach numbers-. Because no e f f e c t s of cornp r e s s i b i l i t y ' a r e shown, the magnitude of the delay f r m the amount
+oF*sweep uaed Ma not been defined.
+.
+
+- .
+
+,
+
+included i n the part just under the blade plan--form curves f o r
+.'the tw&-propellw~tk indicate the mount of sweep required f o r a
+given delay of ccrmpressibility e f f e c t s i s tho varir*tion i n sweep
+indicated by a n a l y t i c a l studies t o be required to delay compressib i l i t y e f f e c t s b~ approximately 100 miles per hour. These valuss
+indicate t h a t large amounts of sweep a r e necessary before significant delays i n the onset of compressibility effecto can be realized.
+This
+.
+eihq c h a r a c t e r i s t i c has already been shown f o r wings where
+.
+
+e
+
+.
+
+.'
+
+I
+
+.
+
+-
+
+I'
+
+>
+
+71
+
+ewe'q anglee - of l e s s thari 30° a r e not e f f e c t i v e i n delaying c a w
+p r e e s i b i l i t y effecte.
+'
+
+.
+
+In addition t o the recent wmk performed' t o study the phenmena
+on propellers a t speeds i n exceae of 500 m i l e e per ho'n, there has
+pbeens made‘-concurrently with t h e work juot discuosed a study a t
+speeds up t o 500 miles per h o u r , i n the langley 16-foot high-speed
+tunnel. of t h e effects of various design parameters on propeUer performance (references 16, 17, 18, and 19).
+. Xncluded i n tfiia w o r k is t h e e f f e c t of e o l i d i t y . These r e 6 d t a
+a r 6 s h a p in figure 3 for studies of three propeller configuratibm.
+.Tests were made of a two-blade narrow propeller, a two-blade wide
+prdpeller having increase i n s o l i d i t y of 50 percent over the narrow
+blade propeller, and a three-blade propeller u t i l i z i n g t h e eame
+narrow propeller blade, thus providiM again a %-percent increase
+i n propeller s o l i d i t y . The r e s u l t s a r e presented i n t h e upper part
+- i n the P m of a p l o t of maximum efficiency againat r e s u l t a n t t i p
+Mach number fnr a blade angle of 45O. It is indicated t h a t l i t t l e
+or no changes i n efficiency occur i n increasing t h e s o l i d i t y by
+increasing the nmber of blades or t h e - b l a b width, As a matter of
+faof, t h e changes i n efficiency shown correspond i n magnitude t o the
+calculated changes i n efliclency due t o t h e increased induced losses
+o c c w ~ i n gfor the hlgher s o l i d i t y propellers.
+-
+
+'The lower part is a p l o t of t h e power coefficient corresponding
+t o the maximum efficiency c q e s presented above. A t l q w t i p epeeds
+t h e three--blade propeller absorbs considerably much more power a t
+maximum efficiency than does the two-blade wide propeller. Thus an
+increase i n s o l i d i t y by the use of an increased number 'of blades i a
+indicated to be more e f f e c t i v e i n i n c r e a ~ i n gt h e power capacity of
+t h e propelxer than is an increase i n s o l i d i t y by increasing t h e .
+blade width. .
+@ I L - ~ ~ L .
+u~,[iL
+5.
+
+!-!
+
+,
+
+15
+
+A t high t i p Mach numbers where the e f f e c t s of compressibility
+a r e show t o be severe, very large reduct2ons i n the power coeffic i e n t f o r maxzinum efficiency for a l l t h r e e prupellers tested was
+observed.
+
+These curves, which a r e presented for blade .angles of 450
+(advance-diame-Cer r a t i o of approximately 2), are i n marked contrast
+t o the parer coefficient curves fqr maximum efficiency shown i n
+f i g u r e 1 where for blade angles of,
+(advancediameter r a t i o
+approximately 4) no such large losses were shown.
+
+a0
+
+~ h klarge variation in these mparer-ciefficient c h a r a c t e r i s t i c s
+a t the high t i p Mach numbere t o i e t h e r with the aifferencee a t different advanc e-diame
+a t e 8 t h a t predictions of these
+
+'t
+
+-
+
+characterLstics based on l m d p e e d data could. be expected t o be
+inaccurate, However, i n order t o a t - k i n even t h e mximum e f f i ciency shown a t the higher t i p Mach numbers, it is necessary t o
+.operst& a t
+very near these. p e r coefficients because the r e s u l t s
+indicate t h a t departure fram these power coefficients would lead t o
+efficiency valuee colzsiderably leas than the majlimzim values shown.
+
+he-onset oi ccmpreisibility e f i i c t . f o r the' vide-blase prer occurs a t a higher t i p Mach number than it does f o r the
+propeller,
+
+effects
+
+.
+
+.
+z.
+
+,
+
+I , -
+
+.
+
+This difference i s believed t o be a r e s u l t
+blade having t h e lower
+r a t i o have been shown i n studies
+t o delays i n the oneet of
+(reference 20). Increaae i n 'eolidity by
+has been 'studied through b mnBe oi
+' t h a t presented i n f ig$k 3 ' (refert e s t s have given sQniJar Indication
+t o delay the onpet *f canpressibility
+
+.
+
+A i r f o i l and - w i n g s t u d i e s a t high speeds have long i ~ i c a t e d
+t h a t reductions i n a i r f o i l thickness r a t i o provides delays i n the
+onset of compressibility effects; Studies of gropeiler a l r f o i l sections (reference 22) 'have indicated t b a t increased values of
+efficiency even a t low speeds can be obtained through the uee of
+thinner propeller s a c t i m a . Tests of propellers h a v l w d i f f e r e n t ,
+thickness r a t i o s have beell studied t o evaluate these e f f e c t s i p '
+tenas of propeller perfomhnce. .'
+Figure 4 includes t e s t ' r e s u l t s of two eeta df propellers having
+d i f f e r e n t thickness r a t i o s . A p a i r of propellers' having the plan
+form shown on the l e f t of the f i g u r e and having i d e n t i c a l
+camber ( C L ~ = 0.3), but with sectional thickness r a t i o s of
+12 and .8 percent, respectively, were, tee$&. , T.he d i s t r i b u t i o n of
+the thickness r a t i o along t h e propeller-blade radius i s shown.. The
+maxbum efficiency f o r these two propellers i s plotted against a
+t i p Mach number, The r e s u l t s indicate t h a t even a t low speeds, a s
+was indicated by the a i r f o i l studies, the thj.nner propeller has the
+higher efficiency and thls incremental efficiency becanes considerably: Urger above t i p Mach numbers of 0,92: Moreawr, the .
+point a t which the e f f e c t s of c m p r e s e l b i l i t y begin t o oocur a r e
+, -.
+shown t o be delayed by the thinner propeller.
+'
+
+On the right-hand aide of the figure, t e s t r e s u l t s a r e shown
+f o r L o t h e r pair of propellers h a v i w i d e n t i c a l characteristioe but
+with thic&ness r a t i o e of 5 and 4 percent, reepectively, a t the
+0.7 blade-radiue station. The v a r i a t i o n I n the tWclmese r a t i o
+
+along the blade radius i s shown; In' the' p l o t of maximum efficiency
+c h s r a c t e r i a t i c s , the thinner blade 1s the more e f f i c i e n t which, a t
+the kiighest t i p Mach number presentad, amounts t o an imp?ovement i n
+efficiency of approximately 2 percent and, a t t h e erne time, inclic a t e s f w t h e r delays i n the c a m p r ~ a s i b i l i t ye f f e c t s . For example,
+up t o t i p Mach numbers of 0.97, the > p e r c e n t t h i c k propeller 8hovs
+no adverse e f f e c t s of ccmpreesibtlity; whereas the 8-percent-thick
+propeller i n the left-hand p a r t h a s shown effects' of compressibility
+a t t i p Mach numbers i n t h e order of 0'.94. Thus, reductions i n prop e l l e r thickness r a t i o t o ae low a s 5 percent a r e shown t o offer
+improvements i n propeller eff ic iency
+
+.
+
+Recent high-speed reaearch on propeller a i r f o i l s i n the
+L a x l e y 2 b i n c h high-speed tunnel has included studies of the e f f e c t
+of camber a s w e l 1 . a ~e f f e c t s of thickness rat10 (roference 2 2 ) . The
+e f f e c t s of camber a t high speeds, a s indicated f r a t h i s a i r f o i l
+data, i s ahown i n figure 5 i n which is plotted the section effi-ciency of two propeller a i r f o i l s havine; t h e thickness, d i f f e r i n g
+only i n design camber (NACA 16-506 and RACA 1L105). The section
+efficiency is calculated from the equation shown i n the figure an3
+i s a function only of the LJD c h a r s c t e r i s t i c s of the section. The
+values of L/D f o r the two a i r f o i l s were chosen a k a l i f t coeff ic i e u t of 0.5 which 2s the design o-mating conaition for the hi~her
+cambered a i r f o i l . The r e s u l t s hava been plotted a s i n a t section
+Mach number.
+A t low speeds, a s would be expected, the higher cam3erod a i r f o l l
+when operating a t i t s design lift coefficient of 0.5 i s approximately
+2 percent more e f f i c i e n t than the lower cambered a i r f ' o i l . However,
+a t high epeeds the comparison is reversed, the lcwer cambered airfoil
+being 2 percent more e f f i c i e n t than the higher canbered a i r f o i l evsn
+though t h e lift coefficient is considerably i n excess of the de'sign
+value f o r the low cambered a i r f o i l . Data for other thickness i'atios
+and f o r other a i r f a i l s have a l s o indicated the same trend, and the
+r e e u l t a indicate t h a t a t s u p e r c r i t i c a l apeeds the most e f f i c i e n t
+a i r f o i l sections a r e those which have very a n a l l m c ~ n t sof Camber
+or no camber. Thus, improvements i n propeller performance i s indicated through the use of reduced camber, p a r t i c u l a r l y i n the t i p
+section of propellers where the sections.are often designed t o
+operate a t s u p e r c r i t i c a l speed c0ndition8.
+
+Higb-speed propeller t e s t s of propellers having variations i n
+camber have substantiated t h i s conclusion i n zenerel, and f j g u r e 6
+shows the r e s u l t s of a s e r i e s of t e s t s on throe p o p e l l e r s d j f l e r i n g
+only in camber. The propeller-blade form i s shown i n t h e figure,
+and the v a r i a t i ~ n ~ ti hne design lift coefficient along the blade
+radius i s a l s o aham for the three propellers. Tile t e s t r e s u l t s a r e
+
+i n 'th* form of maximum ef?iclencj. against t i p Mach number.
+The highes? value^ %ofefficiency a t Low lk~ch.numbers,a r e shown f o r
+t h e propeller having camber corresponding t o design l i f t .coeffic i e n t of, 0.5. The propeller blade having a d'esign l i f t c o e f f i c i e n t
+of 0.3. is, a t low t i p speeds, only a ,few percent le.ss e f f i c i e n t
+than .the p r o p e q e r blade h a v i w a design l i f t coefficient of 6.5.
+The propsller blade having a design lift c o e f f i c i e ~ tof 1.0 shows
+the poorest efficiency throwhout t h e r * ~ . A t s u p e r c r i t i c a l
+t i p speeds, however, there is a tendency toward r e v e r s a l of the
+c a p a r i s o n between the p r o p l l e r e having.0.5 and 0.3 d e s i p cambors,
+t h e ,lowest cambered blade having s l i g h t l y ' the best efficiency. The
+e f f e c t i s ' n o t a s etrong a s was indicated by t h e study of propeller
+airfoils.
+,
+
+-
+
+a
+
+.
+
+The- r e s u l t s of the propeller a i r f o i l study a r e somewhat ,
+masked by the f a c t t h a t there e x i s t s a Mach number gradient a l l
+along the propeller-blade radius s o t h a t the e f f g c t of supercritic81speed operation i s confined t o the t i p portions of t h e propeller, and
+thus t h e f u l l e f f e c t of the improvement in efficiency through reduct i o n i n camber a t s u p e r c r i t i c a l section speeds is confined t o a.
+small portion of the gropeller A t higher advancediameter r a t i o s
+whereathe Mach number gradient along the blade is more uniform, . !
+.,
+t h i e ' e f f e c t would be expected t o be larger.
+
+.
+
+-
+
+High-speed propeller research has thus indicated t h a t propellers
+having high l e v e l s of efficiency up t o forward speeds i n the order
+of 500 miles ,per hour a r e possible; t k i t improvements i n propeller .,
+e f f i c i e n c i e s a t speeds i n excess of 500 miles Fer hotr a r e indicated
+thr'ough the use of p i t c h d i s t r i b u t i o n modifications and,dualr o t a t i o n propellers ; and that more ,extensive increases ars possible
+through the use of sweepback: and perhaps low aspect r a t i o i n
+propeller blades, However, experimental studies t o define 'the
+magn$tude bi these e f f e c t s have not been made. The proper select i o n of camter, eolidity, and propeller-section thickness r a t i o has
+also been sham t o e f f g c t s i g n i f i c a n t improvement i n propeller .
+s e r f ormance
+
+.
+
+.
+
+BIBElXRCES
+
+.
+
+I
+
+.
+
+.
+
+--
+
+1. Gilman, Jean, Jr ,: Wind-Turnel Tests and Analysis of Three
+10-Foot-Diameter Thres-Blado Tractor Propellers Differing i n
+Pitch Distribution. NACA ARR No. ~ 6 3 2 2 , 1346.
+2. Crigler, John L., and Talkin, Herbert W.: Propeller Selection
+f r a n Aerodynamic Considerations. NACA ACR, July 1942.
+
+3. CPfgler, .John L., and Talkin, Herbert W. : Charts f o r Detemining
+Propeller Efficiency
+
+. NACA ACR No. L4129, 1944.
+
+4. Crigler, John L. : Comparison of ~ a l c u 6 t e dalid Experimental
+Propeller Characteristics f o r Four-, Six-, and Eight-Blade
+Single-Rotating ~ r o p e ~ e r. s N'ACA
+.
+ACR No. 4~01i, 1944.
+
+5. Crigler,. John L. : Application of Theodorsent8 Theary t o Propeller
+.
+
+Design.
+
+(prospective NACA paper)
+
+6. Gilman, Jean, Jr.: Wind-Tunnel Tests and P-nalysis of Two 10-FootDiameter S i x a l a d e Dual-Rotating Tractor Eropellers Differing
+i n Pitch Distribution. (Proepective NACA @per)
+
+7. BoswiMe, Robert W . , Jr. : Air-Flow Surveys i n the Vicinity of
+Representative NACA l S e r i e s Cowlings.
+
+8. Hartman, Edwin P,, and Feldman, Lewis:
+the Design of E f f i c i e n t Propellers.
+
+9.
+
+(prospective NACA paper)
+
+A e r o d w i c Problems i n
+NACA ACR, Aug. 1942;
+
+C. I?: H,, and Yeatman, D. : Tables f o r Use i n an Improved
+Method of Airscrew S t r i p Theory Calculation. R. & M. No. 1674,
+B r i t i s h A.R.C ,, 1935.
+
+10. Camel, Melvin M., and Robineon, Harold L.: Further Investigation
+of NACA 4 4 5 ) (08)-43 TwMlade Propeller a t High Fomard
+Speeds. NACA RM No. L7E12, 1947.
+Jagies B., and Carpell Melvin M.:- Effect of Shank Design
+.+ll.,Delano,
+~''on"~ro~el1
+P ec 'rr f o b n c e a t High Speeds. NACA ARR No. ~ h D 2 3 ,
+'-
+
+1946.
+
+12. Vogeloy, A . W , : Climb and $ighSpeed Tests of a Curtiss
+- Ns. 71"-lC2-12 Four4ladd Propeller on t h e Republic ~ 4 7 CA i r :-pfine. ' NACA ACR Po. ~ 4 ~ 0 7
+1944.
+,
+. .
+.. .
+
+-
+
+-
+
+13. Gardner, J. J, : Effect of' Blade Loading on t h e Climb and H i g b
+Speed Performance of a Three-Blado EIamilton Standard
+No. 6 5 0 7 ~ 4Propeller on a R q u b l i c p-4.p Airplane. NACA MR
+No. L w g a , 1945.
+Investigation of t h e Characteristics of
+14, Whitcomb, Richard T.:
+a High-Aspect-Ratio Wing i n the Lawley &Foot HighSpeed
+Tunnel. NACA FM Do. ~ 6 ~ 2 8 a1946.
+,
+A%eliminary Investigation of Two FuU-Scale Propellers t o Determine the Effect
+of Swept43ack Blade Tips on ~ r o ~ e l l Aerd-ynamic
+er
+Characteri e t i c s . NACA RM NO.' ~ 6 . ~ 2 11946.
+,
+
+15. Evans, Albert J., and Klnnker, E. Bernard:
+
+16, Corson, Blake W,, Jr., and Maynard, J u l i a n D. : The NACA
+20004orse~owerPropeller Dynamameter and Tests a t High
+Speed of an NACA 10-(3) (08)-03 Two-Blade Yro-eller .
+(Prospective NACA paper)
+
+17. Maynard, Julian D., and Davidson, Robert E. : Aerodjrl?amic 'chara c t e r i s t i c s a t High Speeds of Related Ful.1Scal.e Propellers
+(~~ospectiv
+XACA
+e paper)
+
+having Different S o l i d i t i e s .
+
+18. Gray, W. H., and Solamon, William: AerodjrtlamLc Characteristics
+a t High Speeds of Related Full-Scale Propellers having Dif'
+
+f e r e n t Blade Section Thickness Ratios.
+paper
+
+.
+
+(~~ospectiv
+NACA
+e
+
+.
+
+19. Maynard, Julian D , and S a l t e r s , LeUnd B : Aerodynamic Chara c t e r i s t i c s a t High Speeds of Related Full-Scale Propellers
+Having Different Blade Section Cambers. (2rospective NACA
+paper
+Characteristics of Low-AspectRatio Wings a t S u p e r c r i t i c a l Mach Numbers. NACA ACR No. ~ 5 ~ 1 6 ,
+1945
+
+2 0 . Stack, John, and ~ i n d s e ~
+W., F.:
+
+* . $
+
+The Effect of High S o l i d i t y on Propeller Char21, Delano, James B.:
+a c t e r i s t i c s a t High Forward Speeds from Wind-Twmel Tests of
+'the 'NACA 4-73) (06.3)-06 a& NACA 4.43) (06,4)-09. NACA RM
+NO. ~ 6 ~ 1 ,1946.
+9,
+
+.
+
+.
+
+.
+
+22. Lindsey, W. F , Daley, Bernard N ,and Stevensor?, D B ;: The
+Aerodynamic Characteristics of 24 NACA l6-Series Airfoi1.s
+( ~ r o s g e c t l v eNACA paper)
+a t M!ch Numbers between 0.3 and 0.8.
+
+PROPELLERS-"
+
+\
+
+PROPULSIVE EFFICIENCY
+
+X
+
+COMPRESSIBILITY EFFECTS ON PROPELLER CHARACTERISTICS
+OF NACA 4-508-03 PROPELLER 8 = 6 O 0
+Figure 1,
+
+60,
+
+MAX
+
+]
+
+.8
+.5
+
+PROJECTED VIEW
+PROPELLER
+
+1
+
+PROJECTED VIEW
+STRAIGHT PROPELLER
+
+y STRAIGHT BLADE
+
+-
+
+LsGiiGLADE
+
+go.75 735.
+I
+
+I
+
+I
+
+I
+
+1
+
+.6
+
+.7
+
+.8
+
+.9
+
+1.0
+
+Mt
+
+SWEPTBACK PROPELLER
+Figure 2.
+
+-'.. .I
+
+1 .o
+
+.9
+
+MAX
+
+.8
+
+.7
+PROPELLER
+
+.20 1
+
+A
+
+EFFECT OF SOLIDITY ON PROPELLER CHARACTERISTICS
+R=45°
+Figure 3.
+
+.20'FNACA
+
+h/b
+
+10-312-03
+
+'
+
+I 6-
+
+CURTIS
+109390
+
+.12'\
+
+\
+
+.08NACA 10-308-03
+.04
+
+I
+
+0
+
+.2
+
+.4
+
+1 .O
+
+,.6 .8 1.0
+
+0
+
+.2
+
+.4,.6
+
+.8
+
+1.0
+
+TWO BLADE
+NACA 10-308-03
+
+-8
+
+.6
+
+109398*
+
+6 "Y. THICK BLADE
+
+10-312-03
+
+;
+.6
+
+I
+
+.7
+
+I
+
+.8
+
+I
+
+.9
+
+I
+
+1.0
+
+.
+I
+
+1.1
+
+I
+1.2
+
+I
+
+.6
+
+I
+
+.7
+
+I
+
+.8
+
+I
+
+.9
+
+Mt
+
+t
+
+I
+
+1.0
+
+1
+
+1.1
+
+1
+1.2
+
+EFFECT OF THICKNESS RATIO ON PROPELLER CHARACTERISTICS
+Figure 4.
+
+f
+
+C L = .5
+AIRFOIL
+NACA 16-106
+
+NACA 16-506
+
+s'
+
+=
+
+TAN(+I+X)
+
+TAN + I - -
+
+"0
+
+unD '
+
+-
+
+I
+
+I
+
+45'
+I
+
+I
+
+.6
+
+.4
+
+-
+
+TjzzJ7
+
+-
+
+.8
+.2
+
++'
+
+TAN
+
+I .O
+
+.8
+
+MS
+
+SECTION EFFICENCY OF T W O PROPELLER AIRFOILS
+Figure 5.
+I
+
+.@@---
+
+/'
+
+\\
+
+1
+
+\
+
+1
+
+---- - NACA 10-1008-03
+-- NACA 10-508-03
+
+- NACA 10- 308-03
+
+.4
+
+.6
+
+.8
+
+1.0
+
+1.2
+
+Mt
+
+EFFECT OF CAMBER ON PROPELLER CHARACTERISTICS
+Figure 6.
+r;b; c
+
+

@@ -1,0 +1,1329 @@
+A Modified Geometry Based Analytical Model of
+Switched Reluctance Machines for Rapid Design Process
+
+2022 IEEE Energy Conversion Congress and Exposition (ECCE) | 978-1-7281-9387-8/22/$31.00 ©2022 IEEE | DOI: 10.1109/ECCE50734.2022.9948013
+
+Lavanya Vadamodala
+ECE Department
+The University of Akron
+Akron, USA
+lv20@1870.uakron.edu
+
+Shuvajit Das
+ECE Department
+The University of Akron
+Akron, USA
+sd178@zips.uakron.edu
+
+Abstract— This work proposes a modified analytical model
+for flux linkage and torque calculation in Switched Reluctance
+Machines (SRM). This model employs special features of the
+SRM and BH curve models to determine flux linkage with knee
+modification. The analytical model also considers the basic
+geometric parameters like turns, phase current, and stator and
+rotor pole tapering angles that affect average torque and
+current density. The analytical model of main and fringing flux
+linkages is integrated to calculate co-energy and static torque as
+a function of rotor position. The BH curve model with knee
+adjustment and tapering angles was added to help estimate
+torque profiles more accurately. The flux linkage and torque
+profiles derived from the analytical model are verified using
+FEA Finite element analysis (FEA) and experimental
+measurements of an 18 slot/12 pole, 32 kW SRM.
+Keywords—Switched reluctance motor, analytical model, flux
+linkage, torque.
+
+I.
+
+INTRODUCTION
+
+Switched Reluctance Machine (SRM) is becoming
+popular for Electric Vehicles (EVs) and Hybrid Electric
+Vehicles (HEVs) applications due to its low cost, fault
+tolerance capability, and equivalent efficiency as other
+topologies [1]. The performance of SRM is dictated by the
+material properties, design methodology, and control
+techniques. Because of its nonlinear behavior, control of
+SRM is difficult. The nonlinear relationship between rotor
+position, flux linkage, and phase currents determine torque
+output in SRMs [2]. To account for this non-linear behavior
+a detailed analysis and design optimization of SRM's
+performance should be carried out. Finite element analysis
+(FEA) and analytical methods can be used to perform
+electromagnetic analysis of SRMs. The time required for
+design optimization using FEA is high, whereas analytical
+models consume less time for computation. However,
+analytical modeling of SRM helps in the faster and real-time
+prediction of machine performance only if its’ accuracy is
+comparable to FEA.
+Based on FEA or experimental data, authors have
+computed flux linkage and torque using lookup tables,
+interpolation, and other techniques in [3-5]. Running many
+simulations and tests is also required to obtain the data from
+FEA or experiment. Researchers have created analytical
+models in [6, 7] that are based on the SRM geometry and the
+Fourier series to calculate flux linkage and torque. The error
+in estimating the flux linkage has decreased with these
+methods, however, the inaccuracy in calculating the torque at
+partially overlapped positions is still significant. To
+determine unaligned inductance and flux linkage as a function
+of rotor position and fundamental geometric factors, the
+mathematical model is developed in [8, 9] by A. Radun (AR).
+
+Anik Chowdhury
+ECE Department
+The University of Akron
+Akron, USA
+ac272@uakron.edu
+
+Yilmaz Sozer
+ECE Department
+The University of Akron
+Akron, USA
+ys@uakron.edu
+
+This method has been used in [10] to obtain analytical model
+of mutually coupled SRMs. The average torque is calculated
+more accurately using AR’s models. However, due to the
+difference in torque profile from the FEA model, there is a
+significant error in the prediction of torque ripple.
+This paper develops a modified analytical model to reduce
+the error in predicting torque and torque ripple at various rotor
+positions. Steel BH properties were accurately estimated
+using a BH curve model with knee modification. In addition
+to general SRM dimensions, tapering angles of stator and
+rotor poles are included. Modified models of flux linkage and
+torque are derived using basic magnetic principles and the
+structure of SRM.
+II. SRM MODELS
+The model process proposed for SRMs in [8-9] assumes
+rectangular shape for the stator and rotor poles as shown in
+Fig. 1(a).
+
+(a) SRM geometry without tapering
+
+(b) Modified SRM modeling with tapering
+Fig. 1. The geometry of SRMs with and without tapering
+
+However, tapering of stator poles and rotor poles are
+commonly used to maximize torque within given electrical
+
+978-1-7281-9387-8/22/$31.00 ©2022 IEEE
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 07,2026 at 07:36:46 UTC from IEEE Xplore. Restrictions apply.
+
+loading limits. Fig. 1(b) presents the geometry of the SRM
+models which includes tapering for improving the accuracy
+to calculate flux linkage and torque.
+The relation between magnetic flux density (B) and flux
+intensity (H) considered in [9] is given as:
+=
+
++
+
+(1)
+
+Where is the permeability of the core,
+is the saturation
+flux density,
+is the permeability of air.
+The new relation between BH obtained from [11], including
+the saturation of iron, can be given as:
+=
+
++
+
+=!
+
+=
+
+B (T)
+
+2
+1.5
+
+B
+B_AR
+
+1
+
+B_Modified
+
+0.5
+0
+50000
+
+100000
+
+150000
+
+200000
+
+H (A/m)
+Fig. 2. BH curves comparison
+0.5
+Er_AR
+B(T)
+
+A. Flux linkage when Rotor/Stator poles overlap
+Few assumptions are made while developing the analytical
+model. They are: SRM phases are independent of each other,
+the permeability in the yoke is infinite, i.e., the yoke does not
+saturate, and the magnetic field is concentrated and uniform in
+stator and rotor poles, airgap.
+
+(3)
+
+2.5
+
+Er_Modified
+
+0.25
+
+0
+0
+
+In this section, SRM analytical modeling is performed
+using pole shapes in Fig. 1(b) and the new BH relation in Eq.
+(2) and Eq. (3). Taking AR’s modeling process as a reference,
+the flux linkage and torque models are derived.
+
+(2)
+
+Where, " is the initial relative permeability of the core,
+is the saturation flux density,
+is the permeability of air, a
+constant greater than 0, helps in tuning the knee point. Fig. 2
+shows the comparison of the BH curve from the M19 steel
+data sheet (Blue), the BH curve from [7-8] (black), and the
+BH curve from the new model (orange). Here, a is tuned so
+that the knee point curve matches the datasheet. At a=2.5, the
+graph in orange is obtained. Therefore, a=2.5 is used
+throughout the analysis. Fig. 3 shows the error in predicting
+B from H values using Eqs. (1) and (2) to values from the
+M19 steel datasheet. Error in predicting B values from knee
+point to saturation is less for the new BH model in Eq. (2)
+than the model in Eq. 1.
+
+0
+
+III. ANALYTICAL MODELING
+
+50000
+
+100000
+
+150000
+
+H (A/m)
+Fig. 3. Error in the prediction of B
+
+200000
+
+Fig. 4. Contours for phase A when poles overlap
+
+Fig. 4 shows the SRM when the poles overlap. Fig. 1(b)
+shows the SRM section, which displays the partial overlap of
+the poles and the view of the geometric dimensions used in
+the analytical model. Here, #$ denotes the main pole flux
+linkage and #% denotes the fringing pole flux linkage.
+Ampere's law is integrated around the closed contour shown
+in Fig. 3 to find the magnetic flux density when the poles
+overlap and run in the yoke. From contours drawn in Fig. 4,
+the MMF (Magneto Motive Force) & is equal to 2NIp,
+where N is the number of turns in a phase, and '( is the pole
+current. Only one phase's currents can contribute to the MMF
+along contours; currents from other phases cancel each other
+out. Ampere’s law along the contour paths is
+(4)
+∮ . +, = &
+The MMF in the main field contour can be given as:
+
+2 ($ ,( + 2 .$ / = &
+(5)
+Where 0 denotes the main field, ($ the magnetic field
+inside the poles, .$ is the magnetic field in the air gap, ,( is
+the total length of the stator and rotor poles, / is the main
+field airgap.
+The MMF in the fringing field contour can be given as:
+
+2 (% ,( + 2 .% /% = &
+(6)
+where 1 denotes the main field, (% the fringing magnetic
+field of the poles, .% is the fringing magnetic field of the air
+gap, ,( is the total length of the stator and rotor poles, /% is
+the fringing field airgap.
+
+B. Main Flux linkage
+The main field in the core is equal to the field in the air
+gap, i.e., $ . Similarly, the field due to fringing flux in the
+core and airgap are equal i.e. % . In the main and fringing
+field contours,
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 07,2026 at 07:36:46 UTC from IEEE Xplore. Restrictions apply.
+
+$ =
+
+.$
+
+% =
+
+(7)
+
+.%
+
+(8)
+
+The relation between magnetic flux density and flux intensity
+for the main field, including the saturation of iron, can be
+expressed as:
+$ =
+
+.$ +
+
+(9)
+
+=
+
+= ! ($
+
+($
+
+(10)
+
+The relation between magnetic flux density and flux intensity
+for the fringing field is similar to the main field. Using (5),
+and (7), ($ can be found as:
+234
+7.
+($ = 5 −
+8 54
+4
+
+(11)
+
+Substituting (11) in (10) yields (12).
+234
+
+=!
+
+− 7
+
+.
+
+8 54
+
+54
+
+5, and the number of turns around a pole. If the pole windings
+are in parallel, then the pole current is equal to the phase
+current divided by the number of parallel paths (N( " . If the
+pole windings are in series, then flux linked by a phase is the
+product of the flux linked by the pole winding and the number
+of pole windings in series (N O" . The main flux linkage of a
+phase is given as:
+#$ @A, '( C = # @P. A + ℎ sin@TJU_ CC W E F + G +
+
+@ℎ'( C + I'( + ,'( + JKX
+Where, # = N O" Y, :
+
+D
+
+Z[1
+
+(28)
+
+Here, A is the overlap angle of the poles of the stator and rotor
+poles, which starts at zero as the overlap begins and increases
+up to the pole width of the stator. Due to tapering in the pole,
+at A is zero, the area of pole overlap is not zero. As a result,
+P. A is increased by the effective pole length due to tapering.
+
+(12)
+
+Substituting (12) in (9), a quadratic equation is obtained,
+which is solved for B.
+9
+
+:.
+
+8 54
+
+:.
+
+8 54
+
++
+
+−
+
+: .
+:.
+
+8 54
+
+2! <
+
+$ +=
+
+: 234
+
+−
+
+54
+
+:; : .
+
+−! −
+
+8 54
+
++
+
+:234
+54
+
+: 234
+54
+
+8 54
+
+2: 34 .
+
++
+
+8 54
+
+:234
+
+: .
+
++
+
+8 54
+
+:
+
+−
+
+54
+
+8 54
+
+:; : 234
+
+234
+
+54
+
+−
+
+−
+
++
+
+(13)
+Fig. 5. Area of pole overlap
+
+Where,
+
+! =
+
+2: 54 .
+
+$ + 9−
+
++
+
+54
+
+>=0
+
+<
+
+! =!+!
+
+(14)
+
+(15)
+
+The quadratic equation (13) has two solutions, but the
+negative solution is only taken since it allows $ to go to
+zero when '( is zero. Therefore $ can be expressed as:
+$ @A, '( C = E F + G + @ℎ'( C + I'( + ,'( + JK (16)
+D
+
+Where,
+
++ = 2!
+G=−
+ℎ=
+
+−
+.:
+
+54 8
+
+2:; :
+54
+
+. :
+
+54 8
+
++
+
++
+
+−
+
+L = 2+
+
+/ =
+
+2:
+
+54
+
+.:
+
+54 8
+
+(22)
+
+2.:
+
+54 8
+
+.:; :
+
++
+
+F = 2!
+
+I =L M+/
+
+, = L1 + ℎ
+
+. :
+
+54 8
+
+54 8
+
+C. Fringing Flux linkage
+The fringing flux density ( % can be calculated using a
+similar equation as (16), but the airgap / is replaced by
+/% A . % can be given as:
+% @A, '( C = D
+
+\
+
+]@F% + G% C + @ℎ% '( C + ^I% '( + ,% '( + J% _ (29)
+
+(17)
+(18)
+
+−
+
+.:
+
++
+
+54 8
+
+(19)
+
+54 8
+
+(20)
+
+2.:
+
++ 2 F+G ℎ
+
+Fig. 6. Triangle approximation for stator pole height
+
+J= F+G
+
+(24)
+
+M=
+
+(26)
+
+1=
+
+2
+
+54
+2
+
+54
+
+(21)
+(23)
+
+!−!
+
+(25)
+
+! −!
+
+(27)
+
+The main flux linkage by a pole winding is equal to the
+product of the area of the pole overlap, as highlighted in Fig.
+
+Fig. 7. Magnified stator pole
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 07,2026 at 07:36:46 UTC from IEEE Xplore. Restrictions apply.
+
+The fringing airgap /% A can be given as:
+/% A = / + /
+
+1−
+
+ab c d efg@h("_ C
+
+(i
+
+d efg@h("_ C
+
+3
+
+t @A, '( C = u 4 # @A, '( C +'(
+
+Here / is determined such that the unsaturated inductance
+jk is obtained when the rotor and stator poles just start to
+overlap.
+/ =
+
+n o
+
+Y , : @Jp + 2ℎ sin@TJU_ CCZ[1 − / (31)
+
+lm n 4
+
+Where,
+ℎ =
+
+a q ab .
+rse@h("_ C
+
+3
+
+t @A, '( C = u 4 W#$ @A, '( C + #% @A, '( CX +'(
+
+(30)
+
+t @A, '( C = t$ @A, '( C + t% @A, '( C
+
+(36)
+(37)
+
+Where, main and fringing flux linkages in (28), (33) are
+integrated analytically to obtain co-energy as in (36).
+The co-energy obtained from (37) is partially
+differentiated with respect to rotor position to obtain torque.
+The torque can be given as:
+TO @A, '( C =
+
+(32)
+
+Here, N( " is the number of parallel paths, N O" is the number
+of series paths, , : is stack length of the machine, Jp is
+stator pole width as shown in Fig. 7, ℎ is the height of the
+stator pole, which can be calculated using triangle
+approximation as shown in Fig. 6, TJU_ is the stator pole
+taper angle, Z[1 is the stacking factor. jk is calculated using
+the analytical model in [7] as a reference. However, the
+analytical model in [7] is modified with the updated pole
+shape shown in Fig. 7.
+
+(35)
+
+TO @A, '( C =
+
+vw @c,34 C
+
+vw7 @c,34 C
+vc
+
+vc
+
++
+
+(38)
+
+vw\ @c,34 C
+vc
+
+TO @A, '( C = T$ @A, '( C + T% @A, '( C
+
+(39)
+(40)
+
+The main field torque contribution does not change with the
+rotor position. However, the fringing field torque
+contribution varies with the rotor position. Therefore, the
+shape of torque profiles depends on the fringing field torque
+contribution model.
+V. VERIFICATION OF MODIFIED ANALYTICAL MODEL
+A three-phase 18 slots, 12 poles, 32 kW SRM is chosen
+to verify the analytical model in this work. To compute flux
+linkage and torque, the input current is varied from 0 A to 90
+A for different rotor positions, such as unaligned (0 deg),
+partially aligned (7.5 deg), and aligned position (15 deg).
+
+The fringing flux linkage can be expressed like the main
+flux linkage by substituting / by /% A and the area of the
+pole overlaps with the remaining area of the pole after the
+overlap, as shown in Fig. 8. The fringing flux of a phase is
+given as:
+#% @A, '( C = # @Jp + 2ℎ sin@TJU_ C − P. A −
+
+ℎ" sin@TJU_" CC
+
+D\
+
+E@F% + G% C + @ℎ% '( C +
+
+I% '( + ,% '( + J% K
+
+(33)
+
+The fringing flux area is a function of the rotor position. The
+slope of the flux linkage curves is governed by fringing flux.
+D. Total Flux linkage
+The total flux linkage by a phase in SRM is the sum of the
+main and fringing flux linkages:
+# A, & = #$ @A, '( C + #% @A, '( C
+
+(34)
+
+IV. CALCULATION OF ENERGY AND TORQUE
+The SRM static torque can be calculated using co-energy.
+Co-energy, in terms of flux linkage and MMF, can be given
+as:
+
+0.4
+Flux linkage (wb-turns)
+
+Fig. 8. Area of the pole with no overlap
+
+A. Finite Element Analysis (FEA)
+The FEA for the 32-kW machine is carried out in Flux
+2D. The torque and winding flux linkage are computed using
+the AR model and the Modified analytical model, and the
+results are compared with FEA. The input current value
+varies from 0 A to 90 A for different rotor positions, i.e.,
+unaligned (0 deg), partially aligned (7.5 deg), and aligned
+positions (15 deg).
+
+0.3
+
+Full overlap position
+
+0.2
+
+Partial overlap position
+
+0.1
+No overlap position
+0
+0
+
+30
+
+Current (A) 60
+
+90
+
+Fig. 9. Flux linkage profiles
+
+The flux linkage profiles from the modified analytical model
+(ANA), the conventional (AR) model, and the FEA model are
+displayed in Fig. 9. The ANA model's prediction error for the
+flux linkage is 5%, compared to the AR model's prediction
+error of 20%. The predicted flux linkage error at a partially
+aligned is up to 10% in the AR model and 5% in the Modified
+analytical model at low currents. Both models' maximum
+error ranges from 6% to 4% at high currents. At low currents,
+the AR model's estimated flux linkage error at a partially
+aligned is up to 14%, while the modified analytical model's
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 07,2026 at 07:36:46 UTC from IEEE Xplore. Restrictions apply.
+
+Fig 10 shows the torque profiles obtained from different
+models. Torque prediction from the AR model has a higher
+error at the no overlap and full overlap positions, up to 30%,
+whereas the error is only 10% at the aligned position. In
+addition, the graphs show that the torque profile from the AR
+model deviates further from FEA with an increase in current,
+which causes a significant error in the prediction of torque
+ripple. In comparison, the proposed ANA model predicts
+profile to the FEA model, reducing the difference in torque
+ripple between the ANA model and FEA.
+120
+
+phase current is 54.36 A. Fig 12 shows the comparison of
+torque obtained with FEA, the analytical and AR model. The
+AR model's average torque is 94.25 Nm, the FEA model's
+average torque is 88.5 Nm, and the ANA model's average
+torque is 81.42 Nm. The ratio between the average torque
+ratio and the torque ripple produced from FEA is 0.2, the
+ANA model is 0.29, and the AR model is 0.36.
+125
+ANA
+100
+AR
+Current (A)
+
+error is reaching up to 6%. Both models' maximum error
+ranges from 4% to 2% at high currents.
+
+75
+
+FEA
+
+50
+
+90 A
+Torque (Nm)
+
+25
+80
+0
+60 A
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+Rotor position (degrees)
+
+40
+
+Fig. 13. Phase current from the Modified, AR, and FEA models at 1500
+rpm
+0
+0
+
+3
+
+6
+
+9
+
+12
+
+140
+
+15
+
+Rotor position (degrees)
+
+32 kW SRM is simulated using different models at 500 rpm,
+82 A, and 1500 rpm, 95 A operating conditions with 350 V
+DC bus voltage.
+
+Torque (Nm)
+
+Fig. 10. Torque profiles
+
+100
+
+60
+
+Current (A)
+
+100
+
+ANA
+
+ANA
+
+75
+
+AR
+50
+
+AR
+
+FEA
+
+20
+0
+
+FEA
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+Rotor position (degrees)
+
+25
+
+Fig. 14. Torque obtained from Modified, AR, and FEA at 1500 rpm
+0
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+Rotor position (degrees)
+Fig. 11. Phase current from the Modified, AR, and FEA models at 500 rpm
+
+Torque (Nm)
+
+140
+
+100
+
+60
+
+ANA
+
+AR
+
+FEA
+
+20
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+Rotor position (degrees)
+Fig. 12. Torque obtained from Modified, AR, and FEA at 500 rpm
+
+Fig. 11 shows the comparison of the Phase current obtained
+from the ANA, AR, and the FEA models at 500 rpm. The
+phase RMS current with the FEA is 53.96 A. The ANA
+model’s phase RMS current is 53.94 A, while the AR model's
+
+Fig. 13 compares the Phase current obtained from all three
+models at 1500 rpm. The phase RMS current with the FEA
+model is 62.07 A. The phase RMS current in the ANA model
+is 62.08 A, and the AR model is 64.58 A. Fig 14 shows the
+torque obtained with FEA, the ANA, and AR model. The AR
+model's average torque is 109.46 Nm, the FEA's average
+torque is 106.92 Nm, and the ANA model's average torque is
+101.07 Nm. The ratio of the torque ripple and average torque
+obtained from FEA is 0.22, the AR model is 0.35, and the
+ANA model is 0.33.
+Fig. 15 compares the Phase current obtained from all three
+models at 2500 rpm. The phase RMS current with the FEA
+model is 55.34 A, the ANA model is 52.94 A, and the AR
+model is 49.73 A. Fig 16 shows the torque obtained with three
+different models. The average torque obtained from FEA is
+86.9 Nm, the AR model is 66.2 Nm, and the ANA model is
+77.24 Nm. The ratio of the torque ripple to average torque
+obtained from FEA is 0.72, the AR model is 1.17, and the
+ANA model is 0.95. The analytical model's average torque is
+lower because of a decrease in current at the rotor's position
+between 17 and 20 degrees. Both analytical models' reduced
+phase currents result from incorrect flux linkage estimation at
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 07,2026 at 07:36:46 UTC from IEEE Xplore. Restrictions apply.
+
+partially aligned sites. The inaccuracy is significantly more
+noticeable at high speed, or in this example, 2500 rpm, since
+the motional part of EMF and phase flux linkage in the SRM
+increase quickly when the stator and rotor poles begin to
+overlap at high speeds compared to low speeds, i.e., 500 rpm,
+1500 rpm in this case.
+125
+
+ANA
+AR
+
+Current (A)
+
+100
+
+FEA
+75
+50
+25
+0
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+Rotor position (degrees)
+Fig. 15. Phase current from the Modified, AR, and FEA models at 2500
+rpm
+
+The machine's shaft is secured in the desired position and
+fastened to a sturdy pedestal using 12 pairs of bolts. The
+current is gradually increased at each position at constant
+voltage until the desired maximum current is achieved. The
+voltage and current readings are used to determine the flux
+linkage. A constant current is applied to one phase of the
+winding at each position, and the torque is recorded. The
+same process is repeated at other rotor positions to get
+measurements for half of the electric cycle.
+The winding flux linkage and torque are calculated using
+the ANA model and compared with the locked rotor test
+profiles. For the 18/12 configuration, one electric cycle is 300.
+The magnitude of the current is varied from 0 A to 90 A for
+different rotor positions, i.e., unaligned position (00), partially
+aligned position (7.50), aligned position (150). The graph in
+Fig. 18 compares flux linkage from the experiment and
+analytical model. The error in the prediction of flux linkage
+is not significant. The maximum error at the no overlap
+position is 10%, the partial overlap position is 7%, and the
+full overlap position is 7%.
+0.4
+
+Torque (Nm)
+
+ANA
+
+AR
+
+Flux linkage (wb-turns)
+
+140
+FEA
+
+Full overlap position
+
+0.3
+
+100
+
+Partial overlap position
+
+0.2
+0.1
+
+60
+
+No overlap position
+0
+
+20
+
+0
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+10
+
+20
+
+30
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90
+
+Current (A)
+
+Rotor position (degrees)
+Fig. 18. Flux linkage comparison at different positions
+
+Fig. 16. Torque obtained from Modified, AR, and FEA at 2500 rpm
+120
+
+Torque (Nm)
+
+At 1500 rpm and 2500 rpm, the torque ripple and average
+torque ratio calculated by ANA are 23 percent and 6 percent
+less than those calculated by the AR model, respectively. In
+addition, the ANA model reduced the variance in the
+estimated torque ripple percentage by 40% compared to the
+AR model.
+
+90 A
+80
+60 A
+40
+
+B. Experimental results
+The SRM considered in the previous section is built and
+tested to verify the ANA model. In a locked-rotor test, the
+machine's rotor is locked at each position. At the same time,
+an inverter directly energizes the machine's windings on the
+dynamometer at UA. Fig 18 shows the experimental setup of
+the locked rotor test.
+
+30 A
+0
+0
+
+1.5
+
+3
+
+4.5
+
+6
+
+7.5
+
+9
+
+10.5
+
+12
+
+13.5
+
+15
+
+Rotor position (degrees)
+Fig. 19. Torque comparison at different current levels
+100
+Current (A)
+
+ANA
+75
+
+EXP
+
+50
+25
+0
+0
+
+10
+20
+Rotor position (degrees)
+
+30
+
+Fig. 20. Phase current from experiment and Modified Analytical model
+at 500 rpm
+Fig. 17. Locked rotor test setup
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 07,2026 at 07:36:46 UTC from IEEE Xplore. Restrictions apply.
+
+Fig. 19 shows the static torque profiles comparison at
+different current levels. The plots show a good agreement
+between the analytical model's and FEA simulation's
+predicted torque. While the torque prediction error at the no
+overlap position and the aligned position is substantial,
+reaching up to 21%, it is only 6% at the partially aligned
+position. Fig. 20 shows the comparison of currents obtained
+at 500 rpm. The RMS current from the oscilloscope is 54.32
+A, and the analytical model is 53.94 A. Fig. 21 shows the
+comparison of currents obtained at 1500 rpm. The RMS
+current from the oscilloscope is 62.56 A and with the
+analytical model is 62.08 A.
+125
+ANA
+
+Current (A)
+
+100
+
+EXP
+
+current. The analytical model also considers stator and rotor
+pole tapering angles, which impact the average torque, torque
+ripple, and current density. A detailed procedure to derive an
+analytical model of flux linkage is explained. To determine
+co-energy and static torque about rotor position, the
+analytical model of flux linkages is used. Phase currents and
+torque can be predicted in a dynamic simulation using flux
+linkage and static torque curves acquired from the Modified
+analytical model. Nevertheless, the equations for flux linkage
+and torque are difficult to implement and complicated.
+Neglecting logarithmic terms that make up a smaller portion
+of the torque estimation will simplify the complexity of the
+torque expressions. As a result, the accuracy of the torque
+ripple to average torque ratio estimation is increased by 40%
+in the tested SRM using the Modified analytical model
+compared to previous models.
+The developed analytical model consumes very little time
+in predicting the machine's performance. Therefore, this
+analytical model can be used in the Multi-objective design
+optimization of SRM, which would reduce computation time
+and eliminate the need for a high-performance processor.
+
+75
+50
+25
+0
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+REFERENCES
+
+30
+[1]
+
+Rotor position (degrees)
+Fig. 21. Phase current from experiment and Modified Analytical model
+at 1500 rpm
+
+Fig. 22 shows the comparison of currents obtained at 2500
+rpm. The RMS current from the oscilloscope is 52 A and with
+the analytical model is 52.94 A. The flux linkage estimation
+error between the experiment and the modified analytical
+model is the reason behind the discrepancy in phase currents.
+The experiment yielded an average torque of 87 Nm at 500
+rpm, 88 Nm at 1500 rpm, and 65 Nm at 2500 rpm. The error
+is 6.4 % at 500 rpm, 12 % at 1500 rpm, and 16 % at 2500
+rpm.
+125
+ANA
+100
+Current (A)
+
+EXP
+75
+50
+25
+0
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+Rotor position (degrees)
+Fig. 22. Phase current from experiment and Modified Analytical model
+at 2500 rpm
+
+VI. CONCLUSION
+A Modified Analytical Model of SRM is developed to
+determine flux linkage and torque at various currents and
+rotor positions. The flux linkage is computed in this model
+using the special features of the SRM and BH curve models
+with knee adjustment. The inputs to this model are the
+geometrical dimensions, the number of turns, and the phase
+
+L. Vadamodala;S. Das, O. Gundogmus, Y. Sozer, A. Chowdhury, A.
+W. Bandarkar, S. Harasis, S. M. Chowdhury, E. Haque, T. Husain, F.
+Venegas, D. Colavincenzo, J. Geither, “Comparison of Electric
+Machine Types for Electrically Driven Engine Accessories Using
+Multiphysics Simulation Tools,” in IEEE Transactions on Industry
+Applications, vol. 57, no. 2, pp1399-1410, March/April 2021.
+[2] S. A. Hossain and I. Husain, "A geometry based simplified analytical
+model of switched reluctance machines for real-time controller
+implementation," in IEEE Transactions on Power Electronics, vol. 18,
+no. 6, pp. 1384-1389, Nov. 2003.
+[3] M. Ilic'-Spong, R. Marino, S. Peresada and D. Taylor, "Feedback
+linearizing control of switched reluctance motors," in IEEE
+Transactions on Automatic Control, vol. 32, no. 5, pp. 371-379, May
+1987.
+[4] D. A. Torrey, X. -. Niu and E. J. Unkauf, "Analytical modelling of
+variable-reluctance machine magnetisation characteristics," in IEE
+Proceedings - Electric Power Applications, vol. 142, no. 1, pp. 14-22,
+Jan. 1995.
+[5] D. A. Andrade and R. Krishnan, "Characterization of switched
+reluctance machines using Fourier series approach," Conference
+Record of the 2001 IEEE Industry Applications Conference. 36th IAS
+Annual Meeting (Cat. No.01CH37248), Chicago, IL, USA, 2001, pp.
+48-54 vol.1.
+[6] A. Khalil and I. Husain, "A Fourier Series Generalized GeometryBased Analytical Model of Switched Reluctance Machines," in IEEE
+Transactions on Industry Applications, vol. 43, no. 3, pp. 673-684,
+May-june 2007.
+[7] S. A. Hossain and I. Husain, "A geometry based simplified analytical
+model of switched reluctance machines for real-time controller
+implementation," in IEEE Transactions on Power Electronics, vol. 18,
+no. 6, pp. 1384-1389, Nov. 2003.
+[8] A. Radun, "Analytical calculation of the switched reluctance motor's
+unaligned inductance," in IEEE Transactions on Magnetics, vol. 35, no.
+6, pp. 4473-4481, Nov. 1999.
+[9] A. Radun, "Analytically computing the flux linked by a switched
+reluctance motor phase when the stator and rotor poles overlap," in
+IEEE Transactions on Magnetics, vol. 36, no. 4, pp. 1996-2003, July
+2000.
+[10] W. Uddin, Y. Sozer, “ Analytical Modeling of Mutually Coupled
+Switched Reluctance Machines Under Saturation Based on Design
+Geometry” in IEEE Transactions on Industry Applications, vol. 53, no.
+5, pp. 4431-4440, Sept-Oct. 2017.
+[11] Isotropic soft magnetic material : analytic saturation curve + Knee
+adjustment, User Guide Altair Flux 2021
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 07,2026 at 07:36:46 UTC from IEEE Xplore. Restrictions apply.
+
+

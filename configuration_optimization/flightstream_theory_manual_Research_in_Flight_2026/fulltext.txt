@@ -1,0 +1,3800 @@
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream
+Search
+Theory
+Manual
+Introduction
+Why
+FlightStream?
+
+
+
+
+
+
+
+Introduction
+
+Fundamental
+Flow
+Equations
+
+What are Panel Methods?
+
+Subsonic
+Solver
+
+schemes for solving partial differential equations (PDE), such as Laplace’s
+
+Transonic
+Solver
+
+flows. The fundamental idea behind panel methods is to divide the aircraft
+
+LocalInclination
+Solvers
+
+then assigned a distribution of sources, doublets, or vortices, which are
+
+
+
+Postprocessing
+
+
+
+Panel methods (also known as boundary element methods) are numerical
+equation for incompressible flows or the full potential equation for transonic
+surface into a collection of small, flat surfaces called panels. Each panel is
+mathematical representations of simple flow patterns. These flow patterns are
+fundamental solutions to the governing PDE, ensuring that the overall flow
+field satisfies the governing equation.
+The general process of a panel method can be broken down as follows:
+Discretisation: The aircraft surface is divided into a network of panels.
+Singularity Distributions: Each panel is assigned a distribution of sources,
+doublets, or vortices with unknown strengths.
+Influence Coefficients: Mathematical expressions are derived to calculate
+how the flow from each panel influences the flow at every other panel.
+Boundary Conditions: Boundary conditions are imposed at specific points
+on the panels to ensure the flow adheres to the desired physical behaviour,
+such as no flow penetrating the aircraft surface.
+Solving the System: The influence coefficients and boundary conditions
+form a system of equations that are solved to determine the strengths of
+the source, doublet, and/or vortex strength on each panel.
+Flow Field Calculation: Once the singularity strengths are known, the flow
+velocity and pressure can be calculated at any point in the flow field.
+Force and Moment Calculation: By integrating the pressure distribution
+over the aircraft surface, the overall aerodynamic forces and moments can
+be determined.
+Because they deal only with surface-based meshes and unknowns, panel
+methods are highly efficient for analyzing complex aircraft configurations,
+especially compared to more computationally intensive methods like Navier-
+
+https://flightstream-theory.altair.com
+
+1/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+solvers. They find wide use in the aerospace industry for preliminary
+FlightStream Stokes
+design studies, evaluating aerodynamic loads, and understanding flow
+behaviour around intricate geometries.
+Theory
+Manual
+Introduction
+
+Why FlightStream?
+
+Why
+FlightStream?
+
+FlightStream is a modernized panel-method based aerodynamic solver. The
+
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+original inviscid theory is enhanced with several novel features to provide a
+more realistic and comprehensive aerodynamic analysis tool compared to
+legacy panel codes. These enhancements include (but are not limited to):
+Compressibility Models: FlightStream goes beyond incompressible flow
+analysis by including compressible flow models, enhancing its capability to
+simulate a wide range of flight conditions up through hypersonic flow.
+Integral Boundary Layer: FlightStream includes an integral boundary layer
+model that accounts for the effects of viscosity on the flow. This allows for
+more accurate predictions of aerodynamic loads, especially at high angles
+
+
+
+Postprocessing
+
+of attack.
+Viscous-Coupling Equations: While traditional panel codes primarily focus
+on inviscid flow, FlightStream incorporates viscous-coupling equations to
+better model the thickening and decambering effects of boundary layers.
+Advanced Boundary Conditions: Unlike earlier panel codes, FlightStream
+introduces advanced boundary conditions, including actuator discs for
+simulating propellers and jet exhausts.
+Unsteady Flow Solver: FlightStream has an unsteady flow solver that can
+be used to simulate the aerodynamics of complex, time-varying
+maneuvers.
+Time-Accurate Capabilities: FlightStream boasts time-accurate simulation
+capabilities, enabling analysis of dynamic scenarios such as trajectory
+simulations and rotor motions, a feature lacking in many legacy panel
+codes.
+Relaxed Vortex-Wake Filament Method: Unlike simpler wake models,
+FlightStream uses a relaxed vortex-wake filament method to realistically
+simulate complex and unsteady wake dynamics. This allows for more
+accurate representation of wake interaction with downstream components.
+Efficient Algorithms: FlightStream leverages computationally efficient
+algorithms, such as agglomerate multipole and recursive, octree-based
+calculations to reduce computational time.
+Modern GUI: More than just a solver, FlightStream is accessed through a
+user-friendly graphical user interface (GUI) with full support for CAD
+integration, meshing, post-processing, and visualization.
+
+https://flightstream-theory.altair.com
+
+2/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+API: Large batch runs can be automated using the FlightStream
+FlightStream Scripting
+scripting API. Users can generate aerodynamic databases and conduct
+massive design space exploration quickly and autonomously.
+Theory
+Manual
+The combination of these features makes FlightStream a powerful tool for
+modern vehicle design and analysis while ensuring ease of use, high
+Introduction
+
+accuracy, and computational efficiency.
+
+Why
+FlightStream?
+
+
+
+
+
+
+
+Fundamental
+Flow
+Equations
+
+Fundamental Flow Equations
+
+Subsonic
+Solver
+
+For Newtonian fluid the fundamental flow equations are given be the continuity
+
+Transonic
+Solver
+LocalInclination
+Solvers
+
+equation:
+∂ρ
+
+∂(ρu)
+
+∂(ρw)
+
++
+
+∂t
+
++
+
+∂x
+
+= 0
+
+∂y
+
+∂z
+
+and the momentum equation, also known as the Navier-Stokes equation.
+
+
+
+Postprocessing
+
+∂(ρv)
+
++
+
+∂(ρui uj )
+
+∂(ρui )
++
+
+= −
+∂xj
+
+∂t
+
+2
+
+∂p
+
+∂ ui
+
++ μ
+∂xi
+
+∂xj ∂xj
+
+For inviscid flow, the Navier-Stokes equation reduces to:
+∂(ρui uj )
+
+∂(ρui )
++
+
+∂p
+= −
+
+∂xj
+
+∂t
+
+∂xi
+
+Through some manipulation it can be shown the inviscid momentum equation
+can take the following form.
+∂ui
+∂t
+
++ uj
+
+∂ui
+
+1
+
+∂p
+
+= −
+ρ ∂xi
+
+∂xj
+
+If we assume irrotational flow and introduct the velocity potential
+$u_{i}=\frac{\partial \phi}{\partial x_i}$ we can rewrite the above equation as:
+∂
+
+∂Φ
+(
+
+∂t
+
+1
+
+∂
+
+) +
+∂xi
+
+2 ∂xi
+
+1
+(uj uj ) = −
+
+∂p
+
+ρ ∂xi
+
+And finally applying the incompressible assumption to the continuity equation
+we get the following:
+2
+
+2
+
+∂ Φ
+∂x
+
+https://flightstream-theory.altair.com
+
+2
+
+2
+
+∂ Φ
++
+∂y
+
+2
+
+∂ Φ
++
+∂z
+
+2
+
+= 0
+
+3/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream
+Subsonic Solver
+Theory
+The potential flow equation is used to define an inviscid, irrotational, and
+Manual
+incompressible, and flow. The potential flow Laplace equation defines the
+ϕ
+
+Introduction
+
+smooth behavior of the flow field:
+
+Why
+FlightStream?
+
+2
+
+∇ ϕ = 0
+
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+Figure 1. Illustration of a body, SB , immersed in a potential flow field
+
+
+
+Postprocessing
+
+For a body, SB , immersed in a potential flow field the velocity, Green’s
+theorem can be applied to the inner and outer surfaces to obtain the following
+relation:
+1
+ΦP = −
+
+1
+∬
+
+4π
+
+μn ⋅ ∇ (
+SB +Sw
+
+1
+) dS +
+
+r
+
+1
+∬
+
+4π
+
+SB
+
+r
+
+n ⋅ (−σ)dS + ϕ∞
+
+Where the doublet and source primitives are defined as, μ = ϕ − ϕi and
+∂ϕ
+
+σ =
+
+∂n
+
+−
+
+∂ϕi
+∂n
+
+, respectively. Thus, the potential at any point in the flow field
+
+may be determined as the sum of source and doublet influences integrated
+across each panel. The gradient of this may also be taken to find the velocity
+induced at any point in the flow field.
+In addition to approximating the surface by a discrete set of panels, the source
+and doublet strengths are assumed to follow some analytic distribution over
+each panel (i.e. constant, linearly-varying, etc.). Most often, panel methods
+incorporate a linear distribution of doublet strength and a constant distribution
+of source strength across each panel, or quadratic and linear distributions of
+source and doublet strength, respectively. This is because the source strength
+represents a jump in velocity across a panel, while the gradient of doublet
+strength represents a jump in velocity. Some panel methods instead use
+constant distributions for both sources and doublets; however, this is typically
+only done for subsonic methods. For a given body and freestream condition,
+the values of μ and σ on each panel are not known a priori. These
+distributions may be written in terms of some finite set of unknown source and
+doublet parameters. By enforcing as many boundary conditions as there are
+unknown source and doublet parameters, a linear system of equations may
+https://flightstream-theory.altair.com
+
+4/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+formed. This system of equations will be linear because the induced
+FlightStream be
+potentials and velocities are linear in the source and doublet strengths. Then,
+by solving this system of equations, the unknown source and doublet
+Theory
+parameters may be determined. Once these are known, the flow properties at
+Manual
+any point on the body or in the flow field are easily obtained.
+Introduction
+
+Boundary conditions can be enforced by assuming that the nature of the flow
+
+Why
+FlightStream?
+
+is known at certain locations called control points. With a boundary condition
+
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+
+vector the nodal doublet strengths μ can be found by
+[AI C]μ = b
+
+where b is the boundary condition vector and AI C is the aerodynamic
+coefficient matrix.
+
+Transonic
+Solver
+
+FlightStream uses a Neumann boundary condition to enforce the boundary
+
+LocalInclination
+Solvers
+
+the system. In the context of panel methods this is the derivative of the velocity
+
+conditions. A Neumann formulation specifies the derivative at the boundary of
+potential at the boundary. Recall that the derivative of a velocity potential is a
+velocity; therefore, the Neumann formulations of panel methods are velocity-
+
+
+
+Postprocessing
+
+based formulations and the [AIC] matrix is populated with velocity influences
+[1].
+The boundary conditions are enforced at control points that are placed
+throughout the mesh at the center of panel face. Once placed, there is a
+geometric relationship between a control point and the mesh vertices and
+panels. A set of aerodynamic influence coefficients can be calculated for a
+control point. These influence coefficients are based on the relative position,
+orientation, and singularity distributions of the panels. Rather than setting a
+doublet distribution for each panel and measuring the flow at the control
+points, panel methods define the flow at the control points (ideally
+representing physical flow conditions), and then solve for the required doublet
+strength distributions of the panels [1].
+The rows of the [AIC] matrix are associated with control points and the
+columns are associated with mesh vertices. Each row contains coefficients
+representing the influence of each vertex on that row’s control point. The
+elements of the [AIC] matrix are populated as shown below.
+
+https://flightstream-theory.altair.com
+
+5/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream
+Theory
+Manual
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+Figure 2. Example of how one element of the [AIC] matrix is populated [1].
+
+
+
+Postprocessing
+
+Surface Blowing
+A solution to the above requires that the Neumann boundary condition be
+satisfied on the surface:
+n ⋅ ∇ϕ = −VN − n ⋅ VS
+
+on SB
+
+Where VN is the normal velocity on the boundary which is 0 in the absence of
+transpiration (later it will be shown that a non-zero transpiration velocity allows
+for the capture of some viscous effects on the surface). VS is the local velocity
+on the boundary and may be composed of several parts due to body rotation
+(indeed this is how rotational flow fields are modeled in FlightStream). In the
+simplest steady case the above equation reduces to:
+n ⋅ ∇ϕ = 0
+
+Given a displacement thickness, δ ∗ , the boundary condition becomes:
+∂
+VN =
+
+∂s
+
+∗
+
+(Ue δ ) + Vnorm
+
+where the first term represents the rate of growth of the boundary layer, and
+the second term, Vnorm , is positive for outflow and negative for inflow. The
+boundary layer term is typically zero at the start of the calculation and is then
+updated during each viscous/potential iteration cycle, as described in Section
+Viscous Modeling.
+
+https://flightstream-theory.altair.com
+
+6/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream
+Wake Treatment
+Theory
+FlightStream employs a cutting-edge relaxed vortex-wake filament method to
+Manual
+capture the effects of the wake. At each trailing edge of the body, a wake
+
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+filament is released. This has the capability to resolve around solid bodies
+automatically and has inbuilt vortex stretching and disintegration models. The
+latter enables the modeling of full volumetric effects and to study the
+interactions between various components while maintaining solution run times
+measured in minutes. Traditional free wake panel methods have issues with
+singularities when wakes intersect solid bodies.
+
+Subsonic
+Solver
+
+The unstructured surface mesh drives the wake to also be unstructured since
+
+Transonic
+Solver
+
+the trailing edges (TE) are not directionally mapped. In FlightStreams, the
+concept of “wake strands” (as opposed to wake sheets) emenating from
+
+LocalInclination
+Solvers
+
+mapped vertices determine the wake geometry.
+Once the trailing edges are marked, the vertex pool corresponding to these
+edges is available from the global vertex map. These vertices become the
+
+
+
+Postprocessing
+
+starting point, or nodes, for the individual wake strands. Since no additional
+vorticity sources or sinks are added by the wake, the net vorticity of the
+geometry remains conserved and the wake propagates only the required
+vorticity to satisfy the Kutta condition at the trailing edges.
+
+Figure 3. The directional vorticity being shed into the wake strand at the trailing
+edge on a) a general node and b) a corner node.
+
+Vorticity strength reductions downstream of the trailing edge can only occur
+due to viscous effects. This is modeled using the application of the Lamb–
+Oseen vortex model obtained from the exact solution of the Navier–Stokes
+equations for a laminar 2D vortex. Knowing the initial vorticity shed into the
+strand at the trailing-edge node, the Lamb–Oseen model provides the vorticity
+decay equation as:
+
+Γt = Γ (1 − e
+
+−
+
+2
+ρ∞ r
+4μt
+
+)
+
+In the above equation, the time used corresponds to the solver pseudotime
+and starts at zero at the trailing edge. It is marched alongside the strand
+(using values of local velocity and the discretization size of the relaxed wake,
+https://flightstream-theory.altair.com
+
+7/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+is fixed to the average mesh edge length) until the termination of the
+FlightStream which
+wake downstream at the Trefftz plane. All strands are projected or terminated
+upon intersection with the Trefftz plane.
+Theory
+Manual
+Introduction
+Why
+FlightStream?
+
+
+
+
+
+
+
+Integrated Circulation
+
+Fundamental
+Flow
+Equations
+
+The method of integrated circulation works by evaluating the vorticity along a
+
+Subsonic
+Solver
+
+These cross sections can be aligned with their planar vectors directed
+
+Transonic
+Solver
+LocalInclination
+Solvers
+
+
+
+Postprocessing
+
+series of two-dimensional cross sections encompassing the entire geometry.
+orthogonally to the freestream and load vectors. The arbitrary distribution of
+vorticity on the unstructured surface mesh can therefore be converted into
+directional vorticity along the required load vectors. An example of such cross
+sections is shown in Figure 4.
+The vorticity for each of the cross sections is evaluated by the application of
+the generalized circulation equation along the perimeter of the cross section.
+This is easily done once the vorticity on the surface mesh has been evaluated
+in the solver. Since we can evaluate the velocity induced by a vortex ring at
+any point in space around the body using Eq.[eq:vortex_ring_velocity]), we
+discretize the cross section along its rectangular perimeter (Fig.
+[fig:cross_section_discretization]). We then evaluate the induced velocity from
+all of the surface vortex rings on each of the discretized vertices of the cross
+sections. Once a distribution of velocity along the vertices of the cross section
+is known, the net, integrated circulation of that cross section is evaluated using
+the numerical formulation of Stokes' theorem:
+L
+
+Γk = ∫
+
+Vinduced ⋅ dl
+0
+
+https://flightstream-theory.altair.com
+
+8/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream
+Theory
+Manual
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+
+
+Postprocessing
+
+Figure 4. Representations of a) integrated circulation cross-sections on a sample
+geometry and b) equivalent Prandtl lifting line
+
+Treated in isolation in two-dimensional space, defined by the plane of the
+arbitrary cross section, the aerodynamic loads from this integrated circulation
+could be evaluated from the Kutta–Joukowski theorem [2]. A series of these
+cross sections enclosing the arbitrary three-dimensional body Cross sections
+a) allows us to convert an unstructured distribution of bound surface vorticity
+into adjacent sections of two-dimensional net circulations, thereby reducing
+them to the Prandtl lifting-line theory Cross sections b), with all the inherent
+benefits in load computations as provided by this formulation.
+If the cross-section planes are aligned orthogonally to the freestream and lift
+vectors, then their alignment is identical to a lifting-line distribution of
+integrated vorticity along a rectangular wing. Consequently, the integrated
+vorticity of each cross section is identical to the "bound" vorticity from the
+Prandtl theory. The downwash between each of these cross sections is then
+evaluated by treating each cross-section bound vorticity as shedding a
+horseshoe-shaped vortex aligned with its planar and freestream vectors.
+Furthermore, spanwise loading distributions of arbitrary bodies can also be
+evaluated through this approach by plotting the loads evaluated for each cross
+section and plotting them in spatial locations on the abscissas. This entire
+https://flightstream-theory.altair.com
+
+9/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+therefore reduces an arbitrary surface distribution of vorticity to the
+FlightStream formulation
+form of the Prandtl theory, and therefore yields the known formulations of
+induced lift, drag, and downwash velocities:
+Theory
+Manual
+b/2
+
+Li = ∫
+
+ρ∞ V∞ Γy dy
+−b/2
+
+Introduction
+b/2
+
+Why
+FlightStream?
+
+Di = ∫
+
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+
+
+Postprocessing
+
+ρ∞ wy Γy dy
+−b/2
+
+b/2
+
+1
+wy =
+
+∫
+4π
+
+1
+(
+
+−b/2
+
+)
+y − y0
+
+−dΓy0
+
+dy0
+
+dy
+
+For the sake of reading convenience, each of these cross sections will
+hereafter be referred to as an integrated circulation loop (ICL). In numerical
+application, the ICLs are discretized using the average edge size of the
+underlying surface mesh. The spacing between ICLs is also discretized using
+the same reference values. It is possible to include other discretization values,
+and this can have a varying effect on the solution fidelity, depending on the
+complexity of the geometry in question.
+
+Subsonic Solver
+In the Subsonic solver, the compressibility correction is applied via the
+standard Prandtl-Glauert rule. This is done by scaling the freestream velocity
+and density by the factor 1/√1 − M 2 , where M is the Mach number. This
+correction is applied to the freestream conditions and the body, and is used to
+correct the flow field and forces/moments. Typically this correction is only valid
+up to a Mach number of about 0.6. The user can easily enable the
+Incompressible solver to bypass this correction. If a higher fidelity
+compressibility analysis is required, then the user may use on of the several
+available transonic/low-order supersonic/high-order supersonic/hypersonic
+methods.
+
+Surface Pressure Coefficient Calculation
+After solving for vertex doublet strengths, the velocity and pressure can be
+solved for at any point on or off the body. The surface velocity, u, is given by:
+
+https://flightstream-theory.altair.com
+
+10/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream
+where
+is the freestream velocity magnitude and is the freestream
+Theory
+direction vector. For incompressible flows, the pressure coefficient at a point is
+Manual
+given by:
+u = U∞ (^
+c + ∇μ)
+
+^
+c
+
+U∞
+
+||u||
+
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+CPinc = 1 −
+
+LocalInclination
+Solvers
+
+2
+
+U∞
+
+For compressible flows, the isentropic pressure coefficient at a point is given
+by:
+γ
+
+Subsonic
+Solver
+Transonic
+Solver
+
+2
+
+γ − 1
+
+2
+CPise =
+
+2
+
+[1 +
+
+γM∞
+
+||u||
+(1 −
+
+2
+
+2
+
+2
+
+γ−1
+
+2
+
+) M∞ ]
+
+− 1
+
+U∞
+
+Where M∞ is the freestream Mach number and γ is the ratio for specific
+heats (default γ value is 1.4). With surface pressures, force coefficients in the
+, , and z directions are found with the summation
+
+x y
+
+
+
+⎡
+
+Postprocessing
+
+CFx
+
+⎤
+
+⎢ CFy ⎥ = CF = −
+⎣
+
+CFz
+
+⎦
+
+1
+Aref
+
+Npanels
+
+∑ CPi Ai npi
+i=1
+
+where Aref is the body reference area (such as wing area), CP is the
+i
+
+pressure coefficient at a panel centroid, Ai is the panel area, and npi is the
+panel normal vector.
+
+Boundary Conditions
+In FlightStream, the boundary conditions are critical for the accurate
+simulation of aerodynamic flows. The following sections provide an overview
+of the boundary conditions implemented in FlightStream.
+
+Trailing Edges
+The trailing edge boundary condition is crucial for the accurate simulation of
+aerodynamic flows in panel methods, such as FlightStream. Trailing edge
+boundaries are essential for satisfying the Kutta condition, a fundamental
+principle in aerodynamics dictating that the flow must leave the trailing edge of
+an airfoil smoothly. Failure to meet this condition leads to unrealistic pressure
+distributions and inaccurate lift predictions. In FlightStream, trailing edge
+boundaries are marked as special edges on the surface mesh, where wake
+
+https://flightstream-theory.altair.com
+
+11/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+filaments originate. The strength of these filaments, representing the
+FlightStream vortex
+shed vorticity, is determined by the difference in flow velocity above and below
+the wake.
+Theory
+Manual
+FlightStream offers two types of trailing edge boundaries: Standard-Kutta and
+Relaxed-Kutta. In the Standard-Kutta type, the net circulation at the trailing
+
+
+
+
+
+
+
+Introduction
+
+edge is fully shed into the wake. Conversely, in the Relaxed-Kutta type, only
+
+Why
+FlightStream?
+
+half of the net circulation is shed, suitable for situations where the geometry of
+
+Fundamental
+Flow
+Equations
+
+placement of trailing edges is paramount for the correctness of the simulation.
+
+Subsonic
+Solver
+
+base regions, and importing from external files.
+
+Transonic
+Solver
+
+Wake Termination Nodes
+
+LocalInclination
+Solvers
+
+the trailing edge is not sharp, such as a rounded fuselage. The accurate
+FlightStream provides several ways to mark trailing edge boundaries,
+including automatic detection, manual selection, defining perimeters around
+
+Wake termination nodes are used in conjunction with trailing edges to control
+the behaviour of the wake vortex filaments. These nodes mark locations
+where the wake filament should be clipped, preventing the formation of
+
+
+
+Postprocessing
+
+unrealistic tip vortices in specific situations, such as at the junction of a wing
+and fuselage.
+
+Base Pressure Region
+Base pressure regions are used to model the surface-pressure effects of
+regions of bulk separated flow. In FlightStream®, these regions are explicitly
+defined by the user. A uniform Cp,base is applied for the base region during
+solve time. This value can be user-defined or an empirical model can be used.
+FlightStream implements a novel method to calculate the base pressure as a
+function of freestream Mach number. This model is based on a regression of
+various experimental data. The base pressure coefficient monotonically
+increases with decreasing Mach number in the subsonic regime and with
+increasing Mach number in the supersonic regime. Outside the transonic
+regime, there is relatively little variation in the base pressure coefficient across
+various configurations. However, in the transonic regime the base pressure
+coefficient appears to be a function of more than the freestream Mach
+number, Base pressure model implemented in FlightStream shows the data is
+not collapsing for these Mach numbers. For supersonic flows, the base
+pressure coefficient is bounded from below by the vacuum pressure
+coefficient (solid black line in the figure).
+
+https://flightstream-theory.altair.com
+
+12/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream
+Theory
+Manual
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+
+Figure 5. Base pressure model implemented in FlightStream
+
+To give an approximate fit to the data shown, the following base pressure
+model is proposed. For subsonic freestream Mach numbers, the pressure
+coefficient is given by 1.
+
+Transonic
+Solver
+LocalInclination
+Solvers
+
+0.22
+Cpbase = −0.2 −
+
+50(M∞ − 1)2 + 1
+
+For supersonic freestream Mach numbers, the pressure coefficient is given by
+2.
+
+
+
+Postprocessing
+
+0.42
+Cpbase = −
+
+(M∞ − 1)
+
+2
+
++ 1
+
+These equations both predict a base pressure coefficient of -0.42 at M∞ = 1
+. This model is shown in Base pressure model implemented in FlightStream as
+the solid red line. Note that this supersonic model can predict pressure
+coefficients lower than the vacuum pressure for high freestream Mach
+numbers. Thus, in practice, the supersonic base pressure coefficient is the
+greater between the vacuum pressure coefficient and that predicted by 2.
+While this model yields reasonable results the user is encouraged to run
+experiments or consult literature for Cp,base values for their specific
+application.
+
+Turbulent Trip Edges
+In many situations, boundary layer transition is deliberately induced. On
+production vehicles, imperfections or intentional surface features can act as
+trip points. In wind tunnel tests, researchers often use physical trip strips to
+force transition at a desired location, ensuring consistent flow behaviour for
+measurements. Turbulent trip edges in FlightStream are a boundary condition
+used to trigger artificial boundary layer transition from laminar to turbulent flow.
+This is important because, in real-world scenarios and wind tunnel testing,
+various factors can induce early transition, impacting the overall flow
+behaviour and aerodynamic characteristics. Once trip edges are defined,
+FlightStream’s viscous solver incorporates them into the boundary layer
+calculations. The primary impact is the shift in boundary layer characteristics,
+
+https://flightstream-theory.altair.com
+
+13/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+parameters like skin friction, displacement thickness, and
+FlightStream influencing
+momentum thickness, ultimately affecting the predicted lift, drag, and moment
+values.
+Theory
+Manual
+
+Actuator Discs
+
+Introduction
+
+Actuator disc models are instrumental in representing steady-state effects of
+
+Why
+FlightStream?
+
+inherently unsteady systems like propellers in aerodynamics. These models
+
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+Transonic
+Solver
+
+simulate the impact of momentum additions in flow fields due to propulsion
+components, offering insights into how devices like propellers influence
+surrounding airflow. The theory behind actuator discs provides an efficient way
+to estimate the aerodynamic effects of propulsion systems.
+Types of Actuator Discs Actuator discs generally simulate the primary
+propulsion effect of propellers:
+
+LocalInclination
+Solvers
+
+Propeller Actuator Disc (Conway Model): This model represents the effects
+
+Postprocessing
+
+field.
+
+
+
+of a propeller operating under steady-state conditions, often used in
+cruise-condition simulations to study how propellers modify the overall flow
+
+Each actuator disc applies specific boundary conditions and momentum
+additions to reflect the characteristics of the propulsion system.
+Actuator discs possess several modifiable physical parameters:
+Dimensions and Orientation: The radius or elliptical dimensions of the
+actuator disc can be adjusted, allowing for alignment with the intended
+propulsion component’s geometry.
+Velocity Distributions: Actuator discs enable custom-defined velocity
+distributions across their surfaces. For instance, propeller discs may
+include swirl velocity to account for rotational flow effects in the slipstream.
+Custom Thrust Profiles: Propeller discs can integrate custom thrust
+profiles, offering a more accurate representation of the non-uniform
+slipstream velocities, especially important for advanced or distributed
+electric propulsion systems.
+Although actuator disc models generally offer steady-state approximations,
+unsteady simulations can provide deeper insights in dynamic scenarios, such
+as varying propeller pitch or RPM. In summary, actuator disc models are
+crucial for simulating propulsion effects on surrounding flow fields, enabling
+aerodynamic evaluations of various propulsion systems in aircraft design.
+Understanding the principles and parameters associated with these models
+allows for precise and adaptable simulation setups tailored to different
+aerodynamic and propulsion studies.
+
+https://flightstream-theory.altair.com
+
+14/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream Thrust Distribution Examples
+Theory
+The following examples show the thrust distributions for various propeller
+blade shapes. The presented equations can be used to create a thrust profile
+Manual
+and then applied to a Custom actuator disc in FlightStream.
+
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Generic Thrust Distribution
+
+Let the thrust distribution over a single blade of a propeller be given by:
+T (r) = −A(r − 1)(r − Rh )(r + 1 − 2Rh )(r + Rh )
+
+(1)
+
+Subsonic
+Solver
+
+where r is the non-dimensional blade location (varying from 0 to 1), Rh is the
+
+Transonic
+Solver
+
+shown in Thrust distribution for a generic propeller blade.
+
+non-dimensional location of the hub, and A is a scaling coefficient. This is
+
+LocalInclination
+Solvers
+
+
+
+Postprocessing
+
+Figure 6. Thrust distribution for a generic propeller blade
+
+This can be rearranged into the form:
+T (r) = −A(r
+
+4
+
++ c3 r
+
+3
+
++ c2 r
+
+2
+
++ c1 r + c0 )
+
+(2)
+
+where:
+c3 = −2Rh
+c2 = −R
+
+2
+
++ 2Rh − 1
+
+h
+
+c1 = 2R
+c0 = R
+
+2
+h
+
+3
+h
+
+− 2R
+
+3
+h
+
+If the total thrust, T , produced by the propeller is known, then A may be
+determined from:
+1
+
+T = Nb Rt ∫
+
+T (r)dr
+Rh
+
+1
+T = −Nb Rt A [
+
+5
+
+(1 − R ) +
+h
+
+5
+
+T
+A = −
+Nb Rt
+
+https://flightstream-theory.altair.com
+
+1
+[
+
+c3
+
+h
+
+4
+
+5
+
+(1 − R ) +
+5
+
+4
+
+(1 − R ) +
+
+h
+
+c3
+4
+
+c2
+
+3
+
+(1 − R ) +
+h
+
+3
+
+4
+
+(1 − R ) +
+h
+
+c2
+3
+
+c1
+
+(1 − R
+
+2
+
+3
+
+(1 − R ) +
+h
+
+c1
+
+2
+h
+
+(1 −
+
+2
+
+15/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+is the number of blades and
+is the tip radius (dimensional).
+FlightStream where
+and may be either dimensional or non-dimensional coefficients, so long as
+they are consistent with each other.
+Theory
+Manual
+Elliptic Thrust Distribution
+Nb
+
+Rt
+
+T
+
+A
+
+Introduction
+
+The thrust distribution over a single blade of a propeller may also be given by:
+
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+
+T (r) = A√1 − r
+
+call this the elliptic distribution.
+Again, A may be determined from:
+1
+
+T = Nb Rt ∫
+
+T (r)dr
+0
+
+LocalInclination
+Solvers
+Postprocessing
+
+(4)
+
+where A is a scaling constant and r is the non-dimensional blade location. We
+
+Transonic
+Solver
+
+
+
+2
+
+1
+2
+
+A√1 − r dr
+
+T = Nb Rt ∫
+0
+
+Note that for this distribution, we assume no hub. If we let:
+√1 − r2 = cos θ
+
+then:
+π/2
+
+T = Nb Rt A ∫
+
+cos
+
+2
+
+θdθ
+
+0
+
+1
+T = Nb Rt A ⋅
+
+(θ + sin(θ) cos(θ))
+2
+1
+
+T = Nb Rt A ⋅
+
+∣
+∣
+
+π/2
+
+0
+
+π
+(
+
+2
+
+)
+2
+
+Thus:
+4T
+A =
+
+(5)
+πNb Rt
+
+Viscous Modeling
+Given the inviscid solution, FlightStream® estimates the boundary layer
+properties such as thickness, δ, momentum thickness, θ, and shape factor H
+for both laminar and turbulent flows. Additionally, the viscous effects can be
+used to virtually perturb the boundaries and modify the inviscid bulk flow.
+
+https://flightstream-theory.altair.com
+
+16/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream Laminar / Turbulent Boundary Layer
+Theory
+Two models for the boundary layer are implemented in FlightStream : laminar
+and turbulent. A boundary layer transition model is also implemented. All of
+Manual
+®
+
+these models are two-dimensional methods implemented along the on-body
+
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+surface streamlines. These integral methods are computationally efficient and
+can be applied to any general three-dimensional wall boundary with
+exceptions of regions involving three-dimensional cross flow. The laminar
+boundary layer analysis method used in FlightStream® is the standard twoparameter model of Thwaites [3] integral method with the momentum integral
+equation written as follows:
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+2
+
+d
+U
+
+2
+
+θ
+[
+
+dη
+
+θ
+
+dU
+
+ν
+
+dη
+
+] = 0.45 − 6
+ν
+
+An integral boundary layer model for compressible turbulent flows has been
+implemented into the inviscid flow solver. The Standen model is used based
+on the model’s robustness and versatility for the range of subsonic Mach
+numbers of interest. The final turbulent boundary layer model implemented
+
+
+
+Postprocessing
+
+has numerical improvements and optimizations over that of the original model
+developed by Standen , but philosophically follows his work quite closely, with
+the application to subsonic, turbulent, compressible flows along on-body
+streamlines. The method is essentially two-dimensional (similar to the laminar
+model described previously), but is implemented in a quasi-three-dimensional
+manner inside FlightStream® by assuming that the three-dimensional cross
+flow terms are not dominant. For the fluid properties outside the boundary
+layer, the flow is assumed to be isentropic and subsonic, but compressible.
+The primary differential equations are developed for the turbulent
+compressible momentum thickness (θc ), and the compressible shape factor (
+Hc
+
+), as described here:
+dθi
+dX
+
+dHi
+dx
+
+= −
+
+θi
+
+dMe
+
+Me
+
+dX
+
+(Hi − 0.7)
+
+(2 + Htr ) +
+
+3.715
+
+= −
+
+F
+
+dX
+
+[
+4.17
+
+−
+θi
+
+dx
+
+dx
+
+cf
+
+dX
+
+2
+
+(
+
+Hδ−δ ∗
+
+dMe
+
+Me
+
+dx
+
+Te
+
+3
+
+)
+
+T0
+
+−
+
+Hδ−δ ∗
+
+dθi
+
+θi
+
+dx
+
+]
+
+The auxiliary equations needed to complete the above equations are :
+Ue
+
+Me =
+
+√γgRTe
+
+dMe
+dx
+
+1
+=
+ae [1 +
+
+Ue (γ−1)Te Me
+2Te ae T0
+
+F = 0.03268(Hδ−δ ∗ )
+
+https://flightstream-theory.altair.com
+
+dUe
+2
+
+−1.3
+
+]
+
+dx
+
++ 0.006
+
+17/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream
+Theory
+Manual
+
+Hδ−δ ∗ = 1.5359(Hi − 0.7)
+
+3
+
+dX
+=
+
+Te
+
+(
+
+TR
+
+dx
+
+Te
+
+) (
+
+T0
+
+−2.715
+
+μR
+
++ 3.4
+
+0.268
+
+)
+
+μ0
+
+Solving these equations numerically (using 4th order Runge-Kutta methods)
+Introduction
+
+along the on-body streamline generates all relevant turbulent boundary layer
+
+Why
+FlightStream?
+
+data. This data is then used to compute the boundary layer thicknesses. The
+
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+
+
+Postprocessing
+
+skin friction equation used is:
+cf
+2
+
+= [0.123e
+
+−1.56Hi
+
+−0.268
+
+ρ0
+(Ue θi
+
+)
+
+] [(
+
+μ0
+
+Te
+TR
+
+(
+
+TR
+
+0.402
+
+)
+
+)(
+
+T0
+
+T0 + 19
+TR + 19
+
+In order to account for surface roughness a modification from Olsen is applied
+to the surface roughness. In his work, from experiments on rough pipes, it is
+shown that the overlap layer in the turbulent velocity profile maintains a
+logarithmic shape and that the intercept at zero velocity is shifted towards
+higher roughness height. This shift depends on the size of the roughness. For
+sufficiently large roughness heights, the shift can be shown to have a
+logarithmic relation with roughness height. As the outer part of the velocity
+profile is unaffected by the roughness, Coles law of the wake is still applicable
+for flow over rough surfaces. By including the shift in the intercept in Coles law
+of the wake as a function of roughness height, it is possible to derive the
+following expression for the skin friction coefficient (Cf ) for rough surfaces in
+the same manner as for the smooth case:
+0.90e
+
+−2.40H
+
+Cf =
+(log
+
+10
+
+Reθ − log
+
+10
+
+Rek + 1.11)
+
+2.45−0.15H
+
+In this equation, Rθ is the Reynolds number based on the local momentum
+thickness of the boundary layer (θ), Rek is the Reynolds number based on
+the surface roughness height (k) and H is the local shape factor of the
+boundary layer.
+
+Boundary Layer Transition
+The presence of both laminar and turbulent separation models in
+FlightStream® allow for the possibility to model complex transitional separation
+physics along a given surface streamline. A suitable transition model is
+required to determine the location where a switch between the laminar and
+turbulent separation models can be performed. The transition model created
+by Dvorak et.al. is applied in FlightStream®, based on the criteria of
+robustness and general applicability. The general outline of this model is
+detailed in this section.
+
+https://flightstream-theory.altair.com
+
+18/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+the local Reynolds number based on momentum thickness gets larger, the
+FlightStream As
+laminar boundary layer becomes unstable and small disturbances in the
+boundary layer begin to amplify rather than damp out. The amplification of
+Theory
+disturbances eventually leads to transition to a turbulent boundary layer. The
+Manual
+local Reynolds number at which the laminar boundary layer becomes unstable
+can be correlated with the local pressure gradient by means of the following
+Introduction
+
+empirical relationships. The local pressure gradient along the laminar
+
+Why
+FlightStream?
+
+boundary layer on the streamline can be defined as:
+
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+2
+
+θ
+
+dU
+
+ν
+
+dη
+
+K =
+
+Subsonic
+Solver
+
+Here, θ is the momentum thickness of the laminar boundary layer; ν is the
+
+Transonic
+Solver
+
+(potential flow surface velocity in FlightStream®); and η is the coordinate along
+
+LocalInclination
+Solvers
+
+field variable along the surface streamline for each mesh face location. The
+
+Postprocessing
+
+momentum thickness (Rθ ):
+
+
+
+kinematic viscosity, U is the velocity at the outer edge of the boundary layer
+the surface streamline. The pressure gradient parameter K is computed as a
+work done by Dvorak et.al. has resulted in the following set of empirical
+equations for K for a range of local Reynolds Number based on the
+
+K = −0.4709 + 0.11066 ln(Reθ ) − 0.0058591(ln(Reθ ))
+
+K = 0.69412 − 0.23992 ln(Reθ ) + 0.0205(ln(Reθ ))
+
+2
+
+2
+
+(0 ≤ Reθ ≤
+
+(650 < Reθ ≤ 1
+
+If K , as computed by the original formulation using the computed boundary
+layer data is greater than K as computed by these empirical equations, then
+the laminar boundary layer is marked as unstable. In the unstable region, an
+¯
+average pressure gradient parameter K
+can be defined as:
+
+∫
+
+η
+ηu
+
+Kdη
+
+K̄ =
+η − ηu
+
+ηu
+
+is the coordinate along the surface streamline where the laminar boundary
+
+layer becomes unstable. The local Reynolds number at the transition point
+can be correlated with K by means of the following empirical relationships
+using Rθ :
+K̄ = −0.0925 + 0.00007(Reθ )
+
+K̄ = −0.12571 + 0.000114286(Reθ )
+
+(0 ≤ Reθ ≤ 750)
+
+(750 ≤ Reθ ≤ 1100)
+
+2
+¯
+K = 1.59381 − 0.45543 ln(Reθ ) + 0.032534(ln(Reθ ))
+
+(1100 ≤ Reθ
+
+¯
+When Ku , as computed computation is greater than K
+as computed by the
+
+empirical equations, natural transition is predicted. The transition from laminar
+to turbulent boundary layer is assumed to take place instantaneously at the
+transition point. At this point, the solver switches the separation models from
+https://flightstream-theory.altair.com
+
+19/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+to turbulent. The user is provided an option to toggle between
+FlightStream laminar
+completely turbulent separation models (no laminar transition) or a transitional
+separation model . An additional field variable for the boundary layer transition
+Theory
+model has been implemented into the FlightStream post-processor to
+Manual
+visualize these results .
+®
+
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+
+Performance Enhancements
+With the addition of advanced viscous models to FlightStream®, additional
+computational enhancements have been added to the solver to maintain an
+O(nlog(n))
+
+scalability to the performance of the boundary layer algorithms.
+
+To this end, spatial octree algorithms that mimic the existing Fast Multipole
+Method implementation (for the inviscid solver) have been implemented for
+
+Transonic
+Solver
+
+the viscous flow near-wall regions. This allows extremely fast near-field sorting
+
+LocalInclination
+Solvers
+
+(VST) is created in the global coordinate system of the solver and increases
+
+of points closest-to, or inside, a viscous flow region. The Viscous Spatial Tree
+the memory footprint of the FlightStream® solver by <5% for all cases.
+However, the performance benefits for viscous modules in FlightStream® are
+substantial with an otherwise O(n × m) algorithm (where m is a very large
+
+
+
+Postprocessing
+
+number of surface mesh faces) being reduced to O(n ⋅ log(n)).
+Further performance benefits are obtained by specifying proximity-search
+boxes in the local coordinate system of the mesh faces being checked for
+viscous flow. These local-frame proximity boxes are computed at the time of
+solver initialization and are therefore available without performance penalties
+for all subsequent analysis work. The localized proximity-search boxes are
+invoked as a subset within the VST. The height of the proximity search box is
+the displacement thickness of the local viscous boundary layer flow.
+
+Attachment Lines
+FlightStream utilizes a robust model for computing attachment lines and
+critical points on the inviscid surface-velocity field. This is an enabling
+requirement for robust coupling with the viscous boundary layer models
+described previously. It should be noted that the inviscid surface streamlines in
+FlightStream are computed by solving the Ordinary Differential Equations
+(ODEs) for a three-dimensional streamline, constrained to the vehicle surface.
+The implementation assumes a linear variation of the surface velocity field
+across each surface triangle until a triangle edge is reached. A triangle-toedge-to-triangle data structure is used to move to the adjacent triangle where
+the integration process is continued. The streamline ODEs are integrated in
+reverse, starting at a point near the base of the vehicle, and ending at the
+stagnation point.
+
+https://flightstream-theory.altair.com
+
+20/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+lines can be located using numerical methods based on the vector
+FlightStream Attachment
+field topology of such inviscid flows . The topology of a vector field consists of
+critical points, i.e., points where the velocity is zero, and the tangent curves
+Theory
+(instantaneous streamlines) which connect these points. Because the velocity
+Manual
+at a critical point is zero, the velocity field in the neighborhood of the critical
+point is determined by ∇u. Critical points are classified, to a first order
+
+
+
+
+
+
+
+Introduction
+
+approximation, by the eigenvalues and eigenvectors of ∇u. Common
+
+Why
+FlightStream?
+
+classifications include a saddle, node, spiral, and center.
+
+Fundamental
+Flow
+Equations
+
+Using the inviscid surface velocity field generated in FlightStream, the method
+
+Subsonic
+Solver
+
+distinguish separation and attachment lines on solid bodies in 3D numerical
+
+Transonic
+Solver
+
+developed by Kenwright is used to locate the attachment lines. Kenwright
+developed two automatic feature extraction techniques that locate and
+flow fields: (a) Phase Plane Algorithm and (b) Parallel Vector Algorithm.
+These algorithms are based on eigenvalue analysis of the velocity gradient
+
+LocalInclination
+Solvers
+
+tensor and perform a local analysis of the vector field rather than a global
+
+Postprocessing
+
+architectures, because the elements can be processed in parallel. In 2D flows,
+
+
+
+analysis of the entire flow field. These methods are useful for analyzing large
+partitioned data sets, such as those computed on distributed memory
+this can occur only at critical points (half-saddles) located on 1D boundaries.
+These critical points are just places where flows along the surface in opposing
+directions converge and, by continuity, the wall shear stress is zero. In fully 3D
+flows over a 2D boundary, there are 1D loci where flows in relatively opposing
+directions meet , but the criterion of zero wall shear stress does not generally
+hold, because there is almost always flow along the 1D curve. In fact, the wall
+shear stress can reach zero only at isolated points along these so-called lines
+of separation.
+The key requirement for any implementation of an attachment line method for
+FlightStream® requires that the technique be local, meaning that an
+independent test could be applied to each element on the surface of a body. A
+modified Phase Plane Algorithm [10] was implemented for this effort. This
+method models the flow over a simple triangular element and identifies flow
+patterns that contain streamline asymptotes. Given that the velocity vectors
+are defined at the vertices, a linear vector field [9] can be constructed that
+passes through the triangle and satisfies the prescribed vectors at the
+vertices:
+ẋ
+(
+
+) = (
+ẏ
+
+a1
+a2
+
+) + (
+
+b1
+
+c1
+
+b2
+
+c2
+
+x
+)(
+
+)
+y
+
+Here, (x, y) is the Cartesian coordinate vector and (ẋ, ẏ ) the tangential
+velocity or shear stress vector. For a linear vector field, the coefficients
+(a1 , a2 )
+
+and those in the 2x2 (Jacobian) matrix are constants. These
+
+constants can be computed analytically by substituting the coordinates and
+vectors from each vertex into this equation and then solving the resulting set
+https://flightstream-theory.altair.com
+
+21/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+equations. By differentiating this equation with respect to time
+FlightStream ofandsimultaneous
+then algebraically manipulating the resulting equations, one can produce
+a pair of second order nonhomogeneous ordinary differential equations. If the
+Theory
+determinant of the Jacobian matrix is nonzero, the solution has the form:
+Manual
+x(t) − xcp
+(
+
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+
+y(t) − ycp
+
+ξ1
+
+η1
+
+ξ2
+
+η2
+
+ae
+)(
+be
+
+λt
+
+μt
+
+)
+
+Here λ and μ are the eigenvalues of the Jacobian matrix and (ε1 , ε2 ) and
+(η1 , η2 )
+
+are the eigenvectors. The two column eigenvectors form the
+
+eigenmatrix. The terms α and β are arbitrary constants that define a particular
+curve in the phase plane. The constants xcp and ycp are the coordinates of
+the critical point:
+
+Transonic
+Solver
+LocalInclination
+Solvers
+
+) = (
+
+xcp =
+
+a2 c1 − a1 c2
+
+,
+
+b 1 c2 − b 2 c1
+
+ycp =
+
+a1 b2 − a2 b1
+b 1 c2 − b 2 c1
+
+Here, xcp and ycp translate the coordinate system such that the origin
+coincides with the critical point. A linear vector field constructed in most
+triangles will have one critical point. However, that critical point will usually lie
+
+
+
+Postprocessing
+
+outside the boundary of the triangle. The critical points that do lie inside
+triangles correspond to those found by linear vector field topology methods .
+Using this formulation, tangent curves can be constructed that pass through
+the triangle. Rather than working in the physical plane of the triangle, we can
+simplify matters by transforming into canonical coordinates , that is, a
+coordinate system where the eigenvector directions are orthogonal:
+X
+(
+
+) = (
+Y
+
+ξ1
+
+η1
+
+ξ2
+
+η2
+
+−1
+
+)
+
+x(t) − xcp
+(
+
+ae
+) = (
+
+y(t) − ycp
+
+be
+
+λt
+
+μt
+
+)
+
+These equations describe all necessary equations for this method. However, a
+condition under which a streamline asymptote will pass through the triangle is
+still required, as well as to determine the points of intersection. Tangent curves
+of the vector field can be constructed in the (X, Y ) plane using the above
+method. This is often referred to as the Poincare phase plane . By eliminating
+the integration variable, t, one can express the trajectories of these curves in
+terms of an implicit scalar function. For the case where both eigenvalues are
+real numbers, the solution is either:
+X
+ψ(X, Y ) =
+Y
+
+μ
+
+λ
+
+Y
+or
+
+ψ(X, Y ) = −
+X
+
+λ
+
+μ
+
+The contours of ψ(X, Y ) are everywhere tangent to the vector field and may
+be verified using the relationship ∇ψ. U = 0, where U is the image of the
+vector field in the phase plane. By differentiating Equation-4 with respect to t,
+the necessary transformation can be obtained, which maps the vector field, U ,
+into the phase plane. ψ(X, Y ) is an exact solution to a rotational 2D linear
+vector field, which, in general, will not be divergence-free. A nonzero
+https://flightstream-theory.altair.com
+
+22/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+means that mass is not conserved on the surface of the triangle.
+FlightStream divergence
+The fact that this system can lose mass is physically important because this
+accounts for fluid that leaves the surface as the flow converges on a
+Theory
+separation line. The system will gain mass as the flow returns to the surface
+Manual
+and diverges from an attachment line.
+Introduction
+
+The phase portrait can assume one of two orientations in the phase plane
+
+Why
+FlightStream?
+
+depending on whether it is an attracting node (μ < λ < 0) or a repelling
+
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+node (0 < μ < λ). Specifically, streamlines asymptotically diverge from the
+Y
+
+-axis for a repelling node, while they converge on the X-axis for an
+
+attracting node. A separation or attachment line will pass through a triangle if
+the triangle straddles the X-axis or Y -axis in the phase plane. The vertices of
+the triangle are mapped into the phase plane using the central expression in
+the above formulation.
+
+Viscous-Inviscid Coupling
+To perform viscous-coupled flow solutions, the laminar and turbulent boundary
+layer models were integrated with the inviscid solver via displacement of the
+
+
+
+Postprocessing
+
+inviscid boundary equal to the displacement thicknesses of the local boundary
+layers. A three-dimensional methodology applicable to unstructured surface
+meshes has been implemented into FlightStream®. The solver coupling takes
+the following form:
+1. Solve the potential flow field over the body and obtain the inviscid surface
+vorticity distribution.
+2. Compute the integral boundary layer
+3. Modify the surface flow boundary condition for the potential flow and solve
+for the second iteration.
+4. Repeat steps 1-3 until both the inviscid and viscous flow solutions are
+converged.
+For boundary layers, the displacement thickness (δ ∗ ) indicates the extent to
+which the surface would have to be displaced in order to be left with the same
+flow rate of the viscous flow, but with an inviscid velocity profile of u(z) = Ue .
+Therefore, the displacement thickness is suited for the measure of
+displacement needed for the inviscid boundary. Fig. 6 illustrates the
+philosophical idea for this task.
+The second option for inviscid boundary displacement is to simulate the
+displacement of a fixed surface mesh by blowing a velocity (VN ) normal to the
+mesh face. The magnitude of the blowing velocity can be computed by using
+the momentum flux equations to give:
+∗
+
+∂(Ue δ )
+VN = −
+∂s
+
+https://flightstream-theory.altair.com
+
+23/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream integral boundary layer computations; is the local streamline velocity
+outside the boundary layer; and is the direction along the local surface. The
+Theory
+transpiration (blowing) velocity is then used to modify the FlightStream
+Manual
+inviscid Neumann boundary condition for the mesh faces using the following
+Here, (δ ∗ ) is the displacement thickness values computed from the previous
+Ue
+
+s
+
+®
+
+equation:
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+∂(ϕ + ϕ∞ )
+VN =
+
+∂n
+
+The iterative formulation of the Normal Blowing Boundary approach is
+illustrated in Fig. 8. The transpiration velocity approach has substantial
+
+Subsonic
+Solver
+
+numerical and practical advantages over the morphing boundary approach in
+
+Transonic
+Solver
+
+solver stability and robustness issues, especially in regions involving geometric
+
+LocalInclination
+Solvers
+
+computationally expensive. Based on numerical tests, the transpiration
+
+that it does not necessitate morphing the physical mesh (which can cause
+concavities) or updating the geometry influence matrices, which can be
+velocity model was chosen as the superior model and implemented in
+FlightStream®.
+
+
+
+Postprocessing
+
+Figure 7. Normal Blowing Boundary technique for inviscid slip-wall displacement
+
+Additional reading and validations of these methods in can be found at these
+references [].
+
+Separation Criteria
+In the boundary layer, if pressure in the direction of the flow increases
+(adverse pressure gradient), the flow can slow down and even reverse. If this
+adverse pressure is too severe, the boundary layer separates from the
+surface, leading to increased drag and possibly stall in the case of aircraft
+wings.
+This section discusses the methods used to determine where the flow
+separates along a surface streamline in FlightStream.
+
+https://flightstream-theory.altair.com
+
+24/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream Stratford Separation Criterion (Axial model)
+After the inviscid solution is calculated, FlightStream uses analytical models
+Theory
+to estimate where the flow becomes separated. FlightStream implements a
+Manual
+modified Stratfod separation criterion to estimate boundary layer separation
+®
+
+®
+
+location. The Stratford criterion predicts a condition where this separation can
+Introduction
+
+be delayed or prevented, even under strong adverse pressure gradients.
+
+Why
+FlightStream?
+
+Stratfod derived an expression for predicting laminar boundary layer
+separation. [4]
+
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+
+)
+umax
+
+2
+
+dCp
+
+2
+
+X̄ C̄ p (
+
+Transonic
+Solver
+LocalInclination
+Solvers
+
+2.0
+
+u
+C̄ p = 1.0 − (
+
+)
+
+= 0.0104
+
+dx
+
+X̄ = x − x
+
+′
+
+¯
+Here X
+is the effective length of the boundary layer and x′ is the origin of the
+
+layer. Typically the point of maximum velocity. For turbulent boundary layers,
+
+
+
+Postprocessing
+
+Cebeci-Smith modified Stratford’s original formulation to say that the boundary
+layer is separated where:
+−6
+
+0.4(10
+
+Re)
+
+0.1
+
+¯
+¯
+= C p (X
+
+dCp
+
+1
+
+)2
+dx
+
+To extend this 1D method to a quasi-3D flow, the pressure gradients are
+calculated along surface streamlines.
+Valarezo Separation Criteria
+
+The Valarezo criteria is a method of determining separation based on the
+difference in pressure at the leading and trailing edges of a wing. The method
+uses an empirically-derived "pressure difference rule" to predict maximum lift
+for complex multielement wing geometries . The pressure difference rule
+states that at a given Reynolds number and Mach number, there is a specific
+pressure difference between the suction peak and trailing edge of an airfoil at
+the maximum lift condition. This rule applies to both single and multielement
+airfoils. This method tends to predict separation later than Stratford. [5]
+Separation Velocity Profile
+
+The Swafford velocity profile is used to determine the velocity profile at the
+separation point . The full derivation can be found in the reference. The final
+expression implemented in FlightStream® is:
+u
+
++
+
+uτ
+
+https://flightstream-theory.altair.com
+
+S
+=
+
+tan
+κ
+
+−1
+
+(0.09y
+
++
+
++
+) + (uc
+
+Sπ
+−
+
+1
+) tanh[
+
+0.18
+
+y
+(
+
+2
+
+2
+
+) ]
+δ
+
+25/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream Where the parameters and are function of and and .
+Additionally, FlightStream sets the
+to zero in separated flow regions.
+Theory
+Manual
+Cylindrical Separation (Crossflow)
+a
+
+b
+
+Cf
+
+Reθ
+
+H
+
+Cf
+
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+In FlightStream®, the CrossFlow (CF) separation model is a method for
+predicting boundary layer separation from a surface. It assumes that
+separation occurs at a critical surface inclination relative to the freestream
+flow. This model approximates the local geometry as an infinite cylinder,
+identifying panels with a relative flow angle exceeding 90° as being in a
+separated flow state. For these panels, a uniform pressure coefficient ($C_p$)
+
+Subsonic
+Solver
+
+is applied. The diagram in Figure Figure 5 illustrates the implementation of this
+
+Transonic
+Solver
+
+Internal testing has shown the need for enabling this model to capture the
+
+approach. This model is typically enabled on fuselage like components.
+fuselage-lift contribution at high angles of attack.
+
+LocalInclination
+Solvers
+
+
+
+Postprocessing
+
+Figure 8. Diagram illustrating the crossflow separation model implementation.
+Panels with relative flow angles exceeding 90° are identified as separated and
+assigned a uniform pressure coefficient.
+
+Transonic Solver
+The transonic solver in FlightStream is based on a field-panel approach to
+solving the nonlinear full-potential equation. In a steady motion of an inviscid,
+isentropic, irrotational flow it can be shown that the nonlinear full potential
+equation is:
+
+https://flightstream-theory.altair.com
+
+26/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream
+Theory
+And under the assumption of irrotational, steady, and homentropic flow, the
+total enthalpy is constant in the entire flowfield.
+Manual
+2
+
+γ − 1
+
+2
+
+c∗ ∇ Φ = ∇Φ ⋅ (∇Φ ⋅ ∇∇Φ) +
+
+2
+
+2
+
+(∇Φ) ∇ Φ
+
+2
+
+1
+h +
+
+Introduction
+
+2
+
+u ⋅ u = h∗ = constant in the entire flowfield
+
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+
+Mach Number
+If the magnitude of |u| is equal to the local acoustic speed (i.e., |u| = c), the
+flow is said to be sonic. The sonic speed, latexmath:[c_s\), is given by
+
+Transonic
+Solver
+LocalInclination
+Solvers
+
+
+
+Postprocessing
+
+γ + 1
+2
+
+2
+
+2
+
+cs = c∗
+
+The sonic speed is the speed at which the local fluid speed and the speed of
+sound are the same. If the flow speed is greater or less than the sonic speed,
+the flow is called supersonic or subsonic, respectively. From Eqs. 13 and 14,
+|u|
+
+2
+
+2
+
+< cs < c
+
+2
+
+in the case of subsonic flow and |u|
+
+2
+
+2
+
+> cs > c
+
+2
+
+in the case
+
+of supersonic flow. Thus, the dimensionless parameter M is defined as
+|u|
+M =
+c
+
+at any point on a streamline. This quantity is called the Mach number. Based
+on the inequalities given above, the Mach number will be greater than, equal
+to, and less than unity for supersonic, sonic, and subsonic flow, respectively. It
+should be noted that the value for the local Mach number and, consequently,
+the designation of the flow, is entirely dependent on the frame of reference
+chosen.
+
+Local-Inclination Solvers
+The local-inclination methods in FlightStream for calculating the pressure
+coefficient on the surface of a body depend solely upon the local inclination of
+the surface. The inclination of the surface is given by:
+
+θ = cos
+
+−1
+
+(^
+n ⋅
+
+V∞
+∥V∞ ∥
+
+https://flightstream-theory.altair.com
+
+π
+) −
+2
+
+27/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+is the local surface normal vector and
+is the freestream velocity
+FlightStream where
+vector. Surfaces where
+are categorized as windward surfaces, and
+surfaces where
+are categorized as leeward surfaces.
+Theory
+Manual
+In FlightStream, there are two local-inclination methods: the tangent-cone
+^
+n
+
+V∞
+
+θ > 0
+
+θ ≤ 0
+
+method (focused on low-mid supersonic analysis of slender configurations)
+
+
+
+
+
+
+
+Introduction
+
+and the modified-Newtonian method (focused on high-supersonic/hypersonic
+
+Why
+FlightStream?
+
+analysis of blunt configurations).
+
+Fundamental
+Flow
+Equations
+
+Tangent Cone Method
+
+Subsonic
+Solver
+
+The Tangent Cone method approximates the pressure coefficient as the
+
+Transonic
+Solver
+
+pressure coefficient on the surface of a cone in the same flow. The solution for
+
+LocalInclination
+Solvers
+
+equations for conical flow given as \cite{anderson2003modern}:
+
+the cone pressure coefficient is carried out by solving the Taylor-Maccoll
+
+∂Vr
+
+
+
+= −Vθ
+
+∂θ
+
+Postprocessing
+and
+
+dVθ
+dθ
+
+= V
+
+2
+θ
+
+2
+
+Vr
+
+γ − 1
+− Vr −
+
+− V
+
+(1 −
+2
+
+2
+θ
+
+2
+
+⎛
+
+1 −
+
+) (2Vr + Vθ cot(θ)) ⎜
+⎝
+
+1 − Vr
+
+This is a first-order ODE, which can be solved numerically. The solution
+procedure is carried out inversely. First, an arbitrary shock angle is assumed.
+Then the Taylor-Maccoll equations are solved, marching inwards from the
+assumed shock angle. The deflection angle ( θ ) is sought where the radial
+velocity ( Vr = 0 ). This deflection angle then becomes the cone angle for the
+assumed shock angle. The surface pressure coefficient ( CP ) on the cone is
+the known. Oblique shock relations and then isentropic relations give the
+surface pressure coefficient on the cone.
+Solving the Taylor-Maccoll equations is computationally expensive.
+FlightStream does not directly solve these equations for every run. Instead,
+FlightStream uses a sixth-order polynomial to represent the cone surface
+pressure coefficient expressed as
+2
+
+CP (θ) = C0 + C1 θ + C2 θ
+
+C0
+
+3
+
++ C3 θ
+
+4
+
++ C4 θ
+
+5
+
++ C5 θ
+
+6
+
++ C6 θ
+
+through C6 were calculated and tabulated across a range of freestream
+
+Mach Numbers and specific heat ratios. When FlightStream is run with the
+Tangent Cone method, the pressure coefficients on a panel with a given
+inclination are evaluated based on the polynomials at the nearest tabulated
+
+https://flightstream-theory.altair.com
+
+28/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+numbers and specific heat ratios to the flight conditions. These values
+FlightStream Mach
+are linearly interpolated between to come up with a pressure coefficient for
+each panel.
+Theory
+Manual
+Similarly to the wedge, there is a certain cone angle above which the shock is
+detached and the Taylor-Maccoll equations cannot be used to predict the
+
+
+
+
+
+
+
+Introduction
+
+surface pressure on the cone. This angle θmax arises during the solution
+
+Why
+FlightStream?
+
+process of the Taylor-Maccoll and is stored and tabulated. When a panel
+
+Fundamental
+Flow
+Equations
+
+method must be used.
+
+Subsonic
+Solver
+
+coefficient is within 2% of the exact pressure coefficient. For panel inclinations
+
+Transonic
+Solver
+
+these panels with high relative error have little impact on the overall
+
+LocalInclination
+Solvers
+
+level of fidelity for the mid-fidelity nature of the FlightStream code.
+
+inclination is above the cone θmax for given flight conditions, another pressure
+
+For 90% of panel inclinations, the percent error for the interpolated pressure
+with a large relative error, the pressure coefficient is very low. As a result,
+aerothermal results. This level of accuracy is judged to be of an appropriate
+
+
+
+Postprocessing
+
+Modified Newtonian Method
+The original Newtonian method, also referred to as the straight Newtonian
+method, utilizes the following equation for pressure calculations
+\cite{anderson1989hypersonic}:
+CP = 2 sin
+
+2
+
+θ
+
+where CP is the pressure coefficient on the surface and θ is the inclination
+angle. The pressure coefficient on the surface as calculated by the straight
+Newtonian method is independent of Mach number. Lester
+\cite{grantz1994calibration} suggested a modification to the Newtonian
+method where CP is scaled by relating sin2 θ to CP /CP ,max . CP ,max is the
+stagnation pressure coefficient at aft of a normal shock wave given by:
+γ + 1
+
+2
+CPmax =
+
+2
+
+γM∞
+
+(
+
+γ + 1
+) [1 −
+
+2
+
+4γM∞ − 2(γ − 1)
+
+2
+
+]
+
+2γM∞
+
+This modification adds Mach number dependence to the Newtonian method.
+The modified Newtonian method can now be stated as:
+CP = CPmax sin
+
+https://flightstream-theory.altair.com
+
+2
+
+θ
+
+29/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+Newtonian methods only apply to the windward surface of the body.
+FlightStream The
+Leeward surfaces are handled using Prandtl-Meyer expansion theory as
+described in Leeward Pressure Coefficients Using Prandtl-Meyer Expansion.
+Theory
+Manual
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+Leeward Pressure Coefficients Using Prandtl-Meyer
+Expansion
+The method for calculating the leeward pressure coefficients used in this work
+is a Prandtl-Meyer Expansion from the freestream Mach number. The PrandtlMeyer function is given by
+γ + 1
+ν(M ) = √
+
+tan
+
+−1
+
+γ − 1
+(√
+
+γ − 1
+
+(M
+
+2
+
+− 1)) − tan
+
+−1
+
+(√M
+
+2
+
+− 1)
+
+γ + 1
+
+For conducting analysis using the Prandtl-Meyer function, the inclination angle
+
+
+
+Postprocessing
+
+is related to the Prandtl-Meyer function by
+θ = ν(M∞ ) − ν(M )
+
+This expansion is applied through θmax < θ < 0. The max turning angle is
+given by
+π
+θmax = [
+
+2
+
+− ν(1)] + ν(M∞ )
+
+Beyond the max turning angle, the flow is considered as separated and the
+pressure is determined using the base region relations shown later. Solving
+the Prandtl-Meyer function results in the Mach number at an expansion
+surface of inclination θ. The pressure coefficient on the expansion surface is
+given as
+
+CP =
+
+−
+
+γ − 1
+
+2
+2
+
+γM∞
+
+[(1 +
+
+M
+
+2
+
+)
+
+γ
+γ−1
+
+− 1]
+
+2
+
+It should be noted that these calculations yield a positive pressure coefficient
+even at zero impact angle, and the results generally agree well with
+experimental data for blunt shapes. However, if the surface curvature
+transitions gradually to zero slope some distance away from the blunt
+stagnation point, the method tends to overpredict the pressure. This
+overestimation occurs because flow characteristics near the nose intersect the
+curved shock system and are reflected back onto the body. When the zero
+slope is reached close to the nose—such as in the case of a hemisphere or
+cylinder—this effect does not have sufficient distance to develop.
+
+https://flightstream-theory.altair.com
+
+30/35
+
+10/26/26, 12:22 PM
+
+FlightStream
+Theory
+Manual
+
+FlightStream Theory Manual
+
+Note:
+Known Current Limitations
+
+Thermal Effects: The local-inclination methods, while meant for
+flow regimes where thermal effects begin to be non-negligible, do
+not yet calculate thermal effects.
+
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+
+Postprocessing
+
+Transonic
+Solver
+LocalInclination
+Solvers
+
+Loads Calculation
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer egestas
+
+
+
+Postprocessing
+
+Drag Integration
+FlightStream employs a dual approach for calculating drag:
+Vorticity-Based Induced Drag Calculation: FlightStream offers a unique
+method for calculating induced drag that relies on user-defined trailingedge boundary conditions. This method computes integrated circulation
+and downwash at the trailing edges to determine a downwash-based drag,
+conceptually similar to lifting line theory for arbitrary sectional load
+distributions. This feature, stemming from FlightStream’s vorticity-based
+formulation, offers a distinct perspective on induced drag estimation. Due
+to the closed-loop nature of the vorticity, this method is less mesh sensitive
+than the surface pressure integration method.
+Surface Pressure Integration: This method leverages the Bernoulli
+equation to determine the pressure coefficient (Cp) at the surface of the
+body using the computed surface velocities. This method is applicable to
+all body types, including fuselages and bluff bodies. Only the pressure
+integration method is capable of capturing separation effects and off-body
+shocks. This integration lumps pressure and induced drag together.
+The surface pressure integration method, explained in source, is based on
+applying Bernoulli’s equation to the body’s surface. The pressure coefficient
+(Cp) is calculated using the formula:
+2
+
+V
+Cp = 1 − (
+
+)
+V∞
+
+https://flightstream-theory.altair.com
+
+31/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream
+Nomenclature
+Theory
+Manual
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+English letter variables
+Variable
+
+Description
+
+Cf
+
+Skin friction coefficient for rough surfaces
+
+F
+
+Auxiliary variable for turbulent boundary layer model
+
+H
+
+Shape factor
+
+Hc
+
+Compressible shape factor
+
+Hδ−δ
+
+Shape factor: Difference between boundary layer thickness and
+displacement thickness
+
+
+
+Postprocessing
+
+https://flightstream-theory.altair.com
+
+Me
+
+Mach number at the edge of the boundary layer
+
+Reθ
+
+Reynolds number based on momentum thickness
+
+Rek
+
+Reynolds number based on surface roughness height
+
+SB
+
+Surface of the immersed body
+
+Te
+
+Temperature at the edge of the boundary layer
+
+TR
+
+Recovery temperature
+
+T0
+
+Reference temperature
+
+U
+
+Velocity at the outer edge of the boundary layer
+
+VN
+
+Normal blowing velocity
+
+VS
+
+Local velocity on the boundary
+
+X
+
+Transformed coordinate in the phase plane
+
+Y
+
+Transformed coordinate in the phase plane
+
+ae
+
+Speed of sound at the edge of the boundary layer
+
+cf
+
+Skin friction coefficient
+
+k
+
+Surface roughness height
+
+32/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream Variable Description
+Theory
+Unit normal vector
+Manual
+Distance between two points in the flow field
+n
+
+r
+
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+s
+
+Coordinate along the local surface
+
+xcp
+
+x-coordinate of the critical point
+
+ycp
+
+y-coordinate of the critical point
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+Greek letter variables
+Variable
+
+Description
+
+ΦP
+
+Potential at point P
+
+¯
+K
+
+Average pressure gradient parameter
+
+λ
+
+Eigenvalue of the Jacobian matrix
+
+μ
+
+Doublet strength
+
+μ
+
+Eigenvalue of the Jacobian matrix
+
+μR
+
+Dynamic viscosity at recovery temperature
+
+
+
+Postprocessing
+
+∇
+
+Laplace operator
+
+∇ϕ
+
+Velocity field obtained from the potential function
+
+ϕ
+
+Potential flow function
+
+ϕi
+
+Potential flow function at a given interior point
+
+ϕ∞
+
+Freestream potential
+
+σ
+
+Source strength
+
+θ
+
+Momentum thickness
+
+θc
+
+Compressible momentum thickness
+
+ξ1 , ξ2
+
+Eigenvector components in the phase plane
+
+η
+
+Coordinate along the surface streamline
+
+2
+
+https://flightstream-theory.altair.com
+
+33/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+FlightStream Variable Description
+Theory
+Eigenvector components in the phase plane
+Manual
+Kinematic viscosity
+η1 , η2
+
+ν
+
+Introduction
+
+δ
+
+Why
+FlightStream?
+
+δ
+
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+Subsonic
+Solver
+
+Boundary layer thickness
+∗
+
+Displacement thickness
+
+Appendix-A
+
+Transonic
+Solver
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer egestas
+
+LocalInclination
+Solvers
+
+massa. Nullam ut tellus eros. Nulla posuere diam in viverra imperdiet. Duis id
+
+Postprocessing
+
+Suspendisse bibendum dignissim erat, in egestas ipsum lobortis non.
+
+
+
+vulputate consequat. Proin libero mi, auctor sed orci nec, lobortis blandit
+ex facilisis, lacinia velit in, posuere nisl. In quis magna suscipit, tempus risus a,
+lacinia nulla. Morbi vulputate magna nisi, sed laoreet lectus scelerisque sed.
+Praesent purus felis, porttitor et quam vel, consectetur ullamcorper quam.
+Etiam ut scelerisque massa. Duis maximus erat vel orci accumsan suscipit.
+
+Glossary
+Abbreviations
+Variable
+
+Description
+
+UND
+
+University of North Dakota
+
+References
+[1] N. H. Hoch, “Calculation of Aerodynamic Shape Sensitivities Using the
+Adjoint Method in a Subsonic/Supersonic Panel Code,” Master’s thesis, Utah
+University, Logan, Utah, 2024.
+[2] W. M. Kutta, “Lift Forces in Fluid Flow,” Illustrierte Aeronautische
+Mitteilungen, p. 133, 1902.
+
+https://flightstream-theory.altair.com
+
+34/35
+
+10/26/26, 12:22 PM
+
+FlightStream Theory Manual
+
+F. M. White and J. Majdalani, Viscous Fluid Flow, 4th ed. McGraw-Hill
+FlightStream [3]
+Higher Education, 2022.
+Theory
+[4] B. Stratford, “The Prediction of Separation of the Turbulent Boundary
+Manual
+Layer,” Defense Technical Information Center, ADA091204, 1980. [Online].
+Available: https://apps.dtic.mil/sti/tr/pdf/ADA091204.pdf.
+Introduction
+Why
+FlightStream?
+Fundamental
+Flow
+Equations
+
+
+
+
+
+
+[5] W. O. Valarezo and V. D. Chin, “A CPmax-Based Flow Separation Model for
+Application to Wings with High-Lift Devices,” Journal of Aircraft, vol. 31, no. 1,
+pp. 103–111, 1994, doi: 10.2514/3.46461.
+
+Subsonic
+Solver
+Transonic
+Solver
+LocalInclination
+Solvers
+
+
+
+Postprocessing
+
+https://flightstream-theory.altair.com
+
+© 2024 Altair Engineering, Inc. All Rights Reserved.
+Intellectual Property Rights Notice | Technical Support
+
+35/35
+
+

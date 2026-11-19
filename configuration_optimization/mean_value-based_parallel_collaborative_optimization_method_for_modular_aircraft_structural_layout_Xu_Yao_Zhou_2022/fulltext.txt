@@ -1,0 +1,3388 @@
+aerospace
+Article
+
+Mean Value-Based Parallel Collaborative Optimization Method
+for Modular Aircraft Structural Layout
+Chao Xu 1 , Weixing Yao 2, * and Danfa Zhou 3
+1
+
+2
+
+3
+
+*
+
+Citation: Xu, C.; Yao, W.; Zhou, D.
+
+Key Laboratory of Fundamental Science for National Defense-Advanced Design Technology of Flight Vehicle,
+Nanjing University of Aeronautics and Astronautics, Nanjing 210016, China
+State Key Laboratory of Mechanics and Control of Mechanical Structures, Nanjing University of Aeronautics
+and Astronautics, Nanjing 210016, China
+Shanghai Electro-Mechanical Engineering Institute, Shanghai 201109, China
+Correspondence: wxyao@nuaa.edu.cn
+
+Abstract: The conventional structural layout optimization method is usually used to solve the layout
+optimization problem of a single structure, but it is difficult to apply to the layout optimization
+problem of the modular aircraft structure containing multiple substructures. Therefore, this paper
+proposes the mean value-based parallel collaborative optimization method (MVPM) for modular
+aircraft structural layout. This method is a two-stage optimization method based on decomposition.
+The basic idea of the MVPM is decomposing the layout optimization problem of the modular aircraft
+structure into a system coordination problem and several independent subsystem optimization
+problems by introducing coordination variables. The subsystem optimizes each aircraft structure.
+Under the constraints of the structure itself, the performance of each structure is better, and the shared
+variables are as close to the coordination variables as possible. The system coordination adjusts
+the coordination variables according to the optimization results of each subsystem. With constant
+iteration between the system and subsystems, the shared variables of each subsystem eventually
+agree with the coordination variables. The numerical test results show that the MVPM has high
+optimization efficiency and stability.
+
+Mean Value-Based Parallel
+Collaborative Optimization Method
+for Modular Aircraft Structural
+Layout. Aerospace 2022, 9, 557.
+
+Keywords: structure optimization; collaborative optimization; modular aircraft; layout optimization;
+two-stage optimization method
+
+https://doi.org/10.3390/
+aerospace9100557
+Academic Editor: Sergey Leonov
+Received: 20 July 2022
+Accepted: 21 September 2022
+Published: 27 September 2022
+Publisher’s Note: MDPI stays neutral
+with regard to jurisdictional claims in
+published maps and institutional affiliations.
+
+Copyright: © 2022 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license (https://
+creativecommons.org/licenses/by/
+
+1. Introduction
+With the development of the global market economy, increasing competition in various
+fields and diversification of customer demand for product functions, the conflict between
+product diversity, product development and production costs has become more obvious.
+Modular design strategy is to design different types of products at the same time on a
+product platform. While meeting the customer’s needs for product functional diversity, it
+shortens the product development and reduces the product cost; therefore, modular design
+strategy has received extensive attention on both industrial applications [1] and academic
+research [2].
+Modular aircraft refers to a series of aircraft formed by dividing and organizing
+various modules of the aircraft by using modular ideas. These aircraft are composed
+of a series of general modules and dedicated modules. Their general modules may be
+the wings, fuselage sections or engines of the aircraft and may also be some equipment
+or some systems [3]. These general modules constitute a general platform for modular
+aircraft [4]. Based on the general platform, different types of aircraft are formed by adding
+or changing different dedicated modules to accomplish different mission requirements.
+Dedicated modules are unique to each aircraft, and dedicated modules are the source of
+differentiation of functions and features of different types of aircraft. Simpson et al. [5,6]
+
+4.0/).
+
+Aerospace 2022, 9, 557. https://doi.org/10.3390/aerospace9100557
+
+https://www.mdpi.com/journal/aerospace
+
+Aerospace 2022, 9, 557
+
+2 of 18
+
+and Jiao et al. [7] gave a detailed summary of the research and applications related to
+product families, respectively.
+Compared with the traditional single-type aircraft design, the modular aircraft design
+strategy is to develop multiple types of aircraft on the general platform at the same time,
+which can greatly reduce the cost of aircraft design and manufacturing and shorten the
+aircraft design cycle. The general platform facilitates the expansion of the aircraft family,
+and it is easy to add a new member to meet the newly increased demand, while helping
+reduce maintenance and operating costs [8]. The modular design strategy also has some
+shortcomings and risks [9]. The general platform enables generality between different
+aircraft but also makes each aircraft pay a certain performance price [10]. Compared with
+the design of a single type aircraft, the development cost and development difficulty of a
+modular aircraft are much higher [11], and once a problem occurs on the general platform,
+the scope of influence will expand to all aircrafts.
+The purpose of structural layout optimization of modular aircraft is to optimize the
+structural layout of general and dedicated modules with the help of an optimization algorithm so that the overall performance of the modular structure can be optimized. Layout
+optimization is a higher-level structural optimization problem, which is a comprehensive
+optimization problem that includes topology, shape and size optimization. Structural layout optimization needs to determine the number, location, cross-sectional shape and size of
+each component of the structure. At present, the solution strategies for structural layout optimization problems can be roughly divided into three types: hybrid optimization [12–14],
+hierarchical optimization [15–17] and block optimization [18]. These three types of optimization strategies are usually used to solve the layout optimization problem of a single
+structure. The layout optimization of the modular structure is to optimize the layout of a
+series of related substructures at the same time. These substructures have exactly the same
+general modules and different dedicated modules, and the structural layout of each module
+affects each other. Therefore, the layout optimization of modular structure is a process of
+multistructure layout coordination, which is difficult to solve with conventional structural
+layout optimization strategies. In addition, the performance of a modular structure must be
+compromised compared to the performance of each structure designed individually. The
+general platform makes each structure have a certain degree of generality, and the quality
+of the general platform determines the performance of the modular structure. Therefore, it
+can also be said that the layout optimization of the modular structure is a trade-off between
+the performance and the degree of generality [19].
+In order to better solve the layout design problem of modular aircraft structure, this
+paper proposes a mean value-based parallel collaborative optimization method (MVPM).
+This method is a two-stage optimization method based on decomposition. The basic idea
+of the MVPM is decomposing the layout optimization problem of the modular aircraft
+structure into a system coordination problem and several independent subsystem optimization problems by introducing coordination variables. The system adjusts the coordination
+variables according to the feedback of each subsystem. Each subsystem is responsible
+for evaluating the coordination variables and feeding back the evaluation results to the
+system as the basis for adjusting the coordination variables. The process iterates between
+the system and each subsystem until the optimal solution is found.
+The content of this paper is arranged as follows: The next section presents the modular
+structure layout optimization problem. Section 3 presents the mathematical expression
+of the modular structure layout design problem. Section 4 presents the MVPM in detail.
+Section 5 tests the MVPM with a typical nonconvex numerical example. Section 6 applies
+the MVPM to the wing structure layout design of a modular aircraft. Section 7 concludes
+this paper.
+2. Problem Description
+Modular aircraft usually consist of a variety of aircraft for different purposes, such as
+the MQ-X UAV and “Poseidon”. The wing of the MQ-X UAV is divided into two sections:
+
+2. Problem Description
+Modular aircraft usually consist of a variety of aircraft for different purposes, such
+3 of 18
+as the MQ-X UAV and “Poseidon”. The wing of the MQ-X UAV is divided into two sections: the inner wing is a general module, and the outer wings are dedicated modules. The
+span of the wing can be changed by replacing the dedicated module. The fuselage of the
+the
+inner wing
+a general
+module,
+and theand
+outer
+wings
+are dedicated
+The the
+spanrear
+of
+“Poseidon”
+is is
+divided
+into
+front, middle
+rear
+sections.
+The frontmodules.
+section and
+the
+wing
+can
+be
+changed
+by
+replacing
+the
+dedicated
+module.
+The
+fuselage
+of
+the
+“Poseidon”
+section of the fuselage are general modules, and the middle section of the fuselage is a
+isdedicated
+divided into
+front,The
+middle
+and rear
+sections.
+front section
+and five
+the rear
+section
+of the
+module.
+Poseidon
+aircraft
+can The
+complete
+more than
+different
+tasks
+by
+fuselage are general modules, and the middle section of the fuselage is a dedicated module.
+replacing different middle fuselages. Whether it is a modular wing structure or a modular
+The Poseidon aircraft can complete more than five different tasks by replacing different
+fuselage structure, it consists of a series of general modules and dedicated modules, and
+middle fuselages. Whether it is a modular wing structure or a modular fuselage structure,
+the general modules are identical in different aircraft types. The layout optimization of
+it consists of a series of general modules and dedicated modules, and the general modules
+the modular structure is to optimize the structural layout of each general module and
+are identical in different aircraft types. The layout optimization of the modular structure
+dedicated module at the same time. The key is to comprehensively consider the requireis to optimize the structural layout of each general module and dedicated module at the
+ments of all substructures and design the structural layout of general modules suitable for
+same time. The key is to comprehensively consider the requirements of all substructures
+all substructures.
+and design the structural layout of general modules suitable for all substructures.
+When generality is not considered, the optimal structural layout of generalized modWhen generality is not considered, the optimal structural layout of generalized modules in different substructures is usually different. As shown in Figure 1, the modular
+ules in different substructures is usually different. As shown in Figure 1, the modular
+wing structure has a general module inside and a dedicated module outside. The optimal
+wing structure has a general module inside and a dedicated module outside. The optimal
+structural layout
+layout of
+of general
+general modules
+modules is
+is different
+different when
+when matched
+matched with
+withdifferent
+differentdedicated
+dedicated
+structural
+modules. When
+When the
+the general
+general design
+design is
+is adopted,
+adopted, the
+the general
+general module
+module adopts
+adopts the
+the exact
+exact same
+same
+modules.
+design
+in
+different
+wings,
+and
+due
+to
+the
+change
+of
+the
+general
+module
+structure
+layout,
+design in different wings, and due to the change of the general module structure layout,
+the structure
+structure layout
+layout of
+of each
+each special
+special module
+module has
+has also
+also changed
+changed accordingly.
+accordingly. Therefore,
+Therefore, the
+the
+the
+layout
+optimization
+of
+the
+modular
+structure
+should
+be
+designed
+simultaneously
+for
+all
+layout optimization of the modular structure should be designed simultaneously for all
+modules
+and
+take
+into
+account
+the
+mutual
+influence
+of
+each
+module.
+modules and take into account the mutual influence of each module.
+
+General Design
+
+Wing A
+
+Wing A
+
+Individually Designed
+
+Dedicated Module
+
+General Module
+
+Wing B
+
+Wing B
+
+Aerospace 2022, 9, 557
+
+Dedicated Module
+
+General Module
+
+Figure1.1. Modular
+Modular structure
+structurelayout
+layoutoptimization
+optimizationproblem.
+problem.
+Figure
+
+3.
+3. Mathematical
+Mathematical Model
+Model
+The
+conventional
+is is
+toto
+optimize
+the
+layout
+of of
+a
+The conventionalstructural
+structurallayout
+layoutoptimization
+optimizationproblem
+problem
+optimize
+the
+layout
+single
+structure,
+and
+itsits
+mathematical
+description
+is as
+follows:
+a single
+structure,
+and
+mathematical
+description
+is as
+follows:
+
+find
+find
+x x
+min f ( x )
+(1)
+(1)
+s.t. g ( x ) ≤ 0
+s.t. g(x) ≤ 0
+where x is the vector of design variables, including topology, shape and size variables. f(x)
+where
+x is the vector
+of design
+variables,
+including
+and
+f (x)
+is the objective
+function,
+usually
+the weight
+of thetopology,
+structure.shape
+g(x) is
+thesize
+set variables.
+of constraints
+isfor
+the
+objective
+function,
+usually
+the
+weight
+of
+the
+structure.
+g(x)
+is
+the
+set
+of
+constraints
+for
+the structure.
+the structure.
+For the layout optimization of different modular structures, their essence is the same,
+layout optimization
+different
+modular
+structures,
+theirdedicated
+essence ismodule
+the same,
+that For
+is, tothe
+optimize
+the structureof
+layout
+of each
+general
+module and
+at
+that
+is, to optimize
+structure
+each general
+module
+and dedicated
+at
+the same
+time and the
+consider
+the layout
+mutualofinfluence
+between
+different
+modules. module
+Therefore,
+the
+and consider
+the mutual
+influence
+between
+differentcan
+modules.
+Therefore,
+the same
+layouttime
+optimization
+problems
+of different
+modular
+structures
+be abstracted
+into
+the
+layout
+optimization
+problems
+of
+different
+modular
+structures
+can
+be
+abstracted
+into
+the same mathematical model. In the modular structure layout optimization problem, the
+the same mathematical model. In the modular structure layout optimization problem,
+the layout design of all substructures is carried out simultaneously. Therefore, the design
+variables should include the design variables of the general modules and each dedicated
+modules; the design objective should be the overall performance of the modular structure;
+min f (x)
+
+Aerospace 2022, 9, x FOR PEER REVIEW
+
+4 of 18
+
+Aerospace 2022, 9, 557
+
+4 of 18
+
+layout design of all substructures is carried out simultaneously. Therefore, the design variables
+should include
+variables
+of the general
+modules and
+dedicated
+the constraints
+shouldthe
+alsodesign
+include
+the constraints
+of all structures.
+Theeach
+mathematical
+modules;
+the
+design
+objective
+should
+be
+the
+overall
+performance
+of
+the
+modular
+description of the modular structure layout optimization problem is as follows: structure;
+the constraints should also include the constraints of all structures. The mathematical description of the modular structure
+is as follows:
+find layout
+) (i = 1, 2, · ·problem
+·, n )
+(xs , xlioptimization
+
+findF ( (fxi (sx,sx, lxi )li ))
+( i = 1, 2, ⋅ ⋅ ⋅, n )
+min
+,x0li ))
+s.t ming (F
+x (, fxi (x) s≤
+i
+
+s
+
+li
+
+(2)
+(2)
+
+gi ( xs ,xli ) ≤ 0
+s.t
+where the subscript s indicates that this variable is a shared variable, the subscript l indicates
+where the subscript s indicates that this variable is a shared variable, the subscript l indithat this variable is a dedicated variable and the subscript i is the structure number. xs is
+cates that this variable is a dedicated variable and the subscript i is the structure number.
+the design variable of the general module, which has the same value in different structures;
+xs is the design variable of the general module, which has the same value in different
+xli is the design variable of the dedicated module of i-th structure; F is the overall objective
+structures; xli is the design variable of the dedicated module of i-th structure; F is the overfunction of the modular structure, which is a function of the design objectives fi (xs ,xli ) of
+all objective function of the modular structure, which is a function of the design objectives
+each structure; and gi (xs ,xli ) is the set of constraints for the i-th structure.
+fi(xs,xli) of each structure; and gi(xs,xli) is the set of constraints for the i-th structure.
+4. Mean Value-Based Parallel Collaborative Optimization Method
+4. Mean Value-Based Parallel Collaborative Optimization Method
+The MVPM draws on the idea of the collaborative optimization (CO) method [20].
+The MVPM
+draws onthe
+theoriginal
+idea of problem
+the collaborative
+optimization
+(CO) problem
+method [20].
+The method
+decomposes
+into a system
+coordination
+and
+The
+method
+decomposes
+the
+original
+problem
+into
+a
+system
+coordination
+problem
+multiple subsystem optimization problems by introducing coordination variables and
+and
+multiple
+subsystem
+introducing
+coordination
+andand
+fifinally completes
+theoptimization
+optimizationproblems
+through by
+continuous
+iteration
+betweenvariables
+the system
+nally
+completes the optimization through continuous iteration between the system and
+each subsystem.
+each From
+subsystem.
+the analysis of Equation (2), it can be seen that the design objectives fi and
+From the
+of Equation
+it can be
+seen that
+design
+objectives
+fi and
+conconstraints
+gi analysis
+of each structure
+are(2),
+coupled
+through
+the the
+shared
+variable
+xs . In
+order
+to
+straints
+g
+i
+of
+each
+structure
+are
+coupled
+through
+the
+shared
+variable
+x
+s
+.
+In
+order
+to
+decoudecouple the objective function and constraints of each structure, a coordination variable
+ple
+objective and
+function
+and constraints
+of eachinto
+structure,
+a coordination
+xc isthe
+introduced,
+Equation
+(2) is transformed
+the following
+form: variable xc is
+introduced, and Equation (2) is transformed into the following form:
+find
+(x , x ) (i = 1, 2, · · ·, n)
+find (xc c ,lixli ) ( i = 1, 2, ⋅⋅⋅, n )
+minmin FF
+( f(i (f x(six, x,lix))))
+i
+si
+li
+(3)
+(3)
+s.t. s.t. gig(ix(six,six,lix)li )≤≤ 00
+
+=0
+xsixs−
+i −xx
+c c= 0
+where xsi is the value of the shared variable in i-th structure after decoupling. Analysis
+where xsi is the value of the shared variable in i-th structure after decoupling. Analysis
+shows that
+the consistency constraint xsi − xc = 0 makes Equations (3) and (2) equivalent.
+shows that the consistency constraint xsi − xc = 0 makes Equations (3) and (2) equivalent.
+Equation (3) takes the structural performance
+as the objective function and the consistency
+Equation (3) takes the structural performance as the objective function and the consistency
+as the constraint, and the consistency constraint is an equality constraint. In order to deal
+as the constraint, and the consistency constraint is an equality constraint. In order to deal
+with the equality consistency constraint, this paper introduces a penalty function π(xsi −
+with the equality consistency constraint, this paper introduces a penalty function π(xsi − xc )
+xc) to relax the consistency constraint and adds the penalty function to the design goals of
+to relax the consistency constraint and adds the penalty function to the design goals of each
+each subsystem. Finally, Equation (3) is decomposed into a two-stage optimization probsubsystem. Finally, Equation (3) is decomposed into a two-stage optimization problem, as
+lem,
+as in
+shown
+in 2.
+Figure 2.
+shown
+Figure
+find
+
+System
+xc
+
+min
+
+f
+
+i
+
+s.t. No Constrains
+f1
+
+xc
+
+xc
+
+Subsystem 1
+
+f2
+
+fn
+
+Subsystem 2
+
+find
+
+xs1 , xl1
+
+find
+
+xs2 , xl2
+
+min
+
+f1 ( xs1 , xl1 ) + π ( xs1 − xc )
+
+min
+
+f 2 ( xs2 , xl2 ) + π ( xs2 − xc )
+
+s.t. g1 ( xs1 , xl1 ) ≤ 0
+
+xc
+
+Subsystem n
+...
+
+s.t. g2 ( xs2 , xl2 ) ≤ 0
+
+Figure
+Figure 2.
+2. Decomposition
+Decomposition frame
+frame diagram
+diagram of
+of MVPM.
+MVPM.
+
+find
+
+xsn , xln
+
+min
+
+f n ( xsn , xln ) + π n ( xsn − xc )
+
+s.t. gn ( xsn , xln ) ≤ 0
+
+Aerospace 2022, 9, 557
+
+5 of 18
+
+4.1. Subsystem Optimization
+Each subsystem optimization problem is independent of each other, and the number of
+subsystem optimization problems is the same as the number of substructures contained in
+the modular structure. At the subsystem, each substructure is optimized, and its objective
+function consists of two parts, the structural performance and the penalty function. The
+mathematical description of the i-th subsystem optimization problem is as follows:
+find xsi , xli
+min
+
+f i + π (xsi − xc )
+
+s.t.
+
+gi (xsi , xli ) ≤ 0
+
+(4)
+
+Although the penalty function π makes each subsystem independent, the existence
+of the penalty function also makes the shared variables have different values in different
+subsystems, that is, there is a tolerance in the consistency constraint. In order to make each
+subsystem optimization result meet the consistency requirements, this paper chooses the
+quadratic penalty function [21] to make the consistency constraint tolerance gradually tend
+to 0. The expression of the penalty function is as follows:
+π (xsi − xc ) = kκ ◦ (xsi − xc )k22
+
+(5)
+
+where κ is the penalty parameter vector. ◦ means multiplying the corresponding elements
+of the two vectors. As the iteration progresses, the value of the penalty parameter vector κ
+is continuously updated and increased, and the updated method is as follows:
+
+ κ(w) kx(w) − xc(w) k ≤ θ kx(w−1) − xc(w−1) k
+si
+si
+κ ( w +1) =
+(6)
+(w)
+(w)
+( w −1)
+( w −1)
+ (w)
+γκ
+kxsi − xc k > θ kxsi
+− xc
+k
+where γ ≥ 1, and 0 < θ < 1. Studies have shown that the optimization converges faster
+when 2 ≤ γ ≤ 3 and θ = 0.25 [21].
+4.2. System Coordination
+The system is a very simple, unconstrained optimization problem. It takes the coordination variable xc as the variable and the sum of the performance of each substructure as
+the objective function. The system coordinates the value of xc according to the optimization
+results of each subsystem to reduce the value of the system objective function and then
+transmits the coordination result to each subsystem for the next iteration. The mathematical
+description of system coordination is as follows:
+find
+
+xc
+
+min
+
+∑ fi
+
+s.t.
+
+No Constrains
+
+(7)
+
+The objective function in Equation (4) consists of two parts, the structural performance
+and the penalty function. The penalty function represents the consistency between the
+general variable xsi and the coordination variable xc , and as the value of the penalty
+parameter vector increases, the penalty function becomes more and more important in
+the objective function. Therefore, the essence of the objective function in Equation (4) is
+to gradually sacrifice the performance of the structure so that xsi gradually approaches xc
+and finally is completely consistent. Likewise, the system should adjust the value of xc
+according to the consistency of xsi and xc .
+Since the importance of each subsystem is the same, according to the definition of the
+penalty function, it is easy to know that the essence of the penalty function is the sum of
+the distances between xsi and xc . Its minimum value is easy to calculate, but taking the
+
+Aerospace 2022, 9, 557
+
+6 of 18
+
+Aerospace 2022, 9, x FOR PEER REVIEW
+
+6 of 18
+
+minimum value is not always the best choice. If a certain component of the xsi is distributed
+
+j
+j(min)
+j
+j
+xins2j the
+and
+xs3jshown
+, the penalty
+takes
+time,xs2
+the
+form
+in Figurefunction
+3, then when
+xc the
+= xcminimum
+, that is,value.
+when xAt
+between
+anddistance
+c isthis
+j
+
+j
+
+xs3 , the penalty
+function
+minimum
+value.general
+At this time,
+the distance
+betweeninxca small
+xcj and
+xs1j istakes
+too the
+large,
+and other
+variables
+are gathered
+between
+j
+and xs1which
+is too large,
+other general
+variables
+are gathered in a small range, which is not
+range,
+is notand
+conducive
+to the
+optimization.
+conducive to the optimization.
+
+xs2j xs3j xs4j
+
+xs1j
+
+j ( ave )
+c
+
+x
+
+x
+
+j ( min )
+c
+
+x
+
+Figure 3.
+3. General
+General design
+distribution.
+Figure
+designvariable
+variable
+distribution.
+j
+
+j(ave)
+
+When xc = xc
+
+, that is, when the xc is equal to the mean value of the xsi of each
+
+j ave
+j
+When xcthe
+when
+thexxsicofiseach
+equal
+to the mean
+value ofuniform,
+the xsi of each
+= distribution
+xc ( ) , that is,
+substructure,
+of the
+xc and
+substructure
+is relatively
+so let:
+substructure,
+the distribution of the xc andn xsi of each substructure is relatively uniform,
+1
+so let:
+(8)
+xc = ∑ xsi
+
+n i =1
+
+1 n
+
+
+
+xc = in the xmodular
+(8)
+where n is the number of substructures contained
+structure. Then the system
+si
+n i =1
+becomes a coordination problem in which the coordination
+variables are adjusted directly
+according
+thenumber
+feedbackofofsubstructures
+each subsystem.
+where
+n isto
+the
+contained in the modular structure. Then the system becomes a coordination problem in which the coordination variables are adjusted
+4.3. Convergence Analysis
+directly according to the feedback of each subsystem.
+
+It can be seen from Equation (8) that the xc is equal to the mean value of the xsi of
+each substructure. Therefore, when the values of the xsi fed back to the system by each
+4.3.
+Convergence Analysis
+subsystem are different, the value of the xc will naturally change. On the other hand, as
+It can beof
+seen
+Equation
+(8)the
+thatpenalty
+the xc is
+equal to
+the mean(5)
+value
+the xsi of each
+a component
+the from
+objective
+function,
+function
+in Equation
+will of
+naturally
+affect
+the
+optimization
+results
+of
+each
+subsystem,
+and
+as
+the
+iteration
+progresses,
+the
+valuesubsyssubstructure. Therefore, when the values of the xsi fed back to the system by each
+of the
+parameter
+vector
+continuously,
+and the On
+penalty
+function
+has an
+tem
+arepenalty
+different,
+the value
+of increases
+the xc will
+naturally change.
+the other
+hand,
+as a comincreasing
+influence
+on
+the
+optimization
+results
+of
+each
+subsystem.
+The
+penalty
+function
+ponent of the objective function, the penalty function in Equation (5) will naturally affect
+makes the xsi of each subsystem tend to a certain direction, and this trend will also increase
+the optimization
+results of each subsystem, and as the iteration progresses, the value of
+with the increase in the penalty parameter vector. The value of the xc directly determines
+the
+penalty parameter vector increases continuously, and the penalty function has an inthe direction, so the xc will affect the optimization results of each subsystem. This effect
+creasing
+influence
+on the optimization
+results
+Theis penalty
+function
+will increase
+as the iteration
+progresses, and
+finallyof
+theeach
+xsi ofsubsystem.
+each structure
+consistent
+makes
+the
+with the
+xc x
+. si of each subsystem tend to a certain direction, and this trend will also increase
+
+with the increase in the penalty parameter vector. The value of the xc directly determines
+4.4.direction,
+Stop Condition
+the
+so the xc will affect the optimization results of each subsystem. This effect
+There areastwo
+conditions.
+The first
+that the
+of structure
+the sum of
+will increase
+thestop
+iteration
+progresses,
+andisfinally
+thedifference
+xsi of each
+is the
+consistent
+performance
+in
+each
+substructure
+between
+the
+two
+iteration
+steps
+is
+less
+than
+a
+certain
+with the xc.
+value. The second is that the difference of the xc between the two iteration steps is less than
+a certain value.
+4.4. Stop Condition
+The first stop condition is shown in Equation (9):
+
+There are two stop conditions. The first is that the difference of the sum of the per( w +1)
+(w)
+formance in each substructure
+(∑between
+fi )
+−the
+(∑two
+f i ) iteration
+≤ ε F steps is less than a certain
+(9) value.
+The second is that the difference of the xc between the two iteration steps is less than a
+where ∑
+f i is the sum of the performance in each substructure; ε F is the convergence
+certain
+value.
+parameter,
+which
+a number greater
+thanin0.Equation (9):
+The first
+stopis condition
+is shown
+The second stop condition is shown in Equation (10):
+
+( fi )
+
+( w+1)
+
+j ( w +1)
+
+max xc
+
+where
+
+j(w)
+
+− xc
+
+− ( fi )
+
+( w)
+
+≤ εF
+
+(9)
+
+≤ ε x j ∈ {1, 2, . . . , m}
+
+f is the sum of the performance in each substructure; ε
+
+j
+i
+
+(10)
+F
+
+is the convergence
+
+where xc is the
+j-th component
+the xc ; mthan
+is the
+parameter,
+which
+is a numberofgreater
+0.number of variables contained in xc ; and
+ε x is The
+the convergence
+parameter
+of
+the
+x
+,
+which
+is a number
+greater than 0.
+c
+second stop condition is shown
+in Equation
+(10):
+(
+
+)
+
+( )
+
+max xcj w+1 − xcj w ≤ ε x
+
+j ∈{1,2,, m}
+
+(10)
+
+where xcj is the j-th component of the xc; m is the number of variables contained in xc; and
+
+ε x is the convergence parameter of the xc, which is a number greater than 0.
+
+Aerospace 2022, 9, 557
+
+Aerospace 2022, 9, x FOR PEER REVIEW
+
+7 of 18
+
+7 of 18
+
+4.5.Optimization
+Optimization
+Process
+4.5.
+Process
+Theoptimization
+optimization
+execution
+process
+is divided
+into
+five steps:
+The
+execution
+process
+is divided
+into five
+steps:
+(A) Build
+Build
+and
+initialize
+optimization
+model;
+(A)
+and
+initialize
+the the
+optimization
+model;
+(B) Transfer
+Transfer
+coordination
+variables
+to subsystems;
+(B)
+coordination
+variables
+to subsystems;
+(C)
+each
+subsystem;
+(C) Optimize
+Optimize
+each
+subsystem;
+(D)
+to the
+optimization
+resultsresults
+of each of
+subsystem,
+determine determine
+whether the whether
+op(D) According
+According
+to the
+optimization
+each subsystem,
+the
+timization
+has
+converged.
+If
+so,
+the
+optimization
+is
+over;
+otherwise,
+go
+to
+step
+E;
+optimization has converged. If so, the optimization is over; otherwise, go to step E;
+(E)
+updates
+the values
+of the of
+coordination
+variablesvariables
+according according
+to the optimi(E) The
+Thesystem
+system
+updates
+the values
+the coordination
+to the optization results of each subsystem and then proceeds to step B.
+mization results of each subsystem and then proceeds to step B.
+The framework of the MVPM is shown in Figure 4.
+
+The framework of the MVPM is shown in Figure 4.
+System coordination
+1 n w
+( )
+xc w =  xs(i )
+n i =1
+( )
+
+xc w
+
+Subsystem optimization
+find
+
+Subsystem 1
+xs1 , xl1
+
+min
+
+f1( w) +π ( xs1 − xc )
+
+•••
+
+find
+
+Subsystem n
+xsn , xln
+
+min
+
+f n( w) +π ( xsn − xc )
+
+s.t. g1 ( xs1 , xl1 ) ≤ 0
+( w)
+
+xsi
+
+s.t. gn ( xsn , xln ) ≤ 0
+xs(n )
+w
+
+( w)
+1
+
+f
+
+Convergence
+
+f n( w)
+
+w = w +1
+No
+
+xs(i )
+w
+
+Yes
+End
+Figure4.4.The
+The
+framework
+of the
+MVPM.
+Figure
+framework
+of the
+MVPM.
+
+5. Numerical
+Numerical
+Test
+5.
+Test
+Thissection
+sectionwill
+willtest
+test
+MVPM
+with
+a typical
+nonconvex
+numerical
+optimization exThis
+thethe
+MVPM
+with
+a typical
+nonconvex
+numerical
+optimization
+ample [22–24].
+numericaloptimization
+optimization
+problem
+a unique
+global
+optimal
+example
+[22–24]. This
+This numerical
+problem
+hashas
+a unique
+global
+optimal
+solu- solution,
+tion,
+andconstraints
+all constraints
+valid
+constraints.There
+Thereare
+are two purpose
+thethe
+first
+is is to test
+and all
+areare
+valid
+constraints.
+purposeofofthe
+thetest:
+test:
+first
+to
+test
+the convergence
+of the
+MVPM,
+and
+the
+secondisisto
+to test
+test the
+efficiency
+the
+convergence
+of the
+MVPM,
+and
+the
+second
+theoptimization
+optimization
+efficiency of the
+of
+the MVPM.
+numerical
+optimizationproblem
+problem is
+is often
+often used
+MVPM.
+SinceSince
+this this
+numerical
+optimization
+usedtototest
+testmultidiscimultidisciplinary
+plinary
+optimization
+algorithms,
+the CO
+method
+usedasasaacomparison
+comparison method
+inin
+this
+optimization
+algorithms,
+the CO
+method
+is is
+used
+method
+this paper.
+paper. The numerical optimization problem is formulated as follows:
+The numerical optimization problem is formulated as follows:
+
+find x = [ x1 , . . . , x14 ]T
+min f = x12 + x22
+s.t. g1 = ( x3−2 + x42 ) x5−2 − 1 ≤ 0
+g2 = ( x52 + x6−2 ) x7−2 − 1 ≤ 0
+−2
+g3 = ( x82 + x92 ) x11
+−1 ≤ 0
+−2
+−2
+2
+g4 = ( x8 + x10 ) x11 − 1 ≤ 0
+2 + x −2 ) x −2 − 1 ≤ 0
+g5 = ( x11
+12
+13
+2 + x 2 ) x −2 − 1 ≤ 0
+g6 = ( x11
+12 14
+h1 = ( x32 + x4−2 + x52 ) x1−2 − 1 = 0
+h2 = ( x52 + x62 + x72 ) x2−2 − 1 = 0
+−2
+2 ) x −2 − 1 = 0
+h3 = ( x82 + x9−2 + x10
++ x11
+3
+2
+2
+2
+2
+h4 = ( x11 + x12 + x13 + x14 ) x6−2 − 1 = 0
+x1 , . . . , x14 > 0
+
+(11)
+
+Aerospace 2022, 9, 557
+
+8 of 18
+
+The optimal solution to this numerical optimization problem is x* = [2.84, 3.09, 2.36,
+0.76, 0.87, 2.81, 0.94, 0.97, 0.87, 0.8, 1.30, 0.84, 1.76, 1.55]T , and the optimal value of the
+objective function is f * = 17.59.
+5.1. The Results of the CO Method
+The CO method adopts the decomposition method in [25] in the optimization process.
+This method decomposes the original problem into a system optimization problem and two
+subsystem optimization problems. The system takes x3 , x4 , x5 , x6 , x7 , x11 as the variables;
+takes the consistency of each subsystem variables and the system variables and g1 ,g2 as the
+constraints; takes the objective function of the original problem as the optimization goal;
+and takes h1 and h2 as the analysis models. The system optimization problem is shown
+in Equation (12):
+find
+
+x3 , x4 , x5 , x6 , x7 , x11
+
+min
+
+f = x12 + x22
+
+s.t.
+
+g1 = ( x3−2 + x42 ) x5−2 − 1 ≤ 0
+g2 = ( x52 + x6−2 ) x7−2 − 1 ≤ 0
+
+
+
+
+(1) 2
+(1) 2
+c1 = x3 − x3
++ x11 − x11
+=0
+
+
+(2)
+
+c2 = x6 − x6
+
+2
+
+
+
+(2)
+
++ x11 − x11
+
+2
+
+(12)
+
+=0
+
+x3 , x4 , x5 , x6 , x7 , x11 > 0
+Analysis
+
+x12 = x32 + x4−2 + x52
+x22 = x52 + x62 + x72
+
+where the superscript in parentheses represents the shared variable in the
+corresponding subsystem.
+(1)
+
+Subsystem 1 takes x8 , x9 , x10 , x11 as the variables; takes g3 and g4 as the constraints;
+takes the system consistency constraint c1 as the objective function; and takes h3 as the
+analytical model. The optimization problem of subsystem 1 is shown in Equation (13):
+(1)
+
+min
+
+x8 , x9 , x10 , x11
+
+2 
+2
+(1)
+(1)
+c1 = x3 − x3 + x11 − x11
+
+s.t.
+
+
+
+(1) −2
+g3 = ( x82 + x92 ) x11
+−1 ≤ 0
+
+find
+
+
+ −2
+2 ) x (1)
+g4 = ( x8−2 + x10
+−1 ≤ 0
+11
+(1)
+
+Analysis
+
+x8 , x9 , x10 , x11 > 0
+
+
+
+
+(1) 2
+(1) 2
+−2
+x3
+= x82 + x9−2 + x10
++ x11
+
+(13)
+
+Aerospace 2022, 9, 557
+
+9 of 18
+
+(2)
+
+Subsystem 2 takes x11 , x12 , x13 , x14 as the variables; takes g5 and g6 as the constraints;
+takes the system consistency constraint c2 as the objective function; and takes h4 as the
+analytical model. The optimization problem of subsystem 2 is shown in Equation (14):
+(2)
+
+min
+
+x11 , x12 , x13 , x14
+
+2 
+2
+(2)
+(2)
+c1 = x6 − x6 + x11 − x11
+
+s.t.
+
+
+
+(2) 2
+−2 −2
+g5 = ( x11
++ x12
+) x13 − 1 ≤ 0
+
+find
+
+g6 = (
+
+
+
+(14)
+
+
+(2) 2
+2 ) x −2 − 1 ≤ 0
+x11
++ x12
+14
+
+(2)
+
+Analysis
+
+x11 , x12 , x13 , x14 > 0
+
+
+
+
+(2) 2
+(2) 2
+2 + x2 + x2
+x6
+= x11
++ x12
+13
+14
+
+Select x1 = [2.00, 2.00, . . . , 2.00]T, x2 = [3.00, 3.00, . . . , 3.00]T and x3 = [4.00, 4.00, . . . ,
+4.00]T as initial points, respectively. Both system and subsystem use sequential quadratic
+programming algorithms. The optimization results are shown in Table 1.
+Table 1. The results of the CO.
+Initial Points
+x1
+x2
+x3
+
+Results
+
+Target Value
+
+Iterations Number
+
+17.80
+
+140
+
+17.68
+
+121
+
+17.53
+
+174
+
+[2.80, 3.15, 2.38, 0.95, 1.04, 2.77, 1.10,
+0.97, 0.85, 0.77, 1.28, 0.85, 1.73, 1.53]T
+[2.96, 2.99, 2.38,0.63, 0.76, 2.77, 0.84,
+0.97, 0.84, 0.77, 1.28, 0.85, 1.73, 1.53]T
+[2.82, 3.10, 2.30, 0.71, 0.84, 2.84, 0.91,
+0.96, 0.93, 0.84, 1.33, 0.85, 1.77, 1.57]T
+
+It can be found from Table 1 that the CO method requires many iterations to complete
+the optimization, that is, the efficiency of the CO is low. For different optimization initial
+points, there is a certain gap in the final optimization results, that is, the stability of the CO
+is poor.
+5.2. The Results of the MVPM Method
+The MVPM takes x3 , x4 , x5 , x6 , x7 , x11 as the variables of the general module; takes
+x1 , x8 , x9 , x10 as the variables of the dedicated module 1; and takes x2 , x12 , x13 , x14 as the
+variables of the dedicated module 2. The original objective function is split into two parts,
+as shown in Equation (15):
+xc = [ x3 , x4 , x5 , x6 , x7 , x11 ]T
+(1)
+
+(1)
+
+(1)
+
+(1)
+
+(1)
+
+(1) T
+
+(2)
+
+(2)
+
+(2) T
+
+xs1 = [ x3 , x4 , x5 , x6 , x7 , x11 ]
+x11 = [ x1 , x8 , x9 , x10 ]T
+(2)
+
+(2)
+
+(2)
+
+xs2 = [ x3 , x4 , x5 , x6 , x7 , x11 ]
+
+(15)
+
+x12 = [ x2 , x12 , x13 , x14 ]T
+f 1 = x12
+f 2 = x22
+The original problem is then decomposed into a system and two subsystem optimization problems. The system is an unconstrained coordination problem. Take h1 and h2 as
+
+Aerospace 2022, 9, 557
+
+10 of 18
+
+the analysis model of subsystem 1 and subsystem 2, respectively. The system coordination
+problem is as follows:
+1
+(16)
+xc = (xs1 + xs2 )
+2
+Subsystem 1 takes g2 , g3 , g4 , h3 as the constraints and takes h1 as the analysis model.
+The subsystem 1 is as follows:
+find xs1 , xl1
+min
+s.t.
+
+Analysis
+
+f 1 + π (xs1 − xc )
+
+
+
+
+
+
+(1) 2
+(1) −2
+(1) −2
+g2 = ( x 5
++ x6
+) x7
+−1 ≤ 0
+
+ −2
+(1)
+g3 = ( x82 + x92 ) x11
+−1 ≤ 0
+
+ −2
+2 ) x (1)
+g4 = ( x8−2 + x10
+−1 ≤ 0
+11
+
+ 
+
+(1) 2
+(1) −2
+−2
+h3 = ( x82 + x9−2 + x10
++ x11 ) x3
+−1 = 0
+
+(17)
+
+xs1 , x11 > 0
+
+
+
+
+
+
+(1) −2
+(1) 2
+(1) 2
+x12 = x3
++ x4
++ x5
+
+Subsystem 2 takes g1 , g5 , g6 , h4 as the constraints and takes h2 as the analysis model.
+The subsystem 2 is as follows:
+find xs2 , xl2
+min
+s.t.
+
+f 2 +π (xs2 − xc )
+
+
+
+ 
+
+(2) −2
+(2) 2
+(2) −2
+g1 = ( x 3
++ x4
+) x5
+−1 ≤ 0
+
+2
+(2)
+−2 −2
++ x12
+) x13 − 1 ≤ 0
+g5 = ( x11
+
+2
+(2)
+2 ) x −2 − 1 ≤ 0
+g6 = ( x11
++ x12
+14
+
+2
+
+ −2
+(2)
+2 + x 2 + x 2 ) x (2)
+h4 = ( x11
++ x12
+−1 = 0
+13
+14
+6
+
+(18)
+
+xs2 , x12 > 0
+
+
+
+
+
+
+(2) 2
+(2) 2
+(2) 2
+Analysis x22 = x5
++ x6
++ x7
+Pick the same three points as the CO method: x1 = [2.00, 2.00, . . . , 2.00]T , x2 = [3.00,
+3.00, . . . , 3.00]T and x3 = [4.00, 4.00, . . . , 4.00]T as the initial points, and let the optimization
+parameter κ = [0.1, 0.1, . . . , 0.1]T , γ = 2, θ = 0.25. The results are shown in Table 2.
+Table 2. The results of the MVPM.
+Initial Points
+x1
+x3
+x4
+
+Results
+[3.35, 2.69, 2.64, 0.51, 0.63, 2.46, 0.75,
+0.99, 0.68, 0.65, 1.14, 0.84, 1.62, 1.39]T
+[3.36, 2.74, 2.66, 0.51, 0.64, 2.54, 0.75,
+0.99, 0.67, 0.64, 1.15, 0.84, 1.63, 1.39]T
+[3.32, 2.68, 2.62, 0.52, 0.64, 2.46, 0.75,
+0.99, 0.68, 0.65, 1.13, 0.84, 1.59, 1.35]T
+
+Target Value
+
+Iterations Number
+
+18.43
+
+17
+
+18.77
+
+20
+
+18.16
+
+16
+
+It can be found from Table 2 that, compared with the CO method, the MVPM method
+requires fewer iterations to complete the optimization, and for different initial points, the
+final results of the are more stable.
+
+Aerospace 2022, 9, 557
+
+11 of 18
+
+5.3. Numerical Test Summary
+The results obtained by the two optimization methods are summarized in Table 3.
+Table 3. Comparison of two results.
+Method
+
+Dispersion
+
+Target Value
+
+Iterations Number
+
+CO
+MVPM
+
+0.41
+0.10
+
+17.67
+18.45
+
+145
+18
+
+The dispersion in Table 3 is the sum of the Euclidean distances of each two results,
+and its value is equal to the sum of the square-norm of the difference between the result
+vectors. The calculation formula is:
+
+kx1∗ − x2∗ k2 + kx1∗ − x3∗ k2 + kx2∗ − x3∗ k2
+
+(19)
+
+Comparing the two results, it can be seen that the optimization effect of the CO method
+is better, but its efficiency is low and requires a lot of iterations to converge. The main
+reason is that the system consistency constraints of the CO method need to be obtained by
+calling subsystem optimization so that each analysis at the system needs to call a complete
+subsystem optimization. In contrast, the gradient information obtained by difference at
+the system is easily overwhelmed by the error of subsystem optimization, which makes it
+difficult for the algorithm to converge. This is also the main reason for the large dispersion
+of the results of the collaborative optimization method.
+Compared with the CO method, the efficiency of the MVPM method is higher. The
+main reason is that each iteration of the MVPM method only needs to call the subsystem
+once. In terms of optimization effect, since the system of MVPM method is a coordination
+problem, its optimization effect is not as good as that of CO method, but it is also closer to
+the global best.
+6. Wing Structure Design of Modular UAV
+In this section, the MVPM is applied to the structural layout design of a modular
+aircraft wing, and the difference between the structural layout of the general module and
+the dedicated module in the general design and the individual design is analyzed. This
+example provides guidance for the structural layout optimization of modular aircraft.
+6.1. Structural Description
+It is becoming more and more expensive to develop a new type of aircraft due to
+increased requirements, and designing a separate aircraft for each mission would make
+the design cost unacceptable. Funk et al. (2006) believe that future military aircraft must
+be flexible enough. Modular aircraft can be replaced by different dedicated modules to
+accomplish different tasks, and it is easy to design a new dedicated module to meet the
+newly added requirements. Modular aircraft have high flexibility and can also reduce the
+life cycle cost of the aircraft. Therefore, modular aircraft have broad application prospects.
+In order to increase the functional diversity of UAV and reduce the design and manufacturing cost, this section takes MQ-X UAV as the prototype and designs a modular UAV
+including model A and model B. The wings of the two types of UAVs adopt a modular
+design. The A-type UAV has a small wingspan and strong maneuverability and is mainly
+used for attack missions. The B-type UAV has a larger wingspan, longer flight time and
+higher flight altitude and is mainly used for reconnaissance and surveillance missions.
+The wing is composed of inner and outer sections, of which the inner section is a general
+module, and the outer section is a dedicated module, as shown in Figure 5.
+
+1030mm
+
+2500mm
+
+Wing A
+
+Aerospace 2022, 9, 557
+
+UAV including model A and model B. The wings of the two types of UAVs adopt a modular design. The A-type UAV has a small wingspan and strong maneuverability and is
+mainly used for attack missions. The B-type UAV has a larger wingspan, longer flight time
+and higher flight altitude and is mainly used for reconnaissance and surveillance mis12 is
+of 18
+sions. The wing is composed of inner and outer sections, of which the inner section
+a
+general module, and the outer section is a dedicated module, as shown in Figure 5.
+
+750mm
+
+600mm
+
+2500mm
+
+Wing B
+
+2260mm
+
+2260mm
+
+5140mm
+
+Figure 5.
+5. The
+Theshape
+shapeof
+ofthe
+themodular
+modularwing.
+wing.
+Figure
+
+Theswept
+sweptangle
+angleofofthe
+theleading
+leading
+edge
+inner
+wing
+20 degrees.
+The leading
+The
+edge
+of of
+thethe
+inner
+wing
+is 20isdegrees.
+The leading
+and
+and trailing
+the outer
+section
+the A-type
+coincide
+the inner
+section.
+trailing
+edgesedges
+of theofouter
+section
+of theofA-type
+wingwing
+coincide
+with with
+the inner
+section.
+The
+The leading
+sweep
+the outer
+section
+the B-type
+12 degrees.
+the
+leading
+edgeedge
+sweep
+of theofouter
+section
+of theofB-type
+wingwing
+is 12 isdegrees.
+Due Due
+to thetodifdifferent
+uses
+of
+the
+two
+types
+of
+aircraft,
+the
+loads
+of
+the
+two
+types
+of
+aircraft
+are
+different.
+ferent uses of the two types of aircraft, the loads of the two types of aircraft are different.
+The basic data of the two aircrafts are shown in Table 4.
+The basic data of the two aircrafts are shown in Table 4.
+Table 4. The basic data of the modular aircraft.
+Table 4. The basic data of the modular aircraft.
+Type
+
+Type
+
+AA
+B B
+
+Maximum Takeoff
+Maximum
+Takeoff
+Weight/kg
+Weight/kg
+2700
+2700
+3000
+3000
+
+WingWingspan/m
+span/m
+8.02
+8.02
+16.8
+16.8
+
+Fuselage
+Overload/G Fuselage
+Width/m
+
+Overload/G
+10.00
+10.00
+2.502.50
+
+Width/m
+2.00 2.00
+2.00 2.00
+
+Cruising
+Cruising
+Altitude/km
+Altitude/km
+7.00 7.00
+12.0012.00
+
+Cruising
+Cruising
+Speed/Mach
+Speed/Mach
+0.80
+0.80
+0.23
+0.23
+
+ItIt is
+all the
+the lift
+lift of
+of the
+theaircraft
+aircraftisisprovided
+providedby
+bythe
+thewings,
+wings,and
+andthe
+the
+unloadis assumed
+assumed that
+that all
+unloading
+ing
+effect
+of
+the
+wing
+structure’s
+own
+weight
+is
+ignored.
+Therefore,
+the
+total
+load
+on a
+effect of the wing structure’s own weight is ignored. Therefore, the total load on a single
+single
+wing
+MA = 135,000
+NM
+and
+MB =37,500 N.
+wing is
+MA is
+= 135,000
+N and
+B =37,500 N.
+ItIt is
+is assumed
+assumed that
+that the
+the aerodynamic
+aerodynamic load
+load is
+is triangularly
+triangularly distributed
+distributed along
+along the
+the wing
+wing
+chord
+and
+takes
+the
+maximum
+value
+at
+20%
+of
+the
+chord
+length.
+The
+distribution
+of
+aerochord and takes the maximum value at 20% of the chord length. The distribution of
+dynamic
+load load
+alongalong
+the span
+wise wise
+is trapezoidal,
+and the
+of theofload
+each
+aerodynamic
+the span
+is trapezoidal,
+andmagnitude
+the magnitude
+the at
+load
+at
+span
+wise
+position
+is
+proportional
+to
+the
+chord
+length.
+The
+span
+wise
+load
+is
+shown
+in
+each span wise position is proportional to the chord length. The span wise load is shown
+Equation
+(20):
+in Equation
+(20):
+h
+2M
+yi
+2M
+cR − (cR − cT ) ×y 
+W (W
+y) =y =
+×
+(20)
+( )(cR + cT ) × b × cR − ( cR − cT ) × b
+(20)
+b
+( cR + cT ) × b 
+where W(y) is the span wise distribution of aerodynamic loads; cR and cT are the root chord
+cR andb iscTthe
+where
+is the
+span
+wise respectively;
+distribution of
+aerodynamic
+loads;
+arespan
+the wise
+root
+length W(y)
+and tip
+chord
+length,
+y is
+the span wise
+coordinate;
+chord
+length
+and
+tip
+chord
+length,
+respectively;
+y
+is
+the
+span
+wise
+coordinate;
+b
+is
+the
+span
+length of the one-side wing; and M is the total load on the one-side wing.
+wise length of the one-side wing; and M is the total load on the one-side wing.
+6.2. Optimization Model
+As shown in Figure 6, the wing consists of spars, ribs, skins and stringers. In the wing
+optimization model, the variables include layout variables and dimensional variables, and
+the layout variables include discrete variables and position variables.
+In the inner wing, the layout design variables use the number of spars and ribs as
+discrete variables and the chord wise percent position of each spar as the location variable.
+The outer wing has the same number and position of spars as the inner wing. The ribs of
+the inner wing are evenly distributed, and the number of ribs of the outer wing is fixed. In
+the outer wing, the A-type wing has three ribs, and the B-type wing has eight ribs.
+
+Aerospace 2022, 9, 557
+
+optimization model, the variables include layout variables and dimensional variables, and
+the layout variables include discrete variables and position variables.
+In the inner wing, the layout design variables use the number of spars and ribs as
+discrete variables and the chord wise percent position of each spar as the location variable.
+The outer wing has the same number and position of spars as the inner wing. The ribs of
+13 of 18
+the inner wing are evenly distributed, and the number of ribs of the outer wing is fixed.
+In the outer wing, the A-type wing has three ribs, and the B-type wing has eight ribs.
+
+A-A
+
+A-A
+
+t
+
+Rib
+section
+12t
+12t
+
+B-B
+
+Stringer Spar
+section section
+10t
+
+t
+
+2t
+
+1.2t
+
+Rib
+
+B-B
+
+General Module
+
+Dedicated Module
+
+Figure6.6.Schematic
+Schematicdiagram
+diagramof
+ofthe
+thewing
+wingstructure.
+structure.
+Figure
+
+Dimensional variables
+variables include
+include the
+the dimensions
+dimensions of
+of spars,
+spars, ribs
+ribs and
+and skins.
+skins. In
+In order
+order to
+to
+Dimensional
+simplify
+the
+optimization
+model,
+the
+dimensions
+of
+the
+spar,
+rib
+and
+skin
+vary
+linearly
+simplify the optimization model, the dimensions of the spar, rib and skin vary linearly
+alongthe
+thespan
+spanwise
+wisedirection
+directionof
+of the
+the wing,
+wing, and
+andthe
+the dimensions
+dimensionsof
+ofthe
+thefour
+foursections
+sectionsof
+ofthe
+the
+along
+inner
+wing
+root,
+inner
+wing
+tip,
+outer
+wing
+root
+and
+outer
+wing
+tip
+are
+taken
+as
+variables,
+inner wing root, inner wing tip, outer wing root and outer wing tip are taken as variables,
+respectively. The
+The thickness
+thickness of
+of the
+the upper
+upper and
+and lower
+lowerskins
+skinsof
+ofthe
+thewing
+wingisisthe
+thesame,
+same,and
+andthe
+the
+respectively.
+thickness is equal along the chord direction. The rib is composed of a web and a flange.
+thickness is equal along the chord direction. The rib is composed of a web and a flange.
+The thickness of the rib web is uniform. The cross-section of the flange is L-shaped. The
+The thickness of the rib web is uniform. The cross-section of the flange is L-shaped. The
+thickness of the flange is equal to 1.2 times the thickness of the web, and the width and
+thickness of the flange is equal to 1.2 times the thickness of the web, and the width and
+height are equal to 12 times the thickness of the web. Take the thickness of the rib web as
+height are equal to 12 times the thickness of the web. Take the thickness of the rib web as
+variable. The spar consists of a web and a flange. The web thickness changes linearly along
+variable. The spar consists of a web and a flange. The web thickness changes linearly along
+the span wise. The cross-section of the flange is rectangular, the thickness of the flange is
+the span wise. The cross-section of the flange is rectangular, the thickness of the flange is
+equal to 2 times the thickness of the web, and the width is equal to 10 times the thickness of
+equal to 2 times the thickness of the web, and the width is equal to 10 times the thickness
+the web. Take the thickness of the spar web as variable. In addition, there are three stringers
+of the web. Take the thickness of the spar web as variable. In addition, there are three
+before the front spar, behind the rear spar and between each spar. The section of the stringer
+stringers before the front spar, behind the rear spar and between each spar. The section of
+is L-shaped, and the dimensions of the stringer vary linearly along the span wise. Since
+the stringer is L-shaped, and the dimensions of the stringer vary linearly along the span
+the main function of the stringer is to strengthen the stability of the skin, it is a secondary
+wise.
+Since the
+main
+function
+of the stringer
+is to strengthen
+the stability
+is
+component
+of the
+wing.
+Therefore,
+the thickness
+of the stringer
+is equalof
+tothe
+1.2 skin,
+timesitthe
+athickness
+secondary
+component
+of
+the
+wing.
+Therefore,
+the
+thickness
+of
+the
+stringer
+is
+equal
+to
+1.2
+of the skin, and the width and height are equal to 18 times the thickness of the
+times
+the thickness
+of the
+skin,
+and the
+width
+and height
+are equal
+to 18
+skin. The
+symbols and
+value
+ranges
+of the
+variables
+are shown
+in Table
+5. times the thickness of the skin. The symbols and value ranges of the variables are shown in Table 5.
+Table 5. Symbols and value ranges of variables.
+Type
+layout variables
+
+dimension variables
+
+Item/Units
+
+Symbol
+
+Range
+
+Number of spars
+Position of spars
+Number of inner ribs
+Root web thickness of inner wing spar/mm
+Top web thickness of inner wing spar/mm
+Root web thickness of outer wing spar/mm
+Top web thickness of outer wing spar/mm
+Root thickness of inner wing skin/mm
+Top thickness of inner wing skin/mm
+Root thickness of outer wing skin/mm
+Top thickness of outer wing skin/mm
+Web thickness of root rib of inner wing/mm
+
+spar_num
+spar_locationi
+rib_num_in
+spar_size_in_rooti
+spar_size_in_topi
+spar_size_out_rooti,j
+spar_size_out_topi,j
+skin_size_in_root
+skin_size_in_top
+skin_size_out_rootj
+skin_size_out_topj
+rib_size_in_root
+
+2, 3
+0.1~0.7
+3, 4, 5, 6
+2.0~10.0
+0.8~5.0
+1.0~6.0
+0.8~4.0
+0.8~4.0
+0.8~4.0
+0.8~4.0
+0.8~4.0
+0.8~4.0
+
+Aerospace 2022, 9, 557
+
+14 of 18
+
+Table 5. Cont.
+Type
+dimension variables
+
+constraints
+
+Item/Units
+
+Symbol
+
+Range
+
+Web thickness of top rib of inner wing/mm
+Web thickness of root rib of outer wing/mm
+Web thickness of top rib of outer wing/mm
+Structural stress/MPa
+Spar spacing
+Spar dimension ratio
+
+rib_size_in_top
+rib_size_out_rootj
+rib_size_out_topj
+stressj
+spar_locationj
+spar_sizej
+
+0.8~4.0
+0.8~4.0
+0.8~4.0
+−300~300
+0.2~0.6
+0.5~2
+
+
+spar_num
+
+ spar_location1
+
+
+
+ spar_location2
+
+
+
+
+
+
+spar_size_out_root1,B
+spar_size_out_root1,A
+
+ spar_location3
+
+ spar_size_out_root
+
+ spar_size_out_root
+
+
+2,B 
+2,A 
+
+
+
+ rib_num_in
+
+ spar_size_out_root
+
+ spar_size_out_root
+
+
+3,B 
+3,A 
+
+
+ spar_size_in_root 
+ spar_size_out_top
+
+ spar_size_out_top
+
+
+1 
+
+
+ spar_size_in_root 
+1,B 
+1,A 
+
+
+
+
+
+
+2
+ spar_size_out_top2,B 
+ spar_size_out_top2,A 
+
+
+xs =  spar_size_in_root3 xlA = 
+
+xlB = 
+ spar_size_out_top3,B 
+ beam_size_out_top3,A 
+
+
+
+
+
+
+ spar_size_in_top1 
+ skin_size_out_rootB 
+ skin_size_out_root A 
+
+
+
+
+
+
+ spar_size_in_top2 
+
+ skin_size_out_topB
+
+ skin_size_out_topA
+
+
+
+
+
+
+ spar_size_in_top3 
+
+
+
+ rib_size_out_rootB
+
+ rib_size_out_rootA
+ skin_size_in_root 
+
+
+rib_size_out_top
+rib_size_out_top
+B
+A
+ skin_size_in_top 
+
+
+
+ rib_size_in_root
+rib_size_in_top
+
+
+(21)
+
+The value of the subscript j takes A and B, representing wing A and wing B, respectively. When the number of spars is equal to 3, the value of the subscript i is equal to 1,
+2 or 3, representing the front, middle and rear spars, respectively. When the number of
+spars is equal to 2, the value of the subscript i is equal to 1 or 2, representing the front and
+rear spars, respectively. In constraints, the spar spacing represents the ratio of the distance
+between adjacent spars to the chord length, which is used to ensure that the spar spacing is
+not too small or too large. The spar dimension ratio represents the ratio of different spar
+dimensions, which is used to ensure that the difference between different spar dimensions
+is not too large.
+The variables of general modules are shared variables, and the variables of dedicated
+modules are local variables. Shared variables and local variables are listed in Equation (21).
+It is assumed that the materials used for the wings are all duralumin alloys. The
+material modulus is 70 GPa, and the density is 2700 kg/m3 . Taking the structural weight as
+the objective function, when the generality is not considered and each wing is optimized
+individually, the optimization model is as follows:
+find
+min
+s.t.
+
+xs , xlj
+Mj
+−300MPa ≤ stress j ≤ 300MPa
+0.2 ≤ spar_location j ≤ 0.6
+0.5 ≤ spar_size j ≤ 2
+
+(22)
+
+where the value of j is equal to A or B, representing wing A and wing B, respectively. M j is
+the mass of wing A or wing B.
+
+Aerospace 2022, 9, 557
+
+15 of 18
+
+When the general design is adopted, the total mass of the two wing structures is
+used as the objective function, and each wing structure should satisfy the corresponding
+constraints at the same time. The optimization model is as follows:
+find
+min
+s.t.
+
+xs , xlA , xlB
+MA + MB
+−300MPa ≤ stressA ≤ 300MPa
+−300MPa ≤ stressB ≤ 300MPa
+0.2 ≤ spar_locationA ≤ 0.6
+0.2 ≤ spar_locationB ≤ 0.6
+0.5 ≤ spar_sizeA ≤ 2
+0.5 ≤ spar_sizeB ≤ 2
+
+(23)
+
+6.3. Results and Discussion
+In order to analyze the weight increase in each wing after the general design is adopted,
+each wing is independently optimized first. During the optimization process, an approximate model [26,27] is used instead of finite element analysis. During the construction
+of the approximate model, the optimal Latin hypercube algorithm and the second-order
+response surface model were used, and the reliability of the response surface was controlled
+(R-Squared > 0.998). Finally, the MOST algorithm [28] is selected for optimization, and the
+results are shown in Table 6.
+Table 6. Individual optimization results.
+Item
+Number of spars
+
+Position of spars
+
+Symbol
+
+Wing A
+
+Wing B
+
+spar_num
+
+3
+
+3
+
+spar_location1
+
+0.203
+
+0.207
+
+spar_location2
+
+0.403
+
+0.407
+
+spar_location3
+
+0.603
+
+0.607
+
+rib_num_in
+
+6
+
+4
+
+spar_size_in_root1
+
+3.582
+
+2.000
+
+spar_size_in_root2
+
+7.164
+
+3.804
+
+spar_size_in_root3
+
+3.582
+
+2.000
+
+spar_size_in_top1
+
+0.800
+
+0.800
+
+spar_size_in_top2
+
+0.800
+
+1.281
+
+spar_size_in_top3
+
+0.800
+
+0.807
+
+Root thickness of inner wing skin/mm
+
+skin_size_in_root
+
+1.150
+
+1.126
+
+Top thickness of inner wing skin/mm
+
+skin_size_in_top
+
+0.800
+
+1.363
+
+Web thickness of root rib of inner wing/mm
+
+rib_size_in_root
+
+0.800
+
+0.800
+
+Web thickness of top rib of inner wing/mm
+
+rib_size_in_top
+
+0.800
+
+0.800
+
+spar_size_out_root1
+
+1.000
+
+1.000
+
+spar_size_out_root2
+
+1.000
+
+1.000
+
+spar_size_out_root3
+
+1.000
+
+1.000
+
+spar_size_out_top1
+
+0.800
+
+0.800
+
+spar_size_out_top2
+
+0.800
+
+0.800
+
+Number of inner ribs
+
+Root web thickness of inner wing spar/mm
+
+Top web thickness of inner wing spar/mm
+
+Root web thickness of outer wing spar/mm
+
+Top web thickness of outer wing spar/mm
+
+spar_size_out_top3
+
+0.800
+
+0.800
+
+Root thickness of outer wing skin/mm
+
+skin_size_out_root
+
+0.800
+
+1.399
+
+Top thickness of outer wing skin/mm
+
+skin_size_out_top
+
+0.800
+
+0.800
+
+Web thickness of root rib of outer wing/mm
+
+rib_size_out_root
+
+0.800
+
+0.800
+
+Web thickness of top rib of outer wing/mm
+
+rib_size_out_top
+
+0.800
+
+0.800
+
+Mass/kg
+
+M
+
+48.151
+
+76.358
+
+Aerospace 2022, 9, 557
+
+16 of 18
+
+The M in Table 6 is the structural weight of the single-sided wing. Unless otherwise
+specified, the mass described in this chapter is the weight of the single-sided wing. When
+the generality is not considered, the optimal layout and dimension of the general module
+in the two wings are quite different. Wing A has a smaller area and a larger aerodynamic
+load, so more ribs and thicker skin are required to carry the aerodynamic load. Relatively
+speaking, the type B wing has a larger wing area and smaller aerodynamic load, so it has a
+smaller number of ribs and a smaller thickness of the skin.
+In the general design process, an approximate model [26,27] is used instead of finite
+element analysis. During the construction of the approximate model, the optimal Latin
+hypercube algorithm and the second-order response surface model were used, and the
+reliability of the response surface was controlled (R-Squared > 0.998). We set the optimization parameters κ = [0.7,0.7, . . . ,0.7]T , γ = 2 and θ = 0.25. Finally, the MOST algorithm is
+selected for optimization, and the results are shown in Table 7.
+Table 7. General optimization results.
+Item
+
+Symbol
+
+Wing A
+
+Wing B
+
+Number of spars
+
+spar_num
+
+3
+
+3
+
+spar_location1
+
+0.204
+
+0.204
+
+spar_location2
+
+0.404
+
+0.404
+
+spar_location3
+
+0.604
+
+0.604
+
+rib_num_in
+
+5
+
+5
+
+spar_size_in_root1
+
+3.090
+
+3.090
+
+spar_size_in_root2
+
+6.174
+
+6.174
+
+spar_size_in_root3
+
+3.091
+
+3.091
+
+spar_size_in_top1
+
+0.803
+
+0.803
+
+spar_size_in_top2
+
+1.047
+
+1.047
+
+spar_size_in_top3
+
+0.800
+
+0.800
+
+Root thickness of inner wing skin/mm
+
+skin_size_in_root
+
+1.371
+
+1.371
+
+Top thickness of inner wing skin/mm
+
+skin_size_in_top
+
+1.343
+
+1.343
+
+Web thickness of root rib of inner wing/mm
+
+rib_size_in_root
+
+0.800
+
+0.800
+
+Web thickness of top rib of inner wing/mm
+
+rib_size_in_top
+
+0.800
+
+0.800
+
+spar_size_out_root1
+
+1.000
+
+1.000
+
+spar_size_out_root2
+
+1.000
+
+1.000
+
+spar_size_out_root3
+
+1.000
+
+1.000
+
+Position of spars
+Number of inner ribs
+
+Root web thickness of inner wing spar/mm
+
+Top web thickness of inner wing spar/mm
+
+Root web thickness of outer wing spar/mm
+
+spar_size_out_top1
+
+0.800
+
+0.800
+
+spar_size_out_top2
+
+0.800
+
+0.800
+
+spar_size_out_top3
+
+0.800
+
+0.800
+
+Root thickness of outer wing skin/mm
+
+skin_size_out_root
+
+0.800
+
+1.467
+
+Top thickness of outer wing skin/mm
+
+skin_size_out_top
+
+0.800
+
+0.800
+
+Web thickness of root rib of outer wing/mm
+
+rib_size_out_root
+
+0.800
+
+0.800
+
+Web thickness of top rib of outer wing/mm
+
+rib_size_out_top
+
+0.800
+
+0.800
+
+Mass/kg
+
+M
+
+53.969
+
+86.009
+
+12.08
+
+12.64
+
+Top web thickness of outer wing spar/mm
+
+Mass increase/%
+
+Compared with the individual optimization results of each wing, the number of spar
+and the position of the spar are basically unchanged, but the number and size of other
+components have changed to some extent. When wing A is individually optimized, the
+
+Aerospace 2022, 9, 557
+
+17 of 18
+
+inner wing has a larger number of ribs and a larger spar dimension, but the skin thickness
+of the wing tip is smaller. When the general design is adopted, the inner wing of wing A
+needs to bear the bending moment transmitted by the outer wing of wing B. Therefore, it is
+necessary to increase the thickness of the skin at the tip of the inner wing while reducing
+the number of ribs and the dimension of the spar, so that the wing structure maintains
+strength, and reducing structural weight. Similar results can be obtained when we compare
+the difference between the inner wing of wing B when it is optimized individually and
+when it is designed with generality. When wing B is individually optimized, the inner
+wing has fewer ribs and smaller spar dimensions, but the skin thickness at the wing tip
+is larger. When the general design is adopted, the inner wing of wing B needs to bear the
+aerodynamic load of wing A. Therefore, it is necessary to increase the number of ribs and
+the dimension of the wing spar while reducing the thickness of the skin at the inner wing
+tip, so that the wing structure maintains strength, and reducing structural weight. When
+the general design is adopted, the skin thickness of the outer wing root of wing B also
+increases, which shows that the inner wing and the outer wing structure interact with each
+other and cannot be designed separately.
+When the general design is adopted, the weights of the two wing structures are
+increased by 5.818 kg/12.08% and 9.651 kg/12.64%, respectively. Although the general
+design brings the wing a certain weight increase and affects the performance of the aircraft,
+it also brings higher flexibility and reduces the design and manufacturing costs of the UAV.
+7. Conclusions
+This paper firstly introduced the layout optimization problem of modular structure
+and abstracted the mathematical model. Aiming at the problem that the conventional
+structural layout optimization method is difficult to apply to the modular aircraft structure,
+this paper drew on the CO method and proposed the MVPM. Then the MVPM method was
+introduced in detail in the aspects of construction process, system, subsystem, convergence
+conditions and optimization process.
+In this paper, a typical nonconvex numerical optimization example was used to test
+the MVPM method, and the CO method was selected as the comparison. The results
+show that the MVPM has high efficiency and high stability. Finally, this chapter takes the
+application of the MVPM in the layout optimization problem of a modular UAV wing
+structure as an example and shows the feasibility of the MVPM to solve the optimization
+problem of modular structure layout and provides a feasible method for the layout design
+of modular structure.
+Author Contributions: All authors contributed to this study. C.X. designed the study and contributed
+to the conceptualization, methodology, model, data analysis and writing—original draft preparation.
+W.Y. contributed to the supervision and data curation. D.Z. contributed to data validation and
+literature search. All authors have read and agreed to the published version of the manuscript.
+Funding: This research received no external funding.
+Data Availability Statement: The data presented in this study are available in article.
+Conflicts of Interest: The authors declare no conflict of interest.
+
+References
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+
+Simpson, T.W. A Concept Exploration Method for Product Family Design; Georgia Institute of Technology: Atlanta, GA, USA, 1998.
+Muffatto, M. Introducing a platform strategy in product development. Int. J. Prod. Econ. 1999, 60–61, 145–153. [CrossRef]
+Willcox, K.; Wakayama, S. Simultaneous optimization of a multiple-aircraft family. J. Aircr. 2003, 40, 616–622. [CrossRef]
+Meyer, M.H.; Lehnerd, A.P. The Power of Product Platforms; Free Press: New York, NY, USA, 1997.
+Simpson, T.W.; Jiao, J.; Siddique, Z.; Hölttä-Otto, K. Advances in Product Family and Product Platform Design; Springer: New York,
+NY, USA, 2014.
+Simpson, T.W.; Siddique, Z.; Jiao, J.R. Product Platform and Product Family Design; Springer: New York, NY, USA, 2006.
+Jiao, J.; Simpson, T.W.; Siddique, Z. Product family design and platform-based product development: A state-of-the-art review. J.
+Intell. Manuf. 2007, 18, 5–29. [CrossRef]
+
+Aerospace 2022, 9, 557
+
+8.
+9.
+10.
+11.
+12.
+13.
+14.
+15.
+16.
+
+17.
+18.
+19.
+20.
+21.
+22.
+23.
+24.
+
+25.
+26.
+27.
+28.
+
+18 of 18
+
+Simpson, T.W. Product platform design and customization: Status and promise. Ai Edam-Artif. Intell. Eng. Des. Anal. Manuf. 2004,
+18, 3–20. [CrossRef]
+Uddin, Z.; Harland, P.E.; Yörür, H. Risk management in product platform development projects. Int. J. Prod. Dev. 2018,
+22, 441–463. [CrossRef]
+Fellini, R.; Kokkolaras, M.; Papalambros, P.Y. Quantitative platform selection in optimal design of product families, with
+application to automotive engine design. J. Eng. Des. 2006, 17, 429–446. [CrossRef]
+Ulrich, K.T.; Eppinger, S.D. Product Design and Development; Tata McGraw-Hill Education: New York, NY, USA, 2004.
+Rajan, S.D. Sizing, Shape, and Topology Design Optimization of Trusses Using Genetic Algorithm. J. Struct. Eng. 1995,
+121, 1480–1487. [CrossRef]
+Duan, B.Y.; Ye, S.H. A mixed method for shape optimization of skeletal structures. Eng. Optim. 1986, 10, 183–197.
+Hasancebi, O.; Erbatur, F. Layout optimization of trusses using improved GA methodologies. Acta Mech. 2001, 146, 87–107.
+[CrossRef]
+Saka, M.P. Shape optimization of trusses. J. Struct. Div. 1980, 106, 1155–1174. [CrossRef]
+Bendsøe, M.P.; Ben-Tal, A.; Haftka, R.T. New displacement-based methods for optimal truss topology design. In Proceedings of
+the 32nd AIAA/ASME/ASCE/AHS/ASC Structures, Structural Dynamics and Materials Conference, Baltimore, MD, USA, 4–9
+May 2009; pp. 684–696.
+Sankaranarayanan, S.; Haftka, R.T.; Kapania, R.K. Truss topology optimization with stress and displacement constraints. In
+Topology Design of Structures; Springer: Dordrecht, The Netherlands, 1993; pp. 71–78.
+Sobieszczanski-Sobieski, J. A Linear Decomposition Method for Large Optimization Problems. NASA TM: 83248. 1982. Available
+online: https://ntrs.nasa.gov/citations/19820014371 (accessed on 1 February 1982).
+Nayak, R.U.; Chen, W.; Simpson, T.W. A variation-based method for product family design. Eng. Optim. 2002, 34, 65–81.
+[CrossRef]
+Braun, R.; Kroo, I. Development and application of the collaborative optimization architecture in a multidisciplinary design
+environment. In Multidisciplinary Design Optimization: State of the Art; SIAM: Philadelphia, PA, USA, 1995; pp. 98–116.
+Dimitri, B. Nonlinear Programming; Athena Scientific: Cambridge, MA, USA, 2016.
+Tosserams, S.; Etman, L.F.P.; Rooda, J.E. An augmented Lagrangian decomposition method for quasi-separable problems in MDO.
+Struct. Multidiscip. Optim. 2007, 34, 211–227. [CrossRef]
+Kim, H.M. Target Cascading in Optimal System Design; University of Michigan: Ann Arbor, MI, USA, 2001.
+Kroo, I.; Roth, B.D. Enhanced collaborative optimization: A decomposition-based method for multidisciplinary design. In
+Proceedings of the ASME 2008 International Design Engineering Technical Conferences, Brooklyn, NY, USA, 3–6 August 2008.
+[CrossRef]
+Jun, Z. A Sensitivity-based Coordination Method and the Application to Structural Optimization of Aircraft Families; Nanjing University
+of Aeronautics and Astronautics: Nanjing, China, 2016.
+Funk, J.E.; Harber, J.R.; Morin, L. Future military common aircraft development opportunities. In Proceedings of the 44th AIAA
+Aerospace Sciences Meeting and Exhibit, Reno, Nevada, 9–12 January 2006. [CrossRef]
+Jin, R.; Chen, W.; Simpson, T.W. Comparative studies of metamodeling techniques under multiple modeling criteria. Struct.
+Multidiscip. Optim. 2001, 23, 1–13. [CrossRef]
+Lai, Y. Isight Parameter Optimization Theory and Example Detailed Explanation; Beihang University Press: Beijing, China, 2012.
+
+

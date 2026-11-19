@@ -1,0 +1,469 @@
+author: Dilgen, Cetin B. and Dilgen, Sumer B. and Fuhrman, David R. and Sigmund, Ole
+  and Lazarov, Boyan S.
+author_list:
+- affiliation: []
+  family: Dilgen
+  given: Cetin B.
+- affiliation: []
+  family: Dilgen
+  given: Sumer B.
+- affiliation: []
+  family: Fuhrman
+  given: David R.
+- affiliation: []
+  family: Sigmund
+  given: Ole
+- affiliation: []
+  family: Lazarov
+  given: Boyan S.
+citations:
+- author: Bendsøe
+  series-title: Topology Optimization - Theory, Methods and Applications
+  year: '2003'
+- article-title: Topology optimization of fluids in Stokes flow
+  author: Borrvall
+  doi: 10.1002/fld.426
+  first-page: '77'
+  issue: '1'
+  journal-title: Internat. J. Numer. Methods Fluids
+  volume: '41'
+  year: '2003'
+- article-title: Topology optimization of large scale Stokes flow problems
+  author: Aage
+  doi: 10.1007/s00158-007-0128-0
+  first-page: '175'
+  issue: NA
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '35'
+  year: '2008'
+- article-title: On Chebyshev’s method for topology optimization of Stokes flows
+  author: Evgrafov
+  doi: 10.1007/s00158-014-1176-x
+  first-page: '801'
+  issue: '4'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '51'
+  year: '2015'
+- unstructured: A. Gersborg-Hansen, O. Sigmund, R.B. Haber, Topology optimization
+    of channel flow problems, 30 (2005) 181–192.
+- article-title: Topology optimization of unsteady incompressible Navier-Stokes flows
+  author: Deng
+  doi: 10.1016/j.jcp.2011.05.004
+  first-page: '6688'
+  issue: '17'
+  journal-title: J. Comput. Phys.
+  volume: '230'
+  year: '2011'
+- article-title: Topology optimization for unsteady flow
+  author: Kreissl
+  doi: 10.1002/nme.3151
+  first-page: '1229'
+  issue: '13'
+  journal-title: Internat. J. Numer. Methods Engrg.
+  volume: '87'
+  year: '2011'
+- article-title: Topology optimization of flow domains using the lattice Boltzmann
+    method
+  author: Pingen
+  doi: 10.1007/s00158-007-0105-7
+  first-page: '507'
+  issue: '6'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '34'
+  year: '2007'
+- article-title: Adjoint parameter sensitivity analysis for the hydrodynamic lattice
+    Boltzmann method with applications to design optimization
+  author: Pingen
+  doi: 10.1016/j.compfluid.2008.10.002
+  first-page: '910'
+  issue: '4'
+  journal-title: Comput. & Fluids
+  volume: '38'
+  year: '2009'
+- article-title: Topology optimization of unsteady flow problems using the lattice
+    Boltzmann method
+  author: Nørgaard
+  doi: 10.1016/j.jcp.2015.12.023
+  first-page: '291'
+  journal-title: J. Comput. Phys.
+  volume: '307'
+  year: '2016'
+- article-title: Topological sensitivity and shape optimization for the Stokes equations
+  author: Guillaume
+  doi: 10.1137/S0363012902411210
+  first-page: '1'
+  issue: '1'
+  journal-title: SIAM J. Control Optim.
+  volume: '43'
+  year: '2004'
+- article-title: Topological sensitivity analysis for some nonlinear pde systems
+  author: Amstutz
+  doi: 10.1016/j.matpur.2005.10.008
+  first-page: '540'
+  issue: '4'
+  journal-title: J. Math. Pures Appl.
+  volume: '85'
+  year: '2006'
+- article-title: Topological derivatives applied to fluid flow channel design optimization
+    problems
+  author: Sa
+  doi: 10.1007/s00158-016-1399-0
+  first-page: '249'
+  issue: '2'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '54'
+  year: '2016'
+- article-title: A continuous adjoint formulation for the computation of topological
+    and surface sensitivities of ducted flows
+  author: Othmer
+  doi: 10.1002/fld.1770
+  first-page: '861'
+  issue: '8'
+  journal-title: Internat. J. Numer. Methods Fluids
+  volume: '58'
+  year: '2008'
+- article-title: 'Design for additive manufacturing: internal channel optimization'
+  author: Pietropaoli
+  doi: 10.1115/1.4036358
+  first-page: '102101'
+  issue: '10'
+  journal-title: J. Eng. Gas Turbines Power
+  volume: '139'
+  year: '2017'
+- article-title: Continuous adjoint approach to the Spalart-Allmaras turbulence model
+    for incompressible flows
+  author: Zymaris
+  doi: 10.1016/j.compfluid.2008.12.006
+  first-page: '1528'
+  issue: '8'
+  journal-title: Comput. & Fluids
+  volume: '38'
+  year: '2009'
+- article-title: Adjoint-based constrained topology optimization for viscous flows,
+    including heat transfer
+  author: Kontoleontos
+  doi: 10.1080/0305215X.2012.717074
+  first-page: '941'
+  issue: '8'
+  journal-title: Eng. Optim.
+  volume: '45'
+  year: '2013'
+- doi: 10.2514/6.2010-5088
+  unstructured: 'A. Carnarius, F. Thiele, E. Ozkaya, N.R. Gauger, A. Carnarius, F.
+    Thiele, E. Ozkaya, N.R. Gauger, Adjoint approaches for optimal flow control, in:
+    5th Flow Control Conference, 2010, pp. 2010–5088.'
+- article-title: Convergence of cell based finite volume discretizations for problems
+    of control in the conduction coefficients
+  author: Evgrafov
+  doi: 10.1051/m2an/2011012
+  first-page: '1059'
+  issue: '6'
+  journal-title: ESAIM Math. Model. Numer. Anal.
+  volume: '45'
+  year: '2011'
+- article-title: Numerical heat transfer and fluid flow
+  author: Patankar
+  doi: 10.1201/9781482234213
+  year: '1980'
+- article-title: Recipes for adjoint code construction
+  author: Giering
+  doi: 10.1145/293686.293695
+  first-page: '437'
+  issue: '4'
+  journal-title: ACM Trans. Math. Softw.
+  volume: '24'
+  year: '1998'
+- author: Griewank
+  first-page: 369 s
+  series-title: 'Evaluating Derivatives: Principles and Techniques of Algorithmic
+    Differentiation'
+  year: '2000'
+- article-title: A modular framework for generation and maintenance of adjoint solvers
+    assisted by algorithmic differentiation - with applications to an incompressible
+    Navier-Stokes Solver
+  author: Auvinen
+  first-page: '183'
+  year: '2014'
+- article-title: A discrete adjoint model for openfoam
+  author: Towara
+  doi: 10.1016/j.procs.2013.05.206
+  first-page: '429'
+  journal-title: Procedia Comput. Sci.
+  volume: '18'
+  year: '2013'
+- article-title: A tensorial approach to computational continuum mechanics using object-oriented
+    techniques
+  author: Weller
+  doi: 10.1063/1.168744
+  first-page: '620'
+  issue: '6'
+  journal-title: Comput. Phys.
+  volume: '12'
+  year: '1998'
+- article-title: Automated derivation of the adjoint of high-level transient finite
+    element programs
+  author: Farrell
+  doi: 10.1137/120873558
+  first-page: C369
+  issue: '4'
+  journal-title: SIAM J. Sci. Comput.
+  volume: '35'
+  year: '2013'
+- unstructured: P.E. Farrell, Topology optimisation of fluids in Stokes flow. Website
+    http://www.dolfin-adjoint.org/en/latest/documentation/stokes-topology/stokes-topology.html#topology-optimisation-of-fluids-in-stokes-flow.
+- article-title: The fenics project version 1.5
+  author: Alns
+  issue: '100'
+  journal-title: Arch. Numer. Softw.
+  volume: '3'
+  year: '2015'
+- unstructured: URL https://www.comsol.com.
+- article-title: 'Algorithm 799: revolve: an implementation of checkpointing for the
+    reverse or adjoint mode of computational differentiation'
+  author: Griewank
+  doi: 10.1145/347837.347846
+  first-page: '19'
+  issue: '1'
+  journal-title: ACM Trans. Math. Sofw.
+  volume: '26'
+  year: '2000'
+- article-title: A methodology for the development of discrete adjoint solvers using
+    automatic differentiation tools
+  author: Marta
+  doi: 10.1080/10618560701678647
+  first-page: '307'
+  issue: 9–10
+  journal-title: Int. J. Comput. Fluid Dyn.
+  volume: '21'
+  year: '2007'
+- article-title: Applications of automatic differentiation in topology optimization
+  author: Nørgaard
+  first-page: '1'
+  journal-title: Struct. Multidiscip. Optim.
+  year: '2017'
+- article-title: A discrete adjoint approach for the optimization of unsteady turbulent
+    flows
+  author: Roth
+  doi: 10.1007/s10494-012-9439-3
+  first-page: '763'
+  issue: '4'
+  journal-title: Flow Turbul. Combust. Flow
+  volume: '90'
+  year: '2013'
+- article-title: Formulation of the k-ω Turbulence Model Revisited
+  author: Wilcox
+  doi: 10.2514/1.36541
+  first-page: '2823'
+  journal-title: AIAA J.
+  volume: '46'
+  year: '2008'
+- article-title: A One equation turbulence model for aerodynamic flows
+  author: Spalart
+  issue: AIAA-92-0439
+  journal-title: Rech. Aerosp.
+  year: '1994'
+- article-title: Two-equation eddy-viscosity turbulence models for engineering applications
+  author: Menter
+  doi: 10.2514/3.12149
+  first-page: '1598'
+  journal-title: AIAA J.
+  volume: '32'
+  year: '1994'
+- unstructured: 'S. Allmaras, T. Forrester, P. Spalart, Modifications and clarifications
+    for the implementation of the Spalart-Allmaras turbulence model, in: 7th International
+    Conference on Computational Fluid Dynamics, ICCFD07, 2012.'
+- article-title: Assessment of geometric multilevel convergence robustness and a wall
+    distance method for flows with multiple internal boundaries
+  author: Tucker
+  doi: 10.1016/S0307-904X(98)10007-0
+  first-page: '293'
+  issue: 4/5
+  journal-title: Appl. Math. Model.
+  volume: '22'
+  year: '1998'
+- article-title: Computations of wall distances based on differential equations
+  author: Tucker
+  doi: 10.2514/1.8626
+  first-page: '539'
+  issue: '3'
+  journal-title: AIAA J.
+  volume: '43'
+  year: '2005'
+- article-title: On projection methods, convergence and robust formulations in topology
+    optimization
+  author: Wang
+  doi: 10.1007/s00158-010-0602-y
+  first-page: '767'
+  issue: '6'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '43'
+  year: '2011'
+- article-title: Filters in topology optimization based on Helmholtz-type differential
+    equations
+  author: Lazarov
+  doi: 10.1002/nme.3072
+  first-page: '765'
+  issue: '6'
+  journal-title: Internat. J. Numer. Methods Engrg.
+  volume: '86'
+  year: '2011'
+- article-title: Length scale and manufacturability in density-based topology optimization
+  author: Lazarov
+  doi: 10.1007/s00419-015-1106-4
+  first-page: '189'
+  issue: '1'
+  journal-title: Arch. Appl. Mech.
+  volume: '86'
+  year: '2016'
+- article-title: A high-level programming-language implementation of topology optimization
+    applied to steady-state Navier-Stokes flow
+  author: Olesen
+  doi: 10.1002/nme.1468
+  first-page: '975'
+  issue: '7'
+  journal-title: Internat. J. Numer. Methods Engrg.
+  volume: '65'
+  year: '2006'
+- article-title: The method of moving asymptotesa new method for structural optimization
+  author: Svanberg
+  doi: 10.1002/nme.1620240207
+  first-page: '359'
+  issue: '2'
+  journal-title: Internat. J. Numer. Methods Engrg.
+  volume: '24'
+  year: '1987'
+- article-title: A class of globally convergent optimization methods based on conservative
+    convex separable approximations
+  author: Svanberg
+  doi: 10.1137/S1052623499362822
+  first-page: '555'
+  issue: '2'
+  journal-title: SIAM J. Optim.
+  volume: '12'
+  year: '2001'
+- article-title: Parallel framework for topology optimization using the method of
+    moving asymptotes
+  author: Aage
+  doi: 10.1007/s00158-012-0869-2
+  first-page: '493'
+  issue: '4'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '47'
+  year: '2013'
+- article-title: 'Topology optimization using PETSc: An easy-to-use, fully parallel,
+    open source topology optimization framework'
+  author: Aage
+  doi: 10.1007/s00158-014-1157-0
+  first-page: '565'
+  issue: '3'
+  journal-title: Struct. Multidiscip. Optim.
+  volume: '51'
+  year: '2015'
+- article-title: 'The tapenade automatic differentiation tool: Principles, Model,
+    and Specification'
+  author: Hascoët
+  doi: 10.1145/2450153.2450158
+  issue: '3'
+  journal-title: ACM Trans. Math. Softw.
+  volume: '39'
+  year: '2013'
+- unstructured: CoDiPack—code differentiation package, CoDiPack website, 2016. http://www.scicomp.uni-kl.de/software/codi/.
+    (Accessed 18 October 2016).
+- article-title: Fast reverse-mode automatic differentiation using expression templates
+    in c++
+  author: Hogan
+  doi: 10.1145/2560359
+  first-page: '26'
+  issue: '4'
+  journal-title: ACM Trans. Math. Softw.
+  volume: '40'
+  year: '2014'
+- article-title: Unified computational framework for the efficient solution of n-field
+    coupled problems with monolithic schemes
+  author: Verdugo
+  doi: 10.1016/j.cma.2016.07.016
+  first-page: '335'
+  journal-title: Comput. Methods Appl. Mech. Engrg.
+  volume: '310'
+  year: '2016'
+- unstructured: M. Ur Rehman, C. Vuik, G. Segal, Preconditioners for the steady incompressible
+    Navier-Stokes problem, 2009, http://dx.doi.org/10.1.1.148.4788.
+- article-title: Robust design of large-displacement compliant mechanisms
+  author: Lazarov
+  doi: 10.5194/ms-2-175-2011
+  first-page: '175'
+  issue: '2'
+  journal-title: Mech. Sci.
+  volume: '2'
+  year: '2011'
+- unstructured: S. Balay, S. Abhyankar, M.F. Adams, J. Brown, P. Brune, K. Buschelman,
+    L. Dalcin, V. Eijkhout, W.D. Gropp, D. Kaushik, M.G. Knepley, L.C. McInnes, K.
+    Rupp, B.F. Smith, S. Zampini, H. Zhang, H. Zhang, PETSc Web page, 2016. URL http://www.mcs.anl.gov/petsc.
+- article-title: PETSc Users Manual, Tech. Rep. ANL-95/11 - Revision 3.7
+  author: Balay
+  year: '2016'
+- author: Ferziger
+  series-title: Computational Methods for Fluid Dynamics
+  year: '2001'
+- author: Versteeg
+  series-title: 'An Introduction to Computational Fluid Dynamics: The Finite Volume
+    Method'
+  year: '2007'
+- article-title: TVD schemes for unstructured grids
+  author: Darwish
+  doi: 10.1016/S0017-9310(02)00330-7
+  first-page: '599'
+  issue: '4'
+  journal-title: Int. J. Heat Mass Transfer
+  volume: '46'
+  year: '2003'
+- article-title: Some contributions to the modelling of discontinuous flows
+  author: Roe
+  first-page: '163'
+  series-title: Large-Scale Computations in Fluid Mechanics
+  year: '1985'
+- author: Jasak
+  series-title: Error Analysis and Estimation for the Finite Volume Method with Applications
+    to Fluid Flows
+  year: '1996'
+- article-title: Numerical study of the turbulent flow past an airfoil with trailing
+    edge separation
+  author: Rhie
+  doi: 10.2514/3.8284
+  first-page: '1525'
+  journal-title: AIAA J.
+  volume: '21'
+  year: '1983'
+- article-title: Pressure boundary conditions for incompressible flow using unstructured
+    meshes
+  author: Mathur
+  doi: 10.1080/10407799708915010
+  first-page: '283'
+  issue: '3'
+  journal-title: Numer. Heat Transfer B
+  volume: '32'
+  year: '1997'
+- article-title: Experimental investigation of flow through an asymmetric plane diffuser
+  author: Buice
+  doi: 10.1115/1.483278
+  first-page: '433'
+  issue: '2'
+  journal-title: Trans. ASME, J. Fluids Eng.
+  volume: '122'
+  year: '2000'
+- unstructured: 'J.W. Slater, NPARC Alliance Validation Archive: Buice Diffuser. Website,
+    NASA. URL http://www.grc.nasa.gov/WWW/wind/valid/buice/buice.html.'
+doi: 10.1016/j.cma.2017.11.029
+files:
+- topology_optimization_of_turbulent_flows_Dilgen_Dilgen_Fuhrman_et_al_2018.pdf
+journal: Computer Methods in Applied Mechanics and Engineering
+language: en
+month: 4
+pages: 363--393
+papis_id: 1e6dc4197bb04f258e0e8cf83370eb72
+publisher: Elsevier BV
+title: Topology optimization of turbulent flows
+type: article
+url: https://doi.org/10.1016/j.cma.2017.11.029
+volume: '331'
+year: 2018

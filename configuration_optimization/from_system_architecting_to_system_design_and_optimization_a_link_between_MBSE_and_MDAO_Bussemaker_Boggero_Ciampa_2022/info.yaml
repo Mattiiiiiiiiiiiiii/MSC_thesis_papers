@@ -1,0 +1,110 @@
+abstract: '<jats:title>Abstract</jats:title><jats:p>Optimization of system architectures
+  can help deal with finding better system architectures in a large design space plagued
+  by combinatorial explosion of alternatives. To enable architecture optimization,
+  the design space should therefore be formalized into a numerical optimization problem,
+  and it should be possible to quantitatively evaluate architecture alternatives.
+  This paper presents a methodology for generating and modeling architecture design
+  spaces using the Architecture Design Space Graph (ADSG), and using collaborative
+  Multidisciplinary Design Analysis and Optimization (MDAO) techniques to evaluate
+  architectures. Collaborative MDAO leverages disciplinary expertise while ensuring
+  that analysis tools exchange data consistently and correctly using a central data
+  schema. The problem solved in this paper is the missing link between architecture
+  optimization and collaborative MDAO: the reflection of generated architectures in
+  the central data schema. It is solved by the authors by mapping architecture components
+  and Quantities of Interest (QOIs) to the central data schema using Data Schema Operations
+  (DSOs). Such a mapping also assists the user in identifying missing or unnecessary
+  disciplinary analysis tools. Three web‐based software tools implementing the methodology
+  are presented. Finally, the methodology and tools are demonstrated using the design
+  of a supersonic business jet as an example.</jats:p>'
+author: Bussemaker, Jasper and Boggero, Luca and Ciampa, Pier Davide
+author_list:
+- affiliation:
+  - name: German Aerospace Center (DLR)  Hamburg Germany
+  family: Bussemaker
+  given: Jasper
+- affiliation:
+  - name: German Aerospace Center (DLR)  Hamburg Germany
+  family: Boggero
+  given: Luca
+- affiliation:
+  - name: German Aerospace Center (DLR)  Hamburg Germany
+  family: Ciampa
+  given: Pier Davide
+citations:
+- unstructured: Alder M. Moerland E. Jepsen J.&Nagel B. 2020.Recent Advances in Establishing
+    a Common Language for Aircraft Design with CPACS. sl sn
+- doi: 10.2514/6.2020-3172
+  unstructured: 'Bussemaker J. H. Ciampa P. D.&Nagel B. 2020.System Architecture Design
+    Space Exploration: An Approach to Modeling and Optimization. sl American Institute
+    of Aeronautics and Astronautics.'
+- doi: 10.2514/6.2021-3095
+  unstructured: Bussemaker J. H. Ciampa P. D.&Nagel B. 2021.Effectiveness of Surrogate-Based
+    Optimization Algorithms for System Architecture Optimization. sl American Institute
+    of Aeronautics and Astronautics.
+- unstructured: Bussemaker J. H. Ciampa P. D.&Nagel B. 2021.System Architecture Design
+    Space Modeling and Optimization Elements. Shanghai sn
+- doi: 10.2514/6.2021-3078
+  unstructured: 'Bussemaker J. H. Ciampa P. D.&Nagel B. 2021.System Architecture Optimization:
+    An Open Source Multidisciplinary Aircraft Jet Engine Architecting Problem. Virtual
+    Event American Institute of Aeronautics and Astronautics.'
+- doi: 10.1109/SysCon48628.2021.9447140
+  unstructured: 'Chaudemar J.-C.&de Saqui-Sannes P. 2021.MBSE and MDAO for Early Validation
+    of Design Decisions: a Bibliography Survey. sl IEEE.'
+- unstructured: Ciampa P. D.&Nagel B. 2016.Towards the 3rd Generation MDO Collaborative
+    Environment. Daejeon sn p.1–12.
+- doi: 10.1016/j.paerosci.2020.100643
+- doi: 10.2514/6.2021-3056
+  unstructured: 'Ciampa P. D.&Nagel B. 2021.Accelerating the Development of Complex
+    Systems in Aeronautics via MBSE and MDAO: a Roadmap to Agility. Virtual Event
+    American Institute of Aeronautics and Astronautics.'
+- unstructured: 'Crawley E. Cameron B.&Selva D. 2015.System architecture: strategy
+    and product development for complex systems. sl:Pearson Education.'
+- unstructured: 'Iacobucci J. V. 2012.Rapid Architecture Alternative Modeling (Raam):
+    a Framework for Capability-Based Analysis of System of Systems Architectures sl:
+    sn'
+- doi: 10.2514/6.2021-3077
+  unstructured: Jeyaraj A. K. Tabesh N.&Liscouet-Hanke S. 2021.Connecting Model-based
+    Systems Engineering and Multidisciplinary Design Analysis and Optimization for
+    Aircraft Systems Architecting. sl American Institute of Aeronautics and Astronautics.
+- doi: 10.1016/j.paerosci.2020.100637
+  unstructured: Moerland E.et al. 2020.Collaborative Architecture supporting the next
+    generation of MDAO within the AGILE paradigm. November Volume 119 p.100637.
+- doi: 10.2514/6.2020-3133
+  unstructured: 'Page-Risueño A. Bussemaker J. H. Ciampa P. D.&Nagel B. 2020.MDAx:
+    Agile Generation of Collaborative MDAO Workflows for Complex Systems. sl American
+    Institute of Aeronautics and Astronautics.'
+- doi: 10.2514/3.14392
+  unstructured: Sobieszczanski-Sobieski J. Agte J.&Sandusky R. 1998.Bi-level integrated
+    system synthesis (BLISS). Reston American Institute of Aeronautics and Astronautics
+    p.164–172.
+- doi: 10.1002/9781118897072
+  unstructured: Sobieszczanski-Sobieski J. Morris A.&van Tooren M. J. L. 2015.Multidisciplinary
+    Design Optimization Supported by Knowledge Based Engineering. sl:John Wiley &
+    Sons Ltd.
+- doi: 10.2514/6.2017-3663
+  unstructured: 'van Gent I. La Rocca G.&Veldhuis L. L. 2017. Composing MDAO symphonies:
+    graph-based generation and manipulation of large multidisciplinary systems.18th
+    AIAA/ISSMO Multidisciplinary Analysis and Optimization Conference.'
+- doi: 10.1007/s13272-018-0307-2
+  unstructured: 'van Gent I. La Rocca G.&Hoogreef M. F. M. 2018. CMDOWS: a proposed
+    new standard to store and exchange MDO systems.CEAS Aeronautical Journal Volume
+    0 p.0.'
+- unstructured: 'van Gent I. 2019.Agile MDAO Systems: A Graph-based Methodology to
+    Enhance Collaborative Multidisciplinary Design sl: sn'
+doc_url: https://incose.onlinelibrary.wiley.com/doi/pdf/10.1002/iis2.12935
+doi: 10.1002/iis2.12935
+files:
+- from_system_architecting_to_system_design_and_optimization_a_link_between_MBSE_and_MDAO_Bussemaker_Boggero_Ciampa_2022.pdf
+issue: '1'
+journal: INCOSE International Symposium
+language: en
+month: 7
+pages: 343--359
+papis_id: 117e38abdedcc72838e1d35f93a808a7
+publisher: Wiley
+title: 'From System Architecting to System Design and Optimization: A Link Between
+  MBSE and MDAO'
+type: article
+url: https://doi.org/10.1002/iis2.12935
+volume: '32'
+year: 2022

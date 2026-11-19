@@ -1,0 +1,1402 @@
+The University of Manchester Research
+
+Density Based Topology Optimization of Turbulent Flow
+Heat Transfer Systems
+DOI:
+10.1007/s00158-018-1967-6
+Document Version
+Accepted author manuscript
+Link to publication record in Manchester Research Explorer
+Citation for published version (APA):
+Dilgen, S. B., Dilgen, C. B., Fuhrman, D. R., Sigmund, O., & Lazarov, B. (2018). Density Based Topology
+Optimization of Turbulent Flow Heat Transfer Systems. Structural and Multidisciplinary Optimization.
+https://doi.org/10.1007/s00158-018-1967-6
+Published in:
+Structural and Multidisciplinary Optimization
+Citing this paper
+Please note that where the full-text provided on Manchester Research Explorer is the Author Accepted Manuscript
+or Proof version this may differ from the final Published version. If citing, it is advised that you check and use the
+publisher's definitive version.
+General rights
+Copyright and moral rights for the publications made accessible in the Research Explorer are retained by the
+authors and/or other copyright owners and it is a condition of accessing publications that users recognise and
+abide by the legal requirements associated with these rights.
+Takedown policy
+If you believe that this document breaches copyright please refer to the University of Manchester’s Takedown
+Procedures [http://man.ac.uk/04Y6Bo] or contact openresearch@manchester.ac.uk providing relevant details, so
+we can investigate your claim.
+
+Download date:15. Oct. 2026
+
+Noname manuscript No.
+(will be inserted by the editor)
+
+Density Based Topology Optimization of Turbulent Flow Heat
+Transfer Systems
+Sumer B. Dilgen *,1,2 · Cetin B. Dilgen 1,3
+Ole Sigmund 3 · Boyan S. Lazarov 3,4,5
+
+· David R. Fuhrman 3 ·
+
+Received: date / Accepted: date
+
+Abstract The focus of this article is on topology optimization of heat sinks with turbulent forced convection. The goal is to demonstrate the extendibility, and
+the scalability of a previously developed fluid solver to
+coupled multi-physics and large 3D problems. The gradients of the objective and the constraints are obtained
+with the help of automatic differentiation applied on
+the discrete system without any simplifying assumptions. Thus, as demonstrated in earlier works of the authors, the sensitivities are exact to machine precision.
+The framework is applied to the optimization of 2D
+and 3D problems. Comparison between the simplified
+2D setup and the full 3D optimized results is provided.
+A comparative study is also provided between designs
+optimized for laminar and turbulent flows. The comparisons highlight the importance and the benefits of full
+3D optimization and including turbulence modelling in
+the optimization process, while also demonstrating ex-
+
+*
+
+Corresponding author.
+
+1
+
+These authors contributed equally to this work.
+
+2
+
+Department of Electrical Engineering, Technical University
+of Denmark, Denmark.
+3
+
+Department of Mechanical Engineering, Technical University of Denmark, Denmark.
+4
+
+Lawrence Livermore National Laboratory, Livermore, CA,
+US.
+5
+
+School of Mechanical, Aerospace and Civil Engineering, The
+University of Manchester, UK.
+Sumer B. Dilgen
+E-mail: sydil@elektro.dtu.dk
+Cetin B. Dilgen
+E-mail: cedil@mek.dtu.dk
+
+tension of the methodology to include coupling of heat
+transfer with turbulent flows.
+Keywords Topology Optimization · Automatic
+Differentiation · Turbulent Flow · Thermal-fluid · Heat
+Sink
+
+1 Introduction
+Forced convection is one of the most popular methods
+for cooling electronic devices and temperature sensitive
+equipment. The heat extraction process utilizes a heat
+sink built from highly conductive material, such as aluminum or copper, and a moving fluid which transports
+the heat away from the device. The performance depends on the amount of conductive material and its
+distribution, the contact area between the fluid and
+the sink, the fluid velocity distribution, temperature
+and thermal capacity. The fluid is accelerated using a
+pump or a small fan. A sink usually consists of plate
+or pin fins attached to a plate which is in contact with
+the heat source. The performance can be improved by
+parametric variations, e.g. changing the number and
+the positions of predefined fins; optimizing their shape;
+or changing completely in a non-uniform way the distribution of the conductive material to minimize the
+temperature of the device. The latter can be achieved
+by topology optimization and is the main subject of
+this article.
+Topology optimization [10] is a design process which
+distributes material in a design domain by optimizing
+an objective function. For heat sinks, the objective is
+usually to minimize some performance measure, which
+is a function of the temperature on the surface or inside
+the heat source. In modern high-performance computing systems design, high density of the different compo-
+
+2
+
+nents is necessary to increase the computational performance, and to decrease the cost and the space requirements for the installation. In such restricted space conditions the cooling is performed either in a closed loop
+fluid-cooling system or carefully guided air streams. In
+both cases, it is desirable to re-utilize the fluid for cooling of more than one component which requires decreasing the energy dissipation or the pressure drop.
+The material distribution in density based topology
+optimization is modeled with the help of an index function taking values of zero or one which, respectively,
+represent solid and fluid distributions in the selected
+design domain. Updates on the design are based on gradients of the objective and the constraints. Thus, the
+problem is relaxed, and the material distribution function is allowed to take intermediate values. Following
+a nested optimization approach, objective, constraints
+and gradient evaluations require the solution of a fluid
+state problem, resulting in fluid velocity and pressure
+distributions, and a subsequent temperature convective
+problem, which represents the heat conducted through
+the sink and transported through the fluid.
+Topology optimization was originally introduced in
+solid mechanics problems where the methodology is well
+developed and utilized on a regular basis in industrial
+settings. In contrast, its development for mixed fluidheat transfer problems is far from mature and requires
+further development and research. The first fluid mechanics applications for Stokes flow were reported in
+[11]. Large scale examples of Stokes flow problems have
+been demonstrated in [3]. Later applications to laminar
+flow can be found in [17, 26, 30]. For general shape optimization, the derivation and the application of the
+topological sensitivities for Stokes and Navier-Stokes
+equations have been demonstrated in [19, 5]. The fluid
+flow in forced convection is often turbulent which further complicates the optimization process. Topology
+optimization for such processes is applied in [27] by using the so-called frozen turbulence assumption, i.e., the
+variation of the turbulence fields with respect to the design parametrization is neglected. In [39] a continuous
+adjoint formulation is presented based on the SpalartAllmaras (SA) turbulence model [31]. Discrete adjoint
+formulations based on finite volume method for both
+the one-equation SA and k − ω turbulence models [36]
+have been presented only recently in [15]. This work
+provides the foundation of the current presentation,
+which is extended further to include heat transport,
+hence demonstrating the feasibility of the approach for
+large scale mixed thermo-fluidic topology optimization
+problems.
+For topology optimization of coupled thermal-fluid
+problems, [21] utilized Stokes flow and used a multi-
+
+S.B. Dilgen et al.
+
+objective function that combines pressure drop minimization and heat transfer maximization for the optimization. Heat sink optimization with laminar flow has
+been demonstrated in [23, 38, 14, 37] where [23] carried
+out optimization of 2D heat exchangers for various input power formulations and [37] utilized the level set
+method for the topology optimization.
+The extension to natural convection is described
+in [4]. Regarding turbulent flow optimization of heat
+transfer systems, [29] utilizes the frozen turbulence assumption in the calculated sensitivities, and [22] presents
+continuous adjoint formulation. The present article demonstrates turbulent-flow heat-transfer topology optimization problems where the fluid flow is modeled by steady
+state incompressible Reynolds-averaged Navier-Stokes
+(RANS) equations. Turbulence closure is achieved utilizing the two-equation k-ω model, and the solution of
+the problem is obtained using an already developed 3D
+finite volume framework [15] which employs automatic
+differentiation [18] for calculating the adjoint equations
+and exact gradients consistent with the considered turbulence model. To the best of the authors’ knowledge,
+such topology optimization of coupled thermal-fluid problems with turbulent flows has not been previously demonstrated with exact sensitivities obtained within the discrete adjoint approach, and without any simplifying assumptions. Thus, demonstrating the ease of handling
+additional physics by adding heat transfer to the turbulent fluid solver is among the primary contributions
+of the present work.
+The paper is organized as follows: Section 2 describes the governing equations along with the inclusion of the utilized penalization method to realize the
+effect of solid regions in the design domain. Section 3
+introduces topology optimization. The exact form of
+the interpolation functions and the associated adjoint
+sensitivity analysis are also included. Finally, the optimization of heat sink devices with turbulent forced
+convection is demonstrated with several 2D and 3D optimization cases in Section 4.
+
+2 Governing equations
+The fluid flow is modeled with the help of the steadystate incompressible Reynolds-averaged Navier-Stokes
+(RANS) equations. In what follows, it is assumed that
+the temperature differences in the flow will be small
+enough that the variations of the fluid properties are
+neglected. Hence, temperature acts as a passive scalar
+and only one way coupling is considered in the system.
+The RANS equations are written as
+
+Density Based Topology Optimization of Turbulent Flow Heat Transfer Systems
+
+3
+
+transport equations
+∇·u=0
+
+(1)
+1
+∇ · (u ⊗ u) = ∇ · (2νS) − ∇p + ∇ · Tt − λχ(γ)u (2)
+ρ
+where u is the mean velocity vector, p is the pressure,
+ν is the kinematic viscosity of the fluid, ρ is the fluid
+density and the mean
+strain rate tensor is defined as
+
+S = 21 ∇u + ∇uT . The Reynolds stress tensor is given
+as
+2
+Tt = −u0 ⊗ u0 = 2νt S − kI
+3
+
+(3)
+
+where νt is the turbulent eddy viscosity and
+k=
+
+1 0 0
+u ·u
+2
+
+(4)
+
+is the turbulent kinetic energy per unit mass, with u0
+indicating turbulent fluctuating velocities.
+The effect on the fluid motion from the material distribution is modeled using the so-called Brinkman penalization [6] parameter denoted as λ, formally having
+units of inverse time. It is multiplied by a dimensionless
+function χ(γ) taking values ranging from zero to one.
+These limits represent solid and fluid, respectively. The
+exact form of the interpolation function is discussed in
+Section 3. The Brinkman penalization term represents
+spatially varying inverse permeability and is utilized for
+realizing the solid/fluid distribution in the optimization
+process. The penalization term for value χ(γ) = 1, and
+large enough λ, approximates a no-slip boundary condition at the fluid-solid interface. γ is a spatially varying
+function representing the materials distribution.
+The k-ω model of [36] will be utilized to describe
+effects of turbulence. This model calculates turbulent
+eddy viscosity νt as
+νt =
+
+k
+ω̃
+"
+
+ω̃ = max ω, Clim
+Clim =
+
+7
+8
+
+s
+
+2S:S
+β∗
+
+#
+
+(5)
+
+where : denotes the scalar product between two tensors (i.e. a:b = aij bij ). The turbulent kinetic energy
+(per unit mass) k and the specific dissipation rate ω
+are obtained by solving two additional (steady state)
+
+∇ · (u k) = Tt : ∇u − β ∗ ωk
++
+
+
+
+∗k
+∇k − λχ(γ)k
+∇· ν+σ
+ω
+αω
+σd
+∇ · (u ω) =
+Tt : ∇u − βω 2 + ∇k · ∇ω
+ω
+
+
+k
+k
+∇ω + λχ(γ) (ωb − ω)
+∇· ν+σ
+ω
+
+(6)
++
+(7)
+
+The closure coefficients and all other parameters are
+defined as follows:
+α = 0.52,
+
+β0 = 0.0708,
+
+β = β0 f β ,
+
+fβ =
+
+1 + 85χω
+,
+1 + 100χω
+
+β ∗ = 0.09
+χω =
+
+Ωij Ωjk Ski
+(β ∗ ω)
+
+3
+
+σ = 0.5,
+σ ∗ = 0.6,
+σd0 = 0.125
+(
+σd0 , ∇k·∇ω > 0
+σd =
+0,
+∇k·∇ω ≤ 0
+The mean vorticity tensor Ω utilized in the calculation
+of the closure function χω in Equation 8 is defined as
+
+1
+Ω=
+∇u − ∇uT
+(8)
+2
+It should be noted that χω is zero for two-dimensional
+flows.
+The turbulent kinetic energy k has a well defined
+boundary at walls given as
+kb = 0
+
+(9)
+
+On the other hand, the specific dissipation rate ω has
+a singular behavior near a wall. For smooth walls (as
+uniformly considered herein), the approximate (nonhomogeneous Dirichlet type) boundary condition proposed by [24] given as
+ωb =
+
+60ν
+,
+β1 y12
+
+β1 = 0.075
+
+(10)
+
+is utilized in the computations. The value of y1 represents the distance from the wall to the cell center nearest the wall. The physical meaning of the wall boundary condition
+ωb (Eq. 10) is related to the length scale
+√
+l = k/ω of turbulent eddies where ωb ensures that
+turbulent eddies become infnitesimally small as a wall
+is approached. During the optimization process, both k
+and ω are penalized to their wall boundary conditions
+in the solidified regions [15]. Since a regular mesh is
+used in the design domain, y1 does not vary and is defined by the half cell length for penalization of the wall
+boundary condition ωb inside the design domain.
+For detailed explanation of all equations and coefficients presented above, interested readers are referred
+to [35].
+
+4
+
+S.B. Dilgen et al.
+
+2.1 Heat transfer
+
+3 Topology optimization
+
+The temperature variations in the fluid and the solid
+regions, are captured using the conjugate heat transfer
+equation
+
+The topology optimization problem is defined as
+
+χt (γ)∇ · (u T ) = ∇ · [α(γ)∇T ] + Q(γ)
+
+(11)
+
+where T is the temperature (in Kelvin), Q(γ) is the volumetric heat source, χt (γ) is a non-dimensional function to turn on and off the convection term in fluid
+(χt (γ) = 1) and solid regions (χt (γ) = 0), and α(γ) interpolates between thermal diffusivity of the fluid and
+the solid according to
+
+
+ν
+νt
+αf =
++
+Pr Prt
+ks
+αs =
+cs ρ s
+
+
+(12)
+(13)
+
+Here Pr and Prt are the laminar and the turbulent
+Prandtl numbers, ks is the thermal conductivity and
+cs is the specific heat capacity. The considered interpolation functions for the conjugate heat transfer are
+presented in Section 3.
+
+2.2 Discretization
+The above system of PDEs is discretized using the finite
+volume method on a non-uniform computational grid
+[33,16]. The discrete set of algebraic equations is solved
+using a segregated approach for the pressure-velocity
+coupling, with the help of the SIMPLE (semi-implicit
+method for pressure-linked equations) algorithm [28].
+The SIMPLE algorithm is one of the most attractive
+schemes for solving problems in computational fluid dynamics due to its low memory requirements and the
+ability to simulate both steady and unsteady flows. The
+present implementation is based on the PETSc library
+[8,7,9], which is utilized mainly for its efficient parallel
+sparse solvers. A verification of the implemented fluid
+dynamics solver with a detailed explanation of the solution procedure is presented in [15]. The additional heat
+transfer Equation 11 is discretized similarly, and the
+details will be omitted here for brevity. It should be
+pointed out that the fluid and the heat transfer set of
+equations are weakly coupled since the buoyancy effects
+are ignored. Thus, the solutions for the fluid velocity
+and the pressure distribution are first obtained from
+the discrete RANS set of equations. As a second step,
+the solution of the heat transfer equation is obtained
+using the fluid velocity from the first solution step.
+
+min C(γ, U(γ), T(γ))
+
+(14)
+
+s.t.
+
+RU (γ, U(γ)) = 0
+
+(15)
+
+RT (γ, T(γ), U(γ)) = 0
+
+(16)
+
+gi (γγ ) ≤ 0,
+
+(17)
+
+γ
+
+∀i = 1, . . . , N
+
+0≤γ ≤1
+
+(18)
+
+where C (·) is the objective function, U and T are vectors with discrete state variables representing flow (velocity, pressure and turbulence quantities) and temperature, respectively. RU and RT are residual vector
+functions obtained from the discretization of the governing equations of velocity, pressure, turbulence quantities and temperature fields. The set gi (γ), i = 1 . . . N
+represents additional inequality constraints and the vector γ the material (fluid/solid) distribution in the design domain. The interpolation between solid and fluid
+is realized with the help of the function χ(γ), which is
+defined as
+χ(γ) = q
+
+1 − γ (γ)
+q + γ (γ)
+
+(19)
+
+where the parameter q controls the curvature of the
+function. The physical design field γ̄ is obtained using regularized Heaviside projection [34], controlled by
+a sharpness parameter β and a threshold η = 0.5. The
+projection is applied on a filtered density field [12]. Gradients of the objective and constraints with respect to
+the original design field γ are subsequently obtained by
+applying the chain rule.
+To model the impermeable solid regions, the Brinkman
+penalization parameter λ must be sufficiently high. The
+choice of λ is based on the dimensionless Darcy number
+defined as
+Da =
+
+νU/L
+ν
+=
+λLU
+λL2
+
+(20)
+
+which represents the ratio of viscous forces to Darcy
+damping forces, where U and L are, respectively, characteristic velocity and length scales defining a given
+flow problem. To capture the temperature variations,
+the coefficients of the heat equation are interpolated.
+The convection, the diffusion and the source term coefficients in Equation 11 are computed as
+χt (γ) = γ̄(γ)n
+
+(21)
+n
+
+α(γ) = αs + (αf − αs ) γ̄(γ)
+q̇
+Q(γ) = (1 − γ̄(γ)n )
+cs ρs
+
+(22)
+(23)
+
+Density Based Topology Optimization of Turbulent Flow Heat Transfer Systems
+
+1
+n=3
+n=5
+
+α(γ)
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+
+0
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+γ
+Fig. 1: Interpolation function Equation 22 for different
+values of curvature parameter n in which for illustration, αs and αf are considered to be 1 and 0, respectively. γ = 1 represents fluid, whereas γ = 0 represents
+solid. Values between 0 and 1 are referred to as ”gray”
+or intermediate regions.
+
+5
+
+apply the chain rule automatically for every complex
+function by representing it as a set of simple function
+evaluations with well-known derivatives. In modern object oriented languages like C++, such functionality is
+achieved using operator overloading techniques [20, 13].
+The obtained gradients are exact to the machine precision. General discussion with examples on the applicability to topology optimization are presented in [25].
+Here, AD [20] is applied for evaluating the Jacobian of
+the residual form. The gradients of the objective and
+the constraints are computed using standard adjoint
+analysis presented below. As discussed in [15, 25] such
+an approach saves a significant amount of memory. The
+slow down regarding computational time is negligible
+compared to the speed-up of the actual implementation process.
+The objective is augmented with two sets of Lagrange multipliers and the residuals for the fluid and
+the heat transfer problems as
+L = C (γ, U(γ), T(γ)) + λU T RU (γ, U(γ))+
+
+where q̇ is the volumetric heat source which is only active in the intermediate and the solid regions (γ < 1.0),
+and n is the parameter which controls the curvature
+of the interpolation function (see Figure 1). The updating of the design variables γ is determined using
+the method of moving assymptotes (MMA) [32], with
+a parallel PETSc implementation presented in [2, 1].
+
+3.1 Discrete adjoint
+Obtaining the gradients and more precisely the discrete
+adjoint equations for finite volume discretization of fluid
+flow problems represents one of the main challenges in
+the current work. The primary issue is that the Jacobian of the residual system of equations is never formed
+explicitly. The state solution is obtained using the SIMPLE algorithm in a matrix free fashion. The complexity of forming the exact Jacobian for the distrece adjoint equation comes from the large number of fully
+coupled physical fields (three velocity components, the
+pressure, the turbulent kinetic energy and the specific
+dissipation rate) in the governing system of equations.
+Furthermore, due to the iterative nature of the forward
+solution algorithm, an additional set of state variables
+representing the fluxes for every finite volume element
+is added to the original set of physical fields. The complete details are described in [15].
+The Jacobian of such a complex set of fully coupled
+equations is obtained with the help of Automatic Differentiation (AD) [18]. AD represents a set of software
+techniques for evaluating derivatives of functions implemented as a computer code. The general idea is to
+
+(24)
+
+λT T RT (γ, T(γ), U(γ))
+For zero residuals the Lagrangian function coincides
+with the objective/constraint function. The derivative
+with respect to the design parametrization can be written as
+dL
+∂C
+∂C dU
+∂C dT
+=
++
++
+dγ
+∂γ
+∂U dγ
+∂T dγ
+
+
+∂RU
+∂RU dU
++ λU T
++
+∂γ
+∂U dγ
+
+
+∂R
+∂R
+∂RT dU
+T
+T dT
++ λT T
++
++
+∂γ
+∂T dγ
+∂U dγ
+
+(25)
+
+To avoid computation of derivatives of the state variables, which are expensive to evaluate, all terms containing these derivatives are collected and required to
+be equal to zero. This requirement provides the adjoint
+equations for the optimization problem:
+
+
+∂C
+dT
+T ∂RT
++ λT
+=0
+(26)
+∂T
+∂T
+dγ
+
+
+∂C
+∂RU
+∂RT dU
++ λU T
++ λT T
+=0
+∂U
+∂U
+∂U
+dγ
+The temperature and flow adjoint problems are, respectively, written as
+
+
+
+∂RT
+∂T
+
+T
+
+∂RU
+∂U
+
+T
+
+λT = −
+
+∂C
+∂T
+
+λU = −
+
+∂C
+−
+∂U
+
+(27)
+
+
+∂RT
+∂U
+
+T
+λT
+
+(28)
+
+6
+
+S.B. Dilgen et al.
+
+and the final vector of gradients is evaluated as
+dC
+∂C
+=
++
+dγ
+∂γ
+
+
+
+∂RU
+∂γ
+
+T
+
+
+λU +
+
+∂RT
+∂γ
+
+T
+λT
+
+(29)
+
+The gradient evaluation procedure described above is
+applied to the already-discretized governing equations
+and a selected objective function. As this approach operates at the discrete level, where the boundary conditions are already accounted for, it can handle any
+cost function and governing equation in a robust manner. Most importantly, calculated sensitivities are always exact for the considered discretization. The two
+T ∂RU T
+T
+Jacobians ∂R
+, ∂U
+, and all partial derivative
+∂T
+terms involved in the adjoint analysis are computed and
+assembled cell-wise using AD as described in [15].
+
+3.2 Objective and constraint functions
+In this work, the objective function is to minimize the
+average temperature in solid domains. In 2D the considered objective function is defined as
+R
+C=
+
+(1 − γ) T dV
+R
+(1 − f ) V dV
+V
+
+(30)
+
+where f denotes the volume fraction of fluid in the design domain. The main idea is that the 2D setup represents a horizontal cut through the actual 3D model
+shown in Figure 7. Due to the high conductivity of the
+sink material, the heat propagates through the solid
+material and later is extracted and transported by the
+fluid. In 3D, the domain in which the average temperature is minimized is passive (not depended on design)
+and hence the objective function is
+R
+T dV
+C = RV
+dV
+V
+
+(31)
+
+The fluid volume is bounded from above and the
+constraint is given as
+g1 (γ) =
+
+∆Vi γi
+− 1 ≤ 0,
+fV
+
+i = 1, . . . , Ne
+
+(32)
+
+The above constraint ensures that the heat input to the
+system is bounded from below. In addition to the above
+objective and constraint, the power dissipation of the
+system is controlled using a reference power dissipation
+value of the initial design. This constraint avoids the
+formation of designs with extremely high-pressure loss
+and hence regulates power consumption. An expression
+
+Fig. 2: Schematic illustration of the 2D heat sink problem. Here Ωd specifies the design domain. Blue color
+represents the fixed fluid region as inlet and outlet channels. The geometry is scaled with half the inlet channel
+height H. Solid regions are heated with q̇.
+for the power dissipation stems from the energy equation and can be derived as a scalar product of the momentum equations and the velocity vector. Power dissipation between inlet and outlet boundaries is given
+as
+
+
+
+Z 
+1
+J =−
+u·n
+u · u + p − 2νef f (S n) · u dΓ
+2
+Γ
+(33)
+Here, n is the normal vector, S is the mean strain rate
+tensor which is defined in Section 2 and νef f is the
+effective viscosity given as νef f = νt + ν. With the
+above definitions, the power dissipation is constrained
+as follows
+g2 (U) =
+
+J
+−1≤0
+w Jref
+
+(34)
+
+where Jref is the reference value.
+In the considered optimization cases Jref is calculated starting with the design domain comprised only
+of the fluid region (γ = 1). The parameter w is considered to be larger than one in the presented examples,
+i.e. w > 1. It should be noted that the above power
+dissipation constraint is a function of the state fields
+of the RANS equations, i.e., velocities, pressure, fluxes
+and turbulence quantities. Hence, for each optimization
+step, an additional adjoint equation has to be solved in
+order to calculate the gradient of the constraint with
+respect to the design parameters.
+
+4 Optimization of cooling systems
+The procedure will now be demonstrated on several
+topology optimization examples dealing with coupled
+thermal-fluid problems. The first study deals with 2D
+
+Density Based Topology Optimization of Turbulent Flow Heat Transfer Systems
+
+(a) w = 2, C = 301.4.
+
+(b) w = 6, C = 300.94.
+
+7
+
+(c) w = 10, C = 300.6.
+
+Fig. 3: Topology optimization of 2D heat sink device for Re = 5000 with k-ω model. Figures show the optimized
+designs with increasing value of the the power dissipation constraint and the objective value C of the end designs.
+
+(a) w = 2
+
+(b) w = 6
+
+(c) w = 10
+
+Fig. 4: Temperature distribution T [K] of the optimized designs from Figure 3.
+heat sink design, where the effect of the power dissipation constraint on the optimized designs is studied
+in detail. Following this, 3D heat sink examples will
+demonstrate the advantages of optimizing design without reducing the number of dimensions and including
+turbulence modelling in the optimization process.
+
+Ub [m/s]
+0.75
+
+H [m]
+0.1
+
+2
+
+ν [m /s]
+−5
+
+1.5 × 10
+
+Pr
+
+Prt
+
+0.7
+
+0.9
+
+Table 1: Flow (air) properties considered for the cooling
+system optimization.
+
+Throughout the present work, air and aluminum are
+chosen as materials for fluid and solid, respectively. The
+flow properties considered for the optimization cases
+are given in Table 1. The geometry is scaled with half
+the inlet channel height H. The Reynolds number in
+the considered optimization problems is computed as
+
+Re = Ub H/ν = 5 × 103 where Ub is the bulk inlet
+velocity. The solid material properties used throughout
+are listed in Table 2. Considering the listed material
+properties, the thermal diffusivity ratio of the solid and
+the fluid is approximately αs /αf ≈ 4.5.
+
+ks [W/mK]
+
+cs [J/kgK]
+
+ρs [kg/m3 ]
+
+237
+
+900
+
+2700
+
+Table 2: Thermo-physical properties of the solid (aluminum) considered for the cooling system optimization.
+
+The Brinkman penalization parameter is set to λ =
+400 s−1 which is sufficient to yield nearly impermeable
+solidified regions (Da ∼ 10−6 , taking Ub and H as the
+characteristic velocity and length scales, respectively)
+without adversely affecting the convergence of the optimization process. The sharpness parameter of the regularized Heaviside projection is taken as β = 6.
+
+8
+
+S.B. Dilgen et al.
+
+(a) w = 2
+
+(b) w = 6
+
+(c) w = 10
+
+Fig. 5: Velocity magnitude u [m/s] of the optimized designs.
+It has been found that the formulated optimization
+approach is somewhat sensitive to the choice of parameter q which controls the interpolation function that is
+utilized in the penalization of fluid flow. To this end,
+a continuation strategy is performed for the curvature
+parameters q and n of the interpolation functions Equation 19 and Equation 21-Equation 23 to avoid convergence to poorly performing locally optimal solutions.
+The parameter q is initially set to 0.01 for which the
+flow ignores a large section of the gray scale and diffuses into solidified regions, enhancing the sensitivities,
+which in turn provides a ”smart” initial guess for the
+optimization problem [11]. Hereafter, it is increased in
+a step-wise manner to 0.1, 1.0 and 10. Similarly, the parameter n which controls the interpolation in the heat
+transfer equation takes values of 3 and 4 leading up to
+its final value of n = 5.
+The 2D and 3D optimization cases utilize a mesh
+resolution which roughly keeps a distance in wall coordinates y + = yUf /ν ≈ 10 when calculated from the
+inlet channels, where Uf is the friction velocity. Since
+the location of the wall along with the flow solution
+can not be known a priori, y + values are not necessarily ensured to stay within an acceptable range during
+the optimization, though the inlet conditions provide
+simple and generally useful scales. Presently, it is not
+computationally feasible to use mesh size comparable
+to y + ≈ 1.
+
+domain Ωd as defined in the Equation 30. The fluid
+volume is limited to 55% of the whole computational
+domain. The problem setup can be seen in Figure 2.
+The temperature is set to 300 K at the inlet and zero
+gradient boundary condition is utilized at the outlet.
+All other boundary conditions are realized as adiabatic
+walls. Fully developed turbulent channel flow profiles
+are mapped to the flow and the turbulence model variables at the inlet. These values are obtained using preliminary simulations of the inlet channel. Due to the
+symmetry, only half of the domain is considered in the
+optimization process. Following the assumption of infinitely long channels, heat generation is only considered in the solid regions with q̇ = 175 kW/m3 and the
+heat source is evaluated using Equation 23.
+
+4.1 2D heat sink
+
+Figure 3 shows optimized designs for increasing value
+of the power dissipation constraint. The complexity of
+the design increases with the allowed power dissipation,
+which results in a better cooling performance. The increased cooling performance is evident from the objective values of the end designs, shown in Figure 3, as well
+as from the temperature fields, shown in Figure 4. The
+best performing heat sink (lowest temperature rise) is
+obtained for 10 times increased power dissipation compared to the initial reference state. The velocity magnitude contours for each optimized design are shown in
+Figure 5. For larger power dissipation the size of the
+main channel is decreased allowing higher velocity in
+the secondary channels, thus providing better cooling
+performance.
+
+The first example demonstrates the optimization of a
+2D heat sink, subject to a constraint on the power dissipation. The objective is the minimization of the integral of the temperature in the solid parts of the design
+
+In order to further investigate the validity of the
+followed optimization approach, the 2D heat sink design that is obtained for w = 10 (Figure 3c) is simulated with a body-fitted mesh. The body-fitted profile
+is obtained using a sharp threshold of η = 0.5 on the
+
+Density Based Topology Optimization of Turbulent Flow Heat Transfer Systems
+
+(a) Velocity magnitude u [m/s].
+
+9
+
+(b) Turbulent kinetic energy k [m2 /s2 ].
+
+(c) Temperature distribution T [K].
+
+Fig. 6: Optimized design from Figure 3c on a body fitted mesh. The calculated objective value is C = 300.58.
+optimized porosity field. The boundary layer is fully resolved in the fluid channels by keeping the distance (in
+dimensionless wall units) from the first cell center to the
+wall well below unity. Figure 6 shows the results from
+the body-fitted mesh analysis on the optimized design
+in which the calculated objective function C = 300.58
+agrees well with the objective value obtained from the
+penalized model (Figure 3c). From the investigation
+of the velocity magnitude contour predicted with the
+body-fitted mesh (Figure 6a), it can be deduced that
+the fixed-grid optimization model over-estimates the
+velocity in the lowest secondary channel (Figure 5c).
+This can be seen as a shortcoming of the Brinkman
+penalization where the solid regions still contain pres-
+
+sure gradients which affect the velocity distribution in
+thin channels. The remedy can be found in increasing
+the mesh resolution along the transition region of the
+thin channels or increasing the Brinkman penalization
+parameter λ. On the other hand, the predicted temperature field in the penalized model (Figure 4c) compares
+well with the temperature distribution obtained from
+the body-fitted mesh (Figure 6c). Furthermore, Figure
+6b shows the resulting turbulent kinetic energy in the
+fluid channels of the optimized heat sink. Overall, a reasonable agreement is found between the penalized and
+the body-fitted models.
+
+10
+
+S.B. Dilgen et al.
+
+Fig. 7: Computational domain for the 3D heat sink problem. Due to the symmetry, only a quarter of the domain
+is utilized for the optimization. Blue color represents the fixed fluid regions for inlet and outlet, green color shows
+the design domain Ωd and the red color specifies the fixed solid region Ωp (heated thin plate).
+4.2 3D heat sink with two heat sources
+The 2D setup is a simplification of a real 3D problem.
+Thus, to compare the performance of the 2D designs a
+full-scale 3D model is considered as a second example.
+The 3D problem setup is shown in Figure 7. Due to
+symmetry in both y and z directions only a quarter of
+the domain is considered for the optimization process.
+Blue color marks fixed fluid inlet and outlet channels.
+Similar to the 2D case, fully developed turbulent channel flow profiles are mapped to the flow and turbulence
+model variables at the inlet, now also accounting for
+the presence of the side wall. The design domain Ωd is
+colored green in the provided sketch. Heat to the system is provided from the bottom and the top boundary
+of a fixed solid region (a thin heated plate) which is
+fixed as solid throughout the optimization. The heat
+source is colored with red. The heat enters the system
+through the boundary. The heat source term utilized in
+the previous section is changed in this case to a nonhomogeneous Neumann boundary condition
+∂T
+q̇
+=
+∂n
+ks
+
+(35)
+
+where the heat influx is set to q̇ = 175 kW/m2 .
+The objective in this case is the minimization of
+the integral of the temperature in the heated plate Ωp
+(Equation 31). A power dissipation constraint with parameter w = 10 (Equation 34) is utilized in the optimization process. The allowed volume fraction for the
+fluid is the same as in the 2D case. The temperature is
+set to 300 K at the inlet and a zero gradient boundary
+condition is utilized at the outlet. All other boundaries
+
+(excluding the heated boundaries) are realized as adiabatic walls.
+Figure 8 shows the optimized flow channels where
+the shaded red areas illustrate the location of the heated
+plates. The design consists of rather flat and thin channels parallel to the heated plates. The half cut of the optimized design shown in Figure 8b demonstrates parts
+of the channel that provide the required speed up of the
+flow for more efficient cooling. The resulted streamlines
+of the flow are shown in Figure 9 and are colored with
+the temperature and the velocity magnitude. The fluid
+is heated almost uniformly towards the outlet region.
+The design domain consists of 216,000 hex cells which
+result in 2.5M DOFs for the fluid problem and 216K
+DOFs for the heat transfer problem. The number of
+optimization iterations is 300 which takes around 10
+h of computational time on 100 Intel Xeon e5-2680v2
+CPU cores.
+
+4.3 Comparison between the 2D and 3D designs
+To compare the 3D optimized heat sink to the 2D design shown in Figure 3c, the 2D topology is extruded.
+The heat source is set in the same manner as for the 3D
+optimization case. Figure 10 compares the streamlines
+of the flows from the extruded 2D design and the 3D
+design, colored with the temperature field. It is apparent from Figure 10a that the flow in the extruded 2D
+design is heated unevenly and the heated lower part of
+the fluid cannot transfer the heat to the mid parts of
+the domain. Hence, the large bulk of the fluid cannot
+extract heat from the plate, in contrast to the 3D optimized heat sink where the flow gets heated almost uni-
+
+Density Based Topology Optimization of Turbulent Flow Heat Transfer Systems
+
+(a) Optimized design, with blue indicating the flow channels.
+
+11
+
+(b) Optimized design, with blue indicating the flow channels which are cut in half for better visualization.
+
+Fig. 8: Topology optimization of 3D heat sink device for Re = 5000 with k-ω model. Red color specifies the heated
+plates at the top and the bottom of the design and blue color shows the optimized flow channels. The objective
+values of the end design is C = 315.
+
+Fig. 9: Lower half of the optimized flow channels, showing the streamlines of the flow. Streamlines on the right
+hand side are colored with the velocity magnitude u [m/s] while the left hand side is colored by the temperature
+T [K].
+formly (Figure 10b). The actual performance depends
+on the fluid-solid contact surface, the velocity and the
+temperature of the fluid close to the heated plate and
+on the temperature difference between the solid and the
+fluid.
+Figure 11 compares the temperature distributions in
+the solid regions of the extruded and the 3D optimized
+design. The superior cooling performance of the 3D optimized design can be observed. For the 2D extruded
+design the fluid heats up in thin channels close to the
+plate, and cannot extract more heat from the source towards the outlet. This effect is strongly pronounced in
+the thinner outer channels. The mid channel performs
+
+reasonably well, however, due to the limited contact
+area the fluid cannot extract more heat. On the other
+hand, the 3D optimized design provides larger contact
+surface area. Hence, a more uniform temperature distribution is realized both in the solid and the fluid regions,
+and the temperature gradient between the heated solid
+and the fluid remains large even close to the outlet of
+the sink. This effect allows the fluid to extract more
+heat which explains the better performance of the 3D
+optimized design and demonstrates the benefits of full
+3D optimization.
+Another possibility for a simplified 2D model is to
+take a vertical cut through the middle of the 3D de-
+
+12
+
+S.B. Dilgen et al.
+
+(a) Extruded 2D design.
+
+(b) 3D optimized design.
+
+Fig. 10: Streamlines of the flow colored by temperature T [K]. Quarter of the flow channels are shown.
+
+(a) Extruded 2D design, C = 329.
+
+(b) 3D optimized design, C = 315.
+
+Fig. 11: Temperature T [K] distribution of the solid regions of the optimized heat sinks. Figures show the half of
+the domain (cut in z axis).
+sign domain. The constraint of the fluid volume is not
+enforced as the heat input is supplied from the bottom and the top plates. In this case, the optimizer distributes a thin layer of solid on top of the heated plate.
+This distribution accelerates the flow and increases the
+heat transport. However, due to the strict constraint on
+the pressure drop, the amount of distributed material
+is limited. The temperature in the plates increases significantly in this case and the 3D objective is C = 348.
+This 2D design is not shown for the sake of brevity.
+
+4.4 3D heat sink with one heat source
+Performance improvement due to increased design freedom is further demonstrated in this section. To asses
+the effect of including turbulence modelling in the optimization framework, the section also provides a comparative study with a heat sink design that is optimized
+for laminar flow.
+The full length of the 3D model is utilized for optiq̇
+mization. The setup considers a heat influx ( ∂T
+∂n = ks
+with q̇ = 175 kW/m2 ) from the bottom boundary of
+the heated plate and the top boundary is considered as
+
+Density Based Topology Optimization of Turbulent Flow Heat Transfer Systems
+
+(a) Optimized 3D heat sink design for Re = 5000 with
+k-ω model, Red color specifies the heated plate at the
+bottom of the design and blue color indicates the optimized flow channels. The end objective value is C = 313.
+
+(b) Optimized 3D heat sink design for Re = 50, Red color
+specifies the heated plate at the bottom of the design and
+blue color indicates the optimized flow channels. The end
+objective value is C = 356.
+
+(c) Iso-view of the optimized design shown in Figure 12a.
+
+(d) Iso-view of the optimized design shown in Figure 12b.
+
+(e) Optimized flow channels for Re = 5000, showing the
+streamlines of the flow. Streamlines on the right hand side
+are colored with the velocity magnitude u [m/s] while the left
+hand side is colored by the temperature T [K].
+
+13
+
+(f) Optimized flow channels for Re = 50, showing the streamlines of the flow. Streamlines on the right hand side are colored
+with the velocity magnitude u [m/s] while the left hand side
+is colored by the temperature T [K].
+
+Fig. 12: Topology optimized design of 3D heat sink device for Re = 5000 with k-ω model (left column) and Re = 50
+with a laminar model (right column).
+
+14
+
+The optimized heat sink design with turbulent flow
+of Re = 5000 is shown in Figures 12a and 12c with
+different iso-views. As can be seen from Figure 12e,
+the additional freedom allows the optimizer to accelerate the fluid close to the heat source resulting in lower
+maximal temperature. The design is much more sophisticated than the one presented in Figure 8. The additional channels mix heated and colder fluid streams,
+thus, keeping high-temperature gradient between the
+plate and the cooler towards the sink outlet.
+The same flow and solid properties are utilized for
+the laminar flow optimization (as shown in Tables 1 and
+2) where the only difference is the lowered bulk velocity
+of the inlet flow which is taken to be Ub = 0.0075 [m/s],
+and the Reynolds number of the flow is tailored to be
+Re = 50. A laminar channel flow profile is used as the
+inlet flow. The resulting optimized channels for the laminar flow can be seen with different iso-views in Figures
+12b and 12d. The optimization converges to a much
+simpler design compared to the heat sink obtained with
+turbulent flow (Figures 12a and 12c). Although the
+heat sink is optimized for the given Reynolds number
+of Re = 50, an immense rise in temperature can be
+observed from the temperature distribution of the flow
+field given in Figure 12f. This is mainly due to the laminar nature of the fluid with lowered diffusivity where
+an effective cooling to the plate can not be realized considering the chosen material properties. To further investigate the effect of introducing turbulence modelling
+to the optimization process and to compare the designs
+obtained with turbulent and laminar flow, the resulting
+designs are run for various Reynolds numbers ranging
+from Re = 50 to Re = 5000. For simulations, the RANS
+k − ω model is utilized for Re ≥ 1000. Figure 13 shows
+the calculated objective values of both designs in the
+given range of Reynolds numbers. As expected, both
+designs outperform the other at the Reynolds number
+which they are optimized for. This also confirms that
+the turbulence model is correctly embedded in the optimization process. Both the laminar and turbulent
+
+Laminar Design
+Turbulent Design
+
+360
+
+350
+
+Objective [K]
+
+an adiabatic wall. The case utilizes the symmetry only
+in the z direction and rest of the computational domain
+is the same as presented in Figure 7. The computational
+mesh consists of 400,000 hex cells which results in 4.8M
+DOFs for the fluid problem and 400K DOFs for the
+heat transfer problem. The number of optimization iterations is 300 which takes around 16 h of computational
+time on 120 Intel Xeon e5-2680v2 CPU cores. The initial design consists of a porous material, with a value of
+0.5, distributed everywhere in the design domain. The
+allowed volume fraction for the fluid and power dissipation constraint parameter w (Equation 34) are the
+same as in the previous 3D case (Section 4.2).
+
+S.B. Dilgen et al.
+
+340
+
+330
+
+320
+
+310
+10 2
+
+10 3
+
+Reynolds number
+
+Fig. 13: Objective values of the optimized 3D heat sink
+designs computed for different values of Reynolds numbers where turbulent design is shown in Figure 12a and
+the laminar design is given in Figure 12b.
+
+designs achieve quite similar performance trends. However, after a Reynolds number of Re ≈ 200 the design
+obtained with turbulent flow optimization exhibits better cooling performance than the laminar design as expected. Further investigations regarding the behavior
+and comparison of the two designs for higher Reynolds
+numbers must be based on body-fitted meshes that resolve the boundary layer accurately.
+
+5 Conclusions
+The article demonstrates the advantages of optimizing
+realistic 3D designs compared to 2D simplified models. The additional dimension provides extra freedom to
+the optimizer for better material distribution. A comparative study is provided between the designs optimized for laminar and turbulent flows confirming that
+improved designs can be obtained by including turbulence modelling in the optimization process. For forced
+convection and similar pressure drop, the larger design
+space leads to lower device temperature. The inclusion
+of turbulence models introduces additional complexity
+in the state and the adjoint solvers, however, allows
+for higher fluid velocities. The complexity is managed
+with the help of automatic differentiation. The additional temperature field is introduced in the simulation using the same techniques applied to the turbulent
+fluid solver presented earlier in [15]. Additional transport processes are handled without significant changes
+to the code, thus demonstrating the extendability and
+the feasibility of the approach for large-scale optimization problems, and opening the possibility of obtaining
+
+Density Based Topology Optimization of Turbulent Flow Heat Transfer Systems
+
+optimized topologies of even more complicated multiphysics problems.
+Acknowledgements The authors acknowledge the financial support received from the TopTen project sponsored by
+the Danish Council for Independent Research (DFF-400500320). During the final part, the work of the last author
+was performed under the auspices of the U.S. Department of
+Energy by Lawrence Livermore National Laboratory under
+Contract DE-AC52-07NA27344.
+
+References
+1. Aage, N., Andreassen, E., Lazarov, B.: Topology optimization using petsc: An easy-to-use, fully parallel, open
+source topology optimization framework. Structural and
+Multidisciplinary Optimization 51(3), 565–572 (2015)
+2. Aage, N., Lazarov, B.: Parallel framework for topology optimization using the method of moving asymptotes. Structural and Multidisciplinary Optimization
+47(4), 493–505 (2013)
+3. Aage, N., Poulsen, T.H., Gersborg-Hansen, A., Sigmund,
+O.: Topology optimization of large scale stokes flow problems. Structural and Multidisciplinary Optimization
+35(2), 175–180 (2008). DOI 10.1007/s00158-007-0128-0.
+URL https://doi.org/10.1007/s00158-007-0128-0
+4. Alexandersen, J., Sigmund, O., Aage, N.: Large scale
+three-dimensional topology optimisation of heat sinks
+cooled by natural convection. International Journal
+of Heat and Mass Transfer 100, 876 – 891 (2016).
+DOI https://doi.org/10.1016/j.ijheatmasstransfer.2016.
+05.013. URL http://www.sciencedirect.com/science/
+article/pii/S0017931015307365
+5. Amstutz, S.: The topological asymptotic for the navierstokes equations. Esaim-control Optimisation and Calculus of Variations 11(3), 401–425 (2005). DOI 10.1051/
+cocv:2005012
+6. Arquis, E., Caltagirone, J.P.: Sur les conditions hydrodynamiques au voisinage d’une interface milieu fluidemilieux poreux: application à la convection naturelle. In:
+C.R. Acad. Sci., Paris II, vol. 299, pp. 1–4 (1984)
+7. Balay, S., Abhyankar, S., Adams, M.F., Brown, J., Brune,
+P., Buschelman, K., Dalcin, L., Eijkhout, V., Gropp,
+W.D., Kaushik, D., Knepley, M.G., May, D.A., McInnes,
+L.C., Rupp, K., Sanan, P., Smith, B.F., Zampini, S.,
+Zhang, H., Zhang, H.: PETSc users manual. Tech. Rep.
+ANL-95/11 - Revision 3.8, Argonne National Laboratory
+(2017). URL http://www.mcs.anl.gov/petsc
+8. Balay, S., Abhyankar, S., Adams, M.F., Brown, J., Brune,
+P., Buschelman, K., Dalcin, L., Eijkhout, V., Gropp,
+W.D., Kaushik, D., Knepley, M.G., May, D.A., McInnes,
+L.C., Rupp, K., Smith, B.F., Zampini, S., Zhang, H.,
+Zhang, H.: PETSc Web page. http://www.mcs.anl.gov/
+petsc (2017). URL http://www.mcs.anl.gov/petsc
+9. Balay, S., Gropp, W.D., McInnes, L.C., Smith, B.F.: Efficient management of parallelism in object oriented numerical software libraries. In: E. Arge, A.M. Bruaset,
+H.P. Langtangen (eds.) Modern Software Tools in Scientific Computing, pp. 163–202. Birkhäuser Press (1997)
+10. Bendsøe, M.P., Sigmund, O.: Topology Optimization Theory, Methods and Applications. Springer Verlag,
+Berlin Heidelberg (2003)
+11. Borrvall, T., Petersson, J.: Topology optimization of fluids in stokes flow. International Journal for Numerical
+Methods in Fluids 41(1), 77–107 (2003)
+
+15
+
+12. Bourdin, B.: Filters in topology optimization. International Journal for Numerical Methods in Engineering 50,
+2143 – 2158 (2001)
+13. CoDiPack—code differentiation package (2016). URL
+http://www.scicomp.uni-kl.de/software/codi/. Accessed: 2016-10-18
+14. Dede, E.: Multiphysics topology optimization of heat
+transfer and fluid flow systems. In: Proceedings of the
+COMSOL users conference (2009)
+15. Dilgen, C.B., Dilgen, S.B., Fuhrman, D.R., Sigmund, O.,
+Lazarov, B.S.: Topology optimization of turbulent flows.
+Computer Methods in Applied Mechanics and Engineering 331, 363 – 393 (2018). DOI https://doi.org/10.1016/
+j.cma.2017.11.029. URL https://www.sciencedirect.
+com/science/article/pii/S0045782517307478
+16. Ferziger, J.H., Peric, M.: Computational Methods for
+Fluid Dynamics. Springer Berlin Heidelberg (2001)
+17. Gersborg-Hansen, A., Sigmund, O., Haber, R.: Topology
+optimization of channel flow problems. Structural and
+Multidisciplinary Optimization 30(3), 181–192 (2005)
+18. Griewank, A., Walther, A.: Evaluating derivatives :
+principles and techniques of algorithmic differentiation.
+SIAM (2008)
+19. Guillaume, P., Idris, K.: Topological sensitivity and shape
+optimization for the stokes equations. Siam Journal on
+Control and Optimization 43(1), 1–31 (2004). DOI 10.
+1137/S0363012902411210
+20. Hogan, R.J.: Fast reverse-mode automatic differentiation
+using expression templates in C++. ACM Transactions
+on Mathematical Software 40(4), 26 (2014)
+21. Koga, A.A., Lopes, E.C.C., Nova, H.F.V., de Lima, C.R.,
+Silva, E.C.N.: Development of heat sink device by using
+topology optimization. International Journal of Heat and
+Mass Transfer 64(0), 759 – 772 (2013)
+22. Kontoleontos, E.A., Papoutsis-Kiachagias, E.M., Zymaris, A.S., Papadimitriou, D.I., Giannakoglou, K.C.:
+Adjoint-based constrained topology optimization for viscous flows, including heat transfer. Engineering Optimization 45(8), 941–961 (2013)
+23. Matsumori, T., Kondoh, T., Kawamoto, A., Nomura, T.:
+Topology optimization for fluid-thermal interaction problems under constant input power. Structural and Multidisciplinary Optimization 47(4), 571–581 (2013). DOI
+10.1007/s00158-013-0887-8
+24. Menter, F.R.: Two-equation eddy-viscosity turbulence
+models for engineering applications. Aiaa Journal 32,
+1598–1605 (1994). DOI 10.2514/3.12149
+25. Nørgaard, S.A., Sagebaum, M., Gauger, N.R., Lazarov,
+B.S.: Applications of automatic differentiation in topology optimization. Structural and Multidisciplinary Optimization pp. 1–12 (2017)
+26. Olesen, L., Okkels, F., Bruus, H.: A high-level
+programming-language implementation of topology optimization applied to steady-state navier-stokes flow. International Journal for Numerical Methods in Engineering
+65(7), 975–1001 (2006)
+27. Othmer, C.: A continuous adjoint formulation for the
+computation of topological and surface sensitivities of
+ducted flows. International Journal for Numerical Methods in Fluids 58(8), 861–877 (2008)
+28. Patankar, S.: Numerical heat transfer and fluid flow.
+Hemisphere, (1980)
+29. Pietropaoli, M., Ahlfeld, R., Montomoli, F., Ciani, A.,
+D’Ercole, M.: Design for additive manufacturing: Internal
+channel optimization. Journal of Engineering for Gas
+Turbines and Power 139(10), 102,101–102,101–8 (2017)
+
+16
+30. Pingen, G., Evgrafov, A., Maute, K.: Topology optimization of flow domains using the lattice boltzmann
+method. Structural and Multidisciplinary Optimization
+34(6), 507–524 (2007)
+31. Spalart, P., Allmaras, S.: A one-equation turbulence
+model for aerodynamic flows. Recherche Aerospatiale (1),
+5–21 (1994)
+32. Svanberg, K.: The method of moving asymptotes - a new
+method for structural optimization. International Journal for Numerical Methods in Engineering 24, 359–373
+(1987)
+33. Versteeg, H., Malalasekera, W.: An Introduction to Computational Fluid Dynamics: The Finite Volume Method.
+Prentice Hall (2007)
+34. Wang, F., Lazarov, B., Sigmund, O.: On projection methods, convergence and robust formulations in topology optimization. Structural and Multidisciplinary Optimization 43(6), 767–784 (2011)
+35. Wilcox, D.: Turbulence Modeling for CFD. DCW Industries, Incorporated (2006)
+36. Wilcox, D.: Formulation of the k-ω Turbulence Model
+Revisited. AIAA Journal 46, 2823–2838 (2008). DOI
+10.2514/1.36541
+37. Yaji, K., Yamada, T., Kubo, S., Izui, K., Nishiwaki, S.:
+A topology optimization method for a coupled thermalfluid problem using level set boundary expressions. International Journal of Heat and Mass Transfer 81, 878–888
+(2015)
+38. Yaji, K., Yamada, T., Yoshino, M., Matsumoto, T., Izui,
+K., Nishiwaki, S.: Topology optimization in thermal-fluid
+flow using the lattice boltzmann method. Journal of
+Computational Physics 307, 355–377 (2016)
+39. Zymaris, A.S., Papadimitriou, D.I., Giannakoglou, K.C.,
+Othmer, C.: Continuous adjoint approach to the SpalartAllmaras turbulence model for incompressible flows.
+Computers and Fluids 38(8), 1528–1538 (2009)
+
+S.B. Dilgen et al.
+
+

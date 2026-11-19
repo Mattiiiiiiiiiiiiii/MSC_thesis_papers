@@ -1,0 +1,1807 @@
+ON LAMINAR BOUNDARY-LAYER FLOW NEAR
+A POSITION OF SEPARATION
+
+[Received 27 October 1947]
+SUMMARY
+Singularities are considered in the solution of the laminar boundary-layer equations at a position of separation. A singularity of the typo here considered occurred
+in a careful numerical computation by Hartree for a linearly decreasing velocity
+distribution outside the boundary layer; it may occur generally. Whenever it does
+occur, the boundary-layer equations cease to be valid at and near separation on the
+upstream side, and also downstream of separation. The work suggests that singularities may arise in the solution of non-linear parabolic equations due to their
+non-linearity. The formulae found may help computers of laminar boundary layers,
+who desire more than a rough solution, to have an end-point at which to aim.
+
+1. Introduction and summary
+FOB a flow at a large Reynolds number along an immersed solid surface
+a boundary layer is formed through which the velocity rises rapidly from
+zero at the surface to its value in the main stream. The approximate
+equations for the two-dimensional flow of a fluid of constant density p
+and kinematic viscosity v in a boundary layer are
+U
+
+du
+
+dx
+
+\-V
+
+U =
+
+du
+
+dy
+
+=
+
+dy'
+
+1 dp
+
+d2u
+
+pdx
+
+dy'
+
+—~\-V
+
+5
+
+V=
+
+~8x
+
+where x is distance measured along the solid boundary in the plane of
+the flow, y is distance normal to the surface, u, v are the velocity components in the directions of x and y increasing, p the pressure, and if> the
+stream function. According to the approximations of boundary-layer
+theory, p and dp/dx may be taken independent of y, and if U is the
+velocity just outside the boundary layer in the main stream,
+p dx
+
+dx
+
+Moreover, according to these approximations v/u and (dujdx)/(du/dy) are
+small.
+As boundary conditions we have that u = 0 and v = 0 (or ifi = 0) at
+y = 0, u is given as a function of y for some initial value of x, and the
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+By S. GOLDSTEIN
+(Department of Mathematics, The University, Manchester)
+
+44
+
+S. GOLDSTEIN
+
+x' = xld,
+
+y' = R*yld, u'= u/U0, v' = Rh/U0,
+
+p'= p\PTJ\.
+
+(3)
+
+In the non-dimensional form, let x' = 0 be the initial section, at which u'
+is given as or approximated by a polynomial or power-series
+u' = aiy'+a2y'*+...,
+(4)
+and let
+
+- | L ' = po+Plx'+Pax'*+....
+
+(5)
+
+Then it is known that if there is to be a solution without singularities,
+certain equations must be satisfied:
+2a2+p0=0,
+
+a3 = 0, 5\a5+2alPl
+
+= 0, e l a , - ^ , , ^ = 0, etc. (6)
+
+Only av a4, a7,... are at our disposal. When the conditions are broken,
+the solution has an algebraic singularity at x = 0 (l).f
+At the position of separation 8u/dy = 0 at y = 0, i.e. ax = 0. The
+conditions for the absence of singularities when ax = 0 are considerably
+more complicated than those above.J If we suppose u expanded in a
+power series in x (we drop the dashes for the present)
+u = uo+u1x+u2xi+...,
+(7)
+where u0, %, u2 are functions of y, expressible as power series,
+(8)
+
+the conditions are
+2a2+p0=0,
+a3 = 0, a4 = 0, a5 = 0,
+6lae=2PoPv\
+a7 = 0, a9 = 0, etc.
+J
+Only a8, a12, a16, a20,... are at our disposal. In addition blt cv dv... are
+determined, not from the equations for uv u2, u3,... respectively, but from
+t In. the last term in equation (5) on p. 4 of ref. (1), the denominator should be 8a|, not
+4a*; I am indebted to Prof. Hartree for this correction. See also ref. (2) at end.
+X Goldstein, loc. cit., pp. 17, 18. [In the last line of p. 17 of ref. (1), in the equations
+of the footnote, for 6!a 8 = 2p 0 p,, read 6!a e = 2pBpl.]
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+velocity passes over smoothly into the velocity of the main stream, i.e.
+u^-U, dujdy -> 0, d2u/8y2 -> 0, etc., as y -+ oo.
+If dU/dx < 0 and dp/dx > 0, then dujdy at the wall y = 0 decreases
+as x increases until it vanishes; beyond the section at which it is zero, a
+slow back flow sets in along the wall, and the boundary layer separates
+from the surface.
+Let d be any representative length of the system, Uo a representative
+velocity, such as the undisturbed stream velocity, and B the Reynolds
+number Uod/v. The equations may be made non-dimensional by writing
+
+ON LAMINAR BOUNDARY-LAYER FLOW
+
+45
+
+where
+f = z*,
+17 = y/4xl.
+(11)
+This formal solution fails, however, in certain circumstances, one of which
+is that the condition
+o
+= u
+is satisfied, while the other conditions are not satisfied.
+No other work has been reported on possible singularities at separation.
+No analytical solution is known for a boundary-layer flow involving
+separation, and the methods used are approximate and numerical. The
+published methods of computation are rather rough, but recently more
+exact methods have been suggested and tried. The work described here
+arose out of an unpublished communication from Professor Hartree, in
+which he repeated Dr. Howarth's computation (3) for a linearly decreasing
+velocity distribution, U = fig—fax, with u=U at x = 0. Professor
+Hartree replaces the partial derivatives with respect to x by finite
+differences, and retains the ^-derivatives, so the partial differential equation is replaced approximately by a sequence of ordinary differential
+equations, each of which relates the velocity distribution through the
+boundary layer at one section to that at another section a short distance
+upstream, where it is known. The ordinary differential equations were
+solved laboriously on hand calculating machines rather than on the
+Differential Analyser in order that more significant figures might be
+retained.
+Now all computations in which any attempt was made to obtain real
+accuracy at and near separation seem to have met with considerable
+difficulty. As a result of his computations, Professor Hartree was convinced that there was a singularity in the solution at the position of
+separation, and I undertook to try to find some formulae that would
+hold near this singularity and would help in finishing the computation.
+To study the singularity near separation, the equations are put into
+non-dimensional form in a special way. Let xa, Ua, U's be the values of
+x, U, dU/dx at separation, so that Us > 0, U's < 0. We are not interested
+in any other properties or dimensions of the system, so as representativelength I and Reynolds number E we take
+l=-UJU'e,
+
+R=Usl/v.
+
+(13)
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+the conditions for the absence of singularities in u2, u3, zt4,... respectively.
+There is also an ambiguity of sign, which can be determined only from
+physical considerations. If the conditions are broken there is a formal
+solution for the flow downstream of the form
+
+46
+
+S. GOLDSTEIN
+
+We are also concerned with the flow upstream of separation, so for our
+non-dimensional distances we write
+
+Vi =
+
+Eh/Ua,
+
+Ux = U/Us, px =
+(15)
+
+The equations become
+dux
+8xx
+
+dux
+dyx
+
+8px
+8xx
+
+82ux
+8yx
+(16)
+
+8
+
+ll=
+
+dxx
+
+-u^l
+
+* dxx
+
+It is easy to see that Ux = 1 and dU1ldx1 = 1 at xx = 0, so we may
+write
+«
+
+p = -(1+P 1 x 1 +P 2 ^+...),
+
+(17)
+
+i.e. p0 (in our previous notation) = — 1. For the linear velocity distribu-
+
+tion U =
+
+po-pxx,
+gi = -(l+xj,
+
+P1=l,
+
+P2 = P 3 = . . . = 0.
+
+(18)
+
+Formulae for the Pv P2>... are easily found in the general case, and if U is
+taken as a given function of x, it is easily found that the P's are independent of the position of separation if
+U = (constant)e-^, or U = QSo-ftz)"1 or (/30+/3i*)~m> (!9)
+the constants j3, j30, &, m being positive. (However, since I = —UJU'S,
+the scale varies as x8 varies in the last two cases.) For other values
+of U, the P's depend on xs, the position of separation.
+The boundary conditions are ipx = 0, ux = 0 at yx = 0, and ux -> Ult etc.,
+as y± ->• oo. Since xx = 0 is a position of separation, (.duxldyx)Vl=Q = 0 at
+*i = 0 ' s o
+« 1 = « 2 2/?+a 3 y?+... at xx = 0.
+(20)
+Singularities in the solution for the corresponding system of equations for
+the motion downstream have been considered (see equations (10) and
+(11)); near xx = 0, yx — 0, tpx is a function of x\ and y-Jx\. The skinfriction is fi(du/dy)v=0 and the determining quantity is (3%/3yi)tfl=0. which
+is an ascending series of powers of x\, beginning with a multiple of x\.
+If, however, 2a2-\-p0 = 0, which corresponds to a2 = \ in the new notation, there are special features in the solution; in particular the series for
+^o n o w begins with a term in x\. Now Professor Hartree was
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+Also put
+Ui _ u/jjgj
+
+ON LAMINAE, BOUNDARY-LAYER FLOW
+
+47
+
+(23)
+
+l
+(24)
+]
+(25)
+in (16), and equating powers of £. Since tfix = 0 and ux = 0 at yx = 0,
+/ r (0) =fi.(0) = 0, and from the value (21) of ux at xx = 0 we find the
+condition
+,,
+lim A- 2 = 2*'ar+2 (r = 0,l,2,...).
+(26)
+The solution for fr must have a double zero at the origin, and must not
+involve exponentially large terms as ij ->co.
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+quite certain that this particular feature was present in his computed
+solution. The calculations reported here therefore rest on three assumptions, all of which were satisfied in Hartree's numerical solution: (i) there
+is a singularity at separation; (ii) there is a finite value of ux at separation
+for yx ^ 0; (iii) a2 = \. Related to (iii) Professor Hartree found (empirically) that in his solution (Suxldy1)yi=0 behaved near xx = 0 like a
+multiple of xx, where r is certainly less than 1 and greater than J. Thus,
+we must take
+, , ,
+, ,
+,
+„
+,„,.
+u
+2
+3
+i = $y +a3y +at xx = 0,
+(21)
+and as a result we find that
+(8ux/8yx)m=0 = &(ai3%+alaxt+atazl+ctl4+...),
+(22)
+where the a's are constants. (The factor 2} is inserted to conform to the
+notation in §2.)
+The first purpose of the calculations was to find the connexions between
+a3, a4, o5, a6,... and <xv a2, a3>... and other formulae for u at and near xx = 0
+to see if the results fitted the numerical values for the special solution.
+There is no mathematical proof that a solution exists with singularities
+of the type considered near separation, but with the above assumptions
+it is difficult to see how the solution could be of a different type.
+We may remark that in assuming that a2 = £, we are in effect assuming
+that (82ux/dyl)Vl=Q is continuous at xx = 0, and then (dnux/dyx)Vl=0 is found
+to be continuous at xx = 0 for n = 1, 2, 3, 4 and discontinuous for n = 5
+and 6 and probably for all n ^ 5, though dnux\dy\ is continuous for yx ^ 0.
+More important, it is found that at separation vx and 8ux/8xx become
+infinite in such a way that x\ vx and x\ dux/dxx have finite non-zero limits
+as xx ->• 0 for all non-zero yx. The basic assumptions of boundary-layer
+theory therefore do not hold at and near separation. Nevertheless, large
+cross-velocities are to be expected at separation, otherwise the assumptions of boundary-layer theory would not break down.
+The formal solution for the motion upstream is found by writing
+
+48
+
+S. GOLDSTEIN
+
+The condition u: -> V1 as y1 ->• oo is satisfied for xx > 0 if it is satisfied
+at xx = 0, i.e. if v^ -*• 1 as yt -> oo at xx = 0.
+With a 2 = £, the solution for /„ is found to be f0 = TJ 3 /6. The solution
+
+for/i is/ x = a^ 2 , and
+
+> ^ f = °-
+
+Then
+
+/8 = oa,«_f|,5>
+
+(27)
+(28)
+
+and
+a4 = — £af.
+(29)
+[The a's and a's are as in (21) and (22).] The equation for/ 3 becomes
+SI'—i7?3/^+21?a/3 — 677/3 = 5/i/2~7/l/2 + 4 /l/2(30)
+The equations for all succeeding / 's are non-homogeneous linear equations, with the right-hand side rapidly becoming more and more complicated; thus for/ 4 it involves/p/2, / 3 , Pv for/ 5 the first four/'s, and so on.
+The complementary functions involve integrals of confluent hypergeo metric functions; the particular integrals are very involved. The condition
+for the absence of exponentially large terms in / 3 isf
+« 2 = 57Tm a i'
+
+and then from (26)
+
+a6 =
+
+I7\2ai-
+
+(31)
+
+( 32 )
+
+The condition for the absence of exponentially large terms in / 4 is
+(33)
+
+and from (26)
+
+a6 = g - - ^ ) ^ - A.
+
+(34)
+
+The condition for the absence of exponentially large terms in/ 5 gives <x4 as
+a multiple of <x\, though the constant must be found numerically, and then
+a7 is found; but the condition for the absence of exponentially large terms
+in/ 6 does not give a5; it requires that
+
+4!iS)(¥)
+
+(35)
+
+0
+
+where H6 is a complicated function of 77, involving / 5 .
+Again, a6 is determined from / 7 in terms of a1; a5, and Px, a7 from / 8
+in terms of alt a5, and Pv aflQ so on until we come to / 10 . It is possible,
+though it has not been proved, that a s is determined from / 10 , a9 from / 14 ,
+t x! is written for T(x+1).
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+a=
+
+ON LAMINAR BOUNDARY-LAYER FLOW
+
+49
+
+— = —1-1 -, u = 1 at t = 0, u = 0 at y = 0, u finite as y -> oo,
+at
+oy*
+(36)
+(37)
+X
+
+where
+so
+
+erfx = ^- f er^ dw,
+(cu/dy)v=0 = 0 at
+
+t = £.
+
+(38)
+
+(39)
+
+We should remark also that in equations that are linear but are otherwise similar to the equations here considered (the equation for the
+temperature in the theory of the conduction of heat,f for example), if
+we attempt to work backwards (i.e. to solve for negative time) from a
+t The relationship of the boundary -layer equations to the equation of heat conduction
+has been stressed by Prandtl (2) (loc. cit., pp. 79, 80) in connexion with difficulties to be
+expected when u < 0.
+5092.1
+
+B
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+and so on. If so, then only a± remains to be determined, and a4 (and
+therefore a^) is probably determined by the condition ux -> 1 as y1 -> oo
+at xx = 0. If so the whole solution is determined at separation. In fact,
+if it is true that all the other constants are determinate in terms of a4 and
+the P's, there is a solution only if it is possible to choose a4 so that the
+condition % -> 1 as yx -> oo at x1 = 0 is satisfied. Unless this condition
+is satisfied for every value of a4, it will presumably fix a4 in terms of the
+P's. If a4 is so fixed, the non-dimensional velocity distribution at separation, x± = 0, and just upstream of separation, for small positive values
+of xx, is fixed in terms of the P's. Suppose now we have a problem in
+which U is a given decreasing function of x, and u a given function of y
+for some x < xs. There are some U's for which the P's are independent
+of a;g; otherwise they vary with xa. When separation takes place, the nondimensional velocity distribution at and near separation is independent
+of the initial distribution of u for the former values of U, and for the
+others it is the same for all initial distributions of u for which separation
+takes place at the same value of x. This suggests that what has been
+found is an asymptotic solution at and near separation, and that the full
+non-dimensional solutions in the above cases all behave asymptotically
+in the same way near separation.
+It appears that the singularity at separation is due to the non-linear
+character of the equations. It is possible to simulate the phenomenon of
+separation by a linear system of equations, and there is then no singularity
+at separation. For example, the solution of
+
+50
+
+S. GOLDSTEIN
+
+t See also (5).
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+singularity we encounter exponentially large terms. With given initial
+and boundary conditions, however, the solution for such a linear equation
+is free from singularities for positive non-zero time, whereas the basis of
+the present discussion is the assumption that singularities may occur at
+separation in the solution of the non-linear equations considered.
+The special case considered by Professor Hartree is one in which by
+a correct choice of scale the P's may be made independent of xB. There
+is always the possibility, therefore, that the occurrence of a singularity
+at separation is restricted to such cases. Another possibility is that a
+singularity will always occur except for certain special pressure variations
+in the neighbourhood of separation, and that, experimentally, whatever
+we may do, the pressure variations near separation will always be such
+that no singularity will occur.
+It is a necessary consequence of the discussion of the motion upstream
+of separation that at is negative or zero. Professor Hartree finds a negative
+a4 from his special numerical solution. When we consider the motion
+downstream of separation in a similar way, we find that when a4 is negative
+the solution downstream is not real. When there is a singularity at
+separation there is no real solution at all farther downstream. When
+o4 = 0 there is a solution downstream, but then we have a case in which
+the whole solution is free from singularities. These cases include that in
+which (du/dy)v=0 = 0 for all x. There must, of course, be restrictions on
+the pressure distributions in order that this should happen, and these
+conditions arise from the condition that ux -*• 1 as yx -> oo at xx = 0. This
+our method does not permit us to discuss, but one solution (due to Falkner
+and Skan, 4f) is known in which U = cxm, m = —0-0904 approximately.
+As far as numerical values are concerned, and comparison with the
+computed values, Professor Harti-je fitted his solution to the formulae
+here obtained, and considered that he had obtained a reasonable fit. The
+matter has been recently reconsidered by Mr. C. W. Jones, who has
+tabulated f3, ft, / 5 and has found that within the accuracy of his computation, the integral condition (35) for the absence of exponentially large
+terms in/ 6 is satisfied.
+Mr. Jones has compared the skin-friction, the velocity distributions at
+separation not far from the wall, the transition to main-stream conditions
+at separation, and the velocity distribution just downstream of separation
+(at {tfJPJx = 0-956, where U = po—pix&nd(8^jpo)xs = 0-959). A satisfactory fit is obtained with ax about 0-47 or 0-48. A satisfactory transition
+to main-stream conditions seems to be obtained, but it is not sensitive to
+changes in av
+
+ON LAMINAR BOUNDARY-LAYER FLOW
+
+51
+
+2. The solution upstream
+Substitute (23), (24), and (17) into (16), and equate coefficients of powers
+of £. The equation for /„, obtained from the coefficient of £°, is
+./o"-3/o/o'+2/o2 = I(40)
+Since tfix = 0 and ux = 0 at yx = 0,
+/r(0)=/;(0) = 0 (r = 0,l,2,...).
+(41)
+When $ -> 0, -q ->oo if yx =£ 0, and since 2*^77 = yv l i m ^ is given by
+(21) if
+f
+l i m ^ = 2*'ar+2 (r = 0,l,2,...).
+(42)
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+If we assume that Mr. Jones's numerical work is sufficient to answer
+certain questions, and to make it plausible that our formulae fit the
+solution in the case considered, we still do not know for certain that as,
+a9;... are determined from the equations for/ 9 ,/ 13 ,..., and, if they are, that
+a4 (and therefore ax) can be determined from the condition ux -»• 1 as
+yx -> oo at xx = 0. It is clear that an adequate discussion is not possible
+by the method used here. Three more important questions also remain:
+(1) Is it correct that the formulae represent an asymptotic solution at
+and near separation ?
+(2) What are the most general restrictions on the pressure distribution
+in order that solutions should exist for which (du/dy)v=0 = 0 for
+alls?
+(3) A singularity when U = f$0—fixx being assumed, is the occurrence
+of a singularity restricted to cases in which the P's are independent
+of xa ? Or does a singularity always occur unless (du/8y)y=0 = 0
+for all x? Or does a singularity always occur except for certain
+special pressure distributions near separation, and are experimental
+pressure distributions always of the special type ?
+It should be remarked that although there is a certain physical plausibility in the notion that large cross-velocities should occur at separation,
+the existing experimental information is insufficient to settle the question.
+The work described may be summed up by saying that it throws doubt
+on the validity of the boundary-layer equations at and near separation
+on the upstream side, and also downstream of separation; inferences from
+these equations in these regions, which are fairly common in the literature,
+are therefore also in doubt; mathematically the work suggests that singularities may arise in the solution of non-linear parabolic equations, due to
+their non-linearity; and formulae have been found which may help computers of laminar boundary layers, who desire more than a rough solution,
+to have an end-point at which to aim.
+
+52
+
+S. GOLDSTEIN
+
+The condition that the velocity should pass over smoothly into the velocity
+of the main stream will be considered in § 3, when the solution for large
+values of yjx\ is considered.
+Since a2 = £, the solution for /„ is
+(43)
+
+ir —£'?yrH'£(r~l~4)1>?2./r — (^+3)ij/ r = Or,
+where
+
+O1 = 0,
+
+2
+
+G2 = 4/ 1 / 1 "-3/; ,
+
+(44)
+
+(45)
+
+and for r ^ 2,
+s-i
+
+PrH being put equal to zero except when \r is integral. The solution for
+fx with a double zero at the origin is
+A = <*x if,
+where oc1 is a constant; hence from (42),
+a3 =
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+/o = *?3/6.
+The equation for/ r is then found to be
+
+(47)
+
+lim— = 0.
+
+(48)
+
+The solution for f2 with a double zero at the origin is now found to be
+
+-S'A
+
+(49)
+
+where a2 is a constant; hence from (42)
+
+a4 = - K (50)
+In order to write down the general solution for f3 with a double zero at
+the origin, and to consider its behaviour as -q -> oo, some discussion is
+necessary of the complementary functions, and it is advisable to break
+off and discuss generally the complementary functions of the equation
+for/ r .
+Three independent complementary functions are tf, gr, and hr, where,
+if the function ^ ( o , 6, x) is defined by
+
+thent
+1
+
+a= - S
+Vr
+
+(m-i
+,m\(—I—Jr)!(m+J)!8m(4m—
+
+Z,m\(—I—Jr)!
+
+1)
+
+/rt^-i-i^VS)-!}^,
+o
+t x\ is written for F(a:+1), as before.
+
+(52)
+
+ON LAMINAR BOUNDARY-LA VliR FLOW
+and
+
+h =r
+
+53
+
+V
+^Z wi! (—J—Jr)! (w — 1)! «*"(J-w— 1)
+
+(53)
+
+o
+The series for gr terminates when r = 4m+2, and that for hr terminates
+when r = 4ra+l, m being a positive integer or zero.
+As regards asymptotic expansions, in addition to the solution TJ2 the
+equation (44) with GT put equal to zero lias two solutions whose asymptotic
+expansions for large -q commence with multiples of
+7?r+3 and of T?-('-+10'exp(7?4/8)
+respectively.
+When x is large and positive (6),f •
+
+^(a, b, x) ~ ^"HJe**"^ X
+x
+
+L [ (6-q)(l-q) ( (6-o)(6-o+l)(l-«)(2-o) |
+
+} (g4)
+
+so
+^ | f j ^ e x p ( 7 ? V 8 ) ^ - < ^ ' ) { l + ...} (r # 4m+2)
+(55)
+and
+O(3r+10)/4/
+
+5\l
+
+(56)
+Hence
+O(3r+17)/4/3\|
+£
+
+^
+
+(57)
+
+( ) / _
+and
+
+K~l
+
+\• //•exp(i?«/8h-fr+10»{l + - }
+
+(r # 4m+l).
+
+(58)
+
+Exponentially large terms must not occur in the solution for/ r , so when
+r ^ 4»n-j-]. or 4m+2, yr and Ar must occur in the combination
+(59)
+
+ButJ
+
+(60)
+t The formula is on p. 258 of ref. (6).
+j Barnes (5), op. cit., p. 259.
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+= i-2,«JYVK-l-l'-i'?4/* -i:^-
+
+54
+
+S. GOLDSTEIN
+
+hence
+
+2.4.1J
+
+( 2 +r)(2-r)(6-r)(3+r)(l-r)(5-r)
+
+8
+
+2.4.6.ij
+
+12
+
+1
+1
+
+" "'"/
+
+(r ^ 4 r a + l or 4TO+2) (61)
+and
+
+2.4.(r—7)
+
+(2+ r )(2-r)(6-r)(3+r)(l-r)(5-r)7 ? '- 9
+2.4.6.(r—11)
+"*"
+2
++constant. 17
+(r = 4m). (62)
+When r = 4m+3 the term with a zero denominator must be replaced by
+( _ _ 1 \fflQ—Wl—6/4/
+^^ J. i
+
+o
+
+/yyi
+
+0\ I /
+
+ify% i
+
+i ~ - ~ ***^~~"ii • v ~~"~
+
+X
+
+(
+
+which reduces to
+
+5\ I \y
+'^~5/
+
+^^
+
+5.9.13...(4m+5).3.5.7...(2m+3) 2]
+
+(m+1)!
+
+^ °gT/'
+
+1)»»+1 2 i 7T* ( 6 ) !
+
+^— *
+
+—^-'^logr;.
+
+(63)
+
+(62) may be verified and the constant multiplier of rf found by considering
+(64)
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+(2+r)(2-r)(3+r)(l-r)
+
+taken round a contour consisting of the straight line from — N—\—cot
+to — N—J-j-ooi and the part of a circle of infinite radius to the right of
+the line. When r =£ 4m+3 the constant multiple of tf in (62) is found
+tobe
+
+2 - » M - i ) ! (-$-!»•)! *»"•
+
+(65)
+
+ON LAMINAR BOUNDARY-LAYER FLOW
+
+55
+
+When r = 4 m + 3 the term with a zero denominator in (62) must be
+omitted, and (65) replaced by
+
+(66)
+
+where
+
+g(z) =-^-logz!.
+dz
+
+(67)
+
+The multiplier of ij2log -q agrees with t h a t in (63). If y is Euler's constant
+(equal to 0-5772...)
+
+g(-f)==2-21og2-y,
+so (66) is equal to
+
+- ^ - 5 ] - (69)
+In particular, since
+
+(70)
+it follows from (62), (65), and (69) that
+3
+
+3.2*.77»
+
+77
+
+10.(£!)3!/3
+
+160(i!)2l 7'
+
+( a6
+
+15
+1
+15 1 . 15.1.3
+:
+
++
+
+2! TJ22 r 2.3!
+
+15.1.3.3.7 1
+3.4!
+and
+,
+4
+
+n* irf
+48.2*.J!\ 5
+
+7.2*.TT«
+
+64(J!)3?4~
+
+3.7 3
+"if
+
+3.1.1.7.3.1 1
+7.3!
+^
++
+
+3.1.7.3 1
+3.2! ^
+
+3.1.1.3.7.3.1.5 1
+iX~4!
+^e +
+
+3.1.1.3.5.7.3.1.5.9 1
+15.5!
+y3
+
+)
+
+21.2*.TT* 2
+
+" j eioTJI)4"'7' ( '
+
+We now return to the equation for f3, which is
+
+fZ'-W/Z+hVa-Wz
+
+= -lOcx^^-la 3 .,».
+
+(73)
+
+The general integral with a double zero at the origin is
+/s = « 3 ^ + 4 « 1 a 2 ( 1 ? - S r 3 ) - | a 3 ( l + ^ - A 3 ) ,
+
+(74)
+
+where 03 is a constant. In order that exponentially large terms should
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+? 3
+
+56
+
+S. GOLDSTEIN
+
+not occur in / 3 , g3 anil h3 must appear in (74) in the same combination
+as in (71). Hence we must have
+2k ni
+
+-
+
+2
+
+(IK
+
+i! (—I)! (m—£)! 8m(2ra—1)
+. N _ _ ^
+
+*—'-
+
+,
+
+1.
+
+(76)
+
+For large values of rj,
+
+,
+
+IT
+
+J3
+
+60(J!) 2
+
+A .
+
+15 1 , 15.1.3 I
+
+1
+
+2! r)2^
+
+Hence, from (42),
+
+\'
+
+15.1.3.3.7 1 ,
+
+2 . 3 ! TJ6
+
+3.4!
+
+T)10
+
+a5 = - _ i ^ - a 3 .
+
+(78)
+
+We now turn to the equation for / 4 , wrhich on substituting in (44) we
+find to be
+
+(16m2—20m+3)(w—1)! (—|)! i]
+
+m!(—|)!(m-J)!8 m (2m—1)
+(16m2—
+
+12m-l)(m-^)\j\v)
+l) /'
+
+(
+
+'
+
+The general solution of (79) with a double zero at the origin is (with a4
+denoting a constant)
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+and
+
+ON LAMINAR BOUNDARY-LAYER FLOW
+
+where
+L=S
+
+Now
+
+( w - | ) ! ' -J)!(2TO-3)T ? 4 '»+ 3 '
+
+"~ 40(£!)3 771Z= ,1 TO!(-|)!(m+|)!8'»(4TO+3)(4m+4)' * *'
+
+^
+
+^
+
+]
+
+}
+
+(82)
+
+and since, from (61) and (70)
+
+3.7.1.3
+
+3.7.11.1.3.5
+
+\
+
+the asymptotic expansion of L may be deduced apart from an additive
+constant and an additive multiple of 17. The resulting expression may be
+checked, and the constant and the multiple of 77 determined, by considering
+—s—1)! (—s—I)! (s—I)!—
+-—
+ds
+8"(4s+3)(4 5 +4)
+
+(84)
+
+taken round a contour consisting of the straight line from — N—\—ooi
+to —N—^+coi and the part of a circle of infinite radius to the right of
+the line. After some calculation it is found thatf
+
+_W,
+
+1 1 1.3.3 1
+
+a
++
+32(|!)!)»\5
+1.2!ij»
+
+2.3! V
+
+1.3.5.3.7 1
+^Ti]
+
+\
+
+^~'")
+
+(85)
+As before y denotes Euler's constant, and use has been made of (70), of
+the first equation of (68) with m = 1, and of the formulae
+5 ( - i ) = frr-31og2-y, 8 f ( - i ) = - 2 1 o g 2 - y .
+(86)
+The asymptotic expansions of all the terms in the expression for/4 in (80)
+are now known. In order that exponentially large terms should be absent
+from the asymptotic expansion of/4, g4 and ht must occur in (80) in the
+same combination as in (72). The terms containing gt and A4 in (80) are
+(87)
+t I am indebted to Mr. C. W. Jonos for the correction of three errors in (85) as first
+written.
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+"AT
+
+57
+
+58
+
+S. GOLDSTEIN
+
+Compare with (72), and use the value of a2 from (75). We must have
+7-7T3
+
+J ^ *
+O , = i_^_(35-8.2*)a5.
+
+(89)
+
+Substituting for the coefficients of gt and ht in (80) from (88) and (75), we
+find that
+
+8.2*.77* AL
+
+.
+1
+
+lff\
+^
+
+7.2*.w»
+(
+
+)
+
+s
+
+r
+
+,)
+)
+
+)
+
+,OA.
+(90)
+
+The series expansions of L, gr4, and A4 are given by (81), (52), and (53), so
+that the series expansion of/ 4 is easily written down. Its asymptotic
+expansion is found from (72) and (85) to be
+}
+
+PA 7
+
+2».7T*
+
+3.7 3
+
+3.1.7.3 1
+
+3.1.1.7.3.1
+
+71
+
+v.
+
+7T31
+
+IT
+
+77 ~"
+
+3.1.1.3.7.3.1.5 19 ,
+11.4!
+
+n
+fr«
+1 1
+(J!)2 ' 1 5 ^ 1 . 2 ! TJ3
+
+7) '
+
+1.3.3 1 1.3.5.3.7 1
+j
+2.3! TJ7"1" 3.4! V1"' " T
+
+It follows from (42) that
+360'
+
+The analytical discussion of / 4 is now complete. The equations for f6,
+f6, etc., have not been completely solved, but some discussion of these
+equations will now be given.
+In addition to the complementary function C^TJ2, the equation for/ r has
+one complementary function whose asymptotic expansion for large positive
+values of -q commences with a multiple of ij"(r+lo)exp(ij4/8), and another
+complementary function whose asymptotic expansion commences with a
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+and
+
+(88)
+
+ON LAMINAR BOUNDARY-LAYER FLOW
+
+59
+
+1
+
+Now /„_! contains a term a n - 1 rf, where an_x is a constant which is
+undetermined at that stage of the solution at wluch we solve for fn-x.
+The only terms in Gn containing an_x arise from the terms in the expression
+for Gn which contain fn-i or its derivatives, and it is easy to see that the
+sum of the terms in Gn containing un_x is —{2n+4:)(x1oin_1i}2. The corresponding term in the solution for fn with a double zero at the origin is
+4a a
+i n-i('7~S r n)- Unless n = 4m+2, where m is a positive integer or zero,
+the asymptotic expansion of gn involves exponentially large terms. Other
+exponentially large terms occurring in the solution for fn can arise only
+from multiples of gn or (when n ^ 4m+l) from multiples of hn. Since
+a suitable combination of hn and gn has an asymptotic expansion devoid
+of exponentially large terms, and this combination involves hn unless
+n = 4m+2, it follows that when n ^ 4nn-\-2 the presence of exponentially
+large terms in the solution for fn can always be avoided by a suitable
+choice of <xn_1. In this way, when n ^ 4m+2, an_x is determined.
+On the other hand, when n = 4m+2 the series for gn in (52)
+terminates, the term of highest degree in gn being a multiple of r;n+3.
+In such cases it is not possible to arrange for the absence of exponentially
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+multiple of tf^ followed by a multiple of if- . For the solution to be
+successful, exponentially large terms must not occur in the asymptotic
+expansion of fr, which must begm with a multiple of r)r+s. For r ^ 4 this
+condition is satisfied, and, moreover, the next term in the asymptotic
+expansion is a multiple of ij r + l . Assume for the moment that these statements are correct for r ^ n—1. Consider the asymptotic expansion of
+Gn, the left-hand side of the equation for /„ in (44). The terms of highest
+degree occurring could be multiples of r)n+i, but it is not difficult to prove
+that the terms in »jn+4 always cancel, and that in fact the asymptotic
+expansion of Gn begins with a multiple of 7jn+2. It follows that the equation
+for fn has a particular integral, which we denote by / , whose asymptotic
+expansion begins with a multiple of ij n+1 . Any particular integral may
+be expressed as the sum of / and multiples of the complementary functions. The particular integral with a" double zero at the origin is indeterminate only to the extent of an additive multiple of ij2, and what is required
+is that it should not involve the complementary function that is exponentially large at infinity. If the presence of the exponentially large
+complementary function can be avoided, the asymptotic expansion of the
+solution with a double zero at the origin will begin with a multiple of
+7)n+3 (from the other complementary function), followed by a multiple
+of rjn+1 (from / ) . Hence by induction it will be true generally that the
+asymptotic expansion of fr will begin with a multiple of ij r+3 , followed by
+a multiple of ?f+1.
+
+60
+
+S. GOLDSTEIN
+
+-af^Tj), (93)
+where H5(r]) is a function of 77 independent of <xv ex4, and Pv and the solution
+with a double zero at the origin is
+«, P
+where &5(ij) is a function of 77 independent of a1; c^, a5, and Px. The presence
+of exponentially large terms in the asymptotic expansion of / 5 can be
+avoided by a suitable choice of a4, of the form
+a4 = (constant)a*.
+(95)
+The equation for / 6 is then found to be of the form
+(96)
+where H6(T)) is independent of a1; a4, as, and Pv and the solution with a
+double zero at the origin is
+
+A = ccrf+^^v-gJ-^^-^t+alktir,),
+where k6(r)) is independent of «,, a5, a6, and Pv
+
+Hence
+
+a =-nA.il.
+if6
+'^15
+
+!?!_.
+1260
+
+(97)
+
+From (52)
+(98)
+
+In order that the asymptotic expansion of/6 should contain no exponentially large terms it is necessary that the asymptotic expansion of A;6 should
+contain no exponentially large terms, i.e. that the particular integral of
+with a double zero at the origin should contain no exponentially large
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+large terms in fn by a suitable choice of an_1, and some other condition
+must be satisfied.
+At each stage, in solving for /„, the value of an+2 is fixed by (42)
+in terms of such of the Pr as have occurred in the equations up to and
+including the equation for /„ and of such of the aT, for r ^ n—1, as
+have not been determined by the conditions for the absence of exponentially large terms.
+In order to proceed farther, we consider in some detail the equations
+for/ 5 and/ 6 . The equation for/ 5 may be written
+
+ON LAMINAR BOUNDARY-LAYER FLOW
+
+61
+
+form. Put
+Then (100) becomes
+
+/, = , * *
+
+and y'6 = z6.
+
+(101)
+
+•n%+&r)-W)A+$+W)z«
+= H6(V).
+(102)
+A complementary function of (102) (corresponding with the complementary function g6{t)) of the equation for / 6 ) is
+U
+
+(103
+
+' = ~>+T-Wo-
+
+If we put
+(102) becomes
+
+z 6 = u6v6
+
+a n d v'6 = we,
+
+^
+
+>
+
+(104)
+rj*l8).
+
+(105)
+
+The expansion of the right-hand side of (105) in ascending powers
+of i] begins with a multiple of if. As explained, the expansion of the
+required particular integral for / 6 begins with a multiple of 175, and hence
+the expansion of «2T;6w6exp(—?j4/8) begins with a multiple of t]5. The
+required solution of (105) is therefore
+u
+
+eV M>e ex P(—ij 4 /8) =
+
+Heu6ij4exp(—T)i/&)dr).
+
+(106)
+
+0
+
+If the asymptotic expansion of/6 contains no exponentially large terms,
+the asymptotic expansion of wB contains no exponentially large terms,
+and the left-hand side of (106)->0 when TJ->OO. Hence the required
+condition is
+„
+Jflr6«6rj4exp(—r]4l8)dr) = 0,
+(107)
+0
+CO
+
+i.e.
+
+j HArp — JL^.2L-)exp(—T)4/8)dr{ = 0.
+
+(108)
+
+0
+
+The expression for He is easily found from the expression for G6 in (46), but
+I have not been able to evaluate analytically the integral on the right
+of (108). The matter has been further considered by Mr. C. W. Jones, who
+finds numerically that the integral condition is satisfied to the accuracy of
+his computations.
+If we assume for the present that the condition (108) is satisfied, we
+may proceed to consider the equations for/ 7 , / 8 , etc., in the same way as
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+terms. This particular integral is indeterminate only to the extent of an
+additive multiple of ij2, and since the expansion of H6 in ascending powers
+of 77 begins with a multiple of ij2, we may consider the condition to refer
+to the particular integral of which the expansion in ascending powers of 17
+begins with a multiple of ij5. The condition may be given a more definite
+
+62
+
+S. GOLDSTEIN
+
+3. The solution upstream for large values of y-Jx\
+Our first aim in this section is to exhibit the form of the solution for
+large values of yjx^. By carrying through the suggested calculation in
+some detail we also provide a check on part of the work in the preceding
+section.
+t The right-hand side, (7e, of the equation for/ 8 contains P, and a term,
+
+^l'?4"''?*)'
+
+in P%. The corresponding parts of the particular integral with a double zero at the origin
+
+-
+
+-
+
+and contain no exponentially large terms, so that the expression for a, will involvo neither
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+we considered the equations for / 5 and / 6 . From the condition for the
+absence of exponentially large terms in the asymptotic expansion of/7,
+a6 is determined in terms of a1( a5, and Pv Similarly a, is determined from
+*he equation for/ 8 in terms of xv a5, and P1,f and so on until we come to
+the equation for / 10 . In the right-hand side, G10, of the equation for / 10 ,
+a9 occurs only in the term — 24a1a9 -rf, and the corresponding part of the
+particular integral with a double zero at the origin is 4a1a9(Tj—g10). Since
+the series for g10 terminates, the term of highest degree being a multiple
+of TJ13, this part of the particular integral contains no exponentially large
+terms, and <xg will not be determined from the condition that the asymptotic expansion of/10 should contain no exponentially large terms. G10 also
+contains a multiple of <x\ rj2 and certain very complicated terms linear in
+a5, in particular a term in af a5. (It further contains in particular complicated terms that are multiples of a\° and aj Pv) The part of the particular
+integral that corresponds with the multiple of a§ij2 in G10 will be a
+multiple of oc\{r]—gw), and will not be exponentially large at infinity.
+Unless, therefore, the part of the particular integral corresponding with
+those complicated terms in G10 which are linoar in a5 also fails to become
+exponentially large at infinity, *5 wili be determined from the condition
+that / 10 as a whole should not be exponentially large, which condition it
+will thus always be possible to fulfil. In other words, it seems probable
+(though I have not proved it) that a5 is determined from the equation for
+Ac a9 from the equation for / 14 , and so on. If this is correct, then only
+ax remains undetermined among the a's, and therefore only a4 among
+the a's. As explained in the introduction, o4 is then probably determined
+by the condition ux-> 1 as y1->co at xx = 0, in which case the whole
+solution is determined at separation, and probably what we have considered is an asymptotic solution at and near separation, applying (in the
+non-dimensional form here considered) to all cases in which the P's are
+the same.
+
+ON LAMINAR BOUNDARY-LAYER FLOW
+
+63
+
+According to the solution in the preceding section, fa is found in the
+form of the series (24), where
+(109)
+
+c«2 is given by (75), and for large positive values of -q
+f3~A3r,*+C371*+E'3r}Hogr,+E3-q*+F3V+G3+K3r1-*+...,
+where
+
+(110)
+
+/i = «iT.
+
+— _a,v3
+
+(Ill)
+
+and
+; , log , + < ? 4
+
+ft~At7]
+
+(112)
+where
+A -
+
+4
+
+n
+
+\ 4
+
+^2
+
+1
+
+-Pi
+
+4
+
+~ 1.63 150(i!)*Jai 630'
+2*.»r»
+
+„
+
+4
+
+Pj
+
+n
+
+_
+
+it
+
+4
+
+°4 ~ ~5[^°l1'
+
+("16
+
+7jr 2
+
+]
+
+4
+
+2 1 2^ 77*
+
+^4 = c*4—
+
+* '
+
+ctj (a4 has not been calculated),
+
+(113)
+
+Now substitute the expressions for/ 0 , / 1( / 2 and the asymptotic formulae
+for/ 3 and/ 4 into the series (24) for ifilt substitute for rj from 2i^rj = ylt
+and rearrange in powers of £ and logf. The work is purely formal, and
+no justification is attempted. The result, which can hold only for large
+values of yxlx\, is
+
+(114)
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+A = «2^-|75,
+
+/o = | ,
+
+64
+
+S. GOLDSTEIN
+
+We are therefore led to assume, as a form valid for sufficiently large values
+
+|
+
+,
+
+(116)
+
+We substitute in the reduced equation of motion (16) (with dpjdx^^ as in
+(17)), multiply by 4£2, equate coefficients of |°, £, £2, £2logf, and P , and
+obtain the following equations:
+(119)
+(120)
+(121)
+6(XS X5-X0 Xs) = 5X2 X3-3X2 X3~2x 2 Xa%A
+
+Now
+
+(122)
+
+1A
+
+Xo = & 2 - K 2 / i + ^ / f + ^ + " - .
+
+(123)
+
+and is, of course, the value of % at £ = 0, namely,
+as may be verified from the values of A3, Ait a3, a4, a5, a6.
+The solution of (118) is
+X2 = (constant)xi(124)
+The constant multiplier is determined by making the coefficient of y\
+in the expansion of \2 equal to 2*a1. Hence
+X2=2*a lX o(125)
+(It may now be verified that the coefficients of y\ and y\ in the expansion
+of x% a r e the same as in (114), and the values of C3 and Ct are thus checked.)
+Similarly from (119) and (121) it follows that ^3 &n<i X4 a r e constant
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+(115)
+and the initial terms of the expansions of the \ m powers of y1 are found
+by comparing with (114). In fact, since the form (115) is not valid unless
+yjx\ is sufficiently large, the boundary conditions at yx = 0 cannot be
+applied, and the solution found must be joined to the solution in the
+preceding section by using the first few terms of the expansions of the x's
+as given by (114). On the other hand, the solution in this section should
+satisfy the condition ux -> TJX as yx -> oo.
+From (115)
+
+ON LAMINAR BOUNDARY-LAYER FLOW
+
+65
+
+an(
+
+multiples of x'0>
+i the multipliers are determined from the coefficients
+of y\ by comparison with (114). In these multipliers the values of <x2 and
+E"z are substituted from (75) and (111), and it is found that
+(126)
+
+^
+
+(127)
+(The coefficient of y\ in the expansion of xz m a y now be verified, and the
+value of Z)4 so checked.)
+In (120) the terms in £4 may be omitted, since they cancel by (121),
+and the value of X2 m a y be substituted from (125). The equation for
+Xt. is thus seen to be
+(128)
+The expression on the right of (128) may be expanded in a series of ascending
+powers of y±; tho first terms are
+120.2*.^,
+(129)
+Hence the solution of (128) is
+dyi_
+
++
+ill
+
+Xo
+
+-120.2*.^ 3 xolog2/ 1 +(constant)xo. (130)
+The constant multiplier of x'o ™ found from the coefficient of y\ to be
+equal to
+
+^
+
+J
+
+Z
+
+L
+
+)
+
+(131)
+
+(The coefficients of yflog^ and y\ may now be verified, and the values
+of E'z and E^ so checked.)
+When we substitute for ^2 and Xz from (125) and (126), the equation
+(122) for Xb reduces to
+XoXs—XoXs = ~5(Tn3" a i^o— XoXo)
+
+( 132 )
+
+with the solution
+
+(133)
+
+^f
+
+From the coefficient of y\ the constant multiplier is seen to be 2'.P4) but
+it cannot be fully determined from results already found, since the
+expression for Ft in (113) contains a4, which has not been calculated.
+6092.1
+
+F
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+|
+
+66
+
+S. GOLDSTEIN
+
+4. Discussion of the solution u p s t r e a m
+The solution in the preceding section holds only for large values of 77.
+The solution in §2 applies for small or moderate values of 17; it is valid
+also for large values of 77 (the asymptotic expansions of / 3 and / 4 being
+used), but is then useful only for small values of ylt since in such a case
+it is essentially equivalent to the solution in § 3 with the x's expanded in
+series and with only a few terms in each expansion known. The results
+that can be obtained from §2 when 77 is large may therefore be more
+advantageously obtained from §3 after we have obtained the formulae
+for the coefficients an in the expansion, in powers of ylt of the value of
+% at xx = 0. (It should also be remembered that the asymptotic formulae
+of § 2 were necessary for the completion of the solution in § 3.)
+Thus the formulae in §§2 and 3 are useful in different regions. In
+particular, the fornv ' e of § 2 will be useful for studying the values at
+yx = 0, xx # 0 of the derivatives of ux with respect to yv etc., whereas
+the formulae of § 3 will be useful for studying the nature of the solution
+at xx = 0,yx^z 0. The formulae of § 2 show that lim (dntijdy^) o ^ n\an
+x,->0
+
+for n = 5 and 6. For any non-zero value of yx, however, c^ujdy^ is
+continuous at xx = 0. On the other hand, the formulae of § 3 show that
+vx (and dujdxj) are infinite at xx = 0.
+Because of the singularity at xx = 0 the usual assumptions of boundarylayer theory are invalid at xx = 0 and in the immediate neighbourhood.
+Nevertheless, the mathematical result that vx is infinite may be taken to
+indicate that large cross-velocities are to be expected at separation;
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+(The coefficient of yx in the expansion of Xs is determined without a
+knowledge of the constant multiplier, and is easily seen to be 2F3, as in
+(114). The value of F3 is thus checked.)
+I t remains to consider the condition that the velocity should pass
+smoothly over into the velocity of the main stream. As explained, we
+must suppose that this condition is satisfied at xx = 0; as far as our
+formulae go, ux is given by (116), so if the condition is satisfied at xx = 0,
+X<>-> 1, and the second and higher derivatives -> 0, as yx-*-co.
+From
+(125), (126), (127), and (133) it follows at once that x'2> Xz, Xi> Xs a n d t h e i r
+derivatives all -> 0 as yx -*• oo. As regards x*> w© suppose that, as yx -*• oo,
+Xo -> 0 more rapidly than y^1; it may then be proved that as yx -*• oo, X4 is
+asymptotically equal to a multiple of ylt plus a constant, plus terms which
+-»• 0, so that Xi -> °° as yx -*• oo; but xo Xt ~* 0> and we may then show from
+(118) that xi -> 1 and the second and higher derivatives ->• 0, as yx->co.
+We thus check that, as far as (116) goes, ux-> Ux (since f4 = xx and
+U1= 1, dUx/dxx = 1 at xx = 0), while du1/dy1 and higher derivatives -*• 0.
+
+ON LAMINAB BOUNDARY-LAYER FLOW
+
+67
+
+otherwise the assumptions of boundary-layer theory would not break
+down.
+
+5. The solution downstream
+
+*i = - * i = (x-*8)lh
+(134)
+so that x't is positive downstream. The governing equations are obtained
+by replacing x± by — x\ in (16) and (17), and in place of (23) and (24) we
+(135)
++...].
+
+}
+
+(136)
+
+We obtain differential equations for the F in the same way as before;
+moreover, the boundary conditions are the same, for the conditions ^ = 0
+and ux = 0 at yx = 0 lead to
+Fr(0) = F'r(0) = 0 (r=0,l,2,...)
+
+(137)
+
+and the condition that limt^ is given by (21) leads to
+= 0,1,2,...).
+
+(138)
+
+The equation for Fo is
+FZ+SF0F;-2F£ = 1,
+
+(139)
+
+and, since a2 = \, the solution is the same as for/0, namely,
+Fo = ,'»/6.
+
+(140)
+
+The equation for Fx is
+and, since a3 = 0, the solution is
+F1 = p1v'*,
+
+(142)
+
+where /Jx is a constant. The equation for F2 now becomes
+F'^\-n^Fl-Z^Fl2+5r)'F2
+
+= 4jS? v'\
+
+(143)
+
+and the general solution for F2 with a double zero at the origin is
+F2 = M2+m^,
+where /?2 is a constant. Hence, from (138),
+««= m
+
+(144)
+(145)
+
+But, from (50), o4 is zero (in which case at is zero) or negative. If o4
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+In considering the motion downstream from separation we reduce the
+equations of motion and continuity to non-dimensional form by the same
+substitutions as before, except that in place of x1 we use
+
+68
+
+S. GOLDSTEIN
+
+is negative, there is no real solution downstream of separation. Hence
+there is no real solution downstream of separation unless a4 = 0.
+
+6. The special case a4 = 0. The solution without singularities
+
+,
+
+Wl
+
+idPiVl | 1 ^Ply\
+2 8x[ 3 "'"seO dx? 7 "*"
+
+JdptfPpi
+[dx'J dx?
+
+23Pi(PPi\*
+
+dx'Xdx'?) y?
+
+453600
+
+11 ~1~'"'
+
+(146)
+so the expansion of ur in powers of yt contains only multiples of yim+2.
+This is a solution in which (8ujdy)y=0 = 0 for all x, but in order that it
+should be valid it is necessary that Bp.Jdx^ should be chosen so that
+ux -> 1 when y1-^co at x\ = 0. Included in this solution is that special
+case of the solution discovered by Falkner and Skan (4) for which
+(du/dy)y=0 = 0 at all values of x. In the case considered by Falkner and
+Skan the velocity distributions at different values of a; are similar; if more
+general solutions of the type shown in (146) exist, the velocity distributions
+at different values of x will not be similar in the general case.
+It is a fairly straightforward matter to check that the known solution
+for U = cxm, when w las the appropriate value, agrees with (146) as far
+as that equation goes; but the value of m is determined from the condition
+u -> U as y -> oo and cannot be found by the methods used here. Since
+the velocity distributions at different values of x are similar, the appropriate value of m may be found from the solutions of an ordinary differential equation, and has been so found by Hartree (5).f No such method is
+available in the general case. Meanwhile the formulae of Falkner and
+Skan, when (du/8y)y=0 = 0, have been fitted as a very special case into
+the formulae of this section, so far e-s those formulae go.
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+If we return to § 2, and consider the motion upstream of separation
+when c^ = 0, the equations for the / are easily integrated, and we may
+show that a2 = a4 = a5 = a6 = a8 = a9 = etc. = 0; the whole solution
+is free from singularities and may be verified by expanding ifi1 in a double
+power series in x1 and yv Moreover, since the solution is free from
+singularities it will hold also downstream. It is not possible, however, by
+the methods used, to consider if there are pressure distributions for which
+ux -*• 1 as yx -> oo at x1 = 0.
+The most interesting special case of this solution is that in which
+a 3 = a7 = ... = 0, when it reduces to one that is easily found independently, namely (with x[ = —xx),
+
+t For negative values of m the solution of the equation with the conditions t/i = 0, u = 0
+at y = 0 and u/U —*• 1 as y ->-ao is not unique, but may be made unique by requiring that
+X—ujU shall be positive and shall —»• 0 exponentially as y -*• co.
+
+ON LAMINAR BOUNDARY-LAYER FLOW
+
+69
+
+Downloaded from academic.oup.com/qjmam/article/1/1/43/1883631 by Delft University of Technology user on 11 November 2026
+
+REFERENCES
+1. S. GOLDSTEIN, Proc. Camb. Phil. Soc. 26 (1930), 1-18.
+2. L. PBANDTD, Z.A.M.M. 18 (1938), 77-82.
+3. L. HOWAKTH, Proc. Roy. Soc. A, 164 (1938), 547-64.
+4. V. M. FALKNEB and Miss S. W. SKAN, AeronatUical Research GommiUee, Reports
+and Memoranda, No. 1314 (1930).
+5. D. R. HABTBEE, Proc. Camb. Phil. Soc. 33 (1937), 223-39.
+6. E. W. BAKNES, Camb. Phil. Trans. 20 (1908), 253.
+
+

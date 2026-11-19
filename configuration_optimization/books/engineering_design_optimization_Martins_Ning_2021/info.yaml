@@ -1,0 +1,35 @@
+abstract: <jats:p>Based on course-tested material, this rigorous yet accessible graduate
+  textbook covers both fundamental and advanced optimization theory and algorithms.
+  It covers a wide range of numerical methods and topics, including both gradient-based
+  and gradient-free algorithms, multidisciplinary design optimization, and uncertainty,
+  with instruction on how to determine which algorithm should be used for a given
+  application. It also provides an overview of models and how to prepare them for
+  use with numerical optimization, including derivative computation. Over 400 high-quality
+  visualizations and numerous examples facilitate understanding of the theory, and
+  practical tips address common issues encountered in practical engineering design
+  optimization and how to address them. Numerous end-of-chapter homework problems,
+  progressing in difficulty, help put knowledge into practice. Accompanied online
+  by a solutions manual for instructors and source code for problems, this is ideal
+  for a one- or two-semester graduate course on optimization in aerospace, civil,
+  mechanical, electrical, and chemical engineering departments.</jats:p>
+author: Martins, Joaquim R. R. A. and Ning, Andrew
+author_list:
+- affiliation: []
+  family: Martins
+  given: Joaquim R. R. A.
+- affiliation: []
+  family: Ning
+  given: Andrew
+doi: 10.1017/9781108980647
+files:
+- engineering_design_optimization_Martins_Ning_2021.pdf
+isbn: '9781108980647'
+month: 11
+papis_id: e784e17e581b830a10d0ed68c5c88b93
+publisher: Cambridge University Press
+tags:
+- needs-review
+title: Engineering Design Optimization
+type: book
+url: https://doi.org/10.1017/9781108980647
+year: 2021

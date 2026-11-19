@@ -1,0 +1,17300 @@
+i_ASA
+
+I
+
+_.
+
+_J ¢.J
+
+p. /
+_---Paper
+3151
+_VSCOM
+
+....
+
+_Report
+=-91-A-003
+
+[]
+
+November
+
+NACA 0015
+and Trailing
+Measurements
+
+1991
+
+Wing Pressure
+Vortex
+.=
+i
+
+!
+_=
+i
+II
+i
+
+%
+
+!
+=
+I
+I
+
+I
+i
+
+I
+K. W.
+and
+
+VORTEX
+
+I
+
+:
+
+!
+
+R. K. Takahashi
+
+_ACA
+
+(NASA-TP-3IS1)
+TRAILING
+
+McAlister
+
+0015
+
+MEASUREMENTS
+
+__
+
+WING
+
+PRESSURE
+(NASA)
+
+AND
+
+N92-10981
+
+141
+p
+CSCL
+OIA
+
+|
+
+HII02
+
+:i
+
+Unclas
+0048108
+
+i
+US
+AVIATIi
+
+r]
+
+i i
+
+i
+
+l[_
+
+_r_-_--"_
+
+vv_'-_
+
+.........
+
+_
+
+•
+
+•.
+
+_-
+
+--_
+
+_
+
+- _-
+
+ERRATA
+
+NASA
+
+NACA
+
+0015
+
+WING
+
+Technical
+
+Paper
+
+3151
+
+AVSCOM
+
+Technical
+
+Report
+
+9 I-A-003
+
+PRESSURE
+
+AND TRAILING
+
+VORTEX
+
+K. W. McAlister
+
+Pages
+
+89-90:
+
+Figure
+
+39 is out of sequence.
+
+MEASUREMENTS
+
+and R. K. Takahashi
+
+November
+
+1991
+
+It should
+
+come
+
+after Figure
+
+38 (page
+
+93).
+
+o_
+
+Issued
+
+11-26-91
+
+NASA
+Technical
+Paper
+3151
+AVSCOM
+Technical
+Report
+91-A-003
+
+NACA 0015
+and Trailing
+Measurements
+
+1991
+
+Wing Pressure
+Vortex
+
+K. W. McAlister
+and
+
+R. K. Takahashi
+
+Aeroflightdynamics
+USAARTA-A
+
+National Aeronautics
+Space Administration
+
+and
+
+Office of Management
+Scientific and Technical
+Information Program
+
+Directorate
+VSCOM
+
+Ames
+
+Research
+
+Center
+
+Moffett
+
+Field,
+
+California
+
+CONTENTS
+
+Page
+NOMENCLATURE
+SUMMARY
+
+.............................................................................
+
+v
+
+....................................................................................
+
+INTRODUCTION
+
+I
+
+..............................................................................
+
+TEST DESCRIPTION
+
+1
+
+..........................................................................
+
+3
+
+Facility
+
+and Model .........................................................................
+
+3
+
+Pressure
+
+Measurements
+
+.....................................................................
+
+3
+
+Velocity
+
+Measurements
+
+.....................................................................
+
+4
+
+Vortex Locator .............................................................................
+
+4
+
+Data Acquisition
+
+4
+
+RESULTS
+
+...........................................................................
+
+AND DISCUSSION
+
+Surface
+
+...................................................................
+
+5
+
+Pressure
+
+...........................................................................
+
+5
+
+Wing Circulation
+
+..........................................................................
+
+8
+
+Vortex ............................................................................
+
+9
+
+Trailing
+CONCLUDING
+
+REMARKS
+
+APPENDIX--WALL
+
+...................................................................
+
+CORRECTIONS
+
+Solid and Wake Blockage
+
+13
+
+..........................................................
+
+15
+
+.................................................................
+
+15
+
+2D Blockage
+
+Factor .......................................................................
+
+16
+
+3D Blockage
+
+Factor .......................................................................
+
+17
+
+2D Lift Interference
+
+.......................................................................
+
+17
+
+3D Lift Interference
+
+.......................................................................
+
+18
+
+REFERENCES
+
+................................................................................
+
+20
+
+TABLES ......................................................................................
+
+22
+
+FIGURES
+
+28
+
+.....................................................................................
+
+PRECEDING
+
+PAIK_IN
+
+PAGE BLANK
+
+NOT
+
+FILMED
+
+I'ENT_ON._LLYBLttN_
+
+iii
+
+NOMENCLATURE
+
+test-section
+coordinate
+
+width parallel to airfoil
+in free-stream direction
+
+Y
+
+coordinate
+coordinate
+parallel
+
+along airfoil chord
+along test-section width
+to airfoil span
+
+z
+
+coordinate
+coordinate
+
+along test-section
+normal to airfoil
+
+W
+X
+
+Aa
+
+Ap
+
+At
+
+AR
+b
+
+C
+
+el
+Cm
+
+c,
+d
+
+cross-sectional
+
+(perpendicular
+to wing span)
+planform area of wing (cs for rectangular
+wing)
+cross-sectional
+area of tunnel (bh for
+rectangular tunnel)
+Aspect ratio, 2s/c
+
+a
+
+test-section
+
+to airfoil
+
+/3
+
+span (double, if half-span model)
+airfoil chord
+chord force coefficient, chord
+
+breadth
+
+F
+6
+
+force/ Apqcc
+drag coefficient,
+
+8E
+drag/Apqcc
+
+lift coefficient,
+
+liftlApqoo
+
+M
+P
+qco
+r
+
+Re
+8
+
+SI
+
+t
+V
+
+y_
+v_
+V_
+
+parallel
+
+airfoil
+
+61
+
+force/Apqoo
+pressure coefficient, (p - Poo ) / qoo
+distance from airfoil to nearest wall
+
+A
+e
+
+angle of attack
+
+compressibility
+circulation
+
+factor,
+
+offset correction
+
+to solid blockage,
+
+corrected
+
+- uncorrected
+
+blockage
+
+factor
+
+#
+
+function
+
+u
+
+fluid kinematic
+nh/b
+
+P
+
+fluid density
+
+defined
+
+by
+
+A
+
+7-
+
+Reynolds number, cVoe/u
+airfoil span (half-span, if mounted
+wall)
+
+X
+
+by equations
+
+velocity along airfoil surface
+velocity in free-stream direction
+velocity in vertical direction
+free-stream velocity
+
+for
+
+value
+
+test-section shape parameter, defined
+equations (A- 18) and (A- 19)
+function of fitting ellipse,
+equation (4)
+
+quantity
+
+dynamic pressure, _pV_zl2
+ratio of nose radius to airfoil chord
+
+function defined
+airfoil thickness
+
+M2u)1/2
+
+solid blockage due to angle of incidence,
+defined by equation (A-15)
+
+fin
+function defined by equations (A-26)
+test-section height (perpendicular
+to
+airfoil span)
+of fitting ellipse,
+
+(1-
+
+upwash interference at a lifting line
+upwash interference associated with
+streamline curvature due to finite chord
+
+chord to ellipse chord plus
+
+equation (3)
+Mach number
+static pressure
+
+height
+chord
+
+defined by equation (A-14)
+mean lift interference parameter
+elliptic spanwise loading
+
+60
+
+moment coefficient, moment/cApqoo
+normal force coefficient, normal
+
+ratio of ellipse
+F
+h
+
+X
+
+area of airfoil
+
+defined
+
+by
+
+viscosity
+
+appearing
+
+in equation (2),
+
+, 2(c12
+span ratio, _-g
+g
+span ratio, 2s/b
+
+cr
+on
+
+(A-26)
+
+span
+
+Subscripts
+oo
+u
+
+free-stream
+uncorrected
+
+value
+value
+
+b
+sc
+0
+
+blockage-corrected
+value
+streamline-curvature-corrected
+value of quantity
+
+value
+
+at zero lift
+
+PRECEDIr-;G PAGE BLANK NOT FILMED
+
+PAll[
+
+_ [/
+
+INTENTIONALLYBLANK
+
+by
+
+SUMMARY
+
+A NACA 0015 semispan wing was placed in a
+low-speed wind tunnel, and measurements
+were made
+of the pressure on the upper and lower surface of
+the wing and of the velocity across the vortex trailing downstream
+from the tip of the wing.
+Pressure
+data were obtained for both 2D and 3D configurations. These data feature a detailed comparison
+between wing tips with square and round lateral edges.
+A two-component
+laser velocimeter was used to measure velocity profiles across the vortex at numerous
+stations behind the wing and for various combinations
+of conditions. These conditions include three aspect ratios, three chord lengths, a square- and a round-lateral
+tip, presence or absence of a boundary-layer
+trip, and
+three image plane positions located opposite the wing
+tip. Both pressure and velocity measurements
+were
+made for angles of attack of 4 ° < a < 12 ° and for
+Reynolds numbers of 1 × 106 _< Re _< 3 x 106.
+The addition of a round-lateral
+edge to the wing
+tip was found to eliminate the secondary vortex near
+the wing tip, but had little effect on the downstream
+characteristics
+of the trailing vortex. The increase in
+wing lift near the tip because of the presence of the
+trailing vortex was evident in the surface pressure,
+but was not captured by circulation-box
+measurements.
+The circumferential
+velocity within the vortex was
+found to reach free-stream
+values and produce core
+rotational speeds as high as 44, 000 rpm. The streamwise velocity within the viscous wake that is shed from
+the wing was observed to form islands of peak velocity in the spiraling sheet that feeds into the trailing
+vortex. Near the wing, the trailing vortex is asymmetric and contains definite zones where the streamwise
+velocity both exceeds and falls behind the free-stream
+value.
+When referenced to the free-stream
+velocity,
+the maximum vertical velocity of the vortex is directly
+dependent on a and is independent of Re.
+
+INTRODUCTION
+
+The trailing vortex from a rotor blade can be a major source of noise and vibration as it interacts with the
+other blades of a rotor system (refs. 1 and 2). To study
+these blade-vortex
+interactions, experiments
+are commonly attempted in ground facilities on geometrically
+and aerodynamically
+"similar" models, with the notion
+that the test results can be applied to the full-scale rotor
+
+environment
+
+when the governing
+
+dimensionless
+
+scaling
+
+groups are held constant.
+However, since the details
+of the vortex formation and maturation process are not
+well understood, there is some uncertainty
+about how
+to formulate the relationships between various physical
+quantities (ref. 3). Part of the difficulty in formulating
+good theoretical models stems from the scarcity of reliable and complete experimental data that might offer
+guidance and validation opportunities
+to the computational physicist (refs. 4-6). Fortunately, there is some
+evidence that the structure of a trailing vortex from a
+fixed wing is essentially the same as that from a rotor
+(ref. 7). Furthermore,
+it has been reported that centrifugal effects have little influence on the path of the tip
+vortex from a rotor (ref. 8). These findings offer support for examining trailing vortices in relatively simple
+fixed-wing experiments.
+Trailing vortices owe their origin to viscosity and
+the boundary layers that develop on lifting surfaces.
+The pressure differential that exists between the lower
+and upper surface of a wing drives a portion of the
+vorticity-laden
+fluid in the boundary layer around the
+tip and toward the upper surface (suction side) of the
+wing. Streaklines on the upper surface and near the
+leading edge will therefore show the flow near the tip to
+be moving in an inboard direction. The boundary-layer
+vorticity (called bound vorticity), which was initially
+oriented parallel to the span of the wing, is redirected
+and reorganized as the fluid undergoes a highly 3D deformation and mixing at the tip. Before the fluid near
+the tip reaches the trailing edge of the wing, a prevailing vortex emerges (although secondary ones may
+also exist) that has separated slightly from the surface
+(thus becoming a free vortex) and has a downstream
+orientation; this is called the trailing vortex. The surface streaklines near the trailing edge will be driven in
+an outboard direction under the action of the vortex.
+This vortex also causes the pressure to be reduced on
+the surface of the wing beneath it and is therefore responsible for an increase in lift in this region. If the
+path of the vortex were to be extrapolated back toward
+the surface of the wing, it would appear to originate
+from a location around midchord at low a and move
+progressively
+toward the leading edge as c_ increased
+(ref. 9).
+As the trailing vortex passes off the surface and
+enters into the wake, it may already be carrying about
+half of the wing circulation
+(ref. 10). The remainder
+of the vorticity
+
+generated
+
+on the wing
+
+is contained
+
+in
+
+the viscouswakethat is shedalongthe entiretrail- the correct scaling length is the boundary-layer thicking edge.The vorticity nearthe wing tip entersthe ness on the pressure side of the wing, but others disinnermostpart of the trailing vortex,while vorticity agree (ref. 22). The more popular lengths that appear
+shedat increasingdistancesfrom the tip appearsin in the literature are the wing span (refs. 17 and 23),
+thevortexat increasing
+radialdistances
+fromthecen- the wing chord (refs. 24 and 25), and the product of
+ter(ref. 11).Thedifferencebetweenthecomponent
+of the wing chord and the lift coefficient (ref. 3). Anvelocityin thestreamwise
+directionandthefree-stream other issue is the total circulation that is contained in a
+velocitytendsto reachamaximum(eitheranexcessor trailing vortex from a wing. Whereas many investigaadeficit)atthecenterof thevortex,thelikelihoodof a tors have assumed that the total circulation is equal to
+deficitconditionincreasing
+withdecreasing
+lift-to-drag the midspan value (refs. 17, 26, and 27), others have
+ratio(ref. 12). Theangleat whichthe viscouswake claimed that the circulation is not necessarily equal
+is shedfromthewing is equalto theaerodynamic
+an- to the midspan value (ref. 22), or that it is somewhat
+gle of attack(ref. 13). Thiswakeformsa continuous less than the theoretical value because of dissipation
+sheetwhichis attached
+to andis rapidlydrawntoward (ref. 20), or that it is equal to half (or nearly half) of
+the trailingvortexalonga helicalcontour.Detailsof the midspan value (refs. 14, 20, 28, and 29). Although
+the roll up andthe maximumcircumferentialveloc- other examples of controversy can be found in the litity in the vortexat differentpositionsdownstream
+of erature (such as how to define the Reynolds number, or
+thewing greatlydependon thespecificloadingdistri- whether it is even an important parameter, and how to
+butionthatexistsalongthe wing span(refs. 14-17). describe the shape of the circumferential velocity proAssumingthereareno other,competing,vorticesin file outside the core), it is already sufficiently evident
+the flow, it is often assumed
+that the trailing vortex that there is much more to learn about trailing vortices.
+eventuallycapturesall of thevorticityfrom the wing
+In the present study, a NACA 0015 wing was
+(ref. 18reportsthat90%of themeasurable
+circulation placed in a steady stream so that measurements could
+in thewakeis containedwithin thetrailingvortexby be made of the pressure on the upper and lower surface
+z/c = 1). As the trailing vortex moves downstream,
+the path of the vortex moves inboard about 5% to 10%
+of the wing span (ref. 13). Trailing vortices are known
+to persist for many spanlengths behind the wing. This
+longevity, which is significant compared
+to swirling
+flows (perhaps 100 times longer for a vortex), is attributed to the rapid decay of turbulence and a corresponding decrease in eddy diffusion within the vortex
+(ref. 19).
+
+of the wing and of the velocity across the vortex trailing
+downstream
+from the tip of the wing. Pressure data,
+obtained for both 2D and 3D configurations,
+feature
+
+Although trailing vortices have been studied for
+many years, and certain general characteristics
+are well
+known, there are a variety of different accounts that
+have been given for the details of their formation and
+downstream
+development
+as well as the parameters
+on which they scale. For example, in descriptions
+of
+where tip vortices originate, it has been reported that
+they sometimes develop at the tip (when a and Re are
+high) and sometimes develop farther inboard (ref. 20).
+It has also been reported that two tip vortices can occur simultaneously,
+one forming at the front corner of
+a wing from flow along the pressure side and the other
+forming farther inboard from flow along the suction
+
+a square- and a round-lateral
+tip, presence or absence
+of a boundary-layer
+trip, and three image plane positions located opposite the wing tip. Both pressure
+and velocity measurements
+were made for angles of
+attack of 4 ° <_ c_ < 12 ° and for Reynolds numbers of
+1 × 106 <_ Re _< 3 × 10 6.
+Because of the relative size of the supporting endplate (which also served as a splitter plate), both pres-
+
+side, both with the same apex (ref. 21). Another example deals with the characteristic length on which the
+core size scales. Some investigators have claimed that
+
+a detailed comparison between wing tips with square
+and round lateral edges. A two-component
+laser velocimeter was used to measure velocity profiles across
+the vortex at numerous stations behind the wing and
+for various combinations
+of conditions.
+These conditions include
+
+three
+
+aspect
+
+ratios,
+
+three chord
+
+lengths,
+
+sure and velocity data were affected to some extent
+by the flow confinement
+imposed by the wind-tunnel
+walls. This is not of any concern as long as comparisons are made between cases within this experiment.
+For interpretation
+of these results in the light of other
+experimental
+data, or comparison with numerical calculations that are performed in free air, wall corrections
+are recommended.
+Since the available methods for determining
+
+wall corrections
+
+are not exact,
+
+the data are
+
+presented
+asmeasured,
+withoutintroducinganyquesIn all cases, the angle of attack was set by rotating
+tionable(andirreversible)alterations.Shouldcircum- the wing about its quarter-chord axis. The quarterstanceswarrantan attemptto makewall corrections, chord axis of the wings passed through the support
+theprocedures
+for both2D and3Dcasesarepresented endplate at a point 23 in. from the leading edge of the
+in the appendix.
+elliptical fairing (back 39% of the total endplate width).
+TEST
+
+DESCRIPTION
+
+Facility
+
+and Model
+
+The experiment was conducted in the NASA Ames
+7- by 10-Foot Subsonic Wind Tunnel No. 2 under the
+authority of the U.S. Army Aeroflightdynamics
+Directorate. This is a closed-circuit
+atmospheric tunnel with
+a maximum speed of 375 fps. The free-stream velocity in the tunnel was measured by a pitot-static probe
+located at the center of the entrance to the test section.
+The free-stream temperature was measured with a thermistor located in the aft portion of the test section.
+All of the wing configurations
+studied were rectangular and had a constant and untwisted NACA 0015
+profile along the entire span. The lateral edge of each
+wing tip was machined to a flat or square face, but
+could be made round by the addition of an end cap
+(fig. 1). All wing elements were made from black anodized aluminum.
+Three wings were made with the
+same aspect ratio, AR = 6.6, but with chord lengths
+of 12.0, 16.2 and 20.4 in. (fig. 2). The aspect ratio
+is defined in terms of the distance between wing tips,
+even though only half a wing physically existed in this
+experiment.
+Only the largest wing was instrumented
+for surface pressure measurements.
+Two spanwise extensions (each 9 in. in length) were made for the smallest wing to enable aspect ratios of 8.1 and 9.6 to be
+studied.
+The wings were mounted on a splitter plate (a supporting endplate extending from floor to ceiling) that
+was positioned
+I ft away from the side wall of the
+tunnel (fig. 3). This wing support, which was used to
+test all wings, could be rolled along a track to place
+the wing at any streamwise position in the test section.
+The endplate was 2.5 in. thick and 48 in. wide in
+the streamwise direction (formed on a 2-in. thick aluminum core) to which was attached a 4-in. elliptical
+fairing along the leading edge and a 7-in. elliptical fairing along the trailing edge. An image endplate (with
+a wood core) of the same shape as the support endplate was installed at positions opposite to the wing tip
+during special studies.
+
+The relative sizes of the various wings and extensions
+are indicated in a plan view of the test section shown
+in figure 4.
+Positioning the image endplate against the tip of
+the largest wing prevented the formation of the trailing vortex, so that 2D pressure measurements
+could be
+obtained (fig. 5(a)). Without the image endplate, the
+tip of this wing was 1.9 c from the opposte test-section
+wall. To ascertain the effect of the image vortex on the
+trailing vortex from the large wing, the image endplate
+was placed at two specific distances away from the
+tip of the small wing. These two positions of the endplate relative to the small wing corresponded
+to integer
+multiples (1 or 2 times, and 3 times when completely
+removed) of the distance of the large wing from the
+test-section wall (fig. 5(b)).
+
+Pressure
+
+Measurements
+
+Wing pressures were measured at 320 stations on
+the largest model (c = 1.70 ft), over an area favoring the leading edge and the tip of the wing.
+The
+matrix of coordinates
+included 14 span locations and
+18 chord locations (fig. 6). Tubes were routed from
+each measurement
+location to a place outside the test
+section where they were connected to 12 scanivalves.
+Each scanivalve contained a 5-psi differential-pressure
+transducer and was arranged so that one side could be
+selectively exposed to any one of 24 ports. One particular port on each scanivalve was reserved for calibrations. The opposite side of each transducer was vented
+to ambient conditions in the control room. Since only
+a portion of the wing could be surveyed for any given
+set of port assignments, tubes were selected depending
+on whether emphasis was to be on full-span characteristics or on obtaining a higher resolution over the
+outer portion of the wing. The pressure transducers
+were calibrated over a range of -4 psi < p < +1 psi
+at a 0.1-psi interval.
+As these calibration
+pressures
+were applied to the transducers,
+they were simultaneously measured and digitized by a calibrated pressure
+analyzer.
+
+Velocity
+
+Measurements
+
+Two components
+of velocity (oriented normal to
+the span of the wing) were measured with a two-color
+laser-velocimeter
+(LV) system (fig. 7). An Argon-ion
+laser was used with an etalon and a multiline mirror to emit a predominately
+blue (4880-,_)
+(5145-_)
+beam. The purpose of the etalon
+
+and green
+was to in-
+
+crease the coherence length, to narrow the lasing bandwidth, and to reduce mode hopping.
+After separating
+the colors with a dispersion prism, the blue and green
+beams were split into a four-beam matrix and directed
+into a 3.75× beam expander. The set of four parallel
+beams exited from the beam expander at a diametral
+spacing of I31 mm and then entered a traversing apparatus that consisted of two 200-ram mirrors and one
+2286-mm focusing lens. A computer-controlled
+traverse device was used to move the focusing lens (and
+thus the measuring volume) over a 500- by 500-mm
+area. The measurement-volume
+fringe spacings were
+determined
+(from calibration)
+to be 8.90 #m in the
+horizontal direction (blue beams) and 8.98 #m in the
+vertical direction (green beams). The diameter of both
+measurement
+volumes, based on an e -2 intensity falloff of a Gaussian beam, was calculated to be 0.3 mm,
+and the length was similarly calculated to be 10 mm.
+One beam of each color was frequency shifted using an
+acousto-optic
+device (Bragg cell) in order to determine
+the direction of flow.
+A portion of the window in the near wall of the
+test section was removed to provide a direct viewing
+path into the wind tunnel. The clear opening eliminated
+the possibility of window reflections as a source of
+noise in the signals. Airflow through the opening was
+minimal since the pressures in the test section and the
+control room are nearly equal during steady tunnel operation. The backscattered
+light was collected through
+the sending optics, color-separated
+using dichroic mirrors, and focused onto photomultiplier
+tubes. The amplified signals from the photomultipliers
+were downmixed and then routed into signal processors (counters), which filtered and again amplified the signals
+and timed the Doppler cycles.
+The tunnel was seeded with a liquid consisting of
+1 part glycerin to 3 parts water, by volume. The liquid
+was atomized with a commercial
+seeder (which produced particles about 1-3 #m in diameter) and three
+oil misters (which produced particles estimated to be
+less than 5 #m). All four seeding devices were placed
+
+4
+
+in the settling chamber and allowed to continuously
+replenish the atomized mixture that was being carried by
+the flow around the entire circuit of the closed-loop tunnel. Seeding in this fashion provided a measurement
+rate of about 150 samples/sec over most of the flow.
+However, tunnel operation during August resulted in
+a free-stream temperature
+increase from 65 °F in the
+early morning to about 105 °F by noon. These higher
+temperatures acceleraled the evaporation of water from
+the particles, reducing their size to below what could
+be detected and causing the measurement
+rate to fall
+significantly.
+This obstacle was overcome by shifting
+the hours of tunnel operation to earlier in the day.
+
+Vortex
+
+Locator
+
+Vortex meander
+is a familiar
+phenomenon
+in
+trailing-vortex
+experiments,
+and has led to numerous
+rapid-scan techniques for measuring the velocity profile (refs. 23 and 30). The approach taken in this experiment was to detect the passage of the vortex across a
+given location and thereby establish a conditional sampling criterion that could be imposed during the analysis phase. A vortex meter, consisting of a feathered
+cruciform structure mounted on a bearing and attached
+to a Hall-effect transducer (fig. 8), was mounted on the
+survey apparatus and used to locate the center of the
+trailing vortex and to track its meandering
+behavior.
+The rotational action of the vortex on the vanes of the
+meter produced a sinusoidal voltage output from the
+transducer.
+The frequency of this signal increased as
+the meter approached the center of the vortex; therefore
+this was an effective method for statistically locating
+the y and z coordinates
+of the trailing vortex at any
+location downstream
+of the wing.
+Signal frequency
+was converted into dc voltage and was recorded along
+with all data related to the trailing vortex.
+Although
+the tunnel was operating under steady conditions,
+a
+sufficient level of disturbance
+may have existed in the
+flow to account for the meandering path of the vortex
+(refs. 19 and 30). The vortex was observed to move
+laterally to a new location about once per second, with
+an amplitude that increased with increasing distance
+downstream
+
+Data
+
+of the wing tip.
+
+Acquisition
+
+Two computers
+were used to carry out the various censoring,
+managing, and numerical computing
+
+tasksof this experiment.A PC wasusedfor con- to move to the next point of measurement. Following
+trol anddataacquisition(HP CPUandmultiplexer) a wait of 2 sec to allow any traverse vibrations to damp
+anda largemainframecomputer(VAX-785)wasused out, the computer would begin accepting data again.
+for datareduction,archiving,andgraphicaldisplay
+Specifying
+the actual coordinates
+at which the
+functions(fig. 9). Two inputlineswereusedfor the trailing vortex was to be surveyed required that the
+VAX:onefor generalcommunication
+andgraphics,
+the center of the vortex be known. The center of the vorotherfor datatransfer.This divisionof tasksbetween tex was found by first positioning the vortex meter in
+the two classesof computers(the PC andthe main- the approximately correct location indicated by the reframe)allowedthesmallercomputerto functionasa sponse of the cruciform. The computer would then
+"manager"--toresetswitches
+andreposition
+devicesin reposition the meter over a predetermined number of
+preparation
+for newdatawhilea file thatwasrecently intervals in the y and z directions (centered around the
+transferred
+to thelargercomputerwasbeingconverted assumed location of the vortex) and then display the
+into engineeringunits, statisticallyanalyzed,andre- matrix of responses. This procedure was found to be
+turnedto a separatemonitor. Informationwasalso effective in locating the statistical center of the vortex.
+displayedconcerning
+varioustestparameters,
+warnings Based on this value for the vortex center, a new matrix
+aboutspecificanomaliesandnumerous
+automaticde- of coordinates was generated.
+cisionsthatweremadeby eachcomputeror processor.
+Because several hours might be required to comAftersettingtheairfoil angleof attackandthetun- plete an LV survey of an extensive matrix of positions,
+nelfree-stream
+velocity,thescanivalves
+wereindexed the manager computer was programmed to announce
+to recordtheupper-andlower-surface
+pressures.
+Se- the completion of various tasks by means of unique
+lectedportsweremonitoredto makecertainthatequi- audible signals. This allowed the test engineer to folibriumhadbeenreachedbeforeanydataweretaken cus attention on an additional monitor where statistical
+afterindexingthescanivalves
+toa newposition.Once histograms and velocity profiles were being displayed.
+thefull setof datawasaccumulated
+(this tookabout Because of the automatic functioning of the entire data
+30min),thepressures
+werereduced
+to coefficient
+form acquisition and reduction procedure, and the audible
+so thatthechordwise
+distributionsof pressure
+andthe computer signals, fatigue was significantly reduced.
+spanwise
+distributionof lift couldbedisplayed.
+LV measurements
+wereobtainedeitheralonga RESULTS AND DISCUSSION
+contouraroundthe wing at variousspanlocationsor
+acrossthe trailingvortexat variousstreamwise
+locations. The measurement
+grid (fig. 10)waslocatedin Surface Pressure
+a space-fixed
+coordinatesystemwith the originat the
+trailingedgeof the wingtip (y = 0, z = 0) when the
+Pressure measurements
+and calculated lift, drag,
+wing was at zero angle of attack. The contour around
+the wing was composed of 40 discrete points to form a
+"circulation box" that was aligned with the free-stream
+velocity (fig. 11). The trailing vortex was normally surveyed at 41 points along a straight horizontal line (parallel to the airfoil span) across the core of the vortex
+or at 160 points over an area normal to the free-stream
+direction (fig. 12). The matrix of coordinates to be surveyed was centered
+
+around the vortex core (which was
+
+usually inboard from the wing tip and below the pitch
+axis) and therefore appears offset from the coordinate
+reference (y = 0, z = 0). In all cases, the survey coordinates were placed in a file and the computer was
+given the task of automatically
+positioning the probe
+volume and acquiring the data. After collecting a total
+of (typically) 1000 validated samples at a given location, the computer would signal the traverse controller
+
+and pitching moment coefficients are presented for both
+2D and 3D wing configurations,
+with square- and roundlateral tips, for angles of attack of 0 ° < c_ < 14 ° and
+Reynolds numbers of I × 106 _< Re < 3 × 106 (tables 1-6). The coordinate system used for presenting
+the pressure measurements,
+and the equation for defining the surface of the airfoil, are given in figure 13.
+Load calculationsSince there was no provision
+for making pressure measurements
+at either the leading
+edge or the trailing edge, values at these two locations
+were approximated
+so that more accurate lift, drag,
+and pitching moment calculations could be made. The
+leading-edge pressure coefficient was determined from
+a theory that is applicable to thin symmetric airfoils
+(ref. 31). In this theory it is hypothesized
+that the flow
+around the leading edge of the airfoil is the same as
+that for an ellipse
+
+(with
+
+a trailing
+
+fin) that has been
+
+5
+
+sizedto geometricallyapproximate
+the leadingedge
+of the airfoil. The first stepis to determinetheangle
+of attackfor the finnedellipsethatproduces
+the same
+v/Vc_ as calculated for the actual airfoil at the same
+-_/c. Based on the measured pressure coefficient at a
+particular location near the leading edge, the velocity
+is determined from
+
+v=
+
+- Cp
+
+(incompressible)
+
+(1)
+
+The angle of attack that yields the above v/Voo
+particular _/c is found from
+
+at this
+
+2r
+
+7d
+
+/
+
+x(cosa
+
+r/2
++ sina
+
+_F
+
+)
+
+(2)
+
+where -4- denotes that the expression
+following it is
+added for the upper surface and subtracted for the lower
+surface, and k is a function of the fitting ellipse and is
+defined
+
+were calculated
+
+by
+e
+k = 4"
++ 1 + 2)
+
+(3)
+
+)(1--e+_/1-e(l-r
+)2
+
+(4)
+
+with
+
+and T = _
+
+is the actual thickness
+
+2)
+
+of the ellipse (in
+
+airfoil chords). For the NACA 0015 airfoil, the ratio of
+the nose radius to the airfoil chord (r) is 0.0236 and the
+ratio of the ellipse chord to the ellipse chord plus fin (e)
+is 0.3. Using the a just calculated from equation (2),
+the theoretical pressure at the leading edge is
+Cp = 1
+
+2(1 + 7-)2 sin2 a
+r
+
+at _ = 0
+
+(5)
+
+With this estimate for the leading-edge
+pressure and
+the three nearest data points on either side of-£/c = 0
+(fig. 14), a quasi-Hermite
+spline fit (a continuous curve
+with a continuous
+first derivative)
+is used to define
+additional
+airfoil.
+
+values around
+
+integration
+
+over
+
+the expanded data set. The "local contributions"
+to
+these integrals are shown in figures 16 (c_ = 0 °) and
+17 (a = 12 °) for equal increments
+of A_ (fcr Cn
+and Cm) and equal increments
+of A2 (for Co). In
+the a = 0 ° example, an interesting feature is found
+
+leading edge. The regions that are bound in a clockwise sense represent a negative chord force, and those
+bound in a counterclockwise
+sense represent a positive
+chord force. In this case, the positive and negative contributions sum to zero. In the a = 12 ° example there
+is a sizable negative chord force as a result of the low
+pressure distribution over the forward projection of the
+airfoil. Since only the pressure has been considered,
+the complete chord force would no doubt be more positive (in all cases) if the viscous component had been
+available for inclusion. Because the incremental chord
+force is derived
+
+#=(e----_T2
+
+from a trapezoidal-rule
+
+in the Cp vs. 2/c curve. Starting at the leading edge
+where Cp = 1.0, and moving along the upper surface,
+three regions are encompassed by the time the complete
+airfoil has been traversed and the curve closes at the
+
+_/c
+
+= (1+ T )
+
+data in the Cp vs. 2/e plane, the original finite set of
+actual data points was expanded to a 1,000-point set to
+improve the accuracy and presentation
+of the results.
+The pitching moment is defined about the quarterchord axis, and is taken to be positive when it produces
+an increase in c_. The force and moment coefficients
+
+the leading-edge
+
+region of the
+
+The trailing-edge
+pressure coefficient
+used was
+simply the average of the: linear extrapolations
+from
+the upper and lower surfaces (fig. 15). From the approximated
+values of Cp at the leading and trailing
+edges, and the curve that was fit to the leading-edge
+
+from the local pressure
+
+that is acting on
+
+an elemental-surface
+projection in the chord direction,
+and since ACe is plotted for equal increments of A2,
+there will necessarily be a discontinuity
+in the curve
+at maximum thickness (2X/e) where the surface projection changes direction (surface slope changes sign).
+The discontinuity
+is not symmetric about A2 = 0 because of the difference
+in the average pressure over
+these adjacent segments of the surface.
+2D wing- A 2D configuration
+was established by
+positioning the image endplate against the tip of the
+large wing (fig. 5(a)). Representative
+pressure distributions over the central 45% of the wing are shown for
+three angles of attack and two Reynolds numbers in figure 18. Recall that the leading- and trailing-edge values
+(open symbols) are estimates based on data for neighboring locations. The chordwise pressure distribution
+differs little between the three span stations shown,
+even for the a = 12 ° case. However, subtle differences in pressure can result in large variations in the
+force and moment loads when these pressures are integrated
+
+over the surface.
+
+When the lift at all 12 span
+
+stations(includingthoseneartheendplatewheresig- increase near the tip itself. This behavior is in contrast
+nificantboundary-layer
+interactions
+areevident)is cal- to the rather slight change in the drag and the pitching
+culated,it canbe seenthatsomedegreeof variation moment as the wing tip is approached, and the signifiis presentalongthe entirespan(evenover the cen- cant increase in the drag and the "nose-down" moment
+tral portion)andthatthe variationbecomes
+quitepro- that occurs near the tip. The Reynolds number has
+nounced
+whena > 10° asthestallangleis approached some effect on the loads at all locations along the span
+(fig. 19). The solidline accompanying
+theresultsfor (fig. 24), and, when integrated over the entire span
+(fig. 25), has an increasing effect as a is increased.
+eachc_ represents the average value for the lift over the
+part of the span from 0.09 < y/8 < 0.90 (this segment
+excludes the five points near the tip). The integrated
+loads over the angle range 0 ° < o_ < 14 ° indicate that
+the drag and pitching moment are even more sensitive
+to span location than is the lift (fig. 20). Since the
+drag and moment are usually small for angles below
+stall, the scales that were used to plot these loads have
+exaggerated
+the impact of spanwise differences in the
+leading-edge
+pressure (mostly affecting the drag) and
+the center of pressure (mostly affecting the pitching
+moment).
+3D wing- The 3D configuration
+was investigated
+in two stages.
+During the first stage, measurements
+were made over the full wing span, with a square tip
+only. During the second stage the pressure-tube
+connections were reconfigured to concentrate on measurements over the outer portion of the wing span, and both
+round and square tips were examined.
+The full-span (square tip) pressures are shown in
+figures 21 and 22 for all 12 spanwise stations where
+both upper- and lower-surface
+measurements
+were made.
+Only the results for conditions of c_ = 4 °, 8°, and 12 °
+at Re = 1.5 x 106 and 2.5 x 106 are presented. For all
+conditions, there is a gradual reduction in pressure as
+the tip of the wing is approached, and there is a peculiar
+distortion over the upper surface along the outermost
+3% of the span (y/s > 0.97). This distortion in the
+chordwise pressure distribution
+has been observed in
+other experiments
+(refs. 8, 32-35) and is believed to
+be due to the vortex (or vortices) that forms on the
+suction side of the wing tip. The integrated effect of
+the vortex is to produce an increase in the lift over the
+region near the wing tip (fig. 23). Back along the span
+in the inboard direction, the lift is observed to level
+off except for a slight increase at the innermost location y/s = 0.094.
+This departure from the expected
+asymptotic value is attributed to the presence of the
+supporting endplate.
+The force and moment variations along the span of
+the wing for a = 4 °, 8 °, and 12 ° at different Reynolds
+numbers (fig. 24) show a large change in the lift as the
+wing tip is approached,
+and a comparatively
+modest
+
+The pressure over the outer portion of the wing
+is shown for the square-tip case (figs. 26-28) and for
+the round-tip case (figs. 29-31) under conditions
+of
+o_ = 4 ° , 8 ° , and 12 ° at Re = 1.0 x 106 , 2.0x 106 ,
+and 2.9 x 106. At two spanwise
+
+stations
+
+near the wing
+
+tip the pressure was measured only on the upper surface.
+The y/s values for these two cases will differ by 2.3% because of the addition of the round tip,
+which increases the span by half of the airfoil thickness (tmaz/2).
+For both the square- and round-tip
+cases, the pressure distortions
+due to the tip vortex
+are confined to the upper surface and along the outer
+4% of the span (y/s > 0.96).
+This same behavior
+has been observed in pressure measurements
+made on
+a rotor (rectangular
+and untwisted NACA 0012) with
+round and square tips (ref. 33). In the region near
+the tip of the wing, the pressure distributions
+assume
+shapes that are distinctive under conditions of high lift
+(a > 8°). After the suction peak that occurs near the
+leading edge, the pressure curve exhibits two strong
+undulations in the square-tip case and only one undulation in the round-tip case (albeit this chordwise row
+of pressure orifices is located 2.3% farther inboard after
+the round tip is installed).
+The Reynolds number appears to have little effect on the pressure undulations in
+the square-tip case, whereas the pressure undulation is
+larger and more responsive to changes in the Reynolds
+number in the round-tip case. The apparent insensitivity to Reynolds number in the square-tip case may be
+due to the transition-fixing
+nature of the sharp edge in
+this case, as the flow accelerates around the tip of the
+wing to form the trailing vortex that is developing on
+the upper surface. While the vortex causes an increase
+in lift near the wing tip with increasing angle of attack in both the square- and round-tip cases (figs. 32
+and 33), the increase becomes noticeably
+large in the
+round-tip case for the combination of high angle of attack (a > 8°) and high Reynolds number (recall, in
+figs. 29-31, the corresponding
+large pressure undulation near the trailing edge in the round-tip case). The
+rather large drag and pitching moment loads that are
+
+7
+
+observed
+nearthetip of thewingin thesquare-tip
+case (M_ < 0.3) flow. In each case, the results are refareseento beevenlargerin the round-tipcase.
+erenced to the tip of that particular wing, and in each
+Thelift, drag,andpitchingmomentvaluesfor the figure is included a projection of the wing thickness
+full wing canbeestimatedby integratingthesection over its entire span.
+loadsoverthe spanandassumingthatthe innermost
+Using the smallest wing (c = 0.305 m) as a bavalueat y/c = 0.58 remains constant up to the wing
+sis for comparison, the addition of a round tip (which
+root at y/c = 0.0. The results obtained at different
+Reynolds numbers show a modest and generally increasing spread as c_ is increased toward stall (fig. 34).
+The peculiar distortion in the chordwise pressure
+distribution
+near the wing tip (recall fig. 27(c)) was
+also observed in an earlier experiment (archived run:l/
+frame:19 data from ref. 37). In agreement
+with the
+present experiment,
+the earlier results indicate that the
+distortion is confined to the outermost 3% of the span
+(fig. 35). The dimensional characteristics
+of the pressureinstrumented
+wings used in these two tests are shown
+in figure 36(a), along with the nondimensional
+distances from the wing tip (y*/c) where the results can
+be compared.
+Although
+the results from these two
+experiments are in good qualitative agreement, the referenced data are consistently
+lower along the upper
+surface. By imposing estimates for the lower-surface
+pressure in the Spivey-Morehouse
+data at the incomplete spanwise stations (see fig. 35), the pressure can be
+integrated to obtain the lift and a comparison made at
+corresponding
+values of y*/c (fig. 36(b)). Again, the
+results are qualitatively similar but significantly different in magnitude.
+This difference
+may be attributed
+to the following two factors: first, wall corrections to
+the present data have not been made, and second, tuft
+studies during the Spivey-Morehouse
+test revealed that
+a large updraft (along the wing span) from an opening
+around the base of the floor-mounted
+produced sizable wing-wall
+effect_
+were acquired.
+
+Wing
+
+model may have
+when those data
+
+Circulation
+
+Calculated
+wing circulation coefficients
+are presented for the 3D wing configuration at Re = 1.5 × 106
+and c_ = 12 °, for both a square- and a round-lateral
+tip. Based on velocity integrations around a rectangular path of fixed size in the x-z plane (figs. 10,11), the
+calculated circulation (_ VxAx + _ VzAz) at various
+span stations are presented in table 7 and figure 37. The
+circulation results are given in nondimensional
+form as
+-2F/cVoo
+since this quantity is stated to be equal to
+the lift coefficient, CI, per unit of span, according to
+the Kutta-Joukowski
+theorem for 2D incompressible
+
+causes an increase in y/c of 0.13) does not appear to
+have proportionately
+extended the circulation distribution toward the tip (fig. 38(a)). If the circulation
+distribution were to be physically keyed to the spanwise
+limits of the wing, then one curve would have overlain the other. It is also evident that a 23% increase
+in the aspect ratio of the wing (produced by adding a
+tip section) has no effect on the circulation distribution
+(fig. 38(b)). This suggests that in both cases the wing
+aspect ratio is sufficiently large so that neither the wall
+boundary layer nor the image plane at the root has a
+detectable effect. Maintaining
+the same aspect ratio
+and changing only the chord of the wing yields a similar circulation curve (fig. 38(c)). This result indicates
+that the chord may be the correct reference length for
+nondimensionalizing
+the spanwise distribution of circulation.
+A final area of interest is the spanwise distribution of lift as it is derived from either circulation
+or surface pressure (fig. 38(d)). In both cases the same
+wing is used (c = 0.518 m). Without considering wall
+corrections,
+it can only be stated that the same trend
+occurs over the inboard region. Over the region near
+the tip, however, a major difference
+in the shape of
+the lift curve appears. Whereas the circulation-derived
+lift smoothly diminishes as the tip is approached,
+the
+pressure-derived
+lift displays a substantial perturbation
+as a result of the trailing vortex that forms over the
+upper surface.
+This behavior has been observed
+in
+other experiments
+(refs. 10, 36, and 37), and may
+indicate a limitation in the application of circulation
+measurements.
+In the circulation-lift
+relation, it is assumed that
+the contour of integration contains all of the rotational
+flow. This is not possible in real flows because the
+downstream boundary must cut across the viscous wake.
+Contours taken close to the airfoil, that have downstream
+stream
+
+boundaries that are perpendicular
+to the freevelocity, will not include any contribution
+to
+
+the lift arising from changes in total pressure across the
+wake, and will therefore be lower than the correct values (ref. 38). The error may not be significant as long
+as the enclosed wake contains nearly equal amounts
+of positive and negative vorticity, but this condition
+is highly suspect in the tip region of the wing, where
+
+theflow is dominated
+by the formationof a strong3D
+trailingvortex.
+Trailing
+
+Vortex
+
+Wake velocity measurements
+are presented for the
+3D wing configuration for various combinations of conditions. These conditions include three aspect ratios,
+three chord lengths,
+
+three tip-image
+
+plane positions,
+
+a
+
+square- and a round-lateral
+tip, presence and absence
+of a boundary layer trip, angles of attack of 4 ° _< a <
+12 °, and Reynolds numbers of 1x 106 _< Re _< 3 × 10 _.
+Measurements
+were also made of the trailing vortex
+at numerous downstream
+stations ranging from 0.1 to
+13.0 chordlengths
+behind the airfoil. A majority of the
+velocity measurements
+were made at various downstream distances from the wing tip (x/e referenced to
+the trailing edge).
+A detailed summary of the conditions under which these measurements
+were made
+is presented in tables 7-10. Velocity components
+Vz
+(oriented parallel to the free-stream direction) and Vz
+(oriented in the vertical direction) were obtained along
+a one-dimensional
+survey (in the spanwise direction)
+across the core of the vortex (fig. 12(a)). A limited
+number of measurements
+was also obtained over a 2D
+area centered
+
+around the core of the vortex (fig. 12(b)).
+
+Streamwise
+developmentTo examine the effects of various trailing-vortex
+determinants
+(table 11),
+the square-tip wing with AR = 6.6 (referred to as "basic" in the following figures) is used as the reference
+case. Viewing the vortex from a downstream position,
+the vertical and streamwise components of velocity are
+first examined
+at seven locations
+(from x/c = O. 1
+to x/c
+= 6) behind the trailing edge of the basic
+wing (fig. 39). The flow condition for this case was
+Re = 1.5 x 106 with Vc_ = 46 m/sec (Moo = 0.13).
+A projection of the wing profile is included in each plot
+for the convenience of visualizing the relative position
+
+wing-shear layer as it wraps around the trailing vortex.
+This distortion rapidly fades (completely disappearing
+by x/c ,_ 1) as the trailing vortex evolves. The streamwise velocity component initially shows a 50% excess
+over the free-stream velocity. A distortion in the velocity profile as a result of the secondary vortex is also
+present. In this case the relative velocity in the vortex
+core is mostly away from the wing; however, either an
+excess or a deficit condition is possible, depending on
+the spanwise load distribution near the tip of the wing
+(ref. 41). When one examines the velocity profiles at
+spanwise locations away from the immediate vicinity
+of the vortex, it is apparent that free-stream characteristics are generally not achieved.
+For the streamwise
+velocity component
+it is expected that Vz/Voo ---* 1,
+and for the vertical velocity component that IVz/Vool
+(inboard) > IVz/V_I
+(outboard),
+because of downwash behind the wing. Deviations from this expected
+behavior are believed to be caused by blockage (since
+an upstream pitot-static
+V_) and by the effects
+
+probe was used to determine
+of the image vortex near the
+
+wing tip.
+As the trailing vortex moves downstream
+and the
+maximum circumferential
+velocity in the vortex decreases because of viscosity (fig. 40), one can argue
+that the pressure increases and causes the streamwise
+component of velocity to decrease (ref. 42). If the distance between the vertical velocity peaks is considered
+to be a measure of the vortex core, the core diameter appears to grow rapidly in the immediate region
+downstream of the trailing edge of the wing, and then
+maintains a somewhat constant value (about 70% of the
+wing thickness, or 11% of the chord) over the remainder of the first six chordlengths
+of travel (fig. 41(a)).
+In an earlier experiment
+(ref. 16) involving a NACA
+0012 with a square tip, the core diameter was found to
+be about 12% of the wing chord and it remained nearly
+constant with downstream travel. A core size equaling
+10% of the blade chord has also been reported in a
+
+of the vortex during its downstream
+maturation.
+Just
+behind the airfoil (at x/c = 0.1), the vertical component of velocity reaches nearly 90% of the free-stream
+velocity.
+The distortion in the velocity profile (the
+double inflection before the peak is reached), which
+is most evident along the outboard portion of the vortex, is probably due to a secondary vortex (refs. 8, 9,
+23, and 39). This is the same vortex that was believed
+
+model rotor experiment (ref. 43). Since the core is so
+small, the rotational speed within the vortex can reach
+
+to have produced the second undulation in the pressure distribution near the wing tip, in figure 27(c). An
+alternate view (refs. 14, 24, and 40) is that the distortion in the velocity profile is due to a crossing of the
+
+would be rapidly centrifuged
+out of the core of the
+vortex). The center of the vortex moves inboard about
+
+very high values. For example,
+where the core radius measures
+
+just behind the wing,
+about 2.7 cm and the
+
+maximum vertical velocity is around 37.7 rrgsec, the
+rotational speed is 13,333 rpm. This explains why the
+central core region appears clear in many attempts to
+visualize the vortex (particles that are heavier than air
+
+9
+
+25%of thewingchord(fig.41(b)),andupwardtoa po- inversely with the chord) are dependent on the chord
+sitionslightlyabovethereference
+linepassingthrough length of the wing. The same can be said about the
+thequarter-chord
+pitchaxis(fig.41(c)).Sincethevor- velocity components measured at x/c = 4, except that
+texwouldnormallybeexpected
+to movedownwardin no appreciable deficit is observed in the streamwise
+freeair because
+of thedownwash
+behindthewing,the profile. The streamwise component within the vortex
+upwarddirectionof thevortexpathis attributed
+to wall core has a maximum (velocity excess) value that ineffects(specifically,theimagevortexon the opposite creases with chord, and a minimum (velocity deficit)
+sideof thewall fromthe wingtip).
+value that decreases with chord (figs. 43 and 44). The
+A velocitysurveyoveran areacenteredaround relative size and position of the vortex core shows a
+the vortexcoreis shownin figure42 for threeloca- weak dependence on the chord length of each wing at
+tionsnearthe wing trailingedge(x/c = 0.1 _ 0.5). x/c = 0.1, and a much stronger dependence on the
+Theareacoveredby eachsurveymeasures
+aboutone chord at x/c = 4. The relative diameter of the core inchordin the spanwiseandverticaldirections(in all creases with decreasing chord at the distant streamwise
+pictorialcontourplotsthewingis notshowntoscale). station (fig. 45). The spanwise displacement of the
+The contourplot for the verticalvelocitycomponent core is observed to move farther inboard with decreascorroborates
+the presenceof two velocitypeakslo- ing chord, whereas the vertical displacement increases
+catedinboardfroma line projecteddownstream
+from (moving upward) with increasing chord length. Althe wing tip. The contourand3D surfaceplotsfor though the vertical displacement should be downward
+the streamwise
+velocitycomponent
+showthe velocity in all cases (in free air), the fact that the vortex moves
+excess(relativeto freestream)within thevortexcore farther upward as the chord increases is in keeping
+andthe velocitydeficitalongthe wakeof the wing. with the influence of tunnel wall effects since the wing
+The streamwise
+velocitydeficitis not uniformalong tip moves progressively closer to the wall as the chord
+the wake,but insteadappearsto form islandsalong increases (given the same aspect ratio).
+thespanof the wakethatfeedsinto thetrailingvortex
+Vertical and streamwise velocity contours centered
+alonga spiralpath.
+around the vortex core are shown for x/c -----0.1 behind
+Chordlength effects- Three square-tip wings with the trailing edge of the wing (fig. 46). Distinct islands
+the same aspect ratio were used to study the effects of
+chord length on the trailing vortex. The Reynolds number (Vocc/u)
+and circulation
+(CIV_c/2)
+were fixed
+by keeping Vc_c and C l constant (c_ = 12 °, in this
+case). Specifically, the Reynolds number was 1.5 × 106
+and the circulation (F) (just downstream of the trailing
+edge) was about 8 m2/sec; and the chord and freestream velocity combinations
+were 0.305 m at V_ =
+74 m/sec (Moo = 0.21), 0.412 m at Voo = 57 m/sec
+(Moo = 0.16) and 0.518 m at V_ = 46 m/sec (Moo =
+0.13). Although the Mach number did change, compressibility
+effects are not considered
+to be a factor
+when M_ < 0.3. Measurements
+made at x/c = 0.1
+show (fig. 43) that the general shape of the velocity profiles are the same: the vertical component exhibits the same distortion over the outboard portion
+of the profile, and the streamwise component exhibits
+the same number of inflections across the vortex core.
+The velocity deficit that occurs further inboard (lyl >
+200 ram) is caused by the viscous wake that is shed
+from the trailing edge of the wing. The deficit region
+appears to scale with the wing chord since it progresses
+even further inboard as the chord increases. The maximum velocities
+
+l0
+
+(relative
+
+to free-stream
+
+values that vary
+
+of velocity excess and deficit can be observed in the
+streamwise component.
+Since the physical dimensions
+of the survey were fixed, a greater extent of the span
+(in terms of chord length) was covered for the wing
+with the smallest chord (1.8 chords for the c = 30 cm
+wing and 1.0 chords for the c = 52 cm wing). This
+increased spanwise coverage shows that the 3D character of the viscous wake is not limited to the immediate
+neighborhood
+of the tip, but may actually
+a large portion of the wake.
+
+extend
+
+over
+
+Reynolds
+number
+effectsA single square-tip
+wing with c -- 52 cm was used to examine the effects
+of Reynolds number on the trailing vortex.
+Because
+/9 could not be varied in this facility, Re was varied
+through V_.
+The circulation
+was held fixed by requiring that CIV _ remain constant, which meant that
+any increase in the free-stream
+velocity (Voo) had to
+be offset by a decrease in C l (by reducing a). The
+three Reynolds number conditions of Re = 3.0 x 106,
+Re = 1.7 × 106 and Re = 1.1 × 106 were obtained
+with Voo = 91 m/sec (Moo = 0.26) at a = 4 °, Voo =
+51 m/sec (Moo = 0.15) at a = 7 ° and Voo = 32 m/sec
+(Moo = 0.09) at c_ = 10 °, respectively.
+The circulation for this study was about 5 m2/sec. The velocity
+
+measurements
+at x/c
+
+= 0.1 show that the distortion
+in the vertical component moves farther outboard and
+that the extrema in both the vertical and streamwise
+components
+increase as the Reynolds number is decreased (fig. 47). The shape of the streamwise profile
+at x/c = 4 indicates a change from a deficit to an excess condition across the vortex core as the Reynolds
+number is decreased. Although the vertical component
+(relative to free stream) decreases with Reynolds number (fig. 48), the magnitude of the free-stream velocity
+increases so that the circulation around the vortex remains constant.
+In other words, the vertical velocity
+profiles would have similar magnitudes had they been
+nondimensionalized
+using aVoo instead of merely Voo.
+The diameter of the vortex core appears to be very
+dependent on Reynolds number just behind the wing
+(fig. 49(a)); however, this may be deceiving, because
+the velocity peak (which is used to determine the core
+diameter) is greatly affected by the outboard distortion
+of the profile.
+The core diameter shows no significant dependence on Reynolds number at x/c = 4. The
+spanwise position of the core is insensitive to Reynolds
+number just downstream
+of the wing. The vertical position shows a spread which is caused by a combination
+of Reynolds number and the fact that a is different for
+each case. The spanwise and vertical positions of the
+core show some dependence
+on Reynolds number at
+x/c = 4, with the Re = 3 × 106 case being somewhat
+distinct from the other two cases.
+The vertical and streamwise
+velocity contours
+around the core of the vortex are presented for each
+Reynolds number at a location x/c = 0.1 behind the
+trailing edge of the wing (fig. 50). The vertical component shows a progressive
+increase in the number of
+contour lines as the Reynolds number is decreased (corresponding to an increase in a). The streamwise component shows a steady growth in velocity excess while
+the regions of large velocity deficit become more isolated as the Reynolds number is decreased.
+Circulation
+effects- The angle of attack of a squaretip wing with c = 52 cm was varied from a = 4 ° to
+a = 12 ° to examine the effects of circulation on the
+trailing vortex at Re = 1.5 x 106. Based on the vertical
+velocity component near the trailing edge of the wing,
+the nondimensional
+circulation
+(r/cVoo)
+is estimated
+to be 0.15 at a = 4 ° , 0.25 at a = 8 ° and 0.35 at
+a = 12 °. Since c and Vo¢ were held constant, these
+values show that F varies linearly with a. The velocity
+measurements
+at x/c = 0.1 indicate that the distortion
+in the vertical component
+moves inboard but retains
+
+approximately
+the same magnitude (while the primary
+vortex peak diminishes)
+as the circulation (or a) decreases (fig. 51). The streamwise velocity component
+shows that the velocity excess portion of the profile is
+a pocket of flow that reverses and becomes a velocity
+deficit as the circulation is reduced to a = 4 °. Farther
+downstream
+at x/c = 4, the streamwise
+component
+progresses from a velocity excess condition to a deficit
+as the circulation
+is reduced.
+An earlier experiment
+on a rectangular wing with the same cross section also
+showed a streamwise component that changed from a
+predominantly
+excess profile to a deficit as a was decreased (ref. 44). The same trend has been reported
+for wings with different cross sections (ref. 45). The
+maximum vertical velocity exhibits a strong proportional dependence
+on circulation
+at both x/c = 0.1
+and x/c = 4 (fig. 52(a)). The maximum streamwise
+velocity also shows a strong proportional
+dependence
+on circulation
+at x/c = 0.1 (fig. 52(b)), whereas at
+x/c = 4 the core velocity exceeds the surrounding
+values only for a = 12 °. The diameter of the vortex core does not appear to have a clear dependence
+on circulation, especially near the trailing edge, where
+the distortion in the profile confounds a simple definition for the vortex diameter (fig. 53(a)). The spanwise
+displacement
+of the core shows little dependence
+on
+circulation
+at x/c = 0.1, whereas there is a sizable
+(but unordered) dependence
+at x/c = 4 (fig. 53(b)).
+The vertical displacement
+of the core follows the angle of attack of the wing and retains that order through
+x/c
+
+= 4 (fig. 53(c)).
+The vertical and streamwise velocities around the
+vortex core when Re = 1.5 × 106 are shown for three
+values of circulation at x/c = 0.1 behind the trailing
+edge of the wing (fig. 54). The vertical component
+shows a progressive decrease in the contour range as
+the circulation is decreased.
+The streamwise
+component shows a decrease in the velocity excess and a
+more numerous and even distribution of islands of velocity deficit along the wake of the wing that is feeding into the trailing vortex as _he circulation
+is decreased.
+The same trends were characteristic
+of the
+results when Reynolds number was the variable. Since
+changes in Reynolds number and circulation
+both involved changes in a, it may be that a is the more
+fundamental determinant
+that dictates the behavior of
+the trailing vortex and its surroundings.
+Focusing on the maximum vertical
+
+component
+
+of
+
+velocity, and recalling the results when F was varied
+by changing a at constant Vc_ (fig. 52(a)) as well as
+
+11
+
+theresultswhen1"wasconstantwhile a and Vo_ were
+changing (fig. 48(a)), one can see a trend that depends
+predominantly
+on a. Combining the results from these
+two figures shows that there is indeed a nearly linear relationship between Vz/Voo and a (fig. 55). The
+slope of the curve decreases as x/c increases, and there
+appears to be no obvious dependence
+on Voo. This
+behavior was also observed in an earlier experiment
+(ref. 30) on a NACA 0015 wing with a square tip.
+Aspect ratio effects- Three square-tip wing sections with the same chord (c = 30 cm) were combined
+to study the effects of aspect ratio on the trailing vortex.
+The Reynolds number and circulation were held constant and the aspect ratio varied from 6.6 to 9.6 (based
+on wing-tip-to-wing-tip
+distance). For this study, Re =
+1.5 × 106 (Vc_ = 77 m/sec and Moo = 0.22) and
+F = 8 m2/sec. Measurements
+made at x/c = 0.! indicate that there are only minor differences between each
+of the aspect ratio cases (fig. 56). The major distinguishing characteristics,
+such as the outboard distortion
+in the vertical velocity profile, the inflections in the
+streamwise profile as the vortex core is traversed, and
+the streamwise velocity deficit in the wake of the wing
+farther inboard, are all present for each aspect ratio.
+There also appears to be little difference between the
+velocity profiles at x/c = 4, except for the "atypical"
+streamwise deficit when AR = 8. I. Although referred
+to as atypical, it may be that this case is actually more
+representative
+of the flow in all three cases, because the
+survey was more "centered" across the vortex and/or
+because the performance
+of the vortex meter during
+those particular measurements
+was better and thereby
+influenced the choice of data that was admitted for
+conditional
+averaging.
+Overall, the maximum velocities (relative to free stream) do show some dependence
+on aspect ratio (fig. 57); however, the behavior is too
+inconsistent to draw any conclusions.
+The relative size
+and position of the vortex core show a more rational
+dependence
+on aspect ratio (fig. 58). The relative diameter of the vortex core decreases as the aspect ratio
+is increased (a total reduction of 23% from AR = 6.6
+to AR = 9.6). The spanwise displacement
+of the core
+is farther inboard for lower values of aspect ratio. The
+vertical displacement
+of the core is increased in an upward direction as the aspect ratio is increased; however,
+this is believed to be a tunnel-wall effect and therefore
+not representative
+of free-air behavior.
+Velocity contours showing the vertical and streamwise components
+over an area around the core of the
+
+12
+
+vortex are presented for each aspect ratio at a location x/c = 0.1 behind the trailing edge of the wing
+(fig. 59). All three cases appear to be qualitatively
+similar, with the vertical velocity showing a well defined set of closed contours over the outboard portion
+of the vortex and more open contours over the inboard
+portion because of the downwash behind the wing. The
+viscous wake behind the wing can be clearly identified
+in the contour map of the streamwise
+velocity component. The numerous pockets of velocity deficit that
+make up the viscous sheet feeding into the vortex again
+attest to the three-dimensional
+character of the wake
+shed by the wing.
+Leading-edge
+trip effects- A serrated tape was
+placed along the span near the leading edge of the wing
+to produce a boundary-layer
+trip. The effects of the trip
+on the trailing vortex were examined at x/c = 4 for
+Re = 1.5 × 106 and c_ = 12 ° with the wing having
+c -- 30 cm.
+the maximum
+
+Although there is a slight reduction in
+vertical velocity with the trip, the most
+
+obvious effect appears in the streamwise
+component
+of velocity, which changes from a small excess velocity to a large deficit condition (figs. 60 and 61). The
+trip increases the diameter of the vortex core and decreases its inboard movement along the span, but has
+no detectable effect on its vertical position (fig. 62).
+Image plane effects- To determine what effects
+the proximity of the test-section
+wall might have on
+the trailing vortex, an endplate (equal in size to the
+wing-support
+endplate) was placed at different positions away from the tip of the wing (fig. 5). The
+trailing vortex from the c ---=30 cm wing (square-tip,
+AR = 6.6) was examined at x/c = 4 with c_ = 12 °
+and Re = 1.5 x 106 . Without an image endplate,
+the test-section wall became the image plane and represented the "far image" condition.
+In this case the
+far-image plane was located 5.7 chords away from the
+tip of the wing. When the image endplate was in the
+"near image" position, the distance between the image
+plane and the wing tip was 1.9 chords.
+This configuration corresponded
+geometrically
+to the c = 52 cm
+wing case, which had the same aspect ratio and was
+also 1.9 chords away from the opposing wall. The
+largest effect of the presence of the image plane is on
+the streamwise
+component
+of velocity (fig. 63). The
+maximum vertical velocity increases slightly and the
+streamwise
+velocity deficit increases significantly
+as
+the image plane approaches the wing tip (fig. 64). The
+diameter of the vortex core remains nearly the same
+while the path of the core is drawn toward the tip and
+
+upwardsas the imageplaneapproaches
+the wing tip are due to factors that do not have an area-wide in(fig. 65). Thisdiversionof thepathof thetrailingvor- fluence. Examination of the contours in more detail
+tex is in keepingwith theanticipated
+influenceof the (fig. 70) only confirms the presence of steep gradiimaginaryvortexontheothersideof theimageplane, ents and high velocities already observed for the vorandseemsto offer a convincingexplanationof why tex from the round-tip wing. Both contour maps are
+thetrailingvortexwasobserved
+to moveup insteadof irregular and contain several isolated islands of peak
+downasit traveleddownstream.
+velocity, but no specific features appear that would exRound-lateral edge effects- Each square-tip plain or corroborate the distortions always observed at
+wing couldbe convertedto a round-tipwing by the z/c = 0.1 for the square-tip wings along the outboard
+additionof anendcap(fig. 1). Theconversionto a portion of the vertical-velocity profile.
+roundtip causesthe planformto be extendedby an
+amountequalto half of the thicknessprofile of the CONCLUDING
+REMARKS
+wing. Whenviewedalonga line from the trailing
+edgeto the leadingedgeof thewing,the tip appears
+The effects of the round-lateral
+edge appear to be
+to be extendedby a semicircularsectionwith a radiusequalto half themaximumthickness
+of thewing. confined to the pressure near the wing tip and the velocity distribution within the trailing vortex near the wing
+The trailingvortexwasexamined
+at :c/c = 4 using a
+c = 30 cm wing with Re = 1.5 x 106 , and in more
+detail at z/e = 0.1 using a e = 52 cm wing with
+Re = 2.0 x 106 (Voo = 59 m/sec and Moo = 0.17).
+Velocity measurements
+at :c/c = 0.1 show that the
+round tip not only eliminates the distortion along the
+outboard portion of the vertical component, but also reduces the number of inflections in the streamwise component
+
+within the vortex
+
+(fig. 66).
+
+At z/c
+
+= 4 how-
+
+ever, the profiles appear to be quite similar. The maximum vertical velocity is significantly
+higher for the
+round tip at :c/c = 0.1, although it becomes lower than
+that for the square tip after reaching :c/c = 4 (fig. 67).
+The maximum streamwise velocity remains higher for
+the round-tip case, but the difference is barely distinguishable at :c/e = 4. The diameter of the vortex core
+is smaller with the round tip, but reverses after reaching z/c = 4 (fig. 68). When the behavior of the core
+diameter and that of the maximum vertical velocity are
+looked at together, the circulation associated with the
+vortex development
+for both the square and round tips
+appears about the same. The vortex leaves the trailing
+edge at the same spanwise location, but at z/c = 4
+it has moved farther inboard when the tip is round.
+Since the round tip extends the wing span by 7.5% of
+the chord, the position of the trailing vortex relative
+to the wing root is about the same in both cases. The
+vertical position of the vortex is initially higher for the
+round tip, but at z/c = 4 the vortex from the square
+tip is slightly higher.
+The velocity contours around the vortex at :c/c =
+0.1 are very similar (fig. 69). Therefore,
+it appears
+that the distinguishing
+features that were evident in the
+profiles taken across the center of the vortex (fig. 66)
+
+trailing edge. The round edge eliminates the additional
+pressure undulation on the wing surface as well as the
+outboard distortion in the vertical velocity component,
+indicating that a secondary vortex over the wing (and in
+the near wake) is a characteristic
+of wings with square
+tips.
+The lift distribution
+(from pressure integrations)
+diminishes along the wing span as the tip is approached,
+but exhibits an abrupt increase over the outermost 4%
+of the wing in both the round- and square-tip cases.
+Drag and pitching moment deviations in the tip region
+are even greater. These force and moment increases
+are due to the presence of the trailing vortex over the
+upper surface of the wing tip. The Reynolds number
+had some effect on the pressure distribution over the
+wing in the square-tip case, and greatly affected the
+pressure on the suction side near the wing tip in the
+round-tip case. The section load variations along the
+wing were largest for the round-tip case, as were the
+maximum velocities within the trailing vortex close to
+the wing.
+Circulation-box
+measurements
+did not capture the
+effect of the tip vortex in either the round- or square-tip
+cases, but instead showed a smooth decline in the lift
+all the way to the wing tip. This result may indicate a
+limitation in the application of simple circulation contours to obtain lift in regions of a wing with highly
+three-dimensional
+flow.
+Within the trailing vortex, the vertical velocity can
+reach 110% of free stream and the streamwise velocity
+can reach 50% of free stream when the vortex is close
+to the wing.
+the rotational
+
+Given the small size of the vortex core,
+speed can be as high as 44,000 rpm. In
+
+13
+
+all cases,the peakvaluesof velocity
+
+diminish with
+downstream
+distance from the wing. The streamwise
+velocity within the viscous wake that is shed from the
+wing is not uniform; instead, islands of peak velocity
+occur in the spiraling sheet that feeds into the trailing
+vortex.
+Near the wing the trailing vortex appears to
+be asymmetric (both components),
+and it has definite
+zones where the streamwise velocity both exceeds and
+falls behind the free-stream value. As the trailing vortex moves downstream,
+a streamwise deficit condition
+generally prevails at low a and an excess condition
+prevails at high a (except when the boundary layer is
+tripped and when the opposing image plane is brought
+close to the wing tip). When referenced to the freestream velocity, the maximum vertical velocity of the
+vortex is directly dependent on c_ (almost linearly) and
+is independent of Re.
+The center of the vortex leaves the wing with an
+inboard displacement
+from the tip equal to about 5%
+
+14
+
+of the wing chord, and a vertical displacement
+that
+depends on a. Tracing the downstream
+path of the
+vortex shows a continuing inboard movement of the
+core that can be as large as 20% of the wing chord in
+the spanwise direction.
+Increasing
+the aspect ratio is
+similar to decreasing the distance to the image plane
+(opposite the wing tip), in that both result in a spanwise
+decrease and a vertical increase in the displacement
+of
+the path of the trailing vortex. The round-lateral
+edge
+does not cause any permanent
+change to the vortex.
+At a distance of 4 chords downstream
+from the wing,
+the round- and square-tip velocity profiles are quite
+similar and even the path of the trailing vortex from
+the round tip adjusts to match that of the square-tip
+wing. The boundary-layer
+trip had the largest effect on
+the downstream diameter of the vortex core (causing a
+30% increase), but in general the diameter at x/c = 4
+was about 65% of the wing thickness (or 10% of the
+wing chord).
+
+APPENDIX
+WALL
+Solid
+
+and Wake
+
+CORRECTIONS
+
+Blockage
+
+the corrected
+becomes:
+
+When measurements
+are obtained on a lifting airfoil in a flow that is confined by wind tunnel walls, certain aerodynamic
+quantities (such as the pressure and
+lift coefficients)
+are altered from their free-air values
+because of blockage and a distortion of the streamlines.
+In a closed test section, blockage has the effect of producing a more dense flow and a higher velocity in the
+region where the airfoil is located. These increases are
+due to a streamwise continuity adjustment that can be
+modeled by an infinite array of airfoil images located
+beyond the actual tunnel walls. A change in streamline curvature (caused by these airfoil images) has the
+effect of imparting greater "apparent"
+camber to the
+airfoil (ref. 46) and inducing a higher angle of attack
+(or an increase in the effective airfoil incidence).
+In the present experiment,
+the lift coefficient is
+ultimately derived from the measured pressure distribution on the surface of the airfoil. Considering pressure first, the nondimensional
+pressure coefficients are
+based on the "free-stream"
+static and dynamic pressures that are obtained from a pitot-static probe placed
+upstream in the test section. To emphasize that these
+reference pressures will be different from the local tunnel values because of density and velocity changes
+arising from blockage effects, the corrected pressure
+coefficient is stated as
+
+Cp =
+
+p - (p_
+
++/',p_)
+
+q_u
+
++ Aqoc
+
+(A- I)
+
+where the subscript u denotes an uncorrected
+value
+and the symbol A stands for the difference between
+corrected and uncorrected
+values. Letting e represent
+the total correction
+factor accounting
+for both solid
+and wake blockage, the corrected free-stream velocity
+becomes
+Vco = (1 + e)V_u
+
+pressure
+
+coefficient
+
+Cp = Cpu(1 - 2e) + 2e
+
+from equation
+
+(incompressible)
+
+(A-l)
+
+(A-3)
+
+where Cpu is the pressure coefficient that would be
+formed using upstream reference pressures (Pocu and
+qccu), without regard for blockage effects. To illustrate
+the impact of blockage on the measured pressure distribution, results from the present experiment are compared with blockage-adjusted
+values (fig. 71) under the
+arbitrary assumption that e = 0.05 (corresponding
+to a
+5% increase in free-stream velocity). To more directly
+reflect the change that is observed in the pressure distribution, equation (A3) is rearranged to read
+ACp = 2e(1 - Cpu)
+
+(incompressible)
+
+(A-4)
+
+This arrangement makes clear (for incompressible
+flows)
+that no change in the pressure coefficient
+occurs at
+the stagnation point (where Cpu = 1), and since elsewhere Cpu < 1 always, the resulting change is everywhere positive; that is, Cp always becomes more
+positive, if it changes at all, as a result of blockage in
+a closed test section. Integrating the pressure distribution over the airfoil surface yields a vector from which
+the lift coefficient can be obtained (if the viscous component is neglected).
+Comparing the uncorrected
+with
+the blockage-corrected
+value of the lift shows that for
+the example case of 5% blockage, an 11% decrease in
+C l results (fig. 71). The lift coefficient will decrease
+even more once the correction for streamline curvature
+is included.
+Considering
+now the more general compressible
+flow case, the corrections explicitly feature the Mach
+number and can be summarized (ref. 47) as
+ARe
+
+= eReu
+
+(A-5)
+
+Aqec
+
+= _(2-
+
+AMoc
+
+= e(1 + 0.2M2u)Mc_u
+
+(A-2)
+
+In other words, Vc_u is the "free-stream"
+velocity at an
+upstream location that is not influenced by the airfoil
+(measured with an upstream pitot-static probe), while
+V_ is a corrected value that is more representative
+of
+the constricted flow in the test section where the airfoil
+is actually positioned.
+If the flow is incompressible
+(thereby justifying p_ + qoo = constant), and use is
+made of the approximation
+(1 + e) -2 _ (1 - 2c), then
+
+ACp = e(2-
+
+M2u)qocu
+
+(A-7)
+
+[2 - M2u]Cpu)
+
+The above
+
+relations
+
+q_,
+
+and Cp are assumed
+
+M_,
+
+(A-6)
+
+governing
+
+(1-8)
+
+the corrections
+to apply
+
+to Re,
+
+to both 2D
+
+15
+
+and3D configurations.Next comesthe morediffi- and 7? accounts for the increase in blockage
+cult taskof specifyinga valuefor the blockagefac- angle of incidence:
+tor, e, that appearsin eachof theserelations. Numerousformulationshavebeenrigorouslydeveloped
+z/=(l+l.1/3_a
+2)
+for caseswherethe objectcausingthe blockagecan
+be simplydescribedandimagedwith potential-flow The symbol Aa represents the cross-sectional
+equations.However,modelsandsupportsareoften the airfoil (fig. 74), and/3 is a compressibility
+complicated,
+andin suchcasesa roughapproximation
+for theblockagefactor(applicable
+to either2D or 3D
+/3 = (1- AInu),/2
+configurations)
+basedona simpleareareductionhathe
+testsectionmayhaveto suffice(ref.46):
+object frontal area
+e= n
+test section area
+
+(A-9)
+
+The coefficient n = ¼ is appropriate when the airfoil
+for which the aerodynamic
+quantities are to be corrected is itself responsible for the blockage. The effect
+of blockage on elements that are located away from a
+given blocking object will be greater, and therefore a
+much larger value than ¼ may be more suitable. The
+frontal projection for the NACA 0015 airfoil at various
+angles of incidence is shown in figure 72.
+
+2D Blockage
+
+Factor
+
+If the flow is considered
+
+to be two dimensional
+
+and incompressible,
+then the solid and wake
+butions to the total blockage for a symmetrical
+(ref. 46) become
+C _-- %olid + _wake
+
+(A-10)
+
+(
+
+e=
+
+contriairfoil
+
+1 +0.8
+
++ --_Cdu
+
+(A-11)
+
+In the more general case, compressible
+effects
+may be present and the blockage-producing
+object may
+also be off center in the test section as well as at some
+angle of incidence to the oncoming flow. For these
+conditions the blockage factor (ref. 47) becomes
+e : 5_]%olid + ewake
+
+=@6
+
+(A- 12)
+
+(
+
+1+1.2/3
+
+x (1 +0.4M2u)
+
++ 4hfl 2
+Cdu
+
+(h-13)
+
+where fi _> 1 and is introduced to account for objects
+that are offset from the centerline of the test section
+(fig. 73):
+6 =
+
+16
+
+1 + _cot 2
+
+(A-14)
+
+due
+
+to
+
+(A-15)
+area of
+factor:
+
+(A-16)
+
+The uncorrected
+drag coefficient Cdu, which consists
+of both pressure and viscous contributions,
+was not
+measured in this experiment.
+However, an estimate
+for the drag should be sufficient for determining
+the
+blockage, so it was taken from data already published
+(fig. 75, based on ref. 48). For the airfoil used to measure pressure in the present experiment, with no offset,
+a = 10 °, and M_u
+= 0.3, the predicted blockage factor as calculated from equation (A-13) is e = 0.0065.
+The above relations have been derived for some-
+
+what ideal configurations.
+The actual "2D" setup in
+this experiment
+(fig. 76) consisted of an airfoil supported between two endplates that were not centered
+in the test section.
+In addition, a large fairing was
+attached to the wall side of one of the endplates to
+cover the pressure tubes that extended from the airfoil.
+Clearly some approximations
+will be necessary.
+If the blockage factor due to the endplates is to
+be roughly estimated by equation (A-9), then the coefficient should be increased (say, to unity) since the
+midspan of the airfoil will be in the far field relative
+to each endplate. A better treatment of each endplate
+and its respective offset can be given with equation
+(A-13). In this case, the endplate (with leading- and
+trailing-edge
+fairings) is assumed to be a long ellipse
+at a = 0° with an estimated drag coefficient of 0.011
+(ref. 49). In addition, w will need to be substituted for
+h in equations (A-13) and (A-14) because the endplates
+span the vertical dimension of the tunnel.
+To illustrate the magnitudes
+of the blockage factors predicted for the airfoil and its various supports,
+results using the different methods that have been discussed are shown in figure 77. It can be seen that the
+airfoil contributes a comparatively
+modest amount of
+blockage, whereas the endplates account for about 70%
+of the blockage. The "approximate"
+estimates for the
+endplates are based simply on the projected frontal area
+of each endplate relative to the cross-sectional
+area of
+the test section. Because the endplates have a much
+greater blockage effect on the flow around the airfoil
+
+thanthe airfoil hason itself, blockageestimatesus- The indices in equation (A-18) range over all values
+ing equation(A-9) shouldbe madewith _ = 1 for except for those that define the physical location of the
+eachendplateand_ = ¼ for the airfoil. No con- airfoil at (m, n) = (0, 0). When the airfoil is supsiderationis givento whereeachendplateis placed ported off a side wall of the test section (half-span
+in the test section,andthereforeboth endplates
+are model), the blockage is assumed to be that for a fullassigned
+the sameblockagefactor. However,using span model (2s) in an imaginary test section (fig. 78)
+equation(A-13)to calculatetheblockagefactorsfor twice the actual width (b = 2w). These equations can
+theendplates
+showsthatthesupportendplate
+produces be applied to compressible flows over a test-section
+a significantly
+higherblockagethantheimageendplate size range of 0.3 < b/h < 3.5 and a model span
+because
+of itscloseproximityto thetunnelwail. Since range of 0 < 2s/b < 1 (ref. 47). Taking values
+equation(A-14) is not recommended
+for objectsthat from the present experiment, for a direct wall-mounted
+areoffsetmuchover 10%fromthe centerlineof the model with b/h = 2.86 and 2s/b = 0.56, the testtestsection(ref.47), the blockagevaluefor the sup- section shape parameter becomes A = 2.78 (this is
+portendplateis expectedto beexcessive.
+Takingthis equivalent to r = 0.5A(b/Trh) 1"5 = 1.2, in ref. 50).
+into consideration,
+the approximations
+obtainedusing For the airfoil in the present experiment, at a = 10 °
+equation(A-9) appearto be in goodagreement
+with and M_u = 0.3, the predicted blockage factor is
+thoseobtainedfromthemorerigorousapproach
+based e = 0.0021.
+onequation(A-13).
+2D Lift Interference
+3D Blockage
+
+Factor
+Not only do the walls of a closed test section
+
+When the body is three dimensional,
+a doubly infinite system of images is needed to specify the blockage
+factor. Assuming that the airfoil is not offset from the
+center of the test section, the solid and wake blockage
+factor (ref. 47) is
+Aas
+e = r/A4---_-fl3
+
+( 1 + 1.2fl _) + 4bhfl-------Ap _
+
+x (1 + 0.4M_u
+
+) CdOu
+
+(1-17)
+
+where Ap is the planform area of the wing (Ap =
+cs for a rectangular
+wing), CdOu is the uncorrected
+drag coefficient at zero lift, and the test-section shape
+parameter A is given by (ref. 50, with a replaced by
+
+)t =-
+
+E_
+
+E
+'in
+
+_
+
+_2m
+
+[(m
+
+n-2[n
+
+b
+--F b )_2 -F (?7t-)_11-1
+
+h
+
+(form
+
+'
+
+¢ 0 and n ¢ 0)
+
+The terms El and _2 are introduced
+and are defined by
+_l
+
+:
+
+[n 2 h- (m
+
+(A-18)
+
+for convenience
+
+q- _s)2(b)2]l/2
+
+(A-19)
+_2
+
+=
+
+[n2
+
++
+
+(m
+
+-
+
+s_2[b)211/2
+/7)
+t_
+J
+
+walls (vanishing normal velocity), the airfoil images
+induce a curvature in the flow that causes the lift as
+well as the angle
+
+of attack
+
+to be too high.
+
+In an in-
+
+compressible
+flow around a thin airfoil with a short
+chord relative to the tunnel height, these quantities can
+be corrected
+
+(ref. 46) by
+o
+
+Aasc
+
+= _
+
+( Clu + 4Crn¼u)
+
+A Cl sc = -aCl
+
+(z
+
+(incompressible)
+
+(A-20)
+
+(incompressible)(A-21)
+
+only. The coefficient a is defined as a _= _l( c)2
+_
+.
+For cases when compressibility
+and airfoil thickness and length are significant (especially when c/h >
+
+2 q- (s)21-1/2
+
+n=-c_
+
+pose a choking effect on the flow, but they also cause
+the streamlines to be distorted around the lifting airfoil,
+and these distorted streamlines produce slightly different aerodynamic
+characteristics
+than would result in
+free air. In modeling the confining effect of the tunnel
+
+with the subscript "sc'" denoting that the correction is
+for streamline curvature (the result of lift interference)
+
+-- ¢X) 'n -_. -- o_
+
++E
+
+im-
+
+0.4fi), more accurate corrections
+and lift (ref. 47) are given by
+
+=
+
+(1 +
+7r3fl
+92160
+
+(c)fl-h
+
+to the angle of attack
+
++ c, + c2))Q
+4 (41
+
++ fl(79C0
+
++C2 + 316'3 + 42C4))Ch,
+
++ llC1
+
+(1-22)
+
+17
+
+is treated as though it were a full-span
+mGs
+
+C --
+
+96
+
+(2 +/3(14C0
+
+q- _ 7r4
+
+-5C2))Clu
+
+x (210 +/3(1004C0
++106C3
+
+(c)--_
+
+- 2C]
+
+4
+
+inclination
+
+- 190Cl - 96C2
+
+- 69C4))Clu
+
+(A-23)
+
+where
+
+4fo rS_cosn0d0
+
+(n > 0) (A-24)
+
+C
+
+C1 =
+
+0.0755
+
+60 -- 2--4-b+
+rrh
+h_ = 1 exp(27rnh/b)
+n
+rr-g
+
+×
+
+2
+
+C3 = -0.0084
+
+Note that equations (A-22) and (A-23) reduce to equations (A-20) and (A-21) when (1) the flow is incompressible (/3 = 1); (2) 2/c << 1; (3) c/h << 1; and
+(4) the airfoil is approximated
+by a single vortex at
+the quarter chord. If the airfoil completely spans the
+center of the tunnel, and Clu = 1.0, M_u
+= 0.3,
+and c/h = 0.24, then the corrections
+predicted by
+equations (A-22) and (A-23) are Ac_sc = 0.11 ° and
+AClsc = -0.022.
+
+(A-25)
+
+Sl
+
+{_}
+
+=
+
+_
+
++ 1
+
+n -3 + _ (--1)nS'l{
+n=l
+
+C 2 = -0.0211
+
+C4 = -0.0181
+
+been
+
+where At is the cross-sectional
+area of the tunnel (At =
+bh for a rectangular
+tunnel, and b is twice the actual
+tunnel breadth for a half-span model), and other terms
+are defined as follows:
+
+The coefficients Co and Cn are defined above for the
+case of a symmetric airfoil, and 5 is the ordinate of the
+upper surface of the airfoil. For the present case of a
+NACA 0015 airfoil, the coefficients are
+0.1205
+
+it has generally
+
+c_S1 "_
+Aeesc = ¢5E (1 + 2/3h60
+J -_--EC/u
+
+2x
+cos 0 = 1 - --
+
+Co =
+
+of the force vector,
+
+found more convenient to apply the correction entirely
+to the angle of attack (refs. 46 and 51). This means that
+the angle of attack for closed-tunnel
+compressible-flow
+data will have to be decreased (refs. 47, 51, and 52)
+according to
+
+Co=-2 7r fo rrlz,
+c sin 0 dO
+Cn-7-
+
+model in a rect-
+
+angular test section that is double the breadth-to-height
+ratio (fig. 78). Even though the interference
+upwash
+causes an increase in the lift as well as a more forward
+
++oo
+at-
+
+Z
+m=--oo
+
+}
+
+m2 _ 2_ 2
+(m---2
+
+(A-26)
+
+4-_-_.5
+
+l h F {X} +4rr_ h nk= 1 exp(2rrnh/b)
+n
+_SE = _-_
+
++ 1
+
+x ( Jl {rrnx} _ 2
+7rnx
+/
+F{X}
+
+1 v-'°°
+
+(2n + 1)!(2n + 2)!
+
++ 1)!(n+
+X
+
++ 2)!
+
+Z p--2(n+l)
+p=l
+
+3D Lift Interference
+The approach for determining
+the 3D lift interference for a wing is similar to that for a 2D model,
+except that now the image system is doubly infinite.
+Although the wing may actually be a half-span model
+that is mounted on a reflection plane in the test section
+(thereby allowing the use of a larger chord model to
+achieve a higher Reynolds number), the configuration
+
+18
+
+where _ = nh/b, X = 2s/b, and J1 is a Bessel function of the first order. If it is assumed that the half-span
+pressure model in the present experiment (c/h = 0.24)
+is mounted directly on a side wall of the test section
+(h/b = 0.35 and X = 0.56) and that Moou = 0.3
+and Ctu = 1.0, then the complete lift-interference
+correction can be determined from equations (A-25) and
+(A-26) to be Ac_sc = 0.51 °.
+
+In summary,
+thecorrectedVoo is determined
+
+from
+equation (A-2) and Re, qoo, Moo, and Cp are determined from equations (A-5)-(A-8),
+where it is assumed that the uncorrected free-stream temperature and
+velocity are measured upstream of the airfoil. These
+corrections all require a value for the blockage factor,
+which in the case of a single obstruction can either
+be estimated using equation (A-9) or calculated more
+precisely using either equation (A-13) in the 2D case
+or equation (A-17) in the 3D case. Some judgment
+is required in deciding which blockage equation best
+accounts for a particular obstruction in the test section.
+The total blockage factor will be equal to the sum of
+
+the individual
+
+factors that describe
+
+each of the flow dis-
+
+turbances. Finally, the integrated loads that are derived
+from the corrected surface pressure must be adjusted.
+Both c_ and C l must be corrected according to equations (A-22) and (A-23) in the 2D case, whereas only
+is corrected, according to equation (A-25), in the 3D
+case.
+
+Ames Research
+
+Center
+
+National Aeronautics and Space Administration
+Moffett Field, CA 94035-1000, August 20, 1991
+
+19
+
+REFERENCES
+
+1. Schmitz, E H.; and Yu, Y. H.: Helicopter
+Impulsive Noise: Theoretical
+and Experimental
+Status.
+International
+Symposium
+on Recent
+Advances in Aerodynamics
+and Aeroacoustics,
+Stanford University, Stanford, California, 1983.
+2. Caradonna, E X.; Strawn, R. C.; and Bridgeman,
+J. 0.: An Experimental
+and Computational
+Study of Rotor-Vortex Interactions.
+Fourteenth
+European Rotorcraft Forum, Milano, Italy, 1988.
+3. Scheiman, J.; Megrail, J. L.; and Shivers, J. P.:
+Exploratory Investigation
+of Factors Affecting
+the Wing Tip Vortex.
+NASA TM X-2516,
+1972.
+4. Staufenbiel,
+
+R. W.:
+
+Rolled-Up Vortices.
+1984, pp. 737-744.
+5. Bliss, D. B.: Prediction
+Motion Parameters
+
+Structure
+
+of Lift-Generated
+
+J. Aircraft, vol. 21, no. 10,
+of Tip Vortex Self-Induced
+in Terms of Rotor Blade
+
+Loading.
+Proceedings
+of the American Helicopter Society, Arlington, Texas, 1987.
+6. Srinivasan, G. R.; McCroskey, W. J.; Baeder, J. D.;
+and Edwards, T. A.: Numerical Simulation of
+Tip Vortices of Wings in Subsonic and Transonic Flows. AIAAJASME 4th Fluid Mechanics, Plasma Dynamics and Lasers Conference,
+Atlanta, Georgia, 1986.
+7. Tung, C.; Pucci, S. L.; Caradonna,
+F. X.; and
+Morse, H. A.: The Structure of Trailing Vortices Generated by Model Rotor Blades. Vertica, vol. 7, no. 1, 1983, pp. 33-43.
+8. Spivey, R. E: Blade Tip Aerodynamics
+and Planform Effects.
+24th Annual
+
+- Profile
+National
+
+Forum Proceedings of the American Helicopter
+Society, Washington, D.C., 1968.
+9. Thompson,
+D. H.: A Flow Visualisation
+Study
+of Tip Vortex Formation.
+Aeronautical
+Research Laboratories,
+Aerodynamics
+Note 421,
+Melbourne, Victoria, Australia, 1983.
+10. Francis, M. S.; and Kennedy, D. A.: Formation
+of a Trailing Vortex. J. Aircraft, vol. 16, no. 3,
+1979, pp. 148-154.
+11. Bilanin, A. J.; and Donaldson, C. duE: Estimation of Velocities and Roll-Up in Aircraft Vortex Wakes. J. Aircraft, vol. 12, no. 7, 1975,
+pp. 578-585.
+12. Brown, C. E.: Aerodynamics
+of Wake Vortices.
+AIAA J., voi. 11, no. 4, 1973, pp. 531-536.
+
+2O
+
+13. Hoerner, S. E; and Borst, H. V.: Fluid-Dynamic
+Lift. Hoerner Fluid Dynamics,
+Brick Town,
+N.J., 1975.
+14. E1-Ramly, Z.; Rainbird, W. J.; and Earl, D. G.:
+Wind Tunnel Measurements
+of Rolling Moment in a Swept-Wing
+Vortex Wake. J. Aircraft, vol. 13, no. 12, 1976, pp. 962-967.
+15. Jordan, P. F.: Structure of Betz Vortex Cores. J.
+Aircraft, vol. 10, no. 11, 1973, pp. 691-693.
+16. Mason, W. H.; and Marchman III, J. E: Far-Field
+Structure of Aircraft Wake Turbulence.
+J. Aircraft, vol. 10, no. 2, 1973, pp. 86-92.
+17. Spreiter, J. R.; and Sacks, A. H.: The Rolling Up
+of the Trailing
+the Downwash
+
+Vortex Sheet and Its Effect on
+Behind Wings. J. Aeronautical
+
+Sciences, vol. 18, no. 1, 1951, pp. 21-32.
+18. McCormick, B. W.; Tangler, J. L.; and Sherrieb,
+H. E.: Structure of Trailing Vortices. J. Aircraft, vol. 5, no. 3, 1968, pp. 260-267.
+19. Lee, H.; and Schetz, J. A.: Computational
+and
+Experimental
+Study of Tip Vortices. AIAA Paper 83-1868, 1983.
+20. Higuchi, H.; Quadrell, J. C.; and Farell, C.: Vortex Roll-Up for an Elliptically-Loaded
+Wing at
+Moderately
+Low Reynolds Numbers.
+AIAA
+Paper 86-0562.
+AIAA 24th Aerospace
+Sciences Meeting, 1986.
+21. Freymuth, P.; Finaish, E; and Bank, W.: Visualization of Wing Tip Vortices in Unsteady and
+Steady Wind.
+AIAAJASME
+4th Fluid Mechanics, Plasma Dynamics and Lasers Conference, 1986.
+22. Ikohagi, T.; Higuchi, H.; and Arndt, R. E. A.:
+The Structure of Trailing Vortices. Advancement in Aerodynamics,
+Fluid Mechanics and
+Hydraulics,
+AIAA/ASME/ASCE
+Symposium,
+Univ. of Minnesota,
+1986.
+23. Corsiglia,
+V. R.; Schwind, R. G.; and Chigier,
+N. A.: Rapid Scanning,
+Three-Dimensional
+Hot-Wire Anemometer
+Surveys of Wing-Tip
+Vortices.
+J. Aircraft, vol. 10, no. 12, 1973,
+pp. 752-757.
+24. Rorke, J. B.; and Moffitt, R. C.: Wind
+Simulation
+of Full Scale Vortices.
+
+Tunnel
+NASA
+
+CR-2180, 1973.
+25. Iversen; J. D.: Correlation of Turbulent Trailing
+Vortex Decay Data. J. Aircraft, vol. 13, no. 5,
+1976, pp. 338-342.
+26. Betz, A.: Behavior of Vortex Systems.
+NACA
+TM-713, 1932.
+
+27. Donaldson,C. duE: A Brief Reviewof the AircraftTrailingVortexProblem.AFOSRScientific Report,AFOSR-TR-71-1910,
+1971.
+28. Saffman,R G.: Structureof TurbulentLine Vortices. Phys. Fluids,vol. 16, no. 8, 1973,
+pp. 1181-1188.
+29. Dosanjh,D. S.;Gasparek,
+E.R; andEskinazi,S.:
+Decayof a ViscousTrailing Vortex. Aeron.
+Q., vol. 13, part 2, 1962, pp. 167-188.
+30. Orloff, K. L.: Trailing Vortex Wind-Tunnel Diagnostics with a Laser Velocimeter.
+J. Aircraft,
+vol. 11, no. 8, 1974, pp. 477-482.
+31. Roshko, A.: Pressure Distribution at the Nose of
+a Thin Lifting Airfoil. Douglas Aircraft Company Report No. SM-23368,
+1958.
+32. Chigier, N. A.; and Corsiglia, V. R.: Tip Vortices
+- Velocity Distributions.
+Presented at 27th Annual National V/STOL Forum of the American
+
+39. Hoffman,
+
+Tip of a Model Helicopter Rotor in Hover. J.
+Aircraft, vol. 15, no. 8, 1978, pp. 460-467.
+35. Triebstein, H.: Unsteady Pressure Measurements
+in Rotor Blade Tips with Incidence in Incompressible Flow. European Space Agency, Technical Translation, ESA-TT-374
+Revised, 1977.
+36. Fage, A.; and Simmons,
+tion of the Air-Flow
+
+L. E G.: An InvestigaPattern in the Wake of
+
+an Airfoil of Finite Span. Royal Society of
+London, Philosophical
+Transactions,
+Series A,
+vol. 225, 1925, pp. 303-330.
+37. Spivey, W. A.; and Morehouse,
+G. G.: New Insights into the Design of Swept-Tip Rotor Blades.
+26th Annual National Forum Proceedings
+of
+the American Helicopter Society, Washington,
+D.C., 1970.
+38. Taylor, G. I.: Note on the Connection
+between
+the Lift on an Airfoil in a Wind and the Circulation
+
+Round
+
+it. Royal
+
+Philosophical
+Transactions,
+1925, pp. 238-245.
+
+Society
+
+of London,
+
+Series A, vol. 225,
+
+H. R.: Vortex Flow
+
+Over Helicopter Rotor Tips. J. Aircraft, vol. 8,
+no. 9, 1971, pp. 739-740.
+40. Caradonna,
+E X.; Laub, G. H.; and Tung, C.:
+An Experimental
+Investigation
+of the Parallel
+Blade-Vortex
+Interaction.
+NASA TM-86005,
+1984.
+41. Moore, D. W.; and Saffman,
+
+E G.: Axial Flow in
+
+Laminar Trailing Vortices. Proceedings
+of the
+Royal Society of London, vol. 333, no. 1595,
+1973, pp. 491-508.
+42. Batchelor,
+G. K.: Axial Flow in Trailing Line
+Vortices. J. Fluid Mech., vol. 20, part 4, 1964,
+pp. 645-658.
+43. Simons, I. A.; Pacifico, R. E.; and Jones, J. R:
+The Movement,
+Structure and Breakdown
+of
+Trailing Vortices from a Rotor Blade. Aerodynamic Problems
+Associated
+with V/STOL
+Aircraft, Propeller and Rotor Aerodynamics,
+vol. l, USAAVLABS Symposium Proceedings,
+1966.
+
+Helicopter Society, Preprint No. 522, 1971.
+33. Gray, R. B.; McMahon,
+H. M.; Shenoy, K. R.;
+and Hammer, M. L.: Surface Pressure Measurements at Two Tips of a Model Helicopter
+Rotor in Hover. NASA CR-3281, 1980.
+34. Shivananda,
+T. R; McMahon, H. M.; and Gray,
+R. B.: Surface Pressure Measurements
+at the
+
+J. D.; and Velkoff,
+
+44. Chigier, N. A.; and Corsiglia, V. R.: Wind-Tunnel
+Studies of Wing Wake Turbulence.
+J. Aircraft,
+vol. 9, no. 12, 1972, pp. 820-825.
+45. Thompson, D. H.: Experimental
+Study of Axial
+Flow in Wing Tip Vortices. J. Aircraft, vol. 12,
+no. 11, 1975, pp. 910-911.
+46. Rae, W. H.; and Pope, A.: Low-Speed Wind Tunnel Testing. John Wiley & Sons, Inc., 1984.
+47. Garner, H. C.; Rogers, E. W. E.; Acum, W. E.A.;
+and Maskell, E. C.: Subsonic Wind Tunnel
+Wall Corrections.
+AGARDograph
+109, 1966.
+48. Pope, A.: The Forces and Moments Overan NACA
+0015 Airfoil. Aero Digest, vol. 58, no. 4, 1949,
+pp. 76-100.
+49. Hoerner, S. E: Fluid-Dynamic
+Drag.
+Hoemer
+Fluid Dynamics, 1965.
+50, Herriot, J. G.: Blockage Corrections
+for ThreeDimensional-Flow
+Closed-Throat
+Wind Tunnels, with Consideration
+51.
+
+of the Effect of Com-
+
+pressibility. NACA Report 995, 1950.
+Glauert, H.: Wind Tunnel Interference on Wings,
+Bodies and Airscrews. ARC R&M No. 1566,
+1933.
+
+52. Glauert,
+
+H.:
+
+Interference
+
+on Characteristics
+
+Aerofoil in Wind Tunnel of Rectangular
+tion. ARC R&M No. 1459, 1932.
+
+of
+Sec-
+
+Table1. Pressuredistributionalongspan(2D configuration)
+Re inominal)
+(2
+
+I x 106
+
+1.5x 106
+
+2 X 106
+
+2.5 x 106
+
+3 X 106
+
+GO
+
+2 °
+
+4 °
+
+o
+
+o
+
+i0°
+
+•
+
+12°
+
+•
+
+14 °
+
+Table
+
+2. Pressure-derived
+
+lift distribution
+
+along span
+
+(2D configuration)
+
+Re (nominal)
+1 x 106
+[
+
+22
+
+1.5x 106
+
+2 x 106
+
+2.5x 106
+
+r ,,
+
+0°
+
+•
+
+•
+
+2°
+
+•
+
+•
+
+4°
+
+•
+
+•
+
+6°
+
+•
+
+•
+
+8°
+
+•
+
+•
+
+10 °
+
+•
+
+•
+
+12°
+
+•
+
+•
+
+14°
+
+•
+
+•
+
+3 x 106
+
+Table
+
+3. Pressure
+
+distribution
+
+over full wing span
+
+(square
+
+tip)
+
+Re (nominal)
+I x
+
+10 6
+
+1.5 x 10 6
+
+2 x 10 6
+
+2.5 x 10 6
+
+3 x 10 6
+
+0°
+2°
+
+4°
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+6°
+
+8°
+10 °
+
+_2o
+14 o
+
+Table
+
+4. Pressure-derived
+
+lift distribution
+
+along
+
+full wing span
+
+(square
+
+tip)
+
+Re (nominal)
+(2
+
+1 x 10 6
+
+1.5 x
+
+10 6
+
+2 x 10 6
+
+2.5 X 10 6
+
+3 x
+
+10 6
+
+0
+
+2
+
+°
+
+o
+| n| ,
+
+6°
+
+•
+.
+
+so
+
+•
+.
+
+•
+
+•
+
+•
+
+•
+
+.
+
+..,
+
+,,,,
+
+lo°
+
+•
+
+•
+
+12°
+
+•
+
+•
+
+•
+
+14 °
+
+23
+f
+S
+
+_J
+
+Table
+
+5. Pressure
+
+distribution
+(square
+
+over outer
+
+and round
+
+portion
+
+of wing
+
+tips)
+
+Re (nominal)
+o_
+
+1 x 106
+
+1.5x 106
+
+2 × 106
+
+2.5x I06
+
+3 x 106
+
+0°
+2°
+
+•
+
+4°
+
+•
+i|l
+
+6°
+
+s°
+
+•
+
+•
+
+10 °
+12 °
+14 °
+
+Table
+
+6. Pressure-derived
+
+lift distribution
+(square
+
+and round
+
+over outer
+
+portion
+
+of wing
+
+tips)
+
+Re (nominal)
+1 x 106
+
+1.5 × l0 s
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+2 x 108
+
+2.5 × 106
+
+3 x 108
+
+O
+
+2°
+
+4°
+
+•
+
+o
+
+s°
+10 °
+12 °
+14 °
+
+24
+
+•
+
+Table7. Circulationmeasurements
+alongwing span
+
+Tip shape
+
+c, cm
+
+a, deg
+
+4
+
+7
+
+8
+
+10
+
+12
+
+30
+
+41
+
+Re x 10 -6
+52 1.1 1.5 1.7
+
+AR
+
+2.0 3.0 6.6 8.1 9.6
+
+Square
+Round
+Square
+Round
+
+Table
+
+8. Velocity
+
+7
+
+8
+
+*2D survey
+
+Table
+
+10
+
+12
+
+around
+
+9. Velocity
+
+30
+
+41
+
+vortex
+
+8
+
+AR
+
+c, cm
+10
+
+12 3O
+
+vortex
+
+1.5 1.7 2.0] 3.0 6.6 8.1 9.6
+
+.1
+
+(round
+
+.2
+
+tip)
+
+.5
+
+4
+
+6
+
+13
+
+core also available.
+
+measurements
+
+a, deg
+7
+
+Re x 10 -6
+52 1.1
+
+square
+
+4
+
+of wing-tip
+
+c, cm
+
+a, deg
+4
+
+measurements
+
+of wing-tip
+
+vortex
+
+(square
+
+tip with boundary-layer
+
+tip with different
+
+image
+
+planes)
+
+Re
+
+x 10 -6
+
+41 152 II.1 1.5 1.7 2.0[3.0
+
+x/c
+
+AR
+6.618.1
+
+trip and
+
+9.6
+
+.1
+
+.2
+
+.5
+
+1
+
+2
+
+4
+
+6
+
+13
+
+25
+
+Table10. Velocitymeasurements
+of wing-tipvortex (squaretip)
+
+a, deg
+4
+
+7
+
+8
+
+c, cm
+10
+
+12
+
+30
+
+41
+
+Re x 10 -6
+52
+
+1.1 1.5
+
+O0
+
+AR
+
+1.7 2.0 3.0 6.6:8.1
+
+•
+
+•
+
+O0
+
+•
+
+iO
+
+o!o
+
+•
+
+•
+
+x/c
+9.6
+
+.1
+
+.2
+
+.5
+
+•
+
+go
+O_O
+O_O
+
+•
+
+•
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+I "
+
+•
+
+•
+
+•
+
+•
+
+•
+
+Io
+
+•
+
+•
+
+•
+
+!O
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+go
+
+•
+
+O0
+
+Le
+
+* 2D survey
+
+26
+
+around
+
+•
+
+vortex
+
+core also available.
+
+•
+•
+•
+
+•
+
+1
+
+2
+
+6
+
+13
+
+Table11. Wing-tip vortex structuredeterminants
+F
+(CtVooc/2)
+
+AR
+
+Method
+
+CHANGE
+
+fixed
+
+fixed
+
+fixed
+
+Vooc = constant
+
+fixed
+
+CHANGE
+
+fixed
+
+fixed
+
+CIVoo = constant
+
+fixed
+
+fixed
+
+CHANGE
+
+fixed
+
+fixed
+
+fixed
+
+fixed
+
+CHANGE
+
+/
+
+vary
+
+add
+
+tip extensions
+
+///
+
+/
+/
+/
+
+/
+
+/
+/
+/
+/
+/
+
+Figure
+
+1. NACA
+
+0015 wing with square
+
+tip, and end cap for forming
+
+round
+
+tip.
+
+27
+
+ORtG/NAL
+BLACK
+
+Figure
+
+28
+
+2. NACA
+
+AND
+
+WHITE
+
+PAGE
+PHOTOGRAPH
+
+0015 wings with round
+
+end caps
+
+and extensions.
+
+ORIG[NAE
+BLACK
+
+Figure
+
+3. Installation
+
+AND
+
+WHITE
+
+PA_E"
+PHOTOGRAPH
+
+of wing and endplates
+
+in the 7- by 10-foot
+
+wind
+
+tunnel.
+
+29
+
+I/
+
+Pilot-static probe
+
+//
+
+1 ft
+//
+
+I
+
+r/
+//
+
+_/
+
+r
+
+Begin
+
+//
+t
+
+//
+1/
+
+/
+
+test
+section
+
+//
+//
+//
+/
+
+j
+
+/
+
+/
+
+i.,I
+/
+//1
+
+1.70 ft
+
+/
+
+/
+
+,"/
+//
+
+i
+
+5.59 ft
+
+//
+//
+
+//
+Support
+endplate
+
+//
+/
+
+/
+
+//
+/
+
+/
+
+z
+
+¢
+
+/'1
+/j
+
+//
+
+z
+
+/
+
+//
+
+z/
+z
+
+//
+
+z/
+
+,/
+
+1.35 ft
+
+,"1
+/./
+
+/
+
+1
+
+/
+
+t
+
+/
+
+/
+
+z
+
+¢
+
+/./
+
+4.44 ft
+
+z
+
+i_/
+//
+
+/
+
+//
+/
+
+t"
+
+t
+
+/
+
+/
+
+/
+
+¢
+
+t
+
+/
+,-'/
+
+1.00 ft !
+
+/./
+z/
+
+//
+
+Z/
+
+3.29 ft
+
+//
+//
+
+"_Z/
+r---n
+/
+
+/-/
+r---7
+
+r--_
+
+r-"_
+
+LDV
+maximum
+reach
+
+r--'_
+
+0.75 ft
+
+/
+
+//.
+/
+,//
+/
+
+/
+
+/
+
+/
+
+/
+
+/.t
+i
+
+/
+
+//
+/'/
+
+//
+
+/
+
+/
+
+/'/
+
+//
+//
+//
+
+1 ft
+
+/"/
+
+End
+
+/'/
+
+//
+/
+
+/
+
+/
+
+/
+
+/
+
+/
+
+//
+i/
+
+lO-ft tunnel width
+
+test
+section
+
+//
+
+//"
+/'/
+I-/
+/'/
+
+Figure
+
+3O
+
+4. Plan
+
+view of test section
+
+showing
+
+relative
+
+sizes of wings
+
+tested.
+
+/
+
+/
+
+/
+
+/
+
+/
+
+/
+
+I
+
+I
+
+/
+
+J
+
+f
+
+J
+
+r
+
+/
+
+t"
+
+1
+
+//
+/I
+//
+//
+
+Test
+section
+wall
+
+I/
+
+S
+
+//
+I/
+
+c = 1.70 ft
+
+I/
+//
+
+/
+
+/
+
+r
+
+/
+
+f
+
+t
+
+//
+
+/
+
+1
+
+l/
+
+II
+/1"
+I/
+
+/
+
+</
+/J
+/
+
+1
+
+/
+
+/
+
+/
+
+t
+
+¢"
+
+/
+
+Support
+endplate
+
+II
+
+//
+//
+//
+//
+//
+
+1.9c
+(a) Image endplate in 2D configuration
+
+//I
+
+Image
+endplate
+
+^
+
+/
+
+/A
+/,J
+
+/
+
+)"
+/
+
+/
+
+/
+/
+
+II
+
+c = 1.00 ft
+
+II
+
+/I
+
+/A
+/A
+/A
+/A
+/,4
+/A
+/A
+/A
+/A
+/A
+
+II
+II
+
+I)d
+/I1
+/A
+/A
+/A
+/A
+/A
+/A
+
+I.,1
+
+y
+
+1.9c
+
+1.9c
+
+1.9c
+
+(b) Endplate positions in image-vortex study
+Figure
+
+5. Plan
+
+view of test section
+
+showing
+
+positions
+
+of the image
+
+endplate.
+
+31
+
+3
+
+5
+
+7
+
+_ 6
+
+_
+
+4
+
+9
+10
+
+11
+
+13
+
+I
+
+12 "j
+
+Chord locations
+Station
+1
+2
+3
+4
+5*
+6
+7*
+8
+9*
+10
+11"
+12
+13*
+14
+15"
+16
+17"
+18
+
+x/c
+0.010
+0.022
+0.040
+0.090
+0.123
+0.160
+0.203
+0.250
+0.303
+0.360
+0.412
+0.490
+0.563
+0.640
+0.712
+0.790
+0.877
+0,950
+
+15
+
+16
+
+17
+
+Span locations
+Station
+1
+2*
+3
+4*
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+
+y/s
+0.994
+0.984
+0.974
+0.959
+0.944
+0.899
+0.843
+0,773
+0.692
+0.597
+0.491
+0.370
+0,238
+0,094
+
+*Upper surface only
+
+1
+10
+
+14
+
+I
+
+11
+
+12
+
+I
+
+13
+
+8
+7
+• Upper and lower surfaces
+o Upper surface only
+
+Figure
+
+32
+
+6. Pressure
+
+measurement
+
+locations.
+
+t
+
+14
+
+ORI(31N/_E I_A'_E '
+,'3LACK
+
+Figure
+
+7. Laser
+
+AND
+
+velocimeter
+
+WHITE
+
+PHOTOGRAPH
+
+setup
+
+in 7- by 10-foot
+
+wind tunnel.
+
+33
+
+ORIGINAL:
+BLAI3K
+
+AND
+
+WHITE
+
+PAGE'
+PHOTOGRAPH
+
+(a)
+
+(b)
+Figure
+8. Vortex
+elements of vortex
+34
+
+meter
+meter.
+
+used to locate trailing-vortex
+(b) Vortex meter positioned
+
+core.
+(a) Cruciform
+near wing tip.
+
+and
+
+Hall-effect
+
+transducer
+
+J
+
+control and position
+Survey apparatus
+__
+
+!
+
+ILVPr° __1
+FreqtoOC
+I
+-
+
+/
+
+J
+
+/
+
+J LV Processor
+
+Computer
+Interface
+sample
+and hold
+
+converter
+
+.___
+
+I
+I
+
+and position
+I Scanlvalve
+control
+
+calibration
+Parasclentific
+pressure
+
+i
+
+Multiplexer
+and
+HP 3456A
+DVM
+
+_"
+t
+
+control
+Bragg
+cell
+
+controlcell
+__ Bragg
+O
+Q.
+
+<
+=E
+
+O
+
+O
+
+HPIB
+
+RS-232
+
+LV Traverse
+control and
+position
+
+LV Counters
+"data ready"
+control
+
+HP 9920S
+CPU
+
+Display
+
+15 Mbyte disc
+I Winchester
+
+470 kbyte
+I Floppy
+disc
+
+o
+
+°o
+
+04
+
+04
+
+> I
+
+Buffer
+GPI-BUF
+
+I
+
+I
+¢U
+
+Printer
+
+¢3
+
+-100
+
+Display
+VAX
+
+Figure
+
+9. Network
+
+required
+
+I
+
+J-_-r
+
+for control,
+
+Hardcopy
+
+acquisition,
+
+and
+
+display
+
+of test
+
+data.
+
+35
+
+Wing tip
+
+Voo
+
+Figure
+
+10. Coordinate
+
+system
+
+used for trailing-vortex
+
+measurements.
+
+.2
+
+,1
+
+--
+
+0-
+
+m=l
+
+--
+
+--,3
+
+-1.2
+
+I
+-1.0
+
+I
+-.8
+
+l
+-.6
+
+I
+
+I
+-.4
+
+-.2
+
+x/c
+Figure
+
+36
+
+11. Measurement
+
+locations
+
+for determining
+
+wing circulation.
+
+[
+.0
+
+.2
+
+100
+
+E
+E
+
+0
+
+...................
+
+.J ........................................
+
+N
+
+i
+
+I
+
+-1 O0
+
+l
+
+J
+
+j
+
+j
+
+(a) Fine grid across vortex core
+400
+
+300
+
+i
+
+200
+
+100
+E
+E
+
+o
+1
+T
+
+•
+
+•
+
+•
+
+•
+
+b••o
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+u
+i
+
+N
+
+•
+
+0 -_- ......
+
+i
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+_ ....
+
+.......................................
+i- ---J• o••o
+•
+•
+
+•
+
+•
+
+i
+
+•
+
+i
+
+•
+
+•
+
+•
+
+_OOO
+
+i iii iiii
+•
+
+Woeo
+
+-1 O0
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+•
+
+'
+
+=
+•
+
+•
+
+•
+
+•
+
+OH•
+0
+
+L
+
+-200
+
+q
+i
+a
+n
+n
+u
+n
+
+-300
+200
+
+J
+
+t
+
+100
+
+0
+
+I
+-1 O0
+
+I
+-200
+
+I
+-300
+
+the trailing
+
+vortex.
+
+-4OO
+
+y (ram)
+(b) Coarse grid around vortex core
+Figure
+
+12. Typical
+
+grids
+
+used to survey
+
+37
+
+Voo _
+
+--
+
+..-_-
+
+t/c = +0.1500
+C1 = +1.4845
+c2 : --0.6300
+C3 = -1.7580
+C4 = +1.4215
+c5 = -0.5075
+
+z/c = (t/c)(c I _/£-_ + c2(_/C ) + C3(_/c)2 + C4(_/c)3 + c5(_/C)4 )
+
+Figure 13. Coordinate
+
+system
+
+surface.
+
+--O
+
+used for pressure
+
+, ,, ii
+
+measurements
+
+and equation
+
+for defining
+
+the NACA
+
+.....
+I
+I
+I
+J
+I
+
+I
+I
+!
+
+I
+
+I
+
+Cp
+
+,
+
+:
+
+,"
+
+i
+
+!
+
+!
+
+!
+'
+
+'
+
+_
+
+-.05
+
+I
+
+0
+,_/c
+
+(a) c_ = 0 °;
+Figure
+
+38
+
+14. Example
+
+[
+
+l
+
+.05 -.05
+
+0
+_/c
+
+.05
+
+(b) oL= 12 °
+of approximation
+
+of leading-edge
+
+pressure
+
+from theory
+
+(ref. 31).
+
+0015
+
+-.6
+
+-.4
+
+Cp -.2
+
+0
+
+.2
+.6
+
+I
+.7
+
+I
+.8
+
+1
+.9
+
+I
+1.0
+
+.1
+
+from linear
+
+extrapolations.
+
+_/c
+Figure
+
+15. Example
+
+of approximation
+
+of trailing-edge
+
+pressure
+
+39
+
+-6
+
+-6
+
+-4
+
+--4
+
+Cp -2
+0
+
+Cp -2
+
+2
+0
+
+I
+
+I
+
+I
+
+L
+
+.2
+
+.4
+
+.6
+
+.8
+
+_
+
+2
+-.09
+
+1.0
+
+__
+
+i
+-.06
+
+=
+-.03
+
+i
+0
+_c
+
+i
+.03
+
+i
+.06
+
+.09
+
+8
+Fixed A_/c = 0.001
+
+7
+
+.2
+
+6
+o
+0
+o
+
+o
+
+5
+4
+
+°_.2
+X
+
+Irm
+
+×
+
+3
+
+c
+
+u
+<1
+
+o -.4
+o
+<1
+
+2
+
+Fore
+
+--.6
+
+1
+-.8
+
+0
+-1
+
+0
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+Fixed _./c = 0.00015
+
+-1.0
+0
+
+L
+.05
+
+i
+.10
+
+.15
+
+22/c
+2.0
+Fixed _x/c = 0.001
+1.5
+O
+o
+O
+
+1
+
+×
+
+E
+o
+<1
+
+.5
+0
+--.5
+
+0
+
+Figure
+
+16. Example
+
+I
+
+I
+
+,_
+
+I
+
+.2
+
+.4
+
+.6
+
+.8
+
+curve
+
+fit to pressure
+
+data
+
+C c
+
+1.0
+
+and resulting
+
+integrals.
+Data taken from 2D configuration,
+span location
+loads are Cn = 0.00, Cc = 0.00, Cl = 0.00, Cd = 0.00 and
+
+4O
+
+local contributions
+
+to the force and moment
+
+#9, Re = 2.5 × 106 and c_ = 0 °. The integrated
+Cm = 0.00.
+
+-6
+
+-6
+
+-4
+
+-4
+
+Cp -2
+
+Cp -2
+
+0
+
+0
+I
+
+|
+
+0
+
+I
+
+.2
+
+I
+
+.4
+
+I
+
+.6
+
+.8
+
+1.0
+
+2
+-.09
+
+I
+
+I
+
+I
+
+I
+
+I
+
+-.06
+
+-.03
+
+0
+
+.03
+
+.06
+
+.09
+
+_/c
+.4
+
+r
+
+Fixed _x/c = 0.001
+
+7
+
+.2
+
+Aft
+
+6
+o
+
+5
+
+o
+
+4
+
+o
+0
+o-.2
+
+_- 3
+
+x¢_-.4
+
+._
+
+<_ -.6
+
+,X
+
+2
+1
+
+m.8
+
+0
+-1
+0
+
+I
+
+i
+
+i
+
+I
+
+.2
+
+.4
+
+.6
+
+.8
+
+.0
+
+i
+
+I
+
+.05
+
+.10
+
+.15
+
+22/c
+2.0
+Fixed _x/c = 0.001
+1.5
+CI an
+
+o
+o
+
+o
+
+2_
+
+1
+
+X
+
+E
+0
+
+.5
+Cd
+0
+Ce
+-.5
+0
+
+i
+
+I
+
+I
+
+I
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+Figure 17. Example
+curve fit to pressure data and resulting
+local contributions
+to the force and moment
+integrals.
+Data taken from 2D configuration,
+span location #9, Re = 2.5 x 106 and a = 12 °. The integrated
+loads
+
+are Cn = 1.22, Cc = -0.23,
+
+Cl = 1.24, Cd = 0.03 and Cm = 0.03.
+
+41
+
+y/s = 0.69
+
+-6
+
+-5
+
+y/s = 0.49
+
+C I :-0.01
+_"d : O.Ou
+Cm : 0.00
+
+-4
+
+y/s = 0.24
+
+CI : 0.01
+Cd : 0.00
+Cm : 0.00
+
+_
+
+o__ _u.a:;.o,
+P -2
+
+.....
+
+Lower
+
+_
+
+CI : 0.00
+Cd : 0.00
+
+i
+
+oo:oooo
+_ = 0
+
+-1
+
+o:
+li
+
+I
+
+I
+
+I
+
+I
+
+I
+
+-_5J
+
+CI
+
+:0.72
+
+:t
+
+C m : 0.02
+
+II
+
+_d • u.u4 1
+
+I
+
+.
+
+I
+
+I
+
+_-
+
+C,"
+
+073
+
+_
+
+.f
+
+1
+
+Ci
+
+I
+
+: 0.73 I
+
+c o:o, i
+
+Cm : 0.02 j
+
+!
+
+li
+
+c d : 0.02 |
+
+I
+
+i
+
+_
+
+C m : 0.01
+
+II
+
+c d : 0.04
+
+;" ; _ _ _, o
+_/c
+
+_
+
+_/c
+
+_/c
+
+(a) Re= 1.5×106
+Figure
+42
+
+l
+
+18. Pressure
+
+distribution
+
+along
+
+span in 2D configuration.
+
+J
+
+y/s = 0.24
+y/s = 0.49
+¥/s = 0.69
+CI
+
+-6
+
+t1
+
+: 0.00 1
+
+-5
+
+Cd : 0.00|
+
+-4
+
+Cm : 0.00_
+
+Ci : -0.01
+Cd : 0.00
+Cm : 0.00
+
+C'd:0.oo
+Cm:o.00
+
+OL--O °
+
+Surface
+-3
+
+Upper
+
+Cp -2
+-1
+0
+
+Cl
+--6 _
+
+-51-
+
+C'd:c !
+
+-41
+
+cm:c
+
+C!
+C
+
+:• 0,71
+001
+
+-
+
+Cd
+Cm": 0.01
+001
+
+d. "-2 t
+
+I
+
+Cm: o.o
+
+: 0.69
+
+.... •
+
+__L
+
+_=6°
+
+Cp
+-2
+
+k__
+
+_ .e- e.--o--
+
+o_-.-*"
+
+o-- =:"_e ,,
+
+C| •• 1 •24
+
+-s
+
+I_
+
+t-_
+
+L_ ,
+
+I,Z'
+
+_
+
+L
+
+Cm:0.03/
+
+.
+
+,
+
+"
+
+"-
+
+,
+
+Cm. • 0 01
+
+'
+
+Cp-2
+
+"
+
+oL
+1
+
+0
+
+i-_,
+.2
+
+.6
+
+.4
+
+.8
+
+.
+
+,_J
+
+_/c
+
+_/c
+(b) Re = 2 .5×106
+Figure
+
+18. Concluded.
+
+43
+
+O_
+
+1.6
+
+O_
+0
+o
+0
+
+_..
+
+o
+0
+
+=,
+
+1.4
+
+•
+
+=_'_* =_o
+
+0
+
+0
+
+°o 14 °
+0
+
+0
+
+14°
+12"
+
+•
+
+,=
+10 °
+
+1.2
+
+12 °
+
+•
+on
+
+•
+
+6
+
+0
+
+•
+
+o
+
+0
+
+O0
+
+•
+
+10°
+
+o
+
+1.0
+
+o_0m01
+
+•
+
+_
+
+OmOwOvO
+
+•
+
+e..,.e o _° 8 °
+
+e........_o....--o,._..,..,,e,,._.e....P_e
+.8
+o
+
+o
+
+Cl
+
+u
+
+o
+
+000
+
+o
+
+o
+
+v
+
+l'l
+
+0
+
+n
+
+.3000
+
+(l
+
+_
+
+0 ,u_L
+
+4l'4nmmO mm.O,_, 0 ,_.O
+
+.6
+o
+•
+
+,, Q
+
+e'_o_e.,io
+
+-_'e''-°
+
+0
+0 mmmmmm'O"v_mmw
+Q a
+
+O_o
+
+04.Q
+
+.4
+0
+
+_"
+
+.2
+
+o
+
+v
+
+_
+
+_
+
+o
+
+Fi a._Ooo
+
+OO
+
+0
+
+--.2
+
+0
+
+I
+
+I
+
+I
+
+I
+
+l
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+0
+
+i
+
+l
+
+l
+
+l
+
+I
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+y/s
+
+y/s
+
+(a) Re = 1.5×10 6
+Figure 19. Pressure-derived
+Cl over 0.09 < y/s < 0.90).
+
+44
+
+e. Q 0 °
+
+..__.e..__..o____e_,.o._e_o_o
+
+(b) Re = 2.5×10 6
+lift distribution
+
+along span
+
+in 2D configuration
+
+(solid line represents
+
+average
+
+'8f
+
+_
+
+/
+.08 I"l
+
+Distribution indicates,
+spanwise variation
+
+_.
+
+.o t.:J
+i
+
+1
+
+/
+
+Cm
+
+• m_,
+
+.:"
+
+|
+•
+
+-.02
+0
+
+I
+5
+
+J
+10
+
+15
+
+0
+
+I
+
+5
+
+(deg)
+(a) Re - 1.5×106
+Figure 20. Pressure-derived
+force and moment variation
+to 0.09 < y/s < 0.90; solid line represents
+average).
+
+10
+
+15
+
+_ (deg)
+(b) Re - 2.5×106
+with angle of attack
+
+for 2D configuration
+
+(limited
+
+45
+
+-5
+-4
+-3
+
+y/s : 0,944
+C I : 0.19
+C d : 0,01
+Cm : 0.01
+
+y/s : 0.974
+CI : 0.17
+Cd : 0.02
+C m : 0.00
+
+y/s : 0.994
+C I : 0.23
+C d : 0.03
+Cm : -0.04
+Surface
+Upper
+.....
+Lower
+
+Cp -2
+-1
+0
+
+L
+
+1
+
+I
+
+1
+
+I
+
+i
+
+I
+
+I
+
+I
+
+-5
+-4
+-3
+
+y/s : 0.773
+C I : 0.31
+C d : 0,01
+Cm : 0,02
+
+y/s : 0.843
+CI : 0.26
+Cd : 0.01
+Cm : 0.01
+
+y/s : 0.899
+CI : 0.23
+Cd : 0.01
+Cm : 0.02
+
+Cp -2
+-1
+0
+I
+
+I
+
+I
+I_
+
+I
+
+-5
+
+-3
+
+1
+
+I
+
+I
+
+y/s : 0.490
+C I : 0,37
+Cd : 0.01
+C m : 0.01
+
+y/s : 0.597
+CI : 0.35
+Cd : 0.00
+C m : 0.01
+
+y/s : 0.692
+CI : 0.33
+Cd : 0.00
+Cm : 0.01
+
+-4
+
+I
+
+Cp -2
+-1
+
+I
+
+i
+
+1
+
+I
+
+'
+
+1
+-5 /
+
+y/s : 0.370 I
+C I : 0.381
+C d : 0.01 I
+
+-
+
+CI : 0.41
+Cd : 0.01
+
+-3 I-
+
+C.,ml 0:0i I
+
+-
+
+Cm:,
+
+.2
+
+.4
+
+.6
+
+.8
+
+_/c
+
+1.0
+
+I
+
+0
+
+.2
+
+.4
+
+.6
+
+-
+
+0.01
+
+.8
+
+_/c
+
+1.0
+
+I
+
+_
+
+l
+
+I
+
+0
+
+.2
+
+.4
+
+I
+
+I
+
+.6
+
+.8
+
+_Jc
+
+(a) _ =4 ° :
+Figure
+
+46
+
+21. Pressure
+
+over full wing span with square
+
+I
+
+y/s : 0.094
+CI : 0.42
+Cd : 0.00
+Cm : 0.01
+
+y/s : 0.238
+
+-4 I/
+
+0
+
+I
+
+tip at Re = 1.5 x 106.
+
+1.0
+
+_s[
+-_1-
+
+,:0.,,41
+
+,+:0,7,
+
+yi+:0,44
+]
+
+Cd : 0.091
+
+Cd : 0.06
+
+CI : 0.40 |
+Cd : 0.03 |
+
+c,: o_1
+
+/
+Cp_21___
+
+Upper
+
+c,- o.41
+
+I
+
+/ .....
+Lower
+-3 ISurface
+Cm:-O'06
+
+I
+1
+
+_-
+
+Cm:-O'03
+
+:
+
+"_
+
+CI : 0.57
+Cd : 0.02
+y/s : 0.843
+Cm:
+0.03
+
+C I : 0.63
+Cd : 0.03
+y/s : 0.773
+Cm:
+0.03
+
+-5
+-4-
+
+CI : 0.47
+Cd : 0.03
+y/s : 0.899
+Cm:
+0.03
+
+-3 l
+Cp -2
+
+_
+
+_
+
+i
+
+I
+
+I
+
+l
+
+;Oo+;;
+Cd : 0.02
+C m : 0.02
+
+cp
+t
+
+1
+
+I
+
+1
+
+I
+
+y/s : 0.370
+CI : 0.77
+
+-3 L
+
+c d : 0.02
+
+I
+
+I
+
+=,
+
+cl : 0.78I
+cd : 0.031
+
+-
+
+.6
+
+0
+
+I
+
+I
+
+I
+
+I
+
+_5
+
+[
+-4 I-
+
+I
+
+I!_
+
+,I
+
+y/s : 0.094
+CI : 0.81
+Cd : 0.02
+
+-1
+Cp -2
+0
+lv
+0
+
+P
+.2
+
+.4
+
+.6
+
+.8
+
+.0
+
+0
+
+_/c
+
+.2
+
+.4
+_/c
+
+.8
+
+1.0
+
+_
+.2
+
+I
+.4
+
+I
+.6
+
+I
+.8
+
+1.0
+
+_/c
+
+(b) (x = 8°
+Figure
+
+21. Continued.
+
+47
+
+h
+
+y/s • 0.994]
+Cl : 0"701
+
+-4
+-3
+Cp -2
+
+Surface
+-----.....
+
+: 0.18|
+Cd : -0.10
+
+Upper m
+Lower
+
+I
+
+Figure
+
+48
+
+y/s : 0.974
+CI : 0.75
+Cd : 0.15
+Cm : -0.10
+:
+
+21. Coacluded.
+
+y/s : 0.944
+CI : 0.69
+Cd:
+0.08
+Cm : 0.01
+
+_5
+
+Cm
+
+Cp
+
+C:_2
+
+B
+-'t
+
+0
+
+0 0
+
+'
+
+'
+
+_.lc"
+
+"
+
+" _c
+
+_ Re _'?''5_1"06+
+
+'_.0
+
+-5 /
+
+y/s : 0.994 I
+
+/
+
+y/s : 0.974
+
+y/s : 0.944
+
+-4 !/
+
+ct : 0.46 I
+c d : 0.091
+
+!-
+
+cj
+
+C I : 0.42
+Cd : 0.03
+Cm : 0,02
+
+Cp -2 l-
+
+--
+
+/
+
+.....
+
+-3 L
+
+15
+
+/
+
+Upper
+Lower
+
+Surface
+
+i i
+
+-4J-
+
+: 0.42
+Cd : 0.06
+:
+•
+
+|
+
+-
+
+J
+
+I
+
+Cm:-O'07l
+
+_
+
+_
+
+,,s
+
+/
+
+,,so,4 1[
+
+cl
+
+I-
+
+cl
+
+: o.5_ I
+
+: 0.59 1
+
+[-
+
+cl
+
+Cd : 0.03J L
+
+Cd :
+
+y/s : 0.692
+CI : 0.71
+Cd : 0.02
+C m : 0.02
+
+y/s : 0.597
+
+/
+
+y/s : 0.490
+
+C I : 0.74
+Cd : 0.02
+
+I|
+
+CI : 0.77
+Cd : 0.02
+
+- I-
+
+0.021 L
+
+: 0.64 I
+
+Cd : 0.02I
+
+-5
+-4
+-3
+
+f
+
+-1
+Cp-2
+
+__
+
+0
+
+1
+
+I
+
+-5
+-4[-
+
+y/s : 0.370
+CI : 0.75
+
+3 L
+
+c d : 0,02
+
+-
+
+Jl_
+
+Cm:
+
+C
+I :: 0.238
+0.82
+y/s
+Cd : 0.02
+
+t
+
+y/s : 0.094
+CI : 0.83
+Cd : 0.01
+
+-
+
+0.01
+
+0.02
+_ jr _
+
+1
+0
+
+.2
+
+.4
+.6
+_/c
+
+.8
+
+1.0
+
+0
+
+.2
+
+.4
+
+.6
+YJc
+
+(b) o_= 8 °
+Figure
+
+50
+
+22. Continued.
+
+.8
+
+1.0
+
+0
+
+O- 4- ~ 0--
+
+6--_
+
+I
+
+I
+
+I
+
+I
+
+.2
+
+.4
+
+.6
+
+.8
+
+E/c
+
+1.0
+
+,,-5
+
+1
+
+-41-3L
+
+Surface
+
+Cp -z _-. ....
+
+cl: 0.75r I-
+
+c_: 0.74 I-
+
+cl: 0.68
+
+CdiO'_
+
+!_
+
+Cd : 0,15
+
+Cd : 0.06
+
+rL
+
+y/s : 0.843
+CI : 0.87
+Cd:
+0.05
+
+9'
+
+Lower
+
+L
+
+1
+
+-5
+-41-
+
+y/s : 0.899
+C! : 0.78 I
+
+•, k
+
+Cd" 0.06|
+Cm : 0.03
+
+I
+
+Cp- -___
+
+:
+
+y/s : 0.773
+CI
+
+•
+
+'
+
+-4_
+
+Cm : 0.04
+
+_
+
+Cd : 0.05
+;
+
+-
+
+: 0.95
+
+I
+
+f
+
+I
+
+J
+
+i
+
+y/s : 0.692
+
+[
+
+y/s : 0.597
+
+_
+
+Y/s : 0.490
+
+I'_
+
+CI : 1.02
+Cd : 0.05
+
+_
+
+CI
+
+: 1.09
+
+li_
+
+C!
+
+Cm:
+
+I_
+
+Cd : 0.03
+
+L_
+
+Cd : 0"04 /
+
+_
+
+y/s : 0.094
+
+-3_,,
+
+0.03
+
+01 _
+
+:
+
+1.13 j
+
+_.,e .e. _o_ ..o _ o_ _18_.._
+r° I
+I
+I
+J
+
+-5 _.-_--
+
+y/s :0.3701
+
+-4r_
+
+c!: 1.181 i_
+
+cl: 1.171 i_.
+
+c!: 1.24
+
+-3 L_
+
+Cd : 01004I
+
+L_
+
+Cd : 0.051 L'_
+
+cd : 0.06
+
+.6
+
+0
+
+0
+
+.2
+
+.4
+
+(c) o_= 12 °
+
+_/c
+
+.8
+
+1.0
+
+_
+
+Figure
+
+Y/s : 0"238 i
+
+u
+.2
+
+I
+.4
+
+_c
+
+I ., i
+.6
+.8
+
+22. Concluded.
+
+I
+1.0
+
+=..jll" i
+0
+.2
+
+t
+.4
+
+i
+.6
+_/c
+
+i
+,8
+
+1.0
+
+1.6
+
+1.4
+
+1.2
+
+(_ (deg)
+1.0
+14
+
+CI
+
+.8 _
+
+12
+
+.6 -
+
+10
+
+8
+.4
+6
+4
+.2
+2
+
+I
+.2
+
+0
+
+I
+.6
+
+.4
+
+.8
+
+1.0
+
+y/s
+(a) Re = 1.0 x 106
+Figure
+
+23. Pressure-derived
+:
+
+52
+
+lift distribution
+
+along
+
+full wing span with square
+I
+
+tip.
+
+1.6
+
+1.4
+
+1.2
+
+1.0
+
+oL(deg)
+14
+
+CI
+
+.8
+
+12
+10
+
+.6
+
+8
+.4
+6
+
+4
+.2
+2
+
+.2
+
+I
+.6
+
+.4
+
+I
+.8
+
+1.0
+
+y/s
+(b) Re = 1.5×10 6
+Figure
+
+23. Continued.
+
+53
+
+1.6
+
+1.4
+
+1.2
+
+1.0
+
+(deg)
+14
+CI
+
+.8
+12
+10
+.6
+
+.4
+
+.2
+
+0
+
+I
+.2
+
+I
+.4
+
+I
+.6
+y/s
+
+(c) Re = 2.0x106
+Figure
+
+54
+
+23. Continued.
+
+I
+.8
+
+1.0
+
+1.6
+
+1.4
+
+1.2-
+
+1.0(deg)
+14
+
+12
+CI
+
+.8 i
+
+10
+8
+
+6
+4
+
+2
+
+0
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+y/s
+(d) Re = 2.5×10 6
+Figure
+
+23. Continued.
+
+55
+
+1.6
+
+1.4
+
+1.2
+
+1.0
+
+CI
+
+oL(deg)
+
+.8
+
+12
+
+.6
+
+8
+.4
+6
+
+.2
+
+7:"
+
+0
+
+I
+.2
+
+I
+.6
+
+I
+.4
+y/s
+
+(e) Re = 2.8x10 6
+Figure
+
+56
+
+23. Concluded.
+
+l
+.8
+
+1.0
+
+1.4
+
+1.4
+
+1.2
+
+1.2
+
+1.0
+
+1.0
+
+.8
+
+.8
+
+_L..
+
+CI
+
+CI
+
+|i!illi; i
+
+.6
+
+.6
+Q...
+
+.4
+
+.4
+
+.2
+
+.2
+
+0
+
+0
+
+.20
+
+.20
+
+.15
+
+.15
+
+.10
+
+.10
+
+Cd
+
+I
+
+=
+
+Cd
+.O5
+
+.05
+
+ii_iii
+_:_
+! ::_:U
+_ii_::::_::J
+_ I _|:: |_ _
+0
+
+_::..:..•
+........
+8........
+_ ......@--:@-::8:-_:
+
+0
+
+-.05
+
+-.05
+
+.05
+
+.05
+
+(3""
+
+Re×lO -6
+
+Re×lO -6
+Cm -.05
+
+-
+
+o
+•
+[]
+
+1.0
+1.5
+2.5
+
+-.10
+
+-.15
+
+0
+•
+[]
+•
+o
+
+C m -.05
+
+-.10
+
+0
+
+I
+.2
+
+l
+.4
+
+l
+.6
+
+J
+.8
+
+-.15
+1 .(
+
+0
+
+1.0
+1.5
+2.0
+2.4
+2.7
+
+i
+.2
+
+y/s
+
+1
+.6
+
+I
+.8
+
+1.0
+
+y/s
+
+(a) oL= 4 °
+Figure
+
+1
+.4
+
+(b) o_ = 8°
+24. Load variation
+
+along
+
+full wing span with square
+
+tip for different
+
+Re.
+
+57
+
+1.4
+1.2
+1.0
+.8
+CI
+.6
+.4
+.2
+0
+.20
+I
+
+I
+
+i
+
+, ,,,,
+
+!
+o
+.15
+
+II
+
+..10
+Cd
+.05
+
+-.05
+.05
+
+°
+
+iI
+II
+
+0
+Re×10 -6
+Cm -.05
+
+o
+•
+II
+
+1.0
+1.5
+2.1
+
+-.10
+
+[]
+<>
+
+2.5
+2.9
+
+1
+
+-.15
+0
+
+,
+
+.2
+
+I
+.4
+
+1
+.6
+y/s
+
+(c) o_ = 12 °
+Figure
+
+58
+
+24.
+
+Concluded.
+
+l
+.8
+
+1.0
+
+1.6
+1.4
+
+..0
+..:::-
+
+1.2
+1.0
+.8
+
+CI
+
+.6
+.;A i :F'"
+
+.4
+
+.::-.
+
+.2
+0
+.10
+
+ii
+
+.O8
+AF"
+
+.06
+Cd
+.04
+
+.:
+
+.02
+
+0
+
+Q':"
+
+u
+
+.08
+RexlO -6
+.06
+
+Cm .04
+
+o
+•
+a
+•
+<>
+
+1.0
+1.5
+2.0
+2.5
+2.8
+•
+..-::__
+_; :!!!!!!!_B_;;zzz_
+•
+
+.02 ........
+
+I
+5
+
+0
+
+1
+10
+
+15
+
+o_(deg)
+Figure
+
+25. Integrated
+
+loads
+
+over full wing span
+
+with square
+
+tip for different
+
+Re.
+
+59
+
+¥1s
+Cl :
+_/fs :
+
+0
+
+6O
+
+C(i :
+Cm"
+
+0.01
+
+-5
+y/s : 0.994
+C I : 0.47
+Cd : 0.09
+Cm : -0.07
+
+-4
+_
+-_
+
+y/s : 0.984
+
+y/s : 0.974
+CI : 0.45
+Cd : 0,06
+Cm : -0,03
+
+-
+
+Surface
+
+Cp -2
+
+..... m
+
+Upper
+Lower
+
+-5
+y/s : 0.959
+
+y/s : 0.944
+C I : 0.46
+Cd : 0.03
+
+-4
+-3
+
+Cm:
+
+y/s : 0.899
+CI
+0.53
+Cd i 0.02
+
+-
+
+0.02
+
+Cm:
+
+0.02
+
+I
+
+Cp -2
+-1
+0
+1
+-5
+
+-4
+-3
+
+y/s : 0.843
+
+y/s : 0.773
+
+/
+
+y/s : 0.692
+
+Cd : 0.02
+CI
+0.61
+Cm: : 0.03
+
+Cd : 0.02
+CI
+0.68
+Cm: : 0.03
+
+I
+
+Cd : 0.02
+C
+I : 0.02
+0.74
+Cm:
+
+.6
+
+0
+
+Cp -2
+
+1
+0
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+0
+
+_/c
+
+.2
+
+.4
+_/c
+
+.8
+
+1.0
+
+.2
+
+.4
+
+.6
+_/c
+
+.8
+
+1.0
+
+(b) _ = 8 °
+Figure
+
+26. Continued.
+
+61
+
+.-5
+Y/S : 0.99,
+
+-4
+
+Cl : o.77
+cd : 0.20
+
+-3
+
+Cm : ...O.13
+
+Cp -'2
+
+_
+.....
+
+Y/s : 0.98_
+
+Surface
+Upper
+LOWer
+
+-1
+
+1
+-5
+--4
+
+Y/s : 0.959
+Y/s : 0.944
+CI : 0.76
+Cd : 0.08
+Cm : 0.00
+
+Y/s : 0.843
+
+cl : o.ge
+
+Y/s :
+
+Cd : 0,07
+Cm : 0.02
+
+CI
+
+•2
+
+.4
+
+.6
+
+:
+
+1.10
+
+cd:
+
+o.os
+
+Cm:
+
+0.03
+
+.8
+
+1.0
+.4
+
+Figure
+
+62
+
+26. Conc]uded.
+
+£/c
+
+.6
+
+.8
+
+1.0
+
+-5
+-4
+
+y/s : 0.974
+CI : 0.19
+Cd : 0.02
+Cm : 0.00
+
+y/s : 0.984
+
+y/s : 0.994
+CI : 0,23
+Cd : 0,04
+Cm : -0,04
+
+-3
+Surface
+Upper
+.....
+Lower
+
+Cp -2
+-1
+0
+
+|
+
+b
+1
+
+1
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+t
+
+I
+
+l
+
+I
+
+I
+
+I
+
+-5
+y/s : 0.899
+CI : 0.24
+Cd : 0.01
+Cm : 0.02
+
+y/s : 0.944
+CI : 0.20
+Cd : 0.01
+Cm : 0.01
+
+y/s : 0.959
+-4
+-3
+Cp -2
+-1
+0
+L
+
+i
+
+I
+
+b
+
+I
+
+I
+
+1
+
+I
+
+)
+
+I
+
+I
+
+I
+
+I
+
+I
+
+-5
+-4
+
+y/s : 0.692
+C I : 0.34
+Cd : 0.00
+Cm : 0.01
+
+y/s : 0.773
+CI : 0.32
+Cd : 0.00
+C m : 0.02
+
+y/s : 0.843
+CI : 0.28
+Cd : 0.00
+Cm : 0.02
+
+-3
+
+Cp -2
+
+1
+
+0
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+0
+
+.2
+
+• /c
+
+.4
+
+.6
+
+.8
+
+1.0
+
+E/c
+
+0
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+_/c
+
+(a) oL= 4 °
+Figure
+
+27. Pressure
+
+over outer
+
+portion
+
+of wing with square
+
+tip at Re = 2.0 x 106.
+
+63
+
+-5
+y/s : 0.994
+CI : 0.46
+Cd : 0.09
+Cm : -0.07
+
+-4
+
+y/s : 0.984
+
+y/s : 0.974
+CI : 0.41
+Cd : 0.06
+Cm : -0,03
+
+y/s : 0.944
+C I : 0.42
+C d : 0.03
+C m: 0.02
+
+y/s : 0.899
+C I : 0.48
+C d : 0.03
+C m: 0.03
+
+Surface
+Upper
+Lower
+
+.....
+-1
+0
+_,,
+
+I
+
+I
+
+1
+
+-5
+y/s : 0,959
+-4
+-3
+
+Cp -2
+-1
+0
+1
+
+I
+
+|
+
+I
+
+-5
+
+/
+
+y/s : 0.843
+C I : 0.56
+Cd : 0.02
+C m : 0.03
+
+-4
+
+y/s : 0.773
+Cd : 0.03
+Cm: 0.02
+CI : 0.63
+
+-3
+
+|
+
+y/s : 0.692
+
+I
+
+Cd : 0.02
+C m: 0.03
+C I : 0.68
+
+Cp -2
+-1
+0
+1
+0
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+0
+
+.2
+
+.4
+
+.6
+_/c
+
+_/c
+(b) o_= 8°
+Figure
+
+54
+
+27. Continued.
+
+.8
+
+1.0
+
+0
+
+.2
+
+.4
+
+.6
+_/c
+
+.8
+
+1.0
+
+I
+
+-31- o....
+I
+
+-4_
+
+r.Y_: _,':_1
+
+ou._._e
+
+-m'_"'l
+
+yls:O'g591
+
+I
+
+I
+
+I
+
+I-
+
+I
+
+J
+
+I
+
+-
+
+I
+
+.
+
+I
+
+Y S : 0.944]
+
+r-
+
+"
+
+"
+
+/
+
+cl
+
+: 0.73
+
+c.: o._s
+
+cm:-o.ll
+
+_
+
+-
+
+L
+
+Cm:
+
+0,03
+
+8
+
+10
+
+Cp -2
+-1
+
+Cp -2
+
+(c) _ = 12
+
+_/c
+Figure
+
+"
+
+"
+
+•
+
+.
+
+_/c
+
+6
+
+27. Concluded.
+
+55
+
+-5
+
+y/s : 0.974
+Cl : 0.19
+Cd : 0.02
+Cm : 0.00
+
+y/ s : 0 .994
+
+F
+
+C'd:0o3.
+c; :-o.o4
+
+-3 _-
+
+P _: I
+
+Surface
+
+.....
+
+Lower
+
+1
+
+¥1s : 0.899
+CI : 0.25
+Cd : 0.01
+Cm: 0.02
+
+y/s : 0.944
+Ci : 0.21
+Cd:
+0.01
+
+-5
+
+43
+
+Cm : 0.01
+
+-
+
+I_v..e_ ..e...e
+
+1 _
+
+,
+
+y/S: 0.773 I
+
+I.
+_-|
+
+y/s: 0.692
+C! : 0.35 |
+Cd : 0.00/
+
+CI : 0.33_
+Cd : 0.01
+
+-
+
+C
+
+_
+
+Cm : 0.01
+
+1.0
+1
+
+1.0
+0
+
+.2
+
+.4
+
+.6
+
+0
+
+.2l
+
+.8
+
+.[_.
+.6
+
+.4I
+
+t.,
+.8
+
+.0 0
+
+.2
+
+.4 _/C.6
+
+_/c
+
+_/c
+(a) oc= 4 ° :
+Figure
+
+66
+
+28, Pressure
+
+over outer
+
+portion
+
+of wing with square
+
+tip at Re = 2.9 × 106.
+
+.8
+
+-5
+
+-4
+
+-
+
+-3
+
+-
+
+y/s : 0.994
+C I : 0.48
+Cd : 0,09
+
+y/s : 0.984
+-
+
+y/s : 0.974
+CI : 0.43
+Cd : 0.06
+
+-
+
+Cm : -0.07
+
+Cm : -0.03
+
+Surface
+Cp-2-
+
+..... m
+
+Upper
+Lower
+
+y/s : 0.944
+C I : 0.47
+Cd : 0.03
+C m : 0,01
+
+_
+
+Cp -i
+
+i
+-5
+-4
+-3
+
+y/s : 0.843
+
+y/s : 0.773
+
+y/s : 0.692
+
+C I : 0.62
+Cd : 0.03
+Cm: 0.02
+
+CI : 0.68
+Cd : 0,03
+Cm: 0.03
+
+C I : 0.73
+Cd : 0.01
+Cm: 0.02
+
+Cp -2
+0
+1
+0
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+0
+
+_/c
+
+.2
+
+.4
+
+.6
+_/c
+
+.8
+
+1.0
+
+0
+
+J
+.2
+
+I
+.4
+
+I
+.6
+_/C
+
+, I
+.8
+
+1.0
+
+(b) o_= 8 °
+Figure
+
+28. Continued.
+
+57
+
+-5
+y/s : 0.994
+CI : 0,70
+Cd : 0,18
+Cm : -0,12
+
+-4
+-3
+
+y/s : 0.984
+
+y/s : 0.974
+C I : 0.72
+Cd : 0.14
+Cm : -0.09
+
+Surface
+Cp-2,-
+
+L .....
+
+--
+
+Upper
+Lower
+
+,
+
+!
+
+,!
+
+i
+
+_
+
+t
+
+CI : 0.68
+Cd : 0.08
+Cm : 0.00
+
+L
+1
+
+c_ : 0.90I
+Ce• 0.o6I
+
+Cp
+
+0
+
+.2
+
+.4
+
+(c) (x = 12°
+
+.6
+
+.8
+
+1.0
+
+0
+
+_/c
+
+.4
+
+.6
+_/c
+
+Figure
+
+68
+
+.2
+
+28. Concluded.
+
+.8
+
+1.0
+
+0
+
+.2
+
+.4
+
+.6
+_/c
+
+.8
+
+1.0
+
+-5 ,
+y/s : 0.971
+CI : 0.15
+Cd : 0.02
+Cm : 0.00
+
+-4
+-3
+
+y/s : 0.962
+
+y/s : 0.953
+C I : 0,16
+Cd : 0.01
+Cm : 0.02
+
+y/s : 0.923
+C I : 0.22
+Cd : 0.00
+Cm : 0.02
+
+y/s : 0.879
+C I : 0.26
+Cd : 0.00
+C m : 0.02
+
+y/s : 0.756
+
+y/s : 0.676
+CI : 0.36
+Cd : 0.01
+Cm : 0.02
+
+Surface
+Cp
+
+-2
+
+Upper
+Lower
+
+.....
+
+-5
+y/s : 0.938
+-4
+-3
+
+Cp -2
+
+0
+1
+
+y/s : 0.824
+-4
+
+CI : 0.31
+Cd : 0.01
+Cm : 0.02
+
+-3
+
+!|
+
+CI : 0.36
+C d : 0.01
+
+-1
+0
+Cp -2
+1
+0
+
+.2
+
+.4
+
+.6
+_/c
+
+.8
+
+I
+1.0 0
+
+L
+.2
+
+I
+.4
+
+I
+.6
+
+I
+.8
+
+_/c
+
+.0 0
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+_/c
+
+(a) oL= 4 °
+Figure
+
+29. Pressure
+
+over outer
+
+portion
+
+of wing with round
+
+tip at Re = 1.0 x 106.
+
+69
+
+-5
+y/s : 0.971
+CI : 0.35
+Cd : 0.08
+
+-4
+-3
+
+y/s : 0.962
+
+y/s : 0.953
+CI : 0.34
+Cd : 0.03
+
+C m : -0.04
+
+C m : 0.03
+
+Surface
+Cp-2
+
+--
+
+.....
+
+-4
+
+Upper
+
+Lower
+
+i
+
+if!
+
+-
+
+e_
+
+c
+
+|
+
+Cd : 0.02
+
+-3
+
+Cp -2
+-
+
+y/s :0.938
+
+_
+
+_i
+
+0
+
+I
+
+y/s :0.879
+
+0
+1
+
+I
+
+I
+
+'
+
+=
+
+-5
+
+-
+
+y/s : 0.824
+CI : 0.59
+Cd : 0.02
+
+-3 -
+
+Cm : 0.04
+
+-4
+
+y/s : 0.756
+CI : 0.68
+Cd : 0.01
+
+,
+
+y/s : 0.676
+CI : 0.73
+Cd : 0.03
+Cm : 0.03
+
+-
+
+Cm : 0.04
+
+Cp -2
+
+-10
+1
+0
+
+.2
+
+.6
+
+.4
+
+•8
+
+1.0
+
+0
+
+_/c
+
+I
+
+I
+
+I
+
+I
+
+.2
+
+.4
+
+.6
+_/C
+
+.8
+
+(b) o_= 8 °
+Figure
+
+7O
+
+29. Continued.
+
+.0
+
+0
+
+.2
+
+.4
+
+.6
+_/c
+
+.8
+
+1.0
+
+-5
+
+y/s : 0.971
+
+-4
+
+C I : 0.64
+Cd : 0,18
+
+C I : 0,56
+Cd : 0.08
+
+Cm : --0.14
+
+Cm : 0,01
+
+-3
+
+y/s : 0.962
+
+y/s : 0,953
+
+Surface
+
+CPi' l U°wPerr
+-!t I
+,_
+
+y/s : 0.676
+
+_.
+
+CI : 1.07
+Cd:
+0.05
+
+Cm : 0.03
+
+ILI
+
+Cp
+0
+
+,2
+
+,4
+
+,6
+
+,8
+
+1,0 0
+
+_/c
+
+.2
+
+.4
+
+,6
+_/c
+
+.8
+
+1,0
+
+Q_
+
+I#
+
+i
+
+1
+
+I
+
+,2
+
+.4
+
+I
+
+I
+
+,6
+
+,8
+
+1.0
+
+_/c
+
+(c) oL= 12 °
+Figure
+
+29. Concluded,
+
+7!
+
+•/
+--4 I-
+
+1
+y/s: o.971 1
+c I : o,41 1
+Cd : O.lO I
+
+-31-|
+-2 L
+
+Surface Cm:-O'08l|
+-upper
+I
+
+_5
+
+r
+|
+
+i
+
+I
+
+i
+
+I
+
+I
+
+.6
+
+.8
+
+1.0
+
+y/s:
+
+0.962
+
+y/s: 0.953
+c I : 0.33
+c d : 0.03
+
+.
+
+Cm:
+
+0.03
+
+.6
+
+.8
+
+Cp
+
+Cp
+
+0
+
+.2
+
+.4
+
+0
+
+.2
+
+• /c
+
+.4
+
+.6
+Y./c
+
+.8
+
+1.0
+
+0
+
+.2
+
+.4
+_/c
+
+(b) _ = 8 °
+Figure
+
+72
+
+30. Pressure
+
+over outer
+
+portion
+
+of wing with round
+
+tip at Re = 2.0 x 106.
+
+1.0
+
+-5
+y/s : 0.971
+
+y/s : 0.962
+
+y/s : 0.953
+
+-4
+
+CI : 0.81
+Cd : 0.26
+
+C I : 0.53
+Cd : 0.07
+
+-3
+
+Cm : -0.26
+
+C m : 0.03
+
+Surface
+Cp -2
+
+m
+
+Upper
+
+15_
+
+I
+
+I
+
+'
+
+y/s : 0,938
+
+I
+
+y/s : 0.923
+CI : 0,66
+
+I
+[_
+
+y/s : 0.879 1
+
+|
+
+Cd : 0.06 I
+
+C! : 0.78 I
+
+Cm : 0.03
+i
+
+1
+
+-
+
+Cd :
+
+0.07
+
+t
+
+cmCdClY/S
+::::
+0"7560"030"050"97
+t
+
+A
+
+-5
+y/s : 0.824
+CI : 0.90
+Cd : 0.05
+Cm : 0.04
+
+-4
+-3
+
+cmCdY/Sci
+::::
+0"6760"030"051"09
+
+Cp -2
+-1
+0
+1
+0
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+0
+
+_/c
+
+.2
+
+.4
+
+.6
+_/c
+
+.8
+
+1.00
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+_/c
+
+(c) _ = 12 °
+Figure
+
+30. Continued.
+
+73
+
+i5
+
+....
+
+iii
+
+y/s : 0.971
+CI:
+0.14
+Cd : 0.03
+
+-4
+3
+Cp
+
+Cm:
+-
+
+2
+
+-
+
+y/s : 0.962
+
+y/s : 0.953
+CI
+
+0.00,
+
+Surface
+
+t
+
+_
+
+/il
+
+Upper
+
+: 0.15
+
+Cd : 0.01
+C m:
+
+I
+
+_
+
+I
+
+0.02
+
+I
+
+-5
+y/s : 0.938
+
+/
+
+Y/s : 0"923 1
+
+/
+
+y/s : 0.879
+
+/
+
+c,:l: o.oo
+I /
+
+cd" OOl
+
+l--
+
+Cl:
+
+Cl:
+
+2
+0.24
+
+,i
+
++
+
+-
+
+i
+
+o.19J
+
+!-
+
+Cp
+
+or"--/
+_IL__
+
++
+
+,
+
+D /
+
+,
+
+,
+
+,
+
+>,,s
+o82,,f
+
+-4L
+
+CI : 0.29
+c d : 0.00
+Cm : 0.02
+
+I_
+li=
+
+ii
+!_
+
+CI : 0.31
+Cd : 0.00
+1
+
+,
+
+,
+
+I
+
+>,,,,
+:oo,o
+
+_
+I_I
+
+CI : 0.35
+Cd : 0.00
+
+Cp
+
+=,e. e- + - t-- - .=-- -t'-,_
+1 4_'_'_='J''_==L_'=_
+0
+
+.2
+
+(a) o_= 4 °
+
+.4
+
+.6
+
+.8
+
+1.0
+
+0
+
+_/c
+
+J
+
+I
+
+I
+
+.2
+
+.4
+
+.6
+
+.8
+
+_/c
+
+Figure
+
+74
+
+I
+
+30. Concluded.
+
+i
+1.0
+
+_ ,i .it_ i--e--e--
+
+ll_ _
+
+i,ll
+
+1
+.8
+
+0
+
+I
+.2
+
+I
+.4
+
+I
+.6
+_/c
+
+1.0
+
+¥/s : 0.953
+CI : 0.15
+yls : 0.962
+
+Cd :
+Cm:
+
+¥/s : 0
+Cd "
+Cm:
+surtace
+...__...- UpP er
+Lower
+===_=
+
+¥ls : 0.938
+
+¥/s : O,
+CI :
+Cd :
+0.02
+C_:
+
+¥/s : 0
+¥1s : 0
+Cl :
+Cd :
+Cm:
+
+Cp
+
+Cl
+Cd :: 0.01
+Gin: 0.01
+
+¥1s : 0.8"/9
+Cl : 0.23
+Cd :
+Cm:
+
+¥1s : 0.6?6
+Ci : 0.36
+Cd : 0.01
+Cm: 0.01
+
+-5
+y/s : 0.971
+CI : 0.45
+Cd : 0.12
+Cm : -0.12
+
+-4
+-3
+
+y/s : 0.962
+C I : 0.31
+y/s : 0.953
+Cd : 0.03
+:
+
+.
+
+Surface
+Cp-2
+
+B
+
+Upper
+
+0
+
+.
+
+1
+-5
+y/s : 0.938
+
+y/s : 0.923
+CI : 0.42
+Cd : 0.02
+Cm : 0.03
+
+y/s : 0.824
+CI : 0.57
+Cd : 0.02
+C m: 0,04
+
+y/s : 0.756
+CI : 0.61
+Cd : 0.02
+C m: 0.03
+
+-4
+
+y/s : 0.879
+CI : 0.52
+Cd : 0.02
+Cm : 0.02
+
+-3
+
+Cp -2
+
+1
+-5
+
+-4
+
+-
+
+y/s : 0.676
+C I : 0.66
+Cd : 0.02
+C m: 0.03
+
+_
+
+-3
+Cp -2
+-1
+0
+1
+
+0
+
+.2
+
+.4
+
+,6
+
+.8
+
+1.0
+
+0
+
+_/c
+
+.2
+
+.4
+
+.6
+_/c
+
+(b) oL= 8 °
+Figure
+
+76
+
+31. Continued.
+
+.8
+
+1.0
+
+0
+
+,2
+
+.4
+
+.6
+_/C
+
+.8
+
+1.0
+
+-5_
+y/s : 0.97"
+CI : 0.89
+Cd.
+0127
+
+-4_
+.
+3
+
+Surface
+
+Cp -2J •
+JP- .....
+
+-3
+
+y/s : 0.953
+CI " 053
+Cd : 0.08
+
+Cm _--0 28
+
+Upper
+
+e_
+
+Lower
+
+/
+
+,t,,,
+-4
+
+y/s : 0.962
+
+Cm : 0.02
+
+'_
+
+I
+
+IJL,,,
+
+l
+
+I
+
+.
+
+I
+
+"°
+
+y/s • 0 923
+,-, " __, I
+
+'
+-
+
+Cd : 0 06
+"
+Cm : 0.03
+
+_
+
+y/s :0879
+CI : 074
+Cd : 0.05
+
+I
+
+-4 I-
+
+cl
+
+/=
+
+0851
+
+cd:• 0.04= ll;
+
+I
+
+f
+
+,
+
+d,d _
+;_';;
+: u.u_
+
+I
+
+,,_,uo,_
+
+[
+
+c1:_.02
+.
+
+Cp
+
+•,_
+
+.4
+
+.6
+
+.8
+
+1.0
+
+0
+
+_/c
+
+.2
+.4
+
+(c) _ = 12°
+
+.6
+_/c
+
+Figure
+
+.8
+
+1.1
+
+_
+0
+
+f
+.2
+
+I
+.4
+
+I
+.6
+
+I
+.8
+
+1.0
+
+_/c
+
+31. Concluded.
+
+77
+
+1.4
+
+Round tip
+
+Square tip
+
+1.2
+
+1.0
+oL(deg)
+.8
+
+12
+(deg)
+
+CI
+12
+.6
+
+.4
+
+4
+.2
+
+0
+.5
+
+I
+
+l
+
+.6
+
+.7
+
+.8
+
+.9
+
+1.0
+
+.5
+
+I
+
+I
+
+I
+
+l
+
+.6
+
+.7
+
+.8
+
+.9
+
+y/s
+
+y/s
+(a) Re = 1.0×10 6
+Figure
+
+78
+
+32. Pressure-derived
+
+lift distribution
+
+over outer
+
+portion
+
+of wing.
+
+.0
+
+1.4
+Square tip
+
+Round tip
+
+1.2
+
+1.0
+
+.8
+
+(deg)
+(deg)
+
+CI
+
+12
+
+12
+
+.6
+
+.4
+
+4
+.2
+4
+
+.5
+
+.6
+
+.7
+
+.8
+
+.9
+
+1.0
+
+.5
+
+y/s
+
+l
+
+I
+
+I
+
+I
+
+.6
+
+.7
+
+.8
+
+.9
+
+1.0
+
+y/s
+
+(b) Re = 1.5x106
+Figure
+
+32. Continued.
+
+79
+
+1.4
+Square tip
+
+Round tip
+
+1.2
+
+1.0
+o_(deg)
+.8
+
+12
+
+o_(deg)
+12
+
+CI
+.6
+
+8
+8
+
+,4
+
+4
+.2
+4
+
+0
+
+•5
+
+I
+
+I
+
+|
+
+.6
+
+.7
+
+.8
+
+,
+
+I
+
+.9
+
+1.0
+
+.5
+
+y/s
+
+I
+
+I
+
+I
+
+.7
+
+.8
+
+.9
+
+y/s
+
+(c) Re = 2.0x10 6
+Figure
+
+8O
+
+I
+
+.6
+
+32. Continued.
+
+1.0
+
+1.4
+
+Round tip
+
+Square tip
+
+1.2
+
+1.0
+
+(deg)
+12
+o_(deg)
+
+.8
+
+12
+CI
+.6
+
+.4
+
+.2
+4
+
+•5
+
+I
+
+I
+
+I
+
+i
+
+L
+
+.6
+
+.7
+
+.8
+
+.9
+
+1.0
+
+.5
+
+i
+
+|
+
+I
+
+I
+
+.6
+
+.7
+
+.8
+
+.9
+
+1.0
+
+y/s
+
+y/s
+(d) Re = 2.5×106
+Figure
+
+32. Continued.
+
+81
+
+1.4
+Square tip
+
+Round tip
+
+1.2
+
+1.0
+
+o_(deg)
+12
+
+.8
+
+oL(deg)
+
+CI
+
+12
+.6
+
+8
+8
+.4
+
+4
+.2
+4
+
+.5
+
+I
+
+I
+
+|
+
+I
+
+i
+
+.6
+
+.7
+
+.8
+
+.9
+
+1.0
+
+.5
+
+y/s
+
+•
+
+1
+
+I
+
+.7
+
+.8
+
+.9
+
+y/s
+
+(e) Re = 2.9x10 6
+Figure
+
+82
+
+I
+
+.6
+
+32. Concluded.
+
+1.0
+
+1.2
+Square tip
+
+RexlO -6
+
+.8
+CI
+
+Round tip
+
+o 1.0
+• 1.5
+[] 2.0
+• 2.5
+<> 3.0
+
+.4
+
+ii ..........
+:::1-::......_:ll:':ll:"ill..
+l.I
+
+I
+Ill
+
+0
+.3
+
+.2
+Cd
+.1
+
+.11
+
+II
+
+• .............
+m ...........• :::::::::• ::::::I "" • •
+.1
+
+• ........... I ..........I .........i ......1-i,m
+
+1 .............
+li:::-.......I .........
+I ......•--m!
+
+0
+
+II
+
+t
+
+Cm -.1
+
+_,2
+
+-.3
+.5
+
+I
+.6
+
+I
+.7
+
+l
+.8
+
+I
+.9
+
+1.0
+
+.5
+
+J
+.6
+
+y/s
+
+1
+.7
+
+I
+.8
+
+I
+.9
+
+Reynolds
+
+numbers.
+
+1.0
+
+y/s
+
+(a) 06= 4 °
+Figure
+
+33. Load variation
+
+over outer
+
+portion
+
+of wing span
+
+at different
+
+83
+
+1.2
+Square tip
+
+Round tip
+
+.8
+i_iE_i:
+
+CI
+
+....
+
+....:: _!!!iiiii_'i_;i;;:! i ....
+RexlO -6
+.4
+
+::_ii_:i__
+
+o 1.0
+
+"'::
+
+I-:.
+
+I_11
+
+• 1.5
+[] 2.0
+ii 2.9
+O
+
+|
+
+.3
+
+.2
+Cd
+.1
+
+II
+
+Q
+
+_.:
+.-
+
+0
+
+• .............
+l ..........0 .........
+i ......is.. n
+
+l ............
+-n .......---i .........
+I!_!_;|L.-:n I
+|
+b
+
+I
+Cm -.1
+
+b
+
+-.3
+
+,
+.5
+
+.6
+
+I
+.7
+
+I
+.8
+
+I
+.9
+
+1.0
+
+.5
+
+y/s
+
+I
+.7
+
+I
+.8
+y/s
+
+(b) _ = 8 °
+Figure
+
+84
+
+I
+.6
+
+33. Continued.
+
+I
+.9
+
+1.0
+
+1.2
+:: ......... _
+
+Square tip
+
+_ :iiiii+++i+ii::._:..
+Round tip
+....
+::
+III
+_iiL:'::.
+
+....
+;:'_:'_i',ii!!ii!iWiiiiii+_+,o
+
+":::_::_:_
++++iii_cl.
+.8
+Re × 10-6
+CI
+.4
+
+o
+•
+[]
+•
+o
+
+':!_iii!l
+
+ii'_ |
+
+'=i++++!+i.++_
+.+:+°:_
+
+Re×lO 6
+
+1.0
+1.5
+2.0
+2.5
+3.0
+
+-
+
+i
+
+o 1.0
+• 1.5
+[] 2.0
+• 2.5
+o 2.8
+
+0
+.3
+
+.2
+
+++
+
+Cd
+.1
+
++++i
++-ll
+++++i+++++++!+-_+++!+++++_-!_++++++:_++_+"i
+::_i
+| ++++++++"':"_
++:+':+'"'+++
+i"+++:"_
+o.:.....::.
+.........
+!:---..-.::-++++:+:++++:.=--:+
++++++++.0
+.1
+
+i ++++:+::;...++
+l.++r+_++
+I ++-:+:::++
+I ......m:::i+l
+
+0
+:+
+
+i
+
+Cm -.1
+
+:b
+--.2
+
+-.3.5
+
+I
+.6
+
+i
+.8
+
+,I
+.7
+
+.0
+
+.5
+
+y/s
+
+I
+.6
+
+I
+
+]
+
+.7
+
+.8
+
+_,i
+
+I
+.9
+
+1.0
+
+y/s
+
+(c) (x = 12 °
+Figure
+
+33. Concluded.
+
+85
+
+1.6
+
+1.2
+
+CI
+
+o
+•
+[]
+•
+o
+
+Re×10 -6
+
+Square tip
+
+Re×10 -6
+1.0
+1.5
+2.0
+2.5
+3.0
+
+-
+
+Round tip
+
+o 1.0
+• 1.5
+[] 2.0
+• 2.5
+<> 2.9
+
+.::;+-
+
+.8
+.:::.:_!!:'"
+
+.:
+
+_"
+
+:""
+
+o.,
+..+--
+
+.4
+
+I
+
+Ira:"
+
+0
+.10
+
+.08
+O
+
+.06
+Cd
+.04
+
+.O2
+_:gi!_F:'"
+0
+.08
+
+.06
+
+Cm .04
+
+.O2
+
+......
+
+.....
+.+++++++++++++++++
+
+i
+
+I ::::::"'"
+
+_-++++++++++++++++++++::_>::....
+0
+
+I
+5
+
+I
+10
+
+15
+
+0
+
+_x(deg)
+Figure
+
+86
+
+34. Integrated
+
+loads
+
+over full wing span with square
+
+"'"::::::[]
+
+I
+5
+
+I
+10
+cx (deg)
+
+and round
+
+tips at different
+
+Reynolds
+
+numbers.
+
+-3/-2I- _Surface ]Upper
+Y/S: 0"992 '
+
+y/s: 0.984"
+
+]
+
+y/s: 0.969
+
+m
+
+1
+-3
+
+yls: 0.948
+
+Cp -1
+
+1
+p
+
+y/s: 0.750
+
+Cp
+s
+
+1
+-3
+
+y/s: 0.375
+
+y/s: 0.542
+
+y/s: 0.667
+
+-2
+
+Cp -1
+0
+I
+
+1
+
+I
+
+I
+
+.2
+
+.4
+
+.6
+
+.8
+
+.0
+
+f
+
+I
+
+I
+
+[
+
+i
+
+0
+
+.2
+
+.4
+
+.6
+
+.8
+
+_/c
+Figure 35. Pressure
+along wing with square tip from
+conditions
+a = 11.8 °, Mo_ = 0.17 and Re = 1.8 × 106.
+
+.0
+
+0
+
+.2
+
+.6
+
+.8
+
+1.0
+
+_/c
+
+_/c
+Spivey-Morehouse
+
+.4
+
+experiment
+
+(ref.
+
+37) with
+
+test
+
+87
+
+y*/c - 0.02
+
+\
+
+y*/c"-0.33 y*Jc"=1.68
+
+McAlister-Takahashi
+AR = 6.58
+
+Chord
+0.52m
+
+Tip "-" y
+
+."
+
+Spivey-Morehouse
+AR = 5.33
+
+"..
+
+y
+
+Root
+
+_-
+
+Chord
+0.46m
+
+1
+
+!
+"_I _'IIi
+
+-5
+y/s: 0.994
+y/s: 0.992
+
+-4
+
+y/s: 0.899
+y/s: 0.885
+
+• --,
+y/s: 0.490
+o -- o y/s: 0.375
+
+-3
+
+cAlister-Takahashi
+
+Cp -2
+
+ey-Morehouse
+00o0
+
+0
+1
+0
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0 0
+
+.2
+
+.4
+
+_/c
+(a) Pressure at three stations along span
+
+.6
+_c
+
+.8
+
+1.0 0
+
+I
+
+I
+
+I
+
+l
+
+.2
+
+.4
+
+.6
+
+.8
+
+1.0
+
+_/c
+
+1.2
+1.0
+
+McAliste_Taka_
+
+.8
+CI
+
+_
+
+......
+
+-O- ............
+
+E)
+
+.6
+_P_'e "®
+
+Spive;-Morehouse
+
+.4
+.2
+
+0
+
+I
+.5
+(b) Pressure-integrated
+
+I
+1.0
+y*/c
+
+I
+1.5
+
+lift coefficient
+
+Figure 36. Measurements
+along wing span with square tip compared
+with results
+experiment
+(ref. 37) with test conditions
+_ ._ 12 ° and Re _ 2 x 106.
+
+88
+
+]
+2.0
+
+from Spivey-Morehouse
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+.3
+8
+
+_
+
+1.2
+
+x/c = 0.1
+
+>8
+
+0
+
+>
+
+•
+
+1.0
+
+--.3
+
+.8
+
+-.6
+
+Basic
+
+-.9
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+1
+
+I
+
+I
+
+.9
+.6
+.3
+8
+
+8 1.2
+
+0
+-.3
+-.6
+-.9
+.9
+
+1.6
+
+.6
+
+1.4
+
+.3
+8
+
+8
+
+x/c = 0.5
+
+1.2
+
+0
+N
+--.3
+
+--.6
+
+Basic
+--,9
+
+200
+
+100
+
+0
+
+-100
+
+-200
+
+-300
+
+-400
+
+200
+
+100
+
+I
+0
+
+y (mm)
+Figure
+39.
+Downstream
+development
+of trailing
+c = 52 cm at Re = 1.5 × l0 s and a = 12 ° .
+
+l
+-100
+
+i
+-200
+
+I
+-300
+
+tip,
+
+AR
+
+-400
+
+y (mm)
+vortex
+
+from
+
+"basic"
+
+wing
+
+(square
+
+= 6.6)
+
+with
+
+89
+
+X/C = 1
+
+8 1.2
+C_C
+
+X
+
+>
+
+CC
+
+^C
+_
+
+C
+
+O
+
+1.0
+.8
+
+Basic
+.6
+
+I
+
+I
+
+I
+
+I
+
+I
+
+1.6
+X/C = 2
+.6
+
+1.4
+
+.3
+8 1.2
+
+8
+
+o
+
+N
+
+v'_ C_,
+
+_x
+> 1.0
+
+,_C
+
+_
+
+O_O
+
+-.3
+-.6
+
+.8
+
+-.9
+
+.6
+
+.9
+
+1.6
+
+I
+
+I
+
+I
+
+I
+
+I
+
+x/c = 4
+.6
+
+1.4
+
+.3
+8
+
+8
+
+>
+
+1.2
+
+X
+
+>
+
+1.0
+
+--.3
+
+-.6
+
+.8
+Basic
+I
+
+.6
+
+i
+
+[
+
+I
+
+I
+
+1.6
+x/c = 6
+1.4
+
+8 1.2
+X
+
+>
+
+1.0
+.8
+
+Basic
+!
+
+I
+.6
+
+100
+
+0
+
+-100
+
+-200
+
+-300
+
+Figure
+
+9O
+
+-400
+
+39.
+
+_
+
+200
+
+Concluded.
+
+J
+100
+
+I
+l
+0
+-100
+y (ram)
+
+I
+-200
+
+I
+-300
+
+i
+-400
+
+1.2
+AR = 6.67
+1.0
+
+.8
+
+8 .6
+_>
+
+04
+I
+
+.4
+
+.2
+
+-.2
+
+i
+
+I
+
+I
+
+i
+
+(a) Wing c = 0.30m and s = 1.00m with square tip
+1.2
+AR = 6.87
+1.0
+
+.8
+
+.6
+
+I
+
+.4
+
+.2
+
+-.2
+
+I
+
+.5
+
+0
+
+I
+
+-.5
+
+1
+
+1
+
+1
+
+1
+
+i
+
+i
+
+-1.0
+
+-1.5
+
+-2.0
+
+-2.5
+
+-3.0
+
+-3.5
+
+-4.i
+
+y/c
+(b) Wing c = 0.30 and s = 1.03m with round tip
+Figure
+
+37. Circulation
+
+along
+
+wing span at a = 120 and Re = 1.5 × 106.
+
+91
+
+1.2
+AR = 8.20
+1.0
+
+.8
+
+8
+
+.6
+
+_>
+o
+
+L_
+
+.4
+
+.2
+
+|
+-,2
+
+I
+
+,.
+
+I
+
+]
+
+,.
+
+I
+
+(c) Wing c = 0.30m and s = 1.23m with square tip
+1.2
+AR = 6.58
+/
+1.0
+
+.8
+
+8 ,6
+¢J
+
+.4
+
+.2
+
+-.2
+.5
+
+I
+0
+
+1
+-.5
+
+i
+-1.0
+
+i
+-1.5
+
+i
+-2.0
+
+(d) Wing c = 0.52m and s = 1.71m with square tip
+Figure
+
+92
+
+37. Concluded.
+
+i
+-2.5
+
+i
+-3.0
+
+i
+-3.5
+
+-4.0
+
+1.2
+
+.Q
+
+1.0
+
+.8
+
+.6
+u
+¢N
+
+I
+
+,4
+
+#
+I
+I
+f
+
+o---_
+H
+
+Square tip
+Round tip
+
+t_
+
+.2
+
+H
+[]
+
+AR = 6.58
+AR = 8.08
+
+i
+
+w
+
+I
+
+AR - 6.6
+c = 0.305m
+-.2
+
+I
+
+!
+
+I
+
+Square tip
+c = 0.305m
+
+_ Ep-E] £
+
+I
+
+,,I
+
+L
+
+i
+
+I
+
+J
+
+(b) Aspect-ratio effects on circulation
+
+(a) Tip effects on circulation
+
+1.2
+w--"
+
+E]
+
+1.0
+
+.8
+
+I
+
+04
+
+f
+
+I .4
+
+I
+
+o -- -e -2r/cV_
+
+.2
+
+H
+
+[]
+
+C I from Cp
+
+I
+
+_- _-o_
+
+-.2
+
+i
+
+.5
+
+Square tip
+AR = 6.58
+c = 0.518m
+
+Square tip
+AR = 6.58
+
+0
+
+I
+
+-.5
+
+i
+
+i
+
+I
+
+-1.0
+y/c
+
+-1.5
+
+-2.0
+
+-2.5
+
+(c) Chord effects on circulation
+Figure
+
+38. Comparison
+
+of circulation
+
+.5
+
+i
+
+1
+
+0
+
+-.5
+
+I
+
+-1.0
+y/c
+
+-1.5
+
+-2.0
+
+(d) Circulation- and pressure-derived
+along wing
+
+-2.5
+
+lift
+
+span at _ = 12 ° and Re = 1.5 × 106.
+
+93
+
+.8
+
+03
+
+E
+8
+>
+N
+
+:>
+
+A
+w
+
+.6
+
+.5
+
+--
+
+.4
+
+--
+
+.3
+
+--
+
+I
+
+.2
+
+I
+
+(a) Maximum vertical-velocity
+
+I
+
+I
+
+I
+
+I
+
+component
+
+1.6
+
+1.4
+
+"'"'"''"--.
+
+1.2
+E
+8
+X
+
+>
+
+1.0
+
+.8
+
+.6
+0
+
+1
+1
+
+I
+2
+
+1
+3
+
+I
+4
+
+I
+5
+
+i
+6
+
+7
+
+x/c
+
+(b) Maximum streamwise-velocity
+
+component
+
+Figure 40. Downstream
+change in maximum vertical and streamwise
+basic wing with c = 52 cm at Re = 1.5 x 106 and a = 12 °.
+
+velocities
+
+within
+
+trailing
+
+vortex
+
+from
+
+.15
+
+u
+
+.12
+.09
+
+!
+I
+
+.°8
+t
+
+I
+
+.03
+
+0
+
+I
+
+(a) Diameter
+
+I
+of vortex
+
+I
+
+I
+
+]
+
+I
+
+core
+
+-.05
+
+_'
+
+-.15-'10
+
+--I---
+
+-.20
+I
+
+-.25
+
+(b) Spanwise
+
+I
+
+I
+
+displacement
+
+I
+
+of vortex
+
+core
+
+.02
+J
+
+.00
+
+J
+
+-.02
+--_ -.04
+-.06
+-.08
+-.10
+
+V
+0
+
+I
+1
+
+,J
+2
+
+I
+3
+
+I
+5
+
+I
+4
+
+I
+6
+
+7
+
+x/c
+(c) Vertical displacement
+of vortex core
+(Referenced
+to trailing edge when _ = 0 °)
+Figure
+at Re
+
+41. Downstream
+= 1.5 x 106 and
+
+change
+in size
+_ = 12 °.
+
+and
+
+position
+
+of vortex
+
+core
+
+trailing
+
+from
+
+basic
+
+wing
+
+with
+
+c = 52 cm
+
+95
+
+/
+
+^_
+
+J ^_
+
+x/c=0.1
+
+(a) x/c = 0.1
+
+A
+
+_\_t-_//.,.Xt-°'_-;-;_;°i
+
+V ,_, ,
+
+_.
+
+V / ,.. ,
+
+_,_]-.
+
+_,_]:.
+
+(b) x/c = 0.2
+
+A -_ . _ -K - _ ..............
+x,c_0.
+I....
+__
+-'--
+
+Iv
+
+I:;"',,\\_
+
+/_tl/\_
+
+°_':'_
+
+V:,,.,
+
+V _ ,..,
+
+\
+
+\
+
+.__._
+_(Vx_....,IVz_
+._.
+._- _,-.ot_):o.o-,
+',t_):o.o5
+_1_1oo
+(C) X/C = 0.5
+
+co/
+
+oo/
+
+Figure 42. Vertical and streamwise
+velocity contours around trailing vortex
+at Re = 1.5 x 106 and a = 12 ° measured
+at different downstream
+stations.
+
+96
+
+from basic wing with c = 52 cm
+
+x/c = 0.1
+
+.9
+
+1.6
+
+.6
+
+1.4
+t
+
+.3
+8
+
+8
+
+>_
+N
+
+c -- 30 cm
+
+1.2-
+
+>
+
+0
+
+• x 1.0
+--.3
+
+--.6
+
+Basic
+.6
+
+--,9
+
+1
+
+I
+
+I
+
+I
+
+I
+
+1.6
+
+.9
+
+c = 41 cm
+.6
+
+1.4
+
+.3
+8 1.2
+
+8
+0
+
+X
+
+•
+
+1.0
+
+I.3
+
+.8
+1,6
+
+Basic
+.6
+
+--.9
+
+8
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+I
+
+_
+
+I
+
+I
+
+I
+0
+
+I
+-100
+
+I
+-200
+
+I
+-300
+
+.3
+8 1.2
+
+>
+
+0
+
+N
+
+X
+
+•
+
+1.0
+
+1.3
+
+.8
+--.6
+
+--,9
+
+Basic
+200
+
+1O0
+
+0
+
+-100
+
+-200
+
+-300
+
+-400
+
+y (ram)
+
+.6
+200
+
+]
+100
+
+-400
+
+y (mm)
+
+(a) x/c = 0.1
+Figure 43. Vertical and streamwise
+velocity components
+Re = 1.5 × 10 6 and a = 12 ° for different chord lengths
+
+across trailing vortex from basic wing with
+while maintaining
+ClV_ = constant.
+
+97
+
+X/C = 4
+
+1.6
+
+.9
+
+c = 30 cm
+.6
+
+1.4
+
+.3
+8
+>_
+N
+>
+
+8 1.2
+>
+
+0
+
+x
+
+>
+
+1.0
+
+-.3
+.8
+
+-.6
+
+Basic
+
+-.9
+
+.6
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+I
+
+1
+
+I
+
+I
+
+1
+
+c = 41 cm
+
+.3
+1.2
+
+g
+
+>
+
+N
+
+>
+
+0
+
+G-
+
+x
+
+>
+
+>
+
+____1_0
+
+O
+
+O
+
+0
+
+1.0
+
+--,3
+
+.8
+--,6
+
+Basic
+I
+
+.6
+
+--.9
+
+.9
+
+1.6
+
+,6
+
+1.4
+
+I
+
+I
+
+,I
+
+I
+
+c = 52 cm
+
+.3
+8 1.2
+
+g
+>
+
+_N
+
+>
+
+0
+
+____1_0
+
+x
+
+>
+
+O 0
+
+0
+
+I
+-300
+
+-400
+
+1.0
+
+--.3
+
+.8--.6
+
+Basic
+
+--.9
+
+200
+
+100
+
+0
+
+-100
+-200
+y (mm)
+
+.6
+200
+
+-300
+
+-400
+
+Figure
+
+43. Concluded.
+
+(b) x/c = 4
+
+98
+
+I
+100
+
+,,J....
+I
+I
+0
+-100
+-200
+y (mm)
+
+.9
+
+!
+.8
+
+Chord
+
+.7
+
+52 cm _._
+X
+
+E
+8
+N
+
+>
+
+.6
+
+41 cm _
+30 cm _
+
+•
+
+1
+
+1
+
+.5
+
+v
+
+.4
+
+.3
+
+I
+
+.2
+
+I
+
+(a) Maximum vertical-velocity
+
+1
+
+ii=
+
+component
+
+1.6
+
+1.4
+Chord
+52 cm
+
+¢,-
+
+E
+41 cm _.•
+O_
+
+E
+8
+>
+
+30 cm _
+
+•
+
+>¢
+
+>
+v
+
+.8 ©
+
+Symbols
+Solid - max
+Open -- min
+
+.6
+0
+
+I
+1
+
+I
+2
+
+I
+3
+
+I
+4
+
+1
+5
+
+1
+6
+
+7
+
+x/c
+(b) Maximum streamwise-velocity
+
+component
+
+Figure 44. Maximum
+vertical and streamwise
+velocities
+Re = 1.5 x 106 and a = 12 ° for different chord lengths
+
+within trailing vortex from basic wing at
+while maintaining
+CIV_ = constant.
+
+99
+
+.15
+Chord
+
+"O
+
+.12
+
+30 cm ja
+
+.09
+
+41 cm _
+52 cm
+
+°°f
+
+!
+
+I
+
+.03
+
+0
+
+I
+1
+(a) Diameter of vortex core
+
+I
+
+1
+
+I
+
+,
+
+l
+
+I
+
+I
+
+I
+
+I
+5
+
+I
+6
+
+0
+
+!
+
+-.05
+
+Chord
+o
+
+-.10
+
+52 cm
+
+-.15
+-.20
+1
+
+-.25
+
+I
+
+(b) Spanwise displacement
+
+I
+
+of vortex core
+
+0
+
+A
+
+-.02
+
+-
+
+-.04
+
+-
+
+-.06
+
+-
+
+Chord f
+52 cm "
+41 cm--
+
+N
+
+•
+
+30 cm __.._ Q
+-.10
+-.08
+-.12
+
+0
+
+I
+1
+
+1
+2
+
+1
+3
+
+I
+4
+
+7
+
+x/c
+(c) Vertical displacement of vortex core
+(Referenced to trailing edge when o_= 0 °)
+Figure 45. Size and position of vortex core trailing from basic
+different chord lengths While maintaining
+CIV_ = constant.
+
+100
+
+wing
+
+at Re = 1.5
+
+x 10 6
+
+and
+
+a = 12 ° for
+
+(a) c = 30 cm
+
+,¢
+
+___-__o
+___.,
+"
+
+,¢.
+
+x/c = 0.1
+
+_(Vx__ooj
+A(Vx_:0.0, _(Vz
+_(Vz_:o.0_
+
+-,,.,s,,_
+
+\Vo4
+
+t.voo/
+
+(b) c = 41 cm
+
+A
+
+A
+
+tI_
+
+/
+
+^,¢
+
+_\\<"
+
+#
+
+^,¢
+
+x/c = 0.1
+
+..................
+l_.__
+
+/_/)/.....-\-T
+_ °"':'_
+
+(c) c = 52 cm
+Figure 46. Vertical and streamwise velocity contours around trai]ing vortex from basic wing at :tic = 0.1
+with Re = 1.5 × 106 and _ = 12° for different chord ]engths while maintaining
+C_Vo_ = constant.
+101
+
+x/c = 0.1
+
+.9
+
+1.6
+Re = 3.0x10 6
+
+.6
+
+1.4
+
+.3
+
+8
+
+1.2
+
+8
+
+N
+
+0
+
+_x
+> 1.0
+
+--.3
+.8
+
+-.6
+
+Basic
+.6
+
+--,9
+
+1.6
+
+.9
+
+H
+
+Re = 1.7x106
+.6
+
+1.4
+
+.3
+8 1.2
+
+8
+0
+
+N
+
+x
+
+>
+
+1.0
+
+--.3
+
+.8
+
+w.6
+
+Basic
+I
+
+.6
+
+--.9
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+1
+
+1
+
+1
+
+I
+
+,,,
+
+Re = 1.1 xl06
+
+.3
+8 1.2
+
+8
+
+0
+
+"-N
+
+x
+
+1.0
+--.3
+
+.8
+D.6
+
+Basic
+
+D,9
+
+200
+
+100
+
+0
+
+-100
+
+-200
+
+-300
+
+-400
+
+1
+100
+
+.6
+200
+
+I
+0
+
+y (mm)
+
+I
+-100
+
+I
+-200
+
+I
+-300
+
+-400
+
+y (mm)
+
+(a) x/c = 0.1
+Figure
+
+47. Vertical
+
+and streamwise
+
+c = 52 cm for different
+
+102
+
+Reynolds
+
+velocity
+numbers
+
+components
+
+across
+
+while maintaining
+
+trailing
+
+CtV_
+
+vortex
+
+= constant.
+
+from basic wing with
+
+x/c = 4
+.......................................
+
+1.6
+Re = 3.0x106
+1.4
+
+8
+
+8
+>
+
+>
+N
+>
+
+1.2
+
+_<
+
+>
+
+1.0
+.8
+I
+
+.6
+
+I
+
+I
+
+1
+
+I
+
+1.6
+Re = 1.7x106
+1.4
+
+g 1.2
+
+8
+>
+N
+>
+
+X
+
+>
+
+1.0
+.8
+1
+
+.6
+1.6
+.6
+
+1.4
+
+.3
+8
+>
+N
+>
+
+8 1.2
+>
+_x
+> 1.0
+
+0
+
+I
+
+t
+
+1
+
+1
+
+I
+
+Re = 1.1 xlO 6
+
+--.3
+
+.8
+
+--.6
+
+Basic
+--.9
+
+200
+
+100
+
+-100
+-200
+y (mm)
+
+-300
+
+-400
+
+.6
+200
+
+[
+100
+
+I
+0
+
+I
+I
+-100
+-200
+y (mm)
+
+1
+-300
+
+-400
+
+(b) x/c = 4
+Figure
+
+47. Concluded.
+
+103
+
+.9
+
+.8 &
+.7
+
+X
+
+A
+
+E
+8
+
+>
+
+_N
+
+.6
+Reynolds
+number
+
+.5
+
+•
+
+1.1 xl0 6
+
+>
+v
+
+1.7x10 6
+
+.4
+
+3"0x10 6
+
+_11
+
+.3
+
+]
+
+.2
+
+I
+
+[
+
+(a) Maximum vertical-velocity
+
+1
+
+l
+
+l
+
+component
+
+1.6
+
+Reynolds
+
+1.4 •
+
+number
+1.1 x 106
+
+,.-
+
+1.7x106
+
+_,.2__E
+
+3°0x106
+
+g
+>
+
+"_x 1.0 >
+
+?
+Symbols
+
+.8 --'1
+
+Solid - max
+Open - min
+.6
+0
+
+I
+1
+
+l
+2
+
+I
+3
+
+(b) Maximum streamwise-velocity
+Figure
+
+48. Maximum
+
+c = 52 cm for different
+
+104
+
+vertical
+
+and streamwise
+
+Reynolds
+
+numbers
+
+I
+5
+
+1
+4
+
+I
+6
+
+7
+
+x/c
+component
+
+velocities
+
+within
+
+while maintaining
+
+trailing
+
+vortex
+
+ClVoo = constant.
+
+from basic wing with
+
+.09
+o
+"o
+
+-
+
+Reynolds
+number
+
+_.
+
+A
+.06
+
+3"0X106
+1.1×106
+
+_-
+
+I
+
+I
+
+I
+
+1.7×106
+
+.o3 l
+L
+(a) Diameter
+
+I
+
+I
+
+I
+
+I
+
+1
+
+of vortex core
+
+-.05
+
+Reynolds
+number
+
+-.10
+
+-
+
+3.0×106
+
+-.15
+
+'
+
+1"1x106
+
+O
+
+-----
+
+I
+
+I
+
+....
+
+1.7×106
+-.20
+,
+
+-.25
+
+I
+
+1
+
+(b) Spanwise
+
+I
+
+displacement
+
+I
+
+of vortex
+
+core
+
+.09
+.06
+
+O
+
+il
+
+Reynolds
+number
+
+.03
+0
+•
+
+-.06
+-.O3
+-.09
+
+_
+
+3"0×106
+1.7×106
+1.1 ×106
+
+__
+1
+1
+
+0
+
+J
+2
+
+1
+3
+
+1
+5
+
+1
+4
+
+l
+6
+
+7
+
+x/c
+(c) Vertical
+
+displacement
+
+(Referenced
+Figure
+49. Size and position
+numbers
+while maintaining
+
+to trailing
+
+of vortex
+
+core
+
+edge when _ = 0 °)
+
+of vortex
+core trailing
+CIVo_ = constant.
+
+from
+
+basic
+
+wing
+
+with
+
+c = 52 cm for different
+
+Reynolds
+
+I05
+
+_o.o
+(a) Re = 3.0×10
+
+6
+
+_.
+
+I_
+
+V_. .
+
+_--_-w_ _
+
+A
+
+=__
+
+t_) - "
+
+6
+
+^,i
+
+_X%
+
+l_
+
+k/_ . .
+
+t_) - "
+
+/
+
+A
+
+x/c - 0.1
+
+(Vx__oo,A(Vz__oo_
+
+_,_-
+
+(b) Re = 1.7×10
+
+_,
+
+i
+
+^,i
+
+x/c = 0.1
+
+%f%
+
+II._._C_'...__, II(_l/^_
+
+_....
+t._
+\_,
+
+A(Vx_:o.o,"A(Vz_:o.o_
+
+._=
+
+tv_o/
+
+tvoo/
+
+(c) Re = 1.1 × 10 6
+Figure
+
+50.
+
+at x/c
+
+= 0.1
+
+106
+
+Vertical
+
+and
+
+streamwise
+
+velocity
+
+contours
+
+around
+
+for different
+
+Reynolds
+
+numbers
+
+while
+
+maintaining
+
+trailing
+ClVc_
+
+vortex
+
+from
+
+= constant.
+
+basic
+
+wing
+
+with
+
+c = 52 cm
+
+x/c = 0.1
+......................................
+
+Vz
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+.3
+8
+
+8
+0
+
+x
+
+N
+:>
+
+1.2
+1.0
+
+--.3
+
+.8
+
+--,6
+
+Basic
+.6
+
+--,9
+
+..9
+
+I
+
+I
+
+I
+
+l
+
+I
+
+1.6
+(_=8
+
+.6
+
+°
+
+1.4
+
+.3
+g 1.2
+
+8
+
+0
+
+x
+
+N
+
+1.0
+--.3
+
+.8
+
+--.6
+
+Basic
+.6
+
+--,9
+
+.9
+
+I
+
+i
+
+L
+
+]
+
+I
+
+1.6
+(x=4 °
+
+.6
+
+1.4
+
+.3
+8
+
+8
+0
+
+N
+
+1.2
+
+x
+
+1.0
+--,3
+
+.8
+
+--,6
+
+Basic
+--.9
+
+200
+
+100
+
+0
+
+-100
+-200
+y (mm)
+
+-300
+
+-400
+
+.6
+200
+
+I
+100
+
+I
+0
+
+l
+1
+-100
+-200
+y (ram)
+
+trailing
+
+vortex
+
+l
+-300
+
+-400
+
+(a) x/c = 0.1
+Figure 51. Vertical and streamwise
+velocity components
+across
+c = 52 cm and Re -- 1.5 × 106 for different values of circulation.
+
+from basic wing with
+
+107
+
+X/C = 4
+
+Vz
+
+1.6
+
+.9
+
+0(=12 °
+.6
+
+1.4
+
+.3
+8 1.2
+
+8
+>
+
+0
+
+x
+
+N
+
+>
+
+>
+
+_00
+
+0
+
+1.0
+
+--.3
+
+.8
+
+-.6
+
+Basic
+
+-.9
+
+.6
+
+.9
+
+1.6
+
+I
+
+I
+
+,
+
+I
+
+I
+
+I
+
+(X=8
+
+.6
+
+°
+
+1.4
+
+.3
+8 1.2
+
+8
+_-N
+>
+
+0
+
+>¢
+
+>
+
+>
+
+1.0
+
+--.3
+
+.8
+
+-.6
+
+Basic
+.6
+
+,
+
+l
+
+]
+
+l
+
+1
+
+1
+
+1.6
+0_=4
+
+°
+
+1.4
+
+8 1.2
+x
+
+>
+
+1.0
+,8-
+
+-,6
+--,9
+
+200
+
+100
+
+0
+
+-100
+
+-200
+
+-300
+
+-400
+
+.6
+200
+
+I
+0
+
+I
+-100
+y (mm)
+
+y (mm)
+(b) x/c = 4
+Figure
+
+108
+
+]
+1O0
+
+51. Concluded.
+
+]
+-200
+
+]
+-300
+
+-400
+
+.9
+.8
+.7
+x
+
+E
+8
+
+.6
+
+[]
+
+.5
+
+>
+
+12 °
+
+v
+
+8o_--i
+.4
+
+4°
+
+.3
+
+I
+
+.2
+
+I
+
+(a) Maximum vertical-velocity
+
+i
+
+l
+
+component
+
+1.6
+
+1.4
+12°
+8°
+4°
+x
+(13
+
+E
+g
+>
+
+_x 1.0
+>
+
+Symbols
+
+.8
+
+Solid - max
+Open - min
+.6
+0
+
+I
+1
+
+I
+2
+
+l
+3
+
+l
+4
+
+]
+5
+
+l llll
+
+6
+
+7
+
+x/c
+(b) Maximum streamwise-velocity
+
+component
+
+Figure 52. Maximum
+vertical and streamwise
+velocities within trailing
+c = 52 cm and Re = 1.5 × 106 for different values of circulation.
+
+vortex
+
+from basic wing with
+
+109
+
+.15
+
+o
+"10
+
+.12 f
+.09
+
+(_
+4°
+
+.03
+0
+
+II
+
+I
+
+I
+
+8°
+t
+t
+(a) Diameter of vortex core
+
+I
+
+I
+
+I
+
+0
+-.05 _1
+8° --___1
+u
+
+-.10
+
+-
+
+-.15
+
+-
+
+-.20
+
+-
+
+4°
+
+- - "
+
+12° _•
+
+I
+
+-.25
+
+- - 7-
+
+I
+
+(b) Spanwise displacement
+
+I
+
+I
+
+l
+
+l
+
+5
+
+6
+
+of vortex core
+
+,06
+
+£
+
+,03 -
+
+•
+o_
+
+_nl
+
+-.oa
+
+i
+
+-
+
+-,09
+-.06 _8
+-.12
+0
+
+1
+
+2
+
+3
+
+4
+
+7
+
+x/c
+(c) Vertical displacement of vortex core
+(Referenced to trailing edge when _ = 0°)
+Figure 53. Size and position of vortex
+for different values of circulation.
+
+llO
+
+core trailing
+
+from basic
+
+wing
+
+with c = 52 cm and
+
+Re = 1.5 × 106
+
+_,
+
+_,
+
+7"..
+
+x/c = 0.1
+
+V" ....
+
+_(.Vx__oo_
+A(Vz_.0.0,
+
+_o
+-
+
+\vo#
+
+_.
+
+"
+
+Woo/
+
+(a) (x = 12 °
+
+(b) (7,= 8°
+
+-_A. _ "-.............
+_,_;o,
+%%"
+
+%_-_
+
+DATA:447
+
+fi'_h',.,_
+hh_, I All..
+.......
+..\_,
+
+_W"
+
+Y)Yi" \\\\XXXXXXXX
+
+__;s
+
+\IY,'-"\\\_
+Vx\
+A ( Vx_=
+
+_'*
+
+"
+
+.,_oo
+
+^,,,"
+0.01
+
+A,(V
+( vzz _=
+
+\vo#
+
+0.05
+
+\vo#
+
+(c) (:Z= 4°
+Figure
+
+54.
+
+Vertical
+
+at x/c
+
+---- 0.1
+
+and
+
+and
+Re
+
+streamwise
+
+velocity
+
+= 1.5 x 106 for different
+
+contours
+values
+
+around
+
+trailing
+
+vortex
+
+from
+
+basic
+
+wing
+
+with
+
+c = 52 cm
+
+of circulation.
+
+lll
+
+.9
+J
+/
+
+.-"O
+
+.6
+x
+
+E
+8
+N
+:>
+
+.3
+
+Voo (m/sec)
+
+, I
+6
+
+0
+
+I
+8
+
+I
+10
+
+•
+
+32
+
+•
+
+46
+
+•
+
+51
+91
+1
+12
+
+14
+
+(deg)
+Figure 55. Maximum vertical
+for different c_ and Voo.
+
+112
+
+component
+
+of velocity
+
+within
+
+trailing
+
+vortex
+
+from basic wing with c = 52 cm
+
+x/c = 0.1
+
+Vz
+
+.9
+
+1.6
+
+.6
+
+1.4
+t
+
+AR = 6.6
+
+.3
+
+8
+
+>.>Sx
+1"2G
+
+0
+N
+
+>
+
+1'0
+
+=.3
+
+.8
+--,6
+
+Basic
+I
+
+.6
+
+--.9
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+I
+
+1
+
+I
+
+I
+
+t
+.3
+8
+
+8
+
+N
+
+X
+
+AR = 8.1
+
+1.2
+@
+
+1.0
+.8
+-.6
+
+-
+
+1-Ext
+
+I
+
+1
+
+i
+
+I_1
+
+.6
+--,9
+
+.9
+
+AR = 9.6
+B
+
+8
+>
+
+1.2
+
+N
+
+O
+
+vv
+
+1.0
+-.3
+.8
+--°6
+
+2-Ext
+
+--,9
+
+200
+
+100
+
+0
+-100
+y (mm)
+
+-200
+
+-300
+
+-400
+
+1
+
+I
+
+100
+
+0
+
+across trailing
+
+vortex
+
+.6
+200
+
+I
+
+I
+
+-100
+-200
+y (mm)
+
+I
+
+-300
+
+-400
+
+(a) x/c = 0.1
+Figure
+tip)
+
+56. Vertical
+
+and streamwise
+
+velocity
+
+components
+
+at Re = 1.5 × 106 and a -- 12 ° for different
+
+aspect
+
+from c = 30 cm wing (square
+
+ratios.
+113
+
+x/c = 4
+
+1.6
+AR = 6.6
+1.4
+
+8
+
+8
+
+1.2
+
+B
+
+X
+
+N
+
+>
+
+:>
+
+OOO
+
+O
+
+I
+
+I
+
+0
+
+1.0
+.8
+
+Basic
+I
+
+.6
+
+I
+
+1
+
+1.6
+AR = 8.1
+1.4 t
+8 1.2
+
+8
+_>
+
+_N
+
+0
+
+X
+
+>
+
+1.0
+7, O OC(__:_geO
+
+O
+
+0
+
+O
+
+.8
+1-Ext
+.6
+
+I
+
+1
+
+I
+
+I
+
+1
+
+1.6
+AR = 9.6
+.6
+
+1.4
+
+.3
+8 1.2
+
+8
+0
+
+_x
+e
+> 1.0
+
+N
+
+--,3
+
+.8 m
+--.6
+
+2-Ext
+--.9
+
+200
+
+100
+
+0
+
+-200
+-100
+y (mm)
+
+-300
+
+-400
+
+.6
+200
+
+(b) x/c = 4
+Figure
+
+114
+
+56. Concluded.
+
+I
+100
+
+I
+0
+
+l
+1
+-100
+-200
+y (mm)
+
+i
+-300
+
+-400
+
+.9
+
+.8-
+
+.7 R
+Aspect
+ratio
+
+X
+
+E
+8
+
+6.6 _O
+
+N
+
+.5
+
+9.6
+
+--
+
+,4
+
+8.1 __
+
+I_1
+
+I
+
+J
+
+--
+
+.3
+
+I
+
+.2
+
+I
+
+(a) Maximum vertical-velocity
+
+I
+
+I
+
+component
+
+1.6
+
+Aspect
+ratio
+
+1.4
+
+9.6
+E1.2
+
+_-
+
+_ 8.1
+6.6
+
+03
+A
+
+E
+8
+
+!
+
+_>
+
+_x 1.0
+
+.8
+
+Symbols
+Solid - max
+Open - min
+
+.6
+0
+
+I
+1
+
+I
+2
+
+I
+3
+
+(b) Maximum streamwise-velocity
+Figure 57. Maximum vertical and streamwise
+velocities
+tip) at Re = 1.5 × 10 6 and a = 12 ° for different aspect
+
+I
+4
+
+l
+5
+
+J
+6
+
+7
+
+x/c
+component
+within
+ratios.
+
+trailing
+
+vortex
+
+from c = 30 cm wing (square
+
+115
+
+.15
+
+.09
+
+6.6
+8.1 /
+
+.03"06
+f
+
+9.6 /
+
+0
+
+I
+I
+(a) Diameter of vortex core
+
+I
+
+_
+
+,'
+
+__
+
+I
+
+I
+
+I
+
+I
+
+0
+-.05
+-.10
+
+lib
+-
+
+Aspect
+ratio
+
+-.15
+
+_
+
+9.6
+
+-.20
+
+- ....
+
+6.6 _0
+,
+I
+I
+I
+I
+(b) Spanwise displacement of vortex core
+
+-.25
+
+I
+
+I
+
+1
+5
+
+I
+6
+
+7
+
+tip)
+
+at Re = 1.5 x
+
+0
+-.02
+
+Aspect
+
+-.,04
+
+9.6
+ratio,.
+
+-.06
+
+8.1
+
+-.08
+
+6.6 /0
+
+-.10
+-.12
+0
+
+1
+
+2
+
+3
+
+4
+x/c
+
+(c) Vertical displacement of vortex core
+(Referenced to trailing edge when (_ = 0 °)
+Figure
+and
+
+Il6
+
+58. Size and
+
+position
+
+_ = 12 ° for different
+
+of vortex
+
+aspect
+
+ratios.
+
+core trailing
+
+from c = 30 cm wing
+
+(square
+
+10 6
+
+(a) AR = 6.6
+
+t
+
+--
+
+_
+
+k
+
+/
+
+--
+
+\_,\
+
+_zoo
+
+X/C = 0.1
+
+;
+
+A / \_,\
+
+/,_\/W
+
+_,
+
+_
+
+/_1/........
+\':
+
+--"
+
+o,,,_4_
+
+_(,Vx__00,
+_/Vz__00_
+_,v_/
+
+"
+
+\v_) - "
+
+(b) AR = 8.1
+
+,...._.
+(I/'_,X_-;-
+
+__
+
+;
+u
+= 0.01
+V_"_ _ V_(Vx_
+
+------T-,j---_'_-
+
+x'ci L
+
+_
+
+DATA:352
+-_
+
+V/
+A
+
+= 0.05
+v(_)
+
+(c) AR = 9.6
+Figure 59. Vertical and streamwise
+velocity contours around trailing vortex from c = 30 cm wing
+tip) at x/c = 0.1 with Re = 1.5 x l0 s and a = 12 ° for different aspect ratios.
+
+(square
+
+117
+
+x/c = 4
+
+Vz
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+.3
+8
+
+8
+
+1.2
+
+_>
+
+0
+
+_x
+_>
+
+N
+
+C_C
+
+0
+
+1.0
+
+--.3
+
+.8
+--o6
+
+Basic
+I
+
+.6
+
+--,9
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+.3
+8
+>_.
+
+I
+
+I
+
+,,I
+
+I
+
+1.2
+
+0
+
+C
+
+N
+
+0
+
+1.0
+--,3
+
+CC
+
+.8
+--,6
+
+i
+
+Trip
+
+--.9
+
+200
+
+1O0
+
+0
+
+-100
+y(mm)
+
+-200
+
+-300
+
+-400
+
+.6
+200
+
+1 ,
+100
+
+I
+0
+
+I
+-100
+
+I
+-200
+
+-40O
+
+y(mm)
+
+Figure 60. Vertical and streamwise
+velocity components
+across trailing vortex from basic
+c -- 52 cm at x/c -- 4 with Re -- 1.5 x 106 and a = i20 with and without boundary-layer
+
+118
+
+L
+-300
+
+wing with
+trip.
+
+.9
+
+.8
+
+.7
+x
+
+E
+8
+N
+
+.6
+
+.5
+
+Basic _
+
+•
+
+Trip ._
+
+•
+
+I
+
+I
+
+.4
+
+.3
+
+I
+
+.2
+
+I
+
+(a) Maximum vertical-velocity
+
+component
+
+1.6
+
+1.4
+
+e-
+
+Basic
+
+ca
+A
+
+E
+g
+
+Trip _
+
+v
+
+.8
+
+Symbols
+
+[]
+
+Solid - max
+Open - min
+
+.6
+0
+
+1
+1
+
+I
+2
+
+1
+3
+
+I
+4
+
+I
+5
+
+I
+6
+
+7
+
+X/C
+
+(b) Maximum streamwise-velocity
+
+component
+
+Figure 61. Maximum
+vertical and streamwise
+velocities within trailing vortex from basic wing
+c = 52 cm at Re -- 1.5 x 106 and a -- 12 ° with and without boundary-layer
+trip.
+
+with
+
+119
+
+.15
+Trip +-t •
+
+.12
+
+Basic _
+o
+"lO
+
+•
+
+.09
+I
+
+I
+
+.06
+.03
+
+w
+
+l
+
+0
+
+1
+
+I
+
+I
+
+Trip _
+
+•
+
+I
+
+I
+
+l
+
+1
+
+I
+5
+
+I
+6
+
+(a) Diameter of vortex core
+0
+-.05
+-.10
+-.15
+-.20
+
+-
+
+Basic _0
+I
+
+-.25
+
+I
+
+I
+
+I
+
+(b) Spanwise displacement of vortex core
+0
+-.02
+
+-
+
+-.04
+
+-
+
+o -.06
+
+-
+
+-.08
+
+-
+
+-.10
+
+-
+
+-.12
+0
+
+Trip _m
+Basic J
+
+l
+1
+
+I
+2
+
+I
+3
+
+1
+4
+
+7
+
+x/c
+(c) Vertical displacement of vortex core
+(Referenced to trailing edge when o_ = 0 °)
+Figure
+
+62. Size and position
+
+a = 12 ° with and without
+
+120
+
+of vortex
+
+core trailing
+
+boundary-layer
+
+trip.
+
+from basic wing with c = 52 cm at Re = 1.5 × 106 and
+
+X/C = 4
+
+1.6
+
+.9
+.6
+
+1.4
+
+.3
+8 1.2
+
+8
+0
+
+N
+
+x
+
+•
+
+1.0
+
+--.3
+
+Far
+--.6
+
+.8
+
+image
+
+--.9
+
+.6
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+.3
+8
+
+8
+0
+
+J
+
+I
+
+I
+
+I
+
+I
+
+J
+
+J
+
+i
+
+i
+
+]
+
+1.2
+
+x
+
+N
+
+•
+
+1.0
+
+--,3
+
+Midway
+image
+
+--.6
+
+.8
+.6
+
+--.9
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+.3
+8 1.2
+
+8
+
+>
+
+0
+
+x
+
+N
+
+> 1.0
+--,3
+
+Near
+image
+
+-.6
+
+.8
+
+--,9
+
+200
+
+100
+
+0
+
+-100
+-200
+y (ram)
+
+-300
+
+-400
+
+i__i
+
+.6
+200
+
+° i o o
+100
+
+0
+
+-100
+y(mm)
+
+-200
+
+o---o
+
+I
+-300
+
+-400
+
+Figure 63. Vertical and streamwise
+velocity components
+across trailing vortex from basic wing with
+c = 30 cm at x/c = 4 with Re = 1.5 x 106 and a = 12 ° for different image plane positions.
+
+121
+
+.9
+
+.8
+
+.7
+
+X
+
+.6
+
+Near
+
+E
+8
+>
+v
+
+Midway
+Far
+
+.5
+
+_A
+_1
+
+.4
+
+.3
+
+L
+
+.2
+
+I
+
+I
+
+(a) Maximum vertical-velocity
+
+1
+
+A
+
+I
+
+component
+
+1.6
+
+".°
+
+1.4
+
+"--.°°
+
+r.w
+
+E 1.2
+X
+
+E
+8
+_x 1.0
+
+-
+
+Far
+Midway _
+
+[]
+
+.8
+
+Symbols
+-
+
+.6
+0
+
+Solid - max
+Open - min
+
+Near _
+I
+1
+
+1
+2
+
+I
+3
+
+(b) Maximum streamwise-velocity
+
+_'
+4
+
+I
+5
+
+7
+
+x/c
+component
+
+Figure 64. Maximum
+vertical and streamwise
+velocities within trailing vortex
+c = 30 cm at Re = 1.5 × 10 6 and _ = 12 ° for different image plane positions.
+
+122
+
+I
+6
+
+from basic wing with
+
+.15
+.12
+
+Far
+
+.09
+"1o
+
+Midway _
+Near
+
+•
+
+I
+
+l
+
+I
+
+]
+
+I
+
+]
+
+I
+
+!
+I
+
+I
+
+.06
+.03
+I
+
+0
+
+I
+
+(a) Diameter of vortex core
+0
+-.05
+-.10
+_J
+>,
+
+-.15
+
+_
+
+Near _A
+Midway
+
+-.20
+
+-
+
+Far __1
+]
+
+-.25
+
+I
+
+I
+
+(b) Spanwise displacement
+
+of vortex core
+
+0
+-.02
+
+-
+
+-.04
+
+-
+
+-.06
+
+Near /_&
+Midway _BI
+Far /
+
+-.08
+-.10
+
+I
+_-
+
+-
+
+-,12
+0
+
+]
+1
+
+1
+2
+
+I
+3
+
+I
+4
+
+[
+5
+
+]
+6
+
+7
+
+x/c
+(c) Vertical displacement of vortex core
+(Referenced to trailing edge when o_= 0°)
+Figure 65. Size and position of vortex core trailing
+= 12 ° for different image plane positions.
+
+from basic wing with c = 30 cm at Re = 1.5 x 106 and
+
+123
+
+x/c = 0.1
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+.3
+1.2
+
+8
+
+_
+
+o
+
+X
+
+N
+
+>
+
+1.0
+
+--,3
+
+.8
+--.6
+
+Square
+.6
+
+--,9
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+.3
+
+1.2
+
+_
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+100
+
+|
+0
+
+I
+-100
+
+I
+-200
+
+1
+-300
+
+1.
+
+--.6
+
+-.9
+200
+
+100
+
+0 @ -100
+-200
+y (ram)
+
+-300
+
+-400
+
+6 /
+" 200
+
+-400
+
+y (ram)
+
+(a) c -- 52-cm wing with Re = 2.0x106 at x/c = 0.1
+Figure
+
+66. Vertical
+
+and
+
+streamwise
+
+velocity
+
+= 12 ° for square-
+
+and
+
+round-lateral
+
+edges.
+
+124
+
+components
+
+across
+
+trailing
+
+vortex
+
+from
+
+wing
+
+(AR
+
+= 6.6) at
+
+x/c = 4
+
+y___Vx Vz
+
+_'_Vc<
+
+_
+
+.9
+
+1.6
+
+.6
+
+1.4
+
+.3
+8 1.2
+
+8
+
+0
+
+_>
+
+_N
+
+x
+
+>
+
+1.0
+
+--.3
+
+.8
+--.6
+
+Square
+I
+
+.6
+
+--.9
+
+I
+
+I
+
+L
+
+I
+
+I
+0
+
+1
+-100
+
+1
+-200
+
+I
+-300
+
+1.6
+1.4
+8 1.2
+
+8
+
+>
+
+x
+
+N
+
+_>
+
+O
+
+C
+
+OOC_
+
+1.0
+.8
+Round
+I
+100
+
+I
+0
+
+I
+-100
+
+I
+-200
+
+L
+-300
+
+-400
+
+.6
+200
+
+y (mm)
+
+I
+100
+
+-400
+
+y (mm)
+
+(b) c = 30-cm wing with Re =1.5x106
+
+atx/c = 4
+
+Figure
+
+66. Concluded.
+
+125
+
+1.1
+
+1.0
+
+.9
+_
+x
+
+Square
+
+.8
+
+E
+8
+
+>
+
+N
+
+.7
+
+v
+
+.6
+
+.5
+
+B
+
+I
+
+.4
+
+J,
+
+(a) Maximum vertical-velocity
+1.6
+
+I
+
+I
+
+component
+
+L
+_
+
+Round
+
+1.4 E' "_
+
+Square
+
+¢..
+°_
+
+E 1.2
+
+I1
+
+E
+8
+>_x1.0
+
+[]
+
+3
+Symbols
+
+.8
+
+Solid - max
+Open - min
+.6
+0
+
+I
+1
+
+I
+2
+
+I
+3
+
+I
+4
+
+I
+5
+
+J
+6
+
+7
+
+x/c
+(b) Maximum streamwise-velocity
+
+component
+
+Figure 67. Maximum
+vertical and streamwise
+velocities
+within trailing vortex from wing (AR = 6.6) at
+c_ = 12 ° for square- and round-lateral
+edges. Values at x/c = 0.1 for c = 52 cm wing with Re = 2.0 x 106
+and those
+
+125
+
+at x/c = 4 for c = 30 cm wing with Re = 1.5 x 106.
+
+.15
+.12
+
+|
+
+.09
+o
+1D
+
+!
+I
+
+Square
+
+.06
+D_
+
+I
+
+Round
+
+.03
+I
+
+0
+
+I
+
+I
+
+I
+
+Square _
+
+•
+
+I
+
+]
+
+1
+
+I
+
+i
+5
+
+l
+6
+
+(a) Diameter of vortex core
+0
+-.05
+
+_B
+
+-.10
+o
+---.15
+
+-.20
+-.25
+
+_
+
+Round _
+
+I
+
+-.30
+
+L
+
+I
+
+•
+
+(b) Spanwise displacement of vortex core
+0
+-.02
+-.04
+o -.06
+
+Round
+
+-.08
+
+_
+
+Square
+
+-.10
+I
+1
+
+-.12
+0
+
+I
+2
+
+!
+3
+
+1
+4
+
+7
+
+x/c
+(c) Vertical displacement of vortex core
+(Referenced to trailing edge when (x = 0 °)
+Figure
+
+68.
+
+Size and
+
+position
+
+of vortex
+
+core trailing
+
+from wing
+
+(AR
+
+= 6.6) at a = 12 ° for square-
+
+round-lateral
+edges. Values at x/c = 0.1 for c = 52 cm wing with Re = 2.0 x 106 and those
+c = 30 cm wing with Re = 1.5 x 10 6.
+
+and
+
+at x/c = 4 for
+
+127
+
+(a) Square-lateral edge
+
+i
+
+/
+
+^_,
+
+i
+
+^_
+
+x/c = 0.1
+
+(b) Round-lateral edge
+Figure
+
+69. Vertical
+
+and streamwise
+
+velocity
+
+contours
+
+(AR = 6.6) at Re = 2.0 × 106 and a = 12 ° for square-
+
+)28
+
+around
+
+trailing
+
+vortex
+
+and round-lateral
+
+from c = 52 cm wing
+
+edges.
+
+140 mm
+
+-160 mm
+120 mm
+DATA:426
+
+I
+-180 mm
+(a) Square-lateral edge
+
+140 mm
+
+-160 mm
+120 mm
+
+i"
+
+DATA:433
+
+i"
+/
+r
+/
+
+!
+
+/
+
+'
+
+4'
+
+f
+_,
+
+;'
+
+IL
+
+it
+
+_-_,'
+
+_
+
+i
+
+t
+
+,
+
+e,!'' , ','6",
+c
+
+, :_
+
+, .,. ,
+
+_
+
+oI
+
+i
+
+.
+
+,,
+
+-180 mm
+(b) Round-lateral edge
+Figure
+
+70. Detailed
+
+vertical
+
+velocity
+
+contours
+
+around
+
+x/c = 0.1 with Re = 2.0 × 106 and c_ = 12 ° for square-
+
+trailing
+
+vortex
+
+from c = 52 cm wing
+
+and round-lateral
+
+(AR = 6.6) at
+
+edges.
+
+129
+
+-5
+Uncorrected conditions
+o_= 10 °
+Moo= 0.22
+Re = 2.4×106
+
+Cp
+
+2
+0
+
+.25
+
+.50
+
+.75
+
+1.0
+
+x/c
+
+Figure
+
+130
+
+71. Example
+
+of solid-body
+
+and wake-blockage
+
+effects
+
+on 2D pressure
+
+distribution.
+
+.3
+
+.2-
+
+z/c
+
+• _
+
+_--
+
+.........
+
+L
+
+I
+
+.1
+
+O
+
+--L
+
+.........
+
+m
+
+.........
+
+I
+
+L Special case
+i
+(_= 15 °
+
+.................
+
+i
+
+L ......
+
+I
+I
+
+-.1
+0
+
+1
+
+t
+
+.2
+
+.4
+
+.6
+
+.8
+
+.0
+
+x/c
+
+.4
+
+.3
+
+I-
+
+.........
+
+I-
+
+.........
+
+_-
+
+.........
+
+I-
+
+.........
+
+!
+
+z/c
+
+.2
+
+.1 -
+
+0
+
+3
+
+6
+
+9
+
+12
+
+(_ (deg)
+Figure
+
+72. Frontal
+
+projection
+
+of NACA
+
+0015 airfoil
+
+for a range
+
+of incidence
+
+angles.
+
+131
+
+Offset _
+
+d
+
+Test-section --_
+wall
+\
+
+h/2
+
+I
+
+\
+
+III II
+
+=
+
+_
+
+_
+
+5
+
+i
+
+_=1+
+
+.2
+
+.4
+
+3 COt2 7_d
+
+i
+
+_
+
+0
+
+.6
+
+.8
+
+1.0
+
+d/h
+Figure
+
+132
+
+73. Effect
+
+of object
+
+offset on solid-blockage
+
+factor.
+
+z/c
+
+Aa/C2 = 0.10267
+I
+L
+I
+
+.........
+
+L
+!
+
+I
+I
+
+.........
+
+L
+I
+
+I
+I
+
+.........
+
+I
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+t
+
+.2
+
+.4
+x/¢
+
+Figure
+
+74. Cross-sectional
+
+area of NACA
+
+0015 airfoil.
+
+.08
+.06
+
+'_/__
+-
+
+,.
+
+_--
+
+/
+
+_ \4.5
+
+_'d- _"do+/2-7-_.6)
+(x in degrees
+
+....
+
+:-
+
+-_
+
+_
+
+:
+
+:
+
+_
+
+_1 .U':l._
+
+.02
+
+.........
+
+:_
+'..........
+
+,
+4- -
+
+!
+
+I
+
+I
+
+!
+
+I
+
+I
+
+!
+
+I
+
+I
+
+I
+
+|
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+I
+
+i.......
+
+'-
+
+......
+
+//
+
+I
+
+!
+
+"
+
+....
+
+:
+I
+
+Cdo = 0.0092
+_
+......
+
+"
+
+I
+0
+
+4
+
+Figure 75. Drag coefficient for NACA
+
+8
+(x (deg)
+
+12
+
+0015 at Re = 1.2 × 106 and M_
+
+16
+
+= 0.1 (ref. 48).
+
+133
+
+Support
+endplate
+
+Image
+endplate
+Airfoil
+
+Tube
+fairing
+
+Figure
+
+134
+
+76. Airfoil
+
+at a = 10 ° between
+
+splitter
+
+plates
+
+in 7- by 10-foot
+
+wind
+
+tunnel.
+
+Airfoil
+
+Endplates
+
+.05
+
+.04 -
+
+Rogers
+support
+
+Approx
+support
+
+.03 -
+
+.02 -
+
+Approx --\
+
+Tube
+
+.ogers-- \
+
+fairing
+
+.01 Pope--_oooo
+/
+
+"
+/
+/
+
+0
+
+I
+5
+
+I
+10
+
+Rogers
+image
+
+/
+/
+/
+
+/
+/
+/
+
+Approx
+image
+
+/
+/
+
+/
+
+Approx
+
+/
+
+/
+
+15
+
+(deg)
+Figure
+
+77. 2D solid-and
+
+wake-blockage
+
+contributions
+
+at Moo = 0.2.
+
+135
+
+_-
+
+2s
+
+I
+c
+
+-Jlllllllllllllllllllillllllilillll
+m
+m
+
+=
+=
+
+Image
+/
+
+:
+
+/- Wing
+h
+
+N;2N2N2N;2N2
+
+=
+=
+=
+_j-
+
+=
+
+Tunnel wall
+
+_llllllililillllllllllllllllllllil
+
+_
+
+b
+Figure
+
+136
+
+78. Assumed
+
+interference
+
+geometry
+
+with side-wall
+
+reflection.
+
+REPORT DOCUMENTATION
+ii
+. i i
+PU_iC ;'spOiling burden
+to1' thia co|teed/on ol )n$ofrcation
+is ettima14KI to average
+1 hour
+gathering
+and maintaiolng
+the data needed,
+and completing
+and reviewing
+the collection
+collection
+of information.
+Including
+suggestion, s for reducing
+this burden,
+to Washington
+Davis Highway.
+Suite 1204. Arlington.
+VA 22202-4:_02.
+andto
+the Office of Management
+
+1. AGENCY
+
+USE ONLY (Leave
+
+blank)
+
+OMB
+No.oz.-o1
+
+,
+!
+per Tall,punts,
+trclueitng the timll tot rev_,ewlr_g il_tructions,
+searching
+existing
+data sources.
+of Information.
+Send o0mmen¢$
+regarding
+this burden
+estimate
+or any other aspect
+of this
+Heedquarlers
+Sen/ices.
+Dltsctoralefot
+inlormation
+Operations
+and Reporls.
+1215
+Jefferson
+and Budget.
+Pal_l, rwork Reduction
+Project (0704-01811),
+Washington.
+DC 20503.
+
+2. REPORT DATE
+November
+
+4. TITLE
+
+Form Approved
+
+PAGE
+
+1991
+
+Technical
+Paper
+3. REPC)RT
+TYPE AND
+DATES COVERED
+i
+
+AND SUBTITLE
+
+5=_.FUNDING NUMBERS
+
+NACA 0015 Wing Pressure and Trailing Vortex Measurements
+WU-505-61-51
+
+6. AUTHOR(S)
+
+K. W. McAlister
+
+and R. K. Takahashi
+
+r. PERFORMING
+ORGAN,ZATION
+NAME(S)
+ANDADDRESS(ES)
+Ames Research
+
+8. PERFORMING ORGANIZATION
+REPORT NUMBER
+
+Center, Moffett Field, CA 94035-1000
+
+and
+
+Aeroflightdynamics
+Directorate, U.S. Army Aviation Systems
+Command, Ames Research Center, Moffett Field, CA 94035-1099
+9. SPONSORING/MONITORING
+
+AGENCY
+
+A-91056
+
+10.
+
+NAME(S) AND AODRESS(ES)
+
+National Aeronautics and Space Administration, Washington, D. C.
+20546-0001 and U.S. Army Aviation Systems Command, St. Louis,
+MO 63120-1798
+
+SPONSORING/MONITORI'NG
+AGENCY REPORT NUMBER
+
+NASA TP-3151
+AVS COM TR-91-A-003
+....
+
+1_. SUPPLEMENTAR_
+SOres
+Point of Contact:
+
+12a.
+
+K. W. McAlister, Ames Research Center, MS 215-1, Moffett Field, CA 94035-1000
+(415) 604-5892 or FTS 464-5892
+
+DISTRIBUTION/AVAILABILITY
+
+S'TATEMENT
+
+"
+
+i..i
+
+12b. DISTRIBUTION
+
+CODE
+
+Unclassified-Unlimited
+Subject
+13. ABSTRACT
+
+Category
+
+- 02
+
+(Maximum
+
+200 Words)
+
+A NACA 0015 semispanwing was placedin a Iow-stx_ wind tunnel,and measurementswere made of the pressure on the
+upperand lowersurface of the wingand of the velocity acrossthe vortex lrailing downstream fromthe tipof the wing.Pressure
+data were obtained forboth 2D and 3D configurations.These data feature a detailedcomparison between wing tips with square
+and round lateraledges.Atwo-compoc_ntlaser velocimeterwas usedto measure velocityprofilesacrossthe vortex atnurnerous
+stationsbehind the wing and forvariouscombinationsof conditions.These conditionsinclude three aspect ratios, three chord
+lengths,a square-anda round-lateraltip,lxesenee or absenceof a boundary-layertrip, and three image planepositions located
+opposite the wing tip. Bothpressureand velocitymeasurementswere madefor anglesof attack of4° _<ct< 12° and for Reynolds
+numbers of I × I06<Re _ 3 x 106.
+The additionof around-lateraledge tothewing tipwas found to eliminatethesecondaryvortex nearthewing tip,but had little
+effect on the downstreamcharacteristics
+of the trailingvortex.The increasein wing liftnear the tipbecause of thepresenceof
+the trailingvortexwas evident in the surface pressure,but was notcaptured by circulation-boxmeasurements.The circumferential velocity within the vortex was found to reachfree-stream values and produce core rotational speeds as high as
+44,000 rpm. The streamwisevelocitywithin the viscous wake that is shedfromthe wing was observedto formislandsof peak
+velocity in the spiraling sheet that feeds into the trailing vortex.Near the wing,the trailing vortex is asymmetric and contains
+definitezones where the streamwisevelocityboth exceedsand fallsbehind the free-sb'eamvalue.When referenced to the free.stream velocity,the maximum vertical velocity of the vortex is directlydependent on ct and is independent of Re.
+14. SUBJECTTER_IS
+is. NUMBER OF PAGES
+144
+i
+NACA 0015 wing, Wing surface pressure, Trailing vortex
+16. PRICE CODE
+A07
+17. SECU"RITY CLASS'IFICATION
+OF REPORT
+
+Unclassified
+NSN zS40_-2s0-ss0o
+
+111. SECURITY CLASSIFICATION
+OF THIS PAGE
+
+19'. SECURITY CLASSIFICATION
+OF ABSTRACT
+
+20. LIMITATION
+
+OF ABSTRACT
+
+Unclassified
+Standard
+Presct_d
+2ee- 102
+
+Form 298 (Roy.
+
+2-B'_)
+
+by ANJIJ _tIO. Z31)-18
+
+NASA-Langley,
+
+1991
+
+

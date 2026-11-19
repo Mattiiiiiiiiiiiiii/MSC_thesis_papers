@@ -1,0 +1,84 @@
+author: Khailany, Nawa and Mokotoff, Paul and Cinar, Gokcin
+author_list:
+- affiliation:
+  - name: University of Michigan
+  family: Khailany
+  given: Nawa
+- affiliation:
+  - name: University of Michigan
+  family: Mokotoff
+  given: Paul
+- affiliation:
+  - name: University of Michigan
+  family: Cinar
+  given: Gokcin
+booktitle: AIAA SCITECH 2025 Forum
+citations:
+- author: Mokotoff P.
+  volume-title: AIAA SciTech 2025 Forum
+  year: '2025'
+- author: National Aeronautics and Space Administration
+  volume-title: Electrified Aircraft Propulsion (EAP)
+  year: '2024'
+- author: Gipson L.
+  volume-title: About Electrified Powertrain Flight Demonstration Project
+  year: '2022'
+- author: Jansen R.
+  first-page: '2179'
+  journal-title: AIAA SciTech
+  volume: '2022'
+  year: '2022'
+- author: Wang Y.-C.
+  volume-title: AIAA SciTech 2025 Forum
+  year: '2025'
+- doi: 10.2514/6.2015-3087
+- author: Stanford Aerospace Design Lab
+  volume-title: SUAVE Documentation
+  year: '2024'
+- author: Stanford Aerospace Design Lab
+  volume-title: General Aviation Analysis
+  year: '2024'
+- author: McDonald R. A.
+  first-page: '0004'
+  journal-title: AIAA SciTech
+  volume: '2022'
+  year: '2022'
+- unstructured: Kruger, M. "The Challenges and Potential Benefits of Electrified Propulsion
+    for Aircraft," Ph.D. thesis,University of Southern California, 2022.
+- doi: 10.2514/1.C033976
+- doi: 10.2514/6.2022-1515
+- doi: 10.2514/1.C036101
+- unstructured: Herbst, S. "Development of an aircraft design environment using an
+    object-oriented data model in MATLAB," Ph.D. thesis,Technische Universität München,
+    2018.
+- doi: 10.2514/6.2015-3243
+- author: Trifari V.
+  first-page: '3737'
+  journal-title: AIAA AVIATION
+  volume: '2022'
+  year: '2022'
+- doi: 10.2514/6.2013-3073
+- doi: 10.1108/AEAT-06-2019-0118
+- author: Lockheed Martin Corporation
+  volume-title: C-130J Super Hercules
+  year: '1803'
+- author: Eastman N.
+  volume-title: NACA-report-460
+  year: '1933'
+- author: Arnson M.
+  volume-title: AIAA SciTech 2025 Forum
+  year: '2025'
+doc_url: https://arc.aiaa.org/doi/pdf/10.2514/6.2025-1288
+doi: 10.2514/6.2025-1288
+files:
+- aircraft_geometry_and_propulsion_architecture_visualization_for_the_future_aircraft_sizing_tool_FAST_Khailany_Mokotoff_Cinar_2025.pdf
+journal: AIAA SCITECH 2025 Forum
+month: 1
+papis_id: 0cd2becf246ca7a709a21381fe5ec66c
+publisher: American Institute of Aeronautics and Astronautics
+title: Aircraft Geometry and Propulsion Architecture Visualization for the Future
+  Aircraft Sizing Tool (FAST)
+type: inproceedings
+url: https://doi.org/10.2514/6.2025-1288
+venue: Orlando, FL
+year: 2025

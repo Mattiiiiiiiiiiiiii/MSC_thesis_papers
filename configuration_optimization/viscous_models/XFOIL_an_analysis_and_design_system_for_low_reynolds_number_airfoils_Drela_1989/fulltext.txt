@@ -1,0 +1,1014 @@
+XFOIL: An Analysis and Design System for Low Reynolds Number Airfoils
+Mark Drela
+MIT Dept. of Aeronautics and Astronautics, Cambridge, Massachusetts
+
+Abstract
+Calculation procedures for viscous/inviscid analysis and mixed-inverse design of sub critical airfoils
+are presented. An inviscid linear-vorticity panel method with a Karman-Tsien compressiblity correction
+is developed for direct and mixed-inverse modes. Source distributions superimposed on the airfoil and
+wake permit modeling of viscous layer influence on the potential flow. A two-equation lagged dissipation
+integral method is used to represent the viscous layers. Both laminar and turbulent layers are treated,
+with an e9 -type amplification formulation determinining the transition point. The boundary layer and
+transition equations are solved simultaneously with the inviscid flowfield by a global Newton method.
+The procedure is especially suitable for rapid analysis of low Reynolds number airfoil flows with transitional separation bubbles. Surface pressure distributions and entire polars are calculated and compared
+with experimental data. Design procedure examples are also presented.
+
+1
+
+Introduction
+
+Effective airfoil design procedures require a fast and robust analysis method for on-design and offdesign performance evaluation. Of the various airfoil analysis algorithms which have been developed
+to date, only the interacted viscous/inviscid zonal approaches have been fast and reliable enough for
+routine airfoil design work. For low Reynolds number airfoils (Re < 1/2 million), the demands on the
+analysis method become especially severe. Not only must the complex physics of transitional separation
+bubbles be captured, but the solution algorithm must be able to handle the very strong and nonlinear
+coupling between the viscous, transition, and inviscid formulations at a separation bubble.
+Of the various calculation methods currently in use (GBK code [lJ , GRUMFOIL code [2]), only
+the ISES code [3,4,5J can routinely predict low Reynolds number airfoil flowfields. Its fully compatible
+laminar and turbulent viscous formulations, a reliable transition formulation, and a global Newton
+solution method represent the necessary ingredients for prediction of such flows.
+ISES has been successfully applied to the design of low Reynolds number airfoils for human-powered
+aircraft [6J, analysis of established airfoils [7], and the design of high Reynolds number transonic transport
+airfoils, even though it can be demanding in terms of computer time. About two minutes are required to
+calculate an entire 20-point polar on a dedicated supercomputer. For users limited to a microVAX-ciass
+(0.1 MFLOP) machine, this may require several hours, which severely hinders the inherently iterative
+design process. A major goal in the development of the present XFOIL code was to significantly reduce
+these computational requirements while retaining the ability to predict low Reynolds number flows. The
+analysis formulation was also embedded in an interactive driver which also allows the designer to exercise
+an inverse solver and a geometry-manipulation facility. The overall goal is to improve the productivity
+of the designer.
+The present paper will outline the basic inviscid and viscous formulations of XFOIL, and demonstrate
+its performance on a number of airfoil cases. The mixed-inverse formulation and associated user interface
+will also be described. Finally, the code's overall design/analysis environment will be discussed.
+
+2
+
+'>;.1 y,
+
+--r-t-
+
+~:~'
+
+\.~5
+
+N-1
+
+N
+
+N+2
+
+(j
+
+Figure 1: Airfoil and wake paneling with vorticity and source distributions, with trailing edge detail.
+
+2
+
+Inviscid Formulation
+
+Numerous two-dimensional panel methods have been developed in the past [8,9,10], all being more or
+less successful for inviscid analysis of arbitrary airfoils. The present linear-vorticity streamfunction formulation is designed specifically for compatibility with an inverse mode, and for a natural incorporation
+of viscous displacement effects.
+A general two-dimensi0I1;al inviscid airfoil flowfield is constructed by the superposition of a freestream
+flow, a vortex sheet of streD.'gth "Y on the airfoil surface, and a source sheet of strength a on the airfoil
+surface and wake. The streamfunction of this configuration is given by
+w(x,y) = u=y-v=x +
+
+2./
+211"
+
+1 (8) Inr(8; x,y) d8
+
+2./
+
++ 211"
+
+a (8)O(8;X,Y)d8
+
+(1)
+
+where 8 is the coordinate along the vortex and source sheets, r is the magnitude of the vector between
+the point at s and the field point x, y , 0 is the vector's angle, and u= = q= cos a: , V= = q= sin a: are the
+freestream velocity components.
+The airfoil contour and wake trajectory are discretized into flat panels, with N panel nodes on
+the airfoil, and N., nodes on the wake as shown in Figure 1. Each airfoil panel has a linear vorticity
+distribution defined by the node values "Yi (1::; i ::; N). Each airfoil and wake panel also has a constant
+source strength ai (1::; i::; N+N.,-l) associated with it. These source strengths will be later related
+to viscous layer quantities.
+A panel of uniform source strength aTE and vortex strength "YTE must be also be placed across the
+airfoil trailing edge gap if it has a finite thickness. For smooth flow off the trailing edge, the trailing
+edge panel strengths aTE, 1TE , must be related to the local airfoil surface vorticity
+
+bY
+
+(2)
+where s is the unit vector bisecting the trailing edge angle, and t is the unit vector along the trailing
+edge panel as shown in Figure 1.
+For the airfoil with flat panels, equation (1) evaluates to the following expression for the streamfunction at any field point x, y.
+1 N+N m -l
+u=y - V=x + wj(X,y) 2ai
+411" i=1
+1 N-l
+411"
+wj+(X,y) bj+l +"Yi) + wr<x,y) bi+l-"Yi)
+
+L
+
++
+
+f;
+
++ 4~ (wj:,,(X,y) Is, tl + w;/(X,y) Is x
+
+to
+
+bl - "YN)
+
+(3)
+
+3
+
+L'A
+
+~~
+panel-
+
+8,
+
+r,
+
+/V
+
+field point
+
+8. /' r. ----./.- - x,Y
+~'
+_/
+Y
+
+iVY
+
+Lx
+
+Figure 2: Local panel coordinates.
+The unit streamfunctions in equation (3) are readily defined in terms of local panel coordinates x - ti as
+shown in Figure 2.
+
+Wr(X,y)
+
+Xl In rl - xzln rz + Xz - Xl + ti( 01 - Oz)
+
+(4)
+
+wnx,y)
+
+[(Xl + xz)wr + ri Inr2 - r; InrI + ~(x; - xi) ti] ~
+2
+Xl - Xz
+
+(5)
+
+- 0z -XII
+- 0 + Y-I nrl
+Xz
+r2
+
+(6)
+
+By requiring that the streamfunction be equal to some constant value Wo at each node on the airfoil,
+the following linear system results from the above relations.
+N+N.,-l
+
+N
+
+L a;j "'Ij - Wo = -UooYi +
+
+j=l
+
+V_Xi -
+
+L bijuj
+
+(7)
+
+j=l
+
+The coefficient matrices a;j and bij are fully determined from the unit streamfunctions (4-6) if all the
+airfoil panel nodes Xi, Yi and the wake nodes are known. Combining the linear system (7) with a Kutta
+condition,
+(8)
+"'11 + "'IN = 0
+gives a linear (N+l) x (N+I) system for the N node values "'Ii and the airfoil surface streamfunction wo.
+A special treatment is required for an airfoil with a sharp trailing edge. In this case the nodes i = 1
+and i = N coincide, and hence their corresponding equations in (7) are identical. The result is a singular
+system which cannot be solved for "'Ii. To circumvent this problem, the i = N equation in (7) is discarded
+and replaced by an extrapolation of the mean "'I (between top and bottom) to the trailing edge.
+
+(9)
+2.1
+
+Inviscid analysis procedure
+
+For an analysis problem where the geometry is known, the linear system formed by the matrix
+equation (7) and Kutta condition (8) can be readily solved by Gaussian elimination. This gives the
+solution for the airfoil surface vorticity values as
+"'Ii = "'10; cos a + "'190; sina +
+
+N+N.,-l
+
+L b:jO"j
+
+j=l
+
+j
+
+l~i~N
+
+(10)
+
+where "'10 and "'190 are the vorticity distributions corresponding to a freestream a of O· and 90·, and
+b:; = -ai/bi; is the source-influence matrix. By setting O"i = 0 in the surface vorticity expression (10)
+and specifying an angle of attack, an inviscid solution is immediately obtained. For viscous flows the
+source strengths O"i are not known a priori, 50 the equation set (10) must be supplanted with the boundary
+layer equations to obtain a solvable closed system. This will be dealt with in the viscous analysis section.
+
+4
+JIJUK 1-.1.0.11
+IIlfA • q.OOO
+
+c,
+
+CL
+·1.ln
+C"
+• -0. lSI
+• ElIACT
+
+CPU Requirements on MicroVAX II
+N
+40
+60
+100
+160
+
+CPU (s)
+4.0
+7.5
+20.0
+54.0
+
+C L Error
+0.766 %
+0.340 %
+0.175 %
+0.085 %
+
+Figure 3: Joukowsky airfoil test case. N = 120 Cp distribution shown.
+
+1,:.
+.
+I_~:fl
+Figure 4: Mixed-inverse problem
+
+,
+,
+
+.,
+
+il
+
+tR
+
+Figure 3 shows the comparison between the calculated and exact pressure distributions on a Joukowsky
+airfoil. Since the flow inside the airfoil is stagnant, the surface velocity is equal to the surface vorticity,
+and hence the surface pressure coefficient is Cp = 1 - h / q=)2. Also shown is the accuracy and CPU
+requirements as functions of the number of panels. The results are typical of most panel methods.
+
+2.2
+
+Inviscid mixed-inverse procedure
+
+A mixed-inverse problem results when the geometry is prescribed over a part of the airfoil surface,
+and the surface vorticity (or equivalently, speed), is prescribed over the remainder. The local unknown
+associated with any node i is then either the vorticity 1i as in the analysis case, or the normal geometric
+displacement ni of the node from a seed airfoil geometry as shown in Figure 4. The surface vorticity at
+node i is specified in the form
+(11)
+which introduces two free parameters Ai , A2 into the specified vorticity distribution qspi The free
+parameters weight the two specified shape functions lli , 12i , which are specified to be quadratic over
+the inverse segment of the airfoil in ::; i ::; iL . It is necessary to add the two degrees of freedom to
+the specified vorticity qspi in (11) to allow geometric continuity to be enforced at the two joining points
+between the inverse segment and the fixed part of the airfoil (Figure 4).
+(12)
+This is consistent with the Lighthill constraints [10] which do not allow a totally arbitrary speed distribution on the airfoil. The inverse formulation of Kennedy and Marsden [9] does not address this issue,
+and hence cannot perfectly satisfy the necessary streamfunction constraint (7) at each panel node.
+Since the governing streamfunction constraint (7) is nonlinear in the geometry, a Newton-Raphson
+procedure is used to solve the overall system. Eliminating the source distribution (only the inviscid inverse problem is treated), the equation system (7), the Kutta condition (8), and the geometry-continuity
+
+5
+conditions (12) are written as
+N
+
+L: aii "Ii
+
+i=1
+
+Wo + U=Yi - V=Xi == R;
+'11 + "IN
+
+niL
+
+-
+
+RN+l
+RN+2
+
+R N +3
+
+nin
+
+o
+o
+o
+
+(13)
+
+o
+
+and are then linearized about the current solution "Ii , Xi , Yi.
+
+[
+
+J ii
+
+H'lf} {-~l
+
+(14)
+
+The i,j entry of the Jacobian matrix J i ; is either aR;/fh; if the speed is unknown at node j, or aR;/an;
+if the node position is unknown at node j. To calculate the latter entry, the components n z , ny of the
+direction vector along which a node is to move are first locally specified, typically normal to the current
+airfoil surface. There follows
+aR;
+all;
+all;
+(15)
+-- = --nz + --ny
+ani
+ax;
+By;
+and the derivatives with respect to X; and Y; are obtained in the formal manner from the definition of
+ll; (13). Ultimately this involves differentiating the unit streamfunction expressions (4 - 6), which is
+accomplished by a careful application of the chain rule.
+The inverse solution proceeds by repeatedly solving the Newton system (14) for the variable changes
+and updating the current variables.
+
+Wo +- Wo + 8wo
+"Ii
+
++-
+
+"Ii + 8'1i
+
+A1
+
++-
+
+A1 + 8A1
+
+A2 +- A2 + 8A2
+i < in , iL < i
+
+(16)
+(17)
+
+(18)
+(19)
+(20)
+
+Xi
+
++-
+
+Xi + n z , 8ni
+
+in ~ i ~ iL
+
+Yi
+
++-
+
+Yi + ny, 8ni
+
+"Ii
+
++-
+
+qspi + At/li + Ad2i
+
+in ~ i ~ iL
+in ~ i ~ iL
+
+Typically, two to four Newton iterations are required to converge to machine accuracy, depending on
+how much the airfoil geometry is to change. Assuming the same number of panels, each iteration
+requires approximately the same computational effort as that shown in Figure 3 for an inviscid analysis
+calculation.
+The surface speed (or Cp ) distribution for inverse calculations is specified as a function of the unwrapped fractional arc length on the as-yet-unknown airfoil. Figure 5 shows the old and specified
+distributions as viewed by the user, and the resulting calculated airfoil. The seed airfoil is a Wortmann
+FX63-137 airfoil at an angle of attack of 4°. The input speed distribution can be modified and the airfoil
+shape recalculated as often as needed.
+A useful feature of the mixed-inverse formulation is that absolute control of geometry can be exersized
+where needed. Nevertheless, for preliminary design it is useful to employ a full-inverse algorithm which
+permits the speed distribution over the entire airfoil to be specified (subject to the Lighthill constraints).
+The XFOIL design environment includes such an algorithm, similar to the complex mapping method
+implemented by Eppler [10J, to maximize the designer's flexibility. Prescribed surface speeds are input
+versus the surface arc length rather than the non-physical circle plane coordinate common to mapping
+methods. The distribution is input in the format shown in Figure 5, with the speed distribution of a
+seed airfoil being superimposed. The implementation also allows the trailing edge gap and trailing edge
+angle to be explicitly controlled.
+
+6
+-2.0
+
+'.0
+
+~'"II
+
+~ ~.~
+
+,,-'
+
+FX63·137 HOD
+
+...........
+
+HRCH • 0.000
+RlFR = 11.000
+CL
+• 1.617
+
+~
+
+eM
+
+-\.S
+
+"-0.213
+
+Cp
+-1.0
+
+1.0
+
+-o.S
+. . . - ... ~.....
+
+0.0
+
+\.-
+
+-._-_._ .•.. - ..,
+
+.....•
+
+0.0
+
+.-.
+
+=::d
+
+S/Smax
+0.5
+
+1.0~C==-~
+Figure 5: Input qsP vs s/ Smax (line) for local-inverse calculation, and calculated airfoil.
+
+3
+
+Viscous Formulation
+
+The present viscous formulation of XFOIL is essentially the same as that of the transonic ISES code
+[5]. Some changes have been incorporated recently [11] to improve the prediction of "base drag" from
+blunt trailing edges. Only a summary description of the viscous formulation will be given, with more
+emphasis placed on the overall viscous/inviscid solution scheme which is unique to the present method.
+3.1
+
+Governing Equations and Closure
+
+The viscous formulation employs the following standard compressible integral momentum and kinetic
+energy shape parameter equations. The streamwise coordinate is
+
+e.
+
+(21)
+(22)
+Also, following Green et al [12], a rate equation for the maximum shear stress coefficient CT is used to
+account for deviations of the outer layer dissipation coefficient CD from the local equilibrium value.
+
+!.dCr = 5.6 (C
+C de
+T
+
+l/2 _
+rEq
+
+Cl / 2 )
+r
+
++
+
+20 {~[Ct _ (Hk 30*
+
+2
+
+1)2] _ .!. due}
+de
+
+6.7Hk
+
+Ue
+
+(23)
+
+The latter equation has been altered slightly from the original formulation described in reference [5],
+and has resulted in better predictions of lift and drag nea.r stall conditions.
+
+In laminar regions, the shear stress lag equation (23) is replaced by a rate equation which models
+the growth of the amplitude ii of the most-amplified Tollmien-Schlichting wave.
+
+(24)
+The empirical relation dii/ dRe q (Hk ) is a correlation of spatial growth rates computed from solutions to
+the Orr-Sommerfeld equation, and dRee/d€ (Hk' 0) is obtained from the properties of the Falkner-Skan
+profile family. Reference [5] gives further details. The transition point is defined by the loca.tion where
+reaches a user-specified critical value ncrit. This parameter in practice is used to represent the background
+
+n
+
+7
+disturbance level and has quite a dramatic effect on low Reynolds number airfoil performance as will be
+shown in the results section.
+The fundamental variables governed by the boundary layer equations are chosen to be 0, 0', and Cr.
+In laminar regions, the amplification variable it replaces Cr. fn addition, It. is present as an external
+unknown which will be related to the global viscous solution via the inviscid outer flow. It is therefore
+only a convenient intermediate variable and does not constitute an additional unknown. To close the
+integral boundary layer equations (21), (22), and (23), auxilliary variables are defined in terms of 0,0',
+C., It. or their suitable combinations with the following functional dependencies.
+
+(25)
+(26)
+(27)
+The actual expressions for the above functional forms are given fully in references [5,11] and will not be
+repeated here.
+The wake is treated as one viscous layer so that only one 0 and one 0' variable is present at each
+wake station, with the following initial conditions at the trailing edge.
+Owake
+
+=
+
+Oupper
+
++ Blower
+
+(28)
+
+This produces a continuous displacement body even with a blunt trailing edge of thickness h,.B' The
+initial wake shear coefficient is taken to be the O-weighted average of the upper and lower surface values.
+_ Crupper Oupper + Crlower Slower
+
+C
+l' wake
+
+-
+
+Dupper
+
++ 8l ower
+
+(29)
+
+Additional minor corrections are incorporated for the blunt trailing edge case to better account for "base
+drag" as described in reference 111].
+The governing equations (21-24) are discretized using two-point central differences (i.e. the trapezoidal rule). The boundary layer variables 0 ,0' , C, or ii. , and u. are defined to be located at the panel
+nodes. Each airfoil and wake panel therefore has three coupled nonlinear equations associated with it
+which are solved by the procedure described below.
+3.2
+
+Viscous jInviscid Coupling
+
+Since the flow inside the airfoil is stagnant, on the airfoil surface u. is simply equal to the local
+vorticity "I on the suction side, and -"Ion the pressure side. No such simple relation exists in the wake,
+and there it is necessary to relate It. to the freestream and a sum of all the vorticity and sources on the
+airfoil,
+
+(30)
+N
+
+N+Nm-1
+
+;=1
+
+i=l
+
++ I: clj "Ij +
+
+I: Cij (Jj
+
+(31)
+
+with n being a unit vector locally normal to the wake. Evaluation of the source influence coefficients ci;
+in equation (31) requires modification of the assumed constant-source distribution on the wake panels,
+since this results in a logarithmic singularity in the velocity at each node. Using a two-piece linear source
+
+8
+distribution over each wake panel defined by using the neighboring panel source strengths eliminates
+this problem.
+The influence of the viscous layer on the potential flow is properly modeled by the wall transpiration
+concept if the local source strength u is equal to the local gradient of the mass defect m == u.o*.
+U;
+
+m;+I- m;
+= -dm
+= ±--'--d€
+8;+1 - 8;
+
+(32)
+
+Substituting the general expression (10) for the surface vorticity "I into expressions (30,31), and eliminating the source strength u in terms of the mass defect m as given by (32), produces the following.
+
+u'; = U/NV; +
+
+N+N,.-l
+
+L
+
+d;j mj
+
+(33)
+
+j=1
+
+This very general expression gives the potential flow solution about the airfoil for any distribution of mass
+defect on the airfoil and wake. The "inviscid" edge velocity distribution u INV ; and the mass-influence
+matrix d;j are uniquely determined by the airfoil/wake geometry and freestream angle of attack, and are
+determined independently of the viscous solution (the wake node positions are determined by integrating
+an inviscid streamline trajectory from the trailing edge panel midpoint). It is important to note that d;j
+embodies the effect of the local mj near the trailing edge on the global U'; distribution via its effect on
+the Kutta condition. This "indirect" effect is quite significant for low Reynolds number flows, especially
+near stall or if a separation bubble occurs near the trailing edge. Previous expressions similar to (33)
+derived by Cebeci et al [13] for viscous/inviscid calculations require the repeated recalculation of the
+potential flow problem to determine this indirect effect. This represents a significant computational
+effort which is eliminated with the present formulation.
+
+3.3
+
+Newton solution
+
+Since (33) is an explicit expression for u'; in terms of the boundary layer variables, it closes the
+discrete boundary layer equations (21-24). This nonlinear system, now rendered elliptic by the global
+mass influence on u., is solved by a full Newton method.
+The Newton variables are defined to be oD; , omi , and either Oiii or OCTi depending on whether
+station i is laminar or turbulent. The Newton system thus has the following form.
+
+[
+
+(34)
+
+The specific choice of Om instead of 0(0*) as one of the Newton variables is made in the interest of
+efficiency, since in the former case only the omj columns in Jij are full. The columns of the other
+variables oD , OCT , and oii have entries only near the diagonal. Solving the Newton system (34)
+therefore requires only about 1/3 as much time as a full system of the same size. A custom solver is
+used to take full advantage of this feature.
+
+3.4
+
+Viscous Analysis Examples
+
+Figure 6 shows computed polars for the Eppler 387 airfoil at three Reynolds numbers compared with
+measurements reported in reference [7]. Two calculated curves are shown for each Reynolds number,
+differing only in the specified disturbance parameter Tierit described earlier. The curves corresponding
+
+9
+
+to the lower disturbance levels have larger separation bubbles and show a higher drag, except near
+maximum lift where separation bubble loss has a relatively minor effect. This is consistent with the
+observed behavior of low Reynolds number airfoil flows. Overall the agreement is quite satisfactory,
+with accuracy degrading somewhat at the lowest Reynolds number.
+Figure 7 shows computed and measured Cp distributions for one operating point and the MicroVAX
+II CPU time required. The dashed C p curve is the "inviscid" lJ,/NV distribution for that same a. As
+expected of a panel method, the CPU time is quite sensitive to panel density. For this case, the calculated
+result did not change significantly even for the smallest number of panels listed, indicating the method
+is quite fast. However, the number of panels appropriate for any given application depends primarily on
+the panel density required to resolve separation bubbles. A particularly severe test case in this regard is
+provided by an FX67-K-170 sailplane airfoil. At a Reynolds number of 2 million, this airfoil has small,
+but quite strong separation bubbles which must be resolved adequately for accurate drag prediction.
+Figure 8 shows the fractional error in CL, CD, Cm as a function of the number of panels on the entire
+airfoil. The "noise" in the error is due to panel nodes "moving" across the transition point as the number
+of panels is increased. For this case, N = 120 appears to be necessary to produce reasonably converged
+values. At lower Reynolds numbers where the bubbles are physically larger, and at higher Reynolds
+numbers where the bubbles contribute little to profile drag, the panel density requirements are lower.
+Local panel clustering in the vicinity of an anticipated bubble, which is readily specified with XFOIL's
+paneling routine, can also reduce panel number requirements and the associated computational effort.
+
+4
+
+Compressibility Correction
+
+In the Karman-Tsien correction (derived in [14]), the compressible speed q and pressure coefficient
+Cp on an airfoil in compressible flow can be approximately determined from the incompressible flow
+values qinc , CPinc by
+C
+
+CPinc
+
+p
+
+=
+
+13 + >'(1 + 13) CPinc/2
+
+q
+
+(35)
+
+wheref3=V1-M! and >.=M;'/(1+f3)2.
+
+In the code implementation, all calculations are performed assuming the airfoil surface vorticity
+represents the incompressible speed qinc' Relations (35) are used only to define the actual compressible
+
+10
+EPPLER 387
+
+-2.0
+
+-1.5
+
+Cp
+-1.0
+
+HACH
+HE
+AlFR
+Cl
+
+etl
+
+.. O. DOD
+,,0.100_105
+., 3.7112
+• O. HID
+"-0.089
+
+(0
+
+.. O.02'2Q2
+
+LID
+
+.. 311.79
+
+lRNGlET OIlIR
+0.000
+0.100_10 6
+11.000
+O.7BOO
+
+CPU Requirements on MicroVAX II
+
+-0.0950
+0.021100
+
+32.50
+
+eo LANGLEY OAIR
+
+-o.S
+
+N
+80
+120
+160
+
+0.0
+
+O. S
+
+Startup
+CPU (s)
+22.0
+58.0
+115.0
+
+Newton it.
+CPU (s)
+11.0
+30.0
+62.0
+
+5 it. total
+CPU (s)
+77.0
+208.0
+425.0
+
+1.0
+
+Figure 7: Calculated and measured C p distributions and CPU requirements for Eppler 387 airfoil.
+fXS1-K-170
+,.nOI _ 0.000
+
+/If
+~ .... 000.'0 5
+I1lfR ~ OJ. 1,,1;
+(I
+• I.OSO
+
+Cr
+
+,." ~
+
+ooo~
+
+'"ro
+
+• (1.01)~.'l'f
+
+·n.1I1
+
+LID
+
+•
+
+·II.I!'
+
+115 •• '
+
+eliCL. - I
+
+C.OI
+
+1m)
+
+110
+
+'<'0
+
+1)0
+
+ItO
+
+ISO
+
+[D/CD", -
+
+160
+
+110
+
+IftO
+
+/91}
+
+110
+
+180
+
+I!fIIN 1no
+
+N
+
+21}0
+
+I
+
+CK/el\,. - 1
+
+Figure 8: Error in CL , CD, Cm as a function of number of panels on an FX67-K-170 airfoil.
+C p for lift and moment calculations, and in conjunction with expression (33) to determine the actual
+compressible u. seen by the boundary layer. The boundary layer formulation itself is already valid for
+compressible flows and requires no corrections.
+
+Figure 9 shows a viscous calculation of a RAE 2822 airfoil compared with the experimental data
+of reference [15]. Reasonable agreement is obtained, despite the fact that the Karman-Tsien correction
+formally breaks down in supersonic flow. In practice, the method is reliable right up to sonic conditions,
+but rapidly degrades as significant supersonic regions appear. Hence, this correction extends the validity
+of XFOIL into the high-subsonic regime, and greatly extends its range of applicability.
+ARE 2622
+
+-1.5
+
+Cp
+
+DRTn lCOOKI
+
+HFlCH .. 0.676
+AE
+~ 5.700.10 5
+
+0.616
+S.700_J0 8
+
+AUA .. 2.165
+.. 0.565
+.. -0.070
+.. 0.00935
+.. 60.53
+
+0.565
+-0.OB2
+0.00B50
+65.59
+
+Ctl
+CO
+L/O
+
+~
+
+c.qOD
+
+-1.0
+
+-o.S
+
+0.5
+
+1.0
+
+Figure 9: Calculated and experimental results for RAE 2822 airfoil near critical conditions.
+
+11
+
+Figure 10: The XFOIL airfoil analysis/design system.
+
+5
+
+The XFOIL Design Environment
+
+The overall XFOIL design/ analysis system (Figure 10) consists of a collection of menu-driven routines
+which perform the viscous or inviscid analysis and inverse calculations. Supporting routines such as panel
+distribution generation, explicit geometry manipulation, disk I/O, and graphics are also driven from the
+same menu structure. The "Geometry Manipulator" allows explicit control of camber, thickness, leading
+edge radius, trailing edge gap, etc. This is very useful if inviolable geometric constraints must be met,
+and can be very effective for achieving certain aerodynamic specifications as well. For example, if a
+candidate airfoil's drag bucket is centered about C L = 0.5 , increasing its camber by a factor of 1.5 will
+center the bucket at approximately CL = 1.5 X 0.5 = 0.75. The Geometry Manipulator performs such
+a modification with one keyboard entry. Other capabilities include specifying flap deflections, changing
+camber via a specified loading change, and explicit contour input via a screen cursor.
+Not shown in Figure 10 is a facility for calculating polars in batch mode, a convenience and a
+necessity if only modest computing power is available. The calculated polar points and associated
+surface pressure and boundary layer parameter distributions are saved in disk files and can be plotted
+later. The calculated polars shown in Figure 6 were generated in this manner.
+
+6
+
+Conclusions
+
+The XFOIL airfoil design system outlined in this paper has proven to be a powerful and very useful
+tool for sub critical airfoil design, and is particularly applicable to low Reynolds number airfoils. Various
+graphics-oriented routines perform assorted analysis, inverse, and geometry-modification functions on a
+common airfoil representation, and can be easily exercised by the designer from a unified menu stucture
+with complete flexibility. Since all the important physical mechanisms which affect airfoil performance
+(instability, separation, bubble losses, etc.) are represented in the overall computational model, any
+airfoil modifications which are found to affect performance can be relied on to have a physical rather
+than numerical basis. The system thus allows the designer to quickly tryout new design approaches and
+develop design philosophies for any given type of application.
+Acknowledgements
+This research was supported by the MIT Carl Richard Souderton Faculty Development Chair and
+the National Science Foundation Presidential Young Investigator Program.
+
+12
+
+References
+[1] F. Bauer, P. Garabedian, D. Korn, and A. Jameson. Supercritical wing sections I, II, III. In Lecture
+Notes in Economics and Mathematical Systems, Springer-Verlag, New York, 1972, 1975, 1977.
+[2] R. E. Melnik, R. R. Chow, and H. R. Mead. Theory of Viscous Transonic Flow Over Airfoils at
+High Reynolds Number. AIAA-77-680, Jun 1977.
+[3] M. Drela and M. B. Giles. ISES: A Two-Dimensional Viscous Aerodynamic Design and Analysis
+Code. AIAA-87-0424, Jan 1987.
+[4] M. B. Giles and M. Drela. Two-dimensional transonic aerodynamic design method. AIAA Journal,
+25(9), Sep 1987.
+[5] M. Drela and M. B. Giles. Viscous-inviscid analysis of transonic and low Reynolds number airfoils.
+AIAA Journal, 25(10), Oct 1987.
+[6] M. Drela. Low-Reynolds number airfoil design for the MIT Daedalus prototype: A case study.
+Journal of Aircraft, 25(8), Aug 1988.
+[7] R. J. McGhee, G. S. Jones, and R. Jouty. Performance Characteristics from Wind-Tunnel Tests of
+a Low-Reynolds-Number Airfoil. AIAA-88-6070, Jan 1988.
+[8] E. Soinne and S Laine. An inverse boundary element method for single component airfoil design.
+Journal of Aircraft, 22(6):541-543, Jun 1985.
+[9] J. L. Kennedy and D. J. Marsden. A potential flow design method for multicomponent airfoil
+sections. Journal of Aircraft, 15(1):47-52, Jan 1978.
+[10] R. Eppler and D. M. Somers. A Computer Program for the Design and Analysis of Low-Speed
+Airfoils. NASA TM 80210, Aug 1980.
+[11] M. Drela. An Integral Boundary Layer Formulation for Blunt Trailing Edges. AIAA-89-2200, Aug
+1989.
+[12] J. E. Green, D. J. Weeks, and J. W. F. Brooman. Prediction of Turbulent Boundary Layers and
+Wakes in Compressible Flow by a Lag-Entrainment Method. R & M Report 3791, Aeronautical
+Research Council, HMSO, London, 1977.
+[13] T. Cebeci and R. W. Clark. An interactive approach to subsonic flows with separation. In Second
+Symposium on Numerical and Physical Aspects of Aerodynamic Flows, Long Beach, California, Jan
+1983.
+[14] A. H. Shapiro. Compressible Fluid Flow I. Wiley, New York, 1953.
+[15] P. H. Cook, M. A. McDonald, and M. C. P. Firmin. Aerofoil RAE 2822 pressure distributions
+and boundary layer and wake measurements. In Experimental Data Base for Computer Program
+Assessment, AR-198, AGARD, 1979.
+
+

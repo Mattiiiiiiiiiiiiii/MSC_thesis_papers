@@ -1,0 +1,803 @@
+IEEE TRANSACTIONS ON TRANSPORTATION ELECTRIFICATION, VOL. 12, NO. 4, AUGUST 2026
+
+6267
+
+Investigation of Lithium-Ion Battery Degradation in
+Electric Aircraft Under Cycle-Progressive Loads
+Cade Boggan , Graduate Student Member, IEEE, and Matthew A. Clarke , Member, IEEE
+Abstract—Electrification is a key step toward reducing aviation anthropogenic emissions; however, significant uncertainties
+regarding the long-term degradation behavior of electrochemical
+energy storage systems in electric aircraft applications still
+remain. Conventional degradation testing often relies on static
+load profiles that fail to capture the relationship between cell
+aging and time-varying power demands. To address this gap, this
+study investigates cycle-progressive load profiles in which system
+power demand is incrementally increased to reflect the escalating
+electrical requirements imposed by aging batteries on active
+thermal management systems. Molicel P30B lithium-ion cells are
+subjected to mission-representative electrical load profiles generated using the Research Community Aircraft Interdisciplinary
+Design Environment (RCAIDE) computational framework for
+an electric conventional takeoff and landing and an electric
+vertical takeoff and landing aircraft. Experimental results show
+that cycle-progressive profiles accelerate capacity fade relative
+to static profiles, exhibiting up to 22.1% greater state-of-health
+degradation and distinct shifts in incremental capacity signatures. These findings reveal the need for testing protocols that
+incorporate realistic coupled aging-power-demand interactions,
+thereby enabling a more accurate performance assessment of
+battery systems for electric aircraft applications.
+Index Terms—Batteries, degradation, electric aircraft, electric
+vehicles, load profile.
+
+I. I NTRODUCTION
+LECTRIC aviation is an emerging market as a potential competitor to conventional aircraft for short-haul
+passenger and cargo missions [2], [3]. However, due to the
+novelty of this transportation mode, the long-term effects of
+electric aircraft operation on their batteries remain largely
+unknown. Battery degradation testing is a critical aspect of
+understanding the lifespan and performance of these vehicles.
+This process involves subjecting batteries to controlled cycling
+and diagnostic protocols that simulate actual usage, enabling
+cell characterization and the evaluation of application-specific
+internal aging mechanisms. Such testing provides valuable
+insights into how batteries would degrade under real-world
+loads, ensuring reliability and accurately predicting longevity.
+However, existing testing protocols [4], [5], [6] often apply
+static or idealized load profiles that fail to capture the evolving
+power demands imposed by degradation. In reality, electric
+aircraft that incorporate active battery thermal management
+
+E
+
+Received 9 October 2025; revised 9 February 2026; accepted 29 March
+2026. Date of publication 6 April 2026; date of current version 22 July
+2026. An earlier version of this paper was presented at the 2025 IEEE/AIAA
+Transportation Electrification Conference and Electric Aircraft Technologies
+Symposium (ITEC+EATS), Anaheim, CA, USA, from 18–20 June [DOI:
+https://doi.org/10.1109/ITEC63604.2025.11098123]. (Corresponding author:
+Cade Boggan.)
+The authors are with the Department of Aerospace Engineering, University
+of Illinois Urbana–Champaign, Champaign, IL 61820 USA (e-mail: cboggan2@illinois.edu; maclarke@illinois.edu.
+Digital Object Identifier 10.1109/TTE.2026.3681423
+
+systems (BTMSs) experience a feedback loop between battery
+aging and onboard power consumption. As cells degrade,
+their internal resistance (IR) increases, leading to greater heat
+generation during operation. This, in turn, compels the BTMS
+to consume more power to maintain safe battery temperatures,
+further increasing the power demand and thus accelerating
+cell degradation. Consequently, battery testing that ignores the
+relationships between degradation and system power demand
+may misrepresent actual degradation rates, leading to inaccurate predictions of range, safety margins, or mission feasibility.
+To address this gap, this work introduces a cycle-progressive
+load profile—an evolving load protocol designed to better
+reflect the system-level consequences of battery aging. The
+cycle-progressive load profile modifies the initial baseline
+power demand by progressively increasing the load over time,
+mimicking the rising loads experienced in electric vehicles
+with active thermal management. This increase is driven by
+well-known degradation mechanisms such as lithium plating,
+particle fracture, solid electrolyte interphase (SEI) growth,
+loss of lithium inventory (LLI), and loss of active material
+(LAM), all of which contribute to increased IR and heightened
+heat generation [7], [8], [9]. As the battery is cycled, this
+compounding thermal behavior results in higher BTMS power
+requirements, which are directly incorporated into the cycleprogressive load profile. This article aims to serve as an
+introduction to the incorporation of a cycle-progressive load
+profile for electric aircraft with an active BTMS in laboratory
+settings, improving reliability assessment, guiding systemlevel design decisions, and hopefully supporting more robust
+certification pathways.
+The remainder of this article is organized as follows.
+Section II further discusses the theoretical basis for the cycleprogressive load profile. Section III outlines the experimental
+design, including the generation of electric aircraft load profiles and the processes for collecting battery degradation data.
+Section IV presents and discusses key findings from the
+experiment by inspecting capacity and incremental capacity
+data. Finally, Section V summarizes the completed work,
+highlights potential areas for future investigation, and explores
+broader implications for related fields.
+II. F IRST-O RDER A PPROXIMATION OF
+C YCLE -P ROGRESSIVE L OADING
+A. General Formulation
+The BTMS is responsible for maintaining optimal operating temperatures for batteries on board electric aircraft.
+This ensures that aircraft batteries operate within their optimal temperature window, maximizing performance, safety,
+
+2332-7782 © 2026 IEEE. All rights reserved, including rights for text and data mining, and training of artificial intelligence and
+similar technologies. Personal use is permitted, but republication/redistribution requires IEEE permission.
+See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 02,2026 at 08:07:22 UTC from IEEE Xplore. Restrictions apply.
+
+6268
+
+IEEE TRANSACTIONS ON TRANSPORTATION ELECTRIFICATION, VOL. 12, NO. 4, AUGUST 2026
+
+and longevity. A BTMS typically functions by actively or
+passively controlling heat transfer to and from the battery
+pack. In most electric aircraft incorporating an active BTMS,
+the power requirements for BTMS operation are supplied
+by the batteries. The magnitude of power demand increase
+is heavily dependent on the type of BTMS, the batteries,
+and the electric aircraft it supports. Thus, the rate of load
+evolution will vary significantly by the system of interest and
+its application. This study introduces the concept of the cycleprogressive load profile and its application to electric aircraft
+battery degradation testing. The following derivation shows a
+first-order relationship between degradation and the change
+in cell-level power draw. The derivation retains sufficient
+generality to enable readers to apply the theorem to their
+own studies and to further development while incorporating
+sufficient specificity to place experimental results within the
+realm of reasonableness. It begins with the known occurrence
+of increasing cell degradation with time (calendar aging)
+and use (cycle aging). Both calendar aging and cyclic aging
+are well known to increase the IR of batteries [10], [11];
+however, the short-term duration of this experiment and the
+high cumulative current throughput allow focusing specifically
+on the IR rise due to cyclic aging. IR shall be designated by
+the variable Ri and defined by the following equation:
+Ri = R0 · (1 + α · N)
+
+(1)
+
+where R0 is the initial IR, α is the rate of resistance increase
+per cycle, and N is the number of cycles. Degradation levels
+were anticipated to be low over the short time period and not
+approach the knee of the capacity curve, allowing for IR to be
+modeled in the linear regime [12]. For studies nearing the end
+of life (EOL) of the tested batteries, nonlinear effects must be
+considered.
+Next, we will utilize a form of the Bernardi equation [13]
+for heat generation Qg of a lithium-ion battery
+
+
+∂Vocv
+(2)
+Q̇g = Q̇irr + Q̇rev = I · (Vocv − Vt ) −I · T ·
+∂T
+where Q̇rev and Q̇irr represent the reversible and irreversible
+heat generated, respectively. I denotes average current, Vocv
+denotes open-circuit voltage, Vt denotes terminal voltage, T
+denotes temperature, and ∂Vocv /∂T denotes the open-circuit
+voltage temperature derivative.
+The Bernardi equation as a function of IR is desired and
+shown through the following equations:
+(Vocv − Vt ) = I · Ri
+Q̇g = I · Ri −I · T ·
+2
+
+(3)
+
+
+∂Vocv
+∂T
+
+
+
+.
+
+(4)
+
+The first term in the above equation represents the irreversible heat generated, and the second term represents the
+reversible heat generated. It is to be noted that, as irreversible
+heating accounts for the majority of heat generated [14],
+particularly dominating in high current applications [15], we
+eliminate reversible heating from (4), reducing it to the form
+Q̇g ≈ I 2 · Ri .
+
+(5)
+
+Heat generation in lithium-ion batteries is complex and
+varies from battery to battery, so the Bernardi equation serves
+as an acceptable proxy for this first-order approximation. Next,
+the power required for the operation of the BTMS, PBT MS , can
+be simply stated as
+PBT MS =
+
+Q̇g
+ηBT MS
+
+(6)
+
+where ηBT MS is the BTMS efficiency [16]. In the scope of the
+entire aircraft power requirements (Ptot ), it is stated that the
+BTMS is one of three main electrically powered groups
+Ptot (t) = PDC + PBT MS (t) + Paux
+
+(7)
+
+where PDC is the aircraft motor power draw, and Paux is the
+power requirement of auxiliary aircraft systems (e.g., avionics,
+in-flight entertainment, lighting). Substituting (1), (5), and (6)
+into (7) yields
+Ptot (t) ≈ PDC +
+
+I 2 · R0 · (1 + α · N)
++ Paux .
+ηBT MS
+
+(8)
+
+For brevity the following form of (8) shall be used:
+Ptot (t) ≈ A + B · Ri
+
+(9)
+
+where constant A represents PDC + Paux , and constant B
+represents I 2 /ηBT MS .
+B. Case-Specific Applications and Assertions
+Following the general premise behind the cycle-progressive
+power increase, empirical relations shall be introduced to add
+specificity to this experiment. Although exact measurements
+specific to the experimental setup to be detailed in Section III
+are not available in the literature, best efforts were made to
+link similar data.
+From Bills et al. [4], IR from a similar testing setup as
+the one outlined in Section III (test temperature, depth of
+discharge, cell capacity, and chemistry were all comparable)
+observed an increase of 66% over the course of 1000 flight
+cycles. Difficulty arises in determining component-specific
+power requirements for electric aircraft with active cooling
+systems. To the best of the authors’ knowledge, no such data
+is publicly available. The aircraft under study will be sized
+with an approximation of 30% of power draw being allocated
+to the BTMS, to account for the edge conditions (altitude)
+the aircraft may experience and the rigorous safety margins
+that are standard in aviation. From this, and using (9), power
+required at flight cycle 1000 is
+P1000 = A + 1.66B
+= 0.7P0 + 1.66 (0.3 P0 )
+= 1.2P0
+
+(10)
+
+where P1000 is the power after 1000 flight cycles, and P0 is
+the initial flight cycle power. Ideally, load profiles would be
+increased with each flight cycle in line with (8). The resulting
+power increase is thus 20% over the course of 1000 flight
+cycles. Should the BTMS be sized to a more conservative
+value of 10% or 20% of the total power draw, the system power
+would increase by an expected 6.6% or 13.3%, respectively.
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 02,2026 at 08:07:22 UTC from IEEE Xplore. Restrictions apply.
+
+BOGGAN AND CLARKE: INVESTIGATION OF LITHIUM-ION BATTERY DEGRADATION
+
+However, experimentally, this process cannot be automated
+and must be done manually. To avoid the manual creation of
+1000 flight profiles for each aircraft configuration testing cycle,
+progressive properties, such as experiments, will have load
+profiles updated every 50 cycles. Thus, with the 20% power
+increase from (10) divided over the 1000 flight cycles, profiles
+designated as cycle-progressive will subsequently be subjected
+to a 1% power increase from the onset and rising an additional
+1% every 50 cycles. By implementing a 1% increase every
+50 cycles, this model accounts for the gradual degradation of
+this aircraft and BTMS configuration. Decreases in thermal
+management efficiency may also contribute to the value of
+incorporating the cycle-progressive load profile for laboratory
+tests, but this factor lies outside the scope of this study.
+The following three assertions are made to account for
+some of the major assumptions in the application of the cycleprogressive load profile.
+Assertion 1: The actual heat production of a battery is more
+complex than demonstrated above. These complexities include, but are not limited to, the
+linearization of IR and the use of the Bernardi
+equation for heat generation. Future work should
+place emphasis on precise heat generation simulation to improve experimental validity [17].
+Assertion 2: Final values will vary depending on the system
+at hand, as no two are identical.
+Assertion 3: Empirical relations were obtained from data from
+similar but not identical testing conditions.
+However, for the purposes of introducing the cycleprogressive load profile to the literature, such limitations are
+accepted as baseline assumptions but kept in mind during data
+assessment.
+III. E XPERIMENT M ETHODOLOGY
+A. Load Profile Derivation and Generation
+The proprietary nature of commercial aviation presents
+significant challenges in acquiring empirical electric aircraft
+flight data. In the absence of industrial partnerships that would
+grant access to such information, research institutions must
+employ alternative methodologies to generate representative
+load profiles. Conventional approaches often rely on usercreated flight profiles based on reported data concerning motor
+efficiency, aircraft mass, and auxiliary unit power demands or
+on estimations derived from expected operational parameters.
+However, these methodologies are inherently limited due to
+their reliance on various simplifications and the omission of
+the coupled influences of these systems. This limitation is
+particularly pronounced in the modeling of power sources,
+where crucial factors such as battery temperature dynamics,
+electrochemical characteristics, and thermal management system efficiency are frequently overlooked or oversimplified.
+To address these limitations and enhance the fidelity of
+the modeling of electric aircraft performance, this study
+employs an advanced computational aircraft modeling framework: the Research Community Aircraft Interdisciplinary
+Design Environment (RCAIDE) [18]. RCAIDE is a state-ofthe-art, open-source, Python-based platform that allows for
+
+6269
+
+TABLE I
+BATTERY C ONFIGURATION OF E CTOL AND E VTOL A IRCRAFT M ODELS
+
+aircraft and mission modeling, analysis, and optimization. This
+framework enables a high-fidelity simulation of aircraft functionality, incorporating detailed models of propulsion systems,
+energy storage mechanisms, and their complex interactions
+within the aircraft’s operational envelope. This software is the
+successor to SUAVE [19], a widely used and validated aircraft
+modeling tool for unconventional aircraft design [20]. While
+other software tools that incorporate aircraft functionality
+have been developed to generate electric aircraft load profiles
+[21], their use has been confined to computational battery
+simulation, rather than application in physical battery testing.
+The RCAIDE workflow depicted in Fig. 1 is structured
+into five primary stages, each contributing to the modeling of
+aircraft performance and mission execution. The analysis and
+mission simulation portions feed into each other in real time.
+The resulting output encompasses detailed time-segmented
+data on subsystem power consumption and performance,
+which forms the foundation for generating highly accurate
+electrical load profiles.
+For this investigation, two aircraft architectures were chosen: an electric conventional take-off and landing (eCTOL)
+aircraft (inspired by the NASA X-57 Maxwell) and a tiltwing electric vertical take-off and landing (eVTOL) aircraft
+(inspired by the Airbus A3 Vahana demonstrator). These two
+aircraft were selected to explore the impact of the cycleprogressive load profile on drastically different configurations.
+To isolate the impact of aircraft configuration and mitigate
+potential confounding factors, the discharge throughput of
+each cell is kept constant across both base flight profiles. This
+was achieved by reducing the cruise duration of the eCTOL
+aircraft, in turn affecting the overall flight range and power
+requirements. It should be noted that while this holds true
+for the initial power profiles, subsequent variations in battery
+degradation may impact the equivalency of charge throughput
+across aircraft configurations.
+Table I presents the salient parameters for both aircraft models. These parameters play a sizable role in the
+aircraft’s performance and, consequently, in the electrical load
+profiles. Battery module configuration and the number of
+modules determine the energy storage capacity, power delivery
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 02,2026 at 08:07:22 UTC from IEEE Xplore. Restrictions apply.
+
+6270
+
+IEEE TRANSACTIONS ON TRANSPORTATION ELECTRIFICATION, VOL. 12, NO. 4, AUGUST 2026
+
+Fig. 1. Schematic representation of RCAIDE’s workflow.
+
+Fig. 2. Cell level load profiles for (a) eCTOL and (b) eVTOL aircraft configurations exhibiting cycle-progressive loading.
+
+capabilities, and the electrical architecture of the aircraft.
+These factors influence the voltage levels and total pack
+capacity, which in turn influence viable mission duration. The
+eCTOL aircraft is configured with a 55.296-kWh pack, and
+the eVTOL aircraft is configured with a 51.84-kWh pack.
+Utilizing these parameters, load profiles were generated for
+both aircraft configurations within RCAIDE, as illustrated in
+Fig. 2. The differing electric aircraft result in vastly different
+load profiles, which will generate different modes of battery
+degradation.
+Of particular note are the transient power spikes observed
+during the climb and descent segments of the eVTOL profile.
+These spikes arise from the high power required for vertical
+lift during climb and for controlled thrust modulation during
+descent. The descent segment occurs when the battery is
+operating at its lowest voltage, such that a given power demand
+corresponds to elevated current draw relative to other flight
+phases.
+At the onset of the experiment, both aircraft profiles are
+scaled to achieve an identical depth of discharge of 56.5%.
+Cycle-progressive loading would result in the depth of discharge and peak power increasing in line with the cycle
+number. This emulates a short-haul flight with ample reserves
+and equates energy fluxes between the two aircraft types. The
+
+load profile for the eCTOL corresponds to 0.721 flight hours,
+and the load profile for the eVTOL corresponds to 0.530 flight
+hours. In addition to these baseline load profiles, for both
+aircraft, a compressed variation was created to emulate a faster,
+more intense mission. A simple time-power scaling technique
+was incorporated for the compressed profiles
+tb
+tc =
+(11)
+SF
+Pc = Pb × SF
+(12)
+where tc is the time elapsed for the compressed profile, tb is the
+time elapsed for the baseline profile, Pc is the power in the
+compressed profile, Pb is the power in the baseline profile,
+and SF is the scaling factor (defined as 2 for this study).
+While similar degradation modes can be observed between
+compressed and baseline profiles [1], the arbitrary scaling
+factor should not be used to elicit 1 to 1 comparisons between
+the two aircraft profile types. These compressed datasets are
+not intended to be analogous but to gather flight cycle data
+across a greater C-rate regime.
+B. Data Collection
+In this study, 24 Molicel INR-18650-P30B battery cells
+were tested, whereby eight groups of three cells were subjected
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 02,2026 at 08:07:22 UTC from IEEE Xplore. Restrictions apply.
+
+BOGGAN AND CLARKE: INVESTIGATION OF LITHIUM-ION BATTERY DEGRADATION
+
+6271
+
+TABLE II
+A LL L OAD P ROFILE E XPERIMENT T YPES AND TAG
+D ESIGNATIONS FOR B REVITY
+
+TABLE III
+M OLICEL P30B M ANUFACTURER S PECIFICATIONS
+
+Fig. 3. Experimental setup with (a) climate chamber (shown left) and battery
+cycler (shown right) and (b) array of eight cells.
+
+to a distinct load profile. Load profiles have been assigned
+tags for brevity, as shown in Table II, and cell specifications
+can be seen in Table III. Fresh cells were used for this
+experiment. Cycling was conducted using an Arbin LBT
+5V-30A battery tester with the ambient temperature maintained
+at 23 ◦ C ± 0.5 ◦ C using an Amerex Instruments LowTemp Incubator (IncuMax IC-150R). Experimental equipment
+is shown in Fig. 3.
+A general overview of the experimental data collection procedure is described as follows. In short, cells are preprocessed
+and characterized, subjected to their respective simulated flight
+loads, and then the final state is again characterized. An initial
+cell conditioning step was performed to identify outliers and
+to ensure consistent measurement conditions for subsequent
+characterization [22]. As cells used in the experiment are of
+commercial grade, this conditioning step is not to be confused
+with SEI/CEI formation conditioning cycles. For the conditioning step, each cell underwent three full charge–discharge
+cycles at 1C. This aims to reduce variability between cells
+in the subsequent capacity measurement. It should be noted
+that during the conditioning step, two outlying batteries were
+observed (cells 10 and 18 having initial capacities below the
+manufacturer-specified 2.9-Ah minimum capacity), resulting
+in a single cell being used for analysis of the CCP profile.
+Following this was the characterization of the initial cell
+state. Incremental capacity analysis (ICA) was employed as a
+
+noninvasive diagnostic tool to monitor changes in the internal
+state of the battery over time. ICA can provide insight into
+LAM, LLI, and increases in IR through the analysis of
+differential capacity (dQ/dV) curves [23]. For ICA, dQ/dV
+values were calculated in the native software of the battery
+cycler, requiring no additional smoothing. For the ICA tests,
+cells were charged using a constant current-constant voltage
+(CCCV) protocol. The constant current phase was performed
+at a low C-rate (C/20) and continued to a voltage of 4.2 V.
+This was followed by a constant voltage phase until the
+current dropped to C/30. A 20-h rest period followed to ensure
+thermal and electrochemical stabilization before discharging
+the cell. Cells were discharged at a constant current (C/20)
+until reaching the terminal voltage of 2.5 V. A low C-rate
+for both charging and discharging was chosen to maximize
+measurement accuracy, as higher rates can result in poor
+analysis of dQ/dV curves as a result of subtle changes in
+cell behavior being missed. The selection of discharge curves
+as the primary segment of reference is due to the interest
+in the discharging characteristics of the battery for in-flight
+operation.
+The primary driver of battery degradation in this study was
+the application of the simulated flight cycles in the form of
+electrical load profiles. The flight cycle procedure consists of
+three stages: a charging segment, a 5-min rest period, and
+the flight profile segment. Cells were charged using a CCCV
+protocol at 1C until the cell reached a voltage of 4.2 V,
+followed by a constant voltage phase until the current dropped
+to C/30.
+Each cell underwent 1000 flight cycles, with reference tests
+conducted every 100 flight cycles to assess the capacity at
+regular intervals during the experiment. The reference tests
+followed the same protocol as the ICA test, but with a reduced
+rest period of 1 h. Normalized capacity Q̃n in this study is
+defined as the ratio of the measured discharge capacity at a
+given cycle n to the all-time maximum capacity measured for
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 02,2026 at 08:07:22 UTC from IEEE Xplore. Restrictions apply.
+
+6272
+
+IEEE TRANSACTIONS ON TRANSPORTATION ELECTRIFICATION, VOL. 12, NO. 4, AUGUST 2026
+
+Fig. 4. Average normalized capacity with respect to flight cycles for (a) baseline eCTOL, (b) compressed eCTOL, (c) baseline eVTOL, and (d) compressed
+eVTOL with the shaded region representing one standard deviation from the mean.
+
+the cell
+
+Qn
+Q̃n =
+Qmax
+
+TABLE IV
+
+(13)
+
+AVERAGE P ERCENTAGE D ECREASE IN BATTERY C APACITY FOR A LL
+E XPERIMENTAL P ROFILES
+
+where Qn is the discharge capacity at cycle n, and Qmax is the
+maximum discharge capacity observed.
+IV. D EGRADATION R ESULTS
+A. State-of-Health Observations
+Fig. 4 depicts the capacity decrease over 1000 flight cycles.
+Overall, similar general trends are observed, but key subtleties
+emerge that indicate different degradation modes and rates in
+the control and experimental groups. At the inception of the
+experiments, there is only a minor variation in capacity loss
+between batteries under fixed versus cycle-progressive load
+profiles. This can be attributed to the similar power draw
+initially between the two profile types. Notably, it is observed
+that the baseline load profiles for both aircraft architectures
+exhibit a lower capacity drop than the compressed profiles.
+This can likely be attributed to the increased C-rate cycling.
+In some tests, a slight increase in capacity was observed at
+the beginning of the experiment, particularly for the fixed
+and cycle-progressive baseline eVTOL load profiles. From
+Guo et al. [24], this observation could be explained through
+electrochemical activation.
+
+As the number of flight cycles increases, the rate of degradation between the cycle-progressive load profile experiments
+and fixed profile experiments remains essentially the same.
+It is only around the 500–600 cycle mark that the increased
+power draw becomes visually evident between the two profile
+types. Depicted in Table IV are the total average decreases in
+the capacity for the eight experiment types.
+Across the board, greater decreases in battery capacity
+were observed from profiles incorporating a cycle-progressive
+profile. This much should be evident from the increased
+discharge throughput and peak discharge power. For the baseline power eCTOL, a 9.1% relative increase in capacity loss
+was observed; for the compressed eCTOL, a 13.3% relative
+increase in capacity loss was observed; for the baseline power
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 02,2026 at 08:07:22 UTC from IEEE Xplore. Restrictions apply.
+
+BOGGAN AND CLARKE: INVESTIGATION OF LITHIUM-ION BATTERY DEGRADATION
+
+6273
+
+Fig. 5. Incremental capacity with respect to voltage curves for (a) baseline eCTOL, (b) compressed eCTOL, (c) baseline eVTOL, and (d) compressed eVTOL
+for the first batch of cells. The red box indicates the region of particular interest/most evident deviation.
+
+eVTOL, an 11.8% relative increase in capacity loss was
+observed; and for the compressed eVTOL, a 22.1% relative
+increase in capacity loss was observed on average. It can be
+seen that compressed cycle-progressive profiles contribute a
+greater disparity in capacity drop than progressive baseline
+power load profiles.
+While three cells are not enough to fully account for cell-tocell variability, they do provide greater credibility toward the
+observed results stemming from the profile in question. This
+is in comparison to commonly conducted testing protocols
+that only use one cell per variable of interest. Further work
+incorporating a greater number of cells would increase the
+statistical significance of experiments incorporating cycleprogressive load profiles. In comparison to other literature
+revolving around lithium-ion battery degradation in electric
+aircraft, low levels of degradation are observed relative to
+the number of flights tested. A multitude of variables can
+contribute to this result, with the leading theory relating
+to the relatively low depth of discharge. Higher levels of
+depth of discharge can lead to significantly lower levels
+of cycle life retention [25]. Moderate ambient temperature
+[26], resting times in between cycles, and greater cycling
+dynamics [27] (as in this experiment) can improve capacity
+retention.
+
+In addition, this study represents the first report of restinduced regeneration for electric aircraft applications. After
+500 flight cycles, cells were subjected to rest periods exceeding
+360 h, simulating long-duration periods of inactivity such
+as maintenance. Capacity recovery was observed in multiple
+cells, with the average rate of capacity fade following the
+rest period decreasing across the board. This is consistent
+with previous literature for other applications of lithium-ion
+batteries [28], [29], [30], [31]. While further investigation
+is necessary, this finding introduces an additional dimension
+of realism for laboratory electric aircraft battery degradation
+testing.
+B. Incremental Capacity Analysis
+In Fig. 5, incremental capacity curves are displayed for cells
+taken from the first batch (cells 1–8) allowing for qualitative
+observations to be ascertained. ICA reveals the changes in the
+subject battery’s voltage response following degradation and
+shows whether application of different load profiles exhibits
+the same degradation modes [32]. At the inception of the
+experiment (Cycle 0), the dQ/dV signatures for all test cells
+exhibit near-perfect alignment across the entire voltage range.
+This initial consistency suggests that the observed experimental outcomes are driven by the specific load profiles applied
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 02,2026 at 08:07:22 UTC from IEEE Xplore. Restrictions apply.
+
+6274
+
+IEEE TRANSACTIONS ON TRANSPORTATION ELECTRIFICATION, VOL. 12, NO. 4, AUGUST 2026
+
+rather than inherent cell-to-cell variability, strengthening the
+comparison between fixed and cycle-progressive groups.
+While the sample size for certain groups, such as the CCP
+profile, was limited to a single cell due to initial capacity
+outliers, the uniformity of the Cycle 0 signatures provides a
+baseline for interpreting subsequent deviations. It can be easily
+identified that there are differences between the fixed profiles
+and those that underwent cycle-progressive load profiles, most
+notably in the 3.15–3.5-V range, where the progressive cells
+exhibit altered peak evolution. Below 3.05 V, no significant
+variation is observed.
+As expected, LLI and LAM are the dominant degradation
+mechanisms during the first 1000 cycles. This is evident
+from the shifts in peaks between 3.5 and 4.1 V, which align
+with prior studies suggesting that cathode-side degradation is
+initially the primary driver. Interestingly, the cycle-progressive
+groups exhibit a distinct increase in peak magnitude and
+a shift in morphology within the 3.15–3.5-V region that is
+not observed in the static profiles, even those with higher
+C-rates (baseline/compressed eVTOL). This suggests that the
+“progressive” nature of the load, which mimics the escalating
+thermal management power demands of an aging system,
+triggers different electrochemical staging in the graphite anode
+than a fixed high-power mission. Further work to identify the
+root cause will assist greatly in the wider understanding of the
+impact of cycle-progressive profiles for electric aircraft battery
+testing. Specifically, the growth in the dQ/dV features in this
+lower voltage range may indicate altered lithium intercalation
+kinetics or accelerated SEI growth specific to the evolving load
+profile.
+In this study, ICA is intended primarily as a qualitative
+diagnostic tool to highlight these shifts that standard SOH
+capacity fade metrics may overlook. Higher energy density
+batteries are a necessity for powering electric aircraft, and
+design choices must be made to mitigate the degradation
+variation exhibited by cycle-progressive load profiles.
+V. C ONCLUSION
+This study investigated the influence of cycle-progressive
+load profiles on lithium-ion battery degradation in electric
+aircraft, focusing on the coupled feedback between cell aging
+and active BTMSs. Using eCTOL and eVTOL load profiles
+derived from the RCAIDE framework, we subjected commercial Molicel P30B cells to fixed and cycle-progressive
+load profiles over 1000 flight cycles. Across all test cases,
+the cycle-progressive load profiles consistently resulted in
+greater degradation than their fixed counterparts (up to 22.1%
+relative increase in degradation). While initial capacity fade
+remains similar between the two profile types, the ICA curves
+reveal that the cycle-progressive protocol eventually alters the
+degradation pathways. Specifically, the deviation in peak shape
+and magnitude within the 3.15–3.5-V range, not observed in
+static profiles even at higher C-rates, indicates that progressive
+loading triggers unique anode-side staging and kinetics, likely
+associated with accelerated SEI growth and LLI.
+The findings emphasize that the cycle-progressive profile
+more realistically captures the system-level consequences of
+battery aging in aircraft with active cooling. While the limited
+
+cell count necessitated by the resource-intensive nature of
+flight-cycle testing prevents claims of broad statistical significance, the near-perfect alignment of dQ/dV signatures at Cycle
+0 provides strong evidence that the observed mechanistic
+shifts are profile-induced. Future work utilizing electrochemical impedance spectroscopy and postmortem analysis will be
+essential to further quantify these evolving degradation modes.
+The authors aim for this work to ultimately build greater
+confidence in the viability of battery-powered electric aviation.
+R EFERENCES
+[1]
+
+C. Boggan and M. A. Clarke, “Experimental characterization of electric
+aircraft battery degradation using accelerated and evolving load profiles,”
+in Proc. IEEE/AIAA Transp. Electrific. Conf. Electr. Aircr. Technol. Symp.
+(ITEC+EATS), Jun. 2025, pp. 1–6.
+[2] V. Viswanathan et al., “The challenges and opportunities of batterypowered flight,” Nature, vol. 601, no. 7894, pp. 519–525, Jan. 2022.
+[3] A. Bills, S. Sripad, W. L. Fredericks, M. Singh, and V. Viswanathan,
+“Performance metrics required of next-generation batteries to electrify
+commercial aircraft,” ACS Energy Lett., vol. 5, no. 2, pp. 663–668, Feb.
+2020.
+[4] A. Bills et al., “A battery dataset for electric vertical takeoff and landing
+aircraft,” Sci. Data, vol. 10, no. 1, p. 344, Jun. 2023.
+[5] A. Bills, L. Fredericks, V. Sulzer, and V. Viswanathan, “Massively
+distributed Bayesian analysis of electric aircraft battery degradation,”
+ACS Energy Lett., vol. 8, no. 8, pp. 3578–3585, Jul. 2023.
+[6] M. A. Clarke and J. J. Alonso, “Forecasting the operational lifetime of
+electric aircraft through battery degradation modeling,” in Proc. AIAA
+SCITECH Forum, Jan. 2022, pp. 1–14.
+[7] J. Edge et al., “Lithium ion battery degradation: What you need to
+know,” Phys. Chem. Chem. Phys., vol. 23, no. 14, pp. 8200–8221, 2021.
+[8] S. S. Madani, M. Hajihosseini, and C. Ziebert, “A brief survey on heat
+generation in lithium-ion battery technology,” Renew. Energy Environ.
+Sustainability, vol. 9, p. 9, Jan. 2024.
+[9] W. Shen, N. Wang, J. Zhang, F. Wang, and G. Zhang, “Heat generation and degradation mechanism of lithium-ion batteries during
+high-temperature aging,” ACS Omega, vol. 7, no. 49, pp. 44733–44742,
+Dec. 2022.
+[10] D.-I. Stroe, M. Swierczynski, S. K. Kær, and R. Teodorescu,
+“Degradation behavior of lithium-ion batteries during calendar
+ageing—The case of the internal resistance increase,” IEEE Trans. Ind.
+Appl., vol. 54, no. 1, pp. 517–525, Jan. 2018.
+[11] G. Ning, B. Haran, and B. N. Popov, “Capacity fade study of lithiumion batteries cycled at high discharge rates,” J. Power Sources, vol. 117,
+nos. 1–2, pp. 160–169, May 2003.
+[12] A. Guha and A. Patra, “State of health estimation of lithium-ion batteries
+using capacity fade and internal resistance growth models,” IEEE Trans.
+Transport. Electrific., vol. 4, no. 1, pp. 135–146, Mar. 2018.
+[13] D. Bernardi, E. Pawlikowski, and J. Newman, “A general energy balance
+for battery systems,” J. Electrochem. Soc., vol. 132, no. 1, pp. 5–12, Jan.
+1985.
+[14] V. G. Choudhari, D. A. S. Dhoble, and T. M. Sathe, “A review on effect
+of heat generation and various thermal management systems for lithium
+ion battery used for electric vehicle,” J. Energy Storage, vol. 32, Dec.
+2020, Art. no. 101729.
+[15] Y. Bai et al., “Reversible and irreversible heat generation of NCA/Si–C
+pouch cell during electrochemical energy-storage process,” J. Energy
+Chem., vol. 29, pp. 95–102, Feb. 2019.
+[16] H. Kellermann, S. Fuhrmann, M. Shamiyeh, and M. Hornung, “Design
+of a battery cooling system for hybrid electric aircraft,” J. Propuls.
+Power, vol. 38, no. 5, pp. 736–751, Sep. 2022.
+[17] K. Wen, X. Fu, and F. Pei, “Research on the thermal management safety
+of the fast charging power battery management system,” Energy Rep.,
+vol. 10, pp. 3289–3296, Nov. 2023.
+[18] LEADS Research Group.(2025). RCAIDE—Rapid Conceptual Aircraft
+Integration and Design Environment. Accessed: Apr. 2025. [Online].
+Available: https://github.com/leadsgroup/RCAIDE LEADS
+[19] T. W. Lukaczyk et al., “SUAVE: An open-source environment for
+multi-fidelity conceptual vehicle design,” in Proc. 16th AIAA/ISSMO
+Multidisciplinary Anal. Optim. Conf., Jun. 2015, p. 3087.
+[20] E. M. Botero, M. A. Clarke, R. M. Erhard, J. T. Smart, J. J. Alonso,
+and A. Blaufox, “Aerodynamic verification and validation of SUAVE,”
+in Proc. AIAA SCITECH Forum, Jan. 2022, p. 1929.
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 02,2026 at 08:07:22 UTC from IEEE Xplore. Restrictions apply.
+
+BOGGAN AND CLARKE: INVESTIGATION OF LITHIUM-ION BATTERY DEGRADATION
+
+[21] K. Adebajo, G. S. Anthony, J. Peskar, A. Downey, Y. Chen, and C. Hu,
+“Impact of charging rate and state of charge on electric aircraft battery
+degradation using a multi-domain model with realistic Southeastern
+U.S. flight paths,” in Proc. AIAA SCITECH Forum, Jan. 2025, p. 2705.
+[22] E. Laakso et al., “Aging mechanisms of NMC811/Si-graphite Li-ion
+batteries,” J. Power Sources, vol. 599, Apr. 2024, Art. no. 234159.
+[23] L. Spitthoff, P. J. S. Vie, M. S. Wahl, J. Wind, and O. S. Burheim,
+“Incremental capacity analysis (dQ/dV) as a tool for analysing the
+effect of ambient temperature and mechanical clamping on degradation,”
+J. Electroanal. Chem., vol. 944, Sep. 2023, Art. no. 117627.
+[24] J. Guo, Y. Li, J. Meng, K. Pedersen, L. Gurevich, and D.-I. Stroe,
+“Understanding the mechanism of capacity increase during early cycling
+of commercial NMC/graphite lithium-ion batteries,” J. Energy Chem.,
+vol. 74, pp. 34–44, Nov. 2022.
+[25] G. Yüksek and A. Alkaya, “Effect of the depth of discharge and C-rate
+on battery degradation and cycle life,” in Proc. 14th Int. Conf. Electr.
+Electron. Eng. (ELECO), Nov. 2023, pp. 1–5.
+[26] S. Ma et al., “Temperature effect and thermal impact in lithium-ion
+batteries: A review,” Prog. Natural Sci., Mater. Int., vol. 28, no. 6,
+pp. 653–666, Dec. 2018.
+[27] A. Geslin, L. Xu, D. Ganapathi, K. Moy, W. C. Chueh, and S. Onori,
+“Dynamic cycling enhances battery lifetime,” Nature Energy, vol. 10,
+pp. 172–180, Dec. 2024.
+[28] T. Qin, S. Zeng, J. Guo, and Z. Skaf, “A rest time-based prognostic
+framework for state of health estimation of lithium-ion batteries with
+regeneration phenomena,” Energies, vol. 9, no. 11, p. 896, Nov. 2016.
+[29] B. Epding, B. Rumberg, H. Jahnke, I. Stradtmann, and A. Kwade,
+“Investigation of significant capacity recovery effects due to long rest
+periods during high current cyclic aging tests in automotive lithium
+ion cells and their influence on lifetime,” J. Energy Storage, vol. 22,
+pp. 249–256, Apr. 2019.
+[30] A. Eddahech, O. Briat, and J.-M. Vinassa, “Lithium-ion battery
+performance improvement based on capacity recovery exploitation,”
+Electrochim. Acta, vol. 114, pp. 750–757, Dec. 2013.
+[31] X. Pang, R. Huang, J. Wen, Y. Shi, J. Jia, and J. Zeng, “A lithium-ion
+battery RUL prediction method considering the capacity regeneration
+phenomenon,” Energies, vol. 12, no. 12, p. 2247, Jun. 2019.
+[32] M. Dubarry and D. Anseán, “Best practices for incremental capacity
+analysis,” Frontiers Energy Res., vol. 10, Oct. 2022, Art. no. 1023555.
+
+6275
+
+Cade Boggan (Graduate Student Member, IEEE)
+received the B.S. degree in physics and mathematics
+from Howard University, Washington, DC, USA, in
+2024. He is currently pursuing the Ph.D. degree in
+aerospace engineering with the University of Illinois
+Urbana–Champaign, Champaign, IL, USA.
+His current research interests include electric
+aircraft, battery degradation, and battery testing
+methodologies.
+
+Matthew A. Clarke (Member, IEEE) received
+the B.S. degree in mechanical engineering from
+Howard University, Washington, DC, USA, in 2016,
+and the M.S. and Ph.D. degrees in aeronautics and
+astronautics from Stanford University, Stanford CA,
+USA, in 2018 and 2022, respectively.
+In 2023, he joined the Department of
+Aerospace Engineering, University of Illinois
+Urbana–Champaign, where he is currently an
+Assistant Professor. His research interests include
+aircraft design, systems engineering, electrification,
+hybrid propulsion, and optimization.
+
+Authorized licensed use limited to: TU Delft Library. Downloaded on September 02,2026 at 08:07:22 UTC from IEEE Xplore. Restrictions apply.
+
+
