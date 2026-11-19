@@ -1,0 +1,3 @@
+[submodule "submodules/paperlib"]
+	path = paperlib
+	url = https://github.com/Mattiiiiiiiiiiiiii/paperlib
