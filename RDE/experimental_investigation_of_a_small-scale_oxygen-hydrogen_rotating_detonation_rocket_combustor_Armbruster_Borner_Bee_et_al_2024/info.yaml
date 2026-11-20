@@ -1,0 +1,130 @@
+author: Armbruster, Wolfgang and Börner, Michael and Bee, Alexander and Martin, Jan
+  and Knapp, Bernhard and General, Stephan and Hardi, Justin and Bard, Ewen
+author_list:
+- affiliation:
+  - name: Deutsches Zentrum fur Luft- und Raumfahrt DLR Institut fur Raumfahrtantriebe
+  family: Armbruster
+  given: Wolfgang
+- affiliation:
+  - name: Deutsches Zentrum fur Luft- und Raumfahrt DLR Institut fur Raumfahrtantriebe
+  family: Börner
+  given: Michael
+- affiliation:
+  - name: Deutsches Zentrum fur Luft- und Raumfahrt DLR Institut fur Raumfahrtantriebe
+  family: Bee
+  given: Alexander
+- affiliation:
+  - name: Deutsches Zentrum fur Luft- und Raumfahrt DLR Institut fur Raumfahrtantriebe
+  family: Martin
+  given: Jan
+- affiliation:
+  - name: Deutsches Zentrum fur Luft- und Raumfahrt DLR Institut fur Raumfahrtantriebe
+  family: Knapp
+  given: Bernhard
+- affiliation:
+  - name: Deutsches Zentrum fur Luft- und Raumfahrt DLR Institut fur Raumfahrtantriebe
+  family: General
+  given: Stephan
+- affiliation:
+  - name: Deutsches Zentrum fur Luft- und Raumfahrt DLR Institut fur Raumfahrtantriebe
+  family: Hardi
+  given: Justin
+- affiliation:
+  - name: Deutsches Zentrum fur Luft- und Raumfahrt DLR Institut fur Raumfahrtantriebe
+  family: Bard
+  given: Ewen
+booktitle: AIAA SCITECH 2024 Forum
+citations:
+- doi: 10.1017/CBO9780511754517
+- doi: 10.2514/1.12775
+- doi: 10.2478/tar-2020-0024
+- doi: 10.1016/j.proci.2012.10.005
+- author: Heister S. D.
+  volume: '9'
+  volume-title: Aerospace
+- doi: 10.1016/j.actaastro.2017.09.011
+- author: Doekhie S.
+  volume-title: 5th European Conference for Aeronautics and Aerospace Sciences (EUCASS)
+  year: '2013'
+- author: Voitsekhovskii B.
+  first-page: '1207'
+  journal-title: Soviet Physics Doklady
+  volume: '4'
+  year: '1960'
+- doi: 10.2514/3.28557
+- doi: 10.2514/1.17656
+- doi: 10.1007/s10573-009-0089-2
+- doi: 10.2514/1.J058157
+- doi: 10.2514/6.2005-3232
+- doi: 10.2514/6.2023-1873
+- doi: 10.2514/1.B38771
+- author: Kawasaki A.
+  first-page: 0229
+  journal-title: AIAA SciTech
+  volume: '2022'
+  year: '2022'
+- unstructured: Stechmann, D. P. "Experimental Study of High-Pressure Rotating Detonation
+    Combustion in Rocket Environments," Ph.D. thesis,Purdue University, 2017.
+- author: Okninski A.
+  journal-title: 'Aircraft Engineering and Aerospace Technology: An International
+    Journal'
+  year: '2016'
+- author: Kasahara J.
+  volume: '2121'
+  volume-title: AIP Conference Proceedings
+  year: '2019'
+- doi: 10.1016/j.expthermflusci.2018.10.031
+- doi: 10.2514/6.2023-1104
+- doi: 10.1063/1.5067256
+- author: Law H.
+  first-page: '2021'
+  journal-title: AIAA Propulsion and Energy
+  volume: '2021'
+  year: '2021'
+- doi: 10.1016/j.combustflame.2019.12.031
+- doi: 10.1016/j.ijhydene.2015.03.128
+- doi: 10.2514/1.B37735
+- doi: 10.1007/s00193-021-00991-2
+- doi: 10.1007/s00193-021-01010-0
+- author: Armbruster W.
+  volume-title: 34th International Symposium on Space Technology and Science (ISTS)
+    2023
+  year: '2023'
+- author: Börner M.
+  volume-title: 3rd Ground-based space facilities symposium 2022
+  year: '2022'
+- doi: 10.3390/en14082037
+- doi: 10.2514/6.2008-2680
+- doi: 10.2514/6.2018-4688
+- doi: 10.1017/S0022112010001217
+- doi: 10.1016/j.proci.2020.05.027
+- doi: 10.3390/aerospace9080410
+- doi: 10.2514/1.B37740
+- doi: 10.1103/PhysRevE.101.013106
+- author: Wolański P.
+  volume-title: Lukasiewicz Research Network - Institute of Aviation
+  year: '2021'
+- doi: 10.1002/aic.690060330
+- doi: 10.1002/aic.690060118
+- author: Gordon S.
+  volume-title: 'Computer Program for Calculation of Complex Chemical Equilibrium
+    Compositions and Applications. Part 1: Analysis'
+  year: '1994'
+- doi: 10.1007/s10573-008-0021-1
+- doi: 10.1051/eucass/201102555
+doc_url: https://arc.aiaa.org/doi/pdf/10.2514/6.2024-2612
+doi: 10.2514/6.2024-2612
+files:
+- experimental_investigation_of_a_small-scale_oxygen-hydrogen_rotating_detonation_rocket_combustor_Armbruster_Borner_Bee_et_al_2024.pdf
+journal: AIAA SCITECH 2024 Forum
+month: 1
+papis_id: 9b7924706cfb8002445a1f8f1d1521ae
+publisher: American Institute of Aeronautics and Astronautics
+ref: Armbruster2024Experimental
+time-added: 2026-11-20-08:48:21
+title: Experimental Investigation of a Small-Scale Oxygen-Hydrogen Rotating Detonation
+  Rocket Combustor
+type: inproceedings
+url: https://doi.org/10.2514/6.2024-2612
+venue: Orlando, FL
+year: 2024

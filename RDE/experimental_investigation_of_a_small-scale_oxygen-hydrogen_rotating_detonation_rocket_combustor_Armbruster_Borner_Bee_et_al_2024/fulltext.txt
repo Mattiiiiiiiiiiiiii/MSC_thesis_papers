@@ -1,0 +1,945 @@
+2023-a-09
+
+ISTS2023
+
+Experimental Investigation of a Small-Scale Oxygen-Hydrogen Rotating
+Detonation Combustor
+By Wolfgang ARMBRUSTER,1) Birgir Steinn HERMANNSSON,1) Michael BÖRNER,1) Alexander BEE,1) Jan MARTIN,1) and
+Justin HARDI1)
+1) Institute of Space Propulsion, German Aerospace Center (DLR), Germany
+
+(Received 21 April 2023)
+This study presents the design and the experimental investigation of an hydrogen-oxygen rotating detonation combustor (RDC)
+for rocket propulsion. A small-scale heat sink chamber was designed and manufactured at the DLR, Institute of Space Propulsion. For
+the initial tests, this RDC experiment was operated with the gaseous propellants oxygen-hydrogen at propellant mixture ratios between
+6 and 8 and total mass flow rates between 30 and 45 g/s. During testing a pressure oscillation frequency of 38 kHz was observed.
+This was significantly higher than the expected, theoretical frequency of one detonation wave of about 14 kHz. For that reason, the
+sampling rate of the pressure sensor was not sufficiently high in order to resolve and detect the steep wave front of travelling detonation
+waves. The imaging from a high-speed camera directed upstream into the annular combustion chamber was analyzed by Dynamic
+Mode Decomposition and the results indicated 5 spinning waves, which can also explain the high pressure oscillation frequency. With
+the known number of waves, the travelling speed of the waves in the annular chamber can be calculated and yielded a rather low
+velocity of close to 60 % of the theoretical CJ-velocity. Nevertheless, the wave still traveled at a supersonic speed with respect to
+the speed of sound to the combustion products. Thus, it is concluded that the experimental observations can be explained by weak
+detonation waves. The large deviation from the theoretical detonation velocity is likely a result of insufficient mixing of the fresh
+propellants due to the very fast repetition rate of the waves, thermal losses to the heat sink chamber, and finally due to deflagration
+losses for the fast chemical time scales for hydrogen-oxygen combustion.
+Key Words: Rotating Detonation Engine, Pressure Gain Combustion, Hydrogen-Oxygen
+
+1.
+
+Nomenclature
+Variables
+d
+f
+h
+I
+L
+l
+ṁ
+n
+P
+s
+T
+u
+t
+∆
+ε
+λ
+ν
+ρ
+
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+
+outer diameter
+frequency
+fill height of injected mixture
+impulse
+length
+spatial period between detonations
+mass flow rate
+multiplicity
+pressure
+entropy
+temperature
+tangential speed of a detonation wave
+time
+combustor channel width
+injection blockage correction factor
+detonation cell width
+specific volume
+density
+
+Subscripts
+0
+c
+min
+sp
+tot
+w
+
+:
+:
+:
+:
+:
+:
+
+initial
+chamber
+minimum
+specific
+total
+waves
+
+34th ISTS Organizing Committee.
+
+Introduction
+
+The maximum attainable thermal efficiency of conventional
+rocket combustion devices is limited by the ideal Brayton-Joule
+thermodynamic cycle. The Brayton-Joule cycle is isentropic
+and characterized by constant pressure, or isobaric, heat addition. The combustion resulting from the heat addition for this
+cycle is categorized as deflagration, since it produces a regular
+flame front that propagates at sub-sonic velocities of O (1−102 )
+m s−1 resulting in slightly reduced density and pressure of the
+combustion products. In contrast, the detonative combustion
+process produces a flame front that reaches supersonic velocities of O (103 − 104 ) m s−1 , inducing a shock front and a significant increase in both the pressure and the density of the combustion products.1)
+The detonation combustion process can be defined according
+to either the Humphrey or, more accurately,2) the Fickett-Jacobs
+thermodynamic cycles, which are shown alongside the BraytonJoule cycle in Figure 1 for identical initial compression ratios
+(0-3). As indicated by the T-s diagram, the detonation process
+produces less entropy and higher temperature which results in
+higher thermal efficiency. This gain in thermal efficiency has
+been determined to be in excess of 20%, possibly allowing significant gain in the specific impulse Isp of the rocket engine.3)
+The Rotating Detonation Engine (RDE) is an evolution of the
+Pulsed Detonation Engine (PDE), where the detonation wave is
+initiated inside an annular chamber rather than a tube, and propellant is continuously supplied into the chamber to sustain the
+propagation of the detonation such that only an initial ignition
+is necessary. A schematic of the RDE combustion process is
+
+- 2023-a-09 -
+
+2023-a-09
+
+ISTS2023
+
+Fig. 1. Comparison of the P-V and T-s diagrams for deflagration- and detonation based cycles, adapted from.4)
+
+demonstrated in Figure 2 for an annular chamber with length
+Lc , outer diameter dc and channel width ∆.
+Voitsekhovskii made the first experimental efforts to confine a continuously propagating detonation wave using gaseous
+acetylene and oxygen within an annular enclosure in 1959.6)
+Following his work, which was the first to demonstrate the
+physical structure of rotating detonation waves with photography, the initial groundwork had been laid for future research
+efforts towards realizing propulsion devices operating on this
+principle. A short historic overview of these efforts will be
+given hereafter.
+During the 1960s at the University of Michigan, Nicholls et
+al. performed theoretical analyses and experiments on a smallscale annular detonation rocket motor,7) the results of which
+were published in 1966, to validate the feasibility of pressure
+gain combustion for rocket propulsion applications. Unfortunately, they did not manage to sustain the detonation waves and
+concluded that the excessively turbulent internal flow field was
+the primary cause for the unstable detonations. A likely significant contributor to this excessive turbulence was the fragmentation of a rupture plate inside the chamber employed with
+the intent to control the tangential direction of detonation wave
+propagation. Further significant research on RDEs would not
+be published until some decades later.
+
+Fig. 2. Schematic of the working principle of an RDE, adapted from.5)
+1 - propellant injection; 2 - injection plane; 3 - detonation front; 4 - fresh
+propellant layer; 5 - oblique shock; 6 - exit plane; hz - height of propellant
+layer consumed by detonation front; Lc - length of combustion chamber; ∆
+- channel width; dc - outer diameter of chamber; l - spatial period between
+co-rotating detonations.
+
+34th ISTS Organizing Committee.
+
+In 2006, Bykovskii et al. conducted breakthrough experimental and theoretical analyses of an RDE at the Lavrentyev Institute of Hydrodynamics,8) where various chamber geometries
+were tested and studied for gaseous hydrogen and acetylene fuels mixed with air. These experiments demonstrated previously
+unseen stability of detonation wave propagation in an annular
+geometry, revealing in particular the significance of the mixture
+equivalence ratio on the operational stability. Empirical chamber design formulas for the critical measures of chamber length,
+diameter and channel width were derived from the experimental
+data that have been prominently used since.
+Later in 2009, Bykovskii et al. published data from experiments using two sizes of cone-shaped RDE combustors operating on gaseous hydrogen and oxygen.9) These tests varied the
+initial mixture equivalence ratios from 1.10 to 1.64 and the total mass flow rates from around 70 g s−1 to 180 g s−1 . A low
+counter-pressure collector tank was used, and it was found that
+an increase in the counter-pressure was beneficial to detonation
+wave stability. The test data was finally used to validate a proposed numerical model for the structure and characteristics of
+detonation waves.
+From the 2010s to present day, international research and development efforts on RDE technologies have increased substantially.10) In addition to a multitude of test hardware demonstrations, numerical analyses on RDE flow field structures have
+been conducted, providing further insight into the complex coupling of chamber geometry and operational parameters to the
+detonation wave modes and stability. As a result of these advancements, some critical milestones have been surpassed by
+researchers in the United States, Europe and Japan.
+For his Ph.D. thesis at Purdue University in 2017,11) Stechmann developed a high-pressure experimental RDE with which
+four test campaigns were conducted. In these tests, gaseous
+hydrogen, methane and natural gas fuels were individually
+tested with liquid oxygen at total mass flow rates in the range
+of 0.2 kg s−1 to 3.8 kg s−1 , producing chamber pressures from
+around 4 bar to 26 bar. To initiate a detonation, a torch igniter
+was used in conjunction with a pre-burner. For all test campaigns, the thrust, chamber pressure, detonation wave propagation speed and direction of rotation were found to be affected by
+injector configuration, chamber geometry, mixture composition
+and flow rate, and if there is constriction of the exit plane by a
+nozzle.
+The first vehicle to achieve flight using an RDE as its propulsion system was devised by Okninski et. al in 2016 as a part
+of the Small Sounding Rocket Program (SSRP) at the Warsaw
+University of Technology and Institute of Aviation in Poland.12)
+On September 15 in 2021, the first flight demonstration of this
+rocket took place in Zielonka outside Warsaw.13) The RDE
+used liquid propane and nitrous oxide as propellant, and fired
+for 3.2 s, accelerating the 9.5 kg wet mass rocket to a maximum
+speed of 93 m s−1 and an altitude of 450 m.
+Shortly prior to the aforementioned milestone, the world’s
+first in-space flight demonstration of an RDE was achieved by
+a research group at the Nagoya University in collaboration with
+the Japan Aerospace Exploration Agency (JAXA) and several
+other Japanese institutes.14) The RDE was part of a larger Detonation Engine System (DES), which also included a PDE, that
+was launched July 27, 2021 as payload on a S-520-31 sounding
+
+- 2023-a-09 -
+
+2023-a-09
+
+ISTS2023
+
+rocket from the Uchinoura Space Center to a ballistic trajectory with an apogee of 235 km. The RDE generated a thrust
+of 500 N, and fired for a total duration of 6 s. The research
+and development of this seminal RDE hardware was carried out
+by Kasahara et al.15) It had an outer diameter of 68 mm and a
+channel width of 8 mm, using 120 injector orifices 1.0 mm in
+diameter arranged in pairs.
+Most recently, test validations have also been made at NASA
+Marshall Space Flight Center in 2022, where they have used
+novel additive manufacturing methods and materials to construct RDE demonstration hardware that sustained a 17.8 kN
+thrust at a chamber pressure of 43 bar for a ground-braking
+1 min duration. Currently, a 44.5 kN fully reusable RDE is being developed at NASA.16, 17)
+Nevertheless, RDEs are still far from replacing conventional
+rocket propulsion systems and significant research is still required in order to mature the technology. This is true especially
+in Europe, since the technology readiness level on RDE rocket
+propulsion is still very limited. It is therefore the goal at DLR to
+develop and test a small-scale rocket RDE running on the propellant combination of oxygen-hydrogen. This experiment and
+the preliminary results of the first conducted tests are presented
+in this paper.
+2.
+
+(a) Cut-view schematic of the RDC design.
+
+Experimental methods
+
+2.1. Small-Scale RDC experiment
+In this section, the design of the detonation experiment will
+be introduced. Since this is the first RDE setup at the DLR Institute of Space Propulsion, a simple and robust small-scale experiment was designed to be operated at the research test bed M3
+with the potential to extend the tests to larger mass flow rates
+in future studies. For the design and initial testing the propellant combination of gaseous oxygen and hydrogen was chosen.
+However, the combustor was also designed to be as modular as
+possible, such that it will also be possible to test different propellant combinations and eventually even cryogenic propellants
+in future work.
+2.1.1. Chamber design
+For the first design iteration of the annular combustion chamber, the well-known semi-empirical relations from Bykovskii et
+al.8) were applied. The detonation cell λ size for O2 -H2 at ambient pressure and temperature for close to stoichiometric conditions is around 1.3 mm.11)
+An in-house Python tool with NASA CEA crossfunctionality was used to determine the channel width ∆
+for nominal operational parameters by solving a modified
+and manipulated version of Wolański’s detonation wave
+multiplicity equation3, 18)
+
+∆=
+
+ṁ
+(1 − ε)
+ρuθ hz nw
+
+(1)
+
+while satisfying Bykovskii’s empirical critical condition
+
+(∆)min  0.2hz
+
+(2)
+
+where hz  (12 ± 5) λ is the fill height as estimated by
+Bykovskii,8) and ε has been introduced as a correction factor
+due to the cumulative effect of injector blockage due to highpressure zones, which has been the focus of recent research.19)
+
+34th ISTS Organizing Committee.
+
+(b) Manufactured hardware. Here is the configuration without the spike
+nozzle installed
+Fig. 3.
+
+Experimental setup of the small-scale Oxygen-Hydrogen RDC
+
+The outer diameter of the chamber dc is 68.0 mm, exceeding
+the minimum value of 28 times the detonation cell width as
+empirically derived by Bykovskii. The length of the combustion
+chamber Lc is 50.0 mm, but the modular design of the RDC
+assembly allows for shorter or longer configurations if desired.
+The channel width ∆ is 4.5 mm, but it also can be varied by
+interchanging the core with one that has a smaller diameter.
+The mechanical design of the test hardware was of conservative nature to achieve a desirable high level of robustness, while
+still featuring several ports for the mounting of high-frequency
+pressure transducers and thermocouples at variable axial and
+radial positions. Due to the modularity of the design, a high
+degree of machining accuracy was required to ensure that the
+interior wall surfaces were flush with one another. To allow for
+early test campaign procedures, a spark-plug port was also included in the design, such that the spark plug tip was flush with
+the outer chamber diameter. For later tests, a pre-detonator assembly will be fitted to the design, in which case the spark plug
+port will be sealed using a dummy plug. Figure 3 shows a cutview schematic and a photograph of the small-scale RDC.
+
+- 2023-a-09 -
+
+2023-a-09
+
+ISTS2023
+
+2.1.2. Injector design
+The injector plate featured unlike impinging orifices to supply the gaseous propellant into the combustion channel through
+72 pairs of injection elements. The O2 orifices had a diameter of
+1.5 mm and the H2 orifices a diameter of 1.0 mm. The injection
+element angles were configured asymmetrically with respect to
+the channel center-line, such that the deviation from the centerline of the resultant jet after impinging was minimized. To prevent back-flow in the injector, it was designed such that the H2
+jet reached a speed of about 1 Ma for a total mass flow rate of
+45 g s−1 . To further promote mixing within the channel, in addition to a large amount of orifices, the O2 injector elements
+were sized such that the difference in axial velocity to the H2 jet
+was minimized. Since these design parameters are coupled, and
+minimization of several of them was desirable, multi-variable
+optimization techniques were used to arrive at a satisfactory design solution.
+2.2. Test bench M3.1
+The initial run-in tests were conducted at the M3 test field
+at the DLR Institute of Space Propulsion in Lampoldshausen.
+The M3 test field has been in service for research and technology development for cryogenic rocket propulsion for more than
+30 years. Fundamental processes in rocket combustion chambers and supply systems, in particular propellant conditioning
+and transient flows, injection, ignition and combustion, can be
+investigated. The M3 test field currently houses three active test
+positions for tests with cryogenic media liquid oxygen and liquid nitrogen, and gaseous hydrogen or hydrocarbon fuels on a
+laboratory scale and feed-line pressures of up to 40 bar.20)
+The test bench M3.1 is designed for injection, ignition and
+combustion testing. Test sequences can be varied by fast reacting test bench valves that allow a sequencing of the fuel and
+oxidizer flow in the order of milliseconds with a reproducibility
+in the order of about 5 ms for gaseous media. At the moment
+tests with LOX/H2 and LOX/CH4 at sub-critical pressure levels
+are possible, where the temperature ranges for gaseous H2 are
+200 K to ambient and gaseous CH4 are about 230 K to ambient, respectively. Maximum mass flow rates are in the order of
+60 g s−1 depending on the mixture ratio and the test set-up.20)
+2.3. Operating conditions
+Due to the safety restrictions of test bench M3.1 the total
+mass flow rate into the detonation chamber was limited to about
+50 kg/m²/s. With the given dimensions of the annular chamber this yields a maximum achievable mass flux of 55 kg/m²/s.
+Compared to other rocket RDE experiments in literature9, 21–24)
+this puts the operating conditions at the lower end of mass flows
+and mass fluxes for RDE operations. However, the experiment
+was already designed to also be able to be tested at the bigger
+test benches at DLR in future work. Nevertheless, to mitigate
+risk and gain first experience of how to operate and test RDEs,
+it was decided to perform the run-in tests with the developed
+hardware at this test bench.
+Furthermore, for the initial tests the propellants oxygen and
+hydrogen were injected with roughly ambient temperatures and
+the target oxidizer to fuel mixture ratios were close to stoichiometric, but still fuel-rich in order to protect the hardware during
+tests (ROF = 6.5 to 7.8).
+Due to the heat sink chamber design short test durations of
+
+34th ISTS Organizing Committee.
+
+about 0.7s have been realized.
+2.4. Diagnostics
+The RDC chamber and injector head as well as the M3 test
+bench are equipped with various diagnostics for the experimental investigation. These measurements can be classified into the
+low-sampling rate signals, which are recorded to characterize
+the mean operating conditions and the measurements for the investigation of the wave dynamics with a high sampling rate.
+2.4.1. Steady operating conditions
+The experiment is equipped with four static pressure sensors.
+Two of which are installed in the annular combustion chamber
+at 8 mm and 38 mm downstream of the injection plane. The
+other two sensors are connected to the manifold volumes of the
+injector head for oxidizer and fuel respectively. The signals
+are recorded with 1 kHz. The pressure sensors are Kistler type
+4043A and have a measurement range from 0 to 20 bar.
+In addition, type K thermocouples are installed in both manifolds of the injector head to measure the propellant temperature.
+Additional thermocouples are installed in the chamber wall in
+order to evaluate the safety margin of the wall structure of the
+heat sink hardware.
+The mass flow rates are measured by coriolis mass flow meters in the feedline of the M3 test bench. The mass flow rate
+for fuel and oxidizer and thus the total injected flow rate and
+the propellant mixture ratio in the chamber (ROF =ṁO2 /ṁH2 )
+is controlled by the pressures of each propellant run tank.
+2.4.2. High-frequency pressure sensors
+To track the dynamics of the pressure oscillation inside the
+annular combustion chamber, three piezoelectric pressure sensors are installed in the outer chamber wall at a distance of 8 mm
+downstream of the injection plane. One Kistler type 601C sensor is flush mounted and two Kistler type 603C are installed
+with a small cavity in order to protect the sensors from the harsh
+conditions inside the chamber.
+The signals are recorded with 200 kHz, which is enough to
+measure the dominant oscillation frequency, but is most likely
+not sufficient to resolve the rapid increase of the steep wave
+front of the detonation waves. The measurement range was set
+to ±20 bar.
+2.4.3. Optical diagnostics
+In the literature, several examples can be found that a highspeed visualization of the dynamics in the annular chamber of
+RDCs from the downstream side of the chamber exit, was a
+valuable addition to the standard pressure oscillation measurements.17, 23, 25, 26, 31, 33, 35) Different important aspects, such as
+the number of waves, the wave direction, the wave speed and
+the potentially even the structure of the waves, can be obtained
+from such measurements. For that reason, a visualization of the
+detonation chamber annulus was also realized for some of the
+conducted RDC hot-fire tests at DLR. In order to do so, a plane
+mirror was installed in the chamber axis a few meters downstream of the chamber exit. A sketch of the setup is presented
+in Fig. 4.
+In order to properly track the travelling waves with high velocities, extreme frame rates and thus powerful high-speed cameras are required. In this study Photron high-speed cameras
+(SA-X and SA-Z) were used at frame rates between 120,000
+and 200,000 frames per second. A sufficient spatial resolution
+
+- 2023-a-09 -
+
+2023-a-09
+
+ISTS2023
+
+3.
+
+Preliminary results of run-in tests
+
+So far the manufactured small-scale RDC hardware has been
+tested several times at the DLR test bench M3, as can be seen
+in Figure 5.
+
+Fig. 4.
+
+Sketch of the test setup with the optical diagnostics.
+
+could still be realized due to a 500 mm tele lens (110 x 110
+pixels for SA-X and 150 x 150 pixels for SA-Z, respectively).
+Caused by the high frame rates and the corresponding short
+exposure times, the overall captured intensity of the images is
+quite low. For that reason, it was decided that no optical filter
+is applied. So, the whole visible range of the H2 -O2 combustion emission spectra is captured and the intensity cannot be
+attributed to a specific flame emission.
+2.5. Dynamic Mode Decomposition
+In order to better investigate and visualize the dynamics
+of the combustion inside the annular channel, post-processing
+methods can be applied to the high-speed imaging.25, 26) In this
+study Dynamic Mode Decomposition (DMD) was chosen to analyze the dynamic content of the high-speed imaging. DMD as
+firstly described by Schmid27) enables the extraction of dominant periodically fluctuating phenomena at different frequencies. The DMD method has been used in past thermoacoustic
+instability research in order to extract the flame response from
+visualization data of conventional rocket combustion chambers.28–30) Furthermore, it has also already been applied to the
+high-speed imaging of the waves of annular RDEs.26, 31)
+In this study image sequences between 15 and 50 ms duration
+were processed. With the given sampling rate, the corresponding frequency resolution of the DMD modes is between 20 and
+60 Hz, depending on the number of samples used for the analysis and the frame rate of the cameras in each run. Each DMD
+mode is defined by a temporal component that describes how
+the mode oscillates in time and a spatial mode including the information of the intensity fluctuation of each pixel around the
+mean value. For improved visualization the DMD modes can be
+combined again with the mean image. A more detailed description of the implementation of the DMD at DLR, can be found
+in further publications.28–30)
+The intensity of a single spatial DMD mode is low compared
+to the mean image intensity and therefore a weighting factor is
+applied to the spatial DMD mode, which increases the dynamic
+content with respect to the mean image. It has to be mentioned,
+that this scaling factor does not change the shape or temporal
+behavior of the DMD mode.
+It has to be mentioned though, that the DMD assumes a linear transformation and therefore DMD is a well-suited tool to
+extract periodic dynamics from large data sets. However, over
+the duration of the image sequence the most dominant periodic
+dynamics are somewhat averaged and the information of nonlinear or non-periodic effects, such as a short period of counterrotating modes could be lost by the DMD processing.
+
+34th ISTS Organizing Committee.
+
+(a) RDC at the M3.1 test bench
+
+(b) Side view
+Fig. 5.
+
+Hot-fire test of the small-scale RDC at the test bench M3.
+
+No significant hardware damage has been observed so far.
+Only the spark plug, which is placed directly in the annular
+chamber wall, had to be replaced between tests. This shows
+that the designed hardware is able to withstand the harsh conditions of such tests with the chosen test duration even without an
+active cooling. For that reason, testing will continue in the next
+months with a larger variety of the steady operating conditions
+and also improved diagnostics.
+In this study, the preliminary results of the first run-in tests of
+the DLR RDC hardware will be presented in the following.
+3.1. Steady state operating conditions
+As was described before, several hot-fire tests have been realized so far. However, in some of these tests there were issues with the measurement system or the high-speed cameras,
+so in this study only the results from four tests will be presented
+and analyzed. For these four tests the total mass flow rate injected into the RDC was between 28 and 44 g/s, corresponding
+to chamber mass fluxes of 30-50 kg/m²/s. The propellant mixture ratios were aimed to be close to stoichiometric but still on
+the fuel-rich side in order to protect the test hardware. The resulting ROFs of the four tests during almost steady state conditions were between 6.8 and 8. Of course, during the start-up of
+
+- 2023-a-09 -
+
+2023-a-09
+
+ISTS2023
+
+the tests and also towards the end of the test the propellant flow
+rates varied significantly, resulting in lower flow rates and also
+different mixture ratios.
+Figure 6 shows the measured static pressures in the propellant
+manifolds and the RDC chamber for the two test runs with the
+minimum and maximum mass flow rates, respectively.
+
+Fig. 7. Raw signal of the flush-mounted piezoeletric pressure sensor during an RDC hot-fire test.
+
+Figure 8 now shows calculated PSDs of two exemplary test
+runs with different mass flow rates.
+(a) Test with a total mass flow rate of about 44 g/s
+
+(a) Test with a total mass flow rate of about 44 g/s
+(b) Test with a total mass flow rate of about 28 g/s
+Fig. 6. Static pressures in the RDC experiment (annular chamber and both
+injector manifolds)
+
+As can be observed the flow in the annular chamber is not
+choked for the whole exit of the annular channel and the mean
+chamber pressure is roughly ambient for the tests. Looking at
+the manifold pressures, it can be seen that the fuel injection
+seems to be choked as was intended in the design of the injectors.
+3.2. Chamber pressure oscillations
+As was described before, the outer wall of the chamber is
+equipped with three piezoelectric pressure sensors from Kistler,
+which have been sampled with 200 kHz.
+Figure 7 shows a zoomed in view of the flush-mounted pressure sensor for one of the test runs (ṁtot ≈ 40 g/s).
+The signal has been high-pass filtered ( f >60 Hz) to compensate the thermal drift of the sensor and shifted in y-direction that
+the pressure oscillates approximately around the mean chamber
+pressure of 1 bar. Strong pressure oscillations with peak-topeak amplitudes of up to 5 bar can be observed. Unfortunately,
+direct proof of detonation waves, such as a very steep, shocklike wave front cannot be detected.
+
+34th ISTS Organizing Committee.
+
+(b) Test with a total mass flow rate of about 28 g/s
+Fig. 8. PSD of the pressure oscillations inside the RDC chamber for two
+tests with different total mass flow rates
+
+A dominant peak can clearly be detected in both PSDs. The
+peak frequency for the test with the higher mass flow rate can be
+found at 38 kHz and for the lower mass flow rate at 24.7 kHz,
+respectively. Multiple tests have been conducted with total mass
+
+- 2023-a-09 -
+
+2023-a-09
+
+ISTS2023
+
+DMD Energy [a.u.]
+
+In order to better understand the combustion wave dynamics
+in the annular chamber, the high-speed imaging is processed
+with DMD.
+Figure 10 shows the DMD mode energy spectra for the two
+exemplary test runs of Fig. 8. It can be observed that the highspeed imaging data also shows the dominant modes at the same
+frequencies as the pressure oscillations. So, the pressure and
+visualization data are capturing consistent dynamic phenomena.
+However, compared to the pressure oscillation data, the optical
+data also shows additional side-peaks with lower amplitudes.
+
+Fig. 9. Raw signal of the flush-mounted piezoeletric pressure sensor during an RDC hot-fire test.
+
+34th ISTS Organizing Committee.
+
+0
+
+10
+
+20
+
+30
+40
+Frequency [kHz]
+
+50
+
+60
+
+(a) Test with a total mass flow rate of about 44 g/s
+
+DMD Energy [a.u.]
+
+flow rates comparable to the test of Fig. 11(a) and the pressure
+signals showed that the dynamics are well reproducible with a
+peak frequency at about 38 kHz.
+The observed frequencies are much higher than expected, because the frequency of one detonation wave at these conditions
+and with the given chamber dimensions was estimated with
+about 11 kHz (assuming 80 % uCJ ). The significantly higher
+pressure oscillation frequencies can also explain why a steepfronted wave is not present in Fig. 7. With the given sampling
+rates of the pressure sensors, the phase resolution of one oscillation period is less than 20 ◦ . However, the sudden pressure rise
+of a detonation wave is significantly faster than this and thus
+cannot be resolved with the current sampling rates.
+Now, the most important research question to be addressed
+is, what kind of effect is causing the pressure oscillations. Both
+acoustic phenomena and rotating detonation waves could lead
+to the presented results. Since only one of the three pressure
+sensors was flush-mounted, the number of waves cannot easily
+be calculated from the pressure sensor signals alone. So, the
+high-speed camera data will be analyzed next.
+3.3. High-Speed imaging
+Figure 9 shows a sequence of raw unprocessed images of the
+high-speed camera for one exemplary test run. The bright pixels on the bottom left are a result of the exhaust gases. Overall
+the intensity of the images and thus the available gray-scale increments are quite limited due to the short exposure time of the
+high-speed camera.
+Nevertheless, some intensity differences can be observed in
+the annular channel of the RDC, where regions of higher and
+lower intensity are present. The series of the images also reveals that the location of the regions with higher intensity seem
+to travel in the annular chamber. This could be evidence of travelling detonation waves. Also it appears, that several of these
+regions with higher intensity exist simultaneously. However,
+due to the low intensity and the interference with the exhaust
+gases, it is not possible to count the exact number of waves.
+Based on the central image of the lower row, at least three of
+these wave structures are indicated with red arrows. Assuming
+an equal distribution of these regions of higher intensity in the
+annular channel, one can estimate that in total there will be between 4 or 5 waves in the channel, but some are hidden by the
+bright exhaust gas spots.
+
+0
+
+10
+
+20
+
+30
+40
+Frequency [kHz]
+
+50
+
+60
+
+70
+
+(b) Test with a total mass flow rate of about 28 g/s
+Fig. 10. DMD mode energies of the high-speed imaging for two tests with
+different total mass flow rates
+
+In the next step, the shape of the dominant DMD modes is
+analyzed. Figure 11 shows the spatial DMD mode recombined
+with the mean image for the two test runs.
+The spatial mode shapes of the DMD analysis reveal the presence of 5 equally distributed waves in the annular chamber for
+the higher mass flow rate and three waves for the lower mass
+flow rates, respectively. The 5 modes have been observed for
+a number of tests with a similar mass flow rate and was reproducible. The increase of the number of modes with increasing
+mass flow rate is consistent with observations from other RDE
+experiments.22, 34)
+4.
+
+Discussion of results
+
+As was described before, evidence for detonation effects in
+the experiment cannot be obtained from the pressure oscillation
+signals alone. This can mostly be attributed to a insufficient
+
+- 2023-a-09 -
+
+2023-a-09
+
+ISTS2023
+
+Max
+
+Min
+
+(a) Test with a total mass flow rate of about 44 g/s
+Max
+
+Min
+
+(b) Test with a total mass flow rate of about 28 g/s
+
+5.
+
+Fig. 11. DMD spatial mode shape for two tests with different total mass
+flow rates
+
+temporal resolution. Nevertheless, strong oscillations at high
+frequencies and amplitudes, which are significantly larger than
+to be expected from linear acoustics, where present in all tests.
+In combination with the DMD analysis of the high-speed
+imaging from the processes in the annular chamber, which reveal the number of waves and the dominant frequencies, now
+the wave speed can be calculated. Using equation 3 with the
+outer diameter of the chamber dc , the number of waves nw and
+the peak oscillation frequency f , the calculated wave speed uw
+is 1600 m/s for the 5 wave case and 1800 m/s for the three wave
+case, respectively.
+
+uw nw
+,
+(3)
+πdc
+These wave frequencies are much less than the theoretical
+CJ-velocity at these conditions, which for H2 -O2 at ambient
+conditions and mixture ratios between 6 and 8 is in the range
+of 2800 to 3080 m/s. Currently, the exact mixture ratio of the
+propellants during the very short test durations is not well defined, because the mass flowmeters are installed further away
+from the injector head. For that reason, the exact CJ-velocity
+cannot be calculated for each test conditions precisely. However, the approximate ratio of the wave speed to the theoretical
+CJ-speed in this experiment is only in the range of 0.53 to 0.65.
+This puts the wave speed in this experiment at a lower level,
+compared to other experiments.9, 11, 23, 34) On the other hand,
+there have also been other rocket RDE experiments for which a
+f =
+
+34th ISTS Organizing Committee.
+
+similarly low wave speed for a high number of waves has been
+reported.9, 11, 22)
+In order to rule out, that the oscillations and DMD mode
+shapes are results of acoustics oscillations, the wave speed can
+also be compared with the speed of sound of the combustion
+products. Assuming 100 % combustion efficiency the speed of
+sound of the combustion products at ambient pressure and with
+ambient injection temperatures of the propellants can be calculated with NASA CEA.32) For an ROF of 7 to 8, the speed of
+sound is about 1400 m/s and thus lower than the observed wave
+speed. In other words, the Ma-number of the waves is about 1.2
+and therefore the waves are supersonic. The speed of sound of
+the unburnt fresh gases is also to be calculated with CEA. The
+Ma-number of the waves with respect to the speed of sound of
+the unburnt propellants is between 3 and 4, depending on the
+mixture ratio. As was described before, the high amplitudes of
+more than 4 bar peak-to-peak at a mean chamber pressure of
+1 bar further shows that the observed dynamics in the annular
+chamber is not of a purely acoustic origin.
+So, since the observed waves seem to be supersonic and are
+also accompanied by chemical reactions indicated by the captured flame emission intensities, the phenomenon inside the annular channel can be interpreted as detonation waves. However, the wave speed is still low compared to the theoretical CJvelocities. This shows that the detonation waves are still weak
+and strong detonation was not observed. Several effects could
+lead to the significant reduction of the wave speed.
+Summary and Conclusions
+
+A small-scale oxygen-hydrogen rotating detonation engine
+has been developed and manufactured at DLR. Due to lack of
+experience of designing and developing RDCs at DLR, the first
+RDC experiment is based on a very simple and robust design.
+The first tests, which have been conducted recently, showed that
+the developed hardware is able to withstand the short test durations without significant damage and therefore the experiment
+has already been tested about 10 times.
+The high-frequency data of both pressure oscillations and
+high-speed imaging through the back-end of the annular chamber, revealed that strong and interesting dynamics are present
+inside the chamber during the hot-fire tests. The oscillation
+frequencies of up to 38 kHz are much higher than expected,
+because the predicted frequency of one ideal (CJ) detonation
+wave is about 14 kHz for this setup. A DMD analysis of the
+high-speed imaging revealed that multiple waves are present.
+Unfortunately, the interpretation of the data is not straight
+forward. Due to an insufficient sampling rate for these high frequencies, the pressure sensor signals don’t show a steep-fronted
+wave. So a direct proof of detonation couldn’t be found in this
+study. Furthermore, the calculated wave speed is quite low
+compared to the theoretical detonation velocity for hydrogenoxygen.
+On the other hand, the observed dynamic phenomena inside
+the chamber also cannot be explained by purely acoustic oscillations. For that reason, the current interpretation of the data is,
+that weak detonation waves were observed.
+
+- 2023-a-09 -
+
+2023-a-09
+
+ISTS2023
+
+5.1. Outlook
+Since the first tests of a rocket type RDC at DLR were successful and showed no significant hardware damage, the experimental study will continue in future work.
+The main goal for future testing is obviously to achieve an
+experimental proof of detonation waves. In order to do so, a
+more powerful high-frequency DAQ system will be introduced
+in the next tests, which allows to sample the pressure sensors
+in the MHz-range. With the significantly increased temporal
+resolution of the pressure oscillation signals, it will be possible
+to investigate the characteristics of the wave front.
+However, from the current analysis it is clear that even if the
+pressure waves seem to be supersonic and a pure acoustic explanation of the measured pressure dynamics seems unlikely, the
+potential detonation waves are still very weak compared to the
+theoretical CJ-velocity. For that reason, the upcoming tests will
+also focus on achieving stronger detonation waves. The goal is
+to achieve stronger detonation through the following points:
+1. Switching the initiation method from the current direct
+spark plug to a O2 -H2 predetonator in order to add more
+energy into the RDC chamber and achieve a faster and
+stronger transition into detonations
+2. Testing with higher chamber mass fluxes. The current
+mass fluxes are low compared to other rocket RDC experiments in the literature, which showed stronger detonations.
+Potentially the current mass fluxes are at the lower end of
+detonatability. Higher mass fluxes could be realized by either a reduced annular width of the hardware or by moving
+the experiment to a test bench which allows higher propellant mass flow rates.
+3. Improving the injector design. Since during the design
+phase only 1 wave was expected, the current injector is not
+well designed for the much higher repetition rate. Most
+likely the amount of injected propellants and mixing efficiency between two waves is not sufficient to achieve a
+strong detonation wave.
+
+6)
+7)
+
+8)
+
+9)
+
+10)
+
+11)
+
+12)
+
+13)
+
+14)
+
+15)
+
+16)
+
+17)
+
+18)
+
+19)
+
+Acknowledgments
+20)
+
+The authors would like to thank Mr. Bernhard Knapp and Dr.
+Stephan General for the support with the high-speed camera.
+The numerical support from colleagues at ONERA was useful
+for the design of the experiment and is greatly acknowledged.
+Additional thanks to the test bench technicians and mechanics
+for setting up the experiment.
+
+21)
+
+22)
+
+References
+1) Law, C. K.: Combustion Physics, Cambridge University Press, Cambridge, 2006, pp. 240–241.
+2) Wintenberger, E. and Shepherd, J. E.: Thermodynamic Cycle Analysis for Propagating Detonations, Journal of Propulsion and Power, 22
+(2006), pp. 694–698.
+3) Wolański, P.: Detonative Propulsion, Proceedings of the Combustion
+Institute, 34 (2013), pp. 125–158.
+4) Xie, Q., Ji, Z., Wen, H., Ren, Z., Wolanski, P. and Wang, B.: (2020).
+Review on the Rotating Detonation Engine and It’s Typical Problems,
+Transactions on Aerospace Research, 4 (2020), pp. 107–163.
+5) Gaillard, T., Davidenko, D. and Dupoirieux, F.: Numerical simulation
+of a Rotating Detonation with a realistic injector designed for sepa-
+
+34th ISTS Organizing Committee.
+
+23)
+
+24)
+
+25)
+
+- 2023-a-09 -
+
+rate supply of gaseous hydrogen and oxygen, Acta Astronautica, 141
+(2017), pp. 64–78.
+Voitsekhovskii, B. V.: Maintained Detonations, Soviet Physics Doklady, 4 (1960), pp. 1207.
+Nicholls, J. A., Cullen, R. E. and Ragland, K. W.: Feasibility studies
+of a rotating detonation wave rocket motor, Journal of Spacecraft and
+Rockets, 3 (1966), pp. 893–898.
+Bykovskii, F. A., Zhdan, S. A. and Vedernikov, E. F.: Continuous
+Spin Detonations, Journal of Propulsion and Power, 22 (2006), pp.
+1204–1216.
+Bykovskii, F. A., Zhdan, S. A. and Vedernikov, E. F.: Realization and Modeling of Continuous Spin Detonation of a HydrogenOxygen Mixture in Flow-Type Combustors, Combustion, Explosion,
+and Shock Waves, 45 (2009), pp. 716–728.
+Ma, J. Z., Luan, M., Xia, Z., Wang, J., Zhang, S., Yao, S. et al. : Recent Progress, Development Trends, and Consideration of Continuous
+Detonation Engines, AIAA Journal, 58 (2020), pp. 4976–5035.
+Stechmann, D. P.: Experimental Study of High-Pressure Rotating
+Detonation Combustion in Rocket Environments, Ph.D. Thesis, Purdue University, 2017.
+Okninski, A., Kindracki, J. and Wolański, P.: Rocket rotating detonation engine flight demonstrator, Aircraft Engineering and Aerospace
+Technology, 88 (2016), pp. 480–491.
+Kawalec, M., Wolański, P., Perkowski, W. and Bilar, A.: Development of a Liquid-Propellant Rocket Powered by a Rotating Detonation Engine, Journal of Propulsion and Power, 0 (2023), pp. 1–8.
+Kawasaki, A., Matsuyama, K., Matsuoka, K., Watanabe, H.,
+Itouyama, N., Goto, K. et al.: Flight Demonstration of Detonation
+Engine System Using Sounding Rocket S-520-31: System Design,
+AIAA SCITECH 2022 Forum, 2021.
+Kasahara, J., Kawasaki, A., Matsuoka, K., Matsuo, A, Funaki, I.,
+Nakata, D. et al.: Research and development of rotating detonation
+engine system for the sounding rocket flight experiment S520-31, AIP
+Conference Proceedings 2121, Dhaka, Bangladesh, 020001, 2019.
+Osorio, R.: NASA Validates Revolutionary Propulsion Design for
+Deep Space Missions, 2023, https://www.nasa.gov/ (accessed April
+9, 2023).
+Teasley, T. W., Fedotowsky, T. M., Gradl, P. R., Austin, B. L. and
+Heister, S. D.: Current State of NASA Continuously Rotating Detonation Cycle Engine Development, IAA SCITECH 2023 Forum, National Harbor, MD, 2023.
+Connolly-Boutin, S., Joseph, V., Ng, H. D. and Kiyanda C. B.: Smallsize rotating detonation engine: scaling and minimum mass flow rate,
+Shock Waves, 31 (2021), pp. 665-674.
+Celebi, H. F., Lim, D., Dille, K. J., and Heister, S. D.: Response of
+angled and tapered liquid injectors to passing detonation fronts at high
+operating pressures, Shock Waves, 31 (2021), pp. 717–726.
+Börner, M., Bee, A., Traudt, T., Klein, S. and Hardi, J.: OVERVIEW
+OF THE DLR M3 TEST FIELD FOR COMPONENT TESTING
+FOR CRYOGENIC PROPULSION, 3rd GBSF 2022, Marseille,
+France, 2022.
+Davidenko, D., Gökalp, I., and Kudryavtsev, A.: Numerical study of
+the continuous detonation wave rocket engine, 15th AIAA International Space Planes and Hypersonic Systems and Technologies Conference, 2008.
+Bennewitz, J. W., Bigler, B. R., Ross, M. C., Danczyk, S. A., Hargus,
+W. A. and Smith, R. D.: Performance of a Rotating Detonation Rocket
+Engine with Various Convergent Nozzles and Chamber Lengths, Energies, 8 (2021).
+Sosa, J., Burke, R., Ahmed, K. A., Micka, D. J., Bennewitz, J. W.,
+Danczyk, S. A., Paulson, E. J. and Hargus, W. A.: Experimental evidence of H2/O2 propellants powered rotating detonation waves, Combustion and Flame, 214 (2020), pp. 136–138.
+Frolov, S. M., Aksenov, V. S., and Ivanov, V. S.: Experimental proof
+of Zel’dovich cycle efficiency gain over cycle with constant pressure
+combustion for hydrogen–oxygen fuel mixture, Iternational Journal
+of Hydrogen Energy, 40 (2015), pp. 6970–6975.
+Bennewitz, J. W., Bigler, B. R., Hargus, W. A., Danczyk, S. A. and
+Smith, R. D.: Characterization of detonation wave propagation in a
+
+2023-a-09
+
+26)
+
+27)
+28)
+
+29)
+
+30)
+
+ISTS2023
+
+rotating detonation rocket engine using direct high-speed imaging,
+2018 Joint Propulsion Conference, Cincinnati, OH, 2018.
+Bohon, M. D., Bluemner, R., Paschereit, C. O., and Gutmark, E. J.:
+High-speed imaging of wave modes in an RDC, Experimental Thermal and Fluid Science, 102 (2019), pp. 28–37.
+Schmid, P. J.: Dynamic Mode Decomposition of Numerical and Experimental Data, Journal of Fluid Mechanics, 656 (2010), pp. 5–28.
+Armbruster, W., Hardi, J. S., Suslov, D. and Oschwald, M.: InjectorDriven Flame Dynamics in a High-Pressure Multi-Element OxygenHydrogen Rocket Thrust Chamber, Journal of Propulsion and Power,
+35 (2019), pp. 632–644.
+Beinke, S. K., Hardi, J. S., Banuti, D. T., Karl, S., Dally, B. B. and
+Oschwald, M.: Experimental and Numerical Study of Transcritical
+Oxygen-Hydrogen Rocket Flame Response to Transverse Acoustic
+Excitation, Proceedings of the Combustion Institute, (2020).
+Martin, J., Armbruster, W., Suslov, D., Stützer, R., Hardi, J. S.,
+and Oschwald, M.: Flame Characteristics and Response of a HighPressure LOX/CNG Rocket Combustor with Large Optical Access,
+Aerospace, 9 (2022).
+
+34th ISTS Organizing Committee.
+
+31) Journell, C. L., Gejji, R. M., Walters, I. V., Lemcherfi, A. I., Slabaugh,
+C. D., and Stout, J. B.: High-speed diagnostics in a natural gas–air rotating detonation engine, Journal of Propulsion and Power, 36 (2020),
+pp. 498–507.
+32) Gordon, S. and McBride, B. J.: Computer Program for Calculation of
+Complex Chemical Equilibrium Compositions and Applications. Part
+1: Analysis, NASA Glenn Research Center, 1994.
+33) Goto, K., Yokoo, R., Kawasaki, A., Matsuoka, K., Kasahara, J., Matsuo, A., Funaki, I., Kawashima, H.: Investigation into the effective
+injector area of a rotating detonation engine with impact of backflow,
+Shock Waves, 31 (2021), pp. 753–762.
+34) Mundt, T. J., Chang, L., Ikeda, M., Menn, D., Knowlen, C., and
+Kurosaka, M.: Operating Characteristics of a 76-mm Rotating Detonation Rocket Engine, AIAA SCITECH 2023 Forum, National Harbor, MD, 2023.
+35) Law, H., Baxter, T., Ryan, C. N. and Deiterding, R.: Design and testing of a small-scale laboratory rotating detonation engine running on
+ethylene-oxygen, AIAA Propulsion and Energy 2021 Forum, 2021.
+
+- 2023-a-09 -
+
+
