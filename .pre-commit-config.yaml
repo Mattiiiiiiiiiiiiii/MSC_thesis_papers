@@ -21,6 +21,7 @@ repos:
         language: system
         entry: paper hook
         require_serial: true
+        always_run: true
         files: (\.pdf|/info\.yaml)$
         exclude: ^(confluence_pages|configuration_optimization/viscous_models/mit_mark_drela_course|automatic_differentiation/mit_course)/
 
